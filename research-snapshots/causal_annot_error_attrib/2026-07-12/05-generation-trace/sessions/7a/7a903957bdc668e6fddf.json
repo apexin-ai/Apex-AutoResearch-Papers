@@ -1,0 +1,405 @@
+{
+  "schema_version": "1.0",
+  "id": "7a903957bdc668e6fddf",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: EncoGuard: Encoding-Complexity Curriculum for Hardening Guardrail Classifiers Against Character-Level Evasion **状态**: PE",
+  "task_key": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/8f71dc98-72fc-4cd9-9fdf-e451606d7c4a.jsonl",
+    "occurrence": 1,
+    "bytes": 66928,
+    "sha256": "a3a593630fe7116ca3b4e9cb3994fbe95b5dfbae5bd32bcad0964952650b20de"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "record": 8,
+      "user": 1,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T12:14:39.372Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-16T12:14:39.372Z",
+                "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a",
+                "content": "# EncoGuard: Encoding-Complexity Curriculum for Hardening Guardrail Classifiers Against Character-Level Evasion\n\n**状态**: PENDING_REVIEW\n**级别**: top-tier\n**创建时间**: 2026-05-16T09:42:11.878561+00:00\n**来源**: s4\n\n## 描述\nWe address the critical vulnerability of open-source safety guardrails to encoding-based evasion attacks, where character injection techniques achieve up to 100% bypass rates and simple mutations evade 15 state-of-the-art guardrails 44.5% of the time (Bassani & Sanchez, EMNLP 2025). The combinatorial explosion of encoding compositions — 20 transformations yielding thousands of unique attack strings at 83–91% ASR on HarmBench (Huang, NeurIPS 2024 Workshop) — makes exhaustive rule-based canonicalization fundamentally untenable. While curriculum-based adversarial co-training for safety has been established by ACE-Safety (arXiv 2511.19218) — achieving 8.8% ASR via model-evolution-based curriculum tiers (AC-TGPO) for semantic jailbreaks — its curriculum principle (attacker-defender strength asymmetry) is unsuited for encoding attacks, where difficulty is determined by encoding structural properties (nesting depth, CPT-ratio preservation, cross-script mixing) rather than model-evolution differentials. Flat character augmentation exists (AprielGuard trains with character noise and leetspeak) but lacks systematic encoding coverage and curriculum structure. We propose EncoGuard, whose primary contribution is demonstrating that an encoding-complexity-based curriculum — structurally distinct from ACE-Safety's model-evolution curriculum and AprielGuard's flat augmentation — is the critical design factor for encoding robustness. Using a 2-stage curriculum progressively escalating from single-encoding attacks (Stage 1: character substitution + full encoding transformations) to composite multi-encoding attacks with CPT-adversarial augmentation (Stage 2: nested encodings, partial encoding, mixed-script interleaving, staged delivery), we implement a co-evolutionary loop where a GRPO-trained attacker (Qwen3.5-2B) learns encoding evasions against a guardrail classifier (Qwen3.5-4B), using TRL v1.0's GRPOTrainer with a custom outer orchestration script for alternating attacker/defender training phases. A deterministic rule-based decoding pipeline serves as oracle fallback, validating GPT-4o's harmful/benign judgments on complex nested encodings to prevent reward signal corruption. A secondary contribution demonstrates generalization to untrained character-level encoding types: we hold out Braille Unicode substitution (mapping characters to U+2800–U+28FF Braille Patterns) and Morse code substitution from all training, testing whether encoding-complexity curriculum teaches encoding-invariant features. These held-out types test complementary aspects of generalization: Braille Unicode is known in red-teaming tooling (e.g., NVIDIA garak) but has received no systematic academic evaluation — no paper measures its attack effectiveness or proposes specific defenses. Morse code is well-established as an attack vector — CipherChat (Yuan et al., ICLR 2024) demonstrated 55.3% unsafety rate on GPT-4, and Plentiful Jailbreaks (Huang, NeurIPS 2024 Workshop) includes it among 20 composable transformations — but has never been included in guardrail training data. Both are valid held-out types: Braille tests generalization to an academically uncharacterized encoding, while Morse tests generalization to a known-but-untrained-against attack. No existing guardrail training includes Braille or Morse augmentation, and no encoding-specific defense paper evaluates against them. Beyond encoding attacks, our results are designed to test a broader hypothesis: that complexity-structured curriculum is a general principle for adversarial robustness whenever attack difficulty has a natural ordering independent of model capability — potentially applicable to multi-turn staged delivery (STACK-style), tool-call obfuscation sequences, and cross-modal attack chains, as independently suggested by DMAST's concurrent multi-stage GRPO co-training for cross-modal attacks (arXiv 2603.04364). This positions EncoGuard not merely as an encoding-specific defense but as a demonstration of a transferable curriculum methodology with encoding as the showcase domain. We evaluate on HarmBench, JailbreakBench, WildGuardTest, and EncoAttack (12,000 test cases + 1,000 generalization cases), with primary baselines: Ilin et al. (no encoding curriculum), AprielGuard-style flat augmentation (no curriculum structure), and random-order adversarial training (ablation control), plus reference comparisons to Broken-Token CPT-Filtering and TRYLOCK canonicalization from published numbers. We target ≥50% encoding ASR reduction vs. Ilin et al., with curriculum ordering outperforming flat augmentation by ≥10% and random-order training by ≥15% on composite attacks, and ≥25% reduction on held-out character-level encoding types demonstrating generalization to untrained encodings, while maintaining <3% FPR. To mitigate timeline risk, we specify a minimal viable paper (MVP) scope achievable in 7 days: 2 trained baselines (dropping flat augmentation), 6,000 EncoAttack test cases, and Braille-only generalization — retaining the core curriculum-vs-random finding with full scope completable at camera-ready. Timeline: 9 days with pre-built encoding generators and EncoAttack suite (deterministic scripts prepared before research clock), reduced trained baseline set (3 primary), and paper writing overlapping final evaluation. All code, training pipeline, encoding generators, EncoAttack suite, and model weights will be released.\n\n## 核心问题\nOpen-source safety guardrails are catastrophically vulnerable to encoding-based evasion attacks — character injection techniques achieve up to 100% bypass (emoji smuggling), Unicode tag attacks reach 90.15% ASR, number-mapping 81.18%, and bidirectional text 78.69% against six production guardrails including Azure Prompt Shield and Meta Prompt Guard (Hackett et al., LLMSEC 2025). Simple input mutations bypass 15 state-of-the-art guardrail models 44.5% of the time with a single adversarial token (Bassani & Sanchez, EMNLP 2025 Findings). The combinatorial explosion of encoding compositions — 20 individual transformations yielding thousands of unique attack strings via best-of-n sampling, achieving 83–91% ASR on HarmBench across frontier models (Huang, NeurIPS 2024 Workshop) — makes exhaustive rule-based canonicalization fundamentally untenable. While curriculum-based adversarial co-training for safety has been established — ACE-Safety (arXiv 2511.19218) achieves 8.8% ASR via model-evolution-based curriculum tiers with AC-TGPO — its curriculum is structured around attacker-defender asymmetry (stronger current attacker vs. weaker historical defender), uses MCTS-discovered semantic jailbreak strategies, and does not address encoding/character-level attacks at all. Flat character-level augmentation exists (AprielGuard trains with character noise, leetspeak, and typographical errors) but lacks systematic encoding coverage and curriculum structure. Rule-based canonicalization (TRYLOCK Layer 0) handles known encodings via regex and Unicode normalization but cannot generalize to novel encodings or adversarial combinations — a fundamental limitation given the combinatorial attack surface. Static CPT-Filtering (Broken-Token) detects common encodings via Characters-Per-Token ratios but fails on non-Latin scripts and obfuscation preserving normal CPT ratios. The gap — an encoding-complexity-based curriculum that systematically hardens guardrail classifiers across the full spectrum of character-level encoding manipulations, including novel and composite attacks — remains unaddressed. Can curriculum ordering based on encoding complexity (rather than model evolution or random augmentation) close the encoding evasion gap by ≥50% and enable generalization to unseen character-level encoding types?\n\n## 机遇 / Why Now\nACE-Safety (arXiv 2511.19218, Nov 2025) established that curriculum-based adversarial co-training via GRPO produces robust safety alignment — its AC-TGPO with Normal→Asymmetric→Hard tiers achieves 8.8% ASR versus 19.0% for the nearest competitor, converging by iteration 4. However, ACE-Safety's curriculum is fundamentally model-evolution-based (difficulty arises from attacking weaker historical defenders), uses GS-MCTS to discover semantic jailbreak strategies, and targets base LLM alignment — it neither addresses encoding/character-level attacks nor hardens external guardrail classifiers. Ilin et al. (arXiv 2507.08284, Jul 2025) demonstrated RL-guided adversarial training with a GAN-inspired loop using a 7B attacker (dolphin-2.1-mistral-7B) to train a lightweight 300M classifier (Lite-Oute-1-300M-Instruct) — but generates semantic jailbreaks without encoding-specific strategies. AprielGuard (arXiv 2512.20293, Dec 2025) trains with character-level noise, leetspeak substitutions, and typographical errors as flat data augmentation — the closest existing 'encoding augmentation for guardrail training' — but without systematic encoding coverage, curriculum structure, or evaluation on encoding-specific benchmarks. TRYLOCK (arXiv 2601.03300, Thornton, Jan 2026) introduced Layer 0 Input Canonicalization achieving 87.5% reduction in Unicode/homoglyph failures (from 8 to 1 out of 24 total system failures), but its rule-based approach fundamentally cannot generalize to novel encodings not in its rule set or adversarial combinations designed to evade detection — a critical limitation given that 20 composable transformations already generate a combinatorially intractable attack surface (Huang, NeurIPS 2024 Workshop). Broken-Token (arXiv 2510.26847, Oct 2025) achieves near-perfect CPT-Filtering accuracy on five tested encoding schemes including via sliding window detection, but fails on non-Latin scripts and is untested against obfuscation preserving normal CPT ratios. The specific opportunity is twofold: (1) demonstrating that an encoding-complexity-based curriculum — structurally distinct from ACE-Safety's model-evolution curriculum and AprielGuard's flat augmentation — is the critical design factor for encoding robustness, and that this curriculum enables generalization to character-level encoding types absent from training that neither rule-based canonicalization nor model-evolution-based curricula can achieve; and (2) establishing complexity-structured curriculum as a general principle for adversarial robustness whenever attack difficulty has a natural ordering independent of model capability — with encoding attacks as the showcase application and implications for multi-turn staged delivery (STACK-style), tool-call obfuscation sequences, and cross-modal attack chains, as independently suggested by DMAST's concurrent multi-stage GRPO co-training for cross-modal web agent attacks (arXiv 2603.04364, Mar 2026).\n\n## 方法思路\nWe propose EncoGuard, which demonstrates that encoding-complexity-based curriculum design — structurally distinct from ACE-Safety's model-evolution curriculum (Normal→Asymmetric→Hard tiers based on attacker-defender strength asymmetry) and AprielGuard's flat character augmentation — is the critical design factor for hardening guardrail classifiers against encoding evasion. While ACE-Safety established that curriculum adversarial co-training via GRPO produces robust safety alignment for semantic jailbreaks, encoding attacks require a fundamentally different curriculum principle: progressive escalation of encoding complexity rather than progressive escalation of model-evolution asymmetry, because encoding difficulty is determined by the structural properties of the transformation (nesting depth, CPT-ratio preservation, cross-script mixing) rather than by attacker-defender strength differentials.\n\n**Architecture**: A GRPO-trained adversarial attacker (Qwen3.5-2B) co-evolves against a guardrail classifier (Qwen3.5-4B, SFT-initialized) over 2 co-evolutionary rounds. The attacker receives reward proportional to the classifier's confidence that an encoding-obfuscated harmful prompt is safe, while a frozen oracle (GPT-4o) confirms the decoded content is genuinely harmful — preventing reward hacking via benign encoded content. **Oracle fallback**: A deterministic rule-based decoding pipeline (implementing all training-stage encoding transforms in reverse: base64 decode, hex decode, ROT-n reverse, URL decode, Unicode unescape, homoglyph normalization via TR39 mapping) serves as secondary verification — if the oracle's harmful/benign judgment disagrees with the deterministic decoder's output fed to a reference classifier, the sample is flagged for exclusion from reward computation, preventing reward signal corruption on complex nested encodings where GPT-4o may fail to decode correctly. Note: TRL v1.0's GRPOTrainer handles single-policy optimization, so the co-evolutionary loop requires a lightweight custom outer orchestration script alternating attacker GRPO and classifier SFT phases — standard engineering for adversarial co-training (as in Ilin et al. and DuoGuard) but a factor in timeline planning.\n\n**Primary contribution — Encoding-Complexity Curriculum**: Unlike ACE-Safety's model-evolution tiers (where difficulty emerges from training stronger attackers against weaker historical defenders), EncoGuard structures the attacker's encoding strategy space via a 2-stage curriculum of increasing encoding complexity — a curriculum principle grounded in the structural properties of encoding transformations themselves:\n- Stage 1 (Round 1 — Single-Encoding Attacks): Character-level substitution (leetspeak variants, homoglyph substitution via Cyrillic/Greek lookalikes, fullwidth characters, mathematical Unicode symbols) AND single-layer full encoding transformations (base64, hexadecimal, ROT-n ciphers, URL encoding, Unicode escape sequences). The attacker learns to generate obfuscations that preserve LLM readability while evading both character-level pattern matching and simple encoding detection.\n- Stage 2 (Round 2 — Composite Attacks with CPT-Adversarial Augmentation): Nested encodings (base64-of-hexadecimal, ROT13-of-base64), partial encoding (encoding only key harmful terms within natural text), mixed-script interleaving, zero-width character insertion between encoded segments, and STACK-style multi-turn staged delivery. This stage directly addresses the combinatorial composition threat demonstrated by Plentiful Jailbreaks (Huang, NeurIPS 2024 Workshop), where arbitrary sequencing of transformations generates an intractable attack surface that rule-based defenses cannot enumerate. Critically, the attacker receives bonus reward for encodings that maintain CPT ratios within 1 standard deviation of natural text (as measured by the target tokenizer), directly training against Broken-Token's CPT-Filtering detection mechanism — including its sliding window variant.\n\nThe Stage 2 attacker is initialized from the Stage 1 checkpoint, enabling progressive skill building — analogous to ACE-Safety's curriculum progression but with complexity tiers defined by encoding structure rather than model evolution. The classifier is retrained on the full accumulated adversarial dataset after each round, with curriculum-aware data balancing (equal representation of each complexity tier). Encoding attack generators are implemented as deterministic rule-based transforms (not learned via MCTS as in ACE-Safety), ensuring controlled complexity escalation and reproducibility.\n\n**Secondary contribution — Generalization to Untrained Character-Level Encodings**: We deliberately hold out two character-level encoding types from all training stages — Braille Unicode substitution (mapping ASCII characters to Unicode Braille Patterns U+2800–U+28FF, e.g., 'hello' → '⠓⠑⠇⠇⠕') and Morse code substitution (e.g., 'hello' → '.... . .-.. .-.. ---') — to test whether the encoding-complexity curriculum teaches encoding-invariant harmful content detection. These held-out types test different aspects of generalization: Braille Unicode is known in red-teaming tooling (e.g., NVIDIA garak's InjectBraille probe) but has received no systematic academic evaluation — no paper measures its attack effectiveness or proposes specific defenses, making it a test of generalization to an academically uncharacterized encoding. Morse code, by contrast, is well-established as an attack vector — CipherChat (Yuan et al., ICLR 2024) demonstrated 55.3% unsafety rate on GPT-4, and Plentiful Jailbreaks (Huang, NeurIPS 2024 Workshop) includes it among 20 composable transformations — but has never been included in guardrail training data, making it a test of generalization to a known-but-untrained-against attack. Both are genuine character-level encodings: Braille uses a deterministic 1-to-1 Unicode character mapping (structurally similar to trained encodings like fullwidth or mathematical Unicode), while Morse uses a character-to-symbol-sequence mapping (structurally similar to trained encodings like base64 or hexadecimal). No existing guardrail training includes Braille or Morse augmentation, and no encoding-specific defense paper evaluates against them — making them valid generalization tests for curriculum-trained encoding-invariant features. Our hypothesis: the progressive curriculum forces the classifier to develop features that recognize harmful semantic content regardless of surface-level character transformations, enabling generalization across character-level encoding families that neither rule-based defenses (TRYLOCK, which lacks Braille/Morse in its rule set), flat augmentation (AprielGuard), nor model-evolution curricula (ACE-Safety, which shows no encoding-specific generalization) can achieve. This tests generalization within the character-level encoding mechanism class — not across fundamentally different evasion mechanisms (e.g., semantic reformulation).\n\n**Stability mechanisms**: (a) Per-stage diversity enforcement via entropy regularization on the encoding-type distribution within each round (preventing collapse to a single encoding strategy, informed by TriPlay-RL's diversity penalties); (b) Defender checkpoint selection retaining the model with lowest FPR on a held-out benign set, with rollback if FPR exceeds 3%; (c) Semantic deduplication (embedding cosine similarity >0.9 threshold) to remove near-duplicate adversarial examples.\n\n**Evaluation**: Four benchmarks — HarmBench, JailbreakBench, WildGuardTest, and a novel EncoAttack suite (curated from encoding attack literature: 500 prompts × 8 encoding types × 3 nesting levels = 12,000 test cases, plus 500 × 2 held-out character-level encoding types = 1,000 generalization test cases). Primary baselines: (1) Ilin et al.'s approach (without encoding curriculum) trained to equivalent compute; (2) AprielGuard-style flat encoding augmentation — character noise + leetspeak + typographical errors applied without curriculum structure or systematic encoding coverage, directly testing whether curriculum ordering outperforms unstructured augmentation (H2); (3) Random-order adversarial training with the same encoding attack data but NO curriculum structure (ablation control). Reference comparisons (pre-computed from published numbers, not re-implemented): Broken-Token CPT-Filtering (both global and sliding window variants), TRYLOCK Layer 0 canonicalization + classifier pipeline. Secondary baselines: GuardReasoner, WildGuard, AprielGuard, Qwen3Guard. Key hypotheses: (H1) EncoGuard reduces encoding attack ASR by ≥50% relative to Ilin et al. baseline; (H2) Curriculum-ordered training outperforms both random-order training (≥15% on composite encoding attacks) AND AprielGuard-style flat augmentation (≥10% overall), demonstrating that curriculum ordering is the critical factor; (H3) EncoGuard catches ≥30% of attacks that evade CPT-Filtering (those with manipulated CPT ratios); (H4) EncoGuard achieves ≥25% ASR reduction on held-out character-level encoding types (Braille Unicode, Morse code) relative to Ilin et al. baseline, demonstrating generalization to untrained encodings — a capability that neither rule-based canonicalization (which lacks these encodings in its rule set) nor flat augmentation (which has no curriculum to build encoding-invariant features) can achieve. All code, training data, curriculum configurations, and model weights will be released.\n\n**Timeline contingency — Minimal Viable Paper (MVP)**: If engineering issues arise (co-evolutionary loop bugs, GPT-4o oracle degradation on nested encodings, GRPO training instability), a reduced-scope paper achievable in 7 days retains scientific validity: (a) drop AprielGuard-style flat augmentation baseline (retain Ilin et al. reimplementation + random-order ablation as the minimum set testing H1 and the curriculum-vs-random comparison from H2); (b) reduce EncoAttack to 6,000 test cases (4 encoding types × 3 nesting levels × 500 prompts); (c) report H4 generalization on Braille Unicode only (skip Morse if time-constrained), since Braille's 1-to-1 character mapping provides the cleaner structural analogy to trained encodings. This MVP still demonstrates the core claim (encoding-complexity curriculum > no curriculum) and generalization to one held-out type, with the full scope completable as a camera-ready extension.\n\n## Seed Topic\nTarget: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: LLM Security.\n\nDirection: LLM safety robustness — defense methods against jailbreaking, adversarial promp...\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T12:14:39.377Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-16T12:14:39.377Z",
+                "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T12:14:39.553Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "# EncoGuard: Encoding-Complexity Curriculum for Hardening Guardrail Classifiers Against Character-Level Evasion\n\n**状态**: PENDING_REVIEW\n**级别**: top-tier\n**创建时间**: 2026-05-16T09:42:11.878561+00:00\n**来源**: s4\n\n## 描述\nWe address the critical vulnerability of open-source safety guardrails to encoding-based evasion attacks, where character injection techniques achieve up to 100% bypass rates and simple mutations evade 15 state-of-the-art guardrails 44.5% of the time (Bassani & Sanchez, EMNLP 2025). The combinatorial explosion of encoding compositions — 20 transformations yielding thousands of unique attack strings at 83–91% ASR on HarmBench (Huang, NeurIPS 2024 Workshop) — makes exhaustive rule-based canonicalization fundamentally untenable. While curriculum-based adversarial co-training for safety has been established by ACE-Safety (arXiv 2511.19218) — achieving 8.8% ASR via model-evolution-based curriculum tiers (AC-TGPO) for semantic jailbreaks — its curriculum principle (attacker-defender strength asymmetry) is unsuited for encoding attacks, where difficulty is determined by encoding structural properties (nesting depth, CPT-ratio preservation, cross-script mixing) rather than model-evolution differentials. Flat character augmentation exists (AprielGuard trains with character noise and leetspeak) but lacks systematic encoding coverage and curriculum structure. We propose EncoGuard, whose primary contribution is demonstrating that an encoding-complexity-based curriculum — structurally distinct from ACE-Safety's model-evolution curriculum and AprielGuard's flat augmentation — is the critical design factor for encoding robustness. Using a 2-stage curriculum progressively escalating from single-encoding attacks (Stage 1: character substitution + full encoding transformations) to composite multi-encoding attacks with CPT-adversarial augmentation (Stage 2: nested encodings, partial encoding, mixed-script interleaving, staged delivery), we implement a co-evolutionary loop where a GRPO-trained attacker (Qwen3.5-2B) learns encoding evasions against a guardrail classifier (Qwen3.5-4B), using TRL v1.0's GRPOTrainer with a custom outer orchestration script for alternating attacker/defender training phases. A deterministic rule-based decoding pipeline serves as oracle fallback, validating GPT-4o's harmful/benign judgments on complex nested encodings to prevent reward signal corruption. A secondary contribution demonstrates generalization to untrained character-level encoding types: we hold out Braille Unicode substitution (mapping characters to U+2800–U+28FF Braille Patterns) and Morse code substitution from all training, testing whether encoding-complexity curriculum teaches encoding-invariant features. These held-out types test complementary aspects of generalization: Braille Unicode is known in red-teaming tooling (e.g., NVIDIA garak) but has received no systematic academic evaluation — no paper measures its attack effectiveness or proposes specific defenses. Morse code is well-established as an attack vector — CipherChat (Yuan et al., ICLR 2024) demonstrated 55.3% unsafety rate on GPT-4, and Plentiful Jailbreaks (Huang, NeurIPS 2024 Workshop) includes it among 20 composable transformations — but has never been included in guardrail training data. Both are valid held-out types: Braille tests generalization to an academically uncharacterized encoding, while Morse tests generalization to a known-but-untrained-against attack. No existing guardrail training includes Braille or Morse augmentation, and no encoding-specific defense paper evaluates against them. Beyond encoding attacks, our results are designed to test a broader hypothesis: that complexity-structured curriculum is a general principle for adversarial robustness whenever attack difficulty has a natural ordering independent of model capability — potentially applicable to multi-turn staged delivery (STACK-style), tool-call obfuscation sequences, and cross-modal attack chains, as independently suggested by DMAST's concurrent multi-stage GRPO co-training for cross-modal attacks (arXiv 2603.04364). This positions EncoGuard not merely as an encoding-specific defense but as a demonstration of a transferable curriculum methodology with encoding as the showcase domain. We evaluate on HarmBench, JailbreakBench, WildGuardTest, and EncoAttack (12,000 test cases + 1,000 generalization cases), with primary baselines: Ilin et al. (no encoding curriculum), AprielGuard-style flat augmentation (no curriculum structure), and random-order adversarial training (ablation control), plus reference comparisons to Broken-Token CPT-Filtering and TRYLOCK canonicalization from published numbers. We target ≥50% encoding ASR reduction vs. Ilin et al., with curriculum ordering outperforming flat augmentation by ≥10% and random-order training by ≥15% on composite attacks, and ≥25% reduction on held-out character-level encoding types demonstrating generalization to untrained encodings, while maintaining <3% FPR. To mitigate timeline risk, we specify a minimal viable paper (MVP) scope achievable in 7 days: 2 trained baselines (dropping flat augmentation), 6,000 EncoAttack test cases, and Braille-only generalization — retaining the core curriculum-vs-random finding with full scope completable at camera-ready. Timeline: 9 days with pre-built encoding generators and EncoAttack suite (deterministic scripts prepared before research clock), reduced trained baseline set (3 primary), and paper writing overlapping final evaluation. All code, training pipeline, encoding generators, EncoAttack suite, and model weights will be released.\n\n## 核心问题\nOpen-source safety guardrails are catastrophically vulnerable to encoding-based evasion attacks — character injection techniques achieve up to 100% bypass (emoji smuggling), Unicode tag attacks reach 90.15% ASR, number-mapping 81.18%, and bidirectional text 78.69% against six production guardrails including Azure Prompt Shield and Meta Prompt Guard (Hackett et al., LLMSEC 2025). Simple input mutations bypass 15 state-of-the-art guardrail models 44.5% of the time with a single adversarial token (Bassani & Sanchez, EMNLP 2025 Findings). The combinatorial explosion of encoding compositions — 20 individual transformations yielding thousands of unique attack strings via best-of-n sampling, achieving 83–91% ASR on HarmBench across frontier models (Huang, NeurIPS 2024 Workshop) — makes exhaustive rule-based canonicalization fundamentally untenable. While curriculum-based adversarial co-training for safety has been established — ACE-Safety (arXiv 2511.19218) achieves 8.8% ASR via model-evolution-based curriculum tiers with AC-TGPO — its curriculum is structured around attacker-defender asymmetry (stronger current attacker vs. weaker historical defender), uses MCTS-discovered semantic jailbreak strategies, and does not address encoding/character-level attacks at all. Flat character-level augmentation exists (AprielGuard trains with character noise, leetspeak, and typographical errors) but lacks systematic encoding coverage and curriculum structure. Rule-based canonicalization (TRYLOCK Layer 0) handles known encodings via regex and Unicode normalization but cannot generalize to novel encodings or adversarial combinations — a fundamental limitation given the combinatorial attack surface. Static CPT-Filtering (Broken-Token) detects common encodings via Characters-Per-Token ratios but fails on non-Latin scripts and obfuscation preserving normal CPT ratios. The gap — an encoding-complexity-based curriculum that systematically hardens guardrail classifiers across the full spectrum of character-level encoding manipulations, including novel and composite attacks — remains unaddressed. Can curriculum ordering based on encoding complexity (rather than model evolution or random augmentation) close the encoding evasion gap by ≥50% and enable generalization to unseen character-level encoding types?\n\n## 机遇 / Why Now\nACE-Safety (arXiv 2511.19218, Nov 2025) established that curriculum-based adversarial co-training via GRPO produces robust safety alignment — its AC-TGPO with Normal→Asymmetric→Hard tiers achieves 8.8% ASR versus 19.0% for the nearest competitor, converging by iteration 4. However, ACE-Safety's curriculum is fundamentally model-evolution-based (difficulty arises from attacking weaker historical defenders), uses GS-MCTS to discover semantic jailbreak strategies, and targets base LLM alignment — it neither addresses encoding/character-level attacks nor hardens external guardrail classifiers. Ilin et al. (arXiv 2507.08284, Jul 2025) demonstrated RL-guided adversarial training with a GAN-inspired loop using a 7B attacker (dolphin-2.1-mistral-7B) to train a lightweight 300M classifier (Lite-Oute-1-300M-Instruct) — but generates semantic jailbreaks without encoding-specific strategies. AprielGuard (arXiv 2512.20293, Dec 2025) trains with character-level noise, leetspeak substitutions, and typographical errors as flat data augmentation — the closest existing 'encoding augmentation for guardrail training' — but without systematic encoding coverage, curriculum structure, or evaluation on encoding-specific benchmarks. TRYLOCK (arXiv 2601.03300, Thornton, Jan 2026) introduced Layer 0 Input Canonicalization achieving 87.5% reduction in Unicode/homoglyph failures (from 8 to 1 out of 24 total system failures), but its rule-based approach fundamentally cannot generalize to novel encodings not in its rule set or adversarial combinations designed to evade detection — a critical limitation given that 20 composable transformations already generate a combinatorially intractable attack surface (Huang, NeurIPS 2024 Workshop). Broken-Token (arXiv 2510.26847, Oct 2025) achieves near-perfect CPT-Filtering accuracy on five tested encoding schemes including via sliding window detection, but fails on non-Latin scripts and is untested against obfuscation preserving normal CPT ratios. The specific opportunity is twofold: (1) demonstrating that an encoding-complexity-based curriculum — structurally distinct from ACE-Safety's model-evolution curriculum and AprielGuard's flat augmentation — is the critical design factor for encoding robustness, and that this curriculum enables generalization to character-level encoding types absent from training that neither rule-based canonicalization nor model-evolution-based curricula can achieve; and (2) establishing complexity-structured curriculum as a general principle for adversarial robustness whenever attack difficulty has a natural ordering independent of model capability — with encoding attacks as the showcase application and implications for multi-turn staged delivery (STACK-style), tool-call obfuscation sequences, and cross-modal attack chains, as independently suggested by DMAST's concurrent multi-stage GRPO co-training for cross-modal web agent attacks (arXiv 2603.04364, Mar 2026).\n\n## 方法思路\nWe propose EncoGuard, which demonstrates that encoding-complexity-based curriculum design — structurally distinct from ACE-Safety's model-evolution curriculum (Normal→Asymmetric→Hard tiers based on attacker-defender strength asymmetry) and AprielGuard's flat character augmentation — is the critical design factor for hardening guardrail classifiers against encoding evasion. While ACE-Safety established that curriculum adversarial co-training via GRPO produces robust safety alignment for semantic jailbreaks, encoding attacks require a fundamentally different curriculum principle: progressive escalation of encoding complexity rather than progressive escalation of model-evolution asymmetry, because encoding difficulty is determined by the structural properties of the transformation (nesting depth, CPT-ratio preservation, cross-script mixing) rather than by attacker-defender strength differentials.\n\n**Architecture**: A GRPO-trained adversarial attacker (Qwen3.5-2B) co-evolves against a guardrail classifier (Qwen3.5-4B, SFT-initialized) over 2 co-evolutionary rounds. The attacker receives reward proportional to the classifier's confidence that an encoding-obfuscated harmful prompt is safe, while a frozen oracle (GPT-4o) confirms the decoded content is genuinely harmful — preventing reward hacking via benign encoded content. **Oracle fallback**: A deterministic rule-based decoding pipeline (implementing all training-stage encoding transforms in reverse: base64 decode, hex decode, ROT-n reverse, URL decode, Unicode unescape, homoglyph normalization via TR39 mapping) serves as secondary verification — if the oracle's harmful/benign judgment disagrees with the deterministic decoder's output fed to a reference classifier, the sample is flagged for exclusion from reward computation, preventing reward signal corruption on complex nested encodings where GPT-4o may fail to decode correctly. Note: TRL v1.0's GRPOTrainer handles single-policy optimization, so the co-evolutionary loop requires a lightweight custom outer orchestration script alternating attacker GRPO and classifier SFT phases — standard engineering for adversarial co-training (as in Ilin et al. and DuoGuard) but a factor in timeline planning.\n\n**Primary contribution — Encoding-Complexity Curriculum**: Unlike ACE-Safety's model-evolution tiers (where difficulty emerges from training stronger attackers against weaker historical defenders), EncoGuard structures the attacker's encoding strategy space via a 2-stage curriculum of increasing encoding complexity — a curriculum principle grounded in the structural properties of encoding transformations themselves:\n- Stage 1 (Round 1 — Single-Encoding Attacks): Character-level substitution (leetspeak variants, homoglyph substitution via Cyrillic/Greek lookalikes, fullwidth characters, mathematical Unicode symbols) AND single-layer full encoding transformations (base64, hexadecimal, ROT-n ciphers, URL encoding, Unicode escape sequences). The attacker learns to generate obfuscations that preserve LLM readability while evading both character-level pattern matching and simple encoding detection.\n- Stage 2 (Round 2 — Composite Attacks with CPT-Adversarial Augmentation): Nested encodings (base64-of-hexadecimal, ROT13-of-base64), partial encoding (encoding only key harmful terms within natural text), mixed-script interleaving, zero-width character insertion between encoded segments, and STACK-style multi-turn staged delivery. This stage directly addresses the combinatorial composition threat demonstrated by Plentiful Jailbreaks (Huang, NeurIPS 2024 Workshop), where arbitrary sequencing of transformations generates an intractable attack surface that rule-based defenses cannot enumerate. Critically, the attacker receives bonus reward for encodings that maintain CPT ratios within 1 standard deviation of natural text (as measured by the target tokenizer), directly training against Broken-Token's CPT-Filtering detection mechanism — including its sliding window variant.\n\nThe Stage 2 attacker is initialized from the Stage 1 checkpoint, enabling progressive skill building — analogous to ACE-Safety's curriculum progression but with complexity tiers defined by encoding structure rather than model evolution. The classifier is retrained on the full accumulated adversarial dataset after each round, with curriculum-aware data balancing (equal representation of each complexity tier). Encoding attack generators are implemented as deterministic rule-based transforms (not learned via MCTS as in ACE-Safety), ensuring controlled complexity escalation and reproducibility.\n\n**Secondary contribution — Generalization to Untrained Character-Level Encodings**: We deliberately hold out two character-level encoding types from all training stages — Braille Unicode substitution (mapping ASCII characters to Unicode Braille Patterns U+2800–U+28FF, e.g., 'hello' → '⠓⠑⠇⠇⠕') and Morse code substitution (e.g., 'hello' → '.... . .-.. .-.. ---') — to test whether the encoding-complexity curriculum teaches encoding-invariant harmful content detection. These held-out types test different aspects of generalization: Braille Unicode is known in red-teaming tooling (e.g., NVIDIA garak's InjectBraille probe) but has received no systematic academic evaluation — no paper measures its attack effectiveness or proposes specific defenses, making it a test of generalization to an academically uncharacterized encoding. Morse code, by contrast, is well-established as an attack vector — CipherChat (Yuan et al., ICLR 2024) demonstrated 55.3% unsafety rate on GPT-4, and Plentiful Jailbreaks (Huang, NeurIPS 2024 Workshop) includes it among 20 composable transformations — but has never been included in guardrail training data, making it a test of generalization to a known-but-untrained-against attack. Both are genuine character-level encodings: Braille uses a deterministic 1-to-1 Unicode character mapping (structurally similar to trained encodings like fullwidth or mathematical Unicode), while Morse uses a character-to-symbol-sequence mapping (structurally similar to trained encodings like base64 or hexadecimal). No existing guardrail training includes Braille or Morse augmentation, and no encoding-specific defense paper evaluates against them — making them valid generalization tests for curriculum-trained encoding-invariant features. Our hypothesis: the progressive curriculum forces the classifier to develop features that recognize harmful semantic content regardless of surface-level character transformations, enabling generalization across character-level encoding families that neither rule-based defenses (TRYLOCK, which lacks Braille/Morse in its rule set), flat augmentation (AprielGuard), nor model-evolution curricula (ACE-Safety, which shows no encoding-specific generalization) can achieve. This tests generalization within the character-level encoding mechanism class — not across fundamentally different evasion mechanisms (e.g., semantic reformulation).\n\n**Stability mechanisms**: (a) Per-stage diversity enforcement via entropy regularization on the encoding-type distribution within each round (preventing collapse to a single encoding strategy, informed by TriPlay-RL's diversity penalties); (b) Defender checkpoint selection retaining the model with lowest FPR on a held-out benign set, with rollback if FPR exceeds 3%; (c) Semantic deduplication (embedding cosine similarity >0.9 threshold) to remove near-duplicate adversarial examples.\n\n**Evaluation**: Four benchmarks — HarmBench, JailbreakBench, WildGuardTest, and a novel EncoAttack suite (curated from encoding attack literature: 500 prompts × 8 encoding types × 3 nesting levels = 12,000 test cases, plus 500 × 2 held-out character-level encoding types = 1,000 generalization test cases). Primary baselines: (1) Ilin et al.'s approach (without encoding curriculum) trained to equivalent compute; (2) AprielGuard-style flat encoding augmentation — character noise + leetspeak + typographical errors applied without curriculum structure or systematic encoding coverage, directly testing whether curriculum ordering outperforms unstructured augmentation (H2); (3) Random-order adversarial training with the same encoding attack data but NO curriculum structure (ablation control). Reference comparisons (pre-computed from published numbers, not re-implemented): Broken-Token CPT-Filtering (both global and sliding window variants), TRYLOCK Layer 0 canonicalization + classifier pipeline. Secondary baselines: GuardReasoner, WildGuard, AprielGuard, Qwen3Guard. Key hypotheses: (H1) EncoGuard reduces encoding attack ASR by ≥50% relative to Ilin et al. baseline; (H2) Curriculum-ordered training outperforms both random-order training (≥15% on composite encoding attacks) AND AprielGuard-style flat augmentation (≥10% overall), demonstrating that curriculum ordering is the critical factor; (H3) EncoGuard catches ≥30% of attacks that evade CPT-Filtering (those with manipulated CPT ratios); (H4) EncoGuard achieves ≥25% ASR reduction on held-out character-level encoding types (Braille Unicode, Morse code) relative to Ilin et al. baseline, demonstrating generalization to untrained encodings — a capability that neither rule-based canonicalization (which lacks these encodings in its rule set) nor flat augmentation (which has no curriculum to build encoding-invariant features) can achieve. All code, training data, curriculum configurations, and model weights will be released.\n\n**Timeline contingency — Minimal Viable Paper (MVP)**: If engineering issues arise (co-evolutionary loop bugs, GPT-4o oracle degradation on nested encodings, GRPO training instability), a reduced-scope paper achievable in 7 days retains scientific validity: (a) drop AprielGuard-style flat augmentation baseline (retain Ilin et al. reimplementation + random-order ablation as the minimum set testing H1 and the curriculum-vs-random comparison from H2); (b) reduce EncoAttack to 6,000 test cases (4 encoding types × 3 nesting levels × 500 prompts); (c) report H4 generalization on Braille Unicode only (skip Morse if time-constrained), since Braille's 1-to-1 character mapping provides the cleaner structural analogy to trained encodings. This MVP still demonstrates the core claim (encoding-complexity curriculum > no curriculum) and generalization to one held-out type, with the full scope completable as a camera-ready extension.\n\n## Seed Topic\nTarget: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: LLM Security.\n\nDirection: LLM safety robustness — defense methods against jailbreaking, adversarial promp...\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "465346c4-815a-4a0d-8911-b47882210e07",
+            "type": "user",
+            "uuid": "ff7133c4-33af-4cf3-98ac-8b8bbd8a4c95",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T12:14:39.551Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ff7133c4-33af-4cf3-98ac-8b8bbd8a4c95",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "1c697d4b-2dc6-44f0-be40-37735cf90890",
+                "timestamp": "2026-05-16T12:14:39.551Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T12:14:39.551Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1c697d4b-2dc6-44f0-be40-37735cf90890",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "e810bb8c-3632-4a27-af17-a38c91273721",
+                "timestamp": "2026-05-16T12:14:39.551Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "# EncoGuard: Encoding-Complexity Curriculum for Hardening Guardrail Classifiers Against Character-Level Evasion  **状态**: PENDING_REVIEW **级别**: top-tier **创建时间**: 2026-05-16T09:42:11.878561+00:00 **来源…",
+                "leafUuid": "e810bb8c-3632-4a27-af17-a38c91273721",
+                "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "EncoGuard: Curriculum-based encoding robustness for guardrails",
+                "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T12:15:27.283Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me carefully analyze this proposal from a purely experimental design and technical execution perspective. I need to assess:\n\n1. Baseline coverage and fairness\n2. Experimental design completeness\n3. Evaluation metrics and methodology\n4. Ablation design\n5. Feasibility (compute, data, time, resources)\n\nLet me go through this systematically.\n\n**Timeline**: The proposal mentions ARR submission deadline 2026-05-25 (11 days from \"today 2026-05-14\"), but current date is 2026-05-16, so that's 9 days. The proposal itself mentions \"9 days\" timeline. \n\nThis timeline is incredibly tight. Looking at the experimental design, they've set up a solid baseline strategy with three trained baselines—a reimplementation of Ilin et al., a flat augmentation approach, and random-order adversarial training to directly test whether curriculum ordering matters. They're also pulling reference comparisons from published work and including several secondary baselines for broader context. The random-order control is particularly clever since it isolates the curriculum hypothesis from the augmentation strategy itself.\n\nFor evaluation, they're using established benchmarks like HarmBench and JailbreakBench alongside a novel EncoAttack suite with 13,000 test cases, measuring both attack success rate reduction and false positive rates. The ablation structure is clean—curriculum versus random order, curriculum versus flat augmentation, curriculum versus no encoding training, plus a held-out encoding generalization test. But fitting all this in 9 days is extremely aggressive, especially with the co-evolutionary training loop requiring multiple rounds and GRPO training of the attacker model.\n\nEven the minimal viable version needs two trained baselines, the co-evolutionary loop, 6,000 test cases, and Braille generalization evaluation. The compute requirements alone are substantial—training both a 2B attacker and 4B classifier across two co-evolutionary rounds, plus 2-3 additional baseline models, demands significant GPU resources that may not be readily available.\n\nBeyond compute, there's the question of GPT-4o oracle costs, since every training sample requires validation and the co-evolutionary process could generate thousands of samples. The engineering work is also considerable: orchestrating the co-evolutionary loop, implementing deterministic decoding across all encoding types, building oracle fallback mechanisms, handling entropy regularization, and semantic deduplication—all within a 9-day window feels ambitious.\n\nI'm also concerned about whether two co-evolutionary rounds provide enough evidence of convergence or curriculum benefit, especially since prior work like ACE-Safety needed around four iterations. With only two rounds, the curriculum progression gains may not be convincingly demonstrated. There's also the question of whether GPT-4o can reliably handle complex nested encodings.\n\nThe proposal is vague on how \"equivalent compute\" baselines are measured—is it FLOPs, wall-clock time, or training tokens? That's essential for a fair comparison. The EncoAttack benchmark itself is novel and lacks external validation or inter-annotator agreement to confirm it's not biased toward their approach. Given the tight timeline, they're likely running single experiments without confidence intervals, which weakens the statistical claims. And comparing against published numbers from other methods introduces additional variability that's hard to control for.\n\nReimplementing Ilin et al. correctly is tricky—if their version underperforms the original, the comparison becomes unfair. The 2-stage curriculum with only 2 co-evolutionary rounds is also problematic because each stage is essentially one training pass, making it hard to isolate whether curriculum ordering actually matters versus just seeing more data or benefiting from recency effects. The random-order ablation helps somewhat, but with only 2 rounds, there's limited statistical power to distinguish real curriculum effects from noise.\n\nThe most pressing concerns are timeline feasibility for this scope in 9 days, the lack of compute-normalized comparisons, and whether 2 rounds provides enough evidence for curriculum benefits. The self-created EncoAttack benchmark needs external validation, and the reference baseline comparisons may not be on equal footing. That said, the proposal does acknowledge timeline risk with an MVP, and the 2-round structure aligns with the 2-stage curriculum design. The random-order ablation is the right control. The real question is whether 2 stages and 2 rounds can actually demonstrate that curriculum ordering matters.\n\nRe-reading the proposal more carefully, the random-order baseline gets the same encoding attack data but without curriculum structure—just randomized across the 2 rounds. This is a clean ablation. With 12,000+ test cases, even a single run should show statistically significant differences if the effect is real. The proposal also mentions pre-built encoding generators and the EncoAttack suite are deterministic scripts prepared beforehand, which removes a major time bottleneck.\n\nThe timeline concern persists, but the preparation advantage is more substantial than initially apparent.\n\nThe core issues I'm flagging are compute fairness across baselines, statistical rigor (confidence intervals), the self-created benchmark's internal validity, GPT-4o oracle costs during training, and whether 2 co-evolutionary rounds sufficiently demonstrate curriculum benefits. The experimental design itself is solid—well-chosen baselines, a direct ablation of the hypothesis, and held-out encodings for generalization testing. The problems are mostly feasibility and methodological gaps rather than fundamental flaws, so I'd categorize this as having addressable issues.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e810bb8c-3632-4a27-af17-a38c91273721",
+            "isSidechain": false,
+            "requestId": "req_011Cb6EH5159FAQ3koFMc43z",
+            "type": "assistant",
+            "uuid": "2327aead-eefa-4678-826f-9576d79634b4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LFZsHgkZ54F8DCUDnAES5b",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 19855,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 5140,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 19855,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 5140,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 19855,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 19855
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T12:16:35.999Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "【状态】: 有缺陷待补救\n\n---\n\n【缺陷 1】\n- 类别: 可行性问题\n- 问题: 9 天内完成完整方案几乎不可行。即使 MVP（7 天）也需要：(1) 实现并调试 co-evolutionary 训练循环（含 GRPO attacker + SFT classifier 交替训练的自定义编排脚本），(2) 训练 EncoGuard 完整 2-round pipeline，(3) 训练 2 个 baseline 到等计算量，(4) 在 6,000+ test cases + 4 个 benchmark 上完整评估，(5) 写完论文。Co-evolutionary loop 的工程复杂度（oracle fallback、entropy regularization、semantic deduplication、FPR rollback）极高，调试周期不可预测。GRPO 训练本身也可能需要超参搜索。即使编码生成器和 EncoAttack 已预先准备，训练+评估+写作在 9 天内仍然极度紧张。\n- 严重度: 可补救\n- 补救方案: (1) 进一步缩减 MVP：将 co-evolutionary 从 2 rounds 压缩为仅验证 Stage 1 curriculum vs. random-order（单 round 即可出 H2 核心 ablation 结果），Stage 2 作为 camera-ready extension；(2) 明确计算资源配置（几块 A100/H100、预计每个 training run 的 wall-clock 时间），让 reviewer 能判断可行性；(3) 如果 co-evolutionary loop 调不通，准备 fallback 方案：用静态生成的 curriculum-ordered 数据做 SFT（去掉 GRPO attacker），仍可验证 curriculum ordering 假设，只是放弃 co-evolutionary 贡献。\n\n【缺陷 2】\n- 类别: compute 公平性问题\n- 问题: Proposal 提到 baselines 训练到 \"equivalent compute\" 但未定义等计算量的度量标准。Ilin et al. 原方案使用 7B attacker + 300M classifier，本方案使用 2B attacker + 4B classifier，架构完全不同。\"等计算量\" 是指 FLOPs、wall-clock time、训练 tokens、还是训练 steps？不同度量会导致完全不同的公平性结论。Random-order ablation 和 flat augmentation baseline 的训练数据量、训练步数、学习率 schedule 是否完全一致也未说明。\n- 严重度: 可补救\n- 补救方案: (1) 明确以 training FLOPs 为主要计算量度量，辅以 training tokens 和 wall-clock time 报告；(2) 对 random-order ablation 和 flat augmentation baseline，保证训练 steps、数据总量、模型架构完全一致，唯一变量是数据排列顺序/覆盖方式；(3) 对 Ilin et al. baseline，由于架构不同，改为在相同 4B classifier 架构上重新实现其训练策略（无编码 curriculum 的 RL adversarial training），确保架构控制变量一致。\n\n【缺陷 3】\n- 类别: 实验设计不足\n- 问题: 仅 2 rounds co-evolutionary training 对应 2-stage curriculum，每个 stage 只有一轮训练。这使得\"curriculum ordering 是关键因素\"的 claim 证据力度有限——可能混淆 recency effect（后训练的数据影响更大）和 curriculum effect。如果 random-order baseline 也恰好在第 2 round 看到更多 composite attacks（随机分配下统计波动），差异可能不显著。此外，2 rounds 无法展示收敛趋势或 curriculum 带来的训练效率提升曲线。\n- 严重度: 可补救\n- 补救方案: (1) 对 random-order baseline 做 3-5 次不同随机种子的重复实验，报告均值和标准差，避免单次随机分配的偶然性；(2) 增加一个\"反向 curriculum\"ablation（先难后易：先 Stage 2 数据再 Stage 1 数据），如果正向 curriculum 显著优于反向 curriculum，则更强地支持 ordering 假设；(3) 在 training 过程中记录每个 checkpoint 的 encoding-ASR 曲线，展示 curriculum 带来的学习动态差异（即使只有 2 rounds，中间 checkpoint 也能提供梯度信息）。\n\n【缺陷 4】\n- 类别: 评估方案缺陷\n- 问题: EncoAttack 是作者自建 benchmark（500 prompts × 8 encoding types × 3 nesting levels），未说明 prompt 来源、质量控制、以及是否存在对自身方法的隐式偏向。如果 500 base prompts 的分布恰好有利于 curriculum-trained model（例如以特定 harmful category 为主），结论可能不 generalizable。此外，benchmark 的 encoding 实现是否与训练时使用的编码器完全一致——如果一致，则评估可能只测试了\"见过的变换\"的记忆而非真正的 robustness。\n- 严重度: 可补救\n- 补救方案: (1) 明确 500 base prompts 来源（建议从 HarmBench + AdvBench + WildGuardTest 各抽样，覆盖多种 harm category）；(2) EncoAttack 的编码实现应独立于训练 pipeline（不同代码路径，不同随机种子控制 partial encoding 位置等），避免 train-test 编码实现耦合；(3) 报告在 HarmBench/JailbreakBench/WildGuardTest 这些外部 benchmark 上的结果作为主要证据，EncoAttack 作为补充深度分析；(4) 考虑邀请外部人员验证 EncoAttack 的 encoding 实现是否产生有效攻击（或至少用另一个 guardrail 如 LlamaGuard 验证这些攻击确实能 bypass 未防御的 classifier）。\n\n【缺陷 5】\n- 类别: 评估方案缺陷\n- 问题: Reference baselines（Broken-Token CPT-Filtering、TRYLOCK Layer 0）使用 published numbers 而非在相同测试集上重新评估。这些论文的评估设置（attack types、prompt distribution、success criteria）与本文不同，直接数字对比不构成公平 comparison。Reviewer 极可能质疑这些 comparison 的有效性。\n- 严重度: 可补救\n- 补救方案: (1) 将 Broken-Token 和 TRYLOCK 的 reference comparison 明确标注为\"indicative comparison\"而非\"controlled comparison\"，放入 Discussion 而非 Main Results table；(2) 如果时间允许，实现 Broken-Token 的 CPT-Filtering（相对简单的 rule-based 方法）在 EncoAttack 上评估，作为 controlled comparison；(3) 或者直接从 main claim 中移除 H3（\"catches ≥30% of attacks that evade CPT-Filtering\"），因为缺乏同条件对比无法严格验证此 hypothesis。\n\n【缺陷 6】\n- 类别: 可行性问题\n- 问题: GPT-4o oracle 在 GRPO 训练中的 API 调用成本和延迟未评估。Co-evolutionary training 每生成一个 adversarial sample 都需要 oracle 判断（harmful/benign），假设每 round 生成 5,000-10,000 samples，2 rounds 即 10,000-20,000 次 GPT-4o 调用。加上 deterministic decoder fallback 的 disagreement 检查，实际调用可能更多。这涉及：(a) 金钱成本（GPT-4o 输入输出 token 费用），(b) API rate limit 导致训练中断/减速，(c) GPT-4o 对 nested encoding 的 decode 准确率——如果 Stage 2 的 complex nested encodings 导致 GPT-4o 频繁判断错误，大量 samples 被 exclude，有效训练数据量可能严重不足。\n- 严重度: 可补救\n- 补救方案: (1) 预估 oracle 调用量和成本（建议控制在 $200-500 以内），说明 rate limit 策略（batch API、async 调用）；(2) 对 Stage 2 complex encodings 先做小规模 pilot（100 samples）测试 GPT-4o decode 准确率和 deterministic decoder agreement rate，如果 agreement rate <80%，需要调整 oracle 策略（如对 Stage 2 改用纯 deterministic decoder 判断）；(3) 考虑用更便宜的 oracle（GPT-4o-mini）做 Stage 1 判断，仅 Stage 2 用 GPT-4o，降低成本。\n\n【缺陷 7】\n- 类别: ablation 不完整\n- 问题: Proposal 缺少对 stability mechanisms 的 ablation。引入了 3 个 stability 组件（entropy regularization、FPR rollback、semantic deduplication），但没有计划验证每个组件的独立贡献。如果 reviewer 问\"entropy regularization 是否真的必要\"或\"去掉 semantic deduplication 会怎样\"，当前方案无法回答。\n- 严重度: 可补救\n- 补救方案: (1) 在 MVP 范围外，但在 camera-ready 中计划 stability ablation（去掉每个组件后的 ASR 变化）；(2) 如果时间极紧，至少记录训练过程中 entropy regularization 生效的频率（encoding type distribution 的实际 entropy 变化曲线）和 FPR rollback 触发次数，作为 \"mechanism utility\" 的间接证据；(3) 在论文中诚实说明这些是 engineering choices borrowed from prior work（TriPlay-RL 的 diversity penalty），非本文 contribution，降低 reviewer 对其 ablation 的期望。\n\n---\n\n**总结**：实验设计的核心框架（curriculum vs. random-order vs. flat augmentation 三方对比 + held-out generalization test）是合理的，ablation 逻辑清晰地对准了 H1-H4 四个 hypotheses。主要风险集中在 **(1) 时间可行性**（9 天完成全套训练+评估+写作极度激进）和 **(2) compute-normalized comparison 未明确定义**。建议最优先处理缺陷 1（进一步明确 fallback 方案）和缺陷 2（固定 compute normalization 定义），这两个是 reviewer 最可能 challenge 的点。缺陷 3（反向 curriculum ablation）和缺陷 5（reference baseline 公平性）属于中等优先级但能显著加强说服力的改进。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2327aead-eefa-4678-826f-9576d79634b4",
+            "isSidechain": false,
+            "requestId": "req_011Cb6EH5159FAQ3koFMc43z",
+            "type": "assistant",
+            "uuid": "29bd26b4-7004-4324-b896-0a49127561f5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LFZsHgkZ54F8DCUDnAES5b",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 19855,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 5140,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 19855,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 5140,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 19855,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 19855
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "# EncoGuard: Encoding-Complexity Curriculum for Hardening Guardrail Classifiers Against Character-Level Evasion  **状态**: PENDING_REVIEW **级别**: top-tier **创建时间**: 2026-05-16T09:42:11.878561+00:00 **来源…",
+                "leafUuid": "29bd26b4-7004-4324-b896-0a49127561f5",
+                "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a"
+              }
+            }
+          ],
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "EncoGuard: Curriculum-based encoding robustness for guardrails",
+                "sessionId": "8f71dc98-72fc-4cd9-9fdf-e451606d7c4a"
+              }
+            }
+          ],
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-encoguard-encoding-complexity-curriculum-for-hardening-guardrail-classifiers-a-copy-2.md"
+}

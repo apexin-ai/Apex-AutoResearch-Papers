@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "session_id": "75615db085a1f392797a",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review ML idea on process reward models for math reasoning",
+                "sessionId": "e47fcf53-61ba-463e-a73a-276df08c13c0"
+              }
+            }
+          ],
+          "id": "event-000181"
+        }
+      ]
+    }
+  ]
+}

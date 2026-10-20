@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "47935f00c1577eb93fb6",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 执行项目轨迹扫描，将报告写入 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/scan_reports/layer2_20260531",
+  "task_key": "cfe984af-86b1-42cd-884a-4dbee85e7e74",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/cfe984af-86b1-42cd-884a-4dbee85e7e74.jsonl",
+    "occurrence": 1,
+    "bytes": 921777,
+    "sha256": "53de5d681e67b543dcb8ca92f8984a1471cef507d2fe893e5665f555a04d132e"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 1,
+    "tool_calls": 85,
+    "roles": {
+      "record": 30,
+      "user": 1,
+      "assistant": 18,
+      "tool_call": 85,
+      "tool_result": 85
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "47935f00c1577eb93fb6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 217,
+      "chunks": [
+        {
+          "path": "47935f00c1577eb93fb6-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "47935f00c1577eb93fb6-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-home-ubuntu-agent-ml-research-prod-0510-projects-causal-annot-error-attrib-sca.md"
+}

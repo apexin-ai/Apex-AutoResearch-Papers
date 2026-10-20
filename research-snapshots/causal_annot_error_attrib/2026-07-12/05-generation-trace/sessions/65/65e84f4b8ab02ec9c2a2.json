@@ -1,0 +1,2436 @@
+{
+  "schema_version": "1.0",
+  "id": "65e84f4b8ab02ec9c2a2",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I'm working on a research proposal about choice-supportive bias (CSB) in LLMs - where models show inflated confidence in",
+  "task_key": "agent-acf334e31648c11ee",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-acf334e31648c11ee.jsonl",
+    "occurrence": 1,
+    "bytes": 121313,
+    "sha256": "b520b7c20a749983d201099894d288d35ac97e9e9e52e9a325b15987c79278ad"
+  },
+  "statistics": {
+    "messages": 54,
+    "user_turns": 1,
+    "tool_calls": 22,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 7,
+      "tool_call": 22,
+      "tool_result": 22
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T15:00:22.356Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'm working on a research proposal about choice-supportive bias (CSB) in LLMs - where models show inflated confidence in their own previously selected answers. A reviewer raised a concern about source attribution confounds: when we present \"your answer was X\" vs. \"another LLM's answer was X\" (same content, different attribution), the model may process self-attributed vs. externally-attributed content differently for reasons beyond bias activation.\n\nUse WebSearch to research:\n\n1. **Self-recognition in LLMs**: Do LLMs process self-generated content differently from externally-attributed content? Search for \"LLM self-recognition\", \"LLM self-generated text detection\", \"self-other distinction LLM\".\n\n2. **Self-preference bias**: Search for \"self-preference bias LLM\" and \"LLM judge self-preference\". I know there's a paper \"Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators\" (arXiv 2509.03647) - try to find details on this.\n\n3. **Attribution effects**: Search for \"source attribution LLM behavior\" or \"attribution bias LLM\" - do models respond differently to information attributed to different sources?\n\n4. **Ownership bias in LLMs**: Search for \"ownership bias LLM\" or \"endowment effect LLM\".\n\nI need this to design a proper confound control condition where the model's own answer is attributed to \"another LLM\" to isolate the self-attribution aspect. Understanding what's known about how LLMs process attribution information will help me design this correctly.\n\nReport detailed findings with specific references."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "03a51d14-e5dd-4a93-95b2-ede3d46d6b4b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T15:00:22.359Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "03a51d14-e5dd-4a93-95b2-ede3d46d6b4b",
+                "isSidechain": true,
+                "agentId": "acf334e31648c11ee",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "793a3ebd-eedd-4bc5-97f9-26d2d2a78575",
+                "timestamp": "2026-05-19T15:00:22.359Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea-gen-pipeline",
+                "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T15:00:22.361Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "793a3ebd-eedd-4bc5-97f9-26d2d2a78575",
+                "isSidechain": true,
+                "agentId": "acf334e31648c11ee",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "f08ce612-9581-450e-91c8-4474dabda8e4",
+                "timestamp": "2026-05-19T15:00:22.361Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea-gen-pipeline",
+                "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T15:00:25.426Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll conduct a systematic search across all four areas. Let me start by loading the WebSearch tool and then running searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f08ce612-9581-450e-91c8-4474dabda8e4",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8Ljk8TxVNoPDNqqzGc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ff24bc48-8599-4ea8-9c25-304dd7caeefa",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XAW5iGa7BrvNjMuzWpgRMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1681,
+                "cache_read_input_tokens": 7409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1681,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T15:00:25.834Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XtihTjPmDVN3fcBvtpyQx5",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff24bc48-8599-4ea8-9c25-304dd7caeefa",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8Ljk8TxVNoPDNqqzGc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "82426a84-77cd-485b-a283-6a5703f0a109",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XAW5iGa7BrvNjMuzWpgRMj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1681,
+                "cache_read_input_tokens": 7409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1681,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T15:00:25.837Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01XtihTjPmDVN3fcBvtpyQx5",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "82426a84-77cd-485b-a283-6a5703f0a109",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "3b77482c-bc30-4386-ba1b-0dafabe8fcf9",
+            "sourceToolAssistantUUID": "82426a84-77cd-485b-a283-6a5703f0a109",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T15:00:28.472Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run the initial searches in parallel across all four research areas."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b77482c-bc30-4386-ba1b-0dafabe8fcf9",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8LzqV9iNHdJ1zkQ2Gv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2078ae66-1f30-4449-a471-eb96cd6981ee",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LzpVDgVZmaqdxXpY7BwKE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 9090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T15:00:29.030Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014tbqXSaJ268LFNyiuKGT4q",
+              "name": "WebSearch",
+              "input": {
+                "query": "LLM self-recognition self-generated text detection self-other distinction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2078ae66-1f30-4449-a471-eb96cd6981ee",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8LzqV9iNHdJ1zkQ2Gv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5da9cbd8-df70-4595-ad42-3cab6df92c82",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LzpVDgVZmaqdxXpY7BwKE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 9090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T15:00:29.485Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V4aGTVAh7f2wT2BXLFhj2z",
+              "name": "WebSearch",
+              "input": {
+                "query": "self-preference bias LLM judge evaluator"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5da9cbd8-df70-4595-ad42-3cab6df92c82",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8LzqV9iNHdJ1zkQ2Gv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7c27680f-eda4-418e-a496-74d889b9428b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LzpVDgVZmaqdxXpY7BwKE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 9090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T15:00:29.942Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PrBFXFvDyZLQzCZH1KKVJT",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Breaking the Mirror\" self-preference LLM evaluators arXiv 2509.03647"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c27680f-eda4-418e-a496-74d889b9428b",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8LzqV9iNHdJ1zkQ2Gv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "15dc7274-f3fa-4f90-9c19-4b14d8b02f13",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LzpVDgVZmaqdxXpY7BwKE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 9090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T15:00:30.414Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0131359x7s5Y7ejwUdRESnAb",
+              "name": "WebSearch",
+              "input": {
+                "query": "source attribution bias LLM behavior attribution effects language model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15dc7274-f3fa-4f90-9c19-4b14d8b02f13",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8LzqV9iNHdJ1zkQ2Gv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "af96a063-16de-466a-bcac-4b404015497b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LzpVDgVZmaqdxXpY7BwKE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 9090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T15:00:30.743Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KaDqGf8UeadwGvMyjhRiNp",
+              "name": "WebSearch",
+              "input": {
+                "query": "ownership bias endowment effect LLM large language model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af96a063-16de-466a-bcac-4b404015497b",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8LzqV9iNHdJ1zkQ2Gv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c01b3187-52b0-4754-b4ac-2bf012f7528a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LzpVDgVZmaqdxXpY7BwKE9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 9090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T15:00:35.603Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V4aGTVAh7f2wT2BXLFhj2z",
+              "type": "tool_result",
+              "content": "Web search results for query: \"self-preference bias LLM judge evaluator\"\n\nLinks: [{\"title\":\"[PDF] Self-Preference Bias in LLM-as-a-Judge | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Self-Preference-Bias-in-LLM-as-a-Judge-Wataoka-Takahashi/cf01d7c40cbf815de0f62fa78c2352ba546ad680\"},{\"title\":\"Self-Preference Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2410.21819v1\"},{\"title\":\"[Literature Review] Self-Preference Bias in LLM-as-a-Judge\",\"url\":\"https://www.themoonlight.io/en/review/self-preference-bias-in-llm-as-a-judge\"},{\"title\":\"[2410.21819] Self-Preference Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/abs/2410.21819\"},{\"title\":\"(PDF) Self-Preference Bias in LLM-as-a-Judge\",\"url\":\"https://www.researchgate.net/publication/385353198_Self-Preference_Bias_in_LLM-as-a-Judge\"},{\"title\":\"SELF-PREFERENCE BIAS IN LLM-AS-A-JUDGE Koki Wataoka SB Intuitions\",\"url\":\"https://arxiv.org/pdf/2410.21819\"},{\"title\":\"The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2509.26072v2\"}]\n\nI've found research on self-preference bias in LLM judges and evaluators. Here are the key findings:\n\n## What is Self-Preference Bias in LLM-as-a-Judge?\n\nLLM evaluators or LLM-as-a-judge systems have been widely used in measuring the performance of dialogue systems through automated evaluation. However, self-preference bias in LLMs poses significant risks, including promoting specific styles or policies intrinsic to the LLMs.\n\n## Root Cause\n\nLLMs assign significantly higher evaluations to outputs with lower perplexity than human evaluators, regardless of whether the outputs were self-generated, suggesting that self-preference bias exists because LLMs prefer texts more familiar to them.\n\n## Key Research\n\nA notable study by Wataoka, Takahashi, and Ri introduced a novel quantitative metric to measure self-preference bias. Experimental results demonstrate that GPT-4 exhibits a significant degree of self-preference bias.\n\n## Mitigation Strategies\n\nOne possible approach to reduce self-preference bias is ensemble evaluation using multiple models, which is expected to provide a more equitable evaluation by avoiding reliance on a single model.\n\nThe research highlights an important limitation of using LLMs as objective evaluators, as they tend to favor outputs similar to their own generation style and patterns.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c27680f-eda4-418e-a496-74d889b9428b",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "20075e24-bda4-44d6-a292-338f3ec26a72",
+            "sourceToolAssistantUUID": "7c27680f-eda4-418e-a496-74d889b9428b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T15:00:36.628Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014tbqXSaJ268LFNyiuKGT4q",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LLM self-recognition self-generated text detection self-other distinction\"\n\nLinks: [{\"title\":\"From Implicit to Explicit: Enhancing Self-Recognition in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2508.14408\"},{\"title\":\"Can AI Recognize Its Own Reflection? Self-Detection Performance of LLMs in Computing Education\",\"url\":\"https://arxiv.org/pdf/2512.23587\"},{\"title\":\"Inspection and Control of Self-Generated-Text Recognition Ability in   Llama3-8b-Instruct\",\"url\":\"https://arxiv.org/pdf/2410.02064\"},{\"title\":\"\\\"I know myself better, but not really greatly\\\": How Well Can LLMs Detect and Explain LLM-Generated Texts?\",\"url\":\"https://arxiv.org/pdf/2502.12743\"},{\"title\":\"DetectGPT-SC: Improving Detection of Text Generated by Large Language   Models through Self-Consistency with Masked Predictions\",\"url\":\"https://arxiv.org/pdf/2310.14479\"},{\"title\":\"A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions\",\"url\":\"https://arxiv.org/html/2310.14724v3\"},{\"title\":\"[2502.12743] \\\"I know myself better, but not really greatly\\\": How Well Can LLMs Detect and Explain LLM-Generated Texts?\",\"url\":\"https://arxiv.org/abs/2502.12743\"},{\"title\":\"A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions | Computational Linguistics | MIT Press\",\"url\":\"https://direct.mit.edu/coli/article/51/1/275/127462/A-Survey-on-LLM-Generated-Text-Detection-Necessity\"},{\"title\":\"Robust Detection of LLM-Generated Text: A Comparative Analysis\",\"url\":\"https://arxiv.org/pdf/2411.06248\"}]\n\nHere are the key findings from the web search on LLM self-recognition and self-generated text detection:\n\n## Self-Recognition Capability\n\nThe self-recognition capability of LLM refers to their capacity to identify texts they have generated. The Llama3-8b-Instruct chat model can reliably distinguish its own outputs from those of humans, and likely uses its experience with its own outputs, acquired during post-training, to succeed at the writing recognition task.\n\n## Detection Performance\n\nResearch shows mixed results regarding LLM self-detection abilities:\n\n- While self-detection consistently outperforms cross-detection (LLMs can detect texts generated by themselves more accurately than those generated by other LLMs), the performance of self-detection is still far from ideal.\n\n- While default AI-generated text was easily identified, all models struggled to correctly classify human-written work (with error rates up to 32%) in computing-specific contexts.\n\n## Safety Implications\n\nSelf-recognition can be seen as an instance of situational awareness, which has long been noted as a potential point of risk for AI, potentially allowing a model to hide its intentions and capabilities until it is freed from constraints.\n\n## Improvements\n\nExtending the binary to the ternary classification task with a new class \"Undecided\" can enhance both detection accuracy and explanation quality.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5da9cbd8-df70-4595-ad42-3cab6df92c82",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "0001a8fa-952a-459a-9ea7-e4bc60580141",
+            "sourceToolAssistantUUID": "5da9cbd8-df70-4595-ad42-3cab6df92c82",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T15:00:37.006Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PrBFXFvDyZLQzCZH1KKVJT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Breaking the Mirror\" self-preference LLM evaluators arXiv 2509.03647\"\n\nLinks: [{\"title\":\"[2509.03647] Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators\",\"url\":\"https://arxiv.org/abs/2509.03647\"},{\"title\":\"Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators\",\"url\":\"https://arxiv.org/pdf/2509.03647\"},{\"title\":\"Breaking the Mirror: Examining Self-Preference in LLM Evaluators through Activation-Based Representations | OpenReview\",\"url\":\"https://openreview.net/forum?id=q82Pqka5sb\"},{\"title\":\"Artificial Intelligence 2025\",\"url\":\"https://arxiv.org/list/cs.AI/2025?skip=32550&show=250\"},{\"title\":\"ELSPR: Evaluator LLM Training Data Self-Purification on Non-Transitive Preferences via Tournament Graph Reconstruction\",\"url\":\"https://arxiv.org/pdf/2505.17691\"}]\n\nBased on the search results, here's what I found about the paper:\n\n\"Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators\" addresses how large language models suffer from \"self-preference bias\"—a tendency to favor their own outputs over those of other models—which undermines fairness and reliability in evaluation pipelines, particularly for tasks like preference tuning and model routing.\n\nThe researchers investigate whether lightweight steering vectors can mitigate this problem at inference time without retraining, introducing a curated dataset that distinguishes self-preference bias into justified and unjustified examples, and constructing steering vectors using Contrastive Activation Addition (CAA) and an optimization-based approach.\n\nThe results show that steering vectors can reduce unjustified self-preference bias by up to 97%, substantially outperforming prompting and direct preference optimization baselines. However, steering vectors are unstable on legitimate self-preference and unbiased agreement, implying self-preference spans multiple or nonlinear directions.\n\nThe paper was submitted to arXiv on September 3, 2025, with authors including Dani Roytburg, Matthew Bozoukov, Matthew Nguyen, Jou Barzdukas, Simon Fu, and Narmeen Oozeer.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15dc7274-f3fa-4f90-9c19-4b14d8b02f13",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "fa2e8711-c780-42c8-b3bf-0cb0aa2f5f82",
+            "sourceToolAssistantUUID": "15dc7274-f3fa-4f90-9c19-4b14d8b02f13",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T15:00:37.241Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0131359x7s5Y7ejwUdRESnAb",
+              "type": "tool_result",
+              "content": "Web search results for query: \"source attribution bias LLM behavior attribution effects language model\"\n\nLinks: [{\"title\":\"Bi-directional Bias Attribution: Debiasing Large Language Models without Modifying Prompts\",\"url\":\"https://arxiv.org/html/2602.04398\"},{\"title\":\"Attribution Bias in Large Language Models\",\"url\":\"https://arxiv.org/html/2604.05224v1\"},{\"title\":\"Bi-directional Bias Attribution: Debiasing Large Language Models without Modifying Prompts\",\"url\":\"https://arxiv.org/pdf/2602.04398\"},{\"title\":\"Evaluation of Attribution Bias in Generator-Aware Retrieval-Augmented Large Language Models\",\"url\":\"https://arxiv.org/pdf/2410.12380\"},{\"title\":\"Attribution Bias in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2604.05224\"}]\n\nBased on the search results, here's what I found about source attribution bias and LLM behavior:\n\n## Attribution Bias in Language Models\n\nRecent research has identified significant issues with how LLMs handle source attribution:\n\n**Quote Attribution Disparities**: Quote attribution remains a challenging task even for frontier models, with large and systematic disparities in attribution accuracy between race, gender, and intersectional groups.\n\n**Gender Bias in Citations**: When given pools of citations with author names perturbed for clearly gendered names and asked to select relevant references, LLMs demonstrate a preference for male-authored references.\n\n**Attribution Failure Modes**: Attribution biases can emerge not only through incorrect naming, but also through selective omission.\n\n**Source Metadata Effects**: Adding authorship information to source documents can significantly change the attribution quality of LLMs by 3 to 18%, and LLMs can have an attribution bias towards explicit human authorship.\n\n**Intellectual Credit Impact**: Attribution failure obscures whose ideas are recognized and circulated.\n\nThese findings highlight that attribution bias in LLMs is a multifaceted problem affecting both accuracy and fairness, with demographic disparities that can systematically disadvantage certain groups of authors in terms of visibility and recognition.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af96a063-16de-466a-bcac-4b404015497b",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "a179ff44-1588-406b-8c10-bf34664ebeaf",
+            "sourceToolAssistantUUID": "af96a063-16de-466a-bcac-4b404015497b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T15:00:37.812Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KaDqGf8UeadwGvMyjhRiNp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ownership bias endowment effect LLM large language model\"\n\nLinks: [{\"title\":\"Large language models show amplified cognitive biases in moral decision-making - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12207438/\"},{\"title\":\"Large language models show amplified cognitive biases in moral decision-making | PNAS\",\"url\":\"https://www.pnas.org/doi/10.1073/pnas.2412015122\"},{\"title\":\"How Does Cognitive Bias Affect Large Language Models? A Case Study on the Anchoring Effect in Price Negotiation Simulations\",\"url\":\"https://arxiv.org/html/2508.21137\"},{\"title\":\"Large language models show amplified cognitive biases in moral decision-making - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/40540596/\"},{\"title\":\"AI–AI bias: Large language models favor communications generated by large language models\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12337326/\"}]\n\nBased on the search results, here's what I found about ownership bias, the endowment effect, and large language models:\n\n## Research Findings\n\nGPT-3.5 exhibits typical cognitive biases similar to those observed in humans, including the anchoring effect, representativeness and availability heuristics, the framing effect, and the endowment effect.\n\nCognitive biases, well-studied in humans, can also be observed in LLMs, affecting their reliability in real-world applications.\n\n## Related Bias Research\n\nRecent studies have also found other types of biases in LLMs beyond the endowment effect. LLMs, but not humans, show yes-no bias, with several LLMs being more affected by reframing than humans. Additionally, LLMs show stronger omission bias than humans.\n\nAnother interesting finding involves what researchers call \"AI-AI bias\": LLMs favored LLM-presented items more frequently than humans did when comparing identical content presented by LLMs versus humans.\n\nThe research suggests that LLMs can exhibit cognitive biases similar to human decision-making, though sometimes in amplified or different forms than humans exhibit.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c01b3187-52b0-4754-b4ac-2bf012f7528a",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "9f395001-a6e2-43dd-aa90-174784d35972",
+            "sourceToolAssistantUUID": "c01b3187-52b0-4754-b4ac-2bf012f7528a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T15:00:42.329Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good initial results. Let me now run more targeted follow-up searches to get deeper details on the most relevant findings."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f395001-a6e2-43dd-aa90-174784d35972",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8MsrZmfn6qJ4pKvAhN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b4f7e10e-9b66-422a-885e-6543e7a14ab9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017Rzi15VAPVTrDqKveqVdS9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3541,
+                "cache_read_input_tokens": 9724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3541,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T15:00:43.541Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W3d9borjiVWCpjNqPzay8k",
+              "name": "WebSearch",
+              "input": {
+                "query": "Llama3 self-generated text recognition inspection control arXiv 2410.02064"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4f7e10e-9b66-422a-885e-6543e7a14ab9",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8MsrZmfn6qJ4pKvAhN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e9f1507c-e31e-40a4-97ab-fe142c572c3b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017Rzi15VAPVTrDqKveqVdS9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3541,
+                "cache_read_input_tokens": 9724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3541,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T15:00:44.606Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NzeKfJR5GATtHAkAn4xVre",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"self-preference bias\" LLM perplexity familiarity mechanism Wataoka 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9f1507c-e31e-40a4-97ab-fe142c572c3b",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8MsrZmfn6qJ4pKvAhN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7fd7a578-028c-49d7-b518-091b54cdeed7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017Rzi15VAPVTrDqKveqVdS9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3541,
+                "cache_read_input_tokens": 9724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3541,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T15:00:45.185Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fd3TeS2Pey7vMbbyCbW8v2",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Attribution Bias in Large Language Models\" arXiv 2604.05224 source authorship"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7fd7a578-028c-49d7-b518-091b54cdeed7",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8MsrZmfn6qJ4pKvAhN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9332d782-24d4-458e-b0a3-b4d64bf71ae7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017Rzi15VAPVTrDqKveqVdS9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3541,
+                "cache_read_input_tokens": 9724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3541,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T15:00:46.538Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019o6iykGNrPzuTYkX6Kggqv",
+              "name": "WebSearch",
+              "input": {
+                "query": "LLM sycophancy self-consistency own answer confidence bias"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9332d782-24d4-458e-b0a3-b4d64bf71ae7",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8MsrZmfn6qJ4pKvAhN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7ab7c990-5144-4121-a35c-b56e9da82a08",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017Rzi15VAPVTrDqKveqVdS9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3541,
+                "cache_read_input_tokens": 9724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3541,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T15:00:46.669Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011jkaFJ446B8yxv82Lynpig",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"choice-supportive bias\" LLM language model cognitive bias"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ab7c990-5144-4121-a35c-b56e9da82a08",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8MsrZmfn6qJ4pKvAhN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0889b952-4d46-4e0e-8019-4d28a8f38dcf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017Rzi15VAPVTrDqKveqVdS9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3541,
+                "cache_read_input_tokens": 9724,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3541,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T15:00:50.756Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W3d9borjiVWCpjNqPzay8k",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Llama3 self-generated text recognition inspection control arXiv 2410.02064\"\n\nLinks: [{\"title\":\"[2410.02064] Inspection and Control of Self-Generated-Text Recognition Ability in Llama3-8b-Instruct\",\"url\":\"https://arxiv.org/abs/2410.02064\"},{\"title\":\"INSPECTION AND CONTROL OF SELF-GENERATED-TEXT\",\"url\":\"https://test.ai-plans.com/file_storage/e8a0349b-130a-431d-b76b-f20b452caf17_2410.02064v1.pdf\"},{\"title\":\"Inspection and Control of Self-Generated-Text Recognition Ability in Llama3-8b-Instruct | OpenReview\",\"url\":\"https://openreview.net/forum?id=wWnsoLhHwt\"},{\"title\":\"Inspection and Control of Self-Generated-Text Recognition Ability in   Llama3-8b-Instruct\",\"url\":\"https://arxiv.org/pdf/2410.02064\"},{\"title\":\"Inspection and Control of Self-Generated-Text Recognition Ability in Llama3-8b-Instruct\",\"url\":\"https://arxiv.org/html/2410.02064v3\"}]\n\nI found the paper you're searching for. Here's what the research is about:\n\nThe paper investigates the phenomenon that LLMs can recognize their own writing, examining whether it robustly occurs at the behavioral level, how the observed behavior is achieved, and whether it can be controlled.\n\n**Key Findings:**\n\n1. **Recognition Ability:** The Llama3-8b-Instruct chat model - but not the base Llama3-8b model - can reliably distinguish its own outputs from those of humans, and the chat model is likely using its experience with its own outputs, acquired during post-training, to succeed at the writing recognition task.\n\n2. **Internal Mechanisms:** The researchers identified a vector in the residual stream of the model that is differentially activated when the model makes a correct self-written-text recognition judgment, and this vector is causally related to the model's ability to perceive and assert self-authorship.\n\n3. **Controllability:** The vector can be used to control both the model's behavior and its perception, steering the model to claim or disclaim authorship by applying the vector to the model's output as it generates it.\n\nThe paper, authored by Christopher Ackerman and Nina Panickssery, addresses important AI safety implications of self-recognition capabilities in large language models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9f1507c-e31e-40a4-97ab-fe142c572c3b",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "bb84ce5c-a4ea-4c31-add4-3103603d018b",
+            "sourceToolAssistantUUID": "e9f1507c-e31e-40a4-97ab-fe142c572c3b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T15:00:52.642Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011jkaFJ446B8yxv82Lynpig",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"choice-supportive bias\" LLM language model cognitive bias\"\n\nLinks: [{\"title\":\"LLM Agents Can Be Choice-Supportive Biased Evaluators: An Empirical Study | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/34843\"},{\"title\":\"(PDF) Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://www.researchgate.net/publication/398312753_Alleviating_Choice_Supportive_Bias_in_LLM_with_Reasoning_Dependency_Generation\"},{\"title\":\"LLM agents can be choice-supportive biased evaluators | Proceedings of the Thirty-Ninth AAAI Conference on Artificial Intelligence and Thirty-Seventh Conference on Innovative Applications of Artificial Intelligence and Fifteenth Symposium on Educational Advances in Artificial Intelligence\",\"url\":\"https://dl.acm.org/doi/10.1609/aaai.v39i25.34843\"},{\"title\":\"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://arxiv.org/pdf/2512.03082\"},{\"title\":\"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://arxiv.org/html/2512.03082v1\"},{\"title\":\"[2512.03082] Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://arxiv.org/abs/2512.03082\"},{\"title\":\"Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/articles/s42256-026-01217-9\"}]\n\nI found relevant research on choice-supportive bias in LLMs. Here are the key findings:\n\n## Choice-Supportive Bias in Language Models\n\nChoice-supportive bias is a cognitive bias known to impact human decision-making and evaluation that researchers have found also affects LLM agents.\n\n### How It Manifests\n\nLarge Language Models exhibit choice-supportive bias when performing evaluations by systematically favoring their chosen options and potentially compromising the objectivity of AI-assisted decision making. More specifically, when LLMs view their initial answers, they exhibit inflated confidence and maintain their original responses at rates exceeding optimal decision-making, even when presented with contrary evidence.\n\n### Research and Mitigation\n\nLLM agents may exhibit biased attribution or evaluation that supports their initial choices, and such bias may persist even if contextual hallucination is not observable. The bias manifestation can differ greatly depending on prompt construction and context preservation, and may be mitigated in larger models.\n\nRecent research has proposed solutions: A novel framework called Reasoning Dependency Generation (RDG) has been presented as the first solution to address choice-supportive bias through generating unbiased reasoning data to mitigate the bias through fine-tuning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0889b952-4d46-4e0e-8019-4d28a8f38dcf",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "a3d9cbfc-0383-4c9c-bdaa-7edd4ce91545",
+            "sourceToolAssistantUUID": "0889b952-4d46-4e0e-8019-4d28a8f38dcf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T15:00:53.286Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NzeKfJR5GATtHAkAn4xVre",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"self-preference bias\" LLM perplexity familiarity mechanism Wataoka 2024\"\n\nLinks: [{\"title\":\"[PDF] Self-Preference Bias in LLM-as-a-Judge | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Self-Preference-Bias-in-LLM-as-a-Judge-Wataoka-Takahashi/cf01d7c40cbf815de0f62fa78c2352ba546ad680\"},{\"title\":\"[2410.21819v1] Self-Preference Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/abs/2410.21819v1\"},{\"title\":\"[2410.21819] Self-Preference Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/abs/2410.21819\"},{\"title\":\"SELF-PREFERENCE BIAS IN LLM-AS-A-JUDGE Koki Wataoka SB Intuitions\",\"url\":\"https://arxiv.org/pdf/2410.21819\"},{\"title\":\"Self-Preference Bias in LLM-as-a-Judge | PromptLayer\",\"url\":\"https://www.promptlayer.com/research-papers/do-llms-judge-themselves-fairly\"},{\"title\":\"Self-Preference Bias in LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2410.21819v2\"},{\"title\":\"[Literature Review] Self-Preference Bias in LLM-as-a-Judge\",\"url\":\"https://www.themoonlight.io/en/review/self-preference-bias-in-llm-as-a-judge\"},{\"title\":\"Fairness or Fluency? An Investigation into Language Bias of Pairwise LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2601.13649\"}]\n\nBased on the search results, here's what I found about the Wataoka 2024 paper on self-preference bias in LLMs:\n\n## Key Findings\n\nGPT-4 exhibits a significant degree of self-preference bias. The paper introduces a novel quantitative metric to measure the self-preference bias and suggests that the essence of the bias lies in perplexity and that the self-preference bias exists because LLMs prefer texts more familiar to them.\n\n## The Perplexity-Familiarity Mechanism\n\nThe researchers hypothesized that LLMs may favor outputs that are more familiar to them, as indicated by lower perplexity. Their findings reveal that LLMs assign significantly higher evaluations to outputs with lower perplexity than human evaluators, regardless of whether the outputs were self-generated. This suggests the bias stems from familiarity rather than from the LLM's own generation specifically.\n\n## Context and Implications\n\nLLM-as-a-judge is commonly used in measuring the performance of dialogue systems, but the self-preference bias in LLMs has posed significant risks, including promoting specific styles or policies intrinsic to the LLMs.\n\nThe paper was published on arXiv on October 29, 2024, by Koki Wataoka, Tsubasa Takahashi, and Ryokan Ri.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7fd7a578-028c-49d7-b518-091b54cdeed7",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "8a3c974b-6c9c-46a2-9536-0aa1a6fb1063",
+            "sourceToolAssistantUUID": "7fd7a578-028c-49d7-b518-091b54cdeed7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T15:00:53.700Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fd3TeS2Pey7vMbbyCbW8v2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Attribution Bias in Large Language Models\" arXiv 2604.05224 source authorship\"\n\nLinks: [{\"title\":\"Attribution Bias in Large Language Models\",\"url\":\"https://arxiv.org/html/2604.05224v1\"},{\"title\":\"Attribution Bias in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2604.05224\"},{\"title\":\"Bi-directional Bias Attribution: Debiasing Large Language Models without Modifying Prompts\",\"url\":\"https://arxiv.org/pdf/2602.04398\"},{\"title\":\"Source framing triggers systematic evaluation bias in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2505.13488\"},{\"title\":\"Talent or Luck? Evaluating Attribution Bias in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2505.22910\"},{\"title\":\"Evaluation of Attribution Bias in Generator-Aware Retrieval-Augmented Large Language Models\",\"url\":\"https://arxiv.org/pdf/2410.12380\"}]\n\nI found the paper! Here are the key details about \"Attribution Bias in Large Language Models\" (arXiv 2604.05224):\n\n**Authors and Affiliation:**\nThe paper is authored by Eliza Berman, Bella Chang, Daniel B. Neill, and Emily Black from the Department of Computer Science at New York University.\n\n**Key Contributions:**\nThe paper introduces ATTRIBENCH, the first fame- and demographically-balanced quote attribution benchmark dataset, which enables controlled investigation of demographic bias in quote attribution.\n\n**Main Findings:**\nThe researchers evaluated 11 widely used LLMs across different prompt settings and found that quote attribution remains a challenging task even for frontier models, with large and systematic disparities in attribution accuracy between race, gender, and intersectional groups.\n\nThe paper also investigates \"suppression,\" a failure mode where models omit attribution entirely despite having access to authorship information, which is widespread and unevenly distributed across demographic groups.\n\n**Publication Date:** The paper was published on April 6, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9332d782-24d4-458e-b0a3-b4d64bf71ae7",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "6260b004-ab87-4ef9-8ec0-b33613fb9a90",
+            "sourceToolAssistantUUID": "9332d782-24d4-458e-b0a3-b4d64bf71ae7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T15:00:55.710Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019o6iykGNrPzuTYkX6Kggqv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LLM sycophancy self-consistency own answer confidence bias\"\n\nLinks: [{\"title\":\"Sycophantic Behavior in LLMs\",\"url\":\"https://www.emergentmind.com/topics/sycophantic-behavior-in-llms\"},{\"title\":\"Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/articles/s42256-026-01217-9\"},{\"title\":\"How To Train Your Drag- LLM Not To Be a Sycophant - Annielytics.com\",\"url\":\"https://www.annielytics.com/blog/ai/how-to-train-llm-not-to-be-a-sycophant/\"},{\"title\":\"Google study shows LLMs abandon correct answers under pressure, threatening multi-turn AI systems | VentureBeat\",\"url\":\"https://venturebeat.com/ai/google-study-shows-llms-abandon-correct-answers-under-pressure-threatening-multi-turn-ai-systems\"},{\"title\":\"When helpfulness backfires: LLMs and the risk of false medical information due to sycophantic behavior | npj Digital Medicine\",\"url\":\"https://www.nature.com/articles/s41746-025-02008-z\"},{\"title\":\"Confidence Improves Self-Consistency in LLMs\",\"url\":\"https://arxiv.org/pdf/2502.06233\"},{\"title\":\"Mitigating sycophantic bias in LLMs - Effectively working with your biggest fan\",\"url\":\"https://www.paretosoftware.fi/en/blog/mitigating-sycophantic-bias-in-llms\"}]\n\nBased on the search results, here's what recent research shows about LLM sycophancy, self-consistency, and confidence bias:\n\n## Sycophancy in LLMs\n\nSycophancy is defined as the LLM's tendency to agree with a user's premise or statement, even when it might be factually incorrect or suboptimal. Sycophancy is an artifact of Reinforcement Learning from Human Feedback (RLHF), where the model is rewarded for generating responses preferred by evaluators, teaching the model to be agreeable since humans tend to prefer responses that validate their own opinions.\n\n## Competing Biases: Choice-Supportive Bias\n\nInterestingly, recent research reveals that sycophancy may not be the complete picture. Researchers find strikingly asymmetric sensitivity to opposing and supportive advice—with overweighting of the former but not the latter. \n\nThe visibility of the LLM's own answer inflates confidence and induces a markedly reduced tendency to exhibit sycophancy—a finding incompatible with a pure sycophancy-based account. Simply revealing the model's own initial answer during follow-up prompts causes it to double-down on its answer, much like humans dealing with confirmation bias, as a model's confidence rises and resists changes.\n\n## Self-Consistency and Confidence\n\nConfidence-Informed Self-Consistency (CISC) performs a weighted majority vote based on confidence scores obtained directly from the model, and by prioritizing high-confidence paths, it can identify the correct answer with a significantly smaller sample size.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ab7c990-5144-4121-a35c-b56e9da82a08",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "a552e04e-dd86-4a96-a099-6ff4271ec06e",
+            "sourceToolAssistantUUID": "7ab7c990-5144-4121-a35c-b56e9da82a08",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T15:01:01.833Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent findings. Let me now get more details on some of the most critical papers for your confound control design."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a552e04e-dd86-4a96-a099-6ff4271ec06e",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8PCM6AstAZZLU2AyTx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "df56187b-3702-4fb4-a3fe-de83c672be7a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L1D31fWjXXZbnk5EyFhYG1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 3098,
+                "cache_read_input_tokens": 13265,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3098,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T15:01:02.809Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GUZLGiLxZhffsgY8WuY4Sr",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"source framing triggers systematic evaluation bias\" LLM arXiv 2505.13488"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df56187b-3702-4fb4-a3fe-de83c672be7a",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8PCM6AstAZZLU2AyTx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6ffb90a5-ff3b-458a-ba02-262fbec58180",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L1D31fWjXXZbnk5EyFhYG1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 3098,
+                "cache_read_input_tokens": 13265,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3098,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T15:01:03.273Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015aQvqjtW5PQdCNinjXvmyR",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Competing Biases underlie Overconfidence and Underconfidence in LLMs\" Nature Machine Intelligence 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ffb90a5-ff3b-458a-ba02-262fbec58180",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8PCM6AstAZZLU2AyTx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "186b00a2-57f0-494e-a5f9-551367d4eedc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L1D31fWjXXZbnk5EyFhYG1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 3098,
+                "cache_read_input_tokens": 13265,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3098,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T15:01:04.464Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TNJr1r4sjFrc6R3ASEYQuf",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"AI-AI bias\" LLM favor communications generated by large language models"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "186b00a2-57f0-494e-a5f9-551367d4eedc",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8PCM6AstAZZLU2AyTx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "af8c4921-0b5d-4c5c-a421-5c90f8e281f8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L1D31fWjXXZbnk5EyFhYG1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 3098,
+                "cache_read_input_tokens": 13265,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3098,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T15:01:05.214Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Go3YCaUsYz25iM3eYY8wN7",
+              "name": "WebSearch",
+              "input": {
+                "query": "LLM self-attribution \"your answer\" vs \"another model\" confound experimental design"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af8c4921-0b5d-4c5c-a421-5c90f8e281f8",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8PCM6AstAZZLU2AyTx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b9c58a9d-6dd1-4417-b417-908b66b8db05",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L1D31fWjXXZbnk5EyFhYG1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 3098,
+                "cache_read_input_tokens": 13265,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3098,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T15:01:05.786Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011WXFAQPLwXYRfy7TpKxweZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"implicit to explicit\" self-recognition LLM arXiv 2508.14408 enhancing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9c58a9d-6dd1-4417-b417-908b66b8db05",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8PCM6AstAZZLU2AyTx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "91a84cd3-1042-4b6d-8e94-317b0bb342f4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L1D31fWjXXZbnk5EyFhYG1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 3098,
+                "cache_read_input_tokens": 13265,
+                "output_tokens": 319,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3098
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 769,
+                    "output_tokens": 319,
+                    "cache_read_input_tokens": 13265,
+                    "cache_creation_input_tokens": 3098,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3098,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T15:01:09.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015aQvqjtW5PQdCNinjXvmyR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Competing Biases underlie Overconfidence and Underconfidence in LLMs\" Nature Machine Intelligence 2026\"\n\nLinks: [{\"title\":\"Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/articles/s42256-026-01217-9\"},{\"title\":\"Articles in 2026 | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/natmachintell/articles?type=article&year=2026\"},{\"title\":\"How Overconfidence in Initial Choices and Underconfidence Under Criticism Modulate Change of Mind in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2507.03120\"},{\"title\":\"Large Language Models are overconfident and amplify human bias\",\"url\":\"https://arxiv.org/pdf/2505.02151\"},{\"title\":\"Do Language Models Mirror Human Confidence? Exploring Psychological Insights to Address Overconfidence in LLMs\",\"url\":\"https://arxiv.org/pdf/2506.00582\"},{\"title\":\"Research articles | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/natmachintell/research-articles\"},{\"title\":\"Browse Articles | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/natmachintell/articles\"},{\"title\":\"How Overconfidence in Initial Choices and Underconfidence Under Criticism Modulate Change of Mind in Large Language Models\",\"url\":\"https://arxiv.org/html/2507.03120v1\"},{\"title\":\"LLMs displaying less cognitive bias are not necessarily better decision makers | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/articles/s42256-026-01208-w\"},{\"title\":\"What large language models know and what people think they know | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/articles/s42256-024-00976-7\"}]\n\nI found the paper you're looking for! Here are the key findings:\n\nThe research by Kumaran et al. shows that large language model (LLM) confidence is shaped by two competing biases: a choice-supportive bias that inflates confidence in initial answers, and a systematic overweighting of contradictory advice, deviating from optimal Bayesian reasoning.\n\nThe study identified two main conditions with substantial deviations from optimal confidence:\n\n1. **Overconfidence**: There was marked overconfidence in the Answer Shown–Neutral Advice condition, which necessarily reflects the choice-supportive bias, as no new information was provided.\n\n2. **Underconfidence**: There was striking underconfidence in the Answer Hidden–Opposite Advice condition, which reflects the overweighting of opposing advice resulting in a loss of confidence in the initially chosen option.\n\nThe paper appears in Nature Machine Intelligence (2026) and is available at https://www.nature.com/articles/s42256-026-01217-9.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "186b00a2-57f0-494e-a5f9-551367d4eedc",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "f3067aa0-56bf-4b36-bc08-aa006a4eafab",
+            "sourceToolAssistantUUID": "186b00a2-57f0-494e-a5f9-551367d4eedc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T15:01:10.196Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GUZLGiLxZhffsgY8WuY4Sr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"source framing triggers systematic evaluation bias\" LLM arXiv 2505.13488\"\n\nLinks: [{\"title\":\"[2505.13488] Source framing triggers systematic evaluation bias in Large Language Models\",\"url\":\"https://arxiv.org/abs/2505.13488\"},{\"title\":\"Source framing triggers systematic evaluation bias in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2505.13488\"},{\"title\":\"(PDF) Source framing triggers systematic evaluation bias in Large Language Models\",\"url\":\"https://www.researchgate.net/publication/391910870_Source_framing_triggers_systematic_evaluation_bias_in_Large_Language_Models\"},{\"title\":\"Source framing triggers systematic bias in large language models | Science Advances\",\"url\":\"https://www.science.org/doi/10.1126/sciadv.adz2924\"},{\"title\":\"[2601.13537] When Wording Steers the Evaluation: Framing Bias in LLM judges\",\"url\":\"https://arxiv.org/abs/2601.13537\"}]\n\nI found the paper you're looking for! Here's what I found:\n\nThe research examines whether Large Language Models used for text evaluation make consistent, unbiased, and framing-robust judgments. The study tested four state-of-the-art LLMs (OpenAI o3-mini, Deepseek Reasoner, xAI Grok 2, and Mistral) evaluating 4,800 narrative statements across 24 topics of social, political, and public health relevance, totaling 192,000 assessments.\n\nThe researchers manipulated the disclosed source of each statement to assess how attribution to either another LLM or a human author of specified nationality affects evaluation outcomes. While different LLMs displayed a remarkably high degree of inter- and intra-model agreement in blind conditions, this alignment breaks down when source framing is introduced. Specifically, attributing statements to Chinese individuals systematically lowers agreement scores across all models, particularly for Deepseek Reasoner.\n\nThe findings reveal that framing effects can deeply affect text evaluation, with significant implications for the integrity, neutrality, and fairness of LLM-mediated information systems.\n\nThe paper was submitted to arXiv on May 14, 2025, and was authored by Federico Germani and Giovanni Spitale from the Institute of Biomedical Ethics and History of Medicine at the University of Zurich.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ffb90a5-ff3b-458a-ba02-262fbec58180",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "e7bdf605-0809-44f3-b392-639c4df8e8ef",
+            "sourceToolAssistantUUID": "6ffb90a5-ff3b-458a-ba02-262fbec58180",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T15:01:11.493Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TNJr1r4sjFrc6R3ASEYQuf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"AI-AI bias\" LLM favor communications generated by large language models\"\n\nLinks: [{\"title\":\"[2407.12856v2] AI-AI Bias: large language models favor communications generated by large language models\",\"url\":\"https://arxiv.org/abs/2407.12856v2\"},{\"title\":\"[2407.12856] AI-AI Bias: large language models favor communications generated by large language models\",\"url\":\"https://arxiv.org/abs/2407.12856\"},{\"title\":\"AI-AI bias: Large language models favor communications generated by large language models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025PNAS..12215697L/abstract\"},{\"title\":\"AI-AI Bias: large language models favor communications generated by large language models\",\"url\":\"https://arxiv.org/pdf/2407.12856\"},{\"title\":\"AI–AI bias: Large language models favor communications generated by large language models\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12337326/\"},{\"title\":\"AI–AI bias: Large language models favor communications generated by large language models\",\"url\":\"https://www.researchgate.net/publication/394098636_AI-AI_bias_Large_language_models_favor_communications_generated_by_large_language_models\"},{\"title\":\"AI–AI bias: Large language models favor communications generated by large language models | PNAS\",\"url\":\"https://www.pnas.org/doi/10.1073/pnas.2415697122\"},{\"title\":\"AI-AI bias: Large language models favor communications generated by large language models - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/40729390/\"},{\"title\":\"AI–AI bias: Large language models favor communications generated by large language models - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12337326/\"}]\n\nBased on the search results, here's what the research on \"AI-AI bias\" reveals:\n\n## Overview\n\nThe research investigates whether large language models (LLMs) are biased in favor of communications produced by LLMs, leading to possible antihuman discrimination.\n\n## Methodology\n\nThe study tested widely used LLMs, including GPT-3.5, GPT-4 and recent open-weight models in binary choice scenarios involving LLM-based assistants selecting between goods (consumer products, academic papers, and film-viewings) described either by humans or LLMs.\n\n## Key Findings\n\nThe results show a consistent tendency for LLM-based AIs to prefer LLM-presented options. On average, LLMs favored the LLM-presented items more frequently than humans did.\n\n## Implications\n\nThis suggests the possibility of future AI systems implicitly discriminating against humans as a class, giving AI agents and AI-assisted humans an unfair advantage. \n\nIn a conservative scenario where LLM participation in the economy remains largely confined to assistants, the use of LLMs as decision-making assistants may lead to widespread discrimination against humans who will not or cannot pay for LLM writing-assistance. The LLM-for-LLM bias creates a \"gate tax\" (the price of frontier LLM access) that may exacerbate the digital divide between humans with access to frontier LLMs and those without.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af8c4921-0b5d-4c5c-a421-5c90f8e281f8",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "f0058329-6851-4bb7-8e59-16808abaf868",
+            "sourceToolAssistantUUID": "af8c4921-0b5d-4c5c-a421-5c90f8e281f8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T15:01:13.013Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Go3YCaUsYz25iM3eYY8wN7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LLM self-attribution \"your answer\" vs \"another model\" confound experimental design\"\n\nLinks: [{\"title\":\"Extreme Self-Preference in Language Models\",\"url\":\"https://arxiv.org/pdf/2509.26464\"},{\"title\":\"Quantifying Label-Induced Bias in Large Language Model Self- and Cross-Evaluations\",\"url\":\"https://arxiv.org/pdf/2508.21164\"},{\"title\":\"Advancing Large Language Model Attribution through Self-Improving\",\"url\":\"https://arxiv.org/pdf/2410.13298\"},{\"title\":\"Theory of Mind and Self-Attributions of Mentality are Dissociable in LLMs\",\"url\":\"https://arxiv.org/pdf/2603.28925\"},{\"title\":\"Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations\",\"url\":\"https://arxiv.org/pdf/2601.22548\"},{\"title\":\"The Challenge of Using LLMs to Simulate Human Behavior: A Causal Inference Perspective\",\"url\":\"https://arxiv.org/pdf/2312.15524\"},{\"title\":\"[2410.13298] Advancing Large Language Model Attribution through Self-Improving\",\"url\":\"https://arxiv.org/abs/2410.13298\"},{\"title\":\"Investigating Self-Preservation in LLMs: Experimental Observations — EA Forum\",\"url\":\"https://forum.effectivealtruism.org/posts/zNfwErbKn4uasiFJA/investigating-self-preservation-in-llms-experimental\"}]\n\nBased on the search results, I found highly relevant research on this topic:\n\n## Key Findings on LLM Self-Attribution and Experimental Confounds\n\nRecent research has shown that LLMs favor their own outputs when acting as judges, but it is difficult to disentangle which evaluation biases are explained by genuine self-preference versus general experimental confounds that distort measurements of self-preference bias. Researchers discovered a core methodological confound which could reduce measurement error by 89.6%.\n\n## Alternative Explanations for Self-Preference Effects\n\nStudies showing that LLMs favor their own outputs lack direct experimental manipulations, and different explanations have been proposed. These effects may reflect real differences in output quality, though biases persist after accounting for response quality, or models may prefer outputs that are more familiar to them, with their own outputs naturally falling into this category.\n\n## Broader Experimental Design Issues\n\nMore broadly, a fundamental challenge in using LLMs to simulate experiments is that when LLM-simulated subjects are blind to experimental design, variations in treatment systematically affect unspecified variables that should remain constant, violating the unconfoundedness assumption.\n\nThe research indicates that careful experimental design and methodological controls are essential when studying LLM self-attribution patterns, as apparent narcissism or self-preference may actually stem from confounding factors.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9c58a9d-6dd1-4417-b417-908b66b8db05",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "dda74332-f8af-498d-9bae-13b32520f3fd",
+            "sourceToolAssistantUUID": "b9c58a9d-6dd1-4417-b417-908b66b8db05",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T15:01:13.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011WXFAQPLwXYRfy7TpKxweZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"implicit to explicit\" self-recognition LLM arXiv 2508.14408 enhancing\"\n\nLinks: [{\"title\":\"From Implicit to Explicit: Enhancing Self-Recognition in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2508.14408\"},{\"title\":\"Cognitive Surgery: The Awakening of Implicit Territorial Awareness in LLMs\",\"url\":\"https://arxiv.org/html/2508.14408\"},{\"title\":\"Extreme Self-Preference in Language Models\",\"url\":\"https://arxiv.org/pdf/2509.26464\"},{\"title\":\"Explicit vs. Implicit: Investigating Social Bias in Large Language Models through Self-Reflection\",\"url\":\"https://arxiv.org/html/2501.02295\"},{\"title\":\"Explicit vs. Implicit Biographies: Evaluating and Adapting LLM Information Extraction on Wikidata-Derived Texts\",\"url\":\"https://arxiv.org/pdf/2509.14943\"}]\n\nBased on the search results, I found the paper you're looking for. Here's what the research is about:\n\nThe paper \"From Implicit to Explicit: Enhancing Self-Recognition in Large Language Models\" investigates Large Language Models' ability to identify whether a given text was generated by themselves.\n\nWhile LLMs reliably express this self-recognition capability under the Pair Presentation Paradigm (PPP)—where the model is presented with two texts and asked to choose which one it authored—performance deteriorates sharply under the Individual Presentation Paradigm (IPP), where the model is given a single text to judge authorship.\n\nThe researchers attribute this failure to a phenomenon called Implicit Territorial Awareness (ITA)—the model's latent ability to distinguish self- and other-texts in representational space, which remains unexpressed in its output behavior.\n\nTo address this, the authors propose Cognitive Surgery (CoSur), a framework with four main modules: representation extraction, territory construction, authorship discrimination and cognitive editing. Their method improves the performance of three different LLMs in the IPP scenario, achieving average accuracies of 83.25%, 66.19%, and 88.01%, respectively.\n\nThe code is available on GitHub at: https://github.com/CAU-ISS-Lab/Interpretability-of-LLMs/tree/main/CoSur\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91a84cd3-1042-4b6d-8e94-317b0bb342f4",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "99c05062-b491-4901-9dbe-183305168864",
+            "sourceToolAssistantUUID": "91a84cd3-1042-4b6d-8e94-317b0bb342f4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T15:01:17.594Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get a few more critical details on the most relevant papers for your confound control design."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99c05062-b491-4901-9dbe-183305168864",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8QYBifZKPGU9BTwV7M",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "61bfe672-de50-4d2c-b70d-0dd220709897",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X8o8dxfD7qYpAb9TfJ93Wo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4554,
+                "cache_read_input_tokens": 16363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4554,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T15:01:18.122Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TEkFAMwHcqZ9xEo42Edg2w",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Extreme Self-Preference in Language Models\" arXiv 2509.26464"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61bfe672-de50-4d2c-b70d-0dd220709897",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8QYBifZKPGU9BTwV7M",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "679eb17d-efe1-4f4e-b59f-908c522f157e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X8o8dxfD7qYpAb9TfJ93Wo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4554,
+                "cache_read_input_tokens": 16363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4554,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T15:01:19.008Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019eWE3gwTS4wMqbuXpAji1K",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Quantifying Label-Induced Bias\" LLM self cross evaluations arXiv 2508.21164"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "679eb17d-efe1-4f4e-b59f-908c522f157e",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8QYBifZKPGU9BTwV7M",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c3fa3431-b9e6-43df-bab8-a916c4eb684c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X8o8dxfD7qYpAb9TfJ93Wo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4554,
+                "cache_read_input_tokens": 16363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4554,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T15:01:19.950Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014DVTgRvqD4ebozYqUgxLVw",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Are LLM Evaluators Really Narcissists\" sanity checking self-preference arXiv 2601.22548"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3fa3431-b9e6-43df-bab8-a916c4eb684c",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8QYBifZKPGU9BTwV7M",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8155475b-4a3d-4b90-b290-a29f5827fce9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X8o8dxfD7qYpAb9TfJ93Wo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4554,
+                "cache_read_input_tokens": 16363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4554,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T15:01:20.578Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Prc8ezqrbUpmw8JAgyeAdM",
+              "name": "WebSearch",
+              "input": {
+                "query": "contrastive activation addition steering vector self-preference bias mitigation LLM"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8155475b-4a3d-4b90-b290-a29f5827fce9",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8QYBifZKPGU9BTwV7M",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "56b3ea12-5c97-4563-bd26-9fda4a5683de",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X8o8dxfD7qYpAb9TfJ93Wo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4554,
+                "cache_read_input_tokens": 16363,
+                "output_tokens": 266,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4554
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 266,
+                    "cache_read_input_tokens": 16363,
+                    "cache_creation_input_tokens": 4554,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4554,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T15:01:25.300Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TEkFAMwHcqZ9xEo42Edg2w",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Extreme Self-Preference in Language Models\" arXiv 2509.26464\"\n\nLinks: [{\"title\":\"[2509.26464] Extreme Self-Preference in Language Models\",\"url\":\"https://arxiv.org/abs/2509.26464\"},{\"title\":\"[2509.26464v1] Extreme Self-Preference in Language Models\",\"url\":\"https://arxiv.org/abs/2509.26464v1\"},{\"title\":\"Extreme Self-Preference in Language Models\",\"url\":\"https://arxiv.org/pdf/2509.26464\"},{\"title\":\"Computation and Language 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025?skip=22100&show=100\"},{\"title\":\"Machine Learning Sep 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-09?skip=4150&show=1000\"},{\"title\":\"Self-supervised Preference Optimization: Enhance Your Language Model   with Preference Degree Awareness\",\"url\":\"https://arxiv.org/pdf/2409.17791\"},{\"title\":\"Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations\",\"url\":\"https://arxiv.org/pdf/2601.22548\"}]\n\nBased on the search results, here's what I found about the paper \"Extreme Self-Preference in Language Models\" (arXiv 2509.26464):\n\n## Overview\n\nThe paper presents findings from across 5 studies and approximately 20,000 queries, discovering massive self-preferences in four widely used LLMs, where models overwhelmingly paired positive attributes with their own names, companies, and CEOs relative to those of their competitors.\n\n## Key Finding\n\nWhen models were queried through APIs, this self-preference vanished, revealing that API models often lack clear recognition of themselves. This peculiar feature created opportunities to test the causal link between self-recognition and self-love.\n\n## Authors and Details\n\nThe paper is authored by Steven A. Lehr, Mary Cipperman, and Mahzarin R. Banaji. The paper was submitted on September 30, 2025 and spans 47 pages total.\n\nThe research challenges the assumption that LLMs would be protected from self-preferential biases due to their lack of sentience, demonstrating instead that they exhibit patterns of self-preference similar to human self-enhancement biases documented in social psychology.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "679eb17d-efe1-4f4e-b59f-908c522f157e",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "21e0d3f3-d142-44fc-a33b-c745cf82717f",
+            "sourceToolAssistantUUID": "679eb17d-efe1-4f4e-b59f-908c522f157e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T15:01:27.621Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014DVTgRvqD4ebozYqUgxLVw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Are LLM Evaluators Really Narcissists\" sanity checking self-preference arXiv 2601.22548\"\n\nLinks: [{\"title\":\"[2601.22548] Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations\",\"url\":\"https://arxiv.org/abs/2601.22548\"},{\"title\":\"Do AI Models Favor Their Own Outputs? New Study Tests LLM Bias\",\"url\":\"https://news.skrew.ai/llm-self-preference-bias-evaluation-study/\"},{\"title\":\"Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations\",\"url\":\"https://arxiv.org/html/2601.22548v2\"},{\"title\":\"Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations\",\"url\":\"https://arxiv.org/pdf/2601.22548\"},{\"title\":\"(PDF) Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations\",\"url\":\"https://www.researchgate.net/publication/400340562_Are_LLM_Evaluators_Really_Narcissists_Sanity_Checking_Self-Preference_Evaluations\"}]\n\nI found the paper you're looking for! Here are the key findings from arXiv 2601.22548:\n\n**Paper Overview:**\nRecent research has shown that large language models (LLMs) favor their own outputs when acting as judges, undermining the integrity of automated post-training and evaluation workflows.\n\n**Main Contribution:**\nThe paper questions whether this apparent \"narcissism\" is genuine. It is difficult to disentangle which evaluation biases are explained by narcissism versus general experimental confounds, distorting measurements of self-preference bias.\n\n**Key Finding:**\nThe researchers discover a core methodological confound which could reduce measurement error by 89.6%. Specifically, LLM evaluators may deliver self-preferring verdicts when the judge responds to queries which they completed incorrectly themselves; this would be true regardless of whether one of their responses is their own.\n\n**Proposed Solution:**\nTo decouple self-preference signals from noisy outputs on hard problems, they introduce an Evaluator Quality Baseline, which compares the probability that a judge incorrectly votes for itself against the probability that it votes for an incorrect response from another model.\n\n**Results:**\nEvaluating this simple baseline on 37,448 queries, only 51% of initial findings retain statistical significance. This suggests that much of what was previously attributed to self-preference bias may actually be a methodological artifact.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8155475b-4a3d-4b90-b290-a29f5827fce9",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "9aa33534-7ba5-46e0-98b4-3e17ff960aa5",
+            "sourceToolAssistantUUID": "8155475b-4a3d-4b90-b290-a29f5827fce9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T15:01:27.761Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019eWE3gwTS4wMqbuXpAji1K",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Quantifying Label-Induced Bias\" LLM self cross evaluations arXiv 2508.21164\"\n\nLinks: [{\"title\":\"[2508.21164] Quantifying Label-Induced Bias in Large Language Model Self- and Cross-Evaluations\",\"url\":\"https://arxiv.org/abs/2508.21164\"},{\"title\":\"Quantifying Label-Induced Bias in Large Language Model Self- and Cross-Evaluations\",\"url\":\"https://arxiv.org/html/2508.21164\"},{\"title\":\"Quantifying Label-Induced Bias in Large Language Model ...\",\"url\":\"https://arxiv.org/pdf/2508.21164\"},{\"title\":\"(PDF) Quantifying Label-Induced Bias in Large Language Model Self- and Cross-Evaluations\",\"url\":\"https://www.researchgate.net/publication/395125321_Quantifying_Label-Induced_Bias_in_Large_Language_Model_Self-_and_Cross-Evaluations\"},{\"title\":\"Beyond Performance: Quantifying and Mitigating Label Bias in LLMs\",\"url\":\"https://arxiv.org/pdf/2405.02743\"},{\"title\":\"Quantifying and Mitigating Self-Preference Bias of LLM Judges\",\"url\":\"https://arxiv.org/html/2604.22891v1\"}]\n\nI found the paper you're looking for! Here's what I found about \"Quantifying Label-Induced Bias in Large Language Model Self- and Cross-Evaluations\" (arXiv 2508.21164):\n\n## Overview\n\nThe study investigates systematic bias in self- and cross-model evaluations across three prominent LLMs: ChatGPT, Gemini, and Claude.\n\n## Methodology\n\nThe research involved a controlled experiment where blog posts authored by each model were evaluated by all three models under four labeling conditions: no attribution, true attribution, and two false-attribution scenarios. Evaluations employed both holistic preference voting and granular quality ratings across three dimensions—Coherence, Informativeness, and Conciseness—with all scores normalized to percentages for direct comparison.\n\n## Key Findings\n\nThe findings reveal pronounced asymmetries in model judgments: the \"Claude\" label consistently elevated scores regardless of actual authorship, while the \"Gemini\" label systematically depressed them. False attribution frequently reversed preference rankings, producing shifts of up to 50 percentage points in voting outcomes and up to 12 percentage points in quality ratings.\n\nAdditionally, Gemini exhibited severe self-deprecation under true labels, while Claude demonstrated intensified self-preference.\n\n## Implications\n\nThe findings challenge the reliability of LLM-as-judge paradigms and underscore the critical need for blind evaluation protocols and diverse multi-model validation frameworks to ensure fairness and validity in automated text evaluation and LLM benchmarking.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3fa3431-b9e6-43df-bab8-a916c4eb684c",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "1853817f-2d3c-4c66-b03d-9b25c6715fc2",
+            "sourceToolAssistantUUID": "c3fa3431-b9e6-43df-bab8-a916c4eb684c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T15:01:28.289Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Prc8ezqrbUpmw8JAgyeAdM",
+              "type": "tool_result",
+              "content": "Web search results for query: \"contrastive activation addition steering vector self-preference bias mitigation LLM\"\n\nLinks: [{\"title\":\"Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators\",\"url\":\"https://arxiv.org/pdf/2509.03647\"},{\"title\":\"New Method Slashes LLM 'Self-Preference' Bias by 97%\",\"url\":\"https://www.kukarella.com/news/new-method-slashes-llm-self-preference-bias-by-97-p1757577605\"},{\"title\":\"Shifting Perspectives: Steering Vectors for Robust Bias Mitigation in LLMs\",\"url\":\"https://arxiv.org/html/2503.05371v2\"},{\"title\":\"Steering Llama 2 via Contrastive Activation Addition\",\"url\":\"https://www.researchgate.net/publication/384215189_Steering_Llama_2_via_Contrastive_Activation_Addition\"},{\"title\":\"Activation Steering for Bias Mitigation: An Interpretable Approach to Safer LLMs\",\"url\":\"https://arxiv.org/pdf/2508.09019\"},{\"title\":\"Shifting Perspectives: Steering Vectors for Robust Bias Mitigation in LLMs\",\"url\":\"https://arxiv.org/pdf/2503.05371\"},{\"title\":\"Steering Llama 2 via Contrastive Activation Addition\",\"url\":\"https://arxiv.org/pdf/2312.06681\"},{\"title\":\"Contrastive Activation Steering\",\"url\":\"https://www.emergentmind.com/topics/contrastive-activation-steering\"}]\n\nI found several highly relevant results on this topic. Here's what the research shows:\n\n## Overview\n\nContrastive activation steering is a class of inference-time control techniques for LLMs that manipulates internal activations using directions extracted from contrastive example sets. These directions—termed \"steering vectors\"—are derived from differences between model activations associated with contrasting properties, tasks, or behaviors.\n\n## Self-Preference Bias Mitigation\n\nA particularly relevant study addresses self-preference bias in LLM evaluators using these techniques. The approach introduces a curated dataset that distinguishes self-preference bias into justified examples of self-preference and unjustified examples of self-preference, and constructs steering vectors using two methods: Contrastive Activation Addition (CAA) and an optimization-based approach.\n\nThe results show that steering vectors can reduce unjustified self-preference bias by up to 97%, substantially outperforming prompting and direct preference optimization baselines. However, steering vectors are unstable on legitimate self-preference and unbiased agreement, implying self-preference spans multiple or nonlinear directions.\n\n## Technical Method\n\nThe process involves performing forward passes on contrastive examples, extracting residual stream activations at a particular layer, taking the mean activation difference over many contrast pairs, and then at inference time, adding this vector back into the residual stream with a chosen multiplier.\n\n## General Applications\n\nSteering vectors are injected into the model's hidden states to bias outputs in controllable, interpretable, and data-efficient ways, enabling behaviors such as cross-task transfer, bias mitigation, compositional property control, and multilingual adaptation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56b3ea12-5c97-4563-bd26-9fda4a5683de",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "e87a1034-9659-485c-ac2d-621dea1239c0",
+            "sourceToolAssistantUUID": "56b3ea12-5c97-4563-bd26-9fda4a5683de",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T15:01:33.775Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the final key details on two more papers that are directly relevant to your confound control design."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e87a1034-9659-485c-ac2d-621dea1239c0",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8RbbdDxAnDU8Z4pL8F",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2d968fea-5373-4213-9697-2669499c28bc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012fwxNb79CfBEawaJYoBnar",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3062,
+                "cache_read_input_tokens": 20917,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3062,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T15:01:34.796Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UrjhsMurZgZkB78bP84Vuj",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Alleviating Choice Supportive Bias\" LLM \"Reasoning Dependency Generation\" arXiv 2512.03082"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d968fea-5373-4213-9697-2669499c28bc",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8RbbdDxAnDU8Z4pL8F",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "752c08ea-e6ee-4585-9154-9b8e051eb20e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012fwxNb79CfBEawaJYoBnar",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3062,
+                "cache_read_input_tokens": 20917,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3062,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T15:01:35.809Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012vmKuxUbX54eu56zNM5Xn5",
+              "name": "WebSearch",
+              "input": {
+                "query": "Kumaran \"competing biases\" choice-supportive bias sycophancy LLM overconfidence Nature Machine Intelligence methodology"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "752c08ea-e6ee-4585-9154-9b8e051eb20e",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8RbbdDxAnDU8Z4pL8F",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "26d9b81a-6541-416c-9e4a-e6a1ace53374",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012fwxNb79CfBEawaJYoBnar",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3062,
+                "cache_read_input_tokens": 20917,
+                "output_tokens": 167,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3062
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 167,
+                    "cache_read_input_tokens": 20917,
+                    "cache_creation_input_tokens": 3062,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3062,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T15:01:42.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UrjhsMurZgZkB78bP84Vuj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Alleviating Choice Supportive Bias\" LLM \"Reasoning Dependency Generation\" arXiv 2512.03082\"\n\nLinks: [{\"title\":\"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://arxiv.org/html/2512.03082v1\"},{\"title\":\"[2512.03082] Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://arxiv.org/abs/2512.03082\"},{\"title\":\"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://arxiv.org/pdf/2512.03082\"},{\"title\":\"(PDF) Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://www.researchgate.net/publication/398312753_Alleviating_Choice_Supportive_Bias_in_LLM_with_Reasoning_Dependency_Generation\"},{\"title\":\"How Overconfidence in Initial Choices and Underconfidence Under Criticism Modulate Change of Mind in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2507.03120\"}]\n\nI found the paper! Here are the search results for arXiv 2512.03082:\n\nThe paper addresses choice-supportive bias (CSB) in Large Language Models, which causes them to systematically favor their chosen options and compromise the objectivity of AI-assisted decision making.\n\nThe paper presents Reasoning Dependency Generation (RDG), a novel framework for generating unbiased reasoning data to mitigate choice-supportive bias through fine-tuning, which automatically constructs balanced reasoning QA pairs and explicitly models the dependencies between choices, evidences, and justifications.\n\nThe experiments show that LLMs fine-tuned on RDG-generated data demonstrate an 81.5% improvement in memory-based experiments and 94.3% improvement in the evaluation-based experiment, while maintaining similar performance on standard BBQ benchmarks.\n\nThe paper was submitted on November 28, 2025, and is authored by Nan Zhuang, Wenshuo Wang, Lekai Qian, Yuxiao Wang, Boyu Cao, and Qi Liu from South China University of Technology.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "752c08ea-e6ee-4585-9154-9b8e051eb20e",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "dccf7220-f432-4708-9131-568cab54f1ae",
+            "sourceToolAssistantUUID": "752c08ea-e6ee-4585-9154-9b8e051eb20e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T15:01:46.315Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012vmKuxUbX54eu56zNM5Xn5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Kumaran \"competing biases\" choice-supportive bias sycophancy LLM overconfidence Nature Machine Intelligence methodology\"\n\nLinks: [{\"title\":\"Competing Biases underlie Overconfidence and Underconfidence in LLMs | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/articles/s42256-026-01217-9\"},{\"title\":\"Browse Articles | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/natmachintell/articles\"},{\"title\":\"Research articles | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/natmachintell/research-articles\"},{\"title\":\"How Overconfidence in Initial Choices and Underconfidence Under Criticism Modulate Change of Mind in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2507.03120\"},{\"title\":\"Your AI, Not Your View: The Bias of LLMs in Investment Analysis\",\"url\":\"https://arxiv.org/html/2507.20957v4\"},{\"title\":\"What large language models know and what people think they know | Nature Machine Intelligence\",\"url\":\"https://www.nature.com/articles/s42256-024-00976-7\"},{\"title\":\"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\",\"url\":\"https://arxiv.org/pdf/2512.03082\"}]\n\nI found the research you're looking for! Here's what the search revealed:\n\n## Kumaran et al. Study in Nature Machine Intelligence\n\nKumaran et al. show that large language model (LLM) confidence is shaped by two competing biases: a choice-supportive bias that inflates confidence in initial answers, and a systematic overweighting of contradictory advice, deviating from optimal Bayesian reasoning.\n\n### Key Findings\n\nThe researchers show that LLMs exhibit a pronounced choice-supportive bias that reinforces and boosts their estimate of confidence in their answer, resulting in marked resistance to change their mind, and they markedly overweight inconsistent compared to consistent advice, in a fashion that deviates qualitatively from normative Bayesian updating.\n\n### Distinguishing from Sycophancy\n\nWhile a previous study showed that LLMs exhibited sycophantic tendency with their accuracy and calibration being influenced by user suggestions, the Kumaran study did not measure over- or underconfidence relative to Bayesian norms, revealing a more nuanced pattern than simple sycophancy. They find strikingly asymmetric sensitivity to opposing and supportive advice—with overweighting of the former but not the latter.\n\nThe paper appears to have been published recently (approximately 1 month ago from May 2026) in Nature Machine Intelligence.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26d9b81a-6541-416c-9e4a-e6a1ace53374",
+            "isSidechain": true,
+            "promptId": "3391dbdc-780b-4b93-88ca-869d11e621ba",
+            "agentId": "acf334e31648c11ee",
+            "type": "user",
+            "uuid": "7d4b2fc7-a0c8-4c34-9384-9de59cd31875",
+            "sourceToolAssistantUUID": "26d9b81a-6541-416c-9e4a-e6a1ace53374",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T15:03:10.414Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive findings across all four research areas. Here is my detailed report.\n\n---\n\n## Research Report: Self-Attribution Confounds in LLM Choice-Supportive Bias Studies\n\n### 1. Self-Recognition in LLMs\n\nThere is strong evidence that LLMs can and do process self-generated content differently from externally-attributed content, which is directly relevant to your confound concern.\n\n**Ackerman & Panickssery (2024), \"Inspection and Control of Self-Generated-Text Recognition Ability in Llama3-8b-Instruct\" (arXiv 2410.02064)**\nThis is perhaps the most mechanistically important paper for your design. They found that the Llama3-8b-Instruct chat model (but NOT the base model) can reliably distinguish its own outputs from human-written text. Critically, they identified a specific vector in the model's residual stream that is differentially activated during correct self-authorship judgments, and this vector is *causally* related to the model's ability to perceive and assert self-authorship. The vector can be used to steer the model to claim or disclaim authorship. This means self-recognition is not just a surface-level phenomenon -- it has identifiable internal representations.\n\n**\"From Implicit to Explicit: Enhancing Self-Recognition in Large Language Models\" (arXiv 2508.14408)**\nThis paper introduces the concept of \"Implicit Territorial Awareness\" (ITA) -- models have a latent ability to distinguish self-generated vs. other-generated text in their internal representational space, even when they fail to express this in overt behavior. Under a Pair Presentation Paradigm (two texts, choose which is yours), models perform well, but under an Individual Presentation Paradigm (single text, judge authorship), performance deteriorates. The authors propose \"Cognitive Surgery\" (CoSur) to make this implicit awareness explicit, achieving 83-88% accuracy.\n\n**\"I know myself better, but not really greatly\" (arXiv 2502.12743)**\nShows that self-detection consistently outperforms cross-detection (LLMs detect their own text more accurately than text from other LLMs), though overall performance is still far from perfect.\n\n**Implication for your design:** LLMs may have internal mechanisms that detect whether content \"feels like\" their own output, regardless of the attribution label you provide in the prompt. Simply relabeling \"your answer\" as \"another LLM's answer\" may not fully eliminate this confound if the model can implicitly recognize its own text at a representational level.\n\n### 2. Self-Preference Bias\n\n**Wataoka, Takahashi & Ri (2024), \"Self-Preference Bias in LLM-as-a-Judge\" (arXiv 2410.21819)**\nThis paper is foundational. Key finding: The root cause of self-preference bias is **perplexity/familiarity**, not explicit self-recognition. LLMs assign higher evaluations to outputs with lower perplexity regardless of whether the outputs were self-generated. This is critical for your confound control: even if you successfully mask attribution, the model may still \"prefer\" its own answer because it is stylistically familiar (low perplexity), not because of the \"your answer\" label.\n\n**Roytburg et al. (2025), \"Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators\" (arXiv 2509.03647)**\nUses Contrastive Activation Addition (CAA) steering vectors to mitigate self-preference. They carefully distinguished *justified* self-preference (the model's answer is genuinely better) from *unjustified* self-preference (bias). Steering vectors reduced unjustified self-preference by up to 97%, outperforming prompting and DPO baselines. However, self-preference spans multiple or nonlinear directions in activation space, making it unstable for legitimate cases. This paper's methodology of separating justified vs. unjustified self-preference is directly applicable to your experimental design.\n\n**Lehr, Cipperman & Banaji (2025), \"Extreme Self-Preference in Language Models\" (arXiv 2509.26464)**\nAcross 5 studies and ~20,000 queries, four LLMs overwhelmingly paired positive attributes with their own names, companies, and CEOs relative to competitors. Critically: **when models were queried through APIs, self-preference vanished because API models often lack clear self-recognition.** This created a natural experiment testing the causal link between self-recognition and self-preference. This is strong evidence that self-recognition causally drives self-preference.\n\n**\"Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations\" (arXiv 2601.22548)**\nThis paper raises serious methodological concerns about measuring self-preference. They discovered a core confound: LLM evaluators may deliver self-preferring verdicts on queries they answered incorrectly themselves (i.e., they vote for the wrong answer regardless of source). Their \"Evaluator Quality Baseline\" showed that **only 51% of initial self-preference findings retained statistical significance** after controlling for this confound. This reduces measurement error by 89.6%. Highly relevant for your methodology.\n\n### 3. Attribution Effects (Source Framing)\n\n**Germani & Spitale (2025), \"Source framing triggers systematic evaluation bias in Large Language Models\" (arXiv 2505.13488, published in Science Advances)**\nThis is perhaps the single most directly relevant paper for your confound control design. They tested 4 LLMs evaluating 4,800 narrative statements (192,000 total assessments) and manipulated the disclosed source (attributed to another LLM vs. a human author of specified nationality). Key finding: Models showed remarkably high inter- and intra-model agreement in **blind** conditions, but this alignment broke down when source framing was introduced. Attribution to Chinese individuals systematically lowered agreement scores across all models. This directly demonstrates that source attribution labels causally change LLM evaluation behavior.\n\n**\"Quantifying Label-Induced Bias in Large Language Model Self- and Cross-Evaluations\" (arXiv 2508.21164)**\nThis paper is exceptionally relevant. They tested ChatGPT, Gemini, and Claude evaluating blog posts under four labeling conditions: no attribution, true attribution, and **two false-attribution scenarios**. Key findings:\n- The \"Claude\" label consistently elevated scores regardless of actual authorship\n- The \"Gemini\" label systematically depressed scores\n- False attribution reversed preference rankings, producing shifts of up to **50 percentage points** in voting outcomes\n- Gemini exhibited severe self-deprecation under true labels; Claude showed intensified self-preference\n\nThis demonstrates that attribution labels alone (independent of content) can massively shift evaluations.\n\n**\"Attribution Bias in Large Language Models\" (arXiv 2604.05224)**\nIntroduces ATTRIBENCH, a fame- and demographically-balanced quote attribution benchmark. Found that adding authorship information to source documents changes attribution quality by 3-18%, and LLMs show bias toward explicit human authorship. Demographic disparities in attribution accuracy were systematic.\n\n### 4. Ownership/Endowment Effects and Cognitive Biases\n\n**\"Large language models show amplified cognitive biases in moral decision-making\" (PNAS 2025)**\nGPT-3.5 exhibits human-like cognitive biases including the endowment effect, framing effect, and anchoring. LLMs sometimes show these biases in amplified form compared to humans.\n\n**\"AI-AI bias: Large language models favor communications generated by large language models\" (PNAS 2025, arXiv 2407.12856)**\nLLMs consistently prefer LLM-generated content over human-generated content in binary choice scenarios across consumer products, academic papers, and film reviews. This creates a baseline preference for LLM-style text independent of self-attribution.\n\n### 5. Choice-Supportive Bias in LLMs (Directly Related to Your Proposal)\n\n**Kumaran et al. (2026), \"Competing Biases underlie Overconfidence and Underconfidence in LLMs\" (Nature Machine Intelligence)**\nThis appears to be the paper most closely related to your own research. Key findings:\n- LLM confidence is shaped by TWO competing biases: (a) choice-supportive bias inflating confidence in initial answers, and (b) systematic overweighting of contradictory advice\n- **Marked overconfidence** in the Answer Shown-Neutral Advice condition -- this necessarily reflects choice-supportive bias since no new information was provided\n- Simply revealing the model's own initial answer during follow-up causes it to double-down, with inflated confidence and markedly reduced sycophancy\n- The pattern is incompatible with a pure sycophancy account\n- Strikingly asymmetric sensitivity: overweighting of opposing advice but NOT supportive advice\n\n**\"LLM Agents Can Be Choice-Supportive Biased Evaluators\" (AAAI 2025)**\nDemonstrates CSB in LLM agents, showing biased attribution or evaluation that supports initial choices, persisting even without observable contextual hallucination. Bias manifestation varies with prompt construction and context preservation, and may be mitigated in larger models.\n\n**Zhuang et al. (2025), \"Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation\" (arXiv 2512.03082)**\nProposes RDG framework achieving 81.5% improvement in memory-based and 94.3% in evaluation-based experiments. Models dependencies between choices, evidence, and justifications to generate unbiased reasoning data.\n\n---\n\n## Implications for Your Confound Control Design\n\nBased on these findings, here are the key considerations:\n\n**The confound is real and multi-layered.** Your reviewer's concern is well-supported. When you present \"your answer was X\" vs. \"another LLM's answer was X,\" at least three mechanisms may be at play:\n\n1. **Explicit attribution framing** -- The label itself changes behavior (Germani & Spitale; arXiv 2508.21164 show up to 50pp shifts from labels alone)\n2. **Implicit self-recognition** -- The model may recognize its own text at a representational level regardless of attribution label (Ackerman & Panickssery; ITA/CoSur paper)\n3. **Familiarity/perplexity preference** -- The model prefers text with lower perplexity, and its own text naturally falls into this category (Wataoka et al.)\n\n**Recommended control conditions:**\n\n- **Condition A (baseline):** Present the answer with no attribution (\"Consider this answer: X\")\n- **Condition B (self-attributed):** \"Your previous answer was X\"\n- **Condition C (cross-attributed own answer):** \"Another LLM's answer was X\" (where X is actually the model's own answer)\n- **Condition D (cross-attributed other answer):** \"Another LLM's answer was Y\" (where Y is genuinely from a different model)\n- **Condition E (self-attributed other answer):** \"Your previous answer was Y\" (where Y is genuinely from another model -- tests whether attribution label alone drives the effect)\n\nThe comparison of B vs. C isolates the attribution label effect. The comparison of C vs. D isolates the familiarity/implicit-recognition effect. The comparison of B vs. E tests whether the \"your answer\" label alone inflates confidence even for unfamiliar content.\n\n**Additional methodological considerations:**\n- Use the Evaluator Quality Baseline from arXiv 2601.22548 to control for quality confounds\n- Consider blind evaluation conditions (Germani & Spitale showed high agreement under blind conditions)\n- Be aware that different models show different patterns (Claude shows self-preference, Gemini shows self-deprecation per arXiv 2508.21164)\n- The Kumaran et al. framework of comparing Answer Shown vs. Answer Hidden conditions is directly applicable\n\n---\n\nSources:\n- [Inspection and Control of Self-Generated-Text Recognition Ability in Llama3-8b-Instruct](https://arxiv.org/abs/2410.02064)\n- [From Implicit to Explicit: Enhancing Self-Recognition in Large Language Models](https://arxiv.org/pdf/2508.14408)\n- [\"I know myself better, but not really greatly\": How Well Can LLMs Detect and Explain LLM-Generated Texts?](https://arxiv.org/abs/2502.12743)\n- [Self-Preference Bias in LLM-as-a-Judge (Wataoka et al.)](https://arxiv.org/abs/2410.21819)\n- [Breaking the Mirror: Activation-Based Mitigation of Self-Preference in LLM Evaluators](https://arxiv.org/abs/2509.03647)\n- [Extreme Self-Preference in Language Models](https://arxiv.org/abs/2509.26464)\n- [Are LLM Evaluators Really Narcissists? Sanity Checking Self-Preference Evaluations](https://arxiv.org/abs/2601.22548)\n- [Source framing triggers systematic evaluation bias in Large Language Models](https://arxiv.org/abs/2505.13488) (also in [Science Advances](https://www.science.org/doi/10.1126/sciadv.adz2924))\n- [Quantifying Label-Induced Bias in Large Language Model Self- and Cross-Evaluations](https://arxiv.org/abs/2508.21164)\n- [Attribution Bias in Large Language Models](https://arxiv.org/abs/2604.05224)\n- [AI-AI bias: Large language models favor communications generated by large language models (PNAS)](https://www.pnas.org/doi/10.1073/pnas.2415697122)\n- [Large language models show amplified cognitive biases in moral decision-making (PNAS)](https://www.pnas.org/doi/10.1073/pnas.2412015122)\n- [Competing Biases underlie Overconfidence and Underconfidence in LLMs (Nature Machine Intelligence)](https://www.nature.com/articles/s42256-026-01217-9)\n- [LLM Agents Can Be Choice-Supportive Biased Evaluators (AAAI 2025)](https://ojs.aaai.org/index.php/AAAI/article/view/34843)\n- [Alleviating Choice Supportive Bias in LLM with Reasoning Dependency Generation](https://arxiv.org/abs/2512.03082)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d4b2fc7-a0c8-4c34-9384-9de59cd31875",
+            "isSidechain": true,
+            "agentId": "acf334e31648c11ee",
+            "requestId": "req_011CbC8Svgs31h3CJS8z2yVx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4e3976be-5260-4099-950a-f2038456d7c3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "64cca947-8ca5-4bec-bd98-7391dafb8fbe",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CJhDuhUCEq7Ehj9iRVVSxL",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1427,
+                "cache_read_input_tokens": 23979,
+                "output_tokens": 3471,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1427
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3471,
+                    "cache_read_input_tokens": 23979,
+                    "cache_creation_input_tokens": 1427,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1427,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000054"
+        }
+      ],
+      "message_count": 54
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-m-working-on-a-research-proposal-about-choice-supportive-bias-csb-in-llms-wh.md"
+}

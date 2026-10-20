@@ -1,0 +1,801 @@
+{
+  "schema_version": "1.0",
+  "id": "86c245fed26f165af7cd",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the directory /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib, find the Python file(s) t",
+  "task_key": "agent-a4ddc290a1e5d82db",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a4ddc290a1e5d82db.jsonl",
+    "occurrence": 1,
+    "bytes": 93071,
+    "sha256": "a6a818248fd091d7fd38f01dd44a247f6da710bb585f5a251f45bba02528cfba"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T11:10:07.465Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the directory /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib, find the Python file(s) that contain the functions `make_dgp_params` and `compute_plim`. Also find `_BETA_POOL`. These are referenced as being in plan006_asv_empirical.py but the file may be at a different location. Search broadly across artifacts/ and the project root."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "417df0a2-cc01-4fb5-9f46-ee96dfc8be6b",
+            "agentId": "a4ddc290a1e5d82db",
+            "type": "user",
+            "uuid": "707bae4f-4fc5-4864-9200-3dcb32ce02b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T11:10:08.909Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for these functions and variables across the project directory structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "707bae4f-4fc5-4864-9200-3dcb32ce02b9",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWD8ZS8xLSt29F1fdVi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "88522f1b-dfea-4c60-8ad1-034a83f6f419",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UZB429X15qX1XquZvXbwhZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17860,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17860,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T11:10:09.340Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GBUHvJv1LPAGdFaUHGJ8fk",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.py",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88522f1b-dfea-4c60-8ad1-034a83f6f419",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWD8ZS8xLSt29F1fdVi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8bb3846b-bbe2-4372-8cd2-f6bdc9689f7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UZB429X15qX1XquZvXbwhZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17860,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17860,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T11:10:09.357Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GBUHvJv1LPAGdFaUHGJ8fk",
+              "type": "tool_result",
+              "content": "artifacts/_project/data/mvp_confounding_dag.py\nartifacts/mvp_confounding_dag.py\nartifacts/_project/data/mvp_exposure_dag.py\nartifacts/mvp_exposure_dag.py\nartifacts/_project/report/mvp_exposure_dirichlet_subspace.py\nartifacts/mvp_exposure_dirichlet_subspace.py\nartifacts/preprocess.py\nplan_001_collider_mbias_iv.py\nplan_001_mediation_frontdoor.py\npatch_metrics.py\nplan_008_binarization_collapse.py\nartifacts/plan008_binarization_collapse/report/plan_008_binarization_collapse.py\nplan_005_asv_extended.py\nartifacts/plan_005_asv_extended_fixed.py\nplan_002_k57_extension.py\nartifacts/plan_002_k57_extended_7topo.py\nfigures/paper/gen_fig4.py\nartifacts/plan_009_pathological_matrices.py\nfigures/paper/gen_fig1.py\nplan_009_pathological_matrices.py\nplan_007_correction_guidance.py\nfigures/paper/gen_fig3.py\nfigures/paper/gen_fig2.py\nplan_006_asv_empirical.py\nannot_sensitivity/utils.py\nannot_sensitivity/confusion.py\nannot_sensitivity/dgp.py\nannot_sensitivity/asv.py\nannot_sensitivity/correction.py\nannot_sensitivity/__init__.py\nannot_sensitivity/examples/confounding_k3.py\nannot_sensitivity/tests/__init__.py\nannot_sensitivity/bias.py\nannot_sensitivity/tests/test_core.py\nartifacts/mvp_iv_dirichlet_subspace.py\nartifacts/nondiff_stress_test.py\nfigures/paper/gen_diagnostic_plots.py\nartifacts/compute_theory_empirical_mape.py\nfigures/paper/gen_fig7.py\nplan_010_ppi_empirical_validation.py\nartifacts/compute_all_tasks.py\nartifacts/compute_ppi_empirical.py\nartifacts/plan011_frontier_annotations/scripts/prepare_data.py\nartifacts/plan011_frontier_annotations/scripts/annotate_frontier.py\nartifacts/_project/intermediate/case_study_analysis.py\nartifacts/plan012_case_study/case_study_analysis.py\nartifacts/plan011_frontier_annotations/scripts/compute_results.py\nartifacts/compute_delta_max.py\nartifacts/annotate.py\nartifacts/compute_updated_empirical.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bb3846b-bbe2-4372-8cd2-f6bdc9689f7c",
+            "isSidechain": true,
+            "promptId": "417df0a2-cc01-4fb5-9f46-ee96dfc8be6b",
+            "agentId": "a4ddc290a1e5d82db",
+            "type": "user",
+            "uuid": "c0af6684-0105-4c31-82ce-e02e42a11289",
+            "sourceToolAssistantUUID": "8bb3846b-bbe2-4372-8cd2-f6bdc9689f7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T11:10:09.610Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KZKtycV4LvHC2kF4yV27Xd",
+              "name": "Grep",
+              "input": {
+                "pattern": "def make_dgp_params",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "type": "py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0af6684-0105-4c31-82ce-e02e42a11289",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWD8ZS8xLSt29F1fdVi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "caa27786-bee1-4066-9416-be47cd9f49e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UZB429X15qX1XquZvXbwhZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17860,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17860,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T11:10:09.633Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KZKtycV4LvHC2kF4yV27Xd",
+              "type": "tool_result",
+              "content": "Found 2 files\nartifacts/compute_ppi_empirical.py\nplan_006_asv_empirical.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "caa27786-bee1-4066-9416-be47cd9f49e9",
+            "isSidechain": true,
+            "promptId": "417df0a2-cc01-4fb5-9f46-ee96dfc8be6b",
+            "agentId": "a4ddc290a1e5d82db",
+            "type": "user",
+            "uuid": "5f097793-b18a-463b-8184-a05d5536f6d3",
+            "sourceToolAssistantUUID": "caa27786-bee1-4066-9416-be47cd9f49e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T11:10:10.000Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015X3uank3hyjDwGYjySrUCu",
+              "name": "Grep",
+              "input": {
+                "pattern": "def compute_plim",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "type": "py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f097793-b18a-463b-8184-a05d5536f6d3",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWD8ZS8xLSt29F1fdVi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "75fe7125-69bf-439d-a92e-4fc2b295c39c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UZB429X15qX1XquZvXbwhZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17860,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17860,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T11:10:10.018Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015X3uank3hyjDwGYjySrUCu",
+              "type": "tool_result",
+              "content": "Found 1 file\nplan_006_asv_empirical.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75fe7125-69bf-439d-a92e-4fc2b295c39c",
+            "isSidechain": true,
+            "promptId": "417df0a2-cc01-4fb5-9f46-ee96dfc8be6b",
+            "agentId": "a4ddc290a1e5d82db",
+            "type": "user",
+            "uuid": "de650822-ff4e-4438-90fe-a1bc59f4622b",
+            "sourceToolAssistantUUID": "75fe7125-69bf-439d-a92e-4fc2b295c39c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T11:10:10.199Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JRYf3TqP12ekLPw6ahdPqc",
+              "name": "Grep",
+              "input": {
+                "pattern": "_BETA_POOL",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "type": "py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de650822-ff4e-4438-90fe-a1bc59f4622b",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWD8ZS8xLSt29F1fdVi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2d7d7da3-409d-4024-8456-f23708d283bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UZB429X15qX1XquZvXbwhZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17860,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 416,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17860
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 416,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17860,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17860,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T11:10:10.220Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JRYf3TqP12ekLPw6ahdPqc",
+              "type": "tool_result",
+              "content": "Found 7 files\nartifacts/compute_ppi_empirical.py\nplan_010_ppi_empirical_validation.py\nplan_006_asv_empirical.py\nplan_009_pathological_matrices.py\nartifacts/plan_009_pathological_matrices.py\nartifacts/plan_002_k57_extended_7topo.py\nplan_002_k57_extension.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d7d7da3-409d-4024-8456-f23708d283bf",
+            "isSidechain": true,
+            "promptId": "417df0a2-cc01-4fb5-9f46-ee96dfc8be6b",
+            "agentId": "a4ddc290a1e5d82db",
+            "type": "user",
+            "uuid": "236b79d8-5f33-4ec0-9eff-fcfd8ab27650",
+            "sourceToolAssistantUUID": "2d7d7da3-409d-4024-8456-f23708d283bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T11:10:11.636Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I found references to the functions. Now let me read the main file and the compute_ppi_empirical.py file to get the exact locations and definitions:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "236b79d8-5f33-4ec0-9eff-fcfd8ab27650",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWDLG9AE6JT8m4LDgkQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "333cf45e-1d27-4ee3-a0da-c41d3de70d9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CaGgLrcpberLLNBLGhcKLU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2125,
+                "cache_read_input_tokens": 17860,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2125,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T11:10:12.464Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KqSYqU9Q572sUckq9uUA4t",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "333cf45e-1d27-4ee3-a0da-c41d3de70d9a",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWDLG9AE6JT8m4LDgkQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "51bcb46c-8751-4c79-a803-201cc9f181ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CaGgLrcpberLLNBLGhcKLU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2125,
+                "cache_read_input_tokens": 17860,
+                "output_tokens": 204,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2125
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 204,
+                    "cache_read_input_tokens": 17860,
+                    "cache_creation_input_tokens": 2125,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2125,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T11:10:12.489Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KAjUY7MY7z6gxLeg3oE3YU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51bcb46c-8751-4c79-a803-201cc9f181ad",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWDLG9AE6JT8m4LDgkQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "850a9867-a36f-46cf-95a7-b04c810d20be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CaGgLrcpberLLNBLGhcKLU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2125,
+                "cache_read_input_tokens": 17860,
+                "output_tokens": 204,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2125
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 204,
+                    "cache_read_input_tokens": 17860,
+                    "cache_creation_input_tokens": 2125,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2125,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T11:10:12.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KAjUY7MY7z6gxLeg3oE3YU",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tEmpirical Correction Validation — HumAID K=10\n4\t\n5\tLoads 8 valid HumAID confusion matrices from asv_empirical_results.json,\n6\tgenerates synthetic MC data using plan_006's K=10 DGP for each of 7 topologies,\n7\truns all 5 correction methods (PPI++, naive plug-in, DSL, MC-SIMEX, MLA),\n8\tand reports empirical bias reduction per topology × method.\n9\t\n10\tInput:  artifacts/plan006/asv_empirical_results.json\n11\tOutput: artifacts/ppi_empirical_validation.json\n12\t\n13\tDependencies: numpy, annot_sensitivity (local package)\n14\t\"\"\"\n15\t\n16\timport sys\n17\timport os\n18\timport json\n19\timport time\n20\timport numpy as np\n21\t\n22\tPROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n23\tsys.path.insert(0, PROJECT_ROOT)\n24\t\n25\tfrom annot_sensitivity.correction import (\n26\t    correct_ppi, correct_naive_plugin, correct_dsl, correct_mcsimex, correct_mla\n27\t)\n28\tfrom annot_sensitivity.utils import misclassify, make_dummies, ols, ols_with_se\n29\t\n30\t# ── Plan 006 DGP Infrastructure (K-general) ────────────────────────\n31\t\n32\t_ALPHA_POOL = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7, 0.9, -0.4, 0.6]\n33\t_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n34\t_BETA_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n35\t_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n36\t_DELTA_POOL = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2, 0.15, -0.1, 0.05]\n37\t_DT_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n38\t_DY_POOL = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2, 0.15, -0.1, 0.05]\n39\t\n40\t\n41\tdef softmax_rows(logits):\n42\t    e = np.exp(logits - logits.max(axis=1, keepdims=True))\n43\t    return e / e.sum(axis=1, keepdims=True)\n44\t\n45\t\n46\tdef sample_cat(probs, rng):\n47\t    cum = np.cumsum(probs, axis=1)\n48\t    u = rng.uniform(size=probs.shape[0])[:, None]\n49\t    return (u >= cum[:, :-1]).sum(axis=1).astype(int)\n50\t\n51\t\n52\tdef make_p_A(K):\n53\t    if K == 2:\n54\t        return np.array([0.55, 0.45])\n55\t    elif K == 3:\n56\t        return np.array([0.40, 0.35, 0.25])\n57\t    else:\n58\t        raw = np.array([1.0 / (i + 1) for i in range(K)])\n59\t        return raw / raw.sum()\n60\t\n61\t\n62\tdef make_dgp_params(K):\n63\t    p_A = make_p_A(K)\n64\t    params = {\n65\t        'confounding': {\n66\t            'p_A': p_A,\n67\t            'alpha': np.array(_ALPHA_POOL[:K - 1]),\n68\t            'beta_A': np.array(_BETA_A_POOL[:K - 1]),\n69\t            'beta_T': 2.0,\n70\t            'sigma_T': 1.0,\n71\t        },\n72\t        'mediation': {\n73\t            'tau': 0.5,\n74\t            'gamma': np.array(_GAMMA_POOL[:K]),\n75\t            'delta': np.array(_DELTA_POOL[:K]),\n76\t            'beta': np.array(_BETA_POOL[:K]),\n77\t        },\n78\t        'collider': {\n79\t            'tau': 1.0,\n80\t            'g': np.zeros(K),\n81\t            'dT': np.array(_DT_POOL[:K]),\n82\t            'dY': np.array(_DY_POOL[:K]),\n83\t        },\n84\t        'exposure': {\n85\t            'beta': np.array(_BETA_POOL[:K]),\n86\t            'p_A': p_A,\n87\t        },\n88\t    }\n89\t    if K == 3:\n90\t        params['mbias'] = {\n91\t            'tau': 0.5, 'delta_coef': 1.0, 'lam': 1.0,\n92\t            'g': np.zeros(3),\n93\t            'a_U1': np.array([0.0, 0.8, -0.5]),\n94\t            'a_U2': np.array([0.0, 0.6, 0.9]),\n95\t        }\n96\t        params['iv'] = {\n97\t            'lam': 1.0, 'beta': np.array([0.0, 0.5, -0.25]),\n98\t            'g': np.zeros(3),\n99\t            'dZ': np.array([0.0, 1.0, -0.5]),\n100\t            'dU': np.array([0.0, 0.8, 0.6]),\n101\t        }\n102\t        params['frontdoor'] = {\n103\t            'alpha_U': 1.0, 'lambda_U': 1.0,\n104\t            'gamma': np.array([0.0, 0.5, -0.3]),\n105\t            'delta_fd': np.array([0.0, 1.0, -0.8]),\n106\t            'beta': np.array([0.0, 1.0, -0.5]),\n107\t        }\n108\t    else:\n109\t        params['mbias'] = {\n110\t            'tau': 0.5, 'delta_coef': 1.0, 'lam': 1.0,\n111\t            'g': np.zeros(K),\n112\t            'a_U1': np.array([0.0] + [_ALPHA_POOL[i] * 0.6 for i in range(K - 1)]),\n113\t            'a_U2': np.array([0.0] + [_BETA_A_POOL[i] * 0.8 for i in range(K - 1)]),\n114\t        }\n115\t        iv_beta = np.array(_BETA_POOL[:K]) * 0.5\n116\t        iv_beta[0] = 0.0\n117\t        params['iv'] = {\n118\t            'lam': 1.0, 'beta': iv_beta,\n119\t            'g': np.zeros(K),\n120\t            'dZ': np.array([0.0] + [_ALPHA_POOL[i] * 0.7 for i in range(K - 1)]),\n121\t            'dU': np.array([0.0] + [_BETA_A_POOL[i] * 0.6 for i in range(K - 1)]),\n122\t        }\n123\t        fd_delta = np.array(_DELTA_POOL[:K])\n124\t        fd_delta[0] = 0.0\n125\t        params['frontdoor'] = {\n126\t            'alpha_U': 1.0, 'lambda_U': 1.0,\n127\t            'gamma': np.array(_GAMMA_POOL[:K]),\n128\t            'delta_fd': fd_delta,\n129\t            'beta': np.array(_BETA_POOL[:K]),\n130\t        }\n131\t    return params\n132\t\n133\t\n134\t# ── DGP Generators ──────────────────────────────────────────────────\n135\t\n136\tdef gen_confounding(K, N, p, rng):\n137\t    A = rng.choice(K, size=N, p=p['p_A'])\n138\t    D = np.zeros((N, K - 1))\n139\t    for j in range(K - 1):\n140\t        D[:, j] = (A == j + 1).astype(float)\n141\t    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\n142\t    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\n143\t    return T, Y, A\n144\t\n145\t\n146\tdef gen_mediation(K, N, p, rng):\n147\t    T = rng.binomial(1, 0.5, N).astype(float)\n148\t    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\n149\t    probs = softmax_rows(logits)\n150\t    A = sample_cat(probs, rng)\n151\t    D = np.zeros((N, K - 1))\n152\t    for j in range(K - 1):\n153\t        D[:, j] = (A == j + 1).astype(float)\n154\t    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\n155\t    return T, Y, A\n156\t\n157\t\n158\tdef gen_collider(K, N, p, rng):\n159\t    T = rng.normal(0, 1, N)\n160\t    Y = p['tau'] * T + rng.normal(0, 1, N)\n161\t    logits = (p['g'][None, :] + p['dT'][None, :] * T[:, None]\n162\t              + p['dY'][None, :] * Y[:, None])\n163\t    probs = softmax_rows(logits)\n164\t    A = sample_cat(probs, rng)\n165\t    return T, Y, A\n166\t\n167\t\n168\tdef gen_exposure(K, N, p, rng):\n169\t    A = rng.choice(K, size=N, p=p['p_A'])\n170\t    D = np.zeros((N, K - 1))\n171\t    for j in range(K - 1):\n172\t        D[:, j] = (A == j + 1).astype(float)\n173\t    Y = p['beta'][0] + D @ p['beta'][1:] + rng.normal(0, 1, N)\n174\t    return None, Y, A\n175\t\n176\t\n177\tdef gen_mbias(K, N, p, rng):\n178\t    U1 = rng.normal(0, 1, N)\n179\t    U2 = rng.normal(0, 1, N)\n180\t    T = p['delta_coef'] * U1 + rng.normal(0, 1, N)\n181\t    Y = p['tau'] * T + p['lam'] * U2 + rng.normal(0, 1, N)\n182\t    logits = (p['g'][None, :] + p['a_U1'][None, :] * U1[:, None]\n183\t              + p['a_U2'][None, :] * U2[:, None])\n184\t    probs = softmax_rows(logits)\n185\t    A = sample_cat(probs, rng)\n186\t    return T, Y, A\n187\t\n188\t\n189\tdef gen_iv(K, N, p, rng):\n190\t    Z = rng.binomial(1, 0.5, N).astype(float)\n191\t    U = rng.normal(0, 1, N)\n192\t    logits = (p['g'][None, :] + p['dZ'][None, :] * Z[:, None]\n193\t              + p['dU'][None, :] * U[:, None])\n194\t    probs = softmax_rows(logits)\n195\t    A = sample_cat(probs, rng)\n196\t    D = np.zeros((N, K - 1))\n197\t    for j in range(K - 1):\n198\t        D[:, j] = (A == j + 1).astype(float)\n199\t    Y = D @ p['beta'][1:] + p['lam'] * U + rng.normal(0, 1, N)\n200\t    return Z, Y, A\n201\t\n202\t\n203\tdef gen_frontdoor(K, N, p, rng):\n204\t    U = rng.normal(0, 1, N)\n205\t    T = p['alpha_U'] * U + rng.normal(0, 1, N)\n206\t    logits = p['gamma'][None, :] + p['delta_fd'][None, :] * T[:, None]\n207\t    probs = softmax_rows(logits)\n208\t    M = sample_cat(probs, rng)\n209\t    D = np.zeros((N, K - 1))\n210\t    for j in range(K - 1):\n211\t        D[:, j] = (M == j + 1).astype(float)\n212\t    Y = D @ p['beta'][1:] + p['lambda_U'] * U + rng.normal(0, 1, N)\n213\t    return T, Y, M\n214\t\n215\t\n216\tGEN_FNS = {\n217\t    'confounding': gen_confounding, 'mediation': gen_mediation,\n218\t    'collider': gen_collider, 'exposure': gen_exposure,\n219\t    'mbias': gen_mbias, 'iv': gen_iv, 'frontdoor': gen_frontdoor,\n220\t}\n221\t\n222\tHAS_TREATMENT = {'confounding', 'mediation', 'collider', 'mbias', 'frontdoor'}\n223\t\n224\t\n225\t# ── Wald Estimator ──────────────────────────────────────────────────\n226\t\n227\tdef wald_est(Z, Y, A_or_Astar, k=1):\n228\t    z1 = Z == 1; z0 = Z == 0\n229\t    n1, n0 = float(z1.sum()), float(z0.sum())\n230\t    if n1 < 2 or n0 < 2:\n231\t        return np.nan\n232\t    RF = Y[z1].mean() - Y[z0].mean()\n233\t    FS = (A_or_Astar[z1] == k).astype(float).mean() - \\\n234\t         (A_or_Astar[z0] == k).astype(float).mean()\n235\t    if abs(FS) < 1e-8:\n236\t        return np.nan\n237\t    return RF / FS\n238\t\n239\t\n240\tdef ppi_wald(Z, Y, A, Astar, gold_mask, k=1, rng=None, n_boot=50):\n241\t    \"\"\"PPI++ for Wald estimator (IV topology).\"\"\"\n242\t    if rng is None:\n243\t        rng = np.random.default_rng()\n244\t    gold_idx = np.where(gold_mask)[0]\n245\t    n_gold = len(gold_idx)\n246\t\n247\t    tau_all_star = wald_est(Z, Y, Astar, k)\n248\t    tau_gold_true = wald_est(Z[gold_mask], Y[gold_mask], A[gold_mask], k)\n249\t    tau_gold_star = wald_est(Z[gold_mask], Y[gold_mask], Astar[gold_mask], k)\n250\t\n251\t    if np.isnan(tau_gold_true) or np.isnan(tau_all_star):\n252\t        return np.nan, False\n253\t\n254\t    tau_true_boot = np.zeros(n_boot)\n255\t    tau_rect_boot = np.zeros(n_boot)\n256\t    for b in range(n_boot):\n257\t        idx = rng.choice(gold_idx, size=n_gold, replace=True)\n258\t        bt = wald_est(Z[idx], Y[idx], A[idx], k)\n259\t        bs = wald_est(Z[idx], Y[idx], Astar[idx], k)\n260\t        tau_true_boot[b] = bt\n261\t        tau_rect_boot[b] = bs - bt\n262\t\n263\t    valid = np.isfinite(tau_true_boot) & np.isfinite(tau_rect_boot)\n264\t    if valid.sum() > 5:\n265\t        var_r = np.var(tau_rect_boot[valid])\n266\t        cov_tr = np.cov(tau_true_boot[valid], tau_rect_boot[valid])[0, 1]\n267\t        lam = np.clip(-cov_tr / var_r, 0, 1) if var_r > 1e-12 else 1.0\n268\t    else:\n269\t        lam = 1.0\n270\t\n271\t    tau_ppi = tau_gold_true + lam * (tau_all_star - tau_gold_star)\n272\t    return float(tau_ppi), True\n273\t\n274\t\n275\t# ── True Parameter Computation ──────────────────────────────────────\n276\t\n277\tdef compute_tau_true(K, topology, params, N_large=500_000, seed=99):\n278\t    \"\"\"Compute true tau by running estimator on very large uncontaminated sample.\"\"\"\n279\t    rng = np.random.default_rng(seed)\n280\t    first_var, Y, A = GEN_FNS[topology](K, N_large, params[topology], rng)\n281\t\n282\t    if topology == 'iv':\n283\t        return wald_est(first_var, Y, A, k=1)\n284\t    elif topology == 'exposure':\n285\t        D = make_dummies(A, K)\n286\t        X = np.column_stack([np.ones(N_large), D])\n287\t        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\n288\t        return float(beta[1])\n289\t    else:\n290\t        T = first_var\n291\t        D = make_dummies(A, K)\n292\t        X = np.column_stack([np.ones(N_large), T, D])\n293\t        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\n294\t        return float(beta[1])\n295\t\n296\t\n297\t# ── MC-SIMEX for IV (custom) ────────────────────────────────────────\n298\t\n299\tdef mcsimex_wald(Z, Y, Astar, C, k=1, rng=None, n_B=50,\n300\t                 lambdas_extra=(0.5, 1.0, 1.5, 2.0)):\n301\t    \"\"\"MC-SIMEX for IV Wald estimator.\"\"\"\n302\t    if rng is None:\n303\t        rng = np.random.default_rng()\n304\t    K = C.shape[0]\n305\t    try:\n306\t        eigvals, eigvecs = np.linalg.eig(C)\n307\t        eigvecs_inv = np.linalg.inv(eigvecs)\n308\t    except np.linalg.LinAlgError:\n309\t        return np.nan, False\n310\t\n311\t    lambdas = np.array([0.0] + list(lambdas_extra))\n312\t    tau_lam = np.zeros(len(lambdas))\n313\t\n314\t    for li, lam_val in enumerate(lambdas):\n315\t        if lam_val == 0.0:\n316\t            tau_lam[li] = wald_est(Z, Y, Astar, k)\n317\t        else:\n318\t            C_lam_raw = np.real((eigvecs * (eigvals ** lam_val)) @ eigvecs_inv)\n319\t            C_lam = np.clip(C_lam_raw, 0, None)\n320\t            cs = C_lam.sum(axis=0)\n321\t            cs[cs == 0] = 1.0\n322\t            C_lam /= cs\n323\t\n324\t            tau_b = np.zeros(n_B)\n325\t            for b in range(n_B):\n326\t                A_extra = misclassify(Astar, C_lam, rng)\n327\t                tau_b[b] = wald_est(Z, Y, A_extra, k)\n328\t            ok = np.isfinite(tau_b)\n329\t            if ok.sum() < n_B // 2:\n330\t                return np.nan, False\n331\t            tau_lam[li] = tau_b[ok].mean()\n332\t\n333\t    try:\n334\t        coeffs = np.polyfit(lambdas, tau_lam, 2)\n335\t        return float(np.polyval(coeffs, -1.0)), True\n336\t    except Exception:\n337\t        return np.nan, False\n338\t\n339\t\n340\t# ── Main ────────────────────────────────────────────────────────────\n341\t\n342\tN_SAMPLES = 10_000\n343\tN_REPS = 30\n344\tGOLD_FRACTION = 0.10\n345\tSEED = 42\n346\tTOPOLOGIES = ['confounding', 'mediation', 'collider', 'exposure',\n347\t              'mbias', 'iv', 'frontdoor']\n348\tMETHODS = ['ppi', 'naive_plugin', 'dsl', 'mcsimex', 'mla']\n349\t\n350\tJSON_PATH = os.path.join(PROJECT_ROOT, 'artifacts', 'plan006',\n351\t                         'asv_empirical_results.json')\n352\t\n353\t\n354\tdef load_valid_humaid_configs():\n355\t    with open(JSON_PATH) as f:\n356\t        data = json.load(f)\n357\t\n358\t    zero_configs = {(e['model'], e['prompt'])\n359\t                    for e in data['f1_vs_bias'] if e['macro_f1'] == 0}\n360\t\n361\t    cms = {}\n362\t    for key, mat in data['confusion_matrices'].items():\n363\t        parts = key.split('_')\n364\t        if parts[0] != 'humaid':\n365\t            continue\n366\t        model = parts[1]\n367\t        prompt = '_'.join(parts[2:])\n368\t        if (model, prompt) in zero_configs:\n369\t            continue\n370\t        cms[key] = np.array(mat)\n371\t    return cms\n372\t\n373\t\n374\tdef run_single_rep(K, topology, params, C, tau_true, rng, gold_frac):\n375\t    \"\"\"Run one MC replication: generate data, misclassify, run corrections.\"\"\"\n376\t    first_var, Y, A = GEN_FNS[topology](K, N_SAMPLES, params[topology], rng)\n377\t    Astar = misclassify(A, C, rng)\n378\t\n379\t    N = len(Y)\n380\t    n_gold = max(int(N * gold_frac), 50)\n381\t    gold_idx = rng.choice(N, size=n_gold, replace=False)\n382\t    gold_mask = np.zeros(N, dtype=bool)\n383\t    gold_mask[gold_idx] = True\n384\t\n385\t    results = {}\n386\t\n387\t    if topology == 'iv':\n388\t        Z = first_var\n389\t        tau_naive = wald_est(Z, Y, Astar, k=1)\n390\t        results['naive'] = float(tau_naive) if np.isfinite(tau_naive) else None\n391\t\n392\t        tau_ppi, ok = ppi_wald(Z, Y, A, Astar, gold_mask, k=1, rng=rng)\n393\t        results['ppi'] = float(tau_ppi) if ok and np.isfinite(tau_ppi) else None\n394\t\n395\t        tau_sim, ok = mcsimex_wald(Z, Y, Astar, C, k=1, rng=rng)\n396\t        results['mcsimex'] = float(tau_sim) if ok and np.isfinite(tau_sim) else None\n397\t\n398\t        results['naive_plugin'] = None\n399\t        results['dsl'] = None\n400\t        results['mla'] = None\n401\t\n402\t    elif topology == 'exposure':\n403\t        X_other = np.ones((N, 1))\n404\t        D_star = make_dummies(Astar, K)\n405\t        X_full = np.column_stack([X_other, D_star])\n406\t        try:\n407\t            beta_naive = np.linalg.lstsq(X_full, Y, rcond=None)[0]\n408\t            tau_naive = float(beta_naive[1])\n409\t        except Exception:\n410\t            tau_naive = np.nan\n411\t        results['naive'] = float(tau_naive) if np.isfinite(tau_naive) else None\n412\t\n413\t        for method in METHODS:\n414\t            if method == 'ppi':\n415\t                tau, se, ok = correct_ppi(X_other, Y, Astar, A, gold_mask,\n416\t                                          tau_idx=1, rng=rng)\n417\t            elif method == 'naive_plugin':\n418\t                tau, se, ok = correct_naive_plugin(X_other, Y, Astar, C, tau_idx=1)\n419\t            elif method == 'dsl':\n420\t                tau, se, ok = correct_dsl(X_other, Y, Astar, A, gold_mask, tau_idx=1)\n421\t            elif method == 'mcsimex':\n422\t                tau, se, ok = correct_mcsimex(X_other, Y, Astar, C, tau_idx=1, rng=rng)\n423\t            elif method == 'mla':\n424\t                tau, se, ok = correct_mla(X_other, Y, Astar, C, tau_idx=1)\n425\t            else:\n426\t                continue\n427\t            results[method] = float(tau) if ok and np.isfinite(tau) else None\n428\t\n429\t    else:\n430\t        T = first_var\n431\t        X_other = np.column_stack([np.ones(N), T])\n432\t        D_star = make_dummies(Astar, K)\n433\t        X_full = np.column_stack([X_other, D_star])\n434\t        try:\n435\t            beta_naive = np.linalg.lstsq(X_full, Y, rcond=None)[0]\n436\t            tau_naive = float(beta_naive[1])\n437\t        except Exception:\n438\t            tau_naive = np.nan\n439\t        results['naive'] = float(tau_naive) if np.isfinite(tau_naive) else None\n440\t\n441\t        for method in METHODS:\n442\t            if method == 'ppi':\n443\t                tau, se, ok = correct_ppi(X_other, Y, Astar, A, gold_mask,\n444\t                                          tau_idx=1, rng=rng)\n445\t            elif method == 'naive_plugin':\n446\t                tau, se, ok = correct_naive_plugin(X_other, Y, Astar, C, tau_idx=1)\n447\t            elif method == 'dsl':\n448\t                tau, se, ok = correct_dsl(X_other, Y, Astar, A, gold_mask, tau_idx=1)\n449\t            elif method == 'mcsimex':\n450\t                tau, se, ok = correct_mcsimex(X_other, Y, Astar, C, tau_idx=1, rng=rng)\n451\t            elif method == 'mla':\n452\t                tau, se, ok = correct_mla(X_other, Y, Astar, C, tau_idx=1)\n453\t            else:\n454\t                continue\n455\t            results[method] = float(tau) if ok and np.isfinite(tau) else None\n456\t\n457\t    results['tau_true'] = tau_true\n458\t    return results\n459\t\n460\t\n461\tdef main():\n462\t    t_start = time.time()\n463\t    K = 10\n464\t    print(\"=\" * 70)\n465\t    print(\"Empirical Correction Validation — HumAID K=10\")\n466\t    print(\"=\" * 70)\n467\t    print(f\"N={N_SAMPLES}, N_REPS={N_REPS}, gold_fraction={GOLD_FRACTION}\")\n468\t\n469\t    configs = load_valid_humaid_configs()\n470\t    print(f\"Loaded {len(configs)} valid HumAID confusion matrices\")\n471\t\n472\t    params = make_dgp_params(K)\n473\t    rng_master = np.random.default_rng(SEED)\n474\t\n475\t    print(\"\\nComputing tau_true for each topology (N=500k)...\")\n476\t    tau_true = {}\n477\t    for topo in TOPOLOGIES:\n478\t        tau_true[topo] = compute_tau_true(K, topo, params)\n479\t        print(f\"  {topo}: tau_true = {tau_true[topo]:.6f}\")\n480\t\n481\t    all_results = {}\n482\t    per_topo_method = {topo: {m: [] for m in METHODS}\n483\t                       for topo in TOPOLOGIES}\n484\t\n485\t    for ci, (config_name, C) in enumerate(configs.items()):\n486\t        print(f\"\\n[{ci+1}/{len(configs)}] {config_name}\")\n487\t        config_results = {}\n488\t\n489\t        for topo in TOPOLOGIES:\n490\t            topo_reps = []\n491\t            for rep in range(N_REPS):\n492\t                seed_rep = rng_master.integers(0, 2**31)\n493\t                rng_rep = np.random.default_rng(seed_rep)\n494\t                res = run_single_rep(K, topo, params, C, tau_true[topo],\n495\t                                     rng_rep, GOLD_FRACTION)\n496\t                topo_reps.append(res)\n497\t\n498\t            naive_biases = []\n499\t            method_biases = {m: [] for m in METHODS}\n500\t            for res in topo_reps:\n501\t                tt = res['tau_true']\n502\t                if res['naive'] is not None:\n503\t                    naive_biases.append(res['naive'] - tt)\n504\t                for m in METHODS:\n505\t                    if res.get(m) is not None:\n506\t                        method_biases[m].append(res[m] - tt)\n507\t\n508\t            avg_naive_bias = np.mean(np.abs(naive_biases)) if naive_biases else None\n509\t            topo_summary = {\n510\t                'tau_true': tau_true[topo],\n511\t                'n_reps': N_REPS,\n512\t                'naive_mean_abs_bias': float(avg_naive_bias) if avg_naive_bias else None,\n513\t                'methods': {},\n514\t            }\n515\t\n516\t            for m in METHODS:\n517\t                biases = method_biases[m]\n518\t                if biases:\n519\t                    avg_abs = float(np.mean(np.abs(biases)))\n520\t                    mean_bias = float(np.mean(biases))\n521\t                    if avg_naive_bias and avg_naive_bias > 1e-8:\n522\t                        reduction = 1.0 - avg_abs / avg_naive_bias\n523\t                    else:\n524\t                        reduction = None\n525\t                    topo_summary['methods'][m] = {\n526\t                        'mean_abs_bias': avg_abs,\n527\t                        'mean_bias': mean_bias,\n528\t                        'bias_reduction': float(reduction) if reduction is not None else None,\n529\t                        'n_valid': len(biases),\n530\t                    }\n531\t                    per_topo_method[topo][m].append(\n532\t                        float(reduction) if reduction is not None else None\n533\t                    )\n534\t                else:\n535\t                    topo_summary['methods'][m] = {\n536\t                        'mean_abs_bias': None,\n537\t                        'mean_bias': None,\n538\t                        'bias_reduction': None,\n539\t                        'n_valid': 0,\n540\t                    }\n541\t\n542\t            config_results[topo] = topo_summary\n543\t            ppi_info = topo_summary['methods'].get('ppi', {})\n544\t            ppi_red = ppi_info.get('bias_reduction')\n545\t            ppi_str = f\"{100*ppi_red:.1f}%\" if ppi_red is not None else \"N/A\"\n546\t            print(f\"  {topo:12s}: naive_bias={avg_naive_bias:.4f}\" if avg_naive_bias else\n547\t                  f\"  {topo:12s}: naive_bias=N/A\", end=\"\")\n548\t            print(f\"  PPI++={ppi_str}\")\n549\t\n550\t        all_results[config_name] = config_results\n551\t\n552\t    grand_summary = {}\n553\t    print(\"\\n\" + \"=\" * 70)\n554\t    print(\"GRAND SUMMARY: Mean bias reduction across 8 configs\")\n555\t    print(\"=\" * 70)\n556\t    print(f\"\\n{'Topology':14s}\", end=\"\")\n557\t    for m in METHODS:\n558\t        print(f\"  {m:14s}\", end=\"\")\n559\t    print()\n560\t    print(\"-\" * (14 + 16 * len(METHODS)))\n561\t\n562\t    for topo in TOPOLOGIES:\n563\t        grand_summary[topo] = {}\n564\t        print(f\"{topo:14s}\", end=\"\")\n565\t        for m in METHODS:\n566\t            vals = [v for v in per_topo_method[topo][m] if v is not None]\n567\t            if vals:\n568\t                mean_red = float(np.mean(vals))\n569\t                grand_summary[topo][m] = {\n570\t                    'mean_reduction': mean_red,\n571\t                    'std_reduction': float(np.std(vals)),\n572\t                    'n_configs': len(vals),\n573\t                }\n574\t                print(f\"  {100*mean_red:+12.1f}%\", end=\"\")\n575\t            else:\n576\t                grand_summary[topo][m] = None\n577\t                print(f\"  {'N/A':>13s}\", end=\"\")\n578\t        print()\n579\t\n580\t    overall_ppi = []\n581\t    for topo in TOPOLOGIES:\n582\t        gs = grand_summary[topo].get('ppi')\n583\t        if gs:\n584\t            overall_ppi.append(gs['mean_reduction'])\n585\t    if overall_ppi:\n586\t        print(f\"\\nGrand mean PPI++ bias reduction: {100*np.mean(overall_ppi):.1f}%\")\n587\t\n588\t    output = {\n589\t        'meta': {\n590\t            'scope': 'HumAID K=10, 8 valid configs',\n591\t            'n_samples': N_SAMPLES,\n592\t            'n_reps': N_REPS,\n593\t            'gold_fraction': GOLD_FRACTION,\n594\t            'seed': SEED,\n595\t            'topologies': TOPOLOGIES,\n596\t            'methods': METHODS,\n597\t            'n_configs': len(configs),\n598\t            'configs': list(configs.keys()),\n599\t        },\n600\t        'tau_true': {t: float(tau_true[t]) for t in TOPOLOGIES},\n601\t        'per_config': all_results,\n602\t        'grand_summary': grand_summary,\n603\t    }\n604\t\n605\t    out_path = os.path.join(PROJECT_ROOT, 'artifacts',\n606\t                            'ppi_empirical_validation.json')\n607\t    with open(out_path, 'w') as f:\n608\t        json.dump(output, f, indent=2)\n609\t\n610\t    elapsed = time.time() - t_start\n611\t    print(f\"\\nResults saved to: {out_path}\")\n612\t    print(f\"Total runtime: {elapsed:.1f}s\")\n613\t\n614\t\n615\tif __name__ == '__main__':\n616\t    main()\n617\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "850a9867-a36f-46cf-95a7-b04c810d20be",
+            "isSidechain": true,
+            "promptId": "417df0a2-cc01-4fb5-9f46-ee96dfc8be6b",
+            "agentId": "a4ddc290a1e5d82db",
+            "type": "user",
+            "uuid": "4c0250d8-b378-42ad-a17c-b2129a44caaf",
+            "sourceToolAssistantUUID": "850a9867-a36f-46cf-95a7-b04c810d20be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T11:10:12.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KqSYqU9Q572sUckq9uUA4t",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tplan_006: Empirical ASV Calibration with LLM Annotation Confusion Matrices\n4\t\n5\tUses empirical confusion matrices from LLM annotations (3 LLMs × 3 datasets × 3 prompts\n6\t= 27 C matrices) to compute:\n7\t  1. Downstream causal bias across 7 DAG topologies\n8\t  2. ASV sensitivity metrics (magnitude, significance, sign-flip)\n9\t  3. F1 vs bias disconnect analysis (Baumann 2025 verification)\n10\t  4. Type I/II error rates before/after ASV filtering\n11\t  5. Inter-model error correlation\n12\t\n13\tInput:  data/{dataset}/{model}_{prompt}_annotations.jsonl\n14\t        Each line: {\"true_label\": int, \"predicted_label\": int}\n15\t\n16\tOutput: artifacts/plan006/asv_empirical_results.json\n17\t\n18\tDependencies: numpy (required), matplotlib (optional for plots)\n19\t\"\"\"\n20\t\n21\timport numpy as np\n22\timport json\n23\timport argparse\n24\timport os\n25\timport time\n26\tfrom collections import OrderedDict\n27\t\n28\ttry:\n29\t    import matplotlib\n30\t    matplotlib.use('Agg')\n31\t    import matplotlib.pyplot as plt\n32\t    HAS_MPL = True\n33\texcept ImportError:\n34\t    HAS_MPL = False\n35\t\n36\t# ============================================================================\n37\t# Constants\n38\t# ============================================================================\n39\t\n40\tDATASETS = OrderedDict([\n41\t    ('civil_comments', {'K': 2}),\n42\t    ('vast', {'K': 3}),\n43\t    ('humaid', {'K': 10}),\n44\t])\n45\t\n46\tMODELS = ['llama4', 'qwen3', 'deepseek']\n47\tPROMPTS = ['zero-shot', 'few-shot-3', 'few-shot-5']\n48\t\n49\tTOPOLOGIES = ['confounding', 'mediation', 'collider', 'exposure',\n50\t              'mbias', 'iv', 'frontdoor']\n51\t\n52\tN_PRECOMP = 2_000_000\n53\t\n54\t# Parameter pools — K=3 values match plan_001/plan_005\n55\t_ALPHA_POOL = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7, 0.9, -0.4, 0.6]\n56\t_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n57\t_BETA_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n58\t_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n59\t_DELTA_POOL = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2, 0.15, -0.1, 0.05]\n60\t_DT_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n61\t_DY_POOL = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2, 0.15, -0.1, 0.05]\n62\t\n63\t\n64\t# ============================================================================\n65\t# Utility Functions\n66\t# ============================================================================\n67\t\n68\tdef softmax_rows(logits):\n69\t    e = np.exp(logits - logits.max(axis=1, keepdims=True))\n70\t    return e / e.sum(axis=1, keepdims=True)\n71\t\n72\t\n73\tdef sample_cat(probs, rng):\n74\t    cum = np.cumsum(probs, axis=1)\n75\t    u = rng.uniform(size=probs.shape[0])[:, None]\n76\t    return (u >= cum[:, :-1]).sum(axis=1).astype(int)\n77\t\n78\t\n79\tdef generate_Astar(A, C, rng):\n80\t    probs = C[:, A]\n81\t    cum = np.cumsum(probs, axis=0)\n82\t    u = rng.uniform(size=len(A))\n83\t    return (u[None, :] >= cum[:-1]).sum(axis=0).astype(int)\n84\t\n85\t\n86\tdef ols_with_dummies(Y, T, Astar, K):\n87\t    N = len(Y)\n88\t    D = np.zeros((N, K - 1))\n89\t    for k in range(1, K):\n90\t        D[:, k - 1] = (Astar == k).astype(float)\n91\t    X = np.column_stack([np.ones(N), T, D])\n92\t    try:\n93\t        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\n94\t        resid = Y - X @ beta\n95\t        sigma2 = np.sum(resid**2) / max(N - X.shape[1], 1)\n96\t        XtX_inv = np.linalg.inv(X.T @ X)\n97\t        se = np.sqrt(np.maximum(sigma2 * np.diag(XtX_inv), 0))\n98\t    except np.linalg.LinAlgError:\n99\t        beta = np.full(X.shape[1], np.nan)\n100\t        se = np.full(X.shape[1], np.nan)\n101\t    return beta, se\n102\t\n103\t\n104\tdef ols_no_T(Y, Astar, K):\n105\t    N = len(Y)\n106\t    D = np.zeros((N, K - 1))\n107\t    for k in range(1, K):\n108\t        D[:, k - 1] = (Astar == k).astype(float)\n109\t    X = np.column_stack([np.ones(N), D])\n110\t    try:\n111\t        beta = np.linalg.lstsq(X, Y, rcond=None)[0]\n112\t        resid = Y - X @ beta\n113\t        sigma2 = np.sum(resid**2) / max(N - X.shape[1], 1)\n114\t        XtX_inv = np.linalg.inv(X.T @ X)\n115\t        se = np.sqrt(np.maximum(sigma2 * np.diag(XtX_inv), 0))\n116\t    except np.linalg.LinAlgError:\n117\t        beta = np.full(X.shape[1], np.nan)\n118\t        se = np.full(X.shape[1], np.nan)\n119\t    return beta, se\n120\t\n121\t\n122\tdef wald_estimator(Z, Y, Astar, k=1):\n123\t    z1 = Z == 1; z0 = Z == 0\n124\t    n1, n0 = float(z1.sum()), float(z0.sum())\n125\t    if n1 < 2 or n0 < 2:\n126\t        return np.nan, np.nan\n127\t    RF = Y[z1].mean() - Y[z0].mean()\n128\t    var_RF = Y[z1].var() / n1 + Y[z0].var() / n0\n129\t    Dk_z1 = (Astar[z1] == k).astype(float).mean()\n130\t    Dk_z0 = (Astar[z0] == k).astype(float).mean()\n131\t    FS = Dk_z1 - Dk_z0\n132\t    var_FS = Dk_z1 * (1 - Dk_z1) / n1 + Dk_z0 * (1 - Dk_z0) / n0\n133\t    if abs(FS) < 1e-8:\n134\t        return np.nan, np.nan\n135\t    W = RF / FS\n136\t    var_W = var_RF / FS**2 + RF**2 * var_FS / FS**4\n137\t    return W, np.sqrt(max(var_W, 0))\n138\t\n139\t\n140\t# ============================================================================\n141\t# DGP Parameters (general K, K=3 matches plan_001/plan_005)\n142\t# ============================================================================\n143\t\n144\tdef make_p_A(K):\n145\t    if K == 2:\n146\t        return np.array([0.55, 0.45])\n147\t    elif K == 3:\n148\t        return np.array([0.40, 0.35, 0.25])\n149\t    else:\n150\t        raw = np.array([1.0 / (i + 1) for i in range(K)])\n151\t        return raw / raw.sum()\n152\t\n153\t\n154\tdef make_dgp_params(K):\n155\t    p_A = make_p_A(K)\n156\t    params = {\n157\t        'confounding': {\n158\t            'p_A': p_A,\n159\t            'alpha': np.array(_ALPHA_POOL[:K - 1]),\n160\t            'beta_A': np.array(_BETA_A_POOL[:K - 1]),\n161\t            'beta_T': 2.0,\n162\t            'sigma_T': 1.0,\n163\t        },\n164\t        'mediation': {\n165\t            'tau': 0.5,\n166\t            'gamma': np.array(_GAMMA_POOL[:K]),\n167\t            'delta': np.array(_DELTA_POOL[:K]),\n168\t            'beta': np.array(_BETA_POOL[:K]),\n169\t        },\n170\t        'collider': {\n171\t            'tau': 1.0,\n172\t            'g': np.zeros(K),\n173\t            'dT': np.array(_DT_POOL[:K]),\n174\t            'dY': np.array(_DY_POOL[:K]),\n175\t        },\n176\t        'exposure': {\n177\t            'beta': np.array(_BETA_POOL[:K]),\n178\t            'p_A': p_A,\n179\t        },\n180\t    }\n181\t    if K == 3:\n182\t        params['mbias'] = {\n183\t            'tau': 0.5, 'delta_coef': 1.0, 'lam': 1.0,\n184\t            'g': np.zeros(3),\n185\t            'a_U1': np.array([0.0, 0.8, -0.5]),\n186\t            'a_U2': np.array([0.0, 0.6, 0.9]),\n187\t        }\n188\t        params['iv'] = {\n189\t            'lam': 1.0, 'beta': np.array([0.0, 0.5, -0.25]),\n190\t            'g': np.zeros(3),\n191\t            'dZ': np.array([0.0, 1.0, -0.5]),\n192\t            'dU': np.array([0.0, 0.8, 0.6]),\n193\t        }\n194\t        params['frontdoor'] = {\n195\t            'alpha_U': 1.0, 'lambda_U': 1.0,\n196\t            'gamma': np.array([0.0, 0.5, -0.3]),\n197\t            'delta_fd': np.array([0.0, 1.0, -0.8]),\n198\t            'beta': np.array([0.0, 1.0, -0.5]),\n199\t        }\n200\t    else:\n201\t        params['mbias'] = {\n202\t            'tau': 0.5, 'delta_coef': 1.0, 'lam': 1.0,\n203\t            'g': np.zeros(K),\n204\t            'a_U1': np.array([0.0] + [_ALPHA_POOL[i] * 0.6 for i in range(K - 1)]),\n205\t            'a_U2': np.array([0.0] + [_BETA_A_POOL[i] * 0.8 for i in range(K - 1)]),\n206\t        }\n207\t        iv_beta = np.array(_BETA_POOL[:K]) * 0.5\n208\t        iv_beta[0] = 0.0\n209\t        params['iv'] = {\n210\t            'lam': 1.0, 'beta': iv_beta,\n211\t            'g': np.zeros(K),\n212\t            'dZ': np.array([0.0] + [_ALPHA_POOL[i] * 0.7 for i in range(K - 1)]),\n213\t            'dU': np.array([0.0] + [_BETA_A_POOL[i] * 0.6 for i in range(K - 1)]),\n214\t        }\n215\t        fd_delta = np.array(_DELTA_POOL[:K])\n216\t        fd_delta[0] = 0.0\n217\t        params['frontdoor'] = {\n218\t            'alpha_U': 1.0, 'lambda_U': 1.0,\n219\t            'gamma': np.array(_GAMMA_POOL[:K]),\n220\t            'delta_fd': fd_delta,\n221\t            'beta': np.array(_BETA_POOL[:K]),\n222\t        }\n223\t    return params\n224\t\n225\t\n226\tdef make_dgp_params_H0(K, params):\n227\t    p0 = {}\n228\t    for topo, p in params.items():\n229\t        if topo == 'confounding':\n230\t            p0[topo] = dict(p, beta_T=0.0)\n231\t        elif topo == 'mediation':\n232\t            p0[topo] = dict(p, tau=0.0)\n233\t        elif topo == 'collider':\n234\t            p0[topo] = dict(p, tau=0.0)\n235\t        elif topo == 'exposure':\n236\t            p0[topo] = dict(p, beta=np.zeros(K))\n237\t        elif topo == 'mbias':\n238\t            p0[topo] = dict(p, tau=0.0)\n239\t        elif topo == 'iv':\n240\t            p0[topo] = dict(p, beta=np.zeros(K))\n241\t        elif topo == 'frontdoor':\n242\t            p0[topo] = dict(p, lambda_U=0.0, alpha_U=0.0,\n243\t                            delta_fd=np.zeros(K), beta=np.zeros(K))\n244\t    return p0\n245\t\n246\t\n247\t# ============================================================================\n248\t# DGP Generators (general K)\n249\t# ============================================================================\n250\t\n251\tdef gen_confounding(K, N, p, rng):\n252\t    A = rng.choice(K, size=N, p=p['p_A'])\n253\t    D = np.zeros((N, K - 1))\n254\t    for j in range(K - 1):\n255\t        D[:, j] = (A == j + 1).astype(float)\n256\t    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\n257\t    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\n258\t    return T, Y, A\n259\t\n260\t\n261\tdef gen_mediation(K, N, p, rng):\n262\t    T = rng.binomial(1, 0.5, N).astype(float)\n263\t    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\n264\t    probs = softmax_rows(logits)\n265\t    A = sample_cat(probs, rng)\n266\t    D = np.zeros((N, K - 1))\n267\t    for j in range(K - 1):\n268\t        D[:, j] = (A == j + 1).astype(float)\n269\t    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\n270\t    return T, Y, A\n271\t\n272\t\n273\tdef gen_collider(K, N, p, rng):\n274\t    T = rng.normal(0, 1, N)\n275\t    Y = p['tau'] * T + rng.normal(0, 1, N)\n276\t    logits = (p['g'][None, :] + p['dT'][None, :] * T[:, None]\n277\t              + p['dY'][None, :] * Y[:, None])\n278\t    probs = softmax_rows(logits)\n279\t    A = sample_cat(probs, rng)\n280\t    return T, Y, A\n281\t\n282\t\n283\tdef gen_exposure(K, N, p, rng):\n284\t    A = rng.choice(K, size=N, p=p['p_A'])\n285\t    D = np.zeros((N, K - 1))\n286\t    for j in range(K - 1):\n287\t        D[:, j] = (A == j + 1).astype(float)\n288\t    Y = p['beta'][0] + D @ p['beta'][1:] + rng.normal(0, 1, N)\n289\t    return None, Y, A\n290\t\n291\t\n292\tdef gen_mbias(K, N, p, rng):\n293\t    U1 = rng.normal(0, 1, N)\n294\t    U2 = rng.normal(0, 1, N)\n295\t    T = p['delta_coef'] * U1 + rng.normal(0, 1, N)\n296\t    Y = p['tau'] * T + p['lam'] * U2 + rng.normal(0, 1, N)\n297\t    logits = (p['g'][None, :] + p['a_U1'][None, :] * U1[:, None]\n298\t              + p['a_U2'][None, :] * U2[:, None])\n299\t    probs = softmax_rows(logits)\n300\t    A = sample_cat(probs, rng)\n301\t    return T, Y, A\n302\t\n303\t\n304\tdef gen_iv(K, N, p, rng):\n305\t    Z = rng.binomial(1, 0.5, N).astype(float)\n306\t    U = rng.normal(0, 1, N)\n307\t    logits = (p['g'][None, :] + p['dZ'][None, :] * Z[:, None]\n308\t              + p['dU'][None, :] * U[:, None])\n309\t    probs = softmax_rows(logits)\n310\t    A = sample_cat(probs, rng)\n311\t    D = np.zeros((N, K - 1))\n312\t    for j in range(K - 1):\n313\t        D[:, j] = (A == j + 1).astype(float)\n314\t    Y = D @ p['beta'][1:] + p['lam'] * U + rng.normal(0, 1, N)\n315\t    return Z, Y, A\n316\t\n317\t\n318\tdef gen_frontdoor(K, N, p, rng):\n319\t    U = rng.normal(0, 1, N)\n320\t    T = p['alpha_U'] * U + rng.normal(0, 1, N)\n321\t    logits = p['gamma'][None, :] + p['delta_fd'][None, :] * T[:, None]\n322\t    probs = softmax_rows(logits)\n323\t    M = sample_cat(probs, rng)\n324\t    D = np.zeros((N, K - 1))\n325\t    for j in range(K - 1):\n326\t        D[:, j] = (M == j + 1).astype(float)\n327\t    Y = D @ p['beta'][1:] + p['lambda_U'] * U + rng.normal(0, 1, N)\n328\t    return T, Y, M\n329\t\n330\t\n331\tGEN_FNS = {\n332\t    'confounding': gen_confounding, 'mediation': gen_mediation,\n333\t    'collider': gen_collider, 'exposure': gen_exposure,\n334\t    'mbias': gen_mbias, 'iv': gen_iv, 'frontdoor': gen_frontdoor,\n335\t}\n336\t\n337\t\n338\t# ============================================================================\n339\t# Sufficient Statistics & Plim (general K)\n340\t# ============================================================================\n341\t\n342\tdef precompute_suff_stats(K, topology, params, N=N_PRECOMP, seed=42):\n343\t    rng = np.random.default_rng(seed)\n344\t    first_var, Y, A = GEN_FNS[topology](K, N, params, rng)\n345\t    DA = np.zeros((N, K))\n346\t    for k in range(K):\n347\t        DA[:, k] = (A == k).astype(float)\n348\t\n349\t    if topology == 'iv':\n350\t        Z = first_var\n351\t        z1 = Z == 1; z0 = Z == 0\n352\t        RF = Y[z1].mean() - Y[z0].mean()\n353\t        FS = np.zeros(K)\n354\t        for k in range(K):\n355\t            FS[k] = (A[z1] == k).mean() - (A[z0] == k).mean()\n356\t        return dict(RF=RF, FS=FS, topology='iv')\n357\t    elif topology == 'exposure':\n358\t        return dict(p_A=DA.mean(0), E_Y=Y.mean(),\n359\t                    E_YD=(DA * Y[:, None]).mean(0), topology='exposure')\n360\t    else:\n361\t        T = first_var\n362\t        return dict(\n363\t            p_A=DA.mean(0), E_T=T.mean(), E_T2=(T**2).mean(),\n364\t            E_Y=Y.mean(), E_TY=(T * Y).mean(),\n365\t            E_TD=(DA * T[:, None]).mean(0),\n366\t            E_YD=(DA * Y[:, None]).mean(0), topology=topology)\n367\t\n368\t\n369\tdef compute_plim(C, st, K):\n370\t    if st['topology'] == 'iv':\n371\t        FS_star = C @ st['FS']\n372\t        if abs(FS_star[1]) < 1e-8:\n373\t            return np.nan\n374\t        return st['RF'] / FS_star[1]\n375\t    elif st['topology'] == 'exposure':\n376\t        q = C @ st['p_A']\n377\t        cy = C @ st['E_YD']\n378\t        EZZ = np.zeros((K, K))\n379\t        EZZ[0, 0] = 1.0\n380\t        for j in range(1, K):\n381\t            EZZ[0, j] = EZZ[j, 0] = q[j]\n382\t            EZZ[j, j] = q[j]\n383\t        EZY = np.zeros(K)\n384\t        EZY[0] = st['E_Y']\n385\t        for j in range(1, K):\n386\t            EZY[j] = cy[j]\n387\t        try:\n388\t            return np.linalg.solve(EZZ, EZY)\n389\t        except np.linalg.LinAlgError:\n390\t            return np.full(K, np.nan)\n391\t    else:\n392\t        q = C @ st['p_A']\n393\t        ct = C @ st['E_TD']\n394\t        cy = C @ st['E_YD']\n395\t        dim = K + 1\n396\t        EZZ = np.zeros((dim, dim))\n397\t        EZZ[0, 0] = 1.0\n398\t        EZZ[0, 1] = EZZ[1, 0] = st['E_T']\n399\t        EZZ[1, 1] = st['E_T2']\n400\t        for j in range(1, K):\n401\t            EZZ[0, j + 1] = EZZ[j + 1, 0] = q[j]\n402\t            EZZ[1, j + 1] = EZZ[j + 1, 1] = ct[j]\n403\t            EZZ[j + 1, j + 1] = q[j]\n404\t        EZY = np.zeros(dim)\n405\t        EZY[0] = st['E_Y']\n406\t        EZY[1] = st['E_TY']\n407\t        for j in range(1, K):\n408\t            EZY[j + 1] = cy[j]\n409\t        try:\n410\t            return np.linalg.solve(EZZ, EZY)\n411\t        except np.linalg.LinAlgError:\n412\t            return np.full(dim, np.nan)\n413\t\n414\t\n415\tdef extract_tau(plim_result, topology):\n416\t    if topology == 'iv':\n417\t        return float(plim_result) if np.isfinite(plim_result) else np.nan\n418\t    if isinstance(plim_result, np.ndarray):\n419\t        return float(plim_result[1]) if np.isfinite(plim_result[1]) else np.nan\n420\t    return np.nan\n421\t\n422\t\n423\t# ============================================================================\n424\t# 1. Data Loading & Confusion Matrix\n425\t# ============================================================================\n426\t\n427\tdef load_confusion_matrix_npz(data_dir, dataset, model, prompt, K):\n428\t    path = os.path.join(data_dir, dataset, f\"{model}_{prompt}_confusion_matrix.npz\")\n429\t    d = np.load(path, allow_pickle=True)\n430\t    C = d['C']\n431\t    assert C.shape == (K, K), f\"Expected ({K},{K}), got {C.shape}\"\n432\t    return C\n433\t\n434\t\n435\tdef load_annotations(data_dir, dataset, model, prompt):\n436\t    for suffix in ['_annotations.jsonl', '.jsonl']:\n437\t        path = os.path.join(data_dir, dataset, f\"{model}_{prompt}{suffix}\")\n438\t        if os.path.exists(path):\n439\t            break\n440\t    else:\n441\t        raise FileNotFoundError(f\"No annotation file for {dataset}/{model}_{prompt}\")\n442\t    records = []\n443\t    label_set = set()\n444\t    with open(path) as f:\n445\t        for line in f:\n446\t            rec = json.loads(line.strip())\n447\t            gl = rec.get('true_label', rec.get('gold_label'))\n448\t            pl = rec.get('predicted_label', rec.get('pred_label'))\n449\t            if gl is not None and pl is not None:\n450\t                label_set.add(gl)\n451\t                label_set.add(pl)\n452\t                records.append((gl, pl))\n453\t    if records and isinstance(records[0][0], str):\n454\t        sorted_labels = sorted(label_set)\n455\t        label_map = {l: i for i, l in enumerate(sorted_labels)}\n456\t        records = [(label_map[g], label_map[p]) for g, p in records]\n457\t    else:\n458\t        records = [(int(g), int(p)) for g, p in records]\n459\t    return records\n460\t\n461\t\n462\tdef build_confusion_matrix(records, K):\n463\t    counts = np.zeros((K, K))\n464\t    for true_k, pred_k in records:\n465\t        if 0 <= true_k < K and 0 <= pred_k < K:\n466\t            counts[pred_k, true_k] += 1\n467\t    col_sums = counts.sum(axis=0)\n468\t    col_sums = np.where(col_sums < 1, 1, col_sums)\n469\t    return counts / col_sums\n470\t\n471\t\n472\tdef load_all_confusion_matrices(data_dir, dataset_filter=None):\n473\t    matrices = {}\n474\t    for dataset, info in DATASETS.items():\n475\t        if dataset_filter and dataset not in dataset_filter:\n476\t            continue\n477\t        K = info['K']\n478\t        for model in MODELS:\n479\t            for prompt in PROMPTS:\n480\t                try:\n481\t                    C = load_confusion_matrix_npz(data_dir, dataset, model, prompt, K)\n482\t                    matrices[(dataset, model, prompt)] = C\n483\t                except (FileNotFoundError, Exception):\n484\t                    try:\n485\t                        records = load_annotations(data_dir, dataset, model, prompt)\n486\t                        C = build_confusion_matrix(records, K)\n487\t                        matrices[(dataset, model, prompt)] = C\n488\t                    except FileNotFoundError:\n489\t                        print(f\"  [WARN] Missing: {dataset}/{model}_{prompt}\")\n490\t    return matrices\n491\t\n492\t\n493\t# ============================================================================\n494\t# 2. Downstream Causal Bias\n495\t# ============================================================================\n496\t\n497\tdef compute_bias_for_topology(C, K, topology, st, tau_true):\n498\t    plim_result = compute_plim(C, st, K)\n499\t    tau_hat = extract_tau(plim_result, topology)\n500\t    if np.isnan(tau_hat) or np.isnan(tau_true):\n501\t        return {'tau_hat': None, 'bias': None, 'bias_pct': None, 'sign_flip': False}\n502\t    bias = tau_hat - tau_true\n503\t    bias_pct = abs(bias) / abs(tau_true) if abs(tau_true) > 1e-12 else None\n504\t    sign_flip = bool(np.sign(tau_hat) != np.sign(tau_true) and abs(tau_true) > 1e-12)\n505\t    return {\n506\t        'tau_hat': float(tau_hat), 'bias': float(bias),\n507\t        'bias_pct': float(bias_pct) if bias_pct is not None else None,\n508\t        'sign_flip': sign_flip,\n509\t    }\n510\t\n511\t\n512\tdef compute_all_biases(confusion_matrices, all_suff_stats, all_tau_true):\n513\t    results = []\n514\t    for (dataset, model, prompt), C in confusion_matrices.items():\n515\t        K = DATASETS[dataset]['K']\n516\t        for topology in TOPOLOGIES:\n517\t            st = all_suff_stats[(K, topology)]\n518\t            tau_true = all_tau_true[(K, topology)]\n519\t            info = compute_bias_for_topology(C, K, topology, st, tau_true)\n520\t            results.append({\n521\t                'dataset': dataset, 'model': model, 'prompt': prompt,\n522\t                'K': K, 'topology': topology, **info,\n523\t            })\n524\t    return results\n525\t\n526\t\n527\t# ============================================================================\n528\t# 3. ASV Computation\n529\t# ============================================================================\n530\t\n531\tdef C_interpolated(C0, delta, K):\n532\t    C_d = (1 - delta) * np.eye(K) + delta * C0\n533\t    C_d = np.maximum(C_d, 0.0)\n534\t    col_sums = C_d.sum(axis=0)\n535\t    col_sums = np.where(col_sums < 1e-10, 1.0, col_sums)\n536\t    return C_d / col_sums\n537\t\n538\t\n539\tdef compute_delta_max(C0):\n540\t    min_diag = np.diag(C0).min()\n541\t    if min_diag >= 1.0:\n542\t        return 10.0\n543\t    return min(1.0 / (1.0 - min_diag), 10.0)\n544\t\n545\t\n546\tdef compute_asv_for_matrix(C0, K, topology, st, tau_true, asv_type,\n547\t                           n_grid=1500, se_ref=None):\n548\t    dmax = compute_delta_max(C0)\n549\t    deltas = np.linspace(0, dmax, n_grid)\n550\t    tau_curve = np.zeros(n_grid)\n551\t    for i, d in enumerate(deltas):\n552\t        C_d = C_interpolated(C0, d, K)\n553\t        plim_result = compute_plim(C_d, st, K)\n554\t        tau_curve[i] = extract_tau(plim_result, topology)\n555\t\n556\t    bias_abs = np.abs(tau_curve - tau_true)\n557\t    envelope = np.zeros(n_grid)\n558\t    running_max = 0.0\n559\t    for i in range(n_grid):\n560\t        if np.isfinite(bias_abs[i]):\n561\t            running_max = max(running_max, bias_abs[i])\n562\t        envelope[i] = running_max\n563\t\n564\t    if asv_type == 'sign_flip':\n565\t        if abs(tau_true) < 1e-12:\n566\t            return None\n567\t        baseline_sign = np.sign(tau_true)\n568\t        for i in range(n_grid):\n569\t            if np.isfinite(tau_curve[i]) and np.sign(tau_curve[i]) != baseline_sign:\n570\t                return float(deltas[i])\n571\t        return None\n572\t    elif asv_type == 'magnitude':\n573\t        if abs(tau_true) < 1e-12:\n574\t            return None\n575\t        thresh = 0.1 * abs(tau_true)\n576\t        for i in range(n_grid):\n577\t            if envelope[i] > thresh:\n578\t                return float(deltas[i])\n579\t        return None\n580\t    elif asv_type == 'significance':\n581\t        if se_ref is None or se_ref < 1e-12:\n582\t            return None\n583\t        for i in range(n_grid):\n584\t            if np.isfinite(tau_curve[i]) and abs(tau_curve[i]) < 1.96 * se_ref:\n585\t                return float(deltas[i])\n586\t        return None\n587\t    return None\n588\t\n589\t\n590\tdef estimate_reference_se(K, topology, params, N_ref=5000, n_mc=50, seed=999):\n591\t    gen_fn = GEN_FNS[topology]\n592\t    rng = np.random.default_rng(seed)\n593\t    tau_hats = []\n594\t    for _ in range(n_mc):\n595\t        first_var, Y, A = gen_fn(K, N_ref, params, rng)\n596\t        if topology == 'iv':\n597\t            th, _ = wald_estimator(first_var, Y, A, k=1)\n598\t        elif topology == 'exposure':\n599\t            b, _ = ols_no_T(Y, A, K)\n600\t            th = b[1]\n601\t        else:\n602\t            b, _ = ols_with_dummies(Y, first_var, A, K)\n603\t            th = b[1]\n604\t        if np.isfinite(th):\n605\t            tau_hats.append(th)\n606\t    return float(np.std(tau_hats)) if len(tau_hats) > 2 else np.nan\n607\t\n608\t\n609\tdef compute_all_asvs(confusion_matrices, all_suff_stats, all_tau_true, all_se_ref):\n610\t    results = []\n611\t    for (dataset, model, prompt), C in confusion_matrices.items():\n612\t        K = DATASETS[dataset]['K']\n613\t        for topology in TOPOLOGIES:\n614\t            st = all_suff_stats[(K, topology)]\n615\t            tau_true = all_tau_true[(K, topology)]\n616\t            se_ref = all_se_ref.get((K, topology))\n617\t            for asv_type in ['magnitude', 'significance', 'sign_flip']:\n618\t                asv = compute_asv_for_matrix(C, K, topology, st, tau_true,\n619\t                                             asv_type, se_ref=se_ref)\n620\t                results.append({\n621\t                    'dataset': dataset, 'model': model, 'prompt': prompt,\n622\t                    'K': K, 'topology': topology, 'asv_type': asv_type,\n623\t                    'asv': asv,\n624\t                })\n625\t    return results\n626\t\n627\t\n628\t# ============================================================================\n629\t# 4. F1 vs Downstream Bias\n630\t# ============================================================================\n631\t\n632\tdef compute_f1_from_C(C, K, p_A=None):\n633\t    if p_A is None:\n634\t        p_A = np.ones(K) / K\n635\t    precision = np.zeros(K)\n636\t    recall = np.zeros(K)\n637\t    f1 = np.zeros(K)\n638\t    for i in range(K):\n639\t        recall[i] = C[i, i]\n640\t        denom = sum(C[i, j] * p_A[j] for j in range(K))\n641\t        precision[i] = C[i, i] * p_A[i] / denom if denom > 1e-12 else 0\n642\t        if precision[i] + recall[i] > 1e-12:\n643\t            f1[i] = 2 * precision[i] * recall[i] / (precision[i] + recall[i])\n644\t    return {\n645\t        'macro_f1': float(f1.mean()),\n646\t        'weighted_f1': float((p_A * f1).sum()),\n647\t        'per_class_f1': f1.tolist(),\n648\t    }\n649\t\n650\t\n651\tdef f1_vs_bias_analysis(confusion_matrices, biases):\n652\t    results = []\n653\t    for b in biases:\n654\t        key = (b['dataset'], b['model'], b['prompt'])\n655\t        if key not in confusion_matrices:\n656\t            continue\n657\t        C = confusion_matrices[key]\n658\t        K = b['K']\n659\t        p_A = make_p_A(K)\n660\t        f1_info = compute_f1_from_C(C, K, p_A)\n661\t        abs_bias = abs(b['bias']) if b['bias'] is not None else None\n662\t        results.append({\n663\t            'dataset': b['dataset'], 'model': b['model'], 'prompt': b['prompt'],\n664\t            'K': K, 'topology': b['topology'],\n665\t            'macro_f1': f1_info['macro_f1'], 'weighted_f1': f1_info['weighted_f1'],\n666\t            'abs_bias': abs_bias, 'bias_pct': b['bias_pct'],\n667\t            'sign_flip': b['sign_flip'],\n668\t        })\n669\t    return results\n670\t\n671\t\n672\t# ============================================================================\n673\t# 5. Type I/II Error Rates\n674\t# ============================================================================\n675\t\n676\tdef compute_type1_type2_for_C(C, K, topology, params_H1, params_H0,\n677\t                              st_H1, tau_true,\n678\t                              n_sim=100, N_sample=5000, seed=42):\n679\t    gen_fn = GEN_FNS[topology]\n680\t    rng = np.random.default_rng(seed)\n681\t\n682\t    masv = compute_asv_for_matrix(C, K, topology, st_H1, tau_true, 'magnitude')\n683\t    asv_safe = (masv is None or masv > 1.0)\n684\t\n685\t    def _run_mc(params_t, n):\n686\t        valid = 0; rej = 0\n687\t        for _ in range(n):\n688\t            fv, Y, A = gen_fn(K, N_sample, params_t, rng)\n689\t            Astar = generate_Astar(A, C, rng)\n690\t            if topology == 'iv':\n691\t                th, se = wald_estimator(fv, Y, Astar, k=1)\n692\t            elif topology == 'exposure':\n693\t                b, svec = ols_no_T(Y, Astar, K)\n694\t                th, se = b[1], svec[1]\n695\t            else:\n696\t                b, svec = ols_with_dummies(Y, fv, Astar, K)\n697\t                th, se = b[1], svec[1]\n698\t            if np.isfinite(th) and np.isfinite(se) and se > 1e-10:\n699\t                valid += 1\n700\t                if abs(th / se) > 1.96:\n701\t                    rej += 1\n702\t        return rej / max(valid, 1), valid\n703\t\n704\t    type1_before, v0 = _run_mc(params_H0[topology], n_sim)\n705\t    power_before, v1 = _run_mc(params_H1[topology], n_sim)\n706\t    type1_after = type1_before if asv_safe else 0.0\n707\t    power_after = power_before if asv_safe else 0.0\n708\t\n709\t    return {\n710\t        'type1_before': float(type1_before), 'type1_after': float(type1_after),\n711\t        'power_before': float(power_before), 'power_after': float(power_after),\n712\t        'asv_safe': bool(asv_safe), 'magnitude_asv': masv,\n713\t        'valid_h0': int(v0), 'valid_h1': int(v1),\n714\t    }\n715\t\n716\t\n717\t# ============================================================================\n718\t# 6. Inter-model Error Correlation\n719\t# ============================================================================\n720\t\n721\tdef compute_inter_model_correlation(confusion_matrices, K, dataset, prompt,\n722\t                                    n_samples=1000, seed=42):\n723\t    rng = np.random.default_rng(seed)\n724\t    p_A = make_p_A(K)\n725\t    true_labels = rng.choice(K, size=n_samples, p=p_A)\n726\t\n727\t    predictions = {}\n728\t    for model in MODELS:\n729\t        key = (dataset, model, prompt)\n730\t        if key in confusion_matrices:\n731\t            predictions[model] = generate_Astar(true_labels,\n732\t                                                confusion_matrices[key], rng)\n733\t        else:\n734\t            predictions[model] = true_labels.copy()\n735\t\n736\t    pairs = [(MODELS[i], MODELS[j]) for i in range(3) for j in range(i + 1, 3)]\n737\t    results = {}\n738\t    for m1, m2 in pairs:\n739\t        p1, p2 = predictions[m1], predictions[m2]\n740\t        agreement = float((p1 == p2).mean())\n741\t        observed = agreement\n742\t        expected = sum((p1 == c).mean() * (p2 == c).mean() for c in range(K))\n743\t        kappa = float((observed - expected) / (1 - expected)\n744\t                      ) if expected < 1 - 1e-10 else 0.0\n745\t        err1 = (p1 != true_labels).astype(float)\n746\t        err2 = (p2 != true_labels).astype(float)\n747\t        if err1.std() > 1e-10 and err2.std() > 1e-10:\n748\t            error_corr = float(np.corrcoef(err1, err2)[0, 1])\n749\t        else:\n750\t            error_corr = 0.0\n751\t        results[f\"{m1}-{m2}\"] = {\n752\t            'agreement': agreement,\n753\t            'kappa': kappa,\n754\t            'error_correlation': error_corr if np.isfinite(error_corr) else 0.0,\n755\t        }\n756\t    return results\n757\t\n758\t\n759\t# ============================================================================\n760\t# Mock Data Generation\n761\t# ============================================================================\n762\t\n763\tdef generate_mock_C(K, rng, diag_range):\n764\t    C = np.zeros((K, K))\n765\t    for j in range(K):\n766\t        diag_val = rng.uniform(diag_range[0], diag_range[1])\n767\t        remaining = 1.0 - diag_val\n768\t        if K > 2:\n769\t            dists = np.abs(np.arange(K) - j).astype(float)\n770\t            dists[j] = np.inf\n771\t            weights = 1.0 / dists\n772\t            weights[j] = 0\n773\t            noise = rng.uniform(0.5, 1.5, K)\n774\t            noise[j] = 0\n775\t            weights = weights * noise\n776\t            weights /= weights.sum()\n777\t            C[:, j] = remaining * weights\n778\t        else:\n779\t            C[1 - j, j] = remaining\n780\t        C[j, j] = diag_val\n781\t    return C\n782\t\n783\t\n784\tdef generate_mock_confusion_matrices(seed=12345):\n785\t    rng = np.random.default_rng(seed)\n786\t    matrices = {}\n787\t    diag_ranges = {\n788\t        'civil_comments': (0.85, 0.95),\n789\t        'vast': (0.70, 0.90),\n790\t        'humaid': (0.60, 0.85),\n791\t    }\n792\t    for dataset, info in DATASETS.items():\n793\t        K = info['K']\n794\t        dr = diag_ranges[dataset]\n795\t        for model in MODELS:\n796\t            for prompt in PROMPTS:\n797\t                matrices[(dataset, model, prompt)] = generate_mock_C(K, rng, dr)\n798\t    return matrices\n799\t\n800\t\n801\t# ============================================================================\n802\t# Diagnostic Plots (optional)\n803\t# ============================================================================\n804\t\n805\tdef save_f1_vs_bias_plot(f1_bias, output_dir):\n806\t    if not HAS_MPL:\n807\t        return\n808\t    fig, axes = plt.subplots(2, 4, figsize=(20, 10))\n809\t    axes = axes.flatten()\n810\t    for idx, topo in enumerate(TOPOLOGIES):\n811\t        ax = axes[idx]\n812\t        subset = [r for r in f1_bias if r['topology'] == topo\n813\t                  and r['abs_bias'] is not None]\n814\t        if not subset:\n815\t            ax.set_title(topo)\n816\t            continue\n817\t        f1s = [r['macro_f1'] for r in subset]\n818\t        biases = [r['abs_bias'] for r in subset]\n819\t        colors = ['red' if r['sign_flip'] else 'steelblue' for r in subset]\n820\t        ax.scatter(f1s, biases, c=colors, alpha=0.7, s=30)\n821\t        ax.axvline(0.93, color='gray', linestyle='--', alpha=0.5)\n822\t        ax.set_xlabel('Macro F1')\n823\t        ax.set_ylabel('|bias|')\n824\t        ax.set_title(topo)\n825\t    if len(TOPOLOGIES) < 8:\n826\t        axes[-1].axis('off')\n827\t    fig.suptitle('F1 vs |Downstream Bias| (red=sign flip)', fontsize=14)\n828\t    fig.tight_layout(rect=[0, 0, 1, 0.96])\n829\t    fig.savefig(os.path.join(output_dir, 'f1_vs_bias.png'), dpi=150)\n830\t    plt.close(fig)\n831\t\n832\t\n833\tdef save_asv_heatmap(asvs, output_dir):\n834\t    if not HAS_MPL:\n835\t        return\n836\t    mag_asvs = [r for r in asvs if r['asv_type'] == 'magnitude']\n837\t    datasets_list = list(DATASETS.keys())\n838\t    fig, axes = plt.subplots(1, 3, figsize=(18, 6))\n839\t    for didx, dataset in enumerate(datasets_list):\n840\t        ax = axes[didx]\n841\t        subset = [r for r in mag_asvs if r['dataset'] == dataset]\n842\t        configs = sorted(set((r['model'], r['prompt']) for r in subset))\n843\t        grid = np.full((len(TOPOLOGIES), len(configs)), np.nan)\n844\t        for r in subset:\n845\t            ti = TOPOLOGIES.index(r['topology'])\n846\t            ci = configs.index((r['model'], r['prompt']))\n847\t            grid[ti, ci] = r['asv'] if r['asv'] is not None else np.nan\n848\t        im = ax.imshow(grid, cmap='RdYlGn', aspect='auto',\n849\t                       vmin=0, vmax=2)\n850\t        ax.set_xticks(range(len(configs)))\n851\t        ax.set_xticklabels([f\"{m[:3]}_{p[:3]}\" for m, p in configs],\n852\t                           rotation=45, ha='right', fontsize=7)\n853\t        ax.set_yticks(range(len(TOPOLOGIES)))\n854\t        ax.set_yticklabels(TOPOLOGIES, fontsize=8)\n855\t        ax.set_title(f'{dataset} (K={DATASETS[dataset][\"K\"]})')\n856\t        plt.colorbar(im, ax=ax, shrink=0.8)\n857\t    fig.suptitle('Magnitude ASV (green=safe, red=fragile)', fontsize=14)\n858\t    fig.tight_layout(rect=[0, 0, 1, 0.96])\n859\t    fig.savefig(os.path.join(output_dir, 'asv_heatmap.png'), dpi=150)\n860\t    plt.close(fig)\n861\t\n862\t\n863\t# ============================================================================\n864\t# JSON Serialization\n865\t# ============================================================================\n866\t\n867\tdef _to_json_safe(obj):\n868\t    if isinstance(obj, np.integer):\n869\t        return int(obj)\n870\t    elif isinstance(obj, np.floating):\n871\t        v = float(obj)\n872\t        return None if (np.isnan(v) or np.isinf(v)) else v\n873\t    elif isinstance(obj, np.ndarray):\n874\t        return _to_json_safe(obj.tolist())\n875\t    elif isinstance(obj, dict):\n876\t        return {str(k): _to_json_safe(v) for k, v in obj.items()}\n877\t    elif isinstance(obj, list):\n878\t        return [_to_json_safe(v) for v in obj]\n879\t    elif isinstance(obj, (bool, np.bool_)):\n880\t        return bool(obj)\n881\t    elif isinstance(obj, float):\n882\t        return None if (np.isnan(obj) or np.isinf(obj)) else obj\n883\t    return obj\n884\t\n885\t\n886\t# ============================================================================\n887\t# Main\n888\t# ============================================================================\n889\t\n890\tdef main():\n891\t    parser = argparse.ArgumentParser(description='plan_006: Empirical ASV calibration')\n892\t    parser.add_argument('--data-dir', default='data/')\n893\t    parser.add_argument('--output-dir', default='artifacts/plan006/')\n894\t    parser.add_argument('--mock', action='store_true', help='Use mock data for dry-run')\n895\t    parser.add_argument('--datasets', type=str, default=None,\n896\t                        help='Comma-separated dataset filter (e.g. humaid,vast)')\n897\t    parser.add_argument('--n-sim', type=int, default=1000)\n898\t    parser.add_argument('--device', type=str, default='cpu')\n899\t    args = parser.parse_args()\n900\t\n901\t    os.makedirs(args.output_dir, exist_ok=True)\n902\t    t_total = time.time()\n903\t    n_precomp = 500_000 if args.mock else N_PRECOMP\n904\t\n905\t    dataset_filter = None\n906\t    if args.datasets:\n907\t        dataset_filter = [d.strip() for d in args.datasets.split(',')]\n908\t\n909\t    print(\"=\" * 70)\n910\t    print(\"plan_006: Empirical ASV Calibration\")\n911\t    if dataset_filter:\n912\t        print(f\"  Dataset filter: {dataset_filter}\")\n913\t    print(\"=\" * 70)\n914\t\n915\t    # --- 1. Confusion matrices ---\n916\t    if args.mock:\n917\t        print(\"\\n[1/6] Generating mock confusion matrices...\")\n918\t        confusion_matrices = generate_mock_confusion_matrices()\n919\t        if dataset_filter:\n920\t            confusion_matrices = {k: v for k, v in confusion_matrices.items()\n921\t                                  if k[0] in dataset_filter}\n922\t    else:\n923\t        print(\"\\n[1/6] Loading confusion matrices...\")\n924\t        confusion_matrices = load_all_confusion_matrices(args.data_dir,\n925\t                                                         dataset_filter=dataset_filter)\n926\t\n927\t    print(f\"  {len(confusion_matrices)} matrices loaded\")\n928\t    for (ds, m, p), C in list(confusion_matrices.items())[:3]:\n929\t        K = DATASETS[ds]['K']\n930\t        print(f\"    {ds}/{m}/{p}: K={K}, diag_mean={np.diag(C).mean():.3f}\")\n931\t\n932\t    # --- 2. Precompute sufficient statistics ---\n933\t    print(\"\\n[2/6] Precomputing sufficient statistics...\")\n934\t    active_datasets = dataset_filter if dataset_filter else list(DATASETS.keys())\n935\t    K_values = sorted(set(DATASETS[ds]['K'] for ds in active_datasets if ds in DATASETS))\n936\t    all_suff_stats = {}\n937\t    all_tau_true = {}\n938\t    all_params = {}\n939\t    all_params_H0 = {}\n940\t    all_se_ref = {}\n941\t\n942\t    for K in K_values:\n943\t        params = make_dgp_params(K)\n944\t        params_H0 = make_dgp_params_H0(K, params)\n945\t        all_params[K] = params\n946\t        all_params_H0[K] = params_H0\n947\t        for topology in TOPOLOGIES:\n948\t            seed = K * 1000 + abs(hash(topology)) % 1000\n949\t            st = precompute_suff_stats(K, topology, params[topology],\n950\t                                       N=n_precomp, seed=seed)\n951\t            plim_I = compute_plim(np.eye(K), st, K)\n952\t            tau_true = extract_tau(plim_I, topology)\n953\t            all_suff_stats[(K, topology)] = st\n954\t            all_tau_true[(K, topology)] = tau_true\n955\t\n956\t            se = estimate_reference_se(K, topology, params[topology],\n957\t                                       N_ref=5000,\n958\t                                       n_mc=min(args.n_sim, 30),\n959\t                                       seed=seed + 500)\n960\t            all_se_ref[(K, topology)] = se\n961\t            se_s = f\"{se:.4f}\" if np.isfinite(se) else \"N/A\"\n962\t            print(f\"    K={K:>2} {topology:<13} tau_true={tau_true:>9.6f}  SE_ref={se_s}\")\n963\t\n964\t    biases = compute_all_biases(confusion_matrices, all_suff_stats, all_tau_true)\n965\t    n_sign_flips = sum(1 for b in biases if b['sign_flip'])\n966\t    print(f\"  {len(biases)} bias values ({n_sign_flips} sign flips)\")\n967\t\n968\t    # --- 3. ASV ---\n969\t    print(\"\\n[3/6] Computing ASV values...\")\n970\t    t3 = time.time()\n971\t    asvs = compute_all_asvs(confusion_matrices, all_suff_stats,\n972\t                            all_tau_true, all_se_ref)\n973\t    print(f\"  {len(asvs)} ASV values ({time.time() - t3:.1f}s)\")\n974\t    for at in ['magnitude', 'sign_flip', 'significance']:\n975\t        sub = [r['asv'] for r in asvs if r['asv_type'] == at and r['asv'] is not None]\n976\t        if sub:\n977\t            print(f\"    {at}: min={min(sub):.3f} median={np.median(sub):.3f} \"\n978\t                  f\"max={max(sub):.3f} ({len(sub)} non-None)\")\n979\t\n980\t    # --- 4. F1 vs bias ---\n981\t    print(\"\\n[4/6] F1 vs bias analysis...\")\n982\t    f1_bias = f1_vs_bias_analysis(confusion_matrices, biases)\n983\t    total_high_f1 = [r for r in f1_bias if r['macro_f1'] is not None and r['macro_f1'] > 0.93]\n984\t    high_f1_high_bias = [r for r in total_high_f1\n985\t                         if r['abs_bias'] is not None and r['abs_bias'] > 0.05]\n986\t    if total_high_f1:\n987\t        pct = len(high_f1_high_bias) / len(total_high_f1) * 100\n988\t        print(f\"  Baumann check: F1>0.93 with |bias|>0.05: \"\n989\t              f\"{len(high_f1_high_bias)}/{len(total_high_f1)} = {pct:.1f}%\")\n990\t    # Sample rows\n991\t    for r in f1_bias[:3]:\n992\t        print(f\"    {r['dataset']}/{r['model']}/{r['prompt']} {r['topology']}: \"\n993\t              f\"F1={r['macro_f1']:.3f} |bias|={r['abs_bias']}\")\n994\t\n995\t    # --- 5. Type I/II ---\n996\t    print(\"\\n[5/6] Type I/II error rates...\")\n997\t    t5 = time.time()\n998\t    type1_type2_results = []\n999\t    n_configs = len(confusion_matrices) * len(TOPOLOGIES)\n1000\t    idx = 0\n1001\t    for (dataset, model, prompt), C in confusion_matrices.items():\n1002\t        K = DATASETS[dataset]['K']\n1003\t        for topology in TOPOLOGIES:\n1004\t            idx += 1\n1005\t            st = all_suff_stats[(K, topology)]\n1006\t            tau_true = all_tau_true[(K, topology)]\n1007\t            r = compute_type1_type2_for_C(\n1008\t                C, K, topology, all_params[K], all_params_H0[K],\n1009\t                st, tau_true,\n1010\t                n_sim=args.n_sim, N_sample=5000, seed=idx * 100)\n1011\t            type1_type2_results.append({\n1012\t                'dataset': dataset, 'model': model, 'prompt': prompt,\n1013\t                'K': K, 'topology': topology, **r,\n1014\t            })\n1015\t            if idx % 50 == 0:\n1016\t                print(f\"    {idx}/{n_configs}...\")\n1017\t    print(f\"  {len(type1_type2_results)} records ({time.time() - t5:.1f}s)\")\n1018\t    unsafe = sum(1 for r in type1_type2_results if not r['asv_safe'])\n1019\t    print(f\"  ASV-unsafe: {unsafe}/{len(type1_type2_results)}\")\n1020\t\n1021\t    # --- 6. Inter-model correlation ---\n1022\t    print(\"\\n[6/6] Inter-model error correlation...\")\n1023\t    inter_model_results = {}\n1024\t    for dataset in DATASETS:\n1025\t        K = DATASETS[dataset]['K']\n1026\t        for prompt in PROMPTS:\n1027\t            r = compute_inter_model_correlation(\n1028\t                confusion_matrices, K, dataset, prompt,\n1029\t                n_samples=1000, seed=abs(hash((dataset, prompt))) % 10000)\n1030\t            inter_model_results[f\"{dataset}_{prompt}\"] = r\n1031\t    print(f\"  {len(inter_model_results)} (dataset, prompt) pairs\")\n1032\t    for key, pairs in list(inter_model_results.items())[:2]:\n1033\t        for pair, vals in pairs.items():\n1034\t            print(f\"    {key} {pair}: agree={vals['agreement']:.3f} \"\n1035\t                  f\"kappa={vals['kappa']:.3f} err_corr={vals['error_correlation']:.3f}\")\n1036\t\n1037\t    # --- Summary ---\n1038\t    summary = {\n1039\t        'f1_gt_093_total': len(total_high_f1),\n1040\t        'f1_gt_093_with_high_bias_pct': (\n1041\t            len(high_f1_high_bias) / max(len(total_high_f1), 1) * 100),\n1042\t        'ppi_recommended_scenarios': unsafe,\n1043\t        'total_scenarios': len(type1_type2_results),\n1044\t        'ppi_recommended_pct': unsafe / max(len(type1_type2_results), 1) * 100,\n1045\t    }\n1046\t\n1047\t    # --- Save ---\n1048\t    output = _to_json_safe({\n1049\t        'confusion_matrices': {\n1050\t            f\"{ds}_{m}_{p}\": C.tolist()\n1051\t            for (ds, m, p), C in confusion_matrices.items()\n1052\t        },\n1053\t        'biases': biases,\n1054\t        'asvs': asvs,\n1055\t        'f1_vs_bias': f1_bias,\n1056\t        'type1_type2': type1_type2_results,\n1057\t        'inter_model_correlation': inter_model_results,\n1058\t        'summary': summary,\n1059\t    })\n1060\t\n1061\t    out_path = os.path.join(args.output_dir, 'asv_empirical_results.json')\n1062\t    with open(out_path, 'w') as f:\n1063\t        json.dump(output, f, indent=2, default=str)\n1064\t    print(f\"\\nResults saved to {out_path}\")\n1065\t\n1066\t    # --- Plots ---\n1067\t    save_f1_vs_bias_plot(f1_bias, args.output_dir)\n1068\t    save_asv_heatmap(asvs, args.output_dir)\n1069\t    if HAS_MPL:\n1070\t        print(f\"Plots saved to {args.output_dir}\")\n1071\t\n1072\t    # --- Validation ---\n1073\t    with open(out_path) as f:\n1074\t        data = json.load(f)\n1075\t    n_null = str(data).count('null')\n1076\t    print(f\"\\nValidation: JSON has {n_null} null values \"\n1077\t          f\"(expected for NaN/None ASV entries)\")\n1078\t    for section in ['biases', 'asvs', 'f1_vs_bias', 'type1_type2']:\n1079\t        print(f\"  {section}: {len(data[section])} records\")\n1080\t\n1081\t    elapsed = time.time() - t_total\n1082\t    print(f\"\\nTotal time: {elapsed:.1f}s ({elapsed / 60:.1f}min)\")\n1083\t    print(f\"\\nSummary:\")\n1084\t    print(f\"  F1>0.93 with high bias: {summary['f1_gt_093_with_high_bias_pct']:.1f}%\")\n1085\t    print(f\"  PPI++ recommended: {summary['ppi_recommended_scenarios']}/\"\n1086\t          f\"{summary['total_scenarios']} ({summary['ppi_recommended_pct']:.1f}%)\")\n1087\t    print(\"=\" * 70)\n1088\t\n1089\t\n1090\tif __name__ == \"__main__\":\n1091\t    main()\n1092\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51bcb46c-8751-4c79-a803-201cc9f181ad",
+            "isSidechain": true,
+            "promptId": "417df0a2-cc01-4fb5-9f46-ee96dfc8be6b",
+            "agentId": "a4ddc290a1e5d82db",
+            "type": "user",
+            "uuid": "c93bb12a-8b56-435e-98db-aa017bfcc86f",
+            "sourceToolAssistantUUID": "51bcb46c-8751-4c79-a803-201cc9f181ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T11:10:18.933Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I've found all three items. Here's a summary of my findings:\n\n## Summary\n\nAll three items you're looking for are located in **two main files**:\n\n### 1. **Primary Location: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py`**\n\n- **`make_dgp_params(K)`** - Function defined at **line 154**\n  - Generates DGP (Data Generating Process) parameters for different causal topologies\n  - Returns a dictionary of parameters keyed by topology name\n  \n- **`compute_plim(C, st, K)`** - Function defined at **line 369**\n  - Computes the probability limit under confusion matrix C\n  - Takes confusion matrix C, sufficient statistics st, and number of classes K\n  \n- **`_BETA_POOL`** - Variable defined at **line 57**\n  - List of 10 parameter values: `[0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]`\n  - Used to construct parameters for mediation and exposure topologies\n\n### 2. **Secondary Location: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py`**\n\nThis file contains **duplicate implementations** of the same components:\n- **`make_dgp_params(K)`** - Defined at **line 62** (identical to plan_006_asv_empirical.py)\n- **`_BETA_POOL`** - Defined at **line 34** (same values)\n- **`compute_plim` is NOT in this file** (only the first two items are duplicated here)\n\nThe functions in `compute_ppi_empirical.py` appear to be copied from `plan_006_asv_empirical.py` to support empirical validation work, but the original canonical implementations are in `plan_006_asv_empirical.py`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c93bb12a-8b56-435e-98db-aa017bfcc86f",
+            "isSidechain": true,
+            "agentId": "a4ddc290a1e5d82db",
+            "requestId": "req_011CbHWDX61Rc2unvoeGcqNZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d8162f2e-8fd6-4030-a891-58ac5066fe1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "ba945ca1-7c3c-4181-a307-80decba09cd0",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DT25S9qztMPssM6h8SzYZD",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 9856,
+                "cache_creation_input_tokens": 17528,
+                "cache_read_input_tokens": 19985,
+                "output_tokens": 518,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17528
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 9856,
+                    "output_tokens": 518,
+                    "cache_read_input_tokens": 19985,
+                    "cache_creation_input_tokens": 17528,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17528,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-directory-home-ubuntu-agent-ml-research-prod-0510-projects-causal-annot-copy-3.md"
+}

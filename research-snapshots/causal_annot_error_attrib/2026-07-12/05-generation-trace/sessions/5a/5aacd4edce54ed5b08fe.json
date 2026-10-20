@@ -1,0 +1,1189 @@
+{
+  "schema_version": "1.0",
+  "id": "5aacd4edce54ed5b08fe",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: CRITICAL: Rewrite and rerun Exp-D Conjecture 1 verification with analytic plim ### Problem The current `exp_d_conjecture",
+  "task_key": "agent-a8ae618b752846327",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a8ae618b752846327.jsonl",
+    "occurrence": 1,
+    "bytes": 159925,
+    "sha256": "6436be33ab2d8212323054292dcd915f10134ce9ccd2b9ac952c70ddde609313"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T12:18:00.011Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CRITICAL: Rewrite and rerun Exp-D Conjecture 1 verification with analytic plim\n\n### Problem\nThe current `exp_d_conjecture_verify.py` computes probability limits (plim) using sufficient statistics estimated from N=5M Monte Carlo simulation. This introduces sampling noise O(1/√N) ≈ 0.0004, which at MONO_TOL=1e-8 generates false \"monotonicity violations\". The 141,514 violations found are almost certainly numerical artifacts.\n\n### Your Task\nCreate `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify_v2.py` that computes plim ANALYTICALLY (zero sampling noise) and reruns the verification.\n\n### How to compute analytic plim for each topology\n\nThe plim computation structure is the same as in the original code (solve E[Z'Z]^{-1} E[Z'Y] or Wald ratio), but the sufficient statistics (p_A, E[TD_k], E[YD_k], E[T], E[T²], E[TY], etc.) must be computed from population formulas, not from simulated data.\n\n**Key principle**: For each topology, the DGP defines joint distributions of (T, Y, A). The sufficient statistics are population expectations that can be computed analytically or via high-precision numerical integration.\n\n#### 1. Confounding (A → T, A → Y, T → Y) — FULLY ANALYTIC\n```\nA ~ Categorical(p_A)\nT = Σ α_j D_j + ε_T,  ε_T ~ N(0, σ_T²)\nY = τT + Σ β_j D_j + ε_Y,  ε_Y ~ N(0,1)\n\nPopulation moments:\np_A[k] = given\nE[T] = Σ_{j=1}^{K-1} α_j p_j\nE[T²] = Σ_{j=1}^{K-1} α_j² p_j + σ_T² + (Σ α_j p_j)² - Σ α_j² p_j²  \n       ... actually more carefully: E[T²] = E[(Σ α_j D_j)² + 2(Σ α_j D_j)ε_T + ε_T²]\n       = E[(Σ α_j D_j)²] + σ_T²  (cross term is 0)\n       = Σ_{j} α_j² p_j + σ_T²   (since D_j D_k = 0 for j≠k, D_j² = D_j)\n       Wait no, E[(Σ α_j D_j)²] = Σ_j α_j² p_j because D_j²=D_j and D_j D_k=0\n\nBut this is wrong if you include j from 1 to K-1 and p_j is P(A=j+1)... Let me be precise:\nActually D_j = 1(A=j) for j=1,...,K-1 with ref category 0.\nE[D_j] = p_j (where p_j = P(A=j) for j=1,...,K-1)\nE[D_j²] = p_j, E[D_j D_k] = 0 for j≠k\n\nSo E[(Σ_{j=1}^{K-1} α_j D_j)²] = Σ_j α_j² p_j\nE[T²] = Σ_j α_j² p_j + σ_T²\nE[TD_k] = α_k p_k + σ_T² * ... no wait\nE[T D_k] = E[(Σ_j α_j D_j + ε_T) D_k] = α_k p_k  (since ε_T ⊥ D_k, and D_j D_k = 0 for j≠k)\nE[Y] = τ E[T] + Σ β_j p_j\nE[TY] = τ E[T²] + Σ_j β_j E[T D_j] = τ E[T²] + Σ_j β_j α_j p_j\nE[Y D_k] = τ E[T D_k] + β_k p_k = τ α_k p_k + β_k p_k\n```\n\nReference: The Exp-E code at `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_e_asv_stability.py` has `plim_confounding()` (lines 48-72) with the analytic formulas for K=3. Generalize to arbitrary K.\n\n#### 2. Exposure (A → Y) — FULLY ANALYTIC  \n```\nA ~ Categorical(p_A)\nY = β₀ + Σ_{j=1}^{K-1} β_j D_j + ε_Y\n\np_A[k] = given\nE[Y D_k] = β_k p_k for k=1,...,K-1; E[Y D_0] = β₀ p₀\nE[Y] = β₀ + Σ β_j p_j\n```\nReference: Exp-E `plim_exposure()` (lines 79-90). Generalize to arbitrary K.\n\n#### 3. Mediation (T → A → Y, T → Y) — ANALYTIC (T is binary)\n```\nT ~ Bernoulli(0.5)\nA | T ~ Categorical(softmax(γ + δ*T))\nY = τ*T + f(A) + ε_Y\n\nSince T ∈ {0,1}, all moments are weighted averages over T=0 and T=1:\nP(A=k) = 0.5 * softmax(γ)[k] + 0.5 * softmax(γ+δ)[k]\nE[T D_k] = 0.5 * softmax(γ+δ)[k]  (T=1 contributes, T=0 gives 0)\nE[T] = 0.5, E[T²] = 0.5\nE[Y D_k] = 0.5*(softmax(γ)[k]*(0 + β_k)) + 0.5*(softmax(γ+δ)[k]*(τ + β_k))\n         = 0.5*β_k*softmax(γ)[k] + 0.5*(τ+β_k)*softmax(γ+δ)[k]\nE[TY] = 0.5*E[Y|T=1] = 0.5*(τ + Σ_k β_k softmax(γ+δ)[k])\n```\n\n#### 4. Collider (T → A ← Y, T → Y) — GAUSS-HERMITE\n```\nT ~ N(0,1), Y = τT + ε_Y (ε_Y ~ N(0,1), ε_Y ⊥ T)\nA | T,Y ~ Categorical(softmax(δ_T * T + δ_Y * Y))\n\nReparametrize: Y = τT + ε_Y, so (T, ε_Y) are independent standard normals.\nA depends on (T, ε_Y) through softmax((δ_T + τ*δ_Y)*T + δ_Y*ε_Y)\n\nUse 2D Gauss-Hermite quadrature (100 points per dim should be plenty):\nP(A=k) = E_{T,ε}[softmax(...)_k]  ← 2D integral\nE[T D_k] = E_{T,ε}[T * softmax(...)_k]\nE[Y D_k] = E_{T,ε}[(τT+ε) * softmax(...)_k]\nE[T] = 0, E[T²] = 1, E[TY] = τ, E[Y] = 0\n```\n\n#### 5. M-bias (U₁ → T, U₁ → A, U₂ → A, U₂ → Y, T → Y) — GAUSS-HERMITE\n```\nU₁ ~ N(0,1), U₂ ~ N(0,1)\nT = δ_coef * U₁ + η (η ~ N(0,1))\nY = τT + λU₂ + ε_Y (ε_Y ~ N(0,1))\nA | U₁,U₂ ~ Categorical(softmax(a₁*U₁ + a₂*U₂))\n\nUse 2D Gauss-Hermite over (U₁, U₂):\nP(A=k) = E_{U1,U2}[softmax(a1*U1 + a2*U2)_k]\n\nFor moments involving T: T = δ_coef*U₁ + η, η independent\nE[T D_k] = δ_coef * E_{U1,U2}[U1 * softmax(...)_k]  (since E[η D_k] = 0)\nE[T²] = δ_coef² + 1 (= Var(T))\nE[T] = 0\nE[TY] = τ*E[T²] + λ*δ_coef*E[U₁ U₂] = τ*(δ_coef²+1) (since U₁⊥U₂)\nE[Y D_k] = τ*E[T D_k] + λ*E_{U1,U2}[U2 * softmax(...)_k]\n```\n\n#### 6. Front-door (T → M → Y, U → T, U → Y, M → M*) — GAUSS-HERMITE 1D\n```\nU ~ N(0,1), T = α_U*U + η (η ~ N(0,1))\nM | T ~ Categorical(softmax(γ + δ*T))\nY = f(M) + λ*U + ε_Y\n\nT has a continuous distribution N(0, α_U²+1).\nUse 1D Gauss-Hermite over T (after computing T's distribution):\nP(M=k) = E_T[softmax(γ + δT)_k]\nE[T D_k] = E_T[T * softmax(γ + δT)_k]\n\nBut Y depends on M and U. The regression Y ~ 1 + T + D*₁ + ... needs:\nE[Y D_k] = f(k)*P(M=k) + λ*E[U D_k]\n\nE[U D_k] = E[U * 1(M=k)] = E_T[E[U|T] * softmax(γ+δT)_k]\nSince U = (T - η)/α_U and T = α_U*U + η:\nE[U|T] = α_U*T/(α_U²+1)  (regression of U on T for jointly normal)\nSo E[U D_k] = α_U/(α_U²+1) * E_T[T * softmax(...)_k]\n\nT ~ N(0, σ_T²) where σ_T² = α_U² + 1. Use GH quadrature.\nE[TY] = τ*E[T²] + λ*E[TU] + E[T f(M)]\nE[TU] = α_U (since Cov(T,U) = α_U*Var(U) = α_U, both mean 0)\nE[T f(M)] = E_T[T * Σ_k β_k softmax(γ+δT)_k] = 1D GH integral\n```\n\n#### 7. IV (Z → A, U → A, U → Y, A → Y) — ANALYTIC (Z is binary)\n```\nZ ~ Bernoulli(0.5), U ~ N(0,1)\nA | Z,U ~ Categorical(softmax(g + dZ*Z + dU*U))\nY = f(A) + λU + ε_Y\n\nWald estimator: τ̂ = RF / FS_1 where:\nRF = E[Y|Z=1] - E[Y|Z=0]\nFS_k = P(A=k|Z=1) - P(A=k|Z=0)\n\nSince Z is binary, need 1D GH quadrature over U for each Z value:\nP(A=k|Z=z) = E_U[softmax(g + dZ*z + dU*U)_k]\nE[Y|Z=z] = Σ_k β_k P(A=k|Z=z) + λ*E[U] = Σ_k β_k P(A=k|Z=z)\n\nFS_star = C @ FS  (misclassified first stage)\nτ̂(C) = RF / FS_star[1]\n```\n\n### Implementation structure\n\n```python\n#!/usr/bin/env python3\n\"\"\"Exp-D v2: Conjecture 1 verification with analytic plim (zero sampling noise)\"\"\"\n\nimport numpy as np\nfrom numpy.polynomial.hermite_e import hermegauss  # probabilist's Hermite\nimport json, time\nfrom scipy.optimize import minimize as scipy_minimize\n\n# Gauss-Hermite quadrature setup\nN_GH = 100  # points per dimension — gives machine precision for smooth integrands\ngh_x, gh_w = hermegauss(N_GH)  # nodes and weights for N(0,1)\n# Note: numpy's hermegauss uses probabilist's convention, \n# so ∫ f(x) exp(-x²/2)/√(2π) dx ≈ Σ w_i f(x_i)\n# Actually check: np.polynomial.hermite_e.hermegauss gives nodes for \n# weight function exp(-x²/2), so ∫ f(x) exp(-x²/2) dx ≈ Σ w_i f(x_i)\n# To get E[f(X)] for X~N(0,1): E[f(X)] = (1/√(2π)) Σ w_i f(x_i)\n# OR use scipy.special.roots_hermite which uses physicist's convention\n# Better to use: from numpy.polynomial.hermite import hermgauss\n# which gives weight exp(-x²), so ∫ f(x) exp(-x²) dx ≈ Σ w_i f(x_i)\n# For N(0,1): E[f(X)] = (1/√π) Σ w_i f(x_i √2)\n\n# USE scipy for clarity:\nfrom scipy.special import roots_hermite\ngh_x_raw, gh_w_raw = roots_hermite(N_GH)\n# These satisfy: Σ w_i f(x_i) ≈ ∫ f(x) exp(-x²) dx\n# For N(0,1) expectation: E[f(X)] = (1/√π) Σ w_i f(x_i * √2)\nGH_X = gh_x_raw * np.sqrt(2)  # rescaled nodes\nGH_W = gh_w_raw / np.sqrt(np.pi)  # rescaled weights so Σ w_i f(x_i) = E_N(0,1)[f]\n\n# Config\nK_VALUES = [3, 5, 7]\nN_RANDOM = 10_000\nDELTA_STEP = 0.01\nMONO_TOL = 1e-12\nSEED = 12345\nALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure', 'mbias', 'iv', 'frontdoor']\n\n# ... implement analytic sufficient stats and plim for each topology ...\n# ... then the same verification loop as original ...\n```\n\n### For the plim computation given sufficient stats\nKeep the same `plim_ols_with_T`, `plim_ols_exposure`, `plim_iv_single` functions from the original code — they correctly compute plim from sufficient stats. Just replace how the sufficient stats are computed (analytic instead of simulated).\n\n### Create an AnalyticSuffStats class\nInstead of simulating data and computing empirical moments, compute population moments analytically:\n\n```python\nclass AnalyticSuffStats:\n    \"\"\"Population moments computed analytically — zero sampling noise.\"\"\"\n    def __init__(self, K, has_T=True):\n        self.K = K\n        self.has_T = has_T\n        # Will be populated by topology-specific methods\n        self.p_A = None  # K-vector\n        self.E_Y = None\n        self.E_YD = None  # K-vector\n        if has_T:\n            self.E_T = None\n            self.E_T2 = None\n            self.E_TY = None\n            self.E_TD = None  # K-vector\n```\n\n### Key parameters\nUse the EXACT same DGP parameters as the original Exp-D (imported from the same pools). The file `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify.py` has them at lines 47-59.\n\n### Verification logic\nSame as original:\n1. For each topology, K, and random C₀: compute bias curve B(δ) = plim(C(δ)) - τ_true\n2. Check monotonicity: |B(δ_{i+1})| >= |B(δ_i)| (non-dec) or <= (non-inc)\n3. Count violations exceeding MONO_TOL=1e-12\n4. Record worst violation magnitude\n\n### Adversarial search\nSame as original but with analytic plim. 100 starts per (topology, K, delta_pair).\n\n### Output\nSave to `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results_v2.json` with the same structure as the original.\n\n### Run the script\nAfter writing it, run it:\n```bash\ncd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts\npython3 exp_d_conjecture_verify_v2.py\n```\n\nThis should complete in a few minutes since there's no simulation (all computations are matrix operations + GH quadrature).\n\n### Report\nPrint and report:\n- For each topology: violation count at K=3,5,7 and worst magnitude\n- Whether adversarial search found any counterexamples\n- Comparison with original results\n- Specifically: did non-IV topologies go to zero violations? Did IV violations change?"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3f772f34-432b-4b73-8d6a-c54bf571a4ba",
+            "agentId": "a8ae618b752846327",
+            "type": "user",
+            "uuid": "75b269b5-9130-4129-952a-3890b8a41512",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T12:18:00.018Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "75b269b5-9130-4129-952a-3890b8a41512",
+                "isSidechain": true,
+                "agentId": "a8ae618b752846327",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__allocate_and_submit",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__approve_worker",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_worker",
+                    "mcp__agent-ml-research__check_job_status",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_alert",
+                    "mcp__agent-ml-research__feishu_send_approval_card",
+                    "mcp__agent-ml-research__feishu_send_result_card",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_baseline_metrics",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__main_agent_post_to_director",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__poll_cron",
+                    "mcp__agent-ml-research__poll_secret_request",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reconcile_crons",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__register_cron",
+                    "mcp__agent-ml-research__request_secret",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__submit_on_allocated",
+                    "mcp__agent-ml-research__submit_training_job",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__tail_training_logs",
+                    "mcp__agent-ml-research__update_baseline",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_registry",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__allocate_and_submit",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__approve_worker",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_worker",
+                    "mcp__agent-ml-research__check_job_status",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_alert",
+                    "mcp__agent-ml-research__feishu_send_approval_card",
+                    "mcp__agent-ml-research__feishu_send_result_card",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_baseline_metrics",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__main_agent_post_to_director",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__poll_cron",
+                    "mcp__agent-ml-research__poll_secret_request",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reconcile_crons",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__register_cron",
+                    "mcp__agent-ml-research__request_secret",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__submit_on_allocated",
+                    "mcp__agent-ml-research__submit_training_job",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__tail_training_logs",
+                    "mcp__agent-ml-research__update_baseline",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_registry",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "95b6fdde-1aa3-4786-beb6-bf3908656b05",
+                "timestamp": "2026-05-22T12:18:00.018Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+                "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+                "version": "2.1.126",
+                "gitBranch": "master",
+                "slug": "eager-splashing-waterfall"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T12:18:03.141Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the original Exp-D script and the Exp-E reference code to understand the existing implementation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95b6fdde-1aa3-4786-beb6-bf3908656b05",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbPLRRiaih6R9K6iCT4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cd142e87-a8f8-4dec-a712-5a03957f02ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013HZ1ujQRNgEjGqghLphAbg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35069,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 35069,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T12:18:03.622Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MNQY2Q6xHRKSszg8HJRhwc",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd142e87-a8f8-4dec-a712-5a03957f02ce",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbPLRRiaih6R9K6iCT4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8acbca24-6760-4d40-a33a-ae34405f268a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013HZ1ujQRNgEjGqghLphAbg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35069,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 35069,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T12:18:03.633Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MNQY2Q6xHRKSszg8HJRhwc",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tExp-D: Conjecture 1 Extended Verification (Envelope Monotonicity)\n4\t\n5\tPart 1: 10,000 random Dirichlet(1,...,1) C0 per (topology, K) -- 210,000 total tests\n6\tPart 2: Adversarial search via scipy.minimize for K in {3, 5} -- 500 starts per config\n7\t\n8\tConjecture 1:\n9\t  |B(delta)| non-decreasing for {confounding, mediation, exposure, frontdoor, iv}\n10\t  |B(delta)| non-increasing for {collider, mbias}\n11\t\n12\twhere B(delta) = plim(C(delta)) - tau_true, C(delta) = (1-delta)I + delta*C0.\n13\t\"\"\"\n14\t\n15\timport numpy as np\n16\timport json\n17\timport time\n18\timport sys\n19\timport os\n20\tfrom scipy.optimize import minimize as scipy_minimize\n21\t\n22\t# ====================================================================\n23\t# Configuration\n24\t# ====================================================================\n25\tK_VALUES = [3, 5, 7]\n26\tK_ADVERSARIAL = [3, 5]\n27\tN_RANDOM = 10_000\n28\tN_LARGE = 5_000_000\n29\tDELTA_STEP = 0.01\n30\tSEED = 12345\n31\tMONO_TOL = 1e-8\n32\t\n33\tALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\n34\t             'mbias', 'iv', 'frontdoor']\n35\tTOPO_IDX = {t: i for i, t in enumerate(ALL_TOPOS)}\n36\tNON_DECREASING = {'confounding', 'mediation', 'exposure', 'frontdoor', 'iv'}\n37\tNON_INCREASING = {'collider', 'mbias'}\n38\t\n39\tADV_DELTA_PAIRS = [(0.0, 0.2), (0.0, 0.5), (0.1, 0.3), (0.2, 0.5), (0.3, 0.7)]\n40\tADV_N_STARTS = 100\n41\t\n42\tOUT_DIR = os.path.dirname(os.path.abspath(__file__))\n43\t\n44\t# ====================================================================\n45\t# DGP Parameter Pools (from plan_002)\n46\t# ====================================================================\n47\t_ALPHA_POOL = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\n48\t_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n49\t_BETA_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n50\t_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n51\t_DELTA_POOL = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\n52\t_DT_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n53\t_DY_POOL = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\n54\t_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\n55\t_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\n56\t_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\n57\t_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\n58\t_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n59\t_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\n60\t\n61\t\n62\tdef make_p_A(K):\n63\t    if K == 3:\n64\t        return np.array([0.40, 0.35, 0.25])\n65\t    raw = np.array([1.0 / i for i in range(1, K + 1)])\n66\t    return raw / raw.sum()\n67\t\n68\t\n69\tdef make_all_params(K):\n70\t    p_A = make_p_A(K)\n71\t    return dict(\n72\t        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K - 1]),\n73\t                         beta_A=np.array(_BETA_A_POOL[:K - 1]), beta_T=2.0, sigma_T=1.0),\n74\t        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\n75\t                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n76\t        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\n77\t                      dY=np.array(_DY_POOL[:K])),\n78\t        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\n79\t        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\n80\t                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\n81\t        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\n82\t                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n83\t        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\n84\t                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n85\t    )\n86\t\n87\t\n88\t# ====================================================================\n89\t# DGP Generators (from plan_002)\n90\t# ====================================================================\n91\tdef _softmax_rows(logits):\n92\t    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\n93\t    return e / e.sum(axis=-1, keepdims=True)\n94\t\n95\t\n96\tdef _sample_cat(probs, rng):\n97\t    cum = np.cumsum(probs, axis=1)\n98\t    u = rng.uniform(size=probs.shape[0])[:, None]\n99\t    return (u >= cum).sum(axis=1).astype(int)\n100\t\n101\t\n102\tdef gen_confounding(K, N, p, rng):\n103\t    A = rng.choice(K, size=N, p=p['p_A'])\n104\t    D = np.zeros((N, K - 1))\n105\t    for j in range(K - 1):\n106\t        D[:, j] = (A == j + 1).astype(float)\n107\t    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\n108\t    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\n109\t    return T, Y, A\n110\t\n111\t\n112\tdef gen_mediation(K, N, p, rng):\n113\t    T = rng.binomial(1, 0.5, N).astype(float)\n114\t    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\n115\t    A = _sample_cat(_softmax_rows(logits), rng)\n116\t    D = np.zeros((N, K - 1))\n117\t    for j in range(K - 1):\n118\t        D[:, j] = (A == j + 1)\n119\t    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\n120\t    return T, Y, A\n121\t\n122\t\n123\tdef gen_collider(K, N, p, rng):\n124\t    T = rng.normal(0, 1, N)\n125\t    Y = p['tau'] * T + rng.normal(0, 1, N)\n126\t    logits = (p['g'][None, :] + p['dT'][None, :] * T[:, None]\n127\t              + p['dY'][None, :] * Y[:, None])\n128\t    A = _sample_cat(_softmax_rows(logits), rng)\n129\t    return T, Y, A\n130\t\n131\t\n132\tdef gen_exposure(K, N, p, rng):\n133\t    A = rng.choice(K, size=N, p=p['p_A'])\n134\t    D = np.zeros((N, K - 1))\n135\t    for j in range(K - 1):\n136\t        D[:, j] = (A == j + 1).astype(float)\n137\t    Y = p['beta'][0] + D @ p['beta'][1:] + rng.normal(0, 1, N)\n138\t    return None, Y, A\n139\t\n140\t\n141\tdef gen_mbias(K, N, p, rng):\n142\t    U1 = rng.normal(0, 1, N)\n143\t    U2 = rng.normal(0, 1, N)\n144\t    T = p['delta_coef'] * U1 + rng.normal(0, 1, N)\n145\t    Y = p['tau'] * T + p['lam'] * U2 + rng.normal(0, 1, N)\n146\t    logits = np.zeros((N, K))\n147\t    for j in range(1, K):\n148\t        logits[:, j] = p['g'][j] + p['a1'][j] * U1 + p['a2'][j] * U2\n149\t    A = _sample_cat(_softmax_rows(logits), rng)\n150\t    return T, Y, A\n151\t\n152\t\n153\tdef gen_iv(K, N, p, rng):\n154\t    Z = rng.binomial(1, 0.5, N).astype(float)\n155\t    U = rng.normal(0, 1, N)\n156\t    eps = rng.normal(0, 1, N)\n157\t    logits = np.zeros((N, K))\n158\t    for j in range(1, K):\n159\t        logits[:, j] = p['g'][j] + p['dZ'][j] * Z + p['dU'][j] * U\n160\t    A = _sample_cat(_softmax_rows(logits), rng)\n161\t    D = np.zeros((N, K - 1))\n162\t    for j in range(K - 1):\n163\t        D[:, j] = (A == j + 1).astype(float)\n164\t    Y = D @ p['beta'][1:] + p['lam'] * U + eps\n165\t    return Z, Y, A\n166\t\n167\t\n168\tdef gen_frontdoor(K, N, p, rng):\n169\t    U = rng.normal(0, 1, N)\n170\t    T = p['alpha_U'] * U + rng.normal(0, 1, N)\n171\t    logits = np.zeros((N, K))\n172\t    for j in range(1, K):\n173\t        logits[:, j] = p['gamma'][j] + p['delta'][j] * T\n174\t    M = _sample_cat(_softmax_rows(logits), rng)\n175\t    D = np.zeros((N, K - 1))\n176\t    for j in range(K - 1):\n177\t        D[:, j] = (M == j + 1).astype(float)\n178\t    Y = D @ p['beta'][1:] + p['lam_U'] * U + rng.normal(0, 1, N)\n179\t    return T, Y, M\n180\t\n181\t\n182\t_GEN = dict(confounding=gen_confounding, mediation=gen_mediation,\n183\t            collider=gen_collider, exposure=gen_exposure,\n184\t            mbias=gen_mbias, iv=gen_iv, frontdoor=gen_frontdoor)\n185\t\n186\t\n187\t# ====================================================================\n188\t# Sufficient Statistics\n189\t# ====================================================================\n190\tclass SuffStats:\n191\t    def __init__(self, T, Y, A, K):\n192\t        self.K = K\n193\t        self.has_T = T is not None\n194\t        N = len(Y)\n195\t        DA = np.zeros((N, K))\n196\t        for k in range(K):\n197\t            DA[:, k] = (A == k).astype(float)\n198\t        self.p_A = DA.mean(0)\n199\t        self.E_Y = Y.mean()\n200\t        self.E_YD = (DA * Y[:, None]).mean(0)\n201\t        if self.has_T:\n202\t            self.E_T = T.mean()\n203\t            self.E_T2 = (T ** 2).mean()\n204\t            self.E_TY = (T * Y).mean()\n205\t            self.E_TD = (DA * T[:, None]).mean(0)\n206\t\n207\t\n208\tclass IVSuffStats:\n209\t    def __init__(self, Z, Y, A, K):\n210\t        self.K = K\n211\t        z1 = Z == 1\n212\t        z0 = Z == 0\n213\t        self.RF = Y[z1].mean() - Y[z0].mean()\n214\t        self.FS = np.zeros(K)\n215\t        for k in range(K):\n216\t            self.FS[k] = (A[z1] == k).mean() - (A[z0] == k).mean()\n217\t\n218\t\n219\t# ====================================================================\n220\t# Plim computation (single C)\n221\t# ====================================================================\n222\tdef plim_ols_with_T(C, ss):\n223\t    K = ss.K\n224\t    q = C @ ss.p_A\n225\t    ct = C @ ss.E_TD\n226\t    cy = C @ ss.E_YD\n227\t    dim = K + 1\n228\t    EZZ = np.zeros((dim, dim))\n229\t    EZZ[0, 0] = 1.0\n230\t    EZZ[0, 1] = ss.E_T\n231\t    EZZ[1, 0] = ss.E_T\n232\t    EZZ[1, 1] = ss.E_T2\n233\t    EZZ[0, 2:] = q[1:]\n234\t    EZZ[2:, 0] = q[1:]\n235\t    EZZ[1, 2:] = ct[1:]\n236\t    EZZ[2:, 1] = ct[1:]\n237\t    for j in range(K - 1):\n238\t        EZZ[j + 2, j + 2] = q[j + 1]\n239\t    EZY = np.zeros(dim)\n240\t    EZY[0] = ss.E_Y\n241\t    EZY[1] = ss.E_TY\n242\t    EZY[2:] = cy[1:]\n243\t    try:\n244\t        return np.linalg.solve(EZZ, EZY)\n245\t    except np.linalg.LinAlgError:\n246\t        return np.full(dim, np.nan)\n247\t\n248\t\n249\tdef plim_ols_exposure(C, ss):\n250\t    K = ss.K\n251\t    q = C @ ss.p_A\n252\t    cy = C @ ss.E_YD\n253\t    dim = K\n254\t    EZZ = np.zeros((dim, dim))\n255\t    EZZ[0, 0] = 1.0\n256\t    EZZ[0, 1:] = q[1:]\n257\t    EZZ[1:, 0] = q[1:]\n258\t    for j in range(K - 1):\n259\t        EZZ[j + 1, j + 1] = q[j + 1]\n260\t    EZY = np.zeros(dim)\n261\t    EZY[0] = ss.E_Y\n262\t    EZY[1:] = cy[1:]\n263\t    try:\n264\t        return np.linalg.solve(EZZ, EZY)\n265\t    except np.linalg.LinAlgError:\n266\t        return np.full(dim, np.nan)\n267\t\n268\t\n269\tdef plim_iv_single(C, ss):\n270\t    FS_star = C @ ss.FS\n271\t    if abs(FS_star[1]) < 1e-8:\n272\t        return np.nan\n273\t    return ss.RF / FS_star[1]\n274\t\n275\t\n276\tdef get_tau_at_C(topo, C, ss):\n277\t    if topo == 'iv':\n278\t        return plim_iv_single(C, ss)\n279\t    elif topo == 'exposure':\n280\t        return plim_ols_exposure(C, ss)[1]\n281\t    else:\n282\t        return plim_ols_with_T(C, ss)[1]\n283\t\n284\t\n285\tdef get_tau_true(topo, K, params, ss):\n286\t    \"\"\"True causal parameter for Conjecture 1.\n287\t\n288\t    For correctly-identified topologies: tau_true = plim(I).\n289\t    For protective topologies (collider, mbias): tau_true = DGP tau,\n290\t    so B(0) = plim(I) - tau != 0 (Berkson/M-bias at perfect classification).\n291\t    \"\"\"\n292\t    p = params[topo]\n293\t    if topo == 'collider':\n294\t        return p['tau']\n295\t    elif topo == 'mbias':\n296\t        return p['tau']\n297\t    else:\n298\t        return get_tau_at_C(topo, np.eye(K), ss)\n299\t\n300\t\n301\t# ====================================================================\n302\t# Batched bias curve computation\n303\t# ====================================================================\n304\tdef compute_bias_curve(topo, C0, ss, tau_true, delta_step=DELTA_STEP):\n305\t    K = C0.shape[0]\n306\t    min_diag = np.diag(C0).min()\n307\t    if min_diag >= 1.0:\n308\t        delta_max = 10.0\n309\t    else:\n310\t        delta_max = min(1.0 / (1.0 - min_diag), 10.0)\n311\t\n312\t    deltas = np.arange(0, delta_max + delta_step / 2, delta_step)\n313\t    n = len(deltas)\n314\t    d = deltas[:, None]\n315\t\n316\t    if topo == 'iv':\n317\t        FS0 = C0 @ ss.FS\n318\t        fs_star = (1 - d) * ss.FS[None, :] + d * FS0[None, :]\n319\t        denom = fs_star[:, 1]\n320\t        taus = np.where(np.abs(denom) < 1e-8, np.nan, ss.RF / denom)\n321\t    elif topo == 'exposure':\n322\t        pA0 = C0 @ ss.p_A\n323\t        YD0 = C0 @ ss.E_YD\n324\t        q = (1 - d) * ss.p_A[None, :] + d * pA0[None, :]\n325\t        cy = (1 - d) * ss.E_YD[None, :] + d * YD0[None, :]\n326\t        dim = K\n327\t        EZZ = np.zeros((n, dim, dim))\n328\t        EZZ[:, 0, 0] = 1.0\n329\t        EZZ[:, 0, 1:] = q[:, 1:]\n330\t        EZZ[:, 1:, 0] = q[:, 1:]\n331\t        for j in range(K - 1):\n332\t            EZZ[:, j + 1, j + 1] = q[:, j + 1]\n333\t        EZY = np.zeros((n, dim))\n334\t        EZY[:, 0] = ss.E_Y\n335\t        EZY[:, 1:] = cy[:, 1:]\n336\t        try:\n337\t            coefs = np.linalg.solve(EZZ, EZY[..., np.newaxis])[..., 0]\n338\t            taus = coefs[:, 1]\n339\t        except np.linalg.LinAlgError:\n340\t            taus = np.full(n, np.nan)\n341\t    else:\n342\t        pA0 = C0 @ ss.p_A\n343\t        TD0 = C0 @ ss.E_TD\n344\t        YD0 = C0 @ ss.E_YD\n345\t        q = (1 - d) * ss.p_A[None, :] + d * pA0[None, :]\n346\t        ct = (1 - d) * ss.E_TD[None, :] + d * TD0[None, :]\n347\t        cy = (1 - d) * ss.E_YD[None, :] + d * YD0[None, :]\n348\t        dim = K + 1\n349\t        EZZ = np.zeros((n, dim, dim))\n350\t        EZZ[:, 0, 0] = 1.0\n351\t        EZZ[:, 0, 1] = ss.E_T\n352\t        EZZ[:, 1, 0] = ss.E_T\n353\t        EZZ[:, 1, 1] = ss.E_T2\n354\t        EZZ[:, 0, 2:] = q[:, 1:]\n355\t        EZZ[:, 2:, 0] = q[:, 1:]\n356\t        EZZ[:, 1, 2:] = ct[:, 1:]\n357\t        EZZ[:, 2:, 1] = ct[:, 1:]\n358\t        for j in range(K - 1):\n359\t            EZZ[:, j + 2, j + 2] = q[:, j + 1]\n360\t        EZY = np.zeros((n, dim))\n361\t        EZY[:, 0] = ss.E_Y\n362\t        EZY[:, 1] = ss.E_TY\n363\t        EZY[:, 2:] = cy[:, 1:]\n364\t        try:\n365\t            coefs = np.linalg.solve(EZZ, EZY[..., np.newaxis])[..., 0]\n366\t            taus = coefs[:, 1]\n367\t        except np.linalg.LinAlgError:\n368\t            taus = np.full(n, np.nan)\n369\t\n370\t    bias_abs = np.abs(taus - tau_true)\n371\t    return deltas, bias_abs\n372\t\n373\t\n374\tdef check_monotonicity(bias_abs, topo, tol=MONO_TOL):\n375\t    valid = ~np.isnan(bias_abs)\n376\t    ba = bias_abs[valid]\n377\t    if len(ba) < 2:\n378\t        return 0\n379\t    diffs = np.diff(ba)\n380\t    if topo in NON_DECREASING:\n381\t        return int(np.sum(diffs < -tol))\n382\t    else:\n383\t        return int(np.sum(diffs > tol))\n384\t\n385\t\n386\t# ====================================================================\n387\t# Precompute sufficient statistics\n388\t# ====================================================================\n389\tdef precompute_all():\n390\t    print(\"\\nPrecomputing sufficient statistics (N={:,})...\".format(N_LARGE))\n391\t    sys.stdout.flush()\n392\t    t0 = time.time()\n393\t    all_ss = {}\n394\t    all_tau_true = {}\n395\t\n396\t    for K in K_VALUES:\n397\t        params = make_all_params(K)\n398\t        for topo in ALL_TOPOS:\n399\t            rng = np.random.default_rng(SEED + K * 100 + TOPO_IDX[topo])\n400\t            p = params[topo]\n401\t            if topo == 'iv':\n402\t                Z, Y, A = gen_iv(K, N_LARGE, p, rng)\n403\t                ss = IVSuffStats(Z, Y, A, K)\n404\t                del Z, Y, A\n405\t            elif topo == 'exposure':\n406\t                _, Y, A = gen_exposure(K, N_LARGE, p, rng)\n407\t                ss = SuffStats(None, Y, A, K)\n408\t                del Y, A\n409\t            else:\n410\t                T, Y, A = _GEN[topo](K, N_LARGE, p, rng)\n411\t                ss = SuffStats(T, Y, A, K)\n412\t                del T, Y, A\n413\t\n414\t            tau_true = get_tau_true(topo, K, params, ss)\n415\t            all_ss[(topo, K)] = ss\n416\t            all_tau_true[(topo, K)] = tau_true\n417\t\n418\t    print(\"  Done ({:.1f}s). tau_true samples:\".format(time.time() - t0))\n419\t    for topo in ALL_TOPOS:\n420\t        vals = [all_tau_true[(topo, K)] for K in K_VALUES]\n421\t        vals_s = \", \".join(\n422\t            f\"K{K}={v:.6f}\" if v is not None and not np.isnan(v) else f\"K{K}=NaN\"\n423\t            for K, v in zip(K_VALUES, vals))\n424\t        direction = \"non-dec\" if topo in NON_DECREASING else \"non-inc\"\n425\t        print(f\"    {topo:<14} [{direction}] {vals_s}\")\n426\t    sys.stdout.flush()\n427\t    return all_ss, all_tau_true\n428\t\n429\t\n430\t# ====================================================================\n431\t# Part 1: Random Verification\n432\t# ====================================================================\n433\tdef part1_random(all_ss, all_tau_true):\n434\t    print(\"\\n\" + \"=\" * 70)\n435\t    print(\"PART 1: Random Verification ({:,} C0 per topology x K)\".format(N_RANDOM))\n436\t    print(\"=\" * 70)\n437\t    sys.stdout.flush()\n438\t\n439\t    results = {}\n440\t    total_tests = 0\n441\t    total_violations = 0\n442\t\n443\t    for K in K_VALUES:\n444\t        print(f\"\\n  K = {K}\")\n445\t        print(f\"  {'Topology':<14} {'Direction':<10} {'Tested':>8} \"\n446\t              f\"{'Violations':>11} {'NaN_curves':>11} {'Time':>7}\")\n447\t        print(f\"  {'-' * 65}\")\n448\t        sys.stdout.flush()\n449\t\n450\t        for topo in ALL_TOPOS:\n451\t            t0 = time.time()\n452\t            ss = all_ss[(topo, K)]\n453\t            tau_true = all_tau_true[(topo, K)]\n454\t\n455\t            rng_C = np.random.default_rng(SEED * 2 + K * 1000 + TOPO_IDX[topo])\n456\t            violations = 0\n457\t            nan_curves = 0\n458\t            worst_mag = 0.0\n459\t\n460\t            for i in range(N_RANDOM):\n461\t                C0 = np.zeros((K, K))\n462\t                for j in range(K):\n463\t                    C0[:, j] = rng_C.dirichlet(np.ones(K))\n464\t\n465\t                _, bias_abs = compute_bias_curve(topo, C0, ss, tau_true)\n466\t\n467\t                n_nan = np.isnan(bias_abs).sum()\n468\t                if n_nan > len(bias_abs) * 0.5:\n469\t                    nan_curves += 1\n470\t                    continue\n471\t\n472\t                n_viol = check_monotonicity(bias_abs, topo)\n473\t                if n_viol > 0:\n474\t                    violations += 1\n475\t                    valid = ~np.isnan(bias_abs)\n476\t                    ba = bias_abs[valid]\n477\t                    diffs = np.diff(ba)\n478\t                    if topo in NON_DECREASING:\n479\t                        worst_mag = max(worst_mag, abs(diffs.min()))\n480\t                    else:\n481\t                        worst_mag = max(worst_mag, diffs.max())\n482\t\n483\t            elapsed = time.time() - t0\n484\t            direction = \"non-dec\" if topo in NON_DECREASING else \"non-inc\"\n485\t            print(f\"  {topo:<14} {direction:<10} {N_RANDOM:>8} \"\n486\t                  f\"{violations:>11} {nan_curves:>11} {elapsed:>6.1f}s\")\n487\t            sys.stdout.flush()\n488\t\n489\t            results[f\"{topo}_K{K}\"] = {\n490\t                \"n_tested\": N_RANDOM,\n491\t                \"violations\": violations,\n492\t                \"nan_curves\": nan_curves,\n493\t                \"direction\": direction,\n494\t                \"worst_violation_magnitude\": float(worst_mag),\n495\t                \"tau_true\": float(tau_true) if not np.isnan(tau_true) else None,\n496\t            }\n497\t            total_tests += N_RANDOM\n498\t            total_violations += violations\n499\t\n500\t    print(f\"\\n  Grand total: {total_tests:,} tests, {total_violations} violations\")\n501\t    return results\n502\t\n503\t\n504\t# ====================================================================\n505\t# Part 2: Adversarial Search\n506\t# ====================================================================\n507\tdef part2_adversarial(all_ss, all_tau_true):\n508\t    print(\"\\n\" + \"=\" * 70)\n509\t    print(f\"PART 2: Adversarial Search ({ADV_N_STARTS} starts x \"\n510\t          f\"{len(ADV_DELTA_PAIRS)} delta-pairs)\")\n511\t    print(\"=\" * 70)\n512\t    sys.stdout.flush()\n513\t\n514\t    results = {}\n515\t\n516\t    for K in K_ADVERSARIAL:\n517\t        print(f\"\\n  K = {K}\")\n518\t        print(f\"  {'Topology':<14} {'Direction':<10} {'best_obj':>11} \"\n519\t              f\"{'Counterex':>11} {'Time':>7}\")\n520\t        print(f\"  {'-' * 57}\")\n521\t        sys.stdout.flush()\n522\t\n523\t        for topo in ALL_TOPOS:\n524\t            t0 = time.time()\n525\t            ss = all_ss[(topo, K)]\n526\t            tau_true = all_tau_true[(topo, K)]\n527\t\n528\t            best_objective = np.inf\n529\t            found_counterexample = False\n530\t            rng_adv = np.random.default_rng(\n531\t                SEED * 3 + K * 10000 + TOPO_IDX[topo] * 100)\n532\t\n533\t            for d1, d2 in ADV_DELTA_PAIRS:\n534\t                for _ in range(ADV_N_STARTS):\n535\t                    theta0 = rng_adv.normal(0, 1, K * K)\n536\t\n537\t                    def objective(theta, _topo=topo, _ss=ss, _tt=tau_true,\n538\t                                  _d1=d1, _d2=d2, _K=K):\n539\t                        logits = theta.reshape(_K, _K)\n540\t                        exp_l = np.exp(logits - logits.max(axis=0, keepdims=True))\n541\t                        C0 = exp_l / exp_l.sum(axis=0, keepdims=True)\n542\t\n543\t                        C1 = (1 - _d1) * np.eye(_K) + _d1 * C0\n544\t                        C2 = (1 - _d2) * np.eye(_K) + _d2 * C0\n545\t\n546\t                        tau1 = get_tau_at_C(_topo, C1, _ss)\n547\t                        tau2 = get_tau_at_C(_topo, C2, _ss)\n548\t\n549\t                        if np.isnan(tau1) or np.isnan(tau2):\n550\t                            return 0.0\n551\t\n552\t                        b1_sq = (tau1 - _tt) ** 2\n553\t                        b2_sq = (tau2 - _tt) ** 2\n554\t\n555\t                        if _topo in NON_DECREASING:\n556\t                            return b2_sq - b1_sq\n557\t                        else:\n558\t                            return b1_sq - b2_sq\n559\t\n560\t                    res = scipy_minimize(objective, theta0, method='L-BFGS-B',\n561\t                                         options={'maxiter': 100, 'ftol': 1e-12})\n562\t\n563\t                    if res.fun < best_objective:\n564\t                        best_objective = res.fun\n565\t\n566\t                    if res.fun < -1e-6:\n567\t                        found_counterexample = True\n568\t\n569\t            elapsed = time.time() - t0\n570\t            direction = \"non-dec\" if topo in NON_DECREASING else \"non-inc\"\n571\t            ce_str = \"YES!\" if found_counterexample else \"no\"\n572\t            print(f\"  {topo:<14} {direction:<10} {best_objective:>11.6f} \"\n573\t                  f\"{ce_str:>11} {elapsed:>6.1f}s\")\n574\t            sys.stdout.flush()\n575\t\n576\t            results[f\"{topo}_K{K}\"] = {\n577\t                \"n_starts\": ADV_N_STARTS * len(ADV_DELTA_PAIRS),\n578\t                \"best_objective\": float(best_objective),\n579\t                \"found_counterexample\": found_counterexample,\n580\t                \"delta_pairs\": [[d1, d2] for d1, d2 in ADV_DELTA_PAIRS],\n581\t            }\n582\t\n583\t    return results\n584\t\n585\t\n586\t# ====================================================================\n587\t# Main\n588\t# ====================================================================\n589\tdef main():\n590\t    t_total = time.time()\n591\t    print(\"Exp-D: Conjecture 1 Extended Verification\")\n592\t    print(f\"  Random: {N_RANDOM:,} C0 x 7 topologies x K in {K_VALUES}\")\n593\t    print(f\"  Adversarial: {ADV_N_STARTS} starts x {len(ADV_DELTA_PAIRS)} \"\n594\t          f\"delta-pairs x K in {K_ADVERSARIAL}\")\n595\t    print(f\"  N_large={N_LARGE:,}, delta_step={DELTA_STEP}, seed={SEED}\")\n596\t    sys.stdout.flush()\n597\t\n598\t    all_ss, all_tau_true = precompute_all()\n599\t\n600\t    random_results = part1_random(all_ss, all_tau_true)\n601\t    adversarial_results = part2_adversarial(all_ss, all_tau_true)\n602\t\n603\t    # Build output\n604\t    total_random = sum(r['n_tested'] for r in random_results.values())\n605\t    total_viol = sum(r['violations'] for r in random_results.values())\n606\t    total_ce = sum(1 for r in adversarial_results.values()\n607\t                   if r['found_counterexample'])\n608\t\n609\t    if total_viol == 0 and total_ce == 0:\n610\t        summary = (f\"Zero violations across {total_random:,} random tests + \"\n611\t                   f\"0 counterexamples found by adversarial search\")\n612\t    else:\n613\t        summary = (f\"{total_viol} violations across {total_random:,} random tests + \"\n614\t                   f\"{total_ce} counterexamples found by adversarial search\")\n615\t\n616\t    output = {\"random_verification\": {}, \"adversarial_search\": {}, \"summary\": summary}\n617\t\n618\t    for topo in ALL_TOPOS:\n619\t        rv = {}\n620\t        for K in K_VALUES:\n621\t            key = f\"{topo}_K{K}\"\n622\t            if key in random_results:\n623\t                rv[f\"K{K}\"] = random_results[key]\n624\t        output[\"random_verification\"][topo] = rv\n625\t\n626\t    for topo in ALL_TOPOS:\n627\t        av = {}\n628\t        for K in K_ADVERSARIAL:\n629\t            key = f\"{topo}_K{K}\"\n630\t            if key in adversarial_results:\n631\t                av[f\"K{K}\"] = adversarial_results[key]\n632\t        output[\"adversarial_search\"][topo] = av\n633\t\n634\t    out_path = os.path.join(OUT_DIR, 'exp_d_conjecture_results.json')\n635\t    with open(out_path, 'w') as f:\n636\t        json.dump(output, f, indent=2, default=str)\n637\t    print(f\"\\nJSON -> {out_path}\")\n638\t\n639\t    total_time = time.time() - t_total\n640\t    print(f\"\\n{summary}\")\n641\t    print(f\"Total time: {total_time:.0f}s ({total_time/60:.1f}min)\")\n642\t\n643\t\n644\tif __name__ == \"__main__\":\n645\t    main()\n646\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8acbca24-6760-4d40-a33a-ae34405f268a",
+            "isSidechain": true,
+            "promptId": "3f772f34-432b-4b73-8d6a-c54bf571a4ba",
+            "agentId": "a8ae618b752846327",
+            "type": "user",
+            "uuid": "bc205c58-b57f-4d88-86f1-0b35bb2834b5",
+            "sourceToolAssistantUUID": "8acbca24-6760-4d40-a33a-ae34405f268a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T12:18:03.991Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XoG6iZbbxdpH2htMuzGQzL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_e_asv_stability.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc205c58-b57f-4d88-86f1-0b35bb2834b5",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbPLRRiaih6R9K6iCT4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "196c208a-8a18-4a79-806e-aba5c26af254",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013HZ1ujQRNgEjGqghLphAbg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35069,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 197,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 35069
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 197,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 35069,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 35069,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T12:18:03.997Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XoG6iZbbxdpH2htMuzGQzL",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tExp-E: ASV Stability Across DGPs\n4\t\n5\tDemonstrates that ASV ranking (relative topology vulnerability ordering)\n6\tis stable across different DGP parameter configurations.\n7\t\n8\t3 DGP configs × 3 topologies × 5 C₀ matrices = 45 sweeps.\n9\tEach of 9 cells reports the median δ* over the 5 C₀s.\n10\t\"\"\"\n11\t\n12\timport numpy as np\n13\timport json\n14\timport time\n15\t\n16\tK = 3\n17\tSTEP = 0.001\n18\t\n19\t# ─── C(δ) parameterization ──────────────────────────────────────────────────\n20\t\n21\tdef make_C_delta(C0, delta):\n22\t    C = (1 - delta) * np.eye(K) + delta * C0\n23\t    C = np.maximum(C, 0.0)\n24\t    cs = C.sum(axis=0)\n25\t    cs = np.where(cs < 1e-10, 1.0, cs)\n26\t    return C / cs\n27\t\n28\t\n29\tdef get_delta_max(C0):\n30\t    d = np.diag(C0).min()\n31\t    if d >= 1.0:\n32\t        return 10.0\n33\t    return min(1.0 / (1.0 - d), 10.0)\n34\t\n35\t\n36\tdef make_fixed_C0(diag_val):\n37\t    off = (1 - diag_val) / (K - 1)\n38\t    C0 = np.full((K, K), off)\n39\t    np.fill_diagonal(C0, diag_val)\n40\t    return C0\n41\t\n42\t\n43\t# ─── Topology 1: Confounding ────────────────────────────────────────────────\n44\t# DAG: A → T, A → Y, T → Y, A → A*\n45\t# OLS: Y ~ 1 + T + D*₁ + D*₂\n46\t# plim γ = (E[Z'Z])⁻¹ E[Z'X] β   where Z uses A*, X uses A\n47\t\n48\tdef plim_confounding(C, dgp):\n49\t    p = dgp['p']\n50\t    g = dgp['gamma']\n51\t    tau = dgp['tau']\n52\t    bA = dgp['beta'][1:]\n53\t    sT = dgp.get('sigma_T', 1.0)\n54\t\n55\t    b = np.array([0.0, tau, bA[0], bA[1]])\n56\t    ET = g[0] * p[1] + g[1] * p[2]\n57\t    ET2 = g[0]**2 * p[1] + g[1]**2 * p[2] + sT**2\n58\t    q = C @ p\n59\t    ETDs = np.array([g[0] * C[j, 1] * p[1] + g[1] * C[j, 2] * p[2]\n60\t                     for j in range(K)])\n61\t\n62\t    EZZ = np.array([\n63\t        [1,    ET,      q[1],     q[2]    ],\n64\t        [ET,   ET2,     ETDs[1],  ETDs[2] ],\n65\t        [q[1], ETDs[1], q[1],     0       ],\n66\t        [q[2], ETDs[2], 0,        q[2]    ]])\n67\t    EZX = np.array([\n68\t        [1,    ET,      p[1],         p[2]        ],\n69\t        [ET,   ET2,     g[0] * p[1],  g[1] * p[2] ],\n70\t        [q[1], ETDs[1], C[1, 1] * p[1], C[1, 2] * p[2]],\n71\t        [q[2], ETDs[2], C[2, 1] * p[1], C[2, 2] * p[2]]])\n72\t    return np.linalg.solve(EZZ, EZX @ b)[1]\n73\t\n74\t\n75\t# ─── Topology 2: Exposure ───────────────────────────────────────────────────\n76\t# DAG: A → Y, A → A*\n77\t# OLS: Y ~ 1 + D*₁ + D*₂\n78\t\n79\tdef plim_exposure(C, dgp):\n80\t    p, beta = dgp['p'], dgp['beta']\n81\t    q = C @ p\n82\t    EZZ = np.array([\n83\t        [1,    q[1], q[2]],\n84\t        [q[1], q[1], 0   ],\n85\t        [q[2], 0,    q[2]]])\n86\t    EZX = np.array([\n87\t        [1,    p[1],           p[2]          ],\n88\t        [q[1], C[1, 1] * p[1], C[1, 2] * p[2]],\n89\t        [q[2], C[2, 1] * p[1], C[2, 2] * p[2]]])\n90\t    return np.linalg.solve(EZZ, EZX @ beta)\n91\t\n92\t\n93\t# ─── Topology 3: IV ─────────────────────────────────────────────────────────\n94\t# DAG: Z → A, U → {A,Y}, A → Y, A → A*\n95\t# Wald estimator: RF / FS*₁\n96\t\n97\tIV_PARAMS = dict(lam=1.0, g1=0.0, g2=0.0, dZ=1.0, dU=0.8, dZ2=-0.5, dU2=0.6)\n98\t\n99\t\n100\tdef _softmax_sample(logits, rng):\n101\t    e = np.exp(logits - logits.max(1, keepdims=True))\n102\t    p = e / e.sum(1, keepdims=True)\n103\t    c = np.cumsum(p, axis=1)\n104\t    u = rng.uniform(size=logits.shape[0])\n105\t    return (u >= c[:, 0]).astype(int) + (u >= c[:, 1]).astype(int)\n106\t\n107\t\n108\tdef precomp_iv(beta, params, N=2_000_000, seed=999):\n109\t    rng = np.random.default_rng(seed)\n110\t    Z = rng.binomial(1, 0.5, N).astype(float)\n111\t    U = rng.normal(0, 1, N)\n112\t    logits = np.column_stack([\n113\t        np.zeros(N),\n114\t        params['g1'] + params['dZ'] * Z + params['dU'] * U,\n115\t        params['g2'] + params['dZ2'] * Z + params['dU2'] * U])\n116\t    A = _softmax_sample(logits, rng)\n117\t    Y = (beta[1] * (A == 1).astype(float)\n118\t         + beta[2] * (A == 2).astype(float)\n119\t         + params['lam'] * U + rng.normal(0, 1, N))\n120\t    z1, z0 = Z == 1, Z == 0\n121\t    RF = Y[z1].mean() - Y[z0].mean()\n122\t    FS = np.array([(A[z1] == k).mean() - (A[z0] == k).mean()\n123\t                   for k in range(K)])\n124\t    return dict(RF=RF, FS=FS)\n125\t\n126\t\n127\tdef plim_iv(C, st):\n128\t    fs = (C @ st['FS'])[1]\n129\t    return np.nan if abs(fs) < 1e-8 else st['RF'] / fs\n130\t\n131\t\n132\t# ─── ASV computation ────────────────────────────────────────────────────────\n133\t\n134\tdef _make_grid(C0):\n135\t    dmax = get_delta_max(C0)\n136\t    n = int(round(dmax / STEP)) + 1\n137\t    return np.linspace(0, dmax, n)\n138\t\n139\t\n140\tdef _find_envelope_asv(deltas, bias_abs, tau_abs, threshold):\n141\t    if tau_abs < 1e-12:\n142\t        return 0.0\n143\t    thresh = threshold * tau_abs\n144\t    rmax = 0.0\n145\t    for i in range(len(deltas)):\n146\t        b = bias_abs[i]\n147\t        if not np.isnan(b):\n148\t            rmax = max(rmax, b)\n149\t        if rmax > thresh:\n150\t            return float(deltas[i])\n151\t    return None\n152\t\n153\t\n154\tdef compute_cell_confounding(dgp, C0):\n155\t    deltas = _make_grid(C0)\n156\t    tau0 = plim_confounding(np.eye(K), dgp)\n157\t    curve = np.array([plim_confounding(make_C_delta(C0, d), dgp)\n158\t                      for d in deltas])\n159\t    ba = np.abs(curve - tau0)\n160\t    return {\n161\t        'mag_asv_10pct': _find_envelope_asv(deltas, ba, abs(tau0), 0.1),\n162\t        'mag_asv_50pct': _find_envelope_asv(deltas, ba, abs(tau0), 0.5),\n163\t    }\n164\t\n165\t\n166\tdef compute_cell_exposure(dgp, C0):\n167\t    deltas = _make_grid(C0)\n168\t    beta0 = plim_exposure(np.eye(K), dgp)\n169\t    curves = np.array([plim_exposure(make_C_delta(C0, d), dgp)\n170\t                       for d in deltas])\n171\t\n172\t    mr = np.zeros(len(deltas))\n173\t    for i in range(len(deltas)):\n174\t        for k in [1, 2]:\n175\t            if abs(beta0[k]) > 1e-10:\n176\t                mr[i] = max(mr[i],\n177\t                            abs(curves[i, k] - beta0[k]) / abs(beta0[k]))\n178\t\n179\t    def _mag(threshold):\n180\t        rmax = 0.0\n181\t        for i in range(len(deltas)):\n182\t            rmax = max(rmax, mr[i])\n183\t            if rmax > threshold:\n184\t                return float(deltas[i])\n185\t        return None\n186\t\n187\t    sf = None\n188\t    for i, d in enumerate(deltas):\n189\t        for k in [1, 2]:\n190\t            if (abs(beta0[k]) > 1e-10\n191\t                    and abs(curves[i, k]) > 1e-10\n192\t                    and curves[i, k] * beta0[k] < 0):\n193\t                sf = float(d)\n194\t                break\n195\t        if sf is not None:\n196\t            break\n197\t\n198\t    return {\n199\t        'mag_asv_10pct': _mag(0.1),\n200\t        'mag_asv_50pct': _mag(0.5),\n201\t        'sign_flip_asv': sf,\n202\t    }\n203\t\n204\t\n205\tdef compute_cell_iv(st, C0):\n206\t    deltas = _make_grid(C0)\n207\t    tau0 = plim_iv(np.eye(K), st)\n208\t    if np.isnan(tau0) or abs(tau0) < 1e-10:\n209\t        return {'mag_asv_10pct': None, 'mag_asv_50pct': None}\n210\t    curve = np.array([plim_iv(make_C_delta(C0, d), st) for d in deltas])\n211\t    ba = np.abs(curve - tau0)\n212\t    return {\n213\t        'mag_asv_10pct': _find_envelope_asv(deltas, ba, abs(tau0), 0.1),\n214\t        'mag_asv_50pct': _find_envelope_asv(deltas, ba, abs(tau0), 0.5),\n215\t    }\n216\t\n217\t\n218\tdef median_results(cells):\n219\t    keys = cells[0].keys()\n220\t    out = {}\n221\t    for k in keys:\n222\t        vals = [c[k] for c in cells if c[k] is not None]\n223\t        out[k] = round(float(np.median(vals)), 4) if vals else None\n224\t    return out\n225\t\n226\t\n227\t# ─── Main ────────────────────────────────────────────────────────────────────\n228\t\n229\tif __name__ == '__main__':\n230\t    t0 = time.time()\n231\t\n232\t    DGPS = [\n233\t        {'name': 'alternating_large',\n234\t         'beta': np.array([0., 1.0, -0.5]), 'tau': 0.5,\n235\t         'p': np.array([0.5, 0.33, 0.17]),\n236\t         'gamma': np.array([0.5, -0.3]), 'sigma_T': 1.0},\n237\t        {'name': 'same_sign_medium',\n238\t         'beta': np.array([0., 0.5, 0.3]), 'tau': 0.5,\n239\t         'p': np.array([0.5, 0.33, 0.17]),\n240\t         'gamma': np.array([0.5, -0.3]), 'sigma_T': 1.0},\n241\t        {'name': 'alternating_small',\n242\t         'beta': np.array([0., 0.2, -0.1]), 'tau': 0.5,\n243\t         'p': np.array([0.5, 0.33, 0.17]),\n244\t         'gamma': np.array([0.5, -0.3]), 'sigma_T': 1.0},\n245\t    ]\n246\t\n247\t    DIAG_VALS = [0.5, 0.6, 0.7, 0.8, 0.9]\n248\t    C0S = [(d, make_fixed_C0(d)) for d in DIAG_VALS]\n249\t    TOPOS = ['confounding', 'exposure', 'iv']\n250\t\n251\t    print(\"Exp-E: ASV Stability Across DGPs\")\n252\t    print(\"=\" * 70)\n253\t\n254\t    print(\"Precomputing IV sufficient statistics...\")\n255\t    iv_st = {}\n256\t    for dgp in DGPS:\n257\t        iv_st[dgp['name']] = precomp_iv(dgp['beta'], IV_PARAMS)\n258\t        t_iv = plim_iv(np.eye(K), iv_st[dgp['name']])\n259\t        print(f\"  {dgp['name']}: Wald(I) = {t_iv:.6f}\")\n260\t\n261\t    results = {t: {} for t in TOPOS}\n262\t    per_c0 = {t: {} for t in TOPOS}\n263\t\n264\t    for dgp in DGPS:\n265\t        nm = dgp['name']\n266\t        print(f\"\\nDGP: {nm}  beta={dgp['beta'].tolist()}\")\n267\t\n268\t        for topo in TOPOS:\n269\t            cells = []\n270\t            for dv, C0 in C0S:\n271\t                if topo == 'confounding':\n272\t                    c = compute_cell_confounding(dgp, C0)\n273\t                elif topo == 'exposure':\n274\t                    c = compute_cell_exposure(dgp, C0)\n275\t                else:\n276\t                    c = compute_cell_iv(iv_st[nm], C0)\n277\t                cells.append(c)\n278\t\n279\t            med = median_results(cells)\n280\t            results[topo][nm] = med\n281\t            per_c0[topo][nm] = [\n282\t                {**c, 'C0_diag': dv} for (dv, _), c in zip(C0S, cells)]\n283\t\n284\t            parts = [f\"10%={med['mag_asv_10pct']}\",\n285\t                     f\"50%={med['mag_asv_50pct']}\"]\n286\t            if 'sign_flip_asv' in med:\n287\t                parts.append(f\"sf={med['sign_flip_asv']}\")\n288\t            print(f\"  {topo:>12}: {', '.join(parts)}\")\n289\t\n290\t    # ── Ranking analysis ─────────────────────────────────────────────────────\n291\t    print(\"\\n\" + \"=\" * 70)\n292\t    print(\"Ranking (by delta*_10%, lower = more fragile)\")\n293\t    print(\"=\" * 70)\n294\t    rankings = {}\n295\t    for dgp in DGPS:\n296\t        nm = dgp['name']\n297\t        vals = [(t, results[t][nm]['mag_asv_10pct'] or float('inf'))\n298\t                for t in TOPOS]\n299\t        vals.sort(key=lambda x: x[1])\n300\t        rankings[nm] = [t for t, _ in vals]\n301\t        vstr = ' < '.join(f\"{t}({v:.4f})\" for t, v in vals)\n302\t        print(f\"  {nm}: {vstr}\")\n303\t\n304\t    stable = len(set(tuple(r) for r in rankings.values())) == 1\n305\t    stability_msg = (\"Rankings preserved across all 3 DGPs\" if stable\n306\t                     else \"Rankings vary across DGPs\")\n307\t    print(f\"\\nStable: {stable} -- {stability_msg}\")\n308\t\n309\t    sf_ss = results['exposure']['same_sign_medium'].get('sign_flip_asv')\n310\t    print(f\"Same-sign sign-flip: \"\n311\t          f\"{'None (confirmed -- no flip for same-sign beta)' if sf_ss is None else sf_ss}\")\n312\t\n313\t    # ── Save JSON ────────────────────────────────────────────────────────────\n314\t    output = {\n315\t        'dgp_configs': [\n316\t            {'name': d['name'], 'beta': d['beta'].tolist(),\n317\t             'tau': d['tau'], 'p': d['p'].tolist()}\n318\t            for d in DGPS],\n319\t        'C0_diag_values': DIAG_VALS,\n320\t        'results': results,\n321\t        'per_C0_results': per_c0,\n322\t        'rankings': rankings,\n323\t        'ranking_stable': stable,\n324\t        'ranking_stability': stability_msg,\n325\t    }\n326\t    json_path = 'artifacts/exp_e_asv_stability_results.json'\n327\t    with open(json_path, 'w') as f:\n328\t        json.dump(output, f, indent=2)\n329\t    print(f\"\\nSaved: {json_path}\")\n330\t\n331\t    # ── Save LaTeX table ─────────────────────────────────────────────────────\n332\t    labels = {\n333\t        'alternating_large': r'Alt.\\ large: $\\bm{\\beta}=[0,\\,1.0,\\,-0.5]$',\n334\t        'same_sign_medium':  r'Same-sign: $\\bm{\\beta}=[0,\\,0.5,\\,0.3]$',\n335\t        'alternating_small': r'Alt.\\ small: $\\bm{\\beta}=[0,\\,0.2,\\,-0.1]$',\n336\t    }\n337\t    tex = [\n338\t        r'\\begin{table}[t]',\n339\t        r'\\centering',\n340\t        r'\\caption{ASV stability across DGP configurations. '\n341\t        r'Each cell shows $\\delta^*$ at the 10\\% relative bias threshold '\n342\t        r'(median over 5 confusion matrices with diagonal '\n343\t        r'$\\in\\{0.5,0.6,0.7,0.8,0.9\\}$). '\n344\t        r'Lower $\\delta^*$ indicates greater fragility. '\n345\t        r'Confounding is consistently most robust; '\n346\t        r'for alternating-sign $\\bm{\\beta}$, '\n347\t        r'the ranking Exposure $<$ IV $<$ Confounding holds. '\n348\t        r\"``$\\infty$\\!\\!'' = threshold never reached within $\\delta$ range.}\",\n349\t        r'\\label{tab:asv_stability}',\n350\t        r'\\small',\n351\t        r'\\begin{tabular}{l ccc}',\n352\t        r'\\toprule',\n353\t        r' & \\multicolumn{3}{c}{Magnitude ASV $\\delta^*_{10\\%}$} \\\\',\n354\t        r'\\cmidrule(lr){2-4}',\n355\t        r'DGP Configuration & Confounding & Exposure & IV \\\\',\n356\t        r'\\midrule',\n357\t    ]\n358\t    for dgp in DGPS:\n359\t        nm = dgp['name']\n360\t        vals = []\n361\t        for t in TOPOS:\n362\t            v = results[t][nm]['mag_asv_10pct']\n363\t            vals.append(f'{v:.3f}' if v is not None else r'$\\infty$')\n364\t        tex.append(\n365\t            f'{labels[nm]} & {vals[0]} & {vals[1]} & {vals[2]} \\\\\\\\')\n366\t    tex += [r'\\bottomrule', r'\\end{tabular}', r'\\end{table}']\n367\t\n368\t    tex_path = 'artifacts/exp_e_asv_stability_table.tex'\n369\t    with open(tex_path, 'w') as f:\n370\t        f.write('\\n'.join(tex))\n371\t    print(f\"Saved: {tex_path}\")\n372\t\n373\t    print(f\"\\nTotal: {time.time() - t0:.1f}s\")\n374\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "196c208a-8a18-4a79-806e-aba5c26af254",
+            "isSidechain": true,
+            "promptId": "3f772f34-432b-4b73-8d6a-c54bf571a4ba",
+            "agentId": "a8ae618b752846327",
+            "type": "user",
+            "uuid": "4b06228b-40c0-41b4-8188-d68efda08eb3",
+            "sourceToolAssistantUUID": "196c208a-8a18-4a79-806e-aba5c26af254",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T12:18:06.916Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also look at the original results to understand the current output format."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b06228b-40c0-41b4-8188-d68efda08eb3",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbPdVLm7xBRujCupdQC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e256a1fe-670c-46c6-8336-e4b6b98147f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VY4RmrLjnkLStqTiMTUU4d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17377,
+                "cache_read_input_tokens": 35069,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17377,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T12:18:08.048Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013EqDp9RBAztUs29S7rw97B",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e256a1fe-670c-46c6-8336-e4b6b98147f1",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbPdVLm7xBRujCupdQC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e202d11-1a0c-4fa1-91c9-fc5c88c724ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VY4RmrLjnkLStqTiMTUU4d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17377,
+                "cache_read_input_tokens": 35069,
+                "output_tokens": 110,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17377
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 110,
+                    "cache_read_input_tokens": 35069,
+                    "cache_creation_input_tokens": 17377,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17377,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T12:18:08.061Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013EqDp9RBAztUs29S7rw97B",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"random_verification\": {\n3\t    \"confounding\": {\n4\t      \"K3\": {\n5\t        \"n_tested\": 10000,\n6\t        \"violations\": 8467,\n7\t        \"nan_curves\": 0,\n8\t        \"direction\": \"non-dec\",\n9\t        \"worst_violation_magnitude\": 0.010860102441185848,\n10\t        \"tau_true\": 1.9998241281545739\n11\t      },\n12\t      \"K5\": {\n13\t        \"n_tested\": 10000,\n14\t        \"violations\": 8064,\n15\t        \"nan_curves\": 0,\n16\t        \"direction\": \"non-dec\",\n17\t        \"worst_violation_magnitude\": 0.005829922779741814,\n18\t        \"tau_true\": 1.999928016747683\n19\t      },\n20\t      \"K7\": {\n21\t        \"n_tested\": 10000,\n22\t        \"violations\": 7890,\n23\t        \"nan_curves\": 0,\n24\t        \"direction\": \"non-dec\",\n25\t        \"worst_violation_magnitude\": 0.0034077583603342454,\n26\t        \"tau_true\": 2.0003841224302854\n27\t      }\n28\t    },\n29\t    \"mediation\": {\n30\t      \"K3\": {\n31\t        \"n_tested\": 10000,\n32\t        \"violations\": 8236,\n33\t        \"nan_curves\": 0,\n34\t        \"direction\": \"non-dec\",\n35\t        \"worst_violation_magnitude\": 0.012735806472077393,\n36\t        \"tau_true\": 0.5020006875627565\n37\t      },\n38\t      \"K5\": {\n39\t        \"n_tested\": 10000,\n40\t        \"violations\": 7903,\n41\t        \"nan_curves\": 0,\n42\t        \"direction\": \"non-dec\",\n43\t        \"worst_violation_magnitude\": 0.006562553155827211,\n44\t        \"tau_true\": 0.4991583937189051\n45\t      },\n46\t      \"K7\": {\n47\t        \"n_tested\": 10000,\n48\t        \"violations\": 7890,\n49\t        \"nan_curves\": 0,\n50\t        \"direction\": \"non-dec\",\n51\t        \"worst_violation_magnitude\": 0.0040338233163313975,\n52\t        \"tau_true\": 0.49928121967936034\n53\t      }\n54\t    },\n55\t    \"collider\": {\n56\t      \"K3\": {\n57\t        \"n_tested\": 10000,\n58\t        \"violations\": 8653,\n59\t        \"nan_curves\": 0,\n60\t        \"direction\": \"non-inc\",\n61\t        \"worst_violation_magnitude\": 0.004606655910260882,\n62\t        \"tau_true\": 1.0\n63\t      },\n64\t      \"K5\": {\n65\t        \"n_tested\": 10000,\n66\t        \"violations\": 7643,\n67\t        \"nan_curves\": 0,\n68\t        \"direction\": \"non-inc\",\n69\t        \"worst_violation_magnitude\": 0.0034285917273304545,\n70\t        \"tau_true\": 1.0\n71\t      },\n72\t      \"K7\": {\n73\t        \"n_tested\": 10000,\n74\t        \"violations\": 7555,\n75\t        \"nan_curves\": 0,\n76\t        \"direction\": \"non-inc\",\n77\t        \"worst_violation_magnitude\": 0.0024942343934484246,\n78\t        \"tau_true\": 1.0\n79\t      }\n80\t    },\n81\t    \"exposure\": {\n82\t      \"K3\": {\n83\t        \"n_tested\": 10000,\n84\t        \"violations\": 488,\n85\t        \"nan_curves\": 0,\n86\t        \"direction\": \"non-dec\",\n87\t        \"worst_violation_magnitude\": 0.055916435702870304,\n88\t        \"tau_true\": 0.9990860758671022\n89\t      },\n90\t      \"K5\": {\n91\t        \"n_tested\": 10000,\n92\t        \"violations\": 206,\n93\t        \"nan_curves\": 0,\n94\t        \"direction\": \"non-dec\",\n95\t        \"worst_violation_magnitude\": 0.0512139933848792,\n96\t        \"tau_true\": 0.9992701620548922\n97\t      },\n98\t      \"K7\": {\n99\t        \"n_tested\": 10000,\n100\t        \"violations\": 77,\n101\t        \"nan_curves\": 0,\n102\t        \"direction\": \"non-dec\",\n103\t        \"worst_violation_magnitude\": 0.022039262143256244,\n104\t        \"tau_true\": 1.001113712115238\n105\t      }\n106\t    },\n107\t    \"mbias\": {\n108\t      \"K3\": {\n109\t        \"n_tested\": 10000,\n110\t        \"violations\": 9734,\n111\t        \"nan_curves\": 0,\n112\t        \"direction\": \"non-inc\",\n113\t        \"worst_violation_magnitude\": 0.0015522285471285535,\n114\t        \"tau_true\": 1.0\n115\t      },\n116\t      \"K5\": {\n117\t        \"n_tested\": 10000,\n118\t        \"violations\": 7640,\n119\t        \"nan_curves\": 0,\n120\t        \"direction\": \"non-inc\",\n121\t        \"worst_violation_magnitude\": 0.0014365508946148076,\n122\t        \"tau_true\": 1.0\n123\t      },\n124\t      \"K7\": {\n125\t        \"n_tested\": 10000,\n126\t        \"violations\": 7513,\n127\t        \"nan_curves\": 0,\n128\t        \"direction\": \"non-inc\",\n129\t        \"worst_violation_magnitude\": 0.0008778900165735681,\n130\t        \"tau_true\": 1.0\n131\t      }\n132\t    },\n133\t    \"iv\": {\n134\t      \"K3\": {\n135\t        \"n_tested\": 10000,\n136\t        \"violations\": 7433,\n137\t        \"nan_curves\": 0,\n138\t        \"direction\": \"non-dec\",\n139\t        \"worst_violation_magnitude\": 15001640.04582617,\n140\t        \"tau_true\": 1.3328638533484616\n141\t      },\n142\t      \"K5\": {\n143\t        \"n_tested\": 10000,\n144\t        \"violations\": 6011,\n145\t        \"nan_curves\": 0,\n146\t        \"direction\": \"non-dec\",\n147\t        \"worst_violation_magnitude\": 4067672.819669802,\n148\t        \"tau_true\": 1.9217194857035584\n149\t      },\n150\t      \"K7\": {\n151\t        \"n_tested\": 10000,\n152\t        \"violations\": 5706,\n153\t        \"nan_curves\": 0,\n154\t        \"direction\": \"non-dec\",\n155\t        \"worst_violation_magnitude\": 12989086.745428896,\n156\t        \"tau_true\": 2.050984649343555\n157\t      }\n158\t    },\n159\t    \"frontdoor\": {\n160\t      \"K3\": {\n161\t        \"n_tested\": 10000,\n162\t        \"violations\": 8427,\n163\t        \"nan_curves\": 0,\n164\t        \"direction\": \"non-dec\",\n165\t        \"worst_violation_magnitude\": 0.01306574620731793,\n166\t        \"tau_true\": 0.5001636710565874\n167\t      },\n168\t      \"K5\": {\n169\t        \"n_tested\": 10000,\n170\t        \"violations\": 8079,\n171\t        \"nan_curves\": 0,\n172\t        \"direction\": \"non-dec\",\n173\t        \"worst_violation_magnitude\": 0.006287368037765306,\n174\t        \"tau_true\": 0.500028786373885\n175\t      },\n176\t      \"K7\": {\n177\t        \"n_tested\": 10000,\n178\t        \"violations\": 7899,\n179\t        \"nan_curves\": 0,\n180\t        \"direction\": \"non-dec\",\n181\t        \"worst_violation_magnitude\": 0.00365032316631253,\n182\t        \"tau_true\": 0.499894195097627\n183\t      }\n184\t    }\n185\t  },\n186\t  \"adversarial_search\": {\n187\t    \"confounding\": {\n188\t      \"K3\": {\n189\t        \"n_starts\": 500,\n190\t        \"best_objective\": -0.00981505115034094,\n191\t        \"found_counterexample\": true,\n192\t        \"delta_pairs\": [\n193\t          [\n194\t            0.0,\n195\t            0.2\n196\t          ],\n197\t          [\n198\t            0.0,\n199\t            0.5\n200\t          ],\n201\t          [\n202\t            0.1,\n203\t            0.3\n204\t          ],\n205\t          [\n206\t            0.2,\n207\t            0.5\n208\t          ],\n209\t          [\n210\t            0.3,\n211\t            0.7\n212\t          ]\n213\t        ]\n214\t      },\n215\t      \"K5\": {\n216\t        \"n_starts\": 500,\n217\t        \"best_objective\": -0.014781769787710543,\n218\t        \"found_counterexample\": true,\n219\t        \"delta_pairs\": [\n220\t          [\n221\t            0.0,\n222\t            0.2\n223\t          ],\n224\t          [\n225\t            0.0,\n226\t            0.5\n227\t          ],\n228\t          [\n229\t            0.1,\n230\t            0.3\n231\t          ],\n232\t          [\n233\t            0.2,\n234\t            0.5\n235\t          ],\n236\t          [\n237\t            0.3,\n238\t            0.7\n239\t          ]\n240\t        ]\n241\t      }\n242\t    },\n243\t    \"mediation\": {\n244\t      \"K3\": {\n245\t        \"n_starts\": 500,\n246\t        \"best_objective\": -0.010561123106817605,\n247\t        \"found_counterexample\": true,\n248\t        \"delta_pairs\": [\n249\t          [\n250\t            0.0,\n251\t            0.2\n252\t          ],\n253\t          [\n254\t            0.0,\n255\t            0.5\n256\t          ],\n257\t          [\n258\t            0.1,\n259\t            0.3\n260\t          ],\n261\t          [\n262\t            0.2,\n263\t            0.5\n264\t          ],\n265\t          [\n266\t            0.3,\n267\t            0.7\n268\t          ]\n269\t        ]\n270\t      },\n271\t      \"K5\": {\n272\t        \"n_starts\": 500,\n273\t        \"best_objective\": -0.010862658240636185,\n274\t        \"found_counterexample\": true,\n275\t        \"delta_pairs\": [\n276\t          [\n277\t            0.0,\n278\t            0.2\n279\t          ],\n280\t          [\n281\t            0.0,\n282\t            0.5\n283\t          ],\n284\t          [\n285\t            0.1,\n286\t            0.3\n287\t          ],\n288\t          [\n289\t            0.2,\n290\t            0.5\n291\t          ],\n292\t          [\n293\t            0.3,\n294\t            0.7\n295\t          ]\n296\t        ]\n297\t      }\n298\t    },\n299\t    \"collider\": {\n300\t      \"K3\": {\n301\t        \"n_starts\": 500,\n302\t        \"best_objective\": -0.00030283818433801376,\n303\t        \"found_counterexample\": true,\n304\t        \"delta_pairs\": [\n305\t          [\n306\t            0.0,\n307\t            0.2\n308\t          ],\n309\t          [\n310\t            0.0,\n311\t            0.5\n312\t          ],\n313\t          [\n314\t            0.1,\n315\t            0.3\n316\t          ],\n317\t          [\n318\t            0.2,\n319\t            0.5\n320\t          ],\n321\t          [\n322\t            0.3,\n323\t            0.7\n324\t          ]\n325\t        ]\n326\t      },\n327\t      \"K5\": {\n328\t        \"n_starts\": 500,\n329\t        \"best_objective\": -0.001117545184579056,\n330\t        \"found_counterexample\": true,\n331\t        \"delta_pairs\": [\n332\t          [\n333\t            0.0,\n334\t            0.2\n335\t          ],\n336\t          [\n337\t            0.0,\n338\t            0.5\n339\t          ],\n340\t          [\n341\t            0.1,\n342\t            0.3\n343\t          ],\n344\t          [\n345\t            0.2,\n346\t            0.5\n347\t          ],\n348\t          [\n349\t            0.3,\n350\t            0.7\n351\t          ]\n352\t        ]\n353\t      }\n354\t    },\n355\t    \"exposure\": {\n356\t      \"K3\": {\n357\t        \"n_starts\": 500,\n358\t        \"best_objective\": -0.003922567878966418,\n359\t        \"found_counterexample\": true,\n360\t        \"delta_pairs\": [\n361\t          [\n362\t            0.0,\n363\t            0.2\n364\t          ],\n365\t          [\n366\t            0.0,\n367\t            0.5\n368\t          ],\n369\t          [\n370\t            0.1,\n371\t            0.3\n372\t          ],\n373\t          [\n374\t            0.2,\n375\t            0.5\n376\t          ],\n377\t          [\n378\t            0.3,\n379\t            0.7\n380\t          ]\n381\t        ]\n382\t      },\n383\t      \"K5\": {\n384\t        \"n_starts\": 500,\n385\t        \"best_objective\": -0.005420375127682058,\n386\t        \"found_counterexample\": true,\n387\t        \"delta_pairs\": [\n388\t          [\n389\t            0.0,\n390\t            0.2\n391\t          ],\n392\t          [\n393\t            0.0,\n394\t            0.5\n395\t          ],\n396\t          [\n397\t            0.1,\n398\t            0.3\n399\t          ],\n400\t          [\n401\t            0.2,\n402\t            0.5\n403\t          ],\n404\t          [\n405\t            0.3,\n406\t            0.7\n407\t          ]\n408\t        ]\n409\t      }\n410\t    },\n411\t    \"mbias\": {\n412\t      \"K3\": {\n413\t        \"n_starts\": 500,\n414\t        \"best_objective\": -0.0017428177445399143,\n415\t        \"found_counterexample\": true,\n416\t        \"delta_pairs\": [\n417\t          [\n418\t            0.0,\n419\t            0.2\n420\t          ],\n421\t          [\n422\t            0.0,\n423\t            0.5\n424\t          ],\n425\t          [\n426\t            0.1,\n427\t            0.3\n428\t          ],\n429\t          [\n430\t            0.2,\n431\t            0.5\n432\t          ],\n433\t          [\n434\t            0.3,\n435\t            0.7\n436\t          ]\n437\t        ]\n438\t      },\n439\t      \"K5\": {\n440\t        \"n_starts\": 500,\n441\t        \"best_objective\": -0.0019441470428496039,\n442\t        \"found_counterexample\": true,\n443\t        \"delta_pairs\": [\n444\t          [\n445\t            0.0,\n446\t            0.2\n447\t          ],\n448\t          [\n449\t            0.0,\n450\t            0.5\n451\t          ],\n452\t          [\n453\t            0.1,\n454\t            0.3\n455\t          ],\n456\t          [\n457\t            0.2,\n458\t            0.5\n459\t          ],\n460\t          [\n461\t            0.3,\n462\t            0.7\n463\t          ]\n464\t        ]\n465\t      }\n466\t    },\n467\t    \"iv\": {\n468\t      \"K3\": {\n469\t        \"n_starts\": 500,\n470\t        \"best_objective\": 2.6081713678869703e-29,\n471\t        \"found_counterexample\": false,\n472\t        \"delta_pairs\": [\n473\t          [\n474\t            0.0,\n475\t            0.2\n476\t          ],\n477\t          [\n478\t            0.0,\n479\t            0.5\n480\t          ],\n481\t          [\n482\t            0.1,\n483\t            0.3\n484\t          ],\n485\t          [\n486\t            0.2,\n487\t            0.5\n488\t          ],\n489\t          [\n490\t            0.3,\n491\t            0.7\n492\t          ]\n493\t        ]\n494\t      },\n495\t      \"K5\": {\n496\t        \"n_starts\": 500,\n497\t        \"best_objective\": -27.515209774113806,\n498\t        \"found_counterexample\": true,\n499\t        \"delta_pairs\": [\n500\t          [\n501\t            0.0,\n502\t            0.2\n503\t          ],\n504\t          [\n505\t            0.0,\n506\t            0.5\n507\t          ],\n508\t          [\n509\t            0.1,\n510\t            0.3\n511\t          ],\n512\t          [\n513\t            0.2,\n514\t            0.5\n515\t          ],\n516\t          [\n517\t            0.3,\n518\t            0.7\n519\t          ]\n520\t        ]\n521\t      }\n522\t    },\n523\t    \"frontdoor\": {\n524\t      \"K3\": {\n525\t        \"n_starts\": 500,\n526\t        \"best_objective\": -0.0060568064726131965,\n527\t        \"found_counterexample\": true,\n528\t        \"delta_pairs\": [\n529\t          [\n530\t            0.0,\n531\t            0.2\n532\t          ],\n533\t          [\n534\t            0.0,\n535\t            0.5\n536\t          ],\n537\t          [\n538\t            0.1,\n539\t            0.3\n540\t          ],\n541\t          [\n542\t            0.2,\n543\t            0.5\n544\t          ],\n545\t          [\n546\t            0.3,\n547\t            0.7\n548\t          ]\n549\t        ]\n550\t      },\n551\t      \"K5\": {\n552\t        \"n_starts\": 500,\n553\t        \"best_objective\": -0.012339072616903042,\n554\t        \"found_counterexample\": true,\n555\t        \"delta_pairs\": [\n556\t          [\n557\t            0.0,\n558\t            0.2\n559\t          ],\n560\t          [\n561\t            0.0,\n562\t            0.5\n563\t          ],\n564\t          [\n565\t            0.1,\n566\t            0.3\n567\t          ],\n568\t          [\n569\t            0.2,\n570\t            0.5\n571\t          ],\n572\t          [\n573\t            0.3,\n574\t            0.7\n575\t          ]\n576\t        ]\n577\t      }\n578\t    }\n579\t  },\n580\t  \"summary\": \"141514 violations across 210,000 random tests + 13 counterexamples found by adversarial search\"\n581\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e202d11-1a0c-4fa1-91c9-fc5c88c724ca",
+            "isSidechain": true,
+            "promptId": "3f772f34-432b-4b73-8d6a-c54bf571a4ba",
+            "agentId": "a8ae618b752846327",
+            "type": "user",
+            "uuid": "7d651cf0-3e76-4dae-9916-577ad925f7ea",
+            "sourceToolAssistantUUID": "9e202d11-1a0c-4fa1-91c9-fc5c88c724ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T12:18:12.349Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a thorough understanding of the original code, its DGP parameter structure, and the output format. The original has massive violations (141,514 across 210,000 tests) and found 13 adversarial counterexamples -- these are almost certainly Monte Carlo noise artifacts. Let me write the v2 script with analytic plim computation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d651cf0-3e76-4dae-9916-577ad925f7ea",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbPwjwfnEkeUd1jR7xX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "21f8a234-cf14-436f-8729-2722ea56e5b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013MmZimNGrNdW9vCf9xnp1C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5254,
+                "cache_read_input_tokens": 52446,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5254,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T12:21:56.643Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JrGKPa9eGe7vT97FKKYzf4",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify_v2.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"\nExp-D v2: Conjecture 1 verification with ANALYTIC plim (zero sampling noise).\n\nThe original exp_d_conjecture_verify.py computed plim via sufficient statistics\nestimated from N=5M Monte Carlo simulation, introducing O(1/sqrt(N)) ~ 0.0004\nsampling noise. At MONO_TOL=1e-8, this generated ~141k false monotonicity\nviolations.\n\nThis v2 computes ALL sufficient statistics analytically (closed-form for\nconfounding/mediation/exposure, Gauss-Hermite quadrature for collider/mbias/\nfrontdoor/iv), eliminating sampling noise entirely.\n\nTopology-specific analytics:\n  - confounding: fully analytic (categorical A, linear T and Y)\n  - exposure:    fully analytic (categorical A, linear Y)\n  - mediation:   fully analytic (binary T, softmax A|T, linear Y)\n  - collider:    2D Gauss-Hermite over (T, eps_Y), both N(0,1)\n  - mbias:       2D Gauss-Hermite over (U1, U2), both N(0,1)\n  - frontdoor:   1D Gauss-Hermite over T ~ N(0, alpha_U^2 + 1)\n  - iv:          1D Gauss-Hermite over U ~ N(0,1), with binary Z\n\nOutput: exp_d_conjecture_results_v2.json (same structure as v1)\n\"\"\"\n\nimport numpy as np\nimport json\nimport time\nimport sys\nimport os\nfrom scipy.special import roots_hermite, softmax as scipy_softmax\nfrom scipy.optimize import minimize as scipy_minimize\n\n# ====================================================================\n# Gauss-Hermite quadrature setup\n# ====================================================================\nN_GH = 100  # points per dimension -- machine precision for smooth integrands\n\n# roots_hermite: physicist's convention, weight = exp(-x^2)\n# integral f(x) exp(-x^2) dx ~ sum w_i f(x_i)\n# For N(0,1) expectation: E[f(X)] = (1/sqrt(pi)) sum w_i f(x_i * sqrt(2))\n_gh_x_raw, _gh_w_raw = roots_hermite(N_GH)\nGH_X = _gh_x_raw * np.sqrt(2)   # rescaled nodes for N(0,1)\nGH_W = _gh_w_raw / np.sqrt(np.pi)  # rescaled weights: sum w_i f(x_i) = E_{N(0,1)}[f]\n\n# Verify: E[1] should be 1.0, E[X^2] should be 1.0\nassert abs(GH_W.sum() - 1.0) < 1e-12, f\"GH weights sum to {GH_W.sum()}, expected 1.0\"\nassert abs((GH_W * GH_X**2).sum() - 1.0) < 1e-10, \"GH E[X^2] != 1.0\"\n\n# 2D quadrature: outer product of 1D grids\nGH_X2_a, GH_X2_b = np.meshgrid(GH_X, GH_X, indexing='ij')  # (N_GH, N_GH)\nGH_W2 = np.outer(GH_W, GH_W)  # (N_GH, N_GH)\nGH_X2_a_flat = GH_X2_a.ravel()\nGH_X2_b_flat = GH_X2_b.ravel()\nGH_W2_flat = GH_W2.ravel()\n\n# ====================================================================\n# Configuration\n# ====================================================================\nK_VALUES = [3, 5, 7]\nK_ADVERSARIAL = [3, 5]\nN_RANDOM = 10_000\nDELTA_STEP = 0.01\nSEED = 12345\nMONO_TOL = 1e-12  # much tighter than v1's 1e-8 since we have zero sampling noise\n\nALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\n             'mbias', 'iv', 'frontdoor']\nTOPO_IDX = {t: i for i, t in enumerate(ALL_TOPOS)}\nNON_DECREASING = {'confounding', 'mediation', 'exposure', 'frontdoor', 'iv'}\nNON_INCREASING = {'collider', 'mbias'}\n\nADV_DELTA_PAIRS = [(0.0, 0.2), (0.0, 0.5), (0.1, 0.3), (0.2, 0.5), (0.3, 0.7)]\nADV_N_STARTS = 100\n\nOUT_DIR = os.path.dirname(os.path.abspath(__file__))\n\n# ====================================================================\n# DGP Parameter Pools (identical to v1)\n# ====================================================================\n_ALPHA_POOL = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\n_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n_BETA_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_DELTA_POOL = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\n_DT_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_DY_POOL = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\n_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\n_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\n_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\n_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\n_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\n\n\ndef make_p_A(K):\n    if K == 3:\n        return np.array([0.40, 0.35, 0.25])\n    raw = np.array([1.0 / i for i in range(1, K + 1)])\n    return raw / raw.sum()\n\n\ndef make_all_params(K):\n    p_A = make_p_A(K)\n    return dict(\n        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K - 1]),\n                         beta_A=np.array(_BETA_A_POOL[:K - 1]), beta_T=2.0, sigma_T=1.0),\n        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\n                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\n                      dY=np.array(_DY_POOL[:K])),\n        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\n        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\n                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\n        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\n                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\n                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n    )\n\n\n# ====================================================================\n# Stable softmax utility\n# ====================================================================\ndef _softmax(logits):\n    \"\"\"Softmax along last axis, numerically stable.\"\"\"\n    e = np.exp(logits - np.max(logits, axis=-1, keepdims=True))\n    return e / np.sum(e, axis=-1, keepdims=True)\n\n\n# ====================================================================\n# Analytic Sufficient Statistics classes\n# ====================================================================\nclass AnalyticSuffStats:\n    \"\"\"Population moments for OLS topologies (with or without T).\"\"\"\n    def __init__(self, K, has_T=True):\n        self.K = K\n        self.has_T = has_T\n        self.p_A = None   # K-vector: P(A=k)\n        self.E_Y = None   # scalar\n        self.E_YD = None  # K-vector: E[Y * 1(A=k)]\n        if has_T:\n            self.E_T = None   # scalar\n            self.E_T2 = None  # scalar: E[T^2]\n            self.E_TY = None  # scalar: E[T*Y]\n            self.E_TD = None  # K-vector: E[T * 1(A=k)]\n\n\nclass AnalyticIVSuffStats:\n    \"\"\"Population moments for IV topology (Wald estimator).\"\"\"\n    def __init__(self, K):\n        self.K = K\n        self.RF = None   # E[Y|Z=1] - E[Y|Z=0]\n        self.FS = None   # K-vector: P(A=k|Z=1) - P(A=k|Z=0)\n\n\n# ====================================================================\n# Topology 1: Confounding -- FULLY ANALYTIC\n# ====================================================================\n# DGP: A ~ Cat(p_A), T = sum_{j=1}^{K-1} alpha_j D_j + eps_T,\n#       Y = beta_T * T + sum_{j=1}^{K-1} beta_A_j D_j + eps_Y\n# D_j = 1(A=j+1) for j=0,...,K-2 (ref category A=0)\n# Wait -- looking at original code more carefully:\n#   D[:, j] = (A == j + 1) for j in range(K-1)\n# So D_j = 1(A = j+1), j=0,...,K-2\n# T = D @ alpha + eps_T = sum_{j=0}^{K-2} alpha_j * 1(A=j+1) + eps_T\n# Y = beta_T * T + D @ beta_A + eps_Y = beta_T * T + sum_{j=0}^{K-2} beta_A_j * 1(A=j+1) + eps_Y\n#\n# For the plim regression Y ~ 1 + T + D*_1 + ... + D*_{K-1}:\n# D*_j = 1(A* = j) for j=1,...,K-1 (ref category A*=0)\n# The sufficient stats use A (not A*), and the C matrix maps A->A*.\n# Actually looking at the SuffStats class: DA[:, k] = (A == k) for k=0,...,K-1\n# So p_A[k] = P(A=k), E_TD[k] = E[T * 1(A=k)], E_YD[k] = E[Y * 1(A=k)]\n\ndef compute_confounding_ss(K, p):\n    \"\"\"Analytic sufficient stats for confounding topology.\"\"\"\n    ss = AnalyticSuffStats(K, has_T=True)\n    p_A = p['p_A']       # K-vector\n    alpha = p['alpha']    # (K-1)-vector: alpha_0,...,alpha_{K-2}\n    beta_A = p['beta_A']  # (K-1)-vector\n    beta_T = p['beta_T']\n    sigma_T = p['sigma_T']\n\n    ss.p_A = p_A.copy()\n\n    # E[T] = sum_{j=0}^{K-2} alpha_j * P(A=j+1)\n    # (since eps_T has mean 0)\n    ss.E_T = sum(alpha[j] * p_A[j + 1] for j in range(K - 1))\n\n    # E[T^2] = E[(sum alpha_j D_j)^2] + sigma_T^2\n    # = sum_j alpha_j^2 P(A=j+1) + sigma_T^2\n    # (since D_j D_k = 0 for j!=k, D_j^2 = D_j)\n    ss.E_T2 = sum(alpha[j]**2 * p_A[j + 1] for j in range(K - 1)) + sigma_T**2\n\n    # E[T * 1(A=k)]:\n    # For k=0: E[(sum alpha_j D_j + eps_T) * 1(A=0)]\n    #        = sum_j alpha_j E[D_j * 1(A=0)] + E[eps_T * 1(A=0)]\n    #        = 0 + 0 = 0  (since D_j=1(A=j+1) and A=0 => D_j=0, and eps_T indep of A)\n    # Actually eps_T is independent of A, so E[eps_T * 1(A=k)] = 0 * P(A=k) = 0\n    # For k>=1: E[(sum_j alpha_j D_j + eps_T) * 1(A=k)]\n    #         = alpha_{k-1} * P(A=k) + 0\n    ss.E_TD = np.zeros(K)\n    for k in range(1, K):\n        ss.E_TD[k] = alpha[k - 1] * p_A[k]\n\n    # E[Y] = beta_T * E[T] + sum_{j=0}^{K-2} beta_A_j * P(A=j+1)\n    ss.E_Y = beta_T * ss.E_T + sum(beta_A[j] * p_A[j + 1] for j in range(K - 1))\n\n    # E[Y * 1(A=k)] = beta_T * E[T * 1(A=k)] + sum_j beta_A_j * E[D_j * 1(A=k)] + E[eps_Y * 1(A=k)]\n    # E[D_j * 1(A=k)] = P(A=j+1, A=k) = P(A=k) if j+1=k else 0\n    # E[eps_Y * 1(A=k)] = 0\n    # So for k=0: E[Y * 1(A=0)] = beta_T * 0 + 0 + 0 = 0 ... wait that's wrong\n    # Actually: Y = beta_T * T + sum beta_A_j D_j + eps_Y\n    # E[Y * 1(A=0)] = beta_T * E[T * 1(A=0)] + sum_j beta_A_j * E[D_j * 1(A=0)] + E[eps_Y * 1(A=0)]\n    #               = beta_T * 0 + 0 + 0 = 0\n    # Hmm, that gives E_Y = sum_k E[Y * 1(A=k)] = 0 + sum_{k>=1} stuff, but we need E_Y correctly.\n    # Let me reconsider: the intercept in the Y equation.\n    # gen_confounding: Y = beta_T * T + D @ beta_A + eps_Y\n    # There's no explicit intercept in Y. So E[Y | A=0] = beta_T * E[T | A=0] + 0\n    # E[T | A=0] = 0 (since all alpha terms vanish) + E[eps_T] = 0\n    # So E[Y * 1(A=0)] = E[Y | A=0] * P(A=0) = 0 * p_A[0] = 0\n    # That seems correct.\n\n    # For k >= 1:\n    # E[Y * 1(A=k)] = beta_T * E[T * 1(A=k)] + beta_A[k-1] * P(A=k)\n    ss.E_YD = np.zeros(K)\n    for k in range(1, K):\n        ss.E_YD[k] = beta_T * ss.E_TD[k] + beta_A[k - 1] * p_A[k]\n    # k=0: already 0\n\n    # E[TY] = E[T * (beta_T * T + sum beta_A_j D_j + eps_Y)]\n    #        = beta_T * E[T^2] + sum_j beta_A_j * E[T * D_j] + E[T * eps_Y]\n    #        = beta_T * E[T^2] + sum_j beta_A_j * E[T * 1(A=j+1)] + 0\n    ss.E_TY = beta_T * ss.E_T2 + sum(beta_A[j] * ss.E_TD[j + 1] for j in range(K - 1))\n\n    return ss\n\n\n# ====================================================================\n# Topology 2: Exposure -- FULLY ANALYTIC\n# ====================================================================\n# DGP: A ~ Cat(p_A), Y = beta[0] + D @ beta[1:] + eps_Y\n# No T variable.\n\ndef compute_exposure_ss(K, p):\n    \"\"\"Analytic sufficient stats for exposure topology.\"\"\"\n    ss = AnalyticSuffStats(K, has_T=False)\n    p_A = p['p_A']\n    beta = p['beta']  # K-vector: beta[0] is intercept\n\n    ss.p_A = p_A.copy()\n\n    # E[Y] = beta[0] + sum_{j=1}^{K-1} beta[j] * P(A=j)\n    ss.E_Y = beta[0] + sum(beta[j] * p_A[j] for j in range(1, K))\n\n    # E[Y * 1(A=k)] = E[(beta[0] + sum_j beta[j] D_j + eps_Y) * 1(A=k)]\n    # = beta[0] * P(A=k) + beta[k] * P(A=k) (if k>=1) + 0\n    # For k=0: = beta[0] * P(A=0) + 0 = beta[0] * p_A[0]\n    ss.E_YD = np.zeros(K)\n    ss.E_YD[0] = beta[0] * p_A[0]\n    for k in range(1, K):\n        ss.E_YD[k] = (beta[0] + beta[k]) * p_A[k]\n\n    return ss\n\n\n# ====================================================================\n# Topology 3: Mediation -- FULLY ANALYTIC (T is binary)\n# ====================================================================\n# DGP: T ~ Bern(0.5), A | T ~ Cat(softmax(gamma + delta * T))\n#       Y = beta[0] + D @ beta[1:] + tau * T + eps_Y\n# D_j = 1(A = j+1) for j=0,...,K-2\n\ndef compute_mediation_ss(K, p):\n    \"\"\"Analytic sufficient stats for mediation topology.\"\"\"\n    ss = AnalyticSuffStats(K, has_T=True)\n    tau = p['tau']\n    gamma = p['gamma']  # K-vector\n    delta_coef = p['delta']   # K-vector\n    beta = p['beta']    # K-vector\n\n    # P(A=k | T=t) = softmax(gamma + delta * t)[k]\n    probs_T0 = _softmax(gamma)          # K-vector\n    probs_T1 = _softmax(gamma + delta_coef)  # K-vector\n\n    # P(A=k) = 0.5 * P(A=k|T=0) + 0.5 * P(A=k|T=1)\n    ss.p_A = 0.5 * probs_T0 + 0.5 * probs_T1\n\n    # E[T] = 0.5, E[T^2] = 0.5 (since T is Bernoulli(0.5))\n    ss.E_T = 0.5\n    ss.E_T2 = 0.5\n\n    # E[T * 1(A=k)] = E[T * 1(A=k)]\n    # = 0.5 * 0 * P(A=k|T=0) + 0.5 * 1 * P(A=k|T=1)\n    # = 0.5 * probs_T1[k]\n    ss.E_TD = 0.5 * probs_T1\n\n    # E[Y] = beta[0] + sum_{k=1}^{K-1} beta[k] * P(A=k) + tau * E[T]\n    # Wait, gen_mediation:\n    #   Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + eps_Y\n    # D_j = 1(A=j+1), so D @ beta[1:] = sum_{j=0}^{K-2} beta[j+1] * 1(A=j+1)\n    # = sum_{k=1}^{K-1} beta[k] * 1(A=k)\n    ss.E_Y = beta[0] + sum(beta[k] * ss.p_A[k] for k in range(1, K)) + tau * 0.5\n\n    # E[Y * 1(A=k)] for each k:\n    # Y = beta[0] + sum_j beta[j+1]*D_j + tau*T + eps_Y\n    # E[Y * 1(A=k)] = E[(beta[0] + beta[k]*1(k>=1) + tau*T + eps_Y) * 1(A=k)]\n    # = (beta[0] + beta[k]*(k>=1)) * P(A=k) + tau * E[T * 1(A=k)]\n\n    ss.E_YD = np.zeros(K)\n    for k in range(K):\n        beta_k = beta[k] if k >= 1 else 0.0\n        ss.E_YD[k] = (beta[0] + beta_k) * ss.p_A[k] + tau * ss.E_TD[k]\n\n    # E[TY] = E[T * (beta[0] + sum beta[k]*1(A=k) + tau*T + eps_Y)]\n    # = beta[0] * E[T] + sum_{k=1}^{K-1} beta[k] * E[T * 1(A=k)] + tau * E[T^2] + 0\n    ss.E_TY = beta[0] * 0.5 + sum(beta[k] * ss.E_TD[k] for k in range(1, K)) + tau * 0.5\n\n    return ss\n\n\n# ====================================================================\n# Topology 4: Collider -- 2D GAUSS-HERMITE\n# ====================================================================\n# DGP: T ~ N(0,1), eps_Y ~ N(0,1) independent\n#       Y = tau * T + eps_Y\n#       A | T, Y ~ Cat(softmax(g + dT * T + dY * Y))\n#\n# Reparametrize: let Z1=T, Z2=eps_Y, both N(0,1) independent\n# Y = tau * Z1 + Z2\n# A | Z1, Z2 ~ Cat(softmax(g + dT * Z1 + dY * (tau * Z1 + Z2)))\n#            = Cat(softmax(g + (dT + tau * dY) * Z1 + dY * Z2))\n\ndef compute_collider_ss(K, p):\n    \"\"\"Analytic sufficient stats for collider via 2D GH quadrature.\"\"\"\n    ss = AnalyticSuffStats(K, has_T=True)\n    tau = p['tau']\n    g = p['g']      # K-vector\n    dT = p['dT']    # K-vector\n    dY = p['dY']    # K-vector\n\n    # Quadrature over (Z1, Z2) = (T, eps_Y), both N(0,1)\n    # Logits for each quadrature point: g + (dT + tau*dY) * Z1 + dY * Z2\n    coeff1 = dT + tau * dY   # K-vector: coefficient of Z1\n    coeff2 = dY               # K-vector: coefficient of Z2\n\n    # Compute softmax probabilities at each quadrature point\n    # logits shape: (N_GH^2, K)\n    logits = (g[None, :]\n              + coeff1[None, :] * GH_X2_a_flat[:, None]\n              + coeff2[None, :] * GH_X2_b_flat[:, None])\n    probs = _softmax(logits)  # (N_GH^2, K)\n\n    # T = Z1, Y = tau * Z1 + Z2\n    T_vals = GH_X2_a_flat\n    Y_vals = tau * GH_X2_a_flat + GH_X2_b_flat\n\n    # Weighted expectations\n    w = GH_W2_flat  # (N_GH^2,)\n\n    ss.p_A = (w[:, None] * probs).sum(axis=0)\n    ss.E_TD = (w[:, None] * T_vals[:, None] * probs).sum(axis=0)\n    ss.E_YD = (w[:, None] * Y_vals[:, None] * probs).sum(axis=0)\n\n    # Moments of T and Y (independent of A, can compute analytically):\n    ss.E_T = 0.0\n    ss.E_T2 = 1.0\n    ss.E_Y = 0.0  # E[tau*T + eps] = 0\n    ss.E_TY = tau  # E[T(tau*T + eps)] = tau * E[T^2] = tau\n\n    return ss\n\n\n# ====================================================================\n# Topology 5: M-bias -- 2D GAUSS-HERMITE\n# ====================================================================\n# DGP: U1, U2 ~ N(0,1) independent\n#       T = delta_coef * U1 + eta, eta ~ N(0,1)\n#       Y = tau * T + lam * U2 + eps_Y, eps_Y ~ N(0,1)\n#       A | U1, U2 ~ Cat(softmax(g + a1 * U1 + a2 * U2))\n#\n# Note: T and Y depend on (U1, U2, eta, eps_Y) but A only depends on (U1, U2).\n# Since eta, eps_Y are independent of (U1, U2, A):\n#   E[T * 1(A=k)] = delta_coef * E[U1 * 1(A=k)] + E[eta * 1(A=k)]\n#                  = delta_coef * E[U1 * 1(A=k)]  (eta indep of A)\n#\n#   E[Y * 1(A=k)] = tau * E[T * 1(A=k)] + lam * E[U2 * 1(A=k)] + 0\n#\n# So we need 2D GH over (U1, U2) to compute:\n#   P(A=k), E[U1 * 1(A=k)], E[U2 * 1(A=k)]\n\ndef compute_mbias_ss(K, p):\n    \"\"\"Analytic sufficient stats for M-bias via 2D GH quadrature.\"\"\"\n    ss = AnalyticSuffStats(K, has_T=True)\n    tau = p['tau']\n    delta_coef = p['delta_coef']\n    lam = p['lam']\n    g = p['g']\n    a1 = p['a1']\n    a2 = p['a2']\n\n    # Logits: g + a1 * U1 + a2 * U2\n    logits = (g[None, :]\n              + a1[None, :] * GH_X2_a_flat[:, None]\n              + a2[None, :] * GH_X2_b_flat[:, None])\n    probs = _softmax(logits)  # (N_GH^2, K)\n\n    w = GH_W2_flat\n    U1_vals = GH_X2_a_flat\n    U2_vals = GH_X2_b_flat\n\n    ss.p_A = (w[:, None] * probs).sum(axis=0)\n    E_U1_Dk = (w[:, None] * U1_vals[:, None] * probs).sum(axis=0)  # E[U1 * 1(A=k)]\n    E_U2_Dk = (w[:, None] * U2_vals[:, None] * probs).sum(axis=0)  # E[U2 * 1(A=k)]\n\n    # E[T * 1(A=k)] = delta_coef * E[U1 * 1(A=k)]\n    ss.E_TD = delta_coef * E_U1_Dk\n\n    # E[Y * 1(A=k)] = tau * E[T * 1(A=k)] + lam * E[U2 * 1(A=k)]\n    ss.E_YD = tau * ss.E_TD + lam * E_U2_Dk\n\n    # Marginal moments:\n    # E[T] = 0 (since E[U1]=0, E[eta]=0)\n    # E[T^2] = delta_coef^2 * E[U1^2] + E[eta^2] = delta_coef^2 + 1\n    # E[Y] = 0\n    # E[TY] = tau * E[T^2] + lam * E[T*U2]\n    # E[T*U2] = E[(delta_coef * U1 + eta) * U2] = 0 (all independent)\n    ss.E_T = 0.0\n    ss.E_T2 = delta_coef**2 + 1.0\n    ss.E_Y = 0.0\n    ss.E_TY = tau * ss.E_T2\n\n    return ss\n\n\n# ====================================================================\n# Topology 6: Front-door -- 1D GAUSS-HERMITE\n# ====================================================================\n# DGP: U ~ N(0,1), T = alpha_U * U + eta (eta ~ N(0,1))\n#       M | T ~ Cat(softmax(gamma + delta * T))  -- M is the \"annotator\" variable\n#       Y = D_M @ beta[1:] + lam_U * U + eps_Y\n# where D_M[j] = 1(M=j+1), j=0,...,K-2\n#\n# The regression is Y ~ 1 + T + D*_1 + ... + D*_{K-1}\n# (M plays the role of A in the plim computation)\n#\n# T ~ N(0, sigma_T^2) where sigma_T^2 = alpha_U^2 + 1\n# We do 1D GH over T (after rescaling for its variance).\n#\n# For the moments involving U:\n# E[U | T] = Cov(U,T)/Var(T) * T = alpha_U / (alpha_U^2 + 1) * T\n# (since Cov(U,T) = alpha_U, Var(T) = alpha_U^2 + 1)\n#\n# P(M=k) = E_T[softmax(gamma + delta * T)[k]]\n# E[T * 1(M=k)] = E_T[T * softmax(gamma + delta * T)[k]]\n# E[Y * 1(M=k)] = E[E[Y | T, M] * 1(M=k)]\n#               = E_T[ E[Y|T,M=k] * softmax(gamma+delta*T)[k] ]\n# E[Y|T,M=k] = beta[k] (if k>=1, else 0 for the intercept part from D_M)\n#              + lam_U * E[U|T] + 0\n# Wait, let me reconsider:\n# Y = sum_{j=0}^{K-2} beta[j+1] * 1(M=j+1) + lam_U * U + eps_Y\n# (from gen_frontdoor: Y = D @ beta[1:] + lam_U * U + eps_Y,\n#  where beta = p['beta'] and D[j] = 1(M=j+1))\n# There's no intercept beta[0] in the Y equation in gen_frontdoor!\n# Let me re-check: gen_frontdoor has Y = D @ p['beta'][1:] + p['lam_U'] * U + eps_Y\n# So Y = sum_{k=1}^{K-1} beta[k] * 1(M=k) + lam_U * U + eps_Y\n#\n# E[Y * 1(M=k)] = beta[k] * P(M=k) (for k>=1) + lam_U * E[U * 1(M=k)] + 0\n# For k=0: E[Y * 1(M=0)] = 0 + lam_U * E[U * 1(M=0)] + 0\n\ndef compute_frontdoor_ss(K, p):\n    \"\"\"Analytic sufficient stats for front-door via 1D GH quadrature.\"\"\"\n    ss = AnalyticSuffStats(K, has_T=True)\n    alpha_U = p['alpha_U']\n    lam_U = p['lam_U']\n    gamma = p['gamma']\n    delta_coef = p['delta']\n    beta = p['beta']\n\n    sigma_T2 = alpha_U**2 + 1.0\n    sigma_T = np.sqrt(sigma_T2)\n\n    # 1D GH over T ~ N(0, sigma_T^2): rescale nodes\n    T_nodes = GH_X * sigma_T  # (N_GH,)\n    T_weights = GH_W          # (N_GH,) -- already normalized for E_{N(0,1)}\n\n    # softmax(gamma + delta * T) at each T node\n    # logits shape: (N_GH, K)\n    logits = gamma[None, :] + delta_coef[None, :] * T_nodes[:, None]\n    probs = _softmax(logits)  # (N_GH, K)\n\n    # P(M=k) = E_T[softmax(gamma + delta * T)[k]]\n    ss.p_A = (T_weights[:, None] * probs).sum(axis=0)\n\n    # E[T * 1(M=k)] = E_T[T * softmax(gamma + delta * T)[k]]\n    ss.E_TD = (T_weights[:, None] * T_nodes[:, None] * probs).sum(axis=0)\n\n    # E[U * 1(M=k)] via the law of iterated expectations:\n    # E[U * 1(M=k)] = E_T[ E[U|T] * P(M=k|T) ]\n    # E[U|T] = alpha_U / sigma_T^2 * T\n    E_U_given_T = alpha_U / sigma_T2 * T_nodes  # (N_GH,)\n    E_U_Mk = (T_weights[:, None] * E_U_given_T[:, None] * probs).sum(axis=0)\n\n    # E[Y * 1(M=k)] = beta[k] * P(M=k) (for k>=1) + lam_U * E[U * 1(M=k)]\n    ss.E_YD = np.zeros(K)\n    for k in range(K):\n        beta_k = beta[k] if k >= 1 else 0.0\n        ss.E_YD[k] = beta_k * ss.p_A[k] + lam_U * E_U_Mk[k]\n\n    # Marginal moments:\n    # E[T] = 0\n    # E[T^2] = sigma_T^2\n    # E[Y] = sum_{k=1}^{K-1} beta[k] * P(M=k) + lam_U * E[U] + 0\n    #       = sum_{k=1}^{K-1} beta[k] * P(M=k)\n    ss.E_T = 0.0\n    ss.E_T2 = sigma_T2\n    ss.E_Y = sum(beta[k] * ss.p_A[k] for k in range(1, K))\n\n    # E[TY] = sum_{k=1}^{K-1} beta[k] * E[T * 1(M=k)] + lam_U * E[T*U] + E[T*eps_Y]\n    # E[T*U] = Cov(T,U) = alpha_U (since both mean 0)\n    # E[T*eps_Y] = 0\n    ss.E_TY = sum(beta[k] * ss.E_TD[k] for k in range(1, K)) + lam_U * alpha_U\n\n    return ss\n\n\n# ====================================================================\n# Topology 7: IV -- 1D GAUSS-HERMITE over U, binary Z\n# ====================================================================\n# DGP: Z ~ Bern(0.5), U ~ N(0,1), eps_Y ~ N(0,1)\n#       A | Z, U ~ Cat(softmax(g + dZ * Z + dU * U))\n#       Y = sum_{k=1}^{K-1} beta[k] * 1(A=k) + lam * U + eps_Y\n#\n# Wald estimator: tau_hat = RF / FS*[1]\n# RF = E[Y|Z=1] - E[Y|Z=0]\n# FS[k] = P(A=k|Z=1) - P(A=k|Z=0)\n#\n# P(A=k|Z=z) = E_U[softmax(g + dZ * z + dU * U)[k]]\n# E[Y|Z=z] = sum_{k=1}^{K-1} beta[k] * P(A=k|Z=z) + lam * E[U] + E[eps]\n#           = sum_{k=1}^{K-1} beta[k] * P(A=k|Z=z)\n\ndef compute_iv_ss(K, p):\n    \"\"\"Analytic sufficient stats for IV via 1D GH quadrature.\"\"\"\n    ivss = AnalyticIVSuffStats(K)\n    g = p['g']\n    dZ = p['dZ']\n    dU = p['dU']\n    beta = p['beta']\n    lam = p['lam']\n\n    # P(A=k|Z=z) for z=0 and z=1\n    # logits for Z=0: g + dU * U\n    logits_z0 = g[None, :] + dU[None, :] * GH_X[:, None]  # (N_GH, K)\n    probs_z0 = _softmax(logits_z0)\n    P_A_z0 = (GH_W[:, None] * probs_z0).sum(axis=0)  # K-vector\n\n    logits_z1 = g[None, :] + dZ[None, :] + dU[None, :] * GH_X[:, None]\n    probs_z1 = _softmax(logits_z1)\n    P_A_z1 = (GH_W[:, None] * probs_z1).sum(axis=0)  # K-vector\n\n    # First stage\n    ivss.FS = P_A_z1 - P_A_z0  # K-vector\n\n    # Reduced form\n    # E[Y|Z=z] = sum_{k=1}^{K-1} beta[k] * P(A=k|Z=z)\n    # (lam * E[U] = 0, E[eps] = 0, beta[0] cancels out since it's not in gen_iv)\n    # Actually gen_iv: Y = D @ p['beta'][1:] + p['lam'] * U + eps\n    # So Y = sum_{k=1}^{K-1} beta[k] * 1(A=k) + lam * U + eps\n    # E[Y|Z=z] = sum_{k=1}^{K-1} beta[k] * P(A=k|Z=z)\n    E_Y_z0 = sum(beta[k] * P_A_z0[k] for k in range(1, K))\n    E_Y_z1 = sum(beta[k] * P_A_z1[k] for k in range(1, K))\n\n    ivss.RF = E_Y_z1 - E_Y_z0\n\n    return ivss\n\n\n# ====================================================================\n# Plim computation (from original, unchanged)\n# ====================================================================\ndef plim_ols_with_T(C, ss):\n    \"\"\"Plim of OLS regression Y ~ 1 + T + D*_1 + ... + D*_{K-1}.\"\"\"\n    K = ss.K\n    q = C @ ss.p_A        # misclassified P(A*=k)\n    ct = C @ ss.E_TD       # E[T * 1(A*=k)]\n    cy = C @ ss.E_YD       # E[Y * 1(A*=k)]\n    dim = K + 1\n    EZZ = np.zeros((dim, dim))\n    EZZ[0, 0] = 1.0\n    EZZ[0, 1] = ss.E_T\n    EZZ[1, 0] = ss.E_T\n    EZZ[1, 1] = ss.E_T2\n    EZZ[0, 2:] = q[1:]\n    EZZ[2:, 0] = q[1:]\n    EZZ[1, 2:] = ct[1:]\n    EZZ[2:, 1] = ct[1:]\n    for j in range(K - 1):\n        EZZ[j + 2, j + 2] = q[j + 1]\n    EZY = np.zeros(dim)\n    EZY[0] = ss.E_Y\n    EZY[1] = ss.E_TY\n    EZY[2:] = cy[1:]\n    try:\n        return np.linalg.solve(EZZ, EZY)\n    except np.linalg.LinAlgError:\n        return np.full(dim, np.nan)\n\n\ndef plim_ols_exposure(C, ss):\n    \"\"\"Plim of OLS regression Y ~ 1 + D*_1 + ... + D*_{K-1}.\"\"\"\n    K = ss.K\n    q = C @ ss.p_A\n    cy = C @ ss.E_YD\n    dim = K\n    EZZ = np.zeros((dim, dim))\n    EZZ[0, 0] = 1.0\n    EZZ[0, 1:] = q[1:]\n    EZZ[1:, 0] = q[1:]\n    for j in range(K - 1):\n        EZZ[j + 1, j + 1] = q[j + 1]\n    EZY = np.zeros(dim)\n    EZY[0] = ss.E_Y\n    EZY[1:] = cy[1:]\n    try:\n        return np.linalg.solve(EZZ, EZY)\n    except np.linalg.LinAlgError:\n        return np.full(dim, np.nan)\n\n\ndef plim_iv_single(C, ss):\n    \"\"\"Plim of Wald IV estimator with misclassified A.\"\"\"\n    FS_star = C @ ss.FS\n    if abs(FS_star[1]) < 1e-15:\n        return np.nan\n    return ss.RF / FS_star[1]\n\n\ndef get_tau_at_C(topo, C, ss):\n    if topo == 'iv':\n        return plim_iv_single(C, ss)\n    elif topo == 'exposure':\n        return plim_ols_exposure(C, ss)[1]\n    else:\n        return plim_ols_with_T(C, ss)[1]\n\n\ndef get_tau_true(topo, K, params, ss):\n    \"\"\"True causal parameter.\n\n    For correctly-identified topologies: tau_true = plim(I).\n    For protective topologies (collider, mbias): tau_true = DGP tau,\n    so B(0) = plim(I) - tau != 0 (existing bias from Berkson/M-bias).\n    \"\"\"\n    p = params[topo]\n    if topo == 'collider':\n        return p['tau']\n    elif topo == 'mbias':\n        return p['tau']\n    else:\n        return get_tau_at_C(topo, np.eye(K), ss)\n\n\n# ====================================================================\n# Batched bias curve computation (from original, unchanged)\n# ====================================================================\ndef compute_bias_curve(topo, C0, ss, tau_true, delta_step=DELTA_STEP):\n    K = C0.shape[0]\n    min_diag = np.diag(C0).min()\n    if min_diag >= 1.0:\n        delta_max = 10.0\n    else:\n        delta_max = min(1.0 / (1.0 - min_diag), 10.0)\n\n    deltas = np.arange(0, delta_max + delta_step / 2, delta_step)\n    n = len(deltas)\n    d = deltas[:, None]\n\n    if topo == 'iv':\n        FS0 = C0 @ ss.FS\n        fs_star = (1 - d) * ss.FS[None, :] + d * FS0[None, :]\n        denom = fs_star[:, 1]\n        taus = np.where(np.abs(denom) < 1e-15, np.nan, ss.RF / denom)\n    elif topo == 'exposure':\n        pA0 = C0 @ ss.p_A\n        YD0 = C0 @ ss.E_YD\n        q = (1 - d) * ss.p_A[None, :] + d * pA0[None, :]\n        cy = (1 - d) * ss.E_YD[None, :] + d * YD0[None, :]\n        dim = K\n        EZZ = np.zeros((n, dim, dim))\n        EZZ[:, 0, 0] = 1.0\n        EZZ[:, 0, 1:] = q[:, 1:]\n        EZZ[:, 1:, 0] = q[:, 1:]\n        for j in range(K - 1):\n            EZZ[:, j + 1, j + 1] = q[:, j + 1]\n        EZY = np.zeros((n, dim))\n        EZY[:, 0] = ss.E_Y\n        EZY[:, 1:] = cy[:, 1:]\n        try:\n            coefs = np.linalg.solve(EZZ, EZY[..., np.newaxis])[..., 0]\n            taus = coefs[:, 1]\n        except np.linalg.LinAlgError:\n            taus = np.full(n, np.nan)\n    else:\n        pA0 = C0 @ ss.p_A\n        TD0 = C0 @ ss.E_TD\n        YD0 = C0 @ ss.E_YD\n        q = (1 - d) * ss.p_A[None, :] + d * pA0[None, :]\n        ct = (1 - d) * ss.E_TD[None, :] + d * TD0[None, :]\n        cy = (1 - d) * ss.E_YD[None, :] + d * YD0[None, :]\n        dim = K + 1\n        EZZ = np.zeros((n, dim, dim))\n        EZZ[:, 0, 0] = 1.0\n        EZZ[:, 0, 1] = ss.E_T\n        EZZ[:, 1, 0] = ss.E_T\n        EZZ[:, 1, 1] = ss.E_T2\n        EZZ[:, 0, 2:] = q[:, 1:]\n        EZZ[:, 2:, 0] = q[:, 1:]\n        EZZ[:, 1, 2:] = ct[:, 1:]\n        EZZ[:, 2:, 1] = ct[:, 1:]\n        for j in range(K - 1):\n            EZZ[:, j + 2, j + 2] = q[:, j + 1]\n        EZY = np.zeros((n, dim))\n        EZY[:, 0] = ss.E_Y\n        EZY[:, 1] = ss.E_TY\n        EZY[:, 2:] = cy[:, 1:]\n        try:\n            coefs = np.linalg.solve(EZZ, EZY[..., np.newaxis])[..., 0]\n            taus = coefs[:, 1]\n        except np.linalg.LinAlgError:\n            taus = np.full(n, np.nan)\n\n    bias_abs = np.abs(taus - tau_true)\n    return deltas, bias_abs\n\n\ndef check_monotonicity(bias_abs, topo, tol=MONO_TOL):\n    valid = ~np.isnan(bias_abs)\n    ba = bias_abs[valid]\n    if len(ba) < 2:\n        return 0\n    diffs = np.diff(ba)\n    if topo in NON_DECREASING:\n        return int(np.sum(diffs < -tol))\n    else:\n        return int(np.sum(diffs > tol))\n\n\n# ====================================================================\n# Precompute analytic sufficient statistics\n# ====================================================================\n_COMPUTE_SS = {\n    'confounding': lambda K, p: compute_confounding_ss(K, p),\n    'mediation':   lambda K, p: compute_mediation_ss(K, p),\n    'collider':    lambda K, p: compute_collider_ss(K, p),\n    'exposure':    lambda K, p: compute_exposure_ss(K, p),\n    'mbias':       lambda K, p: compute_mbias_ss(K, p),\n    'iv':          lambda K, p: compute_iv_ss(K, p),\n    'frontdoor':   lambda K, p: compute_frontdoor_ss(K, p),\n}\n\n\ndef precompute_all():\n    print(\"\\nPrecomputing analytic sufficient statistics...\")\n    sys.stdout.flush()\n    t0 = time.time()\n    all_ss = {}\n    all_tau_true = {}\n\n    for K in K_VALUES:\n        params = make_all_params(K)\n        for topo in ALL_TOPOS:\n            ss = _COMPUTE_SS[topo](K, params[topo])\n            tau_true = get_tau_true(topo, K, params, ss)\n            all_ss[(topo, K)] = ss\n            all_tau_true[(topo, K)] = tau_true\n\n    print(\"  Done ({:.3f}s). tau_true values:\".format(time.time() - t0))\n    for topo in ALL_TOPOS:\n        vals = [all_tau_true[(topo, K)] for K in K_VALUES]\n        vals_s = \", \".join(\n            f\"K{K}={v:.10f}\" if v is not None and not np.isnan(v) else f\"K{K}=NaN\"\n            for K, v in zip(K_VALUES, vals))\n        direction = \"non-dec\" if topo in NON_DECREASING else \"non-inc\"\n        print(f\"    {topo:<14} [{direction}] {vals_s}\")\n    sys.stdout.flush()\n    return all_ss, all_tau_true\n\n\n# ====================================================================\n# Part 1: Random Verification\n# ====================================================================\ndef part1_random(all_ss, all_tau_true):\n    print(\"\\n\" + \"=\" * 70)\n    print(\"PART 1: Random Verification ({:,} C0 per topology x K)\".format(N_RANDOM))\n    print(\"  MONO_TOL = {:.0e} (analytic -- zero sampling noise)\".format(MONO_TOL))\n    print(\"=\" * 70)\n    sys.stdout.flush()\n\n    results = {}\n    total_tests = 0\n    total_violations = 0\n\n    for K in K_VALUES:\n        print(f\"\\n  K = {K}\")\n        print(f\"  {'Topology':<14} {'Direction':<10} {'Tested':>8} \"\n              f\"{'Violations':>11} {'NaN_curves':>11} {'Worst_mag':>12} {'Time':>7}\")\n        print(f\"  {'-' * 75}\")\n        sys.stdout.flush()\n\n        for topo in ALL_TOPOS:\n            t0 = time.time()\n            ss = all_ss[(topo, K)]\n            tau_true = all_tau_true[(topo, K)]\n\n            rng_C = np.random.default_rng(SEED * 2 + K * 1000 + TOPO_IDX[topo])\n            violations = 0\n            nan_curves = 0\n            worst_mag = 0.0\n\n            for i in range(N_RANDOM):\n                C0 = np.zeros((K, K))\n                for j in range(K):\n                    C0[:, j] = rng_C.dirichlet(np.ones(K))\n\n                _, bias_abs = compute_bias_curve(topo, C0, ss, tau_true)\n\n                n_nan = np.isnan(bias_abs).sum()\n                if n_nan > len(bias_abs) * 0.5:\n                    nan_curves += 1\n                    continue\n\n                n_viol = check_monotonicity(bias_abs, topo)\n                if n_viol > 0:\n                    violations += 1\n                    valid = ~np.isnan(bias_abs)\n                    ba = bias_abs[valid]\n                    diffs = np.diff(ba)\n                    if topo in NON_DECREASING:\n                        worst_mag = max(worst_mag, abs(diffs.min()))\n                    else:\n                        worst_mag = max(worst_mag, diffs.max())\n\n            elapsed = time.time() - t0\n            direction = \"non-dec\" if topo in NON_DECREASING else \"non-inc\"\n            print(f\"  {topo:<14} {direction:<10} {N_RANDOM:>8} \"\n                  f\"{violations:>11} {nan_curves:>11} {worst_mag:>12.2e} {elapsed:>6.1f}s\")\n            sys.stdout.flush()\n\n            results[f\"{topo}_K{K}\"] = {\n                \"n_tested\": N_RANDOM,\n                \"violations\": violations,\n                \"nan_curves\": nan_curves,\n                \"direction\": direction,\n                \"worst_violation_magnitude\": float(worst_mag),\n                \"tau_true\": float(tau_true) if not np.isnan(tau_true) else None,\n            }\n            total_tests += N_RANDOM\n            total_violations += violations\n\n    print(f\"\\n  Grand total: {total_tests:,} tests, {total_violations} violations\")\n    return results\n\n\n# ====================================================================\n# Part 2: Adversarial Search\n# ====================================================================\ndef part2_adversarial(all_ss, all_tau_true):\n    print(\"\\n\" + \"=\" * 70)\n    print(f\"PART 2: Adversarial Search ({ADV_N_STARTS} starts x \"\n          f\"{len(ADV_DELTA_PAIRS)} delta-pairs)\")\n    print(\"=\" * 70)\n    sys.stdout.flush()\n\n    results = {}\n\n    for K in K_ADVERSARIAL:\n        print(f\"\\n  K = {K}\")\n        print(f\"  {'Topology':<14} {'Direction':<10} {'best_obj':>12} \"\n              f\"{'Counterex':>11} {'Time':>7}\")\n        print(f\"  {'-' * 57}\")\n        sys.stdout.flush()\n\n        for topo in ALL_TOPOS:\n            t0 = time.time()\n            ss = all_ss[(topo, K)]\n            tau_true = all_tau_true[(topo, K)]\n\n            best_objective = np.inf\n            found_counterexample = False\n            rng_adv = np.random.default_rng(\n                SEED * 3 + K * 10000 + TOPO_IDX[topo] * 100)\n\n            for d1, d2 in ADV_DELTA_PAIRS:\n                for _ in range(ADV_N_STARTS):\n                    theta0 = rng_adv.normal(0, 1, K * K)\n\n                    def objective(theta, _topo=topo, _ss=ss, _tt=tau_true,\n                                  _d1=d1, _d2=d2, _K=K):\n                        logits = theta.reshape(_K, _K)\n                        exp_l = np.exp(logits - logits.max(axis=0, keepdims=True))\n                        C0 = exp_l / exp_l.sum(axis=0, keepdims=True)\n\n                        C1 = (1 - _d1) * np.eye(_K) + _d1 * C0\n                        C2 = (1 - _d2) * np.eye(_K) + _d2 * C0\n\n                        tau1 = get_tau_at_C(_topo, C1, _ss)\n                        tau2 = get_tau_at_C(_topo, C2, _ss)\n\n                        if np.isnan(tau1) or np.isnan(tau2):\n                            return 0.0\n\n                        b1_sq = (tau1 - _tt) ** 2\n                        b2_sq = (tau2 - _tt) ** 2\n\n                        if _topo in NON_DECREASING:\n                            return b2_sq - b1_sq\n                        else:\n                            return b1_sq - b2_sq\n\n                    res = scipy_minimize(objective, theta0, method='L-BFGS-B',\n                                         options={'maxiter': 100, 'ftol': 1e-15})\n\n                    if res.fun < best_objective:\n                        best_objective = res.fun\n\n                    if res.fun < -1e-8:\n                        found_counterexample = True\n\n            elapsed = time.time() - t0\n            direction = \"non-dec\" if topo in NON_DECREASING else \"non-inc\"\n            ce_str = \"YES!\" if found_counterexample else \"no\"\n            print(f\"  {topo:<14} {direction:<10} {best_objective:>12.2e} \"\n                  f\"{ce_str:>11} {elapsed:>6.1f}s\")\n            sys.stdout.flush()\n\n            results[f\"{topo}_K{K}\"] = {\n                \"n_starts\": ADV_N_STARTS * len(ADV_DELTA_PAIRS),\n                \"best_objective\": float(best_objective),\n                \"found_counterexample\": found_counterexample,\n                \"delta_pairs\": [[d1, d2] for d1, d2 in ADV_DELTA_PAIRS],\n            }\n\n    return results\n\n\n# ====================================================================\n# Main\n# ====================================================================\ndef main():\n    t_total = time.time()\n    print(\"Exp-D v2: Conjecture 1 Verification with ANALYTIC plim\")\n    print(f\"  Random: {N_RANDOM:,} C0 x {len(ALL_TOPOS)} topologies x K in {K_VALUES}\")\n    print(f\"  Adversarial: {ADV_N_STARTS} starts x {len(ADV_DELTA_PAIRS)} \"\n          f\"delta-pairs x K in {K_ADVERSARIAL}\")\n    print(f\"  GH quadrature: {N_GH} points/dim, MONO_TOL={MONO_TOL:.0e}\")\n    print(f\"  seed={SEED}\")\n    sys.stdout.flush()\n\n    all_ss, all_tau_true = precompute_all()\n\n    random_results = part1_random(all_ss, all_tau_true)\n    adversarial_results = part2_adversarial(all_ss, all_tau_true)\n\n    # Build output\n    total_random = sum(r['n_tested'] for r in random_results.values())\n    total_viol = sum(r['violations'] for r in random_results.values())\n    total_ce = sum(1 for r in adversarial_results.values()\n                   if r['found_counterexample'])\n\n    if total_viol == 0 and total_ce == 0:\n        summary = (f\"Zero violations across {total_random:,} random tests + \"\n                   f\"0 counterexamples found by adversarial search \"\n                   f\"(analytic plim, MONO_TOL={MONO_TOL:.0e})\")\n    else:\n        summary = (f\"{total_viol} violations across {total_random:,} random tests + \"\n                   f\"{total_ce} counterexamples found by adversarial search \"\n                   f\"(analytic plim, MONO_TOL={MONO_TOL:.0e})\")\n\n    output = {\n        \"method\": \"analytic_plim\",\n        \"gh_quadrature_points\": N_GH,\n        \"mono_tol\": MONO_TOL,\n        \"random_verification\": {},\n        \"adversarial_search\": {},\n        \"summary\": summary,\n    }\n\n    for topo in ALL_TOPOS:\n        rv = {}\n        for K in K_VALUES:\n            key = f\"{topo}_K{K}\"\n            if key in random_results:\n                rv[f\"K{K}\"] = random_results[key]\n        output[\"random_verification\"][topo] = rv\n\n    for topo in ALL_TOPOS:\n        av = {}\n        for K in K_ADVERSARIAL:\n            key = f\"{topo}_K{K}\"\n            if key in adversarial_results:\n                av[f\"K{K}\"] = adversarial_results[key]\n        output[\"adversarial_search\"][topo] = av\n\n    out_path = os.path.join(OUT_DIR, 'exp_d_conjecture_results_v2.json')\n    with open(out_path, 'w') as f:\n        json.dump(output, f, indent=2, default=str)\n    print(f\"\\nJSON -> {out_path}\")\n\n    total_time = time.time() - t_total\n    print(f\"\\n{'=' * 70}\")\n    print(f\"SUMMARY: {summary}\")\n    print(f\"Total time: {total_time:.1f}s ({total_time/60:.1f}min)\")\n    print(f\"{'=' * 70}\")\n\n    # Print comparison note\n    print(\"\\nComparison with v1 (Monte Carlo, N=5M, MONO_TOL=1e-8):\")\n    print(\"  v1 found 141,514 violations across 210,000 tests\")\n    print(\"  v1 found 13 adversarial 'counterexamples'\")\n    print(f\"  v2 found {total_viol} violations across {total_random:,} tests\")\n    print(f\"  v2 found {total_ce} adversarial counterexamples\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21f8a234-cf14-436f-8729-2722ea56e5b9",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbPwjwfnEkeUd1jR7xX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0fbfee8e-9afa-424a-b0c0-9beb072e3001",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013MmZimNGrNdW9vCf9xnp1C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5254,
+                "cache_read_input_tokens": 52446,
+                "output_tokens": 17187,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5254
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 17187,
+                    "cache_read_input_tokens": 52446,
+                    "cache_creation_input_tokens": 5254,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5254,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T12:21:56.668Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JrGKPa9eGe7vT97FKKYzf4",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify_v2.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0fbfee8e-9afa-424a-b0c0-9beb072e3001",
+            "isSidechain": true,
+            "promptId": "3f772f34-432b-4b73-8d6a-c54bf571a4ba",
+            "agentId": "a8ae618b752846327",
+            "type": "user",
+            "uuid": "c949c18d-2e36-4666-a7c9-d788c42b73af",
+            "sourceToolAssistantUUID": "0fbfee8e-9afa-424a-b0c0-9beb072e3001",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T12:21:59.281Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me run it."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c949c18d-2e36-4666-a7c9-d788c42b73af",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbgnCvykNySyjHAqTPL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "763ce8db-c62f-4b13-9b28-6f6a4ff6cce8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYPakf6Kyvpu2kGL9NqMmo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17248,
+                "cache_read_input_tokens": 57700,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17248,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T12:22:00.285Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hr1Msna3N6NK5JB2vq6tMs",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 exp_d_conjecture_verify_v2.py 2>&1",
+                "description": "Run Exp-D v2 conjecture verification with analytic plim",
+                "timeout": 600000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "763ce8db-c62f-4b13-9b28-6f6a4ff6cce8",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbgnCvykNySyjHAqTPL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "751f315c-84a4-4cb1-993a-e9cb7ef4bd33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SYPakf6Kyvpu2kGL9NqMmo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17248,
+                "cache_read_input_tokens": 57700,
+                "output_tokens": 160,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17248
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 160,
+                    "cache_read_input_tokens": 57700,
+                    "cache_creation_input_tokens": 17248,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17248,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T12:25:24.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hr1Msna3N6NK5JB2vq6tMs",
+              "type": "tool_result",
+              "content": "Exp-D v2: Conjecture 1 Verification with ANALYTIC plim\n  Random: 10,000 C0 x 7 topologies x K in [3, 5, 7]\n  Adversarial: 100 starts x 5 delta-pairs x K in [3, 5]\n  GH quadrature: 100 points/dim, MONO_TOL=1e-12\n  seed=12345\n\nPrecomputing analytic sufficient statistics...\n  Done (0.024s). tau_true values:\n    confounding    [non-dec] K3=2.0000000000, K5=2.0000000000, K7=2.0000000000\n    mediation      [non-dec] K3=0.5000000000, K5=0.5000000000, K7=0.5000000000\n    collider       [non-inc] K3=1.0000000000, K5=1.0000000000, K7=1.0000000000\n    exposure       [non-dec] K3=1.0000000000, K5=1.0000000000, K7=1.0000000000\n    mbias          [non-inc] K3=1.0000000000, K5=1.0000000000, K7=1.0000000000\n    iv             [non-dec] K3=1.3331205309, K5=1.9114375709, K7=2.0409089630\n    frontdoor      [non-dec] K3=0.5000000000, K5=0.5000000000, K7=0.5000000000\n\n======================================================================\nPART 1: Random Verification (10,000 C0 per topology x K)\n  MONO_TOL = 1e-12 (analytic -- zero sampling noise)\n======================================================================\n\n  K = 3\n  Topology       Direction    Tested  Violations  NaN_curves    Worst_mag    Time\n  ---------------------------------------------------------------------------\n  confounding    non-dec       10000        8467           0     1.09e-02    2.4s\n  mediation      non-dec       10000        8236           0     1.27e-02    2.4s\n  collider       non-inc       10000        8683           0     4.61e-03    2.4s\n  exposure       non-dec       10000         485           0     5.56e-02    1.9s\n  mbias          non-inc       10000        9791           0     1.55e-03    2.4s\n  iv             non-dec       10000        7433           0     2.47e+06    1.0s\n  frontdoor      non-dec       10000        8429           0     1.31e-02    2.5s\n\n  K = 5\n  Topology       Direction    Tested  Violations  NaN_curves    Worst_mag    Time\n  ---------------------------------------------------------------------------\n  confounding    non-dec       10000        8063           0     5.83e-03    3.0s\n  mediation      non-dec       10000        7905           0     6.56e-03    3.0s\n  collider       non-inc       10000        7669           0     3.43e-03    3.0s\n  exposure       non-dec       10000         205           0     5.12e-02    2.5s\n  mbias          non-inc       10000        7783           0     1.44e-03    3.0s\n  iv             non-dec       10000        6015           0     1.32e+06    1.3s\n  frontdoor      non-dec       10000        8079           0     6.29e-03    4.1s\n\n  K = 7\n  Topology       Direction    Tested  Violations  NaN_curves    Worst_mag    Time\n  ---------------------------------------------------------------------------\n  confounding    non-dec       10000        7892           0     3.41e-03    3.7s\n  mediation      non-dec       10000        7893           0     4.03e-03    3.8s\n  collider       non-inc       10000        7570           0     2.49e-03    3.7s\n  exposure       non-dec       10000          77           0     2.19e-02    3.2s\n  mbias          non-inc       10000        7399           0     8.78e-04    3.7s\n  iv             non-dec       10000        5711           0     5.48e+06    1.3s\n  frontdoor      non-dec       10000        7899           0     3.64e-03    3.7s\n\n  Grand total: 210,000 tests, 141684 violations\n\n======================================================================\nPART 2: Adversarial Search (100 starts x 5 delta-pairs)\n======================================================================\n\n  K = 3\n  Topology       Direction      best_obj   Counterex    Time\n  ---------------------------------------------------------\n  confounding    non-dec       -9.78e-03        YES!    5.6s\n  mediation      non-dec       -1.05e-02        YES!    5.9s\n  collider       non-inc       -3.06e-04        YES!    4.4s\n  exposure       non-dec       -3.86e-03        YES!   10.8s\n  mbias          non-inc       -1.71e-03        YES!    3.7s\n  iv             non-dec        9.66e-30          no    8.0s\n  frontdoor      non-dec       -6.06e-03        YES!    6.0s\n\n  K = 5\n  Topology       Direction      best_obj   Counterex    Time\n  ---------------------------------------------------------\n  confounding    non-dec       -1.48e-02        YES!   14.0s\n  mediation      non-dec       -1.09e-02        YES!   14.1s\n  collider       non-inc       -1.14e-03        YES!   12.5s\n  exposure       non-dec       -5.39e-03        YES!   25.8s\n  mbias          non-inc       -1.88e-03        YES!   11.3s\n  iv             non-dec       -2.66e+01        YES!    9.0s\n  frontdoor      non-dec       -1.23e-02        YES!   14.2s\n\nJSON -> /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results_v2.json\n\n======================================================================\nSUMMARY: 141684 violations across 210,000 random tests + 13 counterexamples found by adversarial search (analytic plim, MONO_TOL=1e-12)\nTotal time: 203.3s (3.4min)\n======================================================================\n\nComparison with v1 (Monte Carlo, N=5M, MONO_TOL=1e-8):\n  v1 found 141,514 violations across 210,000 tests\n  v1 found 13 adversarial 'counterexamples'\n  v2 found 141684 violations across 210,000 tests\n  v2 found 13 adversarial counterexamples",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "751f315c-84a4-4cb1-993a-e9cb7ef4bd33",
+            "isSidechain": true,
+            "promptId": "3f772f34-432b-4b73-8d6a-c54bf571a4ba",
+            "agentId": "a8ae618b752846327",
+            "type": "user",
+            "uuid": "8cb091ac-bd24-4904-95f7-b0dbd4803513",
+            "sourceToolAssistantUUID": "751f315c-84a4-4cb1-993a-e9cb7ef4bd33",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T12:25:28.280Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "This is a very significant result. The violations are NOT numerical artifacts -- they persist even with analytic plim and an even tighter tolerance (1e-12 vs 1e-8). The violation counts are essentially identical to the Monte Carlo version, and the worst violation magnitudes are comparable. Let me read the output JSON to get the full details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cb091ac-bd24-4904-95f7-b0dbd4803513",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbx67czBu5GeziWeRp2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "78d35dad-486b-4ed6-af70-8e5fc67d7a99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEDYPaRvSN9fAQGDXnrpzG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1956,
+                "cache_read_input_tokens": 74948,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1956,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T12:25:28.494Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HCwA1fLDgvEYdZ8xzzaKGm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results_v2.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78d35dad-486b-4ed6-af70-8e5fc67d7a99",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbx67czBu5GeziWeRp2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "75c4fddd-db59-4f45-8b3e-50546897bcc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEDYPaRvSN9fAQGDXnrpzG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1956,
+                "cache_read_input_tokens": 74948,
+                "output_tokens": 171,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1956
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 171,
+                    "cache_read_input_tokens": 74948,
+                    "cache_creation_input_tokens": 1956,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1956,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T12:25:28.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HCwA1fLDgvEYdZ8xzzaKGm",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"method\": \"analytic_plim\",\n3\t  \"gh_quadrature_points\": 100,\n4\t  \"mono_tol\": 1e-12,\n5\t  \"random_verification\": {\n6\t    \"confounding\": {\n7\t      \"K3\": {\n8\t        \"n_tested\": 10000,\n9\t        \"violations\": 8467,\n10\t        \"nan_curves\": 0,\n11\t        \"direction\": \"non-dec\",\n12\t        \"worst_violation_magnitude\": 0.01086810865728216,\n13\t        \"tau_true\": 2.0\n14\t      },\n15\t      \"K5\": {\n16\t        \"n_tested\": 10000,\n17\t        \"violations\": 8063,\n18\t        \"nan_curves\": 0,\n19\t        \"direction\": \"non-dec\",\n20\t        \"worst_violation_magnitude\": 0.005825013346442809,\n21\t        \"tau_true\": 1.9999999999999998\n22\t      },\n23\t      \"K7\": {\n24\t        \"n_tested\": 10000,\n25\t        \"violations\": 7892,\n26\t        \"nan_curves\": 0,\n27\t        \"direction\": \"non-dec\",\n28\t        \"worst_violation_magnitude\": 0.0034082229756147164,\n29\t        \"tau_true\": 2.0\n30\t      }\n31\t    },\n32\t    \"mediation\": {\n33\t      \"K3\": {\n34\t        \"n_tested\": 10000,\n35\t        \"violations\": 8236,\n36\t        \"nan_curves\": 0,\n37\t        \"direction\": \"non-dec\",\n38\t        \"worst_violation_magnitude\": 0.012726505679608646,\n39\t        \"tau_true\": 0.5\n40\t      },\n41\t      \"K5\": {\n42\t        \"n_tested\": 10000,\n43\t        \"violations\": 7905,\n44\t        \"nan_curves\": 0,\n45\t        \"direction\": \"non-dec\",\n46\t        \"worst_violation_magnitude\": 0.0065598588622944876,\n47\t        \"tau_true\": 0.49999999999999983\n48\t      },\n49\t      \"K7\": {\n50\t        \"n_tested\": 10000,\n51\t        \"violations\": 7893,\n52\t        \"nan_curves\": 0,\n53\t        \"direction\": \"non-dec\",\n54\t        \"worst_violation_magnitude\": 0.0040332631090529425,\n55\t        \"tau_true\": 0.4999999999999996\n56\t      }\n57\t    },\n58\t    \"collider\": {\n59\t      \"K3\": {\n60\t        \"n_tested\": 10000,\n61\t        \"violations\": 8683,\n62\t        \"nan_curves\": 0,\n63\t        \"direction\": \"non-inc\",\n64\t        \"worst_violation_magnitude\": 0.004606180170102059,\n65\t        \"tau_true\": 1.0\n66\t      },\n67\t      \"K5\": {\n68\t        \"n_tested\": 10000,\n69\t        \"violations\": 7669,\n70\t        \"nan_curves\": 0,\n71\t        \"direction\": \"non-inc\",\n72\t        \"worst_violation_magnitude\": 0.0034316669468731353,\n73\t        \"tau_true\": 1.0\n74\t      },\n75\t      \"K7\": {\n76\t        \"n_tested\": 10000,\n77\t        \"violations\": 7570,\n78\t        \"nan_curves\": 0,\n79\t        \"direction\": \"non-inc\",\n80\t        \"worst_violation_magnitude\": 0.002491098787699819,\n81\t        \"tau_true\": 1.0\n82\t      }\n83\t    },\n84\t    \"exposure\": {\n85\t      \"K3\": {\n86\t        \"n_tested\": 10000,\n87\t        \"violations\": 485,\n88\t        \"nan_curves\": 0,\n89\t        \"direction\": \"non-dec\",\n90\t        \"worst_violation_magnitude\": 0.055567041313488996,\n91\t        \"tau_true\": 1.0000000000000002\n92\t      },\n93\t      \"K5\": {\n94\t        \"n_tested\": 10000,\n95\t        \"violations\": 205,\n96\t        \"nan_curves\": 0,\n97\t        \"direction\": \"non-dec\",\n98\t        \"worst_violation_magnitude\": 0.05121055325737478,\n99\t        \"tau_true\": 1.0000000000000002\n100\t      },\n101\t      \"K7\": {\n102\t        \"n_tested\": 10000,\n103\t        \"violations\": 77,\n104\t        \"nan_curves\": 0,\n105\t        \"direction\": \"non-dec\",\n106\t        \"worst_violation_magnitude\": 0.021928244727854262,\n107\t        \"tau_true\": 0.9999999999999998\n108\t      }\n109\t    },\n110\t    \"mbias\": {\n111\t      \"K3\": {\n112\t        \"n_tested\": 10000,\n113\t        \"violations\": 9791,\n114\t        \"nan_curves\": 0,\n115\t        \"direction\": \"non-inc\",\n116\t        \"worst_violation_magnitude\": 0.0015474283680341205,\n117\t        \"tau_true\": 1.0\n118\t      },\n119\t      \"K5\": {\n120\t        \"n_tested\": 10000,\n121\t        \"violations\": 7783,\n122\t        \"nan_curves\": 0,\n123\t        \"direction\": \"non-inc\",\n124\t        \"worst_violation_magnitude\": 0.0014386231201501953,\n125\t        \"tau_true\": 1.0\n126\t      },\n127\t      \"K7\": {\n128\t        \"n_tested\": 10000,\n129\t        \"violations\": 7399,\n130\t        \"nan_curves\": 0,\n131\t        \"direction\": \"non-inc\",\n132\t        \"worst_violation_magnitude\": 0.0008775222889561007,\n133\t        \"tau_true\": 1.0\n134\t      }\n135\t    },\n136\t    \"iv\": {\n137\t      \"K3\": {\n138\t        \"n_tested\": 10000,\n139\t        \"violations\": 7433,\n140\t        \"nan_curves\": 0,\n141\t        \"direction\": \"non-dec\",\n142\t        \"worst_violation_magnitude\": 2466085.7260094993,\n143\t        \"tau_true\": 1.333120530897266\n144\t      },\n145\t      \"K5\": {\n146\t        \"n_tested\": 10000,\n147\t        \"violations\": 6015,\n148\t        \"nan_curves\": 0,\n149\t        \"direction\": \"non-dec\",\n150\t        \"worst_violation_magnitude\": 1315009.2588172748,\n151\t        \"tau_true\": 1.9114375708768654\n152\t      },\n153\t      \"K7\": {\n154\t        \"n_tested\": 10000,\n155\t        \"violations\": 5711,\n156\t        \"nan_curves\": 0,\n157\t        \"direction\": \"non-dec\",\n158\t        \"worst_violation_magnitude\": 5481030.861738394,\n159\t        \"tau_true\": 2.0409089629546364\n160\t      }\n161\t    },\n162\t    \"frontdoor\": {\n163\t      \"K3\": {\n164\t        \"n_tested\": 10000,\n165\t        \"violations\": 8429,\n166\t        \"nan_curves\": 0,\n167\t        \"direction\": \"non-dec\",\n168\t        \"worst_violation_magnitude\": 0.01307166903449175,\n169\t        \"tau_true\": 0.5\n170\t      },\n171\t      \"K5\": {\n172\t        \"n_tested\": 10000,\n173\t        \"violations\": 8079,\n174\t        \"nan_curves\": 0,\n175\t        \"direction\": \"non-dec\",\n176\t        \"worst_violation_magnitude\": 0.006291871500388346,\n177\t        \"tau_true\": 0.49999999999999994\n178\t      },\n179\t      \"K7\": {\n180\t        \"n_tested\": 10000,\n181\t        \"violations\": 7899,\n182\t        \"nan_curves\": 0,\n183\t        \"direction\": \"non-dec\",\n184\t        \"worst_violation_magnitude\": 0.003641870803524405,\n185\t        \"tau_true\": 0.5\n186\t      }\n187\t    }\n188\t  },\n189\t  \"adversarial_search\": {\n190\t    \"confounding\": {\n191\t      \"K3\": {\n192\t        \"n_starts\": 500,\n193\t        \"best_objective\": -0.009781039201619227,\n194\t        \"found_counterexample\": true,\n195\t        \"delta_pairs\": [\n196\t          [\n197\t            0.0,\n198\t            0.2\n199\t          ],\n200\t          [\n201\t            0.0,\n202\t            0.5\n203\t          ],\n204\t          [\n205\t            0.1,\n206\t            0.3\n207\t          ],\n208\t          [\n209\t            0.2,\n210\t            0.5\n211\t          ],\n212\t          [\n213\t            0.3,\n214\t            0.7\n215\t          ]\n216\t        ]\n217\t      },\n218\t      \"K5\": {\n219\t        \"n_starts\": 500,\n220\t        \"best_objective\": -0.014755856830761034,\n221\t        \"found_counterexample\": true,\n222\t        \"delta_pairs\": [\n223\t          [\n224\t            0.0,\n225\t            0.2\n226\t          ],\n227\t          [\n228\t            0.0,\n229\t            0.5\n230\t          ],\n231\t          [\n232\t            0.1,\n233\t            0.3\n234\t          ],\n235\t          [\n236\t            0.2,\n237\t            0.5\n238\t          ],\n239\t          [\n240\t            0.3,\n241\t            0.7\n242\t          ]\n243\t        ]\n244\t      }\n245\t    },\n246\t    \"mediation\": {\n247\t      \"K3\": {\n248\t        \"n_starts\": 500,\n249\t        \"best_objective\": -0.010534893741626042,\n250\t        \"found_counterexample\": true,\n251\t        \"delta_pairs\": [\n252\t          [\n253\t            0.0,\n254\t            0.2\n255\t          ],\n256\t          [\n257\t            0.0,\n258\t            0.5\n259\t          ],\n260\t          [\n261\t            0.1,\n262\t            0.3\n263\t          ],\n264\t          [\n265\t            0.2,\n266\t            0.5\n267\t          ],\n268\t          [\n269\t            0.3,\n270\t            0.7\n271\t          ]\n272\t        ]\n273\t      },\n274\t      \"K5\": {\n275\t        \"n_starts\": 500,\n276\t        \"best_objective\": -0.010875476213587556,\n277\t        \"found_counterexample\": true,\n278\t        \"delta_pairs\": [\n279\t          [\n280\t            0.0,\n281\t            0.2\n282\t          ],\n283\t          [\n284\t            0.0,\n285\t            0.5\n286\t          ],\n287\t          [\n288\t            0.1,\n289\t            0.3\n290\t          ],\n291\t          [\n292\t            0.2,\n293\t            0.5\n294\t          ],\n295\t          [\n296\t            0.3,\n297\t            0.7\n298\t          ]\n299\t        ]\n300\t      }\n301\t    },\n302\t    \"collider\": {\n303\t      \"K3\": {\n304\t        \"n_starts\": 500,\n305\t        \"best_objective\": -0.00030552585951969333,\n306\t        \"found_counterexample\": true,\n307\t        \"delta_pairs\": [\n308\t          [\n309\t            0.0,\n310\t            0.2\n311\t          ],\n312\t          [\n313\t            0.0,\n314\t            0.5\n315\t          ],\n316\t          [\n317\t            0.1,\n318\t            0.3\n319\t          ],\n320\t          [\n321\t            0.2,\n322\t            0.5\n323\t          ],\n324\t          [\n325\t            0.3,\n326\t            0.7\n327\t          ]\n328\t        ]\n329\t      },\n330\t      \"K5\": {\n331\t        \"n_starts\": 500,\n332\t        \"best_objective\": -0.0011443531536633003,\n333\t        \"found_counterexample\": true,\n334\t        \"delta_pairs\": [\n335\t          [\n336\t            0.0,\n337\t            0.2\n338\t          ],\n339\t          [\n340\t            0.0,\n341\t            0.5\n342\t          ],\n343\t          [\n344\t            0.1,\n345\t            0.3\n346\t          ],\n347\t          [\n348\t            0.2,\n349\t            0.5\n350\t          ],\n351\t          [\n352\t            0.3,\n353\t            0.7\n354\t          ]\n355\t        ]\n356\t      }\n357\t    },\n358\t    \"exposure\": {\n359\t      \"K3\": {\n360\t        \"n_starts\": 500,\n361\t        \"best_objective\": -0.003864347544026268,\n362\t        \"found_counterexample\": true,\n363\t        \"delta_pairs\": [\n364\t          [\n365\t            0.0,\n366\t            0.2\n367\t          ],\n368\t          [\n369\t            0.0,\n370\t            0.5\n371\t          ],\n372\t          [\n373\t            0.1,\n374\t            0.3\n375\t          ],\n376\t          [\n377\t            0.2,\n378\t            0.5\n379\t          ],\n380\t          [\n381\t            0.3,\n382\t            0.7\n383\t          ]\n384\t        ]\n385\t      },\n386\t      \"K5\": {\n387\t        \"n_starts\": 500,\n388\t        \"best_objective\": -0.005393984754724663,\n389\t        \"found_counterexample\": true,\n390\t        \"delta_pairs\": [\n391\t          [\n392\t            0.0,\n393\t            0.2\n394\t          ],\n395\t          [\n396\t            0.0,\n397\t            0.5\n398\t          ],\n399\t          [\n400\t            0.1,\n401\t            0.3\n402\t          ],\n403\t          [\n404\t            0.2,\n405\t            0.5\n406\t          ],\n407\t          [\n408\t            0.3,\n409\t            0.7\n410\t          ]\n411\t        ]\n412\t      }\n413\t    },\n414\t    \"mbias\": {\n415\t      \"K3\": {\n416\t        \"n_starts\": 500,\n417\t        \"best_objective\": -0.0017080912306270523,\n418\t        \"found_counterexample\": true,\n419\t        \"delta_pairs\": [\n420\t          [\n421\t            0.0,\n422\t            0.2\n423\t          ],\n424\t          [\n425\t            0.0,\n426\t            0.5\n427\t          ],\n428\t          [\n429\t            0.1,\n430\t            0.3\n431\t          ],\n432\t          [\n433\t            0.2,\n434\t            0.5\n435\t          ],\n436\t          [\n437\t            0.3,\n438\t            0.7\n439\t          ]\n440\t        ]\n441\t      },\n442\t      \"K5\": {\n443\t        \"n_starts\": 500,\n444\t        \"best_objective\": -0.0018772543101670865,\n445\t        \"found_counterexample\": true,\n446\t        \"delta_pairs\": [\n447\t          [\n448\t            0.0,\n449\t            0.2\n450\t          ],\n451\t          [\n452\t            0.0,\n453\t            0.5\n454\t          ],\n455\t          [\n456\t            0.1,\n457\t            0.3\n458\t          ],\n459\t          [\n460\t            0.2,\n461\t            0.5\n462\t          ],\n463\t          [\n464\t            0.3,\n465\t            0.7\n466\t          ]\n467\t        ]\n468\t      }\n469\t    },\n470\t    \"iv\": {\n471\t      \"K3\": {\n472\t        \"n_starts\": 500,\n473\t        \"best_objective\": 9.663546088957395e-30,\n474\t        \"found_counterexample\": false,\n475\t        \"delta_pairs\": [\n476\t          [\n477\t            0.0,\n478\t            0.2\n479\t          ],\n480\t          [\n481\t            0.0,\n482\t            0.5\n483\t          ],\n484\t          [\n485\t            0.1,\n486\t            0.3\n487\t          ],\n488\t          [\n489\t            0.2,\n490\t            0.5\n491\t          ],\n492\t          [\n493\t            0.3,\n494\t            0.7\n495\t          ]\n496\t        ]\n497\t      },\n498\t      \"K5\": {\n499\t        \"n_starts\": 500,\n500\t        \"best_objective\": -26.64443041894075,\n501\t        \"found_counterexample\": true,\n502\t        \"delta_pairs\": [\n503\t          [\n504\t            0.0,\n505\t            0.2\n506\t          ],\n507\t          [\n508\t            0.0,\n509\t            0.5\n510\t          ],\n511\t          [\n512\t            0.1,\n513\t            0.3\n514\t          ],\n515\t          [\n516\t            0.2,\n517\t            0.5\n518\t          ],\n519\t          [\n520\t            0.3,\n521\t            0.7\n522\t          ]\n523\t        ]\n524\t      }\n525\t    },\n526\t    \"frontdoor\": {\n527\t      \"K3\": {\n528\t        \"n_starts\": 500,\n529\t        \"best_objective\": -0.006059828484311289,\n530\t        \"found_counterexample\": true,\n531\t        \"delta_pairs\": [\n532\t          [\n533\t            0.0,\n534\t            0.2\n535\t          ],\n536\t          [\n537\t            0.0,\n538\t            0.5\n539\t          ],\n540\t          [\n541\t            0.1,\n542\t            0.3\n543\t          ],\n544\t          [\n545\t            0.2,\n546\t            0.5\n547\t          ],\n548\t          [\n549\t            0.3,\n550\t            0.7\n551\t          ]\n552\t        ]\n553\t      },\n554\t      \"K5\": {\n555\t        \"n_starts\": 500,\n556\t        \"best_objective\": -0.012316386926386522,\n557\t        \"found_counterexample\": true,\n558\t        \"delta_pairs\": [\n559\t          [\n560\t            0.0,\n561\t            0.2\n562\t          ],\n563\t          [\n564\t            0.0,\n565\t            0.5\n566\t          ],\n567\t          [\n568\t            0.1,\n569\t            0.3\n570\t          ],\n571\t          [\n572\t            0.2,\n573\t            0.5\n574\t          ],\n575\t          [\n576\t            0.3,\n577\t            0.7\n578\t          ]\n579\t        ]\n580\t      }\n581\t    }\n582\t  },\n583\t  \"summary\": \"141684 violations across 210,000 random tests + 13 counterexamples found by adversarial search (analytic plim, MONO_TOL=1e-12)\"\n584\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75c4fddd-db59-4f45-8b3e-50546897bcc9",
+            "isSidechain": true,
+            "promptId": "3f772f34-432b-4b73-8d6a-c54bf571a4ba",
+            "agentId": "a8ae618b752846327",
+            "type": "user",
+            "uuid": "93468461-4fe5-4620-91da-cc4abe7dd75e",
+            "sourceToolAssistantUUID": "75c4fddd-db59-4f45-8b3e-50546897bcc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T12:25:48.564Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The results are definitive. Here is the complete report:\n\n## Results\n\nThe v2 script with analytic plim is at `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_verify_v2.py`, with output at `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results_v2.json`.\n\n### Key finding: The violations are REAL, not numerical artifacts.\n\nWith analytic plim (zero sampling noise) and MONO_TOL tightened from 1e-8 to 1e-12:\n\n- **v1 (Monte Carlo)**: 141,514 violations / 210,000 tests, 13 adversarial counterexamples\n- **v2 (Analytic)**: 141,684 violations / 210,000 tests, 13 adversarial counterexamples\n\nThe violation counts match almost exactly (differences of ~170 out of 210k are due to the v1 Monte Carlo tau_true being slightly off, which shifts borderline cases). The worst violation magnitudes are also nearly identical.\n\n### Per-topology comparison (violations across K=3,5,7):\n\n| Topology | Direction | v1 violations | v2 violations | Worst mag (v2) |\n|---|---|---|---|---|\n| confounding | non-dec | 24,421 | 24,422 | 0.0109 |\n| mediation | non-dec | 24,029 | 24,034 | 0.0127 |\n| collider | non-inc | 23,851 | 23,922 | 0.0046 |\n| exposure | non-dec | 771 | 767 | 0.0556 |\n| mbias | non-inc | 24,887 | 24,973 | 0.0015 |\n| iv | non-dec | 19,150 | 19,159 | 5.5M |\n| frontdoor | non-dec | 24,405 | 24,407 | 0.0131 |\n\n### Analytic tau_true values (now exact):\n- confounding: tau_true = 2.0 exactly (v1 had ~2.0003 from sampling)\n- mediation: tau_true = 0.5 exactly\n- collider/mbias: tau_true = 1.0 exactly (DGP parameter)\n- exposure: tau_true = 1.0 exactly\n- frontdoor: tau_true = 0.5 exactly\n- iv: tau_true = 1.333..., 1.911..., 2.041... (GH quadrature, machine precision)\n\n### Conclusion\n\n**Conjecture 1 (strict monotonicity of |B(delta)|) is FALSE for all 7 topologies.** The violations are genuine mathematical properties of the bias function, not sampling noise. The bias envelope |B(delta)| exhibits real non-monotonic behavior under general confusion matrices C0, with violation magnitudes up to ~0.056 for non-IV topologies and ~5.5M for IV (due to weak-instrument singularities). The adversarial search confirms counterexamples exist for all topologies except IV at K=3 (where the Wald ratio structure constrains the bias more tightly).\n\nThe script completed in 3.4 minutes (vs the original's much longer runtime due to N=5M simulation), producing identical scientific conclusions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93468461-4fe5-4620-91da-cc4abe7dd75e",
+            "isSidechain": true,
+            "agentId": "a8ae618b752846327",
+            "requestId": "req_011CbHbxQHGbXQzBHxiLkYiL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1264e57b-924a-4826-8e4d-09482cb44ff9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/.claude/sessions/agent_a2eb248d",
+            "sessionId": "4bc24e8b-1078-439c-82f4-1b77043197af",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "eager-splashing-waterfall",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Bk2tTCobX1tmquuAAePd4",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5357,
+                "cache_read_input_tokens": 76904,
+                "output_tokens": 857,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5357
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 857,
+                    "cache_read_input_tokens": 76904,
+                    "cache_creation_input_tokens": 5357,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5357,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-critical-rewrite-and-rerun-exp-d-conjecture-1-verification-with-analytic-plim.md"
+}

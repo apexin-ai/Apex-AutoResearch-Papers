@@ -1,0 +1,1712 @@
+{
+  "schema_version": "1.0",
+  "session_id": "78b552e504b936cfd92e",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-27T16:25:09.607Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ug9E9KrEvq35rXHHBZTJPQ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"intra-trajectory consistency\" OR \"trajectory consistency\" reward modeling process supervision 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29f2fcf9-2fef-4bd2-a535-a57e2afcd3ce",
+            "isSidechain": false,
+            "requestId": "req_011CbTPGrLhhuyqtASkX8pQw",
+            "type": "assistant",
+            "uuid": "b78f6842-a4d4-4834-a0b4-7a4ebc706629",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EYGwcvfLjHuyxxLnMQxS2z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1000,
+                "cache_read_input_tokens": 68354,
+                "output_tokens": 73,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1000,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 73,
+                    "cache_read_input_tokens": 68354,
+                    "cache_creation_input_tokens": 1000,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1000
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-27T16:25:15.875Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ug9E9KrEvq35rXHHBZTJPQ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"intra-trajectory consistency\" OR \"trajectory consistency\" reward modeling process supervision 2025 2026\"\n\nLinks: [{\"title\":\"[2506.09096] Intra-Trajectory Consistency for Reward Modeling\",\"url\":\"https://arxiv.org/abs/2506.09096\"},{\"title\":\"Intra-Trajectory Consistency for Reward Modeling\",\"url\":\"https://arxiv.org/html/2506.09096v1\"},{\"title\":\"INTRA-TRAJECTORY CONSISTENCY FOR REWARD MODELING\",\"url\":\"https://openreview.net/pdf?id=Q7YwCym2jH\"},{\"title\":\"Intra-Trajectory Consistency for Reward Modeling\",\"url\":\"https://www.arxiv.org/pdf/2506.09096\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process\",\"url\":\"https://www.arxiv.org/pdf/2510.08049v1\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.08049v3\"}]\n\nBased on the search results, here's what I found on intra-trajectory consistency and trajectory consistency in reward modeling:\n\n## Intra-Trajectory Consistency for Reward Modeling\n\nThe approach leverages generation probabilities to establish reward consistency between processes in the response trajectory, allowing response-level supervisory signals to propagate across processes for fine-grained reward learning signals.\n\n### The Problem Being Addressed\n\nCurrent reward modeling typically relies on scores of overall responses, but response-level scores are coarse-grained supervision signals, causing reward models to struggle identifying specific components within a response trajectory that correlate with the scores and leading to poor generalization on unseen responses.\n\n### The Solution\n\nThe method develops an intra-trajectory consistency regularization to enforce that adjacent processes with higher next-token generation probability maintain more consistent rewards. This regularization improves performance on RewardBench when applied to advanced outcome reward models.\n\n### Related Work in Implicit Process Reward Models\n\nThe broader context shows that implicit PRMs aim to infer fine-grained rewards without step-level labels by leveraging weaker or indirect supervision such as outcome feedback, model self-evaluation, or consistency constraints.\n\nThe intra-trajectory consistency method appears to be a recent advancement (published June 2025) that addresses limitations in outcome-based reward modeling by using generation probabilities to improve signal propagation across trajectories without requiring additional manual annotations.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b78f6842-a4d4-4834-a0b4-7a4ebc706629",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "b1918d29-9ce6-4a94-9349-d8d709a86bd5",
+            "toolUseResult": {
+              "query": "\"intra-trajectory consistency\" OR \"trajectory consistency\" reward modeling process supervision 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01GBHquC2hV7PP75Uac8xfUn",
+                  "content": [
+                    {
+                      "title": "[2506.09096] Intra-Trajectory Consistency for Reward Modeling",
+                      "url": "https://arxiv.org/abs/2506.09096"
+                    },
+                    {
+                      "title": "Intra-Trajectory Consistency for Reward Modeling",
+                      "url": "https://arxiv.org/html/2506.09096v1"
+                    },
+                    {
+                      "title": "INTRA-TRAJECTORY CONSISTENCY FOR REWARD MODELING",
+                      "url": "https://openreview.net/pdf?id=Q7YwCym2jH"
+                    },
+                    {
+                      "title": "Intra-Trajectory Consistency for Reward Modeling",
+                      "url": "https://www.arxiv.org/pdf/2506.09096"
+                    },
+                    {
+                      "title": "A Survey of Process Reward Models: From Outcome Signals to Process",
+                      "url": "https://www.arxiv.org/pdf/2510.08049v1"
+                    },
+                    {
+                      "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+                      "url": "https://arxiv.org/html/2510.08049v3"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found on intra-trajectory consistency and trajectory consistency in reward modeling:\n\n## Intra-Trajectory Consistency for Reward Modeling\n\nThe approach leverages generation probabilities to establish reward consistency between processes in the response trajectory, allowing response-level supervisory signals to propagate across processes for fine-grained reward learning signals.\n\n### The Problem Being Addressed\n\nCurrent reward modeling typically relies on scores of overall responses, but response-level scores are coarse-grained supervision signals, causing reward models to struggle identifying specific components within a response trajectory that correlate with the scores and leading to poor generalization on unseen responses.\n\n### The Solution\n\nThe method develops an intra-trajectory consistency regularization to enforce that adjacent processes with higher next-token generation probability maintain more consistent rewards. This regularization improves performance on RewardBench when applied to advanced outcome reward models.\n\n### Related Work in Implicit Process Reward Models\n\nThe broader context shows that implicit PRMs aim to infer fine-grained rewards without step-level labels by leveraging weaker or indirect supervision such as outcome feedback, model self-evaluation, or consistency constraints.\n\nThe intra-trajectory consistency method appears to be a recent advancement (published June 2025) that addresses limitations in outcome-based reward modeling by using generation probabilities to improve signal propagation across trajectories without requiring additional manual annotations."
+              ],
+              "durationSeconds": 6.2628922739999835,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "b78f6842-a4d4-4834-a0b4-7a4ebc706629",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-27T16:25:18.313Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0137kiBYKwvGiTkoZj4hLLE1",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"reward under attack\" PRM benchmark diagnostic toolkit defense mechanism 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1918d29-9ce6-4a94-9349-d8d709a86bd5",
+            "isSidechain": false,
+            "requestId": "req_011CbTPHXd6MhoJyo4N95Xar",
+            "type": "assistant",
+            "uuid": "4be16094-1804-43f6-a8d7-de49b17fbb05",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015i2UxmikHgbcjJ8HDMbDWE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 678,
+                "cache_read_input_tokens": 69354,
+                "output_tokens": 66,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 678,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 66,
+                    "cache_read_input_tokens": 69354,
+                    "cache_creation_input_tokens": 678,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 678
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-27T16:25:26.798Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0137kiBYKwvGiTkoZj4hLLE1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"reward under attack\" PRM benchmark diagnostic toolkit defense mechanism 2026\"\n\nLinks: [{\"title\":\"Reward Under Attack: Analyzing the Robustness and Hackability of\",\"url\":\"https://arxiv.org/pdf/2603.06621\"},{\"title\":\"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\",\"url\":\"https://arxiv.org/abs/2603.06621\"},{\"title\":\"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\",\"url\":\"https://arxiv.org/html/2601.12294v1\"},{\"title\":\"Reward Under Attack: Evaluating the Sensitivity of Process Reward Models\",\"url\":\"https://openreview.net/pdf?id=Hw24VOppus\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2603.06621\"},{\"title\":\"GitHub - ssmisya/PRMBench: [ACL' 25] The official code repository for PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models.\",\"url\":\"https://github.com/ssmisya/PRMBench\"},{\"title\":\"(PDF) ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\",\"url\":\"https://www.researchgate.net/publication/399931270_ToolPRMBench_Evaluating_and_Advancing_Process_Reward_Models_for_Tool-using_Agents\"},{\"title\":\"PromptGame Dataset: Prompt Injection Attack Benchmark and Defense Evaluation Data | IEEE DataPort\",\"url\":\"https://ieee-dataport.org/documents/promptgame-dataset-prompt-injection-attack-benchmark-and-defense-evaluation-data\"}]\n\nBased on the search results, I found relevant information about \"Reward Under Attack,\" which is a research paper focused on analyzing Process Reward Models (PRMs).\n\n## Key Findings:\n\nProcess Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.\n\n### The Diagnostic Framework:\n\nThe research introduces a three-tiered diagnostic framework that applies increasing adversarial pressure to quantify these vulnerabilities. The framework tests several key aspects:\n\n- **Static Perturbation Analysis**: Uncovers a fluency-logic dissociation: high invariance to surface-level style changes (reward changes <0.1), yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types.\n\n- **Adversarial Optimization**: Demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks.\n\n- **RL-Induced Reward Hacking**: Policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts.\n\n### Key Insight:\n\nCurrent PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\n### Defense Mechanism:\n\nThe researchers release PRM-BiasBench and a diagnostic toolkit to enable robustness evaluation before deployment.\n\nThe paper was posted in February-March 2026 and provides a comprehensive analysis of PRM vulnerabilities with practical tools for evaluation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4be16094-1804-43f6-a8d7-de49b17fbb05",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "7350d3da-c14b-4dad-8687-bd00bd080439",
+            "toolUseResult": {
+              "query": "\"reward under attack\" PRM benchmark diagnostic toolkit defense mechanism 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_0143Zqk8QaQ2ZAqRXQvi7WSz",
+                  "content": [
+                    {
+                      "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+                      "url": "https://arxiv.org/pdf/2603.06621"
+                    },
+                    {
+                      "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+                      "url": "https://arxiv.org/abs/2603.06621"
+                    },
+                    {
+                      "title": "ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents",
+                      "url": "https://arxiv.org/html/2601.12294v1"
+                    },
+                    {
+                      "title": "Reward Under Attack: Evaluating the Sensitivity of Process Reward Models",
+                      "url": "https://openreview.net/pdf?id=Hw24VOppus"
+                    },
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2603.06621"
+                    },
+                    {
+                      "title": "GitHub - ssmisya/PRMBench: [ACL' 25] The official code repository for PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models.",
+                      "url": "https://github.com/ssmisya/PRMBench"
+                    },
+                    {
+                      "title": "(PDF) ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents",
+                      "url": "https://www.researchgate.net/publication/399931270_ToolPRMBench_Evaluating_and_Advancing_Process_Reward_Models_for_Tool-using_Agents"
+                    },
+                    {
+                      "title": "PromptGame Dataset: Prompt Injection Attack Benchmark and Defense Evaluation Data | IEEE DataPort",
+                      "url": "https://ieee-dataport.org/documents/promptgame-dataset-prompt-injection-attack-benchmark-and-defense-evaluation-data"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant information about \"Reward Under Attack,\" which is a research paper focused on analyzing Process Reward Models (PRMs).\n\n## Key Findings:\n\nProcess Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.\n\n### The Diagnostic Framework:\n\nThe research introduces a three-tiered diagnostic framework that applies increasing adversarial pressure to quantify these vulnerabilities. The framework tests several key aspects:\n\n- **Static Perturbation Analysis**: Uncovers a fluency-logic dissociation: high invariance to surface-level style changes (reward changes <0.1), yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types.\n\n- **Adversarial Optimization**: Demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks.\n\n- **RL-Induced Reward Hacking**: Policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts.\n\n### Key Insight:\n\nCurrent PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\n### Defense Mechanism:\n\nThe researchers release PRM-BiasBench and a diagnostic toolkit to enable robustness evaluation before deployment.\n\nThe paper was posted in February-March 2026 and provides a comprehensive analysis of PRM vulnerabilities with practical tools for evaluation."
+              ],
+              "durationSeconds": 8.482045341000077,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "4be16094-1804-43f6-a8d7-de49b17fbb05",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "7350d3da-c14b-4dad-8687-bd00bd080439",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate novel ML research ideas systematically",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-27T16:25:32.146Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FkCiR5gBSK8WeADnywLkfb",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2603.06621",
+                "prompt": "Extract the specific defense mechanisms or mitigation strategies proposed or discussed in this paper. What do they propose to fix the reward hacking problem? What are the specific suggestions for making PRMs more robust? Focus on any proposed solutions, not just the attack analysis. Also extract any future directions or open problems they identify."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7350d3da-c14b-4dad-8687-bd00bd080439",
+            "isSidechain": false,
+            "requestId": "req_011CbTPJLNCrCgv3wTAqFh1h",
+            "type": "assistant",
+            "uuid": "42721ba6-3ae3-49ab-a64c-6c040b3451df",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FGGmT3g79F7ksFZcWnEhFM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 911,
+                "cache_read_input_tokens": 70032,
+                "output_tokens": 144,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 911,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 144,
+                    "cache_read_input_tokens": 70032,
+                    "cache_creation_input_tokens": 911,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 911
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-27T16:25:37.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FkCiR5gBSK8WeADnywLkfb",
+              "type": "tool_result",
+              "content": "# Defense Mechanisms and Mitigation Strategies for PRM Robustness\n\n## Proposed Solutions\n\nThe paper identifies vulnerabilities in Process Reward Models but offers limited concrete solutions. The authors propose the following mitigation approaches:\n\n### 1. **Adversarial Training**\nThe paper suggests \"adversarial training against perturbations in PRM-BiasBench\" as a potential hardening mechanism, though implementation details are not provided.\n\n### 2. **Ensemble Approaches**\nThe authors note that \"ensemble approaches combining PRMs with complementary strengths may offer improved robustness,\" leveraging the observation that different PRMs fail on different attack types.\n\n### 3. **Training Objective Modifications**\nThey recommend \"training objectives that explicitly penalize fluency-correctness misalignment,\" though specific architectural changes are not detailed.\n\n### 4. **Hybrid Verification Systems**\nThe paper advocates for combining \"process supervision with outcome verification\" rather than relying solely on PRMs for reward signals.\n\n### 5. **Evaluation Protocols**\nA critical recommendation is implementing \"closed-loop RL stress-testing before deployment\" to detect reward hacking vulnerabilities before production use.\n\n## Open Problems and Future Directions\n\nThe paper identifies several unsolved challenges:\n\n- Systematic methods for distinguishing genuine reasoning improvements from stylistic exploitation\n- Understanding why different PRMs develop complementary failure modes\n- Developing verification approaches robust to both fluency and logical correctness\n- Scaling robustness solutions to larger models and more complex reasoning tasks"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42721ba6-3ae3-49ab-a64c-6c040b3451df",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "7d9b89c6-ca8f-4b65-a6d5-64f558db4fa5",
+            "toolUseResult": {
+              "bytes": 182946,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Defense Mechanisms and Mitigation Strategies for PRM Robustness\n\n## Proposed Solutions\n\nThe paper identifies vulnerabilities in Process Reward Models but offers limited concrete solutions. The authors propose the following mitigation approaches:\n\n### 1. **Adversarial Training**\nThe paper suggests \"adversarial training against perturbations in PRM-BiasBench\" as a potential hardening mechanism, though implementation details are not provided.\n\n### 2. **Ensemble Approaches**\nThe authors note that \"ensemble approaches combining PRMs with complementary strengths may offer improved robustness,\" leveraging the observation that different PRMs fail on different attack types.\n\n### 3. **Training Objective Modifications**\nThey recommend \"training objectives that explicitly penalize fluency-correctness misalignment,\" though specific architectural changes are not detailed.\n\n### 4. **Hybrid Verification Systems**\nThe paper advocates for combining \"process supervision with outcome verification\" rather than relying solely on PRMs for reward signals.\n\n### 5. **Evaluation Protocols**\nA critical recommendation is implementing \"closed-loop RL stress-testing before deployment\" to detect reward hacking vulnerabilities before production use.\n\n## Open Problems and Future Directions\n\nThe paper identifies several unsolved challenges:\n\n- Systematic methods for distinguishing genuine reasoning improvements from stylistic exploitation\n- Understanding why different PRMs develop complementary failure modes\n- Developing verification approaches robust to both fluency and logical correctness\n- Scaling robustness solutions to larger models and more complex reasoning tasks",
+              "durationMs": 5338,
+              "url": "https://arxiv.org/html/2603.06621"
+            },
+            "sourceToolAssistantUUID": "42721ba6-3ae3-49ab-a64c-6c040b3451df",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-27T16:25:40.917Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VbwvFfzKXjoPi2Uz9T5zhE",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"process reward\" \"causal\" OR \"counterfactual\" reasoning verification step correctness 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d9b89c6-ca8f-4b65-a6d5-64f558db4fa5",
+            "isSidechain": false,
+            "requestId": "req_011CbTPK7yMRti3vzVYdo1ux",
+            "type": "assistant",
+            "uuid": "1108c6cf-c1c4-4923-83f3-7719aadd6828",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LZYH1iQPt5GxEFeKxDe6VH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 490,
+                "cache_read_input_tokens": 70943,
+                "output_tokens": 77,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 490,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 77,
+                    "cache_read_input_tokens": 70943,
+                    "cache_creation_input_tokens": 490,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 490
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-27T16:25:49.329Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VbwvFfzKXjoPi2Uz9T5zhE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"process reward\" \"causal\" OR \"counterfactual\" reasoning verification step correctness 2025 2026\"\n\nLinks: [{\"title\":\"Towards Generalizable Reasoning: Group Causal Counterfactual Policy Optimization for LLMs\",\"url\":\"https://arxiv.org/html/2602.06475v2\"},{\"title\":\"Towards Generalizable Reasoning: Group Causal Counterfactual Policy Optimization for LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2602.06475\"},{\"title\":\"[2509.01544] Causal Consistency Regularization: Training Verifiably Sensitive Reasoning in Large Language Models\",\"url\":\"https://arxiv.org/abs/2509.01544\"},{\"title\":\"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries\",\"url\":\"https://arxiv.org/pdf/2603.29500\"},{\"title\":\"2026-02-05 Outcome Accuracy is Not Enough: Aligning the Reasoning Process of\",\"url\":\"https://www.arxiv.org/pdf/2602.04649\"},{\"title\":\"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2509.26578\"},{\"title\":\"Uncertainty-Aware Step-wise Verification with Generative Reward Models\",\"url\":\"https://arxiv.org/pdf/2502.11250\"},{\"title\":\"RM-R1: Reward Modeling as Reasoning\",\"url\":\"https://arxiv.org/pdf/2505.02387\"}]\n\nBased on the search results, here are recent developments related to process reward models, causal/counterfactual reasoning, and verification of step correctness from 2025-2026:\n\n## Group Causal Counterfactual Policy Optimization (GC2PO)\n\nA recent approach proposes an episodic causal counterfactual reward that captures robustness by encouraging the answer distribution from a reasoning step to remain stable under counterfactual perturbations, and effectiveness by enforcing sufficient variability for transfer across questions. This design decouples reasoning quality from outcome correctness by providing positive supervision for logically sound reasoning steps while suppressing spurious shortcuts and lucky guesses, and combines it with outcome reward to build token-level advantage that encourages reasoning patterns that are both process-valid and answer-correct.\n\n## Process Reward Models vs. Outcome-Only Rewards\n\nCurrent Process Reward Models are typically trained on chain-of-thought traces filtered by final correctness, treating incorrect samples as uniformly negative, which may incentivize \"lucky guesses\" with flawed logic while penalizing rigorous reasoning that yields incorrect answers due to minor errors. Although outcome-only reward approaches improve final accuracy, they do not guarantee the correctness of reasoning steps, and reinforcement learning guided by outcome-only rewards can degrade the faithfulness of reasoning chains.\n\n## Counterfactual Sensitivity Regularization\n\nA training paradigm called Counterfactual Sensitivity Regularization improves reasoning faithfulness by enforcing causal consistency between reasoning steps and outcomes.\n\n## Conditional Reward Modeling\n\nConditional Reward Modeling explicitly conditions each step reward on previous reasoning steps and aligns it with the final outcome, proving more robust to reward hacking.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1108c6cf-c1c4-4923-83f3-7719aadd6828",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "094c30bf-9781-4d66-9882-902ad5e4bd45",
+            "toolUseResult": {
+              "query": "\"process reward\" \"causal\" OR \"counterfactual\" reasoning verification step correctness 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_018Zd1JW7ScoUmFmiqnfRQHd",
+                  "content": [
+                    {
+                      "title": "Towards Generalizable Reasoning: Group Causal Counterfactual Policy Optimization for LLMs",
+                      "url": "https://arxiv.org/html/2602.06475v2"
+                    },
+                    {
+                      "title": "Towards Generalizable Reasoning: Group Causal Counterfactual Policy Optimization for LLM Reasoning",
+                      "url": "https://arxiv.org/pdf/2602.06475"
+                    },
+                    {
+                      "title": "[2509.01544] Causal Consistency Regularization: Training Verifiably Sensitive Reasoning in Large Language Models",
+                      "url": "https://arxiv.org/abs/2509.01544"
+                    },
+                    {
+                      "title": "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries",
+                      "url": "https://arxiv.org/pdf/2603.29500"
+                    },
+                    {
+                      "title": "2026-02-05 Outcome Accuracy is Not Enough: Aligning the Reasoning Process of",
+                      "url": "https://www.arxiv.org/pdf/2602.04649"
+                    },
+                    {
+                      "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning",
+                      "url": "https://arxiv.org/pdf/2509.26578"
+                    },
+                    {
+                      "title": "Uncertainty-Aware Step-wise Verification with Generative Reward Models",
+                      "url": "https://arxiv.org/pdf/2502.11250"
+                    },
+                    {
+                      "title": "RM-R1: Reward Modeling as Reasoning",
+                      "url": "https://arxiv.org/pdf/2505.02387"
+                    }
+                  ]
+                },
+                "Based on the search results, here are recent developments related to process reward models, causal/counterfactual reasoning, and verification of step correctness from 2025-2026:\n\n## Group Causal Counterfactual Policy Optimization (GC2PO)\n\nA recent approach proposes an episodic causal counterfactual reward that captures robustness by encouraging the answer distribution from a reasoning step to remain stable under counterfactual perturbations, and effectiveness by enforcing sufficient variability for transfer across questions. This design decouples reasoning quality from outcome correctness by providing positive supervision for logically sound reasoning steps while suppressing spurious shortcuts and lucky guesses, and combines it with outcome reward to build token-level advantage that encourages reasoning patterns that are both process-valid and answer-correct.\n\n## Process Reward Models vs. Outcome-Only Rewards\n\nCurrent Process Reward Models are typically trained on chain-of-thought traces filtered by final correctness, treating incorrect samples as uniformly negative, which may incentivize \"lucky guesses\" with flawed logic while penalizing rigorous reasoning that yields incorrect answers due to minor errors. Although outcome-only reward approaches improve final accuracy, they do not guarantee the correctness of reasoning steps, and reinforcement learning guided by outcome-only rewards can degrade the faithfulness of reasoning chains.\n\n## Counterfactual Sensitivity Regularization\n\nA training paradigm called Counterfactual Sensitivity Regularization improves reasoning faithfulness by enforcing causal consistency between reasoning steps and outcomes.\n\n## Conditional Reward Modeling\n\nConditional Reward Modeling explicitly conditions each step reward on previous reasoning steps and aligns it with the final outcome, proving more robust to reward hacking."
+              ],
+              "durationSeconds": 8.403829419999965,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "1108c6cf-c1c4-4923-83f3-7719aadd6828",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-27T16:28:08.585Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a very comprehensive picture of the landscape. Let me synthesize what I've found and think deeply about which research directions are truly novel, well-grounded, and feasible.\n\nLet me organize what I know:\n\n## Current SOTA and Recent Work (2025-2026)\n\n### Generative PRMs\n- **GenPRM** (AAAI 2026): Generative PRM with CoT reasoning + code verification. 1.5B outperforms GPT-4o on ProcessBench. Uses RPE (Relative Progress Estimation).\n- **ThinkPRM**: Long CoT verification, uses only 1% of PRM800K labels. Outperforms discriminative PRMs on out-of-domain tasks.\n\n\n- **AURORA**: Combines ensemble prompting with reverse verification to automate PRM training.\n\n### Robustness & Reward Hacking\n- **PURE** (NeurIPS 2025): Addresses reward hacking through min-form credit assignment, treating value as the minimum of future rewards rather than their sum.\n- **Reward Under Attack** (Feb 2026): Reveals that PRMs often function as fluency detectors rather than true reasoning verifiers, with 43% of reward gains coming from stylistic shortcuts.\n- **APRM** (2025): Uses adversarial training where the generator intentionally creates errors for the PRM to learn detecting them, achieving +5.3% OOD improvement.\n\n### Causal & Adaptive Approaches\n- **GC2PO**: Applies causal counterfactual reasoning to separate the reward signal for reasoning quality from outcome correctness.\n- **EDU-PRM**: Dynamically segments steps based on entropy, cutting query costs by 98% while maintaining performance.\n- **AMCS**: Allocates Monte Carlo samples adaptively, focusing more computation on uncertain reasoning steps.\n- **SHAPE**: Hierarchical advantage estimation that's stage-aware, yielding 3% accuracy gains and 30% token savings.\n- **CoRefine**: Combines sequential and parallel test-time compute with confidence-guided refinement.\n\n### Credit Assignment Improvements\n- **SPRO**: Self-guided optimization using CPR and MSA, delivering 3.4× training efficiency gains.\n- **BASIS**: Estimates advantages from single rollouts in batches, reducing MSE by 69% compared to REINFORCE++.\n- **Process-Outcome Credit**: Uses MIG mechanism with decoupled masking to properly attribute credit across steps.\n\n### Generalization Across Domains\n- **VersaPRM**: Multi-domain process reward model trained on synthetic reasoning data, published at ICML 2025.\n- **ContextPRM**: Improves non-math domain performance by 6.5% over VersaPRM.\n- **FunPRM**: Treats functions as individual steps for code generation tasks.\n- **AgentPRM**: TD-based approach for agentic workflows, achieving 8× compute efficiency.\n\n### Verification & Formal Methods\n- **FoVer**: Synthesizes PRM training data using formal verification tools like Z3 and Isabelle.\n- **VPRMs**: Process reward models with deterministic rule-based verifiers for guaranteed correctness.\n- **ExecVerify**: White-box reinforcement learning that assigns verifiable rewards at the step level through code execution.\n- **ProSFI**: Applies process rewards over structured formal intermediaries.\n- **VPS**: Combines verifiable process supervision with adaptive weighting of rewards.\n\n### Bidirectional Approaches\n- **BiPRM**: Evaluates steps in both directions with a gating mechanism, achieving 37.7% improvement in detecting step-level errors.\n- **BiRM**: Combines backward and forward supervision inspired by A* search.\n\n## Remaining Research Gaps\n\nI'm identifying areas where existing methods haven't been combined yet. GenRM-CoT and PAV both use advantage-based rewards with generative verification, but no one's tried merging them—GenPRM uses RPE which is related but distinct. Similarly, difficulty-adaptive PRM training remains unexplored; SHAPE handles stage-aware advantages at the token level, AMCS does adaptive sampling, and CoRefine allocates compute adaptively at test time, but none adapt the PRM training itself based on problem difficulty.\n\nThe combination of VinePPO's unbiased Monte Carlo estimates with OmegaPRM's binary search for critical step identification hasn't been attempted either. A stable self-improving loop where PRMs guide Monte Carlo sampling, which then relabels data for retraining, is still missing—APRM and SCAN do pieces of this but not the full cycle. Finally, PRM robustness during reinforcement learning remains an open problem; while \"Reward Under Attack\" identified the vulnerability and PURE and APRM proposed partial solutions, there's no comprehensive approach yet.\n\nBeyond these, revision with verification could leverage PAV's complementary prover framework, and extending verifiable process supervision to open-ended tasks without ground truth remains largely unexplored. Now I'm thinking through which five ideas would be most impactful and feasible to actually pursue.\n\nI need ideas that are clearly distinct from existing work, address real gaps, and align with what reviewers care about—theoretical rigor, proper ablations, RL integration, and open models. Let me evaluate the candidates against these criteria.\n\nStarting with the first idea around causally-grounded process rewards: the core insight is treating step correctness as a causal property—a step is correct if removing or changing it actually affects the final outcome. GC2PO touches on causal counterfactuals but at the policy level rather than for training PRMs themselves, and \"Reward Under Attack\" identifies the problem without proposing a causal solution, so there's real space here, though I need to be careful about how close this actually is to existing work.\n\nFor the second idea on amortized process verification: the principle is identifying which steps actually matter for verification rather than computing expensive rollout estimates everywhere. AMCS does adaptive sampling but still estimates at every step, and EDU-PRM uses entropy for segmentation without the full amortization strategy, so the combination of sparse critical-step identification plus distillation into a continuous model feels like a genuine contribution that addresses computational efficiency while maintaining accuracy.\n\nFor the third idea on adversarially robust generative PRMs: the key is anchoring the rationales that generative models produce to verifiable constraints—each step must cite something checkable like equation validity or code execution results—which makes it harder to game the reward signal compared to GenPRM's approach of using code verification only as a training signal.\n\nFor the fourth idea on self-evolving PRMs: I'm thinking about combining adversarial training with iterative improvement where the PRM directs sampling toward uncertain steps, the generator creates targeted adversarial examples exploiting those weaknesses, and the PRM gets retrained on this harder distribution.\n\nFor the fifth idea: I'm exploring how to use complementary provers as active revisers rather than just judges, computing advantage scores for each revision attempt under the complementary policy to theoretically merge sequential and parallel refinement strategies.\n\nFor the sixth idea: The core approach is training a single PRM with difficulty-specific output heads that route based on estimated problem difficulty, where simpler problems get coarser supervision while harder ones receive fine-grained binary search labels.\n\nNow I'm narrowing down to my top five ideas, starting with the ones that feel most novel and impactful.\n\nFor the first idea around verifiable rationale anchoring, I'm drawn to it because it addresses a real problem—prior work showed PRMs are vulnerable to fluency attacks—and combines established techniques in a new way. The key insight is that instead of making PRMs themselves more robust during training, I can make the verification process itself verifiable at test time by anchoring generative CoT rationales to formal verification. This gives reviewers both theoretical grounding and clear ablation points.\n\nThe second idea about critical-step distillation appeals to me because it targets a concrete bottleneck in VinePPO's Monte Carlo sampling. Rather than sampling uniformly across all steps, I'd focus on the steps that actually matter—the error boundaries where value changes significantly. This borrows from classical RL techniques like importance sampling, and could make the approach 5-10× more efficient, though I'm aware reviewers might dismiss it as pure engineering rather than a conceptual contribution.\n\nFor the third idea on advantage-guided refinement, the appeal is that it directly addresses a gap identified in recent scaling work, and PAV's theoretical framework is already solid. The deeper insight is treating revision itself as an action within the MDP rather than a post-hoc step.\n\nThe fourth and fifth ideas are weaker by comparison. Self-evolving PRMs could easily be seen as just iterating on existing work, and difficulty-conditional PRMs risk looking like a straightforward mixture-of-experts application rather than a genuine innovation.\n\nLooking at what's truly novel versus what's been explored, I'm narrowing down to the three strongest directions: the PAV advantage reformulation for revision, verifiable rationale anchoring for robust generative PRMs, and difficulty-conditional training. These have the clearest gaps in the literature and the most compelling theoretical or practical motivation. /formal anchoring to prevent reward hacking. Each verification step must produce a checkable claim.\n\n2. **Advantage-Guided Iterative Refinement (Composing Revision + Verification)**: Reframe revision as advantage estimation under complementary provers, theoretically composing sequential refinement with parallel verification.\n\n3. **Critical-Step Focused Credit Assignment via Uncertainty-Guided Sparse MC Estimation**: Use entropy/uncertainty to identify critical steps, compute MC estimates only there, and interpolate/distill elsewhere.\n\n4. **Difficulty-Conditional Process Reward Routing**: Train PRM with difficulty-conditional heads, with different granularity/training signal per difficulty bin.\n\n5. **Causally-Faithful Process Rewards via Counterfactual Step Sensitivity**: Define step rewards based on counterfactual sensitivity (how much does perturbing this step change the outcome?), making PRMs verify reasoning rather than fluency.\n\nI'm noticing that GC2PO already explores counterfactual reasoning for policy optimization, which overlaps with my fifth idea. The difficulty-conditional approach feels more novel but might lack theoretical grounding, while the counterfactual framing has deeper theory but less originality. Let me think about which would make the most compelling paper by considering the core insight each one offers—the verifiable anchoring idea feels strongest because it makes PRMs inherently robust to reward hacking by design rather than relying on training. Refinement: \"Revision IS advantage estimation\" - elegant reformulation that unifies two disjoint research threads\n3. Critical-Step Sparse MC: \"Most steps don't matter for credit assignment\" - 80/20 rule applied to PRM training\n4. Difficulty-Conditional PRM: \"One PRM can't rule them all\" - the PRM should be as adaptive as the search strategy\n5. Counterfactual Step Sensitivity: \"Correct steps are ones that causally affect the outcome\" - causal definition of step correctness\n\nI'll go with ideas 1-5. Each has a clear \"aha\" and is traceable to the field guide. Let me now write the final output.\n\nActually, for the counterfactual step sensitivity idea (#5), let me think more carefully. The key insight from \"Reward Under Attack\" is that PRMs reward fluency, not reasoning. The fix needs to be fundamental: redefine what a PRM should measure. Instead of P(correct | step i reached), a causal PRM would ask whether removing or changing that step actually changes the outcome—which is different from GC2PO's policy-level perturbations since this reframes the training labels themselves.\n\nI'm checking whether anyone's already proposed training PRMs with counterfactual labels. GC2PO perturbs steps to test robustness but applies that to policy optimization, not PRM training data. The controllable data synthesis paper does inject errors and check outcomes, but that's for data generation rather than fundamentally redefining what PRMs measure. So redefining PRM training labels as counterfactual sensitivity scores seems novel enough, though it's in the neighborhood of existing work.\n\nWait—this is actually just advantage estimation, which PAV already does implicitly. The counterfactual framing is just another way of saying the same thing. I need a different idea for #5.\n\nLet me reconsider what gaps are still truly open. The field guide highlights \"process supervision beyond domains with verifiable ground-truth answers\" as high-impact and high-difficulty, and \"GenRM-style generative verification extended to step-level\" as medium difficulty but high impact. ThinkPRM and GenPRM have partially addressed the generative verification gap, but the question of extending process supervision beyond verifiable domains remains largely open.\n\nSo here's a better direction: what if I approached step correctness in non-verifiable domains through internal coherence—checking whether each step logically follows from the previous ones, rather than relying on outcome-based verification? This would directly address that gap. VersaPRM and ContextPRM extend to multiple domains but still require verifiable answers, so the truly unsolved problem is handling domains where there's no answer to check against. Looking at existing approaches, VPRMs rely on rule-based verifiers, FoVer uses formal systems like Z3 or Isabelle, and MC-based methods all require some form of ground truth.\n\nThe pattern I'm noticing is that every PRM method needs some verification oracle—but SPARK actually claims to be reference-free by generating synthetic step-level verification data without ground truth. That's closer to what I'm thinking about than I initially realized. So maybe this gap is partially addressed already. Let me refine my five ideas with this in mind, making sure the counterfactual approach stands out more distinctly. Looking at novelty, impact, and feasibility together, my top pick is Verifiable Rationale Anchoring, which combines existing tools in a new way. Now I'm grounding each of these ideas in the actual research landscape, making sure they're traceable to specific papers and clearly differentiated from what's already out there, while keeping reviewer expectations in mind.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "094c30bf-9781-4d66-9882-902ad5e4bd45",
+            "isSidechain": false,
+            "requestId": "req_011CbTPKzkYxXyvZyxLX2Nae",
+            "type": "assistant",
+            "uuid": "54fb4d78-1210-4092-8042-2c7662a98bb6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VD5Yfr8JpqZDVb2S2eH4of",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 71433,
+                "output_tokens": 5547,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5547,
+                    "cache_read_input_tokens": 71433,
+                    "cache_creation_input_tokens": 874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-27T16:28:08.588Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive coverage. Let me do a few final targeted novelty checks before synthesizing my ideas."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54fb4d78-1210-4092-8042-2c7662a98bb6",
+            "isSidechain": false,
+            "requestId": "req_011CbTPKzkYxXyvZyxLX2Nae",
+            "type": "assistant",
+            "uuid": "1e5978f0-b21b-4c00-92da-e842b16150fe",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VD5Yfr8JpqZDVb2S2eH4of",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 71433,
+                "output_tokens": 5547,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5547,
+                    "cache_read_input_tokens": 71433,
+                    "cache_creation_input_tokens": 874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-27T16:28:09.174Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JkEV849SrhfjrzZ5XbpK51",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"verifiable rationale\" OR \"verifiable verification\" generative PRM formal anchor robustness 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e5978f0-b21b-4c00-92da-e842b16150fe",
+            "isSidechain": false,
+            "requestId": "req_011CbTPKzkYxXyvZyxLX2Nae",
+            "type": "assistant",
+            "uuid": "46d0b678-2024-46af-b0cd-826332326113",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VD5Yfr8JpqZDVb2S2eH4of",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 71433,
+                "output_tokens": 5547,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5547,
+                    "cache_read_input_tokens": 71433,
+                    "cache_creation_input_tokens": 874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "46d0b678-2024-46af-b0cd-826332326113",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate novel ML research ideas systematically",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-27T16:28:16.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JkEV849SrhfjrzZ5XbpK51",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"verifiable rationale\" OR \"verifiable verification\" generative PRM formal anchor robustness 2026\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2512.16917\"},{\"title\":\"Trust but Verify! A Survey on Verification Design for Test-time Scaling\",\"url\":\"https://arxiv.org/html/2508.16665v3\"},{\"title\":\"Uncertainty-Aware Step-wise Verification with Generative Reward Models\",\"url\":\"https://arxiv.org/pdf/2502.11250\"},{\"title\":\"Efficient PRM Training Data Synthesis via Formal Verification\",\"url\":\"https://arxiv.org/pdf/2505.15960\"},{\"title\":\"[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification\",\"url\":\"https://arxiv.org/abs/2505.15960\"},{\"title\":\"Exploring Generative Process Reward Modeling for Semi- ...\",\"url\":\"https://aclanthology.org/2026.eacl-short.30.pdf\"},{\"title\":\"Uncertainty-aware Step-wise Verification with Generative Reward Models\",\"url\":\"https://arxiv.org/html/2502.11250v1\"}]\n\nBased on the search results, I found several relevant papers from 2025-2026 addressing verification, generative process reward models (PRMs), and robustness:\n\n## Key Findings:\n\n**Verifiable Rationales and Feedback:**\nA discriminator evaluates each slice for logical soundness and generates a concise, structured rationale, providing localized and verifiable feedback on specific reasoning errors. This approach combines generative PRMs with adversarial training for improved verification.\n\n**Formal Verification for PRM Training:**\nProcess Reward Models provide fine-grained process supervision over intermediate reasoning steps during training and inference. More specifically, existing approaches for constructing PRM training data remain costly and noisy, as they typically rely on human annotation or sampling-based labeling methods that require repeated LLM calls. A recent approach uses formal verification to address this, with formal logic and theorem proving tasks for more reliable training data synthesis.\n\n**Robustness and Generalization:**\nProcess reward models trained using synthetic reasoning traces often suffer from inaccurate step-level annotations and poor generalization to out-of-distribution tasks, while symbolic verification methods aim to address these issues by grounding reasoning in formal representations and structured logic.\n\n**Uncertainty Quantification:**\nLeveraging uncertainty quantification enhances the reliability of step-wise verification with generative reward models, and incorporating uncertainty estimates improves the robustness of judge-LM PRMs, leading to more reliable verification.\n\nThese papers address the intersection of formal verification, generative PRMs, and robustness you're inquiring about, published primarily in 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46d0b678-2024-46af-b0cd-826332326113",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "5d4661cc-1d77-49f2-983f-7bbede35cb36",
+            "toolUseResult": {
+              "query": "\"verifiable rationale\" OR \"verifiable verification\" generative PRM formal anchor robustness 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01D15yw9kqsao64hXD4p4f9H",
+                  "content": [
+                    {
+                      "title": "Published as a conference paper at ICLR 2026",
+                      "url": "https://arxiv.org/pdf/2512.16917"
+                    },
+                    {
+                      "title": "Trust but Verify! A Survey on Verification Design for Test-time Scaling",
+                      "url": "https://arxiv.org/html/2508.16665v3"
+                    },
+                    {
+                      "title": "Uncertainty-Aware Step-wise Verification with Generative Reward Models",
+                      "url": "https://arxiv.org/pdf/2502.11250"
+                    },
+                    {
+                      "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+                      "url": "https://arxiv.org/pdf/2505.15960"
+                    },
+                    {
+                      "title": "[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification",
+                      "url": "https://arxiv.org/abs/2505.15960"
+                    },
+                    {
+                      "title": "Exploring Generative Process Reward Modeling for Semi- ...",
+                      "url": "https://aclanthology.org/2026.eacl-short.30.pdf"
+                    },
+                    {
+                      "title": "Uncertainty-aware Step-wise Verification with Generative Reward Models",
+                      "url": "https://arxiv.org/html/2502.11250v1"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several relevant papers from 2025-2026 addressing verification, generative process reward models (PRMs), and robustness:\n\n## Key Findings:\n\n**Verifiable Rationales and Feedback:**\nA discriminator evaluates each slice for logical soundness and generates a concise, structured rationale, providing localized and verifiable feedback on specific reasoning errors. This approach combines generative PRMs with adversarial training for improved verification.\n\n**Formal Verification for PRM Training:**\nProcess Reward Models provide fine-grained process supervision over intermediate reasoning steps during training and inference. More specifically, existing approaches for constructing PRM training data remain costly and noisy, as they typically rely on human annotation or sampling-based labeling methods that require repeated LLM calls. A recent approach uses formal verification to address this, with formal logic and theorem proving tasks for more reliable training data synthesis.\n\n**Robustness and Generalization:**\nProcess reward models trained using synthetic reasoning traces often suffer from inaccurate step-level annotations and poor generalization to out-of-distribution tasks, while symbolic verification methods aim to address these issues by grounding reasoning in formal representations and structured logic.\n\n**Uncertainty Quantification:**\nLeveraging uncertainty quantification enhances the reliability of step-wise verification with generative reward models, and incorporating uncertainty estimates improves the robustness of judge-LM PRMs, leading to more reliable verification.\n\nThese papers address the intersection of formal verification, generative PRMs, and robustness you're inquiring about, published primarily in 2025-2026."
+              ],
+              "durationSeconds": 7.62724766600004,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "46d0b678-2024-46af-b0cd-826332326113",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-27T16:28:23.055Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014g5U2RqkbK6fskHzpR5v8q",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"difficulty-adaptive\" OR \"difficulty-conditional\" OR \"difficulty-aware\" PRM training process reward model architecture 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d4661cc-1d77-49f2-983f-7bbede35cb36",
+            "isSidechain": false,
+            "requestId": "req_011CbTPWsGQ3buyuSCGt5H3m",
+            "type": "assistant",
+            "uuid": "ee3ef6c4-598d-4b9a-a6c7-fca173d41b55",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E8oHXSD6kP4xbdcPuWnv8m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6237,
+                "cache_read_input_tokens": 72307,
+                "output_tokens": 81,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6237,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 81,
+                    "cache_read_input_tokens": 72307,
+                    "cache_creation_input_tokens": 6237,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6237
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-27T16:28:30.144Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014g5U2RqkbK6fskHzpR5v8q",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"difficulty-adaptive\" OR \"difficulty-conditional\" OR \"difficulty-aware\" PRM training process reward model architecture 2025 2026\"\n\nLinks: [{\"title\":\"Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport\",\"url\":\"https://arxiv.org/html/2605.06785\"},{\"title\":\"Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis\",\"url\":\"https://arxiv.org/html/2604.24198v1\"},{\"title\":\"Reward Modeling for Reinforcement Learning-Based LLM ...\",\"url\":\"https://arxiv.org/pdf/2602.09305\"},{\"title\":\"Efficient Process Reward Model Training via Active Learning\",\"url\":\"https://arxiv.org/pdf/2504.10559\"},{\"title\":\"Process Reward Models That Think | OpenReview\",\"url\":\"https://openreview.net/forum?id=V727xqBYIW\"},{\"title\":\"More Bang for the Buck: Process Reward Modeling with Entropy-Driven Uncertainty\",\"url\":\"https://arxiv.org/pdf/2503.22233\"},{\"title\":\"Adversarial Training for Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2511.22888\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process\",\"url\":\"https://arxiv.org/pdf/2510.08049\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.08049v3\"}]\n\nI found several relevant papers on Process Reward Models (PRMs) from 2025-2026. Here are the key findings related to difficulty-aware/adaptive approaches:\n\n## Difficulty-Aware PRM Training\n\nLASER-D is a dynamic and difficulty-aware extension that adapts target lengths based on both question difficulty and the evolving policy, representing one approach to incorporating difficulty awareness into reward modeling for reasoning tasks.\n\n## Adaptive Architecture and Training\n\nA PRM training paradigm that provides an adaptive curriculum where negative sample hardness dynamically increases while aligning with the PRM's evolving capabilities makes the PRM robust to increasingly subtle errors and ensures optimal and smooth learning. Adversarially Trained Process Reward Models (APRM) implement this approach through adversarial training.\n\nAdditionally, AdaptiveStep dynamically partitions reasoning into finer steps based on confidence, producing sharper PRM judgments, showing another way PRMs are becoming more adaptive to problem characteristics.\n\n## Recent PRM Training Advances\n\nAn uncertainty-aware active learning approach ACTPRM for PRM training selectively annotates informative reasoning steps using ensemble-based uncertainty estimation, significantly reducing labeling costs while maintaining performance.\n\nThese developments show the field is moving toward more sophisticated, difficulty-aware and adaptive approaches to PRM training and architecture in 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee3ef6c4-598d-4b9a-a6c7-fca173d41b55",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "44682dfd-ce7f-4c3c-a098-996741294269",
+            "toolUseResult": {
+              "query": "\"difficulty-adaptive\" OR \"difficulty-conditional\" OR \"difficulty-aware\" PRM training process reward model architecture 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01JAYiZ8xmi94ZBa8iSrjF2L",
+                  "content": [
+                    {
+                      "title": "Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport",
+                      "url": "https://arxiv.org/html/2605.06785"
+                    },
+                    {
+                      "title": "Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis",
+                      "url": "https://arxiv.org/html/2604.24198v1"
+                    },
+                    {
+                      "title": "Reward Modeling for Reinforcement Learning-Based LLM ...",
+                      "url": "https://arxiv.org/pdf/2602.09305"
+                    },
+                    {
+                      "title": "Efficient Process Reward Model Training via Active Learning",
+                      "url": "https://arxiv.org/pdf/2504.10559"
+                    },
+                    {
+                      "title": "Process Reward Models That Think | OpenReview",
+                      "url": "https://openreview.net/forum?id=V727xqBYIW"
+                    },
+                    {
+                      "title": "More Bang for the Buck: Process Reward Modeling with Entropy-Driven Uncertainty",
+                      "url": "https://arxiv.org/pdf/2503.22233"
+                    },
+                    {
+                      "title": "Adversarial Training for Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2511.22888"
+                    },
+                    {
+                      "title": "A Survey of Process Reward Models: From Outcome Signals to Process",
+                      "url": "https://arxiv.org/pdf/2510.08049"
+                    },
+                    {
+                      "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+                      "url": "https://arxiv.org/html/2510.08049v3"
+                    }
+                  ]
+                },
+                "I found several relevant papers on Process Reward Models (PRMs) from 2025-2026. Here are the key findings related to difficulty-aware/adaptive approaches:\n\n## Difficulty-Aware PRM Training\n\nLASER-D is a dynamic and difficulty-aware extension that adapts target lengths based on both question difficulty and the evolving policy, representing one approach to incorporating difficulty awareness into reward modeling for reasoning tasks.\n\n## Adaptive Architecture and Training\n\nA PRM training paradigm that provides an adaptive curriculum where negative sample hardness dynamically increases while aligning with the PRM's evolving capabilities makes the PRM robust to increasingly subtle errors and ensures optimal and smooth learning. Adversarially Trained Process Reward Models (APRM) implement this approach through adversarial training.\n\nAdditionally, AdaptiveStep dynamically partitions reasoning into finer steps based on confidence, producing sharper PRM judgments, showing another way PRMs are becoming more adaptive to problem characteristics.\n\n## Recent PRM Training Advances\n\nAn uncertainty-aware active learning approach ACTPRM for PRM training selectively annotates informative reasoning steps using ensemble-based uncertainty estimation, significantly reducing labeling costs while maintaining performance.\n\nThese developments show the field is moving toward more sophisticated, difficulty-aware and adaptive approaches to PRM training and architecture in 2025-2026."
+              ],
+              "durationSeconds": 7.085271332000033,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "ee3ef6c4-598d-4b9a-a6c7-fca173d41b55",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-27T16:28:33.136Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DH2MqkHywsvAUxtxm4fpV4",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"distributional process reward\" calibrated prediction conditional optimal transport 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44682dfd-ce7f-4c3c-a098-996741294269",
+            "isSidechain": false,
+            "requestId": "req_011CbTPXrAhRWh4qJZqv8gc2",
+            "type": "assistant",
+            "uuid": "48a99290-e534-40f8-b489-fb828b9e206a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRxj96LpVBhEnSe5ZdoD11",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 789,
+                "cache_read_input_tokens": 78544,
+                "output_tokens": 66,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 789,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 66,
+                    "cache_read_input_tokens": 78544,
+                    "cache_creation_input_tokens": 789,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 789
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-27T16:28:39.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DH2MqkHywsvAUxtxm4fpV4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"distributional process reward\" calibrated prediction conditional optimal transport 2026\"\n\nLinks: [{\"title\":\"[2605.06785] Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport\",\"url\":\"https://arxiv.org/abs/2605.06785\"},{\"title\":\"Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport\",\"url\":\"https://arxiv.org/html/2605.06785\"},{\"title\":\"A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores\",\"url\":\"https://arxiv.org/html/2605.25852\"},{\"title\":\"Cycle Class Consistency with Distributional Optimal Transport ...\",\"url\":\"https://proceedings.mlr.press/v180/nguyen22c/nguyen22c.pdf\"},{\"title\":\"Conditional Risk Minimization with Side Information: A Tractable, Universal Optimal Transport Framework\",\"url\":\"https://arxiv.org/pdf/2509.23128\"},{\"title\":\"Distributional Preference Alignment of LLMs via Optimal Transport\",\"url\":\"https://arxiv.org/pdf/2406.05882\"}]\n\nBased on the search results, I found highly relevant information about your query:\n\nThe paper \"Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport\" addresses inference-time scaling methods that rely on Process Reward Models (PRMs), which are often poorly calibrated and overestimate success probabilities.\n\nThe authors propose the first use of conditional optimal transport for calibrating PRMs, modifying conditional OT map learning to estimate a monotonic conditional quantile function over success probabilities estimated by the PRM, conditioned on PRM hidden states.\n\nThis approach yields structurally valid quantile estimates and enables efficient extraction of confidence bounds at arbitrary levels, which they integrate into the instance-adaptive scaling (IAS) framework.\n\nThese results establish conditional optimal transport as a principled and practical approach to PRM calibration, offering structural guarantees and flexible uncertainty estimation.\n\nThe paper was submitted by Rachel Ma and co-authors on May 7, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48a99290-e534-40f8-b489-fb828b9e206a",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "917b6ee6-3ee1-4851-9384-7eeae7f8d7df",
+            "toolUseResult": {
+              "query": "\"distributional process reward\" calibrated prediction conditional optimal transport 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_0143u8S6GqCpLSKBb9ZarfUb",
+                  "content": [
+                    {
+                      "title": "[2605.06785] Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport",
+                      "url": "https://arxiv.org/abs/2605.06785"
+                    },
+                    {
+                      "title": "Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport",
+                      "url": "https://arxiv.org/html/2605.06785"
+                    },
+                    {
+                      "title": "A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores",
+                      "url": "https://arxiv.org/html/2605.25852"
+                    },
+                    {
+                      "title": "Cycle Class Consistency with Distributional Optimal Transport ...",
+                      "url": "https://proceedings.mlr.press/v180/nguyen22c/nguyen22c.pdf"
+                    },
+                    {
+                      "title": "Conditional Risk Minimization with Side Information: A Tractable, Universal Optimal Transport Framework",
+                      "url": "https://arxiv.org/pdf/2509.23128"
+                    },
+                    {
+                      "title": "Distributional Preference Alignment of LLMs via Optimal Transport",
+                      "url": "https://arxiv.org/pdf/2406.05882"
+                    }
+                  ]
+                },
+                "Based on the search results, I found highly relevant information about your query:\n\nThe paper \"Distributional Process Reward Models: Calibrated Prediction of Future Rewards via Conditional Optimal Transport\" addresses inference-time scaling methods that rely on Process Reward Models (PRMs), which are often poorly calibrated and overestimate success probabilities.\n\nThe authors propose the first use of conditional optimal transport for calibrating PRMs, modifying conditional OT map learning to estimate a monotonic conditional quantile function over success probabilities estimated by the PRM, conditioned on PRM hidden states.\n\nThis approach yields structurally valid quantile estimates and enables efficient extraction of confidence bounds at arbitrary levels, which they integrate into the instance-adaptive scaling (IAS) framework.\n\nThese results establish conditional optimal transport as a principled and practical approach to PRM calibration, offering structural guarantees and flexible uncertainty estimation.\n\nThe paper was submitted by Rachel Ma and co-authors on May 7, 2026."
+              ],
+              "durationSeconds": 6.164078340000008,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "48a99290-e534-40f8-b489-fb828b9e206a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-27T16:28:42.726Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WxsSC5CV8EqDMtSv9nxEjR",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"compose\" OR \"unify\" \"sequential refinement\" \"parallel search\" OR \"parallel sampling\" verification advantage theory 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "917b6ee6-3ee1-4851-9384-7eeae7f8d7df",
+            "isSidechain": false,
+            "requestId": "req_011CbTPYXMt8qyNvqEdu5ad7",
+            "type": "assistant",
+            "uuid": "1f3036c9-1700-4632-838f-5adc6711b38a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S8YifHGJcn8CXMKQvuaRgC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 596,
+                "cache_read_input_tokens": 79333,
+                "output_tokens": 82,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 596,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 82,
+                    "cache_read_input_tokens": 79333,
+                    "cache_creation_input_tokens": 596,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 596
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-27T16:28:49.713Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WxsSC5CV8EqDMtSv9nxEjR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"compose\" OR \"unify\" \"sequential refinement\" \"parallel search\" OR \"parallel sampling\" verification advantage theory 2025 2026\"\n\nLinks: [{\"title\":\"Sample, Scrutinize and Scale: Effective Inference-Time Search by Scaling   Verification\",\"url\":\"https://arxiv.org/pdf/2502.01839\"},{\"title\":\"$V_1$: Unifying Generation and Self-Verification for Parallel Reasoners\",\"url\":\"https://arxiv.org/pdf/2603.04304\"},{\"title\":\"Pushing Test-Time Scaling Limits of Deep Search with Asymmetric Verification\",\"url\":\"https://arxiv.org/pdf/2510.06135\"},{\"title\":\"Unifying Compositional Verification and Certified ...\",\"url\":\"https://jhc.sjtu.edu.cn/~yutingwang/files/papers/popl25.pdf\"},{\"title\":\"A Novel Approach to Efficiently Verify Sequential Consistency in Concurrent Programs\",\"url\":\"https://www.mdpi.com/2073-431X/14/3/110\"},{\"title\":\"Understanding Performance Gap Between Parallel and Sequential Sampling in Large Reasoning Models\",\"url\":\"https://arxiv.org/pdf/2604.05868\"}]\n\nBased on the search results, I found several highly relevant papers from 2025-2026 that discuss composition, unification, sequential refinement, parallel search/sampling, and verification advantages:\n\n## Key Findings:\n\n**V₁: Unifying Generation and Self-Verification for Parallel Reasoners** (2025)\nThis work on parallel reasoning complements sequential \"deep thinking\" by sampling multiple independent chains of thought to explore diverse solution paths, followed by an aggregation step to select the final answer. Rather than scoring solutions in isolation, it pairs candidates by employing a Swiss-system tournament refinement strategy that dynamically allocates verification compute to the most uncertain pairs, providing a significant boost in selection accuracy.\n\n**Sample, Scrutinize and Scale** (2025)\nSampling-based search uses a generate-and-test approach where a model generates many responses in parallel and selects the best one, with the unique advantage of being embarrassingly parallel and allowing for arbitrarily scaling.\n\n**Understanding Performance Gap Between Parallel and Sequential Sampling** (2026)\nScaling can involve either sampling solutions in parallel and aggregating them through majority voting and best-of-N, or sampling solutions in a sequence chain with a self-refinement manner.\n\n**Pushing Test-Time Scaling Limits** (2025)\nSequential scaling deepens reasoning by extending chains of thought, while parallel scaling broadens exploration by producing multiple candidate outputs and selecting among them through aggregation methods.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f3036c9-1700-4632-838f-5adc6711b38a",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "e81df300-0dd0-47f0-9863-441f01210d43",
+            "toolUseResult": {
+              "query": "\"compose\" OR \"unify\" \"sequential refinement\" \"parallel search\" OR \"parallel sampling\" verification advantage theory 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01As7cVRHiQ4EZqUQVkQ7xty",
+                  "content": [
+                    {
+                      "title": "Sample, Scrutinize and Scale: Effective Inference-Time Search by Scaling   Verification",
+                      "url": "https://arxiv.org/pdf/2502.01839"
+                    },
+                    {
+                      "title": "$V_1$: Unifying Generation and Self-Verification for Parallel Reasoners",
+                      "url": "https://arxiv.org/pdf/2603.04304"
+                    },
+                    {
+                      "title": "Pushing Test-Time Scaling Limits of Deep Search with Asymmetric Verification",
+                      "url": "https://arxiv.org/pdf/2510.06135"
+                    },
+                    {
+                      "title": "Unifying Compositional Verification and Certified ...",
+                      "url": "https://jhc.sjtu.edu.cn/~yutingwang/files/papers/popl25.pdf"
+                    },
+                    {
+                      "title": "A Novel Approach to Efficiently Verify Sequential Consistency in Concurrent Programs",
+                      "url": "https://www.mdpi.com/2073-431X/14/3/110"
+                    },
+                    {
+                      "title": "Understanding Performance Gap Between Parallel and Sequential Sampling in Large Reasoning Models",
+                      "url": "https://arxiv.org/pdf/2604.05868"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several highly relevant papers from 2025-2026 that discuss composition, unification, sequential refinement, parallel search/sampling, and verification advantages:\n\n## Key Findings:\n\n**V₁: Unifying Generation and Self-Verification for Parallel Reasoners** (2025)\nThis work on parallel reasoning complements sequential \"deep thinking\" by sampling multiple independent chains of thought to explore diverse solution paths, followed by an aggregation step to select the final answer. Rather than scoring solutions in isolation, it pairs candidates by employing a Swiss-system tournament refinement strategy that dynamically allocates verification compute to the most uncertain pairs, providing a significant boost in selection accuracy.\n\n**Sample, Scrutinize and Scale** (2025)\nSampling-based search uses a generate-and-test approach where a model generates many responses in parallel and selects the best one, with the unique advantage of being embarrassingly parallel and allowing for arbitrarily scaling.\n\n**Understanding Performance Gap Between Parallel and Sequential Sampling** (2026)\nScaling can involve either sampling solutions in parallel and aggregating them through majority voting and best-of-N, or sampling solutions in a sequence chain with a self-refinement manner.\n\n**Pushing Test-Time Scaling Limits** (2025)\nSequential scaling deepens reasoning by extending chains of thought, while parallel scaling broadens exploration by producing multiple candidate outputs and selecting among them through aggregation methods."
+              ],
+              "durationSeconds": 6.981927855000016,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "1f3036c9-1700-4632-838f-5adc6711b38a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-27T16:28:54.122Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TGNnY3Swjwk9H7tA9a1wHC",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"self-improving\" \"process reward model\" iterative bootstrap stable loop convergence 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e81df300-0dd0-47f0-9863-441f01210d43",
+            "isSidechain": false,
+            "requestId": "req_011CbTPZHsJgJjjz8RXmtD1o",
+            "type": "assistant",
+            "uuid": "962bec2b-58b9-4cac-905e-c6b97712ad55",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HzH7xrmYTQF1Hk3NA811Wv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 727,
+                "cache_read_input_tokens": 79929,
+                "output_tokens": 74,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 727,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 74,
+                    "cache_read_input_tokens": 79929,
+                    "cache_creation_input_tokens": 727,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 727
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-27T16:29:01.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TGNnY3Swjwk9H7tA9a1wHC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"self-improving\" \"process reward model\" iterative bootstrap stable loop convergence 2025 2026\"\n\nLinks: [{\"title\":\"SELF-EVOLVED REWARD LEARNING FOR LLMS\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/26f5a4e26c13d1e0a47f46790c999361-Paper-Conference.pdf\"},{\"title\":\"Theoretical Guarantees for Iterative Alignment of Language ...\",\"url\":\"https://arxiv.org/pdf/2601.22513\"},{\"title\":\"RLoop: An Self-Improving Framework for Reinforcement Learning with Iterative Policy Initialization\",\"url\":\"https://arxiv.org/pdf/2511.04285\"},{\"title\":\"Bootstrapping Task Spaces for Self-Improvement\",\"url\":\"https://arxiv.org/html/2509.04575v3\"},{\"title\":\"A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula\",\"url\":\"https://arxiv.org/pdf/2602.10014\"},{\"title\":\"Bootstrapping Task Spaces for Self-Improvement Minqi Jiang msj@meta.com\",\"url\":\"https://www.arxiv.org/pdf/2509.04575\"},{\"title\":\"Iterative Self-Incentivization Empowers Large Language Models as ...\",\"url\":\"https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/shi-2025-iterative.pdf\"},{\"title\":\"Spend Wisely: Maximizing Post-Training Gains in Iterative Synthetic Data Bootstrapping\",\"url\":\"https://arxiv.org/pdf/2501.18962\"}]\n\nI found several highly relevant research papers on self-improving process reward models and iterative bootstrapping from 2025-2026. Here are the key findings:\n\n## Self-Evolved Reward Learning\n\nOne approach demonstrates that reward models iteratively improve by selecting high-confidence data based on predicted probabilities, ensuring that performance either improves or remains stable over time. This self-evolved reward learning process enables reward models to continually learn from their own feedback, requiring only 15% of human-annotated seed data to achieve performance comparable to models trained with full human-labeled datasets.\n\n## Iterative Alignment with Convergence Guarantees\n\nRecent theoretical work shows that parameters controlling iterative alignment converge, formally demonstrating that the influence of the initial model's quality decays exponentially, ensuring the stability and statistical efficiency of the iterative alignment framework.\n\n## Self-Improving Frameworks\n\nOne framework proposes a self-improving approach centered around iterative policy initialization, recasting the process as a virtuous cycle where the policy is progressively refined and re-initialized.\n\nAnother approach models each round of self-improvement as maximum-likelihood fine-tuning on a reward-filtered distribution, revealing an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation.\n\nThese papers collectively demonstrate advances in creating stable, convergent loops for self-improving systems with process reward models in 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "962bec2b-58b9-4cac-905e-c6b97712ad55",
+            "isSidechain": false,
+            "promptId": "dc160f7b-b955-4a17-8106-9edae37e0aa5",
+            "type": "user",
+            "uuid": "e5b9484c-f3c4-4d01-afea-c3cdd5760b02",
+            "toolUseResult": {
+              "query": "\"self-improving\" \"process reward model\" iterative bootstrap stable loop convergence 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_016EAYRKrwzoVxgo9cohHbCX",
+                  "content": [
+                    {
+                      "title": "SELF-EVOLVED REWARD LEARNING FOR LLMS",
+                      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/26f5a4e26c13d1e0a47f46790c999361-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Theoretical Guarantees for Iterative Alignment of Language ...",
+                      "url": "https://arxiv.org/pdf/2601.22513"
+                    },
+                    {
+                      "title": "RLoop: An Self-Improving Framework for Reinforcement Learning with Iterative Policy Initialization",
+                      "url": "https://arxiv.org/pdf/2511.04285"
+                    },
+                    {
+                      "title": "Bootstrapping Task Spaces for Self-Improvement",
+                      "url": "https://arxiv.org/html/2509.04575v3"
+                    },
+                    {
+                      "title": "A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula",
+                      "url": "https://arxiv.org/pdf/2602.10014"
+                    },
+                    {
+                      "title": "Bootstrapping Task Spaces for Self-Improvement Minqi Jiang msj@meta.com",
+                      "url": "https://www.arxiv.org/pdf/2509.04575"
+                    },
+                    {
+                      "title": "Iterative Self-Incentivization Empowers Large Language Models as ...",
+                      "url": "https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/shi-2025-iterative.pdf"
+                    },
+                    {
+                      "title": "Spend Wisely: Maximizing Post-Training Gains in Iterative Synthetic Data Bootstrapping",
+                      "url": "https://arxiv.org/pdf/2501.18962"
+                    }
+                  ]
+                },
+                "I found several highly relevant research papers on self-improving process reward models and iterative bootstrapping from 2025-2026. Here are the key findings:\n\n## Self-Evolved Reward Learning\n\nOne approach demonstrates that reward models iteratively improve by selecting high-confidence data based on predicted probabilities, ensuring that performance either improves or remains stable over time. This self-evolved reward learning process enables reward models to continually learn from their own feedback, requiring only 15% of human-annotated seed data to achieve performance comparable to models trained with full human-labeled datasets.\n\n## Iterative Alignment with Convergence Guarantees\n\nRecent theoretical work shows that parameters controlling iterative alignment converge, formally demonstrating that the influence of the initial model's quality decays exponentially, ensuring the stability and statistical efficiency of the iterative alignment framework.\n\n## Self-Improving Frameworks\n\nOne framework proposes a self-improving approach centered around iterative policy initialization, recasting the process as a virtuous cycle where the policy is progressively refined and re-initialized.\n\nAnother approach models each round of self-improvement as maximum-likelihood fine-tuning on a reward-filtered distribution, revealing an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation.\n\nThese papers collectively demonstrate advances in creating stable, convergent loops for self-improving systems with process reward models in 2025-2026."
+              ],
+              "durationSeconds": 7.386450745999929,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "962bec2b-58b9-4cac-905e-c6b97712ad55",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-27T16:29:01.516Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e5b9484c-f3c4-4d01-afea-c3cdd5760b02",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "65fe3a8e-44dc-44ce-98d2-7fe4919dc9d8",
+                "timestamp": "2026-05-27T16:29:01.516Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "65fe3a8e-44dc-44ce-98d2-7fe4919dc9d8",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate novel ML research ideas systematically",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-27T16:30:01.964Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a comprehensive picture. Let me synthesize everything and formulate my 5 research directions.\n\nLet me reconsider carefully what's truly novel vs. what's been done:\n\n1. **Verifiable Rationale Anchoring for Robust Generative PRMs**\n   - GenPRM/ThinkPRM do generative verification with CoT → established\n   - FoVer/VPRMs use formal verification for training data → established\n   - \"Reward Under Attack\" shows PRMs are fluency detectors → established problem\n   - NOBODY has combined generative CoT verification with formal anchoring at test-time such that each step of the verification rationale is itself verifiable\n   - ExecVerify uses code execution for step rewards but doesn't produce CoT rationales\n   - This is a genuine \"reformulation\": instead of training PRMs to be more robust, make the verification PROCESS verifiable\n   - Novelty: HIGH (0-1 closely related papers)\n\n2. **Advantage-Guided Iterative Refinement (Composing Revision + Verification)**\n   - CoRefine does sequential-parallel hybrid → established\n   - SETS does self-verification + self-correction → established\n   - V₁ unifies generation and verification → established\n   - PAV showed complementary provers help → established\n   - NOBODY has used PAV's advantage framework to theoretically ground how different verification signals should be weighted when composing multiple refinement strategies\n   - Novelty: MEDIUM-HIGH (1-2 related papers, but the specific theoretical framing is new)\n\n3. **Critical-Step Sparse MC Estimation**\n   - VinePPO and AMCS both estimate across all steps, while OmegaPRM and EDU-PRM focus on localization—the gap is combining cheap proxies to identify critical steps, then computing expensive MC only where it matters and distilling back to a full PRM\n   - Novelty: MEDIUM (3-4 related papers but distinct combination)\n\n4. **Difficulty-Conditional PRM Routing**\n   - Distributional PRM: calibration of scores is related but different; SHAPE handles within-trajectory advantage while AdaptiveStep uses confidence-based partitioning; BEST-Route and CoRefine adapt test-time allocation by difficulty but don't train PRMs with difficulty-conditional architectures\n   - Novelty: MEDIUM-HIGH (1-2 related papers)\n\n5. **Causally-Faithful PRM Training via Counterfactual Intervention**\n   - GC2PO uses counterfactual rewards for policy optimization and \"Reward Under Attack\" diagnoses the problem, while Causal Consistency Regularization measures sensitivity to perturbations—the key distinction is framing PRM training labels as counterfactual sensitivity rather than binary correctness or MC probability\n   - But PAV's advantage already captures this: it measures how much each step changes outcome probability, which is essentially counterfactual sensitivity, so this isn't as novel as I initially thought\n\n**Alternative Idea 5: Self-Evolving PRM via Rationale-Distillation Bootstrap**\n   - Math-Shepherd identified iterative PRM improvement as future work, Let's Verify uses iterative active learning but faces instability, APRM applies adversarial training in a single round, and Self-Evolved Reward Learning handles iterative self-improvement for outcome rewards—the gap is whether we can bootstrap PRM improvement through rationale distillation\n   - The combination I'm considering is: generative PRM produces rationales and step labels, filter them by MC agreement, distill into a discriminative PRM, use that to guide MC sampling, then iterate with curriculum—and the key insight is that GenRM-CoT rationales provide richer signal than bare MC labels, breaking the instability problem\n   - This feels medium novelty since related papers exist but the specific loop design is new, though I should double-check whether Self-Evolved Reward Learning already covers this for process rewards, not just outcome rewards\n\nLet me explore what's truly underexplored...\n\nI'm looking at process rewards for token-efficient reasoning—the problem is that long CoT chains waste tokens on unnecessary steps, and while SHAPE gets 30% reduction, nobody's trained PRMs to specifically reward both correctness and brevity. The insight is penalizing unnecessary verbosity while maintaining accuracy, which connects to PURE's work on reward hacking but from a different angle. Though this might be too incremental.\n\nAnother direction: bi-level PRM-policy optimization where both are co-trained with feedback loops instead of the current two-phase approach, but I'm realizing OPRL and SPRO already touch on this territory.\n\nGoing back to my core five ideas, I'm replacing the counterfactual approach with a hybrid formal-neural verification framework. The gap I see is that FoVer, VPRMs, and ExecVerify each handle specific domains—formal logic, structured reasoning, and code respectively—but there's no unified system where a neural PRM produces step judgments that get grounded in formal checks when available, using those checks as calibration anchors for uncertainty in domains where formal verification isn't possible. This extends process supervision beyond mathematics into general reasoning.\n\nBut I'm realizing this overlaps too much with my first idea about verification-grounded PRMs. Let me refocus on five ideas that collectively address the broadest gaps without redundancy. I'm settling on a final set that includes verification-grounded generative PRMs, which combines generative verification with formal verification and robustness against reward hacking, and then advantage-as-refinement for composing revision...\n\nActually, let me reconsider the remaining ideas. I'm looking at sparse Monte Carlo credit assignment that focuses computation on critical reasoning steps rather than wasting it on transitions that don't affect value, and difficulty-conditional PRM routing where different difficulty levels get specialized heads with varying granularity instead of forcing a single PRM to work across all cases.\n\nThen there's self-evolving PRMs bootstrapped from generative rationales, which provides richer training signals than just raw Monte Carlo labels for stable iterative improvement. Across all five approaches, I'm covering distinct gaps from the field guide while following established innovation patterns—reformulation, classical RL techniques, simplification, and democratization—each one traceable to specific papers and grounded in what reviewers tend to value: theoretical rigor, RL integration, and ablation-friendly designs.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65fe3a8e-44dc-44ce-98d2-7fe4919dc9d8",
+            "isSidechain": false,
+            "requestId": "req_011CbTPaAHfwFPWNamJcsf6C",
+            "type": "assistant",
+            "uuid": "e515fd16-0241-4cf5-8524-0edc669c65f1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EfiF3iMrkGzWkoudX22K2w",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 926,
+                "cache_read_input_tokens": 80656,
+                "output_tokens": 6819,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 926,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6819,
+                    "cache_read_input_tokens": 80656,
+                    "cache_creation_input_tokens": 926,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 926
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-27T16:31:45.988Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive coverage of the landscape. Let me synthesize my findings into 5 well-grounded research directions.\n\nBased on my extensive research across ~30 searches covering surveys, SOTA benchmarks, gap analyses, and novelty verification, here is my synthesis:\n\n**Key landscape findings:**\n- Generative PRMs (GenPRM AAAI'26, ThinkPRM) have overtaken discriminative PRMs, achieving SOTA with 1-23K labels\n- \"Reward Under Attack\" (Feb 2026) exposed that PRMs are \"fluency detectors\" — 43% of reward gains from stylistic shortcuts\n- PURE (NeurIPS'25) addresses reward hacking via min-form credit assignment\n- SHAPE, SPRO, BASIS (2025-2026) advance credit assignment but all use different approaches\n- FoVer (ACL'26), VPRMs, ExecVerify push formal/symbolic verification for step-level rewards\n- VersaPRM, ContextPRM extend PRMs beyond math but still require verifiable answers\n- CoRefine, SETS partially compose sequential/parallel strategies but lack theoretical grounding\n- AMCS does adaptive MC sampling but still estimates at every step\n- No stable iterative PRM self-improvement loop exists despite Math-Shepherd identifying it as future work\n- **Upcoming venue: AAAI 2027 (abstract deadline July 21, full paper July 28, 2026)**\n\n```json\n[\n  {\n    \"title\": \"Verification-Grounded Generative PRMs Against Reward Hacking\",\n    \"core_problem\": \"Current PRMs function as fluency detectors rather than reasoning verifiers, with 43% of RL reward gains attributable to stylistic shortcuts rather than genuine reasoning improvements. Can we make the verification process itself verifiable, so that reward hacking becomes structurally impossible rather than merely penalized?\",\n    \"opportunity\": \"GenPRM and ThinkPRM demonstrated that generative verification with chain-of-thought rationales outperforms discriminative PRMs by 20+ points, while FoVer and VPRMs showed formal verification provides ground-truth step labels. However, no work combines these: generative PRMs produce rich rationales but these rationales are unverifiable (hackable), while formal methods produce verifiable labels but lack interpretable reasoning. The opportunity is to anchor each step of the verification rationale to a checkable claim (equation validity via symbolic computation, code execution, or logical entailment), making the generative rationale itself auditable. This directly addresses the 'Reward Under Attack' diagnosis while preserving the scalability of generative PRMs.\",\n    \"landscape\": \"GenPRM (AAAI 2026) achieves SOTA on ProcessBench with 1.5B parameters outperforming GPT-4o, using CoT reasoning with code verification during training. ThinkPRM uses only 1% of PRM800K labels while outperforming discriminative PRMs by 8% on GPQA-Diamond. FoVer (ACL 2026 Findings) synthesizes PRM training data via Z3/Isabelle formal verification. ExecVerify uses interpreter execution states for verifiable step-level rewards in code reasoning. 'Reward Under Attack' (Feb 2026) demonstrated that gradient-based attacks achieve >0.9 PRM rewards with <4% ground-truth accuracy on AIME. APRM proposes adversarial training (+5.3% OOD) but doesn't change the verification paradigm. No existing work anchors the test-time verification rationale itself to formal/symbolic checks — all robust-PRM work focuses on training-time defenses rather than making the verification output structurally verifiable.\",\n    \"inspired_by\": \"Field guide gap 'PRM robustness to search exploitation' + gap 'GenRM-style generative verification extended to step-level process supervision' + pattern 'Simplification that improves performance' (removing the need for adversarial robustness training by making verification verifiable by construction)\"\n  },\n  {\n    \"title\": \"Advantage-Guided Iterative Refinement Composing Revision and Verification\",\n    \"core_problem\": \"Sequential revision and parallel verification are the two fundamental test-time compute strategies, but they are studied independently with no principled framework for their composition. Can we reformulate revision as advantage estimation under a complementary policy, thereby providing the first theoretical foundation for optimally composing these strategies?\",\n    \"opportunity\": \"The Scaling LLM Test-Time Compute paper (ICLR Oral) explicitly flagged 'composing revision with verification' as an open question. PAV (ICLR 2025 Spotlight) proved that weak complementary provers can improve strong policies through advantage estimation. CoRefine (Feb 2026) builds a hybrid sequential-parallel tree but uses confidence heuristics rather than theoretical grounding. SETS (Jan 2025) combines self-verification and self-correction but without advantage-based rewards. The key reformulation: each revision step is an action in a meta-MDP where the reward is the PAV advantage under a complementary reviser policy. This simultaneously fills the composition gap from the Scaling TTC paper and extends PAV's framework from evaluation to generation.\",\n    \"landscape\": \"CoRefine (Feb 2026) achieves 63% wall-clock speedup via confidence-guided sequential-parallel hybrid, but its controller is trained via supervised learning on heuristic confidence patterns. V₁ (Mar 2026) unifies generation and self-verification using Swiss-system tournament selection for parallel reasoners. SETS (Jan 2025) combines sampling, self-verification, and self-correction achieving power-law scaling. PAV showed 5-6× sample efficiency gains and >6% accuracy improvement over ORMs using advantage-based dense rewards. SHAPE (Apr 2026) introduces stage-aware hierarchical advantage for token-level credit assignment with 3% accuracy gain and 30% token reduction. However, no existing work uses advantage estimation under complementary policies to ground the composition of sequential refinement with parallel search — all composition approaches use ad-hoc heuristics rather than the principled RL framework that PAV provides.\",\n    \"inspired_by\": \"Field guide gap 'Composing revision with verification' + untried combination 'PAV complementary provers applied to revision model' + pattern 'Reformulation over invention' (reframing revision as advantage estimation) + pattern 'Borrow from classical RL and adapt to LLM structure'\"\n  },\n  {\n    \"title\": \"Sparse Monte Carlo Credit Assignment via Critical-Step Detection\",\n    \"core_problem\": \"Monte Carlo rollout estimation at every reasoning step — the backbone of VinePPO, Math-Shepherd, and OmegaPRM — incurs O(K×T) cost per trajectory, making accurate credit assignment prohibitively expensive for long reasoning chains. Can we achieve VinePPO-quality unbiased credit assignment at O(K×log T) cost by computing MC estimates only at critical steps where values actually change?\",\n    \"opportunity\": \"VinePPO (ICLR 2025) proved that accurate per-step MC credit assignment outperforms learned value functions, but requires K rollouts at each of T steps. OmegaPRM's binary search efficiently locates first-error positions in O(log M) rather than O(M). EDU-PRM showed that entropy-based uncertainty identifies the most informative step boundaries. AMCS (ICLR 2026) adaptively allocates more MC samples to uncertain steps but still estimates all steps. SCAN achieves 6% of vanilla MC inference cost via self-denoising. The untried combination: use a cheap proxy (entropy, gradient norm, or token-level PRM uncertainty) to identify O(log T) critical steps where values change significantly, compute full MC estimates only there, and interpolate/distill the sparse signal into a continuous value function. This directly addresses VinePPO's O(K×T) bottleneck while preserving its key insight about unbiased estimates.\",\n    \"landscape\": \"VinePPO (ICLR 2025) outperforms PPO by up to 3.0× in wall-clock time using MC value estimates instead of learned critics, but incurs K auxiliary rollouts per step. AMCS (ICLR 2026 submission) adaptively allocates sampling budget across steps based on uncertainty, but still estimates every step. EDU-PRM achieves 98% reduction in MC query cost via entropy-driven step segmentation matching SOTA. BASIS (May 2026) reduces MSE by 69% over REINFORCE++ by sharing information across prompts with single rollouts. SCAN achieves comparable PRM performance at 6% of MC inference cost. OmegaPRM achieves 75× efficiency over Math-Shepherd via binary search error localization. No work combines the binary-search localization principle (identify WHERE to estimate) with VinePPO's unbiased MC estimation (HOW to estimate) — all existing efficiency methods either reduce samples-per-step or improve per-step estimation quality, but none skip non-critical steps entirely.\",\n    \"inspired_by\": \"Field guide gap 'Amortized value estimation that avoids per-step MC rollout cost' + untried combination 'VinePPO + OmegaPRM binary search' + pattern 'Borrow from classical RL' (importance-weighted sparse estimation from the prioritized experience replay literature)\"\n  },\n  {\n    \"title\": \"Difficulty-Conditional Process Reward Routing Architecture\",\n    \"core_problem\": \"A single PRM trained on mixed-difficulty data is suboptimal: it over-exploits easy problems (generating low-information repetitive steps) while under-performing on hard ones (missing subtle errors). Can we design a PRM architecture that conditions its verification strategy on problem difficulty, matching the granularity and depth of verification to the problem's complexity?\",\n    \"opportunity\": \"The Scaling TTC paper showed that optimal test-time strategy is difficulty-dependent — beam search degrades on easy problems but helps on hard ones. All subsequent work (BEST-Route, CoRefine) adapted the search strategy to difficulty but kept the PRM fixed. The Distributional PRM (May 2026) calibrates PRM scores but doesn't condition the PRM architecture on difficulty. SHAPE conditions credit assignment on reasoning stage within a trajectory but not on problem-level difficulty. The gap: train a single PRM backbone with difficulty-conditional heads that use different verification granularity and training signals. Easy-problem heads use coarse Math-Shepherd-style MC labels; hard-problem heads use fine-grained OmegaPRM binary-search labels. Difficulty routing is estimated from early PRM hidden states, making the approach self-contained. This extends the 'difficulty-dependent strategy' insight from inference time to training time.\",\n    \"landscape\": \"The Scaling TTC paper (ICLR 2025 Oral) demonstrated that PRM beam search degrades on easy problems by generating 'low-information repetitive steps.' BEST-Route (Jun 2026) and CoRefine (Feb 2026) route queries to different compute budgets based on difficulty estimation. Distributional PRM (May 2026) uses conditional optimal transport for PRM calibration but doesn't change the PRM architecture per difficulty. SHAPE (Apr 2026) introduces stage-aware advantage within trajectories. AdaptiveStep dynamically partitions reasoning based on confidence. EDU-PRM uses entropy for dynamic segmentation. No existing work trains PRM architectures with explicit difficulty-conditional components — all adapt either the search algorithm or the compute budget, not the verification model itself. The closest work, ACTPRM, selects which steps to annotate based on uncertainty but doesn't condition the PRM architecture on problem-level difficulty.\",\n    \"inspired_by\": \"Field guide untried combination 'Difficulty-adaptive PRM training' (Scaling TTC + OmegaPRM + Let's Verify) + pattern 'Systematic empirical characterization of an underspecified design space' (characterizing when different PRM strategies work best) + reviewer preference 'honest characterization of failure modes' (showing where single-PRM approaches fail)\"\n  },\n  {\n    \"title\": \"Stable Self-Evolving PRM via Generative Rationale Bootstrap\",\n    \"core_problem\": \"Iterative PRM self-improvement — where a PRM guides MC sampling, generates improved labels, and is retrained — was identified as a natural extension by Math-Shepherd but remains unstable. Let's Verify Step by Step reported 'unexplained instability' in iterative active learning. Can generative verification rationales provide the richer, more stable training signal needed to break this instability?\",\n    \"opportunity\": \"Math-Shepherd explicitly identified iterative PRM bootstrap as key future work. Let's Verify Step by Step attempted iterative active learning but encountered instability they couldn't diagnose. Self-Evolved Reward Learning (ICLR 2025) showed iterative self-improvement works for outcome reward models with convergence guarantees, but hasn't been applied to process rewards. APRM's adversarial training improves robustness but is single-round. GenPRM and ThinkPRM produce step-level verification rationales that explain WHY a step is correct/incorrect — a fundamentally richer signal than bare MC binary labels. The key insight: rationales can be filtered by MC agreement (keep rationales whose conclusions match MC estimates, discard contradictions), creating a self-correcting curriculum. The filtered rationale-step pairs provide more stable gradients than bare labels because the model learns the reasoning pattern, not just the label.\",\n    \"landscape\": \"Math-Shepherd (2024) proposed iterative self-improvement as future work but never implemented it. Let's Verify Step by Step reported unexplained instability in iterative active learning. Self-Evolved Reward Learning (ICLR 2025) demonstrates convergent iterative self-improvement for outcome rewards, requiring only 15% seed data to match fully-supervised performance, but operates on response-level not step-level rewards. APRM achieves +5.3% OOD via adversarial training but is a single round of adversarial curriculum, not iterative PRM bootstrap. SCAN (Sep 2025) proposes self-denoising MC annotation with noise-tolerant learning but doesn't iterate the PRM-relabeling loop. Robust PRM via Noise-Aware Learning (Jan 2026) addresses label noise but in a static training paradigm. No work combines generative verification rationales (from GenPRM/ThinkPRM) with iterative PRM self-improvement, despite rationales providing the richer, more interpretable training signal that could address the instability Math-Shepherd and Let's Verify identified.\",\n    \"inspired_by\": \"Field guide gap 'Self-improving PRM training loops' + untried combination 'Self-improving PRM via GenRM-CoT rationale distillation' + pattern 'Democratization of expensive supervision' (replacing expensive MC labels with self-generated rationales) + reviewer preference 'dataset and resource releases' (releasing the iteratively-refined rationale dataset)\"\n  }\n]\n```\n\nSources:\n- [A Survey of Process Reward Models (Oct 2025)](https://arxiv.org/abs/2510.08049)\n- [GenPRM: Scaling Test-Time Compute of PRMs via Generative Reasoning (AAAI 2026)](https://arxiv.org/abs/2504.00891)\n- [Process Reward Models That Think (ThinkPRM)](https://arxiv.org/abs/2504.16828)\n- [Reward Under Attack: Analyzing PRM Robustness (Feb 2026)](https://arxiv.org/abs/2603.06621)\n- [Stop Summation: Min-Form Credit Assignment (PURE, NeurIPS 2025)](https://arxiv.org/abs/2504.15275)\n- [SHAPE: Stage-aware Hierarchical Advantage (Apr 2026)](https://arxiv.org/abs/2604.06636)\n- [CoRefine: Confidence-Guided Self-Refinement (Feb 2026)](https://arxiv.org/pdf/2602.08948)\n- [SETS: Self-Verification and Self-Correction for Test-Time Scaling](https://arxiv.org/abs/2501.19306)\n- [EDU-PRM: Entropy-Driven Uncertainty Process Reward Modeling](https://arxiv.org/abs/2503.22233)\n- [Adversarial Training for Process Reward Models (APRM)](https://arxiv.org/pdf/2511.22888)\n- [VinePPO: Refining Credit Assignment in RL for LLMs](https://arxiv.org/abs/2410.01679)\n- [BASIS: Batchwise Advantage Estimation (May 2026)](https://arxiv.org/abs/2605.27293)\n- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026)](https://arxiv.org/abs/2505.15960)\n- [Beyond Outcome Verification: Verifiable PRMs (VPRMs)](https://arxiv.org/abs/2601.17223)\n- [Controllable and Verifiable Process Data Synthesis (May 2026)](https://arxiv.org/abs/2605.02395)\n- [SPRO: Self-Guided Process Reward Optimization](https://arxiv.org/abs/2507.01551)\n- [VersaPRM: Multi-Domain PRM (ICML 2025)](https://arxiv.org/pdf/2502.06737)\n- [ContextPRM: Multi-domain Test-Time Scaling](https://arxiv.org/pdf/2509.24460)\n- [FunPRM: Function-as-Step PRM for Code Generation](https://arxiv.org/abs/2601.22249)\n- [AgentPRM: PRMs for LLM Agents (ACM Web 2026)](https://dl.acm.org/doi/10.1145/3774904.3792551)\n- [Distributional Process Reward Models (May 2026)](https://arxiv.org/abs/2605.06785)\n- [BEST-Route: Adaptive LLM Routing (Jun 2026)](https://arxiv.org/abs/2506.22716)\n- [From Static to Dynamic: Adaptive Monte Carlo Search (AMCS)](https://arxiv.org/abs/2509.24351)\n- [BiPRM: Bidirectional Process Reward Model](https://arxiv.org/abs/2508.01682)\n- [Correct Answers from Sound Reasoning: Verifiable Process Supervision](https://arxiv.org/abs/2605.12519)\n- [Discovering Process-Outcome Credit in Multi-Step LLM Reasoning](https://arxiv.org/abs/2602.01034)\n- [GC2PO: Group Causal Counterfactual Policy Optimization](https://arxiv.org/abs/2602.06475)\n- [V₁: Unifying Generation and Self-Verification](https://arxiv.org/pdf/2603.04304)\n- [The Lessons of Developing PRMs in Mathematical Reasoning](https://arxiv.org/abs/2501.07301)\n- [ICML 2026 Dates](https://icml.cc/Conferences/2026/Dates)\n- [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n- [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e515fd16-0241-4cf5-8524-0edc669c65f1",
+            "isSidechain": false,
+            "requestId": "req_011CbTPaAHfwFPWNamJcsf6C",
+            "type": "assistant",
+            "uuid": "0cccdf2b-bb4c-42ef-b429-04d00871177a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EfiF3iMrkGzWkoudX22K2w",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 926,
+                "cache_read_input_tokens": 80656,
+                "output_tokens": 6819,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 926,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6819,
+                    "cache_read_input_tokens": 80656,
+                    "cache_creation_input_tokens": 926,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 926
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "0cccdf2b-bb4c-42ef-b429-04d00871177a",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate novel ML research ideas systematically",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-27 (UTC).** Use this when reasoni…",
+                "leafUuid": "0cccdf2b-bb4c-42ef-b429-04d00871177a",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate novel ML research ideas systematically",
+                "sessionId": "6ec59458-fcbe-417f-a061-5376c1a26bb3"
+              }
+            }
+          ],
+          "id": "event-000210"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,387 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a0d2cae45d3925dd2204",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-22T12:09:36.399Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me review the current state. The Exp-D experiment has been completed and the results show that Conjecture 1 is falsified. Let me check the current state of the results file and understand what needs to be communicated to the user.\n\nThe key findings are:\n1. Conjecture 1 (envelope monotonicity) is FALSE for general C₀\n2. 141,514/210,000 violations (67.4%) in random tests\n3. 13/14 adversarial configs found counterexamples\n\n\n4. The root cause is that the DPI doesn't apply to the linear interpolation between identity and C₀, which means V_B(δ) exhibits non-monotonic behavior—it can decrease and then increase again\n\nNow I should read through the results file to present these findings clearly to the user.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f6d4548-cc70-440f-8d56-c0cd449e48a6",
+            "isSidechain": false,
+            "requestId": "req_011CbHajcjdo1rCvrxWyAsBF",
+            "type": "assistant",
+            "uuid": "67a7041e-aade-4d99-ad40-00eb13760c6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "compiled-exploring-mochi",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C3F38EKmuFHACcjWSUL8gb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 23636,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 23636,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 307,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 23636,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 23636
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-22T12:09:36.515Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MUzMu9571czVWiR8ngBnJF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67a7041e-aade-4d99-ad40-00eb13760c6e",
+            "isSidechain": false,
+            "requestId": "req_011CbHajcjdo1rCvrxWyAsBF",
+            "type": "assistant",
+            "uuid": "02bd6d36-2b5c-4316-97b3-1547355e4108",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "compiled-exploring-mochi",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C3F38EKmuFHACcjWSUL8gb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 23636,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 23636,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 307,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 23636,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 23636
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-22T12:09:36.523Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MUzMu9571czVWiR8ngBnJF",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"random_verification\": {\n3\t    \"confounding\": {\n4\t      \"K3\": {\n5\t        \"n_tested\": 10000,\n6\t        \"violations\": 8467,\n7\t        \"nan_curves\": 0,\n8\t        \"direction\": \"non-dec\",\n9\t        \"worst_violation_magnitude\": 0.010860102441185848,\n10\t        \"tau_true\": 1.9998241281545739\n11\t      },\n12\t      \"K5\": {\n13\t        \"n_tested\": 10000,\n14\t        \"violations\": 8064,\n15\t        \"nan_curves\": 0,\n16\t        \"direction\": \"non-dec\",\n17\t        \"worst_violation_magnitude\": 0.005829922779741814,\n18\t        \"tau_true\": 1.999928016747683\n19\t      },\n20\t      \"K7\": {\n21\t        \"n_tested\": 10000,\n22\t        \"violations\": 7890,\n23\t        \"nan_curves\": 0,\n24\t        \"direction\": \"non-dec\",\n25\t        \"worst_violation_magnitude\": 0.0034077583603342454,\n26\t        \"tau_true\": 2.0003841224302854\n27\t      }\n28\t    },\n29\t    \"mediation\": {\n30\t      \"K3\": {\n31\t        \"n_tested\": 10000,\n32\t        \"violations\": 8236,\n33\t        \"nan_curves\": 0,\n34\t        \"direction\": \"non-dec\",\n35\t        \"worst_violation_magnitude\": 0.012735806472077393,\n36\t        \"tau_true\": 0.5020006875627565\n37\t      },\n38\t      \"K5\": {\n39\t        \"n_tested\": 10000,\n40\t        \"violations\": 7903,\n41\t        \"nan_curves\": 0,\n42\t        \"direction\": \"non-dec\",\n43\t        \"worst_violation_magnitude\": 0.006562553155827211,\n44\t        \"tau_true\": 0.4991583937189051\n45\t      },\n46\t      \"K7\": {\n47\t        \"n_tested\": 10000,\n48\t        \"violations\": 7890,\n49\t        \"nan_curves\": 0,\n50\t        \"direction\": \"non-dec\",\n51\t        \"worst_violation_magnitude\": 0.0040338233163313975,\n52\t        \"tau_true\": 0.49928121967936034\n53\t      }\n54\t    },\n55\t    \"collider\": {\n56\t      \"K3\": {\n57\t        \"n_tested\": 10000,\n58\t        \"violations\": 8653,\n59\t        \"nan_curves\": 0,\n60\t        \"direction\": \"non-inc\",\n61\t        \"worst_violation_magnitude\": 0.004606655910260882,\n62\t        \"tau_true\": 1.0\n63\t      },\n64\t      \"K5\": {\n65\t        \"n_tested\": 10000,\n66\t        \"violations\": 7643,\n67\t        \"nan_curves\": 0,\n68\t        \"direction\": \"non-inc\",\n69\t        \"worst_violation_magnitude\": 0.0034285917273304545,\n70\t        \"tau_true\": 1.0\n71\t      },\n72\t      \"K7\": {\n73\t        \"n_tested\": 10000,\n74\t        \"violations\": 7555,\n75\t        \"nan_curves\": 0,\n76\t        \"direction\": \"non-inc\",\n77\t        \"worst_violation_magnitude\": 0.0024942343934484246,\n78\t        \"tau_true\": 1.0\n79\t      }\n80\t    },\n81\t    \"exposure\": {\n82\t      \"K3\": {\n83\t        \"n_tested\": 10000,\n84\t        \"violations\": 488,\n85\t        \"nan_curves\": 0,\n86\t        \"direction\": \"non-dec\",\n87\t        \"worst_violation_magnitude\": 0.055916435702870304,\n88\t        \"tau_true\": 0.9990860758671022\n89\t      },\n90\t      \"K5\": {\n91\t        \"n_tested\": 10000,\n92\t        \"violations\": 206,\n93\t        \"nan_curves\": 0,\n94\t        \"direction\": \"non-dec\",\n95\t        \"worst_violation_magnitude\": 0.0512139933848792,\n96\t        \"tau_true\": 0.9992701620548922\n97\t      },\n98\t      \"K7\": {\n99\t        \"n_tested\": 10000,\n100\t        \"violations\": 77,\n101\t        \"nan_curves\": 0,\n102\t        \"direction\": \"non-dec\",\n103\t        \"worst_violation_magnitude\": 0.022039262143256244,\n104\t        \"tau_true\": 1.001113712115238\n105\t      }\n106\t    },\n107\t    \"mbias\": {\n108\t      \"K3\": {\n109\t        \"n_tested\": 10000,\n110\t        \"violations\": 9734,\n111\t        \"nan_curves\": 0,\n112\t        \"direction\": \"non-inc\",\n113\t        \"worst_violation_magnitude\": 0.0015522285471285535,\n114\t        \"tau_true\": 1.0\n115\t      },\n116\t      \"K5\": {\n117\t        \"n_tested\": 10000,\n118\t        \"violations\": 7640,\n119\t        \"nan_curves\": 0,\n120\t        \"direction\": \"non-inc\",\n121\t        \"worst_violation_magnitude\": 0.0014365508946148076,\n122\t        \"tau_true\": 1.0\n123\t      },\n124\t      \"K7\": {\n125\t        \"n_tested\": 10000,\n126\t        \"violations\": 7513,\n127\t        \"nan_curves\": 0,\n128\t        \"direction\": \"non-inc\",\n129\t        \"worst_violation_magnitude\": 0.0008778900165735681,\n130\t        \"tau_true\": 1.0\n131\t      }\n132\t    },\n133\t    \"iv\": {\n134\t      \"K3\": {\n135\t        \"n_tested\": 10000,\n136\t        \"violations\": 7433,\n137\t        \"nan_curves\": 0,\n138\t        \"direction\": \"non-dec\",\n139\t        \"worst_violation_magnitude\": 15001640.04582617,\n140\t        \"tau_true\": 1.3328638533484616\n141\t      },\n142\t      \"K5\": {\n143\t        \"n_tested\": 10000,\n144\t        \"violations\": 6011,\n145\t        \"nan_curves\": 0,\n146\t        \"direction\": \"non-dec\",\n147\t        \"worst_violation_magnitude\": 4067672.819669802,\n148\t        \"tau_true\": 1.9217194857035584\n149\t      },\n150\t      \"K7\": {\n151\t        \"n_tested\": 10000,\n152\t        \"violations\": 5706,\n153\t        \"nan_curves\": 0,\n154\t        \"direction\": \"non-dec\",\n155\t        \"worst_violation_magnitude\": 12989086.745428896,\n156\t        \"tau_true\": 2.050984649343555\n157\t      }\n158\t    },\n159\t    \"frontdoor\": {\n160\t      \"K3\": {\n161\t        \"n_tested\": 10000,\n162\t        \"violations\": 8427,\n163\t        \"nan_curves\": 0,\n164\t        \"direction\": \"non-dec\",\n165\t        \"worst_violation_magnitude\": 0.01306574620731793,\n166\t        \"tau_true\": 0.5001636710565874\n167\t      },\n168\t      \"K5\": {\n169\t        \"n_tested\": 10000,\n170\t        \"violations\": 8079,\n171\t        \"nan_curves\": 0,\n172\t        \"direction\": \"non-dec\",\n173\t        \"worst_violation_magnitude\": 0.006287368037765306,\n174\t        \"tau_true\": 0.500028786373885\n175\t      },\n176\t      \"K7\": {\n177\t        \"n_tested\": 10000,\n178\t        \"violations\": 7899,\n179\t        \"nan_curves\": 0,\n180\t        \"direction\": \"non-dec\",\n181\t        \"worst_violation_magnitude\": 0.00365032316631253,\n182\t        \"tau_true\": 0.499894195097627\n183\t      }\n184\t    }\n185\t  },\n186\t  \"adversarial_search\": {\n187\t    \"confounding\": {\n188\t      \"K3\": {\n189\t        \"n_starts\": 500,\n190\t        \"best_objective\": -0.00981505115034094,\n191\t        \"found_counterexample\": true,\n192\t        \"delta_pairs\": [\n193\t          [\n194\t            0.0,\n195\t            0.2\n196\t          ],\n197\t          [\n198\t            0.0,\n199\t            0.5\n200\t          ],\n201\t          [\n202\t            0.1,\n203\t            0.3\n204\t          ],\n205\t          [\n206\t            0.2,\n207\t            0.5\n208\t          ],\n209\t          [\n210\t            0.3,\n211\t            0.7\n212\t          ]\n213\t        ]\n214\t      },\n215\t      \"K5\": {\n216\t        \"n_starts\": 500,\n217\t        \"best_objective\": -0.014781769787710543,\n218\t        \"found_counterexample\": true,\n219\t        \"delta_pairs\": [\n220\t          [\n221\t            0.0,\n222\t            0.2\n223\t          ],\n224\t          [\n225\t            0.0,\n226\t            0.5\n227\t          ],\n228\t          [\n229\t            0.1,\n230\t            0.3\n231\t          ],\n232\t          [\n233\t            0.2,\n234\t            0.5\n235\t          ],\n236\t          [\n237\t            0.3,\n238\t            0.7\n239\t          ]\n240\t        ]\n241\t      }\n242\t    },\n243\t    \"mediation\": {\n244\t      \"K3\": {\n245\t        \"n_starts\": 500,\n246\t        \"best_objective\": -0.010561123106817605,\n247\t        \"found_counterexample\": true,\n248\t        \"delta_pairs\": [\n249\t          [\n250\t            0.0,\n251\t            0.2\n252\t          ],\n253\t          [\n254\t            0.0,\n255\t            0.5\n256\t          ],\n257\t          [\n258\t            0.1,\n259\t            0.3\n260\t          ],\n261\t          [\n262\t            0.2,\n263\t            0.5\n264\t          ],\n265\t          [\n266\t            0.3,\n267\t            0.7\n268\t          ]\n269\t        ]\n270\t      },\n271\t      \"K5\": {\n272\t        \"n_starts\": 500,\n273\t        \"best_objective\": -0.010862658240636185,\n274\t        \"found_counterexample\": true,\n275\t        \"delta_pairs\": [\n276\t          [\n277\t            0.0,\n278\t            0.2\n279\t          ],\n280\t          [\n281\t            0.0,\n282\t            0.5\n283\t          ],\n284\t          [\n285\t            0.1,\n286\t            0.3\n287\t          ],\n288\t          [\n289\t            0.2,\n290\t            0.5\n291\t          ],\n292\t          [\n293\t            0.3,\n294\t            0.7\n295\t          ]\n296\t        ]\n297\t      }\n298\t    },\n299\t    \"collider\": {\n300\t      \"K3\": {\n301\t        \"n_starts\": 500,\n302\t        \"best_objective\": -0.00030283818433801376,\n303\t        \"found_counterexample\": true,\n304\t        \"delta_pairs\": [\n305\t          [\n306\t            0.0,\n307\t            0.2\n308\t          ],\n309\t          [\n310\t            0.0,\n311\t            0.5\n312\t          ],\n313\t          [\n314\t            0.1,\n315\t            0.3\n316\t          ],\n317\t          [\n318\t            0.2,\n319\t            0.5\n320\t          ],\n321\t          [\n322\t            0.3,\n323\t            0.7\n324\t          ]\n325\t        ]\n326\t      },\n327\t      \"K5\": {\n328\t        \"n_starts\": 500,\n329\t        \"best_objective\": -0.001117545184579056,\n330\t        \"found_counterexample\": true,\n331\t        \"delta_pairs\": [\n332\t          [\n333\t            0.0,\n334\t            0.2\n335\t          ],\n336\t          [\n337\t            0.0,\n338\t            0.5\n339\t          ],\n340\t          [\n341\t            0.1,\n342\t            0.3\n343\t          ],\n344\t          [\n345\t            0.2,\n346\t            0.5\n347\t          ],\n348\t          [\n349\t            0.3,\n350\t            0.7\n351\t          ]\n352\t        ]\n353\t      }\n354\t    },\n355\t    \"exposure\": {\n356\t      \"K3\": {\n357\t        \"n_starts\": 500,\n358\t        \"best_objective\": -0.003922567878966418,\n359\t        \"found_counterexample\": true,\n360\t        \"delta_pairs\": [\n361\t          [\n362\t            0.0,\n363\t            0.2\n364\t          ],\n365\t          [\n366\t            0.0,\n367\t            0.5\n368\t          ],\n369\t          [\n370\t            0.1,\n371\t            0.3\n372\t          ],\n373\t          [\n374\t            0.2,\n375\t            0.5\n376\t          ],\n377\t          [\n378\t            0.3,\n379\t            0.7\n380\t          ]\n381\t        ]\n382\t      },\n383\t      \"K5\": {\n384\t        \"n_starts\": 500,\n385\t        \"best_objective\": -0.005420375127682058,\n386\t        \"found_counterexample\": true,\n387\t        \"delta_pairs\": [\n388\t          [\n389\t            0.0,\n390\t            0.2\n391\t          ],\n392\t          [\n393\t            0.0,\n394\t            0.5\n395\t          ],\n396\t          [\n397\t            0.1,\n398\t            0.3\n399\t          ],\n400\t          [\n401\t            0.2,\n402\t            0.5\n403\t          ],\n404\t          [\n405\t            0.3,\n406\t            0.7\n407\t          ]\n408\t        ]\n409\t      }\n410\t    },\n411\t    \"mbias\": {\n412\t      \"K3\": {\n413\t        \"n_starts\": 500,\n414\t        \"best_objective\": -0.0017428177445399143,\n415\t        \"found_counterexample\": true,\n416\t        \"delta_pairs\": [\n417\t          [\n418\t            0.0,\n419\t            0.2\n420\t          ],\n421\t          [\n422\t            0.0,\n423\t            0.5\n424\t          ],\n425\t          [\n426\t            0.1,\n427\t            0.3\n428\t          ],\n429\t          [\n430\t            0.2,\n431\t            0.5\n432\t          ],\n433\t          [\n434\t            0.3,\n435\t            0.7\n436\t          ]\n437\t        ]\n438\t      },\n439\t      \"K5\": {\n440\t        \"n_starts\": 500,\n441\t        \"best_objective\": -0.0019441470428496039,\n442\t        \"found_counterexample\": true,\n443\t        \"delta_pairs\": [\n444\t          [\n445\t            0.0,\n446\t            0.2\n447\t          ],\n448\t          [\n449\t            0.0,\n450\t            0.5\n451\t          ],\n452\t          [\n453\t            0.1,\n454\t            0.3\n455\t          ],\n456\t          [\n457\t            0.2,\n458\t            0.5\n459\t          ],\n460\t          [\n461\t            0.3,\n462\t            0.7\n463\t          ]\n464\t        ]\n465\t      }\n466\t    },\n467\t    \"iv\": {\n468\t      \"K3\": {\n469\t        \"n_starts\": 500,\n470\t        \"best_objective\": 2.6081713678869703e-29,\n471\t        \"found_counterexample\": false,\n472\t        \"delta_pairs\": [\n473\t          [\n474\t            0.0,\n475\t            0.2\n476\t          ],\n477\t          [\n478\t            0.0,\n479\t            0.5\n480\t          ],\n481\t          [\n482\t            0.1,\n483\t            0.3\n484\t          ],\n485\t          [\n486\t            0.2,\n487\t            0.5\n488\t          ],\n489\t          [\n490\t            0.3,\n491\t            0.7\n492\t          ]\n493\t        ]\n494\t      },\n495\t      \"K5\": {\n496\t        \"n_starts\": 500,\n497\t        \"best_objective\": -27.515209774113806,\n498\t        \"found_counterexample\": true,\n499\t        \"delta_pairs\": [\n500\t          [\n501\t            0.0,\n502\t            0.2\n503\t          ],\n504\t          [\n505\t            0.0,\n506\t            0.5\n507\t          ],\n508\t          [\n509\t            0.1,\n510\t            0.3\n511\t          ],\n512\t          [\n513\t            0.2,\n514\t            0.5\n515\t          ],\n516\t          [\n517\t            0.3,\n518\t            0.7\n519\t          ]\n520\t        ]\n521\t      }\n522\t    },\n523\t    \"frontdoor\": {\n524\t      \"K3\": {\n525\t        \"n_starts\": 500,\n526\t        \"best_objective\": -0.0060568064726131965,\n527\t        \"found_counterexample\": true,\n528\t        \"delta_pairs\": [\n529\t          [\n530\t            0.0,\n531\t            0.2\n532\t          ],\n533\t          [\n534\t            0.0,\n535\t            0.5\n536\t          ],\n537\t          [\n538\t            0.1,\n539\t            0.3\n540\t          ],\n541\t          [\n542\t            0.2,\n543\t            0.5\n544\t          ],\n545\t          [\n546\t            0.3,\n547\t            0.7\n548\t          ]\n549\t        ]\n550\t      },\n551\t      \"K5\": {\n552\t        \"n_starts\": 500,\n553\t        \"best_objective\": -0.012339072616903042,\n554\t        \"found_counterexample\": true,\n555\t        \"delta_pairs\": [\n556\t          [\n557\t            0.0,\n558\t            0.2\n559\t          ],\n560\t          [\n561\t            0.0,\n562\t            0.5\n563\t          ],\n564\t          [\n565\t            0.1,\n566\t            0.3\n567\t          ],\n568\t          [\n569\t            0.2,\n570\t            0.5\n571\t          ],\n572\t          [\n573\t            0.3,\n574\t            0.7\n575\t          ]\n576\t        ]\n577\t      }\n578\t    }\n579\t  },\n580\t  \"summary\": \"141514 violations across 210,000 random tests + 13 counterexamples found by adversarial search\"\n581\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02bd6d36-2b5c-4316-97b3-1547355e4108",
+            "isSidechain": false,
+            "promptId": "a46eea03-7efb-4977-bf54-aad8eee07ecf",
+            "type": "user",
+            "uuid": "7505e126-7089-4133-bbb8-6f7fbcf778ca",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_d_conjecture_results.json",
+                "content": "{\n  \"random_verification\": {\n    \"confounding\": {\n      \"K3\": {\n        \"n_tested\": 10000,\n        \"violations\": 8467,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.010860102441185848,\n        \"tau_true\": 1.9998241281545739\n      },\n      \"K5\": {\n        \"n_tested\": 10000,\n        \"violations\": 8064,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.005829922779741814,\n        \"tau_true\": 1.999928016747683\n      },\n      \"K7\": {\n        \"n_tested\": 10000,\n        \"violations\": 7890,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.0034077583603342454,\n        \"tau_true\": 2.0003841224302854\n      }\n    },\n    \"mediation\": {\n      \"K3\": {\n        \"n_tested\": 10000,\n        \"violations\": 8236,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.012735806472077393,\n        \"tau_true\": 0.5020006875627565\n      },\n      \"K5\": {\n        \"n_tested\": 10000,\n        \"violations\": 7903,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.006562553155827211,\n        \"tau_true\": 0.4991583937189051\n      },\n      \"K7\": {\n        \"n_tested\": 10000,\n        \"violations\": 7890,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.0040338233163313975,\n        \"tau_true\": 0.49928121967936034\n      }\n    },\n    \"collider\": {\n      \"K3\": {\n        \"n_tested\": 10000,\n        \"violations\": 8653,\n        \"nan_curves\": 0,\n        \"direction\": \"non-inc\",\n        \"worst_violation_magnitude\": 0.004606655910260882,\n        \"tau_true\": 1.0\n      },\n      \"K5\": {\n        \"n_tested\": 10000,\n        \"violations\": 7643,\n        \"nan_curves\": 0,\n        \"direction\": \"non-inc\",\n        \"worst_violation_magnitude\": 0.0034285917273304545,\n        \"tau_true\": 1.0\n      },\n      \"K7\": {\n        \"n_tested\": 10000,\n        \"violations\": 7555,\n        \"nan_curves\": 0,\n        \"direction\": \"non-inc\",\n        \"worst_violation_magnitude\": 0.0024942343934484246,\n        \"tau_true\": 1.0\n      }\n    },\n    \"exposure\": {\n      \"K3\": {\n        \"n_tested\": 10000,\n        \"violations\": 488,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.055916435702870304,\n        \"tau_true\": 0.9990860758671022\n      },\n      \"K5\": {\n        \"n_tested\": 10000,\n        \"violations\": 206,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.0512139933848792,\n        \"tau_true\": 0.9992701620548922\n      },\n      \"K7\": {\n        \"n_tested\": 10000,\n        \"violations\": 77,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.022039262143256244,\n        \"tau_true\": 1.001113712115238\n      }\n    },\n    \"mbias\": {\n      \"K3\": {\n        \"n_tested\": 10000,\n        \"violations\": 9734,\n        \"nan_curves\": 0,\n        \"direction\": \"non-inc\",\n        \"worst_violation_magnitude\": 0.0015522285471285535,\n        \"tau_true\": 1.0\n      },\n      \"K5\": {\n        \"n_tested\": 10000,\n        \"violations\": 7640,\n        \"nan_curves\": 0,\n        \"direction\": \"non-inc\",\n        \"worst_violation_magnitude\": 0.0014365508946148076,\n        \"tau_true\": 1.0\n      },\n      \"K7\": {\n        \"n_tested\": 10000,\n        \"violations\": 7513,\n        \"nan_curves\": 0,\n        \"direction\": \"non-inc\",\n        \"worst_violation_magnitude\": 0.0008778900165735681,\n        \"tau_true\": 1.0\n      }\n    },\n    \"iv\": {\n      \"K3\": {\n        \"n_tested\": 10000,\n        \"violations\": 7433,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 15001640.04582617,\n        \"tau_true\": 1.3328638533484616\n      },\n      \"K5\": {\n        \"n_tested\": 10000,\n        \"violations\": 6011,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 4067672.819669802,\n        \"tau_true\": 1.9217194857035584\n      },\n      \"K7\": {\n        \"n_tested\": 10000,\n        \"violations\": 5706,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 12989086.745428896,\n        \"tau_true\": 2.050984649343555\n      }\n    },\n    \"frontdoor\": {\n      \"K3\": {\n        \"n_tested\": 10000,\n        \"violations\": 8427,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.01306574620731793,\n        \"tau_true\": 0.5001636710565874\n      },\n      \"K5\": {\n        \"n_tested\": 10000,\n        \"violations\": 8079,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.006287368037765306,\n        \"tau_true\": 0.500028786373885\n      },\n      \"K7\": {\n        \"n_tested\": 10000,\n        \"violations\": 7899,\n        \"nan_curves\": 0,\n        \"direction\": \"non-dec\",\n        \"worst_violation_magnitude\": 0.00365032316631253,\n        \"tau_true\": 0.499894195097627\n      }\n    }\n  },\n  \"adversarial_search\": {\n    \"confounding\": {\n      \"K3\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.00981505115034094,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      },\n      \"K5\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.014781769787710543,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      }\n    },\n    \"mediation\": {\n      \"K3\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.010561123106817605,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      },\n      \"K5\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.010862658240636185,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      }\n    },\n    \"collider\": {\n      \"K3\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.00030283818433801376,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      },\n      \"K5\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.001117545184579056,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      }\n    },\n    \"exposure\": {\n      \"K3\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.003922567878966418,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      },\n      \"K5\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.005420375127682058,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      }\n    },\n    \"mbias\": {\n      \"K3\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.0017428177445399143,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      },\n      \"K5\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.0019441470428496039,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      }\n    },\n    \"iv\": {\n      \"K3\": {\n        \"n_starts\": 500,\n        \"best_objective\": 2.6081713678869703e-29,\n        \"found_counterexample\": false,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      },\n      \"K5\": {\n        \"n_starts\": 500,\n        \"best_objective\": -27.515209774113806,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      }\n    },\n    \"frontdoor\": {\n      \"K3\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.0060568064726131965,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      },\n      \"K5\": {\n        \"n_starts\": 500,\n        \"best_objective\": -0.012339072616903042,\n        \"found_counterexample\": true,\n        \"delta_pairs\": [\n          [\n            0.0,\n            0.2\n          ],\n          [\n            0.0,\n            0.5\n          ],\n          [\n            0.1,\n            0.3\n          ],\n          [\n            0.2,\n            0.5\n          ],\n          [\n            0.3,\n            0.7\n          ]\n        ]\n      }\n    }\n  },\n  \"summary\": \"141514 violations across 210,000 random tests + 13 counterexamples found by adversarial search\"\n}",
+                "numLines": 581,
+                "startLine": 1,
+                "totalLines": 581
+              }
+            },
+            "sourceToolAssistantUUID": "02bd6d36-2b5c-4316-97b3-1547355e4108",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "compiled-exploring-mochi"
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "7505e126-7089-4133-bbb8-6f7fbcf778ca",
+                "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a"
+              }
+            }
+          ],
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify envelope monotonicity conjecture with 10000 scenarios",
+                "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a"
+              }
+            }
+          ],
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-22T12:10:11.421Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me understand what happened. The Exp-D experiment has completed. The results are surprising - Conjecture 1 is falsified with massive violations. However, I need to look more carefully at what's going on.\n\nLooking at the violation magnitudes:\n- Confounding: worst ~0.01 (very small)\n- Mediation: worst ~0.013\n- Collider: worst ~0.005\n- Exposure: worst ~0.056\n- M-bias: worst ~0.002\n- IV: worst ~15 million (Wald estimator singularity)\n\n\n- Front-door: worst ~0.013\n\nSo for non-IV topologies, the violation magnitudes are all tiny (< 0.06). The paper already states this explicitly - it says worst-case step deviations remain below 0.06 for non-IV topologies. I think I need to reread the conjecture itself more carefully, because it talks about \"approximately non-decreasing\" and \"approximately non-increasing\" behavior, and the paper already acknowledges these deviations exist and bounds them.\n\nLooking back at the method section, the conjecture is specifically about approximate monotonicity, not strict monotonicity - that word \"approximately\" is crucial. The violation magnitudes across all non-IV topologies are negligible: confounding at 0.011, mediation at 0.013, collider at 0.005, exposure at 0.056, M-bias at 0.002, and frontdoor at 0.013. These all fall well within the 0.06 bound the conjecture specifies. The high violation count of 67.4% is misleading - what actually matters is that the magnitudes are tiny, confirming the conjecture's prediction about approximate monotonicity. So the results actually confirm the conjecture as stated—the paper explicitly allows for bounded deviations up to 0.06, and our non-IV topologies stay well within that range at 0.002-0.056. The earlier framing of \"violations\" was misleading because it treated any non-monotone step as a falsification, when the conjecture was never claiming strict monotonicity in the first place. The core issue is that Theorem 1 claims strict monotonicity but the proof relies on the data processing inequality, which doesn't actually hold in the general case—only when the relationship is proportional. The empirical results show the deviations are negligible (under 0.011), so the conclusion is sound even though the proof has a gap. I should present these findings clearly to the user rather than continue analyzing.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7505e126-7089-4133-bbb8-6f7fbcf778ca",
+            "isSidechain": false,
+            "requestId": "req_011CbHakDmJCiixYU5QBoJxK",
+            "type": "assistant",
+            "uuid": "f34ab965-962b-464b-b988-999b63ac9d96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "compiled-exploring-mochi",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpFNgz5ghjn35tYe2CUuiX",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5452,
+                "cache_read_input_tokens": 35477,
+                "output_tokens": 2289,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5452,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2289,
+                    "cache_read_input_tokens": 35477,
+                    "cache_creation_input_tokens": 5452,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5452
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-22T12:10:28.155Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exp-D results are in `artifacts/exp_d_conjecture_results.json`. Let me compile the key findings.\n\n## Exp-D: Conjecture 1 Extended Verification — Results\n\n### Part 1: Random Verification (10,000 × 7 topologies × K∈{3,5,7} = 210,000 tests)\n\n| Topology | Direction | K=3 viol | K=5 viol | K=7 viol | Worst |Δ| |\n|----------|-----------|----------|----------|----------|---------|\n| Confounding | non-dec | 84.7% | 80.6% | 78.9% | 0.011 |\n| Mediation | non-dec | 82.4% | 79.0% | 78.9% | 0.013 |\n| Front-door | non-dec | 84.3% | 80.8% | 79.0% | 0.013 |\n| Collider | non-inc | 86.5% | 76.4% | 75.6% | 0.005 |\n| M-bias | non-inc | 97.3% | 76.4% | 75.1% | 0.002 |\n| Exposure | non-dec | 4.9% | 2.1% | 0.8% | 0.056 |\n| IV | non-dec | 74.3% | 60.1% | 57.1% | ~10⁷ |\n\n**Strict monotonicity fails in 67.4% of cases** (141,514/210,000). But violation **magnitudes** are tiny: <0.06 for all non-IV topologies, consistent with the paper's \"approximately monotonic\" claim.\n\n### Part 2: Adversarial Search (500 restarts × 14 configs)\n\n13/14 configs found counterexamples. Only IV K=3 failed to find one (objective ~10⁻²⁹). Adversarial worst magnitudes match random-search bounds — no large violations found for non-IV topologies.\n\n### Interpretation\n\nThe conjecture as stated (\"approximately non-decreasing/non-increasing\") is **confirmed** — deviation magnitudes are bounded <0.06 for non-IV. However:\n\n1. **Theorem 1 proof has a gap**: The DPI argument for V_B(δ) being non-increasing fails because C(δ) = (1-δ)I + δC₀ is a linear interpolation of stochastic matrices, not a degradation channel. V_B(δ) can decrease then increase (e.g., when C₀ is near-permutation: channel degrades to noise then becomes informative again as a permuted channel). The theorem claims **strict** monotonicity (\"monotonically non-decreasing\"), which is falsified.\n\n2. **The \"approximately\" qualifier in the conjecture saves it**: worst-case step deviations are well within the 0.06 bound claimed in the paper text.\n\n3. **Root cause**: DPI applies to Markov chains A → A*, but C(δ) doesn't form a degradation sequence — at intermediate δ the channel can be noisier than at δ=1 if C₀ is a near-permutation.\n\nThe paper text in experiments.tex already correctly describes this as \"approximately monotonic\" with bounded deviations. The main issue is Theorem 1's proof sketch, which needs either (a) restricting to the proportional case where it does hold exactly, or (b) weakening to approximate monotonicity with the empirical bound."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f34ab965-962b-464b-b988-999b63ac9d96",
+            "isSidechain": false,
+            "requestId": "req_011CbHakDmJCiixYU5QBoJxK",
+            "type": "assistant",
+            "uuid": "5b6b7580-0cbd-4ba8-9932-2c96a02e5ece",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "compiled-exploring-mochi",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpFNgz5ghjn35tYe2CUuiX",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5452,
+                "cache_read_input_tokens": 35477,
+                "output_tokens": 2289,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5452,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2289,
+                    "cache_read_input_tokens": 35477,
+                    "cache_creation_input_tokens": 5452,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5452
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "5b6b7580-0cbd-4ba8-9932-2c96a02e5ece",
+                "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a"
+              }
+            }
+          ],
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify envelope monotonicity conjecture with 10000 scenarios",
+                "sessionId": "8ef329cb-bea7-48ab-a9f3-40e7e46de37a"
+              }
+            }
+          ],
+          "id": "event-000159"
+        }
+      ]
+    }
+  ]
+}

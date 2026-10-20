@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3df9c1b87eb7bc3b33ad",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review ML research on cognitive bias calibration",
+                "sessionId": "369eceac-4d93-4bfb-a44f-16c3701bb483"
+              }
+            }
+          ],
+          "id": "event-000163"
+        }
+      ]
+    }
+  ]
+}

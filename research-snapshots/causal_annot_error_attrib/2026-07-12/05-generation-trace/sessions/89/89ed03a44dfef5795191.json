@@ -1,0 +1,1512 @@
+{
+  "schema_version": "1.0",
+  "id": "89ed03a44dfef5795191",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find the `compute_plim`, `precompute_suff_stats`, and `extract_tau` functions in the codebase under /home/ubuntu/.agent-",
+  "task_key": "agent-a6dcd171d346aa1b5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a6dcd171d346aa1b5.jsonl",
+    "occurrence": 1,
+    "bytes": 86147,
+    "sha256": "7330ee75d8e986a2fbe7526bf3e029240b682d0562eb03a3ca36f28eddd270f2"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "assistant": 10,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T11:30:18.216Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find the `compute_plim`, `precompute_suff_stats`, and `extract_tau` functions in the codebase under /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/. These are referenced as `plan_006.compute_plim` etc. in compute_all_tasks.py, which imports from a file called `plan_006_asv_empirical.py`. Find where these functions are defined - they might be in a different location or filename. Search breadth: medium."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "eb62d8d9-9d63-4a06-98c0-aaa1437626d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T11:30:19.535Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find these functions in the codebase. Let me start by exploring the structure and locating the relevant files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb62d8d9-9d63-4a06-98c0-aaa1437626d8",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXkP72RjQtv7J86RYzX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4ef0d5b3-1437-4d8f-9261-5c3b37baff42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014YMavYRQggQzAuDpkStjqS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17884,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17884,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T11:30:19.673Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0157DGLbCn4rhDHDNqX38XUu",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib -type f -name \"*.py\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ef0d5b3-1437-4d8f-9261-5c3b37baff42",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXkP72RjQtv7J86RYzX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "88350ea3-b2a7-40b6-9eea-cfc6cd504f12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014YMavYRQggQzAuDpkStjqS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17884,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 121,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17884
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 121,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17884,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17884,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T11:30:19.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0157DGLbCn4rhDHDNqX38XUu",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_010_ppi_empirical_validation.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig1.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig7.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig3.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig4.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_002_k57_extension.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_008_binarization_collapse.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_005_asv_extended.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/intermediate/case_study_analysis.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/mvp_exposure_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/mvp_confounding_dag.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/report/mvp_exposure_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/annotate_frontier.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/prepare_data.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_frontier_annotations/scripts/compute_results.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan012_case_study/case_study_analysis.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_all_tasks.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88350ea3-b2a7-40b6-9eea-cfc6cd504f12",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "02f5eda7-384d-4089-a480-0aedcebd6308",
+            "sourceToolAssistantUUID": "88350ea3-b2a7-40b6-9eea-cfc6cd504f12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T11:30:21.144Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me look at the compute_all_tasks.py file to understand the import structure:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02f5eda7-384d-4089-a480-0aedcebd6308",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXkWHsTJenysTD2WQGH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6d086f7a-b020-45bd-a4e3-804a3565b26f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CPXp756EbVRJat74a8vjYX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1817,
+                "cache_read_input_tokens": 17884,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1817,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T11:30:21.405Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vq7auNiQ8ej7wkzGN3KY2h",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_all_tasks.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d086f7a-b020-45bd-a4e3-804a3565b26f",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXkWHsTJenysTD2WQGH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4e2fd649-d176-485f-9c24-46d860612b41",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CPXp756EbVRJat74a8vjYX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1817,
+                "cache_read_input_tokens": 17884,
+                "output_tokens": 111,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1817
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 111,
+                    "cache_read_input_tokens": 17884,
+                    "cache_creation_input_tokens": 1817,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1817,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T11:30:21.677Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vq7auNiQ8ej7wkzGN3KY2h",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tThree computational tasks for the causal annotation error attribution paper.\n4\t\n5\tTask 1: Theory-Empirical MAPE (extend existing humaid-only to all 18 valid configs)\n6\tTask 2: PPI++ Empirical Validation (simulate gold labels, apply PPI++ correction)\n7\tTask 3: Dirichlet Subspace Overlay (regenerated with improved styling)\n8\t\n9\tAuthor: auto-generated for paper artifacts\n10\t\"\"\"\n11\t\n12\timport json\n13\timport sys\n14\timport time\n15\timport numpy as np\n16\tfrom pathlib import Path\n17\tfrom collections import defaultdict\n18\t\n19\tPROJ = Path(\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib\")\n20\tsys.path.insert(0, str(PROJ))\n21\t\n22\t# Import the plan_006 module for DGP generators matching the paper's setup\n23\timport importlib.util\n24\tspec = importlib.util.spec_from_file_location(\n25\t    \"plan_006\",\n26\t    str(PROJ / \"plan_006_asv_empirical.py\")\n27\t)\n28\tplan_006 = importlib.util.module_from_spec(spec)\n29\tspec.loader.exec_module(plan_006)\n30\t\n31\tfrom annot_sensitivity.correction import correct_ppi, correct_naive_plugin, correct_mla\n32\tfrom annot_sensitivity.utils import misclassify\n33\t\n34\t# ============================================================================\n35\t# Common data loading\n36\t# ============================================================================\n37\t\n38\tTOPOLOGIES = ['confounding', 'mediation', 'collider', 'exposure',\n39\t              'mbias', 'iv', 'frontdoor']\n40\tHAS_TREATMENT = {'confounding', 'mediation', 'collider', 'mbias', 'frontdoor'}\n41\t\n42\t\n43\tdef load_all_data():\n44\t    \"\"\"Load confusion matrices and bias records for all 18 valid configs.\"\"\"\n45\t    # Load humaid confusion matrices (full 10x10)\n46\t    with open(PROJ / \"artifacts/plan006/asv_empirical_results.json\") as f:\n47\t        plan006 = json.load(f)\n48\t    humaid_cms = {k: np.array(v) for k, v in plan006[\"confusion_matrices\"].items()}\n49\t    bias_records = plan006[\"biases\"]\n50\t\n51\t    # Load filter info\n52\t    with open(PROJ / \"artifacts/plan006_full_filtered_stats.json\") as f:\n53\t        filter_data = json.load(f)\n54\t    zero_configs = set(filter_data[\"zero_configs\"])\n55\t\n56\t    # Valid humaid configs (8 of 9, excluding qwen3_few-shot-5)\n57\t    humaid_valid = {k: humaid_cms[k] for k in humaid_cms if k not in zero_configs}\n58\t\n59\t    # Build bias lookup for humaid\n60\t    bias_lookup = {}\n61\t    for b in bias_records:\n62\t        ck = f\"{b['dataset']}_{b['model']}_{b['prompt']}\"\n63\t        if ck not in zero_configs and b.get('bias') is not None:\n64\t            bias_lookup[(ck, b['topology'])] = b\n65\t\n66\t    # VAST confusion matrices: we only have per-class recall (diagonal).\n67\t    # For VAST we need to construct approximate confusion matrices from the\n68\t    # diagonal data. The VAST per-class recall gives us C_kk for each class.\n69\t    # We distribute off-diagonal mass uniformly (best available approximation).\n70\t    vast_per_class_recall = filter_data[\"filtered_stats\"][\"vast_per_class_recall\"]\n71\t    vast_cms = {}\n72\t    for key, diag in vast_per_class_recall.items():\n73\t        # key format: \"vast_llama4_zero-shot\"\n74\t        config_key = key  # already has \"vast_\" prefix\n75\t        K = 3\n76\t        C = np.zeros((K, K))\n77\t        for i in range(K):\n78\t            C[i, i] = diag[i]\n79\t            off_diag_mass = 1.0 - diag[i]\n80\t            for j in range(K):\n81\t                if j != i:\n82\t                    C[j, i] = off_diag_mass / (K - 1)\n83\t        vast_cms[config_key] = C\n84\t\n85\t    # CivilComments: we have trace/macro_recall from filtered_stats\n86\t    # For K=2, trace = C[0,0] + C[1,1], macro_recall = trace/2\n87\t    # We use the CC diagonal values from gen_fig7.py (extracted from the pipeline)\n88\t    civil_diag = {\n89\t        \"civil_comments_qwen2.5-7b_zero-shot\":  [0.7481536189069424, 0.684931506849315],\n90\t        \"civil_comments_qwen2.5-7b_few-shot-3\": [0.6787296898079763, 0.7808219178082192],\n91\t        \"civil_comments_qwen2.5-7b_few-shot-5\": [0.7370753323485968, 0.7602739726027398],\n92\t    }\n93\t    civil_cms = {}\n94\t    for key, diag in civil_diag.items():\n95\t        K = 2\n96\t        C = np.zeros((K, K))\n97\t        C[0, 0] = diag[0]\n98\t        C[1, 1] = diag[1]\n99\t        C[1, 0] = 1.0 - diag[0]\n100\t        C[0, 1] = 1.0 - diag[1]\n101\t        civil_cms[key] = C\n102\t\n103\t    # Merge all confusion matrices\n104\t    all_cms = {}\n105\t    all_cms.update(humaid_valid)\n106\t    all_cms.update(vast_cms)\n107\t    all_cms.update(civil_cms)\n108\t\n109\t    # Config metadata\n110\t    config_meta = {}\n111\t    for k, C in all_cms.items():\n112\t        parts = k.split(\"_\", 1)\n113\t        dataset = parts[0]\n114\t        if dataset == \"civil\":\n115\t            dataset = \"civil_comments\"\n116\t            model_prompt = k[len(\"civil_comments_\"):]\n117\t        elif dataset == \"vast\":\n118\t            model_prompt = k[len(\"vast_\"):]\n119\t        else:\n120\t            model_prompt = k[len(\"humaid_\"):]\n121\t        K = C.shape[0]\n122\t        config_meta[k] = {\n123\t            \"dataset\": dataset,\n124\t            \"model_prompt\": model_prompt,\n125\t            \"K\": K,\n126\t            \"min_diag\": float(np.min(np.diag(C))),\n127\t            \"trace\": float(np.trace(C)),\n128\t            \"macro_recall\": float(np.trace(C) / K),\n129\t        }\n130\t\n131\t    return all_cms, config_meta, bias_lookup, filter_data\n132\t\n133\t\n134\t# ============================================================================\n135\t# Task 1: Theory-Empirical MAPE\n136\t# ============================================================================\n137\t\n138\tdef task1_mape(all_cms, config_meta, bias_lookup):\n139\t    \"\"\"Compute MAPE between analytical plim bias and finite-sample MC bias.\"\"\"\n140\t    print(\"=\" * 80)\n141\t    print(\"TASK 1: Theory-Empirical MAPE\")\n142\t    print(\"=\" * 80)\n143\t    t0 = time.time()\n144\t\n145\t    N_MC = 200\n146\t    N_SAMPLES = 10_000\n147\t\n148\t    # Precompute sufficient stats and tau_true for each K\n149\t    Ks_used = sorted(set(m[\"K\"] for m in config_meta.values()))\n150\t    params_by_K = {K: plan_006.make_dgp_params(K) for K in Ks_used}\n151\t    suff_stats = {}\n152\t    tau_true_cache = {}\n153\t\n154\t    for K in Ks_used:\n155\t        for topo in TOPOLOGIES:\n156\t            st = plan_006.precompute_suff_stats(K, topo, params_by_K[K][topo])\n157\t            suff_stats[(K, topo)] = st\n158\t            plim_I = plan_006.compute_plim(np.eye(K), st, K)\n159\t            tau_true_cache[(K, topo)] = plan_006.extract_tau(plim_I, topo)\n160\t            print(f\"  K={K:>2} {topo:<12} tau_true={tau_true_cache[(K, topo)]:.6f}\")\n161\t\n162\t    per_config = {}\n163\t    per_topology = defaultdict(list)\n164\t    grand_records = []\n165\t\n166\t    for config_key, C in sorted(all_cms.items()):\n167\t        meta = config_meta[config_key]\n168\t        K = meta[\"K\"]\n169\t        params = params_by_K[K]\n170\t        per_config[config_key] = {}\n171\t        print(f\"\\n[{config_key}] K={K}, min_diag={meta['min_diag']:.4f}\")\n172\t\n173\t        for topo in TOPOLOGIES:\n174\t            tau_true = tau_true_cache[(K, topo)]\n175\t            st = suff_stats[(K, topo)]\n176\t\n177\t            # Compute analytical plim (theory bias)\n178\t            plim_C = plan_006.compute_plim(C, st, K)\n179\t            tau_biased = plan_006.extract_tau(plim_C, topo)\n180\t            if not np.isfinite(tau_biased) or not np.isfinite(tau_true):\n181\t                continue\n182\t            theory_bias = tau_biased - tau_true\n183\t\n184\t            # MC empirical bias\n185\t            tau_hats = []\n186\t            for mc_i in range(N_MC):\n187\t                seed = (hash(config_key + topo) & 0xFFFFFFFF) + mc_i * 7919\n188\t                try:\n189\t                    rng = np.random.default_rng(seed)\n190\t                    first_var, Y, A = plan_006.GEN_FNS[topo](K, N_SAMPLES,\n191\t                                                              params[topo], rng)\n192\t                    A_star = plan_006.generate_Astar(A, C, rng)\n193\t\n194\t                    if topo == 'iv':\n195\t                        Z = first_var\n196\t                        W, _ = plan_006.wald_estimator(Z, Y, A_star, k=1)\n197\t                        if np.isfinite(W):\n198\t                            tau_hats.append(float(W))\n199\t                    elif topo == 'exposure':\n200\t                        beta, _ = plan_006.ols_no_T(Y, A_star, K)\n201\t                        if len(beta) > 1 and np.isfinite(beta[1]):\n202\t                            tau_hats.append(float(beta[1]))\n203\t                    else:\n204\t                        T = first_var\n205\t                        beta, _ = plan_006.ols_with_dummies(Y, T, A_star, K)\n206\t                        if np.isfinite(beta[1]):\n207\t                            tau_hats.append(float(beta[1]))\n208\t                except Exception:\n209\t                    continue\n210\t\n211\t            if len(tau_hats) < N_MC // 2:\n212\t                print(f\"  {topo:<12} MC FAILED ({len(tau_hats)}/{N_MC})\")\n213\t                continue\n214\t\n215\t            tau_mean = float(np.mean(tau_hats))\n216\t            tau_se = float(np.std(tau_hats, ddof=1) / np.sqrt(len(tau_hats)))\n217\t            mc_bias = tau_mean - tau_true\n218\t\n219\t            if abs(theory_bias) > 1e-12:\n220\t                ape = abs(theory_bias - mc_bias) / abs(theory_bias)\n221\t            else:\n222\t                ape = float('nan')\n223\t\n224\t            entry = {\n225\t                'theory_bias': float(theory_bias),\n226\t                'mc_bias': float(mc_bias),\n227\t                'mc_tau_mean': tau_mean,\n228\t                'mc_tau_se': tau_se,\n229\t                'tau_true': float(tau_true),\n230\t                'tau_biased_plim': float(tau_biased),\n231\t                'abs_pct_error': float(ape) if np.isfinite(ape) else None,\n232\t                'n_mc_used': len(tau_hats),\n233\t            }\n234\t            per_config[config_key][topo] = entry\n235\t            if np.isfinite(ape):\n236\t                per_topology[topo].append(ape)\n237\t                grand_records.append(ape)\n238\t            print(f\"  {topo:<12} theory={theory_bias:+.5f}  MC={mc_bias:+.5f}  \"\n239\t                  f\"APE={ape:.3%}\")\n240\t\n241\t    # Aggregate\n242\t    per_topology_summary = {}\n243\t    for topo in TOPOLOGIES:\n244\t        apes = per_topology.get(topo, [])\n245\t        finite = [a for a in apes if np.isfinite(a)]\n246\t        per_topology_summary[topo] = {\n247\t            'mape': float(np.mean(finite)) if finite else None,\n248\t            'median_ape': float(np.median(finite)) if finite else None,\n249\t            'max_ape': float(np.max(finite)) if finite else None,\n250\t            'n': len(finite),\n251\t        }\n252\t\n253\t    grand_mape = float(np.mean(grand_records)) if grand_records else None\n254\t\n255\t    output = {\n256\t        'meta': {\n257\t            'n_mc': N_MC,\n258\t            'n_samples': N_SAMPLES,\n259\t            'scope': f'All {len(all_cms)} valid configs (K=2,3,10)',\n260\t            'n_valid_configs': len(all_cms),\n261\t            'n_scenarios_total': len(grand_records),\n262\t            'topologies': TOPOLOGIES,\n263\t            'note': (\n264\t                'VAST and CivilComments use approximate confusion matrices '\n265\t                '(diagonal from per-class recall, off-diagonal uniform). '\n266\t                'HumAID uses full empirical confusion matrices.'\n267\t            ),\n268\t        },\n269\t        'grand_mape': grand_mape,\n270\t        'per_topology': per_topology_summary,\n271\t        'per_config': per_config,\n272\t    }\n273\t\n274\t    out_path = PROJ / \"artifacts/theory_empirical_mape.json\"\n275\t    out_path.write_text(json.dumps(output, indent=2))\n276\t    print(f\"\\n=== Task 1 DONE in {time.time()-t0:.1f}s ===\")\n277\t    print(f\"Grand MAPE: {grand_mape:.4%}\" if grand_mape else \"Grand MAPE: N/A\")\n278\t    print(f\"Written: {out_path}\")\n279\t\n280\t    # LaTeX snippet\n281\t    latex = r\"\"\"% Theory-Empirical MAPE (auto-generated)\n282\t% Grand MAPE across \"\"\" + f\"{len(grand_records)} scenarios: {grand_mape:.2%}\" + r\"\"\"\n283\t\\begin{table}[h]\\centering\\small\n284\t\\caption{Theory vs.\\ MC MAPE per topology}\n285\t\\begin{tabular}{lrrr}\n286\t\\toprule\n287\tTopology & MAPE (\\%) & Median APE (\\%) & $n$ \\\\\n288\t\\midrule\n289\t\"\"\"\n290\t    for topo in TOPOLOGIES:\n291\t        s = per_topology_summary[topo]\n292\t        if s['mape'] is not None:\n293\t            latex += f\"{topo} & {100*s['mape']:.2f} & {100*s['median_ape']:.2f} & {s['n']} \\\\\\\\\\n\"\n294\t    latex += r\"\"\"\\midrule\n295\tGrand & \"\"\" + f\"{100*grand_mape:.2f}\" + r\"\"\" & -- & \"\"\" + f\"{len(grand_records)}\" + r\"\"\" \\\\\n296\t\\bottomrule\n297\t\\end{tabular}\n298\t\\end{table}\n299\t\"\"\"\n300\t    latex_path = PROJ / \"artifacts/theory_empirical_mape_table.tex\"\n301\t    latex_path.write_text(latex)\n302\t    print(f\"LaTeX: {latex_path}\")\n303\t\n304\t    return output\n305\t\n306\t\n307\t# ============================================================================\n308\t# Task 2: PPI++ Empirical Validation\n309\t# ============================================================================\n310\t\n311\tdef task2_ppi(all_cms, config_meta):\n312\t    \"\"\"PPI++ empirical validation on all configs x topologies.\"\"\"\n313\t    print(\"\\n\" + \"=\" * 80)\n314\t    print(\"TASK 2: PPI++ Empirical Validation\")\n315\t    print(\"=\" * 80)\n316\t    t0 = time.time()\n317\t\n318\t    N_SAMPLES = 10_000\n319\t    N_MC = 50  # fewer MC reps since PPI++ itself has internal bootstrap\n320\t    GOLD_FRACTION = 0.1\n321\t\n322\t    Ks_used = sorted(set(m[\"K\"] for m in config_meta.values()))\n323\t    params_by_K = {K: plan_006.make_dgp_params(K) for K in Ks_used}\n324\t    suff_stats = {}\n325\t    tau_true_cache = {}\n326\t\n327\t    for K in Ks_used:\n328\t        for topo in TOPOLOGIES:\n329\t            st = plan_006.precompute_suff_stats(K, topo, params_by_K[K][topo])\n330\t            suff_stats[(K, topo)] = st\n331\t            plim_I = plan_006.compute_plim(np.eye(K), st, K)\n332\t            tau_true_cache[(K, topo)] = plan_006.extract_tau(plim_I, topo)\n333\t\n334\t    results = {}\n335\t    summary_by_topo = defaultdict(list)\n336\t    summary_by_K = defaultdict(list)\n337\t\n338\t    for config_key, C in sorted(all_cms.items()):\n339\t        meta = config_meta[config_key]\n340\t        K = meta[\"K\"]\n341\t        params = params_by_K[K]\n342\t        results[config_key] = {}\n343\t        print(f\"\\n[{config_key}] K={K}\")\n344\t\n345\t        for topo in TOPOLOGIES:\n346\t            tau_true = tau_true_cache[(K, topo)]\n347\t            st = suff_stats[(K, topo)]\n348\t\n349\t            # Skip IV for PPI++ (PPI++ requires OLS, IV uses Wald estimator)\n350\t            if topo == 'iv':\n351\t                # For IV, compute theoretical C^{-1} correction effectiveness instead\n352\t                cond = np.linalg.cond(C)\n353\t                try:\n354\t                    C_inv = np.linalg.inv(C)\n355\t                    # Theoretical: tau_corrected = RF / (C^{-1} C @ FS)[1] = RF / FS[1] = tau_true\n356\t                    # So C^{-1} correction should theoretically give 100% bias reduction for IV\n357\t                    # But this is the Wald estimator - C^{-1} on the first stage only\n358\t                    plim_C = plan_006.compute_plim(C, st, K)\n359\t                    tau_biased = plan_006.extract_tau(plim_C, topo)\n360\t                    bias_biased = tau_biased - tau_true\n361\t                    # C^{-1} correction of first stage: effective C becomes I\n362\t                    tau_corrected = tau_true  # theoretical perfect correction\n363\t                    results[config_key][topo] = {\n364\t                        'method': 'theoretical_Cinv',\n365\t                        'tau_true': float(tau_true),\n366\t                        'tau_biased': float(tau_biased),\n367\t                        'tau_corrected': float(tau_corrected),\n368\t                        'bias_biased': float(bias_biased),\n369\t                        'bias_corrected': 0.0,\n370\t                        'bias_reduction_pct': 100.0 if abs(bias_biased) > 1e-12 else 0.0,\n371\t                        'cond_C': float(cond),\n372\t                        'note': 'IV topology: theoretical C^{-1} correction = perfect (by construction)',\n373\t                    }\n374\t                    summary_by_topo[topo].append(100.0)\n375\t                    summary_by_K[K].append(100.0)\n376\t                except np.linalg.LinAlgError:\n377\t                    results[config_key][topo] = {'method': 'failed', 'note': 'C not invertible'}\n378\t                print(f\"  {topo:<12} [IV theoretical] bias_reduction=100.0%\")\n379\t                continue\n380\t\n381\t            # For non-IV topologies: simulate PPI++ correction\n382\t            biased_taus = []\n383\t            ppi_taus = []\n384\t            naive_plugin_taus = []\n385\t\n386\t            for mc_i in range(N_MC):\n387\t                seed = (hash(config_key + topo + \"ppi\") & 0xFFFFFFFF) + mc_i * 3571\n388\t                rng = np.random.default_rng(seed)\n389\t\n390\t                try:\n391\t                    first_var, Y, A = plan_006.GEN_FNS[topo](K, N_SAMPLES,\n392\t                                                              params[topo], rng)\n393\t                    A_star = plan_006.generate_Astar(A, C, rng)\n394\t\n395\t                    # Build design matrix\n396\t                    N = len(Y)\n397\t                    if topo == 'exposure':\n398\t                        X_other = np.ones((N, 1))\n399\t                        tau_idx = 1\n400\t                    else:\n401\t                        T = first_var\n402\t                        X_other = np.column_stack([np.ones(N), T])\n403\t                        tau_idx = 1  # treatment coefficient\n404\t\n405\t                    # Gold labels: select GOLD_FRACTION of data\n406\t                    n_gold = max(int(N * GOLD_FRACTION), 50)\n407\t                    gold_idx = rng.choice(N, size=n_gold, replace=False)\n408\t                    gold_mask = np.zeros(N, dtype=bool)\n409\t                    gold_mask[gold_idx] = True\n410\t\n411\t                    # Biased estimate (using A*)\n412\t                    D_star = np.zeros((N, K - 1))\n413\t                    for k_idx in range(1, K):\n414\t                        D_star[:, k_idx - 1] = (A_star == k_idx).astype(float)\n415\t                    X_biased = np.column_stack([X_other, D_star])\n416\t                    try:\n417\t                        beta_biased = np.linalg.lstsq(X_biased, Y, rcond=None)[0]\n418\t                        biased_taus.append(float(beta_biased[tau_idx]))\n419\t                    except Exception:\n420\t                        continue\n421\t\n422\t                    # PPI++ correction\n423\t                    tau_ppi, se_ppi, success = correct_ppi(\n424\t                        X_other, Y, A_star, A, gold_mask,\n425\t                        tau_idx=tau_idx, rng=rng\n426\t                    )\n427\t                    if success and np.isfinite(tau_ppi):\n428\t                        ppi_taus.append(float(tau_ppi))\n429\t\n430\t                    # Naive plugin (C^{-1}) correction for comparison\n431\t                    tau_np, se_np, success_np = correct_naive_plugin(\n432\t                        X_other, Y, A_star, C, tau_idx=tau_idx\n433\t                    )\n434\t                    if success_np and np.isfinite(tau_np):\n435\t                        naive_plugin_taus.append(float(tau_np))\n436\t\n437\t                except Exception:\n438\t                    continue\n439\t\n440\t            if len(biased_taus) < N_MC // 4 or len(ppi_taus) < N_MC // 4:\n441\t                print(f\"  {topo:<12} FAILED (biased={len(biased_taus)}, \"\n442\t                      f\"ppi={len(ppi_taus)})\")\n443\t                results[config_key][topo] = {\n444\t                    'method': 'mc_failed',\n445\t                    'n_biased': len(biased_taus),\n446\t                    'n_ppi': len(ppi_taus),\n447\t                }\n448\t                continue\n449\t\n450\t            mean_biased = float(np.mean(biased_taus))\n451\t            mean_ppi = float(np.mean(ppi_taus))\n452\t            bias_biased = mean_biased - tau_true\n453\t            bias_ppi = mean_ppi - tau_true\n454\t\n455\t            if abs(bias_biased) > 1e-12:\n456\t                reduction_pct = 100.0 * (1.0 - abs(bias_ppi) / abs(bias_biased))\n457\t            else:\n458\t                reduction_pct = 0.0\n459\t\n460\t            # Naive plugin results\n461\t            mean_naive = float(np.mean(naive_plugin_taus)) if naive_plugin_taus else float('nan')\n462\t            bias_naive = mean_naive - tau_true if np.isfinite(mean_naive) else float('nan')\n463\t            if abs(bias_biased) > 1e-12 and np.isfinite(bias_naive):\n464\t                naive_reduction = 100.0 * (1.0 - abs(bias_naive) / abs(bias_biased))\n465\t            else:\n466\t                naive_reduction = float('nan')\n467\t\n468\t            entry = {\n469\t                'method': 'ppi_mc',\n470\t                'tau_true': float(tau_true),\n471\t                'tau_biased_mean': mean_biased,\n472\t                'tau_ppi_mean': mean_ppi,\n473\t                'tau_naive_mean': mean_naive,\n474\t                'bias_biased': float(bias_biased),\n475\t                'bias_ppi': float(bias_ppi),\n476\t                'bias_naive': float(bias_naive),\n477\t                'bias_reduction_pct': float(reduction_pct),\n478\t                'naive_reduction_pct': float(naive_reduction) if np.isfinite(naive_reduction) else None,\n479\t                'n_mc_biased': len(biased_taus),\n480\t                'n_mc_ppi': len(ppi_taus),\n481\t                'n_mc_naive': len(naive_plugin_taus),\n482\t                'gold_fraction': GOLD_FRACTION,\n483\t            }\n484\t            results[config_key][topo] = entry\n485\t            summary_by_topo[topo].append(reduction_pct)\n486\t            summary_by_K[K].append(reduction_pct)\n487\t            print(f\"  {topo:<12} bias_biased={bias_biased:+.5f} bias_ppi={bias_ppi:+.5f} \"\n488\t                  f\"reduction={reduction_pct:.1f}%\")\n489\t\n490\t    # Aggregate summaries\n491\t    topo_summary = {}\n492\t    for topo in TOPOLOGIES:\n493\t        vals = summary_by_topo.get(topo, [])\n494\t        if vals:\n495\t            topo_summary[topo] = {\n496\t                'mean_reduction_pct': float(np.mean(vals)),\n497\t                'median_reduction_pct': float(np.median(vals)),\n498\t                'min_reduction_pct': float(np.min(vals)),\n499\t                'max_reduction_pct': float(np.max(vals)),\n500\t                'n': len(vals),\n501\t            }\n502\t\n503\t    k_summary = {}\n504\t    for K in sorted(summary_by_K.keys()):\n505\t        vals = summary_by_K[K]\n506\t        if vals:\n507\t            k_summary[str(K)] = {\n508\t                'mean_reduction_pct': float(np.mean(vals)),\n509\t                'median_reduction_pct': float(np.median(vals)),\n510\t                'n': len(vals),\n511\t            }\n512\t\n513\t    all_reductions = []\n514\t    for topo_vals in summary_by_topo.values():\n515\t        all_reductions.extend(topo_vals)\n516\t    grand_mean_reduction = float(np.mean(all_reductions)) if all_reductions else None\n517\t\n518\t    output = {\n519\t        'meta': {\n520\t            'n_mc': N_MC,\n521\t            'n_samples': N_SAMPLES,\n522\t            'gold_fraction': GOLD_FRACTION,\n523\t            'n_configs': len(all_cms),\n524\t            'n_topologies': len(TOPOLOGIES),\n525\t            'correction_methods': ['ppi++', 'naive_plugin (C^{-1})', 'theoretical_Cinv (IV only)'],\n526\t            'note': (\n527\t                'PPI++ uses 10% gold labels. For IV topology, theoretical C^{-1} correction '\n528\t                'is used (100% by construction). Naive plugin shown for comparison. '\n529\t                'VAST/CC use approximate confusion matrices (diagonal + uniform off-diagonal).'\n530\t            ),\n531\t        },\n532\t        'grand_mean_bias_reduction_pct': grand_mean_reduction,\n533\t        'per_topology': topo_summary,\n534\t        'per_K': k_summary,\n535\t        'per_config': results,\n536\t    }\n537\t\n538\t    out_path = PROJ / \"artifacts/ppi_empirical_validation.json\"\n539\t    out_path.write_text(json.dumps(output, indent=2))\n540\t    print(f\"\\n=== Task 2 DONE in {time.time()-t0:.1f}s ===\")\n541\t    print(f\"Grand mean bias reduction: {grand_mean_reduction:.1f}%\"\n542\t          if grand_mean_reduction else \"N/A\")\n543\t    print(f\"Written: {out_path}\")\n544\t\n545\t    # LaTeX snippet\n546\t    latex = r\"\"\"% PPI++ Bias Reduction (auto-generated)\n547\t\\begin{table}[h]\\centering\\small\n548\t\\caption{PPI++ bias reduction by topology (\"\"\" + f\"{GOLD_FRACTION:.0%} gold labels\" + r\"\"\")}\n549\t\\begin{tabular}{lrrrr}\n550\t\\toprule\n551\tTopology & Mean (\\%) & Median (\\%) & Min (\\%) & $n$ \\\\\n552\t\\midrule\n553\t\"\"\"\n554\t    for topo in TOPOLOGIES:\n555\t        s = topo_summary.get(topo)\n556\t        if s:\n557\t            latex += (f\"{topo} & {s['mean_reduction_pct']:.1f} & \"\n558\t                      f\"{s['median_reduction_pct']:.1f} & \"\n559\t                      f\"{s['min_reduction_pct']:.1f} & {s['n']} \\\\\\\\\\n\")\n560\t    latex += r\"\"\"\\midrule\n561\tGrand & \"\"\" + f\"{grand_mean_reduction:.1f}\" + r\"\"\" & -- & -- & \"\"\" + f\"{len(all_reductions)}\" + r\"\"\" \\\\\n562\t\\bottomrule\n563\t\\end{tabular}\n564\t\\end{table}\n565\t\"\"\"\n566\t    latex_path = PROJ / \"artifacts/ppi_empirical_validation_table.tex\"\n567\t    latex_path.write_text(latex)\n568\t    print(f\"LaTeX: {latex_path}\")\n569\t\n570\t    return output\n571\t\n572\t\n573\t# ============================================================================\n574\t# Task 3: Dirichlet Subspace Overlay Visualization\n575\t# ============================================================================\n576\t\n577\tdef task3_dirichlet_overlay(all_cms, config_meta):\n578\t    \"\"\"Create fig7 with improved styling and all 18 configs.\"\"\"\n579\t    print(\"\\n\" + \"=\" * 80)\n580\t    print(\"TASK 3: Dirichlet Subspace Overlay Visualization\")\n581\t    print(\"=\" * 80)\n582\t\n583\t    try:\n584\t        import matplotlib\n585\t        matplotlib.use(\"Agg\")\n586\t        import matplotlib.pyplot as plt\n587\t        import matplotlib.patheffects as pe\n588\t    except ImportError:\n589\t        print(\"ERROR: matplotlib not available\")\n590\t        return\n591\t\n592\t    try:\n593\t        from scipy.interpolate import PchipInterpolator\n594\t    except ImportError:\n595\t        print(\"WARNING: scipy not available, using linear interpolation\")\n596\t        PchipInterpolator = None\n597\t\n598\t    # Load theoretical data\n599\t    EXPOSURE_THEORY = {\n600\t        \"diag_thresh\":    [0.0, 0.5, 0.7, 0.9],\n601\t        \"violation_rate\": [0.850, 0.325, 0.137, 0.119],\n602\t        \"sign_flip_rate\": [0.834, 0.216, 0.021, 0.000],\n603\t    }\n604\t\n605\t    with open(PROJ / \"artifacts/iv_dirichlet_subspace_results.json\") as f:\n606\t        iv_raw = json.load(f)\n607\t    IV_THEORY = {\n608\t        \"diag_thresh\":    [],\n609\t        \"violation_rate\": [],\n610\t        \"sign_flip_rate\": [],\n611\t    }\n612\t    for t in (\"0.0\", \"0.5\", \"0.7\", \"0.9\"):\n613\t        IV_THEORY[\"diag_thresh\"].append(float(t))\n614\t        IV_THEORY[\"violation_rate\"].append(iv_raw[\"thresholds\"][t][\"violation_rate\"])\n615\t        IV_THEORY[\"sign_flip_rate\"].append(iv_raw[\"thresholds\"][t][\"sign_flip_rate\"])\n616\t\n617\t    # Style\n618\t    plt.rcParams.update({\n619\t        \"font.family\": \"serif\",\n620\t        \"font.serif\": [\"Times New Roman\", \"DejaVu Serif\", \"Times\"],\n621\t        \"font.size\": 9,\n622\t        \"axes.titlesize\": 10,\n623\t        \"axes.labelsize\": 9,\n624\t        \"xtick.labelsize\": 8,\n625\t        \"ytick.labelsize\": 8,\n626\t        \"legend.fontsize\": 7,\n627\t        \"figure.dpi\": 300,\n628\t        \"savefig.dpi\": 300,\n629\t        \"savefig.bbox\": \"tight\",\n630\t        \"savefig.pad_inches\": 0.05,\n631\t        \"axes.spines.top\": False,\n632\t        \"axes.spines.right\": False,\n633\t        \"lines.linewidth\": 1.4,\n634\t        \"mathtext.fontset\": \"stix\",\n635\t    })\n636\t\n637\t    # Marker / color encoding\n638\t    DATASET_MARKERS = {\n639\t        \"humaid\":         {\"marker\": \"o\", \"size\": 40},\n640\t        \"vast\":           {\"marker\": \"s\", \"size\": 40},\n641\t        \"civil_comments\": {\"marker\": \"^\", \"size\": 50},\n642\t    }\n643\t    MODEL_COLORS = {\n644\t        \"llama4\":     \"#E31A1C\",   # red\n645\t        \"qwen3\":      \"#1F78B4\",   # blue\n646\t        \"deepseek\":   \"#33A02C\",   # green\n647\t        \"qwen2.5-7b\": \"#FF7F00\",   # orange\n648\t    }\n649\t\n650\t    # Build config list\n651\t    configs = []\n652\t    for key, C in all_cms.items():\n653\t        meta = config_meta[key]\n654\t        model = meta[\"model_prompt\"].split(\"_\")[0]\n655\t        # Handle \"qwen2.5-7b\" model name\n656\t        if \"qwen2.5\" in meta[\"model_prompt\"]:\n657\t            model = \"qwen2.5-7b\"\n658\t            prompt = meta[\"model_prompt\"].replace(\"qwen2.5-7b_\", \"\")\n659\t        else:\n660\t            prompt = meta[\"model_prompt\"][len(model)+1:]\n661\t        configs.append({\n662\t            \"key\": key,\n663\t            \"dataset\": meta[\"dataset\"],\n664\t            \"model\": model,\n665\t            \"prompt\": prompt,\n666\t            \"K\": meta[\"K\"],\n667\t            \"min_diag\": meta[\"min_diag\"],\n668\t        })\n669\t\n670\t    def smooth_curve(xs, ys, n=200):\n671\t        xs = np.asarray(xs, dtype=float)\n672\t        ys = np.asarray(ys, dtype=float)\n673\t        xx = np.linspace(0.0, 1.0, n)\n674\t        if PchipInterpolator is not None:\n675\t            interp = PchipInterpolator(xs, ys, extrapolate=False)\n676\t            yy = interp(xx)\n677\t            yy[xx < xs[0]] = ys[0]\n678\t            yy[xx > xs[-1]] = ys[-1]\n679\t        else:\n680\t            yy = np.interp(xx, xs, ys)\n681\t        return xx, yy\n682\t\n683\t    def interp_at(x, xs, ys):\n684\t        xs = np.asarray(xs, dtype=float)\n685\t        ys = np.asarray(ys, dtype=float)\n686\t        if x <= xs[0]:\n687\t            return float(ys[0])\n688\t        if x >= xs[-1]:\n689\t            return float(ys[-1])\n690\t        if PchipInterpolator is not None:\n691\t            return float(PchipInterpolator(xs, ys, extrapolate=False)(x))\n692\t        return float(np.interp(x, xs, ys))\n693\t\n694\t    def draw_panel(ax, theory, panel_title, panel_letter, show_violation_fill=True):\n695\t        xs_t = theory[\"diag_thresh\"]\n696\t        vr_t = theory[\"violation_rate\"]\n697\t        sf_t = theory[\"sign_flip_rate\"]\n698\t\n699\t        xx, vr_curve = smooth_curve(xs_t, vr_t)\n700\t        _, sf_curve = smooth_curve(xs_t, sf_t)\n701\t\n702\t        # Shading zones\n703\t        ax.axvspan(0.0, 0.5, color=\"#FDAE61\", alpha=0.12, zorder=0,\n704\t                   label=\"_nolegend_\")  # danger\n705\t        ax.axvspan(0.5, 0.7, color=\"#FEE08B\", alpha=0.10, zorder=0,\n706\t                   label=\"_nolegend_\")  # caution\n707\t        ax.axvspan(0.9, 1.0, color=\"#A6D96A\", alpha=0.12, zorder=0,\n708\t                   label=\"_nolegend_\")  # safe\n709\t\n710\t        # Theory curves\n711\t        if show_violation_fill:\n712\t            ax.fill_between(xx, 0, vr_curve,\n713\t                            color=\"#888888\", alpha=0.15, zorder=1,\n714\t                            label=\"Violation rate (theory)\")\n715\t            ax.plot(xx, vr_curve, color=\"#555555\", linewidth=1.2, zorder=2)\n716\t        else:\n717\t            ax.axhline(1.0, color=\"#888888\", linewidth=1.0, alpha=0.5,\n718\t                       linestyle=\":\", zorder=1,\n719\t                       label=\"Violation rate (theory) $=1$\")\n720\t\n721\t        ax.plot(xx, sf_curve, color=\"#B22222\", linewidth=1.4,\n722\t                linestyle=\"--\", zorder=3,\n723\t                label=\"Sign-flip rate (theory)\")\n724\t\n725\t        # Theory anchor points\n726\t        ax.scatter(xs_t, vr_t, s=15, color=\"#555555\",\n727\t                   marker=\"x\", linewidth=0.8, zorder=4, label=\"_nolegend_\")\n728\t        ax.scatter(xs_t, sf_t, s=15, color=\"#B22222\",\n729\t                   marker=\"x\", linewidth=0.8, zorder=4, label=\"_nolegend_\")\n730\t\n731\t        # Empirical points\n732\t        handled = set()\n733\t        for cfg in configs:\n734\t            x = cfg[\"min_diag\"]\n735\t            y = interp_at(x, xs_t, vr_t)\n736\t            ds = cfg[\"dataset\"]\n737\t            style = DATASET_MARKERS[ds]\n738\t            color = MODEL_COLORS.get(cfg[\"model\"], \"#999999\")\n739\t\n740\t            legend_key = (ds, cfg[\"model\"])\n741\t            if legend_key not in handled:\n742\t                handled.add(legend_key)\n743\t                ds_short = {\"humaid\": \"HumAID\", \"vast\": \"VAST\",\n744\t                            \"civil_comments\": \"CC\"}[ds]\n745\t                lbl = f\"{ds_short}/{cfg['model']} ($K$={cfg['K']})\"\n746\t            else:\n747\t                lbl = None\n748\t\n749\t            ax.scatter(x, y, marker=style[\"marker\"], s=style[\"size\"],\n750\t                       facecolor=color, edgecolor=\"white\", linewidth=0.6,\n751\t                       zorder=6, label=lbl)\n752\t\n753\t        # Zone labels\n754\t        for txt_str, pos, col in [\n755\t            (\"sign-flip\\nzone\", (0.08, 0.55), \"#A53A0C\"),\n756\t            (\"safe\", (0.95, 0.06), \"#2B7A3B\"),\n757\t        ]:\n758\t            t = ax.text(pos[0], pos[1], txt_str, ha=\"center\", va=\"center\",\n759\t                        fontsize=7, color=col, fontstyle=\"italic\",\n760\t                        transform=ax.transAxes)\n761\t            t.set_path_effects([pe.withStroke(linewidth=2.0, foreground=\"white\")])\n762\t\n763\t        ax.set_xlim(0.0, 1.0)\n764\t        ax.set_ylim(-0.03, 1.15)\n765\t        ax.set_xlabel(r\"Min.\\ diagonal dominance $\\min_k C_{kk}$\")\n766\t        if panel_letter == \"a\":\n767\t            ax.set_ylabel(\"Violation / sign-flip rate\")\n768\t        ax.set_title(f\"({panel_letter}) {panel_title}\", loc=\"left\", pad=4,\n769\t                     fontweight=\"bold\")\n770\t        ax.grid(True, axis=\"y\", alpha=0.2, linewidth=0.4, zorder=0)\n771\t\n772\t    # Build figure (single-column width ~ 3.5 inches, but we use 7.0 for two panels)\n773\t    fig, axes = plt.subplots(1, 2, figsize=(7.0, 3.2), sharey=True)\n774\t\n775\t    draw_panel(axes[0], EXPOSURE_THEORY, \"Exposure\", \"a\",\n776\t               show_violation_fill=True)\n777\t    draw_panel(axes[1], IV_THEORY, \"IV\", \"b\",\n778\t               show_violation_fill=False)\n779\t\n780\t    # Unified legend\n781\t    handles, labels = [], []\n782\t    for ax in axes:\n783\t        h, l = ax.get_legend_handles_labels()\n784\t        for hh, ll in zip(h, l):\n785\t            if ll and ll not in labels:\n786\t                handles.append(hh)\n787\t                labels.append(ll)\n788\t    fig.legend(handles, labels,\n789\t               loc=\"lower center\", bbox_to_anchor=(0.5, -0.08),\n790\t               ncol=4, frameon=False, columnspacing=1.0,\n791\t               handletextpad=0.4, fontsize=7)\n792\t\n793\t    plt.tight_layout(rect=(0, 0.04, 1, 1.0))\n794\t\n795\t    out_pdf = PROJ / \"figures/paper/fig7_dirichlet_overlay.pdf\"\n796\t    out_png = PROJ / \"figures/paper/fig7_dirichlet_overlay.png\"\n797\t    out_pdf.parent.mkdir(parents=True, exist_ok=True)\n798\t    plt.savefig(out_pdf)\n799\t    plt.savefig(out_png)\n800\t    plt.close()\n801\t\n802\t    print(f\"Saved: {out_pdf}\")\n803\t    print(f\"Saved: {out_png}\")\n804\t\n805\t    # Print empirical positions for reference\n806\t    print(f\"\\n{'config':<52} {'K':>3} {'min_diag':>9}\")\n807\t    print(\"-\" * 70)\n808\t    for cfg in sorted(configs, key=lambda c: c[\"min_diag\"]):\n809\t        key = f\"{cfg['dataset']}_{cfg['model']}_{cfg['prompt']}\"\n810\t        print(f\"{key:<52} {cfg['K']:>3} {cfg['min_diag']:>9.4f}\")\n811\t\n812\t    return {\"n_configs\": len(configs), \"output_files\": [str(out_pdf), str(out_png)]}\n813\t\n814\t\n815\t# ============================================================================\n816\t# Main\n817\t# ============================================================================\n818\t\n819\tdef main():\n820\t    t_start = time.time()\n821\t    print(\"Loading all data...\")\n822\t    all_cms, config_meta, bias_lookup, filter_data = load_all_data()\n823\t    print(f\"Loaded {len(all_cms)} confusion matrices\")\n824\t    for k, m in sorted(config_meta.items()):\n825\t        print(f\"  {k:<52} K={m['K']:>2}  min_diag={m['min_diag']:.4f}  \"\n826\t              f\"trace={m['trace']:.4f}\")\n827\t\n828\t    # Task 1\n829\t    mape_result = task1_mape(all_cms, config_meta, bias_lookup)\n830\t\n831\t    # Task 2\n832\t    ppi_result = task2_ppi(all_cms, config_meta)\n833\t\n834\t    # Task 3\n835\t    fig_result = task3_dirichlet_overlay(all_cms, config_meta)\n836\t\n837\t    print(f\"\\n{'='*80}\")\n838\t    print(f\"ALL TASKS COMPLETE in {time.time()-t_start:.1f}s\")\n839\t    print(f\"{'='*80}\")\n840\t    print(f\"\\nTask 1: Grand MAPE = {mape_result['grand_mape']:.4%}\")\n841\t    print(f\"Task 2: Grand PPI++ reduction = {ppi_result['grand_mean_bias_reduction_pct']:.1f}%\")\n842\t    if fig_result:\n843\t        print(f\"Task 3: Figure saved with {fig_result['n_configs']} configs\")\n844\t    else:\n845\t        print(\"Task 3: SKIPPED (matplotlib not available)\")\n846\t\n847\t\n848\tif __name__ == \"__main__\":\n849\t    main()\n850\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e2fd649-d176-485f-9c24-46d860612b41",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "6cd444f2-f417-4fe2-abaf-d69e0ce334ae",
+            "sourceToolAssistantUUID": "4e2fd649-d176-485f-9c24-46d860612b41",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T11:30:23.174Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me examine the plan_006_asv_empirical.py file to find where these functions are defined:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6cd444f2-f417-4fe2-abaf-d69e0ce334ae",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXkdmpinj6mGcUuPcZM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e3cd2027-fd14-4922-940d-32449714d588",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0128mhtUVAJEYWuns9bCgT2m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 12953,
+                "cache_read_input_tokens": 19701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12953,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T11:30:23.746Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015HfRxAeP8EqE4CioFqjHPd",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3cd2027-fd14-4922-940d-32449714d588",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXkdmpinj6mGcUuPcZM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e44f6a9b-6904-4684-958f-04f47e70aedd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0128mhtUVAJEYWuns9bCgT2m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 12953,
+                "cache_read_input_tokens": 19701,
+                "output_tokens": 121,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12953
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 121,
+                    "cache_read_input_tokens": 19701,
+                    "cache_creation_input_tokens": 12953,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12953,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T11:30:23.814Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015HfRxAeP8EqE4CioFqjHPd",
+              "type": "tool_result",
+              "content": "1091 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e44f6a9b-6904-4684-958f-04f47e70aedd",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "84375791-8072-4c11-a01c-fd4894483bf6",
+            "sourceToolAssistantUUID": "e44f6a9b-6904-4684-958f-04f47e70aedd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T11:30:26.455Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for the three functions in this file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84375791-8072-4c11-a01c-fd4894483bf6",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXknukS9pTSUdMxzMjV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ea68abe3-26aa-4abd-b408-ed0ad07fb553",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011cSyXjcqQd5mTWSzt7h3Zt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 32654,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 176,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T11:30:27.278Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YLj7DTYAaWxjN3Ug8P85Cv",
+              "name": "Grep",
+              "input": {
+                "pattern": "^def (compute_plim|precompute_suff_stats|extract_tau)",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea68abe3-26aa-4abd-b408-ed0ad07fb553",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXknukS9pTSUdMxzMjV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f6cbd884-92dd-4563-98d0-2cef616c9b5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011cSyXjcqQd5mTWSzt7h3Zt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 32654,
+                "output_tokens": 158,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 176
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 158,
+                    "cache_read_input_tokens": 32654,
+                    "cache_creation_input_tokens": 176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 176,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T11:30:27.358Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YLj7DTYAaWxjN3Ug8P85Cv",
+              "type": "tool_result",
+              "content": "342:def precompute_suff_stats(K, topology, params, N=N_PRECOMP, seed=42):\n369:def compute_plim(C, st, K):\n415:def extract_tau(plim_result, topology):"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f6cbd884-92dd-4563-98d0-2cef616c9b5a",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "ecab9106-8cee-460c-b96b-1f672881c0b0",
+            "sourceToolAssistantUUID": "f6cbd884-92dd-4563-98d0-2cef616c9b5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T11:30:28.532Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me read these function definitions to provide you with their details:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecab9106-8cee-460c-b96b-1f672881c0b0",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXm47oA35cuML8VsW2c",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "26b0f33c-a2a0-45a6-983e-4d987aa9744b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PtY9M8hpuAqb1h4sEkEZNr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 231,
+                "cache_read_input_tokens": 32830,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 231,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T11:30:28.903Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019PEhJZBWqBFsSC3LMFFnvp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py",
+                "offset": 342,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26b0f33c-a2a0-45a6-983e-4d987aa9744b",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXm47oA35cuML8VsW2c",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "270ad87f-6c50-4f6e-bfcb-3d5f7238287b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PtY9M8hpuAqb1h4sEkEZNr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 231,
+                "cache_read_input_tokens": 32830,
+                "output_tokens": 143,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 231
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 143,
+                    "cache_read_input_tokens": 32830,
+                    "cache_creation_input_tokens": 231,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 231,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T11:30:28.916Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019PEhJZBWqBFsSC3LMFFnvp",
+              "type": "tool_result",
+              "content": "342\tdef precompute_suff_stats(K, topology, params, N=N_PRECOMP, seed=42):\n343\t    rng = np.random.default_rng(seed)\n344\t    first_var, Y, A = GEN_FNS[topology](K, N, params, rng)\n345\t    DA = np.zeros((N, K))\n346\t    for k in range(K):\n347\t        DA[:, k] = (A == k).astype(float)\n348\t\n349\t    if topology == 'iv':\n350\t        Z = first_var\n351\t        z1 = Z == 1; z0 = Z == 0\n352\t        RF = Y[z1].mean() - Y[z0].mean()\n353\t        FS = np.zeros(K)\n354\t        for k in range(K):\n355\t            FS[k] = (A[z1] == k).mean() - (A[z0] == k).mean()\n356\t        return dict(RF=RF, FS=FS, topology='iv')\n357\t    elif topology == 'exposure':\n358\t        return dict(p_A=DA.mean(0), E_Y=Y.mean(),\n359\t                    E_YD=(DA * Y[:, None]).mean(0), topology='exposure')\n360\t    else:\n361\t        T = first_var\n362\t        return dict(\n363\t            p_A=DA.mean(0), E_T=T.mean(), E_T2=(T**2).mean(),\n364\t            E_Y=Y.mean(), E_TY=(T * Y).mean(),\n365\t            E_TD=(DA * T[:, None]).mean(0),\n366\t            E_YD=(DA * Y[:, None]).mean(0), topology=topology)\n367\t\n368\t\n369\tdef compute_plim(C, st, K):\n370\t    if st['topology'] == 'iv':\n371\t        FS_star = C @ st['FS']\n372\t        if abs(FS_star[1]) < 1e-8:\n373\t            return np.nan\n374\t        return st['RF'] / FS_star[1]\n375\t    elif st['topology'] == 'exposure':\n376\t        q = C @ st['p_A']\n377\t        cy = C @ st['E_YD']\n378\t        EZZ = np.zeros((K, K))\n379\t        EZZ[0, 0] = 1.0\n380\t        for j in range(1, K):\n381\t            EZZ[0, j] = EZZ[j, 0] = q[j]\n382\t            EZZ[j, j] = q[j]\n383\t        EZY = np.zeros(K)\n384\t        EZY[0] = st['E_Y']\n385\t        for j in range(1, K):\n386\t            EZY[j] = cy[j]\n387\t        try:\n388\t            return np.linalg.solve(EZZ, EZY)\n389\t        except np.linalg.LinAlgError:\n390\t            return np.full(K, np.nan)\n391\t    else:\n392\t        q = C @ st['p_A']\n393\t        ct = C @ st['E_TD']\n394\t        cy = C @ st['E_YD']\n395\t        dim = K + 1\n396\t        EZZ = np.zeros((dim, dim))\n397\t        EZZ[0, 0] = 1.0\n398\t        EZZ[0, 1] = EZZ[1, 0] = st['E_T']\n399\t        EZZ[1, 1] = st['E_T2']\n400\t        for j in range(1, K):\n401\t            EZZ[0, j + 1] = EZZ[j + 1, 0] = q[j]\n402\t            EZZ[1, j + 1] = EZZ[j + 1, 1] = ct[j]\n403\t            EZZ[j + 1, j + 1] = q[j]\n404\t        EZY = np.zeros(dim)\n405\t        EZY[0] = st['E_Y']\n406\t        EZY[1] = st['E_TY']\n407\t        for j in range(1, K):\n408\t            EZY[j + 1] = cy[j]\n409\t        try:\n410\t            return np.linalg.solve(EZZ, EZY)\n411\t        except np.linalg.LinAlgError:\n412\t            return np.full(dim, np.nan)\n413\t\n414\t\n415\tdef extract_tau(plim_result, topology):\n416\t    if topology == 'iv':\n417\t        return float(plim_result) if np.isfinite(plim_result) else np.nan\n418\t    if isinstance(plim_result, np.ndarray):\n419\t        return float(plim_result[1]) if np.isfinite(plim_result[1]) else np.nan\n420\t    return np.nan\n421\t\n422\t\n423\t# ============================================================================\n424\t# 1. Data Loading & Confusion Matrix\n425\t# ============================================================================\n426\t\n427\tdef load_confusion_matrix_npz(data_dir, dataset, model, prompt, K):\n428\t    path = os.path.join(data_dir, dataset, f\"{model}_{prompt}_confusion_matrix.npz\")\n429\t    d = np.load(path, allow_pickle=True)\n430\t    C = d['C']\n431\t    assert C.shape == (K, K), f\"Expected ({K},{K}), got {C.shape}\"\n432\t    return C\n433\t\n434\t\n435\tdef load_annotations(data_dir, dataset, model, prompt):\n436\t    for suffix in ['_annotations.jsonl', '.jsonl']:\n437\t        path = os.path.join(data_dir, dataset, f\"{model}_{prompt}{suffix}\")\n438\t        if os.path.exists(path):\n439\t            break\n440\t    else:\n441\t        raise FileNotFoundError(f\"No annotation file for {dataset}/{model}_{prompt}\")"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "270ad87f-6c50-4f6e-bfcb-3d5f7238287b",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "7de6a44e-3350-43ea-8253-e6a0649ef288",
+            "sourceToolAssistantUUID": "270ad87f-6c50-4f6e-bfcb-3d5f7238287b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T11:30:30.171Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found all three functions. Let me also check if there are any other references to these functions or related utilities:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7de6a44e-3350-43ea-8253-e6a0649ef288",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmAq7osr9ZK9UVpfsL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "24d2b2dc-fdb1-4564-b11d-0077f56a1603",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YUnJiAmWq8c4tuR66WXgoe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1830,
+                "cache_read_input_tokens": 33061,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1830,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T11:30:31.262Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KdhZUSVyy3fK7LtKAkLLEu",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"N_PRECOMP\\|GEN_FNS\" /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24d2b2dc-fdb1-4564-b11d-0077f56a1603",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmAq7osr9ZK9UVpfsL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "01f3dadb-9e8d-4213-a3ff-2835902ca507",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YUnJiAmWq8c4tuR66WXgoe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1830,
+                "cache_read_input_tokens": 33061,
+                "output_tokens": 140,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1830
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 140,
+                    "cache_read_input_tokens": 33061,
+                    "cache_creation_input_tokens": 1830,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1830,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T11:30:31.428Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KdhZUSVyy3fK7LtKAkLLEu",
+              "type": "tool_result",
+              "content": "52:N_PRECOMP = 2_000_000\n331:GEN_FNS = {\n342:def precompute_suff_stats(K, topology, params, N=N_PRECOMP, seed=42):\n344:    first_var, Y, A = GEN_FNS[topology](K, N, params, rng)\n591:    gen_fn = GEN_FNS[topology]\n679:    gen_fn = GEN_FNS[topology]\n903:    n_precomp = 500_000 if args.mock else N_PRECOMP",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01f3dadb-9e8d-4213-a3ff-2835902ca507",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "5535411c-5039-452c-9fc8-43f7f7bba337",
+            "sourceToolAssistantUUID": "01f3dadb-9e8d-4213-a3ff-2835902ca507",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T11:30:33.400Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more context on the file structure and where these functions are used:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5535411c-5039-452c-9fc8-43f7f7bba337",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmMV4wGnKCBcsvxdFT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "38312459-2335-4b93-bca9-d0b34d8f6444",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TursWiFtJkjhPc6dN4zhMq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 300,
+                "cache_read_input_tokens": 34891,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 300,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T11:30:33.808Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A872g92brdg1EMxkGDehyH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py",
+                "offset": 1,
+                "limit": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38312459-2335-4b93-bca9-d0b34d8f6444",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmMV4wGnKCBcsvxdFT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5a9c31bf-b624-461a-8b99-4ccf289eb96b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TursWiFtJkjhPc6dN4zhMq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 300,
+                "cache_read_input_tokens": 34891,
+                "output_tokens": 143,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 300
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 143,
+                    "cache_read_input_tokens": 34891,
+                    "cache_creation_input_tokens": 300,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 300,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T11:30:33.815Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A872g92brdg1EMxkGDehyH",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tplan_006: Empirical ASV Calibration with LLM Annotation Confusion Matrices\n4\t\n5\tUses empirical confusion matrices from LLM annotations (3 LLMs × 3 datasets × 3 prompts\n6\t= 27 C matrices) to compute:\n7\t  1. Downstream causal bias across 7 DAG topologies\n8\t  2. ASV sensitivity metrics (magnitude, significance, sign-flip)\n9\t  3. F1 vs bias disconnect analysis (Baumann 2025 verification)\n10\t  4. Type I/II error rates before/after ASV filtering\n11\t  5. Inter-model error correlation\n12\t\n13\tInput:  data/{dataset}/{model}_{prompt}_annotations.jsonl\n14\t        Each line: {\"true_label\": int, \"predicted_label\": int}\n15\t\n16\tOutput: artifacts/plan006/asv_empirical_results.json\n17\t\n18\tDependencies: numpy (required), matplotlib (optional for plots)\n19\t\"\"\"\n20\t\n21\timport numpy as np\n22\timport json\n23\timport argparse\n24\timport os\n25\timport time\n26\tfrom collections import OrderedDict\n27\t\n28\ttry:\n29\t    import matplotlib\n30\t    matplotlib.use('Agg')\n31\t    import matplotlib.pyplot as plt\n32\t    HAS_MPL = True\n33\texcept ImportError:\n34\t    HAS_MPL = False\n35\t\n36\t# ============================================================================\n37\t# Constants\n38\t# ============================================================================\n39\t\n40\tDATASETS = OrderedDict([\n41\t    ('civil_comments', {'K': 2}),\n42\t    ('vast', {'K': 3}),\n43\t    ('humaid', {'K': 10}),\n44\t])\n45\t\n46\tMODELS = ['llama4', 'qwen3', 'deepseek']\n47\tPROMPTS = ['zero-shot', 'few-shot-3', 'few-shot-5']\n48\t\n49\tTOPOLOGIES = ['confounding', 'mediation', 'collider', 'exposure',\n50\t              'mbias', 'iv', 'frontdoor']\n51\t\n52\tN_PRECOMP = 2_000_000\n53\t\n54\t# Parameter pools — K=3 values match plan_001/plan_005\n55\t_ALPHA_POOL = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7, 0.9, -0.4, 0.6]\n56\t_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n57\t_BETA_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n58\t_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]\n59\t_DELTA_POOL = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2, 0.15, -0.1, 0.05]\n60\t_DT_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1, 0.2, -0.05, 0.1]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a9c31bf-b624-461a-8b99-4ccf289eb96b",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "4a6a74e9-3eb8-4689-8e54-aaded6cdd199",
+            "sourceToolAssistantUUID": "5a9c31bf-b624-461a-8b99-4ccf289eb96b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T11:30:35.071Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the functions one more time to get the complete definitions with better context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a6a74e9-3eb8-4689-8e54-aaded6cdd199",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmXx7X2KLv6wPKBkXE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fea6a69e-75dc-41be-bf16-543dcf9d94dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KfUKUvJtAMaz1t7fhpTws6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1100,
+                "cache_read_input_tokens": 35191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1100,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T11:30:35.863Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0175qWMt861VHbCiWnSnmLui",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py",
+                "offset": 330,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fea6a69e-75dc-41be-bf16-543dcf9d94dc",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmXx7X2KLv6wPKBkXE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "93321dc2-25c6-4e7f-9ae3-4e5eed218ba0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KfUKUvJtAMaz1t7fhpTws6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1100,
+                "cache_read_input_tokens": 35191,
+                "output_tokens": 145,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1100
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 145,
+                    "cache_read_input_tokens": 35191,
+                    "cache_creation_input_tokens": 1100,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1100,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T11:30:35.876Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0175qWMt861VHbCiWnSnmLui",
+              "type": "tool_result",
+              "content": "330\t\n331\tGEN_FNS = {\n332\t    'confounding': gen_confounding, 'mediation': gen_mediation,\n333\t    'collider': gen_collider, 'exposure': gen_exposure,\n334\t    'mbias': gen_mbias, 'iv': gen_iv, 'frontdoor': gen_frontdoor,\n335\t}\n336\t\n337\t\n338\t# ============================================================================\n339\t# Sufficient Statistics & Plim (general K)\n340\t# ============================================================================\n341\t\n342\tdef precompute_suff_stats(K, topology, params, N=N_PRECOMP, seed=42):\n343\t    rng = np.random.default_rng(seed)\n344\t    first_var, Y, A = GEN_FNS[topology](K, N, params, rng)\n345\t    DA = np.zeros((N, K))\n346\t    for k in range(K):\n347\t        DA[:, k] = (A == k).astype(float)\n348\t\n349\t    if topology == 'iv':\n350\t        Z = first_var\n351\t        z1 = Z == 1; z0 = Z == 0\n352\t        RF = Y[z1].mean() - Y[z0].mean()\n353\t        FS = np.zeros(K)\n354\t        for k in range(K):\n355\t            FS[k] = (A[z1] == k).mean() - (A[z0] == k).mean()\n356\t        return dict(RF=RF, FS=FS, topology='iv')\n357\t    elif topology == 'exposure':\n358\t        return dict(p_A=DA.mean(0), E_Y=Y.mean(),\n359\t                    E_YD=(DA * Y[:, None]).mean(0), topology='exposure')\n360\t    else:\n361\t        T = first_var\n362\t        return dict(\n363\t            p_A=DA.mean(0), E_T=T.mean(), E_T2=(T**2).mean(),\n364\t            E_Y=Y.mean(), E_TY=(T * Y).mean(),\n365\t            E_TD=(DA * T[:, None]).mean(0),\n366\t            E_YD=(DA * Y[:, None]).mean(0), topology=topology)\n367\t\n368\t\n369\tdef compute_plim(C, st, K):\n370\t    if st['topology'] == 'iv':\n371\t        FS_star = C @ st['FS']\n372\t        if abs(FS_star[1]) < 1e-8:\n373\t            return np.nan\n374\t        return st['RF'] / FS_star[1]\n375\t    elif st['topology'] == 'exposure':\n376\t        q = C @ st['p_A']\n377\t        cy = C @ st['E_YD']\n378\t        EZZ = np.zeros((K, K))\n379\t        EZZ[0, 0] = 1.0\n380\t        for j in range(1, K):\n381\t            EZZ[0, j] = EZZ[j, 0] = q[j]\n382\t            EZZ[j, j] = q[j]\n383\t        EZY = np.zeros(K)\n384\t        EZY[0] = st['E_Y']\n385\t        for j in range(1, K):\n386\t            EZY[j] = cy[j]\n387\t        try:\n388\t            return np.linalg.solve(EZZ, EZY)\n389\t        except np.linalg.LinAlgError:\n390\t            return np.full(K, np.nan)\n391\t    else:\n392\t        q = C @ st['p_A']\n393\t        ct = C @ st['E_TD']\n394\t        cy = C @ st['E_YD']\n395\t        dim = K + 1\n396\t        EZZ = np.zeros((dim, dim))\n397\t        EZZ[0, 0] = 1.0\n398\t        EZZ[0, 1] = EZZ[1, 0] = st['E_T']\n399\t        EZZ[1, 1] = st['E_T2']\n400\t        for j in range(1, K):\n401\t            EZZ[0, j + 1] = EZZ[j + 1, 0] = q[j]\n402\t            EZZ[1, j + 1] = EZZ[j + 1, 1] = ct[j]\n403\t            EZZ[j + 1, j + 1] = q[j]\n404\t        EZY = np.zeros(dim)\n405\t        EZY[0] = st['E_Y']\n406\t        EZY[1] = st['E_TY']\n407\t        for j in range(1, K):\n408\t            EZY[j + 1] = cy[j]\n409\t        try:\n410\t            return np.linalg.solve(EZZ, EZY)\n411\t        except np.linalg.LinAlgError:\n412\t            return np.full(dim, np.nan)\n413\t\n414\t\n415\tdef extract_tau(plim_result, topology):\n416\t    if topology == 'iv':\n417\t        return float(plim_result) if np.isfinite(plim_result) else np.nan\n418\t    if isinstance(plim_result, np.ndarray):\n419\t        return float(plim_result[1]) if np.isfinite(plim_result[1]) else np.nan\n420\t    return np.nan\n421\t\n422\t\n423\t# ============================================================================\n424\t# 1. Data Loading & Confusion Matrix\n425\t# ============================================================================\n426\t\n427\tdef load_confusion_matrix_npz(data_dir, dataset, model, prompt, K):\n428\t    path = os.path.join(data_dir, dataset, f\"{model}_{prompt}_confusion_matrix.npz\")\n429\t    d = np.load(path, allow_pickle=True)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93321dc2-25c6-4e7f-9ae3-4e5eed218ba0",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "9be927ac-977d-4f6b-8697-00c068aac66c",
+            "sourceToolAssistantUUID": "93321dc2-25c6-4e7f-9ae3-4e5eed218ba0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T11:30:37.189Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me verify the file path and document structure one more time:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9be927ac-977d-4f6b-8697-00c068aac66c",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmgcWDbCGeQygizQyD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1e780779-4cd5-408c-8a04-bc7642dcc175",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H1yhXcn4T5p4Sp5KuyVfpN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1699,
+                "cache_read_input_tokens": 36291,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1699,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T11:30:38.003Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JWagjGUMtmatW6uHU6TrMb",
+              "name": "Bash",
+              "input": {
+                "command": "head -5 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e780779-4cd5-408c-8a04-bc7642dcc175",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmgcWDbCGeQygizQyD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7e4958a2-89da-486a-8212-ec4bec402737",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H1yhXcn4T5p4Sp5KuyVfpN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1699,
+                "cache_read_input_tokens": 36291,
+                "output_tokens": 112,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1699
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 112,
+                    "cache_read_input_tokens": 36291,
+                    "cache_creation_input_tokens": 1699,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1699,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T11:30:38.203Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JWagjGUMtmatW6uHU6TrMb",
+              "type": "tool_result",
+              "content": "#!/usr/bin/env python3\n\"\"\"\nplan_006: Empirical ASV Calibration with LLM Annotation Confusion Matrices\n\nUses empirical confusion matrices from LLM annotations (3 LLMs × 3 datasets × 3 prompts",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e4958a2-89da-486a-8212-ec4bec402737",
+            "isSidechain": true,
+            "promptId": "920e9e80-4df5-4966-ac7b-f70832625e1c",
+            "agentId": "a6dcd171d346aa1b5",
+            "type": "user",
+            "uuid": "bfdc3b56-d506-4903-a894-87b5003b9158",
+            "sourceToolAssistantUUID": "7e4958a2-89da-486a-8212-ec4bec402737",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T11:30:45.949Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have all the information. Let me create a summary of my findings.\n\n## Summary\n\nI've successfully located all three functions referenced in `compute_all_tasks.py` as `plan_006.compute_plim`, `plan_006.precompute_suff_stats`, and `plan_006.extract_tau`. They are all defined in the same file that's imported:\n\n### Functions Location\n**File:** `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py`\n\n### Function Definitions\n\n**1. `precompute_suff_stats(K, topology, params, N=N_PRECOMP, seed=42)`** (line 342)\n- Precomputes sufficient statistics for a given topology and number of classes K\n- Generates data using `GEN_FNS[topology]` generator function\n- Returns different statistics based on topology:\n  - **IV topology**: returns `dict(RF=..., FS=..., topology='iv')`\n  - **Exposure topology**: returns `dict(p_A=..., E_Y=..., E_YD=..., topology='exposure')`\n  - **Other topologies**: returns comprehensive statistics including `p_A`, `E_T`, `E_T2`, `E_Y`, `E_TY`, `E_TD`, `E_YD`\n\n**2. `compute_plim(C, st, K)`** (line 369)\n- Computes the probability limit (plim) of the estimator given confusion matrix C and sufficient statistics st\n- Handles three cases based on topology:\n  - **IV**: returns scalar value `st['RF'] / FS_star[1]`\n  - **Exposure**: solves linear system `EZZ @ beta = EZY` and returns coefficient vector\n  - **Other topologies**: solves expanded linear system with treatment term\n- Returns `np.nan` on singular matrices or numerical issues\n\n**3. `extract_tau(plim_result, topology)`** (line 415)\n- Extracts the causal effect estimate (tau) from plim_result\n- For IV topology: returns the scalar result as float\n- For other topologies: returns element at index [1] from the coefficient vector (the treatment effect)\n- Returns `np.nan` if result is not finite\n\n### Context\nThese functions are core to the causal analysis pipeline for the paper on \"Causal Annotation Error Attribution.\" They work together to:\n1. Precompute sufficient statistics from data generated under a specific DAG topology\n2. Compute the probability limit of causal effect estimates biased by confusion matrices\n3. Extract the treatment effect coefficient from the full set of estimates\n\nThe `plan_006_asv_empirical.py` file is imported dynamically in `compute_all_tasks.py` (lines 24-29) to support three computational tasks: theory-empirical MAPE validation, PPI++ empirical validation, and Dirichlet subspace overlay visualization."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfdc3b56-d506-4903-a894-87b5003b9158",
+            "isSidechain": true,
+            "agentId": "a6dcd171d346aa1b5",
+            "requestId": "req_011CbHXmrmSmJCTawbkqoKQT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a6a25015-ca94-4ec8-bb64-99ad8c1be799",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "a41664f4-9250-4c0c-9c38-9466fdeddc4e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Fvoag992afBtGywfzu7Eap",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 37990,
+                "output_tokens": 714,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 185
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 714,
+                    "cache_read_input_tokens": 37990,
+                    "cache_creation_input_tokens": 185,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 185,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-the-compute-plim-precompute-suff-stats-and-extract-tau-functions-in-the-c.md"
+}

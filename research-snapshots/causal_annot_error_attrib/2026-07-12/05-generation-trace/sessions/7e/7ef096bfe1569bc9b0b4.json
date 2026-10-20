@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "7ef096bfe1569bc9b0b4",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are auditing a research paper for data truthfulness. Your job is to extract EVERY number from experiments.tex and al",
+  "task_key": "agent-a3695fb58001357f6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a3695fb58001357f6.jsonl",
+    "occurrence": 1,
+    "bytes": 727076,
+    "sha256": "2f6df376c14a65a21a7c9e348b3e95f427e2acefb9298d1bf7f78109d692bcff"
+  },
+  "statistics": {
+    "messages": 391,
+    "user_turns": 1,
+    "tool_calls": 169,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 169,
+      "tool_result": 169,
+      "assistant": 51
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 391,
+      "chunks": [
+        {
+          "path": "7ef096bfe1569bc9b0b4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ef096bfe1569bc9b0b4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ef096bfe1569bc9b0b4-part-0003.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-auditing-a-research-paper-for-data-truthfulness-your-job-is-to-extract-copy-3.md"
+}

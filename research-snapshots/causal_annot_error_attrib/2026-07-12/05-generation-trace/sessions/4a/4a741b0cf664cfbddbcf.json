@@ -1,0 +1,670 @@
+{
+  "schema_version": "1.0",
+  "id": "4a741b0cf664cfbddbcf",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Use WebSearch to find and verify the paper \"SENTINEL: Mitigating Object Hallucinations via Sentence-Level Early Interven",
+  "task_key": "agent-a603bc451514e7c86",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a603bc451514e7c86.jsonl",
+    "occurrence": 1,
+    "bytes": 30950,
+    "sha256": "1c316092f1e117c0e33b29cac6ca991d6ded3cd12bd383e43f5813d2617d5e3e"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T08:48:06.148Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Use WebSearch to find and verify the paper \"SENTINEL: Mitigating Object Hallucinations via Sentence-Level Early Intervention\" (arxiv 2507.12455, July 2025). I need to know:\n1. Does it exist?\n2. Is it about text LLMs or vision-language models (VLMs)?\n3. Does it apply activation steering at sentence level, or does it use a different mechanism (like preference learning)?\n4. What is its actual method for \"sentence-level intervention\"?\n5. Is it about factual hallucination in text generation, or object hallucination in image captioning?\n\nSearch for \"SENTINEL sentence-level early intervention hallucination\" and \"arxiv 2507.12455\". Also search for \"sentence level hallucination mitigation 2025\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a603bc451514e7c86",
+            "type": "user",
+            "uuid": "9a037c14-18ee-4d78-a4b1-ab09658c32be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T08:48:06.150Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "9a037c14-18ee-4d78-a4b1-ab09658c32be",
+                "isSidechain": true,
+                "agentId": "a603bc451514e7c86",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "5bab04c8-2269-429c-a72a-697de87d4290",
+                "timestamp": "2026-05-16T08:48:06.150Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T08:48:08.352Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015awbMxkKTCNzA9WL3qtYgG",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bab04c8-2269-429c-a72a-697de87d4290",
+            "isSidechain": true,
+            "agentId": "a603bc451514e7c86",
+            "requestId": "req_011Cb5xXVVFn7TGGLM5BFcP4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "72f20799-446a-4959-9168-557e1a31735b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ha81wBETTE2yeUgkFJQrGV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 730
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 730,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 730,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T08:48:08.355Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015awbMxkKTCNzA9WL3qtYgG",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72f20799-446a-4959-9168-557e1a31735b",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a603bc451514e7c86",
+            "type": "user",
+            "uuid": "61875168-3035-49ef-9991-234b30c2d564",
+            "sourceToolAssistantUUID": "72f20799-446a-4959-9168-557e1a31735b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T08:48:11.077Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jh2btbbo33yhNDcSLneUiy",
+              "name": "WebSearch",
+              "input": {
+                "query": "SENTINEL sentence-level early intervention hallucination arxiv 2507.12455"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61875168-3035-49ef-9991-234b30c2d564",
+            "isSidechain": true,
+            "agentId": "a603bc451514e7c86",
+            "requestId": "req_011Cb5xXfDeKzK2RKFT7Pbxc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d0d2e746-5b16-48b7-8c74-de457d9d915e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TZ7g2b9xcDH2kBc8cvTCyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T08:48:11.597Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AfK4vjp2wYcJYpVVRV14N3",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"SENTINEL: Mitigating Object Hallucinations via Sentence-Level Early Intervention\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0d2e746-5b16-48b7-8c74-de457d9d915e",
+            "isSidechain": true,
+            "agentId": "a603bc451514e7c86",
+            "requestId": "req_011Cb5xXfDeKzK2RKFT7Pbxc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7c9fd0ca-fa54-48d4-b303-fdddf4418722",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TZ7g2b9xcDH2kBc8cvTCyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T08:48:11.718Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GnVj62mMGCmT6kkGKprCrp",
+              "name": "WebSearch",
+              "input": {
+                "query": "sentence level hallucination mitigation 2025 vision language model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c9fd0ca-fa54-48d4-b303-fdddf4418722",
+            "isSidechain": true,
+            "agentId": "a603bc451514e7c86",
+            "requestId": "req_011Cb5xXfDeKzK2RKFT7Pbxc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "93c3c1f8-d665-4acc-a39b-8f704c3f1cd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TZ7g2b9xcDH2kBc8cvTCyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T08:48:17.197Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jh2btbbo33yhNDcSLneUiy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SENTINEL sentence-level early intervention hallucination arxiv 2507.12455\"\n\nLinks: [{\"title\":\"[2507.12455] Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://arxiv.org/abs/2507.12455\"},{\"title\":\"Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://arxiv.org/pdf/2507.12455\"},{\"title\":\"(PDF) Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://www.researchgate.net/publication/393771584_Mitigating_Object_Hallucinations_via_Sentence-Level_Early_Intervention\"},{\"title\":\"Early Intervention for Object Hallucinations | PDF\",\"url\":\"https://www.scribd.com/document/902620005/2507-12455v1\"},{\"title\":\"SENTINEL Framework Reduces Hallucinations In Multimodal Large Language Models\",\"url\":\"https://quantumzeitgeist.com/sentinel-framework-reduces-hallucinations-in-multimodal-large-language-models/\"},{\"title\":\"Sentinel: Attention Probing of Proxy Models for LLM Context Compression with an Understanding Perspective\",\"url\":\"https://arxiv.org/html/2505.23277v1\"},{\"title\":\"Hallucination Stations\",\"url\":\"https://arxiv.org/pdf/2507.07505v1\"},{\"title\":\"Sentinel: Decoding Context Utilization via Attention Probing for Efficient LLM Context Compression\",\"url\":\"https://arxiv.org/html/2505.23277\"},{\"title\":\"A Survey of Multimodal Hallucination Evaluation and Detection\",\"url\":\"https://arxiv.org/html/2507.19024v1\"},{\"title\":\"ONLY: One-Layer Intervention Sufficiently Mitigates Hallucinations in Large Vision-Language Models\",\"url\":\"https://arxiv.org/html/2507.00898v1\"}]\n\nBased on the search results, here's what I found about the SENTINEL framework (arXiv 2507.12455):\n\n## Overview\n\nSENTINEL (Sentence-level Early iNtervention Through IN-domain prEference Learning) is a framework that eliminates dependency on human annotations. The framework addresses hallucinations in multimodal large language models (MLLMs) - fabricated content contradicting visual inputs.\n\n## Key Insight and Methodology\n\nThe framework is based on the insight that hallucinations predominantly emerge at the early stages of text generation and propagate through subsequent outputs.\n\nThe method bootstraps high-quality in-domain preference pairs by iteratively sampling model outputs, validating object existence through cross-checking with two open-vocabulary detectors, and classifying sentences into hallucinated/non-hallucinated categories. The framework then trains models using a context-aware preference loss (C-DPO) that emphasizes discriminative learning at the sentence level where hallucinations initially manifest.\n\n## Results\n\nExperimental results show that SENTINEL can reduce hallucinations by over 90% compared to the original model and outperforms the previous state-of-the-art method on both hallucination benchmarks and general capabilities benchmarks.\n\nThe paper was submitted on July 16, 2025, with a revision on July 26, 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0d2e746-5b16-48b7-8c74-de457d9d915e",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a603bc451514e7c86",
+            "type": "user",
+            "uuid": "68d81b93-6ecd-4152-8aec-d6ca9bfe023e",
+            "sourceToolAssistantUUID": "d0d2e746-5b16-48b7-8c74-de457d9d915e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T08:48:18.730Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AfK4vjp2wYcJYpVVRV14N3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"SENTINEL: Mitigating Object Hallucinations via Sentence-Level Early Intervention\"\"\n\nLinks: [{\"title\":\"[2507.12455] Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://arxiv.org/abs/2507.12455\"},{\"title\":\"Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://arxiv.org/pdf/2507.12455\"},{\"title\":\"Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://openaccess.thecvf.com/content/ICCV2025/papers/Peng_Mitigating_Object_Hallucinations_via_Sentence-Level_Early_Intervention_ICCV_2025_paper.pdf\"},{\"title\":\"(PDF) Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://www.researchgate.net/publication/393771584_Mitigating_Object_Hallucinations_via_Sentence-Level_Early_Intervention\"},{\"title\":\"SENTINEL Framework Reduces Hallucinations In Multimodal Large Language Models\",\"url\":\"https://quantumzeitgeist.com/sentinel-framework-reduces-hallucinations-in-multimodal-large-language-models/\"},{\"title\":\"Early Intervention for Object Hallucinations | PDF\",\"url\":\"https://www.scribd.com/document/902620005/2507-12455v1\"},{\"title\":\"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).\",\"url\":\"https://github.com/showlab/Awesome-MLLM-Hallucination\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=Object+hallucination\"},{\"title\":\"arXiv:2503.10602v2 [cs.CV] 21 Mar 2025\",\"url\":\"https://arxiv.org/pdf/2503.10602\"},{\"title\":\"Visual Evidence Prompting Mitigates Hallucinations in ...\",\"url\":\"https://aclanthology.org/2025.acl-long.205.pdf\"}]\n\nI found comprehensive information about SENTINEL. Here's what the research presents:\n\n## Overview\n\nSENTINEL (Sentence-level Early iNtervention Through IN-domain prEference Learning) is a framework that eliminates dependency on human annotations to address object hallucinations in multimodal large language models (MLLMs).\n\n## The Problem\n\nMLLMs have revolutionized cross-modal understanding but continue to struggle with hallucinations - fabricated content contradicting visual inputs. Existing hallucination mitigation methods either incur prohibitive computational costs or introduce distribution mismatches between training data and model outputs.\n\n## Key Insight\n\nHallucinations predominantly emerge at the early stages of text generation and propagate through subsequent outputs.\n\n## Methodology\n\nThe SENTINEL approach involves three main steps:\n\n1. Bootstrap high-quality in-domain preference pairs by iteratively sampling model outputs, validating object existence through cross-checking with two open-vocabulary detectors, and classifying sentences into hallucinated/non-hallucinated categories.\n\n2. Use context-coherent positive samples and hallucinated negative samples to build context-aware preference data iteratively.\n\n3. Train models using a context-aware preference loss (C-DPO) that emphasizes discriminative learning at the sentence level where hallucinations initially manifest.\n\n## Results\n\nSENTINEL can reduce hallucinations by over 90% compared to the original model and outperforms the previous state-of-the-art method on both hallucination benchmarks and general capabilities benchmarks.\n\nThe models, datasets, and code are available.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c9fd0ca-fa54-48d4-b303-fdddf4418722",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a603bc451514e7c86",
+            "type": "user",
+            "uuid": "310f6d52-b02a-4723-ab66-a07a83862c72",
+            "sourceToolAssistantUUID": "7c9fd0ca-fa54-48d4-b303-fdddf4418722",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T08:48:19.292Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GnVj62mMGCmT6kkGKprCrp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"sentence level hallucination mitigation 2025 vision language model\"\n\nLinks: [{\"title\":\"Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://openaccess.thecvf.com/content/ICCV2025/papers/Peng_Mitigating_Object_Hallucinations_via_Sentence-Level_Early_Intervention_ICCV_2025_paper.pdf\"},{\"title\":\"Interpreting, Detecting and Mitigating Object Hallucinations via ...\",\"url\":\"https://openaccess.thecvf.com/content/CVPR2025/papers/Jiang_Devils_in_Middle_Layers_of_Large_Vision-Language_Models_Interpreting_Detecting_CVPR_2025_paper.pdf\"},{\"title\":\"[2511.06496] A Low-Rank Method for Vision Language Model Hallucination Mitigation in Autonomous Driving\",\"url\":\"https://arxiv.org/abs/2511.06496\"},{\"title\":\"INTER: Mitigating Hallucination in Large Vision-Language Models by\",\"url\":\"https://openaccess.thecvf.com/content/ICCV2025/papers/Dong_INTER_Mitigating_Hallucination_in_Large_Vision-Language_Models_by_Interaction_Guidance_ICCV_2025_paper.pdf\"},{\"title\":\"Detecting and Mitigating Hallucination in Large Vision Language Models via Fine-Grained AI Feedback | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/34744\"},{\"title\":\"Mitigating Hallucinations in Large Vision-Language Models via Summary-Guided Decoding\",\"url\":\"https://www.researchgate.net/publication/392504323_Mitigating_Hallucinations_in_Large_Vision-Language_Models_via_Summary-Guided_Decoding\"},{\"title\":\"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).\",\"url\":\"https://github.com/showlab/Awesome-MLLM-Hallucination\"},{\"title\":\"[2404.14233] Detecting and Mitigating Hallucination in Large Vision Language Models via Fine-Grained AI Feedback\",\"url\":\"https://arxiv.org/abs/2404.14233\"},{\"title\":\"GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub\",\"url\":\"https://github.com/NishilBalar/Awesome-LVLM-Hallucination\"},{\"title\":\"A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions | ACM Transactions on Information Systems\",\"url\":\"https://dl.acm.org/doi/10.1145/3703155\"}]\n\nBased on the search results, here's what I found regarding sentence-level hallucination mitigation in 2025 vision-language models:\n\n## Recent Approaches\n\nResearchers are analyzing the impact of addressing hallucinations at the sentence level in image captioning tasks, with strong evidence that this approach is effective. Eliminating hallucinated objects in the second sentence significantly reduces the likelihood of hallucinated objects in subsequent sentences while increasing the probability of factual objects present in the image.\n\n## Key Methods\n\nSeveral 2025 approaches focus on sentence-level hallucination detection and mitigation:\n\n1. **Fine-Grained Detection**: Researchers generate small-size sentence-level hallucination annotation datasets, whereby they train hallucination detection models which can perform sentence-level hallucination detection, covering primary hallucination types (object, attribute, and relationship).\n\n2. **Severity-Aware Optimization**: A Hallucination Severity-Aware Direct Preference Optimization (HSA-DPO) prioritizes the mitigation of critical hallucination in LVLMs by incorporating the severity of hallucinations into preference learning.\n\n3. **Early Intervention Strategy**: SENTINEL is a method for mitigating object hallucinations via sentence-level early intervention (ICCV 2025).\n\n## Emerging Trends\n\nTraining-free mitigating solutions are getting popular due to their resource-friendly properties, and contrastive decoding has become a cornerstone technique with various ideas developed based on it.\n\nThese approaches represent the state-of-the-art in addressing hallucinations in vision-language models during 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93c3c1f8-d665-4acc-a39b-8f704c3f1cd8",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a603bc451514e7c86",
+            "type": "user",
+            "uuid": "e709cc24-46b7-4833-8a85-fa1f0d6cc1e4",
+            "sourceToolAssistantUUID": "93c3c1f8-d665-4acc-a39b-8f704c3f1cd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T08:48:22.090Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more details about whether SENTINEL uses activation steering or preference learning specifically."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e709cc24-46b7-4833-8a85-fa1f0d6cc1e4",
+            "isSidechain": true,
+            "agentId": "a603bc451514e7c86",
+            "requestId": "req_011Cb5xYTicyqGTK6DTNTHL9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb7559ed-3b83-498e-875a-b635a67a0eeb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A8KDD3snDHKy6xbmAVezFk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3124,
+                "cache_read_input_tokens": 10345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3124,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T08:48:22.385Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LfwS1yCXJ8xmRnTRdPJDCd",
+              "name": "WebSearch",
+              "input": {
+                "query": "SENTINEL C-DPO context-aware preference loss hallucination MLLM method details"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb7559ed-3b83-498e-875a-b635a67a0eeb",
+            "isSidechain": true,
+            "agentId": "a603bc451514e7c86",
+            "requestId": "req_011Cb5xYTicyqGTK6DTNTHL9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ba95b059-d24d-4a1d-a0e8-5edf0ae2be92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A8KDD3snDHKy6xbmAVezFk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3124,
+                "cache_read_input_tokens": 10345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3124,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T08:48:30.160Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LfwS1yCXJ8xmRnTRdPJDCd",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SENTINEL C-DPO context-aware preference loss hallucination MLLM method details\"\n\nLinks: [{\"title\":\"Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://arxiv.org/pdf/2507.12455\"},{\"title\":\"Early Intervention for Object Hallucinations | PDF\",\"url\":\"https://www.scribd.com/document/902620005/2507-12455v1\"},{\"title\":\"(PDF) Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://www.researchgate.net/publication/393771584_Mitigating_Object_Hallucinations_via_Sentence-Level_Early_Intervention\"},{\"title\":\"[2507.12455] Mitigating Object Hallucinations via Sentence-Level Early Intervention\",\"url\":\"https://arxiv.org/abs/2507.12455\"},{\"title\":\"SENTINEL Framework Reduces Hallucinations In Multimodal Large Language Models\",\"url\":\"https://quantumzeitgeist.com/sentinel-framework-reduces-hallucinations-in-multimodal-large-language-models/\"},{\"title\":\"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).\",\"url\":\"https://github.com/showlab/Awesome-MLLM-Hallucination\"},{\"title\":\"Mitigating Hallucination Through Theory-Consistent Symmetric Multimodal Preference Optimization\",\"url\":\"https://arxiv.org/html/2506.11712\"},{\"title\":\"Mitigating Hallucinations in Multimodal LLMs via Object- ...\",\"url\":\"https://openreview.net/pdf?id=rPW7yp9aE8\"},{\"title\":\"Mitigating Hallucination in Multimodal Large Language ...\",\"url\":\"https://aclanthology.org/2025.findings-acl.850.pdf\"},{\"title\":\"[2601.00623] DA-DPO: Cost-efficient Difficulty-aware Preference Optimization for Reducing MLLM Hallucinations\",\"url\":\"https://arxiv.org/abs/2601.00623\"}]\n\nBased on the search results, here are the detailed method specifics for SENTINEL, which uses context-aware preference loss (C-DPO) for hallucination mitigation in MLLMs:\n\n## Overview\n\nSENTINEL (Sentence-level Early iNtervention Through IN-domain prEference Learning) is a framework that eliminates dependency on human annotations to address hallucinations in multimodal large language models.\n\n## Key Insight\n\nHallucinations predominantly emerge at the early stages of text generation and propagate through subsequent outputs. This observation motivates the focus on sentence-level intervention.\n\n## Method Details - Six Essential Steps\n\nThe SENTINEL method takes six essential steps: (1) Generate multiple in-domain responses conditioned on the input image, prompt, and context. (2) Identify and extract all mentioned objects from each generated sentence. (3) Utilize two object detectors to validate the existence of extracted objects through cross-referencing. (4) Categorize generated sentences into hallucinated and non-hallucinated groups based on detection results. (5) Extend the generation context with verified non-hallucinated sentences to guide subsequent outputs. (6) Fine-tune the model using the context-aware DPO (C-DPO) loss.\n\n## Context-Aware Preference Data Generation\n\nThe method uses context-coherent positive samples and hallucinated negative samples to build context-aware preference data iteratively.\n\n## Context-Aware DPO Loss (C-DPO)\n\nModels are trained using a context-aware preference loss (C-DPO) that emphasizes discriminative learning at the sentence level where hallucinations initially manifest. The technique maximizes the likelihood of generating contextually appropriate positive samples while minimizing the generation of hallucinated negative samples.\n\n## Performance Results\n\nOn Object Halbench and AMBER, hallucinations are reduced by about 92% and 65%, respectively.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba95b059-d24d-4a1d-a0e8-5edf0ae2be92",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a603bc451514e7c86",
+            "type": "user",
+            "uuid": "8193aca1-0219-44e7-a4ed-c42a425ef792",
+            "sourceToolAssistantUUID": "ba95b059-d24d-4a1d-a0e8-5edf0ae2be92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T08:48:49.509Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive information to answer all your questions. Here are my findings:\n\n---\n\n## Answers to Your Questions About SENTINEL (arXiv 2507.12455)\n\n### 1. Does it exist?\n\nYes, confirmed. The paper \"Mitigating Object Hallucinations via Sentence-Level Early Intervention\" exists at arXiv 2507.12455, submitted July 16, 2025. It was also accepted at ICCV 2025 (published in OpenAccess proceedings).\n\n### 2. Is it about text LLMs or vision-language models (VLMs)?\n\nIt is about **multimodal large language models (MLLMs) / vision-language models**. It addresses hallucinations where models fabricate content that contradicts visual inputs. This is squarely in the VLM domain, not text-only LLMs.\n\n### 3. Does it apply activation steering at sentence level, or a different mechanism?\n\nIt does **NOT** use activation steering. It uses **preference learning** -- specifically a novel variant called **C-DPO (Context-aware Direct Preference Optimization)**. The \"sentence-level\" aspect refers to constructing preference pairs and applying the DPO loss at the sentence granularity, not to any inference-time activation manipulation.\n\n### 4. What is its actual method for \"sentence-level intervention\"?\n\nThe full name is SENTINEL = \"Sentence-level Early iNtervention Through IN-domain prEference Learning.\" The method works in six steps:\n\n1. Generate multiple in-domain responses conditioned on input image, prompt, and context.\n2. Extract all mentioned objects from each generated sentence.\n3. Validate object existence using two open-vocabulary object detectors via cross-referencing.\n4. Classify sentences as hallucinated or non-hallucinated based on detector results.\n5. Extend generation context with verified non-hallucinated sentences to guide subsequent outputs (iterative bootstrapping of preference data).\n6. Fine-tune the model using C-DPO loss that emphasizes discriminative learning at the sentence level where hallucinations first manifest.\n\nThe key insight is that hallucinations emerge early in generation and propagate -- so building sentence-level preference pairs and training with C-DPO targets the root cause.\n\n### 5. Is it about factual hallucination in text generation, or object hallucination in image captioning?\n\nIt is about **object hallucination in image captioning/description tasks** for VLMs. The hallucinations it targets are fabricated objects that are not present in the input image. It evaluates on Object HalBench and AMBER -- both are benchmarks for object hallucination in vision-language tasks.\n\n---\n\n## Summary\n\nSENTINEL is a VLM paper (not text LLM), targeting object hallucination (not factual/knowledge hallucination), using preference learning via C-DPO (not activation steering). The \"sentence-level early intervention\" refers to constructing training signal at sentence granularity during preference optimization, motivated by the finding that hallucinations propagate from early sentences.\n\nSources:\n- [arXiv 2507.12455 - Mitigating Object Hallucinations via Sentence-Level Early Intervention](https://arxiv.org/abs/2507.12455)\n- [ICCV 2025 Paper PDF](https://openaccess.thecvf.com/content/ICCV2025/papers/Peng_Mitigating_Object_Hallucinations_via_Sentence-Level_Early_Intervention_ICCV_2025_paper.pdf)\n- [SENTINEL Framework Reduces Hallucinations In Multimodal Large Language Models - QuantumZeitgeist](https://quantumzeitgeist.com/sentinel-framework-reduces-hallucinations-in-multimodal-large-language-models/)\n- [ResearchGate - PDF](https://www.researchgate.net/publication/393771584_Mitigating_Object_Hallucinations_via_Sentence-Level_Early_Intervention)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8193aca1-0219-44e7-a4ed-c42a425ef792",
+            "isSidechain": true,
+            "agentId": "a603bc451514e7c86",
+            "requestId": "req_011Cb5xZGANNEdyMgf6feHN7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9cb1cc9d-35bd-4a9b-bc11-6cb31da4578b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F1D4DcdB6vR4fbxe3bPT42",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1091,
+                "cache_read_input_tokens": 13469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1091,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-use-websearch-to-find-and-verify-the-paper-sentinel-mitigating-object-hallucin.md"
+}

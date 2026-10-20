@@ -1,0 +1,855 @@
+{
+  "schema_version": "1.0",
+  "id": "4d97508d3e896ccdd6af",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1",
+  "task_key": "87f11418-80fe-419d-b311-e3f77386c335",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/87f11418-80fe-419d-b311-e3f77386c335.jsonl",
+    "occurrence": 1,
+    "bytes": 123724,
+    "sha256": "e7e828fd43c78e906d8237f1f273a1b28de5bc8efeccd56466bd6d2b9788ad1d"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "record": 8,
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T10:51:49.997Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-27T10:51:49.997Z",
+                "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+                "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient information to conduct a thorough evaluation. Let me compile my analysis.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Thought Anchors (arXiv 2506.19143, ICLR 2026 under review)**: 最直接的前驱工作。通过对 CoT 步骤进行反事实重采样（~100 rollouts/step），发现\"计划生成\"和\"不确定性管理\"步骤具有远高于\"主动计算\"或\"事实检索\"步骤的反事实重要性。本 proposal 的核心概念（CSI）直接继承了 Thought Anchors 的 insight，区别在于将其从 post-hoc interpretability tool 转化为 scalable PRM training label。\n\n2. **TCRM (arXiv 2604.22981, April 2026)**: Temporally Coherent Reward Modeling。通过 TD/MC 正则化项将 reward model 变为 value function，实现中间 token 处的 value estimation。ProcessBench 上达 44.9% F1（outcome-only SOTA），但与 supervised PRM（78.3% F1 @ 72B）仍有 33 点差距。本 proposal 将其作为核心效率基础设施——用 TCRM 的 V(s) 替代 full rollouts 来计算 CSI。\n\n3. **PAV / Rewarding Progress (ICLR 2025)**: 用 advantage label V(s_i) − V(s_{i−1}) 训练 PRM，比 ORM 提升 8%+ accuracy。这是\"更好的 PRM label\"方向的标杆工作。Proposal 明确区分了 CSI（sensitivity/pivotality）与 advantage（progress），但两者在实际效果上的差异尚无实证。\n\n4. **DuaShepherd (arXiv 2506.17533, June 2025)**: 多头架构结合 correctness + potential 两种信号，在 ProcessBench 和 MATH500 上一致优于单信号模型。Proposal 在此基础上加第三个头（CSI），变为 tri-signal。\n\n5. **GenPRM (AAAI 2026)**: 将 PRM 评分重构为生成式 CoT 推理 + 代码验证任务，23K 训练样本即达强结果。代表了 PRM 方向的一个不同范式（生成式 vs 判别式），是重要 baseline。\n\n6. **Beyond Uniform Credit (arXiv 2602.09331, Feb 2026)**: 通过 masking reasoning spans 并测量 probability drop 实现 counterfactual importance weighting，无需辅助模型。Proposal 将其定位为\"测 policy 对步骤的依赖\"而非\"outcome 对步骤内容的敏感性\"，区分合理但边界模糊。\n\n7. **IBPO (arXiv 2605.16302, May 2026)**: 通过反事实轨迹比较构建 implicit process-level advantage，用于 RL policy optimization。与本 proposal 在\"反事实\"概念上重叠，但目标不同（RL 训练 vs PRM label 生成）。\n\n8. **Reward Models Identify Consistency, Not Causality (arXiv 2502.14619, Feb 2025)**: 关键动机论文。证明当前 RM 优先考虑结构一致性而非因果正确性——删除问题陈述对 reward score 几乎无影响，而打断推理流则影响显著。\n\n9. **Credit Assignment Survey (arXiv 2604.09459, April 2026)**: 识别出反事实分析为 agentic RL credit assignment 的新兴范式（HCAPO, CCPO, C3 均为 March 2026），但这些方法均面向多智能体/agentic 场景，未转移到 reasoning PRM label 生成。\n\n10. **R-PRM (arXiv 2503.21295, EMNLP 2025)** 和 **ThinkPRM (arXiv 2504.16828)**: 分别代表 reasoning-driven verification chains 和 verbalized step-wise verification 两条路线，均为 PRM 方向的强 baseline。\n\n**调研总结**: PRM label 质量提升是 2025-2026 年度热点方向，已有多种 label 来源（MC estimation, advantage, correctness+potential, generative verification）。反事实方法在 credit assignment 领域迅速兴起但主要面向 RL policy optimization 和 interpretability，尚未有人将反事实 variance 作为 PRM training label。Proposal 处于一个 well-identified gap（Thought Anchors 的 interpretability insight → scalable training signal）的位置，但依赖 TCRM 这一有显著精度缺陷的中间组件。\n\n【Trivial Alternative 检验】:\n\n存在两个主要 trivial alternative 威胁：\n\n1. **Step-level entropy H(π(·|prefix))**: 零成本代理。高 entropy 意味着 policy 对该步骤不确定、有多种可能替代——这与 CSI 的高 variance 条件（多样替代 → 潜在高方差）高度相关。Proposal 承认了这一点并列入 ablation（好），但如果 Spearman ρ(entropy, CSI) 很高（例如 >0.7），则花费大量计算得到的 CSI 相对于 free proxy 的增量价值极为有限。\n\n2. **Compute-normalized MC 扩展**: 将 CSI 等价计算量用于增加 MC rollouts 数量以获得更高质量的 correctness/potential labels。如果 dual-signal PRM 在 compute-matched 条件下与 tri-signal PRM 性能相当，则 CSI 的信息增量被否定。Proposal 同样列入了这一 ablation——说明作者意识到风险——但这恰恰是最可能杀死核心贡献的结果。\n\n**增量价值在哪**: Proposal 的理论论证在于 CSI 捕获了与 correctness/potential/advantage 正交的信息——步骤的\"脆弱性/关键性\"维度。如果 signal orthogonality 实验显示 CSI 与其他信号的 Spearman ρ 较低（如 <0.3），且 compute-normalized comparison 显示 CSI 提供了不可替代的信息增益，则增量价值成立。但这些都是尚未验证的 if。\n\n【前提假设检验】:\n\n核心 claim 的逻辑链及其中未验证的假设：\n\n1. **\"TCRM 的 V(s) 足够准确以支持 CSI 计算\"** — **关键未验证假设**。TCRM 在 ProcessBench 上仅 44.9% F1（vs supervised 78.3%），这意味着 V 估计本身含有大量噪声。对 K=8 个替代方案计算 Var_k[V(prefix || alt_k)]，如果 V 本身噪声方差可比甚至超过信号方差，则 measured CSI 主要反映估计噪声而非真实 outcome sensitivity。Proposal 提出的缓解措施（验证 TCRM 校准 + 与 gold standard 子集对比）是必要但可能不充分的——即使 rank correlation 合理，绝对值偏差仍可能使 CSI label 丧失鉴别力。\n\n2. **\"K=8 足以产生有意义的 variance 估计\"** — 统计学上，8 个样本的 variance 估计本身具有高方差。特别是经过 semantic deduplication 后，effective K 可能更低（如 4-5），此时 variance 估计几乎不可靠。Proposal 的 K sensitivity ablation（K ∈ {4, 8, 16, 32}）承认了这一点，但 K=8 作为默认值可能不够。\n\n3. **\"CSI 提供与 correctness/potential 正交的信息\"** — 这是 tri-signal 架构价值的核心前提。如果 CSI 高度相关于 (1 - correctness)（因为错误步骤通常也是关键步骤），则第三个信号是冗余的。理论区分（\"high CSI + correct\"对应关键正确决策）合理但未经实证。\n\n4. **\"反事实 variance 是衡量步骤重要性的正确度量\"** — Proposal 给出了因果解释（treatment effect heterogeneity），但 Var 作为度量会受 outlier 影响，且无法区分\"一半替代导致成功、一半导致失败\"和\"大部分替代导致 mediocre 结果、少数导致极端结果\"。这两种情况 Var 相同但含义不同。\n\n【3 维度打分】:\n\n1. **Novelty: 中** — 核心概念（反事实重采样揭示步骤重要性）直接来源于 Thought Anchors（arXiv 2506.19143），效率提升手段来源于 TCRM（arXiv 2604.22981），多信号架构来源于 DuaShepherd（arXiv 2506.17533）。Proposal 的 novelty delta 在于将三者桥接——将 interpretability tool 转化为 scalable training signal——这是一个合理但本质上是组合性的贡献（\"A 的 insight + B 的效率 + C 的架构\"）。与 Beyond Uniform Credit（arXiv 2602.09331）、IBPO（arXiv 2605.16302）等同期反事实方法相比，CSI 对\"outcome sensitivity\"而非\"policy dependence\"的区分是有意义的理论差异，但实际效果差异未知。Credit assignment survey（arXiv 2604.09459）明确指出反事实分析是 emerging paradigm，这意味着 \"用反事实做 credit assignment\" 这一方向已不再新颖，新颖度集中在具体的\"反事实 variance as PRM label\"操作化上。\n\n2. **Significance: 中** — PRM label 质量是一个重要且活跃的研究问题（arXiv 2502.14619 提供了有力动机），方向上是 significant 的。但该 proposal 的潜在影响受限于几个因素：(a) 计算开销显著——每步 K=8 替代采样 + value estimation，远高于 advantage label 或 MC estimation；(b) 如果 positive，improvement 可能是在强 baseline 基础上的 incremental gain；(c) 核心发现如果是 positive（\"加 CSI 信号 improves PRM\"），审稿人更可能反应\"makes sense, more information helps\"而非\"surprising\"。另外，如果 negative（CSI noisy 或 redundant），论文可能难以讲出有说服力的 story。GenPRM（AAAI 2026）用 23K 训练数据就达到了 strong results，路径更 elegant，这提高了 CSI approach 的\"为什么要用这么复杂的方法\"的证明门槛。\n\n3. **Related Work: 强** — 覆盖面极为全面。13+ 篇核心相关工作（PAV, DuaShepherd, TCRM, GenPRM, R-PRM, ThinkPRM, PRIME, Beyond Uniform Credit, IBPO, InT, Thought Anchors, Thought Branches, PURE/CoLD）均被准确引用和恰当定位。Critical distinctions 段落（CSI vs. advantage、CSI vs. masking、CSI vs. entropy）展现了对领域的深入理解。所检索到的关键论文（Thought Anchors, TCRM, DuaShepherd, PAV, Beyond Uniform Credit, IBPO, GenPRM）均真实存在且描述准确。\n\n【概率估计】: 25% - 35%，中位 28%\n\n【估计理由】: \nRelated Work 是明确的加分项，proposal 展现了对领域的 exceptional 理解。问题定位准确（arXiv 2502.14619 提供了真实且有力的动机），研究 gap 真实存在（反事实重要性 → PRM label 的桥梁尚无人做）。然而：\n\n- **Novelty 限制了上界**：核心贡献是组合性的（Thought Anchors insight + TCRM efficiency + DuaShepherd architecture），各组件的原创方贡献更大。在 counterfactual credit assignment 已成为 identified paradigm 的 2026 年，\"用反事实做 PRM label\"是一个自然延伸而非 paradigm shift。\n- **TCRM 噪声风险限制了上界**：33 点 F1 gap 意味着 CSI 的信号质量存在根本性疑问。即使 proposal 形式上非常完备，idea 的\"天花板\"受制于这个技术瓶颈。\n- **Trivial alternative 威胁真实**：entropy proxy 和 compute-normalized MC 扩展都可能削弱核心贡献。Proposal 诚实地列出了这些 ablations，但如果结果不利，论文没有退路。\n- **Significance 受限于\"more signals help\"的预期性**：即使 positive，核心发现（第三个信号提升 PRM）更可能被视为 expected 而非 surprising。\n\n总体来看，这是一个精心设计的 solid incremental 工作，在 AAAI 2026 有合理的中稿机会（AAAI 接收率约 20-25%），但 idea 的内核不够 distinctive 以确保中稿。\n\n【主要风险】: \n1. **\"Elaborate combination\" 拒稿理由**: 审稿人可能认为核心贡献仅是 Thought Anchors + TCRM + DuaShepherd 的工程化组合，novelty 不足以支撑 top venue publication——尤其当 three independent components 均来自他人工作时。\n2. **TCRM 精度瓶颈暴露 CSI 信号质量问题**: 如果 CSI-vs-gold-standard validation 显示 Spearman ρ 不高（如 <0.5），或 compute-normalized baseline 表现相当，则核心 contribution 被直接否定，论文失去 main story。\n```\n\nSources:\n- [Thought Anchors: Which LLM Reasoning Steps Matter?](https://arxiv.org/abs/2506.19143)\n- [TCRM: Reward Models Are Secretly Value Functions](https://arxiv.org/abs/2604.22981)\n- [Rewarding Progress: Scaling Automated Process Verifiers (PAV)](https://arxiv.org/abs/2410.08146)\n- [DuaShepherd: Integrating Stepwise Correctness and Potential Rewards](https://arxiv.org/abs/2506.17533)\n- [GenPRM: Scaling Test-Time Compute of Process Reward Models](https://arxiv.org/abs/2504.00891)\n- [Beyond Uniform Credit: Causal Credit Assignment for Policy Optimization](https://arxiv.org/abs/2602.09331)\n- [IBPO: Reducing Credit Assignment Variance via Counterfactual Reasoning Paths](https://arxiv.org/abs/2605.16302)\n- [Reward Models Identify Consistency, Not Causality](https://arxiv.org/abs/2502.14619)\n- [From Reasoning to Agentic: Credit Assignment in RL for LLMs](https://arxiv.org/abs/2604.09459)\n- [R-PRM: Reasoning-Driven Process Reward Modeling](https://arxiv.org/abs/2503.21295)\n- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)\n- [A Survey of Process Reward Models](https://arxiv.org/abs/2510.08049)\n- [PRIME: Free Process Rewards without Process Labels](https://arxiv.org/abs/2412.01981)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient research material. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **PAV / \"Rewarding Progress\"** (ICLR 2025): 定义 step reward = advantage V(s_i) − V(s_{i−1})，即\"进步量\"。8%+ 准确率提升。这是当前 PRM label 的主流范式之一，也是本 proposal 需要与之区分的核心对比对象。\n\n2. **DuaShepherd** (arXiv 2506.17533, June 2025): 将 correctness 和 potential 两种 step-level signal 结合为 multi-head PRM，在 ProcessBench 和 MATH500 上超过单信号模型。本 proposal 的 tri-signal 架构直接继承了其双信号多头设计，仅新增第三维度 (CSI)。\n\n3. **TCRM** (arXiv 2604.22981, April 2026): 通过 TD/MC 正则化将 reward model 训练为 value function，实现中间 token 级别的 value estimation。ProcessBench outcome-only SOTA (44.9% F1)，但与 supervised PRM (78.3%) 有 33 个点的差距。本 proposal 将 TCRM 作为 CSI 计算的核心 value function。\n\n4. **Thought Anchors** (arXiv 2506.19143, ICLR 2026 under review): 通过对 CoT 每一步进行 ~100 次 counterfactual resampling，量化每步的 importance。发现 \"plan generation\" 和 \"uncertainty management\" 步骤的 counterfactual importance 远高于 \"active computation\"。这是本 proposal CSI 概念的直接先驱——proposal 的核心贡献是把 Thought Anchors 的 interpretability 方法变为 scalable training label。\n\n5. **Beyond Uniform Credit** (arXiv 2602.09331, Feb 2026): 通过 masking reasoning spans 并测量 probability drop 实现 counterfactual importance weighting，无需辅助模型。用于 policy gradient 优化而非 PRM label 生成。Proposal 正确地区分了 masking-based importance (测量 policy 依赖性) 与 CSI (测量 outcome sensitivity)。\n\n6. **IBPO / \"Reducing Credit Assignment Variance\"** (arXiv 2605.16302, May 2026): 通过 cross-trajectory comparison 构建隐式 process-level advantage estimator。这是 credit assignment 方向的最新工作，目标是 RL policy optimization 而非 PRM label synthesis，但思路高度相关。\n\n7. **GenPRM** (AAAI 2026): 将 PRM 重构为 generative CoT reasoning + code verification，仅用 23K 训练数据达到强结果。代表了 PRM 范式从 discriminative scoring 向 generative verification 的转型趋势。\n\n8. **Process Supervision via Monte Carlo Net Information Gain** (arXiv 2603.17815, March 2026): **关键竞争者，但 proposal 未引用。** 使用信息论方法估计每步对正确答案概率的影响，得到 step-level quality labels。复杂度 O(N)，无需辅助模型。与 CSI 的目标高度重叠——都是通过量化 step 对 outcome 的影响来生成 PRM label——但方法不同（信息增益 vs. 方差）。\n\n9. **R-PRM** (arXiv 2503.21295, EMNLP 2025): 使用 reasoning-driven DPO-optimized verification chains，在 ProcessBench 上超过 baseline 11.9 F1。代表了 reasoning-augmented PRM 的方向。\n\n10. **ThinkPRM** (arXiv 2504.16828, 2025): 生成式 step-wise verification PRM，用 1% process labels 即可超过 full-data discriminative PRM。\n\n- **调研总结**: PRM label 生成是一个高度活跃的领域，2025-2026 年出现了多条并行路线：advantage-based (PAV), multi-signal (DuaShepherd), generative verification (GenPRM, ThinkPRM, R-PRM), information-theoretic (MC Net Info Gain), 以及 counterfactual interpretability (Thought Anchors)。本 proposal 处于 \"将 counterfactual interpretability insight 转化为 scalable PRM training label\" 这一尚未被直接占据的交叉位置，但 MC Net Information Gain 从信息论角度已经在做类似的事情。Proposal 的核心贡献是 \"Thought Anchors insight + TCRM efficiency + DuaShepherd architecture\" 的系统性组合。\n\n【Trivial Alternative 检验】:\n\n存在两个严肃的 trivial alternative 威胁：\n\n(1) **Step-level entropy H(π(·|prefix))** 作为 zero-cost proxy。Proposal 自己承认了这一点并计划了 ablation。但问题在于：如果 entropy 与 CSI 的 Spearman 相关性很高（这在直觉上是合理的——policy 不确定的 step 通常也是 alternatives 导致不同 outcome 的 step），那么 CSI 相对于 entropy 的增量价值可能很小，而 CSI 的计算成本远高于 entropy（K=8 次 generation + value estimation vs. 单次 forward pass）。Proposal 给出了 \"high-entropy-low-CSI\" 和 \"low-entropy-high-CSI\" 的理论案例，但这些案例在实践中的频率和影响力未经验证。\n\n(2) **Compute-normalized MC rollout**。CSI 的生成需要 K=8 次 alternative generation + value estimation。如果将等量计算预算用于更多 MC rollouts 来获得更高质量的 correctness/potential labels（而非引入第三维度 CSI），dual-signal PRM 是否表现相当？Proposal 同样计划了这个 ablation（\"compute-normalized comparison\"），说明作者有清醒的认识。但这个 ablation 的结果是 make-or-break：如果 compute-normalized dual-signal PRM ≈ tri-signal PRM，则 CSI 的增量信息价值为零。\n\n**增量价值论述**：CSI 理论上捕获了 correctness 和 potential 无法捕获的维度——\"pivotality\"，即 step 内容的微小变化对 outcome 的敏感度。一个 correct + high-potential 的 step 可能是 routine calculation (low CSI) 也可能是 fragile strategic choice (high CSI)。这个区分如果在实践中成立，确实是有价值的新信号。但这依赖于实验验证。\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条中有以下未经验证的环节：\n\n(1) **TCRM value function 的精度足以支撑 CSI 计算**。TCRM 在 ProcessBench 上只有 44.9% F1（vs. supervised 78.3%）。CSI = Var_k[V(prefix || alt_k)]——如果 V 本身有大量噪声，则测量到的 variance 中有多大比例是真实的 outcome sensitivity vs. value function estimation noise？Proposal 承认了这个问题并提出了 calibration verification + gold-standard validation，但这是整条逻辑链上最脆弱的环节。如果 TCRM noise 使得 CSI labels 质量不足，整个 pipeline 的价值为零。\n\n(2) **K=8 alternatives 的采样多样性足够**。Proposal 使用 semantic deduplication 来保证 alternative 的多样性，但在 effective K 很低（比如 dedup 后只剩 2-3 个有效 alternatives）的情况下，variance 估计会非常不稳定。这对于 \"routine\" 步骤（如标准化简）尤其可能发生——policy 对这类步骤的 generation 可能高度集中。\n\n(3) **CSI 捕获的 \"pivotality\" 维度对 PRM downstream task 有帮助**。最终评估是 best-of-N reranking 和 error detection。CSI-aware PRM 能否在这些 task 上提供增量价值，取决于 \"pivotality\" 信息在 reranking/error detection 中是否可用。一个 step 是 \"pivotal\" 不等于它是 \"erroneous\"——high-CSI 的 step 可能正确也可能错误。PRM 需要判断的是 correctness，而 pivotality 只是一个辅助维度。这个辅助维度能提供多少 boost 是未验证的。\n\n(4) **从 interpretability 到 training label 的跨越**。Thought Anchors 证明了 counterfactual importance 有 interpretive value，但 interpretive value ≠ training signal value。一个 step 在 interpretability 层面 \"重要\"，不等于把这个 importance score 作为 PRM training label 就能提升 PRM 性能。这是一个需要实验验证的 assumption，不是可以从逻辑推导的。\n\n【3 维度打分】:\n\n1. **Novelty: 中（偏弱）** — 核心贡献是将已有组件（Thought Anchors 的 counterfactual resampling insight、TCRM 的 efficient value estimation、DuaShepherd 的 multi-signal architecture）进行系统性组合。具体的 CSI metric（Var_k[V(prefix || alt_k)]）是一个自然的、几乎 predictable 的设计选择——给定 Thought Anchors 的 insight 和 TCRM 的工具，\"用 TCRM 替代 full rollout 来加速 counterfactual importance 计算并用作 PRM label\" 几乎是下一步的默认思路。与 MC Net Information Gain (arXiv 2603.17815) 的目标高度重叠——后者同样用信息量化方法为 PRM 生成 step-level importance labels，且计算成本更低。CSI 与 advantage (PAV) 和 masking-based importance (Beyond Uniform Credit) 的理论区分是清晰的，但这些区分是否在实践中转化为性能差异尚不确定。**如果审稿人知道 Thought Anchors + TCRM + DuaShepherd，\"用 variance 作 PRM label\" 不会是 surprising。**\n\n2. **Significance: 中** — PRM training label 的质量是一个重要且活跃的研究问题，方向正确。但本工作的 expected marginal contribution 有限：它在已经 well-studied 的 multi-signal PRM 框架上增加第三个信号维度，这个维度是否比更简单的 proxy（entropy）或更多 compute on existing signals 更有价值，目前只是 hypothesis。即使 positive result 成立，审稿人可能的反应是 \"nice to know that CSI adds value, but the improvement is modest and the pipeline complexity is high\" 而非 \"this changes how I think about PRM training\"。此外，generative PRM (GenPRM, ThinkPRM, R-PRM) 的范式正在取代 discriminative PRM，本 proposal 的 contribution 可能在一个正在被超越的范式内。\n\n3. **Related Work: 强** — Proposal 展示了对该领域异常全面的掌握。从 PRM label generation (PAV, DuaShepherd, PRIME, FreePRM) 到 counterfactual credit assignment (HCAPO, CCPO, C3, Beyond Uniform Credit, IBPO) 到 counterfactual interpretability (Thought Anchors, Thought Branches)，覆盖面广且差异化定位清晰。与核心竞争者的三重区分（CSI vs. advantage, CSI vs. masking, CSI vs. entropy）做得很到位。唯一的明显缺失是 MC Net Information Gain (arXiv 2603.17815, March 2026)，这是一个直接竞争者，使用信息论而非方差来估计 step importance 并生成 PRM label。\n\n【概率估计】: [22% - 32%] 中位 27%\n\n【估计理由】: \nNovelty 是限制上界的核心因素。这个 idea 是已有组件的系统性组合，核心 design choice（variance over alternatives as importance）是自然且可预测的。如果 positive result 出来，审稿人更可能说 \"makes sense\" 而非 \"surprising\"。Significance 受限于两方面：(a) 增量贡献相对于 DuaShepherd + 更好的 MC labels 可能有限；(b) discriminative PRM 范式正在被 generative PRM 超越。Related Work 的全面覆盖和清晰定位是明显优势，但这主要保护下界（避免因 novelty 误判被拒），不提升上界。前提假设检验中 TCRM 精度问题和 CSI→downstream performance 的逻辑跨越是实质性风险。总体而言，这是一个 competent but incremental 的工作，处于 AAAI borderline 水平。\n\n【主要风险】:\n1. **Novelty 不足**：审稿人可能认为这是 Thought Anchors + TCRM + DuaShepherd 的 straightforward combination，缺乏 surprising insight。特别是 MC Net Information Gain 已经在用不同方法做同类事情。\n2. **CSI 的增量价值存疑**：在 compute-normalized 条件下，CSI 作为第三信号维度的边际收益可能被 entropy（zero-cost proxy）或 更多 MC rollout（same-cost alternative）抵消，导致 \"the added complexity doesn't justify the marginal gain\" 的拒稿理由。\n```\n\nSources:\n- [PAV - Rewarding Progress (ICLR 2025)](https://proceedings.iclr.cc/paper_files/paper/2025/hash/98711dea460bdefe0e651ca23ec98ba2-Abstract-Conference.html)\n- [DuaShepherd (arXiv 2506.17533)](https://arxiv.org/abs/2506.17533)\n- [TCRM (arXiv 2604.22981)](https://arxiv.org/abs/2604.22981)\n- [Thought Anchors (arXiv 2506.19143)](https://arxiv.org/abs/2506.19143)\n- [Beyond Uniform Credit (arXiv 2602.09331)](https://arxiv.org/abs/2602.09331)\n- [IBPO / Reducing Credit Assignment Variance (arXiv 2605.16302)](https://arxiv.org/abs/2605.16302)\n- [GenPRM (AAAI 2026)](https://arxiv.org/abs/2504.00891)\n- [MC Net Information Gain (arXiv 2603.17815)](https://arxiv.org/abs/2603.17815)\n- [R-PRM (arXiv 2503.21295)](https://arxiv.org/abs/2503.21295)\n- [ThinkPRM (arXiv 2504.16828)](https://openreview.net/forum?id=V727xqBYIW)\n- [Credit Assignment Survey (arXiv 2604.09459)](https://arxiv.org/html/2604.09459v1)\n- [CCPO (arXiv 2603.21563)](https://arxiv.org/html/2603.21563v1)\n- [InT (arXiv 2601.14209)](https://arxiv.org/html/2601.14209)\n- [PRM Survey (arXiv 2510.08049)](https://arxiv.org/html/2510.08049v3)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient research to make my assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- Thought Anchors (arXiv 2506.19143, ICLR 2026 under review): 提出通过对 CoT 每个 sentence 进行 counterfactual resampling (~100 rollouts/step) 来测量 step 重要性，发现 \"plan generation\" 和 \"uncertainty management\" steps 的 counterfactual importance 远高于 \"active computation\"。本 proposal 的 CSI 概念直接继承自此工作，核心区别是用 TCRM 替代 full rollout 来降低成本。\n- TCRM (arXiv 2604.22981, April 2026): 通过 TD/MC 正则化使 reward model 在任意中间 token 处输出时间一致的 value estimate。ProcessBench F1 = 44.9%（outcome-only SOTA），但与 supervised PRM (78.3% at 72B) 仍有 33 点差距。本 proposal 将其作为 CSI 计算的核心 value function。\n- PAV / Rewarding Progress (ICLR 2025): 用 advantage V(s_i) − V(s_{i−1}) 作为 PRM training label，best-of-N reranking比 ORM 高 8%+。本 proposal 的 CSI (Var) 与 PAV 的 advantage (差值) 是不同的 importance metric，proposal 中的区分论证合理。\n- DuaShepherd (arXiv 2506.17533, June 2025): 多头架构同时训练 correctness + potential，在 ProcessBench 和 MATH500 上优于单信号 PRM。本 proposal 在此基础上加入第三个信号 (CSI)，是直接扩展。\n- GenPRM (AAAI 2026): 将 PRM 重构为生成式 CoT + 代码验证，仅用 23K 数据实现强性能。代表 PRM 的另一个研究方向（生成式 vs 判别式），与本 proposal 的判别式 multi-signal 路线正交。\n- R-PRM (arXiv 2503.21295, EMNLP 2025): 推理驱动 DPO 优化的 verification chain，ProcessBench +11.9 F1, PRMBench +8.5 F1。\n- Beyond Uniform Credit (arXiv 2602.09331, Feb 2026): 通过 mask reasoning spans + 测量 probability drop 实现 counterfactual importance weighting 用于 policy gradient。关键区别：它测量的是 policy 对 step 的依赖（probability-drop），不是 outcome 对 step content 的敏感性（outcome-variance）。Proposal 对此区分描述准确。\n- IBPO (arXiv 2605.16302, May 2026): 通过 counterfactual trajectory comparison 构造 implicit process-level advantage，用于 RL policy optimization 而非 PRM label generation。\n- PURE (NeurIPS 2025): 用 min-form credit assignment 替代 summation-form 以抑制 reward hacking，方向不同但属同一生态。\n- ThinkPRM (arXiv 2504.16828, 2025): 生成式逐步验证 PRM，1% process labels 即超过 full-data discriminative PRM。与 GenPRM 类似属于生成式 PRM 方向。\n- 调研总结: PRM 领域 2025-2026 极度活跃，label 信号从 binary correctness → advantage → multi-signal (correctness+potential) 逐步丰富。Counterfactual analysis 已在 interpretability (Thought Anchors) 和 RL credit assignment (Beyond Uniform Credit, IBPO, C3, CCPO) 中得到应用，但**尚未被直接用作 PRM training label**。本 proposal 处于这一 gap 的正确位置，但其核心贡献本质上是将两个已有 idea（Thought Anchors 的 counterfactual importance + TCRM 的高效 value estimation）组合并用于 PRM label generation。\n\n【Trivial Alternative 检验】:\n最大威胁是 **step-level entropy H(π(·|prefix))** 作为零成本替代。Proposal 自身也承认这一点并计划做 ablation。逻辑上，entropy 衡量\"policy 在这一步有多不确定\"，CSI 衡量\"不同选择是否导致不同结果\"。两者相关但不等价——但如果在实践中 Spearman ρ 很高（比如 >0.8），CSI 的增量价值就很有限，因为 entropy 几乎免费。此外，**compute-normalized baseline**（将 CSI 等量计算资源用于更多 MC rollout 以生成更高质量的 correctness/potential labels）也是一个实质性威胁：如果同等 compute 下更好的 correctness labels 就能 match CSI 带来的提升，那 CSI 的 novelty 就被消解为\"多花了计算\"而非\"捕获了新信息\"。Proposal 对这两个威胁有意识且设计了 ablation，这是一个加分项，但威胁本身是真实的。\n\n【前提假设检验】:\n核心逻辑链中有三个未经验证的假设：\n1. **TCRM value function 足够准确以计算有意义的 CSI**。TCRM 在 ProcessBench 上仅 44.9% F1（vs. supervised 78.3%），33 点的差距意味着 V 估计有大量噪声。用含噪声的 V 计算 Var_k[V(prefix || alt_k)]，测出的 variance 可能大量来自 estimation noise 而非真正的 outcome sensitivity。Proposal 承认这一点并计划做 calibration 验证 + 与 gold-standard (K=100 full rollout) 对比，但这仍是一个核心风险——如果 TCRM-based CSI 与 gold-standard CSI 相关性低，整个方法的基础就不成立。\n2. **K=8 samples + semantic dedup 足以估计 outcome variance**。方差估计在小样本下 variance 本身很高。经 semantic dedup 后 effective K 可能只有 4-6，用 4-6 个点估方差的可靠性存疑。\n3. **CSI 捕获的信息与 correctness/potential 正交且对下游任务（best-of-N, error detection）有用**。这是最关键的假设——CSI 作为第三个信号是否真正提供了 correctness 和 potential 之外的增量信息，还是高度冗余。\n\n【3 维度打分】:\n  1. Novelty: 【中】— 核心贡献是将 Thought Anchors 的 counterfactual resampling importance + TCRM 的高效 value estimation 组合为 PRM training label，并扩展 DuaShepherd 的 multi-head 架构。每个组件都有明确来源，组合是新的但属 incremental combination。CSI vs. advantage vs. masking-based importance 的概念区分论述清晰且有效（特别是 \"low advantage but high CSI\" 和 \"high probability-drop but low CSI\" 的例子），这增加了一些 novelty。但从审稿人视角看，\"用 variance of value under counterfactual alternatives 衡量 step importance\" 在因果推断领域是标准操作（treatment effect heterogeneity），将其应用到 PRM label 是一个有价值的 transfer 但不是 conceptual breakthrough。相比同期的 GenPRM（重构 PRM 为生成式推理）、Beyond Uniform Credit（无需辅助模型的 masking-based importance）等工作，创新跨度有限。\n  \n  2. Significance: 【中偏强】— 研究问题本身很重要：PRM 的 label quality 是制约 PRM 性能的核心瓶颈，理解哪些 reasoning steps 是 \"pivotal\" vs \"routine\" 对于 LLM reasoning 和 verification 都有广泛意义。如果 CSI 确实提供了正交信息且下游 PRM 性能有显著提升，影响面可以覆盖 best-of-N reranking、RL fine-tuning、error detection 等多个场景。但 significance 被两个因素限制：(a) 如果 entropy 或 compute-normalized correctness labels 能达到类似效果，实际贡献被消解；(b) 整个 pipeline 的复杂性（TCRM + sampling + dedup + variance computation）限制了可推广性和可复制性。\n\n  3. Related Work: 【强】— Related work 覆盖极为全面，涵盖了 PRM label generation (PAV, DuaShepherd, PRM800K)、counterfactual analysis (Thought Anchors, Thought Branches, Beyond Uniform Credit)、credit assignment (CCPO, HCAPO, C3, IBPO)、generative PRM (GenPRM, ThinkPRM, R-PRM)、以及 reward hacking (PURE) 等多个子方向。三个 critical distinctions (CSI vs advantage, CSI vs masking, CSI vs entropy) 论述准确且有说服力。引用的论文经核实均真实存在，描述准确。唯一可改进之处是可以更明确地讨论 IBPO (May 2026) 与 CSI 在概念层面的重叠——两者都用 counterfactual trajectory comparison 来获取 step-level signal，区别在于 IBPO 直接用于 policy optimization 而 CSI 用于 PRM label generation。\n\n【概率估计】: [20% - 33%] 中位 25%\n\n【估计理由】: \nNovelty 是主要限制因素。核心贡献是三个已有组件（Thought Anchors 的 counterfactual importance、TCRM 的 value estimation、DuaShepherd 的 multi-head 架构）的 incremental combination，审稿人很可能评价为 \"well-executed engineering contribution but limited novelty\"。概念区分 (CSI vs. advantage vs. masking) 虽然合理，但每个区分单独看并不 surprising——了解因果推断的审稿人会认为这些是 well-known distinctions 在新场景中的 restatement。Significance 被 trivial alternative (entropy) 和 TCRM noise 两个不确定性拉低：如果实验结果显示 entropy 高度相关于 CSI 或 TCRM noise 过大导致 CSI 不可靠，paper 的核心 claim 就站不住。Related work 覆盖是亮点但不足以弥补 novelty 短板。如果核心发现 positive（CSI 确实帮助 PRM），审稿人的反应更可能是 \"reasonable and expected\" 而非 \"surprising\"，这将概率锁定在 25-30% 区间。上界 33% 对应一切顺利（CSI 与 entropy 低相关、TCRM-based CSI 与 gold standard 高一致、tri-signal 显著优于 dual-signal）的情景。\n\n【主要风险】: \n1. **Novelty 不足导致 reject**: 审稿人可能将 CSI 视为 \"Thought Anchors + TCRM 的直接组合\"，缺乏足够的 intellectual contribution，尤其是在因果推断视角下 \"variance of outcomes under interventions = importance\" 是标准操作。\n2. **TCRM value function noise 导致 CSI 信号不可靠**: 33 点的 F1 gap 意味着 V 估计含大量噪声，K=8 的小样本方差估计进一步放大不确定性。如果 CSI validation 实验（TCRM-based CSI vs. gold-standard full-rollout CSI 的 Spearman ρ）结果不理想，整个方法的 empirical grounding 会被质疑。\n```\n\nSources:\n- [Thought Anchors: Which LLM Reasoning Steps Matter?](https://arxiv.org/abs/2506.19143)\n- [TCRM: Reward Models Are Secretly Value Functions](https://arxiv.org/abs/2604.22981)\n- [PAV: Rewarding Progress (ICLR 2025)](https://arxiv.org/abs/2410.08146)\n- [DuaShepherd](https://arxiv.org/abs/2506.17533)\n- [GenPRM (AAAI 2026)](https://arxiv.org/abs/2504.00891)\n- [R-PRM (EMNLP 2025)](https://arxiv.org/abs/2503.21295)\n- [Beyond Uniform Credit](https://arxiv.org/abs/2602.09331)\n- [IBPO: Reducing Credit Assignment Variance via Counterfactual Reasoning Paths](https://arxiv.org/abs/2605.16302)\n- [PURE (NeurIPS 2025)](https://arxiv.org/abs/2504.15275)\n- [ThinkPRM](https://arxiv.org/abs/2504.16828)\n- [PRM Survey](https://arxiv.org/abs/2510.08049)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Counterfactual Step Importance Labels for Process Reward Models\n\n## Core Problem\n\nPRM training labels (binary correctness, MC completion probability, advantage-as-progress) fail to capture the counterfactual causal importance of each reasoning step — i.e., how much the outcome depends on the specific content of that step versus plausible alternatives — leading to PRMs that cannot distinguish pivotal reasoning choices from routine operations. Recent evidence shows reward models prioritize structural consistency over causal correctness: removing the problem statement barely affects reward scores, while disrupting reasoning flow does (arXiv 2502.14619). This indicates current PRM supervision encodes consistency patterns rather than causal structure, motivating the need for a causally-grounded training signal.\n\n## Research Opportunity\n\nThought Anchors (arXiv 2506.19143, ICLR 2026 under review) demonstrated that counterfactual resampling of CoT steps reveals meaningful importance structure: \"plan generation\" and \"uncertainty management\" steps have far higher counterfactual importance than \"active computation\" or \"fact retrieval.\" However, their method requires ~100 full rollouts per step, limiting it to post-hoc interpretability. TCRM (April 2026) enables efficient value estimation at any intermediate token via TD/MC-regularized reward models, offering a path to reduce counterfactual evaluation cost by 10-100×. DuaShepherd (June 2025) showed that multi-signal PRMs (correctness + potential) outperform single-signal models, validating that richer step-level signals improve PRM quality. The April 2026 credit assignment survey identified counterfactual analysis as the emerging paradigm for agentic RL credit (HCAPO, CCPO, C3 — all March 2026), but this paradigm has not been transferred to reasoning PRM label generation. We propose to bridge this gap: making counterfactual step importance scalable and actionable as the first causally-grounded PRM training label.\n\n## Research Landscape\n\nPAV (ICLR 2025) trains PRMs on advantage labels (V(s_i) − V(s_{i−1})) measuring progress, achieving 8%+ accuracy gains over ORMs. DuaShepherd (June 2025) combines correctness and potential in a multi-head architecture outperforming either signal alone on ProcessBench and MATH500. TCRM (April 2026) achieves 44.9% F1 on ProcessBench via temporal coherence regularization (outcome-only SOTA), but a 33-point gap to supervised PRMs (78.3% at 72B) remains. PURE (NeurIPS 2025) addresses reward hacking via min-form credit assignment. CoLD (July 2025) uses counterfactual reasoning for length debiasing, not label generation. IBPO (arXiv 2605.16302, May 2026) uses counterfactual trajectory comparison for implicit process-level advantage in RL policy optimization, targeting training-time credit assignment rather than PRM label synthesis. InT (arXiv 2601.14209, Jan 2026) uses self-proposed interventions to identify and fix error steps via counterfactual corrections, operating as a training paradigm rather than generating importance labels. GenPRM (AAAI 2026) reframes PRM scoring as generative CoT reasoning with code verification, achieving strong results with only 23K training examples. R-PRM (arXiv 2503.21295, EMNLP 2025) uses reasoning-driven DPO-optimized verification chains, outperforming baselines by 11.9 F1 on ProcessBench and 8.5 F1 on PRMBench. ThinkPRM (arXiv 2504.16828) generates verbalized step-wise verification, surpassing full-data discriminative PRMs using only 1% of process labels. PRIME (arXiv 2502.01456, 2025) derives implicit process rewards from outcome-only training for online RL.\n\nThought Anchors (arXiv 2506.19143) and Thought Branches (arXiv 2510.27484, Oct 2025) establish counterfactual resampling as a principled tool for reasoning step importance analysis, but their ~100-rollout-per-step design targets interpretability, not scalable label generation. Beyond Uniform Credit (arXiv 2602.09331, Feb 2026) achieves counterfactual importance weighting by masking reasoning spans and measuring probability drops — no auxiliary models needed — but measures the policy's dependence on a step (probability-drop), not the outcome's sensitivity to step content (outcome-variance).\n\n**Critical distinctions:** (1) CSI vs. advantage (PAV): advantage measures *progress* (V(s_i) − V(s_{i−1})), CSI measures *sensitivity/pivotality* (Var_k[V(prefix || alt_k)]). A \"choose proof strategy\" step may have low advantage but high CSI; a \"standard simplification\" step may have positive advantage but low CSI. (2) CSI vs. masking-based importance (Beyond Uniform Credit): masking measures whether the policy *needs* a step to continue, CSI measures whether the *outcome changes* when step content varies. A step can be essential for continuation (high probability-drop) while all alternatives lead to similar outcomes (low CSI). (3) CSI vs. step-level entropy: entropy H(π(·|prefix)) is a zero-cost proxy for step importance. CSI and entropy are related (high entropy → diverse alternatives → potentially high variance) but capture different information: high-entropy-low-CSI occurs when policy is uncertain but all alternatives yield similar outcomes (e.g., equivalent notations); low-entropy-high-CSI occurs when policy is confident but the chosen path is fragile.\n\n## Proposed Approach\n\nTrain a TCRM-style temporally coherent value function on Qwen3-8B for efficient intermediate-token value estimation V(s). The value function is treated as a modular component — CSI computation works with any value function providing intermediate-token estimates, enabling fallback to MC-rollout-based estimation if TCRM reproduction proves difficult. For each step s_i, sample K=8 alternative steps from the policy model (Qwen3-32B), apply semantic deduplication (embedding cosine similarity filtering) to ensure alternatives are meaningfully different, and compute CI(s_i) = Var_k[V(prefix || alt_k)] over effective alternatives.\n\n**Causal interpretation:** CSI operationalizes a treatment effect heterogeneity estimator — step content as treatment, outcome as response — where Var_k[V(prefix || alt_k)] approximates the variance of individual treatment effects. This connects CSI to counterfactual credit assignment frameworks (CCPO uses structural causal models + ATE for multi-agent credit) and justifies variance as the importance metric.\n\n**Acknowledged confounds:** (1) *Policy diversity*: CSI depends on sampling diversity — low-diversity steps yield low variance regardless of true importance. Mitigated via temperature-controlled sampling and within-step-type normalization. (2) *Value function noise*: TCRM's known accuracy gap (44.9% F1 vs. 78.3% supervised) means V estimates carry noise. Measured CSI variance may conflate outcome sensitivity with estimation noise. Mitigated by verifying TCRM calibration (ProcessBench F1 + ECE) before label generation, and validating CSI labels against full-rollout gold standard on a subset.\n\nGenerate CSI labels over ~75K MATH/GSM8K solution traces from PRM800K (using \"\\n\\n\" / \"Step N:\" delimiters aligned with PRM800K step granularity), supplemented by Qwen3-32B self-generated traces for distribution alignment. Train a tri-signal multi-head PRM (correctness + potential + counterfactual importance) extending DuaShepherd's architecture.\n\n## Evaluation Plan\n\n**Benchmarks:** ProcessBench (error detection F1), PRMBench (arXiv 2501.03124, ACL 2025; fine-grained F1 across 9 error subcategories), MATH500 and GSM8K (best-of-N reranking accuracy, N ∈ {8, 16, 32, 64, 128, 256}), AIME 2024.\n\n**Baselines (all at matched 7B/8B scale, reporting training data volume and total compute):** GenPRM (AAAI 2026), PAV (ICLR 2025), DuaShepherd, R-PRM (arXiv 2503.21295, EMNLP 2025), Qwen2.5-Math-PRM-7B, PRIME (arXiv 2502.01456), ThinkPRM (arXiv 2504.16828; note: generative PRM with different inference-time compute profile — report both training-compute-matched and inference-FLOPs-matched comparisons).\n\n**Core validation experiments:**\n- TCRM reproduction verification: report reproduced ProcessBench F1 (target: ~44.9%) and middle-token calibration (ECE)\n- CSI approximation quality: on 500-1000 traces, compare TCRM-based CSI (K=8) vs. full-rollout gold standard (K=100 full MC completions), report Spearman ρ and top-20% important step overlap rate\n- Alternative quality: report effective K distribution after semantic deduplication; analyze nominal vs. effective K impact\n\n**Ablations:**\n- Signal contribution: tri-signal vs. each dual combination vs. single-signal\n- Entropy baseline: step-level entropy H(π(·|prefix)) as zero-cost importance signal — report (a) entropy alone as PRM training signal, (b) Spearman correlation between entropy and CSI, (c) cases where CSI diverges from entropy\n- K sensitivity: K ∈ {4, 8, 16, 32} effect on CSI quality and downstream PRM performance\n- Importance metric: Var vs. Range vs. StdDev\n- Signal orthogonality: Spearman rank correlation between CSI, correctness, and potential labels\n- Cross-model vs. same-model: 8B value function with 32B-sampled vs. 8B-sampled alternatives\n- Data source: PRM800K traces vs. Qwen3-32B self-generated traces\n- Compute-normalized comparison: allocate CSI-equivalent compute to additional MC rollouts for higher-quality correctness/potential labels; train dual-signal PRM; isolate CSI's information gain from compute gain\n- CSI label stability: inter-run Spearman ρ across independent runs with different random seeds\n\n## Key References\n\n- Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning (ICLR 2025)\n- DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning (arXiv 2025)\n- Reward Models Are Secretly Value Functions: Temporally Coherent Reward Modeling (arXiv 2026)\n- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning (NeurIPS 2025)\n- CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv 2025)\n- From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models (arXiv 2026)\n- Hindsight Credit Assignment for Long-Horizon LLM Agents (arXiv 2026)\n- Counterfactual Credit Policy Optimization for Multi-Agent Collaboration (arXiv 2026)\n- Contextual Counterfactual Credit Assignment for Multi-Agent RL in LLM Collaboration (arXiv 2026)\n- Reducing Credit Assignment Variance via Counterfactual Reasoning Paths (arXiv 2026)\n- InT: Self-Proposed Interventions Enable Credit Assignment in LLM Reasoning (arXiv 2026)\n- GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)\n- Let's Verify Step by Step (ICLR 2024)\n- Thought Anchors: Which LLM Reasoning Steps Matter? (arXiv 2506.19143, ICLR 2026 under review)\n- Thought Branches: Interpreting LLM Reasoning Requires Resampling (arXiv 2510.27484, Oct 2025)\n- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (arXiv 2501.03124, ACL 2025)\n- PRIME: Process Reinforcement through Implicit Rewards (arXiv 2502.01456, 2025)\n- Beyond Uniform Credit: Causal Credit Assignment for Policy Optimization (arXiv 2602.09331, Feb 2026)\n- Reward Models Identify Consistency, Not Causality (arXiv 2502.14619, Feb 2025)\n- R-PRM: Reasoning-Driven Process Reward Modeling (arXiv 2503.21295, EMNLP 2025)\n- ThinkPRM: Process Reward Models That Think (arXiv 2504.16828, 2025)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 700–950 H100-hrs (TCRM training + verification: 130, counterfactual generation: 200, CSI gold-standard validation: 40, tri-head PRM training + ablations: 200, baselines + eval: 100, cross-model/data-source experiments: 80), timeline: 14–18 weeks (1 researcher), estimated_gpu_cost: $1,750–$2,375\n- **human_in_loop**: gpu_hours: 700–950 H100-hrs, timeline: 10–14 weeks, claude_api_cost: $150–300, estimated_gpu_cost: $1,750–$2,375\n- **auto_research**: gpu_hours: 950–1300 H100-hrs (additional sweeps over K, metrics, entropy analysis), timeline: 5–8 weeks, claude_api_cost: $400–800, estimated_gpu_cost: $2,375–$3,250, speed_bottleneck: counterfactual generation throughput (6M+ forward passes, embarrassingly parallel, requires 8+ concurrent H100s)"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T10:51:50.000Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-27T10:51:50.000Z",
+                "sessionId": "87f11418-80fe-419d-b311-e3f77386c335"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T10:51:50.047Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient information to conduct a thorough evaluation. Let me compile my analysis.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Thought Anchors (arXiv 2506.19143, ICLR 2026 under review)**: 最直接的前驱工作。通过对 CoT 步骤进行反事实重采样（~100 rollouts/step），发现\"计划生成\"和\"不确定性管理\"步骤具有远高于\"主动计算\"或\"事实检索\"步骤的反事实重要性。本 proposal 的核心概念（CSI）直接继承了 Thought Anchors 的 insight，区别在于将其从 post-hoc interpretability tool 转化为 scalable PRM training label。\n\n2. **TCRM (arXiv 2604.22981, April 2026)**: Temporally Coherent Reward Modeling。通过 TD/MC 正则化项将 reward model 变为 value function，实现中间 token 处的 value estimation。ProcessBench 上达 44.9% F1（outcome-only SOTA），但与 supervised PRM（78.3% F1 @ 72B）仍有 33 点差距。本 proposal 将其作为核心效率基础设施——用 TCRM 的 V(s) 替代 full rollouts 来计算 CSI。\n\n3. **PAV / Rewarding Progress (ICLR 2025)**: 用 advantage label V(s_i) − V(s_{i−1}) 训练 PRM，比 ORM 提升 8%+ accuracy。这是\"更好的 PRM label\"方向的标杆工作。Proposal 明确区分了 CSI（sensitivity/pivotality）与 advantage（progress），但两者在实际效果上的差异尚无实证。\n\n4. **DuaShepherd (arXiv 2506.17533, June 2025)**: 多头架构结合 correctness + potential 两种信号，在 ProcessBench 和 MATH500 上一致优于单信号模型。Proposal 在此基础上加第三个头（CSI），变为 tri-signal。\n\n5. **GenPRM (AAAI 2026)**: 将 PRM 评分重构为生成式 CoT 推理 + 代码验证任务，23K 训练样本即达强结果。代表了 PRM 方向的一个不同范式（生成式 vs 判别式），是重要 baseline。\n\n6. **Beyond Uniform Credit (arXiv 2602.09331, Feb 2026)**: 通过 masking reasoning spans 并测量 probability drop 实现 counterfactual importance weighting，无需辅助模型。Proposal 将其定位为\"测 policy 对步骤的依赖\"而非\"outcome 对步骤内容的敏感性\"，区分合理但边界模糊。\n\n7. **IBPO (arXiv 2605.16302, May 2026)**: 通过反事实轨迹比较构建 implicit process-level advantage，用于 RL policy optimization。与本 proposal 在\"反事实\"概念上重叠，但目标不同（RL 训练 vs PRM label 生成）。\n\n8. **Reward Models Identify Consistency, Not Causality (arXiv 2502.14619, Feb 2025)**: 关键动机论文。证明当前 RM 优先考虑结构一致性而非因果正确性——删除问题陈述对 reward score 几乎无影响，而打断推理流则影响显著。\n\n9. **Credit Assignment Survey (arXiv 2604.09459, April 2026)**: 识别出反事实分析为 agentic RL credit assignment 的新兴范式（HCAPO, CCPO, C3 均为 March 2026），但这些方法均面向多智能体/agentic 场景，未转移到 reasoning PRM label 生成。\n\n10. **R-PRM (arXiv 2503.21295, EMNLP 2025)** 和 **ThinkPRM (arXiv 2504.16828)**: 分别代表 reasoning-driven verification chains 和 verbalized step-wise verification 两条路线，均为 PRM 方向的强 baseline。\n\n**调研总结**: PRM label 质量提升是 2025-2026 年度热点方向，已有多种 label 来源（MC estimation, advantage, correctness+potential, generative verification）。反事实方法在 credit assignment 领域迅速兴起但主要面向 RL policy optimization 和 interpretability，尚未有人将反事实 variance 作为 PRM training label。Proposal 处于一个 well-identified gap（Thought Anchors 的 interpretability insight → scalable training signal）的位置，但依赖 TCRM 这一有显著精度缺陷的中间组件。\n\n【Trivial Alternative 检验】:\n\n存在两个主要 trivial alternative 威胁：\n\n1. **Step-level entropy H(π(·|prefix))**: 零成本代理。高 entropy 意味着 policy 对该步骤不确定、有多种可能替代——这与 CSI 的高 variance 条件（多样替代 → 潜在高方差）高度相关。Proposal 承认了这一点并列入 ablation（好），但如果 Spearman ρ(entropy, CSI) 很高（例如 >0.7），则花费大量计算得到的 CSI 相对于 free proxy 的增量价值极为有限。\n\n2. **Compute-normalized MC 扩展**: 将 CSI 等价计算量用于增加 MC rollouts 数量以获得更高质量的 correctness/potential labels。如果 dual-signal PRM 在 compute-matched 条件下与 tri-signal PRM 性能相当，则 CSI 的信息增量被否定。Proposal 同样列入了这一 ablation——说明作者意识到风险——但这恰恰是最可能杀死核心贡献的结果。\n\n**增量价值在哪**: Proposal 的理论论证在于 CSI 捕获了与 correctness/potential/advantage 正交的信息——步骤的\"脆弱性/关键性\"维度。如果 signal orthogonality 实验显示 CSI 与其他信号的 Spearman ρ 较低（如 <0.3），且 compute-normalized comparison 显示 CSI 提供了不可替代的信息增益，则增量价值成立。但这些都是尚未验证的 if。\n\n【前提假设检验】:\n\n核心 claim 的逻辑链及其中未验证的假设：\n\n1. **\"TCRM 的 V(s) 足够准确以支持 CSI 计算\"** — **关键未验证假设**。TCRM 在 ProcessBench 上仅 44.9% F1（vs supervised 78.3%），这意味着 V 估计本身含有大量噪声。对 K=8 个替代方案计算 Var_k[V(prefix || alt_k)]，如果 V 本身噪声方差可比甚至超过信号方差，则 measured CSI 主要反映估计噪声而非真实 outcome sensitivity。Proposal 提出的缓解措施（验证 TCRM 校准 + 与 gold standard 子集对比）是必要但可能不充分的——即使 rank correlation 合理，绝对值偏差仍可能使 CSI label 丧失鉴别力。\n\n2. **\"K=8 足以产生有意义的 variance 估计\"** — 统计学上，8 个样本的 variance 估计本身具有高方差。特别是经过 semantic deduplication 后，effective K 可能更低（如 4-5），此时 variance 估计几乎不可靠。Proposal 的 K sensitivity ablation（K ∈ {4, 8, 16, 32}）承认了这一点，但 K=8 作为默认值可能不够。\n\n3. **\"CSI 提供与 correctness/potential 正交的信息\"** — 这是 tri-signal 架构价值的核心前提。如果 CSI 高度相关于 (1 - correctness)（因为错误步骤通常也是关键步骤），则第三个信号是冗余的。理论区分（\"high CSI + correct\"对应关键正确决策）合理但未经实证。\n\n4. **\"反事实 variance 是衡量步骤重要性的正确度量\"** — Proposal 给出了因果解释（treatment effect heterogeneity），但 Var 作为度量会受 outlier 影响，且无法区分\"一半替代导致成功、一半导致失败\"和\"大部分替代导致 mediocre 结果、少数导致极端结果\"。这两种情况 Var 相同但含义不同。\n\n【3 维度打分】:\n\n1. **Novelty: 中** — 核心概念（反事实重采样揭示步骤重要性）直接来源于 Thought Anchors（arXiv 2506.19143），效率提升手段来源于 TCRM（arXiv 2604.22981），多信号架构来源于 DuaShepherd（arXiv 2506.17533）。Proposal 的 novelty delta 在于将三者桥接——将 interpretability tool 转化为 scalable training signal——这是一个合理但本质上是组合性的贡献（\"A 的 insight + B 的效率 + C 的架构\"）。与 Beyond Uniform Credit（arXiv 2602.09331）、IBPO（arXiv 2605.16302）等同期反事实方法相比，CSI 对\"outcome sensitivity\"而非\"policy dependence\"的区分是有意义的理论差异，但实际效果差异未知。Credit assignment survey（arXiv 2604.09459）明确指出反事实分析是 emerging paradigm，这意味着 \"用反事实做 credit assignment\" 这一方向已不再新颖，新颖度集中在具体的\"反事实 variance as PRM label\"操作化上。\n\n2. **Significance: 中** — PRM label 质量是一个重要且活跃的研究问题（arXiv 2502.14619 提供了有力动机），方向上是 significant 的。但该 proposal 的潜在影响受限于几个因素：(a) 计算开销显著——每步 K=8 替代采样 + value estimation，远高于 advantage label 或 MC estimation；(b) 如果 positive，improvement 可能是在强 baseline 基础上的 incremental gain；(c) 核心发现如果是 positive（\"加 CSI 信号 improves PRM\"），审稿人更可能反应\"makes sense, more information helps\"而非\"surprising\"。另外，如果 negative（CSI noisy 或 redundant），论文可能难以讲出有说服力的 story。GenPRM（AAAI 2026）用 23K 训练数据就达到了 strong results，路径更 elegant，这提高了 CSI approach 的\"为什么要用这么复杂的方法\"的证明门槛。\n\n3. **Related Work: 强** — 覆盖面极为全面。13+ 篇核心相关工作（PAV, DuaShepherd, TCRM, GenPRM, R-PRM, ThinkPRM, PRIME, Beyond Uniform Credit, IBPO, InT, Thought Anchors, Thought Branches, PURE/CoLD）均被准确引用和恰当定位。Critical distinctions 段落（CSI vs. advantage、CSI vs. masking、CSI vs. entropy）展现了对领域的深入理解。所检索到的关键论文（Thought Anchors, TCRM, DuaShepherd, PAV, Beyond Uniform Credit, IBPO, GenPRM）均真实存在且描述准确。\n\n【概率估计】: 25% - 35%，中位 28%\n\n【估计理由】: \nRelated Work 是明确的加分项，proposal 展现了对领域的 exceptional 理解。问题定位准确（arXiv 2502.14619 提供了真实且有力的动机），研究 gap 真实存在（反事实重要性 → PRM label 的桥梁尚无人做）。然而：\n\n- **Novelty 限制了上界**：核心贡献是组合性的（Thought Anchors insight + TCRM efficiency + DuaShepherd architecture），各组件的原创方贡献更大。在 counterfactual credit assignment 已成为 identified paradigm 的 2026 年，\"用反事实做 PRM label\"是一个自然延伸而非 paradigm shift。\n- **TCRM 噪声风险限制了上界**：33 点 F1 gap 意味着 CSI 的信号质量存在根本性疑问。即使 proposal 形式上非常完备，idea 的\"天花板\"受制于这个技术瓶颈。\n- **Trivial alternative 威胁真实**：entropy proxy 和 compute-normalized MC 扩展都可能削弱核心贡献。Proposal 诚实地列出了这些 ablations，但如果结果不利，论文没有退路。\n- **Significance 受限于\"more signals help\"的预期性**：即使 positive，核心发现（第三个信号提升 PRM）更可能被视为 expected 而非 surprising。\n\n总体来看，这是一个精心设计的 solid incremental 工作，在 AAAI 2026 有合理的中稿机会（AAAI 接收率约 20-25%），但 idea 的内核不够 distinctive 以确保中稿。\n\n【主要风险】: \n1. **\"Elaborate combination\" 拒稿理由**: 审稿人可能认为核心贡献仅是 Thought Anchors + TCRM + DuaShepherd 的工程化组合，novelty 不足以支撑 top venue publication——尤其当 three independent components 均来自他人工作时。\n2. **TCRM 精度瓶颈暴露 CSI 信号质量问题**: 如果 CSI-vs-gold-standard validation 显示 Spearman ρ 不高（如 <0.5），或 compute-normalized baseline 表现相当，则核心 contribution 被直接否定，论文失去 main story。\n```\n\nSources:\n- [Thought Anchors: Which LLM Reasoning Steps Matter?](https://arxiv.org/abs/2506.19143)\n- [TCRM: Reward Models Are Secretly Value Functions](https://arxiv.org/abs/2604.22981)\n- [Rewarding Progress: Scaling Automated Process Verifiers (PAV)](https://arxiv.org/abs/2410.08146)\n- [DuaShepherd: Integrating Stepwise Correctness and Potential Rewards](https://arxiv.org/abs/2506.17533)\n- [GenPRM: Scaling Test-Time Compute of Process Reward Models](https://arxiv.org/abs/2504.00891)\n- [Beyond Uniform Credit: Causal Credit Assignment for Policy Optimization](https://arxiv.org/abs/2602.09331)\n- [IBPO: Reducing Credit Assignment Variance via Counterfactual Reasoning Paths](https://arxiv.org/abs/2605.16302)\n- [Reward Models Identify Consistency, Not Causality](https://arxiv.org/abs/2502.14619)\n- [From Reasoning to Agentic: Credit Assignment in RL for LLMs](https://arxiv.org/abs/2604.09459)\n- [R-PRM: Reasoning-Driven Process Reward Modeling](https://arxiv.org/abs/2503.21295)\n- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)\n- [A Survey of Process Reward Models](https://arxiv.org/abs/2510.08049)\n- [PRIME: Free Process Rewards without Process Labels](https://arxiv.org/abs/2412.01981)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient research material. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **PAV / \"Rewarding Progress\"** (ICLR 2025): 定义 step reward = advantage V(s_i) − V(s_{i−1})，即\"进步量\"。8%+ 准确率提升。这是当前 PRM label 的主流范式之一，也是本 proposal 需要与之区分的核心对比对象。\n\n2. **DuaShepherd** (arXiv 2506.17533, June 2025): 将 correctness 和 potential 两种 step-level signal 结合为 multi-head PRM，在 ProcessBench 和 MATH500 上超过单信号模型。本 proposal 的 tri-signal 架构直接继承了其双信号多头设计，仅新增第三维度 (CSI)。\n\n3. **TCRM** (arXiv 2604.22981, April 2026): 通过 TD/MC 正则化将 reward model 训练为 value function，实现中间 token 级别的 value estimation。ProcessBench outcome-only SOTA (44.9% F1)，但与 supervised PRM (78.3%) 有 33 个点的差距。本 proposal 将 TCRM 作为 CSI 计算的核心 value function。\n\n4. **Thought Anchors** (arXiv 2506.19143, ICLR 2026 under review): 通过对 CoT 每一步进行 ~100 次 counterfactual resampling，量化每步的 importance。发现 \"plan generation\" 和 \"uncertainty management\" 步骤的 counterfactual importance 远高于 \"active computation\"。这是本 proposal CSI 概念的直接先驱——proposal 的核心贡献是把 Thought Anchors 的 interpretability 方法变为 scalable training label。\n\n5. **Beyond Uniform Credit** (arXiv 2602.09331, Feb 2026): 通过 masking reasoning spans 并测量 probability drop 实现 counterfactual importance weighting，无需辅助模型。用于 policy gradient 优化而非 PRM label 生成。Proposal 正确地区分了 masking-based importance (测量 policy 依赖性) 与 CSI (测量 outcome sensitivity)。\n\n6. **IBPO / \"Reducing Credit Assignment Variance\"** (arXiv 2605.16302, May 2026): 通过 cross-trajectory comparison 构建隐式 process-level advantage estimator。这是 credit assignment 方向的最新工作，目标是 RL policy optimization 而非 PRM label synthesis，但思路高度相关。\n\n7. **GenPRM** (AAAI 2026): 将 PRM 重构为 generative CoT reasoning + code verification，仅用 23K 训练数据达到强结果。代表了 PRM 范式从 discriminative scoring 向 generative verification 的转型趋势。\n\n8. **Process Supervision via Monte Carlo Net Information Gain** (arXiv 2603.17815, March 2026): **关键竞争者，但 proposal 未引用。** 使用信息论方法估计每步对正确答案概率的影响，得到 step-level quality labels。复杂度 O(N)，无需辅助模型。与 CSI 的目标高度重叠——都是通过量化 step 对 outcome 的影响来生成 PRM label——但方法不同（信息增益 vs. 方差）。\n\n9. **R-PRM** (arXiv 2503.21295, EMNLP 2025): 使用 reasoning-driven DPO-optimized verification chains，在 ProcessBench 上超过 baseline 11.9 F1。代表了 reasoning-augmented PRM 的方向。\n\n10. **ThinkPRM** (arXiv 2504.16828, 2025): 生成式 step-wise verification PRM，用 1% process labels 即可超过 full-data discriminative PRM。\n\n- **调研总结**: PRM label 生成是一个高度活跃的领域，2025-2026 年出现了多条并行路线：advantage-based (PAV), multi-signal (DuaShepherd), generative verification (GenPRM, ThinkPRM, R-PRM), information-theoretic (MC Net Info Gain), 以及 counterfactual interpretability (Thought Anchors)。本 proposal 处于 \"将 counterfactual interpretability insight 转化为 scalable PRM training label\" 这一尚未被直接占据的交叉位置，但 MC Net Information Gain 从信息论角度已经在做类似的事情。Proposal 的核心贡献是 \"Thought Anchors insight + TCRM efficiency + DuaShepherd architecture\" 的系统性组合。\n\n【Trivial Alternative 检验】:\n\n存在两个严肃的 trivial alternative 威胁：\n\n(1) **Step-level entropy H(π(·|prefix))** 作为 zero-cost proxy。Proposal 自己承认了这一点并计划了 ablation。但问题在于：如果 entropy 与 CSI 的 Spearman 相关性很高（这在直觉上是合理的——policy 不确定的 step 通常也是 alternatives 导致不同 outcome 的 step），那么 CSI 相对于 entropy 的增量价值可能很小，而 CSI 的计算成本远高于 entropy（K=8 次 generation + value estimation vs. 单次 forward pass）。Proposal 给出了 \"high-entropy-low-CSI\" 和 \"low-entropy-high-CSI\" 的理论案例，但这些案例在实践中的频率和影响力未经验证。\n\n(2) **Compute-normalized MC rollout**。CSI 的生成需要 K=8 次 alternative generation + value estimation。如果将等量计算预算用于更多 MC rollouts 来获得更高质量的 correctness/potential labels（而非引入第三维度 CSI），dual-signal PRM 是否表现相当？Proposal 同样计划了这个 ablation（\"compute-normalized comparison\"），说明作者有清醒的认识。但这个 ablation 的结果是 make-or-break：如果 compute-normalized dual-signal PRM ≈ tri-signal PRM，则 CSI 的增量信息价值为零。\n\n**增量价值论述**：CSI 理论上捕获了 correctness 和 potential 无法捕获的维度——\"pivotality\"，即 step 内容的微小变化对 outcome 的敏感度。一个 correct + high-potential 的 step 可能是 routine calculation (low CSI) 也可能是 fragile strategic choice (high CSI)。这个区分如果在实践中成立，确实是有价值的新信号。但这依赖于实验验证。\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条中有以下未经验证的环节：\n\n(1) **TCRM value function 的精度足以支撑 CSI 计算**。TCRM 在 ProcessBench 上只有 44.9% F1（vs. supervised 78.3%）。CSI = Var_k[V(prefix || alt_k)]——如果 V 本身有大量噪声，则测量到的 variance 中有多大比例是真实的 outcome sensitivity vs. value function estimation noise？Proposal 承认了这个问题并提出了 calibration verification + gold-standard validation，但这是整条逻辑链上最脆弱的环节。如果 TCRM noise 使得 CSI labels 质量不足，整个 pipeline 的价值为零。\n\n(2) **K=8 alternatives 的采样多样性足够**。Proposal 使用 semantic deduplication 来保证 alternative 的多样性，但在 effective K 很低（比如 dedup 后只剩 2-3 个有效 alternatives）的情况下，variance 估计会非常不稳定。这对于 \"routine\" 步骤（如标准化简）尤其可能发生——policy 对这类步骤的 generation 可能高度集中。\n\n(3) **CSI 捕获的 \"pivotality\" 维度对 PRM downstream task 有帮助**。最终评估是 best-of-N reranking 和 error detection。CSI-aware PRM 能否在这些 task 上提供增量价值，取决于 \"pivotality\" 信息在 reranking/error detection 中是否可用。一个 step 是 \"pivotal\" 不等于它是 \"erroneous\"——high-CSI 的 step 可能正确也可能错误。PRM 需要判断的是 correctness，而 pivotality 只是一个辅助维度。这个辅助维度能提供多少 boost 是未验证的。\n\n(4) **从 interpretability 到 training label 的跨越**。Thought Anchors 证明了 counterfactual importance 有 interpretive value，但 interpretive value ≠ training signal value。一个 step 在 interpretability 层面 \"重要\"，不等于把这个 importance score 作为 PRM training label 就能提升 PRM 性能。这是一个需要实验验证的 assumption，不是可以从逻辑推导的。\n\n【3 维度打分】:\n\n1. **Novelty: 中（偏弱）** — 核心贡献是将已有组件（Thought Anchors 的 counterfactual resampling insight、TCRM 的 efficient value estimation、DuaShepherd 的 multi-signal architecture）进行系统性组合。具体的 CSI metric（Var_k[V(prefix || alt_k)]）是一个自然的、几乎 predictable 的设计选择——给定 Thought Anchors 的 insight 和 TCRM 的工具，\"用 TCRM 替代 full rollout 来加速 counterfactual importance 计算并用作 PRM label\" 几乎是下一步的默认思路。与 MC Net Information Gain (arXiv 2603.17815) 的目标高度重叠——后者同样用信息量化方法为 PRM 生成 step-level importance labels，且计算成本更低。CSI 与 advantage (PAV) 和 masking-based importance (Beyond Uniform Credit) 的理论区分是清晰的，但这些区分是否在实践中转化为性能差异尚不确定。**如果审稿人知道 Thought Anchors + TCRM + DuaShepherd，\"用 variance 作 PRM label\" 不会是 surprising。**\n\n2. **Significance: 中** — PRM training label 的质量是一个重要且活跃的研究问题，方向正确。但本工作的 expected marginal contribution 有限：它在已经 well-studied 的 multi-signal PRM 框架上增加第三个信号维度，这个维度是否比更简单的 proxy（entropy）或更多 compute on existing signals 更有价值，目前只是 hypothesis。即使 positive result 成立，审稿人可能的反应是 \"nice to know that CSI adds value, but the improvement is modest and the pipeline complexity is high\" 而非 \"this changes how I think about PRM training\"。此外，generative PRM (GenPRM, ThinkPRM, R-PRM) 的范式正在取代 discriminative PRM，本 proposal 的 contribution 可能在一个正在被超越的范式内。\n\n3. **Related Work: 强** — Proposal 展示了对该领域异常全面的掌握。从 PRM label generation (PAV, DuaShepherd, PRIME, FreePRM) 到 counterfactual credit assignment (HCAPO, CCPO, C3, Beyond Uniform Credit, IBPO) 到 counterfactual interpretability (Thought Anchors, Thought Branches)，覆盖面广且差异化定位清晰。与核心竞争者的三重区分（CSI vs. advantage, CSI vs. masking, CSI vs. entropy）做得很到位。唯一的明显缺失是 MC Net Information Gain (arXiv 2603.17815, March 2026)，这是一个直接竞争者，使用信息论而非方差来估计 step importance 并生成 PRM label。\n\n【概率估计】: [22% - 32%] 中位 27%\n\n【估计理由】: \nNovelty 是限制上界的核心因素。这个 idea 是已有组件的系统性组合，核心 design choice（variance over alternatives as importance）是自然且可预测的。如果 positive result 出来，审稿人更可能说 \"makes sense\" 而非 \"surprising\"。Significance 受限于两方面：(a) 增量贡献相对于 DuaShepherd + 更好的 MC labels 可能有限；(b) discriminative PRM 范式正在被 generative PRM 超越。Related Work 的全面覆盖和清晰定位是明显优势，但这主要保护下界（避免因 novelty 误判被拒），不提升上界。前提假设检验中 TCRM 精度问题和 CSI→downstream performance 的逻辑跨越是实质性风险。总体而言，这是一个 competent but incremental 的工作，处于 AAAI borderline 水平。\n\n【主要风险】:\n1. **Novelty 不足**：审稿人可能认为这是 Thought Anchors + TCRM + DuaShepherd 的 straightforward combination，缺乏 surprising insight。特别是 MC Net Information Gain 已经在用不同方法做同类事情。\n2. **CSI 的增量价值存疑**：在 compute-normalized 条件下，CSI 作为第三信号维度的边际收益可能被 entropy（zero-cost proxy）或 更多 MC rollout（same-cost alternative）抵消，导致 \"the added complexity doesn't justify the marginal gain\" 的拒稿理由。\n```\n\nSources:\n- [PAV - Rewarding Progress (ICLR 2025)](https://proceedings.iclr.cc/paper_files/paper/2025/hash/98711dea460bdefe0e651ca23ec98ba2-Abstract-Conference.html)\n- [DuaShepherd (arXiv 2506.17533)](https://arxiv.org/abs/2506.17533)\n- [TCRM (arXiv 2604.22981)](https://arxiv.org/abs/2604.22981)\n- [Thought Anchors (arXiv 2506.19143)](https://arxiv.org/abs/2506.19143)\n- [Beyond Uniform Credit (arXiv 2602.09331)](https://arxiv.org/abs/2602.09331)\n- [IBPO / Reducing Credit Assignment Variance (arXiv 2605.16302)](https://arxiv.org/abs/2605.16302)\n- [GenPRM (AAAI 2026)](https://arxiv.org/abs/2504.00891)\n- [MC Net Information Gain (arXiv 2603.17815)](https://arxiv.org/abs/2603.17815)\n- [R-PRM (arXiv 2503.21295)](https://arxiv.org/abs/2503.21295)\n- [ThinkPRM (arXiv 2504.16828)](https://openreview.net/forum?id=V727xqBYIW)\n- [Credit Assignment Survey (arXiv 2604.09459)](https://arxiv.org/html/2604.09459v1)\n- [CCPO (arXiv 2603.21563)](https://arxiv.org/html/2603.21563v1)\n- [InT (arXiv 2601.14209)](https://arxiv.org/html/2601.14209)\n- [PRM Survey (arXiv 2510.08049)](https://arxiv.org/html/2510.08049v3)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient research to make my assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- Thought Anchors (arXiv 2506.19143, ICLR 2026 under review): 提出通过对 CoT 每个 sentence 进行 counterfactual resampling (~100 rollouts/step) 来测量 step 重要性，发现 \"plan generation\" 和 \"uncertainty management\" steps 的 counterfactual importance 远高于 \"active computation\"。本 proposal 的 CSI 概念直接继承自此工作，核心区别是用 TCRM 替代 full rollout 来降低成本。\n- TCRM (arXiv 2604.22981, April 2026): 通过 TD/MC 正则化使 reward model 在任意中间 token 处输出时间一致的 value estimate。ProcessBench F1 = 44.9%（outcome-only SOTA），但与 supervised PRM (78.3% at 72B) 仍有 33 点差距。本 proposal 将其作为 CSI 计算的核心 value function。\n- PAV / Rewarding Progress (ICLR 2025): 用 advantage V(s_i) − V(s_{i−1}) 作为 PRM training label，best-of-N reranking比 ORM 高 8%+。本 proposal 的 CSI (Var) 与 PAV 的 advantage (差值) 是不同的 importance metric，proposal 中的区分论证合理。\n- DuaShepherd (arXiv 2506.17533, June 2025): 多头架构同时训练 correctness + potential，在 ProcessBench 和 MATH500 上优于单信号 PRM。本 proposal 在此基础上加入第三个信号 (CSI)，是直接扩展。\n- GenPRM (AAAI 2026): 将 PRM 重构为生成式 CoT + 代码验证，仅用 23K 数据实现强性能。代表 PRM 的另一个研究方向（生成式 vs 判别式），与本 proposal 的判别式 multi-signal 路线正交。\n- R-PRM (arXiv 2503.21295, EMNLP 2025): 推理驱动 DPO 优化的 verification chain，ProcessBench +11.9 F1, PRMBench +8.5 F1。\n- Beyond Uniform Credit (arXiv 2602.09331, Feb 2026): 通过 mask reasoning spans + 测量 probability drop 实现 counterfactual importance weighting 用于 policy gradient。关键区别：它测量的是 policy 对 step 的依赖（probability-drop），不是 outcome 对 step content 的敏感性（outcome-variance）。Proposal 对此区分描述准确。\n- IBPO (arXiv 2605.16302, May 2026): 通过 counterfactual trajectory comparison 构造 implicit process-level advantage，用于 RL policy optimization 而非 PRM label generation。\n- PURE (NeurIPS 2025): 用 min-form credit assignment 替代 summation-form 以抑制 reward hacking，方向不同但属同一生态。\n- ThinkPRM (arXiv 2504.16828, 2025): 生成式逐步验证 PRM，1% process labels 即超过 full-data discriminative PRM。与 GenPRM 类似属于生成式 PRM 方向。\n- 调研总结: PRM 领域 2025-2026 极度活跃，label 信号从 binary correctness → advantage → multi-signal (correctness+potential) 逐步丰富。Counterfactual analysis 已在 interpretability (Thought Anchors) 和 RL credit assignment (Beyond Uniform Credit, IBPO, C3, CCPO) 中得到应用，但**尚未被直接用作 PRM training label**。本 proposal 处于这一 gap 的正确位置，但其核心贡献本质上是将两个已有 idea（Thought Anchors 的 counterfactual importance + TCRM 的高效 value estimation）组合并用于 PRM label generation。\n\n【Trivial Alternative 检验】:\n最大威胁是 **step-level entropy H(π(·|prefix))** 作为零成本替代。Proposal 自身也承认这一点并计划做 ablation。逻辑上，entropy 衡量\"policy 在这一步有多不确定\"，CSI 衡量\"不同选择是否导致不同结果\"。两者相关但不等价——但如果在实践中 Spearman ρ 很高（比如 >0.8），CSI 的增量价值就很有限，因为 entropy 几乎免费。此外，**compute-normalized baseline**（将 CSI 等量计算资源用于更多 MC rollout 以生成更高质量的 correctness/potential labels）也是一个实质性威胁：如果同等 compute 下更好的 correctness labels 就能 match CSI 带来的提升，那 CSI 的 novelty 就被消解为\"多花了计算\"而非\"捕获了新信息\"。Proposal 对这两个威胁有意识且设计了 ablation，这是一个加分项，但威胁本身是真实的。\n\n【前提假设检验】:\n核心逻辑链中有三个未经验证的假设：\n1. **TCRM value function 足够准确以计算有意义的 CSI**。TCRM 在 ProcessBench 上仅 44.9% F1（vs. supervised 78.3%），33 点的差距意味着 V 估计有大量噪声。用含噪声的 V 计算 Var_k[V(prefix || alt_k)]，测出的 variance 可能大量来自 estimation noise 而非真正的 outcome sensitivity。Proposal 承认这一点并计划做 calibration 验证 + 与 gold-standard (K=100 full rollout) 对比，但这仍是一个核心风险——如果 TCRM-based CSI 与 gold-standard CSI 相关性低，整个方法的基础就不成立。\n2. **K=8 samples + semantic dedup 足以估计 outcome variance**。方差估计在小样本下 variance 本身很高。经 semantic dedup 后 effective K 可能只有 4-6，用 4-6 个点估方差的可靠性存疑。\n3. **CSI 捕获的信息与 correctness/potential 正交且对下游任务（best-of-N, error detection）有用**。这是最关键的假设——CSI 作为第三个信号是否真正提供了 correctness 和 potential 之外的增量信息，还是高度冗余。\n\n【3 维度打分】:\n  1. Novelty: 【中】— 核心贡献是将 Thought Anchors 的 counterfactual resampling importance + TCRM 的高效 value estimation 组合为 PRM training label，并扩展 DuaShepherd 的 multi-head 架构。每个组件都有明确来源，组合是新的但属 incremental combination。CSI vs. advantage vs. masking-based importance 的概念区分论述清晰且有效（特别是 \"low advantage but high CSI\" 和 \"high probability-drop but low CSI\" 的例子），这增加了一些 novelty。但从审稿人视角看，\"用 variance of value under counterfactual alternatives 衡量 step importance\" 在因果推断领域是标准操作（treatment effect heterogeneity），将其应用到 PRM label 是一个有价值的 transfer 但不是 conceptual breakthrough。相比同期的 GenPRM（重构 PRM 为生成式推理）、Beyond Uniform Credit（无需辅助模型的 masking-based importance）等工作，创新跨度有限。\n  \n  2. Significance: 【中偏强】— 研究问题本身很重要：PRM 的 label quality 是制约 PRM 性能的核心瓶颈，理解哪些 reasoning steps 是 \"pivotal\" vs \"routine\" 对于 LLM reasoning 和 verification 都有广泛意义。如果 CSI 确实提供了正交信息且下游 PRM 性能有显著提升，影响面可以覆盖 best-of-N reranking、RL fine-tuning、error detection 等多个场景。但 significance 被两个因素限制：(a) 如果 entropy 或 compute-normalized correctness labels 能达到类似效果，实际贡献被消解；(b) 整个 pipeline 的复杂性（TCRM + sampling + dedup + variance computation）限制了可推广性和可复制性。\n\n  3. Related Work: 【强】— Related work 覆盖极为全面，涵盖了 PRM label generation (PAV, DuaShepherd, PRM800K)、counterfactual analysis (Thought Anchors, Thought Branches, Beyond Uniform Credit)、credit assignment (CCPO, HCAPO, C3, IBPO)、generative PRM (GenPRM, ThinkPRM, R-PRM)、以及 reward hacking (PURE) 等多个子方向。三个 critical distinctions (CSI vs advantage, CSI vs masking, CSI vs entropy) 论述准确且有说服力。引用的论文经核实均真实存在，描述准确。唯一可改进之处是可以更明确地讨论 IBPO (May 2026) 与 CSI 在概念层面的重叠——两者都用 counterfactual trajectory comparison 来获取 step-level signal，区别在于 IBPO 直接用于 policy optimization 而 CSI 用于 PRM label generation。\n\n【概率估计】: [20% - 33%] 中位 25%\n\n【估计理由】: \nNovelty 是主要限制因素。核心贡献是三个已有组件（Thought Anchors 的 counterfactual importance、TCRM 的 value estimation、DuaShepherd 的 multi-head 架构）的 incremental combination，审稿人很可能评价为 \"well-executed engineering contribution but limited novelty\"。概念区分 (CSI vs. advantage vs. masking) 虽然合理，但每个区分单独看并不 surprising——了解因果推断的审稿人会认为这些是 well-known distinctions 在新场景中的 restatement。Significance 被 trivial alternative (entropy) 和 TCRM noise 两个不确定性拉低：如果实验结果显示 entropy 高度相关于 CSI 或 TCRM noise 过大导致 CSI 不可靠，paper 的核心 claim 就站不住。Related work 覆盖是亮点但不足以弥补 novelty 短板。如果核心发现 positive（CSI 确实帮助 PRM），审稿人的反应更可能是 \"reasonable and expected\" 而非 \"surprising\"，这将概率锁定在 25-30% 区间。上界 33% 对应一切顺利（CSI 与 entropy 低相关、TCRM-based CSI 与 gold standard 高一致、tri-signal 显著优于 dual-signal）的情景。\n\n【主要风险】: \n1. **Novelty 不足导致 reject**: 审稿人可能将 CSI 视为 \"Thought Anchors + TCRM 的直接组合\"，缺乏足够的 intellectual contribution，尤其是在因果推断视角下 \"variance of outcomes under interventions = importance\" 是标准操作。\n2. **TCRM value function noise 导致 CSI 信号不可靠**: 33 点的 F1 gap 意味着 V 估计含大量噪声，K=8 的小样本方差估计进一步放大不确定性。如果 CSI validation 实验（TCRM-based CSI vs. gold-standard full-rollout CSI 的 Spearman ρ）结果不理想，整个方法的 empirical grounding 会被质疑。\n```\n\nSources:\n- [Thought Anchors: Which LLM Reasoning Steps Matter?](https://arxiv.org/abs/2506.19143)\n- [TCRM: Reward Models Are Secretly Value Functions](https://arxiv.org/abs/2604.22981)\n- [PAV: Rewarding Progress (ICLR 2025)](https://arxiv.org/abs/2410.08146)\n- [DuaShepherd](https://arxiv.org/abs/2506.17533)\n- [GenPRM (AAAI 2026)](https://arxiv.org/abs/2504.00891)\n- [R-PRM (EMNLP 2025)](https://arxiv.org/abs/2503.21295)\n- [Beyond Uniform Credit](https://arxiv.org/abs/2602.09331)\n- [IBPO: Reducing Credit Assignment Variance via Counterfactual Reasoning Paths](https://arxiv.org/abs/2605.16302)\n- [PURE (NeurIPS 2025)](https://arxiv.org/abs/2504.15275)\n- [ThinkPRM](https://arxiv.org/abs/2504.16828)\n- [PRM Survey](https://arxiv.org/abs/2510.08049)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Counterfactual Step Importance Labels for Process Reward Models\n\n## Core Problem\n\nPRM training labels (binary correctness, MC completion probability, advantage-as-progress) fail to capture the counterfactual causal importance of each reasoning step — i.e., how much the outcome depends on the specific content of that step versus plausible alternatives — leading to PRMs that cannot distinguish pivotal reasoning choices from routine operations. Recent evidence shows reward models prioritize structural consistency over causal correctness: removing the problem statement barely affects reward scores, while disrupting reasoning flow does (arXiv 2502.14619). This indicates current PRM supervision encodes consistency patterns rather than causal structure, motivating the need for a causally-grounded training signal.\n\n## Research Opportunity\n\nThought Anchors (arXiv 2506.19143, ICLR 2026 under review) demonstrated that counterfactual resampling of CoT steps reveals meaningful importance structure: \"plan generation\" and \"uncertainty management\" steps have far higher counterfactual importance than \"active computation\" or \"fact retrieval.\" However, their method requires ~100 full rollouts per step, limiting it to post-hoc interpretability. TCRM (April 2026) enables efficient value estimation at any intermediate token via TD/MC-regularized reward models, offering a path to reduce counterfactual evaluation cost by 10-100×. DuaShepherd (June 2025) showed that multi-signal PRMs (correctness + potential) outperform single-signal models, validating that richer step-level signals improve PRM quality. The April 2026 credit assignment survey identified counterfactual analysis as the emerging paradigm for agentic RL credit (HCAPO, CCPO, C3 — all March 2026), but this paradigm has not been transferred to reasoning PRM label generation. We propose to bridge this gap: making counterfactual step importance scalable and actionable as the first causally-grounded PRM training label.\n\n## Research Landscape\n\nPAV (ICLR 2025) trains PRMs on advantage labels (V(s_i) − V(s_{i−1})) measuring progress, achieving 8%+ accuracy gains over ORMs. DuaShepherd (June 2025) combines correctness and potential in a multi-head architecture outperforming either signal alone on ProcessBench and MATH500. TCRM (April 2026) achieves 44.9% F1 on ProcessBench via temporal coherence regularization (outcome-only SOTA), but a 33-point gap to supervised PRMs (78.3% at 72B) remains. PURE (NeurIPS 2025) addresses reward hacking via min-form credit assignment. CoLD (July 2025) uses counterfactual reasoning for length debiasing, not label generation. IBPO (arXiv 2605.16302, May 2026) uses counterfactual trajectory comparison for implicit process-level advantage in RL policy optimization, targeting training-time credit assignment rather than PRM label synthesis. InT (arXiv 2601.14209, Jan 2026) uses self-proposed interventions to identify and fix error steps via counterfactual corrections, operating as a training paradigm rather than generating importance labels. GenPRM (AAAI 2026) reframes PRM scoring as generative CoT reasoning with code verification, achieving strong results with only 23K training examples. R-PRM (arXiv 2503.21295, EMNLP 2025) uses reasoning-driven DPO-optimized verification chains, outperforming baselines by 11.9 F1 on ProcessBench and 8.5 F1 on PRMBench. ThinkPRM (arXiv 2504.16828) generates verbalized step-wise verification, surpassing full-data discriminative PRMs using only 1% of process labels. PRIME (arXiv 2502.01456, 2025) derives implicit process rewards from outcome-only training for online RL.\n\nThought Anchors (arXiv 2506.19143) and Thought Branches (arXiv 2510.27484, Oct 2025) establish counterfactual resampling as a principled tool for reasoning step importance analysis, but their ~100-rollout-per-step design targets interpretability, not scalable label generation. Beyond Uniform Credit (arXiv 2602.09331, Feb 2026) achieves counterfactual importance weighting by masking reasoning spans and measuring probability drops — no auxiliary models needed — but measures the policy's dependence on a step (probability-drop), not the outcome's sensitivity to step content (outcome-variance).\n\n**Critical distinctions:** (1) CSI vs. advantage (PAV): advantage measures *progress* (V(s_i) − V(s_{i−1})), CSI measures *sensitivity/pivotality* (Var_k[V(prefix || alt_k)]). A \"choose proof strategy\" step may have low advantage but high CSI; a \"standard simplification\" step may have positive advantage but low CSI. (2) CSI vs. masking-based importance (Beyond Uniform Credit): masking measures whether the policy *needs* a step to continue, CSI measures whether the *outcome changes* when step content varies. A step can be essential for continuation (high probability-drop) while all alternatives lead to similar outcomes (low CSI). (3) CSI vs. step-level entropy: entropy H(π(·|prefix)) is a zero-cost proxy for step importance. CSI and entropy are related (high entropy → diverse alternatives → potentially high variance) but capture different information: high-entropy-low-CSI occurs when policy is uncertain but all alternatives yield similar outcomes (e.g., equivalent notations); low-entropy-high-CSI occurs when policy is confident but the chosen path is fragile.\n\n## Proposed Approach\n\nTrain a TCRM-style temporally coherent value function on Qwen3-8B for efficient intermediate-token value estimation V(s). The value function is treated as a modular component — CSI computation works with any value function providing intermediate-token estimates, enabling fallback to MC-rollout-based estimation if TCRM reproduction proves difficult. For each step s_i, sample K=8 alternative steps from the policy model (Qwen3-32B), apply semantic deduplication (embedding cosine similarity filtering) to ensure alternatives are meaningfully different, and compute CI(s_i) = Var_k[V(prefix || alt_k)] over effective alternatives.\n\n**Causal interpretation:** CSI operationalizes a treatment effect heterogeneity estimator — step content as treatment, outcome as response — where Var_k[V(prefix || alt_k)] approximates the variance of individual treatment effects. This connects CSI to counterfactual credit assignment frameworks (CCPO uses structural causal models + ATE for multi-agent credit) and justifies variance as the importance metric.\n\n**Acknowledged confounds:** (1) *Policy diversity*: CSI depends on sampling diversity — low-diversity steps yield low variance regardless of true importance. Mitigated via temperature-controlled sampling and within-step-type normalization. (2) *Value function noise*: TCRM's known accuracy gap (44.9% F1 vs. 78.3% supervised) means V estimates carry noise. Measured CSI variance may conflate outcome sensitivity with estimation noise. Mitigated by verifying TCRM calibration (ProcessBench F1 + ECE) before label generation, and validating CSI labels against full-rollout gold standard on a subset.\n\nGenerate CSI labels over ~75K MATH/GSM8K solution traces from PRM800K (using \"\\n\\n\" / \"Step N:\" delimiters aligned with PRM800K step granularity), supplemented by Qwen3-32B self-generated traces for distribution alignment. Train a tri-signal multi-head PRM (correctness + potential + counterfactual importance) extending DuaShepherd's architecture.\n\n## Evaluation Plan\n\n**Benchmarks:** ProcessBench (error detection F1), PRMBench (arXiv 2501.03124, ACL 2025; fine-grained F1 across 9 error subcategories), MATH500 and GSM8K (best-of-N reranking accuracy, N ∈ {8, 16, 32, 64, 128, 256}), AIME 2024.\n\n**Baselines (all at matched 7B/8B scale, reporting training data volume and total compute):** GenPRM (AAAI 2026), PAV (ICLR 2025), DuaShepherd, R-PRM (arXiv 2503.21295, EMNLP 2025), Qwen2.5-Math-PRM-7B, PRIME (arXiv 2502.01456), ThinkPRM (arXiv 2504.16828; note: generative PRM with different inference-time compute profile — report both training-compute-matched and inference-FLOPs-matched comparisons).\n\n**Core validation experiments:**\n- TCRM reproduction verification: report reproduced ProcessBench F1 (target: ~44.9%) and middle-token calibration (ECE)\n- CSI approximation quality: on 500-1000 traces, compare TCRM-based CSI (K=8) vs. full-rollout gold standard (K=100 full MC completions), report Spearman ρ and top-20% important step overlap rate\n- Alternative quality: report effective K distribution after semantic deduplication; analyze nominal vs. effective K impact\n\n**Ablations:**\n- Signal contribution: tri-signal vs. each dual combination vs. single-signal\n- Entropy baseline: step-level entropy H(π(·|prefix)) as zero-cost importance signal — report (a) entropy alone as PRM training signal, (b) Spearman correlation between entropy and CSI, (c) cases where CSI diverges from entropy\n- K sensitivity: K ∈ {4, 8, 16, 32} effect on CSI quality and downstream PRM performance\n- Importance metric: Var vs. Range vs. StdDev\n- Signal orthogonality: Spearman rank correlation between CSI, correctness, and potential labels\n- Cross-model vs. same-model: 8B value function with 32B-sampled vs. 8B-sampled alternatives\n- Data source: PRM800K traces vs. Qwen3-32B self-generated traces\n- Compute-normalized comparison: allocate CSI-equivalent compute to additional MC rollouts for higher-quality correctness/potential labels; train dual-signal PRM; isolate CSI's information gain from compute gain\n- CSI label stability: inter-run Spearman ρ across independent runs with different random seeds\n\n## Key References\n\n- Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning (ICLR 2025)\n- DuaShepherd: Integrating Stepwise Correctness and Potential Rewards for Mathematical Reasoning (arXiv 2025)\n- Reward Models Are Secretly Value Functions: Temporally Coherent Reward Modeling (arXiv 2026)\n- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning (NeurIPS 2025)\n- CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv 2025)\n- From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models (arXiv 2026)\n- Hindsight Credit Assignment for Long-Horizon LLM Agents (arXiv 2026)\n- Counterfactual Credit Policy Optimization for Multi-Agent Collaboration (arXiv 2026)\n- Contextual Counterfactual Credit Assignment for Multi-Agent RL in LLM Collaboration (arXiv 2026)\n- Reducing Credit Assignment Variance via Counterfactual Reasoning Paths (arXiv 2026)\n- InT: Self-Proposed Interventions Enable Credit Assignment in LLM Reasoning (arXiv 2026)\n- GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (AAAI 2026)\n- Let's Verify Step by Step (ICLR 2024)\n- Thought Anchors: Which LLM Reasoning Steps Matter? (arXiv 2506.19143, ICLR 2026 under review)\n- Thought Branches: Interpreting LLM Reasoning Requires Resampling (arXiv 2510.27484, Oct 2025)\n- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (arXiv 2501.03124, ACL 2025)\n- PRIME: Process Reinforcement through Implicit Rewards (arXiv 2502.01456, 2025)\n- Beyond Uniform Credit: Causal Credit Assignment for Policy Optimization (arXiv 2602.09331, Feb 2026)\n- Reward Models Identify Consistency, Not Causality (arXiv 2502.14619, Feb 2025)\n- R-PRM: Reasoning-Driven Process Reward Modeling (arXiv 2503.21295, EMNLP 2025)\n- ThinkPRM: Process Reward Models That Think (arXiv 2504.16828, 2025)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 700–950 H100-hrs (TCRM training + verification: 130, counterfactual generation: 200, CSI gold-standard validation: 40, tri-head PRM training + ablations: 200, baselines + eval: 100, cross-model/data-source experiments: 80), timeline: 14–18 weeks (1 researcher), estimated_gpu_cost: $1,750–$2,375\n- **human_in_loop**: gpu_hours: 700–950 H100-hrs, timeline: 10–14 weeks, claude_api_cost: $150–300, estimated_gpu_cost: $1,750–$2,375\n- **auto_research**: gpu_hours: 950–1300 H100-hrs (additional sweeps over K, metrics, entropy analysis), timeline: 5–8 weeks, claude_api_cost: $400–800, estimated_gpu_cost: $2,375–$3,250, speed_bottleneck: counterfactual generation throughput (6M+ forward passes, embarrassingly parallel, requires 8+ concurrent H100s)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "ec22337c-bbb3-4f43-937e-fc3f89829659",
+            "type": "user",
+            "uuid": "eee1b74a-035a-4493-bf60-e5de54784031",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T10:51:50.045Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "eee1b74a-035a-4493-bf60-e5de54784031",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "8c9a2be5-1806-4476-a89a-62c02051df51",
+                "timestamp": "2026-05-27T10:51:50.045Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T10:51:50.045Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8c9a2be5-1806-4476-a89a-62c02051df51",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "724f2ea6-21be-4cc7-80ff-66bee0df28c1",
+                "timestamp": "2026-05-27T10:51:50.045Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient information to conduct a thorough evalua…",
+                "leafUuid": "724f2ea6-21be-4cc7-80ff-66bee0df28c1",
+                "sessionId": "87f11418-80fe-419d-b311-e3f77386c335"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate counterfactual step importance for PRM training",
+                "sessionId": "87f11418-80fe-419d-b311-e3f77386c335"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T10:52:17.866Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the three reviewers' independent evaluations and synthesize them as the Meta Judge.\n\n**Reviewer 1:** 中位 28%, range [25%-35%]\n**Reviewer 2:** 中位 27%, range [22%-32%]\n**Reviewer 3:** 中位 25%, range [20%-33%]\n\nThree medians: 28%, 27%, 25%\nMean of medians: 26.7%\nMedian of medians: 27%\nStd of medians: sqrt(((28-26.67)^2 + (27-26.67)^2 + (25-26.67)^2)/3) = sqrt((1.78 + 0.11 + 2.79)/3) = sqrt(1.56) ≈ 1.25%\n\n\nThe standard deviation is around 1.5%, indicating high consistency across reviewers. Now I'm identifying where the reviewers converge and where they diverge—novelty, significance, and related work all show strong agreement, though reviewer 3 tends to be slightly more generous on significance.\n\nAll three reviewers consistently flag the same core issues: the large F1 gap between TCRM noise scenarios, the trivial alternative threats, the incremental nature of combining existing methods, the small sample size at K=8, and the unverified orthogonality of CSI. However, reviewer 2 stands out for uniquely identifying a missing competitor in MC Net Information Gain and emphasizing the shift from discriminative to generative PRMs more strongly than the others, while reviewer 3 rates significance somewhat higher overall.\n\nThe median standard deviation of about 1.5% indicates strong consensus across all three assessments, so I should anchor to the median values and tighten my confidence interval. Since the reviewers converge on the same fundamental evaluation—that this is well-executed incremental work with solid related work coverage but constrained by novelty and technical risks—I need to verify the MC Net Information Gain paper that reviewer 2 flagged, as this could be a meaningful gap in the competitive landscape.\n\nFor the final probability estimate, the high consistency lets me narrow the range: the lower bounds cluster around 22%, upper bounds around 33%, and medians around 27%, so I'll settle on [22%-32%] with a median of 27%.\n\nNow I'm checking the resource estimates from the proposal against what the reviewers flagged in their technical analysis, and I need to verify the MC Net Information Gain paper to ground the implementation assessment.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "724f2ea6-21be-4cc7-80ff-66bee0df28c1",
+            "isSidechain": false,
+            "requestId": "req_011CbSwrpDsk8Mo2XdYpuYrA",
+            "type": "assistant",
+            "uuid": "f872b14f-3c33-40b6-a8b3-dd775b6dbd75",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfDvewZVoAxpGrSxrxe9b2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17742,
+                "cache_read_input_tokens": 16543,
+                "output_tokens": 1124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 17742,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1124,
+                    "cache_read_input_tokens": 16543,
+                    "cache_creation_input_tokens": 17742,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 17742
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T10:52:17.938Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me first verify the MC Net Information Gain paper (arXiv 2603.17815) that only Reviewer 2 flagged as a missing competitor — this could be significant."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f872b14f-3c33-40b6-a8b3-dd775b6dbd75",
+            "isSidechain": false,
+            "requestId": "req_011CbSwrpDsk8Mo2XdYpuYrA",
+            "type": "assistant",
+            "uuid": "9902268e-df7a-4fdd-8312-ec6cdafd1924",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfDvewZVoAxpGrSxrxe9b2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17742,
+                "cache_read_input_tokens": 16543,
+                "output_tokens": 1124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 17742,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1124,
+                    "cache_read_input_tokens": 16543,
+                    "cache_creation_input_tokens": 17742,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 17742
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T10:52:17.940Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EeYQ2FHqKZR7AUnNHLtDnh",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9902268e-df7a-4fdd-8312-ec6cdafd1924",
+            "isSidechain": false,
+            "requestId": "req_011CbSwrpDsk8Mo2XdYpuYrA",
+            "type": "assistant",
+            "uuid": "7c4f35f8-7d83-4dee-83a3-0a1348b77735",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfDvewZVoAxpGrSxrxe9b2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17742,
+                "cache_read_input_tokens": 16543,
+                "output_tokens": 1124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 17742,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1124,
+                    "cache_read_input_tokens": 16543,
+                    "cache_creation_input_tokens": 17742,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 17742
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T10:52:17.947Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01EeYQ2FHqKZR7AUnNHLtDnh",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c4f35f8-7d83-4dee-83a3-0a1348b77735",
+            "isSidechain": false,
+            "promptId": "ec22337c-bbb3-4f43-937e-fc3f89829659",
+            "type": "user",
+            "uuid": "ce4768bb-eb48-4c53-8191-551ceb8a7284",
+            "toolUseResult": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            },
+            "sourceToolAssistantUUID": "7c4f35f8-7d83-4dee-83a3-0a1348b77735",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T10:52:20.788Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019QnFbyS7kadpBMjPeLVymJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2603.17815 \"Monte Carlo Net Information Gain\" process supervision PRM"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce4768bb-eb48-4c53-8191-551ceb8a7284",
+            "isSidechain": false,
+            "requestId": "req_011CbSwtsQfxZ7DvAzsi6EH9",
+            "type": "assistant",
+            "uuid": "ba142dcb-b90b-4cce-8b75-2002a10f6559",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YSmobWi1SLnvu4G2KCWDuL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1652,
+                "cache_read_input_tokens": 34285,
+                "output_tokens": 74,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1652,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 74,
+                    "cache_read_input_tokens": 34285,
+                    "cache_creation_input_tokens": 1652,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1652
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T10:52:20.791Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Claude requested permissions to use WebSearch, but you haven't granted it yet.",
+              "is_error": true,
+              "tool_use_id": "toolu_019QnFbyS7kadpBMjPeLVymJ"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba142dcb-b90b-4cce-8b75-2002a10f6559",
+            "isSidechain": false,
+            "promptId": "ec22337c-bbb3-4f43-937e-fc3f89829659",
+            "type": "user",
+            "uuid": "7b9278b6-897d-47ec-bc32-24d56fc5c084",
+            "toolUseResult": "Error: Claude requested permissions to use WebSearch, but you haven't granted it yet.",
+            "sourceToolAssistantUUID": "ba142dcb-b90b-4cce-8b75-2002a10f6559",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T10:52:24.807Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DsVapRsYNSxseJKhQdVoS5",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2603.17815 process reward model information gain step importance"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b9278b6-897d-47ec-bc32-24d56fc5c084",
+            "isSidechain": false,
+            "requestId": "req_011CbSwu63BgTfgEjmPbk8d8",
+            "type": "assistant",
+            "uuid": "d413cf30-a7f0-4c18-ae20-8d10b35dd766",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BQ8Jdq3CPgsC4qTWCL7L2T",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 111,
+                "cache_read_input_tokens": 35937,
+                "output_tokens": 67,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 111,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 67,
+                    "cache_read_input_tokens": 35937,
+                    "cache_creation_input_tokens": 111,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 111
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T10:52:24.808Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Claude requested permissions to use WebSearch, but you haven't granted it yet.",
+              "is_error": true,
+              "tool_use_id": "toolu_01DsVapRsYNSxseJKhQdVoS5"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d413cf30-a7f0-4c18-ae20-8d10b35dd766",
+            "isSidechain": false,
+            "promptId": "ec22337c-bbb3-4f43-937e-fc3f89829659",
+            "type": "user",
+            "uuid": "d6209144-fc36-445c-8717-be7e773d57bb",
+            "toolUseResult": "Error: Claude requested permissions to use WebSearch, but you haven't granted it yet.",
+            "sourceToolAssistantUUID": "d413cf30-a7f0-4c18-ae20-8d10b35dd766",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-27T10:52:33.104Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "It seems WebSearch requires permission. Let me proceed with the analysis based on the information available from the three reviewers. I'll note that I couldn't verify the MC Net Information Gain paper independently, but since only one reviewer (R2) flagged it, and the other two didn't find it in their independent searches, I should treat it as a potential outlier finding and handle it appropriately.\n\nLet me compile the Meta Judge output now.\n\nKey calculations:\n- Three medians: 28%, 27%, 25%\n- Std = sqrt(((28-26.67)^2 + (27-26.67)^2 + (25-26.67)^2)/3) = sqrt((1.78 + 0.11 + 2.79)/3) = sqrt(1.56) ≈ 1.25%\n\n\n- Using sample standard deviation instead gives sqrt(2.34) ≈ 1.53%, but either way the standard deviation is well below 3%, indicating strong consistency across the three estimates.\n\nNow I'll generate the Meta Judge output.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6209144-fc36-445c-8717-be7e773d57bb",
+            "isSidechain": false,
+            "requestId": "req_011CbSwuNyfLnsyWR7ipPbca",
+            "type": "assistant",
+            "uuid": "7d9e7476-c3b4-446e-a9dc-1bc585579a4c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WCUzcjp1HLENYq1PY9PeXb",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 102,
+                "cache_read_input_tokens": 36048,
+                "output_tokens": 2715,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 102,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2715,
+                    "cache_read_input_tokens": 36048,
+                    "cache_creation_input_tokens": 102,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 102
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-27T10:53:27.257Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I wasn't able to verify the MC Net Information Gain paper via WebSearch due to permission constraints. I'll proceed with the Meta Judge synthesis based on the three reviews, treating R2's unique finding appropriately (as a potential outlier that warrants noting but not heavy weighting without independent verification).\n\n---\n\n【阶段】: Meta Judge\n\n【三次中位】: [28%, 27%, 25%]  std=1.5%\n\n【共识维度】:\n- **Novelty = 中**（3/3 一致）：三位审稿人均认为核心贡献是 Thought Anchors + TCRM + DuaShepherd 的组合性工作，\"variance of value under counterfactual alternatives\" 是自然且可预测的设计选择，在因果推断视角下属标准操作的领域迁移。\n- **Significance = 中**（3/3 基本一致，R3 稍宽松为\"中偏强\"）：研究问题重要且方向正确，但 expected marginal contribution 有限——即使 positive result，审稿人更可能反应 \"makes sense\" 而非 \"surprising\"。Pipeline 复杂性限制可推广性。\n- **Related Work = 强**（3/3 一致）：覆盖极为全面，13+ 篇核心相关工作均被准确引用和恰当定位，三重 critical distinctions（CSI vs. advantage / masking / entropy）论述清晰有效。\n- **TCRM 噪声风险 = 致命级隐患**（3/3 一致）：44.9% vs 78.3% F1 的 33 点差距意味着 V 估计含大量噪声，CSI = Var_k[V(…)] 可能主要反映估计噪声而非真实 outcome sensitivity。三位均认为这是整条逻辑链最脆弱的环节。\n- **Trivial alternative 威胁真实**（3/3 一致）：entropy 作为零成本代理 + compute-normalized MC rollout 扩展均可能消解 CSI 增量价值。Proposal 诚实列出 ablation 是加分项，但威胁本身是 make-or-break。\n- **K=8 样本量不足风险**（3/3 一致）：经 semantic dedup 后 effective K 可能降至 4-5，variance 估计可靠性存疑。\n- **CSI 正交性未验证**（3/3 一致）：CSI 是否与 correctness/potential 提供正交信息是 tri-signal 架构的核心前提，但纯属未经验证的 hypothesis。\n- **\"Elaborate combination\" 拒稿风险**（3/3 一致）：审稿人很可能评价为 \"well-executed engineering contribution but limited novelty\"，各组件原创方贡献更大。\n\n【异常维度】:\n- **MC Net Information Gain (arXiv 2603.17815) 作为未引用竞争者**：仅 R2 提出。该论文据称用信息论方法估计 step importance 生成 PRM label，与 CSI 目标高度重叠。**未能通过 WebSearch 独立验证此论文的存在和内容**，因此降权处理——但如果属实，是 Related Work 的一个缺口，可能影响 Novelty 评估。建议作者自行核实。\n- **\"Generative PRM 正在超越 discriminative PRM\" 的范式担忧**：R2 较强调此点（GenPRM/ThinkPRM/R-PRM 代表范式转型），R1 和 R3 提及但未作为主要风险。降权处理——discriminative 和 generative PRM 仍共存于 2026 文献中，尚不构成致命性范式淘汰。\n- **R3 给 Significance \"中偏强\"**：相对 R1/R2 的 \"中\" 略宽松，理由是 pivotality 概念对 LLM reasoning 和 verification 有广泛意义。R1/R2 的 \"中\" 更有代表性，R3 的微偏差不改变整体判断。\n\n【最终概率】: [22% - 32%] 中位 27%\n\n【一致性】: 高（std=1.5%，三位审稿人在 Novelty/Significance/Related Work 判定、核心风险识别、概率区间上高度收敛）\n\n【综合理由】:\n三位审稿人的评估高度一致，std 仅 1.5%，rubric 维度判定完全收敛（Novelty=中, Significance=中, Related Work=强）。核心共识清晰：这是一个 **crafted-well incremental combination work**——研究问题定位准确、领域覆盖全面、实验设计周密，但 idea 内核（Thought Anchors insight + TCRM efficiency + DuaShepherd architecture 的桥接）缺乏 surprising intellectual contribution。概率上限被 Novelty 锁定——即使所有实验结果 positive，审稿人的预期反应是 \"reasonable and expected\" 而非 \"this changes how I think about PRM training\"。概率下限由 TCRM 噪声风险和 trivial alternative 威胁决定——如果 CSI 与 entropy 高度相关或 TCRM-based CSI 与 gold standard 低一致，core claim 直接被否定。\n\n在高一致性下取中位附近：中位 27%，区间 [22%-32%]。上界 32% 对应最乐观场景（CSI 与 entropy 低相关、TCRM-CSI 高质量、tri-signal 显著优于 dual-signal、compute-normalized 比较 favorable）；下界 22% 对应任一核心风险暴露（TCRM 噪声过大、entropy proxy 接近等价、或 R2 所提 MC Net Info Gain 确实是直接竞争者导致 novelty 进一步降低）。\n\nR2 提出的 MC Net Information Gain 论文未能独立验证，不作为主要降分依据，但标记为待确认风险。如属实，Novelty 评估可能需从 \"中\" 降为 \"中偏弱\"，概率中位可能降至 24-25%。\n\n【建议】: 不推荐（中位 27% 低于 36% 通过阈值，且三位审稿人一致认为 idea 内核 novelty 不足以确保中稿。即使实验完美执行，\"well-executed incremental combination\" 的定位限制了概率天花板约 32-35%，仍处于 AAAI borderline 偏下。）\n\n【实施评估】:\n- **计算资源**: 700-1300 H100-hrs（视自动化程度而定）。核心瓶颈是 counterfactual generation（6M+ forward passes），需 8+ concurrent H100s 并行。TCRM 训练 ~130 hrs, CSI 生成 ~200 hrs, tri-head PRM 训练+消融 ~200 hrs, baselines+eval ~100 hrs。预估 GPU 成本 $1,750-$3,250。\n- **数据需求**: PRM800K（公开可得）+ Qwen3-32B 自生成 traces。~75K MATH/GSM8K solution traces。ProcessBench、PRMBench（ACL 2025）、MATH500、GSM8K、AIME 2024 均为公开 benchmark。数据可得性无障碍。\n- **人工介入**: 最低限度——CSI gold-standard validation 子集（500-1000 traces）的 full-rollout 生成需要计算但不需人工标注。主要人工介入是实验设计调优和结果分析。\n- **训练需求**: 需要训练 (1) TCRM value function（Qwen3-8B 基础），(2) tri-signal PRM（7B/8B 规模），(3) 全部消融变体。模型规模适中（8B），单次训练可控。\n- **新 Benchmark**: 不需要构建新 benchmark。所有评测使用现有公开 benchmark（ProcessBench, PRMBench, MATH500, GSM8K, AIME 2024）。\n- **预估周期**: 单人 14-18 周（手动）；有 API 辅助 10-14 周；全自动 5-8 周。瓶颈在 TCRM 复现验证和大规模 counterfactual generation throughput。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d9e7476-c3b4-446e-a9dc-1bc585579a4c",
+            "isSidechain": false,
+            "requestId": "req_011CbSwuNyfLnsyWR7ipPbca",
+            "type": "assistant",
+            "uuid": "d813d31e-123d-41a5-8652-cebe38bea355",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "87f11418-80fe-419d-b311-e3f77386c335",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WCUzcjp1HLENYq1PY9PeXb",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 102,
+                "cache_read_input_tokens": 36048,
+                "output_tokens": 2715,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 102,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2715,
+                    "cache_read_input_tokens": 36048,
+                    "cache_creation_input_tokens": 102,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 102
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient information to conduct a thorough evalua…",
+                "leafUuid": "d813d31e-123d-41a5-8652-cebe38bea355",
+                "sessionId": "87f11418-80fe-419d-b311-e3f77386c335"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate counterfactual step importance for PRM training",
+                "sessionId": "87f11418-80fe-419d-b311-e3f77386c335"
+              }
+            }
+          ],
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-a-meta-judge-3-proposal-meta-judge-1-copy-44.md"
+}

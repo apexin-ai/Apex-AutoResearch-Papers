@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "id": "72c94c061fa35d6683f7",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the full file at /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_002_k5",
+  "task_key": "agent-a54b1294fb426a272",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a54b1294fb426a272.jsonl",
+    "occurrence": 1,
+    "bytes": 34858,
+    "sha256": "4f89a3833bcee5857f9dbe06c83d54e70883c8238661e5ef4c14917ae6876e7f"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 1,
+    "tool_calls": 1,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 1,
+      "tool_result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T16:10:18.384Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the full file at /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_002_k57_extended_7topo.py and report back the entire contents. I need to understand:\n1. The 7 topology plim functions - their signatures, parameters, and return values\n2. The GPU framework structure - how tensors are created, device handling\n3. How C matrices are generated and used\n4. The overall script structure and output format\n\nRead the complete file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ef981d00-655a-40ab-b613-a59407a7199d",
+            "agentId": "a54b1294fb426a272",
+            "type": "user",
+            "uuid": "5477a2e9-d0ec-4868-8d1e-68effd7f85f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T16:10:19.481Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the complete file for you."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5477a2e9-d0ec-4868-8d1e-68effd7f85f7",
+            "isSidechain": true,
+            "agentId": "a54b1294fb426a272",
+            "requestId": "req_011CbE7UxoK7M1rSp1Z4um1e",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "87a8a6c6-9cf9-4a55-a013-8933cad9b9ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GSNHPLq4hUTzvcy6FHcXMk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15662,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15662,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T16:10:19.825Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A7khhPMWtkgocHBF9gH7NY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan_002_k57_extended_7topo.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87a8a6c6-9cf9-4a55-a013-8933cad9b9ad",
+            "isSidechain": true,
+            "agentId": "a54b1294fb426a272",
+            "requestId": "req_011CbE7UxoK7M1rSp1Z4um1e",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bbec004f-7b2d-42bc-806a-13dc17bc062d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GSNHPLq4hUTzvcy6FHcXMk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15662,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 107,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15662
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 107,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 15662,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15662,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T16:10:19.841Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A7khhPMWtkgocHBF9gH7NY",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tPlan 002 Extended: All 7 topologies × K={3,5,7}\n4\t\n5\tTopologies:\n6\t  1. Confounding: A→T, A→Y, T→Y\n7\t  2. Mediation: T→A→Y\n8\t  3. Collider: T→A←Y\n9\t  4. Exposure: A→Y\n10\t  5. M-bias: U1→{A,T}, U2→{A,Y}, T→Y\n11\t  6. IV: Z→A→Y, U→{A,Y}\n12\t  7. Front-door: T→M→Y, U→{T,Y}\n13\t\n14\tFor each topology × K: 100k random K×K confusion matrices (Dirichlet),\n15\tplim-based bias metrics including tau_specific_sign_flip (key paper claim).\n16\t\"\"\"\n17\t\n18\timport torch\n19\timport numpy as np\n20\timport time\n21\timport os\n22\timport sys\n23\t\n24\tK_VALUES = [3, 5, 7]\n25\tN_RANDOM = 100_000\n26\tN_LARGE = 5_000_000\n27\tSEED = 42\n28\tDEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')\n29\tDTYPE = torch.float64\n30\tOUT_DIR = os.path.dirname(os.path.abspath(__file__))\n31\t\n32\t# ================================================================\n33\t# Parameter Pools (K=3 values match plan_001 exactly)\n34\t# ================================================================\n35\t_ALPHA_POOL  = [1.5, -1.0, 0.8, -0.5, 1.2, -0.7]\n36\t_BETA_A_POOL = [1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n37\t_BETA_POOL   = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2]\n38\t_GAMMA_POOL  = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n39\t_DELTA_POOL  = [0.0, 0.8, -0.6, 0.5, -0.4, 0.3, -0.2]\n40\t_DT_POOL     = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n41\t_DY_POOL     = [0.0, 0.8, 0.6, -0.5, 0.4, -0.3, 0.2]\n42\t_MBIAS_A1_POOL = [0.0, 0.8, -0.5, 0.6, -0.4, 0.5, -0.3]\n43\t_MBIAS_A2_POOL = [0.0, 0.6, 0.9, -0.4, 0.7, -0.3, 0.5]\n44\t_IV_DZ_POOL = [0.0, 1.0, -0.5, 0.8, -0.4, 0.6, -0.3]\n45\t_IV_DU_POOL = [0.0, 0.8, 0.6, -0.5, 0.7, -0.3, 0.4]\n46\t_FD_GAMMA_POOL = [0.0, 0.5, -0.3, 0.4, -0.2, 0.3, -0.1]\n47\t_FD_DELTA_POOL = [0.0, 1.0, -0.8, 0.7, -0.5, 0.4, -0.3]\n48\t\n49\t\n50\tdef make_p_A(K):\n51\t    if K == 3:\n52\t        return np.array([0.40, 0.35, 0.25])\n53\t    raw = np.array([1.0 / i for i in range(1, K + 1)])\n54\t    return raw / raw.sum()\n55\t\n56\t\n57\tdef make_all_params(K):\n58\t    p_A = make_p_A(K)\n59\t    return dict(\n60\t        confounding=dict(p_A=p_A, alpha=np.array(_ALPHA_POOL[:K-1]),\n61\t                         beta_A=np.array(_BETA_A_POOL[:K-1]), beta_T=2.0, sigma_T=1.0),\n62\t        mediation=dict(tau=0.5, gamma=np.array(_GAMMA_POOL[:K]),\n63\t                       delta=np.array(_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n64\t        collider=dict(tau=1.0, g=np.zeros(K), dT=np.array(_DT_POOL[:K]),\n65\t                      dY=np.array(_DY_POOL[:K])),\n66\t        exposure=dict(beta=np.array(_BETA_POOL[:K]), p_A=p_A),\n67\t        mbias=dict(tau=1.0, delta_coef=1.0, lam=1.0, g=np.zeros(K),\n68\t                   a1=np.array(_MBIAS_A1_POOL[:K]), a2=np.array(_MBIAS_A2_POOL[:K])),\n69\t        iv=dict(lam=1.0, g=np.zeros(K), dZ=np.array(_IV_DZ_POOL[:K]),\n70\t                dU=np.array(_IV_DU_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n71\t        frontdoor=dict(alpha_U=1.0, lam_U=1.0, gamma=np.array(_FD_GAMMA_POOL[:K]),\n72\t                       delta=np.array(_FD_DELTA_POOL[:K]), beta=np.array(_BETA_POOL[:K])),\n73\t    )\n74\t\n75\t\n76\t# ================================================================\n77\t# DGP Generators\n78\t# ================================================================\n79\tdef _softmax_rows(logits):\n80\t    e = np.exp(logits - logits.max(axis=-1, keepdims=True))\n81\t    return e / e.sum(axis=-1, keepdims=True)\n82\t\n83\t\n84\tdef _sample_cat(probs, rng):\n85\t    cum = np.cumsum(probs, axis=1)\n86\t    u = rng.uniform(size=probs.shape[0])[:, None]\n87\t    return (u >= cum).sum(axis=1).astype(int)\n88\t\n89\t\n90\tdef gen_confounding(K, N, p, rng):\n91\t    A = rng.choice(K, size=N, p=p['p_A'])\n92\t    D = np.zeros((N, K - 1))\n93\t    for j in range(K - 1):\n94\t        D[:, j] = (A == j + 1).astype(float)\n95\t    T = D @ p['alpha'] + rng.normal(0, p['sigma_T'], N)\n96\t    Y = p['beta_T'] * T + D @ p['beta_A'] + rng.normal(0, 1, N)\n97\t    return T, Y, A\n98\t\n99\t\n100\tdef gen_mediation(K, N, p, rng):\n101\t    T = rng.binomial(1, 0.5, N).astype(float)\n102\t    logits = p['gamma'][None, :] + p['delta'][None, :] * T[:, None]\n103\t    A = _sample_cat(_softmax_rows(logits), rng)\n104\t    D = np.zeros((N, K - 1))\n105\t    for j in range(K - 1):\n106\t        D[:, j] = (A == j + 1)\n107\t    Y = p['beta'][0] + D @ p['beta'][1:] + p['tau'] * T + rng.normal(0, 1, N)\n108\t    return T, Y, A\n109\t\n110\t\n111\tdef gen_collider(K, N, p, rng):\n112\t    T = rng.normal(0, 1, N)\n113\t    Y = p['tau'] * T + rng.normal(0, 1, N)\n114\t    logits = p['g'][None, :] + p['dT'][None, :] * T[:, None] + p['dY'][None, :] * Y[:, None]\n115\t    A = _sample_cat(_softmax_rows(logits), rng)\n116\t    return T, Y, A\n117\t\n118\t\n119\tdef gen_exposure(K, N, p, rng):\n120\t    A = rng.choice(K, size=N, p=p['p_A'])\n121\t    D = np.zeros((N, K - 1))\n122\t    for j in range(K - 1):\n123\t        D[:, j] = (A == j + 1).astype(float)\n124\t    Y = p['beta'][0] + D @ p['beta'][1:] + rng.normal(0, 1, N)\n125\t    return None, Y, A\n126\t\n127\t\n128\tdef gen_mbias(K, N, p, rng):\n129\t    U1 = rng.normal(0, 1, N)\n130\t    U2 = rng.normal(0, 1, N)\n131\t    T = p['delta_coef'] * U1 + rng.normal(0, 1, N)\n132\t    Y = p['tau'] * T + p['lam'] * U2 + rng.normal(0, 1, N)\n133\t    logits = np.zeros((N, K))\n134\t    for j in range(1, K):\n135\t        logits[:, j] = p['g'][j] + p['a1'][j] * U1 + p['a2'][j] * U2\n136\t    A = _sample_cat(_softmax_rows(logits), rng)\n137\t    return T, Y, A\n138\t\n139\t\n140\tdef gen_iv(K, N, p, rng):\n141\t    Z = rng.binomial(1, 0.5, N).astype(float)\n142\t    U = rng.normal(0, 1, N)\n143\t    eps = rng.normal(0, 1, N)\n144\t    logits = np.zeros((N, K))\n145\t    for j in range(1, K):\n146\t        logits[:, j] = p['g'][j] + p['dZ'][j] * Z + p['dU'][j] * U\n147\t    A = _sample_cat(_softmax_rows(logits), rng)\n148\t    D = np.zeros((N, K - 1))\n149\t    for j in range(K - 1):\n150\t        D[:, j] = (A == j + 1).astype(float)\n151\t    Y = D @ p['beta'][1:] + p['lam'] * U + eps\n152\t    return Z, Y, A\n153\t\n154\t\n155\tdef gen_frontdoor(K, N, p, rng):\n156\t    U = rng.normal(0, 1, N)\n157\t    T = p['alpha_U'] * U + rng.normal(0, 1, N)\n158\t    logits = np.zeros((N, K))\n159\t    for j in range(1, K):\n160\t        logits[:, j] = p['gamma'][j] + p['delta'][j] * T\n161\t    M = _sample_cat(_softmax_rows(logits), rng)\n162\t    D = np.zeros((N, K - 1))\n163\t    for j in range(K - 1):\n164\t        D[:, j] = (M == j + 1).astype(float)\n165\t    Y = D @ p['beta'][1:] + p['lam_U'] * U + rng.normal(0, 1, N)\n166\t    return T, Y, M\n167\t\n168\t\n169\t_GEN_OLS = dict(confounding=gen_confounding, mediation=gen_mediation,\n170\t                collider=gen_collider, mbias=gen_mbias, frontdoor=gen_frontdoor)\n171\t\n172\t\n173\t# ================================================================\n174\t# Sufficient Statistics\n175\t# ================================================================\n176\tclass SuffStats:\n177\t    def __init__(self, T, Y, A, K):\n178\t        self.K = K\n179\t        self.has_T = T is not None\n180\t        N = len(Y)\n181\t        DA = np.zeros((N, K))\n182\t        for k in range(K):\n183\t            DA[:, k] = (A == k).astype(float)\n184\t        self.p_A = DA.mean(0)\n185\t        self.E_Y = Y.mean()\n186\t        self.E_YD = (DA * Y[:, None]).mean(0)\n187\t        if self.has_T:\n188\t            self.E_T = T.mean()\n189\t            self.E_T2 = (T ** 2).mean()\n190\t            self.E_TY = (T * Y).mean()\n191\t            self.E_TD = (DA * T[:, None]).mean(0)\n192\t\n193\t    def to_device(self, dev):\n194\t        self.t_p_A = torch.tensor(self.p_A, dtype=DTYPE, device=dev)\n195\t        self.t_E_Y = torch.tensor(self.E_Y, dtype=DTYPE, device=dev)\n196\t        self.t_E_YD = torch.tensor(self.E_YD, dtype=DTYPE, device=dev)\n197\t        if self.has_T:\n198\t            self.t_E_T = torch.tensor(self.E_T, dtype=DTYPE, device=dev)\n199\t            self.t_E_T2 = torch.tensor(self.E_T2, dtype=DTYPE, device=dev)\n200\t            self.t_E_TY = torch.tensor(self.E_TY, dtype=DTYPE, device=dev)\n201\t            self.t_E_TD = torch.tensor(self.E_TD, dtype=DTYPE, device=dev)\n202\t        return self\n203\t\n204\t\n205\tclass IVSuffStats:\n206\t    def __init__(self, Z, Y, A, K):\n207\t        self.K = K\n208\t        z1 = Z == 1; z0 = Z == 0\n209\t        self.RF = Y[z1].mean() - Y[z0].mean()\n210\t        self.FS = np.zeros(K)\n211\t        for k in range(K):\n212\t            self.FS[k] = (A[z1] == k).mean() - (A[z0] == k).mean()\n213\t\n214\t    def to_device(self, dev):\n215\t        self.t_RF = torch.tensor(self.RF, dtype=DTYPE, device=dev)\n216\t        self.t_FS = torch.tensor(self.FS, dtype=DTYPE, device=dev)\n217\t        return self\n218\t\n219\t\n220\t# ================================================================\n221\t# GPU-Batched Plim\n222\t# ================================================================\n223\tdef plim_with_T(ss, C):\n224\t    B, K = C.shape[0], ss.K\n225\t    dim = K + 1\n226\t    q = C @ ss.t_p_A\n227\t    ct = C @ ss.t_E_TD\n228\t    cy = C @ ss.t_E_YD\n229\t    EZZ = torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)\n230\t    EZZ[:, 0, 0] = 1.0\n231\t    EZZ[:, 0, 1] = ss.t_E_T; EZZ[:, 1, 0] = ss.t_E_T\n232\t    EZZ[:, 1, 1] = ss.t_E_T2\n233\t    EZZ[:, 0, 2:] = q[:, 1:]; EZZ[:, 2:, 0] = q[:, 1:]\n234\t    EZZ[:, 1, 2:] = ct[:, 1:]; EZZ[:, 2:, 1] = ct[:, 1:]\n235\t    idx = torch.arange(K - 1, device=C.device)\n236\t    EZZ[:, idx + 2, idx + 2] = q[:, 1:]\n237\t    EZY = torch.zeros(B, dim, dtype=DTYPE, device=C.device)\n238\t    EZY[:, 0] = ss.t_E_Y; EZY[:, 1] = ss.t_E_TY; EZY[:, 2:] = cy[:, 1:]\n239\t    return torch.linalg.solve(EZZ, EZY)\n240\t\n241\t\n242\tdef plim_exposure(ss, C):\n243\t    B, K = C.shape[0], ss.K\n244\t    dim = K\n245\t    q = C @ ss.t_p_A\n246\t    cy = C @ ss.t_E_YD\n247\t    EZZ = torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)\n248\t    EZZ[:, 0, 0] = 1.0\n249\t    EZZ[:, 0, 1:] = q[:, 1:]; EZZ[:, 1:, 0] = q[:, 1:]\n250\t    idx = torch.arange(K - 1, device=C.device)\n251\t    EZZ[:, idx + 1, idx + 1] = q[:, 1:]\n252\t    EZY = torch.zeros(B, dim, dtype=DTYPE, device=C.device)\n253\t    EZY[:, 0] = ss.t_E_Y; EZY[:, 1:] = cy[:, 1:]\n254\t    return torch.linalg.solve(EZZ, EZY)\n255\t\n256\t\n257\tdef plim_iv_batched(ss, C):\n258\t    FS_star = C @ ss.t_FS\n259\t    denom = FS_star[:, 1]\n260\t    nan_val = torch.tensor(float('nan'), dtype=DTYPE, device=C.device)\n261\t    result = torch.where(denom.abs() < 1e-8, nan_val, ss.t_RF / denom)\n262\t    return result.unsqueeze(1)\n263\t\n264\t\n265\t# ================================================================\n266\t# Random C Generation\n267\t# ================================================================\n268\tdef gen_random_C(K, N, device, seed=SEED, min_diag=None):\n269\t    rng = np.random.default_rng(seed)\n270\t    C = np.zeros((N, K, K))\n271\t    if min_diag is not None and min_diag > 0:\n272\t        for j in range(K):\n273\t            diag = rng.uniform(min_diag, 1.0, N)\n274\t            offdiag = rng.dirichlet(np.ones(K - 1), N) * (1.0 - diag)[:, None]\n275\t            col = np.zeros((N, K))\n276\t            col[:, j] = diag\n277\t            off_idx = 0\n278\t            for i in range(K):\n279\t                if i != j:\n280\t                    col[:, i] = offdiag[:, off_idx]\n281\t                    off_idx += 1\n282\t            C[:, :, j] = col\n283\t    else:\n284\t        for j in range(K):\n285\t            C[:, :, j] = rng.dirichlet(np.ones(K), N)\n286\t    return torch.tensor(C, dtype=DTYPE, device=device)\n287\t\n288\t\n289\t# ================================================================\n290\t# Metrics (threshold=0.01 for violation, matching plan_001)\n291\t# ================================================================\n292\tdef compute_metrics(plim_batch, plim_true, tau_idx=None):\n293\t    valid = torch.isfinite(plim_batch).all(dim=1)\n294\t    n_valid = valid.sum().item()\n295\t    if n_valid == 0:\n296\t        base = {k: float('nan') for k in\n297\t                ['violation', 'sign_flip', 'amplification']}\n298\t        base['n_valid'] = 0\n299\t        return base\n300\t\n301\t    pb = plim_batch[valid]\n302\t    diff = pb - plim_true.unsqueeze(0)\n303\t\n304\t    violation = (diff.abs() > 0.01).any(dim=1).float().mean().item()\n305\t\n306\t    nz = plim_true.abs() > 1e-6\n307\t    if nz.any():\n308\t        sign_flip = ((torch.sign(pb[:, nz]) != torch.sign(plim_true[nz]).unsqueeze(0))\n309\t                     ).any(dim=1).float().mean().item()\n310\t    else:\n311\t        sign_flip = 0.0\n312\t\n313\t    amplification = (pb.abs() > plim_true.abs().unsqueeze(0) + 1e-6\n314\t                     ).any(dim=1).float().mean().item()\n315\t\n316\t    m = dict(violation=violation, sign_flip=sign_flip,\n317\t             amplification=amplification, n_valid=n_valid)\n318\t\n319\t    if tau_idx is not None:\n320\t        tb = pb[:, tau_idx]\n321\t        tt = plim_true[tau_idx]\n322\t        td = tb - tt\n323\t        m['tau_violation'] = (td.abs() > 0.01).float().mean().item()\n324\t        m['tau_sign_flip'] = (\n325\t            (torch.sign(tb) != torch.sign(tt)) & (tt.abs() > 1e-6)\n326\t        ).float().mean().item()\n327\t        m['tau_amplification'] = (tb.abs() > tt.abs() + 1e-6).float().mean().item()\n328\t        m['tau_bias_mean'] = td.mean().item()\n329\t        m['tau_bias_std'] = td.std().item()\n330\t        m['tau_bias_max'] = td.abs().max().item()\n331\t    return m\n332\t\n333\t\n334\t# ================================================================\n335\t# Worst-case bounds (diag >= threshold)\n336\t# ================================================================\n337\tdef worst_case_ols(plim_fn, ss, K, device, tau_idx=1, thresholds=(0.5, 0.7, 0.9)):\n338\t    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\n339\t    plim_I = plim_fn(ss, I_batch).squeeze(0)\n340\t    results = {}\n341\t    for thr in thresholds:\n342\t        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\n343\t        pb = plim_fn(ss, Cb)\n344\t        valid = torch.isfinite(pb).all(dim=1)\n345\t        pb_v = pb[valid]\n346\t        if len(pb_v) == 0:\n347\t            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\n348\t            continue\n349\t        bias = (pb_v[:, tau_idx] - plim_I[tau_idx]).abs()\n350\t        results[thr] = dict(\n351\t            max_bias=bias.max().item(),\n352\t            mean_bias=bias.mean().item(),\n353\t            p95_bias=torch.quantile(bias, 0.95).item(),\n354\t        )\n355\t    return results\n356\t\n357\t\n358\tdef worst_case_iv(ss, K, device, thresholds=(0.5, 0.7, 0.9)):\n359\t    I_batch = torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)\n360\t    tau_I = plim_iv_batched(ss, I_batch)[0, 0]\n361\t    results = {}\n362\t    for thr in thresholds:\n363\t        Cb = gen_random_C(K, 50_000, device, seed=SEED + int(thr * 1000), min_diag=thr)\n364\t        pb = plim_iv_batched(ss, Cb)[:, 0]\n365\t        valid = torch.isfinite(pb)\n366\t        pb_v = pb[valid]\n367\t        if len(pb_v) == 0:\n368\t            results[thr] = dict(max_bias=float('nan'), mean_bias=float('nan'), p95_bias=float('nan'))\n369\t            continue\n370\t        bias = (pb_v - tau_I).abs()\n371\t        results[thr] = dict(\n372\t            max_bias=bias.max().item(),\n373\t            mean_bias=bias.mean().item(),\n374\t            p95_bias=torch.quantile(bias, 0.95).item(),\n375\t        )\n376\t    return results\n377\t\n378\t\n379\t# ================================================================\n380\t# Main\n381\t# ================================================================\n382\tdef main():\n383\t    t0 = time.time()\n384\t    print(\"=\" * 100)\n385\t    print(\"  PLAN 002 EXTENDED: 7 TOPOLOGIES x K={3,5,7}\")\n386\t    print(\"=\" * 100)\n387\t    print(f\"  Device: {DEVICE}\")\n388\t    if DEVICE.type == 'cuda':\n389\t        print(f\"  GPU: {torch.cuda.get_device_name(0)}\")\n390\t        print(f\"  VRAM: {torch.cuda.get_device_properties(0).total_mem // 1024**3} GB\")\n391\t    print(f\"  N_random={N_RANDOM:,}, N_large={N_LARGE:,}, seed={SEED}\")\n392\t    sys.stdout.flush()\n393\t\n394\t    ALL_TOPOS = ['confounding', 'mediation', 'collider', 'exposure',\n395\t                 'mbias', 'iv', 'frontdoor']\n396\t    all_results = {}\n397\t\n398\t    for K in K_VALUES:\n399\t        params = make_all_params(K)\n400\t        print(f\"\\n{'='*100}\")\n401\t        print(f\"  K = {K}\")\n402\t        print(f\"{'='*100}\")\n403\t        sys.stdout.flush()\n404\t\n405\t        for topo in ALL_TOPOS:\n406\t            tk = time.time()\n407\t            p = params[topo]\n408\t\n409\t            if topo == 'iv':\n410\t                rng = np.random.default_rng(SEED)\n411\t                Z, Y, A = gen_iv(K, N_LARGE, p, rng)\n412\t                ss = IVSuffStats(Z, Y, A, K).to_device(DEVICE)\n413\t\n414\t                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\n415\t                tau_true_t = plim_iv_batched(ss, I_batch)[0, 0]\n416\t                tau_true = tau_true_t.item()\n417\t\n418\t                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\n419\t                plim_all = plim_iv_batched(ss, C_rand)\n420\t                metrics = compute_metrics(plim_all, tau_true_t.unsqueeze(0), tau_idx=0)\n421\t\n422\t                wc = worst_case_iv(ss, K, DEVICE)\n423\t                metrics['worst_case'] = wc\n424\t                all_results[f\"{topo}_K{K}\"] = metrics\n425\t\n426\t                print(f\"\\n  {topo} K={K}: tau_true(Wald)={tau_true:.6f}  \"\n427\t                      f\"RF={ss.RF:.6f}  FS={np.array2string(ss.FS, precision=4)}  \"\n428\t                      f\"valid={metrics['n_valid']}/{N_RANDOM}\")\n429\t\n430\t            elif topo == 'exposure':\n431\t                rng = np.random.default_rng(SEED)\n432\t                _, Y, A = gen_exposure(K, N_LARGE, p, rng)\n433\t                ss = SuffStats(None, Y, A, K).to_device(DEVICE)\n434\t\n435\t                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\n436\t                plim_true = plim_exposure(ss, I_batch).squeeze(0)\n437\t\n438\t                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\n439\t                plim_all = plim_exposure(ss, C_rand)\n440\t                metrics = compute_metrics(plim_all, plim_true, tau_idx=None)\n441\t\n442\t                wc = worst_case_ols(plim_exposure, ss, K, DEVICE, tau_idx=1)\n443\t                metrics['worst_case'] = wc\n444\t                all_results[f\"{topo}_K{K}\"] = metrics\n445\t                tau_true = plim_true[1].item()\n446\t\n447\t                print(f\"\\n  {topo} K={K}: plim_true={plim_true.cpu().numpy()}\")\n448\t\n449\t            else:\n450\t                rng = np.random.default_rng(SEED)\n451\t                T, Y, A = _GEN_OLS[topo](K, N_LARGE, p, rng)\n452\t                ss = SuffStats(T, Y, A, K).to_device(DEVICE)\n453\t\n454\t                I_batch = torch.eye(K, dtype=DTYPE, device=DEVICE).unsqueeze(0)\n455\t                plim_true = plim_with_T(ss, I_batch).squeeze(0)\n456\t                tau_true = plim_true[1].item()\n457\t\n458\t                C_rand = gen_random_C(K, N_RANDOM, DEVICE, seed=SEED)\n459\t                plim_all = plim_with_T(ss, C_rand)\n460\t                metrics = compute_metrics(plim_all, plim_true, tau_idx=1)\n461\t\n462\t                wc = worst_case_ols(plim_with_T, ss, K, DEVICE, tau_idx=1)\n463\t                metrics['worst_case'] = wc\n464\t                all_results[f\"{topo}_K{K}\"] = metrics\n465\t\n466\t                print(f\"\\n  {topo} K={K}: tau_true={tau_true:.6f}\")\n467\t\n468\t            m = metrics\n469\t            def _pct(x): return f\"{x:.1%}\" if x == x else \"nan\"\n470\t\n471\t            print(f\"    all_coef: violation={_pct(m['violation'])}  \"\n472\t                  f\"sign_flip={_pct(m['sign_flip'])}  amplif={_pct(m['amplification'])}\")\n473\t            if 'tau_violation' in m:\n474\t                print(f\"    tau_spec: violation={_pct(m['tau_violation'])}  \"\n475\t                      f\"sign_flip={_pct(m['tau_sign_flip'])}  amplif={_pct(m['tau_amplification'])}\")\n476\t                print(f\"    tau_bias: mean={m['tau_bias_mean']:.6f}  \"\n477\t                      f\"std={m['tau_bias_std']:.6f}  max={m['tau_bias_max']:.6f}\")\n478\t            for thr, wv in m.get('worst_case', {}).items():\n479\t                print(f\"    worst-case (diag>={thr}): max|dt|={wv['max_bias']:.6f}  \"\n480\t                      f\"mean={wv['mean_bias']:.6f}  P95={wv['p95_bias']:.6f}\")\n481\t            print(f\"    [{time.time()-tk:.1f}s]\")\n482\t            sys.stdout.flush()\n483\t\n484\t    # ================================================================\n485\t    # Summary Table\n486\t    # ================================================================\n487\t    print(f\"\\n{'='*140}\")\n488\t    print(\"  COMPLETE 7-TOPOLOGY x K={{3,5,7}} COMPARISON\")\n489\t    print(f\"{'='*140}\")\n490\t\n491\t    hdr = (f\"  {'Topology':<14} {'K':>3} {'t_spec_sflip':>14} {'all_sflip':>11} \"\n492\t           f\"{'violation':>11} {'amplif':>11} {'WC_d50':>10} {'WC_d70':>10} {'WC_d90':>10}\")\n493\t    print(hdr)\n494\t    print(f\"  {'-'*105}\")\n495\t\n496\t    for topo in ALL_TOPOS:\n497\t        for K_val in K_VALUES:\n498\t            m = all_results[f\"{topo}_K{K_val}\"]\n499\t            ts = m.get('tau_sign_flip', m.get('sign_flip', float('nan')))\n500\t            sf = m.get('sign_flip', float('nan'))\n501\t            v = m.get('tau_violation', m.get('violation', float('nan')))\n502\t            a = m.get('tau_amplification', m.get('amplification', float('nan')))\n503\t\n504\t            wc = m.get('worst_case', {})\n505\t            wc50 = wc.get(0.5, {}).get('max_bias', float('nan'))\n506\t            wc70 = wc.get(0.7, {}).get('max_bias', float('nan'))\n507\t            wc90 = wc.get(0.9, {}).get('max_bias', float('nan'))\n508\t\n509\t            def _f(x, w=11):\n510\t                return f\"{x:>{w}.1%}\" if x == x else f\"{'nan':>{w}}\"\n511\t            def _fw(x, w=10):\n512\t                return f\"{x:>{w}.4f}\" if x == x else f\"{'nan':>{w}}\"\n513\t\n514\t            print(f\"  {topo:<14} {K_val:>3} {_f(ts,14)} {_f(sf)} \"\n515\t                  f\"{_f(v)} {_f(a)} {_fw(wc50)} {_fw(wc70)} {_fw(wc90)}\")\n516\t        print()\n517\t\n518\t    # K-trend analysis\n519\t    print(\"  K-TREND ANALYSIS (tau_specific_sign_flip)\")\n520\t    for topo in ALL_TOPOS:\n521\t        vals = []\n522\t        for K_val in K_VALUES:\n523\t            m = all_results[f\"{topo}_K{K_val}\"]\n524\t            v = m.get('tau_sign_flip', m.get('sign_flip', 0.0))\n525\t            vals.append(v if v == v else 0.0)\n526\t        d = vals[-1] - vals[0]\n527\t        trend = \"WORSENS\" if d > 0.005 else (\"STABLE\" if abs(d) <= 0.005 else \"IMPROVES\")\n528\t        print(f\"  {topo:<14}: K=3 {vals[0]:.1%} -> K=5 {vals[1]:.1%} -> K=7 {vals[2]:.1%}  [{trend}]\")\n529\t\n530\t    print(f\"\\nTotal: {time.time() - t0:.0f}s\")\n531\t\n532\t\n533\tif __name__ == \"__main__\":\n534\t    main()\n535\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bbec004f-7b2d-42bc-806a-13dc17bc062d",
+            "isSidechain": true,
+            "promptId": "ef981d00-655a-40ab-b613-a59407a7199d",
+            "agentId": "a54b1294fb426a272",
+            "type": "user",
+            "uuid": "b2cc85a3-4aaa-4a1a-813c-36f8559eb0d6",
+            "sourceToolAssistantUUID": "bbec004f-7b2d-42bc-806a-13dc17bc062d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T16:10:40.718Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Complete File Contents: plan_002_k57_extended_7topo.py\n\nI've read the entire file. Here's a comprehensive breakdown of the components you requested:\n\n---\n\n### 1. **The 7 Topology Plim Functions**\n\nThe script implements three main plim calculation functions (not 7 separate functions—the 7 topologies are handled by these 3):\n\n**a) `plim_with_T(ss, C)` (Lines 223-239)**\n- **Signature:** Takes `SuffStats` object and batch of C matrices\n- **Parameters:** \n  - `ss`: Sufficient statistics (contains E_T, E_T2, E_TY, E_TD, E_YD, p_A)\n  - `C`: Batch of confusion matrices (B × K × K)\n- **Returns:** Coefficient estimates from solving (B × K+1) linear system\n- **Used for:** Confounding, Mediation, Collider, M-bias, Front-door topologies\n- **Structure:** Constructs (K+1) × (K+1) moment matrices (EZZ) and moment vector (EZY), then solves EZZ⁻¹EZY\n\n**b) `plim_exposure(ss, C)` (Lines 242-254)**\n- **Signature:** Takes `SuffStats` object and batch of C matrices\n- **Parameters:**\n  - `ss`: Sufficient statistics (no T, contains E_YD, p_A)\n  - `C`: Batch of confusion matrices (B × K × K)\n- **Returns:** Coefficient estimates from solving (B × K) linear system\n- **Used for:** Exposure topology (no treatment T)\n- **Structure:** Constructs K × K moment matrices, solves for K coefficients\n\n**c) `plim_iv_batched(ss, C)` (Lines 257-262)**\n- **Signature:** Takes `IVSuffStats` object and batch of C matrices\n- **Parameters:**\n  - `ss`: IV-specific sufficient statistics (RF: reduced form, FS: first stage)\n  - `C`: Batch of confusion matrices (B × K × K)\n- **Returns:** Wald estimator (B × 1) using IV formula\n- **Used for:** IV topology only\n- **Structure:** Computes FS* = C @ FS, returns RF / FS*[1] with NaN handling for near-zero denominators\n\n---\n\n### 2. **GPU Framework Structure**\n\n**Device Management:**\n- Line 28: `DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')`\n- Line 29: `DTYPE = torch.float64` (for numerical precision)\n\n**Tensor Creation:**\n- All plim functions create tensors on C.device (inherited from input C matrices)\n- Lines 229-238: `torch.zeros(B, dim, dim, dtype=DTYPE, device=C.device)` for moment matrices\n- Line 235: `torch.arange(K-1, device=C.device)` for indexing\n- Lines 338, 359: `torch.eye(K, dtype=DTYPE, device=device).unsqueeze(0)` for identity matrices\n- Linear solver: `torch.linalg.solve(EZZ, EZY)` (batched, GPU-optimized)\n\n**Sufficient Statistics Transfer:**\n- `SuffStats.to_device(dev)` (Lines 193-202): Converts numpy arrays to torch tensors\n- `IVSuffStats.to_device(dev)` (Lines 214-217): Converts IV statistics to tensors\n- Returns `self` to enable chaining\n\n---\n\n### 3. **C Matrix Generation**\n\n**`gen_random_C(K, N, device, seed=SEED, min_diag=None)` (Lines 268-286)**\n\n**Parameters:**\n- `K`: Number of confusion categories\n- `N`: Batch size (number of C matrices)\n- `device`: torch device\n- `seed`: RNG seed\n- `min_diag`: Minimum diagonal value (for worst-case analysis)\n\n**Returns:** Torch tensor (N × K × K) of random confusion matrices\n\n**Generation Process:**\n- **Without min_diag:** Each column j sampled from Dirichlet(ones(K))\n- **With min_diag > 0:** \n  - Diagonal: uniform(min_diag, 1.0)\n  - Off-diagonals: Dirichlet(ones(K-1)) × (1 - diag)\n  - Result: Column-stochastic matrices with guaranteed minimum diagonal\n\n**Key Detail:** Dirichlet sampling ensures columns sum to 1 (proper confusion matrices)\n\n---\n\n### 4. **Overall Script Structure and Output Format**\n\n**Main Flow (Lines 382-530):**\n\n1. **Header (Lines 384-392):** Prints device info, GPU specs, hyperparameters\n\n2. **Triple Loop (Lines 398-482):**\n   ```\n   For K in [3, 5, 7]:\n       For topology in [confounding, mediation, collider, exposure, mbias, iv, frontdoor]:\n           Generate data (N_LARGE = 5M samples)\n           Compute sufficient statistics\n           Compute plim_true using identity matrix C=I\n           Generate N_RANDOM=100k random C matrices\n           Compute metrics (violation, sign_flip, amplification)\n           Compute worst-case bounds (diag >= 0.5, 0.7, 0.9)\n           Print results\n   ```\n\n3. **Summary Table (Lines 487-516):**\n   - 7 rows × 3 K-values per row\n   - Columns: Topology, K, tau_specific_sign_flip, all_sign_flip, violation, amplification, WC_d50, WC_d70, WC_d90\n   - Formatting: Percentages (%) for metrics, 4 decimals for worst-case\n\n4. **K-Trend Analysis (Lines 519-528):**\n   - For each topology: Shows K=3 → K=5 → K=7 trend\n   - Classification: WORSENS (delta > 0.5%), STABLE (|delta| <= 0.5%), IMPROVES\n\n5. **Output Example (Line 466):**\n   ```\n   {topo} K={K}: tau_true={value:.6f}\n   ```\n\n**Metrics Computed (Lines 292-331):**\n- `violation`: % of estimates exceeding |diff| > 0.01 threshold\n- `sign_flip`: % with sign disagreement on non-zero coefficients\n- `amplification`: % with |estimate| > |true| + 1e-6\n- `tau_*` variants: Focused on tau coefficient (treatment effect)\n- `tau_bias_*`: Mean, std, max of tau-specific bias\n- `worst_case`: Dict of {threshold: {max_bias, mean_bias, p95_bias}}\n\n**Worst-Case Analysis (Lines 337-376):**\n- Tests matrices with enforced diagonal minimums (0.5, 0.7, 0.9)\n- Computes max, mean, and 95th percentile bias on tau coefficient\n- Separate functions for OLS (`worst_case_ols`) and IV (`worst_case_iv`)\n\n**Total Runtime:** Printed at end (line 530)\n\n---\n\n### Key Implementation Notes:\n\n1. **Batching:** All plim computations are GPU-batched; C matrices are (B × K × K) tensors\n2. **Missing Treatment Handling:** `plim_exposure` and `SuffStats` handle `T=None` via conditional flags\n3. **IV Specificity:** Uses Wald estimator (RF / FS*) rather than moment-based approach\n4. **Seed Control:** SEED=42 with offset for worst-case (SEED + int(thr*1000))\n5. **Paper Claim:** Focuses on `tau_specific_sign_flip` as the key metric (line 499)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2cc85a3-4aaa-4a1a-813c-36f8559eb0d6",
+            "isSidechain": true,
+            "agentId": "a54b1294fb426a272",
+            "requestId": "req_011CbE7V4z8UGLbRVpjhFkxi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a3dc0d77-d70d-4c5e-bea7-549d5f30c06a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "8336aaef-aca4-4681-aaf5-922c1ee2b72e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01B9W3qEFkLcFTDqd5UvQMtA",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 10474,
+                "cache_read_input_tokens": 15662,
+                "output_tokens": 1937,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10474
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1937,
+                    "cache_read_input_tokens": 15662,
+                    "cache_creation_input_tokens": 10474,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10474,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-full-file-at-home-ubuntu-agent-ml-research-prod-0510-projects-causal.md"
+}

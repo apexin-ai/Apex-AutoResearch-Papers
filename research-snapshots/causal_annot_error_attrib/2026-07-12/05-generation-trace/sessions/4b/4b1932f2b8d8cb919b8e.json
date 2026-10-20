@@ -1,0 +1,1855 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1932f2b8d8cb919b8e",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-16 (UTC).** Only recommend ve",
+  "task_key": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/e9ad89c8-7d70-432b-bf1f-58e2870fd5c6.jsonl",
+    "occurrence": 1,
+    "bytes": 147259,
+    "sha256": "bde7855256ebe98fde50481040d3df370949e4444e524dd6c8cea6182b6a229c"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "record": 15,
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:56:32.403Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-16T05:56:32.403Z",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+                "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Latent Trajectory Steering for Claim-Level Hallucination Suppression\",\n  \"core_problem\": \"Existing activation steering methods (ITI, ACT) apply fixed or cluster-averaged steering vectors globally, ignoring that hallucination risk varies sharply across claims within a single generation and that the optimal correction direction depends on the input's specific latent trajectory.\",\n  \"opportunity\": \"Layer-Wise Semantic Dynamics (arxiv 2510.04933) showed that hidden-state trajectories across layers encode robust hallucination signals (velocity, acceleration, convergence). Hallucination Basins (April 2026) formalized basin structure. But both are detection-only. The gap is using per-claim trajectory divergence to COMPUTE input-specific minimal-norm corrections and apply them at critical layers during generation. This yields targeted steering that adapts to each claim rather than applying a fixed truthfulness vector. Feasibility: TransformerLens enables layer-by-layer hidden state extraction; claim boundary detection exists; steering infrastructure from ACT/ITI is reusable.\",\n  \"landscape\": \"ACT (WWW 2025) achieves up to 142% truthfulness improvement on LLaMA via K-means clustered steering vectors + adaptive intensity (ASIC), but vectors are corpus-averages, not input-specific. CLAP (2025, arxiv 2509.09700) uses cross-layer attention probing for detection (outperforms single-layer probes) but proposes no intervention. Hallucination Basins (April 2026, arxiv 2604.04743) proposes geometry-aware latent shifts but admits basin separability is 'strongly task-dependent' and requires expensive basin identification. Monitoring Decoding (2025) intervenes mid-generation but uses expensive external factuality monitors, not internal trajectory signals. The combination of (per-claim trajectory analysis) → (input-specific correction direction) → (lightweight targeted steering) is unexplored.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-16; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T05:56:32.407Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-16T05:56:32.407Z",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T05:56:32.456Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Latent Trajectory Steering for Claim-Level Hallucination Suppression\",\n  \"core_problem\": \"Existing activation steering methods (ITI, ACT) apply fixed or cluster-averaged steering vectors globally, ignoring that hallucination risk varies sharply across claims within a single generation and that the optimal correction direction depends on the input's specific latent trajectory.\",\n  \"opportunity\": \"Layer-Wise Semantic Dynamics (arxiv 2510.04933) showed that hidden-state trajectories across layers encode robust hallucination signals (velocity, acceleration, convergence). Hallucination Basins (April 2026) formalized basin structure. But both are detection-only. The gap is using per-claim trajectory divergence to COMPUTE input-specific minimal-norm corrections and apply them at critical layers during generation. This yields targeted steering that adapts to each claim rather than applying a fixed truthfulness vector. Feasibility: TransformerLens enables layer-by-layer hidden state extraction; claim boundary detection exists; steering infrastructure from ACT/ITI is reusable.\",\n  \"landscape\": \"ACT (WWW 2025) achieves up to 142% truthfulness improvement on LLaMA via K-means clustered steering vectors + adaptive intensity (ASIC), but vectors are corpus-averages, not input-specific. CLAP (2025, arxiv 2509.09700) uses cross-layer attention probing for detection (outperforms single-layer probes) but proposes no intervention. Hallucination Basins (April 2026, arxiv 2604.04743) proposes geometry-aware latent shifts but admits basin separability is 'strongly task-dependent' and requires expensive basin identification. Monitoring Decoding (2025) intervenes mid-generation but uses expensive external factuality monitors, not internal trajectory signals. The combination of (per-claim trajectory analysis) → (input-specific correction direction) → (lightweight targeted steering) is unexplored.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-16; always target the highest-tier venue the contribution level supports — do NOT downgrade venue due to timeline concerns (AI team runs 7x24)\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, note this in resource_estimate but do NOT use it as a reason to target a lower venue.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n- Timeline estimates should reflect AI Agent team speed (7x24, parallel Workers, near-zero idle), not human pace.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "bbb82476-e0c9-47df-83bc-6b4c571f84cb",
+            "type": "user",
+            "uuid": "74e6b8e6-ffad-4d9b-a928-147e547f4948",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T05:56:32.453Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "74e6b8e6-ffad-4d9b-a928-147e547f4948",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "6994d1fa-bdd9-4de2-8802-7f2a1938fa1a",
+                "timestamp": "2026-05-16T05:56:32.453Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T05:56:32.453Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "6994d1fa-bdd9-4de2-8802-7f2a1938fa1a",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "94183298-eb8c-4cb0-93dc-a01abfcdaa30",
+                "timestamp": "2026-05-16T05:56:32.453Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Input-specific trajectory steering for claim-level hallucination suppression",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T05:56:37.047Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to complete a research direction with implementation details. I need to:\n\n1. Search for concurrent work on this topic\n2. Verify feasibility\n3. Find current top-performing open-source models\n4. Verify references\n5. Check venue deadlines\n6. Produce a complete JSON object\n\nLet me start by searching for concurrent work, verifying references, checking venue deadlines, and finding current SOTA models.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94183298-eb8c-4cb0-93dc-a01abfcdaa30",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jSiBLhSfumRe5pX1Ha",
+            "type": "assistant",
+            "uuid": "1b2bc6aa-aef2-4682-a8f3-2fb308229d11",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hqb6snbzNDXpx1Rkd2GY5t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 1521,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1521,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 7269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T05:56:37.525Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll research this thoroughly before producing the final output. Let me search for concurrent work, verify references, check venue deadlines, and find current SOTA models."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b2bc6aa-aef2-4682-a8f3-2fb308229d11",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jSiBLhSfumRe5pX1Ha",
+            "type": "assistant",
+            "uuid": "cee230d3-7270-4833-aaeb-09bc08e3085a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hqb6snbzNDXpx1Rkd2GY5t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 1521,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1521,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 7269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T05:56:43.179Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uo6JDMoTyqkE9VGjLkijUi",
+              "name": "Agent",
+              "input": {
+                "description": "Search concurrent work 2026",
+                "subagent_type": "general-purpose",
+                "prompt": "Search for concurrent work on \"latent trajectory steering\" for hallucination suppression in LLMs, published or posted in 2026. I need to know if anyone is already doing input-specific activation steering based on hidden-state trajectories for hallucination reduction.\n\nUse WebSearch for the following queries:\n1. \"activation steering hallucination 2026 arxiv\"\n2. \"trajectory-based steering LLM hallucination\"\n3. \"per-claim hallucination intervention latent space 2026\"\n4. \"input-specific steering vectors LLM 2026\"\n5. Search arxiv for \"hallucination steering vectors 2026\"\n6. Search OpenReview for ICML 2026 or NeurIPS 2026 submissions related to \"activation steering hallucination\"\n\nReport back what you find - especially any paper that combines (per-claim trajectory analysis) with (input-specific correction) with (targeted steering during generation). Include titles, authors, dates, and URLs where possible."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cee230d3-7270-4833-aaeb-09bc08e3085a",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jSiBLhSfumRe5pX1Ha",
+            "type": "assistant",
+            "uuid": "48676a5f-9e52-4ede-9fa3-e62cffc2141d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hqb6snbzNDXpx1Rkd2GY5t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 1521,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1521,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 7269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T05:56:50.002Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ru3VrRKKgzuH2pfMETfFtf",
+              "name": "Agent",
+              "input": {
+                "description": "Verify references and venues",
+                "subagent_type": "general-purpose",
+                "prompt": "I need you to verify several things using WebSearch:\n\n**Part A: Verify these paper references are real:**\n1. \"Layer-Wise Semantic Dynamics\" arxiv 2510.04933 - verify title, venue, year\n2. \"Hallucination Basins\" April 2026, arxiv 2604.04743 - verify title, date\n3. ACT (WWW 2025) - search \"ACT activation steering truthfulness WWW 2025\" or \"Adaptive Cluster-based Truthfulness steering\"\n4. CLAP arxiv 2509.09700 - \"cross-layer attention probing hallucination\" - verify title\n5. \"Monitoring Decoding\" 2025 hallucination intervention - verify this exists\n\n**Part B: Check conference deadlines (must be AFTER 2026-05-16):**\n1. NeurIPS 2026 - paper submission deadline\n2. AAAI 2027 - paper submission deadline  \n3. ICLR 2027 - paper submission deadline\n4. EMNLP 2026 - paper submission deadline\n5. ACL 2026 ARR deadline (if any rolling deadline still open)\n6. COLM 2026 - deadline if it exists\n\nReport exact deadlines you find, and which ones are still open as of 2026-05-16."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48676a5f-9e52-4ede-9fa3-e62cffc2141d",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jSiBLhSfumRe5pX1Ha",
+            "type": "assistant",
+            "uuid": "24311853-f291-4891-8521-a19e8ed844a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hqb6snbzNDXpx1Rkd2GY5t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 1521,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1521,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 7269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T05:56:55.267Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E5rzWr3LKBkUt4nYjafsgb",
+              "name": "Agent",
+              "input": {
+                "description": "Find SOTA open-source LLMs 2026",
+                "subagent_type": "general-purpose",
+                "prompt": "Use WebSearch to find the current best open-source LLMs as of May 2026. I need this for a research project on activation steering / mechanistic interpretability, so I need models where:\n- Weights are openly available\n- Architecture allows layer-by-layer hidden state extraction (TransformerLens compatible or similar)\n- Models in the 7B-70B parameter range are most relevant\n\nSearch for:\n1. \"best open source LLM 2026\" \n2. \"top open source language model May 2026\"\n3. \"SOTA open source LLM leaderboard 2026\"\n4. \"TransformerLens compatible models 2026\" or \"mechanistic interpretability models 2026\"\n5. Check if LLaMA 4 or any successor is out, or if there are newer model families (Mistral, Qwen, etc.)\n\nReport the top current open-source models with their sizes, release dates, and whether they'd be suitable for mechanistic interpretability / activation steering research."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24311853-f291-4891-8521-a19e8ed844a2",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jSiBLhSfumRe5pX1Ha",
+            "type": "assistant",
+            "uuid": "d890e154-af72-403c-918f-82f46b85224c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hqb6snbzNDXpx1Rkd2GY5t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 1521,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1521,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 7269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T05:57:01.970Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N9GjEyjsXvrt7QQQkFSJ6X",
+              "name": "Agent",
+              "input": {
+                "description": "Check feasibility and baselines",
+                "subagent_type": "general-purpose",
+                "prompt": "Use WebSearch to check feasibility for a research project on \"latent trajectory steering for hallucination suppression\". I need:\n\n1. Search \"github.com activation steering hallucination\" or \"github.com ITI truthful\" - are there reference implementations of activation steering (like ITI or ACT)?\n\n2. Search \"github.com TransformerLens steering vectors\" - what infrastructure exists for extracting and applying steering vectors layer-by-layer?\n\n3. Search for TruthfulQA baseline numbers - what are the current SOTA scores on TruthfulQA for activation steering methods? Search \"TruthfulQA state of the art 2025 2026\"\n\n4. Search for \"FELM benchmark\" or \"FactScore\" or claim-level hallucination benchmarks - what datasets exist for claim-level hallucination evaluation?\n\n5. Search \"GPU hours activation steering experiments\" or check papers for computational cost of running steering vector experiments on 7B-70B models.\n\n6. Search \"hallucination basins github\" or any implementation of the April 2026 paper.\n\nReport what you find about existing implementations, baseline numbers to beat, available datasets, and computational requirements."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d890e154-af72-403c-918f-82f46b85224c",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jSiBLhSfumRe5pX1Ha",
+            "type": "assistant",
+            "uuid": "0f262aeb-5b9c-4a78-bc21-fad7a6a8ee6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hqb6snbzNDXpx1Rkd2GY5t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7269,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 1521,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7269,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 1521,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 7269,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7269
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Latent Trajec…",
+                "leafUuid": "0f262aeb-5b9c-4a78-bc21-fad7a6a8ee6e",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Input-specific trajectory steering for claim-level hallucination suppression",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T05:58:19.934Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ru3VrRKKgzuH2pfMETfFtf",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now I have all the information needed. Here is my comprehensive report:\n\n---\n\n## PART A: Paper Reference Verification\n\n### 1. \"Layer-Wise Semantic Dynamics\" - arxiv 2510.04933\n**VERIFIED - REAL**\n- Full title: \"The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection in Large Language Models\"\n- ArXiv ID: 2510.04933\n- Submitted: October 6, 2025\n- Author: Amir Hameed Mir\n- The paper presents LSD (Layer-wise Semantic Dynamics), a geometric framework for hallucination detection analyzing hidden-state evolution across transformer layers.\n\n### 2. \"Hallucination Basins\" - arxiv 2604.04743\n**VERIFIED - REAL**\n- Full title: \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations\"\n- ArXiv ID: 2604.04743\n- Released: April 6, 2026 (confirmed April 2026)\n- Authors: Kalyan Cherukuri and Lav R. Varshney\n- Presents a dynamical systems framework where hallucinations arise from task-dependent basin structure in latent space.\n\n### 3. ACT (WWW 2025)\n**VERIFIED - REAL**\n- Full title: \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories\"\n- Published in: Proceedings of the ACM Web Conference 2025 (WWW '25), April 28 - May 2, 2025, Sydney, Australia\n- ArXiv: 2406.00034\n- Note: The paper's method is called ACT and uses cluster-based steering vectors, but the full name is \"Adaptive Activation Steering\" (not \"Adaptive Cluster-based Truthfulness\"). The \"cluster-based\" aspect is a key methodological component, not part of the title.\n\n### 4. CLAP - arxiv 2509.09700\n**VERIFIED - REAL**\n- Full title: \"Cross-Layer Attention Probing for Fine-Grained Hallucination Detection\"\n- ArXiv ID: 2509.09700\n- Submitted: September 4, 2025\n- Authors: Malavika Suresh, Rahaf Aljundi, Ikechukwu Nkisi-Orji, Nirmalie Wiratunga\n- CLAP processes LLM activations across the entire residual stream as a joint sequence for hallucination detection.\n\n### 5. \"Monitoring Decoding\" 2025\n**VERIFIED - REAL**\n- Full title: \"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation\"\n- ArXiv: 2503.03106\n- Published at: ACL 2025 Findings (available at aclanthology.org/2025.findings-acl.752)\n- Method: Identifies hallucination-prone tokens during generation using a monitor function, then refines them through tree-based decoding.\n\n---\n\n## PART B: Conference Deadlines (relative to 2026-05-16)\n\n### 1. NeurIPS 2026\n- **Abstract deadline: May 4, 2026 (AOE)** -- PASSED\n- **Full paper deadline: May 6, 2026 (AOE)** -- PASSED\n- Conference: December 6-12, 2026, Sydney, Australia\n- **STATUS: CLOSED** (deadline was ~10 days ago)\n\n### 2. AAAI 2027\n- **Abstract deadline: July 25, 2026**\n- **Full paper deadline: August 1, 2026**\n- Conference: February 16-23, 2027, Montreal, Canada\n- **STATUS: OPEN** (~2.5 months remaining)\n\n### 3. ICLR 2027\n- **No official deadline announced yet.**\n- The official ICLR website only shows ICLR 2026 information. Based on historical patterns, ICLR 2027 submission deadline would likely be around September-October 2026, but nothing is confirmed.\n- **STATUS: NOT YET ANNOUNCED**\n\n### 4. EMNLP 2026\n- **ARR submission deadline: May 25, 2026 (11:59:59 PM UTC-12)**\n- Reviewer registration deadline: May 27, 2026\n- Conference: October 24-29, 2026, Budapest, Hungary\n- **STATUS: OPEN** (~9 days remaining! Very tight.)\n\n### 5. ACL 2026\n- **Commitment deadline: March 14, 2026** -- PASSED\n- Papers needed to be submitted to ARR October 2025 or ARR January 2026 cycles to be eligible for ACL 2026.\n- Conference: July 2-7, 2026, San Diego, California\n- **STATUS: CLOSED for ACL 2026** (commitment deadline passed in March)\n- Note: ARR itself has rolling cycles, and the May 2026 ARR cycle (deadline May 25) feeds into EMNLP 2026, not ACL 2026.\n\n### 6. COLM 2026\n- **Abstract deadline: March 26, 2026** -- PASSED\n- **Full paper deadline: March 31, 2026** -- PASSED\n- Conference: October 6-9, 2026, San Francisco, USA\n- **STATUS: CLOSED** (deadline passed in March)\n\n---\n\n## Summary of Still-Open Deadlines (as of 2026-05-16)\n\n| Conference | Deadline | Days Remaining |\n|-----------|----------|---------------|\n| **EMNLP 2026** (ARR May cycle) | May 25, 2026 | ~9 days |\n| **AAAI 2027** (abstract) | July 25, 2026 | ~70 days |\n| **AAAI 2027** (full paper) | August 1, 2026 | ~77 days |\n| **ICLR 2027** | TBD (likely Sep-Oct 2026) | Not announced |\n\nThe most urgent open deadline is **EMNLP 2026** with only about 9 days left.\n\n---\n\nSources:\n- [NeurIPS 2026 Call for Papers](https://neurips.cc/Conferences/2026/CallForPapers)\n- [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n- [AAAI 2027 Deadline Tracker](http://aideadlines.org/conference/?id=aaai27)\n- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ACL 2026 Main Conference](https://2026.aclweb.org/calls/main_conference_papers/)\n- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [COLM 2026 Call for Papers](https://colmweb.org/cfp.html)\n- [arxiv 2510.04933 - Layer-wise Semantic Dynamics](https://arxiv.org/abs/2510.04933)\n- [arxiv 2604.04743 - Hallucination Basins](https://arxiv.org/abs/2604.04743)\n- [ACT at WWW 2025 (ACM DL)](https://dl.acm.org/doi/10.1145/3696410.3714640)\n- [arxiv 2406.00034 - Adaptive Activation Steering](https://arxiv.org/abs/2406.00034)\n- [arxiv 2509.09700 - CLAP](https://arxiv.org/abs/2509.09700)\n- [arxiv 2503.03106 - Monitoring Decoding](https://arxiv.org/abs/2503.03106)\n- [Monitoring Decoding at ACL Findings](https://aclanthology.org/2025.findings-acl.752.pdf)"
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a06298124b5566e02 (use SendMessage with to: 'a06298124b5566e02' to continue this agent)\n<usage>total_tokens: 26925\ntool_uses: 18\nduration_ms: 89929</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24311853-f291-4891-8521-a19e8ed844a2",
+            "isSidechain": false,
+            "promptId": "bbb82476-e0c9-47df-83bc-6b4c571f84cb",
+            "type": "user",
+            "uuid": "e3fa8205-1da5-499e-af82-ee19e9f4836b",
+            "toolUseResult": {
+              "status": "completed",
+              "prompt": "I need you to verify several things using WebSearch:\n\n**Part A: Verify these paper references are real:**\n1. \"Layer-Wise Semantic Dynamics\" arxiv 2510.04933 - verify title, venue, year\n2. \"Hallucination Basins\" April 2026, arxiv 2604.04743 - verify title, date\n3. ACT (WWW 2025) - search \"ACT activation steering truthfulness WWW 2025\" or \"Adaptive Cluster-based Truthfulness steering\"\n4. CLAP arxiv 2509.09700 - \"cross-layer attention probing hallucination\" - verify title\n5. \"Monitoring Decoding\" 2025 hallucination intervention - verify this exists\n\n**Part B: Check conference deadlines (must be AFTER 2026-05-16):**\n1. NeurIPS 2026 - paper submission deadline\n2. AAAI 2027 - paper submission deadline  \n3. ICLR 2027 - paper submission deadline\n4. EMNLP 2026 - paper submission deadline\n5. ACL 2026 ARR deadline (if any rolling deadline still open)\n6. COLM 2026 - deadline if it exists\n\nReport exact deadlines you find, and which ones are still open as of 2026-05-16.",
+              "agentId": "a06298124b5566e02",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Now I have all the information needed. Here is my comprehensive report:\n\n---\n\n## PART A: Paper Reference Verification\n\n### 1. \"Layer-Wise Semantic Dynamics\" - arxiv 2510.04933\n**VERIFIED - REAL**\n- Full title: \"The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection in Large Language Models\"\n- ArXiv ID: 2510.04933\n- Submitted: October 6, 2025\n- Author: Amir Hameed Mir\n- The paper presents LSD (Layer-wise Semantic Dynamics), a geometric framework for hallucination detection analyzing hidden-state evolution across transformer layers.\n\n### 2. \"Hallucination Basins\" - arxiv 2604.04743\n**VERIFIED - REAL**\n- Full title: \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations\"\n- ArXiv ID: 2604.04743\n- Released: April 6, 2026 (confirmed April 2026)\n- Authors: Kalyan Cherukuri and Lav R. Varshney\n- Presents a dynamical systems framework where hallucinations arise from task-dependent basin structure in latent space.\n\n### 3. ACT (WWW 2025)\n**VERIFIED - REAL**\n- Full title: \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories\"\n- Published in: Proceedings of the ACM Web Conference 2025 (WWW '25), April 28 - May 2, 2025, Sydney, Australia\n- ArXiv: 2406.00034\n- Note: The paper's method is called ACT and uses cluster-based steering vectors, but the full name is \"Adaptive Activation Steering\" (not \"Adaptive Cluster-based Truthfulness\"). The \"cluster-based\" aspect is a key methodological component, not part of the title.\n\n### 4. CLAP - arxiv 2509.09700\n**VERIFIED - REAL**\n- Full title: \"Cross-Layer Attention Probing for Fine-Grained Hallucination Detection\"\n- ArXiv ID: 2509.09700\n- Submitted: September 4, 2025\n- Authors: Malavika Suresh, Rahaf Aljundi, Ikechukwu Nkisi-Orji, Nirmalie Wiratunga\n- CLAP processes LLM activations across the entire residual stream as a joint sequence for hallucination detection.\n\n### 5. \"Monitoring Decoding\" 2025\n**VERIFIED - REAL**\n- Full title: \"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation\"\n- ArXiv: 2503.03106\n- Published at: ACL 2025 Findings (available at aclanthology.org/2025.findings-acl.752)\n- Method: Identifies hallucination-prone tokens during generation using a monitor function, then refines them through tree-based decoding.\n\n---\n\n## PART B: Conference Deadlines (relative to 2026-05-16)\n\n### 1. NeurIPS 2026\n- **Abstract deadline: May 4, 2026 (AOE)** -- PASSED\n- **Full paper deadline: May 6, 2026 (AOE)** -- PASSED\n- Conference: December 6-12, 2026, Sydney, Australia\n- **STATUS: CLOSED** (deadline was ~10 days ago)\n\n### 2. AAAI 2027\n- **Abstract deadline: July 25, 2026**\n- **Full paper deadline: August 1, 2026**\n- Conference: February 16-23, 2027, Montreal, Canada\n- **STATUS: OPEN** (~2.5 months remaining)\n\n### 3. ICLR 2027\n- **No official deadline announced yet.**\n- The official ICLR website only shows ICLR 2026 information. Based on historical patterns, ICLR 2027 submission deadline would likely be around September-October 2026, but nothing is confirmed.\n- **STATUS: NOT YET ANNOUNCED**\n\n### 4. EMNLP 2026\n- **ARR submission deadline: May 25, 2026 (11:59:59 PM UTC-12)**\n- Reviewer registration deadline: May 27, 2026\n- Conference: October 24-29, 2026, Budapest, Hungary\n- **STATUS: OPEN** (~9 days remaining! Very tight.)\n\n### 5. ACL 2026\n- **Commitment deadline: March 14, 2026** -- PASSED\n- Papers needed to be submitted to ARR October 2025 or ARR January 2026 cycles to be eligible for ACL 2026.\n- Conference: July 2-7, 2026, San Diego, California\n- **STATUS: CLOSED for ACL 2026** (commitment deadline passed in March)\n- Note: ARR itself has rolling cycles, and the May 2026 ARR cycle (deadline May 25) feeds into EMNLP 2026, not ACL 2026.\n\n### 6. COLM 2026\n- **Abstract deadline: March 26, 2026** -- PASSED\n- **Full paper deadline: March 31, 2026** -- PASSED\n- Conference: October 6-9, 2026, San Francisco, USA\n- **STATUS: CLOSED** (deadline passed in March)\n\n---\n\n## Summary of Still-Open Deadlines (as of 2026-05-16)\n\n| Conference | Deadline | Days Remaining |\n|-----------|----------|---------------|\n| **EMNLP 2026** (ARR May cycle) | May 25, 2026 | ~9 days |\n| **AAAI 2027** (abstract) | July 25, 2026 | ~70 days |\n| **AAAI 2027** (full paper) | August 1, 2026 | ~77 days |\n| **ICLR 2027** | TBD (likely Sep-Oct 2026) | Not announced |\n\nThe most urgent open deadline is **EMNLP 2026** with only about 9 days left.\n\n---\n\nSources:\n- [NeurIPS 2026 Call for Papers](https://neurips.cc/Conferences/2026/CallForPapers)\n- [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n- [AAAI 2027 Deadline Tracker](http://aideadlines.org/conference/?id=aaai27)\n- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ACL 2026 Main Conference](https://2026.aclweb.org/calls/main_conference_papers/)\n- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [COLM 2026 Call for Papers](https://colmweb.org/cfp.html)\n- [arxiv 2510.04933 - Layer-wise Semantic Dynamics](https://arxiv.org/abs/2510.04933)\n- [arxiv 2604.04743 - Hallucination Basins](https://arxiv.org/abs/2604.04743)\n- [ACT at WWW 2025 (ACM DL)](https://dl.acm.org/doi/10.1145/3696410.3714640)\n- [arxiv 2406.00034 - Adaptive Activation Steering](https://arxiv.org/abs/2406.00034)\n- [arxiv 2509.09700 - CLAP](https://arxiv.org/abs/2509.09700)\n- [arxiv 2503.03106 - Monitoring Decoding](https://arxiv.org/abs/2503.03106)\n- [Monitoring Decoding at ACL Findings](https://aclanthology.org/2025.findings-acl.752.pdf)"
+                }
+              ],
+              "totalDurationMs": 89929,
+              "totalTokens": 26925,
+              "totalToolUseCount": 18,
+              "usage": {
+                "input_tokens": 681,
+                "cache_creation_input_tokens": 1709,
+                "cache_read_input_tokens": 22476,
+                "output_tokens": 2059,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1709
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 681,
+                    "output_tokens": 2059,
+                    "cache_read_input_tokens": 22476,
+                    "cache_creation_input_tokens": 1709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1709,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 0,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 18
+              }
+            },
+            "sourceToolAssistantUUID": "24311853-f291-4891-8521-a19e8ed844a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T05:58:43.526Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uo6JDMoTyqkE9VGjLkijUi",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is my comprehensive report on concurrent work related to \"latent trajectory steering\" for hallucination suppression in LLMs, based on the six searches conducted.\n\n---\n\n## Summary of Findings\n\nThere is substantial and rapidly growing activity in this space as of mid-2026. However, I did **not** find a single paper that combines all three of your specific elements -- (1) per-claim trajectory analysis, (2) input-specific correction vectors, and (3) targeted steering applied selectively during generation -- into one unified system. That said, several papers come very close to subsets of this combination, and the convergence of ideas suggests the full combination may appear imminently if it hasn't already.\n\n---\n\n## Most Relevant Papers (Closest to Your Specific Combination)\n\n### 1. \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits\" (PCNet)\n- **Authors:** Erik Nielsen, Elia Cunegatti, Marcus Vukojevic, Giovanni Iacca (University of Trento)\n- **Date:** May 7, 2026\n- **URL:** https://arxiv.org/abs/2605.05953\n- **Why it matters:** This is arguably the closest to your full combination. PCNet trains a probabilistic circuit as a density estimator over the LLM residual stream, detects hallucinations as **geometric anomalies on the factual manifold** at each decoding step, and applies contrastive decoding (PC-LDCD) **only when latent geometry deviates from factual regions** -- leaving correct generations untouched. This is essentially per-token dynamic intervention conditioned on latent trajectory analysis. It achieves near-perfect hallucination detection (AUROC up to 99%) across four LLMs and four benchmarks. **Key gap vs. your work:** It uses contrastive decoding rather than explicit steering vectors, and does not frame the problem in terms of \"per-claim\" granularity.\n\n### 2. \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation\"\n- **Authors:** (not fully listed in search results)\n- **Date:** April 2026\n- **URL:** https://arxiv.org/abs/2604.15400\n- **Why it matters:** Provides the **theoretical foundation** for trajectory-based hallucination intervention. Demonstrates that hallucination is an early trajectory commitment with asymmetric attractor dynamics -- entry into hallucination basins is rapid and probabilistic, while exit requires \"coordinated intervention across layers and steps.\" Key finding: injecting hallucinated activations into correct trajectories corrupts output 87.5% of the time, while reverse correction only works 33.3%. This explains why naive single-vector steering often fails and why multi-step, input-specific intervention is needed. **Key gap:** Primarily analytical/causal rather than proposing a complete correction method.\n\n### 3. \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations\"\n- **Authors:** Kalyan Cherukuri, Lav R. Varshney\n- **Date:** April 6, 2026\n- **URL:** https://arxiv.org/abs/2604.04743\n- **Why it matters:** Formalizes hallucinations through task-dependent basin structure in latent space. Shows that \"geometry-aware steering can reduce hallucination probability without retraining.\" The paper characterizes basin emergence in L-layer transformers and demonstrates that separability is task-dependent. **Key gap:** Framework-level contribution; does not appear to implement per-claim, input-specific steering vectors during generation.\n\n### 4. \"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models\"\n- **Authors:** (not fully listed)\n- **Date:** February 2026 (Published at ICLR 2026)\n- **URL:** https://arxiv.org/abs/2602.21704 / https://openreview.net/forum?id=YtWZdwEG5K\n- **Why it matters:** This ICLR 2026 paper constructs a **semantic-based truthfulness steering vector database** and **dynamically selects** the most relevant steering vectors based on input semantic similarity during inference. This is explicitly input-specific steering. It applies different vectors to different attention heads based on the input query's semantic content. **Key gap:** Focused on vision-language models (not pure text LLMs), and does not frame intervention at per-claim granularity or use hidden-state trajectory analysis to trigger intervention.\n\n### 5. SADI: \"Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors\"\n- **Authors:** Weixuan Wang et al.\n- **Date:** Originally October 2024, updated February 2025; appears on OpenReview for a 2026 venue\n- **URL:** https://arxiv.org/abs/2410.12299 / https://openreview.net/forum?id=8WQ7VTfPTl\n- **Why it matters:** SADI explicitly addresses the limitation of \"fixed steering vectors\" by constructing **dynamic, input-specific steering vectors** that scale element-wise activations based on the directions of input semantics. Operates at the level of attention heads, hidden states, and neurons. **Key gap:** Focuses on general truthfulness/alignment rather than hallucination-specific trajectory analysis; does not use trajectory-level detection to trigger intervention selectively.\n\n---\n\n## Additional Relevant Papers\n\n### 6. \"Steer LLM Latents for Hallucination Detection\" (TSV)\n- **Date:** March 2025\n- **URL:** https://arxiv.org/abs/2503.01917 / https://openreview.net/forum?id=UMqNQEPNT3\n- Proposes Truthfulness Separator Vector (TSV) -- a steering vector that reshapes the representation space to separate truthful from hallucinated outputs. Uses optimal transport for pseudo-labeling. First to explore steering representations for hallucination **detection** (not correction).\n\n### 7. \"REVIS: Sparse Latent Steering to Mitigate Object Hallucination in Large Vision-Language Models\"\n- **Date:** February 12, 2026\n- **URL:** https://arxiv.org/abs/2602.11824\n- Extracts pure visual information vectors via orthogonal projection and performs **sparse intervention only at the precise depth where suppression occurs**.\n\n### 8. \"Hallucination Reduction with CASAL: Contrastive Activation Steering for Amortized Learning\"\n- **URL:** https://openreview.net/forum?id=YM3RcI3q0E\n- Connects interpretability with amortized optimization, baking activation steering benefits into model weights.\n\n### 9. \"Latent Trajectory Dynamics in Large Language Models: A Manifold Evolution Framework\" (DMET)\n- **Authors:** Yukun Zhang, Qi Dong\n- **Date:** May 2026\n- **URL:** https://arxiv.org/abs/2505.20340\n- Provides the manifold evolution framework for understanding LLM generation as continuous trajectory on a low-dimensional semantic manifold. Not hallucination-specific but provides theoretical tools applicable to trajectory-based steering.\n\n### 10. \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories\"\n- **URL:** https://dl.acm.org/doi/10.1145/3696410.3714640\n- Published at The Web Conference 2025. Uses category-specific steering for different hallucination types.\n\n---\n\n## Assessment: Is Anyone Already Doing Your Exact Combination?\n\n**Not exactly, but the components are all present separately:**\n\n| Component | Existing Work |\n|-----------|--------------|\n| Per-claim trajectory analysis | \"Hallucination as Trajectory Commitment\" (2604.15400) identifies per-token commitment points; \"Hallucination Basins\" (2604.04743) formalizes basin geometry |\n| Input-specific correction vectors | SADI (2410.12299) and Dynamic Multimodal Activation Steering (2602.21704, ICLR 2026) both do input-conditioned steering |\n| Targeted steering during generation (intervene only when needed) | PCNet (2605.05953) applies correction only when latent geometry deviates; REVIS (2602.11824) intervenes only at the precise depth where suppression occurs |\n\nThe **closest single paper** to unifying all three is **PCNet** (2605.05953, May 2026), which does trajectory-conditioned, per-token dynamic intervention -- but it uses probabilistic circuits for gating rather than explicit steering vectors, and it operates at token-level rather than claim-level granularity.\n\nThe **second closest** is the ICLR 2026 paper on Dynamic Multimodal Activation Steering (2602.21704), which does input-specific dynamic vector selection but applies it uniformly rather than only at hallucination-prone trajectory points.\n\n**No paper I found combines all three elements in the way you describe** -- specifically: (a) monitoring hidden-state trajectories on a per-claim basis, (b) computing input-specific correction vectors based on those trajectories, and (c) applying those vectors selectively during generation only when trajectory analysis indicates hallucination risk. This combination appears to be a novel contribution as of May 2026, though the field is moving fast and the gap is narrowing rapidly.\n\n---\n\nSources:\n- [Dynamic Multimodal Activation Steering (ICLR 2026)](https://arxiv.org/abs/2602.21704)\n- [Hallucination as Trajectory Commitment](https://arxiv.org/abs/2604.15400)\n- [Hallucination Basins](https://arxiv.org/abs/2604.04743)\n- [Hallucination as an Anomaly: PCNet](https://arxiv.org/abs/2605.05953)\n- [SADI: Semantics-Adaptive Dynamic Intervention](https://arxiv.org/abs/2410.12299)\n- [SADI on OpenReview](https://openreview.net/forum?id=8WQ7VTfPTl)\n- [Steer LLM Latents for Hallucination Detection (TSV)](https://arxiv.org/abs/2503.01917)\n- [REVIS: Sparse Latent Steering](https://arxiv.org/abs/2602.11824)\n- [CASAL: Contrastive Activation Steering for Amortized Learning](https://openreview.net/forum?id=YM3RcI3q0E)\n- [Latent Trajectory Dynamics / DMET](https://arxiv.org/abs/2505.20340)\n- [Adaptive Activation Steering (Web Conference 2025)](https://dl.acm.org/doi/10.1145/3696410.3714640)\n- [CAST: Caption-Guided Visual Attention Steering](https://arxiv.org/abs/2605.04641)\n- [Reducing Hallucinations via Latent Space Steering (VTI)](https://openreview.net/forum?id=LBl7Hez0fF)\n- [Minimizing Collateral Damage in Activation Steering](https://arxiv.org/html/2605.01167v1)"
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a79f2ddf548c94137 (use SendMessage with to: 'a79f2ddf548c94137' to continue this agent)\n<usage>total_tokens: 26358\ntool_uses: 14\nduration_ms: 120341</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48676a5f-9e52-4ede-9fa3-e62cffc2141d",
+            "isSidechain": false,
+            "promptId": "bbb82476-e0c9-47df-83bc-6b4c571f84cb",
+            "type": "user",
+            "uuid": "93e2266b-b5be-4f42-a39d-b367ac75bfcb",
+            "toolUseResult": {
+              "status": "completed",
+              "prompt": "Search for concurrent work on \"latent trajectory steering\" for hallucination suppression in LLMs, published or posted in 2026. I need to know if anyone is already doing input-specific activation steering based on hidden-state trajectories for hallucination reduction.\n\nUse WebSearch for the following queries:\n1. \"activation steering hallucination 2026 arxiv\"\n2. \"trajectory-based steering LLM hallucination\"\n3. \"per-claim hallucination intervention latent space 2026\"\n4. \"input-specific steering vectors LLM 2026\"\n5. Search arxiv for \"hallucination steering vectors 2026\"\n6. Search OpenReview for ICML 2026 or NeurIPS 2026 submissions related to \"activation steering hallucination\"\n\nReport back what you find - especially any paper that combines (per-claim trajectory analysis) with (input-specific correction) with (targeted steering during generation). Include titles, authors, dates, and URLs where possible.",
+              "agentId": "a79f2ddf548c94137",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is my comprehensive report on concurrent work related to \"latent trajectory steering\" for hallucination suppression in LLMs, based on the six searches conducted.\n\n---\n\n## Summary of Findings\n\nThere is substantial and rapidly growing activity in this space as of mid-2026. However, I did **not** find a single paper that combines all three of your specific elements -- (1) per-claim trajectory analysis, (2) input-specific correction vectors, and (3) targeted steering applied selectively during generation -- into one unified system. That said, several papers come very close to subsets of this combination, and the convergence of ideas suggests the full combination may appear imminently if it hasn't already.\n\n---\n\n## Most Relevant Papers (Closest to Your Specific Combination)\n\n### 1. \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits\" (PCNet)\n- **Authors:** Erik Nielsen, Elia Cunegatti, Marcus Vukojevic, Giovanni Iacca (University of Trento)\n- **Date:** May 7, 2026\n- **URL:** https://arxiv.org/abs/2605.05953\n- **Why it matters:** This is arguably the closest to your full combination. PCNet trains a probabilistic circuit as a density estimator over the LLM residual stream, detects hallucinations as **geometric anomalies on the factual manifold** at each decoding step, and applies contrastive decoding (PC-LDCD) **only when latent geometry deviates from factual regions** -- leaving correct generations untouched. This is essentially per-token dynamic intervention conditioned on latent trajectory analysis. It achieves near-perfect hallucination detection (AUROC up to 99%) across four LLMs and four benchmarks. **Key gap vs. your work:** It uses contrastive decoding rather than explicit steering vectors, and does not frame the problem in terms of \"per-claim\" granularity.\n\n### 2. \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation\"\n- **Authors:** (not fully listed in search results)\n- **Date:** April 2026\n- **URL:** https://arxiv.org/abs/2604.15400\n- **Why it matters:** Provides the **theoretical foundation** for trajectory-based hallucination intervention. Demonstrates that hallucination is an early trajectory commitment with asymmetric attractor dynamics -- entry into hallucination basins is rapid and probabilistic, while exit requires \"coordinated intervention across layers and steps.\" Key finding: injecting hallucinated activations into correct trajectories corrupts output 87.5% of the time, while reverse correction only works 33.3%. This explains why naive single-vector steering often fails and why multi-step, input-specific intervention is needed. **Key gap:** Primarily analytical/causal rather than proposing a complete correction method.\n\n### 3. \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations\"\n- **Authors:** Kalyan Cherukuri, Lav R. Varshney\n- **Date:** April 6, 2026\n- **URL:** https://arxiv.org/abs/2604.04743\n- **Why it matters:** Formalizes hallucinations through task-dependent basin structure in latent space. Shows that \"geometry-aware steering can reduce hallucination probability without retraining.\" The paper characterizes basin emergence in L-layer transformers and demonstrates that separability is task-dependent. **Key gap:** Framework-level contribution; does not appear to implement per-claim, input-specific steering vectors during generation.\n\n### 4. \"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models\"\n- **Authors:** (not fully listed)\n- **Date:** February 2026 (Published at ICLR 2026)\n- **URL:** https://arxiv.org/abs/2602.21704 / https://openreview.net/forum?id=YtWZdwEG5K\n- **Why it matters:** This ICLR 2026 paper constructs a **semantic-based truthfulness steering vector database** and **dynamically selects** the most relevant steering vectors based on input semantic similarity during inference. This is explicitly input-specific steering. It applies different vectors to different attention heads based on the input query's semantic content. **Key gap:** Focused on vision-language models (not pure text LLMs), and does not frame intervention at per-claim granularity or use hidden-state trajectory analysis to trigger intervention.\n\n### 5. SADI: \"Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors\"\n- **Authors:** Weixuan Wang et al.\n- **Date:** Originally October 2024, updated February 2025; appears on OpenReview for a 2026 venue\n- **URL:** https://arxiv.org/abs/2410.12299 / https://openreview.net/forum?id=8WQ7VTfPTl\n- **Why it matters:** SADI explicitly addresses the limitation of \"fixed steering vectors\" by constructing **dynamic, input-specific steering vectors** that scale element-wise activations based on the directions of input semantics. Operates at the level of attention heads, hidden states, and neurons. **Key gap:** Focuses on general truthfulness/alignment rather than hallucination-specific trajectory analysis; does not use trajectory-level detection to trigger intervention selectively.\n\n---\n\n## Additional Relevant Papers\n\n### 6. \"Steer LLM Latents for Hallucination Detection\" (TSV)\n- **Date:** March 2025\n- **URL:** https://arxiv.org/abs/2503.01917 / https://openreview.net/forum?id=UMqNQEPNT3\n- Proposes Truthfulness Separator Vector (TSV) -- a steering vector that reshapes the representation space to separate truthful from hallucinated outputs. Uses optimal transport for pseudo-labeling. First to explore steering representations for hallucination **detection** (not correction).\n\n### 7. \"REVIS: Sparse Latent Steering to Mitigate Object Hallucination in Large Vision-Language Models\"\n- **Date:** February 12, 2026\n- **URL:** https://arxiv.org/abs/2602.11824\n- Extracts pure visual information vectors via orthogonal projection and performs **sparse intervention only at the precise depth where suppression occurs**.\n\n### 8. \"Hallucination Reduction with CASAL: Contrastive Activation Steering for Amortized Learning\"\n- **URL:** https://openreview.net/forum?id=YM3RcI3q0E\n- Connects interpretability with amortized optimization, baking activation steering benefits into model weights.\n\n### 9. \"Latent Trajectory Dynamics in Large Language Models: A Manifold Evolution Framework\" (DMET)\n- **Authors:** Yukun Zhang, Qi Dong\n- **Date:** May 2026\n- **URL:** https://arxiv.org/abs/2505.20340\n- Provides the manifold evolution framework for understanding LLM generation as continuous trajectory on a low-dimensional semantic manifold. Not hallucination-specific but provides theoretical tools applicable to trajectory-based steering.\n\n### 10. \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories\"\n- **URL:** https://dl.acm.org/doi/10.1145/3696410.3714640\n- Published at The Web Conference 2025. Uses category-specific steering for different hallucination types.\n\n---\n\n## Assessment: Is Anyone Already Doing Your Exact Combination?\n\n**Not exactly, but the components are all present separately:**\n\n| Component | Existing Work |\n|-----------|--------------|\n| Per-claim trajectory analysis | \"Hallucination as Trajectory Commitment\" (2604.15400) identifies per-token commitment points; \"Hallucination Basins\" (2604.04743) formalizes basin geometry |\n| Input-specific correction vectors | SADI (2410.12299) and Dynamic Multimodal Activation Steering (2602.21704, ICLR 2026) both do input-conditioned steering |\n| Targeted steering during generation (intervene only when needed) | PCNet (2605.05953) applies correction only when latent geometry deviates; REVIS (2602.11824) intervenes only at the precise depth where suppression occurs |\n\nThe **closest single paper** to unifying all three is **PCNet** (2605.05953, May 2026), which does trajectory-conditioned, per-token dynamic intervention -- but it uses probabilistic circuits for gating rather than explicit steering vectors, and it operates at token-level rather than claim-level granularity.\n\nThe **second closest** is the ICLR 2026 paper on Dynamic Multimodal Activation Steering (2602.21704), which does input-specific dynamic vector selection but applies it uniformly rather than only at hallucination-prone trajectory points.\n\n**No paper I found combines all three elements in the way you describe** -- specifically: (a) monitoring hidden-state trajectories on a per-claim basis, (b) computing input-specific correction vectors based on those trajectories, and (c) applying those vectors selectively during generation only when trajectory analysis indicates hallucination risk. This combination appears to be a novel contribution as of May 2026, though the field is moving fast and the gap is narrowing rapidly.\n\n---\n\nSources:\n- [Dynamic Multimodal Activation Steering (ICLR 2026)](https://arxiv.org/abs/2602.21704)\n- [Hallucination as Trajectory Commitment](https://arxiv.org/abs/2604.15400)\n- [Hallucination Basins](https://arxiv.org/abs/2604.04743)\n- [Hallucination as an Anomaly: PCNet](https://arxiv.org/abs/2605.05953)\n- [SADI: Semantics-Adaptive Dynamic Intervention](https://arxiv.org/abs/2410.12299)\n- [SADI on OpenReview](https://openreview.net/forum?id=8WQ7VTfPTl)\n- [Steer LLM Latents for Hallucination Detection (TSV)](https://arxiv.org/abs/2503.01917)\n- [REVIS: Sparse Latent Steering](https://arxiv.org/abs/2602.11824)\n- [CASAL: Contrastive Activation Steering for Amortized Learning](https://openreview.net/forum?id=YM3RcI3q0E)\n- [Latent Trajectory Dynamics / DMET](https://arxiv.org/abs/2505.20340)\n- [Adaptive Activation Steering (Web Conference 2025)](https://dl.acm.org/doi/10.1145/3696410.3714640)\n- [CAST: Caption-Guided Visual Attention Steering](https://arxiv.org/abs/2605.04641)\n- [Reducing Hallucinations via Latent Space Steering (VTI)](https://openreview.net/forum?id=LBl7Hez0fF)\n- [Minimizing Collateral Damage in Activation Steering](https://arxiv.org/html/2605.01167v1)"
+                }
+              ],
+              "totalDurationMs": 120341,
+              "totalTokens": 26358,
+              "totalToolUseCount": 14,
+              "usage": {
+                "input_tokens": 847,
+                "cache_creation_input_tokens": 1986,
+                "cache_read_input_tokens": 20799,
+                "output_tokens": 2726,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1986
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 847,
+                    "output_tokens": 2726,
+                    "cache_read_input_tokens": 20799,
+                    "cache_creation_input_tokens": 1986,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1986,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 0,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 14
+              }
+            },
+            "sourceToolAssistantUUID": "48676a5f-9e52-4ede-9fa3-e62cffc2141d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Latent Trajec…",
+                "leafUuid": "93e2266b-b5be-4f42-a39d-b367ac75bfcb",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Input-specific trajectory steering for claim-level hallucination suppression",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T05:58:52.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E5rzWr3LKBkUt4nYjafsgb",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is a comprehensive report on the current best open-source LLMs as of May 2026, focused on suitability for mechanistic interpretability and activation steering research.\n\n---\n\n## Top Open-Source LLMs (May 2026) for Mechanistic Interpretability Research\n\n### Tier 1: Best Suited for Interpretability/Activation Steering (7B-70B range)\n\n#### 1. Qwen3 Family (Alibaba) -- Released April-May 2025, Qwen3.5 in Feb 2026\n- **Sizes:** Dense: 0.6B, 1.7B, 4B, 8B, 14B, 32B; MoE: 30B-A3B, 235B-A22B\n- **License:** Apache 2.0\n- **Interpretability support:** EXCELLENT. Qwen-Scope (released May 1, 2026) provides a full open-source SAE suite trained on Qwen3 and Qwen3.5 models (14 groups of SAE weights across 7 model variants). Directly supports activation steering via feature directions in the residual stream. TransformerLens supports Qwen3-0.6B through Qwen3-14B. NNsight/nnterp supports all Qwen 2 and 3 variants.\n- **Best picks for your research:** Qwen3-8B, Qwen3-14B, Qwen3-32B (dense models, ideal for layer-by-layer extraction)\n\n#### 2. Gemma 3 Family (Google) -- Released March 2025\n- **Sizes:** 1B, 4B, 12B, 27B (also a 270M variant)\n- **License:** Gemma license (commercial + non-commercial with some restrictions)\n- **Interpretability support:** EXCELLENT. Google released Gemma Scope 2 -- the largest ever open-source release of interpretability tools by an AI lab, covering all Gemma 3 sizes from 270M to 27B. Includes both SAEs and transcoders. TransformerLens explicitly supports Gemma 2 and 3 models (gemma-2-2b through gemma-2-27b, plus Gemma 3). NNsight/nnterp also supports all Gemma variants.\n- **Best picks for your research:** Gemma 3 12B, Gemma 3 27B\n\n#### 3. Llama 4 Scout (Meta) -- Released April 2025\n- **Sizes:** 109B total / 17B active (MoE, 16 experts); Maverick: ~2T total / 288B active\n- **License:** Llama 4 Community License\n- **Interpretability support:** GOOD. TransformerLens supports Llama architectures (originally Llama 1/2/3, with ongoing expansion). NNsight/nnterp supports all Llama versions. However, the MoE architecture adds complexity for layer-by-layer analysis compared to dense models. Note: Meta released \"Muse Spark\" in April 2026 as a successor line.\n- **Best picks for your research:** Llama 4 Scout (17B active params) or older Llama 3.1 8B/70B (dense, well-supported)\n\n---\n\n### Tier 2: Strong Models, Good but Less Direct Interpretability Tool Support\n\n#### 4. Mistral Models -- Various 2025-2026 releases\n- **Key models in range:** Mistral Small 4 (March 2026), Mistral Large 3 (675B total / 41B active MoE, Apache 2.0), Mistral Medium 3.5 (128B dense, April 2026)\n- **License:** Apache 2.0 for many models\n- **Interpretability support:** MODERATE. NNsight/nnterp supports Mistral and Mixtral architectures. TransformerLens has some Mistral support. No official SAE suite released by Mistral.\n- **Best picks for your research:** Devstral (for code-focused steering research), Mistral Small 4\n\n#### 5. DeepSeek-R1 and DeepSeek-V4 -- R1: Jan 2025; V4: April 2026\n- **Sizes:** R1: 671B MoE; V4-Pro: 1.6T/49B active; V4-Flash: 284B/13B active\n- **License:** MIT\n- **Interpretability support:** MODERATE. Novel hybrid attention architecture (CSA + HCA) in V4 may require custom hooks. NNsight should work since it supports any PyTorch model. However, the MoE + novel attention design makes clean layer-by-layer analysis more complex. No official SAE suite.\n- **Note:** DeepSeek-R1 distilled versions (1.5B, 7B, 8B, 14B, 32B, 70B) based on Qwen2.5 and Llama architectures are much more interpretability-friendly.\n- **Best picks for your research:** DeepSeek-R1 distilled variants (7B, 14B, 32B -- these use standard Qwen/Llama architectures)\n\n---\n\n### Tier 3: Frontier-Class but Less Suitable for Interpretability at Scale\n\n#### 6. GLM 5.1 (Zhipu AI) -- 2026\n- **Size:** 744B total / 40B active (MoE)\n- Currently the leading open-weights model on Artificial Analysis Intelligence Index, but no known interpretability tool suite.\n\n#### 7. Kimi K2.6 Thinking (Moonshot AI) -- May 2026\n- Leads open-source coding benchmarks but limited interpretability tooling.\n\n---\n\n### Interpretability Tools Landscape (May 2026)\n\n| Tool | Models Supported | Key Feature |\n|------|-----------------|-------------|\n| **TransformerLens** | ~9,000 models via TransformerBridge (GPT-2, Llama, Qwen3, Gemma 3, Mistral, etc.) | HookPoints on every activation; gold standard for mech interp |\n| **NNsight** | Any PyTorch model (HuggingFace native) | Remote execution for large models; flexible interventions |\n| **nnterp** | 50+ variants across 16 architecture families | Standardized interface; write once, deploy across architectures |\n| **Gemma Scope 2** | All Gemma 3 sizes (270M-27B) | Pre-trained SAEs + transcoders from Google |\n| **Qwen-Scope** | Qwen3 + Qwen3.5 (7 model variants) | Pre-trained SAEs; direct steering applications demonstrated |\n\n---\n\n### Recommendations for Your Research\n\n**For activation steering specifically:**\n1. **Qwen3-8B or Qwen3-14B** -- Best choice. Apache 2.0, dense architecture, Qwen-Scope provides pre-trained SAEs with demonstrated steering applications (language switching, style transfer, repetition suppression). TransformerLens compatible.\n\n2. **Gemma 3 12B or 27B** -- Excellent second choice. Gemma Scope 2 provides the most comprehensive interpretability toolkit from any lab. TransformerLens compatible.\n\n3. **Qwen3-32B** -- If you need a larger model. Note that activation steering detection rates vary by architecture (95% for Qwen 32B vs 43% for Llama 8B in recent research), which is itself an interesting research finding.\n\n4. **DeepSeek-R1 distilled 14B/32B** -- Good for studying reasoning-focused steering, uses standard Qwen2.5 architecture so all tools work.\n\n5. **Llama 3.1 70B** -- If you need the largest dense model with mature tool support. Still widely used in the interpretability community despite being older.\n\n---\n\nSources:\n- [The Best Open-Source LLMs in 2026 (BentoML)](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models)\n- [Best Open Source LLM Leaderboard 2026 (Onyx)](https://onyx.app/open-llm-leaderboard)\n- [Open Source LLM Leaderboard 2026 (Vellum)](https://www.vellum.ai/open-llm-leaderboard)\n- [LLM Benchmark Leaderboard 2026 (CodeSOTA)](https://www.codesota.com/llm)\n- [TransformerLens GitHub](https://github.com/TransformerLensOrg/TransformerLens)\n- [TransformerLens Model Properties Table](https://transformerlensorg.github.io/TransformerLens/generated/model_properties_table.html)\n- [nnterp: A Standardized Interface for Mechanistic Interpretability (OpenReview)](https://openreview.net/forum?id=ACic3VDIHp)\n- [Qwen-Scope: Open-Source SAE Suite (MarkTechPost)](https://www.marktechpost.com/2026/05/01/qwen-ai-releases-qwen-scope-an-open-source-sparse-autoencoders-sae-suite-that-turns-llm-internal-features-into-practical-development-tools/)\n- [Qwen-Scope Paper (arXiv)](https://arxiv.org/abs/2605.11887)\n- [Gemma Scope 2 (Google DeepMind)](https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/)\n- [Qwen3 GitHub](https://github.com/QwenLM/qwen3)\n- [Llama 4 Announcement (Meta)](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)\n- [DeepSeek V4 Open Weights Launch](https://winbuzzer.com/2026/04/27/deepseek-v4-open-weights-launch-xcxwbn/)\n- [Mistral AI Models 2026 Guide](https://serenitiesai.com/articles/mistral-ai-models-2026-complete-guide)\n- [NNsight and nnterp - Learn Mechanistic Interpretability](https://learnmechinterp.com/topics/nnsight-and-nnterp/)\n- [Steer Like the LLM: Activation Steering (arXiv, May 2026)](https://arxiv.org/html/2605.03907)\n- [Steering Awareness: Models Trained to Detect Activation Steering](https://arxiv.org/html/2511.21399v2)"
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a3443a00d7c4e919d (use SendMessage with to: 'a3443a00d7c4e919d' to continue this agent)\n<usage>total_tokens: 25737\ntool_uses: 13\nduration_ms: 117039</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d890e154-af72-403c-918f-82f46b85224c",
+            "isSidechain": false,
+            "promptId": "bbb82476-e0c9-47df-83bc-6b4c571f84cb",
+            "type": "user",
+            "uuid": "aad55257-e251-4d56-a0a4-9698432f9133",
+            "toolUseResult": {
+              "status": "completed",
+              "prompt": "Use WebSearch to find the current best open-source LLMs as of May 2026. I need this for a research project on activation steering / mechanistic interpretability, so I need models where:\n- Weights are openly available\n- Architecture allows layer-by-layer hidden state extraction (TransformerLens compatible or similar)\n- Models in the 7B-70B parameter range are most relevant\n\nSearch for:\n1. \"best open source LLM 2026\" \n2. \"top open source language model May 2026\"\n3. \"SOTA open source LLM leaderboard 2026\"\n4. \"TransformerLens compatible models 2026\" or \"mechanistic interpretability models 2026\"\n5. Check if LLaMA 4 or any successor is out, or if there are newer model families (Mistral, Qwen, etc.)\n\nReport the top current open-source models with their sizes, release dates, and whether they'd be suitable for mechanistic interpretability / activation steering research.",
+              "agentId": "a3443a00d7c4e919d",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is a comprehensive report on the current best open-source LLMs as of May 2026, focused on suitability for mechanistic interpretability and activation steering research.\n\n---\n\n## Top Open-Source LLMs (May 2026) for Mechanistic Interpretability Research\n\n### Tier 1: Best Suited for Interpretability/Activation Steering (7B-70B range)\n\n#### 1. Qwen3 Family (Alibaba) -- Released April-May 2025, Qwen3.5 in Feb 2026\n- **Sizes:** Dense: 0.6B, 1.7B, 4B, 8B, 14B, 32B; MoE: 30B-A3B, 235B-A22B\n- **License:** Apache 2.0\n- **Interpretability support:** EXCELLENT. Qwen-Scope (released May 1, 2026) provides a full open-source SAE suite trained on Qwen3 and Qwen3.5 models (14 groups of SAE weights across 7 model variants). Directly supports activation steering via feature directions in the residual stream. TransformerLens supports Qwen3-0.6B through Qwen3-14B. NNsight/nnterp supports all Qwen 2 and 3 variants.\n- **Best picks for your research:** Qwen3-8B, Qwen3-14B, Qwen3-32B (dense models, ideal for layer-by-layer extraction)\n\n#### 2. Gemma 3 Family (Google) -- Released March 2025\n- **Sizes:** 1B, 4B, 12B, 27B (also a 270M variant)\n- **License:** Gemma license (commercial + non-commercial with some restrictions)\n- **Interpretability support:** EXCELLENT. Google released Gemma Scope 2 -- the largest ever open-source release of interpretability tools by an AI lab, covering all Gemma 3 sizes from 270M to 27B. Includes both SAEs and transcoders. TransformerLens explicitly supports Gemma 2 and 3 models (gemma-2-2b through gemma-2-27b, plus Gemma 3). NNsight/nnterp also supports all Gemma variants.\n- **Best picks for your research:** Gemma 3 12B, Gemma 3 27B\n\n#### 3. Llama 4 Scout (Meta) -- Released April 2025\n- **Sizes:** 109B total / 17B active (MoE, 16 experts); Maverick: ~2T total / 288B active\n- **License:** Llama 4 Community License\n- **Interpretability support:** GOOD. TransformerLens supports Llama architectures (originally Llama 1/2/3, with ongoing expansion). NNsight/nnterp supports all Llama versions. However, the MoE architecture adds complexity for layer-by-layer analysis compared to dense models. Note: Meta released \"Muse Spark\" in April 2026 as a successor line.\n- **Best picks for your research:** Llama 4 Scout (17B active params) or older Llama 3.1 8B/70B (dense, well-supported)\n\n---\n\n### Tier 2: Strong Models, Good but Less Direct Interpretability Tool Support\n\n#### 4. Mistral Models -- Various 2025-2026 releases\n- **Key models in range:** Mistral Small 4 (March 2026), Mistral Large 3 (675B total / 41B active MoE, Apache 2.0), Mistral Medium 3.5 (128B dense, April 2026)\n- **License:** Apache 2.0 for many models\n- **Interpretability support:** MODERATE. NNsight/nnterp supports Mistral and Mixtral architectures. TransformerLens has some Mistral support. No official SAE suite released by Mistral.\n- **Best picks for your research:** Devstral (for code-focused steering research), Mistral Small 4\n\n#### 5. DeepSeek-R1 and DeepSeek-V4 -- R1: Jan 2025; V4: April 2026\n- **Sizes:** R1: 671B MoE; V4-Pro: 1.6T/49B active; V4-Flash: 284B/13B active\n- **License:** MIT\n- **Interpretability support:** MODERATE. Novel hybrid attention architecture (CSA + HCA) in V4 may require custom hooks. NNsight should work since it supports any PyTorch model. However, the MoE + novel attention design makes clean layer-by-layer analysis more complex. No official SAE suite.\n- **Note:** DeepSeek-R1 distilled versions (1.5B, 7B, 8B, 14B, 32B, 70B) based on Qwen2.5 and Llama architectures are much more interpretability-friendly.\n- **Best picks for your research:** DeepSeek-R1 distilled variants (7B, 14B, 32B -- these use standard Qwen/Llama architectures)\n\n---\n\n### Tier 3: Frontier-Class but Less Suitable for Interpretability at Scale\n\n#### 6. GLM 5.1 (Zhipu AI) -- 2026\n- **Size:** 744B total / 40B active (MoE)\n- Currently the leading open-weights model on Artificial Analysis Intelligence Index, but no known interpretability tool suite.\n\n#### 7. Kimi K2.6 Thinking (Moonshot AI) -- May 2026\n- Leads open-source coding benchmarks but limited interpretability tooling.\n\n---\n\n### Interpretability Tools Landscape (May 2026)\n\n| Tool | Models Supported | Key Feature |\n|------|-----------------|-------------|\n| **TransformerLens** | ~9,000 models via TransformerBridge (GPT-2, Llama, Qwen3, Gemma 3, Mistral, etc.) | HookPoints on every activation; gold standard for mech interp |\n| **NNsight** | Any PyTorch model (HuggingFace native) | Remote execution for large models; flexible interventions |\n| **nnterp** | 50+ variants across 16 architecture families | Standardized interface; write once, deploy across architectures |\n| **Gemma Scope 2** | All Gemma 3 sizes (270M-27B) | Pre-trained SAEs + transcoders from Google |\n| **Qwen-Scope** | Qwen3 + Qwen3.5 (7 model variants) | Pre-trained SAEs; direct steering applications demonstrated |\n\n---\n\n### Recommendations for Your Research\n\n**For activation steering specifically:**\n1. **Qwen3-8B or Qwen3-14B** -- Best choice. Apache 2.0, dense architecture, Qwen-Scope provides pre-trained SAEs with demonstrated steering applications (language switching, style transfer, repetition suppression). TransformerLens compatible.\n\n2. **Gemma 3 12B or 27B** -- Excellent second choice. Gemma Scope 2 provides the most comprehensive interpretability toolkit from any lab. TransformerLens compatible.\n\n3. **Qwen3-32B** -- If you need a larger model. Note that activation steering detection rates vary by architecture (95% for Qwen 32B vs 43% for Llama 8B in recent research), which is itself an interesting research finding.\n\n4. **DeepSeek-R1 distilled 14B/32B** -- Good for studying reasoning-focused steering, uses standard Qwen2.5 architecture so all tools work.\n\n5. **Llama 3.1 70B** -- If you need the largest dense model with mature tool support. Still widely used in the interpretability community despite being older.\n\n---\n\nSources:\n- [The Best Open-Source LLMs in 2026 (BentoML)](https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models)\n- [Best Open Source LLM Leaderboard 2026 (Onyx)](https://onyx.app/open-llm-leaderboard)\n- [Open Source LLM Leaderboard 2026 (Vellum)](https://www.vellum.ai/open-llm-leaderboard)\n- [LLM Benchmark Leaderboard 2026 (CodeSOTA)](https://www.codesota.com/llm)\n- [TransformerLens GitHub](https://github.com/TransformerLensOrg/TransformerLens)\n- [TransformerLens Model Properties Table](https://transformerlensorg.github.io/TransformerLens/generated/model_properties_table.html)\n- [nnterp: A Standardized Interface for Mechanistic Interpretability (OpenReview)](https://openreview.net/forum?id=ACic3VDIHp)\n- [Qwen-Scope: Open-Source SAE Suite (MarkTechPost)](https://www.marktechpost.com/2026/05/01/qwen-ai-releases-qwen-scope-an-open-source-sparse-autoencoders-sae-suite-that-turns-llm-internal-features-into-practical-development-tools/)\n- [Qwen-Scope Paper (arXiv)](https://arxiv.org/abs/2605.11887)\n- [Gemma Scope 2 (Google DeepMind)](https://deepmind.google/blog/gemma-scope-2-helping-the-ai-safety-community-deepen-understanding-of-complex-language-model-behavior/)\n- [Qwen3 GitHub](https://github.com/QwenLM/qwen3)\n- [Llama 4 Announcement (Meta)](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)\n- [DeepSeek V4 Open Weights Launch](https://winbuzzer.com/2026/04/27/deepseek-v4-open-weights-launch-xcxwbn/)\n- [Mistral AI Models 2026 Guide](https://serenitiesai.com/articles/mistral-ai-models-2026-complete-guide)\n- [NNsight and nnterp - Learn Mechanistic Interpretability](https://learnmechinterp.com/topics/nnsight-and-nnterp/)\n- [Steer Like the LLM: Activation Steering (arXiv, May 2026)](https://arxiv.org/html/2605.03907)\n- [Steering Awareness: Models Trained to Detect Activation Steering](https://arxiv.org/html/2511.21399v2)"
+                }
+              ],
+              "totalDurationMs": 117039,
+              "totalTokens": 25737,
+              "totalToolUseCount": 13,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3333,
+                "cache_read_input_tokens": 19733,
+                "output_tokens": 2670,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3333
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2670,
+                    "cache_read_input_tokens": 19733,
+                    "cache_creation_input_tokens": 3333,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3333,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 0,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 13
+              }
+            },
+            "sourceToolAssistantUUID": "d890e154-af72-403c-918f-82f46b85224c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T05:59:07.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N9GjEyjsXvrt7QQQkFSJ6X",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is my comprehensive feasibility report for your research project on \"latent trajectory steering for hallucination suppression\":\n\n---\n\n## 1. Reference Implementations of Activation Steering (ITI, ACT, etc.)\n\n**Several mature implementations exist:**\n\n- **ITI (Inference-Time Intervention)** - [likenneth/honest_llama](https://github.com/likenneth/honest_llama): The original implementation from the Harvard group. Shifts model activations during inference across a limited number of attention heads. Has been replicated on Llama 2 and Llama 3 models. Uses alpha=15, heads=48 as default intervention params. Computationally cheap and data-efficient (only a few hundred examples needed to locate truthful directions).\n\n- **ACT (Adaptive Activation Steering)** - [tianlwang/ACT](https://github.com/tianlwang/ACT): Published at ACM Web Conference 2025. A tuning-free method that adaptively selects steering directions across 38 categories of hallucinations. Key advantage over ITI: handles diverse hallucination types.\n\n- **CAA (Contrastive Activation Addition)** - [nrimsky/CAA](https://github.com/nrimsky/CAA): Steering Llama 2 with contrastive activation addition. A clean, well-documented implementation.\n\n- **IBM Activation Steering** - [IBM/activation-steering](https://github.com/IBM/activation-steering): ICLR 2025 spotlight paper implementing CAST (Conditional Activation Steering). General-purpose library supporting LLaMA, Qwen, Mistral. Key innovation: analyzes activation patterns to decide *whether* to steer, avoiding the \"always-on\" problem of vanilla steering.\n\n---\n\n## 2. Infrastructure for Layer-by-Layer Steering Vector Extraction\n\n**Three main options, in order of maturity:**\n\n- **steering-vectors** (PyPI: `steering-vectors`, v0.12.1) - [GitHub](https://github.com/steering-vectors/steering-vectors): A dedicated library for training and applying steering vectors to HuggingFace models (GPT, LLaMA, Gemma, Mistral, Pythia). Supports layer-specific extraction via a `layers` argument and per-layer application with configurable multipliers via context managers. This is probably your best starting point for rapid prototyping.\n\n- **TransformerLens** - [GitHub](https://github.com/TransformerLensOrg/TransformerLens): 50+ open-source model support. Exposes all internal activations via hooking. You can cache, edit, remove, or replace activations at any layer. More general-purpose (mechanistic interpretability) but well-suited for custom steering experiments.\n\n- **vLLM-Lens** - [GitHub](https://github.com/UKGovernmentBEIS/vllm-lens): Production-grade tool from UK BEIS. Extracts residual-stream activations and applies steering vectors to any vLLM model during inference. Supports tensor parallelism and pipeline parallelism across GPUs/nodes. MIT licensed. Key advantage: if you need to scale experiments to 70B models or want production-ready inference with steering, this handles dynamic batching with per-request steering.\n\n---\n\n## 3. TruthfulQA Baseline Numbers to Beat\n\n**Current SOTA activation steering results on TruthfulQA:**\n\n| Method | Model | MC1 | MC2 |\n|--------|-------|-----|-----|\n| ACT | LLaMA-7B | 35.5% | 52.3% |\n| ACT | LLaMA-13B | 41.4% | 59.1% |\n| ACT | LLaMA-33B | 44.2% | 62.3% |\n| ACT | LLaMA-65B | 46.3% | 64.7% |\n\n**More recent (2025-2026) methods claiming improvements over these baselines:**\n\n- **ODESteer**: Claims +5.7% improvement over prior SOTA activation steering on TruthfulQA. Uses a unified ODE-based theoretical framework where identifying steering directions becomes a barrier function design problem from control theory.\n- **Spherical Steering** (Feb 2026): Geometry-aware activation rotation that consistently improves TruthfulQA accuracy while also enhancing open-ended generation quality.\n- **SADI (dynamic intervention)**: Up to +10.08 on True x Info metric.\n- **CAST (IBM, ICLR 2025)**: Conditional steering -- no published MC1/MC2 absolute numbers in search results, but it was a spotlight paper.\n\nYour baselines to beat: MC1 ~46% and MC2 ~65% on 65B-class models; MC1 ~44% and MC2 ~62% on 33B-class models.\n\n---\n\n## 4. Claim-Level Hallucination Evaluation Datasets\n\n**Available benchmarks:**\n\n- **FELM** (NeurIPS 2023 D&B track) - [GitHub](https://github.com/hkust-nlp/felm): Five domains, fine-grained claim-level annotations with predefined error types (knowledge error, reasoning error, irrelevant). Includes reference links supporting/contradicting each statement. Good for diverse hallucination categories.\n\n- **FActScore** (EMNLP 2023) - [GitHub](https://github.com/shmsw25/FActScore): Decomposes text into atomic claims and verifies each against a knowledge source. Originally evaluated on biography generation. Pipeline: decompose-then-verify using retrievers + LLM validators. Automated pipelines achieve <2% labeling error vs. humans.\n\n- **HalluLens** (Facebook Research, 2025) - [GitHub](https://github.com/facebookresearch/HalluLens): LLM textual hallucination benchmark from Meta.\n\n- **TruthfulQA** - [GitHub](https://github.com/sylinrl/TruthfulQA): 817 questions across 38 categories. MC1 (single-answer) and MC2 (multi-answer) metrics. Standard benchmark for truthfulness interventions.\n\n- **HalluScan** (2025): Systematic benchmark for detecting and mitigating hallucinations in instruction-following LLMs.\n\n- **OpenFActScore** (2025): Open-source version of atomic factuality evaluation.\n\n---\n\n## 5. Computational Requirements\n\n**Activation steering is cheap compared to fine-tuning.** Key findings:\n\n- **Steering vector extraction**: Requires one forward pass per contrastive example pair through the model. For ITI, only a few hundred examples are needed. On a single A100 80GB, extracting vectors for a 7B model takes minutes; for 70B, you need 2x A100 80GB or use quantization (QLoRA reduces 70B to ~35GB footprint).\n\n- **Inference with steering**: Near-zero overhead -- you're adding a vector to activations at selected layers. vLLM-Lens demonstrates this can be done in production batched inference without meaningful latency increase.\n\n- **Hardware requirements by model size**:\n  - 7B models: Single A100 40GB or RTX 4090 ($1.90-$3.50/hr cloud)\n  - 13B-33B models: Single A100 80GB\n  - 70B models: 2x A100 80GB or 1x H100 ($2.50/hr cloud); with 4-bit quantization, fits on single 80GB GPU\n  - Full experiment sweep (multiple layers, multiple strengths, multiple seeds): Expect 10-50 GPU-hours for 7B, 50-200 GPU-hours for 70B depending on search space\n\n- **IBM's CAST quickstart** estimates 10-60 minutes depending on hardware for a basic steering experiment.\n\n---\n\n## 6. Hallucination Basins Paper (April 2026)\n\n**The paper exists and has code available:**\n\n- **Paper**: \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations\" ([arXiv:2604.04743](https://arxiv.org/abs/2604.04743)), submitted April 6, 2026 by K. Cherukuri and L. R. Varshney.\n\n- **Code repository**: [github.com/akarlaraytu/trajectory-commitment](https://github.com/akarlaraytu/trajectory-commitment) -- all code, data, and figures are publicly available.\n\n- **Key findings**: Formalizes hallucinations as arising from task-dependent basin structure in latent space. Finds that separability is strongly task-dependent (factoid settings show clearer basin separation; summarization and misconception-heavy settings show overlap). Provides task-complexity and multi-basin theorems, characterizes basin emergence in L-layer transformers, and demonstrates that geometry-aware steering can reduce hallucination probability without retraining.\n\n- **Related paper**: \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation\" ([arXiv:2604.15400](https://arxiv.org/html/2604.15400v1)) cites the basins paper, suggesting a growing subfield.\n\n---\n\n## Feasibility Assessment Summary\n\n**This project is highly feasible.** The ecosystem is mature:\n\n1. **Code infrastructure**: Multiple production-ready libraries (IBM activation-steering, steering-vectors PyPI package, vLLM-Lens) mean you don't need to build from scratch.\n2. **Baselines are well-established**: ACT/ITI/CAST provide clear numbers on TruthfulQA to compare against, and the hallucination basins paper provides a direct theoretical predecessor.\n3. **Datasets are available**: FELM, FActScore, TruthfulQA, and HalluLens cover both claim-level and QA evaluation.\n4. **Compute is modest**: Steering experiments are inference-time only (no training), so a single A100 for 7B-13B or a small cluster for 70B is sufficient. Budget estimate: $200-$2000 in cloud compute for a thorough experimental sweep.\n5. **The theoretical gap you'd be filling** -- connecting the basins/trajectory framework to practical latent trajectory steering -- has direct precursors in the April 2026 papers and available code.\n\n---\n\nSources:\n- [ITI / honest_llama](https://github.com/likenneth/honest_llama)\n- [ACT - Adaptive Activation Steering](https://github.com/tianlwang/ACT)\n- [CAA - Contrastive Activation Addition](https://github.com/nrimsky/CAA)\n- [IBM activation-steering (ICLR 2025)](https://github.com/IBM/activation-steering)\n- [steering-vectors PyPI library](https://github.com/steering-vectors/steering-vectors)\n- [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens)\n- [vLLM-Lens](https://github.com/UKGovernmentBEIS/vllm-lens)\n- [FELM Benchmark](https://github.com/hkust-nlp/felm)\n- [FActScore](https://github.com/shmsw25/FActScore)\n- [HalluLens (Meta)](https://github.com/facebookresearch/HalluLens)\n- [TruthfulQA](https://github.com/sylinrl/TruthfulQA)\n- [Hallucination Basins paper (arXiv:2604.04743)](https://arxiv.org/abs/2604.04743)\n- [Hallucination Basins code](https://github.com/akarlaraytu/trajectory-commitment)\n- [ODESteer](https://openreview.net/forum?id=CFewUmgIIL)\n- [Spherical Steering (Feb 2026)](https://arxiv.org/html/2602.08169)\n- [ACT paper (ACM Web 2025)](https://dl.acm.org/doi/10.1145/3696410.3714640)\n- [Activation Steering Field Guide 2026](https://subhadipmitra.com/blog/2026/activation-steering-field-guide/)\n- [Awesome Activation Engineering](https://github.com/ZFancy/awesome-activation-engineering)"
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: add726fd536cd70e2 (use SendMessage with to: 'add726fd536cd70e2' to continue this agent)\n<usage>total_tokens: 27407\ntool_uses: 15\nduration_ms: 125162</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0f262aeb-5b9c-4a78-bc21-fad7a6a8ee6e",
+            "isSidechain": false,
+            "promptId": "bbb82476-e0c9-47df-83bc-6b4c571f84cb",
+            "type": "user",
+            "uuid": "85142482-804f-469f-baf0-c54be5740f42",
+            "toolUseResult": {
+              "status": "completed",
+              "prompt": "Use WebSearch to check feasibility for a research project on \"latent trajectory steering for hallucination suppression\". I need:\n\n1. Search \"github.com activation steering hallucination\" or \"github.com ITI truthful\" - are there reference implementations of activation steering (like ITI or ACT)?\n\n2. Search \"github.com TransformerLens steering vectors\" - what infrastructure exists for extracting and applying steering vectors layer-by-layer?\n\n3. Search for TruthfulQA baseline numbers - what are the current SOTA scores on TruthfulQA for activation steering methods? Search \"TruthfulQA state of the art 2025 2026\"\n\n4. Search for \"FELM benchmark\" or \"FactScore\" or claim-level hallucination benchmarks - what datasets exist for claim-level hallucination evaluation?\n\n5. Search \"GPU hours activation steering experiments\" or check papers for computational cost of running steering vector experiments on 7B-70B models.\n\n6. Search \"hallucination basins github\" or any implementation of the April 2026 paper.\n\nReport what you find about existing implementations, baseline numbers to beat, available datasets, and computational requirements.",
+              "agentId": "add726fd536cd70e2",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here is my comprehensive feasibility report for your research project on \"latent trajectory steering for hallucination suppression\":\n\n---\n\n## 1. Reference Implementations of Activation Steering (ITI, ACT, etc.)\n\n**Several mature implementations exist:**\n\n- **ITI (Inference-Time Intervention)** - [likenneth/honest_llama](https://github.com/likenneth/honest_llama): The original implementation from the Harvard group. Shifts model activations during inference across a limited number of attention heads. Has been replicated on Llama 2 and Llama 3 models. Uses alpha=15, heads=48 as default intervention params. Computationally cheap and data-efficient (only a few hundred examples needed to locate truthful directions).\n\n- **ACT (Adaptive Activation Steering)** - [tianlwang/ACT](https://github.com/tianlwang/ACT): Published at ACM Web Conference 2025. A tuning-free method that adaptively selects steering directions across 38 categories of hallucinations. Key advantage over ITI: handles diverse hallucination types.\n\n- **CAA (Contrastive Activation Addition)** - [nrimsky/CAA](https://github.com/nrimsky/CAA): Steering Llama 2 with contrastive activation addition. A clean, well-documented implementation.\n\n- **IBM Activation Steering** - [IBM/activation-steering](https://github.com/IBM/activation-steering): ICLR 2025 spotlight paper implementing CAST (Conditional Activation Steering). General-purpose library supporting LLaMA, Qwen, Mistral. Key innovation: analyzes activation patterns to decide *whether* to steer, avoiding the \"always-on\" problem of vanilla steering.\n\n---\n\n## 2. Infrastructure for Layer-by-Layer Steering Vector Extraction\n\n**Three main options, in order of maturity:**\n\n- **steering-vectors** (PyPI: `steering-vectors`, v0.12.1) - [GitHub](https://github.com/steering-vectors/steering-vectors): A dedicated library for training and applying steering vectors to HuggingFace models (GPT, LLaMA, Gemma, Mistral, Pythia). Supports layer-specific extraction via a `layers` argument and per-layer application with configurable multipliers via context managers. This is probably your best starting point for rapid prototyping.\n\n- **TransformerLens** - [GitHub](https://github.com/TransformerLensOrg/TransformerLens): 50+ open-source model support. Exposes all internal activations via hooking. You can cache, edit, remove, or replace activations at any layer. More general-purpose (mechanistic interpretability) but well-suited for custom steering experiments.\n\n- **vLLM-Lens** - [GitHub](https://github.com/UKGovernmentBEIS/vllm-lens): Production-grade tool from UK BEIS. Extracts residual-stream activations and applies steering vectors to any vLLM model during inference. Supports tensor parallelism and pipeline parallelism across GPUs/nodes. MIT licensed. Key advantage: if you need to scale experiments to 70B models or want production-ready inference with steering, this handles dynamic batching with per-request steering.\n\n---\n\n## 3. TruthfulQA Baseline Numbers to Beat\n\n**Current SOTA activation steering results on TruthfulQA:**\n\n| Method | Model | MC1 | MC2 |\n|--------|-------|-----|-----|\n| ACT | LLaMA-7B | 35.5% | 52.3% |\n| ACT | LLaMA-13B | 41.4% | 59.1% |\n| ACT | LLaMA-33B | 44.2% | 62.3% |\n| ACT | LLaMA-65B | 46.3% | 64.7% |\n\n**More recent (2025-2026) methods claiming improvements over these baselines:**\n\n- **ODESteer**: Claims +5.7% improvement over prior SOTA activation steering on TruthfulQA. Uses a unified ODE-based theoretical framework where identifying steering directions becomes a barrier function design problem from control theory.\n- **Spherical Steering** (Feb 2026): Geometry-aware activation rotation that consistently improves TruthfulQA accuracy while also enhancing open-ended generation quality.\n- **SADI (dynamic intervention)**: Up to +10.08 on True x Info metric.\n- **CAST (IBM, ICLR 2025)**: Conditional steering -- no published MC1/MC2 absolute numbers in search results, but it was a spotlight paper.\n\nYour baselines to beat: MC1 ~46% and MC2 ~65% on 65B-class models; MC1 ~44% and MC2 ~62% on 33B-class models.\n\n---\n\n## 4. Claim-Level Hallucination Evaluation Datasets\n\n**Available benchmarks:**\n\n- **FELM** (NeurIPS 2023 D&B track) - [GitHub](https://github.com/hkust-nlp/felm): Five domains, fine-grained claim-level annotations with predefined error types (knowledge error, reasoning error, irrelevant). Includes reference links supporting/contradicting each statement. Good for diverse hallucination categories.\n\n- **FActScore** (EMNLP 2023) - [GitHub](https://github.com/shmsw25/FActScore): Decomposes text into atomic claims and verifies each against a knowledge source. Originally evaluated on biography generation. Pipeline: decompose-then-verify using retrievers + LLM validators. Automated pipelines achieve <2% labeling error vs. humans.\n\n- **HalluLens** (Facebook Research, 2025) - [GitHub](https://github.com/facebookresearch/HalluLens): LLM textual hallucination benchmark from Meta.\n\n- **TruthfulQA** - [GitHub](https://github.com/sylinrl/TruthfulQA): 817 questions across 38 categories. MC1 (single-answer) and MC2 (multi-answer) metrics. Standard benchmark for truthfulness interventions.\n\n- **HalluScan** (2025): Systematic benchmark for detecting and mitigating hallucinations in instruction-following LLMs.\n\n- **OpenFActScore** (2025): Open-source version of atomic factuality evaluation.\n\n---\n\n## 5. Computational Requirements\n\n**Activation steering is cheap compared to fine-tuning.** Key findings:\n\n- **Steering vector extraction**: Requires one forward pass per contrastive example pair through the model. For ITI, only a few hundred examples are needed. On a single A100 80GB, extracting vectors for a 7B model takes minutes; for 70B, you need 2x A100 80GB or use quantization (QLoRA reduces 70B to ~35GB footprint).\n\n- **Inference with steering**: Near-zero overhead -- you're adding a vector to activations at selected layers. vLLM-Lens demonstrates this can be done in production batched inference without meaningful latency increase.\n\n- **Hardware requirements by model size**:\n  - 7B models: Single A100 40GB or RTX 4090 ($1.90-$3.50/hr cloud)\n  - 13B-33B models: Single A100 80GB\n  - 70B models: 2x A100 80GB or 1x H100 ($2.50/hr cloud); with 4-bit quantization, fits on single 80GB GPU\n  - Full experiment sweep (multiple layers, multiple strengths, multiple seeds): Expect 10-50 GPU-hours for 7B, 50-200 GPU-hours for 70B depending on search space\n\n- **IBM's CAST quickstart** estimates 10-60 minutes depending on hardware for a basic steering experiment.\n\n---\n\n## 6. Hallucination Basins Paper (April 2026)\n\n**The paper exists and has code available:**\n\n- **Paper**: \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations\" ([arXiv:2604.04743](https://arxiv.org/abs/2604.04743)), submitted April 6, 2026 by K. Cherukuri and L. R. Varshney.\n\n- **Code repository**: [github.com/akarlaraytu/trajectory-commitment](https://github.com/akarlaraytu/trajectory-commitment) -- all code, data, and figures are publicly available.\n\n- **Key findings**: Formalizes hallucinations as arising from task-dependent basin structure in latent space. Finds that separability is strongly task-dependent (factoid settings show clearer basin separation; summarization and misconception-heavy settings show overlap). Provides task-complexity and multi-basin theorems, characterizes basin emergence in L-layer transformers, and demonstrates that geometry-aware steering can reduce hallucination probability without retraining.\n\n- **Related paper**: \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation\" ([arXiv:2604.15400](https://arxiv.org/html/2604.15400v1)) cites the basins paper, suggesting a growing subfield.\n\n---\n\n## Feasibility Assessment Summary\n\n**This project is highly feasible.** The ecosystem is mature:\n\n1. **Code infrastructure**: Multiple production-ready libraries (IBM activation-steering, steering-vectors PyPI package, vLLM-Lens) mean you don't need to build from scratch.\n2. **Baselines are well-established**: ACT/ITI/CAST provide clear numbers on TruthfulQA to compare against, and the hallucination basins paper provides a direct theoretical predecessor.\n3. **Datasets are available**: FELM, FActScore, TruthfulQA, and HalluLens cover both claim-level and QA evaluation.\n4. **Compute is modest**: Steering experiments are inference-time only (no training), so a single A100 for 7B-13B or a small cluster for 70B is sufficient. Budget estimate: $200-$2000 in cloud compute for a thorough experimental sweep.\n5. **The theoretical gap you'd be filling** -- connecting the basins/trajectory framework to practical latent trajectory steering -- has direct precursors in the April 2026 papers and available code.\n\n---\n\nSources:\n- [ITI / honest_llama](https://github.com/likenneth/honest_llama)\n- [ACT - Adaptive Activation Steering](https://github.com/tianlwang/ACT)\n- [CAA - Contrastive Activation Addition](https://github.com/nrimsky/CAA)\n- [IBM activation-steering (ICLR 2025)](https://github.com/IBM/activation-steering)\n- [steering-vectors PyPI library](https://github.com/steering-vectors/steering-vectors)\n- [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens)\n- [vLLM-Lens](https://github.com/UKGovernmentBEIS/vllm-lens)\n- [FELM Benchmark](https://github.com/hkust-nlp/felm)\n- [FActScore](https://github.com/shmsw25/FActScore)\n- [HalluLens (Meta)](https://github.com/facebookresearch/HalluLens)\n- [TruthfulQA](https://github.com/sylinrl/TruthfulQA)\n- [Hallucination Basins paper (arXiv:2604.04743)](https://arxiv.org/abs/2604.04743)\n- [Hallucination Basins code](https://github.com/akarlaraytu/trajectory-commitment)\n- [ODESteer](https://openreview.net/forum?id=CFewUmgIIL)\n- [Spherical Steering (Feb 2026)](https://arxiv.org/html/2602.08169)\n- [ACT paper (ACM Web 2025)](https://dl.acm.org/doi/10.1145/3696410.3714640)\n- [Activation Steering Field Guide 2026](https://subhadipmitra.com/blog/2026/activation-steering-field-guide/)\n- [Awesome Activation Engineering](https://github.com/ZFancy/awesome-activation-engineering)"
+                }
+              ],
+              "totalDurationMs": 125162,
+              "totalTokens": 27407,
+              "totalToolUseCount": 15,
+              "usage": {
+                "input_tokens": 978,
+                "cache_creation_input_tokens": 1838,
+                "cache_read_input_tokens": 21582,
+                "output_tokens": 3009,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1838
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 978,
+                    "output_tokens": 3009,
+                    "cache_read_input_tokens": 21582,
+                    "cache_creation_input_tokens": 1838,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1838,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 0,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 15
+              }
+            },
+            "sourceToolAssistantUUID": "0f262aeb-5b9c-4a78-bc21-fad7a6a8ee6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Latent Trajec…",
+                "leafUuid": "85142482-804f-469f-baf0-c54be5740f42",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Input-specific trajectory steering for claim-level hallucination suppression",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T05:59:12.003Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All research is complete. Let me now verify one more thing about the PCNet concurrent work to properly differentiate, and check if there are any other open top-tier venue deadlines I might have missed."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85142482-804f-469f-baf0-c54be5740f42",
+            "isSidechain": false,
+            "requestId": "req_011Cb5je6xMti1USWx5FgKrL",
+            "type": "assistant",
+            "uuid": "87d4702d-7c88-4619-8789-3e3cc02a08ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QD2MKJZybcUYNMtE9TLLzN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12372,
+                "cache_read_input_tokens": 19110,
+                "output_tokens": 118,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12372,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 118,
+                    "cache_read_input_tokens": 19110,
+                    "cache_creation_input_tokens": 12372,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12372
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T05:59:12.400Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GnW4BXnvSMmtTzucBnFFDQ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87d4702d-7c88-4619-8789-3e3cc02a08ca",
+            "isSidechain": false,
+            "requestId": "req_011Cb5je6xMti1USWx5FgKrL",
+            "type": "assistant",
+            "uuid": "4b66f80d-be32-4577-a2d8-7d2d1b069908",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QD2MKJZybcUYNMtE9TLLzN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12372,
+                "cache_read_input_tokens": 19110,
+                "output_tokens": 118,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12372,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 118,
+                    "cache_read_input_tokens": 19110,
+                    "cache_creation_input_tokens": 12372,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12372
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T05:59:12.406Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GnW4BXnvSMmtTzucBnFFDQ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b66f80d-be32-4577-a2d8-7d2d1b069908",
+            "isSidechain": false,
+            "promptId": "bbb82476-e0c9-47df-83bc-6b4c571f84cb",
+            "type": "user",
+            "uuid": "e77492f9-ca1a-4a44-ac91-61efda888f08",
+            "toolUseResult": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 17
+            },
+            "sourceToolAssistantUUID": "4b66f80d-be32-4577-a2d8-7d2d1b069908",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T05:59:16.365Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me search for a couple more things to finalize the output - specifically checking ICML 2026 deadline status and any other top-tier venues, and verifying the PCNet paper more carefully.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e77492f9-ca1a-4a44-ac91-61efda888f08",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jeVzwajF6eACv6W5Br",
+            "type": "assistant",
+            "uuid": "0c2f03ba-70f2-4fb8-a0b6-785f0768c0fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014MTCwncR4TbSdDVzedWDeB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 645,
+                "cache_read_input_tokens": 31482,
+                "output_tokens": 165,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 645,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 165,
+                    "cache_read_input_tokens": 31482,
+                    "cache_creation_input_tokens": 645,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 645
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T05:59:16.835Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GitRrwsfJtGAmt7Uxk2e7Q",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICML 2026 paper submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c2f03ba-70f2-4fb8-a0b6-785f0768c0fd",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jeVzwajF6eACv6W5Br",
+            "type": "assistant",
+            "uuid": "8f276c86-e244-494e-aa43-23373c89b4c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014MTCwncR4TbSdDVzedWDeB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 645,
+                "cache_read_input_tokens": 31482,
+                "output_tokens": 165,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 645,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 165,
+                    "cache_read_input_tokens": 31482,
+                    "cache_creation_input_tokens": 645,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 645
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T05:59:17.086Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RVPJTgU62efTBeT99QwGn4",
+              "name": "WebSearch",
+              "input": {
+                "query": "NeurIPS 2026 workshop submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f276c86-e244-494e-aa43-23373c89b4c0",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jeVzwajF6eACv6W5Br",
+            "type": "assistant",
+            "uuid": "73e1b94e-d63a-4c02-92b8-323586c7b908",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014MTCwncR4TbSdDVzedWDeB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 645,
+                "cache_read_input_tokens": 31482,
+                "output_tokens": 165,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 645,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 165,
+                    "cache_read_input_tokens": 31482,
+                    "cache_creation_input_tokens": 645,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 645
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T05:59:20.874Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RVPJTgU62efTBeT99QwGn4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"NeurIPS 2026 workshop submission deadline\"\n\nLinks: [{\"title\":\"NeurIPS 2026 Call for Workshops\",\"url\":\"https://neurips.cc/Conferences/2026/CallForWorkshops\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://neurips.cc/Conferences/2026/Dates\"},{\"title\":\"Call for Papers 2026\",\"url\":\"https://neurips.cc/Conferences/2026/CallForPapers\"},{\"title\":\"Guidance for NeurIPS Workshop Proposals 2026\",\"url\":\"https://neurips.cc/Conferences/2026/WorkshopsGuidance\"},{\"title\":\"NeurIPS 2026 Call For Competitions\",\"url\":\"https://neurips.cc/Conferences/2026/CallForCompetitions\"},{\"title\":\"2026 Conference – NeurIPS Blog\",\"url\":\"https://blog.neurips.cc/category/2026-conference/\"},{\"title\":\"NeurIPS 2026\",\"url\":\"https://neurips.cc/\"},{\"title\":\"NeurIPS Newsletter – April 2026 – NeurIPS Blog\",\"url\":\"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/\"},{\"title\":\"NeurIPS Conference on X: \\\"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\\\" / X\",\"url\":\"https://x.com/NeurIPSConf/status/2041303457554940336\"},{\"title\":\"NeurIPS 2026 Evaluations & Datasets Track Call for Papers\",\"url\":\"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets\"}]\n\nBased on the search results, here is the information about NeurIPS 2026 workshop submission deadlines:\n\nThe workshop application deadline for NeurIPS 2026 is June 06, 2026, AoE (Anywhere on Earth). \n\nThe workshop application opened on April 21, 2026, AoE, and workshop acceptance notification will be provided on July 11, 2026, AoE.\n\nAdditionally, there are important dates for workshop contributions themselves: the suggested submission date for workshop contributions is August 29, 2026, AoE, and the mandatory accept/reject notification date is September 29, 2026, AoE.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73e1b94e-d63a-4c02-92b8-323586c7b908",
+            "isSidechain": false,
+            "promptId": "bbb82476-e0c9-47df-83bc-6b4c571f84cb",
+            "type": "user",
+            "uuid": "ea33003a-120a-48a0-b767-cdf6e0547f9c",
+            "toolUseResult": {
+              "query": "NeurIPS 2026 workshop submission deadline",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01BGZmi5s8PVCwY7xHVcTXdv",
+                  "content": [
+                    {
+                      "title": "NeurIPS 2026 Call for Workshops",
+                      "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+                    },
+                    {
+                      "title": "2026 Dates and Deadlines",
+                      "url": "https://neurips.cc/Conferences/2026/Dates"
+                    },
+                    {
+                      "title": "Call for Papers 2026",
+                      "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+                    },
+                    {
+                      "title": "Guidance for NeurIPS Workshop Proposals 2026",
+                      "url": "https://neurips.cc/Conferences/2026/WorkshopsGuidance"
+                    },
+                    {
+                      "title": "NeurIPS 2026 Call For Competitions",
+                      "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+                    },
+                    {
+                      "title": "2026 Conference – NeurIPS Blog",
+                      "url": "https://blog.neurips.cc/category/2026-conference/"
+                    },
+                    {
+                      "title": "NeurIPS 2026",
+                      "url": "https://neurips.cc/"
+                    },
+                    {
+                      "title": "NeurIPS Newsletter – April 2026 – NeurIPS Blog",
+                      "url": "https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"
+                    },
+                    {
+                      "title": "NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X",
+                      "url": "https://x.com/NeurIPSConf/status/2041303457554940336"
+                    },
+                    {
+                      "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+                      "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+                    }
+                  ]
+                },
+                "Based on the search results, here is the information about NeurIPS 2026 workshop submission deadlines:\n\nThe workshop application deadline for NeurIPS 2026 is June 06, 2026, AoE (Anywhere on Earth). \n\nThe workshop application opened on April 21, 2026, AoE, and workshop acceptance notification will be provided on July 11, 2026, AoE.\n\nAdditionally, there are important dates for workshop contributions themselves: the suggested submission date for workshop contributions is August 29, 2026, AoE, and the mandatory accept/reject notification date is September 29, 2026, AoE."
+              ],
+              "durationSeconds": 3.7842764679999963
+            },
+            "sourceToolAssistantUUID": "73e1b94e-d63a-4c02-92b8-323586c7b908",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T05:59:21.047Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GitRrwsfJtGAmt7Uxk2e7Q",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICML 2026 paper submission deadline\"\n\nLinks: [{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://icml.cc/Conferences/2026/Dates\"},{\"title\":\"ICML 2026 Call for Papers\",\"url\":\"https://icml.cc/Conferences/2026/CallForPapers\"},{\"title\":\"ICML 2026 Author Instructions\",\"url\":\"https://icml.cc/Conferences/2026/AuthorInstructions\"},{\"title\":\"ICML 2026 Peer Review FAQ\",\"url\":\"https://icml.cc/Conferences/2026/PeerReviewFAQ\"},{\"title\":\"2026 Conference\",\"url\":\"https://icml.cc/\"},{\"title\":\"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected\",\"url\":\"https://eu.36kr.com/en/p/3540848514510723\"},{\"title\":\"ICML 2026 Call For Position Papers\",\"url\":\"https://icml.cc/Conferences/2026/CallForPositionPapers\"},{\"title\":\"ICML 2026\",\"url\":\"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26\"},{\"title\":\"IEEE ICMLCN 2026 | IEEE International Conference on Machine Learning for Communication and Networking 2026 | IEEE ICMLCN 2026\",\"url\":\"https://icmlcn2026.ieee-icmlcn.org/\"},{\"title\":\"ICML 2026 in Hamburg – Dates, Submissions & Tips! - Conference Inc.\",\"url\":\"https://conferenceinc.net/post/icml-2026/\"}]\n\nBased on the search results, here is the ICML 2026 paper submission deadline information:\n\nThe deadline for full paper submission is January 28th, 2026. However, it's important to note that there are two submission stages: an abstract must first be submitted by the Abstract submission deadline on OpenReview, and after submitting the abstract, the full paper PDF must be uploaded by the Full paper submission deadline.\n\nAdditionally, the abstract and paper submission deadlines are strict, and in no circumstances will extensions be given.\n\nFor context, the Forty-Third annual conference is held July 6th through July 11th, 2026 at the Coex Convention & Exhibition Center.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f276c86-e244-494e-aa43-23373c89b4c0",
+            "isSidechain": false,
+            "promptId": "bbb82476-e0c9-47df-83bc-6b4c571f84cb",
+            "type": "user",
+            "uuid": "618b8eb8-2ede-40b1-8ffc-46b3e503ba87",
+            "toolUseResult": {
+              "query": "ICML 2026 paper submission deadline",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01RpVb9o2LBvPqj3zxKVkHm3",
+                  "content": [
+                    {
+                      "title": "2026 Dates and Deadlines",
+                      "url": "https://icml.cc/Conferences/2026/Dates"
+                    },
+                    {
+                      "title": "ICML 2026 Call for Papers",
+                      "url": "https://icml.cc/Conferences/2026/CallForPapers"
+                    },
+                    {
+                      "title": "ICML 2026 Author Instructions",
+                      "url": "https://icml.cc/Conferences/2026/AuthorInstructions"
+                    },
+                    {
+                      "title": "ICML 2026 Peer Review FAQ",
+                      "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+                    },
+                    {
+                      "title": "2026 Conference",
+                      "url": "https://icml.cc/"
+                    },
+                    {
+                      "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+                      "url": "https://eu.36kr.com/en/p/3540848514510723"
+                    },
+                    {
+                      "title": "ICML 2026 Call For Position Papers",
+                      "url": "https://icml.cc/Conferences/2026/CallForPositionPapers"
+                    },
+                    {
+                      "title": "ICML 2026",
+                      "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+                    },
+                    {
+                      "title": "IEEE ICMLCN 2026 | IEEE International Conference on Machine Learning for Communication and Networking 2026 | IEEE ICMLCN 2026",
+                      "url": "https://icmlcn2026.ieee-icmlcn.org/"
+                    },
+                    {
+                      "title": "ICML 2026 in Hamburg – Dates, Submissions & Tips! - Conference Inc.",
+                      "url": "https://conferenceinc.net/post/icml-2026/"
+                    }
+                  ]
+                },
+                "Based on the search results, here is the ICML 2026 paper submission deadline information:\n\nThe deadline for full paper submission is January 28th, 2026. However, it's important to note that there are two submission stages: an abstract must first be submitted by the Abstract submission deadline on OpenReview, and after submitting the abstract, the full paper PDF must be uploaded by the Full paper submission deadline.\n\nAdditionally, the abstract and paper submission deadlines are strict, and in no circumstances will extensions be given.\n\nFor context, the Forty-Third annual conference is held July 6th through July 11th, 2026 at the Coex Convention & Exhibition Center."
+              ],
+              "durationSeconds": 4.209024344000005
+            },
+            "sourceToolAssistantUUID": "8f276c86-e244-494e-aa43-23373c89b4c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T06:00:10.184Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So ICML 2026 deadline was January 28, 2026 - already passed. NeurIPS 2026 main track deadline was May 4-6 - already passed. But NeurIPS 2026 workshops have a suggested submission deadline of August 29, 2026.\n\nLet me now compile everything. The open deadlines as of 2026-05-16 are:\n- EMNLP 2026 (via ARR May cycle): May 25, 2026\n- AAAI 2027: July 25, 2026 (abstract) / August 1, 2026 (full paper)\n\n\n- ICLR 2027: Likely September-October 2026 (not yet announced)\n- NeurIPS 2026 workshops: ~August 29, 2026\n\nFor top-tier venues, AAAI 2027 and ICLR 2027 are the strongest bets, though EMNLP 2026 is also competitive if I can turn around a submission in the next 9 days.\n\nGiven the constraint that I shouldn't downgrade venue quality for timeline reasons, and considering the 7x24 research capability, ICLR 2027 is the ideal target since this work represents a novel detection-intervention combination addressing a real gap in the field. AAAI 2027 is a solid backup with a confirmed August 1 deadline. Now I'm putting together the final JSON response.\n\nFor the technical approach, I'm settling on Qwen3 models for their strong TransformerLens compatibility, using hidden-state trajectory monitoring with LSD-style metrics to detect hallucinations at the claim level, then computing minimal-norm steering vectors by projecting onto the factual manifold geometry. This differentiates from PCNet through explicit steering vectors applied at critical layers rather than contrastive decoding, and the input-specific corrections derived from trajectory divergence rather than probabilistic anomaly detection.\n\nNow I'm thinking through the resource constraints—the actual compute for steering experiments is modest, but in manual mode where I'm writing code and running experiments iteratively, the GPU sits idle most of the time while I'm debugging or analyzing results. Over a 3-5 month timeline, that's roughly 150-250 GPU hours on an A100, which translates to maybe $300-750 in rental costs, though the idle rate would be quite high since the compute is spread thin across months of development.\n\nWith a human-in-the-loop setup, I could run more systematic sweeps and queue experiments while waiting for approval, cutting the timeline to 1-2 months with better GPU utilization around 50-60%, though I'd also need to account for Claude API costs on top of the $600-1050 in GPU expenses. In a fully autonomous mode, the agent could run continuously and explore the hyperparameter space exhaustively—finishing in 1-3 weeks with near-zero idle time and 400-600 GPU hours, but requiring significant API spend alongside the compute costs.\n\nThe main bottleneck in either case comes down to how many experiments I can run in parallel and how quickly models load. Let me recalculate the GPU costs more precisely: at $3/hour for A100 80GB instances, the human-in-the-loop scenario runs $450-750 for the lower estimate and $600-1050 for the higher one, while autonomous research scales to $1200-1800 depending on the total hours needed.\n\nI'm also verifying the references I've been citing—I've confirmed a couple of papers on hallucination detection and control mechanisms, though I'm still working through the full citation details on one of them. I'm identifying the key concurrent works and how our approach differs—PCNet uses probabilistic circuits with contrastive decoding rather than steering vectors, while the multimodal and trajectory-based papers lack the per-claim, trajectory-informed vector computation we're proposing, so our geometric framework combining hallucination basins with minimal-norm steering appears to be the novel contribution.\n\nNow I'm preparing the final JSON output.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "618b8eb8-2ede-40b1-8ffc-46b3e503ba87",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jf8PCsVMCEysCvgHfP",
+            "type": "assistant",
+            "uuid": "309a0666-77e7-4f13-8880-8f7e8f44bc41",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HG9Ma4414tGU3hiAhov2Xy",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 665,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 32127,
+                "output_tokens": 4173,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 665,
+                    "output_tokens": 4173,
+                    "cache_read_input_tokens": 32127,
+                    "cache_creation_input_tokens": 783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T06:01:01.133Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information needed. Let me compile the final output.\n\n{\n  \"title\": \"Latent Trajectory Steering for Claim-Level Hallucination Suppression\",\n  \"core_problem\": \"Existing activation steering methods (ITI, ACT) apply fixed or cluster-averaged steering vectors globally, ignoring that hallucination risk varies sharply across claims within a single generation and that the optimal correction direction depends on the input's specific latent trajectory.\",\n  \"opportunity\": \"Layer-Wise Semantic Dynamics (arxiv 2510.04933) showed that hidden-state trajectories across layers encode robust hallucination signals (velocity, acceleration, convergence). Hallucination Basins (April 2026) formalized basin structure. But both are detection-only. The gap is using per-claim trajectory divergence to COMPUTE input-specific minimal-norm corrections and apply them at critical layers during generation. This yields targeted steering that adapts to each claim rather than applying a fixed truthfulness vector. Feasibility: TransformerLens enables layer-by-layer hidden state extraction; claim boundary detection exists; steering infrastructure from ACT/ITI is reusable.\",\n  \"landscape\": \"ACT (WWW 2025) achieves up to 142% truthfulness improvement on LLaMA via K-means clustered steering vectors + adaptive intensity (ASIC), but vectors are corpus-averages, not input-specific. CLAP (2025, arxiv 2509.09700) uses cross-layer attention probing for detection (outperforms single-layer probes) but proposes no intervention. Hallucination Basins (April 2026, arxiv 2604.04743) proposes geometry-aware latent shifts but admits basin separability is 'strongly task-dependent' and requires expensive basin identification. Monitoring Decoding (ACL Findings 2025) intervenes mid-generation but uses expensive external factuality monitors, not internal trajectory signals. PCNet (May 2026, arxiv 2605.05953) detects hallucinations as geometric anomalies on the factual manifold and applies contrastive decoding conditionally, achieving near-perfect detection AUROC—but uses contrastive decoding rather than explicit steering vectors and operates at token-level, not claim-level. SADI (2024, arxiv 2410.12299) constructs input-specific dynamic steering vectors but does not condition on trajectory divergence. Dynamic Multimodal Activation Steering (ICLR 2026) dynamically selects steering vectors by input semantic similarity but targets VLMs and does not use trajectory analysis. Hallucination as Trajectory Commitment (April 2026, arxiv 2604.15400) provides causal evidence that hallucination is early trajectory commitment with asymmetric attractor dynamics (entry 87.5% corruption vs. 33.3% exit success), motivating multi-layer coordinated intervention. The combination of (per-claim trajectory analysis) → (input-specific correction direction) → (lightweight targeted steering) is unexplored.\",\n  \"approach\": \"For each claim segment in a generation, extract the hidden-state trajectory (residual stream activations across layers 1..L) at claim-boundary tokens using TransformerLens hooks on Qwen3-8B/14B. Compute trajectory-level features (velocity, curvature, basin proximity via Mahalanobis distance from the factual manifold estimated on TruthfulQA/FELM correct examples). When these features indicate divergence toward a hallucination basin (threshold calibrated on a held-out detection set), compute a minimal-norm correction vector via orthogonal projection from the current activation onto the boundary of the factual basin at the critical layer (identified as the layer with maximum trajectory curvature). Apply this input-specific steering vector with intensity proportional to the divergence magnitude, using the steering-vectors library's layer-specific intervention API. This yields claim-adaptive, input-specific steering that only fires when needed—unlike fixed-vector methods—and uses cheap internal signals rather than external factuality monitors.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h A100 80GB\",\n      \"gpu_utilization\": \"Very low (~15-20% effective utilization). GPU idles while researcher writes code, debugs, reads papers, analyzes results. Most of the 3-5 month timeline is human thinking time, not compute.\",\n      \"timeline\": \"3-5 months\",\n      \"team\": \"1-2 researchers with mechanistic interpretability experience\",\n      \"estimated_gpu_cost\": \"$600-700 (A100 80GB at ~$3/hr, but actual rental period much longer due to idle time; spot instances help)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~300h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (45-55%). Agent queues experiment batches and processes results autonomously, but blocks on design decisions (which trajectory metric to use, hyperparameter ranges, ablation priorities). Less idle than manual but still has approval-wait gaps.\",\n      \"timeline\": \"4-6 weeks\",\n      \"team\": \"1 researcher, ~45min/day reviewing agent proposals and approving experiment directions\",\n      \"claude_api_cost\": \"$200-400 (est. 3000-5000 turns for experiment design, code generation, result analysis)\",\n      \"estimated_gpu_cost\": \"$900-1050 (more systematic sweeps than manual, less wasted exploration than auto)\",\n      \"risk_note\": \"Trajectory metric design requires geometric intuition—agent may over-explore ineffective divergence measures without human guidance on which basin proximity metrics are theoretically motivated.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~500-650h A100 80GB (3-4x more experiments: exhaustive layer sweeps, trajectory metric ablations, correction norm schedules, multi-model validation)\",\n      \"gpu_utilization\": \"Near-zero idle (~90-95% utilization). Agent immediately queues next experiment upon completion; parallel sweeps fill GPU continuously. No human wait time.\",\n      \"timeline\": \"10-18 days with 2-4 A100 GPUs running in parallel\",\n      \"team\": \"0 (initial setup only: provision GPUs, configure API keys, define evaluation harness)\",\n      \"claude_api_cost\": \"$400-700 (est. 5000-8000 turns for full exploration including failed directions, ablation analysis, paper writing)\",\n      \"estimated_gpu_cost\": \"$1500-1950 (more total compute but fully utilized; explores 4-5x more hyperparameter configurations)\",\n      \"speed_bottleneck\": \"GPU count for parallel experiments (each Qwen3-14B forward pass requires full A100; running 4 ablations in parallel needs 4 GPUs). Secondary: API key rate limits for high-frequency agent turns.\",\n      \"risk_note\": \"Without human geometric intuition, agent may waste 30-40% of compute on theoretically unmotivated trajectory metrics before converging on effective ones. Mitigation: pre-specify candidate metrics from LSD/Basins papers in the initial prompt.\"\n    }\n  },\n  \"target_venues\": [\"ICLR 2027 (deadline likely September-October 2026, not yet announced)\", \"AAAI 2027 (abstract July 25, full paper August 1, 2026)\"],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection in Large Language Models (arXiv 2025)\",\n    \"Hallucination Basins: A Dynamic Framework for Understanding and Controlling LLM Hallucinations (arXiv 2026)\",\n    \"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories (WWW 2025)\",\n    \"Cross-Layer Attention Probing for Fine-Grained Hallucination Detection (arXiv 2025)\",\n    \"Monitoring Decoding: Mitigating Hallucination via Evaluating the Factuality of Partial Response during Generation (ACL Findings 2025)\",\n    \"Hallucination as an Anomaly: Dynamic Intervention via Probabilistic Circuits (arXiv 2026)\",\n    \"Hallucination as Trajectory Commitment: Causal Evidence for Asymmetric Attractor Dynamics in Transformer Generation (arXiv 2026)\",\n    \"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models (ICLR 2026)\",\n    \"Semantics-Adaptive Activation Intervention for LLMs via Dynamic Steering Vectors (arXiv 2024)\"\n  ],\n  \"description\": \"We propose Latent Trajectory Steering (LTS), a method that bridges hallucination detection via hidden-state trajectory analysis with targeted activation intervention. Unlike fixed-vector approaches (ITI, ACT) that apply corpus-averaged corrections uniformly, LTS monitors per-claim residual stream trajectories across layers, detects divergence toward hallucination basins using geometric features (velocity, curvature, basin proximity), and computes minimal-norm input-specific correction vectors via orthogonal projection onto the factual manifold boundary at critical layers. Steering is applied only when trajectory analysis indicates hallucination risk, leaving correct generations untouched. We implement this on Qwen3-8B/14B using TransformerLens and the steering-vectors library, evaluating on TruthfulQA, FELM, and FActScore against ACT, ITI, and PCNet baselines. This fills the acknowledged gap between trajectory-based detection (LSD, Hallucination Basins) and practical intervention, offering claim-adaptive steering without external factuality monitors. The approach differentiates from concurrent PCNet work by using explicit steering vectors at claim-level granularity rather than token-level contrastive decoding via probabilistic circuits.\",\n  \"project_name\": \"latent_trajectory_steering\",\n  \"source\": \"web_research\"\n}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "309a0666-77e7-4f13-8880-8f7e8f44bc41",
+            "isSidechain": false,
+            "requestId": "req_011Cb5jf8PCsVMCEysCvgHfP",
+            "type": "assistant",
+            "uuid": "d1a8ca1d-71b2-454e-adcf-855def67564a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HG9Ma4414tGU3hiAhov2Xy",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 665,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 32127,
+                "output_tokens": 4173,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 665,
+                    "output_tokens": 4173,
+                    "cache_read_input_tokens": 32127,
+                    "cache_creation_input_tokens": 783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Latent Trajec…",
+                "leafUuid": "d1a8ca1d-71b2-454e-adcf-855def67564a",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Input-specific trajectory steering for claim-level hallucination suppression",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-16 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Latent Trajec…",
+                "leafUuid": "d1a8ca1d-71b2-454e-adcf-855def67564a",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Input-specific trajectory steering for claim-level hallucination suppression",
+                "sessionId": "e9ad89c8-7d70-432b-bf1f-58e2870fd5c6"
+              }
+            }
+          ],
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-complete-the-research-direction-below-with-implementation-details-today-s-date-copy-41.md"
+}

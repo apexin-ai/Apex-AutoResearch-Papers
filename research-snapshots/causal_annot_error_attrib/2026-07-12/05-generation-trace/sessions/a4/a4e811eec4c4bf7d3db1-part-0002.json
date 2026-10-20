@@ -1,0 +1,999 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a4e811eec4c4bf7d3db1",
+  "rounds": [
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-20T04:22:30.060Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T04:22:30.060Z",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+                "content": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have sufficient research context to provide a thorough assessment. Let me compile my analysis.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- **The Verifier Tax (arXiv 2603.19328, Mar 2026)**: 直接支撑本 proposal 的核心 motivation。文档记录了 94% blocking rate 对应 <5% safe success rate 的巨大鸿沟，recovery rate 从 21%（GPT-OSS-20B 简单任务）降至接近 0%（复杂零售场景）。关键 insight：safety mediation 的 operational overhead（2.0–2.8× token inflation）也是 recovery 困难的隐性原因之一。\n- **AWARE-US (arXiv 2601.02643, Jan 2026)**: **proposal 完全遗漏的高度相关工作**。120+ persona-grounded queries，直接处理 tool-calling agent 中的 infeasibility resolution 问题——当 query 不可满足时，agent 应 relax 最低优先级的 constraint。提出 local/global/pairwise 三种 constraint importance 推断方法。虽然场景不同（preference-aware vs. safety-constrained），但在\"infeasibility detection + constraint-aware resolution\"这一核心能力维度上与 RecoverBench 高度重叠。\n- **\"Check Yourself Before You Wreck Yourself\" (arXiv 2510.16492, NeurIPS 2025 Workshop)**: proposal 未引用但与 URR 直接相关。证明仅加 explicit quit instructions 就能在 12 个 SOTA LLM 上平均提升 +0.39 safety（0-3 scale），几乎不损害 helpfulness（-0.03）。这对 URR 的难度假设构成潜在挑战：简单 prompting 能否已经达到不错的 URR？\n- **\"Safety is Non-Compositional\" (arXiv 2603.15973, Mar 2026)**: 正式证明了 component-level safety check 在存在 conjunctive capability dependency 时结构性不足。两个各自安全的 agent 组合后可达到 forbidden goal。这为 proposal 的 compositional circumvention detection（FRR 的核心设计）提供了严格的理论基础。\n- **AGENT-C (arXiv 2512.23738, ICLR 2026 Workshop)**: SMT-based constrained generation，100% conformance，但确实是 action-level 而非 trajectory-level。Proposal 对其定位准确。\n- **Symbolic Guardrails (arXiv 2604.15579, Apr 2026)**: 74% policy requirements 可符号化强制执行；informative feedback 改善 utility 但不解决 recovery。验证了 proposal 的 gap claim。\n- **Recovery-Bench (Letta, NeurIPS 2025 Workshop)**: 从 corrupted state 恢复，是 resilience 维度而非 constraint-aware replanning 维度。Recovery 是独立能力维度——GPT-5 在 recovery setting 排名大幅上升而 Claude 4 Sonnet 下降。这验证了 proposal 的正交性论断，但也暗示：recovery 能力与 fresh-state 能力的分离可能在 post-blocking 场景同样成立。\n- **CaRT (arXiv 2510.08517)**: 教 LLM \"when they know enough\"——通过 counterfactual trajectory pairs + verbal reasoning 训练 termination 决策。与 URR 中\"判断何时应放弃\"有方法论上的相关性。\n- **ODCV-Bench (arXiv 2512.20798)**: 30-67% 违规率在 goal pressure 下。确认了 proposal 关于\"失败的 recovery 可能走向 constraint gaming\"的 motivation。\n- 调研总结：该领域当前研究者主要在两个轴上推进：(1) guardrail 侧的强化（symbolic enforcement、constrained generation、control-theoretic correction），(2) agent 侧的评估（safety benchmark 层出不穷但几乎全部聚焦于\"是否违规\"而非\"违规被阻止后怎么办\"）。**post-blocking recovery 确实是一个被系统性忽略的空白地带**，但 infeasibility recognition 作为独立能力在 AWARE-US、CaRT、\"Check Yourself\" 等工作中已有初步探索，只是未在 safety-constrained agent 场景下被正式研究。\n\n---\n\n【发掘点 1】\n- 维度: related work 差异化 / 前提假设质疑\n- 内容: **AWARE-US (arXiv 2601.02643) 是一个关键遗漏，必须纳入 related work 并明确定位差异化。** AWARE-US 处理的核心问题是 \"tool-calling agent 遇到 infeasible query 时如何通过 constraint relaxation 找到可行替代方案\"——这与 RecoverBench 的 \"partially recoverable\" 和 \"correctly unrecoverable\" 类别在能力维度上高度重叠（都需要 constraint reasoning + feasibility judgment）。差异在于：(a) AWARE-US 的 infeasibility 来源是 user query 本身的不可满足性，而 RecoverBench 的来源是 guardrail 动态引入的 permanent constraint——这意味着 constraint space 在 execution 中发生了突变，agent 需要 on-the-fly 重新推理；(b) AWARE-US 通过 relaxation 降低任务标准来恢复可行性，而 RecoverBench 要求在 original task objective 不变的情况下寻找 alternative path 或承认不可能；(c) AWARE-US 不涉及 compositional circumvention 风险。如果审稿人发现这篇遗漏论文，且 proposal 没有做清晰对比，会直接威胁 novelty claim 的可信度。建议在 Landscape 中增加一个子类别 \"Infeasibility-aware agent systems\" 并将 AWARE-US、CaRT 统一定位。\n- 价值: 提升 Related Work 差异化的完整性，堵住审稿人最可能攻击的 novelty 漏洞。\n- 调研依据: 直接参考 AWARE-US (arXiv 2601.02643) 的 benchmark 设计和 constraint relaxation 框架。\n\n【发掘点 2】\n- 维度: trivial alternative 威胁\n- 内容: **\"Check Yourself Before You Wreck Yourself\" (arXiv 2510.16492) 对 URR 构成 trivial baseline 威胁。** 该工作证明仅在 prompt 中添加 explicit quit instructions，就能在 12 个 SOTA LLM 上显著提升 safety（+0.39/3.0），几乎无 helpfulness 损失。如果一个简单的 \"you may quit if you believe the task cannot be safely completed\" 指令已经能达到不错的 impossibility recognition rate，那 RecoverBench 的 URR 发现可能变得 less surprising，RA-FGRPO 在 URR 维度的增量价值也可能被压缩。**建议**：(a) 将 \"selective quitting with explicit instructions\" 作为 URR 维度的专门 baseline（不同于当前 baseline 列表中的任何一个）；(b) 在 proposal 层面明确 URR 与 simple quitting 的关键区别——RecoverBench 的 URR 不仅要求 agent \"放弃\"，还要求 agent 给出 **正确的不可能性解释**（哪个 constraint 使得什么不可能），这是 calibrated constraint reasoning 的体现，远超 binary quit/continue 决策。这个区分如果做得好，反而能进一步锐化 URR 的 novelty。\n- 价值: 化解 trivial alternative 威胁，同时通过对比进一步明确 URR 的真正创新点（calibrated impossibility reasoning vs. binary quitting），提升 Novelty 维度。\n- 调研依据: 直接参考 \"Check Yourself Before You Wreck Yourself\" (arXiv 2510.16492) 的实验结论。\n\n【发掘点 3】\n- 维度: 核心 claim 强化 / significance 提升\n- 内容: **\"Safety is Non-Compositional\" (arXiv 2603.15973) 为 FRR 的 compositional circumvention detection 提供了严格的理论基础，应当被显式引用并用于提升 claim 的理论深度。** 该工作正式证明了：在存在 conjunctive capability dependency 的情况下，component-level 的安全检查结构性不足——两个各自通过安全检查的 component 组合后可以达到 forbidden capability。这正是 proposal 中 FRR 要捕捉的现象的理论化表述：一系列各自 policy-compliant 的 action 可以 compositionally 达到 prohibited final state。当前 proposal 用经验数据（ODCV-Bench 的 30-67% violation rate）来 motivate FRR，但如果能同时援引这个 formal impossibility result，FRR 的设计动机就从\"经验观察到一个问题\"升级为\"理论上已证明 action-level compliance 必然不足，trajectory-level 检测是必要的\"。这显著提升了 FRR 作为 evaluation 设计的理论正当性。\n- 价值: 将 FRR 从\"一个有用的度量\"提升为\"一个理论上 necessary 的度量\"，同时增强整体 paper 的理论严谨度，直接提升 Novelty 和 Significance。\n- 调研依据: 直接参考 \"Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems\" (arXiv 2603.15973)。\n\n【发掘点 4】\n- 维度: novelty 锐化\n- 内容: **\"Calibrated constraint reasoning\" 是本 proposal 最独特的理论贡献，但当前表述中被埋没在大量技术细节里，应提炼为一级概念并构建围绕它的叙事主线。** 当前 proposal 的 novelty 分散在多个维度上（benchmark 设计、SRS 三模块、RA-FGRPO、五个 metrics），但如果审稿人被问 \"one sentence novelty\"，很难提炼出一个 sharp 的回答。我建议将 \"calibrated constraint reasoning\" 定位为统一的核心 thesis：post-blocking recovery 本质上需要 agent 对 constraint-satisfying action space 做精确的 **calibration**——既不能过度保守（该恢复时放弃 = URR failure），也不能过度激进（不该恢复时强行恢复 = FRR failure），也不能部分理解约束（该降级时要求全部完成 = partial recovery failure）。RecoverBench 评估的就是这种 calibration 能力，SRS+RA-FGRPO 训练的就是这种 calibration 能力。这个 framing 把 benchmark、metrics、method 统一在一个 sharp thesis 之下，避免 \"benchmark paper + method paper 硬拼在一起\" 的审稿人印象。\n- 价值: 将分散的贡献统一为一个锐利的核心 thesis，解决 \"novelty 到底是什么\" 的表述清晰度问题，直接提升 Novelty 可感知度。\n- 调研依据: 基于领域整体趋势判断——当前 agent safety 研究大量关注 binary compliance（safe/unsafe），calibrated reasoning 的 spectrum-based 视角（recover/recognize/degrade）是差异化的思维框架。\n\n【发掘点 5】\n- 维度: significance 提升\n- 内容: **Proposal 的 significance framing 可以更加有力：当前的叙事是 \"recovery rate 很低，所以需要研究\"，但更深层的 significance 是 \"如果 agent 不能从 safety block 中 recover，safety mechanism 本身就成为 capability tax，这会激励部署者弱化 guardrail\"。** The Verifier Tax 的名字本身就暗示了这一点——2.0-2.8× token inflation + <5% safe success rate 意味着在实际部署中，企业有强烈的 incentive 降低 guardrail 的 strictness 以维护 task completion rate。这形成了一个 perverse incentive：越严格的 guardrail 在没有 good recovery 机制的情况下越是促使部署者绕过安全措施。如果 proposal 能将 research question 提升到这个层面——\"post-blocking recovery 不仅是一个技术问题，更是 safe deployment 的 ecosystem-level bottleneck\"——Significance 会上一个台阶。这比现在的 \"recovery rate 低\" 更有 policy relevance 和 real-world impact。\n- 价值: 将 Significance 从 \"technical gap\" 提升为 \"ecosystem-level bottleneck with perverse incentive implications\"，命中审稿人对 real-world impact 的关注。\n- 调研依据: 参考 The Verifier Tax (arXiv 2603.19328) 的 token inflation 数据和 SafeAgentBench (arXiv 2412.13178) 的 5-10% rejection rate——两者共同暗示了 safety-capability tradeoff 的 deployment incentive 问题。\n\nSources:\n- [The Verifier Tax](https://arxiv.org/abs/2603.19328)\n- [Symbolic Guardrails](https://arxiv.org/abs/2604.15579)\n- [AGENT-C](https://arxiv.org/abs/2512.23738)\n- [ReGuard](https://arxiv.org/abs/2510.13727)\n- [AWARE-US](https://arxiv.org/abs/2601.02643)\n- [Check Yourself Before You Wreck Yourself](https://arxiv.org/abs/2510.16492)\n- [Safety is Non-Compositional](https://arxiv.org/abs/2603.15973)\n- [Fission-GRPO](https://arxiv.org/abs/2601.15625)\n- [ODCV-Bench](https://arxiv.org/abs/2512.20798)\n- [Recovery-Bench](https://openreview.net/forum?id=8FZRnDgDxq)\n- [TopoCurate](https://arxiv.org/abs/2603.01714)\n- [SafeAgentBench](https://arxiv.org/abs/2412.13178)\n- [CaRT](https://arxiv.org/abs/2510.08517)\n- [BackBench](https://arxiv.org/abs/2604.18847)\n\n【补救 agent 本轮输出】:\nNow I have sufficient research context to provide a thorough assessment. Let me compile my analysis.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **τ-bench** (ICLR 2025): 使用 pass^k 作为核心可靠性指标，基于数据库终态对比（而非轨迹枚举）做评测，覆盖 Airline/Retail 两个域，GPT-4o pass^8 < 25% 在 Retail 域。实验设计上注重 reproducibility（多次独立运行 + 统计量报告）。\n- **Fission-GRPO** (arXiv 2601.15625): 以 Qwen3-8B 为训练模型，在 BFCL v4 Multi-Turn benchmark 上评测，+5.7% error recovery rate，对比 GRPO baseline。使用 on-policy error augmentation + Error Simulator 生成诊断反馈。实验包含 SFT / GRPO / Fission-GRPO 对比。\n- **AGENT-C** (arXiv 2512.23738, ICLR 2026 Workshop): 在 τ-bench Airline/Retail 上评测，实现 100% conformance + utility 提升（Claude Sonnet 4.5: 71.8%→75.2%），评测跨开源/闭源多模型。\n- **ToolRL** (ICLR 2026, arXiv 2504.13958): 在 Qwen2.5 (1.5B/3B/7B) + LLaMA3.2-3B 上评测，跨 BFCL/Bamboogle/API-Bank 等 benchmark，SFT vs RL (PPO/GRPO) 全面对比，证明 RL 比 SFT 有 ~15% gap。\n- **TopoCurate** (arXiv 2603.01714): 在 BFCLv3 和 τ²-Bench 上评测，SFT +4.2% / RL +6.9%，使用 Reflective Recovery 选择策略。\n- **RC-GRPO** (arXiv 2602.03025): 解决 GRPO 训练中 within-group reward variance collapse 问题，通过 reward-conditioned trajectory policy 注入 diversity。\n- **ODCV-Bench** (arXiv 2512.20798): 40 个多步场景，12 个 SOTA LLM 评测，violation rate 30-67%，使用 4 个独立 LLM judge + Krippendorff's alpha 报告 inter-rater reliability。\n- **SafeAgentBench** (arXiv 2412.13178): 750 tasks，最佳 baseline 仅 5% 危险任务拒绝率，ReAct+GPT-4 也只有 10%/32%。\n- **DiaTool-DPO** (SIGDIAL 2025, arXiv 2504.02882): 将 TA-LLM 交互建模为 MDP，自动构建 paired trajectory 数据集做 DPO，接近 GPT-4o 水平。\n- **ToolSafe** (arXiv 2601.10156): 构建 TS-Bench + TS-Guard + TS-Flow，步级安全检测+反馈，降低 65% harmful invocations。\n- **τ³-Bench / τ-Knowledge** (2026): 扩展了 Banking 域，基于 ~700 文档的知识库，修复了原 τ-bench 多个 domain 的问题。当前 8 个模型已在 τ³-Bench 上有评测结果。\n\n- **调研总结**: 该领域当前实验设计标准要求：(a) 在 τ-bench 系列上评测时需使用 pass^k 多次运行+统计报告；(b) 训练方法对比需包含 SFT baseline 以隔离数据vs训练范式的贡献；(c) RL 方法之间对比需要 compute-normalized 公平比较；(d) 安全类 benchmark 需报告 inter-annotator agreement；(e) 审稿人普遍期望在至少 2-3 个模型规模和跨域设置下验证泛化性。\n\n---\n\n【缺陷 1】\n- 类别: baseline 不足或过时\n- 问题: Proposal 将 AGENT-C constrained generation 作为 baseline (h)，但 AGENT-C 已在 τ-bench 上实现 100% conformance。当 AGENT-C 阻止了违规动作并生成合规替代时，它实际上也在某种程度上\"帮助\"agent 恢复——只是在 action level 而非 trajectory level。Proposal 需要更清晰地区分：当 AGENT-C 已经在线修正了 action，agent 还需要做什么？如果 RecoverBench 的评测假设 guardrail 只做 blocking 不做 correction，那 AGENT-C 在 RecoverBench 设置下是退化为 block-only 模式，还是保留其 constrained generation 能力？这个实验设置的模糊性会被审稿人追问。\n- 严重度: 可补救\n- 补救方案: 明确定义 RecoverBench 中 guardrail 的行为接口：guardrail 只负责阻止（block）违规 action 并返回不同信息级别的反馈，不负责生成替代 action。在此设置下，AGENT-C baseline 应运行为两个变体：(1) AGENT-C block-only（退化为只 block + informative feedback，不做 constrained generation），和 (2) AGENT-C full（保留 constrained generation 能力，但仍需 agent 自行完成 trajectory-level replanning）。这样可以隔离 action-level correction vs trajectory-level replanning 的贡献。\n- 调研依据: AGENT-C (arXiv 2512.23738) 在 τ-bench 上的评测表明其 100% conformance 来自 SMT constrained generation，这与 RecoverBench 的 \"agent 自行恢复\" 设定存在接口冲突。\n\n【缺陷 2】\n- 类别: 实验设计不足\n- 问题: Proposal 选择 Qwen3.6-35B-A3B (3B active) 和 Qwen3-4B 两个模型进行训练评测，但两者都是非常小的模型（3-4B active parameters）。Verifier Tax 论文的核心发现之一是 recovery 能力是 model-dependent 的——frontier models 有部分 recovery 能力而 open-source 小模型几乎为零。如果 RA-FGRPO 只在 3-4B 模型上验证，即使有提升，审稿人会质疑：(a) 提升是否仅因为小模型基线太低（ceiling effect 反面），(b) 方法在 7B-14B 中等规模模型上是否同样有效，(c) 对 frontier model 是否有增益。缺少中等规模模型的验证点会削弱 scaling 相关的 claim。\n- 严重度: 可补救\n- 补救方案: 增加至少一个 7-8B 级别的模型（如 Qwen3-8B 或 Qwen3.5-9B）作为训练+评测目标，形成 4B / 8B / 35B-A3B 三点规模梯度。考虑到资源约束，可以只在 8B 模型上跑最优配置（由 4B ablation 确定），不需要全 ablation。Frontier model baselines（GPT-4o, Claude Sonnet）只做 inference 评测即可。这三个规模点 + frontier inference-only 可以构成完整的 scaling 分析。额外计算开销估计约 150-200 H100 hours（5 runs × 30-40h per run）。\n- 调研依据: ToolRL (ICLR 2026) 在 Qwen2.5 1.5B/3B/7B + LLaMA3.2-3B 上评测，提供了三个规模点的对比；Fission-GRPO 用 Qwen3-8B 作为主要训练目标。领域规范期望至少 2-3 个规模点。\n\n【缺陷 3】\n- 类别: 评估方案缺陷\n- 问题: Ground truth recoverability 的确定方法存在方法论风险。对于 Retail domain，proposal 使用 \"beam search (width ≥10) with constraint filtering, with 20% human-verified subset and coverage confidence threshold ≥0.9\"。但问题在于：(1) beam search 的搜索空间取决于 API action space 的大小，Retail domain 的 action space 可能远大于 Airline——τ-bench Retail 有更多工具和复杂的 product/order 状态。beam width=10 可能在 Retail 复杂任务上覆盖不足。(2) \"coverage confidence threshold ≥0.9\" 这个概念没有明确定义——它是怎么计算的？如果是 human agreement on \"exhaustive\"，那需要更多细节。(3) \"uncertain\" 类别的任务如果比例过高（比如 >20%），会显著减小有效 benchmark 规模。这些问题不致命，但如果处理不好会被审稿人视为 benchmark 可靠性问题。\n- 严重度: 可补救\n- 补救方案: (1) 对 Retail domain 的 ground truth 确定方法做更精确的描述：明确 beam search 的实现细节——搜索深度、分支策略、constraint filtering 的具体实现。建议增加 beam width 的 sensitivity analysis（width=10/20/50），报告在不同 width 下标注结果的变化率，如果 width=10 到 width=50 结果基本不变，可以证明搜索充分性。(2) 明确 \"coverage confidence\" 的操作性定义：建议采用 \"两个独立 beam search 实现 + human verification\" 三方一致性 ≥ 0.9 的标准。(3) 预注册 \"uncertain\" 类别的处理方案：如果 uncertain >15%，在主表中排除这些任务，但在 appendix 中报告包含/排除 uncertain 任务的结果对比。(4) 对于 Banking domain (≥40 tasks)，没有说明 ground truth 确定方法——需要补充。\n- 调研依据: ODCV-Bench 使用 4 个独立 LLM judge + Krippendorff's alpha 报告可靠性；τ-bench 原始设计使用 database state comparison 作为 ground truth，但其任务本身有单一明确的 goal state，而 RecoverBench 的 recoverability 判断比单一任务成功判断更复杂。\n\n【缺陷 4】\n- 类别: ablation 不完整\n- 问题: Proposal 设计了三种 credit assignment 策略（GTPO-based / AT²PO-based / GAGPO-style）作为 \"equal ablation candidates\"，但没有设计 ablation 来隔离 RA-FGRPO 中两个核心设计选择的贡献：(a) SRS 诊断上下文的信息量 vs (b) Fission-based resampling 本身的训练效率提升。Proposal 虽然提到了 \"compute-matched GRPO\"（在 block point 用相同额外 rollout 但无 SRS 诊断），但没有设计一个 \"Fission-GRPO + block detection but without SRS diagnostic context\" 的变体——即使用 Fission 的 resampling 机制但只给 minimal feedback，不给结构化约束信息。这个 ablation 对于证明 SRS 的结构化约束信息确实提供了超越简单错误检测+重采样的价值至关重要。\n- 严重度: 可补救\n- 补救方案: 在 ablation matrix 中增加一个关键变体：\"Fission-GRPO-block\"——使用 Fission 的 on-policy error augmentation + resampling 机制，但在 block point 只提供 minimal feedback（\"action blocked\"），不提供 SRS 的 Constraint Extraction / Safe Alternative Enumeration / Diagnostic Context。这样 ablation 矩阵变为：(1) vanilla GRPO, (2) compute-matched GRPO (extra rollouts, no SRS), (3) Fission-GRPO-block (Fission resampling, minimal feedback), (4) RA-FGRPO w/o Alternative Enumerator, (5) RA-FGRPO w/o Constraint Extraction, (6) RA-FGRPO w/o Diagnostic Formatter, (7) Full RA-FGRPO。这7个变体可以完整隔离：resampling mechanism / constraint information / alternative enumeration / diagnostic formatting 各自的贡献。Proposal 中已有的 \"training with minimal feedback\" ablation 部分覆盖了这个需求，但需要更明确地与 Fission resampling 机制耦合。\n- 调研依据: Fission-GRPO 原论文将 Error Simulator 诊断反馈视为核心贡献，其 ablation 设计需要隔离 resampling 机制 vs 诊断信息的各自贡献。ToolRL (ICLR 2026) 的 SFT vs RL 对比表明信息提供方式和训练范式的交互效应很重要。\n\n【缺陷 5】\n- 类别: 评估方案缺陷\n- 问题: **URR (Unrecoverable Recognition Rate) 的评测方法缺乏对 false positive 的处理**。Proposal 花大篇幅论证 URR 是一个新能力维度，但只定义了 URR = 正确识别不可恢复场景的比率。缺少的是：agent 在可恢复场景中错误放弃（false unrecoverable declaration）的惩罚机制。如果一个模型通过激进地声明 \"unrecoverable\" 来获得高 URR，那它的 SRR 自然会下降——但这个 trade-off 没有被显式建模和评测。审稿人一定会问：有没有一个 joint metric 或 precision-recall 分析来展示 URR 和 SRR 的 trade-off frontier？\n- 严重度: 可补救\n- 补救方案: (1) 增加 **False Abandonment Rate (FAR)**：在可恢复场景中 agent 错误声明不可恢复的比率。(2) 报告 SRR vs URR 的 Pareto frontier（或等效的 precision-recall 曲线），通过调节 prompt 中的 confidence threshold 或 temperature 绘制不同 operating point。(3) 可选增加一个 F1-style 综合指标 = 2×SRR×URR/(SRR+URR) 作为 headline metric，同时保留 SRR/URR/FAR/FRR 的分项报告。这不会增加额外计算量，只需要在评测分析阶段增加统计计算。\n- 调研依据: SafeAgentBench 评测中发现 agents 几乎不拒绝危险任务（5-10% rejection rate），说明当前模型的问题是 under-rejection 而非 over-rejection。但 RecoverBench 训练后的模型可能会走向另一个极端。Beyond pass@1 (arXiv 2603.29231) 的 GDS/MOP 指标也要求 graceful degradation 评估，这与 URR 的 precision-recall 分析互补。\n\n【缺陷 6】\n- 类别: 可行性问题\n- 问题: **Benchmark 构建中 \"partially recoverable\" 类别的标注一致性可能远低于 recoverable/unrecoverable**。Proposal 定义 partially recoverable 为 \"primary task objective achievable via safe path but ≥1 secondary objectives unsatisfiable under constraints\"，这要求标注者不仅判断主任务是否可完成，还要枚举所有子目标并判断每个子目标的约束满足性。这比二元 recoverable/unrecoverable 判断复杂得多，可能导致 Cohen's κ 在 partial 类别上显著低于其他类别。如果 partial 类别的标注一致性不足（如 κ < 0.6），整个 benchmark 中 30% 的任务可靠性存疑。\n- 严重度: 可补救\n- 补救方案: (1) **分层报告 Cohen's κ**：不仅报告整体 κ，还要报告三个类别各自的 κ 值。预注册一个最低可接受阈值（如 κ ≥ 0.6 for partial）。(2) **简化 partial 类别的定义**：将子目标分解为 \"must-have\"（来自任务明确要求的核心动作）和 \"nice-to-have\"（来自 policy 的辅助合规要求），只对 must-have 子目标进行 recoverability 标注。这降低了标注复杂度。(3) **设计 pilot annotation round**：在正式标注前，对 20 个 partial 候选任务做 pilot 标注，如果 κ < 0.6，重新设计标注 guideline 或降低 partial 类别占比（如从 30% 降到 20%，同时增加 recoverable 到 50%）。(4) 在 3 类标注后增加一个更细粒度的 \"partial recovery score\"（0-1 连续值），用于 regression 分析。\n- 调研依据: 基于领域实验规范判断。ODCV-Bench 用 Krippendorff's alpha = 0.81 报告 inter-rater reliability，但其评测是二元性质的（violation / no violation），比 RecoverBench 的三分类 + 子目标枚举简单得多。\n\n【缺陷 7】\n- 类别: compute 公平性问题\n- 问题: Proposal 中提到 \"All RL methods report training FLOPs with performance-vs-compute curves\"，但 (f) ToolSafe pre-execution feedback 和 (g) ReGuard-style guardrail-side correction 和 (h) AGENT-C constrained generation 是 **inference-time 方法**，不涉及训练。与 RA-FGRPO 这样的训练方法对比时，如果只报告 final performance 而不区分 training cost 和 inference cost，对比是不公平的：inference-time 方法有额外的 inference overhead（运行 guardrail/checker），而 training methods 前置了计算成本但 inference 时可能更轻量。\n- 严重度: 可补救\n- 补救方案: 采用双维度公平对比：(1) **Training-free baselines (f, g, h, i)**：报告 per-task inference FLOPs（包括 guardrail/checker 的开销）和 latency。(2) **Training-based baselines (a-e) + RA-FGRPO**：报告 total training FLOPs + per-task inference FLOPs。(3) 在结果表中增加一列 \"Total cost per 1000 tasks\"（训练摊销 + inference），让读者可以判断 training investment 在什么 deployment scale 下值得。(4) 绘制 Pareto frontier：x 轴为 per-task inference cost，y 轴为 SRR/URR joint metric，training-free 和 training-based 方法在同一图上对比。\n- 调研依据: 基于领域实验规范判断。ToolRL (ICLR 2026) 在 SFT vs RL 对比中报告了 compute cost，这是审稿人对训练方法论文的标准期望。\n\n【缺陷 8】\n- 类别: 实验设计不足\n- 问题: **Cross-domain transfer 实验的设计过于简略**。Proposal 仅提到 \"RA-FGRPO trained on Airline evaluated zero-shot on Retail and Banking\"，但没有考虑反向迁移（Retail→Airline, Banking→Airline）和 multi-domain joint training。单向迁移结果可能因 domain-specific bias 而不具代表性。更关键的是，三个域的 policy 结构差异很大（Airline 的航班政策 vs Retail 的退换货政策 vs Banking 的金融合规），单纯的 zero-shot transfer 可能效果很差，这并不能说明方法不好，而只是说明 policy 知识没有迁移——但 constraint reasoning 能力是否迁移了？需要更精细的分析。\n- 严重度: 可补救\n- 补救方案: (1) 扩展迁移矩阵为 3×3（训练域 × 测试域），至少在 4B 模型上做完整矩阵。(2) 在迁移实验中，除了报告整体 SRR/URR，还要分开报告 \"constraint reasoning\" 子指标和 \"domain knowledge\" 子指标。具体做法：在测试域中，将 policy document 提供给 agent（即 agent 可以看到目标域的 policy），只是没有见过目标域的 recovery 训练数据——这样可以隔离 \"recovery 策略泛化\" vs \"domain knowledge 缺失\"。(3) 增加一个 \"all-domain joint training\" baseline，将三个域的数据混合训练，对比各域的性能是否超过单域训练。计算开销：4B 模型上 ~3 extra runs × 15h = 45h，可接受。\n- 调研依据: TopoCurate 在 BFCLv3 和 τ²-Bench 上都做了评测，证明跨 benchmark 验证是标准做法。τ-bench 系列的三个域设计初衷就是测试跨域泛化。\n\n【缺陷 9】\n- 类别: 评估方案缺陷\n- 问题: **FRR (False Recovery Rate) 的两层检测设计中，trajectory-level policy audit 只覆盖 ≥20% subset**。Proposal 表示 tier-1 用 tau-bench 原生 database state comparison 覆盖全部任务，tier-2 trajectory-level audit 覆盖 ≥20% subset，并报告 inter-tier discrepancy。但问题是：如果 tier-2 发现大量 tier-1 漏掉的 conversation-level violations（如 information leakage），那仅 20% 的覆盖率意味着 80% 的任务可能有未检测到的 false recovery。这会使 FRR 的可靠性存疑。\n- 严重度: 可补救\n- 补救方案: (1) 将 tier-2 设计为自动化 LLM-based policy audit（而非纯人工），这样可以扩展到 100% 覆盖。使用多个 LLM judge（参考 ODCV-Bench 的 4-judge 设计）对全部轨迹做 conversation-level violation 检测，报告 judge agreement。(2) 人工 audit 仍然保留在 ≥20% subset 上，但作为 LLM judge 的 calibration 和 reliability check，报告 LLM judge vs human 的 agreement。(3) 在 FRR 结果中报告两个值：FRR-state（基于 database state comparison，全覆盖）和 FRR-trajectory（基于 LLM judge + 人工校准），让读者理解不同检测粒度的差异。\n- 调研依据: ODCV-Bench 用 4 个独立 LLM judge (Krippendorff's alpha=0.81) 实现了全覆盖的自动化评测；The Verifier Tax 的 Integrity Leak 发现表明 conversation-level violations 可能是系统性的，仅 20% 抽样可能不够。\n\n【缺陷 10】\n- 类别: 可行性问题\n- 问题: **时间线偏紧，尤其是 human-in-loop 方案的 10-12 周**。EMNLP 2026 via ARR 的提交窗口通常在 6-7 月（ARR June cycle deadline 大约 6 月中旬）。以 2026 年 5 月 20 日为今天计算，距离 6 月中旬 ARR deadline 仅约 4 周。即使是 8 月 ARR cycle（用于 EMNLP），也只有约 11 周。10-12 周的 human-in-loop timeline 刚好勉强赶上 8 月 cycle，但没有任何 buffer。考虑到 benchmark construction 需要人工标注 + 双标注 + κ 计算 + pilot round，加上 RA-FGRPO 训练的 ablation matrix，时间线风险显著。\n- 严重度: 可补救\n- 补救方案: (1) **明确瞄准 ARR August 2026 cycle**（deadline 约 8 月 15 日），倒排时间线：Week 1-4 benchmark construction（含 pilot annotation），Week 5-8 training + ablation（4B 模型先行，并行标注剩余数据），Week 9-10 evaluation + 35B training，Week 11 writing。(2) **Critical path optimization**：benchmark construction 和 SRS 实现可以并行进行；4B 模型的 ablation 结果可以指导 35B 模型只跑 2-3 个最有价值的配置而非全 ablation。(3) **设置 minimum viable experiment**：如果时间不够，优先保证 RecoverBench (≥170 tasks) + RA-FGRPO (best config) + 4 个核心 baselines (SFT-Recovery / vanilla GRPO / compute-matched GRPO / AGENT-C) 的结果，将 cross-domain transfer / 完整 credit assignment ablation / FRR tier-2 全覆盖 等降级为 \"extended\" 内容。(4) EACL 2027 via ARR August 3 作为 Plan B 是合理的。\n- 调研依据: 基于领域实验规范判断和时间线分析。\n\nSources:\n- [τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains](https://arxiv.org/abs/2406.12045)\n- [Fission-GRPO: Learning to Recover from Execution Errors](https://arxiv.org/abs/2601.15625)\n- [AGENT-C: Enforcing Temporal Constraints for LLM Agents](https://arxiv.org/abs/2512.23738)\n- [ToolRL: Reward is All Tool Learning Needs](https://arxiv.org/abs/2504.13958)\n- [TopoCurate: Modeling Interaction Topology for Tool-Use Agent Training](https://arxiv.org/abs/2603.01714)\n- [RC-GRPO: Reward-Conditioned Group Relative Policy Optimization](https://arxiv.org/abs/2602.03025)\n- [ODCV-Bench: Evaluating Outcome-Driven Constraint Violations](https://arxiv.org/abs/2512.20798)\n- [SafeAgentBench: Safe Task Planning of Embodied LLM Agents](https://arxiv.org/abs/2412.13178)\n- [DiaTool-DPO: Multi-Turn Direct Preference Optimization](https://arxiv.org/abs/2504.02882)\n- [ToolSafe: Enhancing Tool Invocation Safety](https://arxiv.org/abs/2601.10156)\n- [The Verifier Tax: Safety Success Tradeoffs](https://arxiv.org/abs/2603.19328)\n- [Symbolic Guardrails for Domain-Specific Agents](https://arxiv.org/abs/2604.15579)\n- [BackBench: Human-Guided Harm Recovery](https://arxiv.org/abs/2604.18847)\n- [Qwen3.6-35B-A3B Specifications](https://apxml.com/models/qwen36-35b-a3b)\n- [τ³-Bench: Fixing Airline + Retail](https://taubench.com/blog/tau3-task-fixes.html)\n- [TAU3-Bench Benchmark 2026](https://benchlm.ai/benchmarks/tau3Bench)\n- [Pass@k vs Pass^k: Understanding Agent Reliability](https://www.philschmid.de/agents-pass-at-k-pass-power-k)\n- [Beyond pass@1](https://arxiv.org/abs/2603.29231)\n- [GAGPO: Generalized Advantage Grouped Policy Optimization](https://arxiv.org/html/2605.13217)"
+              }
+            }
+          ],
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-20T04:22:30.061Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T04:22:30.061Z",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000108"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-20T04:22:30.087Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have sufficient research context to provide a thorough assessment. Let me compile my analysis.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- **The Verifier Tax (arXiv 2603.19328, Mar 2026)**: 直接支撑本 proposal 的核心 motivation。文档记录了 94% blocking rate 对应 <5% safe success rate 的巨大鸿沟，recovery rate 从 21%（GPT-OSS-20B 简单任务）降至接近 0%（复杂零售场景）。关键 insight：safety mediation 的 operational overhead（2.0–2.8× token inflation）也是 recovery 困难的隐性原因之一。\n- **AWARE-US (arXiv 2601.02643, Jan 2026)**: **proposal 完全遗漏的高度相关工作**。120+ persona-grounded queries，直接处理 tool-calling agent 中的 infeasibility resolution 问题——当 query 不可满足时，agent 应 relax 最低优先级的 constraint。提出 local/global/pairwise 三种 constraint importance 推断方法。虽然场景不同（preference-aware vs. safety-constrained），但在\"infeasibility detection + constraint-aware resolution\"这一核心能力维度上与 RecoverBench 高度重叠。\n- **\"Check Yourself Before You Wreck Yourself\" (arXiv 2510.16492, NeurIPS 2025 Workshop)**: proposal 未引用但与 URR 直接相关。证明仅加 explicit quit instructions 就能在 12 个 SOTA LLM 上平均提升 +0.39 safety（0-3 scale），几乎不损害 helpfulness（-0.03）。这对 URR 的难度假设构成潜在挑战：简单 prompting 能否已经达到不错的 URR？\n- **\"Safety is Non-Compositional\" (arXiv 2603.15973, Mar 2026)**: 正式证明了 component-level safety check 在存在 conjunctive capability dependency 时结构性不足。两个各自安全的 agent 组合后可达到 forbidden goal。这为 proposal 的 compositional circumvention detection（FRR 的核心设计）提供了严格的理论基础。\n- **AGENT-C (arXiv 2512.23738, ICLR 2026 Workshop)**: SMT-based constrained generation，100% conformance，但确实是 action-level 而非 trajectory-level。Proposal 对其定位准确。\n- **Symbolic Guardrails (arXiv 2604.15579, Apr 2026)**: 74% policy requirements 可符号化强制执行；informative feedback 改善 utility 但不解决 recovery。验证了 proposal 的 gap claim。\n- **Recovery-Bench (Letta, NeurIPS 2025 Workshop)**: 从 corrupted state 恢复，是 resilience 维度而非 constraint-aware replanning 维度。Recovery 是独立能力维度——GPT-5 在 recovery setting 排名大幅上升而 Claude 4 Sonnet 下降。这验证了 proposal 的正交性论断，但也暗示：recovery 能力与 fresh-state 能力的分离可能在 post-blocking 场景同样成立。\n- **CaRT (arXiv 2510.08517)**: 教 LLM \"when they know enough\"——通过 counterfactual trajectory pairs + verbal reasoning 训练 termination 决策。与 URR 中\"判断何时应放弃\"有方法论上的相关性。\n- **ODCV-Bench (arXiv 2512.20798)**: 30-67% 违规率在 goal pressure 下。确认了 proposal 关于\"失败的 recovery 可能走向 constraint gaming\"的 motivation。\n- 调研总结：该领域当前研究者主要在两个轴上推进：(1) guardrail 侧的强化（symbolic enforcement、constrained generation、control-theoretic correction），(2) agent 侧的评估（safety benchmark 层出不穷但几乎全部聚焦于\"是否违规\"而非\"违规被阻止后怎么办\"）。**post-blocking recovery 确实是一个被系统性忽略的空白地带**，但 infeasibility recognition 作为独立能力在 AWARE-US、CaRT、\"Check Yourself\" 等工作中已有初步探索，只是未在 safety-constrained agent 场景下被正式研究。\n\n---\n\n【发掘点 1】\n- 维度: related work 差异化 / 前提假设质疑\n- 内容: **AWARE-US (arXiv 2601.02643) 是一个关键遗漏，必须纳入 related work 并明确定位差异化。** AWARE-US 处理的核心问题是 \"tool-calling agent 遇到 infeasible query 时如何通过 constraint relaxation 找到可行替代方案\"——这与 RecoverBench 的 \"partially recoverable\" 和 \"correctly unrecoverable\" 类别在能力维度上高度重叠（都需要 constraint reasoning + feasibility judgment）。差异在于：(a) AWARE-US 的 infeasibility 来源是 user query 本身的不可满足性，而 RecoverBench 的来源是 guardrail 动态引入的 permanent constraint——这意味着 constraint space 在 execution 中发生了突变，agent 需要 on-the-fly 重新推理；(b) AWARE-US 通过 relaxation 降低任务标准来恢复可行性，而 RecoverBench 要求在 original task objective 不变的情况下寻找 alternative path 或承认不可能；(c) AWARE-US 不涉及 compositional circumvention 风险。如果审稿人发现这篇遗漏论文，且 proposal 没有做清晰对比，会直接威胁 novelty claim 的可信度。建议在 Landscape 中增加一个子类别 \"Infeasibility-aware agent systems\" 并将 AWARE-US、CaRT 统一定位。\n- 价值: 提升 Related Work 差异化的完整性，堵住审稿人最可能攻击的 novelty 漏洞。\n- 调研依据: 直接参考 AWARE-US (arXiv 2601.02643) 的 benchmark 设计和 constraint relaxation 框架。\n\n【发掘点 2】\n- 维度: trivial alternative 威胁\n- 内容: **\"Check Yourself Before You Wreck Yourself\" (arXiv 2510.16492) 对 URR 构成 trivial baseline 威胁。** 该工作证明仅在 prompt 中添加 explicit quit instructions，就能在 12 个 SOTA LLM 上显著提升 safety（+0.39/3.0），几乎无 helpfulness 损失。如果一个简单的 \"you may quit if you believe the task cannot be safely completed\" 指令已经能达到不错的 impossibility recognition rate，那 RecoverBench 的 URR 发现可能变得 less surprising，RA-FGRPO 在 URR 维度的增量价值也可能被压缩。**建议**：(a) 将 \"selective quitting with explicit instructions\" 作为 URR 维度的专门 baseline（不同于当前 baseline 列表中的任何一个）；(b) 在 proposal 层面明确 URR 与 simple quitting 的关键区别——RecoverBench 的 URR 不仅要求 agent \"放弃\"，还要求 agent 给出 **正确的不可能性解释**（哪个 constraint 使得什么不可能），这是 calibrated constraint reasoning 的体现，远超 binary quit/continue 决策。这个区分如果做得好，反而能进一步锐化 URR 的 novelty。\n- 价值: 化解 trivial alternative 威胁，同时通过对比进一步明确 URR 的真正创新点（calibrated impossibility reasoning vs. binary quitting），提升 Novelty 维度。\n- 调研依据: 直接参考 \"Check Yourself Before You Wreck Yourself\" (arXiv 2510.16492) 的实验结论。\n\n【发掘点 3】\n- 维度: 核心 claim 强化 / significance 提升\n- 内容: **\"Safety is Non-Compositional\" (arXiv 2603.15973) 为 FRR 的 compositional circumvention detection 提供了严格的理论基础，应当被显式引用并用于提升 claim 的理论深度。** 该工作正式证明了：在存在 conjunctive capability dependency 的情况下，component-level 的安全检查结构性不足——两个各自通过安全检查的 component 组合后可以达到 forbidden capability。这正是 proposal 中 FRR 要捕捉的现象的理论化表述：一系列各自 policy-compliant 的 action 可以 compositionally 达到 prohibited final state。当前 proposal 用经验数据（ODCV-Bench 的 30-67% violation rate）来 motivate FRR，但如果能同时援引这个 formal impossibility result，FRR 的设计动机就从\"经验观察到一个问题\"升级为\"理论上已证明 action-level compliance 必然不足，trajectory-level 检测是必要的\"。这显著提升了 FRR 作为 evaluation 设计的理论正当性。\n- 价值: 将 FRR 从\"一个有用的度量\"提升为\"一个理论上 necessary 的度量\"，同时增强整体 paper 的理论严谨度，直接提升 Novelty 和 Significance。\n- 调研依据: 直接参考 \"Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems\" (arXiv 2603.15973)。\n\n【发掘点 4】\n- 维度: novelty 锐化\n- 内容: **\"Calibrated constraint reasoning\" 是本 proposal 最独特的理论贡献，但当前表述中被埋没在大量技术细节里，应提炼为一级概念并构建围绕它的叙事主线。** 当前 proposal 的 novelty 分散在多个维度上（benchmark 设计、SRS 三模块、RA-FGRPO、五个 metrics），但如果审稿人被问 \"one sentence novelty\"，很难提炼出一个 sharp 的回答。我建议将 \"calibrated constraint reasoning\" 定位为统一的核心 thesis：post-blocking recovery 本质上需要 agent 对 constraint-satisfying action space 做精确的 **calibration**——既不能过度保守（该恢复时放弃 = URR failure），也不能过度激进（不该恢复时强行恢复 = FRR failure），也不能部分理解约束（该降级时要求全部完成 = partial recovery failure）。RecoverBench 评估的就是这种 calibration 能力，SRS+RA-FGRPO 训练的就是这种 calibration 能力。这个 framing 把 benchmark、metrics、method 统一在一个 sharp thesis 之下，避免 \"benchmark paper + method paper 硬拼在一起\" 的审稿人印象。\n- 价值: 将分散的贡献统一为一个锐利的核心 thesis，解决 \"novelty 到底是什么\" 的表述清晰度问题，直接提升 Novelty 可感知度。\n- 调研依据: 基于领域整体趋势判断——当前 agent safety 研究大量关注 binary compliance（safe/unsafe），calibrated reasoning 的 spectrum-based 视角（recover/recognize/degrade）是差异化的思维框架。\n\n【发掘点 5】\n- 维度: significance 提升\n- 内容: **Proposal 的 significance framing 可以更加有力：当前的叙事是 \"recovery rate 很低，所以需要研究\"，但更深层的 significance 是 \"如果 agent 不能从 safety block 中 recover，safety mechanism 本身就成为 capability tax，这会激励部署者弱化 guardrail\"。** The Verifier Tax 的名字本身就暗示了这一点——2.0-2.8× token inflation + <5% safe success rate 意味着在实际部署中，企业有强烈的 incentive 降低 guardrail 的 strictness 以维护 task completion rate。这形成了一个 perverse incentive：越严格的 guardrail 在没有 good recovery 机制的情况下越是促使部署者绕过安全措施。如果 proposal 能将 research question 提升到这个层面——\"post-blocking recovery 不仅是一个技术问题，更是 safe deployment 的 ecosystem-level bottleneck\"——Significance 会上一个台阶。这比现在的 \"recovery rate 低\" 更有 policy relevance 和 real-world impact。\n- 价值: 将 Significance 从 \"technical gap\" 提升为 \"ecosystem-level bottleneck with perverse incentive implications\"，命中审稿人对 real-world impact 的关注。\n- 调研依据: 参考 The Verifier Tax (arXiv 2603.19328) 的 token inflation 数据和 SafeAgentBench (arXiv 2412.13178) 的 5-10% rejection rate——两者共同暗示了 safety-capability tradeoff 的 deployment incentive 问题。\n\nSources:\n- [The Verifier Tax](https://arxiv.org/abs/2603.19328)\n- [Symbolic Guardrails](https://arxiv.org/abs/2604.15579)\n- [AGENT-C](https://arxiv.org/abs/2512.23738)\n- [ReGuard](https://arxiv.org/abs/2510.13727)\n- [AWARE-US](https://arxiv.org/abs/2601.02643)\n- [Check Yourself Before You Wreck Yourself](https://arxiv.org/abs/2510.16492)\n- [Safety is Non-Compositional](https://arxiv.org/abs/2603.15973)\n- [Fission-GRPO](https://arxiv.org/abs/2601.15625)\n- [ODCV-Bench](https://arxiv.org/abs/2512.20798)\n- [Recovery-Bench](https://openreview.net/forum?id=8FZRnDgDxq)\n- [TopoCurate](https://arxiv.org/abs/2603.01714)\n- [SafeAgentBench](https://arxiv.org/abs/2412.13178)\n- [CaRT](https://arxiv.org/abs/2510.08517)\n- [BackBench](https://arxiv.org/abs/2604.18847)\n\n【补救 agent 本轮输出】:\nNow I have sufficient research context to provide a thorough assessment. Let me compile my analysis.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **τ-bench** (ICLR 2025): 使用 pass^k 作为核心可靠性指标，基于数据库终态对比（而非轨迹枚举）做评测，覆盖 Airline/Retail 两个域，GPT-4o pass^8 < 25% 在 Retail 域。实验设计上注重 reproducibility（多次独立运行 + 统计量报告）。\n- **Fission-GRPO** (arXiv 2601.15625): 以 Qwen3-8B 为训练模型，在 BFCL v4 Multi-Turn benchmark 上评测，+5.7% error recovery rate，对比 GRPO baseline。使用 on-policy error augmentation + Error Simulator 生成诊断反馈。实验包含 SFT / GRPO / Fission-GRPO 对比。\n- **AGENT-C** (arXiv 2512.23738, ICLR 2026 Workshop): 在 τ-bench Airline/Retail 上评测，实现 100% conformance + utility 提升（Claude Sonnet 4.5: 71.8%→75.2%），评测跨开源/闭源多模型。\n- **ToolRL** (ICLR 2026, arXiv 2504.13958): 在 Qwen2.5 (1.5B/3B/7B) + LLaMA3.2-3B 上评测，跨 BFCL/Bamboogle/API-Bank 等 benchmark，SFT vs RL (PPO/GRPO) 全面对比，证明 RL 比 SFT 有 ~15% gap。\n- **TopoCurate** (arXiv 2603.01714): 在 BFCLv3 和 τ²-Bench 上评测，SFT +4.2% / RL +6.9%，使用 Reflective Recovery 选择策略。\n- **RC-GRPO** (arXiv 2602.03025): 解决 GRPO 训练中 within-group reward variance collapse 问题，通过 reward-conditioned trajectory policy 注入 diversity。\n- **ODCV-Bench** (arXiv 2512.20798): 40 个多步场景，12 个 SOTA LLM 评测，violation rate 30-67%，使用 4 个独立 LLM judge + Krippendorff's alpha 报告 inter-rater reliability。\n- **SafeAgentBench** (arXiv 2412.13178): 750 tasks，最佳 baseline 仅 5% 危险任务拒绝率，ReAct+GPT-4 也只有 10%/32%。\n- **DiaTool-DPO** (SIGDIAL 2025, arXiv 2504.02882): 将 TA-LLM 交互建模为 MDP，自动构建 paired trajectory 数据集做 DPO，接近 GPT-4o 水平。\n- **ToolSafe** (arXiv 2601.10156): 构建 TS-Bench + TS-Guard + TS-Flow，步级安全检测+反馈，降低 65% harmful invocations。\n- **τ³-Bench / τ-Knowledge** (2026): 扩展了 Banking 域，基于 ~700 文档的知识库，修复了原 τ-bench 多个 domain 的问题。当前 8 个模型已在 τ³-Bench 上有评测结果。\n\n- **调研总结**: 该领域当前实验设计标准要求：(a) 在 τ-bench 系列上评测时需使用 pass^k 多次运行+统计报告；(b) 训练方法对比需包含 SFT baseline 以隔离数据vs训练范式的贡献；(c) RL 方法之间对比需要 compute-normalized 公平比较；(d) 安全类 benchmark 需报告 inter-annotator agreement；(e) 审稿人普遍期望在至少 2-3 个模型规模和跨域设置下验证泛化性。\n\n---\n\n【缺陷 1】\n- 类别: baseline 不足或过时\n- 问题: Proposal 将 AGENT-C constrained generation 作为 baseline (h)，但 AGENT-C 已在 τ-bench 上实现 100% conformance。当 AGENT-C 阻止了违规动作并生成合规替代时，它实际上也在某种程度上\"帮助\"agent 恢复——只是在 action level 而非 trajectory level。Proposal 需要更清晰地区分：当 AGENT-C 已经在线修正了 action，agent 还需要做什么？如果 RecoverBench 的评测假设 guardrail 只做 blocking 不做 correction，那 AGENT-C 在 RecoverBench 设置下是退化为 block-only 模式，还是保留其 constrained generation 能力？这个实验设置的模糊性会被审稿人追问。\n- 严重度: 可补救\n- 补救方案: 明确定义 RecoverBench 中 guardrail 的行为接口：guardrail 只负责阻止（block）违规 action 并返回不同信息级别的反馈，不负责生成替代 action。在此设置下，AGENT-C baseline 应运行为两个变体：(1) AGENT-C block-only（退化为只 block + informative feedback，不做 constrained generation），和 (2) AGENT-C full（保留 constrained generation 能力，但仍需 agent 自行完成 trajectory-level replanning）。这样可以隔离 action-level correction vs trajectory-level replanning 的贡献。\n- 调研依据: AGENT-C (arXiv 2512.23738) 在 τ-bench 上的评测表明其 100% conformance 来自 SMT constrained generation，这与 RecoverBench 的 \"agent 自行恢复\" 设定存在接口冲突。\n\n【缺陷 2】\n- 类别: 实验设计不足\n- 问题: Proposal 选择 Qwen3.6-35B-A3B (3B active) 和 Qwen3-4B 两个模型进行训练评测，但两者都是非常小的模型（3-4B active parameters）。Verifier Tax 论文的核心发现之一是 recovery 能力是 model-dependent 的——frontier models 有部分 recovery 能力而 open-source 小模型几乎为零。如果 RA-FGRPO 只在 3-4B 模型上验证，即使有提升，审稿人会质疑：(a) 提升是否仅因为小模型基线太低（ceiling effect 反面），(b) 方法在 7B-14B 中等规模模型上是否同样有效，(c) 对 frontier model 是否有增益。缺少中等规模模型的验证点会削弱 scaling 相关的 claim。\n- 严重度: 可补救\n- 补救方案: 增加至少一个 7-8B 级别的模型（如 Qwen3-8B 或 Qwen3.5-9B）作为训练+评测目标，形成 4B / 8B / 35B-A3B 三点规模梯度。考虑到资源约束，可以只在 8B 模型上跑最优配置（由 4B ablation 确定），不需要全 ablation。Frontier model baselines（GPT-4o, Claude Sonnet）只做 inference 评测即可。这三个规模点 + frontier inference-only 可以构成完整的 scaling 分析。额外计算开销估计约 150-200 H100 hours（5 runs × 30-40h per run）。\n- 调研依据: ToolRL (ICLR 2026) 在 Qwen2.5 1.5B/3B/7B + LLaMA3.2-3B 上评测，提供了三个规模点的对比；Fission-GRPO 用 Qwen3-8B 作为主要训练目标。领域规范期望至少 2-3 个规模点。\n\n【缺陷 3】\n- 类别: 评估方案缺陷\n- 问题: Ground truth recoverability 的确定方法存在方法论风险。对于 Retail domain，proposal 使用 \"beam search (width ≥10) with constraint filtering, with 20% human-verified subset and coverage confidence threshold ≥0.9\"。但问题在于：(1) beam search 的搜索空间取决于 API action space 的大小，Retail domain 的 action space 可能远大于 Airline——τ-bench Retail 有更多工具和复杂的 product/order 状态。beam width=10 可能在 Retail 复杂任务上覆盖不足。(2) \"coverage confidence threshold ≥0.9\" 这个概念没有明确定义——它是怎么计算的？如果是 human agreement on \"exhaustive\"，那需要更多细节。(3) \"uncertain\" 类别的任务如果比例过高（比如 >20%），会显著减小有效 benchmark 规模。这些问题不致命，但如果处理不好会被审稿人视为 benchmark 可靠性问题。\n- 严重度: 可补救\n- 补救方案: (1) 对 Retail domain 的 ground truth 确定方法做更精确的描述：明确 beam search 的实现细节——搜索深度、分支策略、constraint filtering 的具体实现。建议增加 beam width 的 sensitivity analysis（width=10/20/50），报告在不同 width 下标注结果的变化率，如果 width=10 到 width=50 结果基本不变，可以证明搜索充分性。(2) 明确 \"coverage confidence\" 的操作性定义：建议采用 \"两个独立 beam search 实现 + human verification\" 三方一致性 ≥ 0.9 的标准。(3) 预注册 \"uncertain\" 类别的处理方案：如果 uncertain >15%，在主表中排除这些任务，但在 appendix 中报告包含/排除 uncertain 任务的结果对比。(4) 对于 Banking domain (≥40 tasks)，没有说明 ground truth 确定方法——需要补充。\n- 调研依据: ODCV-Bench 使用 4 个独立 LLM judge + Krippendorff's alpha 报告可靠性；τ-bench 原始设计使用 database state comparison 作为 ground truth，但其任务本身有单一明确的 goal state，而 RecoverBench 的 recoverability 判断比单一任务成功判断更复杂。\n\n【缺陷 4】\n- 类别: ablation 不完整\n- 问题: Proposal 设计了三种 credit assignment 策略（GTPO-based / AT²PO-based / GAGPO-style）作为 \"equal ablation candidates\"，但没有设计 ablation 来隔离 RA-FGRPO 中两个核心设计选择的贡献：(a) SRS 诊断上下文的信息量 vs (b) Fission-based resampling 本身的训练效率提升。Proposal 虽然提到了 \"compute-matched GRPO\"（在 block point 用相同额外 rollout 但无 SRS 诊断），但没有设计一个 \"Fission-GRPO + block detection but without SRS diagnostic context\" 的变体——即使用 Fission 的 resampling 机制但只给 minimal feedback，不给结构化约束信息。这个 ablation 对于证明 SRS 的结构化约束信息确实提供了超越简单错误检测+重采样的价值至关重要。\n- 严重度: 可补救\n- 补救方案: 在 ablation matrix 中增加一个关键变体：\"Fission-GRPO-block\"——使用 Fission 的 on-policy error augmentation + resampling 机制，但在 block point 只提供 minimal feedback（\"action blocked\"），不提供 SRS 的 Constraint Extraction / Safe Alternative Enumeration / Diagnostic Context。这样 ablation 矩阵变为：(1) vanilla GRPO, (2) compute-matched GRPO (extra rollouts, no SRS), (3) Fission-GRPO-block (Fission resampling, minimal feedback), (4) RA-FGRPO w/o Alternative Enumerator, (5) RA-FGRPO w/o Constraint Extraction, (6) RA-FGRPO w/o Diagnostic Formatter, (7) Full RA-FGRPO。这7个变体可以完整隔离：resampling mechanism / constraint information / alternative enumeration / diagnostic formatting 各自的贡献。Proposal 中已有的 \"training with minimal feedback\" ablation 部分覆盖了这个需求，但需要更明确地与 Fission resampling 机制耦合。\n- 调研依据: Fission-GRPO 原论文将 Error Simulator 诊断反馈视为核心贡献，其 ablation 设计需要隔离 resampling 机制 vs 诊断信息的各自贡献。ToolRL (ICLR 2026) 的 SFT vs RL 对比表明信息提供方式和训练范式的交互效应很重要。\n\n【缺陷 5】\n- 类别: 评估方案缺陷\n- 问题: **URR (Unrecoverable Recognition Rate) 的评测方法缺乏对 false positive 的处理**。Proposal 花大篇幅论证 URR 是一个新能力维度，但只定义了 URR = 正确识别不可恢复场景的比率。缺少的是：agent 在可恢复场景中错误放弃（false unrecoverable declaration）的惩罚机制。如果一个模型通过激进地声明 \"unrecoverable\" 来获得高 URR，那它的 SRR 自然会下降——但这个 trade-off 没有被显式建模和评测。审稿人一定会问：有没有一个 joint metric 或 precision-recall 分析来展示 URR 和 SRR 的 trade-off frontier？\n- 严重度: 可补救\n- 补救方案: (1) 增加 **False Abandonment Rate (FAR)**：在可恢复场景中 agent 错误声明不可恢复的比率。(2) 报告 SRR vs URR 的 Pareto frontier（或等效的 precision-recall 曲线），通过调节 prompt 中的 confidence threshold 或 temperature 绘制不同 operating point。(3) 可选增加一个 F1-style 综合指标 = 2×SRR×URR/(SRR+URR) 作为 headline metric，同时保留 SRR/URR/FAR/FRR 的分项报告。这不会增加额外计算量，只需要在评测分析阶段增加统计计算。\n- 调研依据: SafeAgentBench 评测中发现 agents 几乎不拒绝危险任务（5-10% rejection rate），说明当前模型的问题是 under-rejection 而非 over-rejection。但 RecoverBench 训练后的模型可能会走向另一个极端。Beyond pass@1 (arXiv 2603.29231) 的 GDS/MOP 指标也要求 graceful degradation 评估，这与 URR 的 precision-recall 分析互补。\n\n【缺陷 6】\n- 类别: 可行性问题\n- 问题: **Benchmark 构建中 \"partially recoverable\" 类别的标注一致性可能远低于 recoverable/unrecoverable**。Proposal 定义 partially recoverable 为 \"primary task objective achievable via safe path but ≥1 secondary objectives unsatisfiable under constraints\"，这要求标注者不仅判断主任务是否可完成，还要枚举所有子目标并判断每个子目标的约束满足性。这比二元 recoverable/unrecoverable 判断复杂得多，可能导致 Cohen's κ 在 partial 类别上显著低于其他类别。如果 partial 类别的标注一致性不足（如 κ < 0.6），整个 benchmark 中 30% 的任务可靠性存疑。\n- 严重度: 可补救\n- 补救方案: (1) **分层报告 Cohen's κ**：不仅报告整体 κ，还要报告三个类别各自的 κ 值。预注册一个最低可接受阈值（如 κ ≥ 0.6 for partial）。(2) **简化 partial 类别的定义**：将子目标分解为 \"must-have\"（来自任务明确要求的核心动作）和 \"nice-to-have\"（来自 policy 的辅助合规要求），只对 must-have 子目标进行 recoverability 标注。这降低了标注复杂度。(3) **设计 pilot annotation round**：在正式标注前，对 20 个 partial 候选任务做 pilot 标注，如果 κ < 0.6，重新设计标注 guideline 或降低 partial 类别占比（如从 30% 降到 20%，同时增加 recoverable 到 50%）。(4) 在 3 类标注后增加一个更细粒度的 \"partial recovery score\"（0-1 连续值），用于 regression 分析。\n- 调研依据: 基于领域实验规范判断。ODCV-Bench 用 Krippendorff's alpha = 0.81 报告 inter-rater reliability，但其评测是二元性质的（violation / no violation），比 RecoverBench 的三分类 + 子目标枚举简单得多。\n\n【缺陷 7】\n- 类别: compute 公平性问题\n- 问题: Proposal 中提到 \"All RL methods report training FLOPs with performance-vs-compute curves\"，但 (f) ToolSafe pre-execution feedback 和 (g) ReGuard-style guardrail-side correction 和 (h) AGENT-C constrained generation 是 **inference-time 方法**，不涉及训练。与 RA-FGRPO 这样的训练方法对比时，如果只报告 final performance 而不区分 training cost 和 inference cost，对比是不公平的：inference-time 方法有额外的 inference overhead（运行 guardrail/checker），而 training methods 前置了计算成本但 inference 时可能更轻量。\n- 严重度: 可补救\n- 补救方案: 采用双维度公平对比：(1) **Training-free baselines (f, g, h, i)**：报告 per-task inference FLOPs（包括 guardrail/checker 的开销）和 latency。(2) **Training-based baselines (a-e) + RA-FGRPO**：报告 total training FLOPs + per-task inference FLOPs。(3) 在结果表中增加一列 \"Total cost per 1000 tasks\"（训练摊销 + inference），让读者可以判断 training investment 在什么 deployment scale 下值得。(4) 绘制 Pareto frontier：x 轴为 per-task inference cost，y 轴为 SRR/URR joint metric，training-free 和 training-based 方法在同一图上对比。\n- 调研依据: 基于领域实验规范判断。ToolRL (ICLR 2026) 在 SFT vs RL 对比中报告了 compute cost，这是审稿人对训练方法论文的标准期望。\n\n【缺陷 8】\n- 类别: 实验设计不足\n- 问题: **Cross-domain transfer 实验的设计过于简略**。Proposal 仅提到 \"RA-FGRPO trained on Airline evaluated zero-shot on Retail and Banking\"，但没有考虑反向迁移（Retail→Airline, Banking→Airline）和 multi-domain joint training。单向迁移结果可能因 domain-specific bias 而不具代表性。更关键的是，三个域的 policy 结构差异很大（Airline 的航班政策 vs Retail 的退换货政策 vs Banking 的金融合规），单纯的 zero-shot transfer 可能效果很差，这并不能说明方法不好，而只是说明 policy 知识没有迁移——但 constraint reasoning 能力是否迁移了？需要更精细的分析。\n- 严重度: 可补救\n- 补救方案: (1) 扩展迁移矩阵为 3×3（训练域 × 测试域），至少在 4B 模型上做完整矩阵。(2) 在迁移实验中，除了报告整体 SRR/URR，还要分开报告 \"constraint reasoning\" 子指标和 \"domain knowledge\" 子指标。具体做法：在测试域中，将 policy document 提供给 agent（即 agent 可以看到目标域的 policy），只是没有见过目标域的 recovery 训练数据——这样可以隔离 \"recovery 策略泛化\" vs \"domain knowledge 缺失\"。(3) 增加一个 \"all-domain joint training\" baseline，将三个域的数据混合训练，对比各域的性能是否超过单域训练。计算开销：4B 模型上 ~3 extra runs × 15h = 45h，可接受。\n- 调研依据: TopoCurate 在 BFCLv3 和 τ²-Bench 上都做了评测，证明跨 benchmark 验证是标准做法。τ-bench 系列的三个域设计初衷就是测试跨域泛化。\n\n【缺陷 9】\n- 类别: 评估方案缺陷\n- 问题: **FRR (False Recovery Rate) 的两层检测设计中，trajectory-level policy audit 只覆盖 ≥20% subset**。Proposal 表示 tier-1 用 tau-bench 原生 database state comparison 覆盖全部任务，tier-2 trajectory-level audit 覆盖 ≥20% subset，并报告 inter-tier discrepancy。但问题是：如果 tier-2 发现大量 tier-1 漏掉的 conversation-level violations（如 information leakage），那仅 20% 的覆盖率意味着 80% 的任务可能有未检测到的 false recovery。这会使 FRR 的可靠性存疑。\n- 严重度: 可补救\n- 补救方案: (1) 将 tier-2 设计为自动化 LLM-based policy audit（而非纯人工），这样可以扩展到 100% 覆盖。使用多个 LLM judge（参考 ODCV-Bench 的 4-judge 设计）对全部轨迹做 conversation-level violation 检测，报告 judge agreement。(2) 人工 audit 仍然保留在 ≥20% subset 上，但作为 LLM judge 的 calibration 和 reliability check，报告 LLM judge vs human 的 agreement。(3) 在 FRR 结果中报告两个值：FRR-state（基于 database state comparison，全覆盖）和 FRR-trajectory（基于 LLM judge + 人工校准），让读者理解不同检测粒度的差异。\n- 调研依据: ODCV-Bench 用 4 个独立 LLM judge (Krippendorff's alpha=0.81) 实现了全覆盖的自动化评测；The Verifier Tax 的 Integrity Leak 发现表明 conversation-level violations 可能是系统性的，仅 20% 抽样可能不够。\n\n【缺陷 10】\n- 类别: 可行性问题\n- 问题: **时间线偏紧，尤其是 human-in-loop 方案的 10-12 周**。EMNLP 2026 via ARR 的提交窗口通常在 6-7 月（ARR June cycle deadline 大约 6 月中旬）。以 2026 年 5 月 20 日为今天计算，距离 6 月中旬 ARR deadline 仅约 4 周。即使是 8 月 ARR cycle（用于 EMNLP），也只有约 11 周。10-12 周的 human-in-loop timeline 刚好勉强赶上 8 月 cycle，但没有任何 buffer。考虑到 benchmark construction 需要人工标注 + 双标注 + κ 计算 + pilot round，加上 RA-FGRPO 训练的 ablation matrix，时间线风险显著。\n- 严重度: 可补救\n- 补救方案: (1) **明确瞄准 ARR August 2026 cycle**（deadline 约 8 月 15 日），倒排时间线：Week 1-4 benchmark construction（含 pilot annotation），Week 5-8 training + ablation（4B 模型先行，并行标注剩余数据），Week 9-10 evaluation + 35B training，Week 11 writing。(2) **Critical path optimization**：benchmark construction 和 SRS 实现可以并行进行；4B 模型的 ablation 结果可以指导 35B 模型只跑 2-3 个最有价值的配置而非全 ablation。(3) **设置 minimum viable experiment**：如果时间不够，优先保证 RecoverBench (≥170 tasks) + RA-FGRPO (best config) + 4 个核心 baselines (SFT-Recovery / vanilla GRPO / compute-matched GRPO / AGENT-C) 的结果，将 cross-domain transfer / 完整 credit assignment ablation / FRR tier-2 全覆盖 等降级为 \"extended\" 内容。(4) EACL 2027 via ARR August 3 作为 Plan B 是合理的。\n- 调研依据: 基于领域实验规范判断和时间线分析。\n\nSources:\n- [τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains](https://arxiv.org/abs/2406.12045)\n- [Fission-GRPO: Learning to Recover from Execution Errors](https://arxiv.org/abs/2601.15625)\n- [AGENT-C: Enforcing Temporal Constraints for LLM Agents](https://arxiv.org/abs/2512.23738)\n- [ToolRL: Reward is All Tool Learning Needs](https://arxiv.org/abs/2504.13958)\n- [TopoCurate: Modeling Interaction Topology for Tool-Use Agent Training](https://arxiv.org/abs/2603.01714)\n- [RC-GRPO: Reward-Conditioned Group Relative Policy Optimization](https://arxiv.org/abs/2602.03025)\n- [ODCV-Bench: Evaluating Outcome-Driven Constraint Violations](https://arxiv.org/abs/2512.20798)\n- [SafeAgentBench: Safe Task Planning of Embodied LLM Agents](https://arxiv.org/abs/2412.13178)\n- [DiaTool-DPO: Multi-Turn Direct Preference Optimization](https://arxiv.org/abs/2504.02882)\n- [ToolSafe: Enhancing Tool Invocation Safety](https://arxiv.org/abs/2601.10156)\n- [The Verifier Tax: Safety Success Tradeoffs](https://arxiv.org/abs/2603.19328)\n- [Symbolic Guardrails for Domain-Specific Agents](https://arxiv.org/abs/2604.15579)\n- [BackBench: Human-Guided Harm Recovery](https://arxiv.org/abs/2604.18847)\n- [Qwen3.6-35B-A3B Specifications](https://apxml.com/models/qwen36-35b-a3b)\n- [τ³-Bench: Fixing Airline + Retail](https://taubench.com/blog/tau3-task-fixes.html)\n- [TAU3-Bench Benchmark 2026](https://benchlm.ai/benchmarks/tau3Bench)\n- [Pass@k vs Pass^k: Understanding Agent Reliability](https://www.philschmid.de/agents-pass-at-k-pass-power-k)\n- [Beyond pass@1](https://arxiv.org/abs/2603.29231)\n- [GAGPO: Generalized Advantage Grouped Policy Optimization](https://arxiv.org/html/2605.13217)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "717f33f2-a844-46dc-bdc5-3925f0eb3a96",
+            "isSidechain": false,
+            "promptId": "24407a14-b42f-460d-8f60-9acebb4974b2",
+            "type": "user",
+            "uuid": "ce4a99db-31dc-410e-aca4-7cbdc39dc3cd",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research context to provide a thorough assessment. Let me compile my analysis.  ---…",
+                "leafUuid": "ce4a99db-31dc-410e-aca4-7cbdc39dc3cd",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Strengthen RecoverBench proposal with discovery points and defect analysis",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-20T04:22:34.238Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017yZwe6b9eQmEWr5gfpXqSA",
+              "name": "WebSearch",
+              "input": {
+                "query": "AWARE-US arxiv 2601.02643 infeasibility resolution tool-calling agent constraint relaxation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce4a99db-31dc-410e-aca4-7cbdc39dc3cd",
+            "isSidechain": false,
+            "requestId": "req_011CbDBWSbdx8mYPAynoqbVc",
+            "type": "assistant",
+            "uuid": "fa02b69a-5301-4a54-b266-89d5cce3a25d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T1qMq6TjUURg96BWjiN2VZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 24676,
+                "cache_read_input_tokens": 111637,
+                "output_tokens": 207,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 24676,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 207,
+                    "cache_read_input_tokens": 111637,
+                    "cache_creation_input_tokens": 24676,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 24676
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-20T04:22:35.182Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LF9Gw5umMWJAPsSR4nRtpu",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Safety is Non-Compositional\" arxiv 2603.15973 formal framework capability-based AI systems compositional safety"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa02b69a-5301-4a54-b266-89d5cce3a25d",
+            "isSidechain": false,
+            "requestId": "req_011CbDBWSbdx8mYPAynoqbVc",
+            "type": "assistant",
+            "uuid": "a5cbfe73-0578-4399-b81d-3d0c29d9dec9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T1qMq6TjUURg96BWjiN2VZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 24676,
+                "cache_read_input_tokens": 111637,
+                "output_tokens": 207,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 24676,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 207,
+                    "cache_read_input_tokens": 111637,
+                    "cache_creation_input_tokens": 24676,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 24676
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-20T04:22:36.072Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KdV8amM3DoYyx6AXmmGudh",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Check Yourself Before You Wreck Yourself\" arxiv 2510.16492 quit instructions agent safety NeurIPS 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5cbfe73-0578-4399-b81d-3d0c29d9dec9",
+            "isSidechain": false,
+            "requestId": "req_011CbDBWSbdx8mYPAynoqbVc",
+            "type": "assistant",
+            "uuid": "7164bfb9-c1c6-4e01-959c-dc879afe97c7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T1qMq6TjUURg96BWjiN2VZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 24676,
+                "cache_read_input_tokens": 111637,
+                "output_tokens": 207,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 24676,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 207,
+                    "cache_read_input_tokens": 111637,
+                    "cache_creation_input_tokens": 24676,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 24676
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-20T04:22:41.656Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LF9Gw5umMWJAPsSR4nRtpu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Safety is Non-Compositional\" arxiv 2603.15973 formal framework capability-based AI systems compositional safety\"\n\nLinks: [{\"title\":\"[2603.15973] Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems\",\"url\":\"https://arxiv.org/abs/2603.15973\"},{\"title\":\"Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems\",\"url\":\"https://arxiv.org/html/2603.15973\"},{\"title\":\"Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems\",\"url\":\"https://arxiv.org/pdf/2603.15973\"},{\"title\":\"Capability Safety as Datalog: A Foundational Equivalence\",\"url\":\"https://arxiv.org/html/2603.26725v1\"},{\"title\":\"Colluding LoRA: A Compositional Vulnerability in LLM Safety Alignment\",\"url\":\"https://arxiv.org/pdf/2603.12681\"}]\n\nI found the paper you're looking for. Here are the details:\n\n\"Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems\" (arXiv:2603.15973) by Cosimo Spera contains the first formal proof that safety is non-compositional in the presence of conjunctive capability dependencies: two agents each individually incapable of reaching any forbidden capability can, when combined, collectively reach a forbidden goal through an emergent conjunctive dependency.\n\nThe paper introduces a formal framework in which AI capability systems are modelled as directed hypergraphs with AND-semantics, and proves that capability graphs embed into capability hypergraphs as a strict special case, with planning reducing to a single fixed-point closure computation.\n\nThis result (Theorem 9.2) is tight—it cannot arise in pairwise graph models, only in systems with AND-semantics—and shows that component-level safety checks are structurally insufficient for modular agentic systems.\n\nThe paper also proves the closure gain function is submodular, yielding a (1-1/e) greedy acquisition guarantee; establishes P-completeness of emergent capability detection and coNP-completeness of minimal unsafe set membership; and unifies these results in the Safe Audit Surface Theorem.\n\nThe paper was submitted on March 16, 2026 and is available on arXiv.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5cbfe73-0578-4399-b81d-3d0c29d9dec9",
+            "isSidechain": false,
+            "promptId": "24407a14-b42f-460d-8f60-9acebb4974b2",
+            "type": "user",
+            "uuid": "7ed53d65-d620-4150-a64f-180afff600a5",
+            "toolUseResult": {
+              "query": "\"Safety is Non-Compositional\" arxiv 2603.15973 formal framework capability-based AI systems compositional safety",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_014hXkJ4Ks2chUWN8bbvCsUD",
+                  "content": [
+                    {
+                      "title": "[2603.15973] Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems",
+                      "url": "https://arxiv.org/abs/2603.15973"
+                    },
+                    {
+                      "title": "Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems",
+                      "url": "https://arxiv.org/html/2603.15973"
+                    },
+                    {
+                      "title": "Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems",
+                      "url": "https://arxiv.org/pdf/2603.15973"
+                    },
+                    {
+                      "title": "Capability Safety as Datalog: A Foundational Equivalence",
+                      "url": "https://arxiv.org/html/2603.26725v1"
+                    },
+                    {
+                      "title": "Colluding LoRA: A Compositional Vulnerability in LLM Safety Alignment",
+                      "url": "https://arxiv.org/pdf/2603.12681"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for. Here are the details:\n\n\"Safety is Non-Compositional: A Formal Framework for Capability-Based AI Systems\" (arXiv:2603.15973) by Cosimo Spera contains the first formal proof that safety is non-compositional in the presence of conjunctive capability dependencies: two agents each individually incapable of reaching any forbidden capability can, when combined, collectively reach a forbidden goal through an emergent conjunctive dependency.\n\nThe paper introduces a formal framework in which AI capability systems are modelled as directed hypergraphs with AND-semantics, and proves that capability graphs embed into capability hypergraphs as a strict special case, with planning reducing to a single fixed-point closure computation.\n\nThis result (Theorem 9.2) is tight—it cannot arise in pairwise graph models, only in systems with AND-semantics—and shows that component-level safety checks are structurally insufficient for modular agentic systems.\n\nThe paper also proves the closure gain function is submodular, yielding a (1-1/e) greedy acquisition guarantee; establishes P-completeness of emergent capability detection and coNP-completeness of minimal unsafe set membership; and unifies these results in the Safe Audit Surface Theorem.\n\nThe paper was submitted on March 16, 2026 and is available on arXiv."
+              ],
+              "durationSeconds": 6.470728101,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "a5cbfe73-0578-4399-b81d-3d0c29d9dec9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-20T04:22:42.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KdV8amM3DoYyx6AXmmGudh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Check Yourself Before You Wreck Yourself\" arxiv 2510.16492 quit instructions agent safety NeurIPS 2025\"\n\nLinks: [{\"title\":\"Ponnurangam Kumaraguru “PK” on X: \\\"🎉 New paper accepted to the NeurIPS 2025 “Reliable ML from Unreliable Data” Workshop: “Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety.” 📜 Preprint: https://t.co/bMWbFiER02 https://t.co/vKVz2cmssG\\\" / X\",\"url\":\"https://x.com/ponguru/status/1986649704671957348\"},{\"title\":\"Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety | OpenReview\",\"url\":\"https://openreview.net/forum?id=ALwpW0ygzI\"},{\"title\":\"(PDF) Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety\",\"url\":\"https://www.researchgate.net/publication/396714988_Check_Yourself_Before_You_Wreck_Yourself_Selectively_Quitting_Improves_LLM_Agent_Safety\"},{\"title\":\"Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv251016492K/abstract\"},{\"title\":\"[2510.16492] Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety\",\"url\":\"https://arxiv.org/abs/2510.16492\"},{\"title\":\"[1806.02307] Check yourself before you wreck yourself: Assessing discrete choice models through predictive simulations\",\"url\":\"https://arxiv.org/abs/1806.02307\"},{\"title\":\"NeurIPS Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety\",\"url\":\"https://neurips.cc/virtual/2025/loc/san-diego/125248\"},{\"title\":\"Check Yourself Before You Wreck Yourself: Selectively\",\"url\":\"https://openreview.net/pdf?id=ALwpW0ygzI\"},{\"title\":\"NeurIPS 2025 Papers with Code & Data – Paper Digest\",\"url\":\"https://www.paperdigest.org/2025/11/neurips-2025-papers-with-code-data/\"}]\n\nI found the paper! Here's what I found about it:\n\n\"Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety\" was accepted to the NeurIPS 2025 \"Reliable ML from Unreliable Data\" Workshop, with a systematic evaluation of quitting behavior across 12 state-of-the-art LLMs.\n\nThe core contribution is that the paper proposes using \"quitting\" as a simple yet effective behavioral mechanism for LLM agents to recognize and withdraw from situations where they lack confidence. The motivation is that multi-turn agentic scenarios with real-world tool access present unique challenges where uncertainties and ambiguities compound, leading to severe or catastrophic risks.\n\nKey results: agents prompted to quit with explicit instructions improve safety by an average of +0.39 on a 0-3 scale across all models (+0.64 for proprietary models), while maintaining a negligible average decrease of -0.03 in helpfulness.\n\nThe paper is available at arxiv.org/abs/2510.16492, and the code is available at https://github.com/victorknox/QuittingAgents.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7164bfb9-c1c6-4e01-959c-dc879afe97c7",
+            "isSidechain": false,
+            "promptId": "24407a14-b42f-460d-8f60-9acebb4974b2",
+            "type": "user",
+            "uuid": "655d0e81-52ed-4818-b908-8cfb75aae61c",
+            "toolUseResult": {
+              "query": "\"Check Yourself Before You Wreck Yourself\" arxiv 2510.16492 quit instructions agent safety NeurIPS 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Bz319zP11h5Bmrf2JA6C7f",
+                  "content": [
+                    {
+                      "title": "Ponnurangam Kumaraguru “PK” on X: \"🎉 New paper accepted to the NeurIPS 2025 “Reliable ML from Unreliable Data” Workshop: “Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety.” 📜 Preprint: https://t.co/bMWbFiER02 https://t.co/vKVz2cmssG\" / X",
+                      "url": "https://x.com/ponguru/status/1986649704671957348"
+                    },
+                    {
+                      "title": "Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety | OpenReview",
+                      "url": "https://openreview.net/forum?id=ALwpW0ygzI"
+                    },
+                    {
+                      "title": "(PDF) Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety",
+                      "url": "https://www.researchgate.net/publication/396714988_Check_Yourself_Before_You_Wreck_Yourself_Selectively_Quitting_Improves_LLM_Agent_Safety"
+                    },
+                    {
+                      "title": "Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251016492K/abstract"
+                    },
+                    {
+                      "title": "[2510.16492] Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety",
+                      "url": "https://arxiv.org/abs/2510.16492"
+                    },
+                    {
+                      "title": "[1806.02307] Check yourself before you wreck yourself: Assessing discrete choice models through predictive simulations",
+                      "url": "https://arxiv.org/abs/1806.02307"
+                    },
+                    {
+                      "title": "NeurIPS Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety",
+                      "url": "https://neurips.cc/virtual/2025/loc/san-diego/125248"
+                    },
+                    {
+                      "title": "Check Yourself Before You Wreck Yourself: Selectively",
+                      "url": "https://openreview.net/pdf?id=ALwpW0ygzI"
+                    },
+                    {
+                      "title": "NeurIPS 2025 Papers with Code & Data – Paper Digest",
+                      "url": "https://www.paperdigest.org/2025/11/neurips-2025-papers-with-code-data/"
+                    }
+                  ]
+                },
+                "I found the paper! Here's what I found about it:\n\n\"Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety\" was accepted to the NeurIPS 2025 \"Reliable ML from Unreliable Data\" Workshop, with a systematic evaluation of quitting behavior across 12 state-of-the-art LLMs.\n\nThe core contribution is that the paper proposes using \"quitting\" as a simple yet effective behavioral mechanism for LLM agents to recognize and withdraw from situations where they lack confidence. The motivation is that multi-turn agentic scenarios with real-world tool access present unique challenges where uncertainties and ambiguities compound, leading to severe or catastrophic risks.\n\nKey results: agents prompted to quit with explicit instructions improve safety by an average of +0.39 on a 0-3 scale across all models (+0.64 for proprietary models), while maintaining a negligible average decrease of -0.03 in helpfulness.\n\nThe paper is available at arxiv.org/abs/2510.16492, and the code is available at https://github.com/victorknox/QuittingAgents."
+              ],
+              "durationSeconds": 6.060045109000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "7164bfb9-c1c6-4e01-959c-dc879afe97c7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-20T04:22:42.417Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017yZwe6b9eQmEWr5gfpXqSA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AWARE-US arxiv 2601.02643 infeasibility resolution tool-calling agent constraint relaxation 2026\"\n\nLinks: [{\"title\":\"[2601.02643] AWARE-US: Benchmark for Preference-Aware Resolution in Tool-Calling Agents\",\"url\":\"https://arxiv.org/abs/2601.02643\"},{\"title\":\"AWARE-US: Benchmark for Preference-Aware Resolution in Tool-Calling Agents\",\"url\":\"https://arxiv.org/pdf/2601.02643\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2601.02643\"},{\"title\":\"From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents\",\"url\":\"https://arxiv.org/html/2601.22607v1\"},{\"title\":\"Infeasibility Aware Large Language Models for Combinatorial Optimization\",\"url\":\"https://arxiv.org/pdf/2604.01455\"}]\n\nBased on the search results, I found detailed information about the paper you're looking for.\n\nAWARE-US is a benchmark for preference-aware resolution in tool-calling agents, submitted to arXiv on January 6, 2026 (arxiv:2601.02643).\n\nTool-calling conversational agents querying structured databases often face two linked failures: underspecification (missing constraints needed to run a precise query) and infeasibility (the fully specified query returns an empty set because no item satisfies all constraints).\n\nThe paper frames infeasibility handling as a preference-aware query repair problem: when a query is unsatisfiable, the agent should relax the least important constraints to the user. The researchers propose three LLM-based methods for inferring relative constraint importance from dialogue: (1) local weighting, (2) global one-shot weighting, and (3) pairwise ranking.\n\nExperiments show local weighting achieves the best preference alignment, while global weighting performs best on correct constraint relaxation. The paper also introduces AWARE-US, a benchmark of 120+ persona-grounded queries requiring agents to disambiguate a base request via conversation and resolve infeasibility in a way consistent with persona-implied preferences.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa02b69a-5301-4a54-b266-89d5cce3a25d",
+            "isSidechain": false,
+            "promptId": "24407a14-b42f-460d-8f60-9acebb4974b2",
+            "type": "user",
+            "uuid": "eee5a3c1-ad4f-4381-a15d-f1cace567fe9",
+            "toolUseResult": {
+              "query": "AWARE-US arxiv 2601.02643 infeasibility resolution tool-calling agent constraint relaxation 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01ALyczEKZu7Dt6LqxeZTX8e",
+                  "content": [
+                    {
+                      "title": "[2601.02643] AWARE-US: Benchmark for Preference-Aware Resolution in Tool-Calling Agents",
+                      "url": "https://arxiv.org/abs/2601.02643"
+                    },
+                    {
+                      "title": "AWARE-US: Benchmark for Preference-Aware Resolution in Tool-Calling Agents",
+                      "url": "https://arxiv.org/pdf/2601.02643"
+                    },
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2601.02643"
+                    },
+                    {
+                      "title": "From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents",
+                      "url": "https://arxiv.org/html/2601.22607v1"
+                    },
+                    {
+                      "title": "Infeasibility Aware Large Language Models for Combinatorial Optimization",
+                      "url": "https://arxiv.org/pdf/2604.01455"
+                    }
+                  ]
+                },
+                "Based on the search results, I found detailed information about the paper you're looking for.\n\nAWARE-US is a benchmark for preference-aware resolution in tool-calling agents, submitted to arXiv on January 6, 2026 (arxiv:2601.02643).\n\nTool-calling conversational agents querying structured databases often face two linked failures: underspecification (missing constraints needed to run a precise query) and infeasibility (the fully specified query returns an empty set because no item satisfies all constraints).\n\nThe paper frames infeasibility handling as a preference-aware query repair problem: when a query is unsatisfiable, the agent should relax the least important constraints to the user. The researchers propose three LLM-based methods for inferring relative constraint importance from dialogue: (1) local weighting, (2) global one-shot weighting, and (3) pairwise ranking.\n\nExperiments show local weighting achieves the best preference alignment, while global weighting performs best on correct constraint relaxation. The paper also introduces AWARE-US, a benchmark of 120+ persona-grounded queries requiring agents to disambiguate a base request via conversation and resolve infeasibility in a way consistent with persona-implied preferences."
+              ],
+              "durationSeconds": 8.173349241999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "fa02b69a-5301-4a54-b266-89d5cce3a25d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-20T04:22:42.421Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "eee5a3c1-ad4f-4381-a15d-f1cace567fe9",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "749dcadc-0af5-46e8-8e26-c759172bf87b",
+                "timestamp": "2026-05-20T04:22:42.421Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-20T04:23:52.019Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All three cross-validation searches confirmed:\n\n1. **AWARE-US (arXiv:2601.02643)** — Confirmed. Benchmark for preference-aware resolution in tool-calling agents. 120+ persona-grounded queries. Handles infeasibility by relaxing least-important constraints. The发掘 agent is correct that this is a relevant omission — it directly relates to constraint-aware reasoning and infeasibility detection. However, key differences are clear: AWARE-US handles query infeasibility (from user request), not safety-block-introduced constraints. And AWARE-US resolves via constraint relaxation, not via alternative safe path finding.\n\n\n2. **\"Safety is Non-Compositional\" (arXiv:2603.15973)** — Confirmed. Formal proof showing that component-level safety checks alone are structurally insufficient (Theorem 9.2), since two individually safe agents can reach forbidden goals when combined. This provides strong theoretical grounding for FRR's compositional circumvention detection.\n3. **\"Check Yourself Before You Wreck Yourself\" (arXiv:2510.16492)** — Confirmed. NeurIPS 2025 Workshop paper demonstrating that simple quit instructions improve safety by +0.39 on a 3.0 scale. This represents a trivial alternative threat to URR that needs addressing as a baseline comparison.\n\nNow I'm assessing how these findings shape the threat model.\n\nThe agent's feedback identifies several key improvements: citing AWARE-US to fill a related work gap, positioning \"Check Yourself\" as a URR-specific baseline to differentiate from our calibrated impossibility explanation approach, leveraging the compositional safety theorem to elevate FRR from purely empirical to theoretically grounded, framing calibrated constraint reasoning as the unifying thesis, and using the Verifier Tax data to strengthen the perverse incentive narrative. The question is whether these additions converge toward a stronger paper or risk scope creep.\n\nNow I'm reviewing the remaining deficits: I need AGENT-C variants comparing block-only versus full configurations, scaling analysis with a 7-8B model, isolated ablation for resampling versus SRS in Fission-GRPO-block, False Abandonment Rate metrics for URR, per-category Cohen's kappa reporting, dual-dimension cost analysis for training versus inference, cross-domain transfer evaluation, and tier-2 automation metrics for FRR. Some of these are straightforward additions, while others like the transfer matrix add complexity without clear necessity.\n\nFor round 3's conceptual contributions, I'm strengthening the narrative by positioning AWARE-US as filling a gap in related work, using \"Check Yourself\" as a URR baseline that differentiates between binary quit decisions and calibrated reasoning, elevating FRR from empirical observation to theoretical necessity through the non-compositionality argument, and unifying the thesis around calibrated constraint reasoning. The perverse incentive framing provides modest additional impact. On the experimental side, I'm adding the block-only versus full variants, the 7-8B scaling model, the Fission-GRPO-block ablation, False Abandonment Rate, LLM-based audit coverage for FRR, and per-category metrics.\n\nThese feel like meaningful but increasingly incremental refinements—the structural breakthroughs and major methodological contributions happened in rounds 1 and 2, while round 3 is filling in important details and closing smaller gaps. Reassessing the overall quality: novelty is approaching mid-tier with the non-compositionality framing and tighter differentiation, significance edges up slightly with the deployment bottleneck and Verifier Tax angle, and related work coverage strengthens considerably with AWARE-US and the theoretical grounding.\n\nOn the experimental side, technical soundness improves noticeably with the FAR metric, agent variants, ablation studies, and LLM-based auditing. My probability estimate shifts to 25-34% with a median around 29%, up 2 percentage points from last round—but that's diminishing returns. Checking the convergence criteria: both discovery and remediation still have open suggestions, and while round 2 brought substantive changes, round 3 is more moderate, suggesting we're approaching a plateau where further iterations yield smaller gains. The improvement trajectory is clearly plateauing—each round adds less value than the last. The remaining gap to 36% stems from RA-FGRPO's inherent methodological limitations, which iteration won't overcome. My final estimate is around 29%, which falls below the threshold, so the recommendation should be not to proceed, though I'll include specific optimization suggestions.\n\nLet me double-check the output requirements. Since the median is 29% and that's below 36%, this triggers the rejection pathway at the final verification stage. This isn't a triage kill—it's a borderline case where the idea shows promise but doesn't quite meet the bar.\n\nLooking at the rejection template, I need to fill in the rejection stage classification, identify the critical gaps, document what optimization attempts were made, and assess whether the idea can be salvaged or needs a different direction. Since the score converges at 29%, which falls below the 36% threshold, I need to output the rejection format with details on what was attempted and whether rescue is possible. The core issue is RA-FGRPO's methodological incrementality, though reframing this as primarily a benchmark paper with strong experimental results could potentially push it over the threshold—that would require a significant strategic shift. Now I should complete the round 3 assessment and then move directly to the final output format. I'm converging on the decision now, so I'll format the assessment with 决策=收敛 and move directly to the final 角色 C deliverable without a new proposal round. Then I'll provide constructive optimization suggestions to help the researcher understand what changes would be needed to make this paper viable.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "749dcadc-0af5-46e8-8e26-c759172bf87b",
+            "isSidechain": false,
+            "requestId": "req_011CbDBXMFSfemG1cBMwSqtk",
+            "type": "assistant",
+            "uuid": "87d74cd9-0c9a-45e9-8b14-1ed7e736b612",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QYHrh6MpKn836W4MW8oq9k",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1557,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 136313,
+                "output_tokens": 7925,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1557,
+                    "output_tokens": 7925,
+                    "cache_read_input_tokens": 136313,
+                    "cache_creation_input_tokens": 874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-20T04:25:40.341Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the cross-validation data for round 3. Let me produce the final synthesis.\n\n【阶段】: 迭代第 3 轮\n\n【交叉验证调研】:\n1. **AWARE-US (arXiv:2601.02643)（发掘点1）**: WebSearch 确认。120+ persona-grounded queries，处理 tool-calling agent 的 infeasibility resolution。核心机制是 constraint relaxation（降低优先级最低的约束使 query 可满足）。与 RecoverBench 在\"infeasibility detection\"能力维度上有重叠，但关键差异清晰：(a) infeasibility 来源不同——AWARE-US 是 query 本身不可满足，RecoverBench 是 guardrail 动态引入 permanent constraint；(b) resolution 策略不同——AWARE-US 通过 relaxation 降低任务标准，RecoverBench 要求在 original objective 不变下找替代路径或承认不可能；(c) AWARE-US 无 circumvention 风险。→ **遗漏成立，必须纳入并差异化定位**\n2. **\"Safety is Non-Compositional\" (arXiv:2603.15973)（发掘点3）**: WebSearch 确认。Theorem 9.2 正式证明：component-level safety check 在 conjunctive capability dependency 下结构性不足——两个各自安全的 agent 组合后可达 forbidden goal。这正是 FRR 的 compositional circumvention 设计动机的理论化表述。→ **建议成立，为 FRR 提供 formal necessity proof**\n3. **\"Check Yourself Before You Wreck Yourself\" (arXiv:2510.16492)（发掘点2）**: WebSearch 确认。NeurIPS 2025 Workshop，12 SOTA LLMs，explicit quit instructions → +0.39/3.0 safety, -0.03 helpfulness。确认对 URR 构成 trivial baseline 威胁：如果简单 quit prompt 就能达到不错的 impossibility recognition，URR 的增量价值需要论证。→ **建议成立，必须作为 URR baseline + 差异化（binary quit vs calibrated reasoning with explanation）**\n\n【发掘 agent 有效建议采纳】:\n- **发掘点1（AWARE-US 遗漏）**: ✅ 已验证采纳。AWARE-US (arXiv:2601.02643) 纳入 Landscape，新增 \"Infeasibility-aware agent systems\" 子类别，明确三点差异化。堵住 reviewer 可能发现的 novelty 漏洞。\n- **发掘点2（\"Check Yourself\" URR trivial baseline）**: ✅ 已验证采纳。作为 URR 维度的专门 baseline。关键差异化：RecoverBench 的 URR 不仅要求 agent 放弃，还要求给出 calibrated impossibility explanation（哪条 constraint 使什么不可能），这是 compositional constraint reasoning 能力，远超 binary quit/continue。\n- **发掘点3（\"Safety is Non-Compositional\" 为 FRR 理论基础）**: ✅ 已验证采纳。Theorem 9.2 证明 action-level safety check 结构性不足，为 FRR 的 state-level detection 提供 formal necessity。从\"经验观察到问题\"升级为\"理论证明 action-level 必然不足\"。\n- **发掘点4（\"Calibrated constraint reasoning\" 统一 thesis）**: ✅ 采纳。作为贯穿 benchmark + metrics + method 的核心概念。将分散贡献统一为 sharp narrative：post-blocking recovery = calibrated constraint reasoning（不过度保守/不过度激进/正确降级）。无需外部验证，纯叙事架构。\n- **发掘点5（Perverse incentive framing）**: ⚠️ 部分采纳。论点有力（Verifier Tax 数据支持 2.0–2.8× token inflation 激励部署者弱化 guardrail），但具体的\"40-60% 企业部署\"数据未找到文献支撑。采纳 perverse incentive 论点（有 Verifier Tax 数据支撑），不采纳未验证的部署统计数字。\n\n【补救 agent 有效建议采纳】:\n- **缺陷1（AGENT-C baseline 变体）**: ✅ 采纳。分为 AGENT-C block-only 和 AGENT-C full 两个变体，隔离 action-level correction vs trajectory-level replanning。\n- **缺陷2（模型规模梯度）**: ✅ 采纳。增加 7-8B 模型（如 Qwen3-8B）形成 4B/8B/35B-A3B 三点规模梯度。8B 只跑最优配置，不做全 ablation。\n- **缺陷3（Beam search 细节）**: ✅ 采纳。增加 beam width sensitivity analysis (width=10/20/50)，双实现一致性验证，Banking 域 ground truth 方法补充。\n- **缺陷4（Fission-GRPO-block ablation）**: ✅ 采纳。增加关键变体：Fission resampling + minimal feedback (no SRS diagnostic)，隔离 resampling mechanism vs structured constraint information。\n- **缺陷5（FAR for URR false positive）**: ✅ 采纳。增加 False Abandonment Rate (FAR)，报告 SRR-URR Pareto frontier。可选 F1-style joint metric。\n- **缺陷6（Per-category κ）**: ✅ 采纳。分层报告 Cohen's κ + pilot round for partial category。\n- **缺陷7（Training vs inference cost comparison）**: ✅ 采纳。双维度成本报告 + Pareto frontier (inference cost × performance)。\n- **缺陷8（Cross-domain transfer matrix）**: ⚠️ 部分采纳。3×3 完整矩阵在 4B 上可行，采纳。但\"分离 constraint reasoning vs domain knowledge\"需要更多实验设计工作，标记为 optional。\n- **缺陷9（FRR tier-2 自动化）**: ✅ 采纳。使用多 LLM judge 实现全覆盖 + 20% 人工校准。\n- **缺陷10（Timeline）**: 记录但不纳入 proposal 正文。ARR August 2026 cycle 为 primary target。\n\n【本轮 proposal 主要变更】:\n\n**Idea 层面变更:**\n- AWARE-US (arXiv:2601.02643) 纳入 Landscape + 差异化定位\n- \"Check Yourself\" (arXiv:2510.16492) 作为 URR trivial baseline + binary quit vs calibrated reasoning 差异化\n- \"Safety is Non-Compositional\" (arXiv:2603.15973) 为 FRR 提供 formal necessity proof\n- \"Calibrated constraint reasoning\" 确立为统一 thesis\n- Perverse incentive framing（guardrail without recovery → incentive to weaken guardrail）\n\n**实验层面变更:**\n- AGENT-C 分为 block-only + full 两个 baseline 变体\n- 7-8B 模型加入形成三点规模梯度 (4B/8B/35B-A3B)\n- Fission-GRPO-block ablation（resampling + minimal feedback）\n- False Abandonment Rate (FAR) + SRR-URR Pareto frontier\n- Per-category Cohen's κ + pilot annotation round\n- Beam width sensitivity analysis\n- FRR full-coverage LLM-based audit + 20% human calibration\n- Dual-dimension cost reporting (training + inference)\n- 3×3 cross-domain transfer matrix on 4B\n\n【idea 质量评估】: Novelty=接近中（\"Calibrated constraint reasoning\" thesis 统一叙事；\"Safety is Non-Compositional\" 理论化 FRR；AWARE-US 差异化闭合；\"Check Yourself\" baseline 反向锐化 URR。但 RA-FGRPO 方法论 = 组合应用，始终是 novelty 天花板）Significance=中+（perverse incentive 论点有力——无 recovery 则 guardrail = capability tax → 激励弱化安全措施；ODCV data 持续支撑）→ idea 天花板约 34-36%\n\n【实验完备性评估】: Technical Soundness=中-强→强（三点规模梯度、AGENT-C 双变体、Fission-GRPO-block ablation、FAR metric、full-coverage FRR audit、per-category κ、cost Pareto frontier）→ 地板 ~26%\n\n【当前概率估计】: [25% - 34%] 中位 29%\n\nRubric 逻辑：Novelty 接近中（benchmark evaluation innovation = 强；unified thesis clarity improved；RA-FGRPO methodological contribution = 弱-中，这是不可逾越的 ceiling constrainer）。Significance 中+（perverse incentive + deployment bottleneck + ODCV grounding）。Related Work 强（AWARE-US + \"Check Yourself\" + \"Safety is Non-Compositional\" + Recovery-Bench 全部 addressed）。Technical Soundness 强（comprehensive baseline suite + ablation matrix + reliability metrics + statistical standards）。总体：idea ceiling ~35% × experiment discount for residual risks → 中位 29%。\n\n【决策】: 收敛\n\n【决策理由】: 概率变化趋势：12% → 23% (+11) → 27% (+4) → 29% (+2)。改善幅度明确递减，已进入边际收益区。Round 3 的 idea-level 建议（AWARE-US、\"Safety is Non-Compositional\"、\"Check Yourself\"）虽有价值但属于 gap-closing 而非 ceiling-raising——它们堵住了 reviewer 可能攻击的漏洞，但不改变 RA-FGRPO 方法论增量有限这一结构性约束。实验层面改进（FAR、AGENT-C 双变体、三点规模）也是 refinement 而非 paradigm shift。进一步迭代预计仅能带来 ~1pp 改善。核心限制因素（RA-FGRPO = Fission-GRPO + safety-specific SRS 的组合应用，无独立算法贡献）是结构性的，无法通过迭代 proposal 文本解决——需要实际实验结果来突破。\n\n---\n\n**以下进入角色 C：最终输出**\n\n由于最终中位 29% < 36% 阈值，按规则输出拒绝详情。但本 proposal 并非 KILL 级别——经过 3 轮优化已从 12% 提升至 29%，属于\"边缘可行、需要实验结果突破\"的状态。\n\n【拒绝阶段】: 最终验收\n\n【击穿维度 / 致命缺陷】:\n**非致命但不可逾越的 ceiling constrainer**: RA-FGRPO 的方法论增量有限。其核心架构 = Fission-GRPO (arXiv:2601.15625) 的 on-policy error augmentation + SRS 提供的 safety-specific diagnostic context + 已有 credit assignment 方法（GTPO/AT²PO/GAGPO）。这是 application-level adaptation，不是 methodological innovation。在 top venue 审稿中，\"benchmark paper + method paper\" 的组合如果两者都不够 strong independently，会被判定为 neither fish nor fowl。\n\n**Novelty 被三条 trivial alternative 持续压制（虽已部分化解但未完全消除）**:\n1. Informative feedback alone (Symbolic Guardrails +33%) — 部分化解：open-source 模型仍无效\n2. AGENT-C guardrail-side correction (100% conformance) — 部分化解：action-level vs trajectory-level + compositional circumvention + no URR。但 reviewer 可能仍然认为 \"just combine AGENT-C + better prompting\"\n3. Direct Fission-GRPO application — 部分化解：structural distinction + SRS diagnostic。但 reviewer 可能仍然认为 \"just treat safety block as error type in Fission-GRPO\"\n\n**这三条中任何一条如果 reviewer 不接受化解论证，都会击穿 novelty 下限。**\n\n【已尝试优化方向】:\n1. **Idea 层面**（3 轮发掘）: 三维度结构区分（permanent/open-ended/asymmetric）→ SRS module 因果链；URR 提升为 \"calibrated constraint reasoning\" 核心 thesis；FRR 从经验指标升级为 theoretically necessary（\"Safety is Non-Compositional\"）；ODCV-Bench grounding；Recovery-Bench/AWARE-US/\"Check Yourself\" 精确差异化；perverse incentive framing。\n2. **实验层面**（3 轮补救）: RC-GRPO + SFT-Recovery + compute-matched GRPO + Fission-GRPO-block baseline；AGENT-C block-only/full 双变体；三点模型规模梯度；pass^k reliability；FAR metric + SRR-URR Pareto；full-coverage LLM-based FRR audit；per-category κ + pilot；benchmark 规模透明化（≥170 tasks）；3×3 cross-domain transfer；dual-dimension cost reporting。\n\n【可否抢救】:\n**可抢救，但需要策略性调整：**\n\n1. **最优路径：Reframe 为纯 benchmark paper（不含 RA-FGRPO training 作为核心贡献）。** 将 RecoverBench 定位为 primary contribution，RA-FGRPO 降级为 \"baseline training recipe demonstrating benchmark utility\"。这样 novelty 完全由 benchmark 承载——URR/FRR/calibrated constraint reasoning 的评估创新足以支撑一篇 benchmark paper。RA-FGRPO 的结果作为 \"what happens when we try to train for this capability\" 的 exploratory analysis，而非 claimed methodological contribution。预估概率提升至 32-38%，因为消除了\"方法论 incrementality\"这一最大攻击面。\n\n2. **替代路径：找到 RA-FGRPO 独有的、Fission-GRPO 无法复现的 experimental result。** 如果实验中能证明 (a) Fission-GRPO 直接应用于 safety blocks 效果显著差于 RA-FGRPO（因为缺少 SRS 的 structured constraint signal），且 (b) 这个差距在 SFT-Recovery baseline 上也无法弥补，那 RA-FGRPO 的方法论贡献就有了 empirical backing。但这需要实际实验数据，无法在 proposal 阶段保证。\n\n3. **投稿策略建议：**\n   - Primary target: **EMNLP 2026 via ARR August 2026 cycle**，以纯 benchmark paper 形式投稿（路径 1）\n   - 如果 RA-FGRPO 实验结果出色（路径 2），升级为 benchmark + method paper 投 **NAACL 2027 / ACL 2027**\n   - AAAI 2027 (Jul 28 deadline) 时间过紧，不建议\n\n【实施评估】:\n  - 计算资源: ~1,200-1,600 H100 hours。含 benchmark construction (280h) + RA-FGRPO training (4B full ablation ~225h, 8B optimal ~120h, 35B optimal+key ~200h) + baselines (SFT/GRPO/RC-GRPO/DPO ~150h) + evaluation sweeps (200h)。需 4-8× A100/H100 GPU cluster。\n  - 数据需求: 基于 tau-bench (Airline/Retail, 公开) + τ3-bench Banking (公开)。SRS 训练数据在线生成。需 API specification parsing for constraint extraction。无需离线标注数据集。\n  - 人工介入: 中等。(1) RecoverBench task 分类标注：dual annotation ≥30% + pilot round for partial category，估计 2 名标注者 × 40h = 80 person-hours；(2) Beam search ground truth 人工验证 20% subset，~20 person-hours；(3) FRR tier-2 人工校准 20% subset，~15 person-hours；(4) Total: ~115 person-hours。\n  - 训练需求: 是。RA-FGRPO 需 RL 微调 Qwen3-4B / Qwen3-8B / Qwen3.6-35B-A3B。完整 ablation matrix 在 4B 上（~15 runs），最优 + key ablation 在 8B/35B 上（~8 runs）。Total ~23 training runs。SFT-Recovery, vanilla GRPO, RC-GRPO, DPO baselines 各需独立训练。\n  - 新 Benchmark: 是。RecoverBench ≥170 tasks across 3 domains，含 guardrail injection 机制、feedback informativeness 分级、三类 recoverability 标注、5+1 metrics (SRR/URR/FRR/FAR/Latency/PathQuality)、ground truth via state-level compliance + beam search。\n  - 预估周期: 10-14 weeks (human-in-loop)。Week 1-4: benchmark construction + SRS implementation + pilot annotation; Week 5-8: 4B full ablation + 8B/35B training + parallel completion of annotation; Week 9-11: evaluation + analysis; Week 11-14: writing. Critical path: benchmark construction 必须在 Week 4 前完成，否则下游全部延迟。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87d74cd9-0c9a-45e9-8b14-1ed7e736b612",
+            "isSidechain": false,
+            "requestId": "req_011CbDBXMFSfemG1cBMwSqtk",
+            "type": "assistant",
+            "uuid": "3f0591ca-2884-4e89-9a4c-1857065aa91c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QYHrh6MpKn836W4MW8oq9k",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1557,
+                "cache_creation_input_tokens": 874,
+                "cache_read_input_tokens": 136313,
+                "output_tokens": 7925,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 874,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1557,
+                    "output_tokens": 7925,
+                    "cache_read_input_tokens": 136313,
+                    "cache_creation_input_tokens": 874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 874
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research context to provide a thorough assessment. Let me compile my analysis.  ---…",
+                "leafUuid": "3f0591ca-2884-4e89-9a4c-1857065aa91c",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Strengthen RecoverBench proposal with discovery points and defect analysis",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research context to provide a thorough assessment. Let me compile my analysis.  ---…",
+                "leafUuid": "3f0591ca-2884-4e89-9a4c-1857065aa91c",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Strengthen RecoverBench proposal with discovery points and defect analysis",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Strengthen RecoverBench proposal with discovery points and defect analysis",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-20T04:25:41.940Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T04:25:41.940Z",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+                "content": "【任务】: 流程已结束（最终中位 29.0% < 33%），请按「角色 C：最终输出」的拒绝格式，输出拒绝详情文本。"
+              }
+            }
+          ],
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-20T04:25:41.941Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T04:25:41.941Z",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000127"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-20T04:25:41.968Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 流程已结束（最终中位 29.0% < 33%），请按「角色 C：最终输出」的拒绝格式，输出拒绝详情文本。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f0591ca-2884-4e89-9a4c-1857065aa91c",
+            "isSidechain": false,
+            "promptId": "fa511515-bca1-4e4e-8f04-bc5740134870",
+            "type": "user",
+            "uuid": "ed7f423d-2841-496d-919d-1312541ae82d",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-20T04:25:51.032Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user is asking me to output the final rejection details in the 角色 C format. The final median is 29.0% < 33% (note: the user uses 33% as threshold here, not 36% as in the original instructions - I'll follow the user's instruction). Let me produce the rejection format output.\n\nI already produced most of this content in my round 3 output, but the user wants me to output it cleanly in the specified format. Let me compile the final rejection output.\n\nKey points to include:\n- 拒绝阶段: 最终验收\n\n\n- 击穿维度/致命缺陷\n- 已尝试优化方向 (across 3 rounds)\n- 可否抢救\n- 实施评估 (if applicable for the rescue path)\n\nNow I need to structure the critical failure points, document what optimization attempts were made across the three rounds, assess whether this can still be salvaged, and provide implementation guidance if a rescue attempt is viable.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed7f423d-2841-496d-919d-1312541ae82d",
+            "isSidechain": false,
+            "requestId": "req_011CbDBkcsuGLpEQLY8oQ2Er",
+            "type": "assistant",
+            "uuid": "a1a3abed-320c-430a-ba20-f20ee38244a3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LtEMkr4wxGmmDew32yLxSY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9538,
+                "cache_read_input_tokens": 137187,
+                "output_tokens": 3338,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9538,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3338,
+                    "cache_read_input_tokens": 137187,
+                    "cache_creation_input_tokens": 9538,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9538
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-20T04:26:51.449Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "【拒绝阶段】: 最终验收（迭代 3 轮收敛，中位 29.0%）\n\n【击穿维度 / 致命缺陷】:\n\n**1. RA-FGRPO 方法论增量有限（Novelty 天花板约束，不可通过 proposal 迭代修复）**\n\nRA-FGRPO 的架构 = Fission-GRPO (arXiv:2601.15625) on-policy error augmentation + SRS safety-specific diagnostic context + 已有 credit assignment（GTPO arXiv:2511.14846 / AT²PO arXiv:2601.04767 / GAGPO arXiv:2605.13217）。三个组件均已独立发表，RA-FGRPO 的贡献是将它们组合应用于 safety block 场景。审稿人可以用一句话概括：\"Fission-GRPO with a safety-specific Error Simulator\"——这是 application，不是 methodological innovation。该限制直接将 Novelty 维度 cap 在\"弱-中\"，无论 benchmark 和实验设计多完善，论文的 novelty perception 都受此约束。经过 3 轮发掘 agent 调优，idea 叙事已接近最优（\"calibrated constraint reasoning\" 统一 thesis、三维结构区分→SRS 因果链、FRR 理论必要性证明），但方法论侧无法突破。\n\n**2. 三条 trivial alternative 仍有残余攻击面（已部分化解但未完全消除）**\n\n| Trivial Alternative | 化解程度 | 残余风险 |\n|---|---|---|\n| Informative feedback alone (Symbolic Guardrails +33%) | 较好化解：open-source 模型即使有 TRIAD-SAFETY 仍 ~0% recovery | Reviewer 可能要求先验证 \"GPT-4o-level informative feedback on open-source models\" 这一更简单的 baseline |\n| AGENT-C guardrail-side correction (100% conformance) | 部分化解：action-level vs trajectory-level；无 URR；无 compositional circumvention detection（\"Safety is Non-Compositional\" arXiv:2603.15973 理论支撑） | Reviewer 可能认为 \"AGENT-C + simple quit prompt\" 已覆盖大部分 RecoverBench 场景 |\n| Direct Fission-GRPO (treat block as error type) | 部分化解：SRS structured constraint signal ≠ generic error message；三维结构区分论证 | **最危险残余**：无实验数据证明 Fission-GRPO 直接应用于 safety blocks 确实效果差；若 reviewer 要求此对比且结果差距不大，RA-FGRPO 的增量价值归零 |\n\n**3. Benchmark 贡献虽强但\"benchmark + method\"双轨定位分散了 reviewer 注意力**\n\nRecoverBench 的评估创新（URR calibrated constraint reasoning + FRR compositional circumvention detection + dual-capability evaluation）在 benchmark track 下有足够 novelty。但当前 proposal 同时 claim benchmark + training method 两个贡献，使 reviewer 期望两者都达到 main conference 水平——benchmark 接近达标但 method 不达标，导致整体 perception 被拉低为 \"neither contribution is strong enough to stand alone\"。\n\n【已尝试优化方向】:\n\n**Round 1（12% → 23%, +11pp）— 结构性重塑:**\n- Idea: 建立 post-blocking ≠ post-error 的三维结构区分（permanent constraints / open-ended search / asymmetric failure consequences）；引入 ODCV-Bench (arXiv:2512.20798) 的 30-67% violation rate ground FRR empirical urgency；URR 与 SRR 并列为 dual co-equal pillar；引入 SafeAgentBench (arXiv:2412.13178) 5-10% rejection rate 支撑 URR 价值；精确回应三条 trivial alternative（action-level vs trajectory-level + URR gap）\n- 实验: RC-GRPO (arXiv:2602.03025) baseline; compute-matched GRPO; GTPO/AT²PO/GAGPO equal ablation; SRS 四组 component ablation; database-state-level FRR operationalization; inter-annotator agreement protocol; τ3-bench Banking extension; cross-domain transfer; performance-vs-compute curves\n\n**Round 2（23% → 27%, +4pp）— 实验完善 + 差异化闭合:**\n- Idea: URR 深化为 \"calibrated constraint reasoning\"（compositional reasoning over constraint-satisfying action space）; FRR state-level detection 定位为 compositional circumvention defense; Recovery-Bench (Letta, NeurIPS 2025 WS) 精确差异化; 三维区分→SRS module 因果链（permanent→Extraction, open-ended→Enumerator, asymmetric→FRR-aware reward）\n- 实验: SFT-Recovery baseline（ToolRL ICLR 2026 / TopoCurate arXiv:2603.01714 验证）; pass^k reliability metric (k=1,5); benchmark 规模透明化 (≥170 tasks, 40/30/30 distribution); FRR two-tier detection; feedback × training 2×3 交叉矩阵; statistical reporting (mean±SE, n≥5, bootstrap tests); beam search details (width≥10, 20% human verification, coverage≥0.9)\n\n**Round 3（27% → 29%, +2pp）— 理论深化 + 最后 gap-closing:**\n- Idea: AWARE-US (arXiv:2601.02643) 纳入 Landscape 差异化; \"Safety is Non-Compositional\" (arXiv:2603.15973) 为 FRR 提供 formal necessity proof; \"Check Yourself\" (arXiv:2510.16492) 作为 URR trivial baseline + binary quit vs calibrated reasoning 差异化; \"Calibrated constraint reasoning\" 确立为统一 thesis; perverse incentive framing (Verifier Tax data)\n- 实验: AGENT-C block-only / full 双变体; 4B/8B/35B-A3B 三点规模梯度; Fission-GRPO-block ablation (resampling + minimal feedback); False Abandonment Rate (FAR) + SRR-URR Pareto; per-category Cohen's κ + pilot; LLM-based full-coverage FRR audit; dual-dimension cost reporting; 3×3 cross-domain transfer matrix\n\n【可否抢救】:\n\n**可抢救。两条可行路径：**\n\n**路径 A（推荐）：Reframe 为纯 Benchmark Paper，RA-FGRPO 降级为 baseline recipe**\n\n将 RecoverBench 定位为 sole primary contribution，RA-FGRPO 降级为 \"a training recipe we developed to demonstrate what happens when you try to teach this capability\"——它的结果作为 exploratory analysis 而非 claimed methodological contribution。这一调整的效果：\n- 消除 \"method is incremental\" 这一最大攻击面——reviewer 不再期望方法论 novelty\n- Benchmark 的 novelty（URR calibrated constraint reasoning + FRR compositional circumvention detection + dual-capability evaluation framework + \"Safety is Non-Compositional\" 理论支撑）在 EMNLP benchmark track 足够 strong\n- 所有已设计的 baselines 和 ablations 变为 \"comprehensive benchmark validation\"，增加 benchmark 的 credibility\n- 预估中稿概率提升至 **32-38%**，跨过可行阈值\n- 投稿策略：**EMNLP 2026 via ARR August cycle** 作为 benchmark/resource paper\n\n**路径 B：实验驱动突破——证明 RA-FGRPO 有 Fission-GRPO 无法复现的 empirical result**\n\n保持当前 benchmark + method 双轨定位，但需要实际实验数据证明：\n- (a) Fission-GRPO 直接应用于 safety blocks（将 block 视为 error type）效果显著差于 RA-FGRPO（因为缺少 SRS structured constraint signal + 无法区分 recoverable/unrecoverable）\n- (b) SFT-Recovery baseline 也无法匹配 RA-FGRPO（证明 RL training paradigm 本身的价值，不仅是数据/信息的贡献）\n- (c) RA-FGRPO 在 URR 维度有 surprising result（如：trained models 在 impossibility recognition 上大幅超过 frontier models + quit prompting）\n\n如果 (a)(b)(c) 都成立，RA-FGRPO 的增量价值获得 empirical backing，预估概率可达 **35-42%**。但这需要 6-8 周实验验证，风险较高——如果结果不支持，则回退到路径 A。\n\n建议执行顺序：**先按路径 A 准备 paper frame，同时跑实验。如果实验结果支持路径 B，升级为 benchmark + method paper；如果不支持，以路径 A 的 benchmark paper 投稿。**\n\n【实施评估】:\n  - 计算资源: ~1,200-1,600 H100 hours（路径 A 可缩减至 ~800h，因 RA-FGRPO 全 ablation 降级为 exploratory）。需 4-8× A100/H100 GPU cluster，预估 GPU 成本 $1,600-$3,200（spot pricing）。\n  - 数据需求: tau-bench Airline/Retail (ICLR 2025, 公开) + τ3-bench Banking (公开)。SRS 训练数据在线生成，无需离线标注数据集。API specification parsing for constraint extraction 需要工程实现。\n  - 人工介入: ~115 person-hours。Benchmark task 分类 dual annotation (80h) + ground truth 人工验证 (20h) + FRR 人工校准 (15h)。需 2 名标注者 + 1 名 NLP researcher 设计 annotation guideline。\n  - 训练需求: 是（即使路径 A 也需要训练 RA-FGRPO 作为 baseline demonstration）。4B/8B/35B-A3B 三规模，~23 training runs（4B full ablation ~15 runs, 8B/35B selected ~8 runs）+ SFT/GRPO/RC-GRPO/DPO baselines。\n  - 新 Benchmark: 是。RecoverBench ≥170 tasks × 3 domains × 3 feedback levels × 3 categories，含 dual annotation + Cohen's κ + pilot round + beam search ground truth + pass^k reliability evaluation。这是主要工程工作量。\n  - 预估周期: **路径 A: 10-12 weeks**（benchmark construction 4w → training/eval 4w → writing 2-4w）。**路径 B: 12-16 weeks**（+2-4w for full ablation matrix and analysis）。Critical path: benchmark construction + annotation 必须在 Week 4 前完成。推荐 target: ARR August 2026 cycle → EMNLP 2026 commitment。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1a3abed-320c-430a-ba20-f20ee38244a3",
+            "isSidechain": false,
+            "requestId": "req_011CbDBkcsuGLpEQLY8oQ2Er",
+            "type": "assistant",
+            "uuid": "b4104b9c-fe1b-4075-8fb7-2bb0d74d4119",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LtEMkr4wxGmmDew32yLxSY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9538,
+                "cache_read_input_tokens": 137187,
+                "output_tokens": 3338,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9538,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3338,
+                    "cache_read_input_tokens": 137187,
+                    "cache_creation_input_tokens": 9538,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9538
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 流程已结束（最终中位 29.0% < 33%），请按「角色 C：最终输出」的拒绝格式，输出拒绝详情文本。",
+                "leafUuid": "b4104b9c-fe1b-4075-8fb7-2bb0d74d4119",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Strengthen RecoverBench proposal with discovery points and defect analysis",
+                "sessionId": "b5cb2f18-38ba-4f16-abe8-00546eca5a24"
+              }
+            }
+          ],
+          "id": "event-000132"
+        }
+      ]
+    }
+  ]
+}

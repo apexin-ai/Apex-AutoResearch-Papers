@@ -1,0 +1,1312 @@
+{
+  "schema_version": "1.0",
+  "id": "92b92850ce422b05f524",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to cross-check MAPE numbers between source JSON files and paper .tex files. Working directories: - Paper: /home/u",
+  "task_key": "agent-aaeb98e46f47a7f54",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-aaeb98e46f47a7f54.jsonl",
+    "occurrence": 1,
+    "bytes": 104490,
+    "sha256": "bdc385d9fdbbe8b2df3f6095c58ace58b16b63c0c28b28c9f3d68db20f453338"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T18:38:21.309Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to cross-check MAPE numbers between source JSON files and paper .tex files.\n\nWorking directories:\n- Paper: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/\n- Artifacts: /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/\n\nTasks:\n1. Find MAPE source files: search for files matching *mape* in the artifacts directory\n2. Read any MAPE JSON files found (especially theory_empirical_mape.json or similar)\n3. Search all .tex files in the paper directory for \"MAPE\", \"mape\", and percentage numbers near MAPE mentions\n4. Report all MAPE-related numbers found in both sources\n\nBe very thorough - read the full content of any MAPE JSON files and any .tex sections mentioning MAPE."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "9f14a971-8644-48c3-b95c-6e756f70bb09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T18:38:24.291Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you cross-check MAPE numbers between source JSON files and paper .tex files. Let me start by searching for MAPE-related files and then examining their contents."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f14a971-8644-48c3-b95c-6e756f70bb09",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCagAT44LE5es9Apsyu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4c51f2d5-f28c-471c-8ce4-c57a0ec4df8a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013BfcJjPYgq5oaMxDLoDFuZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17978,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17978,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T18:38:24.590Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XWap22rs7of5iG5jkbu2Ri",
+              "name": "Glob",
+              "input": {
+                "pattern": "*mape*",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c51f2d5-f28c-471c-8ce4-c57a0ec4df8a",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCagAT44LE5es9Apsyu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f454aea1-14cc-4321-b687-61bcbac2d076",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013BfcJjPYgq5oaMxDLoDFuZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17978,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17978,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T18:38:24.603Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XWap22rs7of5iG5jkbu2Ri",
+              "type": "tool_result",
+              "content": "artifacts/compute_theory_empirical_mape.py\nartifacts/theory_empirical_mape.json\nartifacts/theory_empirical_mape_table.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f454aea1-14cc-4321-b687-61bcbac2d076",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "2d363b83-3709-4a9a-8e37-8e3bd7ab96b1",
+            "sourceToolAssistantUUID": "f454aea1-14cc-4321-b687-61bcbac2d076",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T18:38:24.856Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014R9vq49UPf7w6xqmpNVset",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d363b83-3709-4a9a-8e37-8e3bd7ab96b1",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCagAT44LE5es9Apsyu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9b4079bd-5a8d-486b-985b-14717ba6e6bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013BfcJjPYgq5oaMxDLoDFuZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17978,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 226,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17978
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 226,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17978,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17978,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T18:38:24.870Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014R9vq49UPf7w6xqmpNVset",
+              "type": "tool_result",
+              "content": "docs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/method.tex\ndocs/paper/experiments.tex\ndocs/paper/appendix_proofs.tex\ndocs/paper/abstract.tex\ndocs/paper/conclusion.tex\ndocs/paper/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b4079bd-5a8d-486b-985b-14717ba6e6bd",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "75088e5f-b904-4317-a084-2b82e99976de",
+            "sourceToolAssistantUUID": "9b4079bd-5a8d-486b-985b-14717ba6e6bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T18:38:26.783Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! I found MAPE-related files. Now let me read the JSON source file and the .tex table file, then search for MAPE mentions in all the paper .tex files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75088e5f-b904-4317-a084-2b82e99976de",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCawaeNo59vhwgVZX6Y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7123e92c-a40c-4c0c-b74b-f7c6c8ae2845",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015yyJn3naZnHdxFX6FuX6oz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 17978,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T18:38:27.775Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JhBxwjbekgC8cbpu31z1rV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7123e92c-a40c-4c0c-b74b-f7c6c8ae2845",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCawaeNo59vhwgVZX6Y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1c1636d3-148a-46a2-8756-c418b7914f07",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015yyJn3naZnHdxFX6FuX6oz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 17978,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T18:38:27.873Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012pF9TCFnYzbGFKpLU3wiaz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape_table.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c1636d3-148a-46a2-8756-c418b7914f07",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCawaeNo59vhwgVZX6Y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a5395467-da97-48c3-96aa-46c8d64d36f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015yyJn3naZnHdxFX6FuX6oz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 17978,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T18:38:27.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012pF9TCFnYzbGFKpLU3wiaz",
+              "type": "tool_result",
+              "content": "1\t% Theory-Empirical MAPE (auto-generated)\n2\t% Grand MAPE across 126 scenarios: 2.00%\n3\t\\begin{table}[h]\\centering\\small\n4\t\\caption{Theory vs.\\ MC MAPE per topology}\n5\t\\begin{tabular}{lrrr}\n6\t\\toprule\n7\tTopology & MAPE (\\%) & Median APE (\\%) & $n$ \\\\\n8\t\\midrule\n9\tconfounding & 0.49 & 0.42 & 18 \\\\\n10\tmediation & 2.49 & 1.67 & 18 \\\\\n11\tcollider & 0.92 & 0.39 & 18 \\\\\n12\texposure & 0.83 & 0.33 & 18 \\\\\n13\tmbias & 2.94 & 2.45 & 18 \\\\\n14\tiv & 5.51 & 3.91 & 18 \\\\\n15\tfrontdoor & 0.81 & 0.48 & 18 \\\\\n16\t\\midrule\n17\tGrand & 2.00 & -- & 126 \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t\\end{table}\n21\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5395467-da97-48c3-96aa-46c8d64d36f0",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "565ef3ea-2cf1-447f-89ca-ecec506cac3f",
+            "sourceToolAssistantUUID": "a5395467-da97-48c3-96aa-46c8d64d36f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T18:38:28.129Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JhBxwjbekgC8cbpu31z1rV",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"n_mc\": 200,\n4\t    \"n_samples\": 10000,\n5\t    \"scope\": \"All 18 valid configs (K=2,3,10)\",\n6\t    \"n_valid_configs\": 18,\n7\t    \"n_scenarios_total\": 126,\n8\t    \"topologies\": [\n9\t      \"confounding\",\n10\t      \"mediation\",\n11\t      \"collider\",\n12\t      \"exposure\",\n13\t      \"mbias\",\n14\t      \"iv\",\n15\t      \"frontdoor\"\n16\t    ],\n17\t    \"note\": \"VAST and CivilComments use approximate confusion matrices (diagonal from per-class recall, off-diagonal uniform). HumAID uses full empirical confusion matrices.\"\n18\t  },\n19\t  \"grand_mape\": 0.019967537746631306,\n20\t  \"per_topology\": {\n21\t    \"confounding\": {\n22\t      \"mape\": 0.004933432941306061,\n23\t      \"median_ape\": 0.004217688484439904,\n24\t      \"max_ape\": 0.012779885295230654,\n25\t      \"n\": 18\n26\t    },\n27\t    \"mediation\": {\n28\t      \"mape\": 0.024855270335983923,\n29\t      \"median_ape\": 0.016683935839667333,\n30\t      \"max_ape\": 0.09030265250300888,\n31\t      \"n\": 18\n32\t    },\n33\t    \"collider\": {\n34\t      \"mape\": 0.009152360871966709,\n35\t      \"median_ape\": 0.003853492836725695,\n36\t      \"max_ape\": 0.04215793198222702,\n37\t      \"n\": 18\n38\t    },\n39\t    \"exposure\": {\n40\t      \"mape\": 0.00830231900729653,\n41\t      \"median_ape\": 0.0032549518630779427,\n42\t      \"max_ape\": 0.034339810166667595,\n43\t      \"n\": 18\n44\t    },\n45\t    \"mbias\": {\n46\t      \"mape\": 0.02940642716621564,\n47\t      \"median_ape\": 0.024450959141847577,\n48\t      \"max_ape\": 0.07280470270094286,\n49\t      \"n\": 18\n50\t    },\n51\t    \"iv\": {\n52\t      \"mape\": 0.05505309835350474,\n53\t      \"median_ape\": 0.039084876171921565,\n54\t      \"max_ape\": 0.16437749380302297,\n55\t      \"n\": 18\n56\t    },\n57\t    \"frontdoor\": {\n58\t      \"mape\": 0.008069855550145518,\n59\t      \"median_ape\": 0.004837646631234515,\n60\t      \"max_ape\": 0.022545645835386607,\n61\t      \"n\": 18\n62\t    }\n63\t  },\n64\t  \"per_config\": {\n65\t    \"civil_comments_qwen2.5-7b_few-shot-3\": {\n66\t      \"confounding\": {\n67\t        \"theory_bias\": 0.20469689234904287,\n68\t        \"mc_bias\": 0.20326625788937402,\n69\t        \"mc_tau_mean\": 2.2030017212615776,\n70\t        \"mc_tau_se\": 0.0006382134122958502,\n71\t        \"tau_true\": 1.9997354633722035,\n72\t        \"tau_biased_plim\": 2.2044323557212464,\n73\t        \"abs_pct_error\": 0.006989038491260389,\n74\t        \"n_mc_used\": 200\n75\t      },\n76\t      \"mediation\": {\n77\t        \"theory_bias\": 0.13303369970335455,\n78\t        \"mc_bias\": 0.13145322870179899,\n79\t        \"mc_tau_mean\": 0.6330163134409158,\n80\t        \"mc_tau_se\": 0.001501822006056302,\n81\t        \"tau_true\": 0.5015630847391168,\n82\t        \"tau_biased_plim\": 0.6345967844424714,\n83\t        \"abs_pct_error\": 0.011880230385832894,\n84\t        \"n_mc_used\": 200\n85\t      },\n86\t      \"collider\": {\n87\t        \"theory_bias\": 0.13260764189025664,\n88\t        \"mc_bias\": 0.1329352401709104,\n89\t        \"mc_tau_mean\": 0.971613120805553,\n90\t        \"mc_tau_se\": 0.0007313695865790016,\n91\t        \"tau_true\": 0.8386778806346425,\n92\t        \"tau_biased_plim\": 0.9712855225248992,\n93\t        \"abs_pct_error\": 0.0024704328949976813,\n94\t        \"n_mc_used\": 200\n95\t      },\n96\t      \"exposure\": {\n97\t        \"theory_bias\": -0.5440594371041829,\n98\t        \"mc_bias\": -0.5440472214199698,\n99\t        \"mc_tau_mean\": 0.4566403522232666,\n100\t        \"mc_tau_se\": 0.0016005843392651632,\n101\t        \"tau_true\": 1.0006875736432363,\n102\t        \"tau_biased_plim\": 0.45662813653905343,\n103\t        \"abs_pct_error\": 2.2452848678055384e-05,\n104\t        \"n_mc_used\": 200\n105\t      },\n106\t      \"mbias\": {\n107\t        \"theory_bias\": 0.04619840945705278,\n108\t        \"mc_bias\": 0.04542632662959911,\n109\t        \"mc_tau_mean\": 0.4877764821289287,\n110\t        \"mc_tau_se\": 0.0006879607024401818,\n111\t        \"tau_true\": 0.4423501554993296,\n112\t        \"tau_biased_plim\": 0.4885485649563824,\n113\t        \"abs_pct_error\": 0.01671232487281659,\n114\t        \"n_mc_used\": 200\n115\t      },\n116\t      \"iv\": {\n117\t        \"theory_bias\": 0.595737647210146,\n118\t        \"mc_bias\": 0.6197792111098267,\n119\t        \"mc_tau_mean\": 1.1263441252644624,\n120\t        \"mc_tau_se\": 0.021260791673692252,\n121\t        \"tau_true\": 0.5065649141546357,\n122\t        \"tau_biased_plim\": 1.1023025613647817,\n123\t        \"abs_pct_error\": 0.04035595872154117,\n124\t        \"n_mc_used\": 200\n125\t      },\n126\t      \"frontdoor\": {\n127\t        \"theory_bias\": 0.12590975996120335,\n128\t        \"mc_bias\": 0.12551257104286584,\n129\t        \"mc_tau_mean\": 0.6264875431611863,\n130\t        \"mc_tau_se\": 0.0006037790620836717,\n131\t        \"tau_true\": 0.5009749721183204,\n132\t        \"tau_biased_plim\": 0.6268847320795238,\n133\t        \"abs_pct_error\": 0.0031545522639380456,\n134\t        \"n_mc_used\": 200\n135\t      }\n136\t    },\n137\t    \"civil_comments_qwen2.5-7b_few-shot-5\": {\n138\t      \"confounding\": {\n139\t        \"theory_bias\": 0.19825723356784275,\n140\t        \"mc_bias\": 0.19746301570081704,\n141\t        \"mc_tau_mean\": 2.1971984790730206,\n142\t        \"mc_tau_se\": 0.0006148790563957859,\n143\t        \"tau_true\": 1.9997354633722035,\n144\t        \"tau_biased_plim\": 2.1979926969400463,\n145\t        \"abs_pct_error\": 0.004005996919925431,\n146\t        \"n_mc_used\": 200\n147\t      },\n148\t      \"mediation\": {\n149\t        \"theory_bias\": 0.12899528669125304,\n150\t        \"mc_bias\": 0.1230379019972726,\n151\t        \"mc_tau_mean\": 0.6246009867363894,\n152\t        \"mc_tau_se\": 0.0014932088453013372,\n153\t        \"tau_true\": 0.5015630847391168,\n154\t        \"tau_biased_plim\": 0.6305583714303699,\n155\t        \"abs_pct_error\": 0.046182964097279684,\n156\t        \"n_mc_used\": 200\n157\t      },\n158\t      \"collider\": {\n159\t        \"theory_bias\": 0.12781349804424547,\n160\t        \"mc_bias\": 0.12814047686082775,\n161\t        \"mc_tau_mean\": 0.9668183574954703,\n162\t        \"mc_tau_se\": 0.0007211717912522234,\n163\t        \"tau_true\": 0.8386778806346425,\n164\t        \"tau_biased_plim\": 0.966491378678888,\n165\t        \"abs_pct_error\": 0.002558249493094138,\n166\t        \"n_mc_used\": 200\n167\t      },\n168\t      \"exposure\": {\n169\t        \"theory_bias\": -0.5076858519885339,\n170\t        \"mc_bias\": -0.5073685661169178,\n171\t        \"mc_tau_mean\": 0.4933190075263186,\n172\t        \"mc_tau_se\": 0.0015678349304091618,\n173\t        \"tau_true\": 1.0006875736432363,\n174\t        \"tau_biased_plim\": 0.49300172165470246,\n175\t        \"abs_pct_error\": 0.0006249649667669358,\n176\t        \"n_mc_used\": 200\n177\t      },\n178\t      \"mbias\": {\n179\t        \"theory_bias\": 0.04428972639344181,\n180\t        \"mc_bias\": 0.04472008148291706,\n181\t        \"mc_tau_mean\": 0.48707023698224666,\n182\t        \"mc_tau_se\": 0.0007956008541843218,\n183\t        \"tau_true\": 0.4423501554993296,\n184\t        \"tau_biased_plim\": 0.4866398818927714,\n185\t        \"abs_pct_error\": 0.009716815264385528,\n186\t        \"n_mc_used\": 200\n187\t      },\n188\t      \"iv\": {\n189\t        \"theory_bias\": 0.51196453609603,\n190\t        \"mc_bias\": 0.49260521478615715,\n191\t        \"mc_tau_mean\": 0.9991701289407928,\n192\t        \"mc_tau_se\": 0.017816457828148353,\n193\t        \"tau_true\": 0.5065649141546357,\n194\t        \"tau_biased_plim\": 1.0185294502506657,\n195\t        \"abs_pct_error\": 0.03781379362230195,\n196\t        \"n_mc_used\": 200\n197\t      },\n198\t      \"frontdoor\": {\n199\t        \"theory_bias\": 0.12180481151264455,\n200\t        \"mc_bias\": 0.12000040182900706,\n201\t        \"mc_tau_mean\": 0.6209753739473275,\n202\t        \"mc_tau_se\": 0.0006365658869256677,\n203\t        \"tau_true\": 0.5009749721183204,\n204\t        \"tau_biased_plim\": 0.622779783630965,\n205\t        \"abs_pct_error\": 0.014813944221326356,\n206\t        \"n_mc_used\": 200\n207\t      }\n208\t    },\n209\t    \"civil_comments_qwen2.5-7b_zero-shot\": {\n210\t      \"confounding\": {\n211\t        \"theory_bias\": 0.2086006921070065,\n212\t        \"mc_bias\": 0.20669334151866314,\n213\t        \"mc_tau_mean\": 2.2064288048908667,\n214\t        \"mc_tau_se\": 0.000624875119183679,\n215\t        \"tau_true\": 1.9997354633722035,\n216\t        \"tau_biased_plim\": 2.20833615547921,\n217\t        \"abs_pct_error\": 0.00914354870579686,\n218\t        \"n_mc_used\": 200\n219\t      },\n220\t      \"mediation\": {\n221\t        \"theory_bias\": 0.13844344296597044,\n222\t        \"mc_bias\": 0.13756258377702357,\n223\t        \"mc_tau_mean\": 0.6391256685161404,\n224\t        \"mc_tau_se\": 0.0015686091519696735,\n225\t        \"tau_true\": 0.5015630847391168,\n226\t        \"tau_biased_plim\": 0.6400065277050873,\n227\t        \"abs_pct_error\": 0.006362592334281848,\n228\t        \"n_mc_used\": 200\n229\t      },\n230\t      \"collider\": {\n231\t        \"theory_bias\": 0.13610068493177163,\n232\t        \"mc_bias\": 0.13622226684758498,\n233\t        \"mc_tau_mean\": 0.9749001474822275,\n234\t        \"mc_tau_se\": 0.0006859138725881992,\n235\t        \"tau_true\": 0.8386778806346425,\n236\t        \"tau_biased_plim\": 0.9747785655664142,\n237\t        \"abs_pct_error\": 0.0008933233207040898,\n238\t        \"n_mc_used\": 200\n239\t      },\n240\t      \"exposure\": {\n241\t        \"theory_bias\": -0.5667460939904265,\n242\t        \"mc_bias\": -0.5649626825546954,\n243\t        \"mc_tau_mean\": 0.435724891088541,\n244\t        \"mc_tau_se\": 0.0016945102056079597,\n245\t        \"tau_true\": 1.0006875736432363,\n246\t        \"tau_biased_plim\": 0.43394147965280977,\n247\t        \"abs_pct_error\": 0.003146755583570472,\n248\t        \"n_mc_used\": 200\n249\t      },\n250\t      \"mbias\": {\n251\t        \"theory_bias\": 0.0475986788974625,\n252\t        \"mc_bias\": 0.04698643062938673,\n253\t        \"mc_tau_mean\": 0.48933658612871633,\n254\t        \"mc_tau_se\": 0.000690576538097847,\n255\t        \"tau_true\": 0.4423501554993296,\n256\t        \"tau_biased_plim\": 0.4899488343967921,\n257\t        \"abs_pct_error\": 0.012862715568108023,\n258\t        \"n_mc_used\": 200\n259\t      },\n260\t      \"iv\": {\n261\t        \"theory_bias\": 0.6631010106911249,\n262\t        \"mc_bias\": 0.6341498567188698,\n263\t        \"mc_tau_mean\": 1.1407147708735055,\n264\t        \"mc_tau_se\": 0.01991136049145996,\n265\t        \"tau_true\": 0.5065649141546357,\n266\t        \"tau_biased_plim\": 1.1696659248457606,\n267\t        \"abs_pct_error\": 0.04366024708977661,\n268\t        \"n_mc_used\": 200\n269\t      },\n270\t      \"frontdoor\": {\n271\t        \"theory_bias\": 0.1299626930481832,\n272\t        \"mc_bias\": 0.13069371795354268,\n273\t        \"mc_tau_mean\": 0.6316686900718631,\n274\t        \"mc_tau_se\": 0.0006007547434348864,\n275\t        \"tau_true\": 0.5009749721183204,\n276\t        \"tau_biased_plim\": 0.6309376651665036,\n277\t        \"abs_pct_error\": 0.005624882712213833,\n278\t        \"n_mc_used\": 200\n279\t      }\n280\t    },\n281\t    \"humaid_deepseek_few-shot-3\": {\n282\t      \"confounding\": {\n283\t        \"theory_bias\": 0.12362842220547487,\n284\t        \"mc_bias\": 0.12408704653579172,\n285\t        \"mc_tau_mean\": 2.123823450953801,\n286\t        \"mc_tau_se\": 0.0006908300973101184,\n287\t        \"tau_true\": 1.9997364044180095,\n288\t        \"tau_biased_plim\": 2.1233648266234844,\n289\t        \"abs_pct_error\": 0.003709699777245381,\n290\t        \"n_mc_used\": 200\n291\t      },\n292\t      \"mediation\": {\n293\t        \"theory_bias\": 0.07041232260948505,\n294\t        \"mc_bias\": 0.06911199870095674,\n295\t        \"mc_tau_mean\": 0.5709884312591766,\n296\t        \"mc_tau_se\": 0.0015012123711636849,\n297\t        \"tau_true\": 0.5018764325582199,\n298\t        \"tau_biased_plim\": 0.5722887551677049,\n299\t        \"abs_pct_error\": 0.018467277606223107,\n300\t        \"n_mc_used\": 200\n301\t      },\n302\t      \"collider\": {\n303\t        \"theory_bias\": 0.050128641682405495,\n304\t        \"mc_bias\": 0.052241961548813776,\n305\t        \"mc_tau_mean\": 0.9499059218208393,\n306\t        \"mc_tau_se\": 0.0007105924136335776,\n307\t        \"tau_true\": 0.8976639602720256,\n308\t        \"tau_biased_plim\": 0.947792601954431,\n309\t        \"abs_pct_error\": 0.04215793198222702,\n310\t        \"n_mc_used\": 200\n311\t      },\n312\t      \"exposure\": {\n313\t        \"theory_bias\": -0.17428851135022538,\n314\t        \"mc_bias\": -0.1729469641696746,\n315\t        \"mc_tau_mean\": 0.8292142899533366,\n316\t        \"mc_tau_se\": 0.0027713087480752173,\n317\t        \"tau_true\": 1.0021612541230112,\n318\t        \"tau_biased_plim\": 0.8278727427727858,\n319\t        \"abs_pct_error\": 0.007697278324071589,\n320\t        \"n_mc_used\": 200\n321\t      },\n322\t      \"mbias\": {\n323\t        \"theory_bias\": 0.027024094659882814,\n324\t        \"mc_bias\": 0.02764022381750797,\n325\t        \"mc_tau_mean\": 0.4680806841944266,\n326\t        \"mc_tau_se\": 0.000713157086106926,\n327\t        \"tau_true\": 0.44044046037691864,\n328\t        \"tau_biased_plim\": 0.46746455503680145,\n329\t        \"abs_pct_error\": 0.022799252495951244,\n330\t        \"n_mc_used\": 200\n331\t      },\n332\t      \"iv\": {\n333\t        \"theory_bias\": 0.47008338107954883,\n334\t        \"mc_bias\": 0.479338413117411,\n335\t        \"mc_tau_mean\": 1.6100953060935275,\n336\t        \"mc_tau_se\": 0.02931963383365276,\n337\t        \"tau_true\": 1.1307568929761165,\n338\t        \"tau_biased_plim\": 1.6008402740556653,\n339\t        \"abs_pct_error\": 0.019688064735681417,\n340\t        \"n_mc_used\": 200\n341\t      },\n342\t      \"frontdoor\": {\n343\t        \"theory_bias\": 0.07048351510975137,\n344\t        \"mc_bias\": 0.06932557789822702,\n345\t        \"mc_tau_mean\": 0.569659853960209,\n346\t        \"mc_tau_se\": 0.0006254517311754073,\n347\t        \"tau_true\": 0.500334276061982,\n348\t        \"tau_biased_plim\": 0.5708177911717334,\n349\t        \"abs_pct_error\": 0.016428482741266563,\n350\t        \"n_mc_used\": 200\n351\t      }\n352\t    },\n353\t    \"humaid_deepseek_few-shot-5\": {\n354\t      \"confounding\": {\n355\t        \"theory_bias\": 0.11271405259290668,\n356\t        \"mc_bias\": 0.11415452525620462,\n357\t        \"mc_tau_mean\": 2.113890929674214,\n358\t        \"mc_tau_se\": 0.0006774934843344189,\n359\t        \"tau_true\": 1.9997364044180095,\n360\t        \"tau_biased_plim\": 2.112450457010916,\n361\t        \"abs_pct_error\": 0.012779885295230654,\n362\t        \"n_mc_used\": 200\n363\t      },\n364\t      \"mediation\": {\n365\t        \"theory_bias\": 0.061073596571043276,\n366\t        \"mc_bias\": 0.05921600912885361,\n367\t        \"mc_tau_mean\": 0.5610924416870735,\n368\t        \"mc_tau_se\": 0.001455503588755999,\n369\t        \"tau_true\": 0.5018764325582199,\n370\t        \"tau_biased_plim\": 0.5629500291292632,\n371\t        \"abs_pct_error\": 0.030415556746012932,\n372\t        \"n_mc_used\": 200\n373\t      },\n374\t      \"collider\": {\n375\t        \"theory_bias\": 0.042054876609164515,\n376\t        \"mc_bias\": 0.04257827193589936,\n377\t        \"mc_tau_mean\": 0.9402422322079249,\n378\t        \"mc_tau_se\": 0.0007358149235298679,\n379\t        \"tau_true\": 0.8976639602720256,\n380\t        \"tau_biased_plim\": 0.9397188368811901,\n381\t        \"abs_pct_error\": 0.012445532336213922,\n382\t        \"n_mc_used\": 200\n383\t      },\n384\t      \"exposure\": {\n385\t        \"theory_bias\": -0.16050801365619616,\n386\t        \"mc_bias\": -0.1615747772144348,\n387\t        \"mc_tau_mean\": 0.8405864769085764,\n388\t        \"mc_tau_se\": 0.002615153671340985,\n389\t        \"tau_true\": 1.0021612541230112,\n390\t        \"tau_biased_plim\": 0.841653240466815,\n391\t        \"abs_pct_error\": 0.006646170081723315,\n392\t        \"n_mc_used\": 200\n393\t      },\n394\t      \"mbias\": {\n395\t        \"theory_bias\": 0.025224319944558482,\n396\t        \"mc_bias\": 0.02553651012843594,\n397\t        \"mc_tau_mean\": 0.4659769705053546,\n398\t        \"mc_tau_se\": 0.0007183375110146862,\n399\t        \"tau_true\": 0.44044046037691864,\n400\t        \"tau_biased_plim\": 0.4656647803214771,\n401\t        \"abs_pct_error\": 0.012376555029575973,\n402\t        \"n_mc_used\": 200\n403\t      },\n404\t      \"iv\": {\n405\t        \"theory_bias\": 0.346535258193988,\n406\t        \"mc_bias\": 0.38206475838411946,\n407\t        \"mc_tau_mean\": 1.512821651360236,\n408\t        \"mc_tau_se\": 0.02505589734749518,\n409\t        \"tau_true\": 1.1307568929761165,\n410\t        \"tau_biased_plim\": 1.4772921511701045,\n411\t        \"abs_pct_error\": 0.10252780734433174,\n412\t        \"n_mc_used\": 200\n413\t      },\n414\t      \"frontdoor\": {\n415\t        \"theory_bias\": 0.062475497702317306,\n416\t        \"mc_bias\": 0.061768693962266696,\n417\t        \"mc_tau_mean\": 0.5621029700242487,\n418\t        \"mc_tau_se\": 0.0007301879239880491,\n419\t        \"tau_true\": 0.500334276061982,\n420\t        \"tau_biased_plim\": 0.5628097737642993,\n421\t        \"abs_pct_error\": 0.011313295068386364,\n422\t        \"n_mc_used\": 200\n423\t      }\n424\t    },\n425\t    \"humaid_deepseek_zero-shot\": {\n426\t      \"confounding\": {\n427\t        \"theory_bias\": 0.09798803232015074,\n428\t        \"mc_bias\": 0.09893435120069083,\n429\t        \"mc_tau_mean\": 2.0986707556187003,\n430\t        \"mc_tau_se\": 0.0006538118916441102,\n431\t        \"tau_true\": 1.9997364044180095,\n432\t        \"tau_biased_plim\": 2.0977244367381602,\n433\t        \"abs_pct_error\": 0.009657494472878411,\n434\t        \"n_mc_used\": 200\n435\t      },\n436\t      \"mediation\": {\n437\t        \"theory_bias\": 0.05423253247541093,\n438\t        \"mc_bias\": 0.049335190940925755,\n439\t        \"mc_tau_mean\": 0.5512116234991457,\n440\t        \"mc_tau_se\": 0.0014004490273920522,\n441\t        \"tau_true\": 0.5018764325582199,\n442\t        \"tau_biased_plim\": 0.5561089650336308,\n443\t        \"abs_pct_error\": 0.09030265250300888,\n444\t        \"n_mc_used\": 200\n445\t      },\n446\t      \"collider\": {\n447\t        \"theory_bias\": 0.038582943369099953,\n448\t        \"mc_bias\": 0.03871014957201435,\n449\t        \"mc_tau_mean\": 0.9363741098440399,\n450\t        \"mc_tau_se\": 0.0006623034448816426,\n451\t        \"tau_true\": 0.8976639602720256,\n452\t        \"tau_biased_plim\": 0.9362469036411255,\n453\t        \"abs_pct_error\": 0.0032969543483889405,\n454\t        \"n_mc_used\": 200\n455\t      },\n456\t      \"exposure\": {\n457\t        \"theory_bias\": -0.10811833330142584,\n458\t        \"mc_bias\": -0.1118310963425333,\n459\t        \"mc_tau_mean\": 0.8903301577804779,\n460\t        \"mc_tau_se\": 0.0023088633372098807,\n461\t        \"tau_true\": 1.0021612541230112,\n462\t        \"tau_biased_plim\": 0.8940429208215853,\n463\t        \"abs_pct_error\": 0.034339810166667595,\n464\t        \"n_mc_used\": 200\n465\t      },\n466\t      \"mbias\": {\n467\t        \"theory_bias\": 0.022340673819919832,\n468\t        \"mc_bias\": 0.021472566294910622,\n469\t        \"mc_tau_mean\": 0.46191302667182926,\n470\t        \"mc_tau_se\": 0.0007004859700496715,\n471\t        \"tau_true\": 0.44044046037691864,\n472\t        \"tau_biased_plim\": 0.4627811341968385,\n473\t        \"abs_pct_error\": 0.03885771449897677,\n474\t        \"n_mc_used\": 200\n475\t      },\n476\t      \"iv\": {\n477\t        \"theory_bias\": 0.15509190155686503,\n478\t        \"mc_bias\": 0.1295982834698024,\n479\t        \"mc_tau_mean\": 1.2603551764459189,\n480\t        \"mc_tau_se\": 0.023322717261908266,\n481\t        \"tau_true\": 1.1307568929761165,\n482\t        \"tau_biased_plim\": 1.2858487945329815,\n483\t        \"abs_pct_error\": 0.16437749380302297,\n484\t        \"n_mc_used\": 200\n485\t      },\n486\t      \"frontdoor\": {\n487\t        \"theory_bias\": 0.053719410282765945,\n488\t        \"mc_bias\": 0.05277428120444938,\n489\t        \"mc_tau_mean\": 0.5531085572664314,\n490\t        \"mc_tau_se\": 0.0006695030576617023,\n491\t        \"tau_true\": 0.500334276061982,\n492\t        \"tau_biased_plim\": 0.5540536863447479,\n493\t        \"abs_pct_error\": 0.017593809636807893,\n494\t        \"n_mc_used\": 200\n495\t      }\n496\t    },\n497\t    \"humaid_llama4_few-shot-3\": {\n498\t      \"confounding\": {\n499\t        \"theory_bias\": 0.1207543046766697,\n500\t        \"mc_bias\": 0.1216784431649296,\n501\t        \"mc_tau_mean\": 2.121414847582939,\n502\t        \"mc_tau_se\": 0.000619022173508082,\n503\t        \"tau_true\": 1.9997364044180095,\n504\t        \"tau_biased_plim\": 2.120490709094679,\n505\t        \"abs_pct_error\": 0.007653047986441213,\n506\t        \"n_mc_used\": 200\n507\t      },\n508\t      \"mediation\": {\n509\t        \"theory_bias\": 0.07213647968201253,\n510\t        \"mc_bias\": 0.07056560154485003,\n511\t        \"mc_tau_mean\": 0.5724420341030699,\n512\t        \"mc_tau_se\": 0.00134192798028501,\n513\t        \"tau_true\": 0.5018764325582199,\n514\t        \"tau_biased_plim\": 0.5740129122402324,\n515\t        \"abs_pct_error\": 0.021776473485913744,\n516\t        \"n_mc_used\": 200\n517\t      },\n518\t      \"collider\": {\n519\t        \"theory_bias\": 0.04694382412866838,\n520\t        \"mc_bias\": 0.04676593433005061,\n521\t        \"mc_tau_mean\": 0.9444298946020762,\n522\t        \"mc_tau_se\": 0.0007262538091999916,\n523\t        \"tau_true\": 0.8976639602720256,\n524\t        \"tau_biased_plim\": 0.9446077844006939,\n525\t        \"abs_pct_error\": 0.003789418563988126,\n526\t        \"n_mc_used\": 200\n527\t      },\n528\t      \"exposure\": {\n529\t        \"theory_bias\": -0.12237027799328559,\n530\t        \"mc_bias\": -0.12552934288887485,\n531\t        \"mc_tau_mean\": 0.8766319112341363,\n532\t        \"mc_tau_se\": 0.0030635340909131704,\n533\t        \"tau_true\": 1.0021612541230112,\n534\t        \"tau_biased_plim\": 0.8797909761297256,\n535\t        \"abs_pct_error\": 0.025815622448472294,\n536\t        \"n_mc_used\": 200\n537\t      },\n538\t      \"mbias\": {\n539\t        \"theory_bias\": 0.028068014775397554,\n540\t        \"mc_bias\": 0.027181137638242536,\n541\t        \"mc_tau_mean\": 0.4676215980151612,\n542\t        \"mc_tau_se\": 0.0006755855122884403,\n543\t        \"tau_true\": 0.44044046037691864,\n544\t        \"tau_biased_plim\": 0.4685084751523162,\n545\t        \"abs_pct_error\": 0.03159743017993534,\n546\t        \"n_mc_used\": 200\n547\t      },\n548\t      \"iv\": {\n549\t        \"theory_bias\": 0.45591663516668346,\n550\t        \"mc_bias\": 0.39821830663301383,\n551\t        \"mc_tau_mean\": 1.5289751996091303,\n552\t        \"mc_tau_se\": 0.029883564895584348,\n553\t        \"tau_true\": 1.1307568929761165,\n554\t        \"tau_biased_plim\": 1.5866735281428,\n555\t        \"abs_pct_error\": 0.12655455862577833,\n556\t        \"n_mc_used\": 200\n557\t      },\n558\t      \"frontdoor\": {\n559\t        \"theory_bias\": 0.0717139063693959,\n560\t        \"mc_bias\": 0.07013954148338397,\n561\t        \"mc_tau_mean\": 0.570473817545366,\n562\t        \"mc_tau_se\": 0.0006685071239113107,\n563\t        \"tau_true\": 0.500334276061982,\n564\t        \"tau_biased_plim\": 0.5720481824313779,\n565\t        \"abs_pct_error\": 0.021953411349570406,\n566\t        \"n_mc_used\": 200\n567\t      }\n568\t    },\n569\t    \"humaid_llama4_few-shot-5\": {\n570\t      \"confounding\": {\n571\t        \"theory_bias\": 0.12365903346748719,\n572\t        \"mc_bias\": 0.12341427305990416,\n573\t        \"mc_tau_mean\": 2.1231506774779136,\n574\t        \"mc_tau_se\": 0.0006831617397962973,\n575\t        \"tau_true\": 1.9997364044180095,\n576\t        \"tau_biased_plim\": 2.1233954378854967,\n577\t        \"abs_pct_error\": 0.0019793168418010204,\n578\t        \"n_mc_used\": 200\n579\t      },\n580\t      \"mediation\": {\n581\t        \"theory_bias\": 0.07367166949475923,\n582\t        \"mc_bias\": 0.0709647231472873,\n583\t        \"mc_tau_mean\": 0.5728411557055072,\n584\t        \"mc_tau_se\": 0.0014641470895011793,\n585\t        \"tau_true\": 0.5018764325582199,\n586\t        \"tau_biased_plim\": 0.5755481020529791,\n587\t        \"abs_pct_error\": 0.036743382714633496,\n588\t        \"n_mc_used\": 200\n589\t      },\n590\t      \"collider\": {\n591\t        \"theory_bias\": 0.046619649582178346,\n592\t        \"mc_bias\": 0.04806344692773157,\n593\t        \"mc_tau_mean\": 0.9457274071997571,\n594\t        \"mc_tau_se\": 0.0007009503994671753,\n595\t        \"tau_true\": 0.8976639602720256,\n596\t        \"tau_biased_plim\": 0.9442836098542039,\n597\t        \"abs_pct_error\": 0.030969716814541505,\n598\t        \"n_mc_used\": 200\n599\t      },\n600\t      \"exposure\": {\n601\t        \"theory_bias\": -0.12375454200817038,\n602\t        \"mc_bias\": -0.12540763155930523,\n603\t        \"mc_tau_mean\": 0.8767536225637059,\n604\t        \"mc_tau_se\": 0.002812718283975766,\n605\t        \"tau_true\": 1.0021612541230112,\n606\t        \"tau_biased_plim\": 0.8784067121148408,\n607\t        \"abs_pct_error\": 0.01335780913015474,\n608\t        \"n_mc_used\": 200\n609\t      },\n610\t      \"mbias\": {\n611\t        \"theory_bias\": 0.02859664711158244,\n612\t        \"mc_bias\": 0.029545120277191805,\n613\t        \"mc_tau_mean\": 0.46998558065411045,\n614\t        \"mc_tau_se\": 0.0006731484653460707,\n615\t        \"tau_true\": 0.44044046037691864,\n616\t        \"tau_biased_plim\": 0.4690371074885011,\n617\t        \"abs_pct_error\": 0.033167285727885444,\n618\t        \"n_mc_used\": 200\n619\t      },\n620\t      \"iv\": {\n621\t        \"theory_bias\": 0.47672117965792005,\n622\t        \"mc_bias\": 0.44870634828573075,\n623\t        \"mc_tau_mean\": 1.5794632412618472,\n624\t        \"mc_tau_se\": 0.026900356506773245,\n625\t        \"tau_true\": 1.1307568929761165,\n626\t        \"tau_biased_plim\": 1.6074780726340365,\n627\t        \"abs_pct_error\": 0.058765652896504095,\n628\t        \"n_mc_used\": 200\n629\t      },\n630\t      \"frontdoor\": {\n631\t        \"theory_bias\": 0.07347074710920776,\n632\t        \"mc_bias\": 0.0718143016656223,\n633\t        \"mc_tau_mean\": 0.5721485777276043,\n634\t        \"mc_tau_se\": 0.0006386193483099418,\n635\t        \"tau_true\": 0.500334276061982,\n636\t        \"tau_biased_plim\": 0.5738050231711898,\n637\t        \"abs_pct_error\": 0.022545645835386607,\n638\t        \"n_mc_used\": 200\n639\t      }\n640\t    },\n641\t    \"humaid_llama4_zero-shot\": {\n642\t      \"confounding\": {\n643\t        \"theory_bias\": 0.12092769514491652,\n644\t        \"mc_bias\": 0.1209429087852103,\n645\t        \"mc_tau_mean\": 2.12067931320322,\n646\t        \"mc_tau_se\": 0.0006178625858467892,\n647\t        \"tau_true\": 1.9997364044180095,\n648\t        \"tau_biased_plim\": 2.120664099562926,\n649\t        \"abs_pct_error\": 0.00012580774218465623,\n650\t        \"n_mc_used\": 200\n651\t      },\n652\t      \"mediation\": {\n653\t        \"theory_bias\": 0.07297171375570732,\n654\t        \"mc_bias\": 0.06708633123383456,\n655\t        \"mc_tau_mean\": 0.5689627637920545,\n656\t        \"mc_tau_se\": 0.0014416722966663579,\n657\t        \"tau_true\": 0.5018764325582199,\n658\t        \"tau_biased_plim\": 0.5748481463139272,\n659\t        \"abs_pct_error\": 0.08065293000484657,\n660\t        \"n_mc_used\": 200\n661\t      },\n662\t      \"collider\": {\n663\t        \"theory_bias\": 0.04616565615956758,\n664\t        \"mc_bias\": 0.04530366978011302,\n665\t        \"mc_tau_mean\": 0.9429676300521386,\n666\t        \"mc_tau_se\": 0.0007469276751405475,\n667\t        \"tau_true\": 0.8976639602720256,\n668\t        \"tau_biased_plim\": 0.9438296164315931,\n669\t        \"abs_pct_error\": 0.018671593802873268,\n670\t        \"n_mc_used\": 200\n671\t      },\n672\t      \"exposure\": {\n673\t        \"theory_bias\": -0.11812670964873329,\n674\t        \"mc_bias\": -0.1192556409841995,\n675\t        \"mc_tau_mean\": 0.8829056131388117,\n676\t        \"mc_tau_se\": 0.002628229726680973,\n677\t        \"tau_true\": 1.0021612541230112,\n678\t        \"tau_biased_plim\": 0.8840345444742779,\n679\t        \"abs_pct_error\": 0.009556952350770196,\n680\t        \"n_mc_used\": 200\n681\t      },\n682\t      \"mbias\": {\n683\t        \"theory_bias\": 0.027950724525336923,\n684\t        \"mc_bias\": 0.027370665222843038,\n685\t        \"mc_tau_mean\": 0.4678111255997617,\n686\t        \"mc_tau_se\": 0.000746129794674123,\n687\t        \"tau_true\": 0.44044046037691864,\n688\t        \"tau_biased_plim\": 0.46839118490225556,\n689\t        \"abs_pct_error\": 0.02075292545522638,\n690\t        \"n_mc_used\": 200\n691\t      },\n692\t      \"iv\": {\n693\t        \"theory_bias\": 0.45387326671348327,\n694\t        \"mc_bias\": 0.4521641226351134,\n695\t        \"mc_tau_mean\": 1.5829210156112299,\n696\t        \"mc_tau_se\": 0.029431711469671086,\n697\t        \"tau_true\": 1.1307568929761165,\n698\t        \"tau_biased_plim\": 1.5846301596895997,\n699\t        \"abs_pct_error\": 0.003765685718275172,\n700\t        \"n_mc_used\": 200\n701\t      },\n702\t      \"frontdoor\": {\n703\t        \"theory_bias\": 0.0722580089820164,\n704\t        \"mc_bias\": 0.07230162406631535,\n705\t        \"mc_tau_mean\": 0.5726359001282973,\n706\t        \"mc_tau_se\": 0.0006407168350012605,\n707\t        \"tau_true\": 0.500334276061982,\n708\t        \"tau_biased_plim\": 0.5725922850439984,\n709\t        \"abs_pct_error\": 0.0006036020769657312,\n710\t        \"n_mc_used\": 200\n711\t      }\n712\t    },\n713\t    \"humaid_qwen3_few-shot-3\": {\n714\t      \"confounding\": {\n715\t        \"theory_bias\": 0.11349180810333226,\n716\t        \"mc_bias\": 0.11419228858245112,\n717\t        \"mc_tau_mean\": 2.1139286930004606,\n718\t        \"mc_tau_se\": 0.000708665943474172,\n719\t        \"tau_true\": 1.9997364044180095,\n720\t        \"tau_biased_plim\": 2.1132282125213417,\n721\t        \"abs_pct_error\": 0.00617207964896536,\n722\t        \"n_mc_used\": 200\n723\t      },\n724\t      \"mediation\": {\n725\t        \"theory_bias\": 0.06463907876276032,\n726\t        \"mc_bias\": 0.06251296389568195,\n727\t        \"mc_tau_mean\": 0.5643893964539018,\n728\t        \"mc_tau_se\": 0.0014572167863068342,\n729\t        \"tau_true\": 0.5018764325582199,\n730\t        \"tau_biased_plim\": 0.5665155113209802,\n731\t        \"abs_pct_error\": 0.032892097285013557,\n732\t        \"n_mc_used\": 200\n733\t      },\n734\t      \"collider\": {\n735\t        \"theory_bias\": 0.041882011244094075,\n736\t        \"mc_bias\": 0.04194217696660296,\n737\t        \"mc_tau_mean\": 0.9396061372386285,\n738\t        \"mc_tau_se\": 0.0006992214278748741,\n739\t        \"tau_true\": 0.8976639602720256,\n740\t        \"tau_biased_plim\": 0.9395459715161196,\n741\t        \"abs_pct_error\": 0.0014365528474321093,\n742\t        \"n_mc_used\": 200\n743\t      },\n744\t      \"exposure\": {\n745\t        \"theory_bias\": -0.09030865055399007,\n746\t        \"mc_bias\": -0.09222323524690956,\n747\t        \"mc_tau_mean\": 0.9099380188761016,\n748\t        \"mc_tau_se\": 0.0024809184530186516,\n749\t        \"tau_true\": 1.0021612541230112,\n750\t        \"tau_biased_plim\": 0.9118526035690211,\n751\t        \"abs_pct_error\": 0.021200457333540628,\n752\t        \"n_mc_used\": 200\n753\t      },\n754\t      \"mbias\": {\n755\t        \"theory_bias\": 0.027619490275672787,\n756\t        \"mc_bias\": 0.027937819957727705,\n757\t        \"mc_tau_mean\": 0.46837828033464635,\n758\t        \"mc_tau_se\": 0.0006926649239346923,\n759\t        \"tau_true\": 0.44044046037691864,\n760\t        \"tau_biased_plim\": 0.4680599506525914,\n761\t        \"abs_pct_error\": 0.01152554514502764,\n762\t        \"n_mc_used\": 200\n763\t      },\n764\t      \"iv\": {\n765\t        \"theory_bias\": 0.24439850982825506,\n766\t        \"mc_bias\": 0.20575049400415835,\n767\t        \"mc_tau_mean\": 1.3365073869802748,\n768\t        \"mc_tau_se\": 0.02742252258495002,\n769\t        \"tau_true\": 1.1307568929761165,\n770\t        \"tau_biased_plim\": 1.3751554028043715,\n771\t        \"abs_pct_error\": 0.15813523515857622,\n772\t        \"n_mc_used\": 200\n773\t      },\n774\t      \"frontdoor\": {\n775\t        \"theory_bias\": 0.06687201997149139,\n776\t        \"mc_bias\": 0.06696965264503252,\n777\t        \"mc_tau_mean\": 0.5673039287070145,\n778\t        \"mc_tau_se\": 0.0006483912602761137,\n779\t        \"tau_true\": 0.500334276061982,\n780\t        \"tau_biased_plim\": 0.5672062960334734,\n781\t        \"abs_pct_error\": 0.001459992887649398,\n782\t        \"n_mc_used\": 200\n783\t      }\n784\t    },\n785\t    \"humaid_qwen3_zero-shot\": {\n786\t      \"confounding\": {\n787\t        \"theory_bias\": 0.09852742361704903,\n788\t        \"mc_bias\": 0.09935390829595891,\n789\t        \"mc_tau_mean\": 2.0990903127139684,\n790\t        \"mc_tau_se\": 0.0007119823193429434,\n791\t        \"tau_true\": 1.9997364044180095,\n792\t        \"tau_biased_plim\": 2.0982638280350585,\n793\t        \"abs_pct_error\": 0.00838837197369764,\n794\t        \"n_mc_used\": 200\n795\t      },\n796\t      \"mediation\": {\n797\t        \"theory_bias\": 0.05361512731297313,\n798\t        \"mc_bias\": 0.05206114172987031,\n799\t        \"mc_tau_mean\": 0.5539375742880902,\n800\t        \"mc_tau_se\": 0.0014633505152263483,\n801\t        \"tau_true\": 0.5018764325582199,\n802\t        \"tau_biased_plim\": 0.555491559871193,\n803\t        \"abs_pct_error\": 0.02898408827851108,\n804\t        \"n_mc_used\": 200\n805\t      },\n806\t      \"collider\": {\n807\t        \"theory_bias\": 0.03713228556097048,\n808\t        \"mc_bias\": 0.03748777266857406,\n809\t        \"mc_tau_mean\": 0.9351517329405996,\n810\t        \"mc_tau_se\": 0.0007307478943081536,\n811\t        \"tau_true\": 0.8976639602720256,\n812\t        \"tau_biased_plim\": 0.934796245832996,\n813\t        \"abs_pct_error\": 0.009573531557056394,\n814\t        \"n_mc_used\": 200\n815\t      },\n816\t      \"exposure\": {\n817\t        \"theory_bias\": -0.10062588724192933,\n818\t        \"mc_bias\": -0.10244312370895603,\n819\t        \"mc_tau_mean\": 0.8997181304140551,\n820\t        \"mc_tau_se\": 0.0023348245830142576,\n821\t        \"tau_true\": 1.0021612541230112,\n822\t        \"tau_biased_plim\": 0.9015353668810818,\n823\t        \"abs_pct_error\": 0.018059333605254205,\n824\t        \"n_mc_used\": 200\n825\t      },\n826\t      \"mbias\": {\n827\t        \"theory_bias\": 0.02411797469371052,\n828\t        \"mc_bias\": 0.02507094133351806,\n829\t        \"mc_tau_mean\": 0.4655114017104367,\n830\t        \"mc_tau_se\": 0.0006712179521999312,\n831\t        \"tau_true\": 0.44044046037691864,\n832\t        \"tau_biased_plim\": 0.46455843507062916,\n833\t        \"abs_pct_error\": 0.0395127141441132,\n834\t        \"n_mc_used\": 200\n835\t      },\n836\t      \"iv\": {\n837\t        \"theory_bias\": 0.1399148150907521,\n838\t        \"mc_bias\": 0.12721414586506996,\n839\t        \"mc_tau_mean\": 1.2579710388411864,\n840\t        \"mc_tau_se\": 0.022686145295881192,\n841\t        \"tau_true\": 1.1307568929761165,\n842\t        \"tau_biased_plim\": 1.2706717080668686,\n843\t        \"abs_pct_error\": 0.09077429875774184,\n844\t        \"n_mc_used\": 200\n845\t      },\n846\t      \"frontdoor\": {\n847\t        \"theory_bias\": 0.05574850311936286,\n848\t        \"mc_bias\": 0.056024230770942984,\n849\t        \"mc_tau_mean\": 0.556358506832925,\n850\t        \"mc_tau_se\": 0.0007035306907222491,\n851\t        \"tau_true\": 0.500334276061982,\n852\t        \"tau_biased_plim\": 0.5560827791813449,\n853\t        \"abs_pct_error\": 0.00494592026963966,\n854\t        \"n_mc_used\": 200\n855\t      }\n856\t    },\n857\t    \"vast_deepseek_zero-shot\": {\n858\t      \"confounding\": {\n859\t        \"theory_bias\": 0.27077900693055645,\n860\t        \"mc_bias\": 0.27064717130814997,\n861\t        \"mc_tau_mean\": 2.2703821618300846,\n862\t        \"mc_tau_se\": 0.0005363437722705012,\n863\t        \"tau_true\": 1.9997349905219346,\n864\t        \"tau_biased_plim\": 2.270513997452491,\n865\t        \"abs_pct_error\": 0.00048687534495720576,\n866\t        \"n_mc_used\": 200\n867\t      },\n868\t      \"mediation\": {\n869\t        \"theory_bias\": 0.23988495854325276,\n870\t        \"mc_bias\": 0.24266058952879987,\n871\t        \"mc_tau_mean\": 0.7446597368909528,\n872\t        \"mc_tau_se\": 0.0016216709431466775,\n873\t        \"tau_true\": 0.5019991473621529,\n874\t        \"tau_biased_plim\": 0.7418841059054057,\n875\t        \"abs_pct_error\": 0.011570675387079985,\n876\t        \"n_mc_used\": 200\n877\t      },\n878\t      \"collider\": {\n879\t        \"theory_bias\": 0.08558627280647335,\n880\t        \"mc_bias\": 0.08554504136260821,\n881\t        \"mc_tau_mean\": 0.9719018608075476,\n882\t        \"mc_tau_se\": 0.0006885623908675203,\n883\t        \"tau_true\": 0.8863568194449394,\n884\t        \"tau_biased_plim\": 0.9719430922514127,\n885\t        \"abs_pct_error\": 0.00048175300212422866,\n886\t        \"n_mc_used\": 200\n887\t      },\n888\t      \"exposure\": {\n889\t        \"theory_bias\": -0.4637876536927268,\n890\t        \"mc_bias\": -0.4651214799868104,\n891\t        \"mc_tau_mean\": 0.5373975474539965,\n892\t        \"mc_tau_se\": 0.0016351146216437556,\n893\t        \"tau_true\": 1.002519027440807,\n894\t        \"tau_biased_plim\": 0.5387313737480801,\n895\t        \"abs_pct_error\": 0.0028759417881514555,\n896\t        \"n_mc_used\": 200\n897\t      },\n898\t      \"mbias\": {\n899\t        \"theory_bias\": -0.01925831329685518,\n900\t        \"mc_bias\": -0.018092103170855578,\n901\t        \"mc_tau_mean\": 0.4946151174356351,\n902\t        \"mc_tau_se\": 0.0007595603315221607,\n903\t        \"tau_true\": 0.5127072206064907,\n904\t        \"tau_biased_plim\": 0.4934489073096355,\n905\t        \"abs_pct_error\": 0.060556192436127775,\n906\t        \"n_mc_used\": 200\n907\t      },\n908\t      \"iv\": {\n909\t        \"theory_bias\": 0.8121075098915757,\n910\t        \"mc_bias\": 0.7758998483283558,\n911\t        \"mc_tau_mean\": 1.447786032514868,\n912\t        \"mc_tau_se\": 0.01815424020013951,\n913\t        \"tau_true\": 0.6718861841865121,\n914\t        \"tau_biased_plim\": 1.4839936940780878,\n915\t        \"abs_pct_error\": 0.044584813121669,\n916\t        \"n_mc_used\": 200\n917\t      },\n918\t      \"frontdoor\": {\n919\t        \"theory_bias\": 0.2620334697218314,\n920\t        \"mc_bias\": 0.26054543088697946,\n921\t        \"mc_tau_mean\": 0.7609712073251367,\n922\t        \"mc_tau_se\": 0.0007468633008604972,\n923\t        \"tau_true\": 0.5004257764381572,\n924\t        \"tau_biased_plim\": 0.7624592461599886,\n925\t        \"abs_pct_error\": 0.005678812086225481,\n926\t        \"n_mc_used\": 200\n927\t      }\n928\t    },\n929\t    \"vast_llama4_few-shot-3\": {\n930\t      \"confounding\": {\n931\t        \"theory_bias\": 0.2711556771116286,\n932\t        \"mc_bias\": 0.27136404859578467,\n933\t        \"mc_tau_mean\": 2.2710990391177193,\n934\t        \"mc_tau_se\": 0.0005517589170133501,\n935\t        \"tau_true\": 1.9997349905219346,\n936\t        \"tau_biased_plim\": 2.270890667633563,\n937\t        \"abs_pct_error\": 0.0007684570220903297,\n938\t        \"n_mc_used\": 200\n939\t      },\n940\t      \"mediation\": {\n941\t        \"theory_bias\": 0.23677593311653677,\n942\t        \"mc_bias\": 0.23661967772050052,\n943\t        \"mc_tau_mean\": 0.7386188250826534,\n944\t        \"mc_tau_se\": 0.0015390043039788847,\n945\t        \"tau_true\": 0.5019991473621529,\n946\t        \"tau_biased_plim\": 0.7387750804786897,\n947\t        \"abs_pct_error\": 0.0006599293854724134,\n948\t        \"n_mc_used\": 200\n949\t      },\n950\t      \"collider\": {\n951\t        \"theory_bias\": 0.08181398331845968,\n952\t        \"mc_bias\": 0.08142441730531202,\n953\t        \"mc_tau_mean\": 0.9677812367502514,\n954\t        \"mc_tau_se\": 0.0007399174274638212,\n955\t        \"tau_true\": 0.8863568194449394,\n956\t        \"tau_biased_plim\": 0.9681708027633991,\n957\t        \"abs_pct_error\": 0.0047616067247487235,\n958\t        \"n_mc_used\": 200\n959\t      },\n960\t      \"exposure\": {\n961\t        \"theory_bias\": -0.47184825859606216,\n962\t        \"mc_bias\": -0.4721618792759871,\n963\t        \"mc_tau_mean\": 0.5303571481648198,\n964\t        \"mc_tau_se\": 0.0016638930159082596,\n965\t        \"tau_true\": 1.002519027440807,\n966\t        \"tau_biased_plim\": 0.5306707688447447,\n967\t        \"abs_pct_error\": 0.0006646642733366357,\n968\t        \"n_mc_used\": 200\n969\t      },\n970\t      \"mbias\": {\n971\t        \"theory_bias\": -0.01931154138288016,\n972\t        \"mc_bias\": -0.020525002486011523,\n973\t        \"mc_tau_mean\": 0.49218221812047913,\n974\t        \"mc_tau_se\": 0.0007011400258811757,\n975\t        \"tau_true\": 0.5127072206064907,\n976\t        \"tau_biased_plim\": 0.4933956792236105,\n977\t        \"abs_pct_error\": 0.06283605638062154,\n978\t        \"n_mc_used\": 200\n979\t      },\n980\t      \"iv\": {\n981\t        \"theory_bias\": 0.918869421729612,\n982\t        \"mc_bias\": 0.941778263669056,\n983\t        \"mc_tau_mean\": 1.6136644478555682,\n984\t        \"mc_tau_se\": 0.018539173751528245,\n985\t        \"tau_true\": 0.6718861841865121,\n986\t        \"tau_biased_plim\": 1.590755605916124,\n987\t        \"abs_pct_error\": 0.02493155327371998,\n988\t        \"n_mc_used\": 200\n989\t      },\n990\t      \"frontdoor\": {\n991\t        \"theory_bias\": 0.2619796605856798,\n992\t        \"mc_bias\": 0.2611669055000352,\n993\t        \"mc_tau_mean\": 0.7615926819381924,\n994\t        \"mc_tau_se\": 0.0006753825777115505,\n995\t        \"tau_true\": 0.5004257764381572,\n996\t        \"tau_biased_plim\": 0.762405437023837,\n997\t        \"abs_pct_error\": 0.0031023594878610487,\n998\t        \"n_mc_used\": 200\n999\t      }\n1000\t    },\n1001\t    \"vast_llama4_few-shot-5\": {\n1002\t      \"confounding\": {\n1003\t        \"theory_bias\": 0.2586120079751357,\n1004\t        \"mc_bias\": 0.2597574988436808,\n1005\t        \"mc_tau_mean\": 2.2594924893656154,\n1006\t        \"mc_tau_se\": 0.0006250926046584695,\n1007\t        \"tau_true\": 1.9997349905219346,\n1008\t        \"tau_biased_plim\": 2.2583469984970703,\n1009\t        \"abs_pct_error\": 0.004429380048954375,\n1010\t        \"n_mc_used\": 200\n1011\t      },\n1012\t      \"mediation\": {\n1013\t        \"theory_bias\": 0.2181273454527478,\n1014\t        \"mc_bias\": 0.21487711842191104,\n1015\t        \"mc_tau_mean\": 0.7168762657840639,\n1016\t        \"mc_tau_se\": 0.0016131574158856135,\n1017\t        \"tau_true\": 0.5019991473621529,\n1018\t        \"tau_biased_plim\": 0.7201264928149007,\n1019\t        \"abs_pct_error\": 0.014900594073111562,\n1020\t        \"n_mc_used\": 200\n1021\t      },\n1022\t      \"collider\": {\n1023\t        \"theory_bias\": 0.07807548098103823,\n1024\t        \"mc_bias\": 0.07825172641584388,\n1025\t        \"mc_tau_mean\": 0.9646085458607833,\n1026\t        \"mc_tau_se\": 0.0007658971696062504,\n1027\t        \"tau_true\": 0.8863568194449394,\n1028\t        \"tau_biased_plim\": 0.9644323004259776,\n1029\t        \"abs_pct_error\": 0.0022573723861971343,\n1030\t        \"n_mc_used\": 200\n1031\t      },\n1032\t      \"exposure\": {\n1033\t        \"theory_bias\": -0.40490360119671154,\n1034\t        \"mc_bias\": -0.4050493151786254,\n1035\t        \"mc_tau_mean\": 0.5974697122621815,\n1036\t        \"mc_tau_se\": 0.0017118614330373504,\n1037\t        \"tau_true\": 1.002519027440807,\n1038\t        \"tau_biased_plim\": 0.5976154262440954,\n1039\t        \"abs_pct_error\": 0.0003598732673239033,\n1040\t        \"n_mc_used\": 200\n1041\t      },\n1042\t      \"mbias\": {\n1043\t        \"theory_bias\": -0.02050727864639723,\n1044\t        \"mc_bias\": -0.02019554759339587,\n1045\t        \"mc_tau_mean\": 0.4925116730130948,\n1046\t        \"mc_tau_se\": 0.000737386922901951,\n1047\t        \"tau_true\": 0.5127072206064907,\n1048\t        \"tau_biased_plim\": 0.4921999419600934,\n1049\t        \"abs_pct_error\": 0.015200995625820323,\n1050\t        \"n_mc_used\": 200\n1051\t      },\n1052\t      \"iv\": {\n1053\t        \"theory_bias\": 0.5683130279648779,\n1054\t        \"mc_bias\": 0.560001392697037,\n1055\t        \"mc_tau_mean\": 1.231887576883549,\n1056\t        \"mc_tau_se\": 0.01399954694710738,\n1057\t        \"tau_true\": 0.6718861841865121,\n1058\t        \"tau_biased_plim\": 1.24019921215139,\n1059\t        \"abs_pct_error\": 0.014625100708327628,\n1060\t        \"n_mc_used\": 200\n1061\t      },\n1062\t      \"frontdoor\": {\n1063\t        \"theory_bias\": 0.246872989830489,\n1064\t        \"mc_bias\": 0.24667023456902448,\n1065\t        \"mc_tau_mean\": 0.7470960110071817,\n1066\t        \"mc_tau_se\": 0.0006750313001001484,\n1067\t        \"tau_true\": 0.5004257764381572,\n1068\t        \"tau_biased_plim\": 0.7472987662686462,\n1069\t        \"abs_pct_error\": 0.0008212938223972333,\n1070\t        \"n_mc_used\": 200\n1071\t      }\n1072\t    },\n1073\t    \"vast_llama4_zero-shot\": {\n1074\t      \"confounding\": {\n1075\t        \"theory_bias\": 0.2664690668211793,\n1076\t        \"mc_bias\": 0.2667548084166269,\n1077\t        \"mc_tau_mean\": 2.2664897989385615,\n1078\t        \"mc_tau_se\": 0.0005458823805445639,\n1079\t        \"tau_true\": 1.9997349905219346,\n1080\t        \"tau_biased_plim\": 2.266204057343114,\n1081\t        \"abs_pct_error\": 0.0010723255755586076,\n1082\t        \"n_mc_used\": 200\n1083\t      },\n1084\t      \"mediation\": {\n1085\t        \"theory_bias\": 0.2257726980870668,\n1086\t        \"mc_bias\": 0.22593077509680226,\n1087\t        \"mc_tau_mean\": 0.7279299224589552,\n1088\t        \"mc_tau_se\": 0.0016447354451663522,\n1089\t        \"tau_true\": 0.5019991473621529,\n1090\t        \"tau_biased_plim\": 0.7277718454492197,\n1091\t        \"abs_pct_error\": 0.000700159988673689,\n1092\t        \"n_mc_used\": 200\n1093\t      },\n1094\t      \"collider\": {\n1095\t        \"theory_bias\": 0.0764721150644605,\n1096\t        \"mc_bias\": 0.07694397858816826,\n1097\t        \"mc_tau_mean\": 0.9633007980331076,\n1098\t        \"mc_tau_se\": 0.0006965575589108615,\n1099\t        \"tau_true\": 0.8863568194449394,\n1100\t        \"tau_biased_plim\": 0.9628289345093999,\n1101\t        \"abs_pct_error\": 0.006170399802725655,\n1102\t        \"n_mc_used\": 200\n1103\t      },\n1104\t      \"exposure\": {\n1105\t        \"theory_bias\": -0.43424574860917253,\n1106\t        \"mc_bias\": -0.4340231373563659,\n1107\t        \"mc_tau_mean\": 0.568495890084441,\n1108\t        \"mc_tau_se\": 0.0016930484994407845,\n1109\t        \"tau_true\": 1.002519027440807,\n1110\t        \"tau_biased_plim\": 0.5682732788316344,\n1111\t        \"abs_pct_error\": 0.0005126388767642295,\n1112\t        \"n_mc_used\": 200\n1113\t      },\n1114\t      \"mbias\": {\n1115\t        \"theory_bias\": -0.020979636633918886,\n1116\t        \"mc_bias\": -0.020836233580911412,\n1117\t        \"mc_tau_mean\": 0.49187098702557924,\n1118\t        \"mc_tau_se\": 0.0007382724845988079,\n1119\t        \"tau_true\": 0.5127072206064907,\n1120\t        \"tau_biased_plim\": 0.49172758397257177,\n1121\t        \"abs_pct_error\": 0.006835344935175207,\n1122\t        \"n_mc_used\": 200\n1123\t      },\n1124\t      \"iv\": {\n1125\t        \"theory_bias\": 0.7597287588810321,\n1126\t        \"mc_bias\": 0.7557790933635352,\n1127\t        \"mc_tau_mean\": 1.4276652775500474,\n1128\t        \"mc_tau_se\": 0.015876804555394544,\n1129\t        \"tau_true\": 0.6718861841865121,\n1130\t        \"tau_biased_plim\": 1.4316149430675442,\n1131\t        \"abs_pct_error\": 0.005198783738704511,\n1132\t        \"n_mc_used\": 200\n1133\t      },\n1134\t      \"frontdoor\": {\n1135\t        \"theory_bias\": 0.2567377258696021,\n1136\t        \"mc_bias\": 0.2555874967884494,\n1137\t        \"mc_tau_mean\": 0.7560132732266066,\n1138\t        \"mc_tau_se\": 0.0007178631497896396,\n1139\t        \"tau_true\": 0.5004257764381572,\n1140\t        \"tau_biased_plim\": 0.7571635023077593,\n1141\t        \"abs_pct_error\": 0.0044801716508811925,\n1142\t        \"n_mc_used\": 200\n1143\t      }\n1144\t    },\n1145\t    \"vast_qwen2.5-7b_few-shot-3\": {\n1146\t      \"confounding\": {\n1147\t        \"theory_bias\": 0.27318182553351744,\n1148\t        \"mc_bias\": 0.27310845410168727,\n1149\t        \"mc_tau_mean\": 2.272843444623622,\n1150\t        \"mc_tau_se\": 0.0005738666481290086,\n1151\t        \"tau_true\": 1.9997349905219346,\n1152\t        \"tau_biased_plim\": 2.272916816055452,\n1153\t        \"abs_pct_error\": 0.00026858094123530674,\n1154\t        \"n_mc_used\": 200\n1155\t      },\n1156\t      \"mediation\": {\n1157\t        \"theory_bias\": 0.24660700736399943,\n1158\t        \"mc_bias\": 0.2446930838309257,\n1159\t        \"mc_tau_mean\": 0.7466922311930786,\n1160\t        \"mc_tau_se\": 0.0016332098492781203,\n1161\t        \"tau_true\": 0.5019991473621529,\n1162\t        \"tau_biased_plim\": 0.7486061547261523,\n1163\t        \"abs_pct_error\": 0.007761026556105628,\n1164\t        \"n_mc_used\": 200\n1165\t      },\n1166\t      \"collider\": {\n1167\t        \"theory_bias\": 0.09232370881795338,\n1168\t        \"mc_bias\": 0.09266945098941748,\n1169\t        \"mc_tau_mean\": 0.9790262704343569,\n1170\t        \"mc_tau_se\": 0.0007439177746793494,\n1171\t        \"tau_true\": 0.8863568194449394,\n1172\t        \"tau_biased_plim\": 0.9786805282628928,\n1173\t        \"abs_pct_error\": 0.003744890406708504,\n1174\t        \"n_mc_used\": 200\n1175\t      },\n1176\t      \"exposure\": {\n1177\t        \"theory_bias\": -0.4726321841969341,\n1178\t        \"mc_bias\": -0.47281921981353925,\n1179\t        \"mc_tau_mean\": 0.5296998076272676,\n1180\t        \"mc_tau_se\": 0.0019963428630709176,\n1181\t        \"tau_true\": 1.002519027440807,\n1182\t        \"tau_biased_plim\": 0.5298868432438728,\n1183\t        \"abs_pct_error\": 0.0003957318668912839,\n1184\t        \"n_mc_used\": 200\n1185\t      },\n1186\t      \"mbias\": {\n1187\t        \"theory_bias\": -0.01659210536589195,\n1188\t        \"mc_bias\": -0.017800088664238434,\n1189\t        \"mc_tau_mean\": 0.4949071319422522,\n1190\t        \"mc_tau_se\": 0.0006839576598281109,\n1191\t        \"tau_true\": 0.5127072206064907,\n1192\t        \"tau_biased_plim\": 0.4961151152405987,\n1193\t        \"abs_pct_error\": 0.07280470270094286,\n1194\t        \"n_mc_used\": 200\n1195\t      },\n1196\t      \"iv\": {\n1197\t        \"theory_bias\": 0.8839130713465436,\n1198\t        \"mc_bias\": 0.8513985754367343,\n1199\t        \"mc_tau_mean\": 1.5232847596232464,\n1200\t        \"mc_tau_se\": 0.017557914152266072,\n1201\t        \"tau_true\": 0.6718861841865121,\n1202\t        \"tau_biased_plim\": 1.5557992555330558,\n1203\t        \"abs_pct_error\": 0.036784721217299275,\n1204\t        \"n_mc_used\": 200\n1205\t      },\n1206\t      \"frontdoor\": {\n1207\t        \"theory_bias\": 0.2631724812219761,\n1208\t        \"mc_bias\": 0.26250045291509916,\n1209\t        \"mc_tau_mean\": 0.7629262293532564,\n1210\t        \"mc_tau_se\": 0.0006391645189056932,\n1211\t        \"tau_true\": 0.5004257764381572,\n1212\t        \"tau_biased_plim\": 0.7635982576601333,\n1213\t        \"abs_pct_error\": 0.002553566025431545,\n1214\t        \"n_mc_used\": 200\n1215\t      }\n1216\t    },\n1217\t    \"vast_qwen2.5-7b_few-shot-5\": {\n1218\t      \"confounding\": {\n1219\t        \"theory_bias\": 0.2770009138093046,\n1220\t        \"mc_bias\": 0.2778491614212031,\n1221\t        \"mc_tau_mean\": 2.2775841519431377,\n1222\t        \"mc_tau_se\": 0.0005644998831834966,\n1223\t        \"tau_true\": 1.9997349905219346,\n1224\t        \"tau_biased_plim\": 2.276735904331239,\n1225\t        \"abs_pct_error\": 0.0030622556446960264,\n1226\t        \"n_mc_used\": 200\n1227\t      },\n1228\t      \"mediation\": {\n1229\t        \"theory_bias\": 0.2543970220809586,\n1230\t        \"mc_bias\": 0.25349797871789803,\n1231\t        \"mc_tau_mean\": 0.7554971260800509,\n1232\t        \"mc_tau_se\": 0.0015617987477913057,\n1233\t        \"tau_true\": 0.5019991473621529,\n1234\t        \"tau_biased_plim\": 0.7563961694431115,\n1235\t        \"abs_pct_error\": 0.003534016851716373,\n1236\t        \"n_mc_used\": 200\n1237\t      },\n1238\t      \"collider\": {\n1239\t        \"theory_bias\": 0.09332951779786114,\n1240\t        \"mc_bias\": 0.09474305571720532,\n1241\t        \"mc_tau_mean\": 0.9810998751621447,\n1242\t        \"mc_tau_se\": 0.0007510605604730809,\n1243\t        \"tau_true\": 0.8863568194449394,\n1244\t        \"tau_biased_plim\": 0.9796863372428005,\n1245\t        \"abs_pct_error\": 0.015145668301916064,\n1246\t        \"n_mc_used\": 200\n1247\t      },\n1248\t      \"exposure\": {\n1249\t        \"theory_bias\": -0.5095516835292464,\n1250\t        \"mc_bias\": -0.5091429532314362,\n1251\t        \"mc_tau_mean\": 0.4933760742093707,\n1252\t        \"mc_tau_se\": 0.0016501063668222053,\n1253\t        \"tau_true\": 1.002519027440807,\n1254\t        \"tau_biased_plim\": 0.49296734391156055,\n1255\t        \"abs_pct_error\": 0.0008021370766145837,\n1256\t        \"n_mc_used\": 200\n1257\t      },\n1258\t      \"mbias\": {\n1259\t        \"theory_bias\": -0.0168531642780132,\n1260\t        \"mc_bias\": -0.01626164428802379,\n1261\t        \"mc_tau_mean\": 0.49644557631846686,\n1262\t        \"mc_tau_se\": 0.0006903342806279708,\n1263\t        \"tau_true\": 0.5127072206064907,\n1264\t        \"tau_biased_plim\": 0.49585405632847745,\n1265\t        \"abs_pct_error\": 0.035098452743447785,\n1266\t        \"n_mc_used\": 200\n1267\t      },\n1268\t      \"iv\": {\n1269\t        \"theory_bias\": 1.020424199083045,\n1270\t        \"mc_bias\": 1.0335578798526877,\n1271\t        \"mc_tau_mean\": 1.7054440640392,\n1272\t        \"mc_tau_se\": 0.02161433243902482,\n1273\t        \"tau_true\": 0.6718861841865121,\n1274\t        \"tau_biased_plim\": 1.6923103832695572,\n1275\t        \"abs_pct_error\": 0.012870804888246152,\n1276\t        \"n_mc_used\": 200\n1277\t      },\n1278\t      \"frontdoor\": {\n1279\t        \"theory_bias\": 0.26889522727419435,\n1280\t        \"mc_bias\": 0.26796638658486216,\n1281\t        \"mc_tau_mean\": 0.7683921630230194,\n1282\t        \"mc_tau_se\": 0.0006863541429421523,\n1283\t        \"tau_true\": 0.5004257764381572,\n1284\t        \"tau_biased_plim\": 0.7693210037123516,\n1285\t        \"abs_pct_error\": 0.003454284773842577,\n1286\t        \"n_mc_used\": 200\n1287\t      }\n1288\t    },\n1289\t    \"vast_qwen2.5-7b_zero-shot\": {\n1290\t      \"confounding\": {\n1291\t        \"theory_bias\": 0.2693718439380819,\n1292\t        \"mc_bias\": 0.2715563500623761,\n1293\t        \"mc_tau_mean\": 2.2712913405843107,\n1294\t        \"mc_tau_se\": 0.0005641292153874821,\n1295\t        \"tau_true\": 1.9997349905219346,\n1296\t        \"tau_biased_plim\": 2.2691068344600165,\n1297\t        \"abs_pct_error\": 0.008109630510590222,\n1298\t        \"n_mc_used\": 200\n1299\t      },\n1300\t      \"mediation\": {\n1301\t        \"theory_bias\": 0.23681038062117754,\n1302\t        \"mc_bias\": 0.235955917057036,\n1303\t        \"mc_tau_mean\": 0.7379550644191889,\n1304\t        \"mc_tau_se\": 0.0016171237457042905,\n1305\t        \"tau_true\": 0.5019991473621529,\n1306\t        \"tau_biased_plim\": 0.7388095279833304,\n1307\t        \"abs_pct_error\": 0.003608218363993143,\n1308\t        \"n_mc_used\": 200\n1309\t      },\n1310\t      \"collider\": {\n1311\t        \"theory_bias\": 0.08776802512036264,\n1312\t        \"mc_bias\": 0.08742418799188856,\n1313\t        \"mc_tau_mean\": 0.9737810074368279,\n1314\t        \"mc_tau_se\": 0.0006790982540570877,\n1315\t        \"tau_true\": 0.8863568194449394,\n1316\t        \"tau_biased_plim\": 0.974124844565302,\n1317\t        \"abs_pct_error\": 0.003917567109463264,\n1318\t        \"n_mc_used\": 200\n1319\t      },\n1320\t      \"exposure\": {\n1321\t        \"theory_bias\": -0.4444953665653939,\n1322\t        \"mc_bias\": -0.44599027033184613,\n1323\t        \"mc_tau_mean\": 0.5565287571089608,\n1324\t        \"mc_tau_se\": 0.00167446910789637,\n1325\t        \"tau_true\": 1.002519027440807,\n1326\t        \"tau_biased_plim\": 0.558023660875413,\n1327\t        \"abs_pct_error\": 0.0033631481425854134,\n1328\t        \"n_mc_used\": 200\n1329\t      },\n1330\t      \"mbias\": {\n1331\t        \"theory_bias\": -0.017876442852152674,\n1332\t        \"mc_bias\": -0.01740982003890923,\n1333\t        \"mc_tau_mean\": 0.4952974005675814,\n1334\t        \"mc_tau_se\": 0.0006944269334751386,\n1335\t        \"tau_true\": 0.5127072206064907,\n1336\t        \"tau_biased_plim\": 0.494830777754338,\n1337\t        \"abs_pct_error\": 0.026102665787743905,\n1338\t        \"n_mc_used\": 200\n1339\t      },\n1340\t      \"iv\": {\n1341\t        \"theory_bias\": 0.7857546414065354,\n1342\t        \"mc_bias\": 0.7901086626223354,\n1343\t        \"mc_tau_mean\": 1.4619948468088475,\n1344\t        \"mc_tau_se\": 0.0182820628845152,\n1345\t        \"tau_true\": 0.6718861841865121,\n1346\t        \"tau_biased_plim\": 1.4576408255930475,\n1347\t        \"abs_pct_error\": 0.0055411969415873705,\n1348\t        \"n_mc_used\": 200\n1349\t      },\n1350\t      \"frontdoor\": {\n1351\t        \"theory_bias\": 0.25850935089697147,\n1352\t        \"mc_bias\": 0.2572867637544455,\n1353\t        \"mc_tau_mean\": 0.7577125401926027,\n1354\t        \"mc_tau_se\": 0.0006977184769871483,\n1355\t        \"tau_true\": 0.5004257764381572,\n1356\t        \"tau_biased_plim\": 0.7589351273351287,\n1357\t        \"abs_pct_error\": 0.004729372992829372,\n1358\t        \"n_mc_used\": 200\n1359\t      }\n1360\t    }\n1361\t  }\n1362\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c1636d3-148a-46a2-8756-c418b7914f07",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "f9711d00-0a0e-4214-a35a-243feb95ad5a",
+            "sourceToolAssistantUUID": "1c1636d3-148a-46a2-8756-c418b7914f07",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T18:38:28.490Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GfkQAg3HkjUafLXp1A863S",
+              "name": "Grep",
+              "input": {
+                "pattern": "(?i)mape|[0-9]+\\.[0-9]+%",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9711d00-0a0e-4214-a35a-243feb95ad5a",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCawaeNo59vhwgVZX6Y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c8ceb546-946f-4376-8fe8-1b5170c46cf6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015yyJn3naZnHdxFX6FuX6oz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1228,
+                "cache_read_input_tokens": 17978,
+                "output_tokens": 364,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1228
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 364,
+                    "cache_read_input_tokens": 17978,
+                    "cache_creation_input_tokens": 1228,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1228,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T18:38:28.508Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GfkQAg3HkjUafLXp1A863S",
+              "type": "tool_result",
+              "content": "docs/paper/experiments.tex-14-\\label{sec:taxonomy_results}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex-15-\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex-16-\\paragraph{Theory-MC agreement.}\ndocs/paper/experiments.tex:17:Analytical probability limits match Monte Carlo estimates with grand mean absolute percentage error (MAPE) of 2.0\\% across 126 scenarios (18 empirical LLM configurations $\\times$ 7 topologies, $N_{\\text{MC}}{=}200$ replicates, $N{=}10{,}000$). Per-topology MAPE ranges from 0.5\\% (confounding) to 5.5\\% (IV); the IV maximum reflects finite-sample variance amplification in the Wald estimator's small denominator, consistent with known properties of the Wald ratio.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex-18-\ndocs/paper/experiments.tex-19-\\paragraph{Exposure DAG: catastrophic sign reversal.}\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex-20-[Omitted long context line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8ceb546-946f-4376-8fe8-1b5170c46cf6",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "f3e6c01c-de6a-4cf8-a724-93ed1b3fee73",
+            "sourceToolAssistantUUID": "c8ceb546-946f-4376-8fe8-1b5170c46cf6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T18:38:30.497Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the actual .tex table file more closely and search for any other MAPE mentions in the paper files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3e6c01c-de6a-4cf8-a724-93ed1b3fee73",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCbD3a9EASbcurYBDAR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fbb5de28-776d-4b73-8fd7-ecfcbe405c78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XbbVwLhnfKAv7GqwVngeBE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 24375,
+                "cache_read_input_tokens": 19206,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 24375,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T18:38:31.181Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LFR57ZQsPrbL4i35UWmg82",
+              "name": "Grep",
+              "input": {
+                "pattern": "MAPE|mape|mean absolute|percentage error",
+                "path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fbb5de28-776d-4b73-8fd7-ecfcbe405c78",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCbD3a9EASbcurYBDAR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e5b8397f-7c1b-4bb6-993f-e24e9d4be43c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XbbVwLhnfKAv7GqwVngeBE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 24375,
+                "cache_read_input_tokens": 19206,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 24375
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 19206,
+                    "cache_creation_input_tokens": 24375,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 24375,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T18:38:31.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LFR57ZQsPrbL4i35UWmg82",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex-15-\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex-16-\\paragraph{Theory-MC agreement.}\ndocs/paper/experiments.tex:17:Analytical probability limits match Monte Carlo estimates with grand mean absolute percentage error (MAPE) of 2.0\\% across 126 scenarios (18 empirical LLM configurations $\\times$ 7 topologies, $N_{\\text{MC}}{=}200$ replicates, $N{=}10{,}000$). Per-topology MAPE ranges from 0.5\\% (confounding) to 5.5\\% (IV); the IV maximum reflects finite-sample variance amplification in the Wald estimator's small denominator, consistent with known properties of the Wald ratio.\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex-18-\ndocs/paper/experiments.tex-19-\\paragraph{Exposure DAG: catastrophic sign reversal.}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5b8397f-7c1b-4bb6-993f-e24e9d4be43c",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "642f5d61-1a84-4226-ae42-177b34480a5f",
+            "sourceToolAssistantUUID": "e5b8397f-7c1b-4bb6-993f-e24e9d4be43c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T18:38:33.010Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me verify the exact MAPE percentages from the JSON file by extracting them programmatically to ensure accurate cross-checking."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "642f5d61-1a84-4226-ae42-177b34480a5f",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCbQUADfGW1pN64LVjP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a64c3bd7-82e0-4b03-94e5-f7695bafe50a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015htSV54hsggTjP7TL4AA3S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 508,
+                "cache_read_input_tokens": 43581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 508,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T18:38:34.772Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018eNMuM4t9TcVbCybp3VCA4",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts && python3 << 'EOF'\nimport json\n\nwith open('theory_empirical_mape.json', 'r') as f:\n    data = json.load(f)\n\nprint(\"GRAND MAPE from JSON:\")\nprint(f\"  Grand MAPE: {data['grand_mape']:.6f} -> {data['grand_mape']*100:.2f}%\")\nprint()\n\nprint(\"PER-TOPOLOGY MAPE from JSON:\")\nfor topology, metrics in data['per_topology'].items():\n    mape = metrics['mape']\n    median_ape = metrics['median_ape']\n    max_ape = metrics['max_ape']\n    print(f\"  {topology:12s}: MAPE={mape*100:5.2f}%  Median APE={median_ape*100:5.2f}%  Max APE={max_ape*100:6.2f}%\")\nEOF\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a64c3bd7-82e0-4b03-94e5-f7695bafe50a",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCbQUADfGW1pN64LVjP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0b0595b2-c428-4876-a68f-ebb74878492a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015htSV54hsggTjP7TL4AA3S",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 508,
+                "cache_read_input_tokens": 43581,
+                "output_tokens": 346,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 508
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 346,
+                    "cache_read_input_tokens": 43581,
+                    "cache_creation_input_tokens": 508,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 508,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T18:38:34.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018eNMuM4t9TcVbCybp3VCA4",
+              "type": "tool_result",
+              "content": "GRAND MAPE from JSON:\n  Grand MAPE: 0.019968 -> 2.00%\n\nPER-TOPOLOGY MAPE from JSON:\n  confounding : MAPE= 0.49%  Median APE= 0.42%  Max APE=  1.28%\n  mediation   : MAPE= 2.49%  Median APE= 1.67%  Max APE=  9.03%\n  collider    : MAPE= 0.92%  Median APE= 0.39%  Max APE=  4.22%\n  exposure    : MAPE= 0.83%  Median APE= 0.33%  Max APE=  3.43%\n  mbias       : MAPE= 2.94%  Median APE= 2.45%  Max APE=  7.28%\n  iv          : MAPE= 5.51%  Median APE= 3.91%  Max APE= 16.44%\n  frontdoor   : MAPE= 0.81%  Median APE= 0.48%  Max APE=  2.25%",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b0595b2-c428-4876-a68f-ebb74878492a",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "dee2d074-056d-441b-8670-8cf94fd4ae7f",
+            "sourceToolAssistantUUID": "0b0595b2-c428-4876-a68f-ebb74878492a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T18:38:36.397Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me cross-check the .tex table file values:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dee2d074-056d-441b-8670-8cf94fd4ae7f",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCbg32zdSbsETX4QdYu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "25ddde9f-d4c0-48e3-ae6f-25bb6155c9db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0193CMyJEhpxXUsFoK7FhGc4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 751,
+                "cache_read_input_tokens": 44089,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 751,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T18:38:38.432Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NqQgM4LsCTkqXXJM2a8Fws",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'EOF'\n# Parse the .tex table values manually\ntex_values = {\n    'confounding': {'mape': 0.49, 'median_ape': 0.42, 'n': 18},\n    'mediation': {'mape': 2.49, 'median_ape': 1.67, 'n': 18},\n    'collider': {'mape': 0.92, 'median_ape': 0.39, 'n': 18},\n    'exposure': {'mape': 0.83, 'median_ape': 0.33, 'n': 18},\n    'mbias': {'mape': 2.94, 'median_ape': 2.45, 'n': 18},\n    'iv': {'mape': 5.51, 'median_ape': 3.91, 'n': 18},\n    'frontdoor': {'mape': 0.81, 'median_ape': 0.48, 'n': 18},\n}\n\nprint(\"TEX FILE TABLE VALUES:\")\nprint(\"(from theory_empirical_mape_table.tex)\")\nfor topology, values in tex_values.items():\n    print(f\"  {topology:12s}: MAPE={values['mape']:5.2f}%  Median APE={values['median_ape']:5.2f}%\")\nprint(f\"  {'Grand':12s}: MAPE={'2.00':>5}%\")\nEOF\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25ddde9f-d4c0-48e3-ae6f-25bb6155c9db",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCbg32zdSbsETX4QdYu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2d5763cb-cb95-41fe-8892-da497cb8b0de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0193CMyJEhpxXUsFoK7FhGc4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 751,
+                "cache_read_input_tokens": 44089,
+                "output_tokens": 474,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 751
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 474,
+                    "cache_read_input_tokens": 44089,
+                    "cache_creation_input_tokens": 751,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 751,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T18:38:38.493Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NqQgM4LsCTkqXXJM2a8Fws",
+              "type": "tool_result",
+              "content": "TEX FILE TABLE VALUES:\n(from theory_empirical_mape_table.tex)\n  confounding : MAPE= 0.49%  Median APE= 0.42%\n  mediation   : MAPE= 2.49%  Median APE= 1.67%\n  collider    : MAPE= 0.92%  Median APE= 0.39%\n  exposure    : MAPE= 0.83%  Median APE= 0.33%\n  mbias       : MAPE= 2.94%  Median APE= 2.45%\n  iv          : MAPE= 5.51%  Median APE= 3.91%\n  frontdoor   : MAPE= 0.81%  Median APE= 0.48%\n  Grand       : MAPE= 2.00%",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d5763cb-cb95-41fe-8892-da497cb8b0de",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "42eabe9b-de7c-457a-b13e-75e379db4dec",
+            "sourceToolAssistantUUID": "2d5763cb-cb95-41fe-8892-da497cb8b0de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T18:38:44.129Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me verify the manuscript text mentions and check for any additional percentage values mentioned in the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42eabe9b-de7c-457a-b13e-75e379db4dec",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCbwbAk36eHPfD8H73i",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3b55ae42-e691-4e07-a8da-7742d7f88ea3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KJTpKqhzx9Bg5cZw37giD7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 671,
+                "cache_read_input_tokens": 44840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 671,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T18:38:44.992Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013m1myuwqxqsGyTo46vebuA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b55ae42-e691-4e07-a8da-7742d7f88ea3",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCbwbAk36eHPfD8H73i",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3161982f-8989-4dd4-b270-b2d49d988420",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KJTpKqhzx9Bg5cZw37giD7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 671,
+                "cache_read_input_tokens": 44840,
+                "output_tokens": 128,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 671
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 128,
+                    "cache_read_input_tokens": 44840,
+                    "cache_creation_input_tokens": 671,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 671,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T18:38:44.998Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013m1myuwqxqsGyTo46vebuA",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate the multi-class bias taxonomy and ASV framework through analytical derivations validated by Monte Carlo simulation, covering seven canonical DAG topologies under $K{=}3$ non-differential misclassification.\n5\t\n6\t\\subsection{Setup}\n7\t\\label{sec:setup}\n8\t\n9\tWe study seven DAG topologies where annotation variable $A$ enters at structurally distinct positions: confounding, exposure, mediation, collider, M-bias, front-door, and instrumental variable (IV). For each topology, we sample $K{\\times}K$ confusion matrices from a Dirichlet$(1,1,1)$ prior (each column independently), generating 100{,}000 random matrices per configuration. Each matrix defines a non-differential misclassification mechanism $C_{jk} = P(A^*{=}j \\mid A{=}k)$.\n10\t\n11\tFor every sampled $C$, we compute the analytical probability limit of the causal estimator and validate it against Monte Carlo simulation with $N{=}10{,}000$ samples per replication. ASV experiments use the parameterization $C(\\delta) = (1{-}\\delta)I + \\delta C_0$, where $\\delta{=}0$ recovers perfect classification and $\\delta{=}1$ yields the reference matrix $C_0$.\n12\t\n13\t\\subsection{Bias Taxonomy}\n14\t\\label{sec:taxonomy_results}\n15\t\n16\t\\paragraph{Theory-MC agreement.}\n17\tAnalytical probability limits match Monte Carlo estimates with grand mean absolute percentage error (MAPE) of 2.0\\% across 126 scenarios (18 empirical LLM configurations $\\times$ 7 topologies, $N_{\\text{MC}}{=}200$ replicates, $N{=}10{,}000$). Per-topology MAPE ranges from 0.5\\% (confounding) to 5.5\\% (IV); the IV maximum reflects finite-sample variance amplification in the Wald estimator's small denominator, consistent with known properties of the Wald ratio.\n18\t\n19\t\\paragraph{Exposure DAG: catastrophic sign reversal.}\n20\tUnder the full Dirichlet$(1,1,1)$ prior, 85\\% of $K{=}3$ confusion matrices produce bias that violates the binary ``toward-null'' guarantee. More critically, 83.4\\% of matrices cause \\emph{sign reversal} of at least one coefficient. The two failure modes are distinct: for a coefficient with true value $\\beta_1{=}1.0$, a near-permutation $C$ produces $\\hat{\\gamma}_1{=}{-}0.84$ (sign reversal, magnitude $0.84{\\times}$); for $\\beta_2{=}{-}0.5$, the same $C$ yields $\\hat{\\gamma}_2{=}{-}1.41$ (same-sign amplification, $2.83{\\times}$).\n21\t\n22\tThis finding persists in practically relevant subspaces. When restricting to confusion matrices with diagonal entries $\\geq 0.7$ (typical of current LLM classifiers achieving $F_1 > 0.8$), the violation rate remains 13.7\\% with 2.1\\% sign reversal and 11.7\\% amplification. Even at diagonal $\\geq 0.9$, violation persists at 11.9\\%. In contrast, the $K{=}2$ control confirms that all six tested binary confusion matrices maintain the classical bias-toward-null guarantee~\\cite{brenner1993}, establishing that the multi-class failure is structurally distinct from the binary case.\n23\t\n24\t\\paragraph{Structural guarantee for non-exposure topologies.}\n25\tFive of seven topologies exhibit a structural guarantee: $\\tau$-specific sign flip rate equals exactly zero across all sampled confusion matrices (Table~\\ref{tab:taxonomy}). Confounding, mediation, and front-door topologies show 100\\% violation and amplification rates but never reverse the sign of the target causal parameter. Note that this zero sign-flip result for confounding is consistent with \\citet{brenner1993} and \\citet{dosemeci1990}, who showed that polytomous misclassification can bias \\emph{away} from the null: their estimand compares the misclassified-adjusted estimate to the truth, whereas our sign-flip metric compares the misclassified-adjusted estimate to the unadjusted (omitted-variable) estimate. Amplification without sign reversal is expected under both definitions. Collider misclassification attenuates the spurious association induced by conditioning, providing a form of protection. M-bias shows the weakest sensitivity overall (53.2\\% violation, 10.4\\% amplification) because annotation error on a collider variable reduces, rather than amplifies, the spurious M-bias path.\n26\t\n27\t\\paragraph{IV: Wald estimator instability.}\n28\tThe instrumental variable topology is the sole exception among non-exposure DAGs. The Wald estimator's first stage involves $C$ directly in the denominator, and 52.6\\% of random confusion matrices cause the denominator to change sign, producing $\\tau$-specific sign reversal. This rate remains stable across $K{=}3,5,7$, indicating that IV fragility is a structural property of the Wald estimator rather than a finite-$K$ artifact. Diagonal-dominance subspace analysis (Appendix~\\ref{sec:iv_dirichlet_subspace}) reveals that IV sign reversal vanishes at diagonal $\\geq 0.5$, but unlike exposure, the violation rate remains at 100\\% (pure amplification) even at diagonal $\\geq 0.9$.\n29\t\n30\t\\paragraph{Cross-$K$ robustness.}\n31\tExperiments at $K{=}5$ and $K{=}7$ (100{,}000 random matrices per topology) confirm that all structural patterns from $K{=}3$ persist. The sign-flip guarantee holds for the same five topologies, and IV sign-flip rates remain within 51--53\\%. Worst-case bias magnitudes decrease modestly with $K$ for most topologies but increase for IV at low accuracy (worst case 14.0$\\times$ at $K{=}3$ diagonal $\\geq 0.5$).\n32\t\n33\t\\begin{table}[t]\n34\t\\centering\n35\t\\caption{Bias characteristics of $K{=}3$ non-differential misclassification across 7 DAG topologies. Violation: $|\\hat{\\tau}| > |\\tau|$; Sign flip: $\\text{sign}(\\hat{\\tau}) \\neq \\text{sign}(\\tau)$; Amplification: $|\\hat{\\tau}| > |\\tau|$ with same sign. Rates computed over 100{,}000 Dirichlet$(1,1,1)$ random confusion matrices with $N{=}10{,}000$.}\n36\t\\label{tab:taxonomy}\n37\t\\small\n38\t\\begin{tabular}{lcccc}\n39\t\\toprule\n40\t\\textbf{Topology} & \\textbf{Violation} & \\textbf{Sign Flip} & \\textbf{Amplif.} & $\\tau_{\\text{sf}}{=}0$? \\\\\n41\t\\midrule\n42\tConfounding & 100\\% & 0\\% & 100\\% & \\checkmark \\\\\n43\tExposure & 85\\% & 83.4\\% & 14.1\\% & \\ding{55} \\\\\n44\tMediation & 100\\% & 0\\% & 100\\% & \\checkmark \\\\\n45\tFront-door & 100\\% & 0\\% & 100\\% & \\checkmark \\\\\n46\tCollider & 100\\% & 0\\% & 100\\% & \\checkmark \\\\\n47\tM-bias & 53.2\\% & 0\\% & 10.4\\% & \\checkmark \\\\\n48\tIV & 100\\% & 52.6\\% & 100\\% & \\ding{55} \\\\\n49\t\\bottomrule\n50\t\\end{tabular}\n51\t\\end{table}\n52\t\n53\tThe bias distributions across topologies are visualized in Figure~\\ref{fig:bias_distribution}, where the exposure panel's dominant red region (sign reversal) contrasts with the symmetric attenuation patterns of other topologies.\n54\t\n55\t\\subsection{ASV Framework Validation}\n56\t\\label{sec:asv_results}\n57\t\n58\t\\paragraph{Envelope monotonicity.}\n59\tThe ASV envelope (bias magnitude as a function of $\\delta$) is monotonically non-decreasing for all seven topologies, with zero violations across all tested scenarios. This validates the theoretical monotonicity property and confirms that $\\delta$ serves as a meaningful ``dial'' controlling annotation error severity.\n60\t\n61\t\\paragraph{Magnitude ASV.}\n62\tTable~\\ref{tab:asv_grid} reports magnitude ASV ranges at $\\tau{=}0.5$ with a 10\\% bias threshold. The ranking from most fragile to most robust is: front-door (0.064--0.387) $<$ mediation (0.076--0.454) $<$ confounding (0.081--0.487) $<$ IV (0.101--0.607) $<$ collider (0.338--2.028) $<$ M-bias ($\\infty$). The collider's high ASV reflects its protective nature: misclassification attenuates the spurious association rather than amplifying it. M-bias achieves infinite ASV because annotation error on the collider variable $A$ only reduces the already-small bias from the M-shaped confounding path.\n63\t\n64\t\\paragraph{Significance power.}\n65\tAt $\\tau{=}0.05$, the significance ASV filter achieves 100\\% power for confounding, front-door, and M-bias (96--100\\%). Power drops to 0\\% for mediation, collider, and IV. For mediation and collider, this is correct behavior: these are attenuating topologies where the biased effect at small $\\tau$ falls below the detection threshold $z_{\\alpha/2} \\cdot SE$, and the ASV filter correctly blocks all rejections. For IV, the Wald estimator is immediately fragile ($\\text{signif\\_ASV} \\approx 0$), reflecting its extreme sensitivity to any annotation error. Type~I error is 0\\% across all topologies.\n66\t\n67\t\\paragraph{Sign-flip ASV.}\n68\tFor exposure, 83.4\\% of reference matrices $C_0$ yield $\\tau_{\\text{sign\\_flip}} < 1$, indicating catastrophic sensitivity to annotation error. For IV, sign-flip ASV ranges from 1.1 to 6.7, indicating moderate-to-high sensitivity depending on the reference matrix structure. All other topologies have undefined sign-flip ASV (no sign reversal is possible).\n69\t\n70\tThe complete sensitivity ranking across ASV types is shown in Figure~\\ref{fig:asv_ranking}, which reveals that different ASV types can yield different vulnerability orderings across topologies.\n71\t\n72\t\\begin{table}[t]\n73\t\\centering\n74\t\\caption{ASV type applicability and sensitivity across DAG topologies. Magnitude ASV at $\\tau{=}0.5$, 10\\% threshold. Power at $\\tau{=}0.05$ significance filter. \\checkmark: effective and recommended; ($\\checkmark$): applicable but less informative; ---: not applicable.}\n75\t\\label{tab:asv_grid}\n76\t\\small\n77\t\\begin{tabular}{lcccl}\n78\t\\toprule\n79\t\\textbf{Topology} & \\textbf{Mag. ASV} & \\textbf{Signif.} & \\textbf{Sign-flip} & \\textbf{Rank} \\\\\n80\t\\midrule\n81\tIV & 0.101--0.607 & 0\\% & 1.1--6.7 & 1 (fragile) \\\\\n82\tFront-door & 0.064--0.387 & 100\\% & --- & 2 \\\\\n83\tConfounding & 0.081--0.487 & 100\\% & --- & 3 \\\\\n84\tMediation & 0.076--0.454 & 0\\% & --- & 4 \\\\\n85\tCollider & 0.338--2.028 & 0\\% & --- & 5 \\\\\n86\tM-bias & $\\infty$ & 96--100\\% & --- & 6 (immune) \\\\\n87\tExposure & --- & --- & 83.4\\%$^*$ & --- \\\\\n88\t\\bottomrule\n89\t\\multicolumn{5}{l}{\\scriptsize $^*$Fraction of $C_0$ with $\\tau_{\\text{sign\\_flip}} < 1$. Exposure uses sign-flip ASV exclusively.}\n90\t\\end{tabular}\n91\t\\end{table}\n92\t\n93\t\\subsection{$N$-Sensitivity}\n94\t\\label{sec:n_sensitivity}\n95\t\n96\tThe significance ASV exhibits a sharp phase transition: for mediation at $\\tau{=}0.05$, ASV-filtered power is exactly 0 for $N{\\leq}5{,}000$ (blocking all rejections), then jumps to 1.0 at $N{=}10{,}000$. The critical sample size $N^* \\approx 6{,}000$--$10{,}000$ is analytically computable, providing practitioners with a concrete minimum sample size for their topology and effect size.\n97\t\n98\t\\subsection{Binarization Collapse}\n99\t\\label{sec:binarization}\n100\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3161982f-8989-4dd4-b270-b2d49d988420",
+            "isSidechain": true,
+            "promptId": "208b4c2f-5806-496d-8baa-14f1241f855c",
+            "agentId": "aaeb98e46f47a7f54",
+            "type": "user",
+            "uuid": "1d8a1d0c-4deb-41c1-8058-24ee3954ce4b",
+            "sourceToolAssistantUUID": "3161982f-8989-4dd4-b270-b2d49d988420",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T18:38:53.181Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a comprehensive cross-check report. Let me compile all the findings:\n\n## MAPE Cross-Check Report\n\nI have completed a thorough cross-check of MAPE numbers between source JSON files and paper .tex files. Here are my findings:\n\n### Source Files Located\n- **JSON Source**: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json`\n- **TEX Table**: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape_table.tex`\n- **Paper Reference**: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/docs/paper/experiments.tex`\n\n### VERIFICATION RESULTS\n\n**Grand MAPE - PERFECT MATCH ✓**\n- JSON source: 0.019967537746631306 = **2.00%**\n- TEX table: **2.00%**\n- Paper text (experiments.tex, line 17): \"grand mean absolute percentage error (MAPE) of **2.0%**\"\n\n**Per-Topology MAPE - ALL MATCH ✓**\n\n| Topology | JSON | TEX Table | Match |\n|----------|------|-----------|-------|\n| confounding | 0.49% | 0.49% | ✓ |\n| mediation | 2.49% | 2.49% | ✓ |\n| collider | 0.92% | 0.92% | ✓ |\n| exposure | 0.83% | 0.83% | ✓ |\n| mbias | 2.94% | 2.94% | ✓ |\n| iv | 5.51% | 5.51% | ✓ |\n| frontdoor | 0.81% | 0.81% | ✓ |\n\n**Paper Text Reference - CONSISTENT ✓**\n\nFrom experiments.tex line 17:\n> \"Per-topology MAPE ranges from **0.5%** (confounding) to **5.5%** (IV)\"\n\nThis matches the JSON/TEX values when rounded to one decimal place:\n- Confounding: 0.49% rounds to 0.5% ✓\n- IV: 5.51% rounds to 5.5% ✓\n\n### Additional Metrics Verified\n\n**Median APE (also in TEX table and JSON)**\n- All median APE values from JSON match the TEX table exactly\n\n**Max APE (JSON only, not in paper)**\n- Present in JSON but not reported in paper text\n- Examples: confounding max_ape = 1.28%, mediation = 9.03%, iv = 16.44%\n\n### Summary\nAll MAPE numbers are consistent across all three sources (JSON data, generated TEX table, and paper manuscript). No discrepancies found. The numbers have been properly rounded for the manuscript text and paper display."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d8a1d0c-4deb-41c1-8058-24ee3954ce4b",
+            "isSidechain": true,
+            "agentId": "aaeb98e46f47a7f54",
+            "requestId": "req_011CbGCcRRz84iWMnHHtMSba",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2c3d5f00-0733-4452-a8b7-223feb3d4f55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "11ff25a4-ace2-4f0a-bf93-ecb3344b788f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UsdP3oL9SwnsUozVjSu6AN",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 3577,
+                "cache_read_input_tokens": 45511,
+                "output_tokens": 735,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3577
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 735,
+                    "cache_read_input_tokens": 45511,
+                    "cache_creation_input_tokens": 3577,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3577,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-cross-check-mape-numbers-between-source-json-files-and-paper-tex-fil.md"
+}

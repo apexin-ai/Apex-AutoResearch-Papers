@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7b14b72aa2b3c442b110",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 287,
+          "timestamp": "2026-05-30T06:18:52.058Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "29077c2b-6b78-4d32-9b4d-78db8b9c2d8b",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "queued_command",
+                  "prompt": "<task-notification>\n<task-id>aff994d5ec2b52883</task-id>\n<tool-use-id>toolu_01RGimSuuNaGKoQKnE1eySA1</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu-idea-adversarial/6450632f-4d94-478b-801e-5b1618ba70cc/tasks/aff994d5ec2b52883.output</output-file>\n<status>completed</status>\n<summary>Agent \"Search matroid/matching theory and kernel methods\" completed</summary>\n<result>Now I have a comprehensive collection of papers. Here is the structured list of all papers found, organized by relevance to the research direction on MaxSim / sum-of-max-inner-product scoring representational capacity.\n\n---\n\n## Structured Literature Survey: Representational Capacity of Sum-of-Max-Inner-Product Scoring (MaxSim)\n\n### CATEGORY 1: Theoretical Limitations of Embedding-Based Retrieval (Most Directly Relevant)\n\n---\n\n**Paper 1: On the Theoretical Limitations of Embedding-Based Retrieval**\n- **Authors:** Orion Weller, Michael Boratko, Iftekhar Naim, Jinhyuk Lee\n- **Venue/Year:** ICLR 2026\n- **Abstract:** Demonstrates that vector embeddings encounter fundamental theoretical constraints in realistic scenarios. Establishes that the number of top-k subsets of documents capable of being returned as the result of some query is limited by the dimension of the embedding. Connects sign-rank of relevance matrices to the representational capacity of dot-product embeddings. Even when optimizing directly on test data with unrestricted embeddings, these limitations persist. Introduces the LIMIT benchmark that stress-tests state-of-the-art models.\n- **Key Contributions:** (1) Connects communication complexity / sign-rank results to show embedding dimensionality caps retrievable document subsets. (2) Shows d=512 breaks at ~500K documents, d=1024 at ~4M, d=4096 at ~250M. (3) Multi-vector models (MaxSim) score significantly above single-vector models on the LIMIT dataset, demonstrating higher expressiveness.\n- **URL:** https://arxiv.org/abs/2508.21038\n\n---\n\n**Paper 2: R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval**\n- **Authors:** Zihao Wang, Hang Yin, Lihui Liu, Hanghang Tong, Yangqiu Song, Ginny Wong, Simon See\n- **Venue/Year:** arXiv, January 2026\n- **Abstract:** Investigates the minimal dimension required to embed subset memberships where m elements and subsets of at most k elements exist. Derives tight theoretical bounds for the Minimal Embeddable Dimension (MED) across l2, inner product, and cosine similarity. Numerical simulations using centroid-based subset embeddings demonstrate logarithmic scaling between MED and element count. Concludes that embedding-based retrieval constraints stem from learnability rather than geometric limitations.\n- **Key Contributions:** (1) Tight bounds for MED across multiple similarity notions. (2) Shows logarithmic dimension dependency empirically. (3) Argues the bottleneck is learnability, not geometry.\n- **URL:** https://arxiv.org/abs/2601.20844\n\n---\n\n**Paper 3: Scaling Laws for Embedding Dimension in Information Retrieval**\n- **Authors:** Julian Killingback, Mahta Rafiee, Madine Manas, Hamed Zamani\n- **Venue/Year:** arXiv, February 2026\n- **Abstract:** Investigates how dense retrieval performance varies with embedding dimension. Discovers power-law scaling relationships between embedding dimension and performance. Shows diminishing returns when evaluation tasks align with training objectives, and degradation when tasks are misaligned.\n- **Key Contributions:** (1) Empirical scaling laws for embedding dimension vs. performance. (2) Joint scaling laws for both dimension and model size. (3) Practical guidance for dimension selection.\n- **URL:** https://arxiv.org/abs/2602.05062\n\n---\n\n**Paper 4: Does Generative Retrieval Overcome the Limitations of Dense Retrieval?**\n- **Authors:** Yingchen Zhang, Ruqing Zhang, Jiafeng Guo, Maarten de Rijke, Yixing Fan, Xueqi Cheng\n- **Venue/Year:** arXiv, September 2025\n- **Abstract:** Explores how generative retrieval (GR) differs from dense retrieval (DR). GR performs globally normalized maximum-likelihood optimization and encodes corpus/relevance information directly in model parameters, while DR uses locally normalized objectives. GR's representational capacity scales with parameter size, unconstrained by the global low-rank structure that limits DR.\n- **Key Contributions:** (1) Shows GR avoids sharp performance degradation from DR's local normalization. (2) GR capacity scales with parameters rather than embedding dimension. (3) Despite theoretical advantages, GR does not universally outperform DR in practice.\n- **URL:** https://arxiv.org/abs/2509.22116\n\n---\n\n### CATEGORY 2: Multi-Vector Retrieval / Late Interaction Theory and Methods\n\n---\n\n**Paper 5: MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings**\n- **Authors:** Laxman Dhulipala, Majid Hadian, Rajesh Jayaram, Jason Lee, Vahab Mirrokni\n- **Venue/Year:** NeurIPS 2024\n- **Abstract:** Introduces MUVERA, which reduces multi-vector similarity search to single-vector similarity search by generating Fixed Dimensional Encodings (FDEs). These encoded vectors approximate multi-vector similarity while enabling the use of standard MIPS algorithms. Provides the first single-vector proxy for multi-vector similarity with theoretical guarantees (high-quality epsilon-approximations).\n- **Key Contributions:** (1) First theoretically-grounded single-vector proxy for MaxSim. (2) Achieves 2-5x fewer candidates at same recall. (3) 10% improved recall with 90% lower latency on BEIR.\n- **URL:** https://arxiv.org/abs/2405.19504\n\n---\n\n**Paper 6: LEMUR: Learned Multi-Vector Retrieval**\n- **Authors:** Elias Jaasaari, Ville Hyvonen, Teemu Roos\n- **Venue/Year:** ICML 2026\n- **Abstract:** Addresses the latency challenge in multi-vector retrieval systems. Formulates multi-vector search as a supervised learning problem solvable by a neural network, then converts inference into single-vector similarity search in latent space. Achieves an order of magnitude faster performance than previous multi-vector methods while maintaining retrieval quality.\n- **Key Contributions:** (1) Reformulates MaxSim search as a learnable problem. (2) Order-of-magnitude speedup. (3) Compatible with standard single-vector infrastructure.\n- **URL:** https://arxiv.org/abs/2601.21853\n\n---\n\n**Paper 7: Hypencoder: Hypernetworks for Information Retrieval**\n- **Authors:** Julian Killingback, Hansi Zeng, Hamed Zamani\n- **Venue/Year:** arXiv, February 2025\n- **Abstract:** Challenges the vector-based approach to retrieval by proposing Hypencoders, which replace query vector representations with small neural networks that function as learned query-specific relevance functions. A hypernetwork generates these small networks that score documents, going beyond the expressiveness of dot-product similarity.\n- **Key Contributions:** (1) Replaces fixed-dimension vectors with learned neural scoring functions. (2) Substantial improvements over dense baselines, competitive with rerankers. (3) Particularly strong on difficult retrieval tasks (tip-of-the-tongue, instruction-following). (4) Retrieves from 8.8M documents in &lt;60ms.\n- **URL:** https://arxiv.org/abs/2502.05364\n\n---\n\n**Paper 8: MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction**\n- **Authors:** Zilin Xiao, Qi Ma, Mengting Gu, Chun-cheng Jason Chen, Xintao Chen, Vicente Ordonez, Vijai Mohan\n- **Venue/Year:** ICLR 2026 (Oral)\n- **Abstract:** Introduces learnable \"Meta Tokens\" whose contextualized representations become compact multi-vector embeddings. Through Matryoshka Multi-Vector Retrieval training, organizes information by granularity across vectors, enabling flexible efficiency-quality tradeoffs at test time.\n- **Key Contributions:** (1) Test-time scaling for multimodal retrieval. (2) Matryoshka-style hierarchical multi-vector training. (3) State-of-the-art on MMEB and ViDoRe benchmarks.\n- **URL:** https://arxiv.org/abs/2509.18095\n\n---\n\n**Paper 9: Working Notes on Late Interaction Dynamics: Analyzing Targeted Behaviors of Late Interaction Models**\n- **Authors:** Antoine Edy, Max Conti, Quentin Mace\n- **Venue/Year:** LIR Workshop @ ECIR 2026\n- **Abstract:** Investigates understudied aspects of late interaction models, examining length bias in multi-vector scoring and similarity distribution patterns beyond maximum scores. Validates that the MaxSim operator efficiently exploits token-level similarity scores by demonstrating minimal meaningful similarity patterns beyond top-1 token matches.\n- **Key Contributions:** (1) Empirical analysis of length bias in MaxSim. (2) Shows MaxSim effectively captures the relevant signal at top-1. (3) Identifies performance bottlenecks in current late interaction architectures.\n- **URL:** https://arxiv.org/abs/2603.26259\n\n---\n\n**Paper 10: ColBERT-Att: Late-Interaction Meets Attention for Enhanced Retrieval**\n- **Authors:** Raj Nath Patel, Sourav Dutta\n- **Venue/Year:** arXiv, March 2026\n- **Abstract:** Proposes explicitly integrating attention mechanisms into the late interaction framework to capture \"importance\" of term similarities, which standard MaxSim overlooks. Shows improvements on MS-MARCO, BEIR, and LoTTE.\n- **Key Contributions:** (1) Augments MaxSim with attention weights for term importance. (2) Demonstrates retrieval improvements across multiple benchmarks.\n- **URL:** https://arxiv.org/abs/2603.25248\n\n---\n\n**Paper 11: Training for Compositional Sensitivity Reduces Dense Retrieval Generalization**\n- **Authors:** Radoslav Ralev, Aditeya Baral, Iliya Zhechev, Jen Agarwal, Srijith Rajamohan\n- **Venue/Year:** arXiv, March 2026\n- **Abstract:** Investigates a fundamental tension in dense retrieval: training for compositional sensitivity (negation, role swaps) paradoxically degrades zero-shot generalization (8-40% drops). Compares MaxSim vs. Transformer-based verifier for structural near-miss detection. Finds MaxSim excels at reranking but fails at rejection of structural near-misses.\n- **Key Contributions:** (1) Demonstrates retrieval-composition trade-off empirically. (2) Shows MaxSim limitation: cannot reliably reject structural near-misses. (3) Transformer-based verifier outperforms MaxSim on identity-level matching.\n- **URL:** https://arxiv.org/abs/2604.16351\n\n---\n\n**Paper 12: Breaking the Curse of Dimensionality: On the Stability of Modern Vector Retrieval**\n- **Authors:** Vihan Lakshman, Blaise Munyampirwa, Julian Shun, Benjamin Coleman\n- **Venue/Year:** arXiv, December 2025\n- **Abstract:** Investigates the paradox that high-dimensional retrieval works well in practice despite theoretical curse-of-dimensionality predictions. Extends stability theory to multi-vector search using Chamfer distance, filtered vector search with penalties, and sparse vector search. Proves Chamfer distance preserves single-vector stability while average pooling may not.\n- **Key Contributions:** (1) Proves Chamfer distance (used in MaxSim) preserves stability properties. (2) Average pooling of multi-vectors does NOT preserve stability. (3) Novel stability conditions for sparse vectors. (4) Practical design recommendations.\n- **URL:** https://arxiv.org/abs/2512.12458\n\n---\n\n**Paper 13: LIR: The First Workshop on Late Interaction and Multi Vector Retrieval @ ECIR 2026**\n- **Authors:** Benjamin Clavie, Xianming Li, Antoine Chaffin, Omar Khattab, Tom Aarsen, Manuel Faysse, Jing Li\n- **Venue/Year:** ECIR 2026 Workshop\n- **Abstract:** Workshop overview for late interaction retrieval methods, discussing challenges of efficiency, usability, and system integration for token-level representation approaches.\n- **URL:** https://arxiv.org/abs/2511.00444\n\n---\n\n**Paper 14: PyLate: Flexible Training and Retrieval for Late Interaction Models**\n- **Authors:** Antoine Chaffin, Raphael Sourty\n- **Venue/Year:** arXiv, August 2025\n- **Abstract:** Library for training multi-vector models with MaxSim operator. Built on Sentence Transformers, supports multi-vector-specific indexing, long-context retrieval, and includes state-of-the-art models (GTE-ModernColBERT, Reason-ModernColBERT).\n- **URL:** https://arxiv.org/abs/2508.03555\n\n---\n\n### CATEGORY 3: Chamfer Distance Algorithms and Theory\n\n---\n\n**Paper 15: A Near-Linear Time Algorithm for the Chamfer Distance**\n- **Authors:** Ainesh Bakshi, Piotr Indyk, Rajesh Jayaram, Sandeep Silwal, Erik Waingarten\n- **Venue/Year:** NeurIPS 2023\n- **Abstract:** Presents the first (1+epsilon)-approximate algorithm for estimating Chamfer distance with near-linear running time O(nd log(n)/epsilon^2), improving upon the O(dn^2) brute force. Provides hardness results suggesting sub-quadratic algorithms cannot report actual mappings without exponential time costs. Notes Chamfer distance serves as a proxy for Earth-Mover Distance.\n- **Key Contributions:** (1) First near-linear time approximation for Chamfer distance. (2) Hardness results for exact mapping recovery. (3) Practical implementation on high-dimensional datasets.\n- **URL:** https://arxiv.org/abs/2307.03043\n\n---\n\n**Paper 16: Even Faster Algorithm for the Chamfer Distance**\n- **Authors:** Ying Feng, Piotr Indyk\n- **Venue/Year:** ICALP 2025, arXiv May 2025\n- **Abstract:** Improves the near-linear time Chamfer distance algorithm from O(nd log(n)/epsilon^2) to O(nd(loglog(n) + log(1/epsilon))/epsilon^2). When epsilon is constant, narrows the gap between upper bound and the Omega(dn) lower bound from O(log n) to O(loglog n).\n- **Key Contributions:** Tighter approximation guarantees with reduced gap to lower bound.\n- **URL:** https://arxiv.org/abs/2505.08957\n\n---\n\n**Paper 17: Fully Dynamic Algorithms for Chamfer Distance**\n- **Authors:** Gramoz Goranci, Shaofeng Jiang, Peter Kiss, Eva Szilagyi, Qiaoyuan Yang\n- **Venue/Year:** NeurIPS 2025\n- **Abstract:** First dynamic algorithm for maintaining Chamfer distance approximation under point insertions/deletions. Reduces to approximate nearest neighbor search with minimal overhead. Achieves (1+epsilon)-approximation in update time tilde-O(epsilon^{-d}) under l_p norms (p in {1,2}).\n- **Key Contributions:** (1) First dynamic Chamfer distance algorithm. (2) Reduces to ANN with negligible overhead. (3) Multiple approximation/time tradeoffs.\n- **URL:** https://arxiv.org/abs/2512.16639\n\n---\n\n### CATEGORY 4: Set Similarity and Optimal Transport\n\n---\n\n**Paper 18: GPS: A Probabilistic Distributional Similarity with Gumbel Priors for Set-to-Set Matching**\n- **Authors:** Ziming Zhang, Fangzhou Lin, Haotian Liu, Jose Morales, Haichong Zhang, Kazunori Yamada, Vijaya B. Kolachalama, Venkatesh Saligrama\n- **Venue/Year:** ICLR 2025\n- **Abstract:** Proposes GPS, a similarity metric for set-to-set matching grounded in Gumbel prior distributions. Motivated by the observation that the distributions of minimum distances from Chamfer Distance can be accurately modeled using Gumbel distributions (which model extrema of samples). Outperforms Chamfer Distance and Earth Mover's Distance on few-shot image classification and 3D point cloud completion.\n- **Key Contributions:** (1) Probabilistic foundation for Chamfer-style set similarity. (2) Models the max/min operations statistically via extreme value theory. (3) Superior to CD and EMD on benchmarks.\n- **URL:** https://openreview.net/forum?id=U0SijGsCHJ\n\n---\n\n**Paper 19: A Trainable Optimal Transport Embedding for Feature Aggregation and its Relationship to Attention**\n- **Authors:** Gregoire Mialon, Dexiong Chen, Alexandre d'Aspremont, Julien Mairal\n- **Venue/Year:** ICLR 2021\n- **Abstract:** Introduces a parametrized representation that embeds and aggregates elements from an input set according to the optimal transport plan between the set and a trainable reference. Has dual interpretations as both attention-related and a scalable optimal transport kernel surrogate. Demonstrates effectiveness on protein fold recognition and chromatin profile detection.\n- **Key Contributions:** (1) OT-based aggregation for variable-sized sets producing fixed-size representations. (2) Theoretical connection between OT embeddings and attention. (3) State-of-the-art on biological tasks.\n- **URL:** https://openreview.net/forum?id=ZK6vTvb84s\n\n---\n\n**Paper 20: DiffCD: A Symmetric Differentiable Chamfer Distance for Neural Implicit Surface Fitting**\n- **Venue/Year:** ECCV 2024\n- **URL:** https://link.springer.com/chapter/10.1007/978-3-031-73464-9_26\n- *(Could not fetch full details due to paywall redirect)*\n\n---\n\n**Paper 21: Embedding Empirical Distributions for Computing Optimal Transport Maps**\n- **Authors:** Mingchen Jiang, Peng Xu, Xichen Ye, Xiaohui Chen, Yun Yang, Yifan Chen\n- **Venue/Year:** arXiv, April 2025\n- **Abstract:** Combines transformer architectures with hypernetworks to compute optimal transport maps across multiple distributions. Transformers generate embeddings from variable-length distributional data, which hypernetworks use to produce neural OT maps.\n- **Key Contributions:** (1) Novel transformer+hypernetwork architecture for OT map learning. (2) Generalizes beyond single pairwise mappings.\n- **URL:** https://arxiv.org/abs/2504.17740\n\n---\n\n### CATEGORY 5: Earth Mover's Distance Algorithms\n\n---\n\n**Paper 22: Data-Dependent LSH for the Earth Mover's Distance**\n- **Authors:** Rajesh Jayaram, Erik Waingarten, Tian Zhang\n- **Venue/Year:** STOC 2024\n- **Abstract:** Presents data-dependent locality sensitive hashing for EMD that improves the best approximation for nearest neighbor search under EMD by a quadratic factor, from O(log^2 s) to tilde-O(log s). The data-dependent LSH also gives optimal distributional sketches for EMD, proven optimal up to poly(loglog s) factors.\n- **Key Contributions:** (1) Quadratic improvement in EMD nearest neighbor approximation. (2) Optimal sketches for EMD. (3) Applies to EMD_s(R^d, l_p) for p in [1,2].\n- **URL:** https://arxiv.org/abs/2403.05041\n\n---\n\n**Paper 23: Approximating High-Dimensional Earth Mover's Distance as Fast as Closest Pair**\n- **Authors:** Lorenzo Beretta, Vincent Cohen-Addad, Rajesh Jayaram, Erik Waingarten\n- **Venue/Year:** FOCS 2025\n- **Abstract:** Gives a reduction from (1+epsilon)-approximate EMD to (1+epsilon)-approximate Closest Pair. Achieves (1+epsilon)-approximation for EMD in time n^{2 - tilde-Omega(epsilon^{1/3})}, improving upon prior n^{2-O(epsilon^2)} bound. Main technical innovation: sublinear implementation of Multiplicative Weights Update for EMD.\n- **Key Contributions:** (1) Reduces EMD to Closest Pair. (2) Significant runtime improvement for high-dimensional EMD. (3) Novel sublinear MWU framework.\n- **URL:** https://arxiv.org/abs/2508.06774\n\n---\n\n**Paper 24: Efficient Approximation of Earth Mover's Distance Based on Nearest Neighbor Search**\n- **Authors:** Guangyu Meng, Ruyu Zhou, Liu Liu, Peixian Liang, Fang Liu, Danny Chen, Michael Niemier, X. Sharon Hu\n- **Venue/Year:** arXiv, January 2024 (revised May 2025)\n- **Abstract:** Proposes NNS-EMD, which leverages nearest neighbor search to approximate EMD with high accuracy, low time complexity, and high memory efficiency. Achieves 44x-135x speedup over exact EMD while outperforming existing approximations on image classification, retrieval, transport mapping, and color transfer.\n- **Key Contributions:** (1) NNS-based EMD approximation. (2) GPU-accelerated implementation. (3) Superior speed-accuracy tradeoff.\n- **URL:** https://arxiv.org/abs/2401.07378\n\n---\n\n### CATEGORY 6: Kernel Methods and Expressiveness\n\n---\n\n**Paper 25: On the Expressive Power of Kernel Methods and the Efficiency of Kernel Learning by Association Schemes**\n- **Authors:** Pravesh K. Kothari, Roi Livni\n- **Venue/Year:** arXiv, February 2019\n- **Abstract:** Investigates expressive power of kernel methods and algorithmic feasibility of multiple kernel learning. Introduces \"Euclidean kernels\" encompassing most studied kernel families (polynomial, RBF). Characterizes geometric and spectral structure over hypercubes and compact domains. Establishes meaningful constraints on function representation capacity and derives efficient learning algorithms.\n- **Key Contributions:** (1) Structural characterization of Euclidean kernels. (2) Expressiveness limitations for this kernel class. (3) Efficient algorithms for kernel learning.\n- **URL:** https://arxiv.org/abs/1902.04782\n\n---\n\n### CATEGORY 7: Communication Complexity and Matching\n\n---\n\n**Paper 26: Communication Complexity of Distributed Convex Learning and Optimization**\n- **Authors:** Yossi Arjevani, Ohad Shamir\n- **Venue/Year:** arXiv, June 2015\n- **Abstract:** Studies fundamental communication limitations in distributed optimization. Shows that without similarity between local objectives, many communication rounds are required regardless of computational power. Identifies where existing algorithms are worst-case optimal and where improvements are possible.\n- **Key Contributions:** (1) Communication complexity bounds for distributed convex optimization. (2) Shows necessity of data similarity for efficient communication. (3) Optimality results for existing algorithms.\n- **URL:** https://arxiv.org/abs/1506.01900\n\n---\n\n**Paper 27: Lifting Theorems Meet Information Complexity: Known and New Lower Bounds of Set-disjointness**\n- **Authors:** Guangxu Yang, Jiapeng Zhang\n- **Venue/Year:** arXiv, September 2023\n- **Abstract:** Introduces a density increment argument combining information complexity and query-to-communication lifting theorems to prove communication lower bounds for set-disjointness. Provides streamlined proofs for multi-party unique-disjointness and sparse unique-disjointness.\n- **Key Contributions:** (1) Density increment method for communication lower bounds. (2) Simplified proofs for set-disjointness. (3) Potential unification of existing results.\n- **URL:** https://arxiv.org/abs/2309.13517\n\n---\n\n**Paper 28: MAGNOLIA: Matching Algorithms via GNNs for Online Value-to-go Approximation**\n- **Authors:** Alexandre Hayderi, Amin Saberi, Ellen Vitercik, Anders Wikum\n- **Venue/Year:** ICML 2024\n- **Abstract:** Proposes using graph neural networks to approximate value-to-go in online Bayesian bipartite matching. Identifies graph distribution classes (spatial crowdsourcing) where VTG can be efficiently approximated through local neighborhood aggregation, aligning with GNN architecture.\n- **Key Contributions:** (1) GNN-based optimal matching approximation. (2) Theoretical justification for local aggregation in specific graph classes. (3) Competitive empirical performance on diverse benchmarks.\n- **URL:** https://arxiv.org/abs/2406.05959\n\n---\n\n### CATEGORY 8: Attention Expressiveness (Related)\n\n---\n\n**Paper 29: A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention**\n- **Authors:** Xiaowei Ye, Xiaoyu He, Chao Liao, Chen Wu, Pinyan Lu\n- **Venue/Year:** arXiv, February 2026\n- **Abstract:** Establishes formal separation between full attention and hybrid (linear+full) attention. An (L+1)-layer full attention network suffices for sequential function composition tasks, while hybrid networks require exponentially more linear layers (approximately 2^{3L^2}) to match.\n- **Key Contributions:** (1) First provable expressiveness separation between hybrid and full attention. (2) Applies to all linear attention variants (Mamba, DeltaNet). (3) Quantified exponential gap.\n- **URL:** https://arxiv.org/abs/2602.01763\n\n---\n\n**Paper 30: Bridging Dense and Sparse Maximum Inner Product Search**\n- **Authors:** Sebastian Bruch, Franco Maria Nardini, Amir Ingber, Edo Liberty\n- **Venue/Year:** arXiv, September 2023\n- **Abstract:** Investigates whether dense MIPS algorithms can apply to sparse vectors. Demonstrates IVF as efficient for sparse MIPS, proposes novel inverted index organization, and establishes a unified regime for MIPS over vectors with dense and sparse subspaces.\n- **Key Contributions:** (1) Unified framework bridging dense and sparse MIPS. (2) Dynamic pruning perspective on IVF. (3) Hybrid dense+sparse vector support.\n- **URL:** https://arxiv.org/abs/2309.09013\n\n---\n\n### Summary of Most Relevant Papers by Theme\n\n**For MaxSim representational capacity specifically:** Papers 1, 2, 3, 4, 5, 12, 18 are most directly relevant. Paper 1 (Weller et al., ICLR 2026) is the single most important paper, as it establishes that multi-vector models with MaxSim overcome the sign-rank bottleneck that limits single-vector embeddings. Paper 2 (Wang et al.) provides a contrasting theoretical perspective. Paper 5 (MUVERA) provides the first theoretical approximation guarantees for reducing MaxSim to single-vector search.\n\n**For Chamfer distance theory (mathematical foundation of MaxSim):** Papers 15, 16, 17, 18 form a coherent thread on computational complexity of the Chamfer distance, which is mathematically equivalent to the MaxSim scoring function.\n\n**For alternative scoring functions and expressiveness:** Papers 7 (Hypencoder), 19 (OT embedding), 22-24 (EMD algorithms) explore alternatives to MaxSim with different expressiveness-efficiency tradeoffs.</result>\n<usage><total_tokens>45936</total_tokens><tool_uses>61</tool_uses><duration_ms>344399</duration_ms></usage>\n</task-notification>",
+                  "commandMode": "task-notification"
+                },
+                "type": "attachment",
+                "uuid": "da2c603c-34f4-4169-9dce-4f0003daa7c5",
+                "timestamp": "2026-05-30T06:18:52.058Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "6450632f-4d94-478b-801e-5b1618ba70cc",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000287"
+        },
+        {
+          "source_line": 288,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+                "leafUuid": "da2c603c-34f4-4169-9dce-4f0003daa7c5",
+                "sessionId": "6450632f-4d94-478b-801e-5b1618ba70cc"
+              }
+            }
+          ],
+          "id": "event-000288"
+        },
+        {
+          "source_line": 289,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Survey multi-vector retrieval expressiveness bounds",
+                "sessionId": "6450632f-4d94-478b-801e-5b1618ba70cc"
+              }
+            }
+          ],
+          "id": "event-000289"
+        },
+        {
+          "source_line": 290,
+          "timestamp": "2026-05-30T06:19:12.666Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 9 agents have completed now. I've also found some additional important papers from the last two agents:\n\nFrom the matroid/matching agent:\n- GPS (Gumbel Priors for Set-to-Set matching) at ICLR 2025 - probabilistic foundation for Chamfer-style set similarity\n- Fully Dynamic Algorithms for Chamfer Distance (NeurIPS 2025) - dynamic Chamfer distance\n- Hypencoder: Hypernetworks for IR (arXiv 2025) - replaces query vectors with neural scoring functions\n\n\n- A Provable Expressiveness Hierarchy in Hybrid Linear-Full Attention (arXiv 2026) - attention expressiveness\n\nThe GPS paper stands out as particularly relevant since it grounds Chamfer-style similarity in extreme value theory using Gumbel distributions, which directly connects to understanding MaxSim. Hypencoder's approach of replacing query vectors with neural networks also extends beyond traditional dot-product similarity. I'm weighing whether these should make the cut over my current 20 papers, leaning toward adding GPS and the dynamic Chamfer distance work to strengthen the theoretical foundations.\n\nI've confirmed MUVERA was accepted at NeurIPS 2024, and my curated list is solid. The final JSON with all 20 papers is ready to present.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da2c603c-34f4-4169-9dce-4f0003daa7c5",
+            "isSidechain": false,
+            "requestId": "req_011CbYGUGZjcLogYeyFchvqt",
+            "type": "assistant",
+            "uuid": "295b4012-3107-47a6-8ee1-ad0055c0c178",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6450632f-4d94-478b-801e-5b1618ba70cc",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Te1JMYWxdEyBmy1uGi11ta",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8077,
+                "cache_read_input_tokens": 138586,
+                "output_tokens": 1090,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8077,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1090,
+                    "cache_read_input_tokens": 138586,
+                    "cache_creation_input_tokens": 8077,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8077
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000290"
+        },
+        {
+          "source_line": 291,
+          "timestamp": "2026-05-30T06:19:20.960Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 9 search agents have now completed. The final agent (matroid/matching theory) surfaced a few additional noteworthy papers:\n\n- **GPS: A Probabilistic Distributional Similarity with Gumbel Priors for Set-to-Set Matching** (ICLR 2025) — provides a probabilistic foundation for Chamfer-style set similarity using extreme value theory, modeling the max/min operations in MaxSim statistically\n- **Fully Dynamic Algorithms for Chamfer Distance** (Goranci et al., NeurIPS 2025) — first dynamic Chamfer distance algorithm\n- **Hypencoder: Hypernetworks for Information Retrieval** (Killingback et al., arXiv 2025) — replaces query vectors with learned neural scoring functions, going beyond dot-product expressiveness\n\nThese complement my curated list of 20 papers above. My MUVERA venue attribution is confirmed correct (NeurIPS 2024, per the proceedings page). \n\nThe complete output with the final **JSON array of 20 papers** was provided in my previous message. The key finding from this survey: **the gap you identified is genuine and well-positioned** — no existing paper establishes formal expressiveness bounds for multi-vector/MaxSim scoring as a function of the number of vectors per document and their dimensionality. The closest work is LITE (universal approximation for learnable late interaction), MUVERA (approximation guarantees for reducing MaxSim to MIPS), and Lakshman et al. (Chamfer stability), but none provides the sign-rank analog for multi-vector representations that your proposed work targets."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "295b4012-3107-47a6-8ee1-ad0055c0c178",
+            "isSidechain": false,
+            "requestId": "req_011CbYGUGZjcLogYeyFchvqt",
+            "type": "assistant",
+            "uuid": "e4fbac6f-a35b-4f88-9e6c-eed355938ccf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "6450632f-4d94-478b-801e-5b1618ba70cc",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Te1JMYWxdEyBmy1uGi11ta",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8077,
+                "cache_read_input_tokens": 138586,
+                "output_tokens": 1090,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8077,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1090,
+                    "cache_read_input_tokens": 138586,
+                    "cache_creation_input_tokens": 8077,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8077
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000291"
+        },
+        {
+          "source_line": 292,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+                "leafUuid": "e4fbac6f-a35b-4f88-9e6c-eed355938ccf",
+                "sessionId": "6450632f-4d94-478b-801e-5b1618ba70cc"
+              }
+            }
+          ],
+          "id": "event-000292"
+        },
+        {
+          "source_line": 293,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Survey multi-vector retrieval expressiveness bounds",
+                "sessionId": "6450632f-4d94-478b-801e-5b1618ba70cc"
+              }
+            }
+          ],
+          "id": "event-000293"
+        }
+      ]
+    }
+  ]
+}

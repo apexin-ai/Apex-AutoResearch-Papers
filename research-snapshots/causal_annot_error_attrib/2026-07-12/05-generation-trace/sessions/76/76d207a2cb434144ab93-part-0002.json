@@ -1,0 +1,1519 @@
+{
+  "schema_version": "1.0",
+  "session_id": "76d207a2cb434144ab93",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-19T08:10:35.828Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E9txz7sSJGrho1neR8yMYt",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.19008",
+                "prompt": "Extract the key contributions, causal mechanism details, evaluation, and open problems from \"Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks\". What is canonical path deviation? How is it measured? What is the relationship to safety? What gaps remain?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce826721-df9d-43f4-8648-88f522505ad6",
+            "isSidechain": false,
+            "requestId": "req_011CbBb644BEp7uffRapCEmS",
+            "type": "assistant",
+            "uuid": "b948f688-3a0a-4913-b91c-2f5efd2742d7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PMzF2gyQtdAXXdjfVe6nK6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 980,
+                "cache_read_input_tokens": 69434,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 980,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 69434,
+                    "cache_creation_input_tokens": 980,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 980
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-19T08:10:42.414Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E9txz7sSJGrho1neR8yMYt",
+              "type": "tool_result",
+              "content": "# Analysis of \"Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks\"\n\n## Key Contributions\n\nThe paper identifies that agent failures on solvable tasks stem from reliability rather than capability limitations. The authors demonstrate that agents drift from task-specific solution structures, causing otherwise capable models to fail unpredictably.\n\n## What is Canonical Path Deviation?\n\nCanonical path deviation refers to the divergence of an agent's execution trajectory from the \"convergent set of tool invocations shared across successful runs.\" Each well-defined task has an implicit canonical solution path, and staying within this path's operating envelope appears critical for success.\n\n## Measurement Approach\n\nThe researchers measured adherence using the Jaccard similarity metric across 515 model×task units from the Toolathlon benchmark (22 frontier models, 108 tasks, 3 independent runs each). They compared successful versus failed runs from identical models on identical tasks, isolating stochasticity as the variable.\n\n**Key finding:** \"successful runs adhere significantly more closely to the canonical solution path than failed runs (+0.060 Jaccard, p<0.0001).\"\n\n## Self-Reinforcing Failure Mechanism\n\nThe causal mechanism operates gradually: off-canonical tool calls raise the probability of subsequent off-canonical calls by \"22.7 percentage points,\" more than doubling baseline deviation rates. Early trajectories showed no adherence gap, ruling out selection bias.\n\n## Safety Implications\n\nWhile not explicitly addressed in this abstract, canonical path deviation relates to safety by highlighting how stochastic drift can derail tasks irreversibly, potentially toward unsafe outcomes if the canonical path represents safety-constrained solutions.\n\n## Remaining Gaps\n\n- Generalization beyond tool-use tasks\n- Whether canonical paths vary across user populations or contexts\n- Causal interventions beyond the proposed mid-trajectory monitoring restart approach"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b948f688-3a0a-4913-b91c-2f5efd2742d7",
+            "isSidechain": false,
+            "promptId": "fc6b92e3-ffeb-44aa-9c62-613abd6f3f9b",
+            "type": "user",
+            "uuid": "959d3397-09b0-4ebf-88e7-ea08da857992",
+            "toolUseResult": {
+              "bytes": 47991,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Analysis of \"Capable but Unreliable: Canonical Path Deviation as a Causal Mechanism of Agent Failure in Long-Horizon Tasks\"\n\n## Key Contributions\n\nThe paper identifies that agent failures on solvable tasks stem from reliability rather than capability limitations. The authors demonstrate that agents drift from task-specific solution structures, causing otherwise capable models to fail unpredictably.\n\n## What is Canonical Path Deviation?\n\nCanonical path deviation refers to the divergence of an agent's execution trajectory from the \"convergent set of tool invocations shared across successful runs.\" Each well-defined task has an implicit canonical solution path, and staying within this path's operating envelope appears critical for success.\n\n## Measurement Approach\n\nThe researchers measured adherence using the Jaccard similarity metric across 515 model×task units from the Toolathlon benchmark (22 frontier models, 108 tasks, 3 independent runs each). They compared successful versus failed runs from identical models on identical tasks, isolating stochasticity as the variable.\n\n**Key finding:** \"successful runs adhere significantly more closely to the canonical solution path than failed runs (+0.060 Jaccard, p<0.0001).\"\n\n## Self-Reinforcing Failure Mechanism\n\nThe causal mechanism operates gradually: off-canonical tool calls raise the probability of subsequent off-canonical calls by \"22.7 percentage points,\" more than doubling baseline deviation rates. Early trajectories showed no adherence gap, ruling out selection bias.\n\n## Safety Implications\n\nWhile not explicitly addressed in this abstract, canonical path deviation relates to safety by highlighting how stochastic drift can derail tasks irreversibly, potentially toward unsafe outcomes if the canonical path represents safety-constrained solutions.\n\n## Remaining Gaps\n\n- Generalization beyond tool-use tasks\n- Whether canonical paths vary across user populations or contexts\n- Causal interventions beyond the proposed mid-trajectory monitoring restart approach",
+              "durationMs": 6580,
+              "url": "https://arxiv.org/abs/2602.19008"
+            },
+            "sourceToolAssistantUUID": "b948f688-3a0a-4913-b91c-2f5efd2742d7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-19T08:10:46.039Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent - now I have a comprehensive understanding of the landscape. Let me now synthesize the 5 research directions.\n\nLet me also do one final search to confirm the novelty of the key idea about mechanistic analysis of the text-tool safety gap.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "959d3397-09b0-4ebf-88e7-ea08da857992",
+            "isSidechain": false,
+            "requestId": "req_011CbBb6qxSYSPkpWRSHDWpU",
+            "type": "assistant",
+            "uuid": "52089de6-d16e-4663-9065-3ecbeb614c6d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BnTcGLXXzv3Pu2vVXEXSs6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 70414,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 583,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 70414,
+                    "cache_creation_input_tokens": 583,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 583
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-19T08:10:46.771Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FS887txJ3HqVwdgpHCpDue",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org \"refusal\" representation activation \"tool\" OR \"function\" OR \"structured output\" pathway divergence internal state 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52089de6-d16e-4663-9065-3ecbeb614c6d",
+            "isSidechain": false,
+            "requestId": "req_011CbBb6qxSYSPkpWRSHDWpU",
+            "type": "assistant",
+            "uuid": "b30fed56-f7cc-4d15-9f13-1078a875e20f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BnTcGLXXzv3Pu2vVXEXSs6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 70414,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 583,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 70414,
+                    "cache_creation_input_tokens": 583,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 583
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-19T08:10:56.233Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FS887txJ3HqVwdgpHCpDue",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org \"refusal\" representation activation \"tool\" OR \"function\" OR \"structured output\" pathway divergence internal state 2026\"\n\nLinks: [{\"title\":\"Universal Refusal Circuits Across LLMs:\",\"url\":\"https://arxiv.org/pdf/2601.16034\"},{\"title\":\"Just Enough Shifts: Mitigating Over-Refusal in Aligned Language Models with Targeted Representation Fine-Tuning\",\"url\":\"https://arxiv.org/pdf/2507.04250\"},{\"title\":\"Steering to Say No: Configurable Refusal via Activation Steering in Vision Language Models\",\"url\":\"https://arxiv.org/pdf/2602.07013\"},{\"title\":\"The Geometry of Refusal in Large Language Models: Concept Cones and Representational Independence\",\"url\":\"https://arxiv.org/pdf/2502.17420\"},{\"title\":\"Over-Refusal and Representation Subspaces: A Mechanistic Analysis of Task-Conditioned Refusal in Aligned LLMs\",\"url\":\"https://arxiv.org/pdf/2603.27518\"},{\"title\":\"[2502.17420] The Geometry of Refusal in Large Language Models: Concept Cones and Representational Independence\",\"url\":\"https://arxiv.org/abs/2502.17420\"},{\"title\":\"What Drives Representation Steering? A Mechanistic Case Study on Steering Refusal\",\"url\":\"https://arxiv.org/pdf/2604.08524\"}]\n\nI've completed the web search for your query on arxiv.org. Here are the results I found:\n\nThe search returned 7 relevant papers from 2026 focusing on refusal representation and activation steering in language models:\n\n1. **Universal Refusal Circuits Across LLMs** (January 23, 2026) - Explores whether refusal circuits extracted from a donor model can be transferred to a target model with different architecture and training recipe.\n\n2. **Just Enough Shifts: Mitigating Over-Refusal in Aligned Language Models with Targeted Representation Fine-Tuning** - Introduces ACTOR, a training framework designed to minimize over-refusals in language models by leveraging internal activation patterns from diverse query types to identify components that trigger the refusal mechanism.\n\n3. **Steering to Say No: Configurable Refusal via Activation Steering in Vision Language Models** (February 2026) - Focuses on activation steering to manipulate hidden states for controlling model behaviors, demonstrating feasibility of inducing refusal behaviors in a configurable manner.\n\n4. **The Geometry of Refusal in Large Language Models: Concept Cones and Representational Independence** (February 8, 2026) - Uncovers multiple independent directions and multi-dimensional concept cones that mediate refusal, showing that orthogonality alone does not imply independence under intervention.\n\n5. **Over-Refusal and Representation Subspaces: A Mechanistic Analysis of Task-Conditioned Refusal in Aligned LLMs** - Shows that over-refusal directions diverge across tasks with no shared refusal zone, and hypothesizes that over-refusal spans a higher-dimensional subspace with task-dependent directions.\n\n6. **What Drives Representation Steering? A Mechanistic Case Study on Steering Refusal** - Proposes a multi-token activation patching framework discovering that different steering methodologies leverage functionally interchangeable circuits with over 90% overlap.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b30fed56-f7cc-4d15-9f13-1078a875e20f",
+            "isSidechain": false,
+            "promptId": "fc6b92e3-ffeb-44aa-9c62-613abd6f3f9b",
+            "type": "user",
+            "uuid": "d3679dd4-7e68-4811-9283-886a826c02ad",
+            "toolUseResult": {
+              "query": "site:arxiv.org \"refusal\" representation activation \"tool\" OR \"function\" OR \"structured output\" pathway divergence internal state 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_011bNHhhydwojPs9QR9JyUTu",
+                  "content": [
+                    {
+                      "title": "Universal Refusal Circuits Across LLMs:",
+                      "url": "https://arxiv.org/pdf/2601.16034"
+                    },
+                    {
+                      "title": "Just Enough Shifts: Mitigating Over-Refusal in Aligned Language Models with Targeted Representation Fine-Tuning",
+                      "url": "https://arxiv.org/pdf/2507.04250"
+                    },
+                    {
+                      "title": "Steering to Say No: Configurable Refusal via Activation Steering in Vision Language Models",
+                      "url": "https://arxiv.org/pdf/2602.07013"
+                    },
+                    {
+                      "title": "The Geometry of Refusal in Large Language Models: Concept Cones and Representational Independence",
+                      "url": "https://arxiv.org/pdf/2502.17420"
+                    },
+                    {
+                      "title": "Over-Refusal and Representation Subspaces: A Mechanistic Analysis of Task-Conditioned Refusal in Aligned LLMs",
+                      "url": "https://arxiv.org/pdf/2603.27518"
+                    },
+                    {
+                      "title": "[2502.17420] The Geometry of Refusal in Large Language Models: Concept Cones and Representational Independence",
+                      "url": "https://arxiv.org/abs/2502.17420"
+                    },
+                    {
+                      "title": "What Drives Representation Steering? A Mechanistic Case Study on Steering Refusal",
+                      "url": "https://arxiv.org/pdf/2604.08524"
+                    }
+                  ]
+                },
+                "I've completed the web search for your query on arxiv.org. Here are the results I found:\n\nThe search returned 7 relevant papers from 2026 focusing on refusal representation and activation steering in language models:\n\n1. **Universal Refusal Circuits Across LLMs** (January 23, 2026) - Explores whether refusal circuits extracted from a donor model can be transferred to a target model with different architecture and training recipe.\n\n2. **Just Enough Shifts: Mitigating Over-Refusal in Aligned Language Models with Targeted Representation Fine-Tuning** - Introduces ACTOR, a training framework designed to minimize over-refusals in language models by leveraging internal activation patterns from diverse query types to identify components that trigger the refusal mechanism.\n\n3. **Steering to Say No: Configurable Refusal via Activation Steering in Vision Language Models** (February 2026) - Focuses on activation steering to manipulate hidden states for controlling model behaviors, demonstrating feasibility of inducing refusal behaviors in a configurable manner.\n\n4. **The Geometry of Refusal in Large Language Models: Concept Cones and Representational Independence** (February 8, 2026) - Uncovers multiple independent directions and multi-dimensional concept cones that mediate refusal, showing that orthogonality alone does not imply independence under intervention.\n\n5. **Over-Refusal and Representation Subspaces: A Mechanistic Analysis of Task-Conditioned Refusal in Aligned LLMs** - Shows that over-refusal directions diverge across tasks with no shared refusal zone, and hypothesizes that over-refusal spans a higher-dimensional subspace with task-dependent directions.\n\n6. **What Drives Representation Steering? A Mechanistic Case Study on Steering Refusal** - Proposes a multi-token activation patching framework discovering that different steering methodologies leverage functionally interchangeable circuits with over 90% overlap."
+              ],
+              "durationSeconds": 9.45573086999997,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "b30fed56-f7cc-4d15-9f13-1078a875e20f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-19T08:12:30.063Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This confirms my assessment. There is extensive work on refusal representations/circuits for TEXT generation, but NONE of these papers study how these circuits operate (or fail to operate) specifically during TOOL-CALL generation. This is a clear, well-defined gap.\n\nNow let me finalize my 5 research ideas. Let me think critically about each:\n\n### Idea 1: Mechanistic Analysis of Why Safety Doesn't Transfer from Text to Tool Calls\n\n**Core question**: Do refusal circuits activate during tool-call token generation? If they weaken or become bypassed, why?\n\n\n**Evidence**: I have strong empirical grounding here—Mind the GAP documents 219 cases across 6 models where text refuses but tool calls execute, while recent work has mapped out the mechanistic basis of refusal in text generation through directional representations and concept cones. There's also evidence that tool necessity is linearly decodable with high confidence, and some work probing tool use internally, though none of it examines the safety angle. I'm building on a foundation where we understand refusal mechanisms in text but have a blind spot for how they behave during tool generation.\n\n**The core gap**: No one has actually traced refusal circuits through to tool-call execution—this is genuinely unexplored territory.\n\n**Novelty check**: This is novel with no exact precedents, though a few adjacent papers exist.\n\n**Addressing the skeptic**: This isn't just applying old techniques to a new domain. The real insight is that if refusal directions stay dormant during tool calls, it reveals something fundamental—that safety alignment and tool-use capabilities live in separate representational spaces. That has serious implications for how we should train agents. The geometric alignment tax theory suggests these tradeoffs depend on the principal angles between subspaces, and this work would be the first to empirically measure those angles in an agentic context.\n\n**Venue fit**: This aligns well with EMNLP's focus on interpretability and mechanistic understanding.\n\nNow looking at a second direction: understanding why agents fail to recover after a guardrail blocks an unsafe action, and how to train them to bounce back. The evidence shows a stark recovery problem—blocking unsafe actions tanks task success rates dramatically, and safety training often cripples agent capabilities overall. But there's promising work on predictive guardrails with replanning that maintains both safety and utility, and on act-refuse loops that reduce harmful behavior significantly.\n\nThe gap I'm seeing is that while SafePred tackles recovery through prediction and prevention, the core problem of what happens *after* an intervention—when an action gets blocked and the agent needs to find a safe alternative path—hasn't been systematically studied with a dedicated benchmark and training approach. SafePred shows utility improvements but doesn't focus on the recovery mechanism itself, and the Verifier Tax data makes clear the gap is still enormous.\n\nNow looking at the EMNLP fit: this work aligns well with the conference since the benchmark design and evaluation framework directly address how language models process and adapt when they encounter constraint violations in sequential decision-making contexts.\n\nFor the third idea, I'm examining compositional safety risks in tool chains—specifically, how to detect when a sequence of individually safe tool calls produces an emergent unsafe outcome at runtime. The evidence shows safety doesn't compose at the component level, with real trajectories exhibiting complex conjunctive dependencies, and there's existing work on semantic taint tracking, causal chain vulnerabilities, and compositional benchmarks that all point to this being a real problem space.\n\nThe key gap I'm identifying is that while formal frameworks prove this is tractable, there's no practical runtime detection method that combines formal guarantees with NLP-based semantic analysis—existing approaches are either offline or domain-specific. My angle would be focusing on the NLP challenge of semantic composition: how natural language tool descriptions and context combine to create emergent risks invisible in individual descriptions. Against the skeptic's claim that NeuroTaint already solves this, the distinction is that NeuroTaint operates post-hoc offline and tracks data flow, whereas we'd need online detection capable of intervening before unsafe compositions complete.\n\nThe semantic analysis of tool descriptions is moderately relevant to EMNLP, though the formal methods component less so. Now I'm considering a different angle around safety drift dynamics—examining the causal mechanisms that degrade safety over extended agent interactions, with evidence showing measurable increases in unsafe behavior across multi-turn interactions, attention patterns that create imitation bias, and how deviations from canonical paths compound subsequent unsafe behavior.\n\nThe key gap is that while multiple papers document individual failure modes—conversational inertia, semantic drift, path deviation, long-context degradation—nobody's unified these into a coherent causal model. The novelty here isn't surveying these phenomena but formalizing the causal graph connecting them and testing whether interventions on one mechanism affect the others.\n\nNow I'm narrowing down to the strongest ideas. The fifth one focuses on detecting ambiguities in natural language policy specifications that could lead to unsafe agent behavior, drawing on evidence that existing policy frameworks leave significant gaps unfilled and struggle with inherent ambiguities in how policies are expressed.\n\nLooking at the novelty and fit, this angle is particularly strong for EMNLP since it sits at the intersection of pragmatics, semantic parsing, and specification grounding—core NLP problems with direct safety implications. No prior work has specifically examined which types of linguistic ambiguity cause safety violations in agents.\n\nLet me rank these five ideas to see which ones are most promising.\n\nI'm reconsidering the fifth option against another direction around the autonomy-capability tradeoff—the problem of training agents that maintain safety without sacrificing performance. The Autonomy Tax paper demonstrates the core issue, and while the Geometry of Alignment Tax provides some theoretical grounding for chat models, there's a gap for agent-specific settings.\n\nThe real opportunity is analyzing how safety training's shortcut learning shows up in the linguistic patterns and tool-calling behaviors of agents. The Autonomy Tax identified three failure modes but didn't explain the underlying language mechanisms driving them. Though this leans more toward ML training than pure NLP, the angle for EMNLP would be mechanistic—understanding the linguistic manifestations of these safety-capability tradeoffs.\n\nI think I'll stick with my original five directions and make sure each is properly grounded. Let me lock in the first couple: mechanistic analysis of why safety representations don't transfer between tool-use and text generation, and safety recovery mechanisms in multi-step agent settings.\n\nActually, looking at the landscape more carefully, compositional tool-chain safety already has significant coverage—there are multiple papers and benchmarks like MOSAIC-Bench addressing this. The novelty would have to be in a very specific detection method, and that space is getting crowded. I should replace that one with something fresher.\n\nThe asymmetry idea is compelling—there's this consistent pattern where models demonstrate high risk knowledge but fail to act on it across three independent research threads. The mechanistic question of whether this is a comprehension-versus-generation gap is interesting, but I'm realizing this overlaps heavily with my first idea about analyzing the text-to-tool gap mechanistically. I should consolidate rather than duplicate.\n\nThe denial-feedback leakage attack is novel, but it's really just one paper's specific contribution rather than a broader research direction. Cross-session memory poisoning has more active work happening, though the defense side feels underdeveloped and it's not particularly NLP-focused. For EMNLP specifically, I need to focus on ideas that have strong linguistic or NLP foundations.\n\nFiltering through that lens, the mechanistic analysis of the text-tool safety gap and safety-critical policy ambiguity detection are the strongest candidates since they directly engage with language understanding and representation analysis. The knowledge-action gap overlaps significantly with the mechanistic analysis angle, so I should consolidate those and pick the five most distinct directions that actually leverage NLP expertise.\n\nLooking at these five proposals, they're much more differentiated now. The key insight for the last one is that while the Autonomy Tax paper identifies the phenomenon, it doesn't dig into the actual linguistic mechanisms driving it—what specific patterns or trigger words the safety training latches onto. That's the unexplored angle.\n\nLet me lock these in and move forward.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3679dd4-7e68-4811-9283-886a826c02ad",
+            "isSidechain": false,
+            "requestId": "req_011CbBb7rzimygj3SsA7jQ8z",
+            "type": "assistant",
+            "uuid": "3e12ef47-82bd-4a5b-a5c4-a8d81fc7843b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014L6ESLSjKgchUFR5uj3UTz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1574,
+                "cache_read_input_tokens": 70414,
+                "output_tokens": 3799,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1574,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3799,
+                    "cache_read_input_tokens": 70414,
+                    "cache_creation_input_tokens": 1574,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1574
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              }
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-19T08:12:30.067Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Df1cgqzNaJ7u8w28ANCXZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org \"autonomy tax\" OR \"safety training breaks\" OR \"shortcut learning\" agent linguistic pattern overfit defense 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e12ef47-82bd-4a5b-a5c4-a8d81fc7843b",
+            "isSidechain": false,
+            "requestId": "req_011CbBb7rzimygj3SsA7jQ8z",
+            "type": "assistant",
+            "uuid": "6efcab43-b7ce-48ee-a1f0-8024507073b1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014L6ESLSjKgchUFR5uj3UTz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1574,
+                "cache_read_input_tokens": 70414,
+                "output_tokens": 3799,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1574,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3799,
+                    "cache_read_input_tokens": 70414,
+                    "cache_creation_input_tokens": 1574,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1574
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              }
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-19 (UTC).** Use this when reasoni…",
+                "leafUuid": "6efcab43-b7ce-48ee-a1f0-8024507073b1",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267"
+              }
+            }
+          ],
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate agent safety research directions from literature",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267"
+              }
+            }
+          ],
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-19T08:12:37.051Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Df1cgqzNaJ7u8w28ANCXZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org \"autonomy tax\" OR \"safety training breaks\" OR \"shortcut learning\" agent linguistic pattern overfit defense 2026\"\n\nLinks: [{\"title\":\"[2603.19423] The Autonomy Tax: Defense Training Breaks LLM Agents\",\"url\":\"https://arxiv.org/abs/2603.19423\"},{\"title\":\"The Autonomy Tax: Defense Training Breaks LLM Agents\",\"url\":\"https://arxiv.org/pdf/2603.19423\"},{\"title\":\"The Autonomy Tax: Defense Training Breaks LLM Agents\",\"url\":\"https://arxiv.org/html/2603.19423v1\"},{\"title\":\"Agent Safety Alignment via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2507.08270v1\"},{\"title\":\"ALRPHFS: Adversarially Learned Risk Patterns with Hierarchical Fast \\\\& Slow Reasoning for Robust Agent Defense\",\"url\":\"https://arxiv.org/pdf/2505.19260\"}]\n\nI found a highly relevant research paper from arXiv that matches your search criteria. Here are the key results:\n\n## Primary Match: \"The Autonomy Tax: Defense Training Breaks LLM Agents\"\n\nThis paper by Shawn Li and Yue Zhao from the University of Southern California examines how large language model agents rely on external tools to complete complex multi-step tasks.\n\n**Key Findings:**\n\nThe research reveals a fundamental capability-alignment paradox where defense training designed to improve safety systematically destroys agent competence while failing to prevent sophisticated attacks.\n\nEvaluating defended models across 97 agent tasks and 1,000 adversarial prompts, the authors identify three systematic biases: agent incompetence bias (immediate tool execution breakdown), cascade amplification bias (early failures propagating through retry loops causing timeouts on 99% of tasks versus 13% for baselines), and trigger bias (defended models performing worse than undefended baselines).\n\n**Root Cause - Shortcut Learning:**\n\nThe root cause analysis reveals these biases stem from shortcut learning where models overfit to surface attack patterns rather than semantic threat understanding, evidenced by extreme variance in defense effectiveness across attack categories.\n\nThe paper was published on arXiv on March 19, 2026, and directly addresses the themes you searched for: autonomy tax, safety training breaks, shortcut learning, agent performance, and defense mechanisms.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6efcab43-b7ce-48ee-a1f0-8024507073b1",
+            "isSidechain": false,
+            "promptId": "fc6b92e3-ffeb-44aa-9c62-613abd6f3f9b",
+            "type": "user",
+            "uuid": "c5a49427-aea8-4e97-a905-69ca167a45b5",
+            "toolUseResult": {
+              "query": "site:arxiv.org \"autonomy tax\" OR \"safety training breaks\" OR \"shortcut learning\" agent linguistic pattern overfit defense 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01PAcUSP4zWbfhFyt3gGgCQQ",
+                  "content": [
+                    {
+                      "title": "[2603.19423] The Autonomy Tax: Defense Training Breaks LLM Agents",
+                      "url": "https://arxiv.org/abs/2603.19423"
+                    },
+                    {
+                      "title": "The Autonomy Tax: Defense Training Breaks LLM Agents",
+                      "url": "https://arxiv.org/pdf/2603.19423"
+                    },
+                    {
+                      "title": "The Autonomy Tax: Defense Training Breaks LLM Agents",
+                      "url": "https://arxiv.org/html/2603.19423v1"
+                    },
+                    {
+                      "title": "Agent Safety Alignment via Reinforcement Learning",
+                      "url": "https://arxiv.org/html/2507.08270v1"
+                    },
+                    {
+                      "title": "ALRPHFS: Adversarially Learned Risk Patterns with Hierarchical Fast \\& Slow Reasoning for Robust Agent Defense",
+                      "url": "https://arxiv.org/pdf/2505.19260"
+                    }
+                  ]
+                },
+                "I found a highly relevant research paper from arXiv that matches your search criteria. Here are the key results:\n\n## Primary Match: \"The Autonomy Tax: Defense Training Breaks LLM Agents\"\n\nThis paper by Shawn Li and Yue Zhao from the University of Southern California examines how large language model agents rely on external tools to complete complex multi-step tasks.\n\n**Key Findings:**\n\nThe research reveals a fundamental capability-alignment paradox where defense training designed to improve safety systematically destroys agent competence while failing to prevent sophisticated attacks.\n\nEvaluating defended models across 97 agent tasks and 1,000 adversarial prompts, the authors identify three systematic biases: agent incompetence bias (immediate tool execution breakdown), cascade amplification bias (early failures propagating through retry loops causing timeouts on 99% of tasks versus 13% for baselines), and trigger bias (defended models performing worse than undefended baselines).\n\n**Root Cause - Shortcut Learning:**\n\nThe root cause analysis reveals these biases stem from shortcut learning where models overfit to surface attack patterns rather than semantic threat understanding, evidenced by extreme variance in defense effectiveness across attack categories.\n\nThe paper was published on arXiv on March 19, 2026, and directly addresses the themes you searched for: autonomy tax, safety training breaks, shortcut learning, agent performance, and defense mechanisms."
+              ],
+              "durationSeconds": 6.975617628999986,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "6efcab43-b7ce-48ee-a1f0-8024507073b1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-19T08:12:40.220Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013RMGzwFi85As4bRanQDcV2",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org \"shortcut learning\" safety alignment \"surface pattern\" linguistic features defense training analysis 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5a49427-aea8-4e97-a905-69ca167a45b5",
+            "isSidechain": false,
+            "requestId": "req_011CbBbFJ633zej9D2jaL4Wq",
+            "type": "assistant",
+            "uuid": "eda27cd2-62bf-44c7-983c-09cd3ff22b73",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XemxFqMC393noXHD3KsgXL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4376,
+                "cache_read_input_tokens": 71988,
+                "output_tokens": 79,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4376,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 79,
+                    "cache_read_input_tokens": 71988,
+                    "cache_creation_input_tokens": 4376,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4376
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-19T08:12:50.468Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013RMGzwFi85As4bRanQDcV2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org \"shortcut learning\" safety alignment \"surface pattern\" linguistic features defense training analysis 2025 2026\"\n\nLinks: [{\"title\":\"Defenses Against Prompt Attacks Learn Surface Heuristics\",\"url\":\"https://arxiv.org/pdf/2601.07185\"},{\"title\":\"Rethinking Deep Alignment Through The Lens Of Incomplete Learning\",\"url\":\"https://arxiv.org/pdf/2511.12155\"},{\"title\":\"Probing the Robustness of Large Language Models Safety to Latent Perturbations\",\"url\":\"https://arxiv.org/pdf/2506.16078\"},{\"title\":\"[2505.18588] Safety Alignment via Constrained Knowledge Unlearning\",\"url\":\"https://arxiv.org/abs/2505.18588\"},{\"title\":\"Mitigating Shortcut Reasoning in Language Models: A Gradient-Aware Training Approach\",\"url\":\"https://arxiv.org/pdf/2603.20899\"},{\"title\":\"Say It Differently: Linguistic Styles as Jailbreak Vectors\",\"url\":\"https://arxiv.org/pdf/2511.10519\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2601.22737v1\"},{\"title\":\"The Hidden Dimensions of LLM Alignment: A Multi-Dimensional Analysis of Orthogonal Safety Directions\",\"url\":\"https://arxiv.org/pdf/2502.09674\"}]\n\nI've performed the web search on arxiv.org for papers on shortcut learning, safety alignment, surface patterns, and linguistic features with recent defense training analysis. Here are the most relevant results:\n\n## Key Findings\n\n**1. Defenses Against Prompt Attacks Learn Surface Heuristics (2601.07185)**\n\nThis paper finds that defense methods achieve high attack rejection rates but rely on narrow correlations in defense data rather than harmful intent, analyzing three recurring shortcut behaviors induced by defense fine-tuning. The research identifies position bias where benign content placed later in prompts is rejected at much higher rates, and token trigger bias where strings common in attack data raise rejection probability even in benign contexts.\n\n**2. Rethinking Deep Alignment Through The Lens Of Incomplete Learning (2511.12155)**\n\nThis work identifies that safety alignment concentrates primarily in early token positions while later positions show minimal distributional changes from base models, termed \"shallow alignment.\" The paper demonstrates 48-98% reductions in attack success rates while preserving general capabilities.\n\n**3. Probing the Robustness of Large Language Models Safety to Latent Perturbations (2506.16078)**\n\nThe findings reveal fundamental flaws in current alignment paradigms and call for representation-level training strategies that move beyond surface-level behavior supervision.\n\n**4. Mitigating Shortcut Reasoning in Language Models (2603.20899)**\n\nThis paper addresses how LLMs frequently exploit reasoning shortcuts—surface pattern matching, answer memorization, and keyword-answer correlations—rather than performing genuine logical inference.\n\n**5. Say It Differently: Linguistic Styles as Jailbreak Vectors (2511.10519)**\n\nThis work suggests that tone operationalized as politeness, fear, curiosity, or compassion systematically shifts perceived intent, and evaluations of defenses should account for persona and narrative pressures that subtly degrade safety.\n\nThese papers collectively demonstrate that current defense mechanisms often learn surface heuristics and shallow patterns rather than robust safety alignment.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eda27cd2-62bf-44c7-983c-09cd3ff22b73",
+            "isSidechain": false,
+            "promptId": "fc6b92e3-ffeb-44aa-9c62-613abd6f3f9b",
+            "type": "user",
+            "uuid": "0784f8c2-bb30-4013-8893-999eafb5b4e0",
+            "toolUseResult": {
+              "query": "site:arxiv.org \"shortcut learning\" safety alignment \"surface pattern\" linguistic features defense training analysis 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01PpnbGk3UTfKeyYGXudpq7b",
+                  "content": [
+                    {
+                      "title": "Defenses Against Prompt Attacks Learn Surface Heuristics",
+                      "url": "https://arxiv.org/pdf/2601.07185"
+                    },
+                    {
+                      "title": "Rethinking Deep Alignment Through The Lens Of Incomplete Learning",
+                      "url": "https://arxiv.org/pdf/2511.12155"
+                    },
+                    {
+                      "title": "Probing the Robustness of Large Language Models Safety to Latent Perturbations",
+                      "url": "https://arxiv.org/pdf/2506.16078"
+                    },
+                    {
+                      "title": "[2505.18588] Safety Alignment via Constrained Knowledge Unlearning",
+                      "url": "https://arxiv.org/abs/2505.18588"
+                    },
+                    {
+                      "title": "Mitigating Shortcut Reasoning in Language Models: A Gradient-Aware Training Approach",
+                      "url": "https://arxiv.org/pdf/2603.20899"
+                    },
+                    {
+                      "title": "Say It Differently: Linguistic Styles as Jailbreak Vectors",
+                      "url": "https://arxiv.org/pdf/2511.10519"
+                    },
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2601.22737v1"
+                    },
+                    {
+                      "title": "The Hidden Dimensions of LLM Alignment: A Multi-Dimensional Analysis of Orthogonal Safety Directions",
+                      "url": "https://arxiv.org/pdf/2502.09674"
+                    }
+                  ]
+                },
+                "I've performed the web search on arxiv.org for papers on shortcut learning, safety alignment, surface patterns, and linguistic features with recent defense training analysis. Here are the most relevant results:\n\n## Key Findings\n\n**1. Defenses Against Prompt Attacks Learn Surface Heuristics (2601.07185)**\n\nThis paper finds that defense methods achieve high attack rejection rates but rely on narrow correlations in defense data rather than harmful intent, analyzing three recurring shortcut behaviors induced by defense fine-tuning. The research identifies position bias where benign content placed later in prompts is rejected at much higher rates, and token trigger bias where strings common in attack data raise rejection probability even in benign contexts.\n\n**2. Rethinking Deep Alignment Through The Lens Of Incomplete Learning (2511.12155)**\n\nThis work identifies that safety alignment concentrates primarily in early token positions while later positions show minimal distributional changes from base models, termed \"shallow alignment.\" The paper demonstrates 48-98% reductions in attack success rates while preserving general capabilities.\n\n**3. Probing the Robustness of Large Language Models Safety to Latent Perturbations (2506.16078)**\n\nThe findings reveal fundamental flaws in current alignment paradigms and call for representation-level training strategies that move beyond surface-level behavior supervision.\n\n**4. Mitigating Shortcut Reasoning in Language Models (2603.20899)**\n\nThis paper addresses how LLMs frequently exploit reasoning shortcuts—surface pattern matching, answer memorization, and keyword-answer correlations—rather than performing genuine logical inference.\n\n**5. Say It Differently: Linguistic Styles as Jailbreak Vectors (2511.10519)**\n\nThis work suggests that tone operationalized as politeness, fear, curiosity, or compassion systematically shifts perceived intent, and evaluations of defenses should account for persona and narrative pressures that subtly degrade safety.\n\nThese papers collectively demonstrate that current defense mechanisms often learn surface heuristics and shallow patterns rather than robust safety alignment."
+              ],
+              "durationSeconds": 10.24473601699993,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "eda27cd2-62bf-44c7-983c-09cd3ff22b73",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-19T08:13:51.899Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The paper \"Defenses Against Prompt Attacks Learn Surface Heuristics\" (2601.07185) is very close to my Idea 5 - it identifies surface heuristics in prompt injection defenses specifically (position bias, token trigger bias). But it focuses on prompt injection defenses, not on broader agent safety training.\n\nThe Autonomy Tax paper identifies shortcut learning as the root cause but doesn't analyze the specific linguistic shortcuts. \"Defenses Against Prompt Attacks Learn Surface Heuristics\" does analyze shortcuts but only for prompt injection defenses, not for general agent safety training.\n\nThe gap remains: HOW does safety training create shortcut learning specifically in the AGENTIC SETTING (multi-step tool use)? What are the specific linguistic/structural patterns that agents overfit to, and how does this differ from single-turn defenses?\n\n\nI'm reconsidering whether this angle is distinct enough from existing work, or if I should pivot toward exploring how conversational patterns erode safety boundaries in multi-turn agent interactions instead. to safety degradation. Looking at the existing literature—Agent Drift quantifies behavioral decay, Unsafer in Many Turns proposes ToolShield, and State-Dependent Safety Failures describes multi-turn jailbreaks—none of them isolate conversational inertia as the underlying mechanism. So this connection is genuinely novel, though it's more about linking two established phenomena than introducing something entirely new. Let me finalize my top five ideas, starting with the mechanistic angle on refusal circuits and tool-calling safety gaps.\n\nActually, I'm second-guessing option five on compositional safety verification. The field already has solid coverage here with Safety is Non-Compositional, NeuroTaint, and MOSAIC-Bench, so I need to reconsider which ideas have the strongest combination of clear gaps, novelty, NLP relevance, feasibility, and real impact. Cross-session memory poisoning defenses seem attack-focused without enough defensive grounding, and agent generalization to unseen tools feels underdeveloped, while the autonomy tax linguistic analysis risks overlapping with existing work on surface heuristics.\n\nOption D about safety generalization to out-of-distribution tools is worth exploring more—there's some existing work like SafeGen-LLM and ToolShield, but no systematic empirical study showing how safety alignment fails when agents encounter tool types they weren't trained on, which is a real problem in enterprise deployments where tools constantly change. Though honestly, this might be too narrow for what I'm looking for.\n\nLet me pivot to a different fifth option entirely.\n\n**The Knowledge-Behavior Gap in Agent Safety: From Understanding Risks to Acting Safely**\n\nThis ties together three separate findings: agents know risks abstractly but fail to act on them, text-based safety doesn't transfer to tool-call safety, and models understand when tools are needed but don't use them. The core insight is that models have the right internal representations but fail to translate them into correct actions—which is distinct from mechanistic interpretability work and instead focuses on training and inference interventions to close that gap. I'd build a unified benchmark measuring this gap across safety dimensions, from risk knowledge through identification to actual avoidance.\n\nNow I'm realizing this overlaps with the mechanistic analysis idea. I should separate them clearly: one explains *why* the gap exists through circuit analysis, the other focuses on *how* to fix it through interventions. Actually, that distinction feels forced. Let me step back and just commit to five distinct ideas instead: mechanistic analysis of why safety doesn't transfer between modalities, detecting dangerous ambiguities in agent policies, and teaching agents to recover gracefully after guardrail interventions.\n\nThe fourth idea explores how conversational patterns erode safety over multiple turns, while the fifth tackles the gap between what models know about risks and how they actually behave. I'm tempted to merge the first and fifth since they're closely related—one diagnoses the representational problem, the other prescribes a solution using probing and intervention. But they're different enough: one is diagnostic, one is prescriptive. Though for a venue like EMNLP, combining them into a single stronger contribution might be better, which would free up space for a different angle entirely. The EU AI Act compliance perspective could be interesting—looking at how these safety mechanisms align with regulatory requirements. For #5, I'm focusing on the Autonomy Tax's insight about shortcut learning creating three specific biases, and combining three underexplored elements: training data designed to avoid surface heuristics based on mechanistic analysis, safety checking that evaluates the full agentic context rather than isolated turns, and a training approach that preserves agent capability while maintaining safety.\n\nActually, this is getting unwieldy. Let me refocus on five cleaner angles: first, using mechanistic interpretability to understand why safety mechanisms that work for text generation fail when agents generate tool calls; second, building an NLU task to identify which policy ambiguities in natural language agent instructions actually lead to unsafe behavior in practice.\n\nThen there's the recovery problem—most research focuses on blocking unsafe requests, but there's almost no work on helping agents successfully complete tasks after a guardrail intervention. Fourth, I'm noticing conversational inertia from NLP might explain multi-turn safety degradation in agents, which several papers hint at but no one's unified. Finally, there's this massive gap where agents seem to know what's risky internally but don't act on it—I could use representation steering to close that knowledge-behavior gap.\n\nLet me make sure #1 and #5 aren't redundant. #1 is really about understanding where refusal mechanisms break down in tool-use scenarios, while #5 is about fixing the gap between what agents know and what they do. They're distinct enough to work independently. These five directions feel solid, so I'll structure them into the JSON output now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0784f8c2-bb30-4013-8893-999eafb5b4e0",
+            "isSidechain": false,
+            "requestId": "req_011CbBbGHTN9eC1tLz6cThrN",
+            "type": "assistant",
+            "uuid": "ef014713-5827-496e-ae11-3579a8851c1c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B46csVzs5mqVj2whEDdSHb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 904,
+                "cache_read_input_tokens": 76364,
+                "output_tokens": 2853,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 904,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2853,
+                    "cache_read_input_tokens": 76364,
+                    "cache_creation_input_tokens": 904,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 904
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-19T08:13:51.901Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a comprehensive picture. Let me do one final set of targeted searches to validate the specific novelty claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef014713-5827-496e-ae11-3579a8851c1c",
+            "isSidechain": false,
+            "requestId": "req_011CbBbGHTN9eC1tLz6cThrN",
+            "type": "assistant",
+            "uuid": "268a0ca1-8793-42b2-8854-e63627f108fa",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B46csVzs5mqVj2whEDdSHb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 904,
+                "cache_read_input_tokens": 76364,
+                "output_tokens": 2853,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 904,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2853,
+                    "cache_read_input_tokens": 76364,
+                    "cache_creation_input_tokens": 904,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 904
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-19T08:13:51.904Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ST722pvteQsuSLVgYFttYe",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org \"activation steering\" OR \"representation intervention\" agent safety tool call risk avoidance probing 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "268a0ca1-8793-42b2-8854-e63627f108fa",
+            "isSidechain": false,
+            "requestId": "req_011CbBbGHTN9eC1tLz6cThrN",
+            "type": "assistant",
+            "uuid": "c8f9a80f-0896-4782-835f-1bce7dfa2ee4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B46csVzs5mqVj2whEDdSHb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 904,
+                "cache_read_input_tokens": 76364,
+                "output_tokens": 2853,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 904,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2853,
+                    "cache_read_input_tokens": 76364,
+                    "cache_creation_input_tokens": 904,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 904
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-19 (UTC).** Use this when reasoni…",
+                "leafUuid": "c8f9a80f-0896-4782-835f-1bce7dfa2ee4",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267"
+              }
+            }
+          ],
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate agent safety research directions from literature",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267"
+              }
+            }
+          ],
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-19T08:14:00.137Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ST722pvteQsuSLVgYFttYe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org \"activation steering\" OR \"representation intervention\" agent safety tool call risk avoidance probing 2026\"\n\nLinks: [{\"title\":\"ASA: Activation Steering for Tool-Calling Domain Adaptation\",\"url\":\"https://arxiv.org/html/2602.04935v1\"},{\"title\":\"ASA: Training-Free Representation Engineering for Tool-Calling Agents\",\"url\":\"https://arxiv.org/pdf/2602.04935\"},{\"title\":\"Activation Steering in 2026: A Practitioner's Field Guide | Subhadip Mitra\",\"url\":\"https://subhadipmitra.com/blog/2026/activation-steering-field-guide/\"},{\"title\":\"Steering Externalities: Benign Activation Steering Unintentionally Increases Jailbreak Risk for Large Language Models\",\"url\":\"https://arxiv.org/pdf/2602.04896\"},{\"title\":\"ACTIVATION STEERING COMPROMISES LLM SAFETY\",\"url\":\"https://openreview.net/pdf/987905e26b89ce6e307dcc12de3528b26106f97f.pdf\"},{\"title\":\"Probing the Robustness of Large Language Models Safety to Latent Perturbations\",\"url\":\"https://arxiv.org/html/2506.16078\"}]\n\nI found several highly relevant papers from arxiv.org in 2026 related to your query. Here are the key results:\n\n## Primary Results:\n\n**1. ASA: Activation Steering for Tool-Calling Domain Adaptation (Feb 2026)**\nThe paper proposes Activation Steering Adapter (ASA), a training-free, inference-time controller that performs a single-shot mid-layer intervention and targets tool domains via a router-conditioned mixture of steering vectors with a probe-guided signed gate to amplify true intent while suppressing spurious triggers. \n\nThe research uncovers what they term the 'Lazy Agent failure mode': linear probes on mid-layer activations can predict tool necessity with near-perfect accuracy (> 99% AUC), yet the model's overt generation fails to trigger tools in over 80 percent of these cases, revealing a persistent representation-behavior gap.\n\n**2. Steering Externalities: Benign Activation Steering Unintentionally Increases Jailbreak Risk (Feb 2026)**\nThis paper reveals that activation steering interventions act as a force multiplier, creating new vulnerabilities to jailbreaks and increasing attack success rates to over 80% on standard benchmarks, exposing a critical blind spot in deployment where benign activation steering systematically erodes the \"safety margin.\"\n\n**3. Activation Steering Compromises LLM Safety**\nThe work investigates the safety vulnerabilities of activation steering by measuring how it affects refusal mechanisms, using the JailbreakBench dataset containing 100 harmful queries from 10 categories.\n\nThese papers directly address the intersection of activation steering, representation intervention, agent safety, tool calling, and risk avoidance through probing techniques.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8f9a80f-0896-4782-835f-1bce7dfa2ee4",
+            "isSidechain": false,
+            "promptId": "fc6b92e3-ffeb-44aa-9c62-613abd6f3f9b",
+            "type": "user",
+            "uuid": "a7c72f5c-a807-4821-a427-94f3bacec989",
+            "toolUseResult": {
+              "query": "site:arxiv.org \"activation steering\" OR \"representation intervention\" agent safety tool call risk avoidance probing 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01RQtxZq4LsxV1ch81BudDLh",
+                  "content": [
+                    {
+                      "title": "ASA: Activation Steering for Tool-Calling Domain Adaptation",
+                      "url": "https://arxiv.org/html/2602.04935v1"
+                    },
+                    {
+                      "title": "ASA: Training-Free Representation Engineering for Tool-Calling Agents",
+                      "url": "https://arxiv.org/pdf/2602.04935"
+                    },
+                    {
+                      "title": "Activation Steering in 2026: A Practitioner's Field Guide | Subhadip Mitra",
+                      "url": "https://subhadipmitra.com/blog/2026/activation-steering-field-guide/"
+                    },
+                    {
+                      "title": "Steering Externalities: Benign Activation Steering Unintentionally Increases Jailbreak Risk for Large Language Models",
+                      "url": "https://arxiv.org/pdf/2602.04896"
+                    },
+                    {
+                      "title": "ACTIVATION STEERING COMPROMISES LLM SAFETY",
+                      "url": "https://openreview.net/pdf/987905e26b89ce6e307dcc12de3528b26106f97f.pdf"
+                    },
+                    {
+                      "title": "Probing the Robustness of Large Language Models Safety to Latent Perturbations",
+                      "url": "https://arxiv.org/html/2506.16078"
+                    }
+                  ]
+                },
+                "I found several highly relevant papers from arxiv.org in 2026 related to your query. Here are the key results:\n\n## Primary Results:\n\n**1. ASA: Activation Steering for Tool-Calling Domain Adaptation (Feb 2026)**\nThe paper proposes Activation Steering Adapter (ASA), a training-free, inference-time controller that performs a single-shot mid-layer intervention and targets tool domains via a router-conditioned mixture of steering vectors with a probe-guided signed gate to amplify true intent while suppressing spurious triggers. \n\nThe research uncovers what they term the 'Lazy Agent failure mode': linear probes on mid-layer activations can predict tool necessity with near-perfect accuracy (> 99% AUC), yet the model's overt generation fails to trigger tools in over 80 percent of these cases, revealing a persistent representation-behavior gap.\n\n**2. Steering Externalities: Benign Activation Steering Unintentionally Increases Jailbreak Risk (Feb 2026)**\nThis paper reveals that activation steering interventions act as a force multiplier, creating new vulnerabilities to jailbreaks and increasing attack success rates to over 80% on standard benchmarks, exposing a critical blind spot in deployment where benign activation steering systematically erodes the \"safety margin.\"\n\n**3. Activation Steering Compromises LLM Safety**\nThe work investigates the safety vulnerabilities of activation steering by measuring how it affects refusal mechanisms, using the JailbreakBench dataset containing 100 harmful queries from 10 categories.\n\nThese papers directly address the intersection of activation steering, representation intervention, agent safety, tool calling, and risk avoidance through probing techniques."
+              ],
+              "durationSeconds": 8.226530376999989,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "c8f9a80f-0896-4782-835f-1bce7dfa2ee4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-19T08:14:00.143Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a7c72f5c-a807-4821-a427-94f3bacec989",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "54c9eacc-84d0-4281-b9d1-1b21fc9139f4",
+                "timestamp": "2026-05-19T08:14:00.143Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea-gen-pipeline",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-19T08:14:47.120Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Critical finding! ASA (Activation Steering Adapter) already uses activation steering for tool-calling domain adaptation, AND the paper about steering externalities shows that activation steering can COMPROMISE safety. This means:\n\n1. My Idea #5 (closing the knowledge-behavior gap via representation steering) has close competition from ASA. But ASA focuses on CAPABILITY (making tools work better), not SAFETY (making tool calls safer). The steering externalities paper actually shows steering can HURT safety.\n\n2. This creates an even more interesting research direction: Can we do activation steering specifically for SAFETY in tool calls WITHOUT the steering externality (safety erosion)?\n   \nThe key insight is that ASA improves capability while steering externalities degrade safety—but nobody's actually designed steering that enhances safety in tool calls while maintaining capability. This hinges on whether we can isolate safety-specific directions in the tool-call representation space that don't interfere with capability, which connects to the Geometry of Alignment Tax work that formalizes how the angle between safety and capability subspaces determines the Pareto frontier.\n\nThe problem is that prior work only addressed this for chat, not tool calls. I'm considering framing this as \"Safety-Preserving Activation Steering for Tool-Using Agents,\" but that feels too narrow and engineering-focused for EMNLP. Stepping back, EMNLP reviewers care about strong empirical methodology, novel insights about language models, new benchmarks, and NLP-relevant contributions. So I should focus on ideas that deliver on those dimensions—like probing the safety transfer gap, detecting policy ambiguity, building a safety recovery benchmark, or exploring how conversational inertia interacts with safety.\n\nFor the fifth idea, I'm weighing whether to focus on steering externalities in agentic settings, the linguistic signatures that predict unsafe agent trajectories, or the knowledge-behavior gap in agent safety. Option A about steering externalities seems most novel and impactful, though I should verify that the existing steering externalities paper doesn't already cover this ground.\n\nActually, I think the strongest approach combines the knowledge-behavior gap observation with representation-level analysis. The key insight is that models encode safety information at >98% knowledge but fail to act on it during tool use (<26% avoidance), and probes can detect tool necessity with >99% accuracy yet models still don't use it—this creates a unified research question about why LLMs have the representations but don't deploy them during agentic action generation. I'd characterize this gap empirically across risk knowledge versus avoidance, text safety versus tool-call safety, and tool necessity knowledge versus actual tool-calling behavior, then analyze what's happening at the representation level to explain the disconnect.\n\nThis is actually quite distinct from the refusal circuits idea—one is diagnostic and mechanistic (understanding how refusal representations behave differently during tool generation), while the other is intervention-focused (developing activation-level techniques to make agents act on their existing safety knowledge without creating steering problems). The first asks \"what's happening,\" the second asks \"how do we fix it.\"\n\nFor a single paper, combining diagnosis with intervention would be strongest, but since I'm outlining five distinct research directions rather than five separate papers, having two related but complementary angles works well. Though let me reconsider whether they're truly different enough. Actually, I think I should replace this with something more orthogonal—something about adversarial robustness of natural language policy specifications. This would draw on work like CRAFT on red-teaming policy-adherent agents, PolicyBank's findings on ambiguities in NL policies, and Policy Compiler's insights on how NL policies can be manipulated. The core angle would be studying adversarial attacks that exploit ambiguities in policy specifications to manipulate agent behavior, plus developing defenses against such attacks.\n\nWait, but this is distinct from prompt injection since it targets the policy specification itself rather than the model. Still, this feels like it overlaps too much with the ambiguity detection direction—one would focus on proactively identifying ambiguities while the other would focus on adversarial exploitation. That's too much overlap.\n\nLet me pivot to something genuinely different: measuring and optimizing the safety-capability Pareto frontier specifically in agentic settings. The Geometry of Alignment Tax provides theoretical grounding for chat models, and the Autonomy Tax demonstrates the problem exists in agents, while OGPSA offers a method for chat. But there's a gap—nobody has empirically measured the alignment tax geometry specifically for agents or developed optimization methods for that setting.\n\nThis would be a distinct empirical contribution analyzing how safety and capability trade off in the representation space during multi-step language generation with tool calls. The novelty is clear: the theory exists for chat, the problem is documented in agents, but the empirical bridge connecting them is missing.\n\nThis is actually quite different from the refusal circuits idea—one focuses on mechanistic analysis of how safety representations work, while this focuses on the global safety-capability Pareto frontier across the entire system.\n\nI'm settling on these five ideas as my final set: mechanistic analysis of refusal representations, NLU for policy safety, a benchmark for safe recovery, discourse-based safety erosion, and empirical Pareto frontiers for multi-step tool use. They're all distinct, grounded in evidence, and relevant to NLP. Now I'll structure this into the final JSON output.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54c9eacc-84d0-4281-b9d1-1b21fc9139f4",
+            "isSidechain": false,
+            "requestId": "req_011CbBbMRSU4KNU6JtUm7MLm",
+            "type": "assistant",
+            "uuid": "3cb54c63-f847-40ca-9639-745aa746412b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KbRNYkDYKn7ahTA6sXM8eJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3682,
+                "cache_read_input_tokens": 77268,
+                "output_tokens": 2025,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3682,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2025,
+                    "cache_read_input_tokens": 77268,
+                    "cache_creation_input_tokens": 3682,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3682
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-19T08:14:47.122Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a comprehensive understanding of the landscape. Let me compile my final output with all 5 research directions, grounded in the evidence I've gathered."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3cb54c63-f847-40ca-9639-745aa746412b",
+            "isSidechain": false,
+            "requestId": "req_011CbBbMRSU4KNU6JtUm7MLm",
+            "type": "assistant",
+            "uuid": "405afe47-bbe1-4a82-926f-01a09aaa9a5f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KbRNYkDYKn7ahTA6sXM8eJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3682,
+                "cache_read_input_tokens": 77268,
+                "output_tokens": 2025,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3682,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2025,
+                    "cache_read_input_tokens": 77268,
+                    "cache_creation_input_tokens": 3682,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3682
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-19T08:14:47.235Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JMhTfpZ69spyiXSXEmKxK4",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org \"conversational inertia\" safety violation correlation multi-turn agent attack mechanism 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "405afe47-bbe1-4a82-926f-01a09aaa9a5f",
+            "isSidechain": false,
+            "requestId": "req_011CbBbMRSU4KNU6JtUm7MLm",
+            "type": "assistant",
+            "uuid": "61397069-5c6d-401a-950b-dcd5194b7dd8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KbRNYkDYKn7ahTA6sXM8eJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3682,
+                "cache_read_input_tokens": 77268,
+                "output_tokens": 2025,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3682,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2025,
+                    "cache_read_input_tokens": 77268,
+                    "cache_creation_input_tokens": 3682,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3682
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-19T08:14:54.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JMhTfpZ69spyiXSXEmKxK4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org \"conversational inertia\" safety violation correlation multi-turn agent attack mechanism 2026\"\n\nLinks: [{\"title\":\"[2602.03664] Mitigating Conversational Inertia in Multi-Turn Agents\",\"url\":\"https://arxiv.org/abs/2602.03664\"},{\"title\":\"(PDF) Mitigating Conversational Inertia in Multi-Turn Agents\",\"url\":\"https://www.researchgate.net/publication/400415442_Mitigating_Conversational_Inertia_in_Multi-Turn_Agents\"},{\"title\":\"Mitigating Conversational Inertia in Multi-Turn Agents\",\"url\":\"https://arxiv.org/pdf/2602.03664\"},{\"title\":\"Mitigating Conversational Inertia in Multi-Turn Agents\",\"url\":\"https://arxiv.org/html/2602.03664v1\"},{\"title\":\"Jailbreaking LLMs: A Survey of Attacks, Defenses and Evaluation | TechRxiv\",\"url\":\"https://www.techrxiv.org/users/1011181/articles/1373070/master/file/data/Jailbreaking_LLMs_2026/Jailbreaking_LLMs_2026.pdf\"},{\"title\":\"[2503.15552] Personalized Attacks of Social Engineering in Multi-turn Conversations: LLM Agents for Simulation and Detection\",\"url\":\"https://arxiv.org/abs/2503.15552\"},{\"title\":\"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\",\"url\":\"https://arxiv.org/pdf/2603.15684\"}]\n\nI found several relevant papers from arXiv related to your query. Here are the key findings:\n\n## Primary Result: \"Mitigating Conversational Inertia in Multi-Turn Agents\"\n\nThis paper was posted on arXiv on February 5, 2026. The research identifies conversational inertia, a phenomenon where models exhibit strong diagonal attention to previous responses, which is associated with imitation bias that constrains exploration.\n\nThe key insight is that for identical states, actions generated with longer contexts exhibit stronger inertia than those with shorter contexts, and the authors propose Context Preference Learning to calibrate model preferences to favor low-inertia responses over high-inertia ones.\n\n## Related Safety Research\n\nAnother highly relevant paper is \"State-Dependent Safety Failures in Multi-Turn Language Model Interaction,\" which finds that systems appearing robust under static evaluation can undergo rapid and reproducible safety collapse under structured multi-turn interaction, with mechanistic analysis revealing monotonic drift away from refusal-related representations.\n\nAdditionally, research on jailbreaking demonstrates that agent-driven multi-turn attacks achieve 95% success by decomposing harmful queries across conversation turns.\n\nThese papers collectively address the intersection of conversational dynamics, multi-turn agent safety vulnerabilities, and mechanistic explanations for how model behavior changes over extended interactions.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61397069-5c6d-401a-950b-dcd5194b7dd8",
+            "isSidechain": false,
+            "promptId": "fc6b92e3-ffeb-44aa-9c62-613abd6f3f9b",
+            "type": "user",
+            "uuid": "b66a51f2-d670-4071-a1ac-ff936102cfb6",
+            "toolUseResult": {
+              "query": "site:arxiv.org \"conversational inertia\" safety violation correlation multi-turn agent attack mechanism 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SfH6dxyLyD85U3aXiH95rA",
+                  "content": [
+                    {
+                      "title": "[2602.03664] Mitigating Conversational Inertia in Multi-Turn Agents",
+                      "url": "https://arxiv.org/abs/2602.03664"
+                    },
+                    {
+                      "title": "(PDF) Mitigating Conversational Inertia in Multi-Turn Agents",
+                      "url": "https://www.researchgate.net/publication/400415442_Mitigating_Conversational_Inertia_in_Multi-Turn_Agents"
+                    },
+                    {
+                      "title": "Mitigating Conversational Inertia in Multi-Turn Agents",
+                      "url": "https://arxiv.org/pdf/2602.03664"
+                    },
+                    {
+                      "title": "Mitigating Conversational Inertia in Multi-Turn Agents",
+                      "url": "https://arxiv.org/html/2602.03664v1"
+                    },
+                    {
+                      "title": "Jailbreaking LLMs: A Survey of Attacks, Defenses and Evaluation | TechRxiv",
+                      "url": "https://www.techrxiv.org/users/1011181/articles/1373070/master/file/data/Jailbreaking_LLMs_2026/Jailbreaking_LLMs_2026.pdf"
+                    },
+                    {
+                      "title": "[2503.15552] Personalized Attacks of Social Engineering in Multi-turn Conversations: LLM Agents for Simulation and Detection",
+                      "url": "https://arxiv.org/abs/2503.15552"
+                    },
+                    {
+                      "title": "State-Dependent Safety Failures in Multi-Turn Language Model Interaction",
+                      "url": "https://arxiv.org/pdf/2603.15684"
+                    }
+                  ]
+                },
+                "I found several relevant papers from arXiv related to your query. Here are the key findings:\n\n## Primary Result: \"Mitigating Conversational Inertia in Multi-Turn Agents\"\n\nThis paper was posted on arXiv on February 5, 2026. The research identifies conversational inertia, a phenomenon where models exhibit strong diagonal attention to previous responses, which is associated with imitation bias that constrains exploration.\n\nThe key insight is that for identical states, actions generated with longer contexts exhibit stronger inertia than those with shorter contexts, and the authors propose Context Preference Learning to calibrate model preferences to favor low-inertia responses over high-inertia ones.\n\n## Related Safety Research\n\nAnother highly relevant paper is \"State-Dependent Safety Failures in Multi-Turn Language Model Interaction,\" which finds that systems appearing robust under static evaluation can undergo rapid and reproducible safety collapse under structured multi-turn interaction, with mechanistic analysis revealing monotonic drift away from refusal-related representations.\n\nAdditionally, research on jailbreaking demonstrates that agent-driven multi-turn attacks achieve 95% success by decomposing harmful queries across conversation turns.\n\nThese papers collectively address the intersection of conversational dynamics, multi-turn agent safety vulnerabilities, and mechanistic explanations for how model behavior changes over extended interactions."
+              ],
+              "durationSeconds": 7.205513409000006,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "61397069-5c6d-401a-950b-dcd5194b7dd8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-19 (UTC).** Use this when reasoni…",
+                "leafUuid": "b66a51f2-d670-4071-a1ac-ff936102cfb6",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267"
+              }
+            }
+          ],
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate agent safety research directions from literature",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267"
+              }
+            }
+          ],
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-19T08:15:35.481Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. The \"State-Dependent Safety Failures\" paper does find \"monotonic drift away from refusal-related representations\" in multi-turn interactions, which partially overlaps with my Idea #4. But it doesn't specifically connect this to conversational inertia as a mechanism. Let me check the state-dependent paper more carefully.\n\nActually, this makes my Idea #4 even more relevant - the inertia mechanism (attention patterns) could be the CAUSE of the drift away from refusal representations. Nobody has made this connection explicitly.\n\nOK, I'm confident in my 5 ideas. Let me now write the final output.\n\n\nNow I'm laying out the specific evidence for each idea, starting with the text-to-tool safety gap - I've got the Mind the GAP paper showing refusal-tool execution misalignment across multiple models, several papers on refusal directions in text generation, and When2Tool demonstrating that models can decode tool necessity with high accuracy but fail to act on it.\n\nThe key insight is that no existing work has actually probed whether safety circuits activate during tool-call token generation specifically. This gap is inspired by the field guide's unsolved prompt injection problem and ClawSafety's finding that safe LLMs become unsafe agents.\n\nFor the second idea on safety-critical ambiguity, I'm seeing that PolicyBank leaves an 18% gap caused by natural language ambiguity, Policy Compiler shows NL policies are inherently ambiguous with no enforcement guarantees, and QuadSentinel reveals that deployer-written policies themselves are ambiguous.\n\nThe third idea focuses on what happens after safety mechanisms block unsafe actions—the recovery problem. Verifier Tax shows that 94% blocking rates collapse to less than 5% safe success rates, with recovery succeeding only 21% of the time on simple tasks and nearly 0% on complex ones, while Autonomy Tax demonstrates that safety training leads to 99% timeout rates.\n\nLooking at related work, SafePred achieves 97.6% safety through predictive guardrails and replanning, gaining 21.4% utility, but it's prevention-focused rather than recovery-focused. MOSAIC uses an act/refuse loop without studying what happens after refusal, From Refusal to Recovery applies control theory but only to single-turn generation, and SafeAgent mentions replanning without systematic evaluation. Canonical Path Deviation reveals that off-path calls increase subsequent deviation by 22.7 percentage points, which helps explain why recovery is so difficult. The key gap is that no existing work systematically benchmarks or trains agents specifically for recovery after safety interventions.\n\nNow I'm seeing evidence that conversational inertia—where models imitate their previous responses through diagonal attention patterns—drives safety erosion across multiple turns. The papers show a 16% ASR increase in multi-turn interactions, monotonic drift away from refusal representations, self-reinforcing behavioral drift that compounds by 22.7 percentage points, and multi-turn sycophancy effects.\n\nThe key insight is that no single paper connects this NLP mechanism to safety failure as a causal chain—they document pieces of the puzzle separately. This gap between discourse dynamics research and agent safety outcomes is what makes the connection novel.\n\nFor the alignment tax, I'm noticing a similar fragmentation: formal theory exists for the safety-capability Pareto frontier in chat contexts, empirical evidence shows safety training breaks agent capabilities, and there are techniques for orthogonal gradient projection and multi-agent security tradeoffs, but no unified framework maps how alignment costs compound across different agent architectures and deployment scenarios. I've identified a clear gap in the literature—no one has measured the alignment tax geometry specifically for agentic systems, tested whether orthogonal projection works for agent safety, or mapped out the safety-capability tradeoff frontier in multi-step tool use scenarios. This combines insights from the field guide on the pass@1 versus production gap with the geometric alignment tax framework and the documented autonomy tax problem in agents. I'm ready to write this up.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b66a51f2-d670-4071-a1ac-ff936102cfb6",
+            "isSidechain": false,
+            "requestId": "req_011CbBbRRW3yyyMAFTivqFaC",
+            "type": "assistant",
+            "uuid": "21a8d8c0-12e4-4c22-80b9-c376c782ab12",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcvCV9yA3SLKEsdrvPTASo",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2745,
+                "cache_read_input_tokens": 80950,
+                "output_tokens": 5409,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2745,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5409,
+                    "cache_read_input_tokens": 80950,
+                    "cache_creation_input_tokens": 2745,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2745
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-19T08:16:52.356Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive evidence for all 5 research directions. Let me synthesize everything into the final output.\n\nBased on extensive research across 25+ targeted searches covering arXiv, conference proceedings, and recent benchmarks, I've identified 5 novel, well-grounded research directions for agent safety at EMNLP 2026 (deadline: May 25, 2026). Here is my analysis and the final output.\n\n---\n\n## Research Summary\n\nMy investigation uncovered several critical, underexplored gaps at the intersection of NLP and agent safety:\n\n1. **The text-to-tool safety transfer gap** is empirically documented (Mind the GAP, 219 cases) but mechanistically unexplained — refusal circuit analysis has exclusively focused on text generation, never tool-call generation.\n\n2. **Safety recovery after guardrail interventions** shows catastrophic failure rates — the Verifier Tax paper documents <5% safe success rate despite 94% blocking effectiveness, with near-zero recovery in complex tasks.\n\n3. **Natural language policy ambiguity** remains a core NLU problem causing systematic safety violations — PolicyBank closes only 82% of the gap toward human-level policy understanding.\n\n4. **Conversational inertia** and **multi-turn safety erosion** are documented independently but never causally connected — a 16% ASR increase in multi-turn settings coincides with diagonal attention patterns that constrain exploration.\n\n5. **The alignment tax** has formal geometric theory for chat (principal angles between subspaces) but zero empirical measurement for agentic settings, where the Autonomy Tax shows it's qualitatively worse.\n\n```json\n[\n  {\n    \"title\": \"Why Refusal Circuits Fail During Agent Tool-Call Generation\",\n    \"core_problem\": \"Text-level safety does not transfer to tool-call safety — models simultaneously refuse in text while executing forbidden tool calls — yet the mechanistic explanation for this divergence is completely unknown.\",\n    \"opportunity\": \"Refusal circuit analysis is mature for text generation (single-direction, concept cones, multi-directional manifolds), and linear probes can detect tool necessity with >99% AUC (When2Tool/ASA), but NO study has probed whether refusal representations activate during tool-call token generation. Mind the GAP explicitly calls for 'mechanistic-interpretability work to confirm a dual pathway account.' The representational building blocks (probing classifiers, activation patching, sparse autoencoders) are readily available from recent work (SafeSeek, Beyond the Black Box).\",\n    \"landscape\": \"Mind the GAP (Feb 2026) documents 219 cases of text refusal with simultaneous tool execution across 6 frontier models in 6 regulated domains. Refusal is known to be mediated by low-dimensional subspaces in text generation (Arditi et al. 2024; Geometry of Refusal 2025; concept cones 2026). When2Tool (May 2026) and ASA (Feb 2026) show >99% AUC for decoding tool necessity from hidden states, revealing a persistent 'representation-behavior gap.' Beyond the Black Box (May 2026) applies SAEs and probes to tool-use decisions but does not examine safety. Over-Refusal and Representation Subspaces (Mar 2026) analyzes task-conditioned refusal but only for text. No published work probes refusal circuit activation specifically during structured tool-call output generation.\",\n    \"inspired_by\": \"Field guide gap: ClawSafety finding that 'safe LLMs become unsafe agents' + Section 3.1 on prompt injection as unsolved problem. Cross-domain transfer pattern: applying the mature interpretability toolkit from text-safety analysis to the documented but unexplained tool-call safety gap.\"\n  },\n  {\n    \"title\": \"Safety-Critical Ambiguity Detection in Natural Language Agent Policies\",\n    \"core_problem\": \"Natural language policy specifications for agents contain ambiguities that cause systematic safety violations, but we lack methods to identify which ambiguities are safety-critical before deployment.\",\n    \"opportunity\": \"PolicyBank (Apr 2026) shows agents close only 82% of the gap toward human-level policy understanding, with the remaining 18% caused by specification ambiguities. Policy Compiler (Feb 2026) proves NL policies provide 'no guarantees of enforcement' and QuadSentinel identifies them as 'ambiguous and context-dependent.' Yet no work specifically classifies which types of NL ambiguity (lexical, scope, pragmatic, referential) lead to safety violations in agent tool use vs. benign misinterpretation. Adjacent work on ambiguity detection exists in surgical robotics (LLM-based detection, 2025) and robotic task planning (AmbResVLM, 2025), providing transferable methods.\",\n    \"landscape\": \"PolicyBank (Apr 2026, ICLR) achieves 82% gap closure through iterative policy refinement but cannot identify safety-critical ambiguities a priori. CRAFT (EMNLP 2025) red-teams policy-adherent agents through persuasion but targets agent compliance, not policy specification quality. Solver-Aided Verification (Mar 2026) translates NL policies to SMT constraints but requires human-guided formalization. AgentSpec (ICSE 2026) provides runtime enforcement DSLs but assumes unambiguous specifications. The NLP community has mature tools for ambiguity detection (pragmatic inference, coreference resolution, scope disambiguation) that have never been applied to agent policy specifications. No paper specifically measures which ambiguity types cause safety violations vs. capability errors.\",\n    \"inspired_by\": \"Field guide Section 5 MAST taxonomy: 'specification problems, role ambiguity, task ambiguity, conflicting constraints' identified as a top failure category. Pattern: applying core NLU capabilities (ambiguity detection, pragmatic inference) to the verified specification gap in agent safety.\"\n  },\n  {\n    \"title\": \"Beyond Blocking: Benchmarking Agent Safety Recovery After Guardrail Interventions\",\n    \"core_problem\": \"Current guardrails achieve high unsafe-action blocking rates but agents fail catastrophically at recovering to complete tasks safely — the safe success rate remains below 5% even when 94% of unsafe actions are blocked.\",\n    \"opportunity\": \"The Verifier Tax (Mar 2026) quantifies a devastating 'Safety-Capability Gap': recovery rates are 21% for simple tasks and near 0% for complex retail scenarios, yet no systematic benchmark or training approach exists for the recovery problem specifically. Existing work focuses on PREVENTING unsafe actions (SafePred, MOSAIC) or BLOCKING them (AgentSpec, guardrails), but not on RECOVERING after intervention. Canonical Path Deviation (Feb 2026) shows off-canonical actions compound subsequent deviation by 22.7 percentage points, explaining why recovery is structurally difficult — once an agent is pushed off its solution path by a blocked action, it struggles to find an alternative path.\",\n    \"landscape\": \"The Verifier Tax (Mar 2026) documents <5% safe success rate despite 94% blocking across tau-bench domains using GPT-OSS-20B and planning architectures (TRIAD). SafePred (Feb 2026) achieves 97.6% safety and 21.4% utility improvement but focuses on predictive prevention via world models, not recovery. MOSAIC (Mar 2026) introduces Plan-Check-Act/Refuse with up to 50% harmful behavior reduction but evaluates refusal, not post-refusal replanning. From Refusal to Recovery (Oct 2025) proposes control-theoretic guardrails for single-turn generation, not multi-step agents. SafeAgent (Apr 2026) mentions constrained replanning but provides no systematic evaluation. No benchmark specifically measures recovery rate, recovery latency, or safe alternative path quality after guardrail interventions in multi-step settings.\",\n    \"inspired_by\": \"Field guide Section 7 (Defenses: guardrails, verification, monitoring) combined with Section 4.1 (pass@1 vs. production reliability gap). The Verifier Tax's quantitative evidence makes this gap concrete and measurable. Pattern: 'simplification' — instead of building more sophisticated blocking, focus on the neglected recovery phase.\"\n  },\n  {\n    \"title\": \"Conversational Inertia as a Causal Driver of Multi-Turn Safety Erosion\",\n    \"core_problem\": \"Multi-turn agent interactions exhibit systematic safety degradation (16% higher attack success rates), and the NLP phenomenon of conversational inertia (strong diagonal attention to previous outputs) is a plausible but untested causal mechanism.\",\n    \"opportunity\": \"Two independent 2026 research threads — conversational inertia in agents (diagonal attention, imitation bias) and multi-turn safety erosion (increasing ASR, refusal drift) — have never been causally connected. State-Dependent Safety Failures (2026) finds 'monotonic drift away from refusal-related representations' in multi-turn interaction, and Conversational Inertia (Feb 2026) shows agents exhibit 'strong diagonal attention to previous responses' constraining exploration. The hypothesis that inertia-driven attention patterns CAUSE safety drift is directly testable via the existing Context Preference Learning intervention: if reducing inertia also reduces safety erosion, the causal link is supported.\",\n    \"landscape\": \"Unsafer in Many Turns (Feb 2026) documents 16% average ASR increase in multi-turn tool-using agents and proposes ToolShield (training-free defense via self-exploration, ~30% ASR reduction). Conversational Inertia (Feb 2026) identifies diagonal attention patterns and proposes Context Preference Learning but does not measure safety outcomes. State-Dependent Safety Failures (2026) shows monotonic drift from refusal representations but does not identify the mechanism. Agent Drift (Jan 2026) proposes the Agent Stability Index across 12 dimensions but does not connect to safety. Canonical Path Deviation (Feb 2026) shows self-reinforcing drift (+22.7pp) but focuses on task success, not safety. Truth Decay (Mar 2025) quantifies multi-turn sycophancy but not in tool-use settings. No work unifies these phenomena under a common causal model or tests whether discourse-level interventions (inertia mitigation) transfer to safety improvements.\",\n    \"inspired_by\": \"Field guide Section 4 (cascading failures, production gap) + Section 5.2 (error propagation as primary bottleneck). Untried combination: connecting the discourse dynamics literature (conversational inertia, attention patterns) with the agent safety literature (multi-turn ASR increase, refusal drift).\"\n  },\n  {\n    \"title\": \"Empirical Geometry of the Alignment Tax in Agentic Tool-Use Settings\",\n    \"core_problem\": \"The alignment tax — the safety-capability tradeoff — has been formalized geometrically for chat models but never empirically measured for agentic settings, where the tradeoff is qualitatively worse and exhibits unique failure modes.\",\n    \"opportunity\": \"The Geometry of the Alignment Tax (Mar 2026) provides the formal apparatus (principal angles between safety and capability subspaces, elliptic Pareto frontiers), but explicitly assumes static representation spaces and leaves agent-specific dynamics unexplored. The Autonomy Tax (Mar 2026) empirically shows agent safety training creates three unique biases (incompetence, cascade amplification, trigger) that don't exist in chat, but provides no representational analysis. OGPSA (Feb 2026) demonstrates orthogonal gradient projection can mitigate the chat alignment tax, but whether this transfers to agents is unknown. The bridge connecting formal theory to agent-specific empirical measurement is completely missing.\",\n    \"landscape\": \"The Geometry of the Alignment Tax (Mar 2026) proves the Pareto frontier is elliptic and parameterized by the principal angle between safety and capability subspaces — but only for chat. The Autonomy Tax (Mar 2026) shows safety training creates agent-specific failures: 99% timeout rate, shortcut learning that overfits to surface patterns. OGPSA (Feb 2026) achieves superior Pareto frontier via orthogonal gradient projection but in chat settings only. Multi-Agent Security Tax (Feb 2025) documents security-collaboration tradeoffs in MAS but lacks representational analysis. The Verifier Tax (Mar 2026) and ASA (Feb 2026, steering externalities that erode safety) provide further empirical evidence that the agentic alignment tax geometry differs from chat. Steering Externalities (Feb 2026) explicitly shows benign capability steering increases jailbreak success to >80%, implying the safety-capability angle is much smaller (more coupled) in tool-call settings.\",\n    \"inspired_by\": \"Field guide Section 4.1 (pass@1 vs. production gap showing agents are far less reliable than benchmarks suggest) + the pattern of cross-domain transfer: applying the formal alignment tax framework (developed for chat) to the empirically documented agent-specific safety-capability conflict.\"\n  }\n]\n```\n\nSources:\n- [Mind the GAP: Text Safety Does Not Transfer to Tool-Call Safety](https://arxiv.org/abs/2602.16943)\n- [The Autonomy Tax: Defense Training Breaks LLM Agents](https://arxiv.org/abs/2603.19423)\n- [The Verifier Tax: Horizon Dependent Safety-Success Tradeoffs](https://arxiv.org/abs/2603.19328)\n- [What Is the Geometry of the Alignment Tax?](https://arxiv.org/abs/2603.00047)\n- [PolicyBank: Evolving Policy Understanding for LLM Agents](https://arxiv.org/abs/2604.15505)\n- [Mitigating Conversational Inertia in Multi-Turn Agents](https://arxiv.org/abs/2602.03664)\n- [Unsafer in Many Turns: Benchmarking Multi-Turn Safety Risks](https://arxiv.org/abs/2602.13379)\n- [LLM Agents Already Know When to Call Tools](https://arxiv.org/abs/2605.09252)\n- [ASA: Activation Steering for Tool-Calling](https://arxiv.org/abs/2602.04935)\n- [LM Agents May Fail to Act on Their Own Risk Knowledge](https://arxiv.org/abs/2508.13465)\n- [Safety is Non-Compositional](https://arxiv.org/abs/2603.15973)\n- [Ghost in the Agent: NeuroTaint](https://arxiv.org/abs/2604.23374)\n- [MOSAIC: Guarding Agentic Reasoning Models](https://arxiv.org/abs/2603.03205)\n- [SafePred: A Predictive Guardrail](https://arxiv.org/abs/2602.01725)\n- [Canonical Path Deviation as Causal Mechanism](https://arxiv.org/abs/2602.19008)\n- [Agent Drift: Quantifying Behavioral Degradation](https://arxiv.org/abs/2601.04170)\n- [State-Dependent Safety Failures in Multi-Turn Interaction](https://arxiv.org/abs/2603.15684)\n- [Beyond the Black Box: Interpretability of Agentic AI Tool Use](https://arxiv.org/abs/2605.06890)\n- [Safety Alignment as Continual Learning: OGPSA](https://arxiv.org/abs/2602.07892)\n- [Steering Externalities: Benign Steering Increases Jailbreak Risk](https://arxiv.org/abs/2602.04896)\n- [Policy Compiler for Secure Agentic Systems](https://arxiv.org/abs/2602.16708)\n- [ATBench: Agent Trajectory Benchmark for Safety](https://arxiv.org/abs/2604.02022)\n- [From Refusal to Recovery: Control-Theoretic Guardrails](https://arxiv.org/abs/2510.13727)\n- [ClawSafety: \"Safe\" LLMs, Unsafe Agents](https://arxiv.org/abs/2604.01438)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [Defenses Against Prompt Attacks Learn Surface Heuristics](https://arxiv.org/abs/2601.07185)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21a8d8c0-12e4-4c22-80b9-c376c782ab12",
+            "isSidechain": false,
+            "requestId": "req_011CbBbRRW3yyyMAFTivqFaC",
+            "type": "assistant",
+            "uuid": "bf454179-5526-418c-bc7e-0676fb8a205c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcvCV9yA3SLKEsdrvPTASo",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2745,
+                "cache_read_input_tokens": 80950,
+                "output_tokens": 5409,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2745,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5409,
+                    "cache_read_input_tokens": 80950,
+                    "cache_creation_input_tokens": 2745,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2745
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-19 (UTC).** Use this when reasoni…",
+                "leafUuid": "bf454179-5526-418c-bc7e-0676fb8a205c",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267"
+              }
+            }
+          ],
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Generate agent safety research directions from literature",
+                "sessionId": "2d3bd8b1-5497-440b-a2c7-632da44c4267"
+              }
+            }
+          ],
+          "id": "event-000209"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0",
+  "id": "671cf41bb0282cbf57db",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need you to help me write a complete revised research idea JSON. I'll provide you all the context, and you should outp",
+  "task_key": "agent-a5d273ba3b7330808",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a5d273ba3b7330808.jsonl",
+    "occurrence": 1,
+    "bytes": 26129,
+    "sha256": "d0e896b2ece909ed70fd7d929f62d5146c5ace482fac79dcacc7b082adf61d0d"
+  },
+  "statistics": {
+    "messages": 3,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T20:00:22.988Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need you to help me write a complete revised research idea JSON. I'll provide you all the context, and you should output ONLY the final JSON object — nothing else.\n\n## Context\n\nThis is a revision of a research idea called LACVLA — Self-Supervised Language-Affordance Consistency for Zero-Shot Cross-Category VLA Manipulation. We're doing a MAJOR revision based on reviewer feedback (round 3).\n\n## Key changes to make\n\n### 1. REFRAME CORE PROBLEM\nThe original proposal drifted into paraphrase robustness. Reframe back to: **cross-category zero-shot transfer via enforced language-affordance grounding**. \n\nThe key insight (from new research):\n- LIBERO-Plus (CVPR 2026, arXiv 2510.13626) shows VLAs are largely insensitive to language — they IGNORE language instructions\n- LangGap (arXiv 2603.00592, Mar 2026) confirms: VLAs with 95%+ standard success largely ignore language. Data augmentation partially closes gap (0→90% single-task, 0→28% multi-task) but is fundamentally insufficient\n- For NOVEL objects (cross-category zero-shot), language is the ONLY guide — visual priors don't exist. If VLAs ignore language, they can't do cross-category transfer\n- Spatial grounding alone (ST4VLA) improves in-distribution but doesn't guarantee language conditioning\n- LACVLA's contribution: FORCING language to condition spatial grounding through consistency objectives\n\n### 2. ADD ST4VLA AS BASELINE\nST4VLA (ICLR 2026, arXiv 2602.10109): Dual-system VLA with spatial grounding pre-training.\n- LIBERO: 98.0% Spatial, 99.0% Object, 93.8% Goal, 92.6% Long, 95.9% avg\n- Paraphrase robustness: 72% attribute-rephrased, 61% spatial-rephrased (vs π₀: 32%/31%)\n- Unseen objects: 62% new instances (vs π₀: 32%, GR00T: 46%)\n- Architecture: Qwen2.5-VL (System-2 planner) + DiT with DINOv2 (System-1 action expert)\n- Published ICLR 2026\n\nAdd to landscape and as critical ablation: \"Does explicit affordance consistency add value beyond spatial grounding alone?\"\n\nAlso add InternVLA-M1 (arXiv 2510.13778) — another spatially guided VLA.\n\n### 3. ENFORCE ARCHITECTURAL BOTTLENECK\nInspired by DIAL (arXiv 2603.29844, Mar 2026) which enforces a latent intent bottleneck via inverse dynamics.\n\nNew architecture:\n- VLM intermediate features → affordance readout (cross-attention with language tokens) → affordance heatmap\n- VLM intermediate features → **stop-gradient** → low-level visual features\n- Action head input = affordance_heatmap ⊙ sg(visual_features) + proprioceptive_state\n- The affordance map acts as a spatial attention gate — if the model tries to bypass it (uniform map), the action head gets unselective visual features and performance degrades\n- This forces task-relevant WHERE information through the affordance bottleneck\n\n### 4. ADD \"IPAC ON RAW ACTIONS\" ABLATION\nNew ablation: Apply KL divergence directly between action distributions under paraphrased instructions (no affordance readout). \n- Hypothesis: works less well because action distributions conflate WHERE + HOW + WHEN\n- Affordance maps isolate the WHERE component = the geometric invariant across paraphrases\n- This is the paper's key empirical finding if confirmed\n\n### 5. REBALANCE EVALUATION toward cross-category zero-shot\nPRIMARY metrics:\n- Held-out object category experiments: train on N categories, test on held-out categories with same action labels\n- HOVA-500K 675 action categories for cross-category transfer (train \"pour from pitcher\" → test \"pour from kettle\")\n- AGNOSTOS benchmark (arXiv 2505.15660) for cross-task zero-shot\n- Real-world eval on 5+ unseen object categories\n\nSECONDARY metrics:\n- LIBERO-Para for paraphrase robustness\n- LangGap for language grounding quality\n- Affogato for affordance quality\n\n### 6. ACKNOWLEDGE CoRL 2026 INFEASIBILITY\nCoRL 2026 abstract May 26 (8 days away) — clearly infeasible. State this explicitly.\n- Primary: AAAI 2027 (abstract Jul 21, paper Jul 28)  \n- Backup: WACV 2027 Round 2 (paper Aug 27)\n- Stretch: ICLR 2027 (est. Sep 2026) or CVPR 2027 (est. Nov 2026)\n- Drop WACV Round 1 (Jun 25 is too aggressive at 38 days)\n\n### 7. SHARPEN \"WHY AFFORDANCE MAPS\"\nThe mechanistic argument: Affordance maps capture WHERE to interact — the geometric invariant across paraphrases and across object categories sharing functional parts. Different words for the same action must ground to the same spatial region. Action distributions conflate where-to-interact with how-to-interact (trajectory shape, timing, force), making consistency regularization noisier. For cross-category transfer, WHERE is what transfers (handle location generalizes across mugs/cups/pitchers), while HOW adapts to object-specific geometry.\n\n### 8. HOVA-500K DOMAIN GAP\nAcknowledge explicitly that PokéVLA's backbone pre-training is different from affordance readout pre-training. Add:\n- Viewpoint augmentation during Stage 1 (random crop, perspective warp, ego-centric to third-person style augmentation)\n- Diagnostic checkpoint: evaluate pre-trained affordance readout on robot observation images before Stage 2\n- If domain gap too large: bridge with small set of robot data with pseudo-affordance labels from action-contact heuristics\n- Cross-domain contrastive loss between HOVA-500K and robot observation VLM features for same-action categories\n\n### 9. UPDATED ABLATION DESIGN\nFull ablation suite (8 variants):\n1. Full LACVLA (affordance-gated bottleneck + IPAC + IDA + AGA)\n2. No affordance bottleneck (direct VLA, no affordance readout)\n3. Modular (frozen GLOVER++ → separate policy)\n4. No consistency losses (only AGA through affordance bottleneck)\n5. Shin-style augmentation (paraphrases as training data, no consistency loss)\n6. IPAC on raw actions (consistency on action distributions, no affordance readout)\n7. ST4VLA-style spatial grounding + IPAC on raw features (no affordance readout)\n8. No phased training (all losses from step 0)\n\n### 10. NEW KEY REFERENCES TO ADD\n- ST4VLA (ICLR 2026, arXiv 2602.10109)\n- InternVLA-M1 (arXiv 2510.13778)\n- LIBERO-Plus (CVPR 2026, arXiv 2510.13626)\n- LangGap (arXiv 2603.00592, Mar 2026)\n- DIAL (arXiv 2603.29844, Mar 2026) — for bottleneck architecture inspiration\n- AGNOSTOS / X-ICM (arXiv 2505.15660) — cross-task zero-shot benchmark\n- SpatialVLA (arXiv 2501.15830, RSS 2025)\n\n## JSON SCHEMA\nOutput a JSON object with these fields:\n- \"title\": string\n- \"core_problem\": string  \n- \"opportunity\": string\n- \"landscape\": string\n- \"approach\": string\n- \"resource_estimate\": object with \"manual\", \"human_in_loop\", \"auto_research\" sub-objects\n- \"target_venues\": array of strings\n- \"level\": string (one of: \"incremental\", \"solid\", \"strong\", \"exceptional\")\n- \"key_references\": array of strings\n- \"description\": string\n- \"project_name\": \"lac_vla_zero_shot\"\n- \"source\": \"web_research\"\n- \"change_type\": \"major\"\n\n## IMPORTANT CONSTRAINTS\n- The title should reflect the reframing toward cross-category zero-shot transfer\n- The \"level\" should be \"solid\" \n- Keep the project_name as \"lac_vla_zero_shot\"\n- Be thorough but concise — each field should be comprehensive but not bloated\n- The approach section should be the most detailed\n- All claims about papers should use the specific numbers and details I provided above\n- Use consistent citation style: \"Paper Name (Venue Year, arXiv XXXX.XXXXX)\" or just \"(arXiv XXXX.XXXXX, Month Year)\"\n- The core_problem, opportunity, and landscape should reflect the reframing\n- Resource estimates should account for the additional ablations (8 total) and the cross-category evaluation setup\n\nWrite the complete JSON now. Output ONLY the JSON, no other text."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "09b0ea29-8260-419e-850e-f125f1d534e3",
+            "agentId": "a5d273ba3b7330808",
+            "type": "user",
+            "uuid": "9ff72247-967d-42a9-a3ad-2bdbe31107c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e47a4c73-6ff4-4674-8639-ad091a78ab1a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T20:00:22.999Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "9ff72247-967d-42a9-a3ad-2bdbe31107c2",
+                "isSidechain": true,
+                "agentId": "a5d273ba3b7330808",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "d464c70a-c665-4929-a570-ae65935b7574",
+                "timestamp": "2026-05-18T20:00:22.999Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "e47a4c73-6ff4-4674-8639-ad091a78ab1a",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T20:01:37.166Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\n```json\n{\n  \"title\": \"LACVLA: Enforcing Language-Affordance Consistency for Zero-Shot Cross-Category VLA Manipulation\",\n  \"core_problem\": \"Vision-Language-Action models (VLAs) largely ignore language instructions during policy execution, as demonstrated by LIBERO-Plus (CVPR 2026, arXiv 2510.13626) and LangGap (arXiv 2603.00592, Mar 2026). LangGap shows that VLAs achieving 95%+ standard success rates still largely ignore language; data augmentation partially closes the gap (0→90% single-task, 0→28% multi-task) but is fundamentally insufficient. This language-ignoring failure mode is catastrophic for cross-category zero-shot transfer, where novel objects lack visual priors and language is the ONLY available guide for grounding manipulation behavior. Spatial grounding alone (e.g., ST4VLA, ICLR 2026) improves in-distribution performance but does not guarantee that the model actually conditions its spatial representations on language — it may learn spatial shortcuts that fail on unseen categories.\",\n  \"opportunity\": \"If we can force VLAs to ground their spatial affordance representations through language — making language a mandatory bottleneck for action generation rather than an ignorable input — we unlock genuine cross-category zero-shot transfer. The key insight is that affordance maps capture WHERE to interact, which is the geometric invariant that transfers across object categories sharing functional parts (e.g., handle locations generalize across mugs, cups, and pitchers). By enforcing consistency between affordance maps produced under paraphrased instructions and across related action categories, we ensure language genuinely conditions spatial grounding. This goes beyond what spatial grounding pre-training (ST4VLA) or data augmentation (LangGap/Shin-style) can achieve alone, because neither mechanism structurally prevents the model from bypassing language.\",\n  \"landscape\": \"The VLA landscape has matured rapidly but remains fragile on language grounding and cross-category generalization. Key positions: (1) Foundation VLAs (π₀, GR00T N1) achieve high in-distribution success but show severe language insensitivity — π₀ scores 32%/31% on attribute/spatial-rephrased instructions and only 32% on unseen object instances. (2) ST4VLA (ICLR 2026, arXiv 2602.10109) introduces dual-system spatial grounding (Qwen2.5-VL planner + DiT/DINOv2 action expert), achieving 95.9% LIBERO average, 72%/61% paraphrase robustness, and 62% on new object instances — a significant improvement but still limited on cross-category transfer. InternVLA-M1 (arXiv 2510.13778) similarly integrates spatial guidance. (3) SpatialVLA (RSS 2025, arXiv 2501.15830) adds spatial-aware action tokenization. (4) LIBERO-Plus (CVPR 2026, arXiv 2510.13626) provides the diagnostic benchmark revealing VLAs' language insensitivity. LangGap (arXiv 2603.00592) quantifies the problem and shows data augmentation hits a ceiling at 28% multi-task. (5) DIAL (arXiv 2603.29844, Mar 2026) enforces a latent intent bottleneck via inverse dynamics, demonstrating the power of architectural information gating. (6) Affordance-grounding methods (GLOVER, PokéVLA, HOVA-500K with 675 action categories) provide large-scale affordance supervision but lack consistency enforcement. (7) AGNOSTOS/X-ICM (arXiv 2505.15660) provides a benchmark for cross-task zero-shot evaluation. The critical gap: no existing method structurally forces language to condition spatial affordance representations, which is necessary for cross-category zero-shot transfer where visual priors are absent.\",\n  \"approach\": \"LACVLA introduces an affordance-gated architectural bottleneck with self-supervised consistency objectives that force language to condition spatial grounding, enabling cross-category zero-shot transfer.\\n\\n**Architecture — Affordance-Gated Bottleneck (inspired by DIAL, arXiv 2603.29844):**\\n- A VLM backbone (e.g., Qwen2-VL or PaliGemma2) processes image + language jointly, producing intermediate features.\\n- An affordance readout module applies cross-attention between VLM intermediate features and language tokens to produce a spatial affordance heatmap — encoding WHERE to interact conditioned on the instruction.\\n- A stop-gradient is applied to the VLM intermediate features before they are used as low-level visual features by the action head.\\n- The action head receives: affordance_heatmap ⊙ sg(visual_features) + proprioceptive_state. The affordance map acts as a spatial attention gate — if the model attempts to bypass it (producing a uniform map), the action head receives unselective visual features and performance degrades. This structurally forces all task-relevant WHERE information through the language-conditioned affordance bottleneck.\\n\\n**Training Losses:**\\n1. Instruction-Paraphrase Affordance Consistency (IPAC): For each demonstration, generate K paraphrased instructions via LLM. Enforce KL divergence minimization between affordance heatmaps produced under original vs. paraphrased instructions. This ensures semantically equivalent instructions ground to the same spatial region.\\n2. Inter-Demonstration Affordance consistency (IDA): For demonstrations sharing the same action label but different visual contexts, enforce that affordance maps highlight functionally analogous regions (e.g., the handle of any graspable object for 'grasp' actions).\\n3. Affordance-Guided Action loss (AGA): Standard behavior cloning loss on the action head, supervised by demonstration actions, with the affordance bottleneck in the forward path.\\n\\n**Why Affordance Maps (not raw actions):** Affordance maps isolate the WHERE component — the geometric invariant across paraphrases and across object categories sharing functional parts. Different words for the same action must ground to the same spatial region. Action distributions conflate where-to-interact with how-to-interact (trajectory shape, timing, force), making consistency regularization noisier. For cross-category transfer, WHERE is what transfers (handle location generalizes across mugs/cups/pitchers), while HOW adapts to object-specific geometry.\\n\\n**Phased Training:**\\n- Stage 1 — Affordance Pre-training: Train the affordance readout on HOVA-500K (675 action categories) with viewpoint augmentation (random crop, perspective warp, ego-centric to third-person style augmentation). Diagnostic checkpoint: evaluate pre-trained affordance readout on robot observation images before Stage 2. If domain gap is too large, bridge with a small set of robot data using pseudo-affordance labels from action-contact heuristics, plus cross-domain contrastive loss between HOVA-500K and robot observation VLM features for same-action categories.\\n- Stage 2 — Consistency Fine-tuning: Introduce IPAC and IDA losses on robot demonstration data (LIBERO, DROID, BridgeV2). The affordance bottleneck remains gated throughout. Losses are phased: AGA from step 0, IPAC added after warmup, IDA added last.\\n- Stage 3 — Evaluation: Primary focus on cross-category zero-shot benchmarks.\\n\\n**Ablation Design (8 variants):**\\n1. Full LACVLA (affordance-gated bottleneck + IPAC + IDA + AGA)\\n2. No affordance bottleneck (direct VLA, no affordance readout — tests whether bottleneck is necessary)\\n3. Modular (frozen GLOVER++ affordance model → separate policy — tests end-to-end vs. modular)\\n4. No consistency losses (only AGA through affordance bottleneck — tests whether bottleneck alone suffices)\\n5. Shin-style augmentation (paraphrases as training data, no consistency loss — tests data augmentation ceiling)\\n6. IPAC on raw actions (KL divergence between action distributions under paraphrased instructions, no affordance readout — key ablation testing whether isolating WHERE via affordance maps outperforms consistency on conflated action distributions)\\n7. ST4VLA-style spatial grounding + IPAC on raw features (no affordance readout — tests whether explicit affordance consistency adds value beyond spatial grounding alone)\\n8. No phased training (all losses from step 0 — tests curriculum importance)\\n\\n**Evaluation — Primary (cross-category zero-shot):**\\n- Held-out object category experiments: train on N categories, test on held-out categories with same action labels\\n- HOVA-500K cross-category transfer: train 'pour from pitcher' → test 'pour from kettle' and analogous splits across 675 categories\\n- AGNOSTOS benchmark (arXiv 2505.15660) for cross-task zero-shot evaluation\\n- Real-world evaluation on 5+ unseen object categories (at least 3 manipulation primitives)\\n\\n**Evaluation — Secondary:**\\n- LIBERO-Para for paraphrase robustness (direct comparison with ST4VLA's 72%/61% and π₀'s 32%/31%)\\n- LangGap protocol for language grounding quality measurement\\n- Affogato for affordance quality assessment\\n- Standard LIBERO benchmark (Spatial, Object, Goal, Long) for in-distribution comparison with ST4VLA (95.9% avg)\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"total_hours\": 320,\n      \"breakdown\": {\n        \"architecture_implementation\": \"60 hours — Affordance-gated bottleneck with stop-gradient, cross-attention readout, action head integration\",\n        \"consistency_loss_implementation\": \"35 hours — IPAC (paraphrase generation pipeline + KL loss), IDA (cross-demo matching + loss), integration with phased training schedule\",\n        \"stage1_affordance_pretraining\": \"45 hours — HOVA-500K data pipeline, viewpoint augmentation, domain gap diagnostics, optional bridging with pseudo-affordance labels and contrastive loss\",\n        \"stage2_finetuning\": \"40 hours — LIBERO/DROID/BridgeV2 integration, loss phasing, hyperparameter tuning across 8 ablation variants\",\n        \"evaluation_infrastructure\": \"50 hours — Cross-category held-out splits, AGNOSTOS benchmark integration, LangGap protocol, LIBERO-Para setup, Affogato integration, metric dashboards\",\n        \"ablation_runs\": \"50 hours — 8 ablation variants × multiple seeds, monitoring, analysis, comparison tables\",\n        \"real_world_eval\": \"25 hours — 5+ unseen object categories, hardware setup, data collection, evaluation runs\",\n        \"paper_writing\": \"15 hours — Results compilation, figures, ablation analysis, comparison with ST4VLA/π₀/GR00T baselines\"\n      }\n    },\n    \"human_in_loop\": {\n      \"total_hours\": 200,\n      \"breakdown\": {\n        \"architecture_iteration\": \"40 hours — Reviewing bottleneck design choices, debugging gradient flow through stop-gradient, tuning cross-attention readout\",\n        \"data_pipeline_oversight\": \"30 hours — HOVA-500K preprocessing validation, domain gap assessment, paraphrase quality review\",\n        \"training_monitoring\": \"45 hours — Stage 1 and Stage 2 training curves, loss balancing, detecting mode collapse in affordance maps\",\n        \"ablation_management\": \"40 hours — Launching and monitoring 8 ablation variants, early stopping decisions, seed selection\",\n        \"evaluation_analysis\": \"25 hours — Cross-category zero-shot result interpretation, failure case analysis, statistical significance testing\",\n        \"real_world_experiments\": \"20 hours — Robot setup, safety monitoring, object selection for unseen categories\"\n      }\n    },\n    \"auto_research\": {\n      \"total_hours\": 120,\n      \"breakdown\": {\n        \"literature_monitoring\": \"15 hours — Tracking new VLA papers, especially follow-ups to LangGap/LIBERO-Plus/ST4VLA\",\n        \"hyperparameter_sweeps\": \"40 hours — Automated sweeps for loss weights, learning rate schedules, paraphrase count K, affordance map resolution\",\n        \"benchmark_runs\": \"45 hours — Automated evaluation runs across LIBERO suites, AGNOSTOS, cross-category splits\",\n        \"analysis_generation\": \"20 hours — Automated comparison tables, statistical tests, visualization of affordance maps across categories\"\n      }\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract Jul 21, paper Jul 28 — primary target, ~70 days)\",\n    \"WACV 2027 Round 2 (paper Aug 27 — backup, ~100 days)\",\n    \"ICLR 2027 (estimated Sep 2026 — stretch goal)\",\n    \"CVPR 2027 (estimated Nov 2026 — stretch goal)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"ST4VLA (ICLR 2026, arXiv 2602.10109) — Dual-system VLA with spatial grounding pre-training, 95.9% LIBERO avg, 72%/61% paraphrase robustness, 62% unseen objects\",\n    \"LIBERO-Plus (CVPR 2026, arXiv 2510.13626) — Diagnostic benchmark revealing VLAs' language insensitivity\",\n    \"LangGap (arXiv 2603.00592, Mar 2026) — Quantifies language grounding gap: data augmentation reaches 90% single-task but only 28% multi-task\",\n    \"DIAL (arXiv 2603.29844, Mar 2026) — Latent intent bottleneck via inverse dynamics, inspiration for affordance-gated architecture\",\n    \"InternVLA-M1 (arXiv 2510.13778) — Spatially guided VLA with multi-modal integration\",\n    \"SpatialVLA (RSS 2025, arXiv 2501.15830) — Spatial-aware action tokenization for VLAs\",\n    \"AGNOSTOS / X-ICM (arXiv 2505.15660) — Cross-task zero-shot manipulation benchmark\",\n    \"π₀ (Physical Intelligence, 2024) — Foundation VLA baseline, 32%/31% paraphrase robustness, 32% unseen objects\",\n    \"GR00T N1 (NVIDIA, 2025) — Foundation VLA baseline, 46% unseen objects\",\n    \"GLOVER / GLOVER++ — Language-conditioned affordance grounding for manipulation\",\n    \"PokéVLA / HOVA-500K — Large-scale hand-object video affordance dataset with 675 action categories\",\n    \"Affogato — Affordance quality evaluation benchmark\",\n    \"Shin et al. (2025) — Paraphrase augmentation for VLA robustness (data augmentation baseline)\"\n  ],\n  \"description\": \"LACVLA addresses a critical failure mode in modern VLAs: they achieve high in-distribution success while largely ignoring language instructions (LIBERO-Plus, LangGap). This is catastrophic for cross-category zero-shot transfer where novel objects lack visual priors and language is the only guide. We propose an affordance-gated architectural bottleneck — inspired by DIAL's latent intent bottleneck — that forces all task-relevant spatial information through a language-conditioned affordance map. The affordance map is produced via cross-attention between VLM intermediate features and language tokens, then element-wise multiplied with stop-gradiented visual features before reaching the action head. This architecture structurally prevents the model from bypassing language: a uniform (language-ignoring) affordance map yields unselective visual features and degraded performance. We enforce consistency through IPAC (paraphrased instructions must produce identical affordance maps) and IDA (same actions across demonstrations must ground to functionally analogous regions). The approach is pre-trained on HOVA-500K (675 action categories) with viewpoint augmentation and domain gap bridging, then fine-tuned on robot demonstrations with phased loss introduction. A comprehensive 8-variant ablation suite isolates the contribution of each component, with the critical test being IPAC-on-raw-actions (ablation 6) — if affordance maps outperform action-level consistency, it validates the mechanistic argument that isolating WHERE-to-interact from HOW-to-interact is essential. Primary evaluation targets cross-category zero-shot transfer (held-out categories, HOVA-500K cross-category splits, AGNOSTOS benchmark, real-world unseen objects), with secondary evaluation on paraphrase robustness (LIBERO-Para, LangGap) and affordance quality (Affogato). CoRL 2026 (abstract May 26) is acknowledged as infeasible; the primary target is AAAI 2027 (abstract Jul 21, paper Jul 28).\",\n  \"project_name\": \"lac_vla_zero_shot\",\n  \"source\": \"web_research\",\n  \"change_type\": \"major\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d464c70a-c665-4929-a570-ae65935b7574",
+            "isSidechain": true,
+            "agentId": "a5d273ba3b7330808",
+            "requestId": "req_011CbAdQjAtG7oYjvBG7Dejf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "66aa9100-aac0-47ff-a0d8-896e21138a0e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e47a4c73-6ff4-4674-8639-ad091a78ab1a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YXPM8pXDc2B5powCrED1Hp",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11000,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 4168,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11000
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4168,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 11000,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11000,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        }
+      ],
+      "message_count": 3
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-you-to-help-me-write-a-complete-revised-research-idea-json-i-ll-provide.md"
+}

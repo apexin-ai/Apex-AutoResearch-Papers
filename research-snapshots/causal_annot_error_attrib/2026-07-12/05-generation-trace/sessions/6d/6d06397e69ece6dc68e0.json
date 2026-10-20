@@ -1,0 +1,1053 @@
+{
+  "schema_version": "1.0",
+  "id": "6d06397e69ece6dc68e0",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web for the paper \"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\" (also called \"Gr",
+  "task_key": "agent-acfaeb8c9207aae4f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-acfaeb8c9207aae4f.jsonl",
+    "occurrence": 1,
+    "bytes": 35051,
+    "sha256": "66b693f87f3276b0e409a63e4588613b61bc122f88af14065f7d8325e3402b3e"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T09:07:44.839Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web for the paper \"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\" (also called \"Grft\", arXiv:2502.14100, ACL 2025). I need to verify:\n1. That it applies sigmoid gating at a layer level (not head level)\n2. What accuracy it achieves on \"helpful contexts\" — specifically looking for numbers like 98.23% and 97.03%\n3. That it was trained on ConflictQA/COUNTERFACT datasets\n4. Whether the gate is \"hidden-state-conditional\" vs \"query-conditional\"\n5. The parameter count (claimed to be 36.9K, 0.0005% of model)\n6. Whether it was tested on reasoning distractor tasks (GSM-DC, NoisyBench) or only knowledge conflicts\n\nUse WebSearch and WebFetch to find and read this paper's abstract and results tables."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+            "agentId": "acfaeb8c9207aae4f",
+            "type": "user",
+            "uuid": "520b6019-665f-4e74-bc73-e880e4f45fc2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T09:07:44.842Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "520b6019-665f-4e74-bc73-e880e4f45fc2",
+                "isSidechain": true,
+                "agentId": "acfaeb8c9207aae4f",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "bc80e310-1e83-43e6-898d-3858769ad524",
+                "timestamp": "2026-05-17T09:07:44.842Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T09:07:47.396Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ExAK9WY2paXxrzqDiBrmQX",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc80e310-1e83-43e6-898d-3858769ad524",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7sqJ3MJS3TPSfc9pM1x",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "31498cc0-8c58-4d8b-8c34-4663d4a82839",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CYiyNHP9LHM4WzSS2Su4As",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 765,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 765
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 765,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 765,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T09:07:47.399Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01ExAK9WY2paXxrzqDiBrmQX",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31498cc0-8c58-4d8b-8c34-4663d4a82839",
+            "isSidechain": true,
+            "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+            "agentId": "acfaeb8c9207aae4f",
+            "type": "user",
+            "uuid": "98bb975a-8366-4f26-ba9b-bc6c335cc717",
+            "sourceToolAssistantUUID": "31498cc0-8c58-4d8b-8c34-4663d4a82839",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T09:07:50.373Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CSMJd7P6feq2S7Ux9GQHfv",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2502.14100 \"Towards Context-Robust LLMs\" Gated Representation Fine-tuning GRFT"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98bb975a-8366-4f26-ba9b-bc6c335cc717",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7sqV9qiJi86bQTpCbYJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e69fea9e-96ba-4da0-8ab0-8a90e98c34e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KdP83dz7GaCMV9ofJ42nqN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T09:07:50.992Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Nc4ZaVacmJa11kxT1KdmDP",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Towards Context-Robust LLMs\" GRFT ACL 2025 sigmoid gating ConflictQA"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e69fea9e-96ba-4da0-8ab0-8a90e98c34e3",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7sqV9qiJi86bQTpCbYJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8f5a892e-5cc6-4ce0-a5b1-741cf251a224",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KdP83dz7GaCMV9ofJ42nqN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8988,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1888
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 8988,
+                    "cache_creation_input_tokens": 1888,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1888,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T09:07:57.016Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CSMJd7P6feq2S7Ux9GQHfv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2502.14100 \"Towards Context-Robust LLMs\" Gated Representation Fine-tuning GRFT\"\n\nLinks: [{\"title\":\"[2502.14100] Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\",\"url\":\"https://arxiv.org/abs/2502.14100\"},{\"title\":\"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\",\"url\":\"https://arxiv.org/html/2502.14100\"},{\"title\":\"(PDF) Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\",\"url\":\"https://www.researchgate.net/publication/389176500_Towards_Context-Robust_LLMs_A_Gated_Representation_Fine-tuning_Approach\"},{\"title\":\"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.506/\"},{\"title\":\"Computer Science Feb 2025\",\"url\":\"https://arxiv.org/list/cs/2025-02?skip=7125&show=1000\"},{\"title\":\"A General Framework to Enhance Fine-tuning-based LLM Unlearning\",\"url\":\"https://arxiv.org/html/2502.17823\"},{\"title\":\"Machine Learning Apr 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-04?show=500&skip=2500\"},{\"title\":\"[2502.17823] A General Framework to Enhance Fine-tuning-based LLM Unlearning\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2502.17823\"},{\"title\":\"[2502.11812] Towards Understanding Fine-Tuning Mechanisms of LLMs via Circuit Analysis\",\"url\":\"https://arxiv.org/abs/2502.11812\"},{\"title\":\"Computation and Language Jun 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025-06?skip=1300&show=2000\"}]\n\nI've found the research paper you were looking for. Here's what I can tell you about arXiv paper 2502.14100:\n\n## Paper Overview\n\nThe paper addresses how Large Language Models (LLMs) enhanced with external contexts, such as through retrieval-augmented generation (RAG), often face challenges in handling imperfect evidence and tend to over-rely on external knowledge, making them vulnerable to misleading and unhelpful contexts.\n\n## The Proposed Solution: GRFT\n\nThe paper proposes the concept of context-robust LLMs, which can effectively balance internal knowledge with external context. Specifically, context-robust LLMs should rely on external context only when lacking internal knowledge, identify contradictions between internal and external knowledge, and disregard unhelpful contexts.\n\nTo achieve this goal, the authors introduce GRFT, a lightweight and plug-and-play gated representation fine-tuning approach. GRFT consists of two key components: a gating mechanism to detect and filter problematic inputs, and low-rank representation adapters to adjust hidden representations.\n\n## Key Advantages\n\nBy training a lightweight intervention function with only 0.0004% of model size on fewer than 200 examples, GRFT can effectively adapt LLMs towards context-robust behaviors.\n\nThe paper was published on arXiv in February 2025 and has been accepted to the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e69fea9e-96ba-4da0-8ab0-8a90e98c34e3",
+            "isSidechain": true,
+            "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+            "agentId": "acfaeb8c9207aae4f",
+            "type": "user",
+            "uuid": "ec421fb8-187f-4eab-bbf1-ec4546a18807",
+            "sourceToolAssistantUUID": "e69fea9e-96ba-4da0-8ab0-8a90e98c34e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T09:07:59.121Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Nc4ZaVacmJa11kxT1KdmDP",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Towards Context-Robust LLMs\" GRFT ACL 2025 sigmoid gating ConflictQA\"\n\nLinks: [{\"title\":\"Towards Context-Robust LLMs: A Gated Representation ...\",\"url\":\"https://aclanthology.org/2025.acl-long.506.pdf\"},{\"title\":\"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.506/\"},{\"title\":\"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\",\"url\":\"https://arxiv.org/pdf/2502.14100\"},{\"title\":\"NeurIPS 2025 Best Paper Review: Qwen’s Systematic Exploration of Attention Gating | Towards Data Science\",\"url\":\"https://towardsdatascience.com/neurips-2025-best-paper-review-qwens-systematic-exploration-of-attention-gating/\"},{\"title\":\"(PDF) Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\",\"url\":\"https://www.researchgate.net/publication/389176500_Towards_Context-Robust_LLMs_A_Gated_Representation_Fine-tuning_Approach\"},{\"title\":\"ACL 2025 The First Workshop on LLM Security Proceedings of the Workshop\",\"url\":\"https://sig.llmsecurity.net/proceedings.pdf\"},{\"title\":\"Multi-Attribute Steering of Language Models via Targeted ...\",\"url\":\"https://aclanthology.org/2025.acl-long.1007.pdf\"},{\"title\":\"Context-Aware Prompt Injection Testing and Robustness ...\",\"url\":\"https://aclanthology.org/2025.llmsec-1.13.pdf\"},{\"title\":\"Paper Digest: ACL 2025 Papers & Highlights – Paper Digest\",\"url\":\"https://www.paperdigest.org/2025/07/acl-2025-papers-highlights/\"},{\"title\":\"Accepted Main Conference Papers - ACL 2025\",\"url\":\"https://2025.aclweb.org/program/main_papers/\"}]\n\nBased on the search results, I found detailed information about the paper you're looking for:\n\n## Paper Overview\n\n\"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\" is a paper presented at the 63rd Annual Meeting of the Association for Computational Linguistics (ACL) in July 2025 in Vienna, Austria.\n\n## Key Concepts\n\nThe paper addresses challenges that Large Language Models (LLMs) enhanced with external contexts face in handling imperfect evidence. LLMs tend to over-rely on external knowledge, making them vulnerable to misleading and unhelpful contexts. The authors propose the concept of context-robust LLMs, which can effectively balance internal knowledge with external context, similar to human cognitive processes.\n\nSpecifically, context-robust LLMs should rely on external context only when lacking internal knowledge, identify contradictions between internal and external knowledge, and disregard unhelpful contexts.\n\n## The GRFT Method\n\nThe paper introduces Grft, a lightweight and plug-and-play gated representation fine-tuning approach. Grft consists of two key components: a gating mechanism to detect and filter problematic inputs, and low-rank representation adapters to adjust hidden representations. By training a lightweight intervention function with only 0.0004% of model size on fewer than 200 examples, Grft can effectively adapt LLMs towards context-robust behaviors.\n\n## Evaluation\n\nThe authors primarily utilize the ConflictQA dataset for experiments, with COUNTERFACT and NQ datasets for generalization studies. The ConflictQA dataset combines questions from PopQA with both aligned and contradictory evidence, with each sample containing a question paired with concise and detailed supporting evidence, as well as ChatGPT-generated contradictory evidence in both short and long forms.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f5a892e-5cc6-4ce0-a5b1-741cf251a224",
+            "isSidechain": true,
+            "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+            "agentId": "acfaeb8c9207aae4f",
+            "type": "user",
+            "uuid": "77ff7a70-2d0a-4474-9d4d-aba8acc34c45",
+            "sourceToolAssistantUUID": "8f5a892e-5cc6-4ce0-a5b1-741cf251a224",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T09:08:01.984Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the actual paper content to verify the specific details you're asking about."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77ff7a70-2d0a-4474-9d4d-aba8acc34c45",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7srM6gaV2tadGPZneor",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "65ef0023-277c-4db0-a63a-ca36eaa305e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E8AzpphD9pCQNGq8ftqJqw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2040,
+                "cache_read_input_tokens": 10876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2040,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T09:08:06.323Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Biz8HEERGuTXFZbCsdd1pN",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2502.14100",
+                "prompt": "I need to find the following specific details about GRFT:\n1. Does it apply sigmoid gating at a layer level or head level? What exactly is the gating architecture?\n2. What accuracy numbers does it achieve on \"helpful contexts\"? Look for numbers like 98.23% and 97.03% in results tables.\n3. What datasets was it trained on? ConflictQA? COUNTERFACT?\n4. Is the gate \"hidden-state-conditional\" or \"query-conditional\"? What is the input to the gating mechanism?\n5. What is the parameter count? Is it 36.9K or some other number? What percentage of the model?\n6. Was it tested on reasoning distractor tasks like GSM-DC or NoisyBench, or only on knowledge conflict tasks?\n\nPlease extract all relevant details, especially from the method section, results tables, and experimental setup."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65ef0023-277c-4db0-a63a-ca36eaa305e4",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7srM6gaV2tadGPZneor",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b4ff7451-f1fc-4a8f-b8ee-f1a17b3979a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E8AzpphD9pCQNGq8ftqJqw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2040,
+                "cache_read_input_tokens": 10876,
+                "output_tokens": 300,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2040
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 300,
+                    "cache_read_input_tokens": 10876,
+                    "cache_creation_input_tokens": 2040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2040,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T09:08:14.903Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Biz8HEERGuTXFZbCsdd1pN",
+              "type": "tool_result",
+              "content": "# GRFT Technical Details\n\n## 1. Gating Architecture\nGRFT applies gating at the **layer level** (specifically targeting hidden representations at layer l). The gate mechanism is a simple linear layer with sigmoid activation:\n\n> \"Gate(𝐡l) = σ(𝐖g𝐡l + 𝐛g)\"\n\nThe input is the full hidden state vector (𝐡l ∈ ℝd) at a specific layer, producing a scalar output between 0-1 that controls intervention strength.\n\n## 2. Performance on Helpful Contexts\nFor unknown queries with helpful contexts, GRFT achieved:\n- **98.23%** (long contexts)\n- **97.03%** (short contexts)\n\nThese results match the original LLM baseline, confirming the gate successfully avoids unnecessary interventions.\n\n## 3. Training Datasets\n- **Primary**: ConflictQA (PopQA-based with synthetic contradictions)\n- **Generalization testing**: COUNTERFACT and Natural Questions (NQ)\n- **Training size**: 100 known + 100 unknown questions (200 total, 400 samples after augmentation)\n\n## 4. Gate Input Type\nThe gate is **hidden-state-conditional**—it examines representations of inputs containing both context and query to determine if intervention is needed. It's not query-specific but context-aware.\n\n## 5. Parameter Efficiency\n- **Total trainable parameters**: 36.9K\n- **Percentage of model**: 0.0005% (for 7B model)\n- Gate function adds only 4.1K parameters beyond the base ReFT approach\n\n## 6. Evaluation Scope\nGRFT was tested **exclusively on knowledge conflict tasks** (contradictions, unhelpful contexts, matched contexts). No evaluation on reasoning distractor tasks like GSM-DC or NoisyBench appears in this paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4ff7451-f1fc-4a8f-b8ee-f1a17b3979a1",
+            "isSidechain": true,
+            "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+            "agentId": "acfaeb8c9207aae4f",
+            "type": "user",
+            "uuid": "89fcd26f-553b-4b48-be87-6a4d744e6b8e",
+            "sourceToolAssistantUUID": "b4ff7451-f1fc-4a8f-b8ee-f1a17b3979a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T09:08:18.113Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive information. Let me do one more search to double-check the parameter percentage claim, since the first search result mentioned 0.0004% while the HTML version says 0.0005%."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89fcd26f-553b-4b48-be87-6a4d744e6b8e",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7ssWaDhmo1CkzBTsSyP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "083c3592-375b-46a8-a38d-5214a512747f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WD2RsmhjhsToUubNZXfbbe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 750,
+                "cache_read_input_tokens": 12916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 750,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T09:08:19.351Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AC6syvDjEo7JjNo9dac8Kt",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2502.14100",
+                "prompt": "What does the abstract say about the parameter count or percentage of model size? Look for \"0.0004%\" or \"0.0005%\" or any mention of parameter efficiency."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "083c3592-375b-46a8-a38d-5214a512747f",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7ssWaDhmo1CkzBTsSyP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "be30c688-cf97-425b-a93d-933da22f6f0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WD2RsmhjhsToUubNZXfbbe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 750,
+                "cache_read_input_tokens": 12916,
+                "output_tokens": 163,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 750
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 163,
+                    "cache_read_input_tokens": 12916,
+                    "cache_creation_input_tokens": 750,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 750,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T09:08:21.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AC6syvDjEo7JjNo9dac8Kt",
+              "type": "tool_result",
+              "content": "# Parameter Efficiency in Grft\n\nAccording to the abstract, the method achieves remarkable parameter efficiency. Specifically, it states that \"By training a lightweight intervention function with only 0.0004% of model size on fewer than 200 examples, Grft can effectively adapt LLMs towards context-robust behaviors.\"\n\nThis indicates the approach requires tuning just 0.0004% of the total model parameters, making it an exceptionally lightweight fine-tuning method that needs minimal training data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be30c688-cf97-425b-a93d-933da22f6f0f",
+            "isSidechain": true,
+            "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+            "agentId": "acfaeb8c9207aae4f",
+            "type": "user",
+            "uuid": "3d0a4225-9ebe-49fb-bf04-6b5f433dbb46",
+            "sourceToolAssistantUUID": "be30c688-cf97-425b-a93d-933da22f6f0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T09:08:24.955Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good. There's a discrepancy between the abstract (0.0004%) and the detailed results in the paper body (0.0005% with 36.9K parameters). Let me verify this more carefully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d0a4225-9ebe-49fb-bf04-6b5f433dbb46",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7st1BArJajQXt8uwwnp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4297a2b6-a309-490e-969c-abfad69eba5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LxGfbBrxTMehznuv6W4XwY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 280,
+                "cache_read_input_tokens": 13666,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 280,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T09:08:25.671Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DQshLz14qxujCxWuYkQw7F",
+              "name": "WebSearch",
+              "input": {
+                "query": "GRFT \"36.9K\" OR \"0.0005\" OR \"0.0004\" parameters gated representation fine-tuning 2502.14100"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4297a2b6-a309-490e-969c-abfad69eba5e",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7st1BArJajQXt8uwwnp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ee7be5e9-aa93-4e93-9c7f-1d1e596bd1c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LxGfbBrxTMehznuv6W4XwY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 280,
+                "cache_read_input_tokens": 13666,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 280
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 13666,
+                    "cache_creation_input_tokens": 280,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 280,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T09:08:29.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DQshLz14qxujCxWuYkQw7F",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GRFT \"36.9K\" OR \"0.0005\" OR \"0.0004\" parameters gated representation fine-tuning 2502.14100\"\n\nNo links found.\n\nThe search didn't return any results. This appears to be a very specific technical query, likely referring to a research paper (the number 2502.14100 looks like an arXiv identifier). The exact parameter values and terminology might be too specific for standard web search to match.\n\nWould you like me to try:\n1. A broader search for just \"GRFT gated representation fine-tuning\" to find the paper?\n2. A search for the arXiv number \"2502.14100\" directly?\n3. A different search strategy focusing on specific aspects of your query?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee7be5e9-aa93-4e93-9c7f-1d1e596bd1c2",
+            "isSidechain": true,
+            "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+            "agentId": "acfaeb8c9207aae4f",
+            "type": "user",
+            "uuid": "f45630a4-55a4-43f7-8852-b8d4cff8917b",
+            "sourceToolAssistantUUID": "ee7be5e9-aa93-4e93-9c7f-1d1e596bd1c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T09:08:34.175Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K5uEPEjCrVEixqsKA7uisY",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/2025.acl-long.506/",
+                "prompt": "Look for any mention of parameter counts like 36.9K, percentages like 0.0004% or 0.0005%, and any details about the gating mechanism, training datasets, or evaluation tasks. Also look for any mention of GSM-DC, NoisyBench, or reasoning tasks."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f45630a4-55a4-43f7-8852-b8d4cff8917b",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7stZy9K4V5qBDLpBjzS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "edddf051-1fde-439d-bedc-690b615f7af1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NywRiBWoyJBCvzaZ1ndAAN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 346,
+                "cache_read_input_tokens": 13946,
+                "output_tokens": 153,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 346
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 153,
+                    "cache_read_input_tokens": 13946,
+                    "cache_creation_input_tokens": 346,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 346,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T09:08:38.040Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K5uEPEjCrVEixqsKA7uisY",
+              "type": "tool_result",
+              "content": "# Paper Summary: Context-Robust LLMs\n\nThis ACL 2025 paper introduces **Grft** (Gated Representation Fine-tuning), a method to help LLMs better balance internal knowledge with external context from retrieval-augmented generation (RAG) systems.\n\n## Key Technical Details\n\n**Model Size & Efficiency:**\nThe approach trains \"a lightweight intervention function with only 0.0004% of model size on fewer than 200 examples,\" making it highly parameter-efficient.\n\n**Core Components:**\nGrft has two main parts: a gating mechanism that identifies and filters problematic inputs, and low-rank representation adapters that adjust hidden layer representations.\n\n## Problem Statement\n\nThe paper addresses how LLMs enhanced with external context \"often face challenges in handling imperfect evidence\" and tend to \"over-rely on external knowledge, making them vulnerable to misleading and unhelpful contexts.\"\n\n## Proposed Behaviors\n\nContext-robust LLMs should:\n- Rely on external context only when lacking internal knowledge\n- Identify contradictions between internal and external knowledge\n- Disregard unhelpful contexts\n\n**Publication Details:** 63rd ACL Annual Meeting, July 2025, Vienna, Austria (pages 10262–10276)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edddf051-1fde-439d-bedc-690b615f7af1",
+            "isSidechain": true,
+            "promptId": "9b3c7e11-b307-4cd8-8efe-f37b7959d63f",
+            "agentId": "acfaeb8c9207aae4f",
+            "type": "user",
+            "uuid": "4ce4a0f9-273e-4d2a-9d57-22e0e6a85980",
+            "sourceToolAssistantUUID": "edddf051-1fde-439d-bedc-690b615f7af1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T09:08:56.717Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have enough information to provide a comprehensive answer. Here is my findings report:\n\n---\n\n## Verification Results for \"Towards Context-Robust LLMs: A Gated Representation Fine-tuning Approach\" (arXiv:2502.14100, ACL 2025)\n\n### 1. Sigmoid gating at layer level (not head level) -- CONFIRMED\n\nThe paper applies gating at the **layer level** on hidden representations. The gate formula is:\n\n`Gate(h_l) = sigma(W_g * h_l + b_g)`\n\nwhere `h_l` is the full hidden state vector at layer `l`, and the output is a scalar (0-1) controlling intervention strength. This is explicitly a per-layer mechanism operating on full hidden states, **not** at the attention head level.\n\n### 2. Accuracy on helpful contexts -- CONFIRMED\n\nThe paper reports:\n- **98.23%** accuracy on helpful contexts (long form)\n- **97.03%** accuracy on helpful contexts (short form)\n\nThese numbers match what you cited. They demonstrate that the gate correctly avoids unnecessary interventions when context is already helpful (matching the unmodified LLM baseline).\n\n### 3. Training on ConflictQA/COUNTERFACT -- CONFIRMED (with nuance)\n\n- **Primary training**: ConflictQA (built on PopQA with synthetic contradictions) -- 100 known + 100 unknown questions (200 total, 400 samples after augmentation)\n- **Generalization testing**: COUNTERFACT and Natural Questions (NQ) were used for out-of-distribution evaluation, not primary training\n\n### 4. Hidden-state-conditional vs. query-conditional -- It is HIDDEN-STATE-CONDITIONAL\n\nThe gate takes as input the hidden representation `h_l` which encodes both the context and the query together (as processed by the model up to layer `l`). It is **not** query-conditional in the sense of operating only on the query -- it examines the combined representation of the full input (context + query) at a given layer.\n\n### 5. Parameter count -- PARTIALLY CONFIRMED (discrepancy noted)\n\n- The **abstract** claims **0.0004%** of model size\n- The **detailed results in the paper body** report **36.9K trainable parameters** which equals **0.0005%** of a 7B model\n- The gate function itself adds only **4.1K parameters** beyond the base ReFT (representation fine-tuning) adapters\n\nYour cited figure of \"36.9K, 0.0005%\" matches the paper body's detailed breakdown. The abstract rounds down to 0.0004%. This is a minor inconsistency within the paper itself.\n\n### 6. Reasoning distractor tasks (GSM-DC, NoisyBench) -- NOT TESTED\n\nGRFT was evaluated **exclusively on knowledge conflict tasks** -- specifically contradictory contexts, unhelpful/irrelevant contexts, and matched/helpful contexts. There is **no evaluation** on reasoning distractor tasks like GSM-DC or NoisyBench in this paper. Its scope is limited to the knowledge conflict setting (when should the model trust its parametric knowledge vs. retrieved context).\n\n---\n\nSources:\n- [arXiv:2502.14100 Abstract](https://arxiv.org/abs/2502.14100)\n- [arXiv:2502.14100 HTML Full Paper](https://arxiv.org/html/2502.14100)\n- [ACL Anthology: ACL 2025 Long Paper 506](https://aclanthology.org/2025.acl-long.506/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ce4a0f9-273e-4d2a-9d57-22e0e6a85980",
+            "isSidechain": true,
+            "agentId": "acfaeb8c9207aae4f",
+            "requestId": "req_011Cb7suDba9s82KFNdDD5ve",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c6e577b2-765c-4eee-b74f-1e98d26f8dad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "123ec6d7-284e-40f8-ac0c-5ea10aa885ae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvNWUfUwmV87cvGM1JG9m7",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 442,
+                "cache_read_input_tokens": 14292,
+                "output_tokens": 842,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 442
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 842,
+                    "cache_read_input_tokens": 14292,
+                    "cache_creation_input_tokens": 442,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 442,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-for-the-paper-towards-context-robust-llms-a-gated-representatio.md"
+}

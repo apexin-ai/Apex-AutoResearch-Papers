@@ -1,0 +1,2409 @@
+{
+  "schema_version": "1.0",
+  "id": "90d1051252aa5b462a9e",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify two things: ## Part 1: Conference Deadlines (after 2026-05-18) Search for submission deadlines for thes",
+  "task_key": "agent-a4be6c652d0f707f8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a4be6c652d0f707f8.jsonl",
+    "occurrence": 1,
+    "bytes": 106290,
+    "sha256": "b773e4ae9f1ca407d4c08c0d56f2b0ade8bc9197d7fef893e79024221cb77340"
+  },
+  "statistics": {
+    "messages": 54,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 24,
+      "tool_result": 24
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T18:44:42.067Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify two things:\n\n## Part 1: Conference Deadlines (after 2026-05-18)\nSearch for submission deadlines for these top-tier AI/robotics venues. Only report venues whose FULL PAPER submission deadline is AFTER 2026-05-18:\n\n1. WebSearch: \"NeurIPS 2026 submission deadline\"\n2. WebSearch: \"ICLR 2027 submission deadline\"\n3. WebSearch: \"CoRL 2026 submission deadline\"\n4. WebSearch: \"ICRA 2027 submission deadline\"\n5. WebSearch: \"RSS 2026 submission deadline\"\n6. WebSearch: \"CVPR 2027 submission deadline\"\n7. WebSearch: \"AAAI 2027 submission deadline\"\n8. WebSearch: \"ECCV 2026 submission deadline\"\n9. WebSearch: \"IROS 2026 submission deadline\"\n\nFor each, report the exact submission deadline date and whether it's after 2026-05-18.\n\n## Part 2: Verify Key References\nVerify these papers are real (correct title, venue, year, arXiv ID):\n\n1. WebSearch: \"arXiv 2603.04419 context-dependent affordance\"\n2. WebSearch: \"UAD unsupervised affordance distillation ICRA 2025 arXiv 2506.09284\"\n3. WebSearch: \"AffordSim arXiv 2604.11674 VoxAfford simulation\"\n4. WebSearch: \"GLOVER++ arXiv 2505.11865 manipulation\"\n5. WebSearch: \"affordance flow matching arXiv 2409.01083\"\n6. WebSearch: \"AGD20K affordance grounding dataset\"\n7. WebSearch: \"UMD affordance dataset\"\n\nReport exact findings for each reference — whether verified or not."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "2d4dfeb3-d6fc-44f2-8eda-50635a25dcd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T18:44:42.073Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2d4dfeb3-d6fc-44f2-8eda-50635a25dcd2",
+                "isSidechain": true,
+                "agentId": "a4be6c652d0f707f8",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "942485cb-44a1-4f0c-8f26-f0fef7ee5ff7",
+                "timestamp": "2026-05-18T18:44:42.073Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T18:44:44.580Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for all the conference deadlines and paper references in parallel. Let me first load the WebSearch tool."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "942485cb-44a1-4f0c-8f26-f0fef7ee5ff7",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXdzhCCWdMjfYR8haEG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "50ae33d8-211d-4ebe-b8f7-497b77bf76e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KeDoEcMhKVZrEhG5tVuV89",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 967,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 967,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T18:44:44.908Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J2bZdcVtSyGMDdUuE5aF66",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50ae33d8-211d-4ebe-b8f7-497b77bf76e1",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXdzhCCWdMjfYR8haEG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0af53176-8cd6-403d-b974-922ebc665d12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KeDoEcMhKVZrEhG5tVuV89",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 967,
+                "cache_read_input_tokens": 7304,
+                "output_tokens": 101,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 967
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 101,
+                    "cache_read_input_tokens": 7304,
+                    "cache_creation_input_tokens": 967,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 967,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T18:44:44.912Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01J2bZdcVtSyGMDdUuE5aF66",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0af53176-8cd6-403d-b974-922ebc665d12",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "077c4d1b-bacf-43e5-893b-373aca3e22d2",
+            "sourceToolAssistantUUID": "0af53176-8cd6-403d-b974-922ebc665d12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T18:44:47.349Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all the searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "077c4d1b-bacf-43e5-893b-373aca3e22d2",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "abf71cb6-85a5-44cc-93f5-28b99363bd72",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T18:44:47.827Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XndGGwEahjaj1S2QBXvtkJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "NeurIPS 2026 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abf71cb6-85a5-44cc-93f5-28b99363bd72",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "de79f195-0aad-48d6-a913-501395b408bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T18:44:48.309Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V39RsCWhhgXDFY6YTKaQVQ",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICLR 2027 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de79f195-0aad-48d6-a913-501395b408bc",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "de8bf559-6b05-4da4-9537-e490ccfcbda5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T18:44:48.776Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PFCx5m8c5B8BvpWgRf3xGK",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoRL 2026 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de8bf559-6b05-4da4-9537-e490ccfcbda5",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2e192104-98ef-4269-95cf-df871cdfe069",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T18:44:48.790Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Unk8kr2M9rxUYgvWhHvyDj",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICRA 2027 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e192104-98ef-4269-95cf-df871cdfe069",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "de7aa26a-0406-4e84-a3f6-019aed31e6a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T18:44:49.275Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TnBrbVQksGZYcGgdXREbiF",
+              "name": "WebSearch",
+              "input": {
+                "query": "RSS 2026 submission deadline robotics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de7aa26a-0406-4e84-a3f6-019aed31e6a3",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3637609d-8827-4689-af37-c4a6c18e0360",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T18:44:49.718Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CRrkYB7295BcKBv3d97oga",
+              "name": "WebSearch",
+              "input": {
+                "query": "CVPR 2027 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3637609d-8827-4689-af37-c4a6c18e0360",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "228f02a7-4aac-4a07-9c05-491597277aa7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T18:44:50.194Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PCJ7ue46dY5LAXHr72oAu9",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "228f02a7-4aac-4a07-9c05-491597277aa7",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1c7ec3d5-fe3f-4cf4-b10d-fde4ceaa4f96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T18:44:50.203Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VXdimgCxLTGhMWNs8nco1K",
+              "name": "WebSearch",
+              "input": {
+                "query": "ECCV 2026 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c7ec3d5-fe3f-4cf4-b10d-fde4ceaa4f96",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5fa88f60-af52-4ed3-9338-6615d38e2e84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T18:44:50.707Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011GJCtHiK3zHcDntrvfTKRk",
+              "name": "WebSearch",
+              "input": {
+                "query": "IROS 2026 submission deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fa88f60-af52-4ed3-9338-6615d38e2e84",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "23cb799a-ca5c-48a4-b2c0-33f232d73dd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T18:44:51.704Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MqwnPvWonuBw5b71zmK7qH",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2603.04419 context-dependent affordance"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23cb799a-ca5c-48a4-b2c0-33f232d73dd6",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9f29c8a4-7a41-4893-a86c-77179592c77d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T18:44:52.352Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XndGGwEahjaj1S2QBXvtkJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"NeurIPS 2026 submission deadline\"\n\nLinks: [{\"title\":\"Call for Papers 2026\",\"url\":\"https://neurips.cc/Conferences/2026/CallForPapers\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://neurips.cc/Conferences/2026/Dates\"},{\"title\":\"NeurIPS 2026 Call for Workshops\",\"url\":\"https://neurips.cc/Conferences/2026/CallForWorkshops\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"NeurIPS 2026 Evaluations & Datasets Track Call for Papers\",\"url\":\"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets\"},{\"title\":\"NeurIPS 2026 Call For Competitions\",\"url\":\"https://neurips.cc/Conferences/2026/CallForCompetitions\"},{\"title\":\"2026 Conference – NeurIPS Blog\",\"url\":\"https://blog.neurips.cc/category/2026-conference/\"},{\"title\":\"NeurIPS 2026 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/neurips-2026.html\"},{\"title\":\"2026 Conference\",\"url\":\"https://neurips.cc/\"},{\"title\":\"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01\"}]\n\nBased on the search results, here are the submission deadlines for NeurIPS 2026:\n\n**Abstract submission deadline:** May 4, 2026 (AOE)\n\n**Full paper submission deadline** (including all supplementary materials): May 6, 2026 AOE\n\nNote that the different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines. The deadlines listed above apply to the main track.\n\nThe conference itself will be held December 6-12, 2026, and author notification is scheduled for September 24, 2026 (AoE).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de79f195-0aad-48d6-a913-501395b408bc",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "15f081eb-50e8-40a7-ad5d-e0b5224a940f",
+            "sourceToolAssistantUUID": "de79f195-0aad-48d6-a913-501395b408bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T18:44:52.121Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PFCx5m8c5B8BvpWgRf3xGK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoRL 2026 submission deadline\"\n\nLinks: [{\"title\":\"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf\"},{\"title\":\"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/corl\"},{\"title\":\"CoRL 2026 - Instruction for Authors\",\"url\":\"https://www.corl.org/contributions/instruction-for-authors\"},{\"title\":\"CoRL 2026 - Call for Papers\",\"url\":\"https://www.corl.org/contributions/call-for-papers\"},{\"title\":\"CoRL 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference\"},{\"title\":\"CoRL 2026\",\"url\":\"https://www.corl.org/\"},{\"title\":\"Robot Learning Foundation\",\"url\":\"https://www.robot-learning.org/\"},{\"title\":\"Conference on Robot Learning (@corl_conf) / Posts / X\",\"url\":\"https://x.com/corl_conf?lang=en\"},{\"title\":\"CoRL 2026 - Registration\",\"url\":\"https://www.corl.org/attending/registration\"},{\"title\":\"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz\",\"url\":\"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl\"}]\n\nBased on the search results, here are the submission deadlines for CoRL 2026:\n\nThe abstract submission deadline is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC. However, the paper submission deadline is Thursday (5/28) EOD rather than Friday, so the actual paper deadline is May 28, 2026 at end of day.\n\nCoRL 2026 will be held at the JW Marriott Austin in Austin, TX from November 9–12, 2026, with a workshop day on November 9 and the main conference on November 10–12.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e192104-98ef-4269-95cf-df871cdfe069",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "c0eb13f0-f792-4949-b6e1-3c84f1d931cb",
+            "sourceToolAssistantUUID": "2e192104-98ef-4269-95cf-df871cdfe069",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T18:44:52.539Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AeTfz3dmXjMVgAMdEpKnSz",
+              "name": "WebSearch",
+              "input": {
+                "query": "UAD unsupervised affordance distillation ICRA 2025 arXiv 2506.09284"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0eb13f0-f792-4949-b6e1-3c84f1d931cb",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e13835db-ad8a-4780-a065-be44f7547720",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T18:44:53.497Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LswJPRPY5q6uxrdzfrmkZJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "AffordSim arXiv 2604.11674 VoxAfford simulation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e13835db-ad8a-4780-a065-be44f7547720",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8cd5f8fb-0c12-40df-84c9-41846be3dd48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T18:44:53.763Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TnBrbVQksGZYcGgdXREbiF",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RSS 2026 submission deadline robotics\"\n\nLinks: [{\"title\":\"Call for Papers · Robotics: Science and Systems\",\"url\":\"https://roboticsconference.org/information/cfp/\"},{\"title\":\"RSS 2026\",\"url\":\"https://roboticsconference.org/\"},{\"title\":\"RSS SemRob 2026\",\"url\":\"https://semrob.github.io/\"},{\"title\":\"RSS 2026 Conference - Robotics\",\"url\":\"https://openreview.net/group?id=roboticsfoundation.org%2FRSS%2F2026%2FConference\"},{\"title\":\"[Meetings] RSS 2026 Call for Papers\",\"url\":\"https://groups.google.com/g/rl-list/c/NDYhLboynpg\"},{\"title\":\"RSS: Robotics: Science and Systems 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=2506&f=Robotics\"},{\"title\":\"Calendar - RSS Foundation\",\"url\":\"https://roboticsfoundation.org/policies/calendar/\"},{\"title\":\"Call for Workshops · Robotics: Science and Systems\",\"url\":\"https://roboticsconference.org/information/cfw/\"},{\"title\":\"Robotics: Science and Systems (@RoboticsSciSys) / Posts ...\",\"url\":\"https://x.com/RoboticsSciSys\"}]\n\nBased on the search results, here are the key submission deadlines for RSS 2026:\n\n**Main Conference Paper Submissions:**\n- Abstract deadline: January 23\n- Full paper deadline: January 30\n- Supplementary material deadline: February 6 (AoE)\n\n**Workshops and Tutorials:**\n- Proposals should be submitted by February 12, 2026, 23:59 AoE\n\n**Conference Details:**\nRSS 2026 will be held at the University of Technology Sydney, Sydney, Australia from July 13-17, 2026\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3637609d-8827-4689-af37-c4a6c18e0360",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "f35a8589-ee0f-452e-8811-8467e78d75d8",
+            "sourceToolAssistantUUID": "3637609d-8827-4689-af37-c4a6c18e0360",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T18:44:53.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CRrkYB7295BcKBv3d97oga",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CVPR 2027 submission deadline\"\n\nLinks: [{\"title\":\"CVPR: Computer Vision and Pattern Recognition 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=628\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"CVPR 2026 - The Computer Vision Foundation\",\"url\":\"https://cvpr.thecvf.com/\"},{\"title\":\"2025 Dates and Deadlines - CVPR 2026\",\"url\":\"https://cvpr.thecvf.com/Conferences/2025/Dates\"},{\"title\":\"One Year Calendar of Computer Image Analysis, Computer Vision Conferences\",\"url\":\"https://conferences.visionbib.com/Browse-data.php?year=2027\"},{\"title\":\"2027 Conference\",\"url\":\"https://wacv.thecvf.com/\"},{\"title\":\"Conference Calendar for Computer Vision, Image Analysis and Related Topics\",\"url\":\"http://conferences.visionbib.com/Iris-Conferences.html\"},{\"title\":\"Important Dates and Deadlines - CVPR 2026\",\"url\":\"https://cvpr.thecvf.com/Conferences/2026/Dates\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"Add CVPR 2027 conference information · huggingface/ai-deadlines at 9d3c540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/9d3c5404835da9e75af6f42d683290ceb23d374f\"}]\n\nBased on the search results, here's what I found about CVPR 2027:\n\nCVPR 2027 will be held in Seattle, June 19-26, 2027 at the Seattle Convention Center. However, the submission deadlines have not yet been announced.\n\nSince CVPR 2027 is still over a year away, the specific submission deadline has not been finalized. Typically, the Computer Vision and Pattern Recognition conference announces its call for papers and submission deadlines several months in advance. I'd recommend checking the official CVPR website at cvpr.thecvf.com periodically for the official announcement of the CVPR 2027 submission deadline.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "228f02a7-4aac-4a07-9c05-491597277aa7",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "3c30809b-6789-4a65-99d4-cc1055be4d54",
+            "sourceToolAssistantUUID": "228f02a7-4aac-4a07-9c05-491597277aa7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T18:44:53.949Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qppu363PhTqEw9ZV7Hh1u9",
+              "name": "WebSearch",
+              "input": {
+                "query": "GLOVER++ arXiv 2505.11865 manipulation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c30809b-6789-4a65-99d4-cc1055be4d54",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "510614c9-acaa-41a5-8241-87b3bb502cb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T18:44:54.902Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011rvsG5cNTFtPiYEXsDjVv1",
+              "name": "WebSearch",
+              "input": {
+                "query": "affordance flow matching arXiv 2409.01083"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "510614c9-acaa-41a5-8241-87b3bb502cb2",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7dac69f1-1413-4b02-9098-d2a491f7f719",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T18:44:55.404Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Unk8kr2M9rxUYgvWhHvyDj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICRA 2027 submission deadline\"\n\nLinks: [{\"title\":\"IEEE ICRA 2027 | Calls for Papers and Posters\",\"url\":\"https://2027.ieee-icra.org/contribute/\"},{\"title\":\"2027 IEEE International Conference on Robotics and Automation ICRA\",\"url\":\"https://www.aconf.org/conf_211853.2027_IEEE_International_Conference_on_Robotics_and_Automation.html\"},{\"title\":\"ICRA - IEEE Robotics and Automation Society Website\",\"url\":\"https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/\"},{\"title\":\"ICRA: International Conference on Robotics and Automation 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=1454\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"IEEE ICRA 2027 (Seoul) - International Conference on Robotics and Automation (ICRA) -- showsbee.com\",\"url\":\"https://www.showsbee.com/fairs/95745-IEEE-ICRA-2027.html\"},{\"title\":\"Conference Calender 2027 in Kanazawa Institute of Technology\",\"url\":\"https://wwwr.kanazawa-it.ac.jp/kawai/calendar/2027/cal27.html\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://nunoduarte.github.io/deadlines/\"},{\"title\":\"Start Page of the Conference Management System\",\"url\":\"https://ras.papercept.net/conferences/scripts/start.pl\"},{\"title\":\"International Conference on Robotics and Automation\",\"url\":\"https://roboticsforum.org/Conference/2027/ICRA/\"}]\n\nBased on the search results, I found that IEEE ICRA 2027 is held in Seoul, South Korea, from May 24-28, 2027. However, the search results do not contain the specific submission deadline for ICRA 2027 papers. The results showed information about ICRA 2025 submissions (with a September 15, 2024 deadline), but not the submission deadline for the 2027 conference.\n\nFor the most current and accurate ICRA 2027 submission deadline, I recommend checking the official ICRA 2027 website directly at https://2027.ieee-icra.org/contribute/ or contacting the conference organizers.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de7aa26a-0406-4e84-a3f6-019aed31e6a3",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "94a9e369-37eb-43b2-84c3-2c27413c22ae",
+            "sourceToolAssistantUUID": "de7aa26a-0406-4e84-a3f6-019aed31e6a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T18:44:55.419Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B9ySwvuFD1opZPwhDdhQsA",
+              "name": "WebSearch",
+              "input": {
+                "query": "AGD20K affordance grounding dataset"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94a9e369-37eb-43b2-84c3-2c27413c22ae",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6878d20f-6c24-4333-a84e-5006ba0e5079",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1418,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T18:44:55.647Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MPW6FmweMDasBWMjwZx53K",
+              "name": "WebSearch",
+              "input": {
+                "query": "UMD affordance dataset"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6878d20f-6c24-4333-a84e-5006ba0e5079",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXeD1cCC22NGSxgjNcw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f3ef400e-2cd9-4833-92b9-c35fa373faac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HeCAWJuaMpig5hdYs6f2nx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1418,
+                "cache_read_input_tokens": 8271,
+                "output_tokens": 760,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1418
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 760,
+                    "cache_read_input_tokens": 8271,
+                    "cache_creation_input_tokens": 1418,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1418,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T18:44:58.685Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MqwnPvWonuBw5b71zmK7qH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2603.04419 context-dependent affordance\"\n\nLinks: [{\"title\":\"[2603.04419] Context-Dependent Affordance Computation in Vision-Language Models\",\"url\":\"https://arxiv.org/abs/2603.04419\"},{\"title\":\"Context-Dependent Affordance Computation in Vision-Language Models\",\"url\":\"https://arxiv.org/pdf/2603.04419\"},{\"title\":\"Acknowledgements\",\"url\":\"https://arxiv.org/html/2603.04419\"},{\"title\":\"Is there any Influence of Variations in Context on Object-Affordance Effects in Schizophrenia? Perception of Property and Goals of Action\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5050223/\"},{\"title\":\"Foot-related/walking macro-affordances are implicitly activated and preferentially guided by the framing distance of the environmental layout\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10017568/\"},{\"title\":\"Functional Relations Modulate the Responsiveness to Affordances Despite the Impact of Conflicting Stimulus–Response Mappings\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5681941/\"}]\n\nI found the paper you're looking for! The paper is titled \"Context-Dependent Affordance Computation in Vision-Language Models\" by Murad Farzulla.\n\nHere's what the paper demonstrates:\n\nThrough a large-scale computational study using Qwen-VL 30B and LLaVA-1.5-13B models with 3,213 scene-context pairs, the researchers show massive affordance drift with over 90% of lexical scene description being context-dependent. \n\nAt the semantic level, sentence-level cosine similarity confirms substantial drift with 58.5% of affordances being context-dependent.\n\nStochastic baseline experiments confirmed this drift reflects genuine context effects rather than generation noise.\n\nThe analysis revealed stable orthogonal latent factors including a \"Culinary Manifold\" isolated to chef contexts and an \"Access Axis\" spanning child-mobility contrasts, suggesting VLMs compute affordances in a substantially context-dependent manner.\n\nThe paper was published in January 2026 and is available on arXiv.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f29c8a4-7a41-4893-a86c-77179592c77d",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "ba03370d-6176-4c8e-85f1-c18baf6b170d",
+            "sourceToolAssistantUUID": "9f29c8a4-7a41-4893-a86c-77179592c77d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T18:44:59.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AeTfz3dmXjMVgAMdEpKnSz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"UAD unsupervised affordance distillation ICRA 2025 arXiv 2506.09284\"\n\nLinks: [{\"title\":\"[2506.09284] UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2506.09284\"},{\"title\":\"[PDF] UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/UAD:-Unsupervised-Affordance-Distillation-for-in-Tang-Huang/a7992218b0f8c8663e8ac144fcf58017a2a3c335\"},{\"title\":\"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | IEEE Conference Publication | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/document/11128868/;jsessionid=D67802792FD60A8A904686287211734E\"},{\"title\":\"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation\",\"url\":\"https://arxiv.org/pdf/2506.09284\"},{\"title\":\"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation | alphaXiv\",\"url\":\"https://www.alphaxiv.org/resources/2506.09284v1\"},{\"title\":\"[Literature Review] UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation\",\"url\":\"https://www.themoonlight.io/en/review/uad-unsupervised-affordance-distillation-for-generalization-in-robotic-manipulation\"},{\"title\":\"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2506.09284v1\"},{\"title\":\"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation\",\"url\":\"https://www.researchgate.net/publication/392597063_UAD_Unsupervised_Affordance_Distillation_for_Generalization_in_Robotic_Manipulation\"}]\n\nHere are the search results for your query:\n\n## UAD: Unsupervised Affordance Distillation (arXiv 2506.09284)\n\nThe paper \"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation\" was submitted to arXiv on June 10, 2025, with the latest revision on August 25, 2025. The authors are from Stanford University: Yihe Tang, Wenlong Huang, Yingke Wang, Chengshu Li, Roy Yuan, Ruohan Zhang, Jiajun Wu, and Li Fei-Fei.\n\n**Overview:**\n\nUAD is a method for distilling affordance knowledge from foundation models into a task-conditioned affordance model without any manual annotations. By leveraging the complementary strengths of large vision models and vision-language models, UAD automatically annotates a large-scale dataset with detailed instruction and visual affordance pairs. Training only a lightweight task-conditioned decoder atop frozen features, UAD exhibits notable generalization to in-the-wild robotic scenes and to various human activities, despite only being trained on rendered objects in simulation.\n\n**Key Results:**\n\nAn imitation learning policy using UAD-provided affordances demonstrates promising generalization to unseen object instances, object categories, and even variations in task instructions after training on as few as 10 demonstrations.\n\n**Publication:**\n\nThe paper appears in the 2025 IEEE International Conference on Robotics and Automation (ICRA).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e13835db-ad8a-4780-a065-be44f7547720",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "884dbe9c-2a83-48e0-8ac8-b474adbc30f1",
+            "sourceToolAssistantUUID": "e13835db-ad8a-4780-a065-be44f7547720",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T18:45:00.936Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B9ySwvuFD1opZPwhDdhQsA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AGD20K affordance grounding dataset\"\n\nLinks: [{\"title\":\"[2203.09905] Learning Affordance Grounding from Exocentric Images\",\"url\":\"https://arxiv.org/abs/2203.09905\"},{\"title\":\"Learning Affordance Grounding from Exocentric Images Hongchen Luo1‡* Wei Zhai1‡\",\"url\":\"https://arxiv.org/pdf/2203.09905\"},{\"title\":\"Learning Affordance Grounding from Exocentric Images Hongchen Luo1‡* Wei Zhai1‡\",\"url\":\"https://openaccess.thecvf.com/content/CVPR2022/papers/Luo_Learning_Affordance_Grounding_From_Exocentric_Images_CVPR_2022_paper.pdf\"},{\"title\":\"Learning Affordance Grounding from Exocentric Images | IEEE Conference Publication | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/document/9879759/\"},{\"title\":\"[2208.13196] Grounded Affordance from Exocentric View\",\"url\":\"https://arxiv.org/abs/2208.13196\"},{\"title\":\"Supplementary Material for INTRA: Interaction Relationship-aware\",\"url\":\"https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08064-supp.pdf\"},{\"title\":\"Affogato: Learning Open-Vocabulary Affordance Grounding with Automated Data Generation at Scale\",\"url\":\"https://arxiv.org/html/2506.12009v1\"},{\"title\":\"Grounded Affordance from Exocentric View\",\"url\":\"https://arxiv.org/pdf/2208.13196\"},{\"title\":\"AffordanceLLM: Grounding Affordance from Vision Language Models\",\"url\":\"https://arxiv.org/html/2401.06341v2\"},{\"title\":\"GitHub - lhc1224/Cross-View-AG: Official PyTorch Implementation of Learning Affordance Grounding from Exocentric Images, CVPR 2022\",\"url\":\"https://github.com/lhc1224/Cross-View-AG\"}]\n\nBased on the search results, here's what I found about the AGD20K affordance grounding dataset:\n\n## Dataset Overview\n\nThe AGD20K is an affordance grounding dataset constructed by collecting and labeling over 20K images from 36 affordance categories. More specifically, AGD20K consists of 20,061 exocentric images and 6,060 egocentric images from 36 affordance categories.\n\n## Purpose and Context\n\nThe goal of affordance grounding is to locate the region of \"action possibilities\" of an object. The dataset was introduced in the paper \"Learning Affordance Grounding from Exocentric Images\" as part of a research effort to address affordance grounding from different viewpoints.\n\n## Significance\n\nAGD20K is recognized as the only large-scale affordance grounding dataset with accurate action and object labels. The dataset has become a key benchmark for evaluating affordance grounding methods, with evaluations testing models' capability to generalize to object categories unseen during training.\n\nThe dataset represents an important resource for research in embodied AI and computer vision, particularly for understanding how objects can be interacted with from different perspectives.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6878d20f-6c24-4333-a84e-5006ba0e5079",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "16bc47ab-dd1e-4081-b782-ccd5046fbba2",
+            "sourceToolAssistantUUID": "6878d20f-6c24-4333-a84e-5006ba0e5079",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T18:45:01.061Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LswJPRPY5q6uxrdzfrmkZJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AffordSim arXiv 2604.11674 VoxAfford simulation\"\n\nLinks: [{\"title\":\"[2604.11674] AffordSim: A Scalable Data Generator and Benchmark for Affordance-Aware Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2604.11674\"},{\"title\":\"AffordSim: A Scalable Data Generator and Benchmark for Affordance-Aware Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2604.11674v1\"},{\"title\":\"Automatic Generation of Object Shapes With Desired Affordances Using Voxelgrid Representation\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7240024/\"},{\"title\":\"Detecting Affordances by Visuomotor Simulation\",\"url\":\"https://arxiv.org/pdf/1611.00274\"},{\"title\":\"Learning to Label Affordances from Simulated and Real Data\",\"url\":\"https://arxiv.org/pdf/1709.08872\"},{\"title\":\"Affordance embeddings for situated language understanding\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9538673/\"}]\n\nBased on the search results, here's what I found about AffordSim and VoxAfford:\n\nAffordSim is the first simulation framework that integrates open-vocabulary 3D affordance prediction into the manipulation data generation pipeline. AffordSim uses the VoxAfford model, an open-vocabulary 3D affordance detector that enhances MLLM output tokens with multi-scale geometric features, to predict affordance maps on object point clouds, guiding grasp pose estimation toward task-relevant functional regions.\n\nThe framework processes natural language task descriptions through a VLM to generate simulation scenes in Isaac Sim, where VoxAfford predicts 3D affordance maps on object point clouds, guiding grasp pose estimation and motion planning to produce semantically correct manipulation trajectories.\n\nAffordSim successfully generates affordance-guided trajectories for multiple robot embodiments, with generation success rates of 94% (Franka FR3), 92% (Franka Panda), 83% (UR5e), and 95% (Kinova).\n\nThe paper (arXiv 2604.11674) was published on April 13, 2026, and addresses a key limitation in existing robotic manipulation simulation platforms—the lack of affordance information in trajectory generation, which is necessary for tasks like grasping by handles or pouring from specific regions.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cd5f8fb-0c12-40df-84c9-41846be3dd48",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "970eeba3-f9cf-481b-8186-113e9adecfa1",
+            "sourceToolAssistantUUID": "8cd5f8fb-0c12-40df-84c9-41846be3dd48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T18:45:01.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MPW6FmweMDasBWMjwZx53K",
+              "type": "tool_result",
+              "content": "Web search results for query: \"UMD affordance dataset\"\n\nLinks: [{\"title\":\"GitHub - WenQu-NEU/Affordance-Grounding-Dataset\",\"url\":\"https://github.com/WenQu-NEU/Affordance-Grounding-Dataset\"},{\"title\":\"GitHub - apicis/aff-seg: Official repository of the paper \\\"Segmenting Object Affordances: Reproducibility and Sensitivity to Scale\\\" accepted at 12th Workshop on Assistive Computer Vision and Robotics (ACVR) in ECCV 2024 · GitHub\",\"url\":\"https://github.com/apicis/aff-seg\"},{\"title\":\"Examples of affordance detection results by our proposed method on the... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Examples-of-affordance-detection-results-by-our-proposed-method-on-the-UMD-dataset_fig6_374003529\"},{\"title\":\"UMD-i Affrodance Dataset Dataset | Papers With Code\",\"url\":\"https://paperswithcode.com/dataset/umd-i-affrodance-dataset\"},{\"title\":\"GitHub - ivalab/simData: The dataset of our RA-L work 'Learning Affordance Segmentation for Real-world Robotic Manipulation via Synthetic Images'\",\"url\":\"https://github.com/ivalab/simData\"},{\"title\":\"Affordance Ranking Performance On UMD Dataset (novel category) | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Affordance-Ranking-Performance-On-UMD-Dataset-novel-category_tbl2_335788674\"},{\"title\":\"Weakly Supervised Learning of Affordances\",\"url\":\"https://arxiv.org/pdf/1605.02964\"},{\"title\":\"The Wilhelm Tell Dataset of Affordance Demonstrations\",\"url\":\"https://arxiv.org/pdf/2507.17401\"},{\"title\":\"RGB-D Part Affordance Dataset - UMIACS\",\"url\":\"http://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/\"}]\n\nBased on the search results, here's what I found about the UMD affordance dataset:\n\n## Overview\n\nThe RGB-D Part Affordance Dataset contains RGB-D images and ground-truth affordance labels for 105 kitchen, workshop and garden tools, and 3 cluttered scenes.\n\n## Dataset Variants\n\nThe UMD VL dataset consists of 7,070 images selected from the original UMD dataset for affordance grounding with paired data comprising natural language instruction, corresponding RGB image, and pixel-level part affordance mask.\n\nAdditionally, there is a One-Shot Affordance Part Segmentation variant of the UMD dataset where each object instance in the dataset contains a single image.\n\n## Applications\n\nThe dataset is used for affordance-related research, including affordance segmentation and prediction tasks. The dataset contains 3090 images with 9916 object instances with rich contextual information in terms of human-object interactions. Research using this dataset has applications in robotic manipulation and scene understanding.\n\nThe official dataset can be found at the UMIACS website linked in the search results.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3ef400e-2cd9-4833-92b9-c35fa373faac",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "76e550e3-e54d-4947-88cb-3f0c422b74f2",
+            "sourceToolAssistantUUID": "f3ef400e-2cd9-4833-92b9-c35fa373faac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T18:45:01.721Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PCJ7ue46dY5LAXHr72oAu9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 submission deadline\"\n\nLinks: [{\"title\":\"AAAI Conference on Artificial Intelligence - AAAI\",\"url\":\"https://aaai.org/conference/aaai/\"},{\"title\":\"AAAI 2027 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"AAAI-27 - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/\"},{\"title\":\"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/aaai\"},{\"title\":\"AAAI Conference on Artificial Intelligence\",\"url\":\"http://aideadlines.org/conference/?id=aaai27\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"Key deadlines in AI and ML conferences | Yutori\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"AAAI 2027 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=AAAI.org%2F2027%2FConference\"}]\n\nBased on the search results, here's what I found regarding the AAAI 2027 submission deadline:\n\nThe AAAI 2027 paper submission deadline is TBD (UTC-12). Track-specific deadlines are listed on their respective CFP and may differ from those listed above.\n\nHowever, based on historical patterns, submission deadlines for AAAI 2027 are expected around July–August 2026.\n\nThe Forty-first Conference on Artificial Intelligence will be held in Montréal, Québec, Canada from February 16-23, 2027. For the most up-to-date information and track-specific deadlines, you can check the official AAAI 2027 conference page at https://aaai.org/conference/aaai/aaai-27/.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c7ec3d5-fe3f-4cf4-b10d-fde4ceaa4f96",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "eb150e14-1d0d-47da-bcab-0dd53238db48",
+            "sourceToolAssistantUUID": "1c7ec3d5-fe3f-4cf4-b10d-fde4ceaa4f96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T18:45:02.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V39RsCWhhgXDFY6YTKaQVQ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICLR 2027 submission deadline\"\n\nLinks: [{\"title\":\"International Conference on Learning Representations ICLR in August 2027 in Sydney\",\"url\":\"https://waset.org/learning-representations-conference-in-august-2027-in-sydney\"},{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"},{\"title\":\"Key deadlines in AI and ML conferences | Yutori\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"Year-Round Deadlines - Imranur Rahman\",\"url\":\"https://imranur-rahman.github.io/deadlines/\"},{\"title\":\"ICLR 2026\",\"url\":\"https://iclr.cc/\"},{\"title\":\"International Conference on Learning Representations - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/International_Conference_on_Learning_Representations\"},{\"title\":\"ICLR 2026 Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2026/CallForPapers\"}]\n\nBased on the search results, I was able to find some information about ICLR conferences, but the specific submission deadline for ICLR 2027 is not explicitly stated in the search results.\n\nFrom the results, I can tell you that ICLR is a machine learning conference typically held in late April or early May each year. The search results show information about ICLR 2026, but the official ICLR 2027 call for papers and submission deadlines do not appear to be announced yet or are not readily available in the search results.\n\nOne of the results from a deadline tracking site mentions that \"July 2027\" with \"TBA\" location and a note \"Predicted based on historical pattern\", but this appears to be a predicted date rather than an official announcement.\n\nI recommend checking the official ICLR website (iclr.cc) directly for the official ICLR 2027 call for papers and submission deadlines, as they have not been widely published yet.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de8bf559-6b05-4da4-9537-e490ccfcbda5",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "63e07941-f547-46f5-85b0-abba58323c1a",
+            "sourceToolAssistantUUID": "de8bf559-6b05-4da4-9537-e490ccfcbda5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T18:45:04.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011GJCtHiK3zHcDntrvfTKRk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"IROS 2026 submission deadline\"\n\nLinks: [{\"title\":\"IROS 2026 | IEEE/RSJ International Conference on Intelligent Robots and Systems\",\"url\":\"https://2026.ieee-iros.org/\"},{\"title\":\"Update IROS 2026 conference data with official deadlines · huggingface/ai-deadlines at f5a1d9a\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f5a1d9a7d8b4274d4c60ae755f25de60c466079d\"},{\"title\":\"Start Page of the Conference Management System\",\"url\":\"https://ras.papercept.net/conferences/scripts/start.pl\"},{\"title\":\"Important Dates - IROS 2026 | IEEE/RSJ International Conference on Intelligent Robots and Systems\",\"url\":\"https://2026.ieee-iros.org/about/important-dates/\"},{\"title\":\"IROS and CASE 2026 Paper Submission Deadline April 30\",\"url\":\"https://www.linkedin.com/posts/ieee-transactions-on-robotics_robotics-iros2026-case2026-activity-7445124375567056896-L8xx\"},{\"title\":\"IROS 2026 in Pittsburgh,USA: Dates,Deadline,Fees & Registration Tips - Conference Inc.\",\"url\":\"https://conferenceinc.net/post/iros-2026/\"},{\"title\":\"IROS: Intelligent RObots and Systems 2027 2026 2025 .. ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=1660\"},{\"title\":\"International Conference on Intelligent Robots and Systems (IROS)\",\"url\":\"https://www.allconferencealert.com/event/1870021\"},{\"title\":\"The Call for Papers for IROS 2026 is officially OPEN! Join ...\",\"url\":\"https://www.facebook.com/ieeeiros/posts/-the-call-for-papers-for-iros-2026-is-officially-openjoin-one-of-the-worlds-larg/862566436746807/\"},{\"title\":\"Start Page of the Conference Management System - PaperPlaza\",\"url\":\"https://ras.papercept.net/conferences/scripts-n/start.pl\"}]\n\nBased on the search results, here is the deadline information for IROS 2026:\n\nThe paper submission deadline for IROS 2026 is March 2, 2026. Paper video submissions are due by March 5, 2026, and the final paper submission deadline is July 10, 2026.\n\nIROS 2026 is scheduled to take place from September 27 to October 1, 2026, in Pittsburgh, Pennsylvania, USA.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23cb799a-ca5c-48a4-b2c0-33f232d73dd6",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "436f6d1e-cf60-4be7-8fa8-08b006d7444a",
+            "sourceToolAssistantUUID": "23cb799a-ca5c-48a4-b2c0-33f232d73dd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T18:45:05.461Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qppu363PhTqEw9ZV7Hh1u9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GLOVER++ arXiv 2505.11865 manipulation\"\n\nLinks: [{\"title\":\"[2505.11865] GLOVER++: Unleashing the Potential of Affordance Learning from Human Behaviors for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2505.11865\"},{\"title\":\"(PDF) GLOVER++: Unleashing the Potential of Affordance Learning from Human Behaviors for Robotic Manipulation\",\"url\":\"https://www.researchgate.net/publication/391876906_GLOVER_Unleashing_the_Potential_of_Affordance_Learning_from_Human_Behaviors_for_Robotic_Manipulation\"},{\"title\":\"GLOVER++ | Unleashing the Potential of Affordance Learning from Human Behaviors for Robotic Manipulation\",\"url\":\"https://teleema.github.io/projects/GLOVER++/\"},{\"title\":\"GLOVER++: Unleashing the Potential of Affordance Learning from Human Behaviors for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2505.11865\"},{\"title\":\"GLOVER++: Unleashing the Potential of Affordance Learning from Human Behaviors for Robotic Manipulation | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/glover-unleashing-potential-affordance-learning-human-behaviors\"},{\"title\":\"arXiv:2505.11865v1 [cs.RO] 17 May 2025\",\"url\":\"https://arxiv.org/pdf/2505.11865\"},{\"title\":\"GitHub - TeleeMa/GLOVER: This is the official code repo for GLOVER and GLOVER++.\",\"url\":\"https://github.com/TeleeMa/GLOVER\"},{\"title\":\"Computer Science May 2025\",\"url\":\"https://arxiv.org/list/cs/2025-05?skip=5400&show=25\"}]\n\nBased on the search results, here's what I found about GLOVER++ (arXiv 2505.11865):\n\n## Overview\n\nGLOVER++ is a global-to-local affordance training framework that effectively transfers actionable affordance knowledge from human demonstrations to downstream open-vocabulary reasoning tasks.\n\n## Key Innovation\n\nThe work introduces HOVA-500K, a large-scale, affordance-annotated dataset comprising 500,000 images across 1,726 object categories and 675 actions. Learning manipulation skills from human demonstration videos offers a promising path toward generalizable robotic intelligence, though transferring such knowledge has been challenging due to a lack of large-scale datasets with precise affordance annotations and insufficient exploration of affordances in diverse manipulation contexts.\n\n## Performance and Capabilities\n\nGLOVER++ achieves state-of-the-art results on the HOVA-500K benchmark and demonstrates strong generalization across diverse downstream robotic manipulation tasks. By explicitly modeling actionable affordances, GLOVER++ facilitates robust transfer across scenes, modalities, and tasks.\n\n## Applications\n\nThe framework demonstrates applications in tasks like zero-shot manipulation, multi-task imitation learning, long-horizon and bimanual manipulation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "510614c9-acaa-41a5-8241-87b3bb502cb2",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "10529f10-c909-4ce7-a8c3-16d83b17a33d",
+            "sourceToolAssistantUUID": "510614c9-acaa-41a5-8241-87b3bb502cb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T18:45:05.959Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VXdimgCxLTGhMWNs8nco1K",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ECCV 2026 submission deadline\"\n\nLinks: [{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://eccv.ecva.net/Conferences/2026/Dates\"},{\"title\":\"2026 Conference\",\"url\":\"https://eccv.ecva.net/\"},{\"title\":\"ECCV 2026 Submission Policies\",\"url\":\"https://eccv.ecva.net/Conferences/2026/SubmissionPolicies\"},{\"title\":\"ECCV 2026 Call for Papers\",\"url\":\"https://eccv.ecva.net/Conferences/2026/CallForPapers\"},{\"title\":\"Update ECCV 2026 with complete deadline information · huggingface/ai-deadlines at 3bccf2b\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/3bccf2b883c17d4536b469411fa413dc8711fdbb\"},{\"title\":\"ECCV 2026 - AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/conference/?id=eccv26\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/conference/?id=eccv26\"},{\"title\":\"ECCV 2026\",\"url\":\"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=eccv26\"},{\"title\":\"ECCV 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=thecvf.com%2FECCV%2F2026%2FConference\"},{\"title\":\"European Conference on Computer Vision (ECCV), 2026 | ServiceNow AI Research\",\"url\":\"https://www.servicenow.com/research/event/2026-eccv.html\"}]\n\nBased on the search results, here are the key ECCV 2026 submission deadlines:\n\n- Paper registration deadline: February 26th (has expired)\n- Paper submission deadline: March 5, 2026, at 11:00 PM CET\n- Supplementary material deadline: March 12, 2026, at 11:00 PM CET\n\nThe conference itself will be held September 8-12, 2026 in Malmö, Sweden.\n\nNote that the paper submission deadline has already passed (it was March 5, 2026), as we are currently in May 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fa88f60-af52-4ed3-9338-6615d38e2e84",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "c42e0e47-0651-41ce-be18-eed4e2ce24b5",
+            "sourceToolAssistantUUID": "5fa88f60-af52-4ed3-9338-6615d38e2e84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T18:45:10.860Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011rvsG5cNTFtPiYEXsDjVv1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"affordance flow matching arXiv 2409.01083\"\n\nLinks: [{\"title\":\"Paper page - Affordance-based Robot Manipulation with Flow Matching\",\"url\":\"https://huggingface.co/papers/2409.01083\"},{\"title\":\"[2409.01083] Affordance-based Robot Manipulation with Flow Matching\",\"url\":\"https://arxiv.org/abs/2409.01083\"},{\"title\":\"GitHub - HRI-EU/flow_matching: Affordance-based Robot Manipulation with Flow Matching · GitHub\",\"url\":\"https://github.com/HRI-EU/flow_matching\"},{\"title\":\"flow_matching/README.md at master · HRI-EU/flow_matching\",\"url\":\"https://github.com/HRI-EU/flow_matching/blob/master/README.md\"},{\"title\":\"GitHub - HRI-EU/flow-matching-policy · GitHub\",\"url\":\"https://github.com/HRI-EU/flow-matching-policy\"},{\"title\":\"Affordance-based Robot Manipulation with Flow Matching | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2409.01083v5\"},{\"title\":\"Appendix\",\"url\":\"https://arxiv.org/html/2508.11002v1\"},{\"title\":\"Affordance-based Robot Manipulation with Flow Matching | Request PDF\",\"url\":\"https://www.researchgate.net/publication/383702331_Affordance-based_Robot_Manipulation_with_Flow_Matching\"}]\n\nBased on the search results, here's information about arXiv paper 2409.01083:\n\n## \"Affordance-based Robot Manipulation with Flow Matching\"\n\nThis paper presents a framework for assistive robot manipulation that focuses on two fundamental challenges: efficiently adapting large-scale models to downstream scene affordance understanding tasks, especially in daily living scenarios, and effectively learning robot action trajectories by grounding the visual affordance model.\n\n### Key Technical Approach\n\nThe framework uses two main components:\n\n1. **Affordance Prediction**: The first challenge is tackled by employing a parameter-efficient prompt tuning method that prepends learnable text prompts to the frozen vision model to predict manipulation affordances in multi-task scenarios.\n\n2. **Trajectory Learning**: The paper proposes learning robot action trajectories guided by affordances in a supervised flow matching method. Flow matching represents a robot visuomotor policy as a conditional process of flowing random waypoints to desired robot action trajectories.\n\n### Performance\n\nThe method achieves an 85% reduction in inference time compared to diffusion models while maintaining trajectory prediction accuracy across diverse robotic tasks and demonstrating robust performance in real-world Activities of Daily Living.\n\nThe paper was authored by Fan Zhang and Michael Gienger from Honda Research Institute Europe and is available on arXiv, with code and a project page available on GitHub.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7dac69f1-1413-4b02-9098-d2a491f7f719",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "21050ad0-6b0c-402e-9d9d-3049ff43658d",
+            "sourceToolAssistantUUID": "7dac69f1-1413-4b02-9098-d2a491f7f719",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T18:45:14.043Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more specific information on a few items where the deadlines or details weren't fully clear."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21050ad0-6b0c-402e-9d9d-3049ff43658d",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXg7ivLX4UYSvAbNuEH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "77e775a0-635c-4316-9084-333fc602efdb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018DFLNs5Ecr4wVMpHvr5GiX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1632,
+                "cache_creation_input_tokens": 12485,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12485,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T18:45:15.058Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CjFBDoa8tkY24stkwSbLT7",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICRA 2027 paper submission deadline September October 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77e775a0-635c-4316-9084-333fc602efdb",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXg7ivLX4UYSvAbNuEH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ef8fb173-f534-4556-9c50-f394ac88df1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018DFLNs5Ecr4wVMpHvr5GiX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1632,
+                "cache_creation_input_tokens": 12485,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12485,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T18:45:15.561Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018GBd6kWyHKbyY8Aq86UWiB",
+              "name": "WebSearch",
+              "input": {
+                "query": "ICLR 2027 paper submission deadline October 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef8fb173-f534-4556-9c50-f394ac88df1d",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXg7ivLX4UYSvAbNuEH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3aa7c5a8-20d5-420b-b098-72f407b5dd64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018DFLNs5Ecr4wVMpHvr5GiX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1632,
+                "cache_creation_input_tokens": 12485,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12485,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T18:45:16.062Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ReXFtKzRHmtp9A1V2fhWmq",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 paper submission deadline August 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3aa7c5a8-20d5-420b-b098-72f407b5dd64",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXg7ivLX4UYSvAbNuEH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3fc07c46-a12d-4001-ba2b-2864d8ad1a3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018DFLNs5Ecr4wVMpHvr5GiX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1632,
+                "cache_creation_input_tokens": 12485,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12485,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T18:45:16.535Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0195ZEBXVwq74Y2vidRFqmgr",
+              "name": "WebSearch",
+              "input": {
+                "query": "CVPR 2027 paper submission deadline November 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3fc07c46-a12d-4001-ba2b-2864d8ad1a3c",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXg7ivLX4UYSvAbNuEH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8e62efa5-ea3d-426a-8939-8afa86a2fde9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018DFLNs5Ecr4wVMpHvr5GiX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1632,
+                "cache_creation_input_tokens": 12485,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12485,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T18:45:16.538Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018JSgPgEz3puFshpjezzesf",
+              "name": "WebSearch",
+              "input": {
+                "query": "IROS 2026 paper submission deadline March 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e62efa5-ea3d-426a-8939-8afa86a2fde9",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXg7ivLX4UYSvAbNuEH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f69f9de4-d2bf-42f8-9a01-166f9315503e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018DFLNs5Ecr4wVMpHvr5GiX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1632,
+                "cache_creation_input_tokens": 12485,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12485,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T18:45:17.536Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G8CzV2XC1EgXNk4gWaRSvu",
+              "name": "WebSearch",
+              "input": {
+                "query": "AGD20K dataset CVPR 2022 arXiv 2203.09905"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f69f9de4-d2bf-42f8-9a01-166f9315503e",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXg7ivLX4UYSvAbNuEH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "edccfe69-8afe-4505-9222-a708d0ec5462",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018DFLNs5Ecr4wVMpHvr5GiX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1632,
+                "cache_creation_input_tokens": 12485,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12485,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T18:45:17.801Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CfpEpfebeEEhWoX1ss7tHX",
+              "name": "WebSearch",
+              "input": {
+                "query": "UMD part affordance dataset paper authors year"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edccfe69-8afe-4505-9222-a708d0ec5462",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXg7ivLX4UYSvAbNuEH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "40c13ea4-b287-4df2-b581-e4576c2003b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018DFLNs5Ecr4wVMpHvr5GiX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1632,
+                "cache_creation_input_tokens": 12485,
+                "cache_read_input_tokens": 7304,
+                "output_tokens": 381,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12485
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1632,
+                    "output_tokens": 381,
+                    "cache_read_input_tokens": 7304,
+                    "cache_creation_input_tokens": 12485,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12485,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T18:45:18.837Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CjFBDoa8tkY24stkwSbLT7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICRA 2027 paper submission deadline September October 2026\"\n\nLinks: [{\"title\":\"IEEE ICRA 2027 | Calls for Papers and Posters\",\"url\":\"https://2027.ieee-icra.org/contribute/\"},{\"title\":\"2027 IEEE International Conference on Robotics and Automation ICRA\",\"url\":\"https://www.aconf.org/conf_211853.2027_IEEE_International_Conference_on_Robotics_and_Automation.html\"},{\"title\":\"IEEE ICRA 2027 (Seoul) - International Conference on Robotics and Automation (ICRA) -- showsbee.com\",\"url\":\"https://www.showsbee.com/fairs/95745-IEEE-ICRA-2027.html\"},{\"title\":\"ICRA: International Conference on Robotics and Automation 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=1454\"},{\"title\":\"ICRA 2026 Papers - Submission closed - IEEE ICRA 2026\",\"url\":\"https://2026.ieee-icra.org/contribute/call-for-icra-2026-papers-now-accepting-submissions/\"},{\"title\":\"Position: Machine Learning Conferences Should Establish a \\\"Refutations and Critiques\\\" Track\",\"url\":\"https://arxiv.org/pdf/2506.19882\"},{\"title\":\"ICRA - IEEE Robotics and Automation Society Website\",\"url\":\"https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/\"},{\"title\":\"Use of machine learning for triage and transfer of ICU patients in the Covid-19 pandemic period: Scope Review\",\"url\":\"https://www.medrxiv.org/content/10.1101/2023.02.08.23285446.full.pdf\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"}]\n\nBased on my search results, I found information about ICRA 2027, which is held in Seoul, South Korea, from May 24-28, 2027. However, the search results do not contain specific information about the paper submission deadline for ICRA 2027 in September or October 2026.\n\nThe search results show outdated submission information from previous years (ICRA 2025 and 2026), but do not include the confirmed deadline dates for ICRA 2027 submissions. For the most current and accurate ICRA 2027 paper submission deadline information, I recommend checking the official ICRA 2027 website at 2027.ieee-icra.org or contacting the conference organizers directly.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef8fb173-f534-4556-9c50-f394ac88df1d",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "a40483a1-85e6-4aff-b574-217beffe7287",
+            "sourceToolAssistantUUID": "ef8fb173-f534-4556-9c50-f394ac88df1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T18:45:19.985Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018JSgPgEz3puFshpjezzesf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"IROS 2026 paper submission deadline March 2026\"\n\nLinks: [{\"title\":\"Update IROS 2026 conference data with official deadlines · huggingface/ai-deadlines at f5a1d9a\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f5a1d9a7d8b4274d4c60ae755f25de60c466079d\"},{\"title\":\"Start Page of the Conference Management System - PaperPlaza\",\"url\":\"https://ras.papercept.net/conferences/scripts-n/start.pl\"},{\"title\":\"ICRA 2026 Papers - Submission closed - IEEE ICRA 2026\",\"url\":\"https://2026.ieee-icra.org/contribute/call-for-icra-2026-papers-now-accepting-submissions/\"},{\"title\":\"Important Dates - IROS 2026 | IEEE/RSJ International Conference on Intelligent Robots and Systems\",\"url\":\"https://2026.ieee-iros.org/about/important-dates/\"},{\"title\":\"Call for Papers - IROS 2026 | IEEE/RSJ International Conference on Intelligent Robots and Systems\",\"url\":\"https://2026.ieee-iros.org/contribute/call-for-papers/\"},{\"title\":\"IROS 2026 in Pittsburgh,USA: Dates,Deadline,Fees & Registration Tips - Conference Inc.\",\"url\":\"https://conferenceinc.net/post/iros-2026/\"},{\"title\":\"Final reminder! The #IROS2026 paper submission ...\",\"url\":\"https://www.facebook.com/ieeeiros/posts/-final-reminderthe-iros2026-paper-submission-deadline-is-march-2-2026-and-there-/906834338986683/\"},{\"title\":\"International Conference on Intelligent Robots and Systems (IROS)\",\"url\":\"https://www.allconferencealert.com/event/1870021\"},{\"title\":\"IROS: Intelligent RObots and Systems 2027 2026 2025 .. ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=1660\"},{\"title\":\"IROS 2026 | IEEE/RSJ International Conference on Intelligent Robots and Systems\",\"url\":\"https://2026.ieee-iros.org/\"}]\n\nBased on the search results, the paper submission deadline for IROS 2026 is March 2, 2026. Additionally, the paper video submission deadline is March 5, 2026.\n\nOther important dates for IROS 2026 include paper acceptance notification on June 16, 2026 and a final paper submission deadline of July 10, 2026. The conference itself will take place from September 27 to October 1, 2026, in Pittsburgh, Pennsylvania, USA.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f69f9de4-d2bf-42f8-9a01-166f9315503e",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "269b9168-1488-431f-906d-9157da8ad2b0",
+            "sourceToolAssistantUUID": "f69f9de4-d2bf-42f8-9a01-166f9315503e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T18:45:21.695Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0195ZEBXVwq74Y2vidRFqmgr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CVPR 2027 paper submission deadline November 2026\"\n\nLinks: [{\"title\":\"CVPR 2026 - The Computer Vision Foundation\",\"url\":\"https://cvpr.thecvf.com/\"},{\"title\":\"CVPR: Computer Vision and Pattern Recognition 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=628\"},{\"title\":\"Important Dates and Deadlines - CVPR 2026\",\"url\":\"https://cvpr.thecvf.com/Conferences/2026/Dates\"},{\"title\":\"2025 Dates and Deadlines - CVPR 2026\",\"url\":\"https://cvpr.thecvf.com/Conferences/2025/Dates\"},{\"title\":\"CVPR 2026 Call for Papers - The Computer Vision Foundation\",\"url\":\"https://cvpr.thecvf.com/Conferences/2026/CallForPapers\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"CVPR 2026 Guide: Dates, Deadlines, Topics & Tips for Denver\",\"url\":\"https://conferenceinc.net/post/cvpr-2026/\"},{\"title\":\"One Year Calendar of Computer Image Analysis, Computer Vision Conferences\",\"url\":\"http://conferences.visionbib.com/Browse-data.php?order=Due&ascdsc=DESC&year=2027\"},{\"title\":\"Conference Calendar for Computer Vision, Image Analysis and Related Topics\",\"url\":\"http://conferences.visionbib.com/Iris-Conferences.html\"}]\n\nBased on the search results, I found information about CVPR 2026, but the search did not return specific details about CVPR 2027's paper submission deadline for November 2026. \n\nThe results confirm that the submission deadline for CVPR 2026 is November 13, 2025, 11:59pm Anywhere on Earth (UTC-12). However, information about CVPR 2027's submission deadlines is not yet publicly available in the search results returned.\n\nTo get accurate information about CVPR 2027's paper submission deadline, you would need to check:\n- The official CVPR website (cvpr.thecvf.com) once they announce CVPR 2027 details\n- Conference deadline tracking sites like WikiCFP or mlciv.com once the information becomes available\n\nTypically, CVPR follows a pattern where paper submission deadlines are set approximately 6-7 months before the conference date, so a November 2026 deadline for CVPR 2027 would align with that timeline, but I cannot confirm this without official announcement.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e62efa5-ea3d-426a-8939-8afa86a2fde9",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "55733780-0ebd-420f-a0a7-d3f14c2463a1",
+            "sourceToolAssistantUUID": "8e62efa5-ea3d-426a-8939-8afa86a2fde9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T18:45:22.577Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CfpEpfebeEEhWoX1ss7tHX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"UMD part affordance dataset paper authors year\"\n\nLinks: [{\"title\":\"RGB-D Affordance Keypoint Dataset\",\"url\":\"https://sites.google.com/view/rgb-d-aff-kp-dataset/home?authuser=2\"},{\"title\":\"Examples of affordance detection results by our proposed method on the... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Examples-of-affordance-detection-results-by-our-proposed-method-on-the-UMD-dataset_fig6_374003529\"},{\"title\":\"UMD-i Affrodance Dataset Dataset | Papers With Code\",\"url\":\"https://paperswithcode.com/dataset/umd-i-affrodance-dataset\"},{\"title\":\"Binge Watching: Scaling Affordance Learning from Sitcoms\",\"url\":\"https://arxiv.org/pdf/1804.03080\"},{\"title\":\"The Wilhelm Tell Dataset of Affordance Demonstrations\",\"url\":\"https://arxiv.org/pdf/2507.17401\"},{\"title\":\"Weakly Supervised Learning of Affordances\",\"url\":\"https://arxiv.org/pdf/1605.02964\"},{\"title\":\"RoboAfford++: A Generative AI-Enhanced Dataset for Multimodal Affordance Learning in Robotic Manipulation and Navigation\",\"url\":\"https://arxiv.org/pdf/2511.12436\"},{\"title\":\"RGB-D Part Affordance Dataset - UMIACS\",\"url\":\"http://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/\"}]\n\nBased on the search results, I found information about the UMD Part Affordance Dataset paper:\n\nThe authors are Austin Myers, Ching L. Teo, Cornelia Fermüller, and Yiannis Aloimonos, and the paper was published in 2015 at the IEEE International Conference on Robotics and Automation (ICRA). The paper is titled \"Affordance detection of tool parts from geometric features.\"\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40c13ea4-b287-4df2-b581-e4576c2003b1",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "7c64d98e-3cb5-4281-aa21-fd3e12df11e8",
+            "sourceToolAssistantUUID": "40c13ea4-b287-4df2-b581-e4576c2003b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T18:45:25.419Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G8CzV2XC1EgXNk4gWaRSvu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AGD20K dataset CVPR 2022 arXiv 2203.09905\"\n\nLinks: [{\"title\":\"[2203.09905] Learning Affordance Grounding from Exocentric Images\",\"url\":\"https://arxiv.org/abs/2203.09905\"},{\"title\":\"arXiv:2203.09905v1 [cs.CV] 18 Mar 2022\",\"url\":\"https://arxiv.org/pdf/2203.09905\"},{\"title\":\"GitHub - lhc1224/Cross-View-AG: Official PyTorch Implementation of Learning Affordance Grounding from Exocentric Images, CVPR 2022\",\"url\":\"https://github.com/lhc1224/Cross-View-AG\"},{\"title\":\"Some examples and properties of AGD20K. (a) Some examples of training... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Some-examples-and-properties-of-AGD20K-a-Some-examples-of-training-and-test-sets-in_fig2_363088199\"},{\"title\":\"Cross-View-AG/README.md at main · lhc1224/Cross-View-AG\",\"url\":\"https://github.com/lhc1224/Cross-View-AG/blob/main/README.md\"},{\"title\":\"[2208.13196] Grounded Affordance from Exocentric View\",\"url\":\"https://arxiv.org/abs/2208.13196\"},{\"title\":\"Dataset Contributions | CVPR 2022\",\"url\":\"https://cvpr2022.thecvf.com/dataset-contributions\"},{\"title\":\"GitHub - Reagan1311/LOCATE: LOCATE: Localize and Transfer Object Parts for Weakly Supervised Affordance Grounding (CVPR 2023) · GitHub\",\"url\":\"https://github.com/Reagan1311/LOCATE\"}]\n\nBased on the search results, here's what I found about the AGD20K dataset and arXiv paper 2203.09905:\n\n## Overview\n\nThe AGD20K is an affordance grounding dataset constructed by collecting and labeling over 20K images from 36 affordance categories. The paper proposes a task of affordance grounding from exocentric view, given exocentric human-object interaction and egocentric object images, learning the affordance knowledge of the object and transferring it to the egocentric image using only the affordance label as supervision.\n\n## Methodology\n\nThe researchers devised a cross-view knowledge transfer framework that extracts affordance-specific features from exocentric interactions and enhances the perception of affordance regions by preserving affordance correlation. An Affordance Invariance Mining module is devised to extract specific clues by minimizing intra-class differences from interaction habits, and an Affordance Co-relation Preserving strategy is presented to perceive and localize affordance by aligning the correlation matrix between the two views.\n\n## Publication\n\nThe paper titled \"Learning Affordance Grounding from Exocentric Images\" with arXiv ID 2203.09905 was published in March 2022 and was accepted to CVPR 2022. The official implementation is available on GitHub, along with the AGD20K dataset.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edccfe69-8afe-4505-9222-a708d0ec5462",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "eeca108f-8411-45ba-8148-804df8a7d13e",
+            "sourceToolAssistantUUID": "edccfe69-8afe-4505-9222-a708d0ec5462",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T18:45:25.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018GBd6kWyHKbyY8Aq86UWiB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ICLR 2027 paper submission deadline October 2026\"\n\nLinks: [{\"title\":\"2026 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2026/Dates\"},{\"title\":\"ICLR 2026 Call for Papers\",\"url\":\"https://iclr.cc/Conferences/2026/CallForPapers\"},{\"title\":\"Year-Round Deadlines - Imranur Rahman\",\"url\":\"https://imranur-rahman.github.io/deadlines/\"},{\"title\":\"International Conference on Learning Representations ICLR in August 2027 in Sydney\",\"url\":\"https://waset.org/learning-representations-conference-in-august-2027-in-sydney\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"Key deadlines in AI and ML conferences | Yutori\",\"url\":\"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac\"},{\"title\":\"ICLR 2026 Author Guide\",\"url\":\"https://iclr.cc/Conferences/2026/AuthorGuide\"},{\"title\":\"When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com\",\"url\":\"https://www.conferencedeadlines.com/conference/iclr\"},{\"title\":\"2025 Dates and Deadlines\",\"url\":\"https://iclr.cc/Conferences/2025/Dates\"}]\n\nBased on the search results, I found information about ICLR 2026, but not specifically about ICLR 2027. \n\nFor ICLR 2026, the deadline for paper submissions is September 24, not October 2026.\n\nThe search results do not contain specific information about an ICLR 2027 paper submission deadline in October 2026. The official ICLR website pages returned in the search are for ICLR 2026, which has already passed its submission deadline. If ICLR 2027 deadlines have been announced, they may not yet be widely indexed, or you may want to check the official ICLR website directly for the most current information about future conference deadlines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3aa7c5a8-20d5-420b-b098-72f407b5dd64",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "21ed0de5-a2ab-465d-b6de-018ed564d53b",
+            "sourceToolAssistantUUID": "3aa7c5a8-20d5-420b-b098-72f407b5dd64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T18:45:31.557Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ReXFtKzRHmtp9A1V2fhWmq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 paper submission deadline August 2026\"\n\nLinks: [{\"title\":\"AAAI 2027 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/aaai\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"Ten simple rules for using large language models in science, version 1.0\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10829980/\"},{\"title\":\"AI/ML Conference Timeline | NIU AI\",\"url\":\"https://www.niuai.org/resources/conference-timeline/\"},{\"title\":\"Assessing the Reproducibility of the Structured Abstracts Generated by ChatGPT and Bard Compared to Human-Written Abstracts in the Field of Spine Surgery: Comparative Analysis\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11237793/\"},{\"title\":\"Ethical and Social Considerations of Applying Artificial Intelligence in Healthcare; a Two-Pronged Scoping Review\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.02.10.25321994.full.pdf\"},{\"title\":\"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=3\"},{\"title\":\"PersonaAI: An Interactive Agentic-AI Framework for Autonomous Hypothesis Generation and Validation in Aging\",\"url\":\"https://www.biorxiv.org/content/10.64898/2026.01.16.699755.full.pdf\"}]\n\nBased on the search results, I found the AAAI 2027 paper submission deadline information:\n\nFor the Main Technical Track of AAAI-27, the full papers are due on July 28, 2026 at 11:59 PM UTC-12, with abstracts due on July 21, 2026. This aligns with the timeframe you mentioned, falling in July-August 2026.\n\nAAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.\n\nThe Open Review submission site opens for author registration on June 17, 2026, and opens for paper submission on June 24, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3fc07c46-a12d-4001-ba2b-2864d8ad1a3c",
+            "isSidechain": true,
+            "promptId": "53b3880e-93bb-4f5d-8446-5c39f5e8cb3f",
+            "agentId": "a4be6c652d0f707f8",
+            "type": "user",
+            "uuid": "52081082-fd4e-4f3b-9160-f3f793d36231",
+            "sourceToolAssistantUUID": "3fc07c46-a12d-4001-ba2b-2864d8ad1a3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T18:46:15.189Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete report.\n\n---\n\n## Part 1: Conference Deadlines (relative to 2026-05-18)\n\n### Venues with deadlines AFTER 2026-05-18 (still open or upcoming)\n\n| Venue | Full Paper Deadline | After 2026-05-18? | Status |\n|-------|--------------------|--------------------|--------|\n| **CoRL 2026** | May 28-29, 2026 (abstract May 26) | YES | Deadline is ~10 days away |\n| **NeurIPS 2026** | May 6, 2026 (AOE) | NO | Already passed |\n| **AAAI 2027** | July 28, 2026 (abstract July 21) | YES | Opens for submission June 24 |\n| **ICLR 2027** | Not yet announced (predicted ~October 2026 based on historical pattern) | YES (predicted) | Not officially announced |\n| **ICRA 2027** | Not yet announced (historically ~September; conference May 24-28, 2027 in Seoul) | YES (predicted) | Not officially announced |\n| **CVPR 2027** | Not yet announced (historically ~November; conference June 19-26, 2027 in Seattle) | YES (predicted) | Not officially announced |\n\n### Venues with deadlines BEFORE 2026-05-18 (already passed)\n\n| Venue | Full Paper Deadline | Status |\n|-------|--------------------|--------------------|\n| **NeurIPS 2026** | May 6, 2026 (AOE) | PASSED (12 days ago) |\n| **RSS 2026** | January 30, 2026 | PASSED |\n| **ECCV 2026** | March 5, 2026 | PASSED |\n| **IROS 2026** | March 2, 2026 | PASSED |\n\n### Summary of confirmed upcoming deadlines:\n1. **CoRL 2026** -- May 28/29, 2026 -- Confirmed, imminent\n2. **AAAI 2027** -- July 28, 2026 -- Confirmed\n3. **ICLR 2027, ICRA 2027, CVPR 2027** -- Not yet officially announced but expected to fall after May 2026\n\n---\n\n## Part 2: Reference Verification\n\n### 1. arXiv 2603.04419 -- Context-Dependent Affordance\n- **VERIFIED**\n- Title: \"Context-Dependent Affordance Computation in Vision-Language Models\"\n- Author: Murad Farzulla\n- arXiv ID: 2603.04419\n- Published: March 2026 (the \"26\" prefix in the ID = 2026, \"03\" = March)\n- Note: This appears to be a standalone arXiv preprint, not tied to a specific venue in the search results\n\n### 2. arXiv 2506.09284 -- UAD\n- **VERIFIED**\n- Title: \"UAD: Unsupervised Affordance Distillation for Generalization in Robotic Manipulation\"\n- Authors: Yihe Tang, Wenlong Huang, Yingke Wang, Chengshu Li, Roy Yuan, Ruohan Zhang, Jiajun Wu, Li Fei-Fei (Stanford University)\n- arXiv ID: 2506.09284 (submitted June 10, 2025; revised August 25, 2025)\n- Venue: **ICRA 2025** -- confirmed (appears in IEEE Xplore as 2025 ICRA paper)\n\n### 3. arXiv 2604.11674 -- AffordSim\n- **VERIFIED**\n- Title: \"AffordSim: A Scalable Data Generator and Benchmark for Affordance-Aware Robotic Manipulation\"\n- arXiv ID: 2604.11674 (published April 13, 2026)\n- Introduces VoxAfford, an open-vocabulary 3D affordance detector\n- First simulation framework integrating open-vocabulary 3D affordance prediction into manipulation data generation\n- Note: Appears as an arXiv preprint; no specific venue confirmed yet\n\n### 4. arXiv 2505.11865 -- GLOVER++\n- **VERIFIED**\n- Title: \"GLOVER++: Unleashing the Potential of Affordance Learning from Human Behaviors for Robotic Manipulation\"\n- arXiv ID: 2505.11865 (posted May 17, 2025)\n- Introduces HOVA-500K dataset (500K images, 1,726 object categories, 675 actions)\n- Has official code repo: github.com/TeleeMa/GLOVER\n- Project page: teleema.github.io/projects/GLOVER++/\n\n### 5. arXiv 2409.01083 -- Affordance Flow Matching\n- **VERIFIED**\n- Title: \"Affordance-based Robot Manipulation with Flow Matching\"\n- Authors: Fan Zhang, Michael Gienger (Honda Research Institute Europe)\n- arXiv ID: 2409.01083\n- Uses parameter-efficient prompt tuning + supervised flow matching for robot visuomotor policy\n- 85% reduction in inference time vs. diffusion models\n- Has GitHub code: github.com/HRI-EU/flow_matching\n\n### 6. AGD20K\n- **VERIFIED**\n- Full name: AGD20K Affordance Grounding Dataset\n- Paper: \"Learning Affordance Grounding from Exocentric Images\"\n- arXiv ID: 2203.09905\n- Venue: **CVPR 2022**\n- Dataset: 20,061 exocentric images + 6,060 egocentric images across 36 affordance categories\n- Official code: github.com/lhc1224/Cross-View-AG\n\n### 7. UMD Affordance Dataset\n- **VERIFIED**\n- Full name: RGB-D Part Affordance Dataset (UMD)\n- Paper: \"Affordance Detection of Tool Parts from Geometric Features\"\n- Authors: Austin Myers, Ching L. Teo, Cornelia Fermuller, Yiannis Aloimonos\n- Venue: **ICRA 2015**\n- Contains: RGB-D images with ground-truth affordance labels for 105 kitchen, workshop, and garden tools\n- Hosted at: users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/\n\n---\n\n**All 7 references are verified as real papers with correct arXiv IDs (where applicable).** The key upcoming deadlines you can still target are **CoRL 2026** (May 28-29) and **AAAI 2027** (July 28, 2026), with ICLR 2027, ICRA 2027, and CVPR 2027 expected later in 2026 but not yet officially announced.\n\nSources:\n- [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [RSS 2026 Call for Papers](https://roboticsconference.org/information/cfp/)\n- [ECCV 2026 Dates](https://eccv.ecva.net/Conferences/2026/Dates)\n- [IROS 2026 Important Dates](https://2026.ieee-iros.org/about/important-dates/)\n- [ICRA 2027 Calls](https://2027.ieee-icra.org/contribute/)\n- [CVPR 2027 WikiCFP](http://www.wikicfp.com/cfp/program?id=628)\n- [ICLR 2026 Dates](https://iclr.cc/Conferences/2026/Dates)\n- [arXiv 2603.04419](https://arxiv.org/abs/2603.04419)\n- [arXiv 2506.09284 (UAD)](https://arxiv.org/abs/2506.09284)\n- [arXiv 2604.11674 (AffordSim)](https://arxiv.org/abs/2604.11674)\n- [arXiv 2505.11865 (GLOVER++)](https://arxiv.org/abs/2505.11865)\n- [arXiv 2409.01083 (Flow Matching)](https://arxiv.org/abs/2409.01083)\n- [arXiv 2203.09905 (AGD20K)](https://arxiv.org/abs/2203.09905)\n- [UMD Part Affordance Dataset](http://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/)\n- [AI Conference Deadlines Tracker](https://trybibby.com/conference-deadlines)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52081082-fd4e-4f3b-9160-f3f793d36231",
+            "isSidechain": true,
+            "agentId": "a4be6c652d0f707f8",
+            "requestId": "req_011CbAXheDWR6PBYTjiFyDaC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c8ba774f-eb78-4801-897e-0af48a0d829a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "666a6b62-b3dd-46de-82c2-26662f83e249",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F9hHb9n4cgwLQL2kpBzLSA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2769,
+                "cache_creation_input_tokens": 4090,
+                "cache_read_input_tokens": 19789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4090,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000054"
+        }
+      ],
+      "message_count": 54
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-two-things-part-1-conference-deadlines-after-2026-05-18-searc.md"
+}
