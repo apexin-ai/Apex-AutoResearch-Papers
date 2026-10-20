@@ -1296,6 +1296,19 @@
       }
     },
     {
+      "project": "schema_semantic_constrained_ie--export-20260712",
+      "title": "OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)",
+      "catalog": "../research-snapshots/schema_semantic_constrained_ie/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2435,
+        "messages": 416158,
+        "user_turns": 19292,
+        "tool_calls": 108474,
+        "unparsed_lines": 1,
+        "conversation": 2435
+      }
+    },
+    {
       "project": "simgate-modular-routing",
       "title": "Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld",
       "catalog": "../paper-assets/simgate-modular-routing/05-generation-trace/catalog.json",

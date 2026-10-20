@@ -287,6 +287,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1885
+        },
+        "schema_semantic_constrained_ie": {
+          "status": "uploaded",
+          "project": "schema_semantic_constrained_ie",
+          "collection": "schema_semantic_constrained_ie--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "8937c379b1a292eafcdb3dd449fd24d7ff9a854651eed31915616da3a830c942",
+          "indexed_members": 2440,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 2435
         }
       },
       "status": "in_progress",
