@@ -1,0 +1,2784 @@
+# Research conversation: [WORKER DONE] Worker worker_ssh_seed44-summary-rebuild_20260515T180327 已完成（status=done）。用 `get_worker_status('worker_ssh
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-3/2654511f-953a-442a-978a-75d6efbe57ff.jsonl`
+- **Structured JSON:** [`5d68a77d2732152aabba.json`](../../sessions/5d/5d68a77d2732152aabba.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T18:56:41.285Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T18:56:41.285Z",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "content": "[WORKER DONE] Worker worker_ssh_seed44-summary-rebuild_20260515T180327 已完成（status=done）。用 `get_worker_status('worker_ssh_seed44-summary-rebuild_20260515T180327')` 读取结果，然后处理。\n\n- worker_id: worker_ssh_seed44-summary-rebuild_20260515T180327\n- project: collapse_severity_monitor\n- status: done"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T18:56:41.294Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T18:56:41.294Z",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff"
+}
+```
+
+---
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T18:56:41.342Z_
+
+[WORKER DONE] Worker worker_ssh_seed44-summary-rebuild_20260515T180327 已完成（status=done）。用 `get_worker_status('worker_ssh_seed44-summary-rebuild_20260515T180327')` 读取结果，然后处理。
+
+- worker_id: worker_ssh_seed44-summary-rebuild_20260515T180327
+- project: collapse_severity_monitor
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "f2627162-b2c2-4d64-9e87-6b563a1e2a56",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T18:56:41.342Z_
+
+```json
+{
+  "parentUuid": "f2627162-b2c2-4d64-9e87-6b563a1e2a56",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "eb31b630-fd34-42d4-a7d8-ff8420e68604",
+  "timestamp": "2026-05-15T18:56:41.342Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T18:56:41.342Z_
+
+```json
+{
+  "parentUuid": "eb31b630-fd34-42d4-a7d8-ff8420e68604",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ab883b41-b17d-4e89-a71d-792870d8f33d",
+  "timestamp": "2026-05-15T18:56:41.342Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T18:56:41.342Z_
+
+```json
+{
+  "parentUuid": "ab883b41-b17d-4e89-a71d-792870d8f33d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "dd7202b5-9999-44a7-9a55-0cf878251869",
+  "timestamp": "2026-05-15T18:56:41.342Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Process completed worker summary rebuild results",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T18:56:44.795Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Worker完成了，我需要：
+1. 获取Worker状态和结果
+2. 读取registry了解当前实验状态
+3. 处理结果
+
+让我先获取Worker状态和读取registry。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd7202b5-9999-44a7-9a55-0cf878251869",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s8Gc8JVdepu5BkU4B9",
+  "type": "assistant",
+  "uuid": "85bb883a-2797-44ea-b6b0-8e87cf202d3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sp6uW3UT7a7LibcFYvV75c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22963,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22963,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22963,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22963
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T18:56:46.299Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GHau9UmiZHSr2N7VzJi7JF`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85bb883a-2797-44ea-b6b0-8e87cf202d3c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s8Gc8JVdepu5BkU4B9",
+  "type": "assistant",
+  "uuid": "419a4c22-355e-4bb1-a785-e4c2628cb056",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sp6uW3UT7a7LibcFYvV75c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22963,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22963,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22963,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22963
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T18:56:46.306Z_
+
+<details><summary>↩ Tool result · `toolu_01GHau9UmiZHSr2N7VzJi7JF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "419a4c22-355e-4bb1-a785-e4c2628cb056",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "930ab8f3-199f-4d2f-a523-5b191d3f8c4f",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "419a4c22-355e-4bb1-a785-e4c2628cb056",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T18:56:49.761Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01248doMxmr2mf7MVXV27RMc`</summary>
+
+```json
+{
+  "worker_id": "worker_ssh_seed44-summary-rebuild_20260515T180327"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "930ab8f3-199f-4d2f-a523-5b191d3f8c4f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s8e7SQGmMpyTg92eY4",
+  "type": "assistant",
+  "uuid": "76dc955b-c368-4e2a-82c2-f8090031bd53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Ko64Th3dXdnVPL3m3PNgY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1204,
+      "cache_read_input_tokens": 34804,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 34804,
+          "cache_creation_input_tokens": 1204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T18:56:49.794Z_
+
+<details><summary>↩ Tool result · `toolu_01248doMxmr2mf7MVXV27RMc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_seed44-summary-rebuild_20260515T180327\", \"status\": \"done\", \"task_type\": \"ssh:seed44-summary-rebuild\", \"project\": \"collapse_severity_monitor\", \"started_at\": \"2026-05-15T18:03:27.240081+00:00\", \"ended_at\": \"2026-05-15T18:06:43.127731+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"summary 重建完成。汇总：\\n\\n**Checkpoint 状态**: gen0-4 的 checkpoint 目录全部存在但为空（0 bytes），save_pretrained 修复前生成，符合预期。无法补跑 HellaSwag。\\n\\n**Signals 完整性**: gen0-3 各 32 行，gen4 有 31 行（无 step=-1 summary marker，但有 `is_generation_end=true`），所有 gen 数据完整。\\n\\n**summary_50pct.json 重建结果** — 5 个 gen 全部覆盖：\\n\\n| gen | perplexity | stable_rank | spectral_entropy | gradient_norm |\\n|-----|-----------|-------------|-----------------|---------------|\\n| 0 | 12.218 | 14.332 | 0.657 | 0.662 |\\n| 1 | 13.959 | 17.555 | 0.690 | 0.845 |\\n| 2 | 13.057 | 16.925 | 0.684 | 0.685 |\\n| 3 | 12.953 | 16.390 | 0.678 | 0.618 |\\n| 4 | 13.100 | 16.321 | 0.680 | 0.590 |\\n\\n**缺失字段**: `hellaswag_accuracy`, `self_bleu`, `distinct_1/2/3`, `num_train_chunks`, `num_synthetic_chunks`, `wall_time_seconds` 均为 null。格式与 seed42/43 的 summary 一致。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76dc955b-c368-4e2a-82c2-f8090031bd53",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "bd7e2665-65fe-43f5-98d5-a66b867a7bea",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_seed44-summary-rebuild_20260515T180327\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ssh:seed44-summary-rebuild\\\", \\\"project\\\": \\\"collapse_severity_monitor\\\", \\\"started_at\\\": \\\"2026-05-15T18:03:27.240081+00:00\\\", \\\"ended_at\\\": \\\"2026-05-15T18:06:43.127731+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"summary 重建完成。汇总：\\\\n\\\\n**Checkpoint 状态**: gen0-4 的 checkpoint 目录全部存在但为空（0 bytes），save_pretrained 修复前生成，符合预期。无法补跑 HellaSwag。\\\\n\\\\n**Signals 完整性**: gen0-3 各 32 行，gen4 有 31 行（无 step=-1 summary marker，但有 `is_generation_end=true`），所有 gen 数据完整。\\\\n\\\\n**summary_50pct.json 重建结果** — 5 个 gen 全部覆盖：\\\\n\\\\n| gen | perplexity | stable_rank | spectral_entropy | gradient_norm |\\\\n|-----|-----------|-------------|-----------------|---------------|\\\\n| 0 | 12.218 | 14.332 | 0.657 | 0.662 |\\\\n| 1 | 13.959 | 17.555 | 0.690 | 0.845 |\\\\n| 2 | 13.057 | 16.925 | 0.684 | 0.685 |\\\\n| 3 | 12.953 | 16.390 | 0.678 | 0.618 |\\\\n| 4 | 13.100 | 16.321 | 0.680 | 0.590 |\\\\n\\\\n**缺失字段**: `hellaswag_accuracy`, `self_bleu`, `distinct_1/2/3`, `num_train_chunks`, `num_synthetic_chunks`, `wall_time_seconds` 均为 null。格式与 seed42/43 的 summary 一致。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_ssh_seed44-summary-rebuild_20260515T180327\", \"status\": \"done\", \"task_type\": \"ssh:seed44-summary-rebuild\", \"project\": \"collapse_severity_monitor\", \"started_at\": \"2026-05-15T18:03:27.240081+00:00\", \"ended_at\": \"2026-05-15T18:06:43.127731+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"summary 重建完成。汇总：\\n\\n**Checkpoint 状态**: gen0-4 的 checkpoint 目录全部存在但为空（0 bytes），save_pretrained 修复前生成，符合预期。无法补跑 HellaSwag。\\n\\n**Signals 完整性**: gen0-3 各 32 行，gen4 有 31 行（无 step=-1 summary marker，但有 `is_generation_end=true`），所有 gen 数据完整。\\n\\n**summary_50pct.json 重建结果** — 5 个 gen 全部覆盖：\\n\\n| gen | perplexity | stable_rank | spectral_entropy | gradient_norm |\\n|-----|-----------|-------------|-----------------|---------------|\\n| 0 | 12.218 | 14.332 | 0.657 | 0.662 |\\n| 1 | 13.959 | 17.555 | 0.690 | 0.845 |\\n| 2 | 13.057 | 16.925 | 0.684 | 0.685 |\\n| 3 | 12.953 | 16.390 | 0.678 | 0.618 |\\n| 4 | 13.100 | 16.321 | 0.680 | 0.590 |\\n\\n**缺失字段**: `hellaswag_accuracy`, `self_bleu`, `distinct_1/2/3`, `num_train_chunks`, `num_synthetic_chunks`, `wall_time_seconds` 均为 null。格式与 seed42/43 的 summary 一致。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "76dc955b-c368-4e2a-82c2-f8090031bd53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T18:56:50.626Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01EV7QMRwranmsTN9GWw89Pe`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd7e2665-65fe-43f5-98d5-a66b867a7bea",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s8e7SQGmMpyTg92eY4",
+  "type": "assistant",
+  "uuid": "cde25c38-a305-40e1-9ea2-27831b1920a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Ko64Th3dXdnVPL3m3PNgY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1204,
+      "cache_read_input_tokens": 34804,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 34804,
+          "cache_creation_input_tokens": 1204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T18:56:50.631Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01RUTun6UJ9Jfe76gmBWE2Li`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cde25c38-a305-40e1-9ea2-27831b1920a6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s8e7SQGmMpyTg92eY4",
+  "type": "assistant",
+  "uuid": "ab097485-864c-4de9-83d2-39edab36e391",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Ko64Th3dXdnVPL3m3PNgY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1204,
+      "cache_read_input_tokens": 34804,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 34804,
+          "cache_creation_input_tokens": 1204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T18:56:50.708Z_
+
+<details><summary>↩ Tool result · `toolu_01EV7QMRwranmsTN9GWw89Pe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan002-pubmed-gpu2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T18:01:40.414Z\", \"updated_at\": \"2026-05-15T18:24:55.773Z\", \"hypothesis\": \"Cross-domain validation: seed43 frac=1.0 (100% synthetic PubMed) on GPU2, paralleling GPU0 (frac=0%) and GPU1 (frac=50%) to get complete 3-fraction coverage for seed43 simultaneously\"}, \"plan001-wikitext-15B-5seeds\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T22:57:13.285Z\", \"updated_at\": \"2026-05-15T18:21:29.887Z\", \"hypothesis\": \"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\", \"metrics\": {\"gpu0_status\": \"PID 863684, seed45 frac=0.0, gen0 DONE (signals 31 rows, ckpt written 02:05 UTC), now in synthesis/gen1 phase\", \"gpu1_status\": \"PID 875860, seed42 frac=1.0 gen0 training, step 1200/1540 (78%), ~10min to gen0 end\", \"gpu0_util\": \"3950MiB / 46%\", \"gpu1_util\": \"7966MiB / 34%\", \"completed_seeds\": {\"seed42\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓, frac=1.0 gen0 78%\", \"seed43\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\", \"seed44\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\", \"seed45\": \"frac=0.0 gen0 ✓, gen1 starting\", \"seed46\": \"not started\"}, \"checked_at\": \"2026-05-16T02:20Z\"}}, \"plan003-fullft-05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:25:38.030Z\", \"updated_at\": \"2026-05-15T18:18:03.906Z\", \"hypothesis\": \"Full FT comparison: collapse severity signals 在全参数微调下保持有效，验证信号不是 QLoRA-specific artifact\", \"metrics\": {\"fullft_0pct_gen4\": {\"ppl\": 19.23, \"stable_rank\": 37.48, \"spectral_entropy\": 0.765, \"token_entropy\": 1.884}, \"fullft_50pct_gen4\": {\"ppl\": 25.64, \"stable_rank\": 40.47, \"spectral_entropy\": 0.783, \"token_entropy\": 1.736, \"hellaswag\": 0.397}, \"fullft_100pct_gen4\": {\"ppl\": 326.19, \"stable_rank\": 153.87, \"spectral_entropy\": 0.889, \"token_entropy\": 0.829, \"hellaswag\": 0.372}, \"collapse_dynamics\": {\"onset_ratio_gen01\": 15.3, \"post_onset_ratio_gen14\": 1.11, \"pattern\": \"fast_onset_saturation\", \"vs_qlora_gen4_ppl_ratio\": 0.39}}, \"conclusion\": \"success\", \"notes\": \"Hypothesis confirmed. Full FT comparison validates signals are not QLoRA-specific. D026 修正完成 (2026-05-15 18:03Z): QLoRA 100% gen1-3 PPL 数据错误已修正，\\\"snowball/exponential/slow onset\\\" 叙事已删除，改为正确描述 (both large gen1 jump, post-gen1 divergence: FT plateau vs QLoRA decelerating growth)。comparison_data.json 和所有图表已在 cqa1-37219 重新生成。\"}, \"plan010-3B-spotcheck\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T10:25:38.524Z\", \"updated_at\": \"2026-05-15T18:17:51.837Z\", \"hypothesis\": \"3B model spot-check: collapse severity signals 在第三个 scale point (3B) 上保持一致，增强 cross-scale claims\", \"metrics\": {\"current_progress\": \"frac=0% gen3 training, step 961/1540 (62%)\", \"completed_gens\": \"gen0 ✓, gen1 ✓, gen2 ✓\", \"signals_gen3\": \"19 rows written\", \"rate_per_gen\": \"~2h10m (3B model)\", \"remaining_estimate\": \"gen3 ~1h10m + gen4 ~2h10m + frac=50% 5gens ~10h50m + frac=100% 5gens ~10h50m ≈ 25h\", \"checked_at\": \"2026-05-15T18:01Z\"}}, \"plan002-pubmed-cqa1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T10:18:37.632Z\", \"updated_at\": \"2026-05-15T18:17:48.441Z\", \"hypothesis\": \"Cross-domain validation: collapse severity signals 在 PubMed biomedical domain 上保持 ρ > 0.7 相关性，证明信号的 domain-agnostic 特性\", \"metrics\": {\"loop_structure\": \"fraction-outer / seed-inner — all 3 seeds per fraction before next fraction\", \"fraction_coverage\": {\"gpu0_fracs\": [\"0.0\", \"0.1\", \"0.25\"], \"gpu1_fracs\": [\"0.5\", \"0.75\", \"1.0\"], \"completed\": {\"0.0\": [\"seed42\"], \"0.5\": [\"seed42\"]}, \"in_progress\": {\"0.0\": \"seed43 gen0 generation 85%\", \"0.5\": \"seed43 gen0 generation 17%\"}, \"not_started\": [\"0.1\", \"0.25\", \"0.75\", \"1.0\"]}, \"runs_completed\": \"2/18 (11%)\", \"runs_in_progress\": \"2/18\", \"per_run_time\": \"~6.5h (5 gens)\", \"eta_all_complete\": \"~51h remaining → May 17 late night\", \"checked_at\": \"2026-05-15T18:01Z\"}}, \"plan001-gpu1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:33:17.541Z\", \"updated_at\": \"2026-05-15T18:16:30.286Z\", \"hypothesis\": \"Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 for complete 6-fraction coverage\", \"metrics\": {\"current_run\": \"frac=0.5, seed=44, gen4 training ~10% (~25min left)\", \"completed_seeds\": {\"seed42\": \"DONE (summary_50pct.json ✓)\", \"seed43\": \"DONE (summary_50pct.json ✓)\", \"seed44\": \"gen4 ~10%, then gen5 remaining, then seed45+46\"}, \"auto_advance_confirmed\": true, \"gpu_util\": \"100%\", \"gpu_mem\": \"7984 MiB\", \"gpu_temp\": \"65C\", \"note\": \"seed45 will auto-load hotfixed pipeline.py — no intervention needed\", \"checked_at\": \"2026-05-15T16:42Z\"}, \"conclusion\": \"killed\", \"notes\": \"诊断确认: v2 切换 kill 导致 seed44/frac=0.5/gen4 合成语料生成中断(51%)。signals gen0-4 全部完整(is_generation_end=true)。唯一丢失 synthetic_50pct_gen4.json(不影响分析)。已有成果: seed42+43 frac=0.5 完成。v2 脚本自动恢复。\"}, \"plan008-self-recovery\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:54:37.677Z\", \"updated_at\": \"2026-05-15T17:20:53.258Z\", \"conclusion\": \"success\", \"metrics\": {\"recovery_prevalence_50pct\": \"89% (16/18)\", \"mean_ppl_recovery_ratio\": 0.51, \"mean_token_entropy_rr\": 0.624, \"mean_stable_rank_rr\": 0.339, \"cross_seed_consistency\": \"5/6\", \"residual_ppl_elevation\": \"6.6-7.8%\", \"fractions_available\": [0, 50, 100], \"n_sources\": 3}, \"hypothesis\": \"Self-recovery deep dive (Claim 3): analyze spike-then-recover pattern at 50% synthetic mixing, quantify recovery ratios by signal family, assess cross-seed consistency\"}, \"plan006-signal-taxonomy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:51:42.083Z\", \"updated_at\": \"2026-05-15T17:20:51.749Z\", \"conclusion\": \"success\", \"metrics\": {\"n_seeds\": 2, \"n_fractions\": 2, \"n_signals_analyzed\": 14, \"ranking_method\": \"Cohen's d at gen4 (NOT max_rel_change)\", \"top_signal_by_d\": \"stable_rank (d=61.7)\", \"tier1_signals\": \"stable_rank (d=61.7), spectral_entropy (d=37.6), perplexity (d=35.5)\", \"tier2_signals\": \"distinct_1 (d=12.1), distinct_2 (d=9.4), distinct_3 (d=6.3), self_bleu (d=3.5), token_entropy (d=3.2)\", \"tier3_signals\": \"gradient_norm (d=2.4, transient), hellaswag (d=1.3, noisy)\", \"self_bleu_warning\": \"max_rel_change 38.6% misleading (small-base amplification, CV=0.055 highest). Cohen's d=3.5 ranks 7th not 1st.\", \"sigma_vs_stable_rank\": \"stable_rank d is 47x (gen1) to 320x (gen4) greater than sigma_effective_rank. SIGMA N=1, provisional.\", \"cross_seed_cv_max\": 0.055, \"early_detection_gen1plus\": \"step 50 (3% training)\", \"status_note\": \"Preliminary — only 2 fractions (0%, 50%). Full 6-fraction reanalysis needed when plan001 completes.\"}, \"hypothesis\": \"Signal taxonomy (Claim 3): characterize per-signal-family operating ranges and sensitivity tiers using Cohen's d effect sizes across collapse severity levels\"}, \"plan009-sigma-headtohead\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T16:45:19.685Z\", \"updated_at\": \"2026-05-15T17:02:11.957Z\", \"hypothesis\": \"SIGMA head-to-head: SIGMA spectral metrics (log_det, effective_rank, track_ii, spectral_decay_rate) vs SCS signals, integrated into plan001 signals.py for real-time collection. 28/30 runs will have SIGMA data.\"}, \"plan_001_seed43_frac50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:07:47.942Z\", \"updated_at\": \"2026-05-15T11:07:47.942Z\", \"metrics\": {\"status\": \"RUNNING\", \"gpu\": 1, \"server\": \"autodl-5090\", \"model\": \"Qwen2.5-1.5B\", \"dataset\": \"wikitext\", \"mode\": \"qlora\", \"seed\": 43, \"fraction\": 0.5, \"current_gen\": 4, \"phase\": \"generating_synthetic_96pct\", \"gpu_util_pct\": 100, \"gpu_mem_mb\": 7984, \"gpu_temp_c\": 64, \"pid\": 617434, \"checked_at\": \"2026-05-15T19:05\"}}, \"plan_001_seed43_frac0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:07:46.116Z\", \"updated_at\": \"2026-05-15T11:07:46.116Z\", \"metrics\": {\"status\": \"RUNNING\", \"gpu\": 0, \"server\": \"autodl-5090\", \"model\": \"Qwen2.5-1.5B\", \"dataset\": \"wikitext\", \"mode\": \"qlora\", \"seed\": 43, \"fraction\": 0, \"current_gen\": 4, \"phase\": \"generating_synthetic_96pct\", \"gpu_util_pct\": 34, \"gpu_mem_mb\": 4270, \"gpu_temp_c\": 56, \"pid\": 609739, \"checked_at\": \"2026-05-15T19:05\"}}, \"plan_001_seed42_frac50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:07:43.594Z\", \"updated_at\": \"2026-05-15T11:07:43.594Z\", \"metrics\": {\"status\": \"DONE\", \"gpu\": 1, \"server\": \"autodl-5090\", \"model\": \"Qwen2.5-1.5B\", \"dataset\": \"wikitext\", \"mode\": \"qlora\", \"seed\": 42, \"fraction\": 0.5, \"generations_done\": 5, \"final_ppl\": 13.03, \"final_hellaswag\": 0.524, \"checked_at\": \"2026-05-15T19:05\"}}, \"plan_001_seed42_frac0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:07:41.842Z\", \"updated_at\": \"2026-05-15T11:07:41.842Z\", \"metrics\": {\"status\": \"DONE\", \"gpu\": 0, \"server\": \"autodl-5090\", \"model\": \"Qwen2.5-1.5B\", \"dataset\": \"wikitext\", \"mode\": \"qlora\", \"seed\": 42, \"fraction\": 0, \"generations_done\": 5, \"final_ppl\": 12.2, \"final_hellaswag\": 0.518, \"checked_at\": \"2026-05-15T19:05\"}}, \"plan_002_pubmed_1.5B_3seeds\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:16:25.908Z\", \"updated_at\": \"2026-05-15T07:39:39.544Z\", \"hypothesis\": \"Cross-domain validation: collapse severity signals 在 PubMed biomedical domain 上保持 ρ > 0.7 相关性，证明信号的 domain-agnostic 特性\", \"conclusion\": \"killed\", \"notes\": \"GPU 冲突已解除。2026-05-15 二次验证完成：数据就绪 (train=4500, val=500 chunks, 12.1MB+1.3MB pre-tokenized seq_len=512), run_plan002.sh 正确 (6 fracs × 3 seeds = 18 runs, qlora mode, HF_DATASETS_OFFLINE=1), 模型就绪 (Qwen2.5-1.5B 2.9GB), 磁盘 240G 可用。Ready to launch，等 plan001 某卡完成后立即启动。\"}, \"per_layer_analysis_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:19:21.376Z\", \"updated_at\": \"2026-05-15T03:17:29.574Z\", \"hypothesis\": \"Per-layer LoRA weight analysis reveals layer-specific collapse patterns: middle layers (rank-1 LoRA updates) vs boundary layers (diffuse updates) diverge differently under synthetic data contamination\", \"conclusion\": \"success\", \"metrics\": {\"boundary_early_sr_delta\": 0.809, \"middle_sr_delta\": \"DEPRECATED — was 0.01 based on incorrect data; real per-sub-module mean ~0.66; see appendix tab:full_per_layer for true values\", \"late_mid_sr_delta\": 0.418, \"L12_down_proj_sr_collapse\": -3.218, \"L11_down_proj_sr_collapse\": -2.146, \"v_proj_avg_sr_increase\": \"recalculate from appendix — significantly >1.334 across all layers\", \"k_proj_avg_sr_increase\": 0.714, \"L0_qproj_sr_delta\": 2.849, \"L16_vproj_sr_peak\": 3.06, \"baseline_0pct_max_sr_drift\": 0.311, \"weight_norm_crossover_layer\": 11, \"narrative_revision\": \"three-zone structure replaced by sub-module-centric analysis per Director approval 2026-05-15\"}, \"notes\": \"Hypothesis partially confirmed. Key findings: (1) Boundary layers show strongest rank diffusion (sr+0.81); (2) Middle layers (11-12) show hidden bifurcation — mlp.down_proj rank-collapses (L12: -3.24) while v_proj diffuses, cancelling at layer level; (3) Attention QKV projections are most sensitive sub-modules, MLP gate/up unresponsive; (4) Weight norm crossover at L11-12 (early layers shrink, late layers grow). Paper contribution: per-layer collapse fingerprint + L12 down_proj anomaly as visualization target.\"}, \"within_gen_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:57:33.893Z\", \"updated_at\": \"2026-05-15T02:37:19.504Z\", \"hypothesis\": \"Within-generation 时序分析：训练过程中信号能否早期区分 collapse 严重度（step 50 = 3% 训练进度即可区分）\", \"conclusion\": \"success\", \"metrics\": {\"earliest_distinguishing_step\": \"step 50 (3% training progress)\", \"best_signal\": \"stable_rank (34.4% deviation at step 50)\", \"signals_above_5pct_at_step50\": \"stable_rank 34.4%, token_entropy 24.5%, perplexity 17.7%\", \"crossgen_acceleration\": \"100pct PPL delta vs per-gen 0pct baseline: gen0=<1%, gen1=+770%, gen2=+2416%\", \"crossgen_acceleration_note\": \"Corrected 2026-05-15: switched from within-gen start→end metric (gen0=+0.4%, gen1=+645%, gen2=+1737%) to per-generation α=0 baseline comparison\", \"plots\": \"12 files (PDF+PNG) on server within_gen_plots/\"}}, \"mvp_frac50_100\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:39:48.157Z\", \"updated_at\": \"2026-05-15T02:13:42.006Z\", \"hypothesis\": \"训练动态信号跟踪 collapse 严重度 — 50%+100% synthetic fractions（双卡并行）\", \"metrics\": {\"progress\": \"ALL COMPLETE — 0pct 5/5, 50pct 5/5, 100pct 5/5\", \"gate_check_verdict\": \"PASS (3/3 families)\", \"gate_check_spectral\": \"PASS — stable_rank cross-frac |rho|=1.0 (p=0.0), cross-gen rho=0.9 (p=0.037)\", \"gate_check_output\": \"PASS — perplexity cross-frac |rho|=1.0, cross-gen rho=1.0; token_entropy cross-frac |rho|=0.9, cross-gen rho=-1.0\", \"gate_check_downstream\": \"PASS — hellaswag_acc cross-frac |ρ|=0.72 (mean gen1-4, all negative), cross-gen ρ=-0.67 (100pct). Effect size small (0.41-0.44) but direction consistent. Data present in summary JSONs. 0pct gen0 null.\", \"hellaswag_values\": {\"0pct\": [null, 0.442, 0.434, 0.43, 0.435], \"50pct\": [0.435, 0.429, 0.42, 0.439, 0.434], \"100pct\": [0.432, 0.432, 0.42, 0.41, 0.43]}, \"hellaswag_cross_frac_rho_per_gen\": {\"gen1\": -0.5, \"gen2\": -0.866, \"gen3\": -0.5, \"gen4\": -1, \"mean\": -0.7165}, \"hellaswag_cross_gen_rho\": {\"0pct\": -0.4, \"50pct\": 0.1, \"100pct\": -0.667}, \"final_values_0pct_gen4\": {\"stable_rank\": 23.41, \"spectral_entropy\": 0.703, \"token_entropy\": 2.259, \"ppl\": 15.67}, \"final_values_50pct_gen4\": {\"stable_rank\": 24.79, \"spectral_entropy\": 0.716, \"token_entropy\": 2.215, \"ppl\": 16.95}, \"final_values_100pct_gen4\": {\"stable_rank\": 155.64, \"spectral_entropy\": 0.884, \"token_entropy\": 0.782, \"ppl\": 839.2}, \"collapse_magnitude_100pct\": \"stable_rank 6.6x, PPL 53x, token_entropy -65%\", \"0pct_baseline_stability\": \"all signals <3% variation across 5 gens\", \"within_gen_early_warning\": \"stable_rank 34.4% deviation at step 50 (3% training progress)\"}, \"conclusion\": \"success\"}, \"plan001-wikitext-15B-5seeds-gpu1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:14:03.684Z\", \"updated_at\": \"2026-05-14T23:31:06.567Z\", \"hypothesis\": \"Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 (fractions 0.0/0.1/0.25) for complete 6-fraction coverage\", \"conclusion\": \"failed\"}, \"plan_001_wikitext_15B_5seeds\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:57:04.302Z\", \"updated_at\": \"2026-05-14T23:04:39.863Z\", \"hypothesis\": \"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\", \"conclusion\": \"killed\"}, \"plan_001_wikitext_1.5B_5seeds\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:16:23.446Z\", \"updated_at\": \"2026-05-14T22:57:40.154Z\", \"hypothesis\": \"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\", \"conclusion\": \"killed\"}, \"per_layer_analysis_active\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:08:08.398Z\", \"updated_at\": \"2026-05-14T22:48:33.198Z\", \"metrics\": {\"progress\": \"0pct gen0=done, 0pct gen1=in_progress\", \"per_gen_time\": \"~35 min/gen\", \"eta_remaining\": \"~9 gens x 35min = ~5.25h\", \"gpu\": \"cuda:1\", \"checked_at\": \"2026-05-14T19:08:00Z\"}, \"hypothesis\": \"Per-layer SVD 分析：跟踪每层 stable_rank/spectral_entropy 随 generation 的变化，验证 collapse 是否在特定层先发生\", \"conclusion\": \"failed\"}, \"per_layer_analysis_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:19:00.660Z\", \"updated_at\": \"2026-05-14T19:19:12.528Z\", \"conclusion\": \"failed\"}, \"per_layer_analysis_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:00:32.096Z\", \"updated_at\": \"2026-05-14T19:09:00.181Z\", \"conclusion\": \"failed\"}, \"per_layer_analysis_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:18:56.690Z\", \"updated_at\": \"2026-05-14T19:04:53.652Z\", \"metrics\": {\"progress\": \"0pct gen0 1388/1540 (90%), ~2min to finish gen0\", \"output_file\": \"outputs/per_layer_analysis.json (incremental save per gen)\", \"per_gen_time\": \"~35 min/gen\", \"total_gens\": \"2 fractions x 5 gens = 10 gens\", \"eta_total\": \"~6h from start (started ~18:19 UTC)\", \"signals_safety\": \"confirmed: output_dir redirected to _per_layer_tmp, signals_*.jsonl untouched\", \"analysis_method\": \"hook all transformer layers, 64 val samples forward pass, compute per-layer SVD: stable_rank, spectral_entropy, SV_ratio(sigma1/sigma2)\", \"gpu\": \"GPU 1, 6314/32607 MiB, 43% util\", \"checked_at\": \"2026-05-14T18:58:00Z\"}, \"conclusion\": \"killed\"}, \"per_layer_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:17:52.695Z\", \"updated_at\": \"2026-05-14T19:04:46.890Z\", \"conclusion\": \"failed\"}, \"mvp_frac0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:39:49.928Z\", \"updated_at\": \"2026-05-14T17:53:36.159Z\", \"hypothesis\": \"训练动态信号跟踪 collapse 严重度 — 0% clean baseline（双卡并行，断点恢复 gen0）\", \"conclusion\": \"success\"}, \"mvp_collapse_003\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:59:28.137Z\", \"updated_at\": \"2026-05-14T10:39:34.247Z\", \"hypothesis\": \"训练动态信号能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（优化版：gen_num_chunks=1500, gen_batch_size=32, use_cache fix + merge_adapter）\", \"metrics\": {\"progress\": \"0pct_gen0 step 50/1540 (3%)\", \"speed\": \"1.08 it/s\", \"gpu_util\": \"20%\", \"gpu_mem\": \"6314/32607 MiB\", \"checked_at\": \"2026-05-14T09:01:30Z\"}, \"conclusion\": \"killed\"}, \"mvp_collapse_002\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:18:30.715Z\", \"updated_at\": \"2026-05-14T08:25:06.484Z\", \"hypothesis\": \"训练动态信号能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（优化版：gen_num_chunks=1500, gen_batch_size=32）\", \"metrics\": {\"progress\": \"0pct_gen0 step 50/1540 (3%)\", \"speed\": \"1.17 it/s\", \"gpu_util\": \"26%\", \"gpu_mem\": \"6314/32607 MiB\", \"gen_batch_size\": 32, \"gen_num_chunks\": 1500, \"checked_at\": \"2026-05-14T08:21:00Z\"}, \"conclusion\": \"killed\"}, \"mvp_collapse_001\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:47:43.866Z\", \"updated_at\": \"2026-05-14T08:18:20.606Z\", \"hypothesis\": \"训练动态信号（spectral entropy, stable rank, token entropy 等）能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（held-out perplexity degradation），且 AUROC > 0.8 区分 collapsing vs clean training\", \"metrics\": {\"progress\": \"0pct_gen0 step 242/1540 (15.7%)\", \"speed\": \"1.19 it/s\", \"loss\": 2.652, \"perplexity\": 14.41, \"stable_rank\": 20.5, \"spectral_entropy\": 0.673, \"signals_collected\": 4, \"checked_at\": \"2026-05-14T06:38:30Z\"}, \"conclusion\": \"failed\"}}, \"count\": 29, \"total\": 29, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0697}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cde25c38-a305-40e1-9ea2-27831b1920a6",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "cb86a087-9a7c-4564-91a7-263c161b4c61",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-pubmed-gpu2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T18:01:40.414Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:24:55.773Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: seed43 frac=1.0 (100% synthetic PubMed) on GPU2, paralleling GPU0 (frac=0%) and GPU1 (frac=50%) to get complete 3-fraction coverage for seed43 simultaneously\\\"}, \\\"plan001-wikitext-15B-5seeds\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T22:57:13.285Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:21:29.887Z\\\", \\\"hypothesis\\\": \\\"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\\\", \\\"metrics\\\": {\\\"gpu0_status\\\": \\\"PID 863684, seed45 frac=0.0, gen0 DONE (signals 31 rows, ckpt written 02:05 UTC), now in synthesis/gen1 phase\\\", \\\"gpu1_status\\\": \\\"PID 875860, seed42 frac=1.0 gen0 training, step 1200/1540 (78%), ~10min to gen0 end\\\", \\\"gpu0_util\\\": \\\"3950MiB / 46%\\\", \\\"gpu1_util\\\": \\\"7966MiB / 34%\\\", \\\"completed_seeds\\\": {\\\"seed42\\\": \\\"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓, frac=1.0 gen0 78%\\\", \\\"seed43\\\": \\\"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\\\", \\\"seed44\\\": \\\"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\\\", \\\"seed45\\\": \\\"frac=0.0 gen0 ✓, gen1 starting\\\", \\\"seed46\\\": \\\"not started\\\"}, \\\"checked_at\\\": \\\"2026-05-16T02:20Z\\\"}}, \\\"plan003-fullft-05B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T10:25:38.030Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:18:03.906Z\\\", \\\"hypothesis\\\": \\\"Full FT comparison: collapse severity signals 在全参数微调下保持有效，验证信号不是 QLoRA-specific artifact\\\", \\\"metrics\\\": {\\\"fullft_0pct_gen4\\\": {\\\"ppl\\\": 19.23, \\\"stable_rank\\\": 37.48, \\\"spectral_entropy\\\": 0.765, \\\"token_entropy\\\": 1.884}, \\\"fullft_50pct_gen4\\\": {\\\"ppl\\\": 25.64, \\\"stable_rank\\\": 40.47, \\\"spectral_entropy\\\": 0.783, \\\"token_entropy\\\": 1.736, \\\"hellaswag\\\": 0.397}, \\\"fullft_100pct_gen4\\\": {\\\"ppl\\\": 326.19, \\\"stable_rank\\\": 153.87, \\\"spectral_entropy\\\": 0.889, \\\"token_entropy\\\": 0.829, \\\"hellaswag\\\": 0.372}, \\\"collapse_dynamics\\\": {\\\"onset_ratio_gen01\\\": 15.3, \\\"post_onset_ratio_gen14\\\": 1.11, \\\"pattern\\\": \\\"fast_onset_saturation\\\", \\\"vs_qlora_gen4_ppl_ratio\\\": 0.39}}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Hypothesis confirmed. Full FT comparison validates signals are not QLoRA-specific. D026 修正完成 (2026-05-15 18:03Z): QLoRA 100% gen1-3 PPL 数据错误已修正，\\\\\\\"snowball/exponential/slow onset\\\\\\\" 叙事已删除，改为正确描述 (both large gen1 jump, post-gen1 divergence: FT plateau vs QLoRA decelerating growth)。comparison_data.json 和所有图表已在 cqa1-37219 重新生成。\\\"}, \\\"plan010-3B-spotcheck\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T10:25:38.524Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:17:51.837Z\\\", \\\"hypothesis\\\": \\\"3B model spot-check: collapse severity signals 在第三个 scale point (3B) 上保持一致，增强 cross-scale claims\\\", \\\"metrics\\\": {\\\"current_progress\\\": \\\"frac=0% gen3 training, step 961/1540 (62%)\\\", \\\"completed_gens\\\": \\\"gen0 ✓, gen1 ✓, gen2 ✓\\\", \\\"signals_gen3\\\": \\\"19 rows written\\\", \\\"rate_per_gen\\\": \\\"~2h10m (3B model)\\\", \\\"remaining_estimate\\\": \\\"gen3 ~1h10m + gen4 ~2h10m + frac=50% 5gens ~10h50m + frac=100% 5gens ~10h50m ≈ 25h\\\", \\\"checked_at\\\": \\\"2026-05-15T18:01Z\\\"}}, \\\"plan002-pubmed-cqa1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T10:18:37.632Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:17:48.441Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: collapse severity signals 在 PubMed biomedical domain 上保持 ρ > 0.7 相关性，证明信号的 domain-agnostic 特性\\\", \\\"metrics\\\": {\\\"loop_structure\\\": \\\"fraction-outer / seed-inner — all 3 seeds per fraction before next fraction\\\", \\\"fraction_coverage\\\": {\\\"gpu0_fracs\\\": [\\\"0.0\\\", \\\"0.1\\\", \\\"0.25\\\"], \\\"gpu1_fracs\\\": [\\\"0.5\\\", \\\"0.75\\\", \\\"1.0\\\"], \\\"completed\\\": {\\\"0.0\\\": [\\\"seed42\\\"], \\\"0.5\\\": [\\\"seed42\\\"]}, \\\"in_progress\\\": {\\\"0.0\\\": \\\"seed43 gen0 generation 85%\\\", \\\"0.5\\\": \\\"seed43 gen0 generation 17%\\\"}, \\\"not_started\\\": [\\\"0.1\\\", \\\"0.25\\\", \\\"0.75\\\", \\\"1.0\\\"]}, \\\"runs_completed\\\": \\\"2/18 (11%)\\\", \\\"runs_in_progress\\\": \\\"2/18\\\", \\\"per_run_time\\\": \\\"~6.5h (5 gens)\\\", \\\"eta_all_complete\\\": \\\"~51h remaining → May 17 late night\\\", \\\"checked_at\\\": \\\"2026-05-15T18:01Z\\\"}}, \\\"plan001-gpu1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:33:17.541Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:16:30.286Z\\\", \\\"hypothesis\\\": \\\"Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 for complete 6-fraction coverage\\\", \\\"metrics\\\": {\\\"current_run\\\": \\\"frac=0.5, seed=44, gen4 training ~10% (~25min left)\\\", \\\"completed_seeds\\\": {\\\"seed42\\\": \\\"DONE (summary_50pct.json ✓)\\\", \\\"seed43\\\": \\\"DONE (summary_50pct.json ✓)\\\", \\\"seed44\\\": \\\"gen4 ~10%, then gen5 remaining, then seed45+46\\\"}, \\\"auto_advance_confirmed\\\": true, \\\"gpu_util\\\": \\\"100%\\\", \\\"gpu_mem\\\": \\\"7984 MiB\\\", \\\"gpu_temp\\\": \\\"65C\\\", \\\"note\\\": \\\"seed45 will auto-load hotfixed pipeline.py — no intervention needed\\\", \\\"checked_at\\\": \\\"2026-05-15T16:42Z\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"诊断确认: v2 切换 kill 导致 seed44/frac=0.5/gen4 合成语料生成中断(51%)。signals gen0-4 全部完整(is_generation_end=true)。唯一丢失 synthetic_50pct_gen4.json(不影响分析)。已有成果: seed42+43 frac=0.5 完成。v2 脚本自动恢复。\\\"}, \\\"plan008-self-recovery\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:54:37.677Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:20:53.258Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"recovery_prevalence_50pct\\\": \\\"89% (16/18)\\\", \\\"mean_ppl_recovery_ratio\\\": 0.51, \\\"mean_token_entropy_rr\\\": 0.624, \\\"mean_stable_rank_rr\\\": 0.339, \\\"cross_seed_consistency\\\": \\\"5/6\\\", \\\"residual_ppl_elevation\\\": \\\"6.6-7.8%\\\", \\\"fractions_available\\\": [0, 50, 100], \\\"n_sources\\\": 3}, \\\"hypothesis\\\": \\\"Self-recovery deep dive (Claim 3): analyze spike-then-recover pattern at 50% synthetic mixing, quantify recovery ratios by signal family, assess cross-seed consistency\\\"}, \\\"plan006-signal-taxonomy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T16:51:42.083Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:20:51.749Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_seeds\\\": 2, \\\"n_fractions\\\": 2, \\\"n_signals_analyzed\\\": 14, \\\"ranking_method\\\": \\\"Cohen's d at gen4 (NOT max_rel_change)\\\", \\\"top_signal_by_d\\\": \\\"stable_rank (d=61.7)\\\", \\\"tier1_signals\\\": \\\"stable_rank (d=61.7), spectral_entropy (d=37.6), perplexity (d=35.5)\\\", \\\"tier2_signals\\\": \\\"distinct_1 (d=12.1), distinct_2 (d=9.4), distinct_3 (d=6.3), self_bleu (d=3.5), token_entropy (d=3.2)\\\", \\\"tier3_signals\\\": \\\"gradient_norm (d=2.4, transient), hellaswag (d=1.3, noisy)\\\", \\\"self_bleu_warning\\\": \\\"max_rel_change 38.6% misleading (small-base amplification, CV=0.055 highest). Cohen's d=3.5 ranks 7th not 1st.\\\", \\\"sigma_vs_stable_rank\\\": \\\"stable_rank d is 47x (gen1) to 320x (gen4) greater than sigma_effective_rank. SIGMA N=1, provisional.\\\", \\\"cross_seed_cv_max\\\": 0.055, \\\"early_detection_gen1plus\\\": \\\"step 50 (3% training)\\\", \\\"status_note\\\": \\\"Preliminary — only 2 fractions (0%, 50%). Full 6-fraction reanalysis needed when plan001 completes.\\\"}, \\\"hypothesis\\\": \\\"Signal taxonomy (Claim 3): characterize per-signal-family operating ranges and sensitivity tiers using Cohen's d effect sizes across collapse severity levels\\\"}, \\\"plan009-sigma-headtohead\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T16:45:19.685Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:02:11.957Z\\\", \\\"hypothesis\\\": \\\"SIGMA head-to-head: SIGMA spectral metrics (log_det, effective_rank, track_ii, spectral_decay_rate) vs SCS signals, integrated into plan001 signals.py for real-time collection. 28/30 runs will have SIGMA data.\\\"}, \\\"plan_001_seed43_frac50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T11:07:47.942Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:47.942Z\\\", \\\"metrics\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"gpu\\\": 1, \\\"server\\\": \\\"autodl-5090\\\", \\\"model\\\": \\\"Qwen2.5-1.5B\\\", \\\"dataset\\\": \\\"wikitext\\\", \\\"mode\\\": \\\"qlora\\\", \\\"seed\\\": 43, \\\"fraction\\\": 0.5, \\\"current_gen\\\": 4, \\\"phase\\\": \\\"generating_synthetic_96pct\\\", \\\"gpu_util_pct\\\": 100, \\\"gpu_mem_mb\\\": 7984, \\\"gpu_temp_c\\\": 64, \\\"pid\\\": 617434, \\\"checked_at\\\": \\\"2026-05-15T19:05\\\"}}, \\\"plan_001_seed43_frac0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T11:07:46.116Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:46.116Z\\\", \\\"metrics\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"gpu\\\": 0, \\\"server\\\": \\\"autodl-5090\\\", \\\"model\\\": \\\"Qwen2.5-1.5B\\\", \\\"dataset\\\": \\\"wikitext\\\", \\\"mode\\\": \\\"qlora\\\", \\\"seed\\\": 43, \\\"fraction\\\": 0, \\\"current_gen\\\": 4, \\\"phase\\\": \\\"generating_synthetic_96pct\\\", \\\"gpu_util_pct\\\": 34, \\\"gpu_mem_mb\\\": 4270, \\\"gpu_temp_c\\\": 56, \\\"pid\\\": 609739, \\\"checked_at\\\": \\\"2026-05-15T19:05\\\"}}, \\\"plan_001_seed42_frac50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T11:07:43.594Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:43.594Z\\\", \\\"metrics\\\": {\\\"status\\\": \\\"DONE\\\", \\\"gpu\\\": 1, \\\"server\\\": \\\"autodl-5090\\\", \\\"model\\\": \\\"Qwen2.5-1.5B\\\", \\\"dataset\\\": \\\"wikitext\\\", \\\"mode\\\": \\\"qlora\\\", \\\"seed\\\": 42, \\\"fraction\\\": 0.5, \\\"generations_done\\\": 5, \\\"final_ppl\\\": 13.03, \\\"final_hellaswag\\\": 0.524, \\\"checked_at\\\": \\\"2026-05-15T19:05\\\"}}, \\\"plan_001_seed42_frac0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T11:07:41.842Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:41.842Z\\\", \\\"metrics\\\": {\\\"status\\\": \\\"DONE\\\", \\\"gpu\\\": 0, \\\"server\\\": \\\"autodl-5090\\\", \\\"model\\\": \\\"Qwen2.5-1.5B\\\", \\\"dataset\\\": \\\"wikitext\\\", \\\"mode\\\": \\\"qlora\\\", \\\"seed\\\": 42, \\\"fraction\\\": 0, \\\"generations_done\\\": 5, \\\"final_ppl\\\": 12.2, \\\"final_hellaswag\\\": 0.518, \\\"checked_at\\\": \\\"2026-05-15T19:05\\\"}}, \\\"plan_002_pubmed_1.5B_3seeds\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T22:16:25.908Z\\\", \\\"updated_at\\\": \\\"2026-05-15T07:39:39.544Z\\\", \\\"hypothesis\\\": \\\"Cross-domain validation: collapse severity signals 在 PubMed biomedical domain 上保持 ρ > 0.7 相关性，证明信号的 domain-agnostic 特性\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"GPU 冲突已解除。2026-05-15 二次验证完成：数据就绪 (train=4500, val=500 chunks, 12.1MB+1.3MB pre-tokenized seq_len=512), run_plan002.sh 正确 (6 fracs × 3 seeds = 18 runs, qlora mode, HF_DATASETS_OFFLINE=1), 模型就绪 (Qwen2.5-1.5B 2.9GB), 磁盘 240G 可用。Ready to launch，等 plan001 某卡完成后立即启动。\\\"}, \\\"per_layer_analysis_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:19:21.376Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:17:29.574Z\\\", \\\"hypothesis\\\": \\\"Per-layer LoRA weight analysis reveals layer-specific collapse patterns: middle layers (rank-1 LoRA updates) vs boundary layers (diffuse updates) diverge differently under synthetic data contamination\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"boundary_early_sr_delta\\\": 0.809, \\\"middle_sr_delta\\\": \\\"DEPRECATED — was 0.01 based on incorrect data; real per-sub-module mean ~0.66; see appendix tab:full_per_layer for true values\\\", \\\"late_mid_sr_delta\\\": 0.418, \\\"L12_down_proj_sr_collapse\\\": -3.218, \\\"L11_down_proj_sr_collapse\\\": -2.146, \\\"v_proj_avg_sr_increase\\\": \\\"recalculate from appendix — significantly >1.334 across all layers\\\", \\\"k_proj_avg_sr_increase\\\": 0.714, \\\"L0_qproj_sr_delta\\\": 2.849, \\\"L16_vproj_sr_peak\\\": 3.06, \\\"baseline_0pct_max_sr_drift\\\": 0.311, \\\"weight_norm_crossover_layer\\\": 11, \\\"narrative_revision\\\": \\\"three-zone structure replaced by sub-module-centric analysis per Director approval 2026-05-15\\\"}, \\\"notes\\\": \\\"Hypothesis partially confirmed. Key findings: (1) Boundary layers show strongest rank diffusion (sr+0.81); (2) Middle layers (11-12) show hidden bifurcation — mlp.down_proj rank-collapses (L12: -3.24) while v_proj diffuses, cancelling at layer level; (3) Attention QKV projections are most sensitive sub-modules, MLP gate/up unresponsive; (4) Weight norm crossover at L11-12 (early layers shrink, late layers grow). Paper contribution: per-layer collapse fingerprint + L12 down_proj anomaly as visualization target.\\\"}, \\\"within_gen_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T20:57:33.893Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:37:19.504Z\\\", \\\"hypothesis\\\": \\\"Within-generation 时序分析：训练过程中信号能否早期区分 collapse 严重度（step 50 = 3% 训练进度即可区分）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"earliest_distinguishing_step\\\": \\\"step 50 (3% training progress)\\\", \\\"best_signal\\\": \\\"stable_rank (34.4% deviation at step 50)\\\", \\\"signals_above_5pct_at_step50\\\": \\\"stable_rank 34.4%, token_entropy 24.5%, perplexity 17.7%\\\", \\\"crossgen_acceleration\\\": \\\"100pct PPL delta vs per-gen 0pct baseline: gen0=<1%, gen1=+770%, gen2=+2416%\\\", \\\"crossgen_acceleration_note\\\": \\\"Corrected 2026-05-15: switched from within-gen start→end metric (gen0=+0.4%, gen1=+645%, gen2=+1737%) to per-generation α=0 baseline comparison\\\", \\\"plots\\\": \\\"12 files (PDF+PNG) on server within_gen_plots/\\\"}}, \\\"mvp_frac50_100\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:39:48.157Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:13:42.006Z\\\", \\\"hypothesis\\\": \\\"训练动态信号跟踪 collapse 严重度 — 50%+100% synthetic fractions（双卡并行）\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"ALL COMPLETE — 0pct 5/5, 50pct 5/5, 100pct 5/5\\\", \\\"gate_check_verdict\\\": \\\"PASS (3/3 families)\\\", \\\"gate_check_spectral\\\": \\\"PASS — stable_rank cross-frac |rho|=1.0 (p=0.0), cross-gen rho=0.9 (p=0.037)\\\", \\\"gate_check_output\\\": \\\"PASS — perplexity cross-frac |rho|=1.0, cross-gen rho=1.0; token_entropy cross-frac |rho|=0.9, cross-gen rho=-1.0\\\", \\\"gate_check_downstream\\\": \\\"PASS — hellaswag_acc cross-frac |ρ|=0.72 (mean gen1-4, all negative), cross-gen ρ=-0.67 (100pct). Effect size small (0.41-0.44) but direction consistent. Data present in summary JSONs. 0pct gen0 null.\\\", \\\"hellaswag_values\\\": {\\\"0pct\\\": [null, 0.442, 0.434, 0.43, 0.435], \\\"50pct\\\": [0.435, 0.429, 0.42, 0.439, 0.434], \\\"100pct\\\": [0.432, 0.432, 0.42, 0.41, 0.43]}, \\\"hellaswag_cross_frac_rho_per_gen\\\": {\\\"gen1\\\": -0.5, \\\"gen2\\\": -0.866, \\\"gen3\\\": -0.5, \\\"gen4\\\": -1, \\\"mean\\\": -0.7165}, \\\"hellaswag_cross_gen_rho\\\": {\\\"0pct\\\": -0.4, \\\"50pct\\\": 0.1, \\\"100pct\\\": -0.667}, \\\"final_values_0pct_gen4\\\": {\\\"stable_rank\\\": 23.41, \\\"spectral_entropy\\\": 0.703, \\\"token_entropy\\\": 2.259, \\\"ppl\\\": 15.67}, \\\"final_values_50pct_gen4\\\": {\\\"stable_rank\\\": 24.79, \\\"spectral_entropy\\\": 0.716, \\\"token_entropy\\\": 2.215, \\\"ppl\\\": 16.95}, \\\"final_values_100pct_gen4\\\": {\\\"stable_rank\\\": 155.64, \\\"spectral_entropy\\\": 0.884, \\\"token_entropy\\\": 0.782, \\\"ppl\\\": 839.2}, \\\"collapse_magnitude_100pct\\\": \\\"stable_rank 6.6x, PPL 53x, token_entropy -65%\\\", \\\"0pct_baseline_stability\\\": \\\"all signals <3% variation across 5 gens\\\", \\\"within_gen_early_warning\\\": \\\"stable_rank 34.4% deviation at step 50 (3% training progress)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan001-wikitext-15B-5seeds-gpu1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T23:14:03.684Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:31:06.567Z\\\", \\\"hypothesis\\\": \\\"Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 (fractions 0.0/0.1/0.25) for complete 6-fraction coverage\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan_001_wikitext_15B_5seeds\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T22:57:04.302Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:04:39.863Z\\\", \\\"hypothesis\\\": \\\"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"plan_001_wikitext_1.5B_5seeds\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T22:16:23.446Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:57:40.154Z\\\", \\\"hypothesis\\\": \\\"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"per_layer_analysis_active\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:08:08.398Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:48:33.198Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"0pct gen0=done, 0pct gen1=in_progress\\\", \\\"per_gen_time\\\": \\\"~35 min/gen\\\", \\\"eta_remaining\\\": \\\"~9 gens x 35min = ~5.25h\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"checked_at\\\": \\\"2026-05-14T19:08:00Z\\\"}, \\\"hypothesis\\\": \\\"Per-layer SVD 分析：跟踪每层 stable_rank/spectral_entropy 随 generation 的变化，验证 collapse 是否在特定层先发生\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"per_layer_analysis_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:19:00.660Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:19:12.528Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"per_layer_analysis_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:00:32.096Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:09:00.181Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"per_layer_analysis_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:18:56.690Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:04:53.652Z\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"0pct gen0 1388/1540 (90%), ~2min to finish gen0\\\", \\\"output_file\\\": \\\"outputs/per_layer_analysis.json (incremental save per gen)\\\", \\\"per_gen_time\\\": \\\"~35 min/gen\\\", \\\"total_gens\\\": \\\"2 fractions x 5 gens = 10 gens\\\", \\\"eta_total\\\": \\\"~6h from start (started ~18:19 UTC)\\\", \\\"signals_safety\\\": \\\"confirmed: output_dir redirected to _per_layer_tmp, signals_*.jsonl untouched\\\", \\\"analysis_method\\\": \\\"hook all transformer layers, 64 val samples forward pass, compute per-layer SVD: stable_rank, spectral_entropy, SV_ratio(sigma1/sigma2)\\\", \\\"gpu\\\": \\\"GPU 1, 6314/32607 MiB, 43% util\\\", \\\"checked_at\\\": \\\"2026-05-14T18:58:00Z\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"per_layer_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:17:52.695Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:04:46.890Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_frac0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:39:49.928Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:53:36.159Z\\\", \\\"hypothesis\\\": \\\"训练动态信号跟踪 collapse 严重度 — 0% clean baseline（双卡并行，断点恢复 gen0）\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_collapse_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:59:28.137Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:39:34.247Z\\\", \\\"hypothesis\\\": \\\"训练动态信号能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（优化版：gen_num_chunks=1500, gen_batch_size=32, use_cache fix + merge_adapter）\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"0pct_gen0 step 50/1540 (3%)\\\", \\\"speed\\\": \\\"1.08 it/s\\\", \\\"gpu_util\\\": \\\"20%\\\", \\\"gpu_mem\\\": \\\"6314/32607 MiB\\\", \\\"checked_at\\\": \\\"2026-05-14T09:01:30Z\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_collapse_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:18:30.715Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:25:06.484Z\\\", \\\"hypothesis\\\": \\\"训练动态信号能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（优化版：gen_num_chunks=1500, gen_batch_size=32）\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"0pct_gen0 step 50/1540 (3%)\\\", \\\"speed\\\": \\\"1.17 it/s\\\", \\\"gpu_util\\\": \\\"26%\\\", \\\"gpu_mem\\\": \\\"6314/32607 MiB\\\", \\\"gen_batch_size\\\": 32, \\\"gen_num_chunks\\\": 1500, \\\"checked_at\\\": \\\"2026-05-14T08:21:00Z\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_collapse_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T04:47:43.866Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:18:20.606Z\\\", \\\"hypothesis\\\": \\\"训练动态信号（spectral entropy, stable rank, token entropy 等）能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（held-out perplexity degradation），且 AUROC > 0.8 区分 collapsing vs clean training\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"0pct_gen0 step 242/1540 (15.7%)\\\", \\\"speed\\\": \\\"1.19 it/s\\\", \\\"loss\\\": 2.652, \\\"perplexity\\\": 14.41, \\\"stable_rank\\\": 20.5, \\\"spectral_entropy\\\": 0.673, \\\"signals_collected\\\": 4, \\\"checked_at\\\": \\\"2026-05-14T06:38:30Z\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 29, \\\"total\\\": 29, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0697}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan002-pubmed-gpu2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T18:01:40.414Z\", \"updated_at\": \"2026-05-15T18:24:55.773Z\", \"hypothesis\": \"Cross-domain validation: seed43 frac=1.0 (100% synthetic PubMed) on GPU2, paralleling GPU0 (frac=0%) and GPU1 (frac=50%) to get complete 3-fraction coverage for seed43 simultaneously\"}, \"plan001-wikitext-15B-5seeds\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T22:57:13.285Z\", \"updated_at\": \"2026-05-15T18:21:29.887Z\", \"hypothesis\": \"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\", \"metrics\": {\"gpu0_status\": \"PID 863684, seed45 frac=0.0, gen0 DONE (signals 31 rows, ckpt written 02:05 UTC), now in synthesis/gen1 phase\", \"gpu1_status\": \"PID 875860, seed42 frac=1.0 gen0 training, step 1200/1540 (78%), ~10min to gen0 end\", \"gpu0_util\": \"3950MiB / 46%\", \"gpu1_util\": \"7966MiB / 34%\", \"completed_seeds\": {\"seed42\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓, frac=1.0 gen0 78%\", \"seed43\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\", \"seed44\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\", \"seed45\": \"frac=0.0 gen0 ✓, gen1 starting\", \"seed46\": \"not started\"}, \"checked_at\": \"2026-05-16T02:20Z\"}}, \"plan003-fullft-05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:25:38.030Z\", \"updated_at\": \"2026-05-15T18:18:03.906Z\", \"hypothesis\": \"Full FT comparison: collapse severity signals 在全参数微调下保持有效，验证信号不是 QLoRA-specific artifact\", \"metrics\": {\"fullft_0pct_gen4\": {\"ppl\": 19.23, \"stable_rank\": 37.48, \"spectral_entropy\": 0.765, \"token_entropy\": 1.884}, \"fullft_50pct_gen4\": {\"ppl\": 25.64, \"stable_rank\": 40.47, \"spectral_entropy\": 0.783, \"token_entropy\": 1.736, \"hellaswag\": 0.397}, \"fullft_100pct_gen4\": {\"ppl\": 326.19, \"stable_rank\": 153.87, \"spectral_entropy\": 0.889, \"token_entropy\": 0.829, \"hellaswag\": 0.372}, \"collapse_dynamics\": {\"onset_ratio_gen01\": 15.3, \"post_onset_ratio_gen14\": 1.11, \"pattern\": \"fast_onset_saturation\", \"vs_qlora_gen4_ppl_ratio\": 0.39}}, \"conclusion\": \"success\", \"notes\": \"Hypothesis confirmed. Full FT comparison validates signals are not QLoRA-specific. D026 修正完成 (2026-05-15 18:03Z): QLoRA 100% gen1-3 PPL 数据错误已修正，\\\"snowball/exponential/slow onset\\\" 叙事已删除，改为正确描述 (both large gen1 jump, post-gen1 divergence: FT plateau vs QLoRA decelerating growth)。comparison_data.json 和所有图表已在 cqa1-37219 重新生成。\"}, \"plan010-3B-spotcheck\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T10:25:38.524Z\", \"updated_at\": \"2026-05-15T18:17:51.837Z\", \"hypothesis\": \"3B model spot-check: collapse severity signals 在第三个 scale point (3B) 上保持一致，增强 cross-scale claims\", \"metrics\": {\"current_progress\": \"frac=0% gen3 training, step 961/1540 (62%)\", \"completed_gens\": \"gen0 ✓, gen1 ✓, gen2 ✓\", \"signals_gen3\": \"19 rows written\", \"rate_per_gen\": \"~2h10m (3B model)\", \"remaining_estimate\": \"gen3 ~1h10m + gen4 ~2h10m + frac=50% 5gens ~10h50m + frac=100% 5gens ~10h50m ≈ 25h\", \"checked_at\": \"2026-05-15T18:01Z\"}}, \"plan002-pubmed-cqa1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T10:18:37.632Z\", \"updated_at\": \"2026-05-15T18:17:48.441Z\", \"hypothesis\": \"Cross-domain validation: collapse severity signals 在 PubMed biomedical domain 上保持 ρ > 0.7 相关性，证明信号的 domain-agnostic 特性\", \"metrics\": {\"loop_structure\": \"fraction-outer / seed-inner — all 3 seeds per fraction before next fraction\", \"fraction_coverage\": {\"gpu0_fracs\": [\"0.0\", \"0.1\", \"0.25\"], \"gpu1_fracs\": [\"0.5\", \"0.75\", \"1.0\"], \"completed\": {\"0.0\": [\"seed42\"], \"0.5\": [\"seed42\"]}, \"in_progress\": {\"0.0\": \"seed43 gen0 generation 85%\", \"0.5\": \"seed43 gen0 generation 17%\"}, \"not_started\": [\"0.1\", \"0.25\", \"0.75\", \"1.0\"]}, \"runs_completed\": \"2/18 (11%)\", \"runs_in_progress\": \"2/18\", \"per_run_time\": \"~6.5h (5 gens)\", \"eta_all_complete\": \"~51h remaining → May 17 late night\", \"checked_at\": \"2026-05-15T18:01Z\"}}, \"plan001-gpu1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:33:17.541Z\", \"updated_at\": \"2026-05-15T18:16:30.286Z\", \"hypothesis\": \"Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 for complete 6-fraction coverage\", \"metrics\": {\"current_run\": \"frac=0.5, seed=44, gen4 training ~10% (~25min left)\", \"completed_seeds\": {\"seed42\": \"DONE (summary_50pct.json ✓)\", \"seed43\": \"DONE (summary_50pct.json ✓)\", \"seed44\": \"gen4 ~10%, then gen5 remaining, then seed45+46\"}, \"auto_advance_confirmed\": true, \"gpu_util\": \"100%\", \"gpu_mem\": \"7984 MiB\", \"gpu_temp\": \"65C\", \"note\": \"seed45 will auto-load hotfixed pipeline.py — no intervention needed\", \"checked_at\": \"2026-05-15T16:42Z\"}, \"conclusion\": \"killed\", \"notes\": \"诊断确认: v2 切换 kill 导致 seed44/frac=0.5/gen4 合成语料生成中断(51%)。signals gen0-4 全部完整(is_generation_end=true)。唯一丢失 synthetic_50pct_gen4.json(不影响分析)。已有成果: seed42+43 frac=0.5 完成。v2 脚本自动恢复。\"}, \"plan008-self-recovery\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:54:37.677Z\", \"updated_at\": \"2026-05-15T17:20:53.258Z\", \"conclusion\": \"success\", \"metrics\": {\"recovery_prevalence_50pct\": \"89% (16/18)\", \"mean_ppl_recovery_ratio\": 0.51, \"mean_token_entropy_rr\": 0.624, \"mean_stable_rank_rr\": 0.339, \"cross_seed_consistency\": \"5/6\", \"residual_ppl_elevation\": \"6.6-7.8%\", \"fractions_available\": [0, 50, 100], \"n_sources\": 3}, \"hypothesis\": \"Self-recovery deep dive (Claim 3): analyze spike-then-recover pattern at 50% synthetic mixing, quantify recovery ratios by signal family, assess cross-seed consistency\"}, \"plan006-signal-taxonomy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T16:51:42.083Z\", \"updated_at\": \"2026-05-15T17:20:51.749Z\", \"conclusion\": \"success\", \"metrics\": {\"n_seeds\": 2, \"n_fractions\": 2, \"n_signals_analyzed\": 14, \"ranking_method\": \"Cohen's d at gen4 (NOT max_rel_change)\", \"top_signal_by_d\": \"stable_rank (d=61.7)\", \"tier1_signals\": \"stable_rank (d=61.7), spectral_entropy (d=37.6), perplexity (d=35.5)\", \"tier2_signals\": \"distinct_1 (d=12.1), distinct_2 (d=9.4), distinct_3 (d=6.3), self_bleu (d=3.5), token_entropy (d=3.2)\", \"tier3_signals\": \"gradient_norm (d=2.4, transient), hellaswag (d=1.3, noisy)\", \"self_bleu_warning\": \"max_rel_change 38.6% misleading (small-base amplification, CV=0.055 highest). Cohen's d=3.5 ranks 7th not 1st.\", \"sigma_vs_stable_rank\": \"stable_rank d is 47x (gen1) to 320x (gen4) greater than sigma_effective_rank. SIGMA N=1, provisional.\", \"cross_seed_cv_max\": 0.055, \"early_detection_gen1plus\": \"step 50 (3% training)\", \"status_note\": \"Preliminary — only 2 fractions (0%, 50%). Full 6-fraction reanalysis needed when plan001 completes.\"}, \"hypothesis\": \"Signal taxonomy (Claim 3): characterize per-signal-family operating ranges and sensitivity tiers using Cohen's d effect sizes across collapse severity levels\"}, \"plan009-sigma-headtohead\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T16:45:19.685Z\", \"updated_at\": \"2026-05-15T17:02:11.957Z\", \"hypothesis\": \"SIGMA head-to-head: SIGMA spectral metrics (log_det, effective_rank, track_ii, spectral_decay_rate) vs SCS signals, integrated into plan001 signals.py for real-time collection. 28/30 runs will have SIGMA data.\"}, \"plan_001_seed43_frac50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:07:47.942Z\", \"updated_at\": \"2026-05-15T11:07:47.942Z\", \"metrics\": {\"status\": \"RUNNING\", \"gpu\": 1, \"server\": \"autodl-5090\", \"model\": \"Qwen2.5-1.5B\", \"dataset\": \"wikitext\", \"mode\": \"qlora\", \"seed\": 43, \"fraction\": 0.5, \"current_gen\": 4, \"phase\": \"generating_synthetic_96pct\", \"gpu_util_pct\": 100, \"gpu_mem_mb\": 7984, \"gpu_temp_c\": 64, \"pid\": 617434, \"checked_at\": \"2026-05-15T19:05\"}}, \"plan_001_seed43_frac0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:07:46.116Z\", \"updated_at\": \"2026-05-15T11:07:46.116Z\", \"metrics\": {\"status\": \"RUNNING\", \"gpu\": 0, \"server\": \"autodl-5090\", \"model\": \"Qwen2.5-1.5B\", \"dataset\": \"wikitext\", \"mode\": \"qlora\", \"seed\": 43, \"fraction\": 0, \"current_gen\": 4, \"phase\": \"generating_synthetic_96pct\", \"gpu_util_pct\": 34, \"gpu_mem_mb\": 4270, \"gpu_temp_c\": 56, \"pid\": 609739, \"checked_at\": \"2026-05-15T19:05\"}}, \"plan_001_seed42_frac50\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:07:43.594Z\", \"updated_at\": \"2026-05-15T11:07:43.594Z\", \"metrics\": {\"status\": \"DONE\", \"gpu\": 1, \"server\": \"autodl-5090\", \"model\": \"Qwen2.5-1.5B\", \"dataset\": \"wikitext\", \"mode\": \"qlora\", \"seed\": 42, \"fraction\": 0.5, \"generations_done\": 5, \"final_ppl\": 13.03, \"final_hellaswag\": 0.524, \"checked_at\": \"2026-05-15T19:05\"}}, \"plan_001_seed42_frac0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T11:07:41.842Z\", \"updated_at\": \"2026-05-15T11:07:41.842Z\", \"metrics\": {\"status\": \"DONE\", \"gpu\": 0, \"server\": \"autodl-5090\", \"model\": \"Qwen2.5-1.5B\", \"dataset\": \"wikitext\", \"mode\": \"qlora\", \"seed\": 42, \"fraction\": 0, \"generations_done\": 5, \"final_ppl\": 12.2, \"final_hellaswag\": 0.518, \"checked_at\": \"2026-05-15T19:05\"}}, \"plan_002_pubmed_1.5B_3seeds\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:16:25.908Z\", \"updated_at\": \"2026-05-15T07:39:39.544Z\", \"hypothesis\": \"Cross-domain validation: collapse severity signals 在 PubMed biomedical domain 上保持 ρ > 0.7 相关性，证明信号的 domain-agnostic 特性\", \"conclusion\": \"killed\", \"notes\": \"GPU 冲突已解除。2026-05-15 二次验证完成：数据就绪 (train=4500, val=500 chunks, 12.1MB+1.3MB pre-tokenized seq_len=512), run_plan002.sh 正确 (6 fracs × 3 seeds = 18 runs, qlora mode, HF_DATASETS_OFFLINE=1), 模型就绪 (Qwen2.5-1.5B 2.9GB), 磁盘 240G 可用。Ready to launch，等 plan001 某卡完成后立即启动。\"}, \"per_layer_analysis_v5\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:19:21.376Z\", \"updated_at\": \"2026-05-15T03:17:29.574Z\", \"hypothesis\": \"Per-layer LoRA weight analysis reveals layer-specific collapse patterns: middle layers (rank-1 LoRA updates) vs boundary layers (diffuse updates) diverge differently under synthetic data contamination\", \"conclusion\": \"success\", \"metrics\": {\"boundary_early_sr_delta\": 0.809, \"middle_sr_delta\": \"DEPRECATED — was 0.01 based on incorrect data; real per-sub-module mean ~0.66; see appendix tab:full_per_layer for true values\", \"late_mid_sr_delta\": 0.418, \"L12_down_proj_sr_collapse\": -3.218, \"L11_down_proj_sr_collapse\": -2.146, \"v_proj_avg_sr_increase\": \"recalculate from appendix — significantly >1.334 across all layers\", \"k_proj_avg_sr_increase\": 0.714, \"L0_qproj_sr_delta\": 2.849, \"L16_vproj_sr_peak\": 3.06, \"baseline_0pct_max_sr_drift\": 0.311, \"weight_norm_crossover_layer\": 11, \"narrative_revision\": \"three-zone structure replaced by sub-module-centric analysis per Director approval 2026-05-15\"}, \"notes\": \"Hypothesis partially confirmed. Key findings: (1) Boundary layers show strongest rank diffusion (sr+0.81); (2) Middle layers (11-12) show hidden bifurcation — mlp.down_proj rank-collapses (L12: -3.24) while v_proj diffuses, cancelling at layer level; (3) Attention QKV projections are most sensitive sub-modules, MLP gate/up unresponsive; (4) Weight norm crossover at L11-12 (early layers shrink, late layers grow). Paper contribution: per-layer collapse fingerprint + L12 down_proj anomaly as visualization target.\"}, \"within_gen_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:57:33.893Z\", \"updated_at\": \"2026-05-15T02:37:19.504Z\", \"hypothesis\": \"Within-generation 时序分析：训练过程中信号能否早期区分 collapse 严重度（step 50 = 3% 训练进度即可区分）\", \"conclusion\": \"success\", \"metrics\": {\"earliest_distinguishing_step\": \"step 50 (3% training progress)\", \"best_signal\": \"stable_rank (34.4% deviation at step 50)\", \"signals_above_5pct_at_step50\": \"stable_rank 34.4%, token_entropy 24.5%, perplexity 17.7%\", \"crossgen_acceleration\": \"100pct PPL delta vs per-gen 0pct baseline: gen0=<1%, gen1=+770%, gen2=+2416%\", \"crossgen_acceleration_note\": \"Corrected 2026-05-15: switched from within-gen start→end metric (gen0=+0.4%, gen1=+645%, gen2=+1737%) to per-generation α=0 baseline comparison\", \"plots\": \"12 files (PDF+PNG) on server within_gen_plots/\"}}, \"mvp_frac50_100\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:39:48.157Z\", \"updated_at\": \"2026-05-15T02:13:42.006Z\", \"hypothesis\": \"训练动态信号跟踪 collapse 严重度 — 50%+100% synthetic fractions（双卡并行）\", \"metrics\": {\"progress\": \"ALL COMPLETE — 0pct 5/5, 50pct 5/5, 100pct 5/5\", \"gate_check_verdict\": \"PASS (3/3 families)\", \"gate_check_spectral\": \"PASS — stable_rank cross-frac |rho|=1.0 (p=0.0), cross-gen rho=0.9 (p=0.037)\", \"gate_check_output\": \"PASS — perplexity cross-frac |rho|=1.0, cross-gen rho=1.0; token_entropy cross-frac |rho|=0.9, cross-gen rho=-1.0\", \"gate_check_downstream\": \"PASS — hellaswag_acc cross-frac |ρ|=0.72 (mean gen1-4, all negative), cross-gen ρ=-0.67 (100pct). Effect size small (0.41-0.44) but direction consistent. Data present in summary JSONs. 0pct gen0 null.\", \"hellaswag_values\": {\"0pct\": [null, 0.442, 0.434, 0.43, 0.435], \"50pct\": [0.435, 0.429, 0.42, 0.439, 0.434], \"100pct\": [0.432, 0.432, 0.42, 0.41, 0.43]}, \"hellaswag_cross_frac_rho_per_gen\": {\"gen1\": -0.5, \"gen2\": -0.866, \"gen3\": -0.5, \"gen4\": -1, \"mean\": -0.7165}, \"hellaswag_cross_gen_rho\": {\"0pct\": -0.4, \"50pct\": 0.1, \"100pct\": -0.667}, \"final_values_0pct_gen4\": {\"stable_rank\": 23.41, \"spectral_entropy\": 0.703, \"token_entropy\": 2.259, \"ppl\": 15.67}, \"final_values_50pct_gen4\": {\"stable_rank\": 24.79, \"spectral_entropy\": 0.716, \"token_entropy\": 2.215, \"ppl\": 16.95}, \"final_values_100pct_gen4\": {\"stable_rank\": 155.64, \"spectral_entropy\": 0.884, \"token_entropy\": 0.782, \"ppl\": 839.2}, \"collapse_magnitude_100pct\": \"stable_rank 6.6x, PPL 53x, token_entropy -65%\", \"0pct_baseline_stability\": \"all signals <3% variation across 5 gens\", \"within_gen_early_warning\": \"stable_rank 34.4% deviation at step 50 (3% training progress)\"}, \"conclusion\": \"success\"}, \"plan001-wikitext-15B-5seeds-gpu1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T23:14:03.684Z\", \"updated_at\": \"2026-05-14T23:31:06.567Z\", \"hypothesis\": \"Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 (fractions 0.0/0.1/0.25) for complete 6-fraction coverage\", \"conclusion\": \"failed\"}, \"plan_001_wikitext_15B_5seeds\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T22:57:04.302Z\", \"updated_at\": \"2026-05-14T23:04:39.863Z\", \"hypothesis\": \"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\", \"conclusion\": \"killed\"}, \"plan_001_wikitext_1.5B_5seeds\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T22:16:23.446Z\", \"updated_at\": \"2026-05-14T22:57:40.154Z\", \"hypothesis\": \"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\", \"conclusion\": \"killed\"}, \"per_layer_analysis_active\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:08:08.398Z\", \"updated_at\": \"2026-05-14T22:48:33.198Z\", \"metrics\": {\"progress\": \"0pct gen0=done, 0pct gen1=in_progress\", \"per_gen_time\": \"~35 min/gen\", \"eta_remaining\": \"~9 gens x 35min = ~5.25h\", \"gpu\": \"cuda:1\", \"checked_at\": \"2026-05-14T19:08:00Z\"}, \"hypothesis\": \"Per-layer SVD 分析：跟踪每层 stable_rank/spectral_entropy 随 generation 的变化，验证 collapse 是否在特定层先发生\", \"conclusion\": \"failed\"}, \"per_layer_analysis_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:19:00.660Z\", \"updated_at\": \"2026-05-14T19:19:12.528Z\", \"conclusion\": \"failed\"}, \"per_layer_analysis_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:00:32.096Z\", \"updated_at\": \"2026-05-14T19:09:00.181Z\", \"conclusion\": \"failed\"}, \"per_layer_analysis_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:18:56.690Z\", \"updated_at\": \"2026-05-14T19:04:53.652Z\", \"metrics\": {\"progress\": \"0pct gen0 1388/1540 (90%), ~2min to finish gen0\", \"output_file\": \"outputs/per_layer_analysis.json (incremental save per gen)\", \"per_gen_time\": \"~35 min/gen\", \"total_gens\": \"2 fractions x 5 gens = 10 gens\", \"eta_total\": \"~6h from start (started ~18:19 UTC)\", \"signals_safety\": \"confirmed: output_dir redirected to _per_layer_tmp, signals_*.jsonl untouched\", \"analysis_method\": \"hook all transformer layers, 64 val samples forward pass, compute per-layer SVD: stable_rank, spectral_entropy, SV_ratio(sigma1/sigma2)\", \"gpu\": \"GPU 1, 6314/32607 MiB, 43% util\", \"checked_at\": \"2026-05-14T18:58:00Z\"}, \"conclusion\": \"killed\"}, \"per_layer_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:17:52.695Z\", \"updated_at\": \"2026-05-14T19:04:46.890Z\", \"conclusion\": \"failed\"}, \"mvp_frac0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:39:49.928Z\", \"updated_at\": \"2026-05-14T17:53:36.159Z\", \"hypothesis\": \"训练动态信号跟踪 collapse 严重度 — 0% clean baseline（双卡并行，断点恢复 gen0）\", \"conclusion\": \"success\"}, \"mvp_collapse_003\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:59:28.137Z\", \"updated_at\": \"2026-05-14T10:39:34.247Z\", \"hypothesis\": \"训练动态信号能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（优化版：gen_num_chunks=1500, gen_batch_size=32, use_cache fix + merge_adapter）\", \"metrics\": {\"progress\": \"0pct_gen0 step 50/1540 (3%)\", \"speed\": \"1.08 it/s\", \"gpu_util\": \"20%\", \"gpu_mem\": \"6314/32607 MiB\", \"checked_at\": \"2026-05-14T09:01:30Z\"}, \"conclusion\": \"killed\"}, \"mvp_collapse_002\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:18:30.715Z\", \"updated_at\": \"2026-05-14T08:25:06.484Z\", \"hypothesis\": \"训练动态信号能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（优化版：gen_num_chunks=1500, gen_batch_size=32）\", \"metrics\": {\"progress\": \"0pct_gen0 step 50/1540 (3%)\", \"speed\": \"1.17 it/s\", \"gpu_util\": \"26%\", \"gpu_mem\": \"6314/32607 MiB\", \"gen_batch_size\": 32, \"gen_num_chunks\": 1500, \"checked_at\": \"2026-05-14T08:21:00Z\"}, \"conclusion\": \"killed\"}, \"mvp_collapse_001\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:47:43.866Z\", \"updated_at\": \"2026-05-14T08:18:20.606Z\", \"hypothesis\": \"训练动态信号（spectral entropy, stable rank, token entropy 等）能以 Spearman ρ > 0.7 跟踪迭代合成数据训练的 collapse 严重度（held-out perplexity degradation），且 AUROC > 0.8 区分 collapsing vs clean training\", \"metrics\": {\"progress\": \"0pct_gen0 step 242/1540 (15.7%)\", \"speed\": \"1.19 it/s\", \"loss\": 2.652, \"perplexity\": 14.41, \"stable_rank\": 20.5, \"spectral_entropy\": 0.673, \"signals_collected\": 4, \"checked_at\": \"2026-05-14T06:38:30Z\"}, \"conclusion\": \"failed\"}}, \"count\": 29, \"total\": 29, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0697}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cde25c38-a305-40e1-9ea2-27831b1920a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[WORKER DONE] Worker worker_ssh_seed44-summary-rebuild_20260515T180327 已完成（status=done）。用 `get_worker_status('worker_ssh_seed44-summary-rebuild_20260515T180327')` 读取结果，然后处理。  - worker_id: worker_ssh_s…",
+  "leafUuid": "cb86a087-9a7c-4564-91a7-263c161b4c61",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Process completed worker summary rebuild results",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T18:56:52.610Z_
+
+<details><summary>↩ Tool result · `toolu_01RUTun6UJ9Jfe76gmBWE2Li`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"plan001-wikitext-15B-5seeds\", \"success\": true, \"actions\": [\"Job still running (pid=401030)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab097485-864c-4de9-83d2-39edab36e391",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "32751870-05d4-42ff-8585-f93db271c002",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan001-wikitext-15B-5seeds\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=401030)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"plan001-wikitext-15B-5seeds\", \"success\": true, \"actions\": [\"Job still running (pid=401030)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ab097485-864c-4de9-83d2-39edab36e391",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-15T18:57:12.046Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me understand the Worker result:
+
+The worker `worker_ssh_seed44-summary-rebuild_20260515T180327` completed the task of rebuilding the summary for seed44. Key findings:
+
+1. **Checkpoint status**: gen0-4 checkpoints exist but are empty (0 bytes) - generated before save_pretrained fix. Can't run HellaSwag.
+
+2. **Signals completeness**: gen0-3 have 32 rows each, gen4 has 31 rows (no step=-1 summary marker but has `is_generation_end=true`). All gen data is complete.
+   
+3. **Summary metrics rebuilt**: I've regenerated the 50pct summary files across all five generations, capturing perplexity, stable rank, spectral entropy, and gradient norm values for each - gen0 through gen3 show complete metric sets while gen4 has partial data.
+
+4. Several fields are still missing across the board: hellaswag accuracy, self-BLEU, distinct n-gram scores, chunk counts, and wall time metrics all came back null.
+
+I'm checking the registry to see where things stand with the main 1.5B experiment across the five seeds - seed42 has completed both the 0% and 50% synthetic fractions, but the 50% run for seed44 had to be rebuilt after the v2 switch interrupted gen4 synthesis partway through.
+
+Now I need to pull the report and roadmap to understand what's next, then update the registry with seed44's newly rebuilt summary results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32751870-05d4-42ff-8585-f93db271c002",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s96oJE7oLZ5K3fPh1P",
+  "type": "assistant",
+  "uuid": "66de0a46-8594-4aa6-9851-6873766e1469",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018C8j7dEges1M6RYYat1uaS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9510,
+      "cache_read_input_tokens": 36008,
+      "output_tokens": 982,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9510,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 982,
+          "cache_read_input_tokens": 36008,
+          "cache_creation_input_tokens": 9510,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9510
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-15T18:57:12.164Z_
+
+Worker 完成了 seed44 frac=0.5 的 summary 重建。读取 report.md 和 ROADMAP.md 了解当前全局状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66de0a46-8594-4aa6-9851-6873766e1469",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s96oJE7oLZ5K3fPh1P",
+  "type": "assistant",
+  "uuid": "f4510b44-17b0-49d9-9d19-7a23413ccf49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018C8j7dEges1M6RYYat1uaS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9510,
+      "cache_read_input_tokens": 36008,
+      "output_tokens": 982,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9510,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 982,
+          "cache_read_input_tokens": 36008,
+          "cache_creation_input_tokens": 9510,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9510
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T18:57:13.179Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Wf4RRiNbU8VXgc7xqhF1de`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "file": "report.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4510b44-17b0-49d9-9d19-7a23413ccf49",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s96oJE7oLZ5K3fPh1P",
+  "type": "assistant",
+  "uuid": "9c348bff-6a10-4731-b129-e29d18e746af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018C8j7dEges1M6RYYat1uaS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9510,
+      "cache_read_input_tokens": 36008,
+      "output_tokens": 982,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9510,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 982,
+          "cache_read_input_tokens": 36008,
+          "cache_creation_input_tokens": 9510,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9510
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T18:57:13.202Z_
+
+<details><summary>↩ Tool result · `toolu_01Wf4RRiNbU8VXgc7xqhF1de`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan002-pubmed-gpu2 | Cross-domain validation: seed43 frac=1.0 (100% synthetic PubMed) on GPU2, paralleling GPU0 (frac=0%) and GPU1 (frac=50%) to get complete 3-fraction coverage for seed43 simultaneously | — | — | — |\\n| plan001-wikitext-15B-5seeds | Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim | — | — | — |\\n| plan010-3B-spotcheck | 3B model spot-check: collapse severity signals 在第三个 scale point (3B) 上保持一致，增强 cross-scale claims | — | — | — |\\n\\n## 待处理\\n- plan_001_seed43_frac50（准备中）\\n- plan_001_seed43_frac0（准备中）\\n- plan_001_seed42_frac50（准备中）\\n- plan_001_seed42_frac0（准备中）\\n- plan_001_wikitext_15B_5seeds: Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim（准备中）\\n\\n## 近期结论\\n- **plan003-fullft-05B** (success): Full FT comparison: collapse severity signals 在全参数微调下保持有效，验证信号不是 QLoRA-specific artifact\\n  [plan003_fullft_vs_qlora_report](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan003-fullft-05B/report/report.md) | [plan003_fullft_vs_qlora_plots](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan003-fullft-05B/chart/plot_locations.txt)\\n- **plan001-gpu1** (killed): Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 for complete 6-fraction coverage\\n- **plan008-self-recovery** (success): Self-recovery deep dive (Claim 3): analyze spike-then-recover pattern at 50% synthetic mixing, quantify recovery ratios by signal family, assess cross-seed consistency\\n  [plan008-self-recovery-report](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan008-self-recovery/report/report.md) | [plan008-recovery-patterns-csv](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan008-self-recovery/data/recovery_patterns.csv)\\n\\n## 趋势\\n成功 7 / 负向 0 / 失败 6 / 共 19\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-5090: 空闲 cuda:0, cuda:1\\ncqa1-37219: 无 GPU 信息\\n\\n## 告警\\n- mvp_collapse_001: 训练失败 — unknown\\n- mvp_collapse_002: 已被终止 — unknown\\n- mvp_collapse_003: 已被终止 — unknown\\n- per_layer_analysis: 训练失败 — unknown\\n- per_layer_analysis_v2: 已被终止 — unknown\\n- per_layer_analysis_v3: 训练失败 — unknown\\n- per_layer_analysis_active: 训练失败 — unknown\\n- per_layer_analysis_v4: 训练失败 — unknown\\n- plan_001_wikitext_1.5B_5seeds: 已被终止 — unknown\\n- plan_002_pubmed_1.5B_3seeds: 已被终止 — unknown\\n- plan001-wikitext-15B-5seeds-gpu1: 训练失败 — unknown\\n- plan001-gpu1: 已被终止 — unknown\\n\", \"total_chars\": 2724, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c348bff-6a10-4731-b129-e29d18e746af",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "5cc1d2fb-a976-438e-9de5-89d90d56f882",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan002-pubmed-gpu2 | Cross-domain validation: seed43 frac=1.0 (100% synthetic PubMed) on GPU2, paralleling GPU0 (frac=0%) and GPU1 (frac=50%) to get complete 3-fraction coverage for seed43 simultaneously | — | — | — |\\\\n| plan001-wikitext-15B-5seeds | Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim | — | — | — |\\\\n| plan010-3B-spotcheck | 3B model spot-check: collapse severity signals 在第三个 scale point (3B) 上保持一致，增强 cross-scale claims | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan_001_seed43_frac50（准备中）\\\\n- plan_001_seed43_frac0（准备中）\\\\n- plan_001_seed42_frac50（准备中）\\\\n- plan_001_seed42_frac0（准备中）\\\\n- plan_001_wikitext_15B_5seeds: Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan003-fullft-05B** (success): Full FT comparison: collapse severity signals 在全参数微调下保持有效，验证信号不是 QLoRA-specific artifact\\\\n  [plan003_fullft_vs_qlora_report](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan003-fullft-05B/report/report.md) | [plan003_fullft_vs_qlora_plots](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan003-fullft-05B/chart/plot_locations.txt)\\\\n- **plan001-gpu1** (killed): Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 for complete 6-fraction coverage\\\\n- **plan008-self-recovery** (success): Self-recovery deep dive (Claim 3): analyze spike-then-recover pattern at 50% synthetic mixing, quantify recovery ratios by signal family, assess cross-seed consistency\\\\n  [plan008-self-recovery-report](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan008-self-recovery/report/report.md) | [plan008-recovery-patterns-csv](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan008-self-recovery/data/recovery_patterns.csv)\\\\n\\\\n## 趋势\\\\n成功 7 / 负向 0 / 失败 6 / 共 19\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nautodl-5090: 空闲 cuda:0, cuda:1\\\\ncqa1-37219: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_collapse_001: 训练失败 — unknown\\\\n- mvp_collapse_002: 已被终止 — unknown\\\\n- mvp_collapse_003: 已被终止 — unknown\\\\n- per_layer_analysis: 训练失败 — unknown\\\\n- per_layer_analysis_v2: 已被终止 — unknown\\\\n- per_layer_analysis_v3: 训练失败 — unknown\\\\n- per_layer_analysis_active: 训练失败 — unknown\\\\n- per_layer_analysis_v4: 训练失败 — unknown\\\\n- plan_001_wikitext_1.5B_5seeds: 已被终止 — unknown\\\\n- plan_002_pubmed_1.5B_3seeds: 已被终止 — unknown\\\\n- plan001-wikitext-15B-5seeds-gpu1: 训练失败 — unknown\\\\n- plan001-gpu1: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 2724, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan002-pubmed-gpu2 | Cross-domain validation: seed43 frac=1.0 (100% synthetic PubMed) on GPU2, paralleling GPU0 (frac=0%) and GPU1 (frac=50%) to get complete 3-fraction coverage for seed43 simultaneously | — | — | — |\\n| plan001-wikitext-15B-5seeds | Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim | — | — | — |\\n| plan010-3B-spotcheck | 3B model spot-check: collapse severity signals 在第三个 scale point (3B) 上保持一致，增强 cross-scale claims | — | — | — |\\n\\n## 待处理\\n- plan_001_seed43_frac50（准备中）\\n- plan_001_seed43_frac0（准备中）\\n- plan_001_seed42_frac50（准备中）\\n- plan_001_seed42_frac0（准备中）\\n- plan_001_wikitext_15B_5seeds: Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim（准备中）\\n\\n## 近期结论\\n- **plan003-fullft-05B** (success): Full FT comparison: collapse severity signals 在全参数微调下保持有效，验证信号不是 QLoRA-specific artifact\\n  [plan003_fullft_vs_qlora_report](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan003-fullft-05B/report/report.md) | [plan003_fullft_vs_qlora_plots](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan003-fullft-05B/chart/plot_locations.txt)\\n- **plan001-gpu1** (killed): Scale validation (GPU 1 portion): fractions 0.5/0.75/1.0 × 5 seeds on 1.5B model, paired with GPU 0 for complete 6-fraction coverage\\n- **plan008-self-recovery** (success): Self-recovery deep dive (Claim 3): analyze spike-then-recover pattern at 50% synthetic mixing, quantify recovery ratios by signal family, assess cross-seed consistency\\n  [plan008-self-recovery-report](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan008-self-recovery/report/report.md) | [plan008-recovery-patterns-csv](/api/workspace-files/projects/collapse_severity_monitor/artifacts/plan008-self-recovery/data/recovery_patterns.csv)\\n\\n## 趋势\\n成功 7 / 负向 0 / 失败 6 / 共 19\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-5090: 空闲 cuda:0, cuda:1\\ncqa1-37219: 无 GPU 信息\\n\\n## 告警\\n- mvp_collapse_001: 训练失败 — unknown\\n- mvp_collapse_002: 已被终止 — unknown\\n- mvp_collapse_003: 已被终止 — unknown\\n- per_layer_analysis: 训练失败 — unknown\\n- per_layer_analysis_v2: 已被终止 — unknown\\n- per_layer_analysis_v3: 训练失败 — unknown\\n- per_layer_analysis_active: 训练失败 — unknown\\n- per_layer_analysis_v4: 训练失败 — unknown\\n- plan_001_wikitext_1.5B_5seeds: 已被终止 — unknown\\n- plan_002_pubmed_1.5B_3seeds: 已被终止 — unknown\\n- plan001-wikitext-15B-5seeds-gpu1: 训练失败 — unknown\\n- plan001-gpu1: 已被终止 — unknown\\n\", \"total_chars\": 2724, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9c348bff-6a10-4731-b129-e29d18e746af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T18:57:13.589Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_011NEeREmnWZKtm8D7Te7EDD`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "file": "ROADMAP.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cc1d2fb-a976-438e-9de5-89d90d56f882",
+  "isSidechain": false,
+  "requestId": "req_011Cb4s96oJE7oLZ5K3fPh1P",
+  "type": "assistant",
+  "uuid": "c424ac45-e868-47eb-a493-da2ce173462e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018C8j7dEges1M6RYYat1uaS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9510,
+      "cache_read_input_tokens": 36008,
+      "output_tokens": 982,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9510,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 982,
+          "cache_read_input_tokens": 36008,
+          "cache_creation_input_tokens": 9510,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9510
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T18:57:13.601Z_
+
+<details><summary>↩ Tool result · `toolu_011NEeREmnWZKtm8D7Te7EDD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/ROADMAP.md\", \"content\": \"# collapse_severity_monitor — Research Dashboard\\n\\n> 最后更新: 2026-05-15 16:43 UTC | 更新原因: 更新实验进度（Reviewer 审查发现 >10h 过时）+ 新增 Claim 3 分析任务 + checkpoint 双服务器修复\\n\\n> 核心方向: Systematic empirical analysis of training dynamic signals as model collapse severity monitors. Analysis paper，**EMNLP 2026 via ARR**。DDL **5/25**。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（post-MVP, post-Dream）+ 审稿进行中\\n- **DDL**: 5/25 ARR（剩 10 天）\\n- **MVP**: PASS (2/3 signal families)\\n- **6 卡全满运行中**（autodl-5090 ×2 + cqa1-37219 ×4）\\n- **覆盖率**: C1 信号泛化 28.6% | C2 早期预警 33.3% | **C3 信号分类学 0%**（plan006/008 已派 CPU 分析）\\n- **Checkpoint 修复 (D016)**: 全实验 ckpt 目录空，autodl-5090 + cqa1 双服务器修复已派 Agent\\n- **SIGMA**: expected_direction=+1 标记 provisional (C001/D014)，等全量数据验证\\n- **plan009**: SIGMA head-to-head 已集成到 plan001 signals.py 实时采集，状态待更新\\n\\n## 实验状态\\n\\n| 实验 | 服务器 | GPU | 进度 | ETA |\\n|------|--------|-----|------|-----|\\n| plan_001 (P0,C1) 1.5B×WikiText×5seeds | autodl-5090 | cuda:0+1 | seed42✓ seed43✓ seed44 gen4 | **5/18 13:00Z** |\\n| plan_002 (P0,C1) 1.5B×PubMed×3seeds | cqa1-37219 | cuda:0+1 | gpu0: gen4 生成中; gpu1: gen4 训练中 | ~5/17 |\\n| plan_003 (P1,C1) FullFT 0.5B | cqa1-37219 | cuda:2 | frac=0/50/100% 全完成，gen3 生成中（~40min） | **~5/15 晚** |\\n| plan_010 (P2,C1) 3B spot-check | cqa1-37219 | cuda:3 | gen0✓, gen2 生成中 | ~5/17-18 |\\n\\n⚠️ **全实验 checkpoint 目录为空** (D016)，双服务器修复已派——autodl-5090 P0 优先\\n⚠️ **plan_003 frac=0.0 gen0-2 HellaSwag 永久丢失**（不可补跑，D015/D017）\\n⚠️ cqa1-37219 无 cron 监控，每 2-3h 手动派 SSH Worker 检查\\n\\n## 近期任务\\n- [ ] Checkpoint 修复：autodl-5090 plan001（P0）+ cqa1 plan002/plan010\\n- [ ] plan006 Signal Taxonomy 初步分析（CPU，seed42+43 数据）— 已派\\n- [ ] plan008 Self-Recovery Deep Dive 初步分析（CPU，seed42+43 数据）— 已派\\n- [ ] plan009 状态更新（planned → running，集成到 plan001）\\n- [ ] plan_003 完成后 → cuda:2 释放 → 分配下一实验\\n- [ ] 5/17 Paper Agent 启动 Full Draft（需 Claim 3 preliminary results）\\n\\n## 修正后冲刺排期\\n\\n| 日期 | GPU 任务 | CPU/分析任务 | 论文 |\\n|------|---------|-------------|------|\\n| 5/15 | 6 卡全跑; plan_003 今晚完成 | Checkpoint 修复 + plan006/008 初步分析 | — |\\n| 5/16 | plan_003 完成 → cuda:2 释放复用 | plan_003 FullFT vs QLoRA 分析 | — |\\n| 5/17 | plan_002 完成; plan_001 继续 | 增量分析（≥3 seeds 有意义）| Paper Agent 启动（MVP+partial+C3 prelim）|\\n| 5/18 | plan_001 完成 → 5090 释放 | 全量分析（plan_004/006/009）| Full Draft 进行中 |\\n| 5/19 | P1 补充 | 分析定稿 | Full Draft 完成，patch 全量 |\\n| 5/20-22 | plan_010 收尾 | — | Review 迭代 2 轮 |\\n| 5/23-24 | — | — | 终稿检查 |\\n| 5/25 | — | — | **ARR 提交** |\\n\\n## 关键策略\\n- **Claim 3 提前启动**: plan006/008 纯 CPU 分析已派，5/17 前出 preliminary results\\n- **增量分析**: 每完成 1 seed 立即跑增量分析；seed42+43 preliminary 禁止引用为结论\\n- **Paper Agent 提前启动**: ≥3 seeds × ≥4 fractions 时用 MVP+partial+C3 prelim 数据启动 Full Draft\\n- **SIGMA**: provisional direction=+1 (C001)，等 plan_001 seed43-46 + plan_003 Full FT 数据验证\\n- **Checkpoint**: 双服务器修复中；已丢失的 gen 不可恢复\\n\\n## GPU 预算\\n- **autodl-5090**: cuda:0+1 → plan_001\\n- **cqa1-37219**: cuda:0+1 → plan_002, cuda:2 → plan_003, cuda:3 → plan_010\\n- 0 空闲卡; plan_003 完成后 cuda:2 可复用（~5/16）\\n\\n## 关键风险\\n1. plan_001 ETA 5/18 → 写作压缩 5 天，review 仅 2 轮无缓冲\\n2. **Checkpoint 全空 (D016)** — 双服务器修复中，已丢失数据不可恢复\\n3. **Claim 3 覆盖率 0%** — plan006/008 CPU 分析已启动，5/17 前必须有 prelim\\n4. cqa1 无 cron → 每 2-3h 手动 SSH Worker\\n5. 4090 比 5090 慢 ~51%\\n6. SIGMA 覆盖率: max 4/5 seeds, direction provisional (C001/D014)\\n7. Paper Agent partial 数据启动需防 story 不一致\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D027 | 2026-05-15 | 修正 D015/D017：HellaSwag 失效归因于 QLoRA 训练方式而非 0.5B 模型规 | plan003-fullft-0.5B |\\n| D026 | 2026-05-15 | D024 修正：Agent 分析中 QLoRA 100% gen1-3 PPL 数据错误，作废 \\\"s | plan003-fullft-0.5B |\\n| D025 | 2026-05-15 | Supersede D023：批准 plan001 v2 脚本切换（seed-outer/fract | plan001-wikitext-15B-5seeds |\\n| D024 | 2026-05-15 | Claim 3 升级：collapse trajectory duality (cliff+satu | plan003-fullft-0.5B, plan008-nonmonotonic |\\n| D023 | 2026-05-15 | 保持当前 fraction-outer/seed-inner 循环顺序不变，不改脚本。seed42  | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\n| D022 | 2026-05-15 | D021 修正：bash 脚本确实遍历 6 fractions（fraction-outer/see | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\n| D021 | 2026-05-15 | Fraction 覆盖率缺陷确认：plan001/002 只跑 2 fractions（0%/50% | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\n| D020 | 2026-05-15 | Seed44 let finish naturally; accept hellaswag gap  | plan_001, plan_003, plan_002 |\\n| D019 | 2026-05-15 | pipeline.py resume bug 确认 + summary 重建方案批准 + plan0 | plan003-fullft-05B, plan002-pubmed-cqa1 |\\n| D018 | 2026-05-15 | pipeline.py resume bug 确认为 critical，启动三步修复：重建 summ | plan003-fullft-05B |\\n\\n\", \"total_chars\": 4408, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c424ac45-e868-47eb-a493-da2ce173462e",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "e83c7b78-2726-4c29-9982-d821e55c8891",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/ROADMAP.md\\\", \\\"content\\\": \\\"# collapse_severity_monitor — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 16:43 UTC | 更新原因: 更新实验进度（Reviewer 审查发现 >10h 过时）+ 新增 Claim 3 分析任务 + checkpoint 双服务器修复\\\\n\\\\n> 核心方向: Systematic empirical analysis of training dynamic signals as model collapse severity monitors. Analysis paper，**EMNLP 2026 via ARR**。DDL **5/25**。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（post-MVP, post-Dream）+ 审稿进行中\\\\n- **DDL**: 5/25 ARR（剩 10 天）\\\\n- **MVP**: PASS (2/3 signal families)\\\\n- **6 卡全满运行中**（autodl-5090 ×2 + cqa1-37219 ×4）\\\\n- **覆盖率**: C1 信号泛化 28.6% | C2 早期预警 33.3% | **C3 信号分类学 0%**（plan006/008 已派 CPU 分析）\\\\n- **Checkpoint 修复 (D016)**: 全实验 ckpt 目录空，autodl-5090 + cqa1 双服务器修复已派 Agent\\\\n- **SIGMA**: expected_direction=+1 标记 provisional (C001/D014)，等全量数据验证\\\\n- **plan009**: SIGMA head-to-head 已集成到 plan001 signals.py 实时采集，状态待更新\\\\n\\\\n## 实验状态\\\\n\\\\n| 实验 | 服务器 | GPU | 进度 | ETA |\\\\n|------|--------|-----|------|-----|\\\\n| plan_001 (P0,C1) 1.5B×WikiText×5seeds | autodl-5090 | cuda:0+1 | seed42✓ seed43✓ seed44 gen4 | **5/18 13:00Z** |\\\\n| plan_002 (P0,C1) 1.5B×PubMed×3seeds | cqa1-37219 | cuda:0+1 | gpu0: gen4 生成中; gpu1: gen4 训练中 | ~5/17 |\\\\n| plan_003 (P1,C1) FullFT 0.5B | cqa1-37219 | cuda:2 | frac=0/50/100% 全完成，gen3 生成中（~40min） | **~5/15 晚** |\\\\n| plan_010 (P2,C1) 3B spot-check | cqa1-37219 | cuda:3 | gen0✓, gen2 生成中 | ~5/17-18 |\\\\n\\\\n⚠️ **全实验 checkpoint 目录为空** (D016)，双服务器修复已派——autodl-5090 P0 优先\\\\n⚠️ **plan_003 frac=0.0 gen0-2 HellaSwag 永久丢失**（不可补跑，D015/D017）\\\\n⚠️ cqa1-37219 无 cron 监控，每 2-3h 手动派 SSH Worker 检查\\\\n\\\\n## 近期任务\\\\n- [ ] Checkpoint 修复：autodl-5090 plan001（P0）+ cqa1 plan002/plan010\\\\n- [ ] plan006 Signal Taxonomy 初步分析（CPU，seed42+43 数据）— 已派\\\\n- [ ] plan008 Self-Recovery Deep Dive 初步分析（CPU，seed42+43 数据）— 已派\\\\n- [ ] plan009 状态更新（planned → running，集成到 plan001）\\\\n- [ ] plan_003 完成后 → cuda:2 释放 → 分配下一实验\\\\n- [ ] 5/17 Paper Agent 启动 Full Draft（需 Claim 3 preliminary results）\\\\n\\\\n## 修正后冲刺排期\\\\n\\\\n| 日期 | GPU 任务 | CPU/分析任务 | 论文 |\\\\n|------|---------|-------------|------|\\\\n| 5/15 | 6 卡全跑; plan_003 今晚完成 | Checkpoint 修复 + plan006/008 初步分析 | — |\\\\n| 5/16 | plan_003 完成 → cuda:2 释放复用 | plan_003 FullFT vs QLoRA 分析 | — |\\\\n| 5/17 | plan_002 完成; plan_001 继续 | 增量分析（≥3 seeds 有意义）| Paper Agent 启动（MVP+partial+C3 prelim）|\\\\n| 5/18 | plan_001 完成 → 5090 释放 | 全量分析（plan_004/006/009）| Full Draft 进行中 |\\\\n| 5/19 | P1 补充 | 分析定稿 | Full Draft 完成，patch 全量 |\\\\n| 5/20-22 | plan_010 收尾 | — | Review 迭代 2 轮 |\\\\n| 5/23-24 | — | — | 终稿检查 |\\\\n| 5/25 | — | — | **ARR 提交** |\\\\n\\\\n## 关键策略\\\\n- **Claim 3 提前启动**: plan006/008 纯 CPU 分析已派，5/17 前出 preliminary results\\\\n- **增量分析**: 每完成 1 seed 立即跑增量分析；seed42+43 preliminary 禁止引用为结论\\\\n- **Paper Agent 提前启动**: ≥3 seeds × ≥4 fractions 时用 MVP+partial+C3 prelim 数据启动 Full Draft\\\\n- **SIGMA**: provisional direction=+1 (C001)，等 plan_001 seed43-46 + plan_003 Full FT 数据验证\\\\n- **Checkpoint**: 双服务器修复中；已丢失的 gen 不可恢复\\\\n\\\\n## GPU 预算\\\\n- **autodl-5090**: cuda:0+1 → plan_001\\\\n- **cqa1-37219**: cuda:0+1 → plan_002, cuda:2 → plan_003, cuda:3 → plan_010\\\\n- 0 空闲卡; plan_003 完成后 cuda:2 可复用（~5/16）\\\\n\\\\n## 关键风险\\\\n1. plan_001 ETA 5/18 → 写作压缩 5 天，review 仅 2 轮无缓冲\\\\n2. **Checkpoint 全空 (D016)** — 双服务器修复中，已丢失数据不可恢复\\\\n3. **Claim 3 覆盖率 0%** — plan006/008 CPU 分析已启动，5/17 前必须有 prelim\\\\n4. cqa1 无 cron → 每 2-3h 手动 SSH Worker\\\\n5. 4090 比 5090 慢 ~51%\\\\n6. SIGMA 覆盖率: max 4/5 seeds, direction provisional (C001/D014)\\\\n7. Paper Agent partial 数据启动需防 story 不一致\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D027 | 2026-05-15 | 修正 D015/D017：HellaSwag 失效归因于 QLoRA 训练方式而非 0.5B 模型规 | plan003-fullft-0.5B |\\\\n| D026 | 2026-05-15 | D024 修正：Agent 分析中 QLoRA 100% gen1-3 PPL 数据错误，作废 \\\\\\\"s | plan003-fullft-0.5B |\\\\n| D025 | 2026-05-15 | Supersede D023：批准 plan001 v2 脚本切换（seed-outer/fract | plan001-wikitext-15B-5seeds |\\\\n| D024 | 2026-05-15 | Claim 3 升级：collapse trajectory duality (cliff+satu | plan003-fullft-0.5B, plan008-nonmonotonic |\\\\n| D023 | 2026-05-15 | 保持当前 fraction-outer/seed-inner 循环顺序不变，不改脚本。seed42  | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\\\n| D022 | 2026-05-15 | D021 修正：bash 脚本确实遍历 6 fractions（fraction-outer/see | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\\\n| D021 | 2026-05-15 | Fraction 覆盖率缺陷确认：plan001/002 只跑 2 fractions（0%/50% | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\\\n| D020 | 2026-05-15 | Seed44 let finish naturally; accept hellaswag gap  | plan_001, plan_003, plan_002 |\\\\n| D019 | 2026-05-15 | pipeline.py resume bug 确认 + summary 重建方案批准 + plan0 | plan003-fullft-05B, plan002-pubmed-cqa1 |\\\\n| D018 | 2026-05-15 | pipeline.py resume bug 确认为 critical，启动三步修复：重建 summ | plan003-fullft-05B |\\\\n\\\\n\\\", \\\"total_chars\\\": 4408, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/ROADMAP.md\", \"content\": \"# collapse_severity_monitor — Research Dashboard\\n\\n> 最后更新: 2026-05-15 16:43 UTC | 更新原因: 更新实验进度（Reviewer 审查发现 >10h 过时）+ 新增 Claim 3 分析任务 + checkpoint 双服务器修复\\n\\n> 核心方向: Systematic empirical analysis of training dynamic signals as model collapse severity monitors. Analysis paper，**EMNLP 2026 via ARR**。DDL **5/25**。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（post-MVP, post-Dream）+ 审稿进行中\\n- **DDL**: 5/25 ARR（剩 10 天）\\n- **MVP**: PASS (2/3 signal families)\\n- **6 卡全满运行中**（autodl-5090 ×2 + cqa1-37219 ×4）\\n- **覆盖率**: C1 信号泛化 28.6% | C2 早期预警 33.3% | **C3 信号分类学 0%**（plan006/008 已派 CPU 分析）\\n- **Checkpoint 修复 (D016)**: 全实验 ckpt 目录空，autodl-5090 + cqa1 双服务器修复已派 Agent\\n- **SIGMA**: expected_direction=+1 标记 provisional (C001/D014)，等全量数据验证\\n- **plan009**: SIGMA head-to-head 已集成到 plan001 signals.py 实时采集，状态待更新\\n\\n## 实验状态\\n\\n| 实验 | 服务器 | GPU | 进度 | ETA |\\n|------|--------|-----|------|-----|\\n| plan_001 (P0,C1) 1.5B×WikiText×5seeds | autodl-5090 | cuda:0+1 | seed42✓ seed43✓ seed44 gen4 | **5/18 13:00Z** |\\n| plan_002 (P0,C1) 1.5B×PubMed×3seeds | cqa1-37219 | cuda:0+1 | gpu0: gen4 生成中; gpu1: gen4 训练中 | ~5/17 |\\n| plan_003 (P1,C1) FullFT 0.5B | cqa1-37219 | cuda:2 | frac=0/50/100% 全完成，gen3 生成中（~40min） | **~5/15 晚** |\\n| plan_010 (P2,C1) 3B spot-check | cqa1-37219 | cuda:3 | gen0✓, gen2 生成中 | ~5/17-18 |\\n\\n⚠️ **全实验 checkpoint 目录为空** (D016)，双服务器修复已派——autodl-5090 P0 优先\\n⚠️ **plan_003 frac=0.0 gen0-2 HellaSwag 永久丢失**（不可补跑，D015/D017）\\n⚠️ cqa1-37219 无 cron 监控，每 2-3h 手动派 SSH Worker 检查\\n\\n## 近期任务\\n- [ ] Checkpoint 修复：autodl-5090 plan001（P0）+ cqa1 plan002/plan010\\n- [ ] plan006 Signal Taxonomy 初步分析（CPU，seed42+43 数据）— 已派\\n- [ ] plan008 Self-Recovery Deep Dive 初步分析（CPU，seed42+43 数据）— 已派\\n- [ ] plan009 状态更新（planned → running，集成到 plan001）\\n- [ ] plan_003 完成后 → cuda:2 释放 → 分配下一实验\\n- [ ] 5/17 Paper Agent 启动 Full Draft（需 Claim 3 preliminary results）\\n\\n## 修正后冲刺排期\\n\\n| 日期 | GPU 任务 | CPU/分析任务 | 论文 |\\n|------|---------|-------------|------|\\n| 5/15 | 6 卡全跑; plan_003 今晚完成 | Checkpoint 修复 + plan006/008 初步分析 | — |\\n| 5/16 | plan_003 完成 → cuda:2 释放复用 | plan_003 FullFT vs QLoRA 分析 | — |\\n| 5/17 | plan_002 完成; plan_001 继续 | 增量分析（≥3 seeds 有意义）| Paper Agent 启动（MVP+partial+C3 prelim）|\\n| 5/18 | plan_001 完成 → 5090 释放 | 全量分析（plan_004/006/009）| Full Draft 进行中 |\\n| 5/19 | P1 补充 | 分析定稿 | Full Draft 完成，patch 全量 |\\n| 5/20-22 | plan_010 收尾 | — | Review 迭代 2 轮 |\\n| 5/23-24 | — | — | 终稿检查 |\\n| 5/25 | — | — | **ARR 提交** |\\n\\n## 关键策略\\n- **Claim 3 提前启动**: plan006/008 纯 CPU 分析已派，5/17 前出 preliminary results\\n- **增量分析**: 每完成 1 seed 立即跑增量分析；seed42+43 preliminary 禁止引用为结论\\n- **Paper Agent 提前启动**: ≥3 seeds × ≥4 fractions 时用 MVP+partial+C3 prelim 数据启动 Full Draft\\n- **SIGMA**: provisional direction=+1 (C001)，等 plan_001 seed43-46 + plan_003 Full FT 数据验证\\n- **Checkpoint**: 双服务器修复中；已丢失的 gen 不可恢复\\n\\n## GPU 预算\\n- **autodl-5090**: cuda:0+1 → plan_001\\n- **cqa1-37219**: cuda:0+1 → plan_002, cuda:2 → plan_003, cuda:3 → plan_010\\n- 0 空闲卡; plan_003 完成后 cuda:2 可复用（~5/16）\\n\\n## 关键风险\\n1. plan_001 ETA 5/18 → 写作压缩 5 天，review 仅 2 轮无缓冲\\n2. **Checkpoint 全空 (D016)** — 双服务器修复中，已丢失数据不可恢复\\n3. **Claim 3 覆盖率 0%** — plan006/008 CPU 分析已启动，5/17 前必须有 prelim\\n4. cqa1 无 cron → 每 2-3h 手动 SSH Worker\\n5. 4090 比 5090 慢 ~51%\\n6. SIGMA 覆盖率: max 4/5 seeds, direction provisional (C001/D014)\\n7. Paper Agent partial 数据启动需防 story 不一致\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D027 | 2026-05-15 | 修正 D015/D017：HellaSwag 失效归因于 QLoRA 训练方式而非 0.5B 模型规 | plan003-fullft-0.5B |\\n| D026 | 2026-05-15 | D024 修正：Agent 分析中 QLoRA 100% gen1-3 PPL 数据错误，作废 \\\"s | plan003-fullft-0.5B |\\n| D025 | 2026-05-15 | Supersede D023：批准 plan001 v2 脚本切换（seed-outer/fract | plan001-wikitext-15B-5seeds |\\n| D024 | 2026-05-15 | Claim 3 升级：collapse trajectory duality (cliff+satu | plan003-fullft-0.5B, plan008-nonmonotonic |\\n| D023 | 2026-05-15 | 保持当前 fraction-outer/seed-inner 循环顺序不变，不改脚本。seed42  | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\n| D022 | 2026-05-15 | D021 修正：bash 脚本确实遍历 6 fractions（fraction-outer/see | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\n| D021 | 2026-05-15 | Fraction 覆盖率缺陷确认：plan001/002 只跑 2 fractions（0%/50% | plan_001_wikitext_15B_5seeds, plan002-pubmed-cqa1 |\\n| D020 | 2026-05-15 | Seed44 let finish naturally; accept hellaswag gap  | plan_001, plan_003, plan_002 |\\n| D019 | 2026-05-15 | pipeline.py resume bug 确认 + summary 重建方案批准 + plan0 | plan003-fullft-05B, plan002-pubmed-cqa1 |\\n| D018 | 2026-05-15 | pipeline.py resume bug 确认为 critical，启动三步修复：重建 summ | plan003-fullft-05B |\\n\\n\", \"total_chars\": 4408, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c424ac45-e868-47eb-a493-da2ce173462e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[WORKER DONE] Worker worker_ssh_seed44-summary-rebuild_20260515T180327 已完成（status=done）。用 `get_worker_status('worker_ssh_seed44-summary-rebuild_20260515T180327')` 读取结果，然后处理。  - worker_id: worker_ssh_s…",
+  "leafUuid": "e83c7b78-2726-4c29-9982-d821e55c8891",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Process completed worker summary rebuild results",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff"
+}
+```
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-15T18:58:23.090Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me process the Worker result:
+
+**Worker result**: seed44 frac=0.5 summary rebuild complete:
+- All 5 gens covered in summary_50pct.json
+- Signals data complete (gen0-3: 32 rows, gen4: 31 rows)
+- Checkpoints empty (expected - before save_pretrained fix)
+- Missing: hellaswag, self_bleu, distinct_1/2/3, etc. (all null)
+- Metrics:
+  - gen0: ppl=12.218, stable_rank=14.332, spectral_entropy=0.657
+  - gen1: ppl=13.959, stable_rank=17.555, spectral_entropy=0.690
+  - gen2: ppl=13.057, stable_rank=16.925, spectral_entropy=0.684
+  - gen3: ppl=12.953, stable_rank=16.390, spectral_entropy=0.678
+  - gen4: ppl=13.100, stable_rank=16.321, spectral_entropy=0.680
+
+Looking at the metrics across all generations for seed44 at 50% synthetic fraction, I'm seeing the self-recovery pattern that plan008 identified - perplexity spikes at gen1 then gradually stabilizes back down through gen2-4, while stable rank and spectral entropy show similar oscillation patterns.
+
+This same behavior appears in seed42 and seed43 at the same synthetic fraction, with gen1 showing a sharp spike in perplexity and stable rank before partial recovery across subsequent generations. Now I'm checking the status of plan001 across the different seeds - seed42, seed43, and seed44 are all complete at both 0% and 50% fractions, though seed42 still needs the 100% fraction run and seed45 is still in progress. So with seed44 frac=0.5 now complete, I have three seeds with full frac=0.5 data available for analysis. All the GPUs are currently occupied with other training runs, so the summary rebuild was a good use of the CPU downtime. Let me update the registry to document this progress and then assess what comes next. I'm tracking the summary rebuild as an internal task. Looking at the seed44 data, I notice the metrics differ significantly from the MVP results—the plan001 model is 1.5B compared to MVP's 0.5B, which accounts for the performance differences in perplexity and entropy measures. Let me check the completed seeds registry to see what we have across both fraction levels.
+
+I can see we've got three seeds with both frac=0.0 and frac=0.5 fully completed, which meets the threshold for meaningful incremental analysis. I should update the registry to mark seed44's summary rebuild as done and check whether we should trigger the analysis or if there's already something planned.
+
+Looking at what's currently running, I've got three active experiments consuming resources across different GPUs, so I need to be mindful about spawning new workers. Let me update the registry first, then decide whether to kick off the incremental analysis or hold off based on current resource saturation. I need to spawn an incremental analysis worker now that we have three seeds, which makes the analysis meaningful according to the roadmap. Let me update the registry first and then handle this as a worker-done callback by reading the output and integrating the results into the project knowledge. Let me check how many workers are currently active before spawning a new one, since the guidelines mention keeping the worker pool under a certain threshold.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e83c7b78-2726-4c29-9982-d821e55c8891",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sAefVAW9ZY6Waiuo3x",
+  "type": "assistant",
+  "uuid": "78accdd3-9e2d-4a30-99ba-fd7c2dad37ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AboEWgWM7XpwuJzwv37d8G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5129,
+      "cache_read_input_tokens": 45518,
+      "output_tokens": 2591,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2591,
+          "cache_read_input_tokens": 45518,
+          "cache_creation_input_tokens": 5129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T18:58:23.504Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GzUBdqjcAzh9oonayD5LXb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78accdd3-9e2d-4a30-99ba-fd7c2dad37ce",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sAefVAW9ZY6Waiuo3x",
+  "type": "assistant",
+  "uuid": "3f05645e-3d5d-485b-b13e-1ecbc4b7caef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AboEWgWM7XpwuJzwv37d8G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5129,
+      "cache_read_input_tokens": 45518,
+      "output_tokens": 2591,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2591,
+          "cache_read_input_tokens": 45518,
+          "cache_creation_input_tokens": 5129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T18:58:23.511Z_
+
+<details><summary>↩ Tool result · `toolu_01GzUBdqjcAzh9oonayD5LXb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f05645e-3d5d-485b-b13e-1ecbc4b7caef",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "714cdcb7-4f24-480e-9eb7-7534af12479c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "3f05645e-3d5d-485b-b13e-1ecbc4b7caef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T18:58:26.031Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01X9AWmGq6VBk2XnoA3pMHoK`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "714cdcb7-4f24-480e-9eb7-7534af12479c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sFobeTshmsKa5KEiRP",
+  "type": "assistant",
+  "uuid": "84f37f4e-0f19-4e73-8ce8-7091db494a3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJATL4CvGaAGuNH7HzsHYa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3455,
+      "cache_read_input_tokens": 50647,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3455,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 50647,
+          "cache_creation_input_tokens": 3455,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3455
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T18:58:26.061Z_
+
+<details><summary>↩ Tool result · `toolu_01X9AWmGq6VBk2XnoA3pMHoK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84f37f4e-0f19-4e73-8ce8-7091db494a3f",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "46fbe8e7-4f83-4d6d-a603-c1a8228180bc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "84f37f4e-0f19-4e73-8ce8-7091db494a3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-15T18:58:39.298Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+0 running workers. Worker pool < 2 = 失职. I need to spawn workers.
+
+Let me update the registry for plan001 with the seed44 summary data, then think about what workers to spawn.
+
+Current state:
+- All 6 GPUs busy (experiments running)
+- 0 workers running
+- seed44 frac=0.5 summary rebuilt — now have 3 seeds (42,43,44) with frac=0.0 and frac=0.5 complete
+- ROADMAP says "≥3 seeds 有意义" for incremental analysis
+
+
+- plan006 and plan008 can now be updated with the third seed, which is valuable for paper writing starting 5/17
+
+I should spawn a CPU worker to run the 3-seed incremental analysis on plan006 and plan008, and an SSH worker to check the cqa1 experiments since they need manual checks every 2-3 hours.
+
+These are independent tasks I can run in parallel. First I'll update the registry to reflect the seed44 summary rebuild for plan001, then spawn both workers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46fbe8e7-4f83-4d6d-a603-c1a8228180bc",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sFzRGGxEbfGxj4dxX2",
+  "type": "assistant",
+  "uuid": "cd77f7ad-266d-4d5e-bcc1-966711ca791c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFB8v5aPpVFG1bpJZ8tjTB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 137,
+      "cache_read_input_tokens": 54102,
+      "output_tokens": 1085,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 137,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1085,
+          "cache_read_input_tokens": 54102,
+          "cache_creation_input_tokens": 137,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 137
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-15T18:58:40.022Z_
+
+0 个活跃 Worker，Worker 池不饱和。先更新 registry，然后铺 Worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd77f7ad-266d-4d5e-bcc1-966711ca791c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sFzRGGxEbfGxj4dxX2",
+  "type": "assistant",
+  "uuid": "83fd1ed6-6a9a-494d-a744-2edb25d99632",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFB8v5aPpVFG1bpJZ8tjTB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 137,
+      "cache_read_input_tokens": 54102,
+      "output_tokens": 1085,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 137,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1085,
+          "cache_read_input_tokens": 54102,
+          "cache_creation_input_tokens": 137,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 137
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T18:58:52.690Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01X1SgWmXgPZytA4cefxXdqM`</summary>
+
+```json
+{
+  "exp_id": "plan001-wikitext-15B-5seeds",
+  "field": "metrics",
+  "value": {
+    "gpu0_status": "PID 863684, seed45 frac=0.0, gen0 DONE, now in synthesis/gen1 phase",
+    "gpu1_status": "PID 875860, seed42 frac=1.0 gen0 training, step 1200/1540 (78%)",
+    "completed_seeds": {
+      "seed42": "frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓, frac=1.0 gen0 78%",
+      "seed43": "frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓",
+      "seed44": "frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓ (summary rebuilt 05-15 18:06Z)",
+      "seed45": "frac=0.0 gen0 ✓, gen1 starting",
+      "seed46": "not started"
+    },
+    "seed44_frac50_summary": {
+      "gen0": {
+        "ppl": 12.218,
+        "stable_rank": 14.332,
+        "spectral_entropy": 0.657,
+        "gradient_norm": 0.662
+      },
+      "gen1": {
+        "ppl": 13.959,
+        "stable_rank": 17.555,
+        "spectral_entropy": 0.69,
+        "gradient_norm": 0.845
+      },
+      "gen2": {
+        "ppl": 13.057,
+        "stable_rank": 16.925,
+        "spectral_entropy": 0.684,
+        "gradient_norm": 0.685
+      },
+      "gen3": {
+        "ppl": 12.953,
+        "stable_rank": 16.39,
+        "spectral_entropy": 0.678,
+        "gradient_norm": 0.618
+      },
+      "gen4": {
+        "ppl": 13.1,
+        "stable_rank": 16.321,
+        "spectral_entropy": 0.68,
+        "gradient_norm": 0.59
+      }
+    },
+    "seed44_frac50_notes": "Checkpoints empty (pre-fix), no HellaSwag. Signals complete (gen0-3: 32 rows, gen4: 31 rows). Missing: hellaswag, self_bleu, distinct_1/2/3",
+    "checked_at": "2026-05-16T02:20Z"
+  },
+  "project": "collapse_severity_monitor"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83fd1ed6-6a9a-494d-a744-2edb25d99632",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sFzRGGxEbfGxj4dxX2",
+  "type": "assistant",
+  "uuid": "85447921-faa7-4a8a-88e2-edcb661dcc60",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFB8v5aPpVFG1bpJZ8tjTB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 137,
+      "cache_read_input_tokens": 54102,
+      "output_tokens": 1085,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 137,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1085,
+          "cache_read_input_tokens": 54102,
+          "cache_creation_input_tokens": 137,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 137
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T18:58:52.840Z_
+
+<details><summary>↩ Tool result · `toolu_01X1SgWmXgPZytA4cefxXdqM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan001-wikitext-15B-5seeds\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:57:13.285Z\", \"updated_at\": \"2026-05-15T18:58:52.766Z\", \"spec\": {\"plan_id\": \"plan_001\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"model_path\": \"/root/autodl-tmp/models/Qwen2.5-1.5B/Qwen/Qwen2___5-1___5B/\", \"data_path\": \"wikitext-2-raw-v1\", \"fractions\": \"0.0/0.1/0.25 (GPU 0 portion)\", \"seeds\": \"5 (42,43,44,45,46)\", \"generations\": 5, \"total_runs\": \"75 (3 fractions × 5 seeds × 5 gens)\", \"signal_interval\": 50, \"gpu_budget_hours\": 75, \"priority\": \"P0\", \"command\": \"bash run_plan001.sh 0\", \"data_count\": \"4916 train chunks\", \"seed\": \"42,43,44,45,46\", \"pid\": \"401025\", \"log_path\": \"~/runs/collapse_severity_monitor/plan001-wikitext-15B-5seeds.log\"}, \"hypothesis\": \"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\", \"metrics\": {\"gpu0_status\": \"PID 863684, seed45 frac=0.0, gen0 DONE, now in synthesis/gen1 phase\", \"gpu1_status\": \"PID 875860, seed42 frac=1.0 gen0 training, step 1200/1540 (78%)\", \"completed_seeds\": {\"seed42\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓, frac=1.0 gen0 78%\", \"seed43\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\", \"seed44\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓ (summary rebuilt 05-15 18:06Z)\", \"seed45\": \"frac=0.0 gen0 ✓, gen1 starting\", \"seed46\": \"not started\"}, \"seed44_frac50_summary\": {\"gen0\": {\"ppl\": 12.218, \"stable_rank\": 14.332, \"spectral_entropy\": 0.657, \"gradient_norm\": 0.662}, \"gen1\": {\"ppl\": 13.959, \"stable_rank\": 17.555, \"spectral_entropy\": 0.69, \"gradient_norm\": 0.845}, \"gen2\": {\"ppl\": 13.057, \"stable_rank\": 16.925, \"spectral_entropy\": 0.684, \"gradient_norm\": 0.685}, \"gen3\": {\"ppl\": 12.953, \"stable_rank\": 16.39, \"spectral_entropy\": 0.678, \"gradient_norm\": 0.618}, \"gen4\": {\"ppl\": 13.1, \"stable_rank\": 16.321, \"spectral_entropy\": 0.68, \"gradient_norm\": 0.59}}, \"seed44_frac50_notes\": \"Checkpoints empty (pre-fix), no HellaSwag. Signals complete (gen0-3: 32 rows, gen4: 31 rows). Missing: hellaswag, self_bleu, distinct_1/2/3\", \"checked_at\": \"2026-05-16T02:20Z\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1376}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85447921-faa7-4a8a-88e2-edcb661dcc60",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "105e9370-5dd7-42d6-9e7f-32a4e60058ab",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001-wikitext-15B-5seeds\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:57:13.285Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:58:52.766Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_001\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen2.5-1.5B/Qwen/Qwen2___5-1___5B/\\\", \\\"data_path\\\": \\\"wikitext-2-raw-v1\\\", \\\"fractions\\\": \\\"0.0/0.1/0.25 (GPU 0 portion)\\\", \\\"seeds\\\": \\\"5 (42,43,44,45,46)\\\", \\\"generations\\\": 5, \\\"total_runs\\\": \\\"75 (3 fractions × 5 seeds × 5 gens)\\\", \\\"signal_interval\\\": 50, \\\"gpu_budget_hours\\\": 75, \\\"priority\\\": \\\"P0\\\", \\\"command\\\": \\\"bash run_plan001.sh 0\\\", \\\"data_count\\\": \\\"4916 train chunks\\\", \\\"seed\\\": \\\"42,43,44,45,46\\\", \\\"pid\\\": \\\"401025\\\", \\\"log_path\\\": \\\"~/runs/collapse_severity_monitor/plan001-wikitext-15B-5seeds.log\\\"}, \\\"hypothesis\\\": \\\"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\\\", \\\"metrics\\\": {\\\"gpu0_status\\\": \\\"PID 863684, seed45 frac=0.0, gen0 DONE, now in synthesis/gen1 phase\\\", \\\"gpu1_status\\\": \\\"PID 875860, seed42 frac=1.0 gen0 training, step 1200/1540 (78%)\\\", \\\"completed_seeds\\\": {\\\"seed42\\\": \\\"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓, frac=1.0 gen0 78%\\\", \\\"seed43\\\": \\\"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\\\", \\\"seed44\\\": \\\"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓ (summary rebuilt 05-15 18:06Z)\\\", \\\"seed45\\\": \\\"frac=0.0 gen0 ✓, gen1 starting\\\", \\\"seed46\\\": \\\"not started\\\"}, \\\"seed44_frac50_summary\\\": {\\\"gen0\\\": {\\\"ppl\\\": 12.218, \\\"stable_rank\\\": 14.332, \\\"spectral_entropy\\\": 0.657, \\\"gradient_norm\\\": 0.662}, \\\"gen1\\\": {\\\"ppl\\\": 13.959, \\\"stable_rank\\\": 17.555, \\\"spectral_entropy\\\": 0.69, \\\"gradient_norm\\\": 0.845}, \\\"gen2\\\": {\\\"ppl\\\": 13.057, \\\"stable_rank\\\": 16.925, \\\"spectral_entropy\\\": 0.684, \\\"gradient_norm\\\": 0.685}, \\\"gen3\\\": {\\\"ppl\\\": 12.953, \\\"stable_rank\\\": 16.39, \\\"spectral_entropy\\\": 0.678, \\\"gradient_norm\\\": 0.618}, \\\"gen4\\\": {\\\"ppl\\\": 13.1, \\\"stable_rank\\\": 16.321, \\\"spectral_entropy\\\": 0.68, \\\"gradient_norm\\\": 0.59}}, \\\"seed44_frac50_notes\\\": \\\"Checkpoints empty (pre-fix), no HellaSwag. Signals complete (gen0-3: 32 rows, gen4: 31 rows). Missing: hellaswag, self_bleu, distinct_1/2/3\\\", \\\"checked_at\\\": \\\"2026-05-16T02:20Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1376}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan001-wikitext-15B-5seeds\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:57:13.285Z\", \"updated_at\": \"2026-05-15T18:58:52.766Z\", \"spec\": {\"plan_id\": \"plan_001\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"model_path\": \"/root/autodl-tmp/models/Qwen2.5-1.5B/Qwen/Qwen2___5-1___5B/\", \"data_path\": \"wikitext-2-raw-v1\", \"fractions\": \"0.0/0.1/0.25 (GPU 0 portion)\", \"seeds\": \"5 (42,43,44,45,46)\", \"generations\": 5, \"total_runs\": \"75 (3 fractions × 5 seeds × 5 gens)\", \"signal_interval\": 50, \"gpu_budget_hours\": 75, \"priority\": \"P0\", \"command\": \"bash run_plan001.sh 0\", \"data_count\": \"4916 train chunks\", \"seed\": \"42,43,44,45,46\", \"pid\": \"401025\", \"log_path\": \"~/runs/collapse_severity_monitor/plan001-wikitext-15B-5seeds.log\"}, \"hypothesis\": \"Scale validation: training dynamic signals (spectral/output/downstream) 在 1.5B 模型上以 Spearman ρ > 0.7 跟踪 collapse severity，且 5 seeds 的 variance 足够小以支持统计显著性 claim\", \"metrics\": {\"gpu0_status\": \"PID 863684, seed45 frac=0.0, gen0 DONE, now in synthesis/gen1 phase\", \"gpu1_status\": \"PID 875860, seed42 frac=1.0 gen0 training, step 1200/1540 (78%)\", \"completed_seeds\": {\"seed42\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓, frac=1.0 gen0 78%\", \"seed43\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓\", \"seed44\": \"frac=0.0 gen0-4 ✓, frac=0.5 gen0-4 ✓ (summary rebuilt 05-15 18:06Z)\", \"seed45\": \"frac=0.0 gen0 ✓, gen1 starting\", \"seed46\": \"not started\"}, \"seed44_frac50_summary\": {\"gen0\": {\"ppl\": 12.218, \"stable_rank\": 14.332, \"spectral_entropy\": 0.657, \"gradient_norm\": 0.662}, \"gen1\": {\"ppl\": 13.959, \"stable_rank\": 17.555, \"spectral_entropy\": 0.69, \"gradient_norm\": 0.845}, \"gen2\": {\"ppl\": 13.057, \"stable_rank\": 16.925, \"spectral_entropy\": 0.684, \"gradient_norm\": 0.685}, \"gen3\": {\"ppl\": 12.953, \"stable_rank\": 16.39, \"spectral_entropy\": 0.678, \"gradient_norm\": 0.618}, \"gen4\": {\"ppl\": 13.1, \"stable_rank\": 16.321, \"spectral_entropy\": 0.68, \"gradient_norm\": 0.59}}, \"seed44_frac50_notes\": \"Checkpoints empty (pre-fix), no HellaSwag. Signals complete (gen0-3: 32 rows, gen4: 31 rows). Missing: hellaswag, self_bleu, distinct_1/2/3\", \"checked_at\": \"2026-05-16T02:20Z\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1376}}"
+    }
+  },
+  "sourceToolAssistantUUID": "85447921-faa7-4a8a-88e2-edcb661dcc60",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36 · 2026-05-15T18:58:52.844Z_
+
+```json
+{
+  "parentUuid": "105e9370-5dd7-42d6-9e7f-32a4e60058ab",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e5a7050d-d8bb-4b43-b2ff-a2c8b761e063",
+  "timestamp": "2026-05-15T18:58:52.844Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[WORKER DONE] Worker worker_ssh_seed44-summary-rebuild_20260515T180327 已完成（status=done）。用 `get_worker_status('worker_ssh_seed44-summary-rebuild_20260515T180327')` 读取结果，然后处理。  - worker_id: worker_ssh_s…",
+  "leafUuid": "e5a7050d-d8bb-4b43-b2ff-a2c8b761e063",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Process completed worker summary rebuild results",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-15T18:59:10.985Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, registry updated. Now I need to:
+
+1. Spawn workers to fill the worker pool (currently 0, should be ≥2)
+2. Two independent tasks:
+   a. 3-seed incremental analysis (CPU) — update signal taxonomy and self-recovery analysis with seed42+43+44 data
+   b. Check cqa1 experiments status (SSH) — plan002-pubmed-cqa1, plan002-pubmed-gpu2, plan010-3B-spotcheck
+
+Let me spawn both in parallel. Actually, let me also check autodl-5090 status since the cron reconcile shows plan001 is running with PID 401030, but the metrics show different PIDs (863684 and 875860). Let me spawn workers for both checks.
+
+
+The cqa1 status check is critical since there's no cron job for it and I need to manually dispatch SSH workers every 2-3 hours. The 3-seed incremental analysis is equally urgent given the paper deadline and the fact that we now have seeds at both frac=0.0 and frac=0.5. I'll spawn both workers now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5a7050d-d8bb-4b43-b2ff-a2c8b761e063",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sHxppwmvXGm9doxE99",
+  "type": "assistant",
+  "uuid": "b4b40c09-4eaf-45fa-b5f5-8104a56b2d00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEGebsrx8ggpGtTZ4mDmEE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 54239,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2368,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 54239,
+          "cache_creation_input_tokens": 2368,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2368
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-15T18:59:11.054Z_
+
+Registry 更新完成。现在有 3 个 seed (42/43/44) 在 frac=0.0 和 frac=0.5 完成，达到 ROADMAP "≥3 seeds 有意义" 的增量分析门槛。Worker 池 = 0，需要补充。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4b40c09-4eaf-45fa-b5f5-8104a56b2d00",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sHxppwmvXGm9doxE99",
+  "type": "assistant",
+  "uuid": "6feb15ce-8398-4400-b91a-efda5d55632a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEGebsrx8ggpGtTZ4mDmEE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 54239,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2368,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 54239,
+          "cache_creation_input_tokens": 2368,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2368
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T18:59:12.302Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Tia7SHb7xxHeD4T2G42oNf`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6feb15ce-8398-4400-b91a-efda5d55632a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sHxppwmvXGm9doxE99",
+  "type": "assistant",
+  "uuid": "64a60005-ad95-416b-b68c-97241be572f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEGebsrx8ggpGtTZ4mDmEE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2368,
+      "cache_read_input_tokens": 54239,
+      "output_tokens": 525,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2368,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 525,
+          "cache_read_input_tokens": 54239,
+          "cache_creation_input_tokens": 2368,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2368
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T18:59:12.309Z_
+
+<details><summary>↩ Tool result · `toolu_01Tia7SHb7xxHeD4T2G42oNf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64a60005-ad95-416b-b68c-97241be572f8",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "0a45bd37-e06f-4996-ab22-70ebf0ebea40",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__main_agent_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "64a60005-ad95-416b-b68c-97241be572f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-15T18:59:51.505Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'll spawn two workers in parallel:
+
+1. **3-seed incremental analysis** (CPU) — update signal taxonomy and self-recovery with seed42+43+44 data at frac=0.0 and frac=0.5
+2. **cqa1 status check** (SSH) — check plan002-pubmed-cqa1, plan002-pubmed-gpu2, plan010-3B-spotcheck
+
+Let me write the prompts for both workers.
+
+For the incremental analysis worker, it needs to:
+- Read signals data from autodl-5090 for seed42, seed43, seed44 at frac=0.0 and frac=0.5
+
+
+- Compute updated signal taxonomy using Cohen's d effect sizes across the three seeds
+- Calculate updated self-recovery metrics and produce a summary report
+
+For the cqa1 status check worker, it needs to:
+- SSH to cqa1-37219
+- Check plan002 (gpu0+gpu1), plan002-pubmed-gpu2 (gpu2), plan010-3B-spotcheck (gpu3)
+- Report progress, GPU utilization, ETA
+
+Now I need to figure out where the signals data is stored and structure the prompts accordingly.
+
+The analysis worker will need SSH access to autodl-5090 to pull the signals and summary files for seeds 42, 43, and 44 at both frac=0.0 and frac=0.5, then compute the effect sizes locally and register the results. The cqa1 worker will need SSH access to that machine plus registry access to update the metrics. Since the seed44 summary was just rebuilt, I should spawn both workers now. I'm looking at the completion status across the three seeds—they all have the core metrics, though seed44 is missing some secondary ones like hellaswag and distinct metrics. Since I can compute standard errors and confidence intervals with three seeds, which would strengthen the paper's claims, I should spawn both workers now. The analysis worker will need SSH, registry, and knowledge access to read from the server and write results, while the cqa1 check only needs SSH and registry.
+
+For the analysis itself, I'm realizing the worker should probably run the analysis on the server where all the data and Python environment already exist, rather than trying to SSH and analyze locally. Let me write the prompts to have the worker SSH to autodl-5090, gather all the summary JSONs for the three seeds at both fraction levels, and then execute a Python script that processes this data.
+
+The script needs to compute effect sizes between the two fractions, measure how consistent the signals are across seeds, update the signal taxonomy based on these results, calculate self-recovery metrics, and produce a consolidated report. Given the paper deadline in 10 days and that we're building on the foundation of plan006 with an additional seed, I should focus on getting this analysis worker spawned quickly rather than overcomplicating it.
+
+First though, I need to check the SSH configuration for the cqa1 setup.
+
+Looking at the registry, cqa1-37219 is the server I'll be connecting to, so the worker can query GPU availability and track experiment progress there. Let me get both workers running now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a45bd37-e06f-4996-ab22-70ebf0ebea40",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sKRLYfh4KAiuCt37fW",
+  "type": "assistant",
+  "uuid": "c0fc54ac-4497-45b6-8b08-9eca34f75dda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBFrX712kwWkSnzvUBG3J4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1982,
+      "cache_read_input_tokens": 56607,
+      "output_tokens": 3749,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3749,
+          "cache_read_input_tokens": 56607,
+          "cache_creation_input_tokens": 1982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-15T18:59:51.639Z_
+
+现在并行 spawn 两个 Worker：(1) 3-seed 增量分析（seed42/43/44 × frac 0.0+0.5）；(2) cqa1 四卡实验状态检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0fc54ac-4497-45b6-8b08-9eca34f75dda",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sKRLYfh4KAiuCt37fW",
+  "type": "assistant",
+  "uuid": "8cdf838e-2d25-4ec6-9b87-582902e375c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBFrX712kwWkSnzvUBG3J4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1982,
+      "cache_read_input_tokens": 56607,
+      "output_tokens": 3749,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3749,
+          "cache_read_input_tokens": 56607,
+          "cache_creation_input_tokens": 1982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T19:00:18.842Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01D4DsZZbwQLzJuWEs3pCh7K`</summary>
+
+```json
+{
+  "task_type": "analysis:3seed-incremental",
+  "project": "collapse_severity_monitor",
+  "task_prompt": "## 任务：3-seed 增量分析（plan001 seed42/43/44 × frac 0.0 + 0.5）\n\n### 背景\nplan001-wikitext-15B-5seeds 在 autodl-5090 上运行，使用 Qwen2.5-1.5B 模型。现在有 3 个 seed (42/43/44) 在 frac=0.0 和 frac=0.5 全部完成 5 个 generation 的信号采集。之前 plan006-signal-taxonomy 和 plan008-self-recovery 分析只用了 2 个 seed，现在可以用 3 个 seed 更新。\n\n### 目标\n1. SSH 到 autodl-5090，找到 seed42/43/44 在 frac=0.0 和 frac=0.5 的 summary JSON 文件\n   - 路径大约在 `/root/autodl-tmp/runs/` 或 `/root/collapse_severity_monitor/` 下，用 find 搜索 `summary_*pct.json`\n   - 每个 summary JSON 包含 gen0-gen4 的指标：perplexity, stable_rank, spectral_entropy, gradient_norm 等\n\n2. 生成一个 Python 分析脚本在服务器上执行（CPU 即可），完成以下分析：\n\n   **A. Signal Taxonomy 更新（3-seed）**：\n   - 对每个信号，计算 frac=0% vs frac=50% 在 gen4 的 Cohen's d（使用 3 seeds 的均值和标准差）\n   - 计算 cross-seed CV（变异系数）评估一致性\n   - 与 plan006 的 2-seed 结果对比：tier 排名是否稳定？\n   - 产出：signal_taxonomy_3seed.json\n\n   **B. Self-Recovery 更新（3-seed）**：\n   - 对 frac=50% 的 3 个 seed，计算 gen0→gen1 spike 和 gen1→gen4 recovery ratio\n   - 信号：perplexity, stable_rank, spectral_entropy\n   - 计算 cross-seed recovery ratio 的均值和 std\n   - 与 plan008 的 2-seed 结果对比\n   - 产出：self_recovery_3seed.json\n\n   **C. 统计显著性初步评估**：\n   - 3 seeds 对 paired t-test / Wilcoxon test 够不够？（通常 n=3 太小，但可以报告 effect size + CI）\n   - 计算 95% CI for Cohen's d（bootstrap 或 parametric）\n   - 产出：statistical_power_note.md\n\n3. 将所有产出保存到 `/root/autodl-tmp/runs/analysis/3seed_incremental/` 目录\n4. 用 register_artifact 注册关键产出\n\n### 已知 seed44 数据情况\n- seed44 frac=0.5 的 summary_50pct.json 刚重建完成\n- 缺失字段：hellaswag_accuracy, self_bleu, distinct_1/2/3 均为 null（checkpoints 为空，无法补跑）\n- signals 完整（gen0-3: 32 rows, gen4: 31 rows）\n\n### plan006 2-seed 参考结果\n- Tier 1: stable_rank (d=61.7), spectral_entropy (d=37.6), perplexity (d=35.5)\n- Tier 2: distinct_1 (d=12.1), distinct_2 (d=9.4), distinct_3 (d=6.3), self_bleu (d=3.5), token_entropy (d=3.2)\n- Tier 3: gradient_norm (d=2.4), hellaswag (d=1.3)\n\n### plan008 2-seed 参考结果\n- recovery_prevalence_50pct: 89% (16/18)\n- mean_ppl_recovery_ratio: 0.51\n- cross_seed_consistency: 5/6\n\n### 验证\n- 分析脚本执行前先检查所有 6 个 summary JSON 是否存在且非空\n- 输出 JSON 写完后 cat 验证格式正确\n",
+  "tool_groups": [
+    "ssh",
+    "registry",
+    "knowledge"
+  ],
+  "context": "项目：collapse_severity_monitor。服务器：autodl-5090（SSH 配置已在 ~/.ssh/config）。实验 plan001-wikitext-15B-5seeds 在此服务器运行。分析是 CPU 任务，不影响正在训练的 GPU 进程。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8cdf838e-2d25-4ec6-9b87-582902e375c7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sKRLYfh4KAiuCt37fW",
+  "type": "assistant",
+  "uuid": "609cb105-400b-4e65-abba-a90bcf1a53a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBFrX712kwWkSnzvUBG3J4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1982,
+      "cache_read_input_tokens": 56607,
+      "output_tokens": 3749,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3749,
+          "cache_read_input_tokens": 56607,
+          "cache_creation_input_tokens": 1982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T19:00:24.399Z_
+
+<details><summary>↩ Tool result · `toolu_01D4DsZZbwQLzJuWEs3pCh7K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_3seed-incremental_20260515T190019\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/logs/workers/worker_analysis_3seed-incremental_20260515T190019.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_3seed-incremental_20260515T190019 started. Use get_worker_status('worker_analysis_3seed-incremental_20260515T190019') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "609cb105-400b-4e65-abba-a90bcf1a53a0",
+  "isSidechain": false,
+  "promptId": "ab1f0e78-ea72-4217-ac56-0f084e6451a1",
+  "type": "user",
+  "uuid": "b7829f85-3320-4770-9ed2-acccf850b542",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_3seed-incremental_20260515T190019\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/logs/workers/worker_analysis_3seed-incremental_20260515T190019.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_3seed-incremental_20260515T190019 started. Use get_worker_status('worker_analysis_3seed-incremental_20260515T190019') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_3seed-incremental_20260515T190019\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/logs/workers/worker_analysis_3seed-incremental_20260515T190019.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_3seed-incremental_20260515T190019 started. Use get_worker_status('worker_analysis_3seed-incremental_20260515T190019') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "609cb105-400b-4e65-abba-a90bcf1a53a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T19:00:35.122Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_015bTXenyUKpuBUUnHqYvauq`</summary>
+
+```json
+{
+  "task_type": "ssh:cqa1-status-check",
+  "project": "collapse_severity_monitor",
+  "task_prompt": "## 任务：检查 cqa1-37219 四卡实验状态\n\n### 背景\ncqa1-37219 上有 4 张 GPU 分别跑不同实验，没有 cron 监控，需要手动 SSH 检查。\n\n### 检查内容\n\n1. **GPU 总览**：`nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader`\n\n2. **各实验进度**：\n   - **cuda:0+1 → plan002-pubmed-cqa1**：PubMed cross-domain validation，3 seeds × 6 fractions = 18 runs\n     - 检查正在跑的 fraction/seed/gen，已完成多少 runs\n     - 查看最新 log：`ls -lt /root/autodl-tmp/runs/*pubmed* 2>/dev/null | head -10` 或类似路径\n     - 检查 signals 文件写入情况\n   \n   - **cuda:2 → plan002-pubmed-gpu2**：PubMed seed43 frac=1.0\n     - 检查进度（gen 几了，step 多少）\n     - GPU 利用率\n   \n   - **cuda:3 → plan010-3B-spotcheck**：3B model spot-check，frac=0% gen3 training 中\n     - 检查当前 gen 和 step\n     - ETA 估算\n\n3. **进程确认**：\n   - `ps aux | grep python | grep -v grep` 确认各实验进程存活\n   - 检查 tmux sessions：`tmux ls`\n\n4. **磁盘**：`df -h /root/autodl-tmp` 确认空间够\n\n### 输出格式\n汇总表格：\n\n| 实验 | GPU | 当前进度 | GPU利用率 | 预计完成时间 |\n|------|-----|---------|----------|------------|\n\n加上任何异常或需要关注的问题。\n\n### 注意\n- 只用 ssh_read_only，不要 ssh_execute\n- 不要干扰正在运行的进程\n- 找不到确切路径时用 find/ls 探测，但加 -maxdepth 限制避免太慢\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "context": "项目：collapse_severity_monitor。服务器：cqa1-37219（SSH 配置已在 ~/.ssh/config）。cqa1 无 cron 自动监控，需要定期手动检查。上次检查 plan002-pubmed-cqa1 进度：gpu0 frac=0.0 seed43 gen0 85%, gpu1 frac=0.5 seed43 gen0 17%。plan010-3B-spotcheck：frac=0% gen3 step 961/1540 (62%)。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7829f85-3320-4770-9ed2-acccf850b542",
+  "isSidechain": false,
+  "requestId": "req_011Cb4sKRLYfh4KAiuCt37fW",
+  "type": "assistant",
+  "uuid": "5c622868-67ed-4bc9-8f1f-56561c1329cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/agent_65a8e0b0",
+  "sessionId": "2654511f-953a-442a-978a-75d6efbe57ff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CBFrX712kwWkSnzvUBG3J4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1982,
+      "cache_read_input_tokens": 56607,
+      "output_tokens": 3749,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3749,
+          "cache_read_input_tokens": 56607,
+          "cache_creation_input_tokens": 1982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

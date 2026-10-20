@@ -1,0 +1,9461 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-28 (UTC).** Only recommend ve
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 132
+- **Recorded user turns:** 1
+- **Tool calls:** 46
+- **Original source:** `logs/chats/exported-trajectories/account-2/03967d88-85ad-463d-ba61-90c5c5e3aff5.jsonl`
+- **Structured JSON:** [`e31ce8b2df055841fef6.json`](../../sessions/e3/e31ce8b2df055841fef6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T05:57:12.117Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T05:57:12.117Z",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.\n\n{\n  \"title\": \"Dependency-Graph-Evolving Retrieval for Recursive Proof Decomposition\",\n  \"core_problem\": \"How can premise retrieval dynamically adapt during multi-level recursive proof decomposition, exploiting the evolving dependency structure as subgoals are solved and new proof context accumulates?\",\n  \"opportunity\": \"The BEq paper's oracle experiment reveals a 3.3× gap between actual retrieval (16.86% BEq@8) and perfect retrieval (55.36%) on out-of-distribution autoformalization. DRIFT (Oct 2025) decomposes then retrieves in a single level. LeanSearch v2 (May 2026) achieves 46.1% recall@10 on research-level Mathlib with reasoning-mode retrieval. Graph-augmented premise selection (Oct 2025) outperforms text-based by 25% using GNNs over static dependency graphs. But no system evolves the dependency graph during recursive proof decomposition—when a subgoal S1 is proven using premises P1, P2, P3, this creates new dependency edges that should inform retrieval for sibling subgoal S2. The insight is that recursive decomposition naturally builds a growing proof dependency structure, and a GNN that operates on this evolving graph can leverage proof-construction context that static retrieval systems miss.\",\n  \"landscape\": \"DRIFT (Oct 2025) decomposes informal statements into sub-components and retrieves premises, nearly doubling F1 score over DPR on ProofNet. LeanSearch v2 (May 2026) uses reasoning-mode retrieval achieving 46.1% recall@10, boosting proof success from 4% (no retrieval) to 20%. Graph-augmented premise selection (Oct 2025) combines text embeddings with GNNs over heterogeneous dependency graphs, outperforming ReProver by 25%. SciLib-GRC21 (2026) provides a materialized RDF knowledge graph of Mathlib. Hilbert uses simple sentence-transformer retrieval at each recursion level. The fundamental limitation shared by all these systems is that retrieval is either one-shot (DRIFT, LeanSearch) or uses a static graph (GNN approaches)—none exploits the fact that during recursive proof construction, each solved subgoal provides new dependency information that should improve retrieval for subsequent subgoals. This dynamic context is especially valuable for deep recursions (Hilbert's D=5 yields 99.2%), where lower-level subgoals inherit rich contextual information from their ancestors.\",\n  \"inspired_by\": \"Untried combination 'dependency-aware retrieval (BEq paper) integrated into recursive proof decomposition (Hilbert/DeepSeek-V2)' + gap 'retrieval quality for formal library dependencies' (3.3× headroom) + pattern 'recursive/hierarchical decomposition with verification at every level'\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"estimated_gpu_cost\": \"...\"},\n      \"human_in_loop\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"claude_api_cost\": \"...\", \"estimated_gpu_cost\": \"...\"},\n      \"auto_research\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"claude_api_cost\": \"...\", \"estimated_gpu_cost\": \"...\", \"speed_bottleneck\": \"...\"}\n  },\n  \"target_venues\": [\"Only venues with deadlines after 2026-05-28\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary (150-200 words)\",\n  \"project_name\": \"snake_case_identifier (max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with web_search that cited papers are real. Drop unverifiable ones.\n\n**Model freshness rule**: When the approach involves pretrained models, use web_search to find current top-performing open-source models — do NOT default to models from your training data.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及\n\n## 可行性验证\n\n1. 搜索类似方法的已有实现（GitHub）\n2. 查找需要打败的具体 baseline 数字\n3. 了解类似实验的硬件/数据需求\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T05:57:12.120Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T05:57:12.120Z",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+## Round 1
+
+130 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T05:57:12.167Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.
+
+{
+  "title": "Dependency-Graph-Evolving Retrieval for Recursive Proof Decomposition",
+  "core_problem": "How can premise retrieval dynamically adapt during multi-level recursive proof decomposition, exploiting the evolving dependency structure as subgoals are solved and new proof context accumulates?",
+  "opportunity": "The BEq paper's oracle experiment reveals a 3.3× gap between actual retrieval (16.86% BEq@8) and perfect retrieval (55.36%) on out-of-distribution autoformalization. DRIFT (Oct 2025) decomposes then retrieves in a single level. LeanSearch v2 (May 2026) achieves 46.1% recall@10 on research-level Mathlib with reasoning-mode retrieval. Graph-augmented premise selection (Oct 2025) outperforms text-based by 25% using GNNs over static dependency graphs. But no system evolves the dependency graph during recursive proof decomposition—when a subgoal S1 is proven using premises P1, P2, P3, this creates new dependency edges that should inform retrieval for sibling subgoal S2. The insight is that recursive decomposition naturally builds a growing proof dependency structure, and a GNN that operates on this evolving graph can leverage proof-construction context that static retrieval systems miss.",
+  "landscape": "DRIFT (Oct 2025) decomposes informal statements into sub-components and retrieves premises, nearly doubling F1 score over DPR on ProofNet. LeanSearch v2 (May 2026) uses reasoning-mode retrieval achieving 46.1% recall@10, boosting proof success from 4% (no retrieval) to 20%. Graph-augmented premise selection (Oct 2025) combines text embeddings with GNNs over heterogeneous dependency graphs, outperforming ReProver by 25%. SciLib-GRC21 (2026) provides a materialized RDF knowledge graph of Mathlib. Hilbert uses simple sentence-transformer retrieval at each recursion level. The fundamental limitation shared by all these systems is that retrieval is either one-shot (DRIFT, LeanSearch) or uses a static graph (GNN approaches)—none exploits the fact that during recursive proof construction, each solved subgoal provides new dependency information that should improve retrieval for subsequent subgoals. This dynamic context is especially valuable for deep recursions (Hilbert's D=5 yields 99.2%), where lower-level subgoals inherit rich contextual information from their ancestors.",
+  "inspired_by": "Untried combination 'dependency-aware retrieval (BEq paper) integrated into recursive proof decomposition (Hilbert/DeepSeek-V2)' + gap 'retrieval quality for formal library dependencies' (3.3× headroom) + pattern 'recursive/hierarchical decomposition with verification at every level'"
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {"gpu_hours": "...", "timeline": "...", "estimated_gpu_cost": "..."},
+      "human_in_loop": {"gpu_hours": "...", "timeline": "...", "claude_api_cost": "...", "estimated_gpu_cost": "..."},
+      "auto_research": {"gpu_hours": "...", "timeline": "...", "claude_api_cost": "...", "estimated_gpu_cost": "...", "speed_bottleneck": "..."}
+  },
+  "target_venues": ["Only venues with deadlines after 2026-05-28"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary (150-200 words)",
+  "project_name": "snake_case_identifier (max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with web_search that cited papers are real. Drop unverifiable ones.
+
+**Model freshness rule**: When the approach involves pretrained models, use web_search to find current top-performing open-source models — do NOT default to models from your training data.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及
+
+## 可行性验证
+
+1. 搜索类似方法的已有实现（GitHub）
+2. 查找需要打败的具体 baseline 数字
+3. 了解类似实验的硬件/数据需求
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "f99b3a58-48c6-4e83-9424-1759da2058be",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T05:57:12.166Z_
+
+```json
+{
+  "parentUuid": "f99b3a58-48c6-4e83-9424-1759da2058be",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "ab97f6f4-2d9a-4a30-b7ec-be3601cee7d1",
+  "timestamp": "2026-05-28T05:57:12.166Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T05:57:12.166Z_
+
+```json
+{
+  "parentUuid": "ab97f6f4-2d9a-4a30-b7ec-be3601cee7d1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "be76692e-c3eb-4a13-90a5-df4b7a181840",
+  "timestamp": "2026-05-28T05:57:12.166Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-28T05:57:16.983Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. I need to:
+
+1. Search for concurrent work on this topic
+2. Verify key references
+3. Find current top-performing models
+4. Check venue deadlines
+5. Verify feasibility
+
+Let me start by launching several searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be76692e-c3eb-4a13-90a5-df4b7a181840",
+  "isSidechain": false,
+  "requestId": "req_011CbUTCcmEy3XL5GDCGXcB6",
+  "type": "assistant",
+  "uuid": "914c7cb2-0c86-4a01-be39-f5239f782c95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S3qS5XP91whaPQxaBX1Rky",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2630,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-28T05:57:17.157Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AcR4qhrXxKtC3udhTbJgwt`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "914c7cb2-0c86-4a01-be39-f5239f782c95",
+  "isSidechain": false,
+  "requestId": "req_011CbUTCcmEy3XL5GDCGXcB6",
+  "type": "assistant",
+  "uuid": "ca7d7c95-7efa-401c-9eab-fbcabb1b01e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S3qS5XP91whaPQxaBX1Rky",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2630,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-28T05:57:17.165Z_
+
+<details><summary>↩ Tool result · `toolu_01AcR4qhrXxKtC3udhTbJgwt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca7d7c95-7efa-401c-9eab-fbcabb1b01e5",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "8a380c17-ce1b-473e-aa72-dad54abc0eff",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "ca7d7c95-7efa-401c-9eab-fbcabb1b01e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 9_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-28T05:57:19.610Z_
+
+Now let me launch multiple parallel searches to cover concurrent work, references, venues, and models.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a380c17-ce1b-473e-aa72-dad54abc0eff",
+  "isSidechain": false,
+  "requestId": "req_011CbUTCzK2hyvCuBHs8J4dF",
+  "type": "assistant",
+  "uuid": "4929e1b6-1c8b-44e6-a9ec-1098ffd0d702",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GWWsC1xHrGeG3YeqG7MBK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 13644,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 13644,
+          "cache_creation_input_tokens": 687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-28T05:57:20.164Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T8qEKcikhBzFfvXe9a3Lmu`</summary>
+
+```json
+{
+  "query": "dynamic dependency graph premise retrieval recursive proof decomposition 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4929e1b6-1c8b-44e6-a9ec-1098ffd0d702",
+  "isSidechain": false,
+  "requestId": "req_011CbUTCzK2hyvCuBHs8J4dF",
+  "type": "assistant",
+  "uuid": "c89aba08-2af4-479a-be2d-5a7a71ba47c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GWWsC1xHrGeG3YeqG7MBK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 13644,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 13644,
+          "cache_creation_input_tokens": 687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T05:57:27.763Z_
+
+<details><summary>↩ Tool result · `toolu_01T8qEKcikhBzFfvXe9a3Lmu`</summary>
+
+```text
+Web search results for query: "dynamic dependency graph premise retrieval recursive proof decomposition 2026"
+
+Links: [{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/pdf/2510.23637"},{"title":"Graph Dependency Retrieval","url":"https://www.emergentmind.com/topics/graph-based-dependency-retrieval"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.22819"},{"title":"G\\\"odel's Poetry","url":"https://arxiv.org/pdf/2512.14252"},{"title":"Recursive Decomposition with Dependencies for Generic Divide-and-Conquer   Reasoning","url":"https://arxiv.org/pdf/2505.02576"}]
+
+I found relevant search results about dynamic dependency graphs, premise retrieval, and recursive proof decomposition. Here's what the current research shows:
+
+## Key Findings
+
+**Premise Selection in Theorem Proving:**
+A graph-augmented approach combines dense text embeddings of Lean formalizations with graph neural networks over a heterogeneous dependency graph capturing both state-premise and premise-premise relations. This method outperforms the ReProver language-based baseline by over 25% across standard retrieval metrics.
+
+**Recursive Decomposition Approaches:**
+Gödel's Poetry is a system combining automated theorem proving, decomposition of difficult theorems into entailing propositions, RAG based retrieval of propositions useful for decomposition, and specialized language models. The system provides three principal capabilities: multi-stage proof generation, recursive decomposition of complex theorems into entailing propositions using proof sketches, and proof reconstruction integrating verified proposition proofs through AST-based substitution.
+
+**Recursive Decomposition with Dependencies:**
+Prior work on decomposition has been limited to fully separable decompositions, without supporting dependencies between sub-tasks. Research has addressed this gap with approaches like Recursive Decomposition with Dependencies (RDD).
+
+**Challenges:**
+The quality of retrieval for highly dynamic or ambiguous contexts, or for recursively synthesized concepts, is bounded by the underlying construction and inference mechanisms.
+
+These results show active development in combining dependency graph structures with premise retrieval and recursive proof strategies as of 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c89aba08-2af4-479a-be2d-5a7a71ba47c2",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "6c9cb3e1-6b4e-4a36-96ef-b37146d1d143",
+  "toolUseResult": {
+    "query": "dynamic dependency graph premise retrieval recursive proof decomposition 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018LAkgTg2jRtQdb3F4Rxp9y",
+        "content": [
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/pdf/2510.23637"
+          },
+          {
+            "title": "Graph Dependency Retrieval",
+            "url": "https://www.emergentmind.com/topics/graph-based-dependency-retrieval"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "G\\\"odel's Poetry",
+            "url": "https://arxiv.org/pdf/2512.14252"
+          },
+          {
+            "title": "Recursive Decomposition with Dependencies for Generic Divide-and-Conquer   Reasoning",
+            "url": "https://arxiv.org/pdf/2505.02576"
+          }
+        ]
+      },
+      "I found relevant search results about dynamic dependency graphs, premise retrieval, and recursive proof decomposition. Here's what the current research shows:\n\n## Key Findings\n\n**Premise Selection in Theorem Proving:**\nA graph-augmented approach combines dense text embeddings of Lean formalizations with graph neural networks over a heterogeneous dependency graph capturing both state-premise and premise-premise relations. This method outperforms the ReProver language-based baseline by over 25% across standard retrieval metrics.\n\n**Recursive Decomposition Approaches:**\nGödel's Poetry is a system combining automated theorem proving, decomposition of difficult theorems into entailing propositions, RAG based retrieval of propositions useful for decomposition, and specialized language models. The system provides three principal capabilities: multi-stage proof generation, recursive decomposition of complex theorems into entailing propositions using proof sketches, and proof reconstruction integrating verified proposition proofs through AST-based substitution.\n\n**Recursive Decomposition with Dependencies:**\nPrior work on decomposition has been limited to fully separable decompositions, without supporting dependencies between sub-tasks. Research has addressed this gap with approaches like Recursive Decomposition with Dependencies (RDD).\n\n**Challenges:**\nThe quality of retrieval for highly dynamic or ambiguous contexts, or for recursively synthesized concepts, is bounded by the underlying construction and inference mechanisms.\n\nThese results show active development in combining dependency graph structures with premise retrieval and recursive proof strategies as of 2026."
+    ],
+    "durationSeconds": 7.592981152,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c89aba08-2af4-479a-be2d-5a7a71ba47c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-28T05:57:33.986Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CEZhk7xBSqp4zCVzmMasV3`</summary>
+
+```json
+{
+  "query": "evolving GNN premise selection theorem proving arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c9cb3e1-6b4e-4a36-96ef-b37146d1d143",
+  "isSidechain": false,
+  "requestId": "req_011CbUTDmQB5dRDYW8zMRark",
+  "type": "assistant",
+  "uuid": "dfefd001-d11b-4fa9-a707-07f21a03d479",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UfAkHGQvSpzc9T8t25ZhN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 646,
+      "cache_read_input_tokens": 14331,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 646,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14331,
+          "cache_creation_input_tokens": 646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 646
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T05:57:34.965Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HSpPwLxDSyDvQn5zSLL7UW`</summary>
+
+```json
+{
+  "query": "DRIFT decompose retrieve formal proof premise selection paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfefd001-d11b-4fa9-a707-07f21a03d479",
+  "isSidechain": false,
+  "requestId": "req_011CbUTDmQB5dRDYW8zMRark",
+  "type": "assistant",
+  "uuid": "8cf595b1-0cf9-4a4a-b447-114910bc52c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UfAkHGQvSpzc9T8t25ZhN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 646,
+      "cache_read_input_tokens": 14331,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 646,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14331,
+          "cache_creation_input_tokens": 646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 646
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-28T05:57:35.449Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X4qjER8w3P8PtiK2ui5zcc`</summary>
+
+```json
+{
+  "query": "LeanSearch v2 reasoning retrieval Mathlib 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8cf595b1-0cf9-4a4a-b447-114910bc52c6",
+  "isSidechain": false,
+  "requestId": "req_011CbUTDmQB5dRDYW8zMRark",
+  "type": "assistant",
+  "uuid": "fe91ca7d-5dcb-4ac6-9e77-65938877ff96",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UfAkHGQvSpzc9T8t25ZhN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 646,
+      "cache_read_input_tokens": 14331,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 646,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14331,
+          "cache_creation_input_tokens": 646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 646
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-28T05:57:36.074Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CDsCV6r7iFLJ9KHkCvoMWf`</summary>
+
+```json
+{
+  "query": "BEq benchmark autoformalization retrieval oracle gap paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe91ca7d-5dcb-4ac6-9e77-65938877ff96",
+  "isSidechain": false,
+  "requestId": "req_011CbUTDmQB5dRDYW8zMRark",
+  "type": "assistant",
+  "uuid": "83284317-c609-4934-96bf-8e2331ed066e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UfAkHGQvSpzc9T8t25ZhN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 646,
+      "cache_read_input_tokens": 14331,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 646,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14331,
+          "cache_creation_input_tokens": 646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 646
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T05:57:41.465Z_
+
+<details><summary>↩ Tool result · `toolu_01HSpPwLxDSyDvQn5zSLL7UW`</summary>
+
+```text
+Web search results for query: "DRIFT decompose retrieve formal proof premise selection paper"
+
+Links: [{"title":"[2510.10815] DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/abs/2510.10815"},{"title":"(PDF) DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://www.researchgate.net/publication/396458949_DRIFT_Decompose_Retrieve_Illustrate_then_Formalize_Theorems"},{"title":"ICLR Poster DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://iclr.cc/virtual/2026/poster/10010321"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems | OpenReview","url":"https://openreview.net/forum?id=IGEs577RFz"},{"title":"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS","url":"https://arxiv.org/pdf/2510.10815"},{"title":"DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN ...","url":"https://openreview.net/pdf?id=IGEs577RFz"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/html/2510.10815v2"}]
+
+I found the paper you're looking for! Here's what I found about DRIFT:
+
+## DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems
+
+DRIFT is a framework that addresses the challenge of automating the formalization of mathematical statements for theorem proving. LLMs struggle to identify and utilize the prerequisite mathematical knowledge and its formal representation in languages like Lean, and current retrieval-augmented autoformalization methods query external libraries using the informal statement directly, but overlook a fundamental limitation: informal mathematical statements are often complex and offer limited context on the underlying math concepts.
+
+### The Framework
+
+DRIFT enables LLMs to decompose informal mathematical statements into smaller, more tractable "sub-components", which facilitates targeted retrieval of premises from mathematical libraries such as Mathlib. Additionally, DRIFT retrieves illustrative theorems to help models use premises more effectively in formalization tasks.
+
+### Key Results
+
+DRIFT was evaluated across diverse benchmarks (ProofNet, ConNF, and MiniF2F-test) and consistently improves premise retrieval, nearly doubling the F1 score compared to the DPR baseline on ProofNet. DRIFT demonstrates strong performance on the out-of-distribution ConNF benchmark, with BEq+@10 improvements of 37.14% and 42.25% using GPT-4.1 and DeepSeek-V3.1, respectively.
+
+The paper was published on arXiv (2510.10815) in October 2025 and appears to have been accepted for presentation at ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8cf595b1-0cf9-4a4a-b447-114910bc52c6",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "529fa8bd-c90c-4354-95e2-2a1ea7020a5e",
+  "toolUseResult": {
+    "query": "DRIFT decompose retrieve formal proof premise selection paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Pu8UFdKL1RpD9FMRSZoz3n",
+        "content": [
+          {
+            "title": "[2510.10815] DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/abs/2510.10815"
+          },
+          {
+            "title": "(PDF) DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://www.researchgate.net/publication/396458949_DRIFT_Decompose_Retrieve_Illustrate_then_Formalize_Theorems"
+          },
+          {
+            "title": "ICLR Poster DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://iclr.cc/virtual/2026/poster/10010321"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems | OpenReview",
+            "url": "https://openreview.net/forum?id=IGEs577RFz"
+          },
+          {
+            "title": "Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          },
+          {
+            "title": "DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN ...",
+            "url": "https://openreview.net/pdf?id=IGEs577RFz"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/html/2510.10815v2"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found about DRIFT:\n\n## DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\n\nDRIFT is a framework that addresses the challenge of automating the formalization of mathematical statements for theorem proving. LLMs struggle to identify and utilize the prerequisite mathematical knowledge and its formal representation in languages like Lean, and current retrieval-augmented autoformalization methods query external libraries using the informal statement directly, but overlook a fundamental limitation: informal mathematical statements are often complex and offer limited context on the underlying math concepts.\n\n### The Framework\n\nDRIFT enables LLMs to decompose informal mathematical statements into smaller, more tractable \"sub-components\", which facilitates targeted retrieval of premises from mathematical libraries such as Mathlib. Additionally, DRIFT retrieves illustrative theorems to help models use premises more effectively in formalization tasks.\n\n### Key Results\n\nDRIFT was evaluated across diverse benchmarks (ProofNet, ConNF, and MiniF2F-test) and consistently improves premise retrieval, nearly doubling the F1 score compared to the DPR baseline on ProofNet. DRIFT demonstrates strong performance on the out-of-distribution ConNF benchmark, with BEq+@10 improvements of 37.14% and 42.25% using GPT-4.1 and DeepSeek-V3.1, respectively.\n\nThe paper was published on arXiv (2510.10815) in October 2025 and appears to have been accepted for presentation at ICLR 2026."
+    ],
+    "durationSeconds": 6.496060750000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8cf595b1-0cf9-4a4a-b447-114910bc52c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "529fa8bd-c90c-4354-95e2-2a1ea7020a5e",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T05:57:43.080Z_
+
+<details><summary>↩ Tool result · `toolu_01X4qjER8w3P8PtiK2ui5zcc`</summary>
+
+```text
+Web search results for query: "LeanSearch v2 reasoning retrieval Mathlib 2026"
+
+Links: [{"title":"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving","url":"https://arxiv.org/html/2605.13137"},{"title":"[2605.13137] LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving","url":"https://arxiv.org/abs/2605.13137"},{"title":"[2510.15940] Lean Finder: Semantic Search for Mathlib That Understands User Intents","url":"https://arxiv.org/abs/2510.15940"},{"title":"Lean Finder: Semantic Search for Mathlib That Understands User Intents | OpenReview","url":"https://openreview.net/forum?id=5XNnnbEcu5"},{"title":"REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning","url":"https://arxiv.org/html/2505.20613"},{"title":"Lean Finder: Semantic Search for Mathlib That Understands User Intents","url":"https://openreview.net/pdf?id=5SF4fFRw7u"}]
+
+Based on the search results, here's what I found about LeanSearch v2:
+
+## LeanSearch v2 Overview
+
+LeanSearch v2 is a staged retrieval system whose standard mode achieves state-of-the-art Mathlib search without domain-specific fine-tuning, and whose reasoning mode builds on it through iterative sketch-retrieve-reflect cycles to target global premise retrieval directly.
+
+## Reasoning Mode Performance
+
+The reasoning mode builds on standard mode as its retrieval substrate, targeting global premise retrieval through iterative sketch-retrieve-reflect cycles. On a 69-query benchmark of research-level Mathlib theorems, reasoning mode recovers 46.1% of ground-truth premise groups within 10 retrieved candidates, outperforming strong reasoning retrieval systems (38.0%) and premise-selection baselines (9.3%).
+
+## Downstream Proof Success
+
+In a controlled downstream evaluation with a fixed prover loop, replacing alternative retrievers with LeanSearch v2 yields the highest proof success (20% vs. 16% for the next-best system and 4% without retrieval), confirming that retrieval quality propagates to proof generation.
+
+## Significance
+
+This is the first work to bring reasoning-retrieval techniques to the Lean premise retrieval problem. The code, data, and benchmarks have been open-sourced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe91ca7d-5dcb-4ac6-9e77-65938877ff96",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "6cee8d30-06d7-4c0d-967b-88958eed1438",
+  "toolUseResult": {
+    "query": "LeanSearch v2 reasoning retrieval Mathlib 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0156Ze27UAUZYy97c2VnxHEd",
+        "content": [
+          {
+            "title": "LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving",
+            "url": "https://arxiv.org/html/2605.13137"
+          },
+          {
+            "title": "[2605.13137] LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving",
+            "url": "https://arxiv.org/abs/2605.13137"
+          },
+          {
+            "title": "[2510.15940] Lean Finder: Semantic Search for Mathlib That Understands User Intents",
+            "url": "https://arxiv.org/abs/2510.15940"
+          },
+          {
+            "title": "Lean Finder: Semantic Search for Mathlib That Understands User Intents | OpenReview",
+            "url": "https://openreview.net/forum?id=5XNnnbEcu5"
+          },
+          {
+            "title": "REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2505.20613"
+          },
+          {
+            "title": "Lean Finder: Semantic Search for Mathlib That Understands User Intents",
+            "url": "https://openreview.net/pdf?id=5SF4fFRw7u"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LeanSearch v2:\n\n## LeanSearch v2 Overview\n\nLeanSearch v2 is a staged retrieval system whose standard mode achieves state-of-the-art Mathlib search without domain-specific fine-tuning, and whose reasoning mode builds on it through iterative sketch-retrieve-reflect cycles to target global premise retrieval directly.\n\n## Reasoning Mode Performance\n\nThe reasoning mode builds on standard mode as its retrieval substrate, targeting global premise retrieval through iterative sketch-retrieve-reflect cycles. On a 69-query benchmark of research-level Mathlib theorems, reasoning mode recovers 46.1% of ground-truth premise groups within 10 retrieved candidates, outperforming strong reasoning retrieval systems (38.0%) and premise-selection baselines (9.3%).\n\n## Downstream Proof Success\n\nIn a controlled downstream evaluation with a fixed prover loop, replacing alternative retrievers with LeanSearch v2 yields the highest proof success (20% vs. 16% for the next-best system and 4% without retrieval), confirming that retrieval quality propagates to proof generation.\n\n## Significance\n\nThis is the first work to bring reasoning-retrieval techniques to the Lean premise retrieval problem. The code, data, and benchmarks have been open-sourced."
+    ],
+    "durationSeconds": 7.628419156,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fe91ca7d-5dcb-4ac6-9e77-65938877ff96",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-28T05:57:43.512Z_
+
+<details><summary>↩ Tool result · `toolu_01CDsCV6r7iFLJ9KHkCvoMWf`</summary>
+
+```text
+Web search results for query: "BEq benchmark autoformalization retrieval oracle gap paper"
+
+Links: [{"title":"towards a faithful metric and a dependency retrieval","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/d630537fc4402cfa3ebbc7450a0cac91-Abstract-Conference.html"},{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview","url":"https://openreview.net/forum?id=hUb2At2DsQ"},{"title":"Reliable Evaluation and Benchmarks for Statement Autoformalization","url":"https://arxiv.org/pdf/2406.07222"},{"title":"Reliable Evaluation and Benchmarks for Statement Autoformalization - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.907/"},{"title":"[2406.07222] Reliable Evaluation and Benchmarks for Statement Autoformalization","url":"https://arxiv.org/abs/2406.07222"},{"title":"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS","url":"https://arxiv.org/pdf/2510.10815"},{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/html/2505.23486v1"},{"title":"Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/html/2511.11990"}]
+
+Based on the search results, I found several papers related to your query about BEq benchmark, autoformalization, retrieval, and oracle gap:
+
+## Main Papers Found:
+
+### 1. **"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach"** (ICLR 2025)
+
+This paper proposes BEq (Bidirectional Extended Definitional Equivalence), an automated neuro-symbolic method to determine the equivalence between two formal statements, which is formal-grounded and well-aligned with human intuition. It also proposes RAutoformalizer (Retrieval-augmented Autoformalizer), augmenting statement autoformalization by Dependency Retrieval, retrieving potentially dependent objects from formal libraries.
+
+The oracle gap you're asking about is addressed here: With retrieval-augment, RAutoformalizer has 3× improvement on BEq@1 and BEq@8, and the oracle model exhibits over 10× potential for improvement. This significant gap shows the necessity of dependency retrieval and draws community attention to OOD settings.
+
+### 2. **"Reliable Evaluation and Benchmarks for Statement Autoformalization"** (2024-2025)
+
+This work introduces BEq+, an automated metric that correlates strongly with human judgment, along with ProofNetVerif, a new dataset for assessing the quality of evaluation metrics, containing 3,752 annotated examples.
+
+These papers represent the cutting-edge research on autoformalization evaluation metrics and dependency retrieval approaches that address the oracle gap in the field.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83284317-c609-4934-96bf-8e2331ed066e",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "6dde01cf-212e-4910-a151-26685ca12fad",
+  "toolUseResult": {
+    "query": "BEq benchmark autoformalization retrieval oracle gap paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BXSPpkRrmJiW33QSMcxMhS",
+        "content": [
+          {
+            "title": "towards a faithful metric and a dependency retrieval",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/d630537fc4402cfa3ebbc7450a0cac91-Abstract-Conference.html"
+          },
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview",
+            "url": "https://openreview.net/forum?id=hUb2At2DsQ"
+          },
+          {
+            "title": "Reliable Evaluation and Benchmarks for Statement Autoformalization",
+            "url": "https://arxiv.org/pdf/2406.07222"
+          },
+          {
+            "title": "Reliable Evaluation and Benchmarks for Statement Autoformalization - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.907/"
+          },
+          {
+            "title": "[2406.07222] Reliable Evaluation and Benchmarks for Statement Autoformalization",
+            "url": "https://arxiv.org/abs/2406.07222"
+          },
+          {
+            "title": "Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.23486v1"
+          },
+          {
+            "title": "Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/html/2511.11990"
+          }
+        ]
+      },
+      "Based on the search results, I found several papers related to your query about BEq benchmark, autoformalization, retrieval, and oracle gap:\n\n## Main Papers Found:\n\n### 1. **\"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach\"** (ICLR 2025)\n\nThis paper proposes BEq (Bidirectional Extended Definitional Equivalence), an automated neuro-symbolic method to determine the equivalence between two formal statements, which is formal-grounded and well-aligned with human intuition. It also proposes RAutoformalizer (Retrieval-augmented Autoformalizer), augmenting statement autoformalization by Dependency Retrieval, retrieving potentially dependent objects from formal libraries.\n\nThe oracle gap you're asking about is addressed here: With retrieval-augment, RAutoformalizer has 3× improvement on BEq@1 and BEq@8, and the oracle model exhibits over 10× potential for improvement. This significant gap shows the necessity of dependency retrieval and draws community attention to OOD settings.\n\n### 2. **\"Reliable Evaluation and Benchmarks for Statement Autoformalization\"** (2024-2025)\n\nThis work introduces BEq+, an automated metric that correlates strongly with human judgment, along with ProofNetVerif, a new dataset for assessing the quality of evaluation metrics, containing 3,752 annotated examples.\n\nThese papers represent the cutting-edge research on autoformalization evaluation metrics and dependency retrieval approaches that address the oracle gap in the field."
+    ],
+    "durationSeconds": 7.434254719,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "83284317-c609-4934-96bf-8e2331ed066e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T05:57:50.555Z_
+
+<details><summary>↩ Tool result · `toolu_01CEZhk7xBSqp4zCVzmMasV3`</summary>
+
+```text
+Web search results for query: "evolving GNN premise selection theorem proving arXiv 2026"
+
+Links: [{"title":"Stateful Premise Selection by Recurrent Neural Networks","url":"https://arxiv.org/pdf/2004.08212"},{"title":"Graph Sequence Learning for Premise Selection","url":"https://arxiv.org/pdf/2303.15642"},{"title":"Magnushammer: A Transformer-Based Approach to Premise Selection","url":"https://arxiv.org/pdf/2303.04488"},{"title":"A Survey on Deep Learning for Theorem Proving","url":"https://arxiv.org/html/2404.09939v1"},{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/html/2510.23637v1"},{"title":"Premise Selection for Theorem Proving by Deep Graph Embedding Mingzhe Wang∗","url":"https://arxiv.org/pdf/1709.09994"},{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/pdf/2510.23637"}]
+
+Based on the web search results, I found several relevant papers on GNNs and premise selection for theorem proving, though not a specific 2026 paper matching that exact query.
+
+The most recent and relevant result is "Combining Textual and Structural Information for Premise Selection in Lean," which presents a graph-augmented approach that combines dense text embeddings with graph neural networks over a heterogeneous dependency graph. This method outperforms the ReProver language-based baseline by over 25% across standard retrieval metrics.
+
+Additionally, there is broader research on GNNs for theorem proving. Some work constructs a dependency graph over a large corpus by representing theorems and premises as nodes and their dependencies as edges, leveraging GNNs to predict links between nodes for premise selection.
+
+The search results show active development in combining structural graph information with neural approaches for premise selection in formal theorem proving systems like Lean and Isabelle. If you're looking for a specific 2026 paper, you may want to refine your search terms or check arXiv directly, as the results may not include the most recent papers from 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dfefd001-d11b-4fa9-a707-07f21a03d479",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "969307c9-f757-4e48-a9ec-6daad5a63298",
+  "toolUseResult": {
+    "query": "evolving GNN premise selection theorem proving arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MtVvwkvyqnCihbe4yUbiHY",
+        "content": [
+          {
+            "title": "Stateful Premise Selection by Recurrent Neural Networks",
+            "url": "https://arxiv.org/pdf/2004.08212"
+          },
+          {
+            "title": "Graph Sequence Learning for Premise Selection",
+            "url": "https://arxiv.org/pdf/2303.15642"
+          },
+          {
+            "title": "Magnushammer: A Transformer-Based Approach to Premise Selection",
+            "url": "https://arxiv.org/pdf/2303.04488"
+          },
+          {
+            "title": "A Survey on Deep Learning for Theorem Proving",
+            "url": "https://arxiv.org/html/2404.09939v1"
+          },
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/html/2510.23637v1"
+          },
+          {
+            "title": "Premise Selection for Theorem Proving by Deep Graph Embedding Mingzhe Wang∗",
+            "url": "https://arxiv.org/pdf/1709.09994"
+          },
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/pdf/2510.23637"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on GNNs and premise selection for theorem proving, though not a specific 2026 paper matching that exact query.\n\nThe most recent and relevant result is \"Combining Textual and Structural Information for Premise Selection in Lean,\" which presents a graph-augmented approach that combines dense text embeddings with graph neural networks over a heterogeneous dependency graph. This method outperforms the ReProver language-based baseline by over 25% across standard retrieval metrics.\n\nAdditionally, there is broader research on GNNs for theorem proving. Some work constructs a dependency graph over a large corpus by representing theorems and premises as nodes and their dependencies as edges, leveraging GNNs to predict links between nodes for premise selection.\n\nThe search results show active development in combining structural graph information with neural approaches for premise selection in formal theorem proving systems like Lean and Isabelle. If you're looking for a specific 2026 paper, you may want to refine your search terms or check arXiv directly, as the results may not include the most recent papers from 2026."
+    ],
+    "durationSeconds": 16.564317958,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dfefd001-d11b-4fa9-a707-07f21a03d479",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-28T05:57:53.241Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CkNkqiuZ7H9PxUT1t5WAQR`</summary>
+
+```json
+{
+  "query": "Hilbert recursive proof decomposition theorem proving depth paper 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "969307c9-f757-4e48-a9ec-6daad5a63298",
+  "isSidechain": false,
+  "requestId": "req_011CbUTFSxU4UsqzmihXnuNJ",
+  "type": "assistant",
+  "uuid": "c22e7932-b281-4d4b-a1e5-f4c46190d12a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMwkey3uuCZ2jFvBCkSXFc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2324,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 14977,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2324,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 14977,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-28T05:57:54.293Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018SR28bMMgLyytALDeJjokT`</summary>
+
+```json
+{
+  "query": "graph-augmented premise selection GNN heterogeneous dependency Lean ReProver 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c22e7932-b281-4d4b-a1e5-f4c46190d12a",
+  "isSidechain": false,
+  "requestId": "req_011CbUTFSxU4UsqzmihXnuNJ",
+  "type": "assistant",
+  "uuid": "4f9488c9-944a-4182-9875-54be2db1e826",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMwkey3uuCZ2jFvBCkSXFc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2324,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 14977,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2324,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 14977,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T05:57:55.290Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TWGkb3SbmxaVP4VSRu3CL7`</summary>
+
+```json
+{
+  "query": "SciLib-GRC21 RDF knowledge graph Mathlib 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f9488c9-944a-4182-9875-54be2db1e826",
+  "isSidechain": false,
+  "requestId": "req_011CbUTFSxU4UsqzmihXnuNJ",
+  "type": "assistant",
+  "uuid": "27d69619-a9f1-4daa-8c2d-547eb93a4413",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMwkey3uuCZ2jFvBCkSXFc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2324,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 14977,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2324,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 14977,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-28T05:57:55.930Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sha7HfXXkEtFijBLUtf8JF`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 deadline ICML 2026 deadline ICLR 2027 deadline paper submission"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27d69619-a9f1-4daa-8c2d-547eb93a4413",
+  "isSidechain": false,
+  "requestId": "req_011CbUTFSxU4UsqzmihXnuNJ",
+  "type": "assistant",
+  "uuid": "ad2e91ae-f363-4122-b72b-677608f226e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMwkey3uuCZ2jFvBCkSXFc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2324,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 14977,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2324,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 14977,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T05:58:00.742Z_
+
+<details><summary>↩ Tool result · `toolu_018SR28bMMgLyytALDeJjokT`</summary>
+
+```text
+Web search results for query: "graph-augmented premise selection GNN heterogeneous dependency Lean ReProver 2025"
+
+Links: [{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/pdf/2510.23637"},{"title":"Graph Sequence Learning for Premise Selection","url":"https://arxiv.org/pdf/2303.15642"},{"title":"Premise Selection for Theorem Proving by Deep Graph Embedding","url":"https://arxiv.org/pdf/1709.09994"},{"title":"Premise Selection for a Lean Hammer","url":"https://arxiv.org/pdf/2506.07477"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://arxiv.org/pdf/2306.15626"}]
+
+Based on the search results, I found relevant research on this topic. Here's what the search returned:
+
+The primary work combines dense text embeddings of Lean formalizations with graph neural networks over a heterogeneous dependency graph capturing both state—premise and premise—premise relations. On the LeanDojo Benchmark, this method outperforms the ReProver language-based baseline by over 25% across standard retrieval metrics.
+
+The approach addresses the limitation that ReProver ignores the structural relationships in formal libraries: the references and dependencies among axioms, theorems, lemmas, and definitions, which offer strong prior knowledge for guiding proofs.
+
+The research appears in a paper titled "Combining Textual and Structural Information for Premise Selection in Lean" (arXiv:2510.23637), which directly addresses the integration of graph neural networks with heterogeneous dependency information for improving premise selection in Lean theorem proving beyond what the ReProver baseline achieves.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f9488c9-944a-4182-9875-54be2db1e826",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "6f9f13df-8b43-471b-a229-28cd6d9ea615",
+  "toolUseResult": {
+    "query": "graph-augmented premise selection GNN heterogeneous dependency Lean ReProver 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UR3oSaL3wAv8aT8j8PGrFd",
+        "content": [
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/pdf/2510.23637"
+          },
+          {
+            "title": "Graph Sequence Learning for Premise Selection",
+            "url": "https://arxiv.org/pdf/2303.15642"
+          },
+          {
+            "title": "Premise Selection for Theorem Proving by Deep Graph Embedding",
+            "url": "https://arxiv.org/pdf/1709.09994"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/pdf/2506.07477"
+          },
+          {
+            "title": "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/pdf/2306.15626"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant research on this topic. Here's what the search returned:\n\nThe primary work combines dense text embeddings of Lean formalizations with graph neural networks over a heterogeneous dependency graph capturing both state—premise and premise—premise relations. On the LeanDojo Benchmark, this method outperforms the ReProver language-based baseline by over 25% across standard retrieval metrics.\n\nThe approach addresses the limitation that ReProver ignores the structural relationships in formal libraries: the references and dependencies among axioms, theorems, lemmas, and definitions, which offer strong prior knowledge for guiding proofs.\n\nThe research appears in a paper titled \"Combining Textual and Structural Information for Premise Selection in Lean\" (arXiv:2510.23637), which directly addresses the integration of graph neural networks with heterogeneous dependency information for improving premise selection in Lean theorem proving beyond what the ReProver baseline achieves."
+    ],
+    "durationSeconds": 6.444485519000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4f9488c9-944a-4182-9875-54be2db1e826",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T05:58:00.793Z_
+
+<details><summary>↩ Tool result · `toolu_01CkNkqiuZ7H9PxUT1t5WAQR`</summary>
+
+```text
+Web search results for query: "Hilbert recursive proof decomposition theorem proving depth paper 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.22819"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://www.researchgate.net/publication/395970455_Hilbert_Recursively_Building_Formal_Proofs_with_Informal_Reasoning"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning | OpenReview","url":"https://openreview.net/forum?id=GN8OdkTo3B"},{"title":"[PDF] Hilbert: Recursively Building Formal Proofs with Informal Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Hilbert:-Recursively-Building-Formal-Proofs-with-Varambally-Voice/417864258c936d4c305feb6ae971ab079285e8da"},{"title":"[2509.22819] Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/abs/2509.22819"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/html/2509.22819v1"},{"title":"HILBERT: Recursively Building Formal Proofs with Informal Reasoning","url":"https://openreview.net/pdf?id=ljAHonPrs1"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/hilbert"},{"title":"GÖDEL’S POETRY Kelly J. Davis Unaffiliated kdavis@alum.mit.edu ABSTRACT","url":"https://arxiv.org/pdf/2512.14252"}]
+
+Based on the search results, I found relevant information about the HILBERT framework for recursive proof decomposition:
+
+## Key Findings
+
+HILBERT employs recursive decomposition to split problems into subgoals that it solves with the prover or reasoner LLM. The framework bridges informal reasoning with formal verification and orchestrates four components: a reasoning LLM, prover LLM, verifier, and semantic retriever.
+
+Given a problem, HILBERT retrieves relevant theorems, generates informal proofs, creates Lean 4 sketches with subgoal decomposition, and recursively proves subgoals with the prover and reasoner. The system leverages error messages from the verifier during inference-time to refine proofs.
+
+## Performance Results
+
+Experimental results demonstrate that HILBERT substantially outperforms existing approaches on key benchmarks, achieving 99.2% on miniF2F, 6.6 points above the best publicly available method.
+
+## Publication Status
+
+The paper was published as a conference paper at ICLR 2026, with the arXiv preprint dated September 2025 (arXiv:2509.22819).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c22e7932-b281-4d4b-a1e5-f4c46190d12a",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "d0970008-4b19-4f6f-a0d6-a44dc2a954fb",
+  "toolUseResult": {
+    "query": "Hilbert recursive proof decomposition theorem proving depth paper 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WKjJC7mNubQWiZKS9Bmih5",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://www.researchgate.net/publication/395970455_Hilbert_Recursively_Building_Formal_Proofs_with_Informal_Reasoning"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=GN8OdkTo3B"
+          },
+          {
+            "title": "[PDF] Hilbert: Recursively Building Formal Proofs with Informal Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Hilbert:-Recursively-Building-Formal-Proofs-with-Varambally-Voice/417864258c936d4c305feb6ae971ab079285e8da"
+          },
+          {
+            "title": "[2509.22819] Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/abs/2509.22819"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/html/2509.22819v1"
+          },
+          {
+            "title": "HILBERT: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://openreview.net/pdf?id=ljAHonPrs1"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning - Apple Machine Learning Research",
+            "url": "https://machinelearning.apple.com/research/hilbert"
+          },
+          {
+            "title": "GÖDEL’S POETRY Kelly J. Davis Unaffiliated kdavis@alum.mit.edu ABSTRACT",
+            "url": "https://arxiv.org/pdf/2512.14252"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the HILBERT framework for recursive proof decomposition:\n\n## Key Findings\n\nHILBERT employs recursive decomposition to split problems into subgoals that it solves with the prover or reasoner LLM. The framework bridges informal reasoning with formal verification and orchestrates four components: a reasoning LLM, prover LLM, verifier, and semantic retriever.\n\nGiven a problem, HILBERT retrieves relevant theorems, generates informal proofs, creates Lean 4 sketches with subgoal decomposition, and recursively proves subgoals with the prover and reasoner. The system leverages error messages from the verifier during inference-time to refine proofs.\n\n## Performance Results\n\nExperimental results demonstrate that HILBERT substantially outperforms existing approaches on key benchmarks, achieving 99.2% on miniF2F, 6.6 points above the best publicly available method.\n\n## Publication Status\n\nThe paper was published as a conference paper at ICLR 2026, with the arXiv preprint dated September 2025 (arXiv:2509.22819)."
+    ],
+    "durationSeconds": 7.547285323999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c22e7932-b281-4d4b-a1e5-f4c46190d12a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "d0970008-4b19-4f6f-a0d6-a44dc2a954fb",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-28T05:58:02.310Z_
+
+<details><summary>↩ Tool result · `toolu_01Sha7HfXXkEtFijBLUtf8JF`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 deadline ICML 2026 deadline ICLR 2027 deadline paper submission"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"NeurIPS/ICLR/ICML Journal-to-Conference Track","url":"https://neurips.cc/public/JournalToConference"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"The NeurIPS/ICLR/ICML Journal-to-Conference Track","url":"https://iclr.cc/public/JournalToConference"}]
+
+Based on the search results, here are the paper submission deadlines for the major machine learning conferences:
+
+## ICLR 2026
+Abstract submission deadline: September 19, 2025 (anywhere on earth). Full paper submission deadline: September 24, 2025 AOE.
+
+## ICML 2026
+The search results don't show the specific submission deadline for ICML 2026 in the returned content. The conference will be held in Seoul, South Korea, July 6-11, 2026, but the paper submission deadline details weren't captured in these particular results.
+
+## ICLR 2027
+The search results do not contain information about ICLR 2027 submission deadlines, as this is still further in the future and deadlines may not have been announced yet.
+
+For the most current and complete deadline information, I recommend checking the official conference websites directly:
+- ICLR 2026: iclr.cc
+- ICML 2026: icml.cc
+- ICLR 2027: iclr.cc (when available)
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad2e91ae-f363-4122-b72b-677608f226e4",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "3bc945cd-6ff5-465c-9b16-80f7669a68ad",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 deadline ICML 2026 deadline ICLR 2027 deadline paper submission",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UXPvKkegPubpxuKRzJvvz4",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "NeurIPS/ICLR/ICML Journal-to-Conference Track",
+            "url": "https://neurips.cc/public/JournalToConference"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "The NeurIPS/ICLR/ICML Journal-to-Conference Track",
+            "url": "https://iclr.cc/public/JournalToConference"
+          }
+        ]
+      },
+      "Based on the search results, here are the paper submission deadlines for the major machine learning conferences:\n\n## ICLR 2026\nAbstract submission deadline: September 19, 2025 (anywhere on earth). Full paper submission deadline: September 24, 2025 AOE.\n\n## ICML 2026\nThe search results don't show the specific submission deadline for ICML 2026 in the returned content. The conference will be held in Seoul, South Korea, July 6-11, 2026, but the paper submission deadline details weren't captured in these particular results.\n\n## ICLR 2027\nThe search results do not contain information about ICLR 2027 submission deadlines, as this is still further in the future and deadlines may not have been announced yet.\n\nFor the most current and complete deadline information, I recommend checking the official conference websites directly:\n- ICLR 2026: iclr.cc\n- ICML 2026: icml.cc\n- ICLR 2027: iclr.cc (when available)"
+    ],
+    "durationSeconds": 6.378258120999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ad2e91ae-f363-4122-b72b-677608f226e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T05:58:03.156Z_
+
+<details><summary>↩ Tool result · `toolu_01TWGkb3SbmxaVP4VSRu3CL7`</summary>
+
+```text
+Web search results for query: "SciLib-GRC21 RDF knowledge graph Mathlib 2026"
+
+Links: [{"title":"SciLib-GRC21: Graph-Structured Premise Retrieval for Lean 4 Theorem Proving","url":"https://zenodo.org/records/20037667"},{"title":"An empirical study on Resource Description Framework reification for trustworthiness in knowledge graphs","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8634049/"},{"title":"RDF Knowledge Graphs: Structure & Benefits","url":"https://www.puppygraph.com/blog/rdf-knowledge-graph"},{"title":"Scientific evidence based rare disease research discovery with research funding data in knowledge graph","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8600882/"},{"title":"Linked Papers With Code: The Latest in Machine Learning as an RDF   Knowledge Graph","url":"https://arxiv.org/pdf/2310.20475"},{"title":"SemOpenAlex: The Scientific Landscape in 26 Billion RDF Triples","url":"https://arxiv.org/pdf/2308.03671"},{"title":"IngridKG: A FAIR Knowledge Graph of Graffiti","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10212912/"}]
+
+Based on the search results, here's what I found about SciLib-GRC21:
+
+SciLib-GRC21 is a graph-structured premise retrieval system for Lean 4 theorem proving. It provides tactic-categorised lemma hints (apply / rw / simp) using a materialised RDF knowledge graph of Mathlib via the SciLib ontology. 
+
+The system includes the production FastAPI endpoint, the experimental code for 16 retrieval modes and four baselines, and the per-task evaluation data from MiniF2F (488 tasks, 50,752 Lean-verified runs). The project is copyrighted in 2026 by Andrey P. Khalov, Olga M. Ataeva, and Natalia P. Tuchkova.
+
+The project appears to be documented and available on GitHub at https://github.com/andkhalov/SciLib-GRC21, and additional information can be found at https://scilibai.ru/products/grag/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27d69619-a9f1-4daa-8c2d-547eb93a4413",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "0e01c835-fffd-4848-b8c3-b5d404da2eb4",
+  "toolUseResult": {
+    "query": "SciLib-GRC21 RDF knowledge graph Mathlib 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CxR5MAteFNAwi5Ki1WmdcV",
+        "content": [
+          {
+            "title": "SciLib-GRC21: Graph-Structured Premise Retrieval for Lean 4 Theorem Proving",
+            "url": "https://zenodo.org/records/20037667"
+          },
+          {
+            "title": "An empirical study on Resource Description Framework reification for trustworthiness in knowledge graphs",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8634049/"
+          },
+          {
+            "title": "RDF Knowledge Graphs: Structure & Benefits",
+            "url": "https://www.puppygraph.com/blog/rdf-knowledge-graph"
+          },
+          {
+            "title": "Scientific evidence based rare disease research discovery with research funding data in knowledge graph",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8600882/"
+          },
+          {
+            "title": "Linked Papers With Code: The Latest in Machine Learning as an RDF   Knowledge Graph",
+            "url": "https://arxiv.org/pdf/2310.20475"
+          },
+          {
+            "title": "SemOpenAlex: The Scientific Landscape in 26 Billion RDF Triples",
+            "url": "https://arxiv.org/pdf/2308.03671"
+          },
+          {
+            "title": "IngridKG: A FAIR Knowledge Graph of Graffiti",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10212912/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SciLib-GRC21:\n\nSciLib-GRC21 is a graph-structured premise retrieval system for Lean 4 theorem proving. It provides tactic-categorised lemma hints (apply / rw / simp) using a materialised RDF knowledge graph of Mathlib via the SciLib ontology. \n\nThe system includes the production FastAPI endpoint, the experimental code for 16 retrieval modes and four baselines, and the per-task evaluation data from MiniF2F (488 tasks, 50,752 Lean-verified runs). The project is copyrighted in 2026 by Andrey P. Khalov, Olga M. Ataeva, and Natalia P. Tuchkova.\n\nThe project appears to be documented and available on GitHub at https://github.com/andkhalov/SciLib-GRC21, and additional information can be found at https://scilibai.ru/products/grag/."
+    ],
+    "durationSeconds": 7.863319345000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "27d69619-a9f1-4daa-8c2d-547eb93a4413",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-28T05:58:03.162Z_
+
+```json
+{
+  "parentUuid": "0e01c835-fffd-4848-b8c3-b5d404da2eb4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8b9543c7-cd3e-4211-bb74-6718d78702e4",
+  "timestamp": "2026-05-28T05:58:03.162Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-28T05:58:10.339Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0196aCY6XntsukRzn117NGQU`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 paper submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b9543c7-cd3e-4211-bb74-6718d78702e4",
+  "isSidechain": false,
+  "requestId": "req_011CbUTGNh1dfNpNENwqHCmc",
+  "type": "assistant",
+  "uuid": "c17f3b3c-12ca-47e8-ac36-714f29f5c1b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NCHuV4QqRpBVUZhwLGT1o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 676,
+      "cache_creation_input_tokens": 4540,
+      "cache_read_input_tokens": 15755,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 676,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 15755,
+          "cache_creation_input_tokens": 4540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T05:58:10.537Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014rBv2QPFYuQkfwMyNwpjuK`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline date call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c17f3b3c-12ca-47e8-ac36-714f29f5c1b1",
+  "isSidechain": false,
+  "requestId": "req_011CbUTGNh1dfNpNENwqHCmc",
+  "type": "assistant",
+  "uuid": "4a3fc2a4-f09c-4d48-8e8b-9ec7d5fc9936",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NCHuV4QqRpBVUZhwLGT1o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 676,
+      "cache_creation_input_tokens": 4540,
+      "cache_read_input_tokens": 15755,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 676,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 15755,
+          "cache_creation_input_tokens": 4540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-28T05:58:10.846Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018ab38wvpYFWUoZxhJo6bgh`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a3fc2a4-f09c-4d48-8e8b-9ec7d5fc9936",
+  "isSidechain": false,
+  "requestId": "req_011CbUTGNh1dfNpNENwqHCmc",
+  "type": "assistant",
+  "uuid": "603d84dd-48e2-4232-9bae-30a4b75df7b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NCHuV4QqRpBVUZhwLGT1o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 676,
+      "cache_creation_input_tokens": 4540,
+      "cache_read_input_tokens": 15755,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 676,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 15755,
+          "cache_creation_input_tokens": 4540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-28T05:58:11.312Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MX4ThU1XcBiVjr63gwQMpK`</summary>
+
+```json
+{
+  "query": "COLM 2026 submission deadline conference on language modeling"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "603d84dd-48e2-4232-9bae-30a4b75df7b4",
+  "isSidechain": false,
+  "requestId": "req_011CbUTGNh1dfNpNENwqHCmc",
+  "type": "assistant",
+  "uuid": "0bb4bf5f-4d03-47a3-9336-4a9946181b6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NCHuV4QqRpBVUZhwLGT1o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 676,
+      "cache_creation_input_tokens": 4540,
+      "cache_read_input_tokens": 15755,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 676,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 15755,
+          "cache_creation_input_tokens": 4540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-28T05:58:13.626Z_
+
+<details><summary>↩ Tool result · `toolu_0196aCY6XntsukRzn117NGQU`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 paper submission deadline date"
+
+Links: [{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"NeurIPS 2026 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/neurips-2026.html"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"},{"title":"NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X","url":"https://x.com/NeurIPSConf/status/2041303457554940336"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"NeurIPS 2026 Evaluations & Datasets FAQ","url":"https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ"}]
+
+Based on the search results, the full paper submission deadline for NeurIPS 2026, including all supplementary materials, is May 6, 2026 AOE (Anywhere on Earth). Additionally, the abstract submission deadline is May 4, 2026 (AOE).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c17f3b3c-12ca-47e8-ac36-714f29f5c1b1",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "2bb7dcaf-069f-4f22-9d88-d75ee8ce136f",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 paper submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AJW5kZyWt9odoKdohgdaD4",
+        "content": [
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "NeurIPS 2026 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/neurips-2026.html"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          },
+          {
+            "title": "NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X",
+            "url": "https://x.com/NeurIPSConf/status/2041303457554940336"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets FAQ",
+            "url": "https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ"
+          }
+        ]
+      },
+      "Based on the search results, the full paper submission deadline for NeurIPS 2026, including all supplementary materials, is May 6, 2026 AOE (Anywhere on Earth). Additionally, the abstract submission deadline is May 4, 2026 (AOE)."
+    ],
+    "durationSeconds": 3.2815439560000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c17f3b3c-12ca-47e8-ac36-714f29f5c1b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T05:58:14.322Z_
+
+<details><summary>↩ Tool result · `toolu_014rBv2QPFYuQkfwMyNwpjuK`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline date call for papers"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"}]
+
+Based on my search results, I found that ICLR 2027 is predicted to be held April 24-28, 2027, with dates predicted based on previous year schedule and verification on the official conference website recommended.
+
+However, the specific submission deadline date for the ICLR 2027 call for papers has not yet been officially announced. The search results show information for ICLR 2026, but the official ICLR 2027 call for papers and detailed submission deadlines have not been posted yet.
+
+For the most up-to-date and official information about ICLR 2027 submission deadlines, I recommend checking the official ICLR website at https://iclr.cc/ directly, as the 2027 call for papers details typically become available several months before the conference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a3fc2a4-f09c-4d48-8e8b-9ec7d5fc9936",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "444d8458-4f1f-4034-97e4-9d86e3f34415",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline date call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Di5nYZnMgvpwAk21ejAS59",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          }
+        ]
+      },
+      "Based on my search results, I found that ICLR 2027 is predicted to be held April 24-28, 2027, with dates predicted based on previous year schedule and verification on the official conference website recommended.\n\nHowever, the specific submission deadline date for the ICLR 2027 call for papers has not yet been officially announced. The search results show information for ICLR 2026, but the official ICLR 2027 call for papers and detailed submission deadlines have not been posted yet.\n\nFor the most up-to-date and official information about ICLR 2027 submission deadlines, I recommend checking the official ICLR website at https://iclr.cc/ directly, as the 2027 call for papers details typically become available several months before the conference."
+    ],
+    "durationSeconds": 3.7816372249999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4a3fc2a4-f09c-4d48-8e8b-9ec7d5fc9936",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T05:58:14.855Z_
+
+<details><summary>↩ Tool result · `toolu_018ab38wvpYFWUoZxhJo6bgh`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline call for papers"
+
+Links: [{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"}]
+
+Based on the search results, here's the information about AAAI 2027 submission deadlines:
+
+The Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.
+
+For the Main Technical Track, the key submission deadlines are:
+- June 24, 2026: Open Review submission site opens for paper submission
+- July 21, 2026: Abstracts due at 11:59 PM UTC-12
+- July 28, 2026: Full papers due at 11:59 PM UTC-12
+- July 31, 2026: Supplementary material and code due by 11:59 PM UTC-12
+
+Note that deadlines are track-specific and may differ from those listed above, with track-specific deadlines listed on their respective CFP.
+
+The official AAAI 2027 call for papers can be found at https://aaai.org/conference/aaai/aaai-27/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "603d84dd-48e2-4232-9bae-30a4b75df7b4",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "4528fa54-e8fe-4525-8c8c-acec0b15440b",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012D8kJdP7okAsroYGe5dMkv",
+        "content": [
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about AAAI 2027 submission deadlines:\n\nThe Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\nFor the Main Technical Track, the key submission deadlines are:\n- June 24, 2026: Open Review submission site opens for paper submission\n- July 21, 2026: Abstracts due at 11:59 PM UTC-12\n- July 28, 2026: Full papers due at 11:59 PM UTC-12\n- July 31, 2026: Supplementary material and code due by 11:59 PM UTC-12\n\nNote that deadlines are track-specific and may differ from those listed above, with track-specific deadlines listed on their respective CFP.\n\nThe official AAAI 2027 call for papers can be found at https://aaai.org/conference/aaai/aaai-27/"
+    ],
+    "durationSeconds": 4.006192257000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "603d84dd-48e2-4232-9bae-30a4b75df7b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-28T05:58:16.886Z_
+
+<details><summary>↩ Tool result · `toolu_01MX4ThU1XcBiVjr63gwQMpK`</summary>
+
+```text
+Web search results for query: "COLM 2026 submission deadline conference on language modeling"
+
+Links: [{"title":"COLM 2026: Call for Papers","url":"https://colmweb.org/cfp.html"},{"title":"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/colm"},{"title":"Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X","url":"https://x.com/COLM_conf/status/2000952051212415394"},{"title":"Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research","url":"https://www.servicenow.com/research/event/2026-colm.html"},{"title":"COLM 2026 - Conference on Language Modeling Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/colm"},{"title":"COLM 2026: Call for Workshops","url":"https://colmweb.org/cfw.html"},{"title":"COLM 2026","url":"https://colmweb.org/"},{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"COLM 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=colm26"},{"title":"colm-timeline-planning/conferences_2026.json at master · lil-lab/colm-timeline-planning","url":"https://github.com/lil-lab/colm-timeline-planning/blob/master/conferences_2026.json"}]
+
+Based on the search results, here's the information about COLM 2026:
+
+## COLM 2026 Submission Deadlines
+
+The abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.
+
+## About the Conference
+
+COLM is an academic venue focused on the study of language modeling, broadly defined, with the goal of creating a community of researchers with expertise in different disciplines, focused on understanding, improving, and critiquing the development of LM technology.
+
+## Conference Details
+
+COLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026.
+
+## Submission Information
+
+The submission link is https://openreview.net/group?id=colmweb.org/COLM/2026/Conference (opens in February 2026). There is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations.
+
+For questions, you can contact the organizers at colm-pcs@googlegroups.com.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0bb4bf5f-4d03-47a3-9336-4a9946181b6d",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "2e1f526e-d030-4309-abbd-03a19e04e5b2",
+  "toolUseResult": {
+    "query": "COLM 2026 submission deadline conference on language modeling",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Rib8ZumDd5GV4wJcYaTvyN",
+        "content": [
+          {
+            "title": "COLM 2026: Call for Papers",
+            "url": "https://colmweb.org/cfp.html"
+          },
+          {
+            "title": "When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/colm"
+          },
+          {
+            "title": "Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X",
+            "url": "https://x.com/COLM_conf/status/2000952051212415394"
+          },
+          {
+            "title": "Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research",
+            "url": "https://www.servicenow.com/research/event/2026-colm.html"
+          },
+          {
+            "title": "COLM 2026 - Conference on Language Modeling Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/colm"
+          },
+          {
+            "title": "COLM 2026: Call for Workshops",
+            "url": "https://colmweb.org/cfw.html"
+          },
+          {
+            "title": "COLM 2026",
+            "url": "https://colmweb.org/"
+          },
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "COLM 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=colm26"
+          },
+          {
+            "title": "colm-timeline-planning/conferences_2026.json at master · lil-lab/colm-timeline-planning",
+            "url": "https://github.com/lil-lab/colm-timeline-planning/blob/master/conferences_2026.json"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about COLM 2026:\n\n## COLM 2026 Submission Deadlines\n\nThe abstract deadline is Thursday, March 26, 2026, and the full paper submission deadline is Tuesday, March 31, 2026.\n\n## About the Conference\n\nCOLM is an academic venue focused on the study of language modeling, broadly defined, with the goal of creating a community of researchers with expertise in different disciplines, focused on understanding, improving, and critiquing the development of LM technology.\n\n## Conference Details\n\nCOLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026.\n\n## Submission Information\n\nThe submission link is https://openreview.net/group?id=colmweb.org/COLM/2026/Conference (opens in February 2026). There is a strict upper limit of 9 pages for the main text of the submission, with unlimited additional pages for citations.\n\nFor questions, you can contact the organizers at colm-pcs@googlegroups.com."
+    ],
+    "durationSeconds": 5.571038591999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0bb4bf5f-4d03-47a3-9336-4a9946181b6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "2e1f526e-d030-4309-abbd-03a19e04e5b2",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-28T05:58:21.505Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So NeurIPS 2026 deadline was May 6, 2026 - that has already passed (today is May 28, 2026). COLM 2026 deadline was March 31, 2026 - also passed. AAAI 2027 deadline is July 28, 2026 - still open. ICLR 2027 hasn't been announced yet but typically around September/October.
+
+Let me search for more upcoming deadlines and also concurrent work, current models, and feasibility.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e1f526e-d030-4309-abbd-03a19e04e5b2",
+  "isSidechain": false,
+  "requestId": "req_011CbUTHPPTa7jbr21dvz9VN",
+  "type": "assistant",
+  "uuid": "858084a4-a5cb-466a-887e-b3412239eed3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqMcCLXL1PEahjs1ozLwSP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3746,
+      "cache_read_input_tokens": 20295,
+      "output_tokens": 355,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3746,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 355,
+          "cache_read_input_tokens": 20295,
+          "cache_creation_input_tokens": 3746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3746
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-28T05:58:22.013Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019En5fNgacM5cXeBmg9ZHSd`</summary>
+
+```json
+{
+  "query": "ICML 2026 paper submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "858084a4-a5cb-466a-887e-b3412239eed3",
+  "isSidechain": false,
+  "requestId": "req_011CbUTHPPTa7jbr21dvz9VN",
+  "type": "assistant",
+  "uuid": "b6218161-b403-4486-b94f-4385dcd5e414",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqMcCLXL1PEahjs1ozLwSP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3746,
+      "cache_read_input_tokens": 20295,
+      "output_tokens": 355,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3746,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 355,
+          "cache_read_input_tokens": 20295,
+          "cache_creation_input_tokens": 3746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3746
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-28T05:58:23.028Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013VDDbWWvhico6vvv673pXj`</summary>
+
+```json
+{
+  "query": "\"recursive proof\" \"evolving graph\" OR \"dynamic graph\" premise retrieval arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6218161-b403-4486-b94f-4385dcd5e414",
+  "isSidechain": false,
+  "requestId": "req_011CbUTHPPTa7jbr21dvz9VN",
+  "type": "assistant",
+  "uuid": "14b19b46-c8ad-4fb3-8b33-537a7ef97583",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqMcCLXL1PEahjs1ozLwSP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3746,
+      "cache_read_input_tokens": 20295,
+      "output_tokens": 355,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3746,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 355,
+          "cache_read_input_tokens": 20295,
+          "cache_creation_input_tokens": 3746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3746
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-28T05:58:23.492Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Va2p7fm2x6ZzJNPPBySQbg`</summary>
+
+```json
+{
+  "query": "best open source embedding model 2026 text retrieval MTEB leaderboard"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14b19b46-c8ad-4fb3-8b33-537a7ef97583",
+  "isSidechain": false,
+  "requestId": "req_011CbUTHPPTa7jbr21dvz9VN",
+  "type": "assistant",
+  "uuid": "faf2f84e-90b2-4b2c-9ed3-6f4c905837eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqMcCLXL1PEahjs1ozLwSP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3746,
+      "cache_read_input_tokens": 20295,
+      "output_tokens": 355,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3746,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 355,
+          "cache_read_input_tokens": 20295,
+          "cache_creation_input_tokens": 3746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3746
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-28T05:58:24.240Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BsGkB6CSw26FhrqcyQzMCL`</summary>
+
+```json
+{
+  "query": "GNN dynamic graph neural network evolving structure state of art model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faf2f84e-90b2-4b2c-9ed3-6f4c905837eb",
+  "isSidechain": false,
+  "requestId": "req_011CbUTHPPTa7jbr21dvz9VN",
+  "type": "assistant",
+  "uuid": "7f6ada87-853c-4807-b9e1-ddb9d1ae68f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqMcCLXL1PEahjs1ozLwSP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3746,
+      "cache_read_input_tokens": 20295,
+      "output_tokens": 355,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3746,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 355,
+          "cache_read_input_tokens": 20295,
+          "cache_creation_input_tokens": 3746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3746
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-28T05:58:25.205Z_
+
+<details><summary>↩ Tool result · `toolu_019En5fNgacM5cXeBmg9ZHSd`</summary>
+
+```text
+Web search results for query: "ICML 2026 paper submission deadline date"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026 Author Instructions","url":"https://icml.cc/Conferences/2026/AuthorInstructions"},{"title":"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected","url":"https://eu.36kr.com/en/p/3540848514510723"},{"title":"ICML 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML 2026 Peer Review FAQ","url":"https://icml.cc/Conferences/2026/PeerReviewFAQ"},{"title":"ICML 2026 Call For Position Papers","url":"https://icml.cc/Conferences/2026/CallForPositionPapers"},{"title":"ICML 2026 in Hamburg – Dates, Submissions & Tips! - Conference Inc.","url":"https://conferenceinc.net/post/icml-2026/"},{"title":"ICML 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FConference"}]
+
+Based on the search results, the ICML 2026 paper submission deadline is January 28, 2026. 
+
+Note that this is the full paper submission deadline. There's also an abstract submission deadline that comes before it, and the abstract and paper submission deadlines are strict with no extensions given.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6218161-b403-4486-b94f-4385dcd5e414",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "1e386792-d884-4e1d-ac88-a1ea9ca43d0d",
+  "toolUseResult": {
+    "query": "ICML 2026 paper submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SYPRGXqrU5iHL1JpzEDPbT",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026 Author Instructions",
+            "url": "https://icml.cc/Conferences/2026/AuthorInstructions"
+          },
+          {
+            "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+            "url": "https://eu.36kr.com/en/p/3540848514510723"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "ICML 2026 Peer Review FAQ",
+            "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+          },
+          {
+            "title": "ICML 2026 Call For Position Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPositionPapers"
+          },
+          {
+            "title": "ICML 2026 in Hamburg – Dates, Submissions & Tips! - Conference Inc.",
+            "url": "https://conferenceinc.net/post/icml-2026/"
+          },
+          {
+            "title": "ICML 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, the ICML 2026 paper submission deadline is January 28, 2026. \n\nNote that this is the full paper submission deadline. There's also an abstract submission deadline that comes before it, and the abstract and paper submission deadlines are strict with no extensions given."
+    ],
+    "durationSeconds": 3.1887186479999947,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b6218161-b403-4486-b94f-4385dcd5e414",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-28T05:58:30.457Z_
+
+<details><summary>↩ Tool result · `toolu_013VDDbWWvhico6vvv673pXj`</summary>
+
+```text
+Web search results for query: ""recursive proof" "evolving graph" OR "dynamic graph" premise retrieval arXiv 2026"
+
+Links: [{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/pdf/2510.23637"},{"title":"Graph Retention Networks for Dynamic Graphs","url":"https://arxiv.org/html/2411.11259v3"},{"title":"You Don’t Need Pre-built Graphs for RAG: Retrieval Augmented Generation with Adaptive Reasoning Structures","url":"https://arxiv.org/html/2508.06105v2"},{"title":"Think-on-Graph 3.0: Efficient and Adaptive LLM Reasoning on Heterogeneous Graphs via Multi-Agent Dual-Evolving Context Retrieval","url":"https://arxiv.org/pdf/2509.21710"},{"title":"GraphMind: Theorem Selection and Conclusion Generation Framework with Dynamic GNN for LLM Reasoning","url":"https://arxiv.org/pdf/2511.19078"},{"title":"Retrieval Augmented Generation for Dynamic Graph Modeling","url":"https://arxiv.org/html/2408.14523v1"},{"title":"EvolveGCN: Evolving Graph Convolutional Networks for Dynamic Graphs","url":"https://arxiv.org/pdf/1902.10191"}]
+
+Based on the search results, I found several relevant papers from arXiv that touch on the topics you're interested in:
+
+**Papers on Recursive Proof and Premise Retrieval:**
+
+One paper presents a graph-augmented approach combining text embeddings with graph neural networks over a heterogeneous dependency graph for premise selection—a central task in formal mathematics involving retrieving relevant theorems and definitions from extensive libraries to guide proofs.
+
+**Papers on Dynamic/Evolving Graphs:**
+
+One recent 2026 publication focuses on Graph Retention Networks for Dynamic Graphs, addressing how dynamic graphs offer frameworks for modeling complex systems that evolve over time.
+
+Another paper introduces a framework where a DAG (directed acyclic graph) is constructed to capture logical relationships between subproblems, and this graph is dynamically adapted during inference to reflect evolving retrieval needs.
+
+A framework called Think-on-Graph 3.0 introduces a mechanism that incorporates a dual-evolution mechanism with an Evolving Query and Evolving Sub-Graph for precise evidence retrieval.
+
+GraphMind presents a dynamic graph-based approach that enables context-aware theorem invocation, structured reasoning tracking, and interpretable proof trajectories.
+
+These papers appear to combine the concepts of recursive proofs, premise retrieval, and dynamic/evolving graphs in different ways for reasoning and retrieval augmentation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14b19b46-c8ad-4fb3-8b33-537a7ef97583",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "e469a3f8-3cf2-46d9-98a3-a8d5175ed797",
+  "toolUseResult": {
+    "query": "\"recursive proof\" \"evolving graph\" OR \"dynamic graph\" premise retrieval arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KhRbDgquBME8bk9Tob2Sij",
+        "content": [
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/pdf/2510.23637"
+          },
+          {
+            "title": "Graph Retention Networks for Dynamic Graphs",
+            "url": "https://arxiv.org/html/2411.11259v3"
+          },
+          {
+            "title": "You Don’t Need Pre-built Graphs for RAG: Retrieval Augmented Generation with Adaptive Reasoning Structures",
+            "url": "https://arxiv.org/html/2508.06105v2"
+          },
+          {
+            "title": "Think-on-Graph 3.0: Efficient and Adaptive LLM Reasoning on Heterogeneous Graphs via Multi-Agent Dual-Evolving Context Retrieval",
+            "url": "https://arxiv.org/pdf/2509.21710"
+          },
+          {
+            "title": "GraphMind: Theorem Selection and Conclusion Generation Framework with Dynamic GNN for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2511.19078"
+          },
+          {
+            "title": "Retrieval Augmented Generation for Dynamic Graph Modeling",
+            "url": "https://arxiv.org/html/2408.14523v1"
+          },
+          {
+            "title": "EvolveGCN: Evolving Graph Convolutional Networks for Dynamic Graphs",
+            "url": "https://arxiv.org/pdf/1902.10191"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from arXiv that touch on the topics you're interested in:\n\n**Papers on Recursive Proof and Premise Retrieval:**\n\nOne paper presents a graph-augmented approach combining text embeddings with graph neural networks over a heterogeneous dependency graph for premise selection—a central task in formal mathematics involving retrieving relevant theorems and definitions from extensive libraries to guide proofs.\n\n**Papers on Dynamic/Evolving Graphs:**\n\nOne recent 2026 publication focuses on Graph Retention Networks for Dynamic Graphs, addressing how dynamic graphs offer frameworks for modeling complex systems that evolve over time.\n\nAnother paper introduces a framework where a DAG (directed acyclic graph) is constructed to capture logical relationships between subproblems, and this graph is dynamically adapted during inference to reflect evolving retrieval needs.\n\nA framework called Think-on-Graph 3.0 introduces a mechanism that incorporates a dual-evolution mechanism with an Evolving Query and Evolving Sub-Graph for precise evidence retrieval.\n\nGraphMind presents a dynamic graph-based approach that enables context-aware theorem invocation, structured reasoning tracking, and interpretable proof trajectories.\n\nThese papers appear to combine the concepts of recursive proofs, premise retrieval, and dynamic/evolving graphs in different ways for reasoning and retrieval augmentation tasks."
+    ],
+    "durationSeconds": 7.425112091000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "14b19b46-c8ad-4fb3-8b33-537a7ef97583",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-28T05:58:30.857Z_
+
+<details><summary>↩ Tool result · `toolu_01Va2p7fm2x6ZzJNPPBySQbg`</summary>
+
+```text
+Web search results for query: "best open source embedding model 2026 text retrieval MTEB leaderboard"
+
+Links: [{"title":"Best Embedding Models 2026: Our Picks After Testing 6 on 50K Documents","url":"https://pecollective.com/tools/best-embedding-models/"},{"title":"Best Open-Source Embedding Models for RAG in 2026 | KnowledgeSDK Blog","url":"https://knowledgesdk.com/blog/open-source-embedding-models-rag-2026"},{"title":"Embedding Model Leaderboard: MTEB Rankings March 2026 | Awesome Agents","url":"https://awesomeagents.ai/leaderboards/embedding-model-leaderboard-mteb-march-2026/"},{"title":"The Best Open-Source Embedding Models in 2026","url":"https://www.bentoml.com/blog/a-guide-to-open-source-embedding-models"},{"title":"Best Embedding Models 2025: MTEB Scores & Leaderboard (Cohere, OpenAI, BGE) | Ailog RAG","url":"https://app.ailog.fr/en/blog/guides/choosing-embedding-models"},{"title":"Which Embedding Model Should You Actually Use in 2026? I Benchmarked 10 Models to Find Out | Cheney Zhang","url":"https://zc277584121.github.io/rag/2026/03/20/embedding-models-benchmark-2026.html"},{"title":"Best Embedding Model for RAG 2026: 10 Models Compared - Milvus Blog","url":"https://milvus.io/blog/choose-embedding-model-rag-2026.md"}]
+
+Based on the search results, here are the best open-source embedding models for text retrieval in 2026 according to MTEB leaderboard rankings:
+
+## Top Open-Source Models
+
+Alibaba's Qwen3-Embedding-8B sits at the top of the open-source leaderboard with an MTEB composite score of approximately 70.58. It achieves this through a decoder-only architecture repurposed for embedding via bidirectional attention, trained on a massive multilingual corpus with aggressive hard-negative mining.
+
+BGE-M3 continued maturity as the open-source production standard with multilingual support across 100+ languages.
+
+NVIDIA's Llama-Embed-Nemotron-8B tops the multilingual MTEB and is fully open-weight, making it the strongest free option for global applications.
+
+## Notable Lightweight Alternative
+
+Developed by Google DeepMind, EmbeddingGemma-300M is a lightweight multilingual text embedding model with just 300 million parameters optimized for on-device deployment, and despite its compact size, it delivers strong performance across multilingual retrieval and semantic similarity tasks, rivaling much larger models on MTEB benchmarks.
+
+## Key Consideration
+
+In 2026, the open-source embedding landscape has matured dramatically, with models trained on massive multilingual corpora and dedicated hard-negative mining now rivaling or surpassing proprietary offerings on standard benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "faf2f84e-90b2-4b2c-9ed3-6f4c905837eb",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "42fc5605-c206-4727-938a-b20ec49936d3",
+  "toolUseResult": {
+    "query": "best open source embedding model 2026 text retrieval MTEB leaderboard",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BgkvpU8yhyAm3emWVAT8zC",
+        "content": [
+          {
+            "title": "Best Embedding Models 2026: Our Picks After Testing 6 on 50K Documents",
+            "url": "https://pecollective.com/tools/best-embedding-models/"
+          },
+          {
+            "title": "Best Open-Source Embedding Models for RAG in 2026 | KnowledgeSDK Blog",
+            "url": "https://knowledgesdk.com/blog/open-source-embedding-models-rag-2026"
+          },
+          {
+            "title": "Embedding Model Leaderboard: MTEB Rankings March 2026 | Awesome Agents",
+            "url": "https://awesomeagents.ai/leaderboards/embedding-model-leaderboard-mteb-march-2026/"
+          },
+          {
+            "title": "The Best Open-Source Embedding Models in 2026",
+            "url": "https://www.bentoml.com/blog/a-guide-to-open-source-embedding-models"
+          },
+          {
+            "title": "Best Embedding Models 2025: MTEB Scores & Leaderboard (Cohere, OpenAI, BGE) | Ailog RAG",
+            "url": "https://app.ailog.fr/en/blog/guides/choosing-embedding-models"
+          },
+          {
+            "title": "Which Embedding Model Should You Actually Use in 2026? I Benchmarked 10 Models to Find Out | Cheney Zhang",
+            "url": "https://zc277584121.github.io/rag/2026/03/20/embedding-models-benchmark-2026.html"
+          },
+          {
+            "title": "Best Embedding Model for RAG 2026: 10 Models Compared - Milvus Blog",
+            "url": "https://milvus.io/blog/choose-embedding-model-rag-2026.md"
+          }
+        ]
+      },
+      "Based on the search results, here are the best open-source embedding models for text retrieval in 2026 according to MTEB leaderboard rankings:\n\n## Top Open-Source Models\n\nAlibaba's Qwen3-Embedding-8B sits at the top of the open-source leaderboard with an MTEB composite score of approximately 70.58. It achieves this through a decoder-only architecture repurposed for embedding via bidirectional attention, trained on a massive multilingual corpus with aggressive hard-negative mining.\n\nBGE-M3 continued maturity as the open-source production standard with multilingual support across 100+ languages.\n\nNVIDIA's Llama-Embed-Nemotron-8B tops the multilingual MTEB and is fully open-weight, making it the strongest free option for global applications.\n\n## Notable Lightweight Alternative\n\nDeveloped by Google DeepMind, EmbeddingGemma-300M is a lightweight multilingual text embedding model with just 300 million parameters optimized for on-device deployment, and despite its compact size, it delivers strong performance across multilingual retrieval and semantic similarity tasks, rivaling much larger models on MTEB benchmarks.\n\n## Key Consideration\n\nIn 2026, the open-source embedding landscape has matured dramatically, with models trained on massive multilingual corpora and dedicated hard-negative mining now rivaling or surpassing proprietary offerings on standard benchmarks."
+    ],
+    "durationSeconds": 7.361268232999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "faf2f84e-90b2-4b2c-9ed3-6f4c905837eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-28T05:58:32.231Z_
+
+<details><summary>↩ Tool result · `toolu_01BsGkB6CSw26FhrqcyQzMCL`</summary>
+
+```text
+Web search results for query: "GNN dynamic graph neural network evolving structure state of art model 2026"
+
+Links: [{"title":"5 Breakthroughs in Graph Neural Networks to Watch in 2026 - KDnuggets","url":"https://www.kdnuggets.com/5-breakthroughs-in-graph-neural-networks-to-watch-in-2026"},{"title":"A survey of dynamic graph neural networks","url":"https://arxiv.org/html/2404.18211v1"},{"title":"Dynamic graph structure evolution for node classification with missing attributes","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12264138/"},{"title":"Graph Neural Networks in Neuroimaging: Current Status and Biostatistical Considerations for Clinical Deployment | Annals of Biomedical Engineering | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10439-026-04045-5"},{"title":"A survey of dynamic graph neural networks | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-3853-2"},{"title":"Dynamic Graph Neural Networks","url":"https://www.emergentmind.com/topics/dynamic-graph-neural-network-gnn"},{"title":"EvolveGCN: Evolving Graph Convolutional Networks for Dynamic Graphs","url":"https://arxiv.org/pdf/1902.10191"},{"title":"DyAtGNN: Dynamic Attention Graph Neural Networks for dynamic graph - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950705125009803"},{"title":"Dynamic graph structure evolution for node classification with missing attributes | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-09840-z"},{"title":"(PDF) A survey of dynamic graph neural networks","url":"https://www.researchgate.net/publication/386983605_A_survey_of_dynamic_graph_neural_networks"}]
+
+Based on the web search results, here's what's currently happening in the field of dynamic graph neural networks with evolving structures in 2026:
+
+## Overview of Dynamic GNNs
+
+Dynamic GNNs are neural architectures for representation learning on graph-structured data where the underlying topology, node/edge attributes, or both evolve over continuous or discrete time. Dynamic graphs provide a more realistic representation of real-world systems and networks, as they can model structural and attribute information that evolves over time.
+
+## State-of-the-Art Models
+
+Recent advances in dynamic GNN research include:
+
+1. **DyAtGNN**: A novel framework that synergistically combines temporal dynamic learning and adaptive structural learning modules to learn the dynamics of dynamic graphs effectively, particularly with respect to the evolution of nodes.
+
+2. **Evolving Graph Structure (EGS) Framework**: The EGS framework is proposed for semi-supervised node classification with missing attributes, dynamically reconstructing node attributes and updating the graph structure.
+
+3. **GN-CDE Model**: The GN-CDE model posits that node embeddings solve a matrix-valued controlled differential equation driven by a continuous path version of the adjacency.
+
+## Key Challenges and Focus Areas
+
+Node latent states evolve both via their own temporal features and through changing neighborhoods, and large, rapidly changing graphs necessitate update mechanisms with amortized constant or near-constant per-event cost.
+
+Real-world applications for which dynamic GNNs are particularly well suited include social network analysis, recommendation systems, fraud detection, molecular and materials property prediction, knowledge graph reasoning, and traffic or communication network modeling.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f6ada87-853c-4807-b9e1-ddb9d1ae68f2",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "fea48a6b-1d0f-4400-bb50-0e341551f5b5",
+  "toolUseResult": {
+    "query": "GNN dynamic graph neural network evolving structure state of art model 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019gsvucxbvyvHUxtzDzwKaf",
+        "content": [
+          {
+            "title": "5 Breakthroughs in Graph Neural Networks to Watch in 2026 - KDnuggets",
+            "url": "https://www.kdnuggets.com/5-breakthroughs-in-graph-neural-networks-to-watch-in-2026"
+          },
+          {
+            "title": "A survey of dynamic graph neural networks",
+            "url": "https://arxiv.org/html/2404.18211v1"
+          },
+          {
+            "title": "Dynamic graph structure evolution for node classification with missing attributes",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12264138/"
+          },
+          {
+            "title": "Graph Neural Networks in Neuroimaging: Current Status and Biostatistical Considerations for Clinical Deployment | Annals of Biomedical Engineering | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10439-026-04045-5"
+          },
+          {
+            "title": "A survey of dynamic graph neural networks | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-3853-2"
+          },
+          {
+            "title": "Dynamic Graph Neural Networks",
+            "url": "https://www.emergentmind.com/topics/dynamic-graph-neural-network-gnn"
+          },
+          {
+            "title": "EvolveGCN: Evolving Graph Convolutional Networks for Dynamic Graphs",
+            "url": "https://arxiv.org/pdf/1902.10191"
+          },
+          {
+            "title": "DyAtGNN: Dynamic Attention Graph Neural Networks for dynamic graph - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0950705125009803"
+          },
+          {
+            "title": "Dynamic graph structure evolution for node classification with missing attributes | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-09840-z"
+          },
+          {
+            "title": "(PDF) A survey of dynamic graph neural networks",
+            "url": "https://www.researchgate.net/publication/386983605_A_survey_of_dynamic_graph_neural_networks"
+          }
+        ]
+      },
+      "Based on the web search results, here's what's currently happening in the field of dynamic graph neural networks with evolving structures in 2026:\n\n## Overview of Dynamic GNNs\n\nDynamic GNNs are neural architectures for representation learning on graph-structured data where the underlying topology, node/edge attributes, or both evolve over continuous or discrete time. Dynamic graphs provide a more realistic representation of real-world systems and networks, as they can model structural and attribute information that evolves over time.\n\n## State-of-the-Art Models\n\nRecent advances in dynamic GNN research include:\n\n1. **DyAtGNN**: A novel framework that synergistically combines temporal dynamic learning and adaptive structural learning modules to learn the dynamics of dynamic graphs effectively, particularly with respect to the evolution of nodes.\n\n2. **Evolving Graph Structure (EGS) Framework**: The EGS framework is proposed for semi-supervised node classification with missing attributes, dynamically reconstructing node attributes and updating the graph structure.\n\n3. **GN-CDE Model**: The GN-CDE model posits that node embeddings solve a matrix-valued controlled differential equation driven by a continuous path version of the adjacency.\n\n## Key Challenges and Focus Areas\n\nNode latent states evolve both via their own temporal features and through changing neighborhoods, and large, rapidly changing graphs necessitate update mechanisms with amortized constant or near-constant per-event cost.\n\nReal-world applications for which dynamic GNNs are particularly well suited include social network analysis, recommendation systems, fraud detection, molecular and materials property prediction, knowledge graph reasoning, and traffic or communication network modeling."
+    ],
+    "durationSeconds": 7.988561654999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7f6ada87-853c-4807-b9e1-ddb9d1ae68f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-28T05:58:35.081Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018sd8J65Ws7aq1ZBqqAeA6K`</summary>
+
+```json
+{
+  "query": "GraphMind dynamic GNN theorem selection LLM reasoning 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fea48a6b-1d0f-4400-bb50-0e341551f5b5",
+  "isSidechain": false,
+  "requestId": "req_011CbUTJXJEz3Eb8LmgwYPg7",
+  "type": "assistant",
+  "uuid": "1e5094cb-b348-4a3d-a9cf-9590ea3f1056",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rXXweCwuLE6a9LB4Jdix8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3240,
+      "cache_read_input_tokens": 24041,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3240,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24041,
+          "cache_creation_input_tokens": 3240,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3240
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-28T05:58:35.613Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K9dsga2LmNsKfuAiViBaUa`</summary>
+
+```json
+{
+  "query": "Godel Poetry recursive decomposition theorem proving retrieval 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e5094cb-b348-4a3d-a9cf-9590ea3f1056",
+  "isSidechain": false,
+  "requestId": "req_011CbUTJXJEz3Eb8LmgwYPg7",
+  "type": "assistant",
+  "uuid": "1452fb3e-3968-435e-a228-aea8d6ed174d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rXXweCwuLE6a9LB4Jdix8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3240,
+      "cache_read_input_tokens": 24041,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3240,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24041,
+          "cache_creation_input_tokens": 3240,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3240
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-28T05:58:36.704Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AzWPzJSTs8xXRvu7s56yDh`</summary>
+
+```json
+{
+  "query": "REAL-Prover retrieval augmented Lean prover 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1452fb3e-3968-435e-a228-aea8d6ed174d",
+  "isSidechain": false,
+  "requestId": "req_011CbUTJXJEz3Eb8LmgwYPg7",
+  "type": "assistant",
+  "uuid": "9569498b-7a60-4e46-867f-1f2c4d7d17e6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rXXweCwuLE6a9LB4Jdix8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3240,
+      "cache_read_input_tokens": 24041,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3240,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24041,
+          "cache_creation_input_tokens": 3240,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3240
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-28T05:58:37.521Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KM2N4qUXg5aoKfS9Uugt7P`</summary>
+
+```json
+{
+  "query": "ReProver LeanDojo premise selection benchmark numbers baseline 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9569498b-7a60-4e46-867f-1f2c4d7d17e6",
+  "isSidechain": false,
+  "requestId": "req_011CbUTJXJEz3Eb8LmgwYPg7",
+  "type": "assistant",
+  "uuid": "ea93e297-58a0-4f77-8789-5a880f1d21b9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rXXweCwuLE6a9LB4Jdix8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3240,
+      "cache_read_input_tokens": 24041,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3240,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24041,
+          "cache_creation_input_tokens": 3240,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3240
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "ea93e297-58a0-4f77-8789-5a880f1d21b9",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-28T05:58:41.510Z_
+
+<details><summary>↩ Tool result · `toolu_018sd8J65Ws7aq1ZBqqAeA6K`</summary>
+
+```text
+Web search results for query: "GraphMind dynamic GNN theorem selection LLM reasoning 2025 arXiv"
+
+Links: [{"title":"[2511.19078] GraphMind: Theorem Selection and Conclusion Generation Framework with Dynamic GNN for LLM Reasoning","url":"https://arxiv.org/abs/2511.19078"},{"title":"GraphMind: Theorem Selection and Conclusion Generation","url":"https://arxiv.org/pdf/2511.19078"},{"title":"GraphMind: Theorem Selection and Conclusion Generation Framework with Dynamic GNN for LLM Reasoning","url":"https://arxiv.org/html/2511.19078v1"},{"title":"Improving LLMs' Generalized Reasoning Abilities by Graph Problems","url":"https://arxiv.org/pdf/2507.17168"},{"title":"Learn to Think: Bootstrapping LLM Reasoning Capability Through Graph Representation Learning","url":"https://arxiv.org/pdf/2505.06321"},{"title":"GraphMind: LLMs as Dynamic Knowledge Builders for Sequential Decision-Making | OpenReview","url":"https://openreview.net/forum?id=XromAiEaE3"},{"title":"From Nodes to Narratives: Explaining Graph Neural Networks with LLMs and Graph Context","url":"https://arxiv.org/html/2508.07117v1"}]
+
+I found the paper you're looking for! Here are the key results:
+
+GraphMind is a novel dynamic graph-based framework that integrates graph neural networks (GNN) with LLMs to iteratively select theorems and generate intermediate conclusions for multi-step reasoning.
+
+The method models the reasoning process as a heterogeneous evolving graph, where nodes represent conditions, theorems, and conclusions, while edges capture logical dependencies between nodes.
+
+By encoding the current reasoning state with GNN and leveraging semantic matching for theorem selection, the framework enables context-aware, interpretable, and structured reasoning in a closed-loop manner.
+
+Experiments on various question-answering (QA) datasets demonstrate that GraphMind achieves consistent performance improvements and significantly outperforms existing baselines in multi-step reasoning.
+
+The paper was published on arXiv on November 24, 2025 (arXiv:2511.19078) by Yutong Li, Yitian Zhou, Xudong Wang, GuoChen, and Caiyan Qin.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e5094cb-b348-4a3d-a9cf-9590ea3f1056",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "d6ff3385-9dc0-4adc-b1eb-2bdf2c24054b",
+  "toolUseResult": {
+    "query": "GraphMind dynamic GNN theorem selection LLM reasoning 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013fHbFJj1ZhKC7zbfmnBFNF",
+        "content": [
+          {
+            "title": "[2511.19078] GraphMind: Theorem Selection and Conclusion Generation Framework with Dynamic GNN for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2511.19078"
+          },
+          {
+            "title": "GraphMind: Theorem Selection and Conclusion Generation",
+            "url": "https://arxiv.org/pdf/2511.19078"
+          },
+          {
+            "title": "GraphMind: Theorem Selection and Conclusion Generation Framework with Dynamic GNN for LLM Reasoning",
+            "url": "https://arxiv.org/html/2511.19078v1"
+          },
+          {
+            "title": "Improving LLMs' Generalized Reasoning Abilities by Graph Problems",
+            "url": "https://arxiv.org/pdf/2507.17168"
+          },
+          {
+            "title": "Learn to Think: Bootstrapping LLM Reasoning Capability Through Graph Representation Learning",
+            "url": "https://arxiv.org/pdf/2505.06321"
+          },
+          {
+            "title": "GraphMind: LLMs as Dynamic Knowledge Builders for Sequential Decision-Making | OpenReview",
+            "url": "https://openreview.net/forum?id=XromAiEaE3"
+          },
+          {
+            "title": "From Nodes to Narratives: Explaining Graph Neural Networks with LLMs and Graph Context",
+            "url": "https://arxiv.org/html/2508.07117v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key results:\n\nGraphMind is a novel dynamic graph-based framework that integrates graph neural networks (GNN) with LLMs to iteratively select theorems and generate intermediate conclusions for multi-step reasoning.\n\nThe method models the reasoning process as a heterogeneous evolving graph, where nodes represent conditions, theorems, and conclusions, while edges capture logical dependencies between nodes.\n\nBy encoding the current reasoning state with GNN and leveraging semantic matching for theorem selection, the framework enables context-aware, interpretable, and structured reasoning in a closed-loop manner.\n\nExperiments on various question-answering (QA) datasets demonstrate that GraphMind achieves consistent performance improvements and significantly outperforms existing baselines in multi-step reasoning.\n\nThe paper was published on arXiv on November 24, 2025 (arXiv:2511.19078) by Yutong Li, Yitian Zhou, Xudong Wang, GuoChen, and Caiyan Qin."
+    ],
+    "durationSeconds": 6.425280000999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1e5094cb-b348-4a3d-a9cf-9590ea3f1056",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-28T05:58:43.762Z_
+
+<details><summary>↩ Tool result · `toolu_01K9dsga2LmNsKfuAiViBaUa`</summary>
+
+```text
+Web search results for query: "Godel Poetry recursive decomposition theorem proving retrieval 2025"
+
+Links: [{"title":"GÖDEL’S POETRY Kelly J. Davis Unaffiliated kdavis@alum.mit.edu ABSTRACT","url":"https://arxiv.org/pdf/2512.14252"},{"title":"[2512.14252] Gödel's Poetry","url":"https://arxiv.org/abs/2512.14252"},{"title":"GitHub - KellyJDavis/goedels-poetry: A recursive, reflective POETRY algorithm variant using Goedel-Prover-V2","url":"https://github.com/KellyJDavis/goedels-poetry/"},{"title":"(PDF) Gödel's Poetry","url":"https://www.researchgate.net/publication/398766523_Godel's_Poetry"},{"title":"Gödel’s Poetry","url":"https://arxiv.org/html/2512.14252v1"},{"title":"Proving Theorems Recursively","url":"https://arxiv.org/html/2405.14414v1"},{"title":"Preprint. PROVER AGENT: AN AGENT-BASED FRAMEWORK FOR FORMAL MATHEMATICAL PROOFS","url":"https://arxiv.org/pdf/2506.19923"}]
+
+Based on the search results, here's what I found:
+
+## Gödel's Poetry: A System for Automated Theorem Proving
+
+Gödel's Poetry is a new approach to computer theorem proving that employs specialized language models for Lean4 proof generation combined with recursive decomposition of difficult theorems into simpler entailing propositions.
+
+### Key Components
+
+The system combines automated theorem proving, decomposition of difficult theorems into entailing propositions, RAG based retrieval of propositions useful for decomposition, and specialized language models. The approach builds upon three recent advances: the verifier-guided self-correction approach of Goedel-Prover-V2, the recursive proof strategy of POETRY, and the RAG based propositions retrieval of Hilbert.
+
+### Recursive Decomposition Strategy
+
+The system decomposes difficult theorems into entailing propositions with explicit named hypotheses, which are then directly proven. If direct proof is too difficult, they too are sketched and decomposed into subgoals with explicit named hypotheses, with this entire process applied recursively.
+
+### Performance and Technical Contributions
+
+Without decomposition, the system achieves a 90.4% pass rate on miniF2F, and with decomposition, this is significantly improved. A key technical contribution lies in the extension of the Kimina Lean Server with abstract syntax tree (AST) parsing capabilities to facilitate automated, recursive proof decomposition.
+
+The system is made available on PyPI as goedels-poetry with open-source implementation on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1452fb3e-3968-435e-a228-aea8d6ed174d",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "a48d515a-3a62-4d62-87b6-f00d17a73450",
+  "toolUseResult": {
+    "query": "Godel Poetry recursive decomposition theorem proving retrieval 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RArpRWyvt9CqRTXrNWCUt6",
+        "content": [
+          {
+            "title": "GÖDEL’S POETRY Kelly J. Davis Unaffiliated kdavis@alum.mit.edu ABSTRACT",
+            "url": "https://arxiv.org/pdf/2512.14252"
+          },
+          {
+            "title": "[2512.14252] Gödel's Poetry",
+            "url": "https://arxiv.org/abs/2512.14252"
+          },
+          {
+            "title": "GitHub - KellyJDavis/goedels-poetry: A recursive, reflective POETRY algorithm variant using Goedel-Prover-V2",
+            "url": "https://github.com/KellyJDavis/goedels-poetry/"
+          },
+          {
+            "title": "(PDF) Gödel's Poetry",
+            "url": "https://www.researchgate.net/publication/398766523_Godel's_Poetry"
+          },
+          {
+            "title": "Gödel’s Poetry",
+            "url": "https://arxiv.org/html/2512.14252v1"
+          },
+          {
+            "title": "Proving Theorems Recursively",
+            "url": "https://arxiv.org/html/2405.14414v1"
+          },
+          {
+            "title": "Preprint. PROVER AGENT: AN AGENT-BASED FRAMEWORK FOR FORMAL MATHEMATICAL PROOFS",
+            "url": "https://arxiv.org/pdf/2506.19923"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\n## Gödel's Poetry: A System for Automated Theorem Proving\n\nGödel's Poetry is a new approach to computer theorem proving that employs specialized language models for Lean4 proof generation combined with recursive decomposition of difficult theorems into simpler entailing propositions.\n\n### Key Components\n\nThe system combines automated theorem proving, decomposition of difficult theorems into entailing propositions, RAG based retrieval of propositions useful for decomposition, and specialized language models. The approach builds upon three recent advances: the verifier-guided self-correction approach of Goedel-Prover-V2, the recursive proof strategy of POETRY, and the RAG based propositions retrieval of Hilbert.\n\n### Recursive Decomposition Strategy\n\nThe system decomposes difficult theorems into entailing propositions with explicit named hypotheses, which are then directly proven. If direct proof is too difficult, they too are sketched and decomposed into subgoals with explicit named hypotheses, with this entire process applied recursively.\n\n### Performance and Technical Contributions\n\nWithout decomposition, the system achieves a 90.4% pass rate on miniF2F, and with decomposition, this is significantly improved. A key technical contribution lies in the extension of the Kimina Lean Server with abstract syntax tree (AST) parsing capabilities to facilitate automated, recursive proof decomposition.\n\nThe system is made available on PyPI as goedels-poetry with open-source implementation on GitHub."
+    ],
+    "durationSeconds": 8.146185176999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1452fb3e-3968-435e-a228-aea8d6ed174d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-28T05:58:43.860Z_
+
+<details><summary>↩ Tool result · `toolu_01KM2N4qUXg5aoKfS9Uugt7P`</summary>
+
+```text
+Web search results for query: "ReProver LeanDojo premise selection benchmark numbers baseline 2024 2025"
+
+Links: [{"title":"LeanDojo Benchmark 4","url":"https://www.emergentmind.com/topics/leandojo-benchmark-4"},{"title":"LeanDojo: AI-Assisted Theorem Proving in Lean","url":"https://leandojo.org/leandojo.html"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models | OpenReview","url":"https://openreview.net/forum?id=g7OX2sOJtn&noteId=EJxdCMebal"},{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/html/2510.23637v1"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://leandojo.org/?amp=&amp="},{"title":"[Quick Review] LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://liner.com/review/leandojo-theorem-proving-with-retrievalaugmented-language-models"},{"title":"[2306.15626] LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://arxiv.org/abs/2306.15626"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://arxiv.org/pdf/2306.15626"},{"title":"NeurIPS Poster LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://neurips.cc/virtual/2023/poster/73510"}]
+
+Based on the search results, here are the ReProver premise selection benchmark numbers for the LeanDojo benchmark:
+
+## Baseline Numbers (Original ReProver)
+
+The ReProver baseline achieved a Recall@1 of 13.42% on the premise selection task.
+
+## Recent 2025 Improvements
+
+A GNN-augmented retriever improved upon the ReProver baseline, achieving Recall@1 of 17.98% (+33.98% relative improvement), with Recall@10 and MRR showing over 25% relative improvement.
+
+More specifically, a graph-augmented approach combining dense text embeddings with graph neural networks outperformed the ReProver language-based baseline by over 25% across standard retrieval metrics on the LeanDojo Benchmark.
+
+## Benchmark Dataset
+
+The original LeanDojo Benchmark contains 98,734 theorems/proofs and 130,262 premises from mathlib, while LeanDojo Benchmark 4 contains 122,517 theorems/proofs and 167,779 premises from mathlib4.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea93e297-58a0-4f77-8789-5a880f1d21b9",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "18eb03a9-3cc2-4a09-9c24-2627969ca6b2",
+  "toolUseResult": {
+    "query": "ReProver LeanDojo premise selection benchmark numbers baseline 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0171SVpq8ZKM42r2jpViyWvn",
+        "content": [
+          {
+            "title": "LeanDojo Benchmark 4",
+            "url": "https://www.emergentmind.com/topics/leandojo-benchmark-4"
+          },
+          {
+            "title": "LeanDojo: AI-Assisted Theorem Proving in Lean",
+            "url": "https://leandojo.org/leandojo.html"
+          },
+          {
+            "title": "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=g7OX2sOJtn&noteId=EJxdCMebal"
+          },
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/html/2510.23637v1"
+          },
+          {
+            "title": "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://leandojo.org/?amp=&amp="
+          },
+          {
+            "title": "[Quick Review] LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://liner.com/review/leandojo-theorem-proving-with-retrievalaugmented-language-models"
+          },
+          {
+            "title": "[2306.15626] LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/abs/2306.15626"
+          },
+          {
+            "title": "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/pdf/2306.15626"
+          },
+          {
+            "title": "NeurIPS Poster LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://neurips.cc/virtual/2023/poster/73510"
+          }
+        ]
+      },
+      "Based on the search results, here are the ReProver premise selection benchmark numbers for the LeanDojo benchmark:\n\n## Baseline Numbers (Original ReProver)\n\nThe ReProver baseline achieved a Recall@1 of 13.42% on the premise selection task.\n\n## Recent 2025 Improvements\n\nA GNN-augmented retriever improved upon the ReProver baseline, achieving Recall@1 of 17.98% (+33.98% relative improvement), with Recall@10 and MRR showing over 25% relative improvement.\n\nMore specifically, a graph-augmented approach combining dense text embeddings with graph neural networks outperformed the ReProver language-based baseline by over 25% across standard retrieval metrics on the LeanDojo Benchmark.\n\n## Benchmark Dataset\n\nThe original LeanDojo Benchmark contains 98,734 theorems/proofs and 130,262 premises from mathlib, while LeanDojo Benchmark 4 contains 122,517 theorems/proofs and 167,779 premises from mathlib4."
+    ],
+    "durationSeconds": 6.335831503999987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ea93e297-58a0-4f77-8789-5a880f1d21b9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-28T05:58:45.760Z_
+
+<details><summary>↩ Tool result · `toolu_01AzWPzJSTs8xXRvu7s56yDh`</summary>
+
+```text
+Web search results for query: "REAL-Prover retrieval augmented Lean prover 2025 2026"
+
+Links: [{"title":"REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning","url":"https://arxiv.org/html/2505.20613v3"},{"title":"(PDF) REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning","url":"https://www.researchgate.net/publication/392133993_REAL-Prover_Retrieval_Augmented_Lean_Prover_for_Mathematical_Reasoning"},{"title":"REAL-Prover: Retrieval Augmented Lean ...","url":"https://arxiv.org/pdf/2505.20613"},{"title":"[Literature Review] REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning","url":"https://www.themoonlight.io/en/review/real-prover-retrieval-augmented-lean-prover-for-mathematical-reasoning"},{"title":"[2505.20613] REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning","url":"https://arxiv.org/abs/2505.20613"},{"title":"FrenzyMath/REAL-Prover · Hugging Face","url":"https://huggingface.co/FrenzyMath/REAL-Prover"},{"title":"Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs","url":"https://arxiv.org/html/2506.19923v4"},{"title":"Lean Finder: Semantic Search for Mathlib That Understands User Intents","url":"https://arxiv.org/html/2510.15940v1"}]
+
+Based on the search results, here's what I found about REAL-Prover:
+
+## Overview
+
+REAL-Prover is a stepwise proof system for Lean 4 that aims to construct a high-performance automated prover. It is a new open-source stepwise theorem prover for Lean 4 based on a fine-tuned large language model (REAL-Prover-v1) and integrated with a retrieval system (Leansearch-PS) to boost performance on solving college-level mathematics problems.
+
+## Key Components
+
+Each model invocation is conditioned on the current proof state and enhanced through the retrieval of semantically relevant theorems from Mathlib. The framework has three main components:
+
+1. LeanSearch-PS performs semantic premise selection through a two-stage training strategy that improves both retrieval precision and generalization
+2. HERALD-AF extends the HERALD pipeline to systematically translate informal mathematical statements into verified Lean expressions, enabling scalable data generation
+3. Jixia-Interactive provides a Lean 4 interactive environment that supports efficient interaction between prover and compiler in stepwise proving
+
+## Technical Details
+
+The system is built on top of Qwen2.5-Math-7B and fine-tuned using a custom pipeline and dataset, with a retrieval module (Leansearch-PS) that fetches relevant theorems from the Lean math library to enhance generation quality.
+
+## Performance
+
+The prover achieves a 23.7% success rate (Pass@64) on the ProofNet dataset using only supervised fine-tuning, and retrieval significantly improves performance with 56.7% on FATE-M compared to 44.7% without retrieval.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9569498b-7a60-4e46-867f-1f2c4d7d17e6",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "af4c671b-05bb-48dc-a58a-1b3ad7278ca3",
+  "toolUseResult": {
+    "query": "REAL-Prover retrieval augmented Lean prover 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BWkREHH6XfMBhoJrBrAcqb",
+        "content": [
+          {
+            "title": "REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2505.20613v3"
+          },
+          {
+            "title": "(PDF) REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning",
+            "url": "https://www.researchgate.net/publication/392133993_REAL-Prover_Retrieval_Augmented_Lean_Prover_for_Mathematical_Reasoning"
+          },
+          {
+            "title": "REAL-Prover: Retrieval Augmented Lean ...",
+            "url": "https://arxiv.org/pdf/2505.20613"
+          },
+          {
+            "title": "[Literature Review] REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning",
+            "url": "https://www.themoonlight.io/en/review/real-prover-retrieval-augmented-lean-prover-for-mathematical-reasoning"
+          },
+          {
+            "title": "[2505.20613] REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2505.20613"
+          },
+          {
+            "title": "FrenzyMath/REAL-Prover · Hugging Face",
+            "url": "https://huggingface.co/FrenzyMath/REAL-Prover"
+          },
+          {
+            "title": "Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs",
+            "url": "https://arxiv.org/html/2506.19923v4"
+          },
+          {
+            "title": "Lean Finder: Semantic Search for Mathlib That Understands User Intents",
+            "url": "https://arxiv.org/html/2510.15940v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about REAL-Prover:\n\n## Overview\n\nREAL-Prover is a stepwise proof system for Lean 4 that aims to construct a high-performance automated prover. It is a new open-source stepwise theorem prover for Lean 4 based on a fine-tuned large language model (REAL-Prover-v1) and integrated with a retrieval system (Leansearch-PS) to boost performance on solving college-level mathematics problems.\n\n## Key Components\n\nEach model invocation is conditioned on the current proof state and enhanced through the retrieval of semantically relevant theorems from Mathlib. The framework has three main components:\n\n1. LeanSearch-PS performs semantic premise selection through a two-stage training strategy that improves both retrieval precision and generalization\n2. HERALD-AF extends the HERALD pipeline to systematically translate informal mathematical statements into verified Lean expressions, enabling scalable data generation\n3. Jixia-Interactive provides a Lean 4 interactive environment that supports efficient interaction between prover and compiler in stepwise proving\n\n## Technical Details\n\nThe system is built on top of Qwen2.5-Math-7B and fine-tuned using a custom pipeline and dataset, with a retrieval module (Leansearch-PS) that fetches relevant theorems from the Lean math library to enhance generation quality.\n\n## Performance\n\nThe prover achieves a 23.7% success rate (Pass@64) on the ProofNet dataset using only supervised fine-tuning, and retrieval significantly improves performance with 56.7% on FATE-M compared to 44.7% without retrieval."
+    ],
+    "durationSeconds": 9.054092130999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9569498b-7a60-4e46-867f-1f2c4d7d17e6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63 · 2026-05-28T05:58:45.766Z_
+
+```json
+{
+  "parentUuid": "af4c671b-05bb-48dc-a58a-1b3ad7278ca3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "012c37a3-bc8b-48f0-81df-e317096e2c4c",
+  "timestamp": "2026-05-28T05:58:45.766Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-28T05:58:49.204Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for more specific information - concurrent work, and also check for Recursive Decomposition with Dependencies (RDD) paper, and more venue deadlines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "012c37a3-bc8b-48f0-81df-e317096e2c4c",
+  "isSidechain": false,
+  "requestId": "req_011CbUTKWsyQkMmLkqun46vj",
+  "type": "assistant",
+  "uuid": "81f4df23-8020-40fa-b134-f63687e69644",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Lr9a5BWLFkYxoaF5rvVC2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 729,
+      "cache_creation_input_tokens": 2494,
+      "cache_read_input_tokens": 27281,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 729,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 27281,
+          "cache_creation_input_tokens": 2494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-28T05:58:50.143Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RM4YujNQV1Q3bgB9MqU8DD`</summary>
+
+```json
+{
+  "query": "Recursive Decomposition Dependencies RDD paper arXiv 2505.02576"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81f4df23-8020-40fa-b134-f63687e69644",
+  "isSidechain": false,
+  "requestId": "req_011CbUTKWsyQkMmLkqun46vj",
+  "type": "assistant",
+  "uuid": "a0bf08e8-562d-4359-b29a-dbb72a354d0a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Lr9a5BWLFkYxoaF5rvVC2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 729,
+      "cache_creation_input_tokens": 2494,
+      "cache_read_input_tokens": 27281,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 729,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 27281,
+          "cache_creation_input_tokens": 2494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-28T05:58:50.676Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BTMZLn4vdv5rZHY51xYZx1`</summary>
+
+```json
+{
+  "query": "dynamic premise selection evolving proof context formal verification OpenReview 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0bf08e8-562d-4359-b29a-dbb72a354d0a",
+  "isSidechain": false,
+  "requestId": "req_011CbUTKWsyQkMmLkqun46vj",
+  "type": "assistant",
+  "uuid": "cc19f4dc-53d1-4f61-b3a2-61fab904bffb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Lr9a5BWLFkYxoaF5rvVC2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 729,
+      "cache_creation_input_tokens": 2494,
+      "cache_read_input_tokens": 27281,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 729,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 27281,
+          "cache_creation_input_tokens": 2494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-28T05:58:51.677Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hzc7KMEup4q7TND4N8YCQo`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline ARR June 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc19f4dc-53d1-4f61-b3a2-61fab904bffb",
+  "isSidechain": false,
+  "requestId": "req_011CbUTKWsyQkMmLkqun46vj",
+  "type": "assistant",
+  "uuid": "8c696916-4b52-41cc-a951-c0e20500403b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Lr9a5BWLFkYxoaF5rvVC2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 729,
+      "cache_creation_input_tokens": 2494,
+      "cache_read_input_tokens": 27281,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 729,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 27281,
+          "cache_creation_input_tokens": 2494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-28T05:58:51.962Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DVGRtECFHdSTZd8CXgvwQG`</summary>
+
+```json
+{
+  "query": "DeepSeek-Prover-V2 recursive proof subgoal decomposition 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c696916-4b52-41cc-a951-c0e20500403b",
+  "isSidechain": false,
+  "requestId": "req_011CbUTKWsyQkMmLkqun46vj",
+  "type": "assistant",
+  "uuid": "29fa23bc-a9c8-4dde-a26e-5c154f0fd840",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Lr9a5BWLFkYxoaF5rvVC2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 729,
+      "cache_creation_input_tokens": 2494,
+      "cache_read_input_tokens": 27281,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 729,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 27281,
+          "cache_creation_input_tokens": 2494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-28T05:58:56.849Z_
+
+<details><summary>↩ Tool result · `toolu_01RM4YujNQV1Q3bgB9MqU8DD`</summary>
+
+```text
+Web search results for query: "Recursive Decomposition Dependencies RDD paper arXiv 2505.02576"
+
+Links: [{"title":"[2505.02576] Recursive Decomposition with Dependencies for Generic Divide-and-Conquer Reasoning","url":"https://arxiv.org/abs/2505.02576"},{"title":"Recursive Decomposition with Dependencies for Generic Divide-and-Conquer Reasoning","url":"https://arxiv.org/html/2505.02576v1"},{"title":"Recursive Decomposition with Dependencies for Generic Divide-and-Conquer Reasoning | OpenReview","url":"https://openreview.net/forum?id=MZG5VzXBm9"},{"title":"Artificial Intelligence May 2025","url":"https://arxiv.org/list/cs.AI/2025-05?skip=50&show=2000"},{"title":"Divide-and-Conquer-Based Recursive Decomposition of Directed Acyclic Graph | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-981-15-7394-1_29"},{"title":"Recursive Decomposition of Logical Thoughts: Framework for Superior Reasoning and Knowledge Propagation in Large Language Models","url":"https://arxiv.org/html/2501.02026v1"},{"title":"Decomposing past and future: Integrated information decomposition based on shared probability mass exclusions","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10035902/"},{"title":"Reachability Analysis Using Message Passing over Tree Decompositions","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7363237/"},{"title":"[2501.02026] Recursive Decomposition of Logical Thoughts: Framework for Superior Reasoning and Knowledge Propagation in Large Language Models","url":"https://arxiv.org/abs/2501.02026"}]
+
+I found the paper! Here are the key details about the RDD (Recursive Decomposition with Dependencies) paper arXiv 2505.02576:
+
+## Paper Overview
+
+Recursive Decomposition with Dependencies (RDD) is a scalable divide-and-conquer method for solving reasoning problems that requires less supervision than prior approaches.
+
+## Authors and Submission
+The paper was submitted on May 5, 2025 by Sergio Hernández-Gutiérrez, Minttu Alakuijala, Alexander V. Nikitin, and Pekka Marttinen.
+
+## Key Features
+
+The method can be directly applied to a new problem class even in the absence of any task-specific guidance. Furthermore, RDD supports sub-task dependencies, allowing for ordered execution of sub-tasks, as well as an error recovery mechanism that can correct mistakes made in previous steps.
+
+## Performance Results
+
+The approach was evaluated on two benchmarks with six difficulty levels each and in two in-context settings: one with task-specific examples and one without. Results demonstrate that RDD outperforms other methods in a compute-matched setting as task complexity increases, while also being more computationally efficient.
+
+The paper addresses limitations of current LLM reasoning approaches and offers a more scalable alternative that works effectively with minimal task-specific supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0bf08e8-562d-4359-b29a-dbb72a354d0a",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "b00c7943-2e1c-4ac4-9d33-cf71f13915b4",
+  "toolUseResult": {
+    "query": "Recursive Decomposition Dependencies RDD paper arXiv 2505.02576",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AHcYXegdnzFHy6jM9JDZAK",
+        "content": [
+          {
+            "title": "[2505.02576] Recursive Decomposition with Dependencies for Generic Divide-and-Conquer Reasoning",
+            "url": "https://arxiv.org/abs/2505.02576"
+          },
+          {
+            "title": "Recursive Decomposition with Dependencies for Generic Divide-and-Conquer Reasoning",
+            "url": "https://arxiv.org/html/2505.02576v1"
+          },
+          {
+            "title": "Recursive Decomposition with Dependencies for Generic Divide-and-Conquer Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=MZG5VzXBm9"
+          },
+          {
+            "title": "Artificial Intelligence May 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-05?skip=50&show=2000"
+          },
+          {
+            "title": "Divide-and-Conquer-Based Recursive Decomposition of Directed Acyclic Graph | SpringerLink",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-15-7394-1_29"
+          },
+          {
+            "title": "Recursive Decomposition of Logical Thoughts: Framework for Superior Reasoning and Knowledge Propagation in Large Language Models",
+            "url": "https://arxiv.org/html/2501.02026v1"
+          },
+          {
+            "title": "Decomposing past and future: Integrated information decomposition based on shared probability mass exclusions",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10035902/"
+          },
+          {
+            "title": "Reachability Analysis Using Message Passing over Tree Decompositions",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7363237/"
+          },
+          {
+            "title": "[2501.02026] Recursive Decomposition of Logical Thoughts: Framework for Superior Reasoning and Knowledge Propagation in Large Language Models",
+            "url": "https://arxiv.org/abs/2501.02026"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about the RDD (Recursive Decomposition with Dependencies) paper arXiv 2505.02576:\n\n## Paper Overview\n\nRecursive Decomposition with Dependencies (RDD) is a scalable divide-and-conquer method for solving reasoning problems that requires less supervision than prior approaches.\n\n## Authors and Submission\nThe paper was submitted on May 5, 2025 by Sergio Hernández-Gutiérrez, Minttu Alakuijala, Alexander V. Nikitin, and Pekka Marttinen.\n\n## Key Features\n\nThe method can be directly applied to a new problem class even in the absence of any task-specific guidance. Furthermore, RDD supports sub-task dependencies, allowing for ordered execution of sub-tasks, as well as an error recovery mechanism that can correct mistakes made in previous steps.\n\n## Performance Results\n\nThe approach was evaluated on two benchmarks with six difficulty levels each and in two in-context settings: one with task-specific examples and one without. Results demonstrate that RDD outperforms other methods in a compute-matched setting as task complexity increases, while also being more computationally efficient.\n\nThe paper addresses limitations of current LLM reasoning approaches and offers a more scalable alternative that works effectively with minimal task-specific supervision."
+    ],
+    "durationSeconds": 6.699465368999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a0bf08e8-562d-4359-b29a-dbb72a354d0a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "b00c7943-2e1c-4ac4-9d33-cf71f13915b4",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-28T05:58:57.555Z_
+
+<details><summary>↩ Tool result · `toolu_01BTMZLn4vdv5rZHY51xYZx1`</summary>
+
+```text
+Web search results for query: "dynamic premise selection evolving proof context formal verification OpenReview 2026"
+
+Links: [{"title":"Premise Selection for a Lean Hammer | OpenReview","url":"https://openreview.net/forum?id=m04JJNeRK6"},{"title":"Premise Selection for a Lean Hammer","url":"https://arxiv.org/pdf/2506.07477"},{"title":"Premise selection with neural networks and distributed representation of   features","url":"https://arxiv.org/pdf/1807.10268"},{"title":"Stateful Premise Selection by Recurrent Neural Networks","url":"https://arxiv.org/pdf/2004.08212"},{"title":"Premise Selection for Mathematics by Corpus Analysis and Kernel Methods","url":"https://arxiv.org/pdf/1108.3446"},{"title":"Adaptive Proof Refinement with LLM-Guided Strategy Selection","url":"https://arxiv.org/pdf/2510.25103"},{"title":"Rango: Adaptive Retrieval-Augmented Proving for Automated Software   Verification","url":"https://arxiv.org/pdf/2412.14063"},{"title":"Premise Selection for Theorem Proving by Deep Graph Embedding","url":"https://arxiv.org/pdf/1709.09994"},{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/pdf/2510.23637"}]
+
+I found relevant research on this topic. Here are the key results:
+
+## Main Finding
+
+The most relevant work appears to be "Premise Selection for a Lean Hammer," which presents LeanPremise—a system specifically trained for use with a hammer in dependent type theory that dynamically adapts to user-specific contexts, enabling it to recommend premises from libraries outside the training data as well as locally defined lemmas.
+
+LeanPremise enables LeanHammer to solve 21% more goals than existing premise selectors and generalizes well to diverse domains. This work was published on OpenReview in January 2026.
+
+## Related Work
+
+Other recent approaches to dynamic and context-aware proof development include:
+
+- Rango, a tool for Coq that uses retrieval augmentation at every step of the proof to automatically determine which proofs and premises to include, adapting to the project and to the evolving state of the proof.
+
+- ADAPT, an adaptive proof refinement framework that, in contrast to prior work with single fixed strategies, dynamically selects an appropriate strategy based on the current state of the proof assistant and available context.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc19f4dc-53d1-4f61-b3a2-61fab904bffb",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "424f0009-0c84-4c19-932f-d357c99b6ba5",
+  "toolUseResult": {
+    "query": "dynamic premise selection evolving proof context formal verification OpenReview 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012T27J48oQYJ2kR5zg44KGa",
+        "content": [
+          {
+            "title": "Premise Selection for a Lean Hammer | OpenReview",
+            "url": "https://openreview.net/forum?id=m04JJNeRK6"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/pdf/2506.07477"
+          },
+          {
+            "title": "Premise selection with neural networks and distributed representation of   features",
+            "url": "https://arxiv.org/pdf/1807.10268"
+          },
+          {
+            "title": "Stateful Premise Selection by Recurrent Neural Networks",
+            "url": "https://arxiv.org/pdf/2004.08212"
+          },
+          {
+            "title": "Premise Selection for Mathematics by Corpus Analysis and Kernel Methods",
+            "url": "https://arxiv.org/pdf/1108.3446"
+          },
+          {
+            "title": "Adaptive Proof Refinement with LLM-Guided Strategy Selection",
+            "url": "https://arxiv.org/pdf/2510.25103"
+          },
+          {
+            "title": "Rango: Adaptive Retrieval-Augmented Proving for Automated Software   Verification",
+            "url": "https://arxiv.org/pdf/2412.14063"
+          },
+          {
+            "title": "Premise Selection for Theorem Proving by Deep Graph Embedding",
+            "url": "https://arxiv.org/pdf/1709.09994"
+          },
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/pdf/2510.23637"
+          }
+        ]
+      },
+      "I found relevant research on this topic. Here are the key results:\n\n## Main Finding\n\nThe most relevant work appears to be \"Premise Selection for a Lean Hammer,\" which presents LeanPremise—a system specifically trained for use with a hammer in dependent type theory that dynamically adapts to user-specific contexts, enabling it to recommend premises from libraries outside the training data as well as locally defined lemmas.\n\nLeanPremise enables LeanHammer to solve 21% more goals than existing premise selectors and generalizes well to diverse domains. This work was published on OpenReview in January 2026.\n\n## Related Work\n\nOther recent approaches to dynamic and context-aware proof development include:\n\n- Rango, a tool for Coq that uses retrieval augmentation at every step of the proof to automatically determine which proofs and premises to include, adapting to the project and to the evolving state of the proof.\n\n- ADAPT, an adaptive proof refinement framework that, in contrast to prior work with single fixed strategies, dynamically selects an appropriate strategy based on the current state of the proof assistant and available context."
+    ],
+    "durationSeconds": 6.875701903000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cc19f4dc-53d1-4f61-b3a2-61fab904bffb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-28T05:58:58.144Z_
+
+<details><summary>↩ Tool result · `toolu_01DVGRtECFHdSTZd8CXgvwQG`</summary>
+
+```text
+Web search results for query: "DeepSeek-Prover-V2 recursive proof subgoal decomposition 2025"
+
+Links: [{"title":"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/deepseek-prover-v2-advancing-formal-mathematical-reasoning"},{"title":"DeepSeek-Prover-V2-671B | BusyDeepSeek","url":"https://busydeepseek.com/insights/deepseek-prover-v2"},{"title":"[2504.21801] DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/abs/2504.21801"},{"title":"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/pdf/2504.21801"},{"title":"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/html/2504.21801v1"},{"title":"DeepSeek-AI Released DeepSeek-Prover-V2: An Open-Source Large Language Model Designed for Formal Theorem, Proving through Subgoal Decomposition and Reinforcement Learning - MarkTechPost","url":"https://www.marktechpost.com/2025/05/01/deepseek-ai-released-deepseek-prover-v2-an-open-source-large-language-model-designed-for-formal-theorem-proving-through-subgoal-decomposition-and-reinforcement-learning/"},{"title":"[Literature Review] DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://www.themoonlight.io/en/review/deepseek-prover-v2-advancing-formal-mathematical-reasoning-via-reinforcement-learning-for-subgoal-decomposition"},{"title":"DeepSeek Prover V2 download | SourceForge.net","url":"https://sourceforge.net/projects/deepseek-prover-v2.mirror/"}]
+
+Based on the search results, here's what I found about DeepSeek-Prover-V2's approach to recursive proof subgoal decomposition:
+
+## Overview
+
+DeepSeek-Prover-V2 is an open-source large language model designed for formal theorem proving in Lean 4, with initialization data collected through a recursive theorem proving pipeline powered by DeepSeek-V3.
+
+## Recursive Proof Subgoal Decomposition
+
+The cold-start training procedure begins by prompting DeepSeek-V3 to decompose complex problems into a series of subgoals, with proofs of resolved subgoals synthesized into a chain-of-thought process combined with DeepSeek-V3's step-by-step reasoning.
+
+A key innovation lies in recursively solving each subgoal using the 7B prover, reducing computation costs while maintaining formal rigor.
+
+## Key Innovation
+
+DeepSeek-Prover-V2 employs a recursive proof search algorithm that dynamically generates and validates subgoals. The key innovation is its ability to identify important intermediate steps (subgoals) that lead to the final proof.
+
+## Performance Results
+
+The resulting model, DeepSeek-Prover-V2-671B, achieves state-of-the-art performance in neural theorem proving, reaching 88.9% pass ratio on the MiniF2F-test and solving 49 out of 658 problems from PutnamBench.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29fa23bc-a9c8-4dde-a26e-5c154f0fd840",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "654a2f68-8780-47d4-a22f-9b77b48f9ebd",
+  "toolUseResult": {
+    "query": "DeepSeek-Prover-V2 recursive proof subgoal decomposition 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LfWoX4RSP9djor7C8M5RdX",
+        "content": [
+          {
+            "title": "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/deepseek-prover-v2-advancing-formal-mathematical-reasoning"
+          },
+          {
+            "title": "DeepSeek-Prover-V2-671B | BusyDeepSeek",
+            "url": "https://busydeepseek.com/insights/deepseek-prover-v2"
+          },
+          {
+            "title": "[2504.21801] DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+            "url": "https://arxiv.org/abs/2504.21801"
+          },
+          {
+            "title": "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+            "url": "https://arxiv.org/pdf/2504.21801"
+          },
+          {
+            "title": "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+            "url": "https://arxiv.org/html/2504.21801v1"
+          },
+          {
+            "title": "DeepSeek-AI Released DeepSeek-Prover-V2: An Open-Source Large Language Model Designed for Formal Theorem, Proving through Subgoal Decomposition and Reinforcement Learning - MarkTechPost",
+            "url": "https://www.marktechpost.com/2025/05/01/deepseek-ai-released-deepseek-prover-v2-an-open-source-large-language-model-designed-for-formal-theorem-proving-through-subgoal-decomposition-and-reinforcement-learning/"
+          },
+          {
+            "title": "[Literature Review] DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+            "url": "https://www.themoonlight.io/en/review/deepseek-prover-v2-advancing-formal-mathematical-reasoning-via-reinforcement-learning-for-subgoal-decomposition"
+          },
+          {
+            "title": "DeepSeek Prover V2 download | SourceForge.net",
+            "url": "https://sourceforge.net/projects/deepseek-prover-v2.mirror/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DeepSeek-Prover-V2's approach to recursive proof subgoal decomposition:\n\n## Overview\n\nDeepSeek-Prover-V2 is an open-source large language model designed for formal theorem proving in Lean 4, with initialization data collected through a recursive theorem proving pipeline powered by DeepSeek-V3.\n\n## Recursive Proof Subgoal Decomposition\n\nThe cold-start training procedure begins by prompting DeepSeek-V3 to decompose complex problems into a series of subgoals, with proofs of resolved subgoals synthesized into a chain-of-thought process combined with DeepSeek-V3's step-by-step reasoning.\n\nA key innovation lies in recursively solving each subgoal using the 7B prover, reducing computation costs while maintaining formal rigor.\n\n## Key Innovation\n\nDeepSeek-Prover-V2 employs a recursive proof search algorithm that dynamically generates and validates subgoals. The key innovation is its ability to identify important intermediate steps (subgoals) that lead to the final proof.\n\n## Performance Results\n\nThe resulting model, DeepSeek-Prover-V2-671B, achieves state-of-the-art performance in neural theorem proving, reaching 88.9% pass ratio on the MiniF2F-test and solving 49 out of 658 problems from PutnamBench."
+    ],
+    "durationSeconds": 6.179173941999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "29fa23bc-a9c8-4dde-a26e-5c154f0fd840",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-28T05:58:58.202Z_
+
+<details><summary>↩ Tool result · `toolu_01Hzc7KMEup4q7TND4N8YCQo`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline ARR June 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org//calls/papers/"},{"title":"Third Workshop on Uncertainty-Aware NLP @EMNLP 2026","url":"https://uncertainlp.github.io/"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"EMNLP 2026 Workshop WiNLP ARR Commitment | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FWorkshop%2FWiNLP_ARR_Commitment"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin","url":"https://www.getpaperpin.com/deadlines/emnlp26"}]
+
+Based on the search results, here's what I found about EMNLP 2026 submission deadlines related to ARR and June 2026:
+
+Papers must be submitted, at latest, by the ARR 2026 May cycle for EMNLP 2026 consideration. Papers that have received reviews and a meta-review from ARR (whether from the ARR 2026 May cycle or an earlier ARR cycle) may be committed to EMNLP via the commitment link.
+
+Additionally, there is a special policy regarding the ARR May 2026 cycle: Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026.
+
+Regarding the June 2026 timeframe specifically, all authors must complete the author registration form by May 27, 2026 EoD AoE after submission.
+
+The EMNLP 2026 conference itself will be held in Budapest, Hungary from October 24-29, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c696916-4b52-41cc-a951-c0e20500403b",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "aa4c1d02-8a71-4b88-83d1-31db64ef325a",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline ARR June 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EQtHy4XzFWFgqXtwHjrMje",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org//calls/papers/"
+          },
+          {
+            "title": "Third Workshop on Uncertainty-Aware NLP @EMNLP 2026",
+            "url": "https://uncertainlp.github.io/"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "EMNLP 2026 Workshop WiNLP ARR Commitment | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FWorkshop%2FWiNLP_ARR_Commitment"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin",
+            "url": "https://www.getpaperpin.com/deadlines/emnlp26"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about EMNLP 2026 submission deadlines related to ARR and June 2026:\n\nPapers must be submitted, at latest, by the ARR 2026 May cycle for EMNLP 2026 consideration. Papers that have received reviews and a meta-review from ARR (whether from the ARR 2026 May cycle or an earlier ARR cycle) may be committed to EMNLP via the commitment link.\n\nAdditionally, there is a special policy regarding the ARR May 2026 cycle: Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026.\n\nRegarding the June 2026 timeframe specifically, all authors must complete the author registration form by May 27, 2026 EoD AoE after submission.\n\nThe EMNLP 2026 conference itself will be held in Budapest, Hungary from October 24-29, 2026."
+    ],
+    "durationSeconds": 6.521271594999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8c696916-4b52-41cc-a951-c0e20500403b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-28T05:59:02.195Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A7cKTVjQiHXurVhHvien1G`</summary>
+
+```json
+{
+  "query": "ARR May 2026 submission deadline date EMNLP commitment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa4c1d02-8a71-4b88-83d1-31db64ef325a",
+  "isSidechain": false,
+  "requestId": "req_011CbUTLSAj7YhB931ceAXRj",
+  "type": "assistant",
+  "uuid": "06accbbd-ff06-460a-b7f4-887158f56940",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBmzCc3Dz8hAwi26CkZNnn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 986,
+      "cache_creation_input_tokens": 3228,
+      "cache_read_input_tokens": 29775,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3228,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 986,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 29775,
+          "cache_creation_input_tokens": 3228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3228
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-28T05:59:03.172Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Po4pzto1gLscu3KL1CiKeJ`</summary>
+
+```json
+{
+  "query": "ICLR 2027 paper submission deadline September October 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06accbbd-ff06-460a-b7f4-887158f56940",
+  "isSidechain": false,
+  "requestId": "req_011CbUTLSAj7YhB931ceAXRj",
+  "type": "assistant",
+  "uuid": "72f38fa5-3738-40af-bc36-f946704cd7c7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBmzCc3Dz8hAwi26CkZNnn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 986,
+      "cache_creation_input_tokens": 3228,
+      "cache_read_input_tokens": 29775,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3228,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 986,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 29775,
+          "cache_creation_input_tokens": 3228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3228
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-28T05:59:06.676Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HzZBXEVZMv8CVKZiUXBYgb`</summary>
+
+```json
+{
+  "query": "Rango adaptive retrieval augmented proving software verification Coq 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72f38fa5-3738-40af-bc36-f946704cd7c7",
+  "isSidechain": false,
+  "requestId": "req_011CbUTLSAj7YhB931ceAXRj",
+  "type": "assistant",
+  "uuid": "fd0d567f-37a5-48ce-b07f-185768e28f76",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBmzCc3Dz8hAwi26CkZNnn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 986,
+      "cache_creation_input_tokens": 3228,
+      "cache_read_input_tokens": 29775,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3228,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 986,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 29775,
+          "cache_creation_input_tokens": 3228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3228
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-28T05:59:06.700Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FhqDWEqk2Xrcfi3Z8J12Db`</summary>
+
+```json
+{
+  "query": "miniF2F benchmark state of art results 2026 leaderboard best score"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd0d567f-37a5-48ce-b07f-185768e28f76",
+  "isSidechain": false,
+  "requestId": "req_011CbUTLSAj7YhB931ceAXRj",
+  "type": "assistant",
+  "uuid": "87ba3e93-aef3-44fe-9e54-1d82ae17d923",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JBmzCc3Dz8hAwi26CkZNnn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 986,
+      "cache_creation_input_tokens": 3228,
+      "cache_read_input_tokens": 29775,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3228,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 986,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 29775,
+          "cache_creation_input_tokens": 3228,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3228
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-28T05:59:07.646Z_
+
+<details><summary>↩ Tool result · `toolu_01Po4pzto1gLscu3KL1CiKeJ`</summary>
+
+```text
+Web search results for query: "ICLR 2027 paper submission deadline September October 2026"
+
+Links: [{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/iclr"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"ICLR on X: \"Announcing the ICLR 2026 Call for Papers! Abstract submission: Sept 19 (AoE) Paper submission: Sept 24 (AoE) Reviews released: Nov 11 Author/Reviewer discussion: Nov 11-Dec 3 Final decisions: Jan 22 2026 https://t.co/iERvCJZ8uB\" / X","url":"https://x.com/iclr_conf/status/1953093993530859654"}]
+
+Based on the search results, I found information about ICLR 2026, but I need to clarify that the results show this is for **ICLR 2026**, not ICLR 2027. 
+
+The deadline for paper submissions for ICLR 2026 is September 24 (in 2025, though the search shows this was already passed as of the current date of May 28, 2026). The search results show that the conference has already occurred or is currently in progress for ICLR 2026.
+
+The search results do not contain information about ICLR 2027 paper submission deadlines. If you're looking for ICLR 2027 information, that call for papers may not yet have been announced, as conferences typically announce their deadlines closer to the submission period. I recommend checking the official ICLR website (iclr.cc) directly for updates on ICLR 2027 when the announcement is made.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72f38fa5-3738-40af-bc36-f946704cd7c7",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "0dccefac-9afc-428b-a91c-bfaac45514e8",
+  "toolUseResult": {
+    "query": "ICLR 2027 paper submission deadline September October 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01R39fgAZUPq77Tg59tFYV5b",
+        "content": [
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/iclr"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "ICLR on X: \"Announcing the ICLR 2026 Call for Papers! Abstract submission: Sept 19 (AoE) Paper submission: Sept 24 (AoE) Reviews released: Nov 11 Author/Reviewer discussion: Nov 11-Dec 3 Final decisions: Jan 22 2026 https://t.co/iERvCJZ8uB\" / X",
+            "url": "https://x.com/iclr_conf/status/1953093993530859654"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2026, but I need to clarify that the results show this is for **ICLR 2026**, not ICLR 2027. \n\nThe deadline for paper submissions for ICLR 2026 is September 24 (in 2025, though the search shows this was already passed as of the current date of May 28, 2026). The search results show that the conference has already occurred or is currently in progress for ICLR 2026.\n\nThe search results do not contain information about ICLR 2027 paper submission deadlines. If you're looking for ICLR 2027 information, that call for papers may not yet have been announced, as conferences typically announce their deadlines closer to the submission period. I recommend checking the official ICLR website (iclr.cc) directly for updates on ICLR 2027 when the announcement is made."
+    ],
+    "durationSeconds": 4.471212750000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "72f38fa5-3738-40af-bc36-f946704cd7c7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-28T05:59:10.985Z_
+
+<details><summary>↩ Tool result · `toolu_01A7cKTVjQiHXurVhHvien1G`</summary>
+
+```text
+Web search results for query: "ARR May 2026 submission deadline date EMNLP commitment"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org//calls/papers/"}]
+
+Based on the search results, I can provide you with information about the ARR May 2026 submission deadline and EMNLP commitment:
+
+## ARR May 2026 Submission Deadline
+
+The ARR submission deadline for May 2026 is May 25, 2026.
+
+## EMNLP 2026 Commitment
+
+There is an important special policy for the May 2026 ARR cycle: Authors must explicitly declare which conference they intend to commit to at submission time, given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL).
+
+This choice will be binding for EMNLP 2026: ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+The EMNLP commitment deadline is August 2, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06accbbd-ff06-460a-b7f4-887158f56940",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "f587f6b5-74ae-49bb-8115-6d5191fd7b52",
+  "toolUseResult": {
+    "query": "ARR May 2026 submission deadline date EMNLP commitment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JFyvPpRbNxYMtnPAPZRGrT",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org//calls/papers/"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about the ARR May 2026 submission deadline and EMNLP commitment:\n\n## ARR May 2026 Submission Deadline\n\nThe ARR submission deadline for May 2026 is May 25, 2026.\n\n## EMNLP 2026 Commitment\n\nThere is an important special policy for the May 2026 ARR cycle: Authors must explicitly declare which conference they intend to commit to at submission time, given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL).\n\nThis choice will be binding for EMNLP 2026: ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\nThe EMNLP commitment deadline is August 2, 2026."
+    ],
+    "durationSeconds": 8.785240632,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "06accbbd-ff06-460a-b7f4-887158f56940",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "f587f6b5-74ae-49bb-8115-6d5191fd7b52",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-28T05:59:14.799Z_
+
+<details><summary>↩ Tool result · `toolu_01FhqDWEqk2Xrcfi3Z8J12Db`</summary>
+
+```text
+Web search results for query: "miniF2F benchmark state of art results 2026 leaderboard best score"
+
+Links: [{"title":"MiniF2F | alphaXiv","url":"https://www.alphaxiv.org/benchmarks/university-of-pittsburgh/minif2f"},{"title":"Comparing with state-of-the-arts on the miniF2F dataset. | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Comparing-with-state-of-the-arts-on-the-miniF2F-dataset_tbl1_380821039"},{"title":"miniF2F Benchmark for Automated Theorem Proving","url":"https://www.emergentmind.com/topics/minif2f-benchmark-86233917-786a-4287-a747-456c2acde59a"},{"title":"Goedel-Prover","url":"https://goedel-lm.github.io/"},{"title":"miniF2F: a cross-system benchmark for formal Olympiad-level mathematics | OpenReview","url":"https://openreview.net/forum?id=9ZPegFuFTFv"},{"title":"[2109.00110] miniF2F: a cross-system benchmark for formal Olympiad-level mathematics","url":"https://ar5iv.labs.arxiv.org/html/2109.00110"},{"title":"Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site","url":"https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"}]
+
+Based on the search results, here's what I found regarding miniF2F benchmark state-of-the-art results for 2026:
+
+## Current State-of-the-Art
+
+Goedel-Prover achieves state-of-the-art performance of 57.6% on miniF2F at Pass@32, surpassing DeepSeek-Prover-V1.5-RL by 7.6%.
+
+## Important Context About the Leaderboard
+
+No formal leaderboard is maintained, but researchers are encouraged to report results and contribute back to the benchmark. This means results are typically shared through research papers and community contributions rather than a centralized leaderboard.
+
+## Other Notable Results
+
+For comparison, StepFun-Prover's fine-tuning with real-time Lean feedback attains 70.0% Pass@1 (32B), though this appears to be a different metric (Pass@1 vs Pass@32).
+
+Additionally, the miniF2F-v2 update raises true end-to-end "Olympiad accuracy" to 70%, reflecting improvements in benchmark quality and validation.
+
+The benchmark remains a community-driven resource without an official maintained leaderboard, so the best scores are reported through academic papers and research contributions rather than a single authoritative source.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87ba3e93-aef3-44fe-9e54-1d82ae17d923",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "c1056b1f-bf16-4469-ad55-75adf0189e94",
+  "toolUseResult": {
+    "query": "miniF2F benchmark state of art results 2026 leaderboard best score",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016t7SwpQGkRhdZDmnBmzEF5",
+        "content": [
+          {
+            "title": "MiniF2F | alphaXiv",
+            "url": "https://www.alphaxiv.org/benchmarks/university-of-pittsburgh/minif2f"
+          },
+          {
+            "title": "Comparing with state-of-the-arts on the miniF2F dataset. | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Comparing-with-state-of-the-arts-on-the-miniF2F-dataset_tbl1_380821039"
+          },
+          {
+            "title": "miniF2F Benchmark for Automated Theorem Proving",
+            "url": "https://www.emergentmind.com/topics/minif2f-benchmark-86233917-786a-4287-a747-456c2acde59a"
+          },
+          {
+            "title": "Goedel-Prover",
+            "url": "https://goedel-lm.github.io/"
+          },
+          {
+            "title": "miniF2F: a cross-system benchmark for formal Olympiad-level mathematics | OpenReview",
+            "url": "https://openreview.net/forum?id=9ZPegFuFTFv"
+          },
+          {
+            "title": "[2109.00110] miniF2F: a cross-system benchmark for formal Olympiad-level mathematics",
+            "url": "https://ar5iv.labs.arxiv.org/html/2109.00110"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site",
+            "url": "https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding miniF2F benchmark state-of-the-art results for 2026:\n\n## Current State-of-the-Art\n\nGoedel-Prover achieves state-of-the-art performance of 57.6% on miniF2F at Pass@32, surpassing DeepSeek-Prover-V1.5-RL by 7.6%.\n\n## Important Context About the Leaderboard\n\nNo formal leaderboard is maintained, but researchers are encouraged to report results and contribute back to the benchmark. This means results are typically shared through research papers and community contributions rather than a centralized leaderboard.\n\n## Other Notable Results\n\nFor comparison, StepFun-Prover's fine-tuning with real-time Lean feedback attains 70.0% Pass@1 (32B), though this appears to be a different metric (Pass@1 vs Pass@32).\n\nAdditionally, the miniF2F-v2 update raises true end-to-end \"Olympiad accuracy\" to 70%, reflecting improvements in benchmark quality and validation.\n\nThe benchmark remains a community-driven resource without an official maintained leaderboard, so the best scores are reported through academic papers and research contributions rather than a single authoritative source."
+    ],
+    "durationSeconds": 8.09598242,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "87ba3e93-aef3-44fe-9e54-1d82ae17d923",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-28T05:59:15.133Z_
+
+<details><summary>↩ Tool result · `toolu_01HzZBXEVZMv8CVKZiUXBYgb`</summary>
+
+```text
+Web search results for query: "Rango adaptive retrieval augmented proving software verification Coq 2024"
+
+Links: [{"title":"Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification","url":"https://people.cs.umass.edu/~brun/pubs/pubs/Thompson25icse.pdf"},{"title":"Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification | Proceedings of the IEEE/ACM 47th International Conference on Software Engineering","url":"https://dl.acm.org/doi/10.1109/ICSE55347.2025.00161"},{"title":"Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification","url":"https://arxiv.org/html/2412.14063v2"},{"title":"[2412.14063v1] Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification","url":"https://arxiv.org/abs/2412.14063v1"},{"title":"[2412.14063] Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification","url":"https://arxiv.org/abs/2412.14063"},{"title":"Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification | OpenReview","url":"https://openreview.net/forum?id=9Z0IHqBnKg"},{"title":"Rango: Adaptive Retrieval-Augmented Proving for Automated Software   Verification","url":"https://arxiv.org/pdf/2412.14063"},{"title":"Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification | Request PDF","url":"https://www.researchgate.net/publication/392959443_Rango_Adaptive_Retrieval-Augmented_Proving_for_Automated_Software_Verification"}]
+
+Based on the search results, here's what I found about Rango:
+
+## Overview
+
+Rango is a fully automated proof synthesis tool for Coq that automatically identifies relevant premises and also similar proofs from the current project and uses them during synthesis.
+
+## Key Features
+
+Rango uses retrieval augmentation at every step of the proof to automatically determine which proofs and premises to include in the context of its fine-tuned LLM, adapting to the project and to the evolving state of the proof. Rango improves on prior retrieval-augmented proving approaches by retrieving proofs in addition to lemmas.
+
+## Dataset and Performance
+
+The researchers created CoqStoq, a new dataset of 2,226 open-source Coq projects and 196,929 theorems from GitHub, which includes both training data and a curated evaluation benchmark of well-maintained projects. On this benchmark, Rango synthesizes proofs for 32.0% of the theorems, which is 29% more theorems than the prior state-of-the-art tool Tactician.
+
+## Publication
+
+The work was presented at the Proceedings of the 47th International Conference on Software Engineering (ICSE) in Ottawa, Ontario, Canada, in April 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd0d567f-37a5-48ce-b07f-185768e28f76",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "801d9eb7-6fb4-4aa0-bd3e-7a96f5aba034",
+  "toolUseResult": {
+    "query": "Rango adaptive retrieval augmented proving software verification Coq 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PULF23JGCNuV4kyXM6fQFz",
+        "content": [
+          {
+            "title": "Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification",
+            "url": "https://people.cs.umass.edu/~brun/pubs/pubs/Thompson25icse.pdf"
+          },
+          {
+            "title": "Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification | Proceedings of the IEEE/ACM 47th International Conference on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1109/ICSE55347.2025.00161"
+          },
+          {
+            "title": "Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification",
+            "url": "https://arxiv.org/html/2412.14063v2"
+          },
+          {
+            "title": "[2412.14063v1] Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification",
+            "url": "https://arxiv.org/abs/2412.14063v1"
+          },
+          {
+            "title": "[2412.14063] Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification",
+            "url": "https://arxiv.org/abs/2412.14063"
+          },
+          {
+            "title": "Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification | OpenReview",
+            "url": "https://openreview.net/forum?id=9Z0IHqBnKg"
+          },
+          {
+            "title": "Rango: Adaptive Retrieval-Augmented Proving for Automated Software   Verification",
+            "url": "https://arxiv.org/pdf/2412.14063"
+          },
+          {
+            "title": "Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification | Request PDF",
+            "url": "https://www.researchgate.net/publication/392959443_Rango_Adaptive_Retrieval-Augmented_Proving_for_Automated_Software_Verification"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Rango:\n\n## Overview\n\nRango is a fully automated proof synthesis tool for Coq that automatically identifies relevant premises and also similar proofs from the current project and uses them during synthesis.\n\n## Key Features\n\nRango uses retrieval augmentation at every step of the proof to automatically determine which proofs and premises to include in the context of its fine-tuned LLM, adapting to the project and to the evolving state of the proof. Rango improves on prior retrieval-augmented proving approaches by retrieving proofs in addition to lemmas.\n\n## Dataset and Performance\n\nThe researchers created CoqStoq, a new dataset of 2,226 open-source Coq projects and 196,929 theorems from GitHub, which includes both training data and a curated evaluation benchmark of well-maintained projects. On this benchmark, Rango synthesizes proofs for 32.0% of the theorems, which is 29% more theorems than the prior state-of-the-art tool Tactician.\n\n## Publication\n\nThe work was presented at the Proceedings of the 47th International Conference on Software Engineering (ICSE) in Ottawa, Ontario, Canada, in April 2025."
+    ],
+    "durationSeconds": 8.453226487000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fd0d567f-37a5-48ce-b07f-185768e28f76",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-28T05:59:17.869Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019SkZRjRgcCZz2qR5emVNac`</summary>
+
+```json
+{
+  "query": "Hilbert ICLR 2026 miniF2F 99.2% proof recursion depth results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "801d9eb7-6fb4-4aa0-bd3e-7a96f5aba034",
+  "isSidechain": false,
+  "requestId": "req_011CbUTMgSkKCxFD1wFCZNKE",
+  "type": "assistant",
+  "uuid": "804079d1-88f7-4bca-844a-9b9777213aa2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUiV6Y58iKwLFadSkH2Jqy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 759,
+      "cache_creation_input_tokens": 3446,
+      "cache_read_input_tokens": 33003,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 759,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 33003,
+          "cache_creation_input_tokens": 3446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-28T05:59:18.856Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014HXHgJE1EHBXoayWXbuCXj`</summary>
+
+```json
+{
+  "query": "Combining Textual Structural Information Premise Selection Lean arXiv 2510.23637 venue published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "804079d1-88f7-4bca-844a-9b9777213aa2",
+  "isSidechain": false,
+  "requestId": "req_011CbUTMgSkKCxFD1wFCZNKE",
+  "type": "assistant",
+  "uuid": "7e464e27-b0b9-4eaa-b21c-aa850e1fba99",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUiV6Y58iKwLFadSkH2Jqy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 759,
+      "cache_creation_input_tokens": 3446,
+      "cache_read_input_tokens": 33003,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 759,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 33003,
+          "cache_creation_input_tokens": 3446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-28T05:59:19.795Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Su6nBrB4jkSdCs9YconZBw`</summary>
+
+```json
+{
+  "query": "LeanDojo benchmark premise selection recall numbers 2025 2026 state of art"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e464e27-b0b9-4eaa-b21c-aa850e1fba99",
+  "isSidechain": false,
+  "requestId": "req_011CbUTMgSkKCxFD1wFCZNKE",
+  "type": "assistant",
+  "uuid": "e2632183-dc2b-4420-80e3-eebbe048f177",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUiV6Y58iKwLFadSkH2Jqy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 759,
+      "cache_creation_input_tokens": 3446,
+      "cache_read_input_tokens": 33003,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 759,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 33003,
+          "cache_creation_input_tokens": 3446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-28T05:59:20.251Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MuRKDkK6NdvXMM4DJ5JWMZ`</summary>
+
+```json
+{
+  "query": "GPU hours training GNN premise selection theorem proving compute requirements"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2632183-dc2b-4420-80e3-eebbe048f177",
+  "isSidechain": false,
+  "requestId": "req_011CbUTMgSkKCxFD1wFCZNKE",
+  "type": "assistant",
+  "uuid": "1aa78e61-a99e-4f6c-9c3b-9d458f6c63b0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HUiV6Y58iKwLFadSkH2Jqy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 759,
+      "cache_creation_input_tokens": 3446,
+      "cache_read_input_tokens": 33003,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3446,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 759,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 33003,
+          "cache_creation_input_tokens": 3446,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3446
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-28T05:59:24.241Z_
+
+<details><summary>↩ Tool result · `toolu_019SkZRjRgcCZz2qR5emVNac`</summary>
+
+```text
+Web search results for query: "Hilbert ICLR 2026 miniF2F 99.2% proof recursion depth results"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.22819"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning [Quick Review]","url":"https://liner.com/review/hilbert-recursively-building-formal-proofs-with-informal-reasoning"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning | OpenReview","url":"https://openreview.net/forum?id=GN8OdkTo3B"},{"title":"[2509.22819] Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/abs/2509.22819"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://www.researchgate.net/publication/395970455_Hilbert_Recursively_Building_Formal_Proofs_with_Informal_Reasoning"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/html/2509.22819v1"},{"title":"Proving Theorems Recursively","url":"https://arxiv.org/pdf/2405.14414"},{"title":"MiniF2F: a cross-system benchmark for formal Olympiad-level mathematics","url":"https://arxiv.org/pdf/2109.00110"}]
+
+Based on the search results, I found detailed information about the Hilbert ICLR 2026 results:
+
+## Key Results
+
+HILBERT reaches 99.2% pass rate on miniF2F (6.6 points above the best public method) and solves 462/660 PutnamBench problems (70.0%).
+
+## Recursion Depth
+
+The system uses recursion depth D = 5 for all experiments.
+
+## System Architecture
+
+HILBERT is a multi-turn agentic framework that systematically combines informal mathematical reasoning with formal proof verification. The Prover is instantiated with two LLMs: DeepSeek-Prover-V2-7B and Goedel-Prover-V2-32B, and the approach recursively decomposes complex problems into manageable subgoals and orchestrates informal reasoners (Gemini 2.5 Pro/Flash/gpt-oss-120b) with formal provers.
+
+The paper was published as a conference paper at ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "804079d1-88f7-4bca-844a-9b9777213aa2",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "a13463c1-186f-4a71-af90-760ca5633899",
+  "toolUseResult": {
+    "query": "Hilbert ICLR 2026 miniF2F 99.2% proof recursion depth results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RdV3YrwqkJ7BHU2cXGT1iN",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning [Quick Review]",
+            "url": "https://liner.com/review/hilbert-recursively-building-formal-proofs-with-informal-reasoning"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=GN8OdkTo3B"
+          },
+          {
+            "title": "[2509.22819] Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/abs/2509.22819"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://www.researchgate.net/publication/395970455_Hilbert_Recursively_Building_Formal_Proofs_with_Informal_Reasoning"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/html/2509.22819v1"
+          },
+          {
+            "title": "Proving Theorems Recursively",
+            "url": "https://arxiv.org/pdf/2405.14414"
+          },
+          {
+            "title": "MiniF2F: a cross-system benchmark for formal Olympiad-level mathematics",
+            "url": "https://arxiv.org/pdf/2109.00110"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the Hilbert ICLR 2026 results:\n\n## Key Results\n\nHILBERT reaches 99.2% pass rate on miniF2F (6.6 points above the best public method) and solves 462/660 PutnamBench problems (70.0%).\n\n## Recursion Depth\n\nThe system uses recursion depth D = 5 for all experiments.\n\n## System Architecture\n\nHILBERT is a multi-turn agentic framework that systematically combines informal mathematical reasoning with formal proof verification. The Prover is instantiated with two LLMs: DeepSeek-Prover-V2-7B and Goedel-Prover-V2-32B, and the approach recursively decomposes complex problems into manageable subgoals and orchestrates informal reasoners (Gemini 2.5 Pro/Flash/gpt-oss-120b) with formal provers.\n\nThe paper was published as a conference paper at ICLR 2026."
+    ],
+    "durationSeconds": 6.366066875999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "804079d1-88f7-4bca-844a-9b9777213aa2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-28T05:59:25.355Z_
+
+<details><summary>↩ Tool result · `toolu_014HXHgJE1EHBXoayWXbuCXj`</summary>
+
+```text
+Web search results for query: "Combining Textual Structural Information Premise Selection Lean arXiv 2510.23637 venue published"
+
+Links: [{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/pdf/2510.23637"},{"title":"[2510.23637] Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/abs/2510.23637"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=22775&show=50"},{"title":"Computation and Language Oct 2025","url":"https://arxiv.org/list/cs.CL/2025-10?skip=2525&show=2000"},{"title":"Premise Selection for a Lean Hammer","url":"https://arxiv.org/html/2506.07477"},{"title":"Premise Selection for a Lean Hammer","url":"https://arxiv.org/pdf/2506.07477"},{"title":"Graph Sequence Learning for Premise Selection","url":"https://arxiv.org/pdf/2303.15642"}]
+
+Based on the search results, here is the information about the paper arXiv 2510.23637:
+
+**Title:** Combining Textual and Structural Information for Premise Selection in Lean
+
+**Authors:** Job Petrovčič, David Eliecer Narvaez Denis, Ljupčo Todorovski
+
+**Submission Date:** 24 Oct 2025
+
+**Venue/Category:** The paper is categorized under Machine Learning (cs.LG); Artificial Intelligence (cs.AI); Computation and Language (cs.CL); Logic in Computer Science (cs.LO)
+
+**Published Status:** The paper was submitted to arXiv on October 24, 2025 and last revised on 28 Nov 2025. It is published on arXiv as a preprint.
+
+**Summary:** The paper presents a graph-augmented approach that combines dense text embeddings of Lean formalizations with graph neural networks over a heterogeneous dependency graph capturing both state-premise and premise-premise relations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e464e27-b0b9-4eaa-b21c-aa850e1fba99",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "ff931337-7e71-49e9-9300-8c6e14cad69f",
+  "toolUseResult": {
+    "query": "Combining Textual Structural Information Premise Selection Lean arXiv 2510.23637 venue published",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01746r8BCr1t8G1PyZEk7QGw",
+        "content": [
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/pdf/2510.23637"
+          },
+          {
+            "title": "[2510.23637] Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/abs/2510.23637"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=22775&show=50"
+          },
+          {
+            "title": "Computation and Language Oct 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025-10?skip=2525&show=2000"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/html/2506.07477"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/pdf/2506.07477"
+          },
+          {
+            "title": "Graph Sequence Learning for Premise Selection",
+            "url": "https://arxiv.org/pdf/2303.15642"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about the paper arXiv 2510.23637:\n\n**Title:** Combining Textual and Structural Information for Premise Selection in Lean\n\n**Authors:** Job Petrovčič, David Eliecer Narvaez Denis, Ljupčo Todorovski\n\n**Submission Date:** 24 Oct 2025\n\n**Venue/Category:** The paper is categorized under Machine Learning (cs.LG); Artificial Intelligence (cs.AI); Computation and Language (cs.CL); Logic in Computer Science (cs.LO)\n\n**Published Status:** The paper was submitted to arXiv on October 24, 2025 and last revised on 28 Nov 2025. It is published on arXiv as a preprint.\n\n**Summary:** The paper presents a graph-augmented approach that combines dense text embeddings of Lean formalizations with graph neural networks over a heterogeneous dependency graph capturing both state-premise and premise-premise relations."
+    ],
+    "durationSeconds": 6.495564644999991,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7e464e27-b0b9-4eaa-b21c-aa850e1fba99",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-28T05:59:26.787Z_
+
+<details><summary>↩ Tool result · `toolu_01MuRKDkK6NdvXMM4DJ5JWMZ`</summary>
+
+```text
+Web search results for query: "GPU hours training GNN premise selection theorem proving compute requirements"
+
+Links: [{"title":"Integrating a simplified formula graph representation into a graph neural network model for premise selection - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S1568494625006295"},{"title":"Premise Selection for Theorem Proving by Deep Graph Embedding","url":"https://arxiv.org/pdf/1709.09994"},{"title":"Graph Sequence Learning for Premise Selection","url":"https://arxiv.org/pdf/2303.15642"},{"title":"Premise selection with neural networks and distributed representation of   features","url":"https://arxiv.org/pdf/1807.10268"},{"title":"Stateful Premise Selection by Recurrent Neural Networks","url":"https://arxiv.org/pdf/2004.08212"},{"title":"NeutronOrch: Rethinking Sample-based GNN Training under CPU-GPU Heterogeneous Environments","url":"https://arxiv.org/html/2311.13225v2"},{"title":"A Survey on Deep Learning for Theorem Proving","url":"https://arxiv.org/html/2404.09939v1"}]
+
+I found several research papers related to GNNs for premise selection in theorem proving. Here's what the search results show:
+
+**Research on GNNs for Premise Selection:**
+
+A deep learning-based approach to premise selection involves selecting mathematical statements relevant for proving a given conjecture, which is a key challenge of theorem proving, as the search space can quickly explode beyond the capability of modern automated theorem provers with large mathematical knowledge bases.
+
+**Training Infrastructure:**
+
+One study on premise selection using GNNs was conducted on an AMD 4029GP-TRT server with a Nvidia RTX 2080Ti GPU and 256G memory, though the search results don't provide specific GPU hour requirements.
+
+**GNN Approaches:**
+
+Recent work investigates pre-trained graph neural networks to embed problems via transfer learning, using a supervised pre-training step where the GNN learns the embedding by training on the premise selection problem. Subsequent works explore graph contrastive learning to train GNNs for premise selection.
+
+The search results don't contain specific information about total GPU hours or detailed compute requirements for training these GNN models. If you need more specific computational requirements data, a more targeted search might help.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1aa78e61-a99e-4f6c-9c3b-9d458f6c63b0",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "54d485db-0e98-4c4d-8b22-6ef3d0a72851",
+  "toolUseResult": {
+    "query": "GPU hours training GNN premise selection theorem proving compute requirements",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0197Vwizr4hUnXAUi574z2Xc",
+        "content": [
+          {
+            "title": "Integrating a simplified formula graph representation into a graph neural network model for premise selection - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S1568494625006295"
+          },
+          {
+            "title": "Premise Selection for Theorem Proving by Deep Graph Embedding",
+            "url": "https://arxiv.org/pdf/1709.09994"
+          },
+          {
+            "title": "Graph Sequence Learning for Premise Selection",
+            "url": "https://arxiv.org/pdf/2303.15642"
+          },
+          {
+            "title": "Premise selection with neural networks and distributed representation of   features",
+            "url": "https://arxiv.org/pdf/1807.10268"
+          },
+          {
+            "title": "Stateful Premise Selection by Recurrent Neural Networks",
+            "url": "https://arxiv.org/pdf/2004.08212"
+          },
+          {
+            "title": "NeutronOrch: Rethinking Sample-based GNN Training under CPU-GPU Heterogeneous Environments",
+            "url": "https://arxiv.org/html/2311.13225v2"
+          },
+          {
+            "title": "A Survey on Deep Learning for Theorem Proving",
+            "url": "https://arxiv.org/html/2404.09939v1"
+          }
+        ]
+      },
+      "I found several research papers related to GNNs for premise selection in theorem proving. Here's what the search results show:\n\n**Research on GNNs for Premise Selection:**\n\nA deep learning-based approach to premise selection involves selecting mathematical statements relevant for proving a given conjecture, which is a key challenge of theorem proving, as the search space can quickly explode beyond the capability of modern automated theorem provers with large mathematical knowledge bases.\n\n**Training Infrastructure:**\n\nOne study on premise selection using GNNs was conducted on an AMD 4029GP-TRT server with a Nvidia RTX 2080Ti GPU and 256G memory, though the search results don't provide specific GPU hour requirements.\n\n**GNN Approaches:**\n\nRecent work investigates pre-trained graph neural networks to embed problems via transfer learning, using a supervised pre-training step where the GNN learns the embedding by training on the premise selection problem. Subsequent works explore graph contrastive learning to train GNNs for premise selection.\n\nThe search results don't contain specific information about total GPU hours or detailed compute requirements for training these GNN models. If you need more specific computational requirements data, a more targeted search might help."
+    ],
+    "durationSeconds": 6.532472641000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1aa78e61-a99e-4f6c-9c3b-9d458f6c63b0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-28T05:59:28.125Z_
+
+<details><summary>↩ Tool result · `toolu_01Su6nBrB4jkSdCs9YconZBw`</summary>
+
+```text
+Web search results for query: "LeanDojo benchmark premise selection recall numbers 2025 2026 state of art"
+
+Links: [{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/4441469427094f8873d0fecb0c4e1cee-Paper-Datasets_and_Benchmarks.pdf"},{"title":"LeanDojo Benchmark 4","url":"https://www.emergentmind.com/topics/leandojo-benchmark-4"},{"title":"[2306.15626] LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://ar5iv.labs.arxiv.org/html/2306.15626"},{"title":"Premise Selection for a Lean Hammer","url":"https://arxiv.org/html/2506.07477v1"},{"title":"LeanDojo: AI-Assisted Theorem Proving in Lean","url":"https://leandojo.org/leandojo.html"},{"title":"Combining Textual and Structural Information for Premise Selection in Lean","url":"https://arxiv.org/pdf/2510.23637"},{"title":"LeanDojo | Proceedings of the 37th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3666122.3667066"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://arxiv.org/pdf/2306.15626"}]
+
+Based on the search results, here are the key premise selection recall numbers for the LeanDojo benchmark:
+
+## Recent State-of-the-Art Results (2025)
+
+A GNN-augmented retriever achieved Recall@1 improvement from 13.42% (ReProver baseline) to 17.98% (+33.98%), with Recall@10 and MRR showing over 25% relative improvement. This underscores the benefit of modeling library structural dependencies (Petrovčič et al., 24 Oct 2025).
+
+## Original LeanDojo Baseline (2023)
+
+The original LeanDojo work introduced the ReProver baseline with premise selection capabilities, though specific recall numbers from that work aren't detailed in these excerpts. The evaluation uses standard metrics: R@k (recall for the top k retrieved premises) and MRR (mean reciprocal rank).
+
+## Key Challenge
+
+Models exhibit noticeable performance degradation on novel_premises compared to random splits, highlighting data scarcity and long-tail premise induction challenges.
+
+The most recent state-of-the-art results appear to be from late 2025, with the GNN-augmented approach showing significant improvements over the original ReProver baseline through incorporation of structural dependency information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2632183-dc2b-4420-80e3-eebbe048f177",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "14cc4694-582c-423c-9b78-6dcecbdfee23",
+  "toolUseResult": {
+    "query": "LeanDojo benchmark premise selection recall numbers 2025 2026 state of art",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ARv3KajKx4jfk5htFCkVPL",
+        "content": [
+          {
+            "title": "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/4441469427094f8873d0fecb0c4e1cee-Paper-Datasets_and_Benchmarks.pdf"
+          },
+          {
+            "title": "LeanDojo Benchmark 4",
+            "url": "https://www.emergentmind.com/topics/leandojo-benchmark-4"
+          },
+          {
+            "title": "[2306.15626] LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://ar5iv.labs.arxiv.org/html/2306.15626"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/html/2506.07477v1"
+          },
+          {
+            "title": "LeanDojo: AI-Assisted Theorem Proving in Lean",
+            "url": "https://leandojo.org/leandojo.html"
+          },
+          {
+            "title": "Combining Textual and Structural Information for Premise Selection in Lean",
+            "url": "https://arxiv.org/pdf/2510.23637"
+          },
+          {
+            "title": "LeanDojo | Proceedings of the 37th International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3666122.3667066"
+          },
+          {
+            "title": "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/pdf/2306.15626"
+          }
+        ]
+      },
+      "Based on the search results, here are the key premise selection recall numbers for the LeanDojo benchmark:\n\n## Recent State-of-the-Art Results (2025)\n\nA GNN-augmented retriever achieved Recall@1 improvement from 13.42% (ReProver baseline) to 17.98% (+33.98%), with Recall@10 and MRR showing over 25% relative improvement. This underscores the benefit of modeling library structural dependencies (Petrovčič et al., 24 Oct 2025).\n\n## Original LeanDojo Baseline (2023)\n\nThe original LeanDojo work introduced the ReProver baseline with premise selection capabilities, though specific recall numbers from that work aren't detailed in these excerpts. The evaluation uses standard metrics: R@k (recall for the top k retrieved premises) and MRR (mean reciprocal rank).\n\n## Key Challenge\n\nModels exhibit noticeable performance degradation on novel_premises compared to random splits, highlighting data scarcity and long-tail premise induction challenges.\n\nThe most recent state-of-the-art results appear to be from late 2025, with the GNN-augmented approach showing significant improvements over the original ReProver baseline through incorporation of structural dependency information."
+    ],
+    "durationSeconds": 8.326451108000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e2632183-dc2b-4420-80e3-eebbe048f177",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 93 · 2026-05-28T05:59:28.131Z_
+
+```json
+{
+  "parentUuid": "14cc4694-582c-423c-9b78-6dcecbdfee23",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c302fbb7-de72-4ce2-a5c8-c8220b9264f6",
+  "timestamp": "2026-05-28T05:59:28.131Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "c302fbb7-de72-4ce2-a5c8-c8220b9264f6",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-28T05:59:33.337Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now search for a few more things:
+1. The ARR May 2026 deadline - I know it's May 25, which has passed. But the commitment deadline for EMNLP is August 2, 2026.
+2. AAAI 2027 deadline is July 28, 2026 - still open.
+3. ICLR 2027 - not announced yet but likely September/October 2026.
+4. Let me check for any more concurrent work.
+5. Need to verify a few more references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c302fbb7-de72-4ce2-a5c8-c8220b9264f6",
+  "isSidechain": false,
+  "requestId": "req_011CbUTNe1vRKiNBW7VigSxv",
+  "type": "assistant",
+  "uuid": "5a4b941d-4528-43ed-a0d3-89ce20d22f5d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSk2fdphbq7vsqfqbctwkH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 602,
+      "cache_creation_input_tokens": 3064,
+      "cache_read_input_tokens": 36449,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 602,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 36449,
+          "cache_creation_input_tokens": 3064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-28T05:59:34.299Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JUVTFpnUjTdTSmFGguYD4z`</summary>
+
+```json
+{
+  "query": "AAAI 2027 paper submission deadline July 2026 abstract full paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a4b941d-4528-43ed-a0d3-89ce20d22f5d",
+  "isSidechain": false,
+  "requestId": "req_011CbUTNe1vRKiNBW7VigSxv",
+  "type": "assistant",
+  "uuid": "ed1bf90b-6c9e-4779-aabf-8bc42f0943d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSk2fdphbq7vsqfqbctwkH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 602,
+      "cache_creation_input_tokens": 3064,
+      "cache_read_input_tokens": 36449,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 602,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 36449,
+          "cache_creation_input_tokens": 3064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-28T05:59:35.299Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P2LpU8wd1R22AYFRyze5SS`</summary>
+
+```json
+{
+  "query": "Prover Agent agent-based framework formal mathematical proofs 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed1bf90b-6c9e-4779-aabf-8bc42f0943d2",
+  "isSidechain": false,
+  "requestId": "req_011CbUTNe1vRKiNBW7VigSxv",
+  "type": "assistant",
+  "uuid": "86ab5ce2-d8cb-4c48-9f48-1c049f07d711",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSk2fdphbq7vsqfqbctwkH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 602,
+      "cache_creation_input_tokens": 3064,
+      "cache_read_input_tokens": 36449,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 602,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 36449,
+          "cache_creation_input_tokens": 3064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-28T05:59:36.353Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012YkeBveB9GiEYWwWeivqZ3`</summary>
+
+```json
+{
+  "query": "concurrent work dynamic graph retrieval proof decomposition theorem proving 2026 arXiv OpenReview"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86ab5ce2-d8cb-4c48-9f48-1c049f07d711",
+  "isSidechain": false,
+  "requestId": "req_011CbUTNe1vRKiNBW7VigSxv",
+  "type": "assistant",
+  "uuid": "9bf5d060-236b-468e-9529-11039fda8d35",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSk2fdphbq7vsqfqbctwkH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 602,
+      "cache_creation_input_tokens": 3064,
+      "cache_read_input_tokens": 36449,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 602,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 36449,
+          "cache_creation_input_tokens": 3064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-28T05:59:36.642Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HBmEdTVF8Qj25uZF4hEoq4`</summary>
+
+```json
+{
+  "query": "Qwen3 embedding model MTEB score 2026 open source"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bf5d060-236b-468e-9529-11039fda8d35",
+  "isSidechain": false,
+  "requestId": "req_011CbUTNe1vRKiNBW7VigSxv",
+  "type": "assistant",
+  "uuid": "2d4254ea-ee05-4564-b09a-99c74b0590b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSk2fdphbq7vsqfqbctwkH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 602,
+      "cache_creation_input_tokens": 3064,
+      "cache_read_input_tokens": 36449,
+      "output_tokens": 370,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 602,
+          "output_tokens": 370,
+          "cache_read_input_tokens": 36449,
+          "cache_creation_input_tokens": 3064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-28T05:59:38.433Z_
+
+<details><summary>↩ Tool result · `toolu_01JUVTFpnUjTdTSmFGguYD4z`</summary>
+
+```text
+Web search results for query: "AAAI 2027 paper submission deadline July 2026 abstract full paper"
+
+Links: [{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"}]
+
+Based on the search results, here are the AAAI 2027 paper submission deadlines:
+
+**AAAI-27 Submission Deadlines (Main Technical Track):**
+
+- **Abstracts due:** July 21, 2026 at 11:59 PM UTC-12
+- **Full papers due:** July 28, 2026 at 11:59 PM UTC-12
+- **Supplementary material and code due:** July 31, 2026 at 11:59 PM UTC-12
+
+The conference will be held February 16-23, 2027 in Montréal, Canada.
+
+Note that all deadlines are "anywhere on earth" (UTC-12) and deadlines are track-specific and may differ from those listed above.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed1bf90b-6c9e-4779-aabf-8bc42f0943d2",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "bb43a1be-349d-48d2-929d-974314e5155b",
+  "toolUseResult": {
+    "query": "AAAI 2027 paper submission deadline July 2026 abstract full paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014DuHMyfABBcYKMB6zJVAgw",
+        "content": [
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          }
+        ]
+      },
+      "Based on the search results, here are the AAAI 2027 paper submission deadlines:\n\n**AAAI-27 Submission Deadlines (Main Technical Track):**\n\n- **Abstracts due:** July 21, 2026 at 11:59 PM UTC-12\n- **Full papers due:** July 28, 2026 at 11:59 PM UTC-12\n- **Supplementary material and code due:** July 31, 2026 at 11:59 PM UTC-12\n\nThe conference will be held February 16-23, 2027 in Montréal, Canada.\n\nNote that all deadlines are \"anywhere on earth\" (UTC-12) and deadlines are track-specific and may differ from those listed above."
+    ],
+    "durationSeconds": 4.129997883999982,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ed1bf90b-6c9e-4779-aabf-8bc42f0943d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-28T05:59:41.257Z_
+
+<details><summary>↩ Tool result · `toolu_01P2LpU8wd1R22AYFRyze5SS`</summary>
+
+```text
+Web search results for query: "Prover Agent agent-based framework formal mathematical proofs 2025 arXiv"
+
+Links: [{"title":"[2506.19923v1] Prover Agent: An Agent-based Framework for Formal Mathematical Proofs","url":"https://arxiv.org/abs/2506.19923v1"},{"title":"[2506.19923v2] Prover Agent: An Agent-based Framework for Formal Mathematical Proofs","url":"https://arxiv.org/abs/2506.19923v2"},{"title":"[2506.19923] Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs","url":"https://arxiv.org/abs/2506.19923"},{"title":"Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250619923B/abstract"},{"title":"Paper page - Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs","url":"https://huggingface.co/papers/2506.19923"},{"title":"Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs","url":"https://arxiv.org/html/2506.19923v4"},{"title":"Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/pdf/2509.22819"},{"title":"Preprint. PROVER AGENT: AN AGENT-BASED FRAMEWORK FOR FORMAL MATHEMATICAL PROOFS","url":"https://arxiv.org/pdf/2506.19923"}]
+
+I found the paper on arXiv. Here are the key findings:
+
+**Prover Agent** is a novel AI agent for automated theorem proving that integrates large language models (LLMs) with a formal proof assistant, Lean. 
+
+**Key Features:**
+Prover Agent coordinates an informal reasoning LLM, a formal prover model, and feedback from Lean while also generating auxiliary lemmas.
+
+**Performance:**
+It achieves an 86.1% success rate on the MiniF2F benchmark, establishing a new state-of-the-art among methods using small language models (SLMs) with a much lower sample budget than previous approaches.
+
+**Publication Details:**
+The paper was submitted on June 24, 2025, with the latest version (v5) revised on February 17, 2026. The authors are Kaito Baba, Chaoran Liu, Shuhei Kurita, and Akiyoshi Sannai.
+
+The paper is available on arXiv as preprint 2506.19923.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86ab5ce2-d8cb-4c48-9f48-1c049f07d711",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "97b04d1f-2b3d-4343-97da-704f6a702268",
+  "toolUseResult": {
+    "query": "Prover Agent agent-based framework formal mathematical proofs 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QYUaysKBbbc5wARWh2MBin",
+        "content": [
+          {
+            "title": "[2506.19923v1] Prover Agent: An Agent-based Framework for Formal Mathematical Proofs",
+            "url": "https://arxiv.org/abs/2506.19923v1"
+          },
+          {
+            "title": "[2506.19923v2] Prover Agent: An Agent-based Framework for Formal Mathematical Proofs",
+            "url": "https://arxiv.org/abs/2506.19923v2"
+          },
+          {
+            "title": "[2506.19923] Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs",
+            "url": "https://arxiv.org/abs/2506.19923"
+          },
+          {
+            "title": "Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250619923B/abstract"
+          },
+          {
+            "title": "Paper page - Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs",
+            "url": "https://huggingface.co/papers/2506.19923"
+          },
+          {
+            "title": "Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs",
+            "url": "https://arxiv.org/html/2506.19923v4"
+          },
+          {
+            "title": "Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "Preprint. PROVER AGENT: AN AGENT-BASED FRAMEWORK FOR FORMAL MATHEMATICAL PROOFS",
+            "url": "https://arxiv.org/pdf/2506.19923"
+          }
+        ]
+      },
+      "I found the paper on arXiv. Here are the key findings:\n\n**Prover Agent** is a novel AI agent for automated theorem proving that integrates large language models (LLMs) with a formal proof assistant, Lean. \n\n**Key Features:**\nProver Agent coordinates an informal reasoning LLM, a formal prover model, and feedback from Lean while also generating auxiliary lemmas.\n\n**Performance:**\nIt achieves an 86.1% success rate on the MiniF2F benchmark, establishing a new state-of-the-art among methods using small language models (SLMs) with a much lower sample budget than previous approaches.\n\n**Publication Details:**\nThe paper was submitted on June 24, 2025, with the latest version (v5) revised on February 17, 2026. The authors are Kaito Baba, Chaoran Liu, Shuhei Kurita, and Akiyoshi Sannai.\n\nThe paper is available on arXiv as preprint 2506.19923."
+    ],
+    "durationSeconds": 5.9545087979999956,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "86ab5ce2-d8cb-4c48-9f48-1c049f07d711",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-28T05:59:43.821Z_
+
+<details><summary>↩ Tool result · `toolu_012YkeBveB9GiEYWwWeivqZ3`</summary>
+
+```text
+Web search results for query: "concurrent work dynamic graph retrieval proof decomposition theorem proving 2026 arXiv OpenReview"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.22819"},{"title":"[2603.24465] Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving","url":"https://arxiv.org/abs/2603.24465"},{"title":"Why Agentic Theorem Prover Works: A Statistical Provability Theory of Mathematical Reasoning Models","url":"https://arxiv.org/html/2602.10538v1"},{"title":"A modification of two graph-decomposition theorems ...","url":"https://arxiv.org/pdf/2103.10808"},{"title":"Parallel $k$-Core Decomposition with Batched Updates and Asynchronous   Reads","url":"https://arxiv.org/pdf/2401.08015"},{"title":"RapidStore: An Efficient Dynamic Graph Storage System for Concurrent Queries","url":"https://arxiv.org/html/2507.00839v1"},{"title":"Solving Formal Math Problems by Decomposition and Iterative Reflection","url":"https://arxiv.org/html/2507.15225v1"}]
+
+Based on the web search results, I found several relevant papers from 2026 on arXiv related to your query:
+
+1. **HILBERT Framework (ICLR 2026)**: An agentic framework that bridges informal reasoning with formal verification, orchestrating four key components: a general-purpose reasoning LLM, a prover LLM, a verifier, and a semantic theorem retriever.
+
+2. **Mechanic - Formal Decomposition Workflow**: A paper titled "Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving" submitted on March 25, 2026, authored by Ruichen Qiu and collaborators.
+
+3. **Statistical Provability Theory**: A paper exploring why agentic theorem provers work, describing systems that combine an LLM policy, a planner for decomposition, a retriever over large libraries (such as Mathlib), and a proof assistant (such as Lean, Rocq, and Isabelle).
+
+4. **Dynamic Graph Systems**: RapidStore presents a hybrid concurrent-parallel dynamic k-core data structure where asynchronous reads can proceed concurrently with batches of updates.
+
+5. **Delta Prover**: A system using reflective decomposition for complex problems, where the LLM formulates a high-level proof sketch using a Domain-Specific Language, which Delta Prover then systematically decomposes into sub-problems.
+
+These papers address the intersection of concurrent systems, graph algorithms, decomposition strategies, and theorem proving that your search query encompasses.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9bf5d060-236b-468e-9529-11039fda8d35",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "3440ac26-691c-437b-a742-81cebc2b322b",
+  "toolUseResult": {
+    "query": "concurrent work dynamic graph retrieval proof decomposition theorem proving 2026 arXiv OpenReview",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HZuzCnfqxE43W7nWyKF2ic",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "[2603.24465] Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving",
+            "url": "https://arxiv.org/abs/2603.24465"
+          },
+          {
+            "title": "Why Agentic Theorem Prover Works: A Statistical Provability Theory of Mathematical Reasoning Models",
+            "url": "https://arxiv.org/html/2602.10538v1"
+          },
+          {
+            "title": "A modification of two graph-decomposition theorems ...",
+            "url": "https://arxiv.org/pdf/2103.10808"
+          },
+          {
+            "title": "Parallel $k$-Core Decomposition with Batched Updates and Asynchronous   Reads",
+            "url": "https://arxiv.org/pdf/2401.08015"
+          },
+          {
+            "title": "RapidStore: An Efficient Dynamic Graph Storage System for Concurrent Queries",
+            "url": "https://arxiv.org/html/2507.00839v1"
+          },
+          {
+            "title": "Solving Formal Math Problems by Decomposition and Iterative Reflection",
+            "url": "https://arxiv.org/html/2507.15225v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers from 2026 on arXiv related to your query:\n\n1. **HILBERT Framework (ICLR 2026)**: An agentic framework that bridges informal reasoning with formal verification, orchestrating four key components: a general-purpose reasoning LLM, a prover LLM, a verifier, and a semantic theorem retriever.\n\n2. **Mechanic - Formal Decomposition Workflow**: A paper titled \"Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving\" submitted on March 25, 2026, authored by Ruichen Qiu and collaborators.\n\n3. **Statistical Provability Theory**: A paper exploring why agentic theorem provers work, describing systems that combine an LLM policy, a planner for decomposition, a retriever over large libraries (such as Mathlib), and a proof assistant (such as Lean, Rocq, and Isabelle).\n\n4. **Dynamic Graph Systems**: RapidStore presents a hybrid concurrent-parallel dynamic k-core data structure where asynchronous reads can proceed concurrently with batches of updates.\n\n5. **Delta Prover**: A system using reflective decomposition for complex problems, where the LLM formulates a high-level proof sketch using a Domain-Specific Language, which Delta Prover then systematically decomposes into sub-problems.\n\nThese papers address the intersection of concurrent systems, graph algorithms, decomposition strategies, and theorem proving that your search query encompasses."
+    ],
+    "durationSeconds": 7.465240489999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9bf5d060-236b-468e-9529-11039fda8d35",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-28T05:59:44.796Z_
+
+<details><summary>↩ Tool result · `toolu_01HBmEdTVF8Qj25uZF4hEoq4`</summary>
+
+```text
+Web search results for query: "Qwen3 embedding model MTEB score 2026 open source"
+
+Links: [{"title":"The Best Open-Source Embedding Models in 2026","url":"https://www.bentoml.com/blog/a-guide-to-open-source-embedding-models"},{"title":"Embedding Models 2026: Benchmark and Comparison | Ailog RAG","url":"https://app.ailog.fr/en/blog/news/embedding-models-2026"},{"title":"Best Open-Source Embedding Models for RAG in 2026 | KnowledgeSDK Blog","url":"https://knowledgesdk.com/blog/open-source-embedding-models-rag-2026"},{"title":"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models | Qwen","url":"https://qwenlm.github.io/blog/qwen3-embedding/"},{"title":"Which Embedding Model Should You Actually Use in 2026? I Benchmarked 10 Models to Find Out | Cheney Zhang","url":"https://zc277584121.github.io/rag/2026/03/20/embedding-models-benchmark-2026.html"},{"title":"Best Embedding Models in 2026 - Tested & Ranked | Mixpeek","url":"https://mixpeek.com/curated-lists/best-embedding-models"},{"title":"Best Embedding Model for RAG 2026: 10 Models Compared - Milvus Blog","url":"https://milvus.io/blog/choose-embedding-model-rag-2026.md"},{"title":"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models","url":"https://arxiv.org/pdf/2506.05176"}]
+
+Based on the search results, here's what I found about Qwen3 embedding model:
+
+## MTEB Score
+
+Alibaba's Qwen3-Embedding-8B sits at the top of the open-source leaderboard with an MTEB composite score of approximately 70.58. The flagship model Qwen3-8B-Embedding attains a score of 70.58 on the MTEB Multilingual benchmark and 80.68 on the MTEB Code benchmark, surpassing the previous state-of-the-art proprietary embedding model, Gemini-Embedding.
+
+## Key Features
+
+Qwen3-Embedding supports over 100 natural and programming languages, making it a strong candidate for cross-lingual and multilingual applications, and performs particularly well in Chinese and English, as reflected in MTEB and C-MTEB evaluations.
+
+Both the embedding and reranking models in the Qwen3 series support user-defined instructions. The model supports user-defined output dimensions ranging from 32 to 1024.
+
+## Open Source Status
+
+Alibaba takes the lead with Qwen3-Embedding-8B, available under Apache 2.0 license.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d4254ea-ee05-4564-b09a-99c74b0590b3",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "bbf59d74-9fbf-4023-a6d5-409c6bd0300f",
+  "toolUseResult": {
+    "query": "Qwen3 embedding model MTEB score 2026 open source",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NWyyyxEFy1mKjpAk5mgSP4",
+        "content": [
+          {
+            "title": "The Best Open-Source Embedding Models in 2026",
+            "url": "https://www.bentoml.com/blog/a-guide-to-open-source-embedding-models"
+          },
+          {
+            "title": "Embedding Models 2026: Benchmark and Comparison | Ailog RAG",
+            "url": "https://app.ailog.fr/en/blog/news/embedding-models-2026"
+          },
+          {
+            "title": "Best Open-Source Embedding Models for RAG in 2026 | KnowledgeSDK Blog",
+            "url": "https://knowledgesdk.com/blog/open-source-embedding-models-rag-2026"
+          },
+          {
+            "title": "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen3-embedding/"
+          },
+          {
+            "title": "Which Embedding Model Should You Actually Use in 2026? I Benchmarked 10 Models to Find Out | Cheney Zhang",
+            "url": "https://zc277584121.github.io/rag/2026/03/20/embedding-models-benchmark-2026.html"
+          },
+          {
+            "title": "Best Embedding Models in 2026 - Tested & Ranked | Mixpeek",
+            "url": "https://mixpeek.com/curated-lists/best-embedding-models"
+          },
+          {
+            "title": "Best Embedding Model for RAG 2026: 10 Models Compared - Milvus Blog",
+            "url": "https://milvus.io/blog/choose-embedding-model-rag-2026.md"
+          },
+          {
+            "title": "Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models",
+            "url": "https://arxiv.org/pdf/2506.05176"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Qwen3 embedding model:\n\n## MTEB Score\n\nAlibaba's Qwen3-Embedding-8B sits at the top of the open-source leaderboard with an MTEB composite score of approximately 70.58. The flagship model Qwen3-8B-Embedding attains a score of 70.58 on the MTEB Multilingual benchmark and 80.68 on the MTEB Code benchmark, surpassing the previous state-of-the-art proprietary embedding model, Gemini-Embedding.\n\n## Key Features\n\nQwen3-Embedding supports over 100 natural and programming languages, making it a strong candidate for cross-lingual and multilingual applications, and performs particularly well in Chinese and English, as reflected in MTEB and C-MTEB evaluations.\n\nBoth the embedding and reranking models in the Qwen3 series support user-defined instructions. The model supports user-defined output dimensions ranging from 32 to 1024.\n\n## Open Source Status\n\nAlibaba takes the lead with Qwen3-Embedding-8B, available under Apache 2.0 license."
+    ],
+    "durationSeconds": 8.151420630000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2d4254ea-ee05-4564-b09a-99c74b0590b3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-28T05:59:48.844Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JgQ64YDQjtH1m9jx8ZbFEU`</summary>
+
+```json
+{
+  "query": "Mechanic Sorrifier-Driven formal decomposition arXiv 2603.24465 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbf59d74-9fbf-4023-a6d5-409c6bd0300f",
+  "isSidechain": false,
+  "requestId": "req_011CbUTPsHfNm4jNpAKonhiC",
+  "type": "assistant",
+  "uuid": "ea920704-f0ec-4fb1-bc5a-571bace0e526",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZjBtHyzd8DHeaRwsXHwiu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3787,
+      "cache_read_input_tokens": 39513,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 39513,
+          "cache_creation_input_tokens": 3787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-28T05:59:48.951Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013bXU8U1DjhSwcJcXH2en3V`</summary>
+
+```json
+{
+  "query": "Delta Prover reflective decomposition formal theorem proving 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea920704-f0ec-4fb1-bc5a-571bace0e526",
+  "isSidechain": false,
+  "requestId": "req_011CbUTPsHfNm4jNpAKonhiC",
+  "type": "assistant",
+  "uuid": "1cc473b0-f4bd-4ba7-a01c-38b3f06a2f5c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZjBtHyzd8DHeaRwsXHwiu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3787,
+      "cache_read_input_tokens": 39513,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 39513,
+          "cache_creation_input_tokens": 3787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-28T05:59:49.233Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BWuHUH3N5ojFiPF9RVZUdL`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 workshop submission deadline September October 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cc473b0-f4bd-4ba7-a01c-38b3f06a2f5c",
+  "isSidechain": false,
+  "requestId": "req_011CbUTPsHfNm4jNpAKonhiC",
+  "type": "assistant",
+  "uuid": "ec51a524-3c22-4396-8673-7bc823352baf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZjBtHyzd8DHeaRwsXHwiu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3787,
+      "cache_read_input_tokens": 39513,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 39513,
+          "cache_creation_input_tokens": 3787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-28T05:59:50.169Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KcPe1dE8HPAcfMu6wjqH5C`</summary>
+
+```json
+{
+  "query": "Rethinking Improving Autoformalization BEq dependency retrieval ICLR 2025 authors venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec51a524-3c22-4396-8673-7bc823352baf",
+  "isSidechain": false,
+  "requestId": "req_011CbUTPsHfNm4jNpAKonhiC",
+  "type": "assistant",
+  "uuid": "1ec618f2-5d41-47db-b185-70c1941789d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZjBtHyzd8DHeaRwsXHwiu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3787,
+      "cache_read_input_tokens": 39513,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 39513,
+          "cache_creation_input_tokens": 3787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 109_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "1ec618f2-5d41-47db-b185-70c1941789d4",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 110_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-28T05:59:54.127Z_
+
+<details><summary>↩ Tool result · `toolu_01BWuHUH3N5ojFiPF9RVZUdL`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 workshop submission deadline September October 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"Guidance for NeurIPS Workshop Proposals 2026","url":"https://neurips.cc/Conferences/2026/WorkshopsGuidance"},{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"}]
+
+Based on the search results, here are the key NeurIPS 2026 workshop submission deadlines:
+
+**Workshop-Related Deadlines:**
+
+- Workshop Application Deadline: June 06, 2026, AoE
+- Workshop Acceptance Notification: July 11, 2026, AoE
+- Suggested Submission Date for Workshop Contributions: August 29, 2026, AoE
+- Mandatory Accept/Reject Notification Date: September 29, 2026, AoE
+
+The September and October timeframe you mentioned relates to the **mandatory notification deadline of September 29, 2026**, when workshop organizers must notify all contributors (including talks and posters) to the workshop of their acceptance status. The September 29 deadline will be published on the NeurIPS main website and cannot be extended under any circumstances.
+
+For more information about workshop proposals and requirements, you can visit the official NeurIPS 2026 workshop pages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec51a524-3c22-4396-8673-7bc823352baf",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "e587b10f-3556-4dde-8f38-358b96a96fbb",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 workshop submission deadline September October 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ezxt8Mn1YVA1ggYsx6n1so",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "Guidance for NeurIPS Workshop Proposals 2026",
+            "url": "https://neurips.cc/Conferences/2026/WorkshopsGuidance"
+          },
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          }
+        ]
+      },
+      "Based on the search results, here are the key NeurIPS 2026 workshop submission deadlines:\n\n**Workshop-Related Deadlines:**\n\n- Workshop Application Deadline: June 06, 2026, AoE\n- Workshop Acceptance Notification: July 11, 2026, AoE\n- Suggested Submission Date for Workshop Contributions: August 29, 2026, AoE\n- Mandatory Accept/Reject Notification Date: September 29, 2026, AoE\n\nThe September and October timeframe you mentioned relates to the **mandatory notification deadline of September 29, 2026**, when workshop organizers must notify all contributors (including talks and posters) to the workshop of their acceptance status. The September 29 deadline will be published on the NeurIPS main website and cannot be extended under any circumstances.\n\nFor more information about workshop proposals and requirements, you can visit the official NeurIPS 2026 workshop pages."
+    ],
+    "durationSeconds": 4.890073676999979,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ec51a524-3c22-4396-8673-7bc823352baf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-28T05:59:55.610Z_
+
+<details><summary>↩ Tool result · `toolu_01JgQ64YDQjtH1m9jx8ZbFEU`</summary>
+
+```text
+Web search results for query: "Mechanic Sorrifier-Driven formal decomposition arXiv 2603.24465 2026"
+
+Links: [{"title":"[2603.24465] Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving","url":"https://arxiv.org/abs/2603.24465"},{"title":"Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.24465v1"},{"title":"Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving","url":"https://arxiv.org/pdf/2603.24465"},{"title":"Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving","url":"https://arxiv.org/html/2603.24465"},{"title":"Sequential Relational Decomposition","url":"https://arxiv.org/pdf/1903.01368"}]
+
+I found the paper you're looking for! Here are the details:
+
+**Title:** Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving
+
+**arXiv ID:** 2603.24465
+
+**Submission Date:** March 25, 2026
+
+**Overview:**
+
+Mechanic is a novel agent system that employs a sorry-driven formal decomposition strategy. By leveraging the sorry placeholder in Lean to precisely isolate unresolved subgoals while preserving the surrounding verified proof structure, Mechanic extracts each failed subproblem into a clean, self-contained context and resolves it independently.
+
+**Purpose:**
+
+The paper addresses a challenge in automated theorem proving: For problems requiring complex mathematical reasoning, current systems rarely succeed on the first try and must repeatedly modify their proof strategies. Existing approaches either discard the entire proof and regenerate it from scratch or iteratively fix errors within the proof. The former is inefficient as it may abandon mostly correct reasoning due to localized errors, while the latter leads to progressively longer contexts which degrades the model's ability to attend to the remaining unresolved subproblems.
+
+**Results:**
+
+Experimental results on challenging mathematical competition benchmarks, including IMO 2025 and Putnam 2025, demonstrate that the agent achieves significant advantages in proving efficiency.
+
+The paper is available on arXiv at https://arxiv.org/abs/2603.24465
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea920704-f0ec-4fb1-bc5a-571bace0e526",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "3565f8c0-027b-4af4-a177-5d8728917e65",
+  "toolUseResult": {
+    "query": "Mechanic Sorrifier-Driven formal decomposition arXiv 2603.24465 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017iLjga4S8etFwXvx8fCBsU",
+        "content": [
+          {
+            "title": "[2603.24465] Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving",
+            "url": "https://arxiv.org/abs/2603.24465"
+          },
+          {
+            "title": "Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.24465v1"
+          },
+          {
+            "title": "Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving",
+            "url": "https://arxiv.org/pdf/2603.24465"
+          },
+          {
+            "title": "Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving",
+            "url": "https://arxiv.org/html/2603.24465"
+          },
+          {
+            "title": "Sequential Relational Decomposition",
+            "url": "https://arxiv.org/pdf/1903.01368"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the details:\n\n**Title:** Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving\n\n**arXiv ID:** 2603.24465\n\n**Submission Date:** March 25, 2026\n\n**Overview:**\n\nMechanic is a novel agent system that employs a sorry-driven formal decomposition strategy. By leveraging the sorry placeholder in Lean to precisely isolate unresolved subgoals while preserving the surrounding verified proof structure, Mechanic extracts each failed subproblem into a clean, self-contained context and resolves it independently.\n\n**Purpose:**\n\nThe paper addresses a challenge in automated theorem proving: For problems requiring complex mathematical reasoning, current systems rarely succeed on the first try and must repeatedly modify their proof strategies. Existing approaches either discard the entire proof and regenerate it from scratch or iteratively fix errors within the proof. The former is inefficient as it may abandon mostly correct reasoning due to localized errors, while the latter leads to progressively longer contexts which degrades the model's ability to attend to the remaining unresolved subproblems.\n\n**Results:**\n\nExperimental results on challenging mathematical competition benchmarks, including IMO 2025 and Putnam 2025, demonstrate that the agent achieves significant advantages in proving efficiency.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2603.24465"
+    ],
+    "durationSeconds": 6.761392312000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ea920704-f0ec-4fb1-bc5a-571bace0e526",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-28T05:59:56.357Z_
+
+<details><summary>↩ Tool result · `toolu_01KcPe1dE8HPAcfMu6wjqH5C`</summary>
+
+```text
+Web search results for query: "Rethinking Improving Autoformalization BEq dependency retrieval ICLR 2025 authors venue"
+
+Links: [{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview","url":"https://openreview.net/forum?id=hUb2At2DsQ"},{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/d630537fc4402cfa3ebbc7450a0cac91-Abstract-Conference.html"},{"title":"(PDF) Improving Autoformalization Using Direct Dependency Retrieval","url":"https://www.researchgate.net/publication/397701226_Improving_Autoformalization_Using_Direct_Dependency_Retrieval"},{"title":"RETHINKING AND IMPROVING AUTOFORMALIZATION","url":"https://openreview.net/notes/edits/attachment?id=GqZMKc40xb&name=pdf"},{"title":"GitHub - Purewhite2019/rethinking_autoformalization: [ICLR'25 Spotlight] Rethinking and improving autoformalization: towards a faithful metric and a Dependency Retrieval-based approach · GitHub","url":"https://github.com/Purewhite2019/rethinking_autoformalization"},{"title":"Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/pdf/2511.11990"},{"title":"towards a faithful metric and a dependency retrieval","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"ICLR 2025 Papers","url":"https://yangzhang-v5.github.io/iclr2025interestingpapers/neurosymbolic%20&%20hybrid%20AI%20systems%20(physics-informed,%20logic%20&%20formal%20reasoning,%20etc.).html"},{"title":"[2511.11990] Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/abs/2511.11990"}]
+
+Based on the search results, here's the information about the paper:
+
+**Title:** "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach"
+
+**Venue:** International Conference on Learning Representations 2025 (ICLR 2025)
+
+**Authors:** Qi Liu, Xinhao Zheng, Xudong Lu, Qinxiang Cao, and Junchi Yan
+
+**Affiliations:** School of Computer Science & School of Artificial Intelligence, Shanghai Jiao Tong University (with Cao and Yan having equal correspondence, and Yan also affiliated with Shanghai Artificial Intelligence Laboratory)
+
+**Key Contributions:**
+- BEq (Bidirectional Extended Definitional Equivalence), an automated neuro-symbolic method to determine equivalence between two formal statements
+- RAutoformalizer (Retrieval-augmented Autoformalizer), augmenting statement autoformalization by Dependency Retrieval
+- Con-NF, a novel benchmark consisting of 961 informal-formal statement pairs from frontier mathematical research
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ec618f2-5d41-47db-b185-70c1941789d4",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "af11d715-5ea3-4dfe-8536-882c869faf09",
+  "toolUseResult": {
+    "query": "Rethinking Improving Autoformalization BEq dependency retrieval ICLR 2025 authors venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011osUGxE4TcrWqstjMJK67u",
+        "content": [
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview",
+            "url": "https://openreview.net/forum?id=hUb2At2DsQ"
+          },
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/d630537fc4402cfa3ebbc7450a0cac91-Abstract-Conference.html"
+          },
+          {
+            "title": "(PDF) Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://www.researchgate.net/publication/397701226_Improving_Autoformalization_Using_Direct_Dependency_Retrieval"
+          },
+          {
+            "title": "RETHINKING AND IMPROVING AUTOFORMALIZATION",
+            "url": "https://openreview.net/notes/edits/attachment?id=GqZMKc40xb&name=pdf"
+          },
+          {
+            "title": "GitHub - Purewhite2019/rethinking_autoformalization: [ICLR'25 Spotlight] Rethinking and improving autoformalization: towards a faithful metric and a Dependency Retrieval-based approach · GitHub",
+            "url": "https://github.com/Purewhite2019/rethinking_autoformalization"
+          },
+          {
+            "title": "Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/pdf/2511.11990"
+          },
+          {
+            "title": "towards a faithful metric and a dependency retrieval",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://yangzhang-v5.github.io/iclr2025interestingpapers/neurosymbolic%20&%20hybrid%20AI%20systems%20(physics-informed,%20logic%20&%20formal%20reasoning,%20etc.).html"
+          },
+          {
+            "title": "[2511.11990] Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/abs/2511.11990"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the paper:\n\n**Title:** \"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach\"\n\n**Venue:** International Conference on Learning Representations 2025 (ICLR 2025)\n\n**Authors:** Qi Liu, Xinhao Zheng, Xudong Lu, Qinxiang Cao, and Junchi Yan\n\n**Affiliations:** School of Computer Science & School of Artificial Intelligence, Shanghai Jiao Tong University (with Cao and Yan having equal correspondence, and Yan also affiliated with Shanghai Artificial Intelligence Laboratory)\n\n**Key Contributions:**\n- BEq (Bidirectional Extended Definitional Equivalence), an automated neuro-symbolic method to determine equivalence between two formal statements\n- RAutoformalizer (Retrieval-augmented Autoformalizer), augmenting statement autoformalization by Dependency Retrieval\n- Con-NF, a novel benchmark consisting of 961 informal-formal statement pairs from frontier mathematical research"
+    ],
+    "durationSeconds": 6.185670024000021,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1ec618f2-5d41-47db-b185-70c1941789d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-28T05:59:56.492Z_
+
+<details><summary>↩ Tool result · `toolu_013bXU8U1DjhSwcJcXH2en3V`</summary>
+
+```text
+Web search results for query: "Delta Prover reflective decomposition formal theorem proving 2026"
+
+Links: [{"title":"[2507.15225] Solving Formal Math Problems by Decomposition and Iterative Reflection","url":"https://arxiv.org/abs/2507.15225"},{"title":"Solving Formal Math Problems by Decomposition and Iterative Reflection","url":"https://arxiv.org/html/2507.15225v1"},{"title":"Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs","url":"https://arxiv.org/html/2506.19923v4"},{"title":"Solving Formal Math Problems by Decomposition and Iterative Reflection - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250715225Z/abstract"},{"title":"Solving Formal Math Problems by Decomposition and Iterative Reflection","url":"https://arxiv.org/pdf/2507.15225"},{"title":"Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/pdf/2509.22819"},{"title":"Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving","url":"https://arxiv.org/pdf/2603.24465"}]
+
+Based on the search results, here's what I found about Delta Prover and reflective decomposition in formal theorem proving:
+
+## Delta Prover Overview
+
+Delta Prover is an agent-based framework that orchestrates the interaction between a general-purpose LLM and the Lean 4 proof environment, leveraging the reflection and reasoning capabilities of general-purpose LLMs to interactively construct formal proofs in Lean 4.
+
+## Key Components
+
+At its core, the agent integrates two novel, interdependent components: an algorithmic framework for reflective decomposition and iterative proof repair, and a custom Domain-Specific Language (DSL) built upon Lean 4 for streamlined subproblem management.
+
+### Reflective Decomposition Process
+
+For complex problems, the LLM formulates a high-level proof sketch using a Domain-Specific Language, which is then systematically decomposed into sub-problems via the DSL. Each sub-problem is addressed using iterative proof repair, and should a sub-problem prove intractable, the LLM reflects on the decomposition, revising it or devising alternative proof strategies.
+
+## Performance Results
+
+Delta Prover achieves a state-of-the-art 95.9% success rate on the miniF2F-test benchmark, surpassing all existing approaches, including those requiring model specialization. On the more challenging IMO problems within miniF2F-test, Delta Prover attains an 85% success rate, exceeding the previous state-of-the-art.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1cc473b0-f4bd-4ba7-a01c-38b3f06a2f5c",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "1ab98240-8368-48c2-b328-632a8107efc2",
+  "toolUseResult": {
+    "query": "Delta Prover reflective decomposition formal theorem proving 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tb4dtkRuU9nV7dqLdmZR6o",
+        "content": [
+          {
+            "title": "[2507.15225] Solving Formal Math Problems by Decomposition and Iterative Reflection",
+            "url": "https://arxiv.org/abs/2507.15225"
+          },
+          {
+            "title": "Solving Formal Math Problems by Decomposition and Iterative Reflection",
+            "url": "https://arxiv.org/html/2507.15225v1"
+          },
+          {
+            "title": "Prover Agent: An Agent-Based Framework for Formal Mathematical Proofs",
+            "url": "https://arxiv.org/html/2506.19923v4"
+          },
+          {
+            "title": "Solving Formal Math Problems by Decomposition and Iterative Reflection - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250715225Z/abstract"
+          },
+          {
+            "title": "Solving Formal Math Problems by Decomposition and Iterative Reflection",
+            "url": "https://arxiv.org/pdf/2507.15225"
+          },
+          {
+            "title": "Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving",
+            "url": "https://arxiv.org/pdf/2603.24465"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Delta Prover and reflective decomposition in formal theorem proving:\n\n## Delta Prover Overview\n\nDelta Prover is an agent-based framework that orchestrates the interaction between a general-purpose LLM and the Lean 4 proof environment, leveraging the reflection and reasoning capabilities of general-purpose LLMs to interactively construct formal proofs in Lean 4.\n\n## Key Components\n\nAt its core, the agent integrates two novel, interdependent components: an algorithmic framework for reflective decomposition and iterative proof repair, and a custom Domain-Specific Language (DSL) built upon Lean 4 for streamlined subproblem management.\n\n### Reflective Decomposition Process\n\nFor complex problems, the LLM formulates a high-level proof sketch using a Domain-Specific Language, which is then systematically decomposed into sub-problems via the DSL. Each sub-problem is addressed using iterative proof repair, and should a sub-problem prove intractable, the LLM reflects on the decomposition, revising it or devising alternative proof strategies.\n\n## Performance Results\n\nDelta Prover achieves a state-of-the-art 95.9% success rate on the miniF2F-test benchmark, surpassing all existing approaches, including those requiring model specialization. On the more challenging IMO problems within miniF2F-test, Delta Prover attains an 85% success rate, exceeding the previous state-of-the-art."
+    ],
+    "durationSeconds": 7.538196068000019,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1cc473b0-f4bd-4ba7-a01c-38b3f06a2f5c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-28T06:00:35.433Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check a few more things to complete the research direction:
+
+1. Let me verify a few more deadlines and check for AISTATS or other venues.
+2. Let me verify if GraphMind specifically applies to formal theorem proving or just general QA.
+3. Need to check if there's a very close concurrent work that specifically combines evolving GNN with recursive proof decomposition.
+
+From what I've found so far:
+- GraphMind (Nov 2025) models reasoning as a heterogeneous evolving graph with GNN - but for general QA, not formal theorem proving
+- Mechanic (Mar 2026) does sorry-driven decomposition but no GNN/graph evolution for retrieval
+
+
+- Rango (ICSE 2025) handles step-by-step retrieval in Coq proofs without GNN or dynamic graphs
+- LeanPremise adapts to user contexts but doesn't involve evolving graphs during recursive decomposition
+
+The real novelty here is combining three specific elements: a GNN operating on a dynamically evolving dependency graph during recursive proof decomposition, where the graph gets enriched as subgoals are solved and new dependency edges form, all applied to premise selection in formal theorem proving with Lean and Mathlib. This combination doesn't seem to exist in the literature.
+
+Now I'm compiling the final JSON...
+
+Verifying the key references I've gathered...
+
+Now I'm checking on SciLib-GRC21 more carefully—it looks like it might be a dataset or tool rather than a traditional research paper, so I should be cautious about including it. I'm also noting which venues have submission deadlines extending past late May 2026. AAAI 2027: Abstract July 21, 2026; Full paper July 28, 2026 ✓
+- ICLR 2027: Likely September/October 2026 (not announced yet, but based on pattern) ✓
+- NeurIPS 2026 workshops: Suggested submission August 29, 2026 ✓
+
+NeurIPS 2026 main track: deadline was May 6, 2026 - PASSED
+ICML 2026: deadline was January 28, 2026 - PASSED
+COLM 2026: deadline was March 31, 2026 - PASSED
+EMNLP 2026 via ARR May 2026: deadline was May 25, 2026 - PASSED
+
+For EMNLP, the ARR May cycle deadline has passed, but there's a commitment deadline of August 2, 2026 for papers that already have reviews from earlier ARR submissions. The main realistic options moving forward are AAAI 2027 and ICLR 2027, though I should explore other potential venues as well. I'm also thinking through the technical approach, starting with using Qwen3-Embedding-8B for text.
+
+For the method itself, I'm considering a dynamic GNN architecture inspired by GraphMind's evolving heterogeneous graphs, integrated with Hilbert-style recursive decomposition, and evaluated on LeanDojo Benchmark 4 and miniF2F. The resource requirements are substantial - training the GNN on Mathlib's dependency graph of around 167K premises needs moderate GPU resources, while running Hilbert-style recursive proofs will require significant LLM inference costs, ideally with A100 or H100 GPUs for the training phase. Let me verify whether ICLR 2027 has been officially announced yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ab98240-8368-48c2-b328-632a8107efc2",
+  "isSidechain": false,
+  "requestId": "req_011CbUTQjPgeRFdsrBjbA6jT",
+  "type": "assistant",
+  "uuid": "2f03bd4a-0a32-4e07-bd0e-4673ac2ee3b2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKE7YodT3F867vXMM6cgzz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1534,
+      "cache_creation_input_tokens": 1583,
+      "cache_read_input_tokens": 43300,
+      "output_tokens": 1478,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1583,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1534,
+          "output_tokens": 1478,
+          "cache_read_input_tokens": 43300,
+          "cache_creation_input_tokens": 1583,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1583
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-28T06:00:35.451Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pf8vGx1xeWHp4wTh7rSFUC`</summary>
+
+```json
+{
+  "query": "ICLR 2027 call for papers announced date location"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f03bd4a-0a32-4e07-bd0e-4673ac2ee3b2",
+  "isSidechain": false,
+  "requestId": "req_011CbUTQjPgeRFdsrBjbA6jT",
+  "type": "assistant",
+  "uuid": "bc225557-516b-4992-ac08-08d476bbffda",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKE7YodT3F867vXMM6cgzz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1534,
+      "cache_creation_input_tokens": 1583,
+      "cache_read_input_tokens": 43300,
+      "output_tokens": 1478,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1583,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1534,
+          "output_tokens": 1478,
+          "cache_read_input_tokens": 43300,
+          "cache_creation_input_tokens": 1583,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1583
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-28T06:00:35.455Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GRadmpb1TaVsEtkm4q64Q1`</summary>
+
+```json
+{
+  "query": "Lean 4 Mathlib premise selection training data size number theorems 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc225557-516b-4992-ac08-08d476bbffda",
+  "isSidechain": false,
+  "requestId": "req_011CbUTQjPgeRFdsrBjbA6jT",
+  "type": "assistant",
+  "uuid": "6cb0deb0-d1f4-4602-a1d9-2cf1daa26197",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKE7YodT3F867vXMM6cgzz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1534,
+      "cache_creation_input_tokens": 1583,
+      "cache_read_input_tokens": 43300,
+      "output_tokens": 1478,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1583,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1534,
+          "output_tokens": 1478,
+          "cache_read_input_tokens": 43300,
+          "cache_creation_input_tokens": 1583,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1583
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 118_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "6cb0deb0-d1f4-4602-a1d9-2cf1daa26197",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 119_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-28T06:00:40.359Z_
+
+<details><summary>↩ Tool result · `toolu_01Pf8vGx1xeWHp4wTh7rSFUC`</summary>
+
+```text
+Web search results for query: "ICLR 2027 call for papers announced date location"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index","url":"https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona","url":"https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"}]
+
+Based on the search results, I found information about ICLR 2027, though the official ICLR organization hasn't announced specific details yet. Here's what I found:
+
+ICLR 2027 (the Fourteenth annual conference) has location and dates to be announced.
+
+However, there are some third-party conference listings that show potential ICLR 2027 venues:
+
+- One listing shows ICLR 2027 scheduled for February 16-23, 2027 in Montréal, Québec, Canada
+- Another listing shows ICLR scheduled for August 30-31, 2027 in Sydney
+- A third listing indicates ICLR 2027 in Lisbon, Portugal on February 08-09, 2027
+
+It's important to note that these third-party listings may not represent the official ICLR 2027 details. For the most accurate and official information about the ICLR 2027 call for papers announcement date, location, and schedule, it would be best to check the official ICLR website at iclr.cc.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc225557-516b-4992-ac08-08d476bbffda",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "2a780445-44aa-4ad8-8c99-3acb1ef3a2e1",
+  "toolUseResult": {
+    "query": "ICLR 2027 call for papers announced date location",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015bfwpQV2KEvxkpFNK7f6nT",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR on February 08-09, 2027 in Lisbon, Portugal - Conference Index",
+            "url": "https://conferenceindex.org/event/international-conference-on-learning-representations-iclr-2027-february-lisbon-pt"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "International Conference on Learning and Reinforcement ICLR in August 2027 in Barcelona",
+            "url": "https://waset.org/learning-and-reinforcement-conference-in-august-2027-in-barcelona"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2027, though the official ICLR organization hasn't announced specific details yet. Here's what I found:\n\nICLR 2027 (the Fourteenth annual conference) has location and dates to be announced.\n\nHowever, there are some third-party conference listings that show potential ICLR 2027 venues:\n\n- One listing shows ICLR 2027 scheduled for February 16-23, 2027 in Montréal, Québec, Canada\n- Another listing shows ICLR scheduled for August 30-31, 2027 in Sydney\n- A third listing indicates ICLR 2027 in Lisbon, Portugal on February 08-09, 2027\n\nIt's important to note that these third-party listings may not represent the official ICLR 2027 details. For the most accurate and official information about the ICLR 2027 call for papers announcement date, location, and schedule, it would be best to check the official ICLR website at iclr.cc."
+    ],
+    "durationSeconds": 4.903957580999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bc225557-516b-4992-ac08-08d476bbffda",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-28T06:00:41.513Z_
+
+<details><summary>↩ Tool result · `toolu_01GRadmpb1TaVsEtkm4q64Q1`</summary>
+
+```text
+Web search results for query: "Lean 4 Mathlib premise selection training data size number theorems 2026"
+
+Links: [{"title":"Premise Selection for a Lean Hammer","url":"https://arxiv.org/html/2506.07477"},{"title":"Machine-Learned Premise Selection for Lean | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-031-43513-3_10"},{"title":"Machine-Learned Premise Selection for Lean⋆","url":"https://arxiv.org/pdf/2304.00994"},{"title":"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving","url":"https://arxiv.org/html/2605.13137"},{"title":"Premise Selection for Lean 4","url":"https://lean-forward.github.io/pubs/geesing_msc_thesis.pdf"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://arxiv.org/pdf/2306.15626"},{"title":"Premise Selection for a Lean Hammer [Quick Review]","url":"https://liner.com/review/premise-selection-for-a-lean-hammer"}]
+
+Based on the search results, I found a recent 2026 paper on premise selection for Lean. The most relevant result appears to be from "Premise Selection for a Lean Hammer," which uses Lean version v4.16.0.
+
+However, the search results provided don't contain specific details about the exact training data size or the total number of theorems used in the premise selection training for this 2026 work. The results show references to:
+
+- Testing on hold-out sets extracted from Mathlib and non-Mathlib splits of miniCTX-v2-test
+- A benchmark constructed from 98,734 theorems and proofs extracted from Lean's math library (from an earlier LeanDojo paper)
+
+For the most recent 2026 paper on "Premise Selection for a Lean Hammer," the search results don't explicitly state the total training data size or number of theorems in their dataset. To get more specific details about the training data size and exact number of theorems used in 2026, you may need to consult the full paper directly at https://arxiv.org/html/2506.07477.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6cb0deb0-d1f4-4602-a1d9-2cf1daa26197",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "c1e708e3-48cd-4726-adf7-5029ba4bb8ca",
+  "toolUseResult": {
+    "query": "Lean 4 Mathlib premise selection training data size number theorems 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KcVXyZAqFj8yaRzdxJgwcb",
+        "content": [
+          {
+            "title": "Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/html/2506.07477"
+          },
+          {
+            "title": "Machine-Learned Premise Selection for Lean | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-031-43513-3_10"
+          },
+          {
+            "title": "Machine-Learned Premise Selection for Lean⋆",
+            "url": "https://arxiv.org/pdf/2304.00994"
+          },
+          {
+            "title": "LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving",
+            "url": "https://arxiv.org/html/2605.13137"
+          },
+          {
+            "title": "Premise Selection for Lean 4",
+            "url": "https://lean-forward.github.io/pubs/geesing_msc_thesis.pdf"
+          },
+          {
+            "title": "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/pdf/2306.15626"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer [Quick Review]",
+            "url": "https://liner.com/review/premise-selection-for-a-lean-hammer"
+          }
+        ]
+      },
+      "Based on the search results, I found a recent 2026 paper on premise selection for Lean. The most relevant result appears to be from \"Premise Selection for a Lean Hammer,\" which uses Lean version v4.16.0.\n\nHowever, the search results provided don't contain specific details about the exact training data size or the total number of theorems used in the premise selection training for this 2026 work. The results show references to:\n\n- Testing on hold-out sets extracted from Mathlib and non-Mathlib splits of miniCTX-v2-test\n- A benchmark constructed from 98,734 theorems and proofs extracted from Lean's math library (from an earlier LeanDojo paper)\n\nFor the most recent 2026 paper on \"Premise Selection for a Lean Hammer,\" the search results don't explicitly state the total training data size or number of theorems in their dataset. To get more specific details about the training data size and exact number of theorems used in 2026, you may need to consult the full paper directly at https://arxiv.org/html/2506.07477."
+    ],
+    "durationSeconds": 6.054754568000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6cb0deb0-d1f4-4602-a1d9-2cf1daa26197",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 122 · 2026-05-28T06:00:41.522Z_
+
+```json
+{
+  "parentUuid": "c1e708e3-48cd-4726-adf7-5029ba4bb8ca",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d45f17ce-c4ff-4edc-8fe2-a553b7b75036",
+  "timestamp": "2026-05-28T06:00:41.522Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-28T06:00:44.599Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mkw63fKxnheUB6ycXMX4K7`</summary>
+
+```json
+{
+  "query": "AISTATS 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d45f17ce-c4ff-4edc-8fe2-a553b7b75036",
+  "isSidechain": false,
+  "requestId": "req_011CbUTU3oYmLNn2EzAacUMv",
+  "type": "assistant",
+  "uuid": "7f16e4dc-61e2-4ad0-9e38-2b93ef7557f9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PVBNKFrj7xEHfW5j2HqD6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4468,
+      "cache_read_input_tokens": 44883,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4468,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 44883,
+          "cache_creation_input_tokens": 4468,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4468
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-28T06:00:45.835Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MvsgvZSkuLLj7Q3xqX683a`</summary>
+
+```json
+{
+  "query": "SciLib-GRC21 paper arXiv Khalov Ataeva Mathlib premise retrieval 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f16e4dc-61e2-4ad0-9e38-2b93ef7557f9",
+  "isSidechain": false,
+  "requestId": "req_011CbUTU3oYmLNn2EzAacUMv",
+  "type": "assistant",
+  "uuid": "dec129f9-9385-464b-a204-9253db07d21b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PVBNKFrj7xEHfW5j2HqD6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4468,
+      "cache_read_input_tokens": 44883,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4468,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 44883,
+          "cache_creation_input_tokens": 4468,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4468
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-28T06:00:49.361Z_
+
+<details><summary>↩ Tool result · `toolu_01Mkw63fKxnheUB6ycXMX4K7`</summary>
+
+```text
+Web search results for query: "AISTATS 2027 submission deadline call for papers"
+
+Links: [{"title":"aistats 2026","url":"https://virtual.aistats.org/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"2026 Dates and Deadlines","url":"https://virtual.aistats.org/Conferences/2026/Dates"},{"title":"Call for Papers: AISTATS 2026","url":"https://virtual.aistats.org/Conferences/2026/CallForPapers"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Submission FAQ","url":"https://virtual.aistats.org/Conferences/2026/SubmissionFAQ"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Area Chair (AC) Guidelines","url":"https://virtual.aistats.org/Conferences/2026/ACGuidelines"},{"title":"Call for Papers| Artificial Intelligence and Statistics Conference","url":"http://aistats.org/aistats2024/call-for-papers.html"},{"title":"Computer Science conferences timeline","url":"https://lucjaulmes.github.io/cfp-timeline/"}]
+
+Based on the search results, I found information about AISTATS 2027. AISTATS 2027 will be held February 16-23, 2027 in Montréal, Québec, Canada.
+
+However, the search results do not contain specific information about the AISTATS 2027 submission deadline or call for papers details. The results primarily show information about AISTATS 2026 (which has already had its submission deadlines) and the conference location for 2027. 
+
+To get the most current and detailed information about AISTATS 2027 submission deadlines and call for papers, I recommend:
+1. Visiting the official AISTATS website at https://www.aistats.org/
+2. Checking the virtual AISTATS conference portal at https://virtual.aistats.org/
+3. Monitoring the AI Deadlines website (aideadlines.org), which typically lists upcoming conference deadlines
+
+The call for papers for AISTATS 2027 is likely not yet officially released, as it is typically announced several months before the conference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f16e4dc-61e2-4ad0-9e38-2b93ef7557f9",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "31cb6e70-0318-4dad-b12a-3895022880fb",
+  "toolUseResult": {
+    "query": "AISTATS 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HAQPVuUiJcrXx8mMjxhbGU",
+        "content": [
+          {
+            "title": "aistats 2026",
+            "url": "https://virtual.aistats.org/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://virtual.aistats.org/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers: AISTATS 2026",
+            "url": "https://virtual.aistats.org/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Submission FAQ",
+            "url": "https://virtual.aistats.org/Conferences/2026/SubmissionFAQ"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Area Chair (AC) Guidelines",
+            "url": "https://virtual.aistats.org/Conferences/2026/ACGuidelines"
+          },
+          {
+            "title": "Call for Papers| Artificial Intelligence and Statistics Conference",
+            "url": "http://aistats.org/aistats2024/call-for-papers.html"
+          },
+          {
+            "title": "Computer Science conferences timeline",
+            "url": "https://lucjaulmes.github.io/cfp-timeline/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about AISTATS 2027. AISTATS 2027 will be held February 16-23, 2027 in Montréal, Québec, Canada.\n\nHowever, the search results do not contain specific information about the AISTATS 2027 submission deadline or call for papers details. The results primarily show information about AISTATS 2026 (which has already had its submission deadlines) and the conference location for 2027. \n\nTo get the most current and detailed information about AISTATS 2027 submission deadlines and call for papers, I recommend:\n1. Visiting the official AISTATS website at https://www.aistats.org/\n2. Checking the virtual AISTATS conference portal at https://virtual.aistats.org/\n3. Monitoring the AI Deadlines website (aideadlines.org), which typically lists upcoming conference deadlines\n\nThe call for papers for AISTATS 2027 is likely not yet officially released, as it is typically announced several months before the conference."
+    ],
+    "durationSeconds": 4.756277181999991,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7f16e4dc-61e2-4ad0-9e38-2b93ef7557f9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-28T06:00:53.714Z_
+
+<details><summary>↩ Tool result · `toolu_01MvsgvZSkuLLj7Q3xqX683a`</summary>
+
+```text
+Web search results for query: "SciLib-GRC21 paper arXiv Khalov Ataeva Mathlib premise retrieval 2026"
+
+Links: [{"title":"SciLib-GRC21: Graph-Structured Premise Retrieval for Lean 4 Theorem Proving","url":"https://zenodo.org/records/20037667"},{"title":"[2501.13959] Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization","url":"https://arxiv.org/abs/2501.13959"},{"title":"Assisting Mathematical Formalization with A Learning-based Premise Retriever","url":"https://arxiv.org/html/2501.13959v1"},{"title":"Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization","url":"https://arxiv.org/pdf/2501.13959"},{"title":"Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization","url":"https://arxiv.org/html/2501.13959"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/html/2510.10815"},{"title":"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving","url":"https://arxiv.org/html/2605.13137"},{"title":"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS","url":"https://arxiv.org/pdf/2510.10815"},{"title":"[2605.13137] LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving","url":"https://arxiv.org/abs/2605.13137"}]
+
+I found the SciLib-GRC21 paper! Here are the search results:
+
+SciLib-GRC21 is a graph-structured premise retrieval system for Lean 4 theorem proving that provides tactic-categorised lemma hints (apply / rw / simp) using a materialised RDF knowledge graph of Mathlib via the SciLib ontology.
+
+The system includes the production FastAPI endpoint, the experimental code for 16 retrieval modes and four baselines, and the per-task evaluation data from MiniF2F (488 tasks, 50,752 Lean-verified runs).
+
+The paper is authored by Andrey P. Khalov, Olga M. Ataeva, and Natalia P. Tuchkova, with copyright (c) 2026.
+
+The paper appears to be available on Zenodo at https://zenodo.org/records/20037667, with the repository code available on GitHub at https://github.com/andkhalov/SciLib-GRC21.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dec129f9-9385-464b-a204-9253db07d21b",
+  "isSidechain": false,
+  "promptId": "854f8196-01f0-4d8b-8133-6318e4fe3810",
+  "type": "user",
+  "uuid": "f217dc90-af08-4bc1-a250-bd4fbe282fed",
+  "toolUseResult": {
+    "query": "SciLib-GRC21 paper arXiv Khalov Ataeva Mathlib premise retrieval 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W97pof5oJkmqWn7L9C7gDz",
+        "content": [
+          {
+            "title": "SciLib-GRC21: Graph-Structured Premise Retrieval for Lean 4 Theorem Proving",
+            "url": "https://zenodo.org/records/20037667"
+          },
+          {
+            "title": "[2501.13959] Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization",
+            "url": "https://arxiv.org/abs/2501.13959"
+          },
+          {
+            "title": "Assisting Mathematical Formalization with A Learning-based Premise Retriever",
+            "url": "https://arxiv.org/html/2501.13959v1"
+          },
+          {
+            "title": "Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization",
+            "url": "https://arxiv.org/pdf/2501.13959"
+          },
+          {
+            "title": "Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization",
+            "url": "https://arxiv.org/html/2501.13959"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/html/2510.10815"
+          },
+          {
+            "title": "LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving",
+            "url": "https://arxiv.org/html/2605.13137"
+          },
+          {
+            "title": "Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          },
+          {
+            "title": "[2605.13137] LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving",
+            "url": "https://arxiv.org/abs/2605.13137"
+          }
+        ]
+      },
+      "I found the SciLib-GRC21 paper! Here are the search results:\n\nSciLib-GRC21 is a graph-structured premise retrieval system for Lean 4 theorem proving that provides tactic-categorised lemma hints (apply / rw / simp) using a materialised RDF knowledge graph of Mathlib via the SciLib ontology.\n\nThe system includes the production FastAPI endpoint, the experimental code for 16 retrieval modes and four baselines, and the per-task evaluation data from MiniF2F (488 tasks, 50,752 Lean-verified runs).\n\nThe paper is authored by Andrey P. Khalov, Olga M. Ataeva, and Natalia P. Tuchkova, with copyright (c) 2026.\n\nThe paper appears to be available on Zenodo at https://zenodo.org/records/20037667, with the repository code available on GitHub at https://github.com/andkhalov/SciLib-GRC21."
+    ],
+    "durationSeconds": 7.875332399000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dec129f9-9385-464b-a204-9253db07d21b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 127 · 2026-05-28T06:01:35.436Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to compile the final JSON. Let me also check if ICLR 2027 deadline is likely around September/October 2026 based on the pattern. ICLR 2026 had abstract deadline Sept 19, 2025 and paper deadline Sept 24, 2025. So ICLR 2027 would likely be around September 2026. I shouldn't include it since it hasn't been officially announced, but I can mention it as "expected" since it's a well-established annual conference.
+
+Actually, I should only include venues whose deadlines have NOT yet passed and are confirmed. So:
+
+
+- AAAI 2027: July 28, 2026 ✓ (confirmed)
+- ICLR 2027: ~September 2026 (not officially announced but likely, based on pattern)
+
+I should also consider NeurIPS 2026 workshops with their August 29, 2026 submission date, though workshop papers carry less prestige. For ARR, there could be a June 2026 cycle that commits to a future venue, but I need to clarify what the user is actually looking for.
+
+Looking at other ML conferences, IJCAI 2027 is worth checking alongside CoLLAs 2026, though the latter might not be the best fit. I'm also noting that GraphMind from November 2025 is the closest related work—it models reasoning as an evolving heterogeneous graph using GNNs for theorem selection in general QA, but our approach targets formal theorem proving specifically with Lean and Mathlib.
+
+Now I'm setting up the technical approach: a recursive proof decomposition pipeline over Lean 4 that maintains a dynamic dependency graph initialized from Mathlib's structure, where solving subgoals at each recursion level adds edges to the premises used and propagates these connections to related subgoals, then trains a message-passing GNN variant on this evolving graph.
+
+For the embedding and scoring layer, I'm using Qwen3-Embedding-8B to encode proof states and premises as initial text embeddings, then combining those with the GNN's structural scores through a learned gating mechanism to produce premise relevance scores at each decomposition step.
+
+For resource estimates, the manual approach requires building the GNN pipeline and integrating it with Lean 4, training on LeanDojo Benchmark 4's ~167K premises with roughly 200-400 GPU hours on A100s, then running full recursive proofs on miniF2F/ProofNet for another 100-200 GPU hours of LLM inference, totaling 500-800 GPU hours over 4-5 months. With Claude API assistance for code generation and experiment design, I can reduce that by about 30% to 3-4 months and 500-700 GPU hours, with API costs around $2-3K.
+
+For fully automated research, Claude handles most of the coding and experimentation, bringing the timeline down to 6-8 weeks and GPU hours to 400-600, though API costs rise to $5-8K and Lean 4 compilation speed becomes the main bottleneck. At roughly $2 per GPU hour on A100s, the manual approach costs $800-1600 in compute alone.
+
+This qualifies as top-tier work—the 3.3× oracle headroom gap is substantial, and combining evolving GNNs with recursive decomposition is a principled novel approach that targets venues like AAAI or ICLR, though execution risk is moderate since each component already exists. I should double-check the recent landscape though, as I'm seeing some related work like GraphMind that might affect positioning.
+
+Looking at what's out there, GraphMind does evolving GNNs but for QA reasoning rather than formal theorem proving, Mechanic uses error-driven decomposition without dynamic graph evolution, Rango does step-by-step retrieval in Coq but lacks the GNN component, and LeanPremise adapts to user context but doesn't evolve the graph during recursion. So the combination really is novel. Now I need to settle on a project name and finalize the JSON structure with all the fields merged together.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f217dc90-af08-4bc1-a250-bd4fbe282fed",
+  "isSidechain": false,
+  "requestId": "req_011CbUTV7ttJ31Gwtz5NgowX",
+  "type": "assistant",
+  "uuid": "50f5539b-0b78-4cfe-879a-48f8e3a8f394",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXLNqEayEH6W1kLef3q8rj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1497,
+      "cache_read_input_tokens": 49351,
+      "output_tokens": 3812,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1497,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3812,
+          "cache_read_input_tokens": 49351,
+          "cache_creation_input_tokens": 1497,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1497
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128 · 2026-05-28T06:02:26.487Z_
+
+Now I have all the information I need. Let me compile the final JSON object with all fields merged.
+
+{
+  "title": "Dependency-Graph-Evolving Retrieval for Recursive Proof Decomposition",
+  "core_problem": "How can premise retrieval dynamically adapt during multi-level recursive proof decomposition, exploiting the evolving dependency structure as subgoals are solved and new proof context accumulates?",
+  "opportunity": "The BEq paper's oracle experiment reveals a 3.3× gap between actual retrieval (16.86% BEq@8) and perfect retrieval (55.36%) on out-of-distribution autoformalization. DRIFT (Oct 2025) decomposes then retrieves in a single level. LeanSearch v2 (May 2026) achieves 46.1% recall@10 on research-level Mathlib with reasoning-mode retrieval. Graph-augmented premise selection (Oct 2025) outperforms text-based by 25% using GNNs over static dependency graphs. But no system evolves the dependency graph during recursive proof decomposition—when a subgoal S1 is proven using premises P1, P2, P3, this creates new dependency edges that should inform retrieval for sibling subgoal S2. The insight is that recursive decomposition naturally builds a growing proof dependency structure, and a GNN that operates on this evolving graph can leverage proof-construction context that static retrieval systems miss.",
+  "landscape": "DRIFT (Oct 2025) decomposes informal statements into sub-components and retrieves premises, nearly doubling F1 score over DPR on ProofNet. LeanSearch v2 (May 2026) uses reasoning-mode retrieval achieving 46.1% recall@10, boosting proof success from 4% (no retrieval) to 20%. Graph-augmented premise selection (Oct 2025) combines text embeddings with GNNs over heterogeneous dependency graphs, outperforming ReProver by 25%. SciLib-GRC21 (2026) provides a materialized RDF knowledge graph of Mathlib. Hilbert uses simple sentence-transformer retrieval at each recursion level. GraphMind (Nov 2025) models general QA reasoning as a heterogeneous evolving graph with dynamic GNN for theorem selection and conclusion generation, but targets natural-language QA benchmarks rather than formal proof libraries. Mechanic (Mar 2026) uses sorry-driven formal decomposition in Lean but does not evolve retrieval graphs across subgoals. Rango (ICSE 2025) adapts retrieval at each proof step in Coq but uses flat similarity without graph structure. REAL-Prover (May 2025) integrates stepwise premise retrieval via LeanSearch-PS but employs static semantic matching without graph evolution. The fundamental limitation shared by all these systems is that retrieval is either one-shot (DRIFT, LeanSearch) or uses a static graph (GNN approaches)—none exploits the fact that during recursive proof construction, each solved subgoal provides new dependency information that should improve retrieval for subsequent subgoals. This dynamic context is especially valuable for deep recursions (Hilbert's D=5 yields 99.2%), where lower-level subgoals inherit rich contextual information from their ancestors.",
+  "inspired_by": "Untried combination 'dependency-aware retrieval (BEq paper) integrated into recursive proof decomposition (Hilbert/DeepSeek-V2)' + gap 'retrieval quality for formal library dependencies' (3.3× headroom) + pattern 'recursive/hierarchical decomposition with verification at every level'",
+  "approach": "Build a Hilbert-style recursive proof decomposition pipeline (depth D=5) over Lean 4/Mathlib that maintains a dynamic heterogeneous dependency graph (DynHetG) initialized from Mathlib's static premise-premise and state-premise edges. When subgoal S_i at recursion level l is solved using premises {P_j}, inject new typed edges (used-by, co-occurred-with, sibling-context) into DynHetG and propagate updated node embeddings via a Heterogeneous Graph Transformer (HGT) to re-score candidate premises for all pending sibling and descendant subgoals. Initialize node features using Qwen3-Embedding-8B (MTEB SOTA, Apache 2.0) for encoding proof states and premise docstrings, then fuse text scores with GNN structural scores via a learned gating mechanism trained end-to-end on LeanDojo Benchmark 4. Evaluate on three axes: (1) premise retrieval quality (R@k, MRR) on LeanDojo Benchmark 4, (2) end-to-end proof success on miniF2F and ProofNet, and (3) ablation isolating the contribution of dynamic graph evolution vs. static graph vs. text-only retrieval at each recursion depth.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "600-900 A100-hours (300-400 GNN training on Mathlib graph with 167K premise nodes; 200-350 recursive proof search with LLM inference on miniF2F/ProofNet; 100-150 ablations and hyperparameter sweeps)",
+      "timeline": "4-5 months (month 1: data pipeline and graph construction from Mathlib; month 2: HGT training and static-graph baseline; month 3: dynamic graph evolution mechanism and integration with Lean 4 proof loop; month 4: full evaluation and ablations; month 5: paper writing)",
+      "estimated_gpu_cost": "$1,200-$1,800 at ~$2/A100-hr"
+    },
+    "human_in_loop": {
+      "gpu_hours": "500-750 A100-hours (Claude generates boilerplate for Lean 4 interaction, GNN architecture code, and evaluation scripts, reducing iteration cycles)",
+      "timeline": "3-4 months",
+      "claude_api_cost": "$2,000-$3,500 (code generation, experiment analysis, paper drafting across ~15M input tokens)",
+      "estimated_gpu_cost": "$1,000-$1,500"
+    },
+    "auto_research": {
+      "gpu_hours": "400-600 A100-hours (automated hyperparameter search and ablation scheduling reduces redundant runs)",
+      "timeline": "6-8 weeks",
+      "claude_api_cost": "$5,000-$8,000 (heavy code generation for Lean 4 FFI, GNN modules, dynamic graph update logic, automated experiment orchestration, ~40M input tokens)",
+      "estimated_gpu_cost": "$800-$1,200",
+      "speed_bottleneck": "Lean 4 type-checking and proof verification latency (~2-5s per tactic step); Mathlib compilation time (~45-90 min per full build); sequential dependency in recursive proof search prevents full parallelization of depth-first subgoal resolution"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract: July 21, 2026; full paper: July 28, 2026)",
+    "ICLR 2027 (expected ~September 2026, based on annual pattern; not yet officially announced)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach (ICLR 2025)",
+    "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems (ICLR 2026)",
+    "Hilbert: Recursively Building Formal Proofs with Informal Reasoning (ICLR 2026)",
+    "LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving (arXiv 2026)",
+    "Combining Textual and Structural Information for Premise Selection in Lean (arXiv 2025)",
+    "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition (arXiv 2025)",
+    "LeanDojo: Theorem Proving with Retrieval-Augmented Language Models (NeurIPS 2023)",
+    "GraphMind: Theorem Selection and Conclusion Generation Framework with Dynamic GNN for LLM Reasoning (arXiv 2025)",
+    "Rango: Adaptive Retrieval-Augmented Proving for Automated Software Verification (ICSE 2025)",
+    "Gödel's Poetry (arXiv 2025)",
+    "REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning (arXiv 2025)",
+    "Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving (arXiv 2026)"
+  ],
+  "description": "We propose DGE-Retrieval, a premise selection system that dynamically evolves a heterogeneous dependency graph during recursive proof decomposition in Lean 4. Current retrieval approaches for formal theorem proving are either one-shot (DRIFT, LeanSearch v2) or operate on static library graphs (GNN-augmented selection), leaving a 3.3× oracle gap unexploited. Our key insight is that recursive decomposition (as in Hilbert, depth D=5) naturally constructs an evolving proof dependency structure: when subgoal S1 is proven using premises P1-P3, these new dependency edges carry contextual signal for retrieving premises for sibling subgoal S2. We initialize a Heterogeneous Graph Transformer over Mathlib's 167K-node dependency graph with Qwen3-Embedding-8B node features, then inject solved-subgoal edges in real time and re-score candidates via learned text-structure gating. We evaluate premise recall on LeanDojo Benchmark 4, end-to-end proof success on miniF2F and ProofNet, and ablate the marginal contribution of dynamic graph evolution at each recursion depth. No concurrent work combines evolving GNNs with recursive formal proof decomposition; the closest—GraphMind—targets natural-language QA, while Mechanic and Rango lack graph-structural retrieval.",
+  "project_name": "dge_recursive_retrieval",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50f5539b-0b78-4cfe-879a-48f8e3a8f394",
+  "isSidechain": false,
+  "requestId": "req_011CbUTV7ttJ31Gwtz5NgowX",
+  "type": "assistant",
+  "uuid": "c927404d-2822-4993-93dd-aa0dbc005a38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXLNqEayEH6W1kLef3q8rj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1497,
+      "cache_read_input_tokens": 49351,
+      "output_tokens": 3812,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1497,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3812,
+          "cache_read_input_tokens": 49351,
+          "cache_creation_input_tokens": 1497,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1497
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 129_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "c927404d-2822-4993-93dd-aa0dbc005a38",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 130_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 131_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-28 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Dependency-Graph-Evolvin…",
+  "leafUuid": "c927404d-2822-4993-93dd-aa0dbc005a38",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 132_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Dynamic dependency-graph retrieval for recursive proof decomposition",
+  "sessionId": "03967d88-85ad-463d-ba61-90c5c5e3aff5"
+}
+```
+
+---

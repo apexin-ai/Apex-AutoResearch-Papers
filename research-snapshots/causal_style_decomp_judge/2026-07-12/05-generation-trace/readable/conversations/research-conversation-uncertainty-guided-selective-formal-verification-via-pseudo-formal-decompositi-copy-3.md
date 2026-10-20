@@ -1,0 +1,3961 @@
+# Research conversation: Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition ## Core Problem How can we achieve near
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/exported-trajectories/account-3/eea341a1-6f48-4a7d-83b3-8ee272c07c2d.jsonl`
+- **Structured JSON:** [`582e503f34edd291bdfb.json`](../../sessions/58/582e503f34edd291bdfb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T12:38:04.678Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T12:38:04.678Z",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "content": "# Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition\n\n## Core Problem\n\nHow can we achieve near-formal-verification reliability for natural language mathematical proof checking while keeping cost tractable, by selectively routing only the most uncertain proof blocks to formal verification?\n\n## Research Opportunity\n\nPseudo-Formalization (Barkallah et al., May 2026) introduced modular proof blocks with explicit premises, conclusions, and dependencies — but verifies them only via LLM, missing ~50% of research-level errors. Safe (Liu et al., ACL 2025) achieves step-level formal verification at 80% proof success but imposes 4-8x cost overhead by verifying ALL steps uniformly. No prior work has exploited PF's self-contained modular structure as a bridge to targeted autoformalization: each PF block's explicit claim statement and premises are far closer to a formal theorem statement than raw NL text, potentially making block-level autoformalization significantly more reliable than whole-proof autoformalization. By using Block Verification confidence as a triage signal, we can route only the 10-20% most uncertain blocks to formal verification, catching errors that LLM verification misses while avoiding the prohibitive cost of universal formalization.\n\n## Research Landscape\n\nCurrent proof verification spans a cost-reliability spectrum with no effective middle ground: LLM-as-judge is cheap but unreliable (best PRM drops from 78.3% to 37.3% on Hard2Verify; Barkallah et al., 2026; Pandit et al., 2025); PF+Block Verification Pareto-dominates LLM-as-judge on olympiad and research-level benchmarks but still leaves ~50% of errors undetected on ArxivMathGradingBench (Barkallah et al., 2026); Safe verifies each step in Lean 4 with ~80% success but costs 4-8x more compute per step than process reward models (Liu et al., ACL 2025); end-to-end autoformalization pipelines achieve only ~35% success because autoformalization accuracy (66% human-judged, not the 97% reported under LLM-judging) and theorem proving success (~70%) compound poorly across the full pipeline (miniF2F-Lean Revisited, NeurIPS 2025). Adjacent work on uncertainty-guided selective verification has shown 14-100% error reduction with minimal abstention in SMT-based formalization (Ganguly et al., NeurIPS 2025) and adaptive verification allocation achieves 44% fewer verifier calls with higher accuracy on MATH (Qu, arXiv 2026), but neither has been applied to the NL proof verification domain with pseudo-formal structure as the intermediary. Concurrent work update (May 2026): VERGE (Singh et al., arXiv 2026) implements semantic routing between SMT solvers and LLM-ensemble soft verification for general reasoning claims but targets first-order logic rather than mathematical proof blocks and does not exploit modular proof structure; HERMES (Ospanov et al., ICML 2026) is the first agent to interleave informal reasoning with formally verified Lean 4 proof steps, achieving 67% accuracy improvement with 80% fewer FLOPs, but applies uniform formalization without uncertainty-guided selectivity; UCCI (arXiv 2026) provides calibrated uncertainty for cost-optimal LLM cascade routing but operates on model cascades rather than formal/informal verification tiers; ProofSketcher (arXiv 2026) produces typed proof sketches with trusted kernel expansion but without uncertainty-guided routing. None of these concurrent systems exploit PF's modular block structure as autoformalization targets nor combine uncertainty-guided routing with pseudo-formal decomposition for mathematical proof verification.\n\n## Proposed Approach\n\nWe build a two-tier verification pipeline atop Pseudo-Formalization (Barkallah et al., 2026): given a mathematical proof, we decompose it into PF blocks with explicit premises, conclusions, and dependency graphs, then run LLM-based Block Verification using QwQ-32B augmented with calibrated uncertainty scoring via ensemble disagreement (N=5 stochastic forward passes with temperature sampling) and token-level CoT entropy, calibrated via isotonic regression on held-out ArxivMathGradingBench annotations. Blocks below a cost-optimized confidence threshold (targeting the bottom 10-20% by uncertainty) are autoformalized to Lean 4 using StepFun-Formalizer-32B — leveraging each PF block's explicit premises and conclusion as structured autoformalization targets for substantially higher translation fidelity than raw NL text — then formally verified via Goedel-Prover-V2-32B proof search with verifier-guided self-correction. We evaluate on ArxivMathGradingBench (error detection recall vs. verification cost), miniF2F (end-to-end correctness), and compare against PF+BV-only, Safe (universal formalization), PRM baselines, and HERMES, with ablations on threshold selection, uncertainty calibration method, and the autoformalization advantage of PF blocks over raw NL.\n\n## Detailed Description\n\nWe propose Uncertainty-Guided Selective Formal Verification, a two-tier proof verification pipeline that bridges the cost-reliability gap between cheap LLM-based verification and expensive universal formal verification of mathematical proofs. Building on Pseudo-Formalization's modular proof blocks — each with explicit premises, conclusions, and inter-block dependencies — we add calibrated uncertainty scoring to Block Verification using ensemble disagreement and CoT entropy. Blocks exceeding a learned confidence threshold are accepted via LLM verification alone; the remaining 10-20% most uncertain blocks are autoformalized to Lean 4 using StepFun-Formalizer-32B and formally verified via Goedel-Prover-V2-32B proof search. A key insight is that PF blocks' self-contained structure makes them far more amenable to reliable autoformalization than raw natural language text, enabling block-level formal verification success rates substantially higher than whole-proof autoformalization (which achieves only ~35% end-to-end on miniF2F). Concurrent work VERGE and HERMES explore formal-informal integration but neither exploits PF's modular structure nor uses uncertainty-guided selectivity for mathematical proof verification. We target near-formal reliability at ~1.5-2x cost overhead versus Safe's 4-8x for universal formalization.\n\n## Key References\n\n- Pseudo-Formalization for Automatic Proof Verification (arXiv 2026)\n- Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification (ACL 2025)\n- Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math (arXiv 2025)\n- miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward (NeurIPS 2025)\n- Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks (NeurIPS 2025)\n- Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure (arXiv 2026)\n- VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2026)\n- HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026)\n- Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction (ICLR 2026)\n- Reasoning with Confidence: Efficient Verification of LLM Reasoning Steps via Uncertainty Heads (arXiv 2025)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 300-400 (uncertainty calibration ~50h, StepFun-Formalizer inference/adaptation ~80h, Goedel-Prover-V2 proof search ~100h, baselines and ablations ~70-100h; all on A100-80GB), timeline: 12-16 weeks (2-3 researchers), estimated_gpu_cost: $900-1200\n- **human_in_loop**: gpu_hours: 250-350 (better experiment planning reduces wasted runs), timeline: 8-11 weeks, claude_api_cost: $200-400, estimated_gpu_cost: $750-1050\n- **auto_research**: gpu_hours: 300-400 (compute-bound tasks unchanged), timeline: 5-7 weeks, claude_api_cost: $500-900, estimated_gpu_cost: $900-1200, speed_bottleneck: Lean 4 proof search is inherently sequential (~2-5 min per block via Goedel-Prover-V2); formal verification throughput cannot be parallelized across dependent proof blocks, and Lean kernel type-checking is CPU-bound\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T12:38:04.683Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T12:38:04.683Z",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+## Round 1
+
+56 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T12:38:04.706Z_
+
+# Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition
+
+## Core Problem
+
+How can we achieve near-formal-verification reliability for natural language mathematical proof checking while keeping cost tractable, by selectively routing only the most uncertain proof blocks to formal verification?
+
+## Research Opportunity
+
+Pseudo-Formalization (Barkallah et al., May 2026) introduced modular proof blocks with explicit premises, conclusions, and dependencies — but verifies them only via LLM, missing ~50% of research-level errors. Safe (Liu et al., ACL 2025) achieves step-level formal verification at 80% proof success but imposes 4-8x cost overhead by verifying ALL steps uniformly. No prior work has exploited PF's self-contained modular structure as a bridge to targeted autoformalization: each PF block's explicit claim statement and premises are far closer to a formal theorem statement than raw NL text, potentially making block-level autoformalization significantly more reliable than whole-proof autoformalization. By using Block Verification confidence as a triage signal, we can route only the 10-20% most uncertain blocks to formal verification, catching errors that LLM verification misses while avoiding the prohibitive cost of universal formalization.
+
+## Research Landscape
+
+Current proof verification spans a cost-reliability spectrum with no effective middle ground: LLM-as-judge is cheap but unreliable (best PRM drops from 78.3% to 37.3% on Hard2Verify; Barkallah et al., 2026; Pandit et al., 2025); PF+Block Verification Pareto-dominates LLM-as-judge on olympiad and research-level benchmarks but still leaves ~50% of errors undetected on ArxivMathGradingBench (Barkallah et al., 2026); Safe verifies each step in Lean 4 with ~80% success but costs 4-8x more compute per step than process reward models (Liu et al., ACL 2025); end-to-end autoformalization pipelines achieve only ~35% success because autoformalization accuracy (66% human-judged, not the 97% reported under LLM-judging) and theorem proving success (~70%) compound poorly across the full pipeline (miniF2F-Lean Revisited, NeurIPS 2025). Adjacent work on uncertainty-guided selective verification has shown 14-100% error reduction with minimal abstention in SMT-based formalization (Ganguly et al., NeurIPS 2025) and adaptive verification allocation achieves 44% fewer verifier calls with higher accuracy on MATH (Qu, arXiv 2026), but neither has been applied to the NL proof verification domain with pseudo-formal structure as the intermediary. Concurrent work update (May 2026): VERGE (Singh et al., arXiv 2026) implements semantic routing between SMT solvers and LLM-ensemble soft verification for general reasoning claims but targets first-order logic rather than mathematical proof blocks and does not exploit modular proof structure; HERMES (Ospanov et al., ICML 2026) is the first agent to interleave informal reasoning with formally verified Lean 4 proof steps, achieving 67% accuracy improvement with 80% fewer FLOPs, but applies uniform formalization without uncertainty-guided selectivity; UCCI (arXiv 2026) provides calibrated uncertainty for cost-optimal LLM cascade routing but operates on model cascades rather than formal/informal verification tiers; ProofSketcher (arXiv 2026) produces typed proof sketches with trusted kernel expansion but without uncertainty-guided routing. None of these concurrent systems exploit PF's modular block structure as autoformalization targets nor combine uncertainty-guided routing with pseudo-formal decomposition for mathematical proof verification.
+
+## Proposed Approach
+
+We build a two-tier verification pipeline atop Pseudo-Formalization (Barkallah et al., 2026): given a mathematical proof, we decompose it into PF blocks with explicit premises, conclusions, and dependency graphs, then run LLM-based Block Verification using QwQ-32B augmented with calibrated uncertainty scoring via ensemble disagreement (N=5 stochastic forward passes with temperature sampling) and token-level CoT entropy, calibrated via isotonic regression on held-out ArxivMathGradingBench annotations. Blocks below a cost-optimized confidence threshold (targeting the bottom 10-20% by uncertainty) are autoformalized to Lean 4 using StepFun-Formalizer-32B — leveraging each PF block's explicit premises and conclusion as structured autoformalization targets for substantially higher translation fidelity than raw NL text — then formally verified via Goedel-Prover-V2-32B proof search with verifier-guided self-correction. We evaluate on ArxivMathGradingBench (error detection recall vs. verification cost), miniF2F (end-to-end correctness), and compare against PF+BV-only, Safe (universal formalization), PRM baselines, and HERMES, with ablations on threshold selection, uncertainty calibration method, and the autoformalization advantage of PF blocks over raw NL.
+
+## Detailed Description
+
+We propose Uncertainty-Guided Selective Formal Verification, a two-tier proof verification pipeline that bridges the cost-reliability gap between cheap LLM-based verification and expensive universal formal verification of mathematical proofs. Building on Pseudo-Formalization's modular proof blocks — each with explicit premises, conclusions, and inter-block dependencies — we add calibrated uncertainty scoring to Block Verification using ensemble disagreement and CoT entropy. Blocks exceeding a learned confidence threshold are accepted via LLM verification alone; the remaining 10-20% most uncertain blocks are autoformalized to Lean 4 using StepFun-Formalizer-32B and formally verified via Goedel-Prover-V2-32B proof search. A key insight is that PF blocks' self-contained structure makes them far more amenable to reliable autoformalization than raw natural language text, enabling block-level formal verification success rates substantially higher than whole-proof autoformalization (which achieves only ~35% end-to-end on miniF2F). Concurrent work VERGE and HERMES explore formal-informal integration but neither exploits PF's modular structure nor uses uncertainty-guided selectivity for mathematical proof verification. We target near-formal reliability at ~1.5-2x cost overhead versus Safe's 4-8x for universal formalization.
+
+## Key References
+
+- Pseudo-Formalization for Automatic Proof Verification (arXiv 2026)
+- Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification (ACL 2025)
+- Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math (arXiv 2025)
+- miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward (NeurIPS 2025)
+- Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks (NeurIPS 2025)
+- Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure (arXiv 2026)
+- VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2026)
+- HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026)
+- Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction (ICLR 2026)
+- Reasoning with Confidence: Efficient Verification of LLM Reasoning Steps via Uncertainty Heads (arXiv 2025)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 300-400 (uncertainty calibration ~50h, StepFun-Formalizer inference/adaptation ~80h, Goedel-Prover-V2 proof search ~100h, baselines and ablations ~70-100h; all on A100-80GB), timeline: 12-16 weeks (2-3 researchers), estimated_gpu_cost: $900-1200
+- **human_in_loop**: gpu_hours: 250-350 (better experiment planning reduces wasted runs), timeline: 8-11 weeks, claude_api_cost: $200-400, estimated_gpu_cost: $750-1050
+- **auto_research**: gpu_hours: 300-400 (compute-bound tasks unchanged), timeline: 5-7 weeks, claude_api_cost: $500-900, estimated_gpu_cost: $900-1200, speed_bottleneck: Lean 4 proof search is inherently sequential (~2-5 min per block via Goedel-Prover-V2); formal verification throughput cannot be parallelized across dependent proof blocks, and Lean kernel type-checking is CPU-bound
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "e1907aa8-10f3-494e-900f-f42937f3a9e1",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T12:38:04.705Z_
+
+```json
+{
+  "parentUuid": "e1907aa8-10f3-494e-900f-f42937f3a9e1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "84d952da-3f2e-405a-b4b8-6ade2486b1ad",
+  "timestamp": "2026-05-27T12:38:04.705Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T12:38:04.705Z_
+
+```json
+{
+  "parentUuid": "84d952da-3f2e-405a-b4b8-6ade2486b1ad",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "96d674d6-9a1f-47fe-a6b2-6edc3c8f4c6a",
+  "timestamp": "2026-05-27T12:38:04.705Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-guided selective formal proof verification",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T12:38:09.192Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal carefully. It's about "Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition" - essentially a two-tier verification pipeline for mathematical proofs that uses uncertainty scoring to selectively route uncertain proof blocks to formal verification.
+
+Let me first do thorough web searches to understand the current landscape before giving any recommendations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96d674d6-9a1f-47fe-a6b2-6edc3c8f4c6a",
+  "isSidechain": false,
+  "requestId": "req_011CbT5xihLTh1P8P3CtMT5r",
+  "type": "assistant",
+  "uuid": "b6a86cfc-4af1-4ea9-8c12-80131037b923",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDtkdhBq9CRF2Z3miwJqCP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6627,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 6627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T12:38:10.103Z_
+
+I need to do thorough literature research before I can give any informed assessment. Let me start by searching for the key papers and recent developments in this space.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6a86cfc-4af1-4ea9-8c12-80131037b923",
+  "isSidechain": false,
+  "requestId": "req_011CbT5xihLTh1P8P3CtMT5r",
+  "type": "assistant",
+  "uuid": "b3c87407-e899-49c2-86f3-854ed7d74bf1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDtkdhBq9CRF2Z3miwJqCP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6627,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 6627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T12:38:10.508Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Dh3b44EzHTughpxJxcE5BX`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3c87407-e899-49c2-86f3-854ed7d74bf1",
+  "isSidechain": false,
+  "requestId": "req_011CbT5xihLTh1P8P3CtMT5r",
+  "type": "assistant",
+  "uuid": "8d2c3deb-9757-408d-9ea6-1db59a7668db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDtkdhBq9CRF2Z3miwJqCP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6627,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 6627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T12:38:10.515Z_
+
+<details><summary>↩ Tool result · `toolu_01Dh3b44EzHTughpxJxcE5BX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d2c3deb-9757-408d-9ea6-1db59a7668db",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "cd6a03ae-8926-413b-8f3e-32a4ce0527ee",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "8d2c3deb-9757-408d-9ea6-1db59a7668db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-27T12:38:13.642Z_
+
+Now let me conduct my front-loaded literature research. I'll search for the key papers and recent developments in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd6a03ae-8926-413b-8f3e-32a4ce0527ee",
+  "isSidechain": false,
+  "requestId": "req_011CbT5y9ueQjQw7FGRrKGbp",
+  "type": "assistant",
+  "uuid": "304cc39d-a6a9-4cd0-b44a-1c813694a327",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBWe65UruXvEoZCcQL1sen",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 17641,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 17641,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-27T12:38:13.933Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KWz2itC6JfU4vFPFgZ5fbm`</summary>
+
+```json
+{
+  "query": "Pseudo-Formalization automatic proof verification Barkallah 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "304cc39d-a6a9-4cd0-b44a-1c813694a327",
+  "isSidechain": false,
+  "requestId": "req_011CbT5y9ueQjQw7FGRrKGbp",
+  "type": "assistant",
+  "uuid": "a9cc586f-6b39-4ffe-ab51-838463213945",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BBWe65UruXvEoZCcQL1sen",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 17641,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 17641,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-27T12:38:20.555Z_
+
+<details><summary>↩ Tool result · `toolu_01KWz2itC6JfU4vFPFgZ5fbm`</summary>
+
+```text
+Web search results for query: "Pseudo-Formalization automatic proof verification Barkallah 2026 arXiv"
+
+Links: [{"title":"Pseudo-Formalization for Automatic Proof Verification","url":"https://arxiv.org/html/2605.20531"},{"title":"[2605.20531] Pseudo-Formalization for Automatic Proof Verification","url":"https://arxiv.org/abs/2605.20531"},{"title":"A New Approach Towards Autoformalization","url":"https://arxiv.org/pdf/2310.07957"},{"title":"Baldur: Whole-Proof Generation and Repair with Large Language Models","url":"https://arxiv.org/pdf/2303.04910"},{"title":"Stepwise: Neuro-Symbolic Proof Search for Automated Systems Verification","url":"https://arxiv.org/pdf/2603.19715"},{"title":"Automated Conjecture Resolution with Formal Verification","url":"https://arxiv.org/html/2604.03789v1"},{"title":"Automated Conjecture Resolution with Formal Verification","url":"https://arxiv.org/pdf/2604.03789"},{"title":"Draft, Sketch, and Prove: Guiding Formal Theorem Provers with Informal   Proofs","url":"https://arxiv.org/pdf/2210.12283"}]
+
+I found the paper! Here are the search results for the query:
+
+**Pseudo-Formalization for Automatic Proof Verification** proposes a proof format that captures the modularity and precision of formal proofs while retaining the flexibility of natural language. A Pseudo-Formal proof is decomposed into self-contained modules, each stating its premises, conclusion, and proof in natural language.
+
+The paper is authored by Slim Barkallah, Luke Bailey, Kaiyue Wen, Mohammed Abouzaid, and Tengyu Ma, and was published on arXiv on May 19, 2026 (arXiv:2605.20531).
+
+The motivation for this work is that reliable verification of proofs remains a bottleneck for training and evaluating AI systems on hard mathematical reasoning. Most proofs, particularly those written by AI systems, lack the modularity and precision of formal proofs, making translation into formal languages challenging in many frontier math settings.
+
+To verify the correctness of a regular natural language proof, an LLM translates it to Pseudo-Formal and then verifies each module independently using an algorithm called Block Verification.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9cc586f-6b39-4ffe-ab51-838463213945",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "b9709d38-7af8-44bf-92bf-3ef8c9a82842",
+  "toolUseResult": {
+    "query": "Pseudo-Formalization automatic proof verification Barkallah 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wopk71kFjHCmm3AgMhnfPz",
+        "content": [
+          {
+            "title": "Pseudo-Formalization for Automatic Proof Verification",
+            "url": "https://arxiv.org/html/2605.20531"
+          },
+          {
+            "title": "[2605.20531] Pseudo-Formalization for Automatic Proof Verification",
+            "url": "https://arxiv.org/abs/2605.20531"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          },
+          {
+            "title": "Baldur: Whole-Proof Generation and Repair with Large Language Models",
+            "url": "https://arxiv.org/pdf/2303.04910"
+          },
+          {
+            "title": "Stepwise: Neuro-Symbolic Proof Search for Automated Systems Verification",
+            "url": "https://arxiv.org/pdf/2603.19715"
+          },
+          {
+            "title": "Automated Conjecture Resolution with Formal Verification",
+            "url": "https://arxiv.org/html/2604.03789v1"
+          },
+          {
+            "title": "Automated Conjecture Resolution with Formal Verification",
+            "url": "https://arxiv.org/pdf/2604.03789"
+          },
+          {
+            "title": "Draft, Sketch, and Prove: Guiding Formal Theorem Provers with Informal   Proofs",
+            "url": "https://arxiv.org/pdf/2210.12283"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for the query:\n\n**Pseudo-Formalization for Automatic Proof Verification** proposes a proof format that captures the modularity and precision of formal proofs while retaining the flexibility of natural language. A Pseudo-Formal proof is decomposed into self-contained modules, each stating its premises, conclusion, and proof in natural language.\n\nThe paper is authored by Slim Barkallah, Luke Bailey, Kaiyue Wen, Mohammed Abouzaid, and Tengyu Ma, and was published on arXiv on May 19, 2026 (arXiv:2605.20531).\n\nThe motivation for this work is that reliable verification of proofs remains a bottleneck for training and evaluating AI systems on hard mathematical reasoning. Most proofs, particularly those written by AI systems, lack the modularity and precision of formal proofs, making translation into formal languages challenging in many frontier math settings.\n\nTo verify the correctness of a regular natural language proof, an LLM translates it to Pseudo-Formal and then verifies each module independently using an algorithm called Block Verification."
+    ],
+    "durationSeconds": 6.618635449000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a9cc586f-6b39-4ffe-ab51-838463213945",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition  ## Core Problem  How can we achieve near-formal-verification reliability for natural language mathematical proof che…",
+  "leafUuid": "b9709d38-7af8-44bf-92bf-3ef8c9a82842",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-guided selective formal proof verification",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T12:38:22.986Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AFgV6TbecjFRBn9KCx8z9h`</summary>
+
+```json
+{
+  "query": "Safe step-aware formal verification mathematical reasoning LLM ACL 2025 Liu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9709d38-7af8-44bf-92bf-3ef8c9a82842",
+  "isSidechain": false,
+  "requestId": "req_011CbT5ytHpbvXiDe8bV7MkH",
+  "type": "assistant",
+  "uuid": "834c8505-2ffc-4a5c-aa26-33ca995f416b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bx9Wk1hPRXDRDmCqiLMaZL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 717,
+      "cache_read_input_tokens": 18370,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 717,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 18370,
+          "cache_creation_input_tokens": 717,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 717
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T12:38:29.320Z_
+
+<details><summary>↩ Tool result · `toolu_01AFgV6TbecjFRBn9KCx8z9h`</summary>
+
+```text
+Web search results for query: "Safe step-aware formal verification mathematical reasoning LLM ACL 2025 Liu"
+
+Links: [{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.594/"},{"title":"GitHub - liuchengwucn/Safe: (ACL 2025 Main) Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - Official Implementation & Dataset","url":"https://github.com/liuchengwucn/Safe"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/html/2506.04592v1"},{"title":"[2506.04592] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/abs/2506.04592"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification | Request PDF","url":"https://www.researchgate.net/publication/394301322_Safe_Enhancing_Mathematical_Reasoning_in_Large_Language_Models_via_Retrospective_Step-aware_Formal_Verification"},{"title":"Self-Verifiable Mathematical Reasoning","url":"https://www.emergentmind.com/topics/self-verifiable-mathematical-reasoning"},{"title":"AgentGuard: Runtime Verification of AI Agents","url":"https://arxiv.org/html/2509.23864v1"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Title:** Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification
+
+**Authors:** Chengwu Liu, Ye Yuan, Yichun Yin, Yan Xu, Xin Xu, Zaoyu Chen, Yasheng Wang, Lifeng Shang, Qun Liu, and Ming Zhang
+
+**Venue:** ACL 2025 (Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics)
+
+**Key Contributions:**
+
+The paper proposes a retrospective, step-aware formal verification framework Safe that articulates mathematical claims in formal mathematical language Lean 4 at each reasoning step and provides formal proofs to identify hallucinations.
+
+The work represents the first endeavor to utilize formal mathematical language Lean 4 for verifying content generated by LLMs.
+
+The framework demonstrates a significant performance improvement while offering interpretable and verifiable evidence.
+
+The authors also propose FormalStep as a benchmark for step correctness theorem proving with 30,809 formal statements.
+
+The code and dataset are available on GitHub at https://github.com/liuchengwucn/Safe.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "834c8505-2ffc-4a5c-aa26-33ca995f416b",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "6a37cdaf-f842-4187-a0e1-1ad3510a8395",
+  "toolUseResult": {
+    "query": "Safe step-aware formal verification mathematical reasoning LLM ACL 2025 Liu",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HpZ2g2rZaNbEdUQV1FZb3D",
+        "content": [
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.594/"
+          },
+          {
+            "title": "GitHub - liuchengwucn/Safe: (ACL 2025 Main) Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - Official Implementation & Dataset",
+            "url": "https://github.com/liuchengwucn/Safe"
+          },
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/html/2506.04592v1"
+          },
+          {
+            "title": "[2506.04592] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/abs/2506.04592"
+          },
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification | Request PDF",
+            "url": "https://www.researchgate.net/publication/394301322_Safe_Enhancing_Mathematical_Reasoning_in_Large_Language_Models_via_Retrospective_Step-aware_Formal_Verification"
+          },
+          {
+            "title": "Self-Verifiable Mathematical Reasoning",
+            "url": "https://www.emergentmind.com/topics/self-verifiable-mathematical-reasoning"
+          },
+          {
+            "title": "AgentGuard: Runtime Verification of AI Agents",
+            "url": "https://arxiv.org/html/2509.23864v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Title:** Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification\n\n**Authors:** Chengwu Liu, Ye Yuan, Yichun Yin, Yan Xu, Xin Xu, Zaoyu Chen, Yasheng Wang, Lifeng Shang, Qun Liu, and Ming Zhang\n\n**Venue:** ACL 2025 (Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics)\n\n**Key Contributions:**\n\nThe paper proposes a retrospective, step-aware formal verification framework Safe that articulates mathematical claims in formal mathematical language Lean 4 at each reasoning step and provides formal proofs to identify hallucinations.\n\nThe work represents the first endeavor to utilize formal mathematical language Lean 4 for verifying content generated by LLMs.\n\nThe framework demonstrates a significant performance improvement while offering interpretable and verifiable evidence.\n\nThe authors also propose FormalStep as a benchmark for step correctness theorem proving with 30,809 formal statements.\n\nThe code and dataset are available on GitHub at https://github.com/liuchengwucn/Safe."
+    ],
+    "durationSeconds": 6.331623082000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "834c8505-2ffc-4a5c-aa26-33ca995f416b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T12:38:32.200Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015arRqS6i6fyTf88Fzi4PdU`</summary>
+
+```json
+{
+  "query": "HERMES efficient verifiable mathematical reasoning LLM Ospanov ICML 2026 interleave informal formal Lean"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a37cdaf-f842-4187-a0e1-1ad3510a8395",
+  "isSidechain": false,
+  "requestId": "req_011CbT5zXm5CFUccrb6wqL7q",
+  "type": "assistant",
+  "uuid": "ddd45354-9726-47d4-bf8f-2cfd5ef74604",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ASEFJgyXmk73RybvcBFyHP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 788,
+      "cache_read_input_tokens": 19087,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 19087,
+          "cache_creation_input_tokens": 788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T12:38:40.442Z_
+
+<details><summary>↩ Tool result · `toolu_015arRqS6i6fyTf88Fzi4PdU`</summary>
+
+```text
+Web search results for query: "HERMES efficient verifiable mathematical reasoning LLM Ospanov ICML 2026 interleave informal formal Lean"
+
+Links: [{"title":"[2511.18760v1] HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/abs/2511.18760v1"},{"title":"[2511.18760] HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/abs/2511.18760"},{"title":"(PDF) HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://www.researchgate.net/publication/397933683_HERMES_Towards_Efficient_and_Verifiable_Mathematical_Reasoning_in_LLMs"},{"title":"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/pdf/2511.18760"},{"title":"ICML Poster HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://icml.cc/virtual/2026/poster/60844"}]
+
+Based on the search results, here's what I found about HERMES:
+
+## Overview
+
+HERMES is the first tool-assisted agent that explicitly interleaves informal reasoning with formally verified proof steps in Lean.
+
+## Problem It Addresses
+
+Informal mathematics has been central to modern LLM reasoning, offering flexibility and enabling efficient construction of arguments, but purely informal reasoning is prone to logical gaps and subtle errors that are difficult to detect and correct. In contrast, formal theorem proving provides rigorous, verifiable mathematical reasoning where each inference step is checked by a trusted compiler in systems such as Lean, but lacks the exploratory freedom of informal problem solving.
+
+## Key Features
+
+The framework performs intermediate formal checking to prevent reasoning drift and employs a memory module that maintains proof continuity across long, multi-step reasoning chains, enabling both exploration and verification within a single workflow.
+
+## Performance Results
+
+On difficult datasets such as AIME'25, Hermes achieves up to a 67% accuracy improvement while using 80% fewer total inference FLOPs. Across all settings, Hermes reliably improves the reasoning accuracy of base models while substantially reducing token usage and computational cost compared to reward-based approaches.
+
+The paper was authored by Azim Ospanov and colleagues and appears to have been presented at ICML 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddd45354-9726-47d4-bf8f-2cfd5ef74604",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "5041ee92-90c3-4fa0-a77f-f65c6af4962a",
+  "toolUseResult": {
+    "query": "HERMES efficient verifiable mathematical reasoning LLM Ospanov ICML 2026 interleave informal formal Lean",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LMj3JrppvPniwrcAvf5DCH",
+        "content": [
+          {
+            "title": "[2511.18760v1] HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/abs/2511.18760v1"
+          },
+          {
+            "title": "[2511.18760] HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/abs/2511.18760"
+          },
+          {
+            "title": "(PDF) HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://www.researchgate.net/publication/397933683_HERMES_Towards_Efficient_and_Verifiable_Mathematical_Reasoning_in_LLMs"
+          },
+          {
+            "title": "HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/pdf/2511.18760"
+          },
+          {
+            "title": "ICML Poster HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://icml.cc/virtual/2026/poster/60844"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about HERMES:\n\n## Overview\n\nHERMES is the first tool-assisted agent that explicitly interleaves informal reasoning with formally verified proof steps in Lean.\n\n## Problem It Addresses\n\nInformal mathematics has been central to modern LLM reasoning, offering flexibility and enabling efficient construction of arguments, but purely informal reasoning is prone to logical gaps and subtle errors that are difficult to detect and correct. In contrast, formal theorem proving provides rigorous, verifiable mathematical reasoning where each inference step is checked by a trusted compiler in systems such as Lean, but lacks the exploratory freedom of informal problem solving.\n\n## Key Features\n\nThe framework performs intermediate formal checking to prevent reasoning drift and employs a memory module that maintains proof continuity across long, multi-step reasoning chains, enabling both exploration and verification within a single workflow.\n\n## Performance Results\n\nOn difficult datasets such as AIME'25, Hermes achieves up to a 67% accuracy improvement while using 80% fewer total inference FLOPs. Across all settings, Hermes reliably improves the reasoning accuracy of base models while substantially reducing token usage and computational cost compared to reward-based approaches.\n\nThe paper was authored by Azim Ospanov and colleagues and appears to have been presented at ICML 2026."
+    ],
+    "durationSeconds": 8.238176469000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ddd45354-9726-47d4-bf8f-2cfd5ef74604",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T12:38:45.058Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018tc72xntj9jXjfTTi9kt2f`</summary>
+
+```json
+{
+  "query": "uncertainty guided selective verification LLM reasoning Ganguly NeurIPS 2025 SMT formalization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5041ee92-90c3-4fa0-a77f-f65c6af4962a",
+  "isSidechain": false,
+  "requestId": "req_011CbT61MHotUS5qEAJ8wknG",
+  "type": "assistant",
+  "uuid": "c96465a8-eccc-4038-9950-b79834f56904",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PJcTmDX9t7dyYMZhCoDzPA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 19875,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 19875,
+          "cache_creation_input_tokens": 695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T12:38:52.231Z_
+
+<details><summary>↩ Tool result · `toolu_018tc72xntj9jXjfTTi9kt2f`</summary>
+
+```text
+Web search results for query: "uncertainty guided selective verification LLM reasoning Ganguly NeurIPS 2025 SMT formalization"
+
+Links: [{"title":"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks","url":"https://openreview.net/attachment?id=QfKpJ00t2L&name=pdf"},{"title":"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks | OpenReview","url":"https://openreview.net/forum?id=QfKpJ00t2L"},{"title":"[2505.20047] Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks","url":"https://arxiv.org/abs/2505.20047"},{"title":"Grammars of Formal Uncertainty: When to Trust LLMs in ...","url":"https://arxiv.org/pdf/2505.20047"},{"title":"VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/html/2601.20055v2"},{"title":"Paper page - Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks","url":"https://huggingface.co/papers/2505.20047"},{"title":"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks","url":"https://arxiv.org/html/2505.20047"},{"title":"NeurIPS Poster Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks","url":"https://neurips.cc/virtual/2025/poster/118114"},{"title":"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/grammars-of-formal-uncertainty-when-to-trust-llms-in-automated-reasoning-tasks/"}]
+
+Based on the search results, I found the paper you were looking for:
+
+**"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks"** by Debargha Ganguly and colleagues, published at NeurIPS 2025.
+
+## Overview
+
+The paper addresses the fundamental tension between LLMs being probabilistic while formal verification demands deterministic guarantees, investigating failure modes and uncertainty quantification in LLM-generated formal artifacts.
+
+## Key Findings
+
+A systematic evaluation of five frontier LLMs reveals that SMT-based autoformalization has domain-specific impact on accuracy, ranging from +34.8% on logical tasks to -44.5% on factual ones, with traditional uncertainty techniques like entropy of token probabilities failing to identify these errors.
+
+## Proposed Approach
+
+The paper introduces a probabilistic context-free grammar (PCFG) framework to model LLM outputs, yielding a refined uncertainty taxonomy. A lightweight fusion of these signals enables selective verification, drastically reducing errors (14-100%) with minimal abstention.
+
+## Technical Insight
+
+The analysis reveals that syntactic atypicality in PCFG rule entropy serves as a powerful signal for semantic errors, with exceptional error detection (AUROC=0.9301 on ProofWriter) when semantic misunderstandings manifest as statistical anomalies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c96465a8-eccc-4038-9950-b79834f56904",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "737f1fab-f7f2-4245-8d50-12898d31ca60",
+  "toolUseResult": {
+    "query": "uncertainty guided selective verification LLM reasoning Ganguly NeurIPS 2025 SMT formalization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FPn22FvdrZVAez9T8UqTy4",
+        "content": [
+          {
+            "title": "Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks",
+            "url": "https://openreview.net/attachment?id=QfKpJ00t2L&name=pdf"
+          },
+          {
+            "title": "Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks | OpenReview",
+            "url": "https://openreview.net/forum?id=QfKpJ00t2L"
+          },
+          {
+            "title": "[2505.20047] Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks",
+            "url": "https://arxiv.org/abs/2505.20047"
+          },
+          {
+            "title": "Grammars of Formal Uncertainty: When to Trust LLMs in ...",
+            "url": "https://arxiv.org/pdf/2505.20047"
+          },
+          {
+            "title": "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/html/2601.20055v2"
+          },
+          {
+            "title": "Paper page - Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks",
+            "url": "https://huggingface.co/papers/2505.20047"
+          },
+          {
+            "title": "Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks",
+            "url": "https://arxiv.org/html/2505.20047"
+          },
+          {
+            "title": "NeurIPS Poster Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks",
+            "url": "https://neurips.cc/virtual/2025/poster/118114"
+          },
+          {
+            "title": "Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/grammars-of-formal-uncertainty-when-to-trust-llms-in-automated-reasoning-tasks/"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you were looking for:\n\n**\"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks\"** by Debargha Ganguly and colleagues, published at NeurIPS 2025.\n\n## Overview\n\nThe paper addresses the fundamental tension between LLMs being probabilistic while formal verification demands deterministic guarantees, investigating failure modes and uncertainty quantification in LLM-generated formal artifacts.\n\n## Key Findings\n\nA systematic evaluation of five frontier LLMs reveals that SMT-based autoformalization has domain-specific impact on accuracy, ranging from +34.8% on logical tasks to -44.5% on factual ones, with traditional uncertainty techniques like entropy of token probabilities failing to identify these errors.\n\n## Proposed Approach\n\nThe paper introduces a probabilistic context-free grammar (PCFG) framework to model LLM outputs, yielding a refined uncertainty taxonomy. A lightweight fusion of these signals enables selective verification, drastically reducing errors (14-100%) with minimal abstention.\n\n## Technical Insight\n\nThe analysis reveals that syntactic atypicality in PCFG rule entropy serves as a powerful signal for semantic errors, with exceptional error detection (AUROC=0.9301 on ProofWriter) when semantic misunderstandings manifest as statistical anomalies."
+    ],
+    "durationSeconds": 7.165024747999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c96465a8-eccc-4038-9950-b79834f56904",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-27T12:38:54.766Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GnL5g1ze2m5Qcg3Fxi78md`</summary>
+
+```json
+{
+  "query": "autoformalization mathematical proof blocks modular structured 2025 2026 Lean success rate improvement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "737f1fab-f7f2-4245-8d50-12898d31ca60",
+  "isSidechain": false,
+  "requestId": "req_011CbT62DghECTYheNStEaZr",
+  "type": "assistant",
+  "uuid": "ab615e6a-d55c-475e-8387-7b67d051efea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013RwAMTQ6Z7teqj5MMMmPMF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 20570,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 20570,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-27T12:39:06.452Z_
+
+<details><summary>↩ Tool result · `toolu_01GnL5g1ze2m5Qcg3Fxi78md`</summary>
+
+```text
+Web search results for query: "autoformalization mathematical proof blocks modular structured 2025 2026 Lean success rate improvement"
+
+Links: [{"title":"Autoformalization Framework","url":"https://www.emergentmind.com/topics/autoformalization-framework"},{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/abs/2510.15681"},{"title":"SITA: A Framework for Structure-to-Instance Theorem Autoformalization","url":"https://arxiv.org/pdf/2511.10356"},{"title":"Process-Driven Autoformalization in Lean 4 | OpenReview","url":"https://openreview.net/forum?id=k8KsI84Ds7"},{"title":"ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/html/2510.15681v1"},{"title":"PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4","url":"https://openreview.net/pdf?id=k8KsI84Ds7"},{"title":"ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/pdf/2510.15681"}]
+
+Based on the search results, here's what I found about autoformalization, mathematical proof blocks, modular structured approaches, and success rates in Lean during 2025-2026:
+
+## Structure-Aware Autoformalization Frameworks
+
+Structure-aware autoformalization frameworks such as SITA have been evaluated on domains requiring the instantiation of high-level abstract results to concrete settings, with experiments covering 42 optimization problems where over 50% of instances were fully formalized and verified in Lean.
+
+## Major Breakthroughs in Lean 4
+
+In 2025, multiple independent systems achieved gold-medal equivalent performance on IMO problems with formally verified Lean 4 proofs. Performance improvements include 4-6× improvement in pass@1 autoformalization accuracy, with ProofNet improving from 4.04% → 26.15% with only 859 unlabeled samples, and uproof improving from 2.4% → 9.6% (pass@1) to 24.4% → 33.6% (pass@16).
+
+## Recent Frameworks (2025-2026)
+
+ProofBridge is a unified framework for automatically translating entire natural language theorems and proofs into Lean 4, published in March 2026. Additionally, the FormL4 benchmark evaluates autoformalization in Lean 4 along with a process-supervised verifier that enhances the accuracy of LLMs in converting informal statements and proofs into formal ones.
+
+The search results demonstrate significant progress in modular, structured approaches to autoformalization with substantial improvements in success rates over the 2025-2026 period.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab615e6a-d55c-475e-8387-7b67d051efea",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "170f56f7-7a16-48ab-a361-1edc8183366f",
+  "toolUseResult": {
+    "query": "autoformalization mathematical proof blocks modular structured 2025 2026 Lean success rate improvement",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01678kTcj48BZAYL3xXdZejE",
+        "content": [
+          {
+            "title": "Autoformalization Framework",
+            "url": "https://www.emergentmind.com/topics/autoformalization-framework"
+          },
+          {
+            "title": "Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics",
+            "url": "https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"
+          },
+          {
+            "title": "[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings",
+            "url": "https://arxiv.org/abs/2510.15681"
+          },
+          {
+            "title": "SITA: A Framework for Structure-to-Instance Theorem Autoformalization",
+            "url": "https://arxiv.org/pdf/2511.10356"
+          },
+          {
+            "title": "Process-Driven Autoformalization in Lean 4 | OpenReview",
+            "url": "https://openreview.net/forum?id=k8KsI84Ds7"
+          },
+          {
+            "title": "ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings",
+            "url": "https://arxiv.org/html/2510.15681v1"
+          },
+          {
+            "title": "PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4",
+            "url": "https://openreview.net/pdf?id=k8KsI84Ds7"
+          },
+          {
+            "title": "ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings",
+            "url": "https://arxiv.org/pdf/2510.15681"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about autoformalization, mathematical proof blocks, modular structured approaches, and success rates in Lean during 2025-2026:\n\n## Structure-Aware Autoformalization Frameworks\n\nStructure-aware autoformalization frameworks such as SITA have been evaluated on domains requiring the instantiation of high-level abstract results to concrete settings, with experiments covering 42 optimization problems where over 50% of instances were fully formalized and verified in Lean.\n\n## Major Breakthroughs in Lean 4\n\nIn 2025, multiple independent systems achieved gold-medal equivalent performance on IMO problems with formally verified Lean 4 proofs. Performance improvements include 4-6× improvement in pass@1 autoformalization accuracy, with ProofNet improving from 4.04% → 26.15% with only 859 unlabeled samples, and uproof improving from 2.4% → 9.6% (pass@1) to 24.4% → 33.6% (pass@16).\n\n## Recent Frameworks (2025-2026)\n\nProofBridge is a unified framework for automatically translating entire natural language theorems and proofs into Lean 4, published in March 2026. Additionally, the FormL4 benchmark evaluates autoformalization in Lean 4 along with a process-supervised verifier that enhances the accuracy of LLMs in converting informal statements and proofs into formal ones.\n\nThe search results demonstrate significant progress in modular, structured approaches to autoformalization with substantial improvements in success rates over the 2025-2026 period."
+    ],
+    "durationSeconds": 11.680933704000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ab615e6a-d55c-475e-8387-7b67d051efea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-27T12:39:09.217Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RFZTBf8YEjL4GURqDzRZhr`</summary>
+
+```json
+{
+  "query": "VERGE formal refinement guidance engine verifiable LLM reasoning Singh 2026 semantic routing SMT"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "170f56f7-7a16-48ab-a361-1edc8183366f",
+  "isSidechain": false,
+  "requestId": "req_011CbT63GhHqjbXbcohDjFiQ",
+  "type": "assistant",
+  "uuid": "70eb91a7-bd76-41f1-9bbb-4e12b7ece091",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112TgPRdq4xHAXAiVF9MXEG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 888,
+      "cache_read_input_tokens": 21473,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 888,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 21473,
+          "cache_creation_input_tokens": 888,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 888
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T12:39:16.165Z_
+
+<details><summary>↩ Tool result · `toolu_01RFZTBf8YEjL4GURqDzRZhr`</summary>
+
+```text
+Web search results for query: "VERGE formal refinement guidance engine verifiable LLM reasoning Singh 2026 semantic routing SMT"
+
+Links: [{"title":"[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/abs/2601.20055"},{"title":"[Literature Review] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://www.themoonlight.io/en/review/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning"},{"title":"VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://arxiv.org/html/2601.20055"},{"title":"dblp: VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning.","url":"https://dblp.uni-trier.de/rec/journals/corr/abs-2601-20055.html"},{"title":"Paper page - VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning","url":"https://huggingface.co/papers/2601.20055"},{"title":"Verge: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning | Hacker News","url":"https://news.ycombinator.com/item?id=46813257"},{"title":"VERGE: Formal Refinement and Guidance Engine for Verifiable ...","url":"https://ubos.tech/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning-2/"},{"title":"llm formal method | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/search?highlight=1&query=LLM+formal+method&sort=0"},{"title":"From Implicit Exploration to Structured Reasoning: Leveraging Guideline and Refinement for LLMs","url":"https://arxiv.org/pdf/2509.06284"},{"title":"Formal Refinement and Guidance Engine for Verifiable ...","url":"https://www.researchgate.net/publication/400178327_VERGE_Formal_Refinement_and_Guidance_Engine_for_Verifiable_LLM_Reasoning"}]
+
+Based on the search results, I found comprehensive information about the paper you're looking for:
+
+## VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning
+
+VERGE is a neurosymbolic framework that combines LLMs with SMT solvers to produce verification-guided answers through iterative refinement. The paper was authored by Vikash Singh, Darion Cassel, Nathaniel Weir, Nick Feng, and Sam Bayless in 2026.
+
+### Key Approach
+
+The approach decomposes LLM outputs into atomic claims, autoformalizes them into first-order logic, and verifies their logical consistency using automated theorem proving.
+
+### Three Key Innovations
+
+The paper introduces three key innovations: (1) multi-model consensus via formal semantic equivalence checking to ensure logic-level alignment between candidates, (2) semantic routing that directs different claim types to appropriate verification strategies (symbolic solvers for logical claims and LLM ensembles for commonsense reasoning), and (3) precise logical error localization via Minimal Correction Subsets (MCS), which pinpoint the exact subset of claims to revise.
+
+The paper is available on arXiv (2601.20055) and was last updated on May 2, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70eb91a7-bd76-41f1-9bbb-4e12b7ece091",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "3ab07f64-253c-4b4f-a4f0-2d57f330666e",
+  "toolUseResult": {
+    "query": "VERGE formal refinement guidance engine verifiable LLM reasoning Singh 2026 semantic routing SMT",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Br1jFV5XDJBRzuR7atiLyc",
+        "content": [
+          {
+            "title": "[2601.20055] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/abs/2601.20055"
+          },
+          {
+            "title": "[Literature Review] VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://www.themoonlight.io/en/review/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning"
+          },
+          {
+            "title": "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://arxiv.org/html/2601.20055"
+          },
+          {
+            "title": "dblp: VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning.",
+            "url": "https://dblp.uni-trier.de/rec/journals/corr/abs-2601-20055.html"
+          },
+          {
+            "title": "Paper page - VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning",
+            "url": "https://huggingface.co/papers/2601.20055"
+          },
+          {
+            "title": "Verge: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=46813257"
+          },
+          {
+            "title": "VERGE: Formal Refinement and Guidance Engine for Verifiable ...",
+            "url": "https://ubos.tech/verge-formal-refinement-and-guidance-engine-for-verifiable-llm-reasoning-2/"
+          },
+          {
+            "title": "llm formal method | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/search?highlight=1&query=LLM+formal+method&sort=0"
+          },
+          {
+            "title": "From Implicit Exploration to Structured Reasoning: Leveraging Guideline and Refinement for LLMs",
+            "url": "https://arxiv.org/pdf/2509.06284"
+          },
+          {
+            "title": "Formal Refinement and Guidance Engine for Verifiable ...",
+            "url": "https://www.researchgate.net/publication/400178327_VERGE_Formal_Refinement_and_Guidance_Engine_for_Verifiable_LLM_Reasoning"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the paper you're looking for:\n\n## VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning\n\nVERGE is a neurosymbolic framework that combines LLMs with SMT solvers to produce verification-guided answers through iterative refinement. The paper was authored by Vikash Singh, Darion Cassel, Nathaniel Weir, Nick Feng, and Sam Bayless in 2026.\n\n### Key Approach\n\nThe approach decomposes LLM outputs into atomic claims, autoformalizes them into first-order logic, and verifies their logical consistency using automated theorem proving.\n\n### Three Key Innovations\n\nThe paper introduces three key innovations: (1) multi-model consensus via formal semantic equivalence checking to ensure logic-level alignment between candidates, (2) semantic routing that directs different claim types to appropriate verification strategies (symbolic solvers for logical claims and LLM ensembles for commonsense reasoning), and (3) precise logical error localization via Minimal Correction Subsets (MCS), which pinpoint the exact subset of claims to revise.\n\nThe paper is available on arXiv (2601.20055) and was last updated on May 2, 2026."
+    ],
+    "durationSeconds": 6.943753874999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "70eb91a7-bd76-41f1-9bbb-4e12b7ece091",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition  ## Core Problem  How can we achieve near-formal-verification reliability for natural language mathematical proof che…",
+  "leafUuid": "3ab07f64-253c-4b4f-a4f0-2d57f330666e",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-guided selective formal proof verification",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T12:39:23.247Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NWpZc2vNeVchPjb4CXctzd`</summary>
+
+```json
+{
+  "query": "selective verification cost-optimal routing LLM formal verification mathematical reasoning 2026 adaptive"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ab07f64-253c-4b4f-a4f0-2d57f330666e",
+  "isSidechain": false,
+  "requestId": "req_011CbT63z5CHj348kR23MJPx",
+  "type": "assistant",
+  "uuid": "3d60049f-a567-4866-acf1-18e6cb8b7341",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NfzCyar5pHxUaU7dSoN1M4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 22361,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 22361,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T12:39:31.520Z_
+
+<details><summary>↩ Tool result · `toolu_01NWpZc2vNeVchPjb4CXctzd`</summary>
+
+```text
+Web search results for query: "selective verification cost-optimal routing LLM formal verification mathematical reasoning 2026 adaptive"
+
+Links: [{"title":"Preprint. Accepted at the ICLR 2026 LIT Workshop","url":"https://arxiv.org/pdf/2602.09924"},{"title":"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints | OpenReview","url":"https://openreview.net/forum?id=JMDCMf7mlF"},{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/pdf/2602.03975"},{"title":"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable Language Model Reasoning","url":"https://arxiv.org/pdf/2408.13940"},{"title":"Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection","url":"https://arxiv.org/pdf/2505.19435"},{"title":"Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification","url":"https://arxiv.org/pdf/2601.22642"},{"title":"Cost-Aware Contrastive Routing for LLMs","url":"https://arxiv.org/pdf/2508.12491"}]
+
+I found several relevant results on this topic. Here's what the search revealed:
+
+## Key Research Areas
+
+**Adaptive Verification and Cost-Optimal Routing:**
+
+Anytime Verified Agents (AVA) is a framework that dynamically allocates compute across search, sampling, and verification within a user-specified budget, combining calibrated uncertainty estimation, value-of-information-guided search expansion, and selective verification cascades with early exits.
+
+**Selective Verification for Mathematical Reasoning:**
+
+Verification-cost-limited reasoning studies whether verification calls can be reduced without degrading correctness by allocating verification selectively at intermediate states. Unlike solution-level best-of-N or uniform intermediate verification, this method distributes verification where it is most informative, achieving higher accuracy than best-of-N, majority voting, and beam search while using 44% fewer verifier calls on the MATH benchmark.
+
+**Adaptive Routing Mechanisms:**
+
+Route to Reason (RTR) learns compressed representations of both expert models and reasoning strategies for joint and adaptive selection at inference time, achieving higher accuracy than the best single model while reducing token usage by over 60%.
+
+**Formal Logic Verification Integration:**
+
+Recent RL advances using outcome-based optimization methods have achieved remarkable success in mathematical reasoning, code generation, and general-domain reasoning.
+
+These 2026 research papers show active development in combining adaptive routing, selective verification, formal verification techniques, and cost optimization for LLM reasoning systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d60049f-a567-4866-acf1-18e6cb8b7341",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "abdea5f0-7a92-4459-bb9f-9969284f172d",
+  "toolUseResult": {
+    "query": "selective verification cost-optimal routing LLM formal verification mathematical reasoning 2026 adaptive",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012k6UikxQEre6rxPCkWVMJa",
+        "content": [
+          {
+            "title": "Preprint. Accepted at the ICLR 2026 LIT Workshop",
+            "url": "https://arxiv.org/pdf/2602.09924"
+          },
+          {
+            "title": "Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints | OpenReview",
+            "url": "https://openreview.net/forum?id=JMDCMf7mlF"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/pdf/2602.03975"
+          },
+          {
+            "title": "Derailer-Rerailer: Adaptive Verification for Efficient and Reliable Language Model Reasoning",
+            "url": "https://arxiv.org/pdf/2408.13940"
+          },
+          {
+            "title": "Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection",
+            "url": "https://arxiv.org/pdf/2505.19435"
+          },
+          {
+            "title": "Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification",
+            "url": "https://arxiv.org/pdf/2601.22642"
+          },
+          {
+            "title": "Cost-Aware Contrastive Routing for LLMs",
+            "url": "https://arxiv.org/pdf/2508.12491"
+          }
+        ]
+      },
+      "I found several relevant results on this topic. Here's what the search revealed:\n\n## Key Research Areas\n\n**Adaptive Verification and Cost-Optimal Routing:**\n\nAnytime Verified Agents (AVA) is a framework that dynamically allocates compute across search, sampling, and verification within a user-specified budget, combining calibrated uncertainty estimation, value-of-information-guided search expansion, and selective verification cascades with early exits.\n\n**Selective Verification for Mathematical Reasoning:**\n\nVerification-cost-limited reasoning studies whether verification calls can be reduced without degrading correctness by allocating verification selectively at intermediate states. Unlike solution-level best-of-N or uniform intermediate verification, this method distributes verification where it is most informative, achieving higher accuracy than best-of-N, majority voting, and beam search while using 44% fewer verifier calls on the MATH benchmark.\n\n**Adaptive Routing Mechanisms:**\n\nRoute to Reason (RTR) learns compressed representations of both expert models and reasoning strategies for joint and adaptive selection at inference time, achieving higher accuracy than the best single model while reducing token usage by over 60%.\n\n**Formal Logic Verification Integration:**\n\nRecent RL advances using outcome-based optimization methods have achieved remarkable success in mathematical reasoning, code generation, and general-domain reasoning.\n\nThese 2026 research papers show active development in combining adaptive routing, selective verification, formal verification techniques, and cost optimization for LLM reasoning systems."
+    ],
+    "durationSeconds": 8.269337214999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3d60049f-a567-4866-acf1-18e6cb8b7341",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-27T12:39:31.528Z_
+
+```json
+{
+  "parentUuid": "abdea5f0-7a92-4459-bb9f-9969284f172d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "31ce9cf1-d471-46c7-a184-efefca19e6e8",
+  "timestamp": "2026-05-27T12:39:31.528Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T12:39:34.519Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012wvh54egVeJ9ACTyUS7AdW`</summary>
+
+```json
+{
+  "query": "StepFun-Formalizer-32B autoformalization Lean 4 2026 block-level theorem statement translation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31ce9cf1-d471-46c7-a184-efefca19e6e8",
+  "isSidechain": false,
+  "requestId": "req_011CbT657i7EqcGrQt99DJSL",
+  "type": "assistant",
+  "uuid": "0661d159-2dad-4010-b2ab-c577684d28c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfvXedb2GJh2AGWsN3Hj6u",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 852,
+      "cache_read_input_tokens": 23339,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 852,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 23339,
+          "cache_creation_input_tokens": 852,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 852
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T12:39:41.039Z_
+
+<details><summary>↩ Tool result · `toolu_012wvh54egVeJ9ACTyUS7AdW`</summary>
+
+```text
+Web search results for query: "StepFun-Formalizer-32B autoformalization Lean 4 2026 block-level theorem statement translation"
+
+Links: [{"title":"StepFun-Formalizer-32B: Autoformalization LLM","url":"https://www.emergentmind.com/topics/stepfun-formalizer-32b"},{"title":"stepfun-ai/StepFun-Formalizer-32B · Hugging Face","url":"https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B"},{"title":"stepfun-ai/StepFun-Formalizer-7B · Hugging Face","url":"https://huggingface.co/stepfun-ai/StepFun-Formalizer-7B"},{"title":"[PDF] StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion | Semantic Scholar","url":"https://www.semanticscholar.org/paper/StepFun-Formalizer:-Unlocking-the-Autoformalization-Wu-Huang/d4cdb1e03d2d44661b2f0b2803c1e51404cc554d"},{"title":"GitHub - stepfun-ai/StepFun-Formalizer: StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion · GitHub","url":"https://github.com/stepfun-ai/StepFun-Formalizer"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40691"},{"title":"[2508.04440] StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion","url":"https://arxiv.org/abs/2508.04440"},{"title":"Process-Driven Autoformalization in Lean 4","url":"https://arxiv.org/pdf/2406.01940"}]
+
+Based on the search results, here's what I found about StepFun-Formalizer-32B and autoformalization in Lean 4:
+
+## Overview
+
+StepFun-Formalizer-32B is a large language model designed to autoformalize informal mathematical statements into rigorous Lean 4 code. StepFun-Formalizer is a family of large language models designed to translate natural-language mathematical problems into formal statements in Lean 4 through the fusion of formal knowledge and informal-to-formal reasoning capability.
+
+## Technical Approach
+
+The model uses ThinkingF, a data synthesis and training pipeline that constructs datasets by distilling and selecting large-scale examples rich in formal knowledge, and generating informal-to-formal reasoning trajectories guided by expert-designed templates. SFT and RLVR training methods are applied with these datasets to further fuse and refine the abilities.
+
+## Performance
+
+StepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models. It matches or exceeds all prior general-purpose and specialized autoformalization models of comparable scale when evaluated on benchmarks including FormalMATH-Lite, ProverBench, and CombiBench.
+
+## Publication Date
+
+The work was published in 2026 in the Proceedings of the AAAI Conference on Artificial Intelligence.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0661d159-2dad-4010-b2ab-c577684d28c2",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "459f8b85-a625-432f-9ced-a5409b78c911",
+  "toolUseResult": {
+    "query": "StepFun-Formalizer-32B autoformalization Lean 4 2026 block-level theorem statement translation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BgcqMnEULkNxe3AscjYjgY",
+        "content": [
+          {
+            "title": "StepFun-Formalizer-32B: Autoformalization LLM",
+            "url": "https://www.emergentmind.com/topics/stepfun-formalizer-32b"
+          },
+          {
+            "title": "stepfun-ai/StepFun-Formalizer-32B · Hugging Face",
+            "url": "https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B"
+          },
+          {
+            "title": "stepfun-ai/StepFun-Formalizer-7B · Hugging Face",
+            "url": "https://huggingface.co/stepfun-ai/StepFun-Formalizer-7B"
+          },
+          {
+            "title": "[PDF] StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/StepFun-Formalizer:-Unlocking-the-Autoformalization-Wu-Huang/d4cdb1e03d2d44661b2f0b2803c1e51404cc554d"
+          },
+          {
+            "title": "GitHub - stepfun-ai/StepFun-Formalizer: StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion · GitHub",
+            "url": "https://github.com/stepfun-ai/StepFun-Formalizer"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40691"
+          },
+          {
+            "title": "[2508.04440] StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/abs/2508.04440"
+          },
+          {
+            "title": "Process-Driven Autoformalization in Lean 4",
+            "url": "https://arxiv.org/pdf/2406.01940"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about StepFun-Formalizer-32B and autoformalization in Lean 4:\n\n## Overview\n\nStepFun-Formalizer-32B is a large language model designed to autoformalize informal mathematical statements into rigorous Lean 4 code. StepFun-Formalizer is a family of large language models designed to translate natural-language mathematical problems into formal statements in Lean 4 through the fusion of formal knowledge and informal-to-formal reasoning capability.\n\n## Technical Approach\n\nThe model uses ThinkingF, a data synthesis and training pipeline that constructs datasets by distilling and selecting large-scale examples rich in formal knowledge, and generating informal-to-formal reasoning trajectories guided by expert-designed templates. SFT and RLVR training methods are applied with these datasets to further fuse and refine the abilities.\n\n## Performance\n\nStepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models. It matches or exceeds all prior general-purpose and specialized autoformalization models of comparable scale when evaluated on benchmarks including FormalMATH-Lite, ProverBench, and CombiBench.\n\n## Publication Date\n\nThe work was published in 2026 in the Proceedings of the AAAI Conference on Artificial Intelligence."
+    ],
+    "durationSeconds": 6.5147769810000025,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0661d159-2dad-4010-b2ab-c577684d28c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T12:39:45.160Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Phd7jbEwST6Jr3vqHSmNkU`</summary>
+
+```json
+{
+  "query": "miniF2F-Lean revisited limitations autoformalization NeurIPS 2025 end-to-end success rate 35%"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "459f8b85-a625-432f-9ced-a5409b78c911",
+  "isSidechain": false,
+  "requestId": "req_011CbT65pkugeXhQTCbbLiLY",
+  "type": "assistant",
+  "uuid": "a9aafe00-5afe-42c7-99bb-9d0d5d4aa901",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UbMwyhaTKeQyvKUhYsDPas",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1024,
+      "cache_read_input_tokens": 24191,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 24191,
+          "cache_creation_input_tokens": 1024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T12:39:50.920Z_
+
+<details><summary>↩ Tool result · `toolu_01Phd7jbEwST6Jr3vqHSmNkU`</summary>
+
+```text
+Web search results for query: "miniF2F-Lean revisited limitations autoformalization NeurIPS 2025 end-to-end success rate 35%"
+
+Links: [{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward | OpenReview","url":"https://openreview.net/forum?id=KtaHv0YUyh"},{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://openreview.net/pdf?id=KtaHv0YUyh"},{"title":"[2511.03108] miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://arxiv.org/abs/2511.03108"},{"title":"[Quick Review] miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://liner.com/review/minif2flean-revisited-reviewing-limitations-and-charting-path-forward"},{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://arxiv.org/html/2511.03108v1"},{"title":"(PDF) miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://www.researchgate.net/publication/397322220_miniF2F-Lean_Revisited_Reviewing_Limitations_and_Charting_a_Path_Forward"},{"title":"Paper page - miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://huggingface.co/papers/2511.03108"},{"title":"NeurIPS Poster miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://neurips.cc/virtual/2025/poster/118598"}]
+
+Based on the search results, here's what I found about the "miniF2F-Lean Revisited" paper:
+
+## Overview
+The paper presents a thorough analysis of the formal and informal statements in the miniF2F benchmark from the perspective of an AI system tasked to participate in a math Olympiad. It was published as a NeurIPS 2025 poster on September 18, 2025.
+
+## End-to-End Success Rate
+The evaluation results reveal that the best accuracy of the complete pipeline can be about 36% using state-of-the-art models, considerably lower than the individual state-of-the-art accuracies of 97% and 69% reported in the autoformalization and theorem proving literature.
+
+## Key Limitations
+A considerable portion of the accuracy drop is traced back to discrepancies between the formal and informal statements for more than half of the problems in miniF2F. Additionally, human evaluation of autoformalization results reveals that autoformalization accuracy is not as high as reported in the literature, because those reported accuracies are often evaluated by LLMs rather than humans familiar with the formal language.
+
+## Solution and Improvement
+The authors corrected all errors, discrepancies and simplifications in formal and informal statements, presenting miniF2F-v2 with fully verified formal and informal statements and proofs, which leads to the best accuracy of 70%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9aafe00-5afe-42c7-99bb-9d0d5d4aa901",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "fff78fc3-5ea0-4d0d-b973-357cd51668d0",
+  "toolUseResult": {
+    "query": "miniF2F-Lean revisited limitations autoformalization NeurIPS 2025 end-to-end success rate 35%",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BhgVy46tA6mwTL2Cv5K3Ke",
+        "content": [
+          {
+            "title": "miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward | OpenReview",
+            "url": "https://openreview.net/forum?id=KtaHv0YUyh"
+          },
+          {
+            "title": "miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://openreview.net/pdf?id=KtaHv0YUyh"
+          },
+          {
+            "title": "[2511.03108] miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://arxiv.org/abs/2511.03108"
+          },
+          {
+            "title": "[Quick Review] miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://liner.com/review/minif2flean-revisited-reviewing-limitations-and-charting-path-forward"
+          },
+          {
+            "title": "miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://arxiv.org/html/2511.03108v1"
+          },
+          {
+            "title": "(PDF) miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://www.researchgate.net/publication/397322220_miniF2F-Lean_Revisited_Reviewing_Limitations_and_Charting_a_Path_Forward"
+          },
+          {
+            "title": "Paper page - miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://huggingface.co/papers/2511.03108"
+          },
+          {
+            "title": "NeurIPS Poster miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://neurips.cc/virtual/2025/poster/118598"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the \"miniF2F-Lean Revisited\" paper:\n\n## Overview\nThe paper presents a thorough analysis of the formal and informal statements in the miniF2F benchmark from the perspective of an AI system tasked to participate in a math Olympiad. It was published as a NeurIPS 2025 poster on September 18, 2025.\n\n## End-to-End Success Rate\nThe evaluation results reveal that the best accuracy of the complete pipeline can be about 36% using state-of-the-art models, considerably lower than the individual state-of-the-art accuracies of 97% and 69% reported in the autoformalization and theorem proving literature.\n\n## Key Limitations\nA considerable portion of the accuracy drop is traced back to discrepancies between the formal and informal statements for more than half of the problems in miniF2F. Additionally, human evaluation of autoformalization results reveals that autoformalization accuracy is not as high as reported in the literature, because those reported accuracies are often evaluated by LLMs rather than humans familiar with the formal language.\n\n## Solution and Improvement\nThe authors corrected all errors, discrepancies and simplifications in formal and informal statements, presenting miniF2F-v2 with fully verified formal and informal statements and proofs, which leads to the best accuracy of 70%."
+    ],
+    "durationSeconds": 5.756387090000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a9aafe00-5afe-42c7-99bb-9d0d5d4aa901",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-27T12:39:54.677Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WTaWQkRNiVynG4DcGtGqGZ`</summary>
+
+```json
+{
+  "query": "Pseudo-Formalization Block Verification ArxivMathGradingBench error detection recall results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fff78fc3-5ea0-4d0d-b973-357cd51668d0",
+  "isSidechain": false,
+  "requestId": "req_011CbT66Yh45JBDnMAuCn4W7",
+  "type": "assistant",
+  "uuid": "16b3ed56-f491-44a2-a5ec-b44fe784a124",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6V4BEXuEZTyT8pFHv3LmF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 25215,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 25215,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-27T12:40:13.806Z_
+
+<details><summary>↩ Tool result · `toolu_01WTaWQkRNiVynG4DcGtGqGZ`</summary>
+
+```text
+Web search results for query: "Pseudo-Formalization Block Verification ArxivMathGradingBench error detection recall results 2026"
+
+Links: [{"title":"Detecting Laterality Errors in Combined Radiographic Studies by Enhancing the Traditional Approach With GPT-4o: Algorithm Development and Multisite Internal Validation","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12612642/"},{"title":"Ascribing ground truth performance to annotation blocks","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11176320"},{"title":"Block verification method, apparatus and device","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11983168"},{"title":"Pessimistic Verification for Open Ended Math Questions","url":"https://arxiv.org/pdf/2511.21522"},{"title":"Method and apparatus for verifying block data in a blockchain","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10560267"}]
+
+I found some results, but they don't appear to contain the specific research you're looking for about Pseudo-Formalization Block Verification and ArxivMathGradingBench. The search returned results about laterality error detection in medical imaging, blockchain verification, and other verification methods, but not the specific paper or benchmark you mentioned.
+
+Let me try a more targeted search:
+
+Links: [{"title":"Performance of o1 pro and GPT-4 in self-assessment questions for nephrology board renewal","url":"https://www.medrxiv.org/content/10.1101/2025.01.14.25320525.full.pdf"},{"title":"Evaluating AI Grading on Real-World Handwritten College Mathematics: A Large-Scale Study Toward a Benchmark","url":"https://arxiv.org/pdf/2603.00895"},{"title":"Performance of reasoning large language models on nephrology multiple-choice questions","url":"https://www.medrxiv.org/content/10.64898/2025.12.03.25341427.full.pdf"},{"title":"Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews","url":"https://www.medrxiv.org/content/10.1101/2023.10.31.23297818.full.pdf"},{"title":"Can Vision-Language Models Evaluate Handwritten Math?","url":"https://arxiv.org/pdf/2501.07244"},{"title":"Higher Grit Scores Are Associated With Greater Scholarly Productivity Among Orthopaedic Surgery Residents","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11500777/"},{"title":"Bridging Qualitative Rubrics and AI: A Binary Question Framework for Criterion-Referenced Grading in Engineering","url":"https://arxiv.org/pdf/2601.15626"}]
+
+Let me try one more search with different keywords:
+
+Links: [{"title":"Pseudo-Formalization for Automatic Proof Verification","url":"https://arxiv.org/html/2605.20531"},{"title":"[2605.20531] Pseudo-Formalization for Automatic Proof Verification","url":"https://arxiv.org/abs/2605.20531"},{"title":"Formal Verification of Blockchain Nonforking in DAG-Based BFT Consensus   with Dynamic Stake","url":"https://arxiv.org/pdf/2504.16853"},{"title":"Block verification method, apparatus and device","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11983168"},{"title":"A Process Calculus for Formally Verifying Blockchain Consensus Protocols","url":"https://arxiv.org/pdf/1911.08033"}]
+
+Excellent! I found the paper. Let me search for more specific details about the error detection and recall results:
+
+Links: [{"title":"(PDF) Which Verification for Soft Error Detection?","url":"https://www.researchgate.net/publication/282216729_Which_Verification_for_Soft_Error_Detection"},{"title":"Data verification & error detection with Merkle trees","url":"https://www.educative.io/answers/data-verification-error-detection-with-merkle-trees"},{"title":"US4074066A - Message verification and transmission error detection by block chaining - Google Patents","url":"https://patents.google.com/patent/US4074066A/en"},{"title":"Coping with recall and precision of soft error detectors - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0743731516300922"},{"title":"Method and apparatus for error detection in a data block","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7500170"},{"title":"Which Verification for Soft Error Detection? | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/7397613/"}]
+
+Let me search directly for the ArxivMathGradingBench paper with specific metrics:
+
+Links: [{"title":"[2605.20531] Pseudo-Formalization for Automatic Proof Verification","url":"https://arxiv.org/abs/2605.20531"},{"title":"Pseudo-Formalization for Automatic Proof Verification","url":"https://arxiv.org/html/2605.20531"},{"title":"Stepwise: Neuro-Symbolic Proof Search for Automated Systems Verification","url":"https://arxiv.org/pdf/2603.19715"},{"title":"Verification of Configurable SRA Systems","url":"https://arxiv.org/html/2605.21385"},{"title":"stepproof: step-by-step verification of","url":"https://arxiv.org/pdf/2506.10558"},{"title":"Selene: Pioneering Automated Proof in Software Verification","url":"https://arxiv.org/pdf/2401.07663"},{"title":"Reliable Evaluation and Benchmarks for Statement Autoformalization","url":"https://arxiv.org/pdf/2406.07222"}]
+
+Based on my web search results, I found information about the research you're asking about:
+
+## Summary
+
+Pseudo-Formalization (PF) aims to retain the modularity and precision that make formal proofs verifiable while preserving the flexibility of natural language. Block Verification (BV) is an algorithm where a calibration model aggregates errors into a verdict under a configurable strictness threshold, with the entire verification pipeline referred to as PF+BV.
+
+PF+BV was evaluated on two benchmarks covering Olympiad and research-level mathematics, where it pareto-dominates strong LLM-as-judge baselines on error-finding precision and recall.
+
+The researchers released ArxivMathGradingBench, a new benchmark of 35 mathematics research papers with 40 known errors in total.
+
+The paper was submitted on May 19, 2026. While the search results confirm the existence of the work and its general findings about superior performance on error detection recall compared to baseline methods, the specific numerical recall values and detailed performance metrics tables from the paper are not fully visible in these search results. To access the complete detailed results, you would need to view the full PDF of the paper at arxiv.org/pdf/2605.20531.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16b3ed56-f491-44a2-a5ec-b44fe784a124",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "4816d9cf-dcb5-439e-85c0-b39e1add952f",
+  "toolUseResult": {
+    "query": "Pseudo-Formalization Block Verification ArxivMathGradingBench error detection recall results 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015r1JgAHfXTVF7cX9AVJfQe",
+        "content": [
+          {
+            "title": "Detecting Laterality Errors in Combined Radiographic Studies by Enhancing the Traditional Approach With GPT-4o: Algorithm Development and Multisite Internal Validation",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12612642/"
+          },
+          {
+            "title": "Ascribing ground truth performance to annotation blocks",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11176320"
+          },
+          {
+            "title": "Block verification method, apparatus and device",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11983168"
+          },
+          {
+            "title": "Pessimistic Verification for Open Ended Math Questions",
+            "url": "https://arxiv.org/pdf/2511.21522"
+          },
+          {
+            "title": "Method and apparatus for verifying block data in a blockchain",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10560267"
+          }
+        ]
+      },
+      "I found some results, but they don't appear to contain the specific research you're looking for about Pseudo-Formalization Block Verification and ArxivMathGradingBench. The search returned results about laterality error detection in medical imaging, blockchain verification, and other verification methods, but not the specific paper or benchmark you mentioned.\n\nLet me try a more targeted search:",
+      {
+        "tool_use_id": "srvtoolu_014Z19Zn1pkqyw5bNmV7VGUm",
+        "content": [
+          {
+            "title": "Performance of o1 pro and GPT-4 in self-assessment questions for nephrology board renewal",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.01.14.25320525.full.pdf"
+          },
+          {
+            "title": "Evaluating AI Grading on Real-World Handwritten College Mathematics: A Large-Scale Study Toward a Benchmark",
+            "url": "https://arxiv.org/pdf/2603.00895"
+          },
+          {
+            "title": "Performance of reasoning large language models on nephrology multiple-choice questions",
+            "url": "https://www.medrxiv.org/content/10.64898/2025.12.03.25341427.full.pdf"
+          },
+          {
+            "title": "Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews",
+            "url": "https://www.medrxiv.org/content/10.1101/2023.10.31.23297818.full.pdf"
+          },
+          {
+            "title": "Can Vision-Language Models Evaluate Handwritten Math?",
+            "url": "https://arxiv.org/pdf/2501.07244"
+          },
+          {
+            "title": "Higher Grit Scores Are Associated With Greater Scholarly Productivity Among Orthopaedic Surgery Residents",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11500777/"
+          },
+          {
+            "title": "Bridging Qualitative Rubrics and AI: A Binary Question Framework for Criterion-Referenced Grading in Engineering",
+            "url": "https://arxiv.org/pdf/2601.15626"
+          }
+        ]
+      },
+      "Let me try one more search with different keywords:",
+      {
+        "tool_use_id": "srvtoolu_017HezUswuc4nxryJyp7qxK8",
+        "content": [
+          {
+            "title": "Pseudo-Formalization for Automatic Proof Verification",
+            "url": "https://arxiv.org/html/2605.20531"
+          },
+          {
+            "title": "[2605.20531] Pseudo-Formalization for Automatic Proof Verification",
+            "url": "https://arxiv.org/abs/2605.20531"
+          },
+          {
+            "title": "Formal Verification of Blockchain Nonforking in DAG-Based BFT Consensus   with Dynamic Stake",
+            "url": "https://arxiv.org/pdf/2504.16853"
+          },
+          {
+            "title": "Block verification method, apparatus and device",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11983168"
+          },
+          {
+            "title": "A Process Calculus for Formally Verifying Blockchain Consensus Protocols",
+            "url": "https://arxiv.org/pdf/1911.08033"
+          }
+        ]
+      },
+      "Excellent! I found the paper. Let me search for more specific details about the error detection and recall results:",
+      {
+        "tool_use_id": "srvtoolu_01R5b8EBa6PXuJZKPxScH1pv",
+        "content": [
+          {
+            "title": "(PDF) Which Verification for Soft Error Detection?",
+            "url": "https://www.researchgate.net/publication/282216729_Which_Verification_for_Soft_Error_Detection"
+          },
+          {
+            "title": "Data verification & error detection with Merkle trees",
+            "url": "https://www.educative.io/answers/data-verification-error-detection-with-merkle-trees"
+          },
+          {
+            "title": "US4074066A - Message verification and transmission error detection by block chaining - Google Patents",
+            "url": "https://patents.google.com/patent/US4074066A/en"
+          },
+          {
+            "title": "Coping with recall and precision of soft error detectors - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0743731516300922"
+          },
+          {
+            "title": "Method and apparatus for error detection in a data block",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7500170"
+          },
+          {
+            "title": "Which Verification for Soft Error Detection? | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/7397613/"
+          }
+        ]
+      },
+      "Let me search directly for the ArxivMathGradingBench paper with specific metrics:",
+      {
+        "tool_use_id": "srvtoolu_01UU9yjdXrtk2wmrMckNgChn",
+        "content": [
+          {
+            "title": "[2605.20531] Pseudo-Formalization for Automatic Proof Verification",
+            "url": "https://arxiv.org/abs/2605.20531"
+          },
+          {
+            "title": "Pseudo-Formalization for Automatic Proof Verification",
+            "url": "https://arxiv.org/html/2605.20531"
+          },
+          {
+            "title": "Stepwise: Neuro-Symbolic Proof Search for Automated Systems Verification",
+            "url": "https://arxiv.org/pdf/2603.19715"
+          },
+          {
+            "title": "Verification of Configurable SRA Systems",
+            "url": "https://arxiv.org/html/2605.21385"
+          },
+          {
+            "title": "stepproof: step-by-step verification of",
+            "url": "https://arxiv.org/pdf/2506.10558"
+          },
+          {
+            "title": "Selene: Pioneering Automated Proof in Software Verification",
+            "url": "https://arxiv.org/pdf/2401.07663"
+          },
+          {
+            "title": "Reliable Evaluation and Benchmarks for Statement Autoformalization",
+            "url": "https://arxiv.org/pdf/2406.07222"
+          }
+        ]
+      },
+      "Based on my web search results, I found information about the research you're asking about:\n\n## Summary\n\nPseudo-Formalization (PF) aims to retain the modularity and precision that make formal proofs verifiable while preserving the flexibility of natural language. Block Verification (BV) is an algorithm where a calibration model aggregates errors into a verdict under a configurable strictness threshold, with the entire verification pipeline referred to as PF+BV.\n\nPF+BV was evaluated on two benchmarks covering Olympiad and research-level mathematics, where it pareto-dominates strong LLM-as-judge baselines on error-finding precision and recall.\n\nThe researchers released ArxivMathGradingBench, a new benchmark of 35 mathematics research papers with 40 known errors in total.\n\nThe paper was submitted on May 19, 2026. While the search results confirm the existence of the work and its general findings about superior performance on error detection recall compared to baseline methods, the specific numerical recall values and detailed performance metrics tables from the paper are not fully visible in these search results. To access the complete detailed results, you would need to view the full PDF of the paper at arxiv.org/pdf/2605.20531."
+    ],
+    "durationSeconds": 19.124930416999995,
+    "searchCount": 5
+  },
+  "sourceToolAssistantUUID": "16b3ed56-f491-44a2-a5ec-b44fe784a124",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition  ## Core Problem  How can we achieve near-formal-verification reliability for natural language mathematical proof che…",
+  "leafUuid": "4816d9cf-dcb5-439e-85c0-b39e1add952f",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-guided selective formal proof verification",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-27T12:40:17.180Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TFDXwV4PTBCxdHMjA4zt9M`</summary>
+
+```json
+{
+  "query": "Goedel-Prover-V2 scaffolded data synthesis self-correction ICLR 2026 proof search success rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4816d9cf-dcb5-439e-85c0-b39e1add952f",
+  "isSidechain": false,
+  "requestId": "req_011CbT68EYwsDfLWCxyh4gyn",
+  "type": "assistant",
+  "uuid": "689c27c8-9afd-4dda-8f52-daa979016741",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiH5jFkWV9bddK71VSSDRB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1891,
+      "cache_read_input_tokens": 26120,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1891,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 26120,
+          "cache_creation_input_tokens": 1891,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1891
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-27T12:40:24.974Z_
+
+<details><summary>↩ Tool result · `toolu_01TFDXwV4PTBCxdHMjA4zt9M`</summary>
+
+```text
+Web search results for query: "Goedel-Prover-V2 scaffolded data synthesis self-correction ICLR 2026 proof search success rate"
+
+Links: [{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction | OpenReview","url":"https://openreview.net/forum?id=j4C0nALrgK"},{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/pdf/2508.03613"},{"title":"Goedel-Prover: the self improving super human AI mathematician | by Anatol Wegner | Apr, 2026 | Medium","url":"https://medium.com/@AIchats/goedel-prover-the-self-improving-super-human-ai-mathematician-fb03a004dc8b"},{"title":"ICLR Poster Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://iclr.cc/virtual/2026/poster/10007912"},{"title":"[2508.03613v1] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/abs/2508.03613v1"},{"title":"[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/abs/2508.03613"},{"title":"Paper page - Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://huggingface.co/papers/2508.03613"},{"title":"Goedel-Prover-V2","url":"https://blog.goedel-prover.com/"}]
+
+Based on the search results, here's what I found about Goedel-Prover-V2:
+
+## Overview
+Goedel-Prover-V2 is a family of two language models that establish a new state-of-the-art (SOTA) in open-source automated theorem proving (ATP), using the Lean proof assistant.
+
+## Key Innovations
+The approach incorporates three key innovations: (1) Scaffolded data synthesis: generating synthetic tasks of increasing difficulty to train the model to master increasingly complex theorems; (2) Verifier-guided self-correction: enabling the model to iteratively revise its proofs by leveraging feedback from the Lean compiler; (3) Model averaging: merging model checkpoints to mitigate the decrease in model output diversity in later stages of training.
+
+## Proof Search Success Rates
+The flagship model, Goedel-Prover-V2-32B, achieves 88.1% on MiniF2F at pass@32 in standard mode and 90.4% in self-correction mode, outperforming prior SOTA by a large margin.
+
+Additionally, the small model, Goedel-Prover-V2-8B, reaches 84.6% pass@32 on MiniF2F and outperforms DeepSeek-Prover-V2-671B under the same metric, despite being 80X smaller.
+
+The flagship model solves 86 problems on PutnamBench at pass@184, securing first place among open-source models and surpassing DeepSeek-Prover-V2-671B's record of 47 problems by pass@1024 with about 20× smaller model size and significantly lower compute budget.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "689c27c8-9afd-4dda-8f52-daa979016741",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "36ecd0f3-b47e-4b53-bffb-2aedd021944a",
+  "toolUseResult": {
+    "query": "Goedel-Prover-V2 scaffolded data synthesis self-correction ICLR 2026 proof search success rate",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BrnUyHf5AY47egS9wdLe1k",
+        "content": [
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction | OpenReview",
+            "url": "https://openreview.net/forum?id=j4C0nALrgK"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          },
+          {
+            "title": "Goedel-Prover: the self improving super human AI mathematician | by Anatol Wegner | Apr, 2026 | Medium",
+            "url": "https://medium.com/@AIchats/goedel-prover-the-self-improving-super-human-ai-mathematician-fb03a004dc8b"
+          },
+          {
+            "title": "ICLR Poster Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://iclr.cc/virtual/2026/poster/10007912"
+          },
+          {
+            "title": "[2508.03613v1] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/abs/2508.03613v1"
+          },
+          {
+            "title": "[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/abs/2508.03613"
+          },
+          {
+            "title": "Paper page - Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://huggingface.co/papers/2508.03613"
+          },
+          {
+            "title": "Goedel-Prover-V2",
+            "url": "https://blog.goedel-prover.com/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Goedel-Prover-V2:\n\n## Overview\nGoedel-Prover-V2 is a family of two language models that establish a new state-of-the-art (SOTA) in open-source automated theorem proving (ATP), using the Lean proof assistant.\n\n## Key Innovations\nThe approach incorporates three key innovations: (1) Scaffolded data synthesis: generating synthetic tasks of increasing difficulty to train the model to master increasingly complex theorems; (2) Verifier-guided self-correction: enabling the model to iteratively revise its proofs by leveraging feedback from the Lean compiler; (3) Model averaging: merging model checkpoints to mitigate the decrease in model output diversity in later stages of training.\n\n## Proof Search Success Rates\nThe flagship model, Goedel-Prover-V2-32B, achieves 88.1% on MiniF2F at pass@32 in standard mode and 90.4% in self-correction mode, outperforming prior SOTA by a large margin.\n\nAdditionally, the small model, Goedel-Prover-V2-8B, reaches 84.6% pass@32 on MiniF2F and outperforms DeepSeek-Prover-V2-671B under the same metric, despite being 80X smaller.\n\nThe flagship model solves 86 problems on PutnamBench at pass@184, securing first place among open-source models and surpassing DeepSeek-Prover-V2-671B's record of 47 problems by pass@1024 with about 20× smaller model size and significantly lower compute budget."
+    ],
+    "durationSeconds": 7.788440772000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "689c27c8-9afd-4dda-8f52-daa979016741",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-27T12:40:28.194Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Dhm2TJqYitrAwvpTweME13`</summary>
+
+```json
+{
+  "query": "ProofSketcher typed proof sketch trusted kernel expansion 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36ecd0f3-b47e-4b53-bffb-2aedd021944a",
+  "isSidechain": false,
+  "requestId": "req_011CbT694H65MBb1YJykz2Wc",
+  "type": "assistant",
+  "uuid": "08529e55-4e55-49ad-a78d-f2875ed81b43",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDj77feV1JywmdFVej7tDK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 28011,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1034,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 28011,
+          "cache_creation_input_tokens": 1034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1034
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-27T12:40:34.569Z_
+
+<details><summary>↩ Tool result · `toolu_01Dhm2TJqYitrAwvpTweME13`</summary>
+
+```text
+Web search results for query: "ProofSketcher typed proof sketch trusted kernel expansion 2026 arXiv"
+
+Links: [{"title":"[2604.06401] ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning","url":"https://arxiv.org/abs/2604.06401"},{"title":"ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning","url":"https://arxiv.org/html/2604.06401"},{"title":"ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning","url":"https://arxiv.org/pdf/2604.06401"},{"title":"[2510.24811] ProofSketch: Efficient Verified Reasoning for Large Language Models","url":"https://arxiv.org/abs/2510.24811"},{"title":"[2205.03332] The Supervisionary proof-checking kernel (or: a work-in-progress towards proof generating code)","url":"https://arxiv.org/abs/2205.03332"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**ProofSketcher** is a hybrid pipeline where an LLM generates a typed proof sketch in a compact DSL and a lightweight trusted kernel expands the sketch into explicit proof obligations.
+
+The paper was published on arXiv on April 7, 2026 (arxiv ID: 2604.06401). The system is designed where the LLM writes a typed proof sketch rather than a full formal proof, with the sketch being a structured plan with explicit step types (rewrite, case split, induction, contradiction) and typed holes, and a lightweight kernel expanding each sketch node into concrete proof obligations.
+
+If any node fails, the kernel returns structured, localized feedback (missing lemma, failed instantiation, violated precondition, countermodel), and the LLM edits only the failing node, with the key goal being fast repair with a small trusted computing base while keeping acceptance sound.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08529e55-4e55-49ad-a78d-f2875ed81b43",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "60d71583-d6ce-4827-b3af-be4e502b343f",
+  "toolUseResult": {
+    "query": "ProofSketcher typed proof sketch trusted kernel expansion 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G75i9Jcfc9RfaNLZjR8dE7",
+        "content": [
+          {
+            "title": "[2604.06401] ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning",
+            "url": "https://arxiv.org/abs/2604.06401"
+          },
+          {
+            "title": "ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning",
+            "url": "https://arxiv.org/html/2604.06401"
+          },
+          {
+            "title": "ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning",
+            "url": "https://arxiv.org/pdf/2604.06401"
+          },
+          {
+            "title": "[2510.24811] ProofSketch: Efficient Verified Reasoning for Large Language Models",
+            "url": "https://arxiv.org/abs/2510.24811"
+          },
+          {
+            "title": "[2205.03332] The Supervisionary proof-checking kernel (or: a work-in-progress towards proof generating code)",
+            "url": "https://arxiv.org/abs/2205.03332"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**ProofSketcher** is a hybrid pipeline where an LLM generates a typed proof sketch in a compact DSL and a lightweight trusted kernel expands the sketch into explicit proof obligations.\n\nThe paper was published on arXiv on April 7, 2026 (arxiv ID: 2604.06401). The system is designed where the LLM writes a typed proof sketch rather than a full formal proof, with the sketch being a structured plan with explicit step types (rewrite, case split, induction, contradiction) and typed holes, and a lightweight kernel expanding each sketch node into concrete proof obligations.\n\nIf any node fails, the kernel returns structured, localized feedback (missing lemma, failed instantiation, violated precondition, countermodel), and the LLM edits only the failing node, with the key goal being fast repair with a small trusted computing base while keeping acceptance sound."
+    ],
+    "durationSeconds": 6.372411988000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "08529e55-4e55-49ad-a78d-f2875ed81b43",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-27T12:40:38.981Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013MgwLGpuUZbjMp2ZCDNQVU`</summary>
+
+```json
+{
+  "query": "\"uncertainty calibration\" \"ensemble disagreement\" \"isotonic regression\" LLM verification confidence 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60d71583-d6ce-4827-b3af-be4e502b343f",
+  "isSidechain": false,
+  "requestId": "req_011CbT69mEwSied15ab7BQZY",
+  "type": "assistant",
+  "uuid": "6559a3d7-d1ea-420e-849e-d1f031694064",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjdCJaKYAogM1Q7zS3t6Sg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 29045,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 583,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 29045,
+          "cache_creation_input_tokens": 583,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 583
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-27T12:40:47.646Z_
+
+<details><summary>↩ Tool result · `toolu_013MgwLGpuUZbjMp2ZCDNQVU`</summary>
+
+```text
+Web search results for query: ""uncertainty calibration" "ensemble disagreement" "isotonic regression" LLM verification confidence 2025 2026"
+
+Links: [{"title":"LLMs Capture Emotion Labels, Not Emotion Uncertainty: Distributional Analysis and Calibration of Human–LLM Judgment Gaps","url":"https://arxiv.org/html/2604.27345"},{"title":"DiscoUQ: Structured Disagreement Analysis for Uncertainty Quantification in LLM Agent Ensembles","url":"https://arxiv.org/pdf/2603.20975"},{"title":"5 Methods for Calibrating LLM Confidence Scores | Latitude","url":"https://latitude.so/blog/5-methods-for-calibrating-llm-confidence-scores"},{"title":"Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey","url":"https://arxiv.org/html/2503.15850v1"},{"title":"Uncertainty Quantification and Confidence Calibration in Large","url":"https://dl.acm.org/doi/pdf/10.1145/3711896.3736569"}]
+
+I've found several relevant research results on uncertainty calibration, ensemble disagreement, and isotonic regression in the context of LLMs. Here's what the search uncovered:
+
+## Key Findings:
+
+**Uncertainty Calibration with Isotonic Regression:**
+Post-hoc isotonic regression reduces zero-shot JSD by up to 14%, though calibrated models still fall short of supervised performance. Isotonic regression fits a monotonic function to recalibrate scores and is great for non-linear needs but requires large datasets.
+
+**Ensemble Disagreement for Confidence Verification:**
+DISCOUQ is a framework that extracts and leverages the structure of interagent disagreement—including linguistic properties and embedding geometry—to produce well-calibrated confidence estimates. DISCOUQ-LLM achieves an average AUROC of 0.802, outperforming baselines while being substantially better calibrated.
+
+**Recent Research Direction (2025):**
+Approaches generate multiple clarifications for a given prompt and ensemble the resulting generations by using mutual information to capture disagreement among predictions from different clarifications.
+
+The search results show active research in combining uncertainty quantification methods with ensemble approaches for improved LLM reliability and confidence calibration in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6559a3d7-d1ea-420e-849e-d1f031694064",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "54b875c2-0798-45a6-8c47-1fa3961de087",
+  "toolUseResult": {
+    "query": "\"uncertainty calibration\" \"ensemble disagreement\" \"isotonic regression\" LLM verification confidence 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016js6rNqfXjaf1sNhSy1oF2",
+        "content": [
+          {
+            "title": "LLMs Capture Emotion Labels, Not Emotion Uncertainty: Distributional Analysis and Calibration of Human–LLM Judgment Gaps",
+            "url": "https://arxiv.org/html/2604.27345"
+          },
+          {
+            "title": "DiscoUQ: Structured Disagreement Analysis for Uncertainty Quantification in LLM Agent Ensembles",
+            "url": "https://arxiv.org/pdf/2603.20975"
+          },
+          {
+            "title": "5 Methods for Calibrating LLM Confidence Scores | Latitude",
+            "url": "https://latitude.so/blog/5-methods-for-calibrating-llm-confidence-scores"
+          },
+          {
+            "title": "Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2503.15850v1"
+          },
+          {
+            "title": "Uncertainty Quantification and Confidence Calibration in Large",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3711896.3736569"
+          }
+        ]
+      },
+      "I've found several relevant research results on uncertainty calibration, ensemble disagreement, and isotonic regression in the context of LLMs. Here's what the search uncovered:\n\n## Key Findings:\n\n**Uncertainty Calibration with Isotonic Regression:**\nPost-hoc isotonic regression reduces zero-shot JSD by up to 14%, though calibrated models still fall short of supervised performance. Isotonic regression fits a monotonic function to recalibrate scores and is great for non-linear needs but requires large datasets.\n\n**Ensemble Disagreement for Confidence Verification:**\nDISCOUQ is a framework that extracts and leverages the structure of interagent disagreement—including linguistic properties and embedding geometry—to produce well-calibrated confidence estimates. DISCOUQ-LLM achieves an average AUROC of 0.802, outperforming baselines while being substantially better calibrated.\n\n**Recent Research Direction (2025):**\nApproaches generate multiple clarifications for a given prompt and ensemble the resulting generations by using mutual information to capture disagreement among predictions from different clarifications.\n\nThe search results show active research in combining uncertainty quantification methods with ensemble approaches for improved LLM reliability and confidence calibration in 2025-2026."
+    ],
+    "durationSeconds": 8.660854718000017,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6559a3d7-d1ea-420e-849e-d1f031694064",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-27T12:41:46.352Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the literature landscape. Let me synthesize my findings and produce a thorough assessment of this proposal as the "发掘 agent."
+
+Key observations from my research:
+
+1. **Pseudo-Formalization (PF)** - Very recent (May 2026), introduces modular proof blocks with explicit premises/conclusions. Block Verification (BV) pareto-dominates LLM-as-judge baselines but still misses errors.
+
+2. **Safe** - ACL 2025, step-level formal verification in Lean 4, high cost overhead.
+
+3. **HERMES** - ICML 2026, interleaves informal and formal reasoning, 67% accuracy improvement with 80% fewer FLOPs, but uniform formalization.
+
+
+4. **Ganguly et al.** - NeurIPS 2025, uses uncertainty-guided selective verification with SMT solvers and a PCFG-based taxonomy for capturing uncertainty.
+
+5. **VERGE** - 2026, employs semantic routing to choose between SMT and LLM-ensemble approaches, focusing on first-order logic claims.
+
+6. **Goedel-Prover-V2** - ICLR 2026, achieves 88.1% on miniF2F at pass@32 through verifier-guided self-correction.
+
+7. **StepFun-Formalizer-32B** - AAAI 2026, represents state-of-the-art autoformalization with 40% performance metrics.
+
+8. **miniF2F-Lean Revisited** - NeurIPS 2025, demonstrates an end-to-end pipeline reaching ~36% accuracy, revealing that autoformalization benchmarks were inflated by relying on LLM evaluation.
+
+9. **ProofSketcher** - 2026, uses typed proof sketches with a trusted kernel for expansion.
+
+Now evaluating the proposal itself: the core novelty lies in leveraging PF block structure as explicit autoformalization targets under uncertainty-guided routing—something not explored in existing work. The intuition that structured blocks with clear premises and conclusions would be more amenable to formalization than raw natural language seems sound and could yield a meaningful contribution. The efficiency gains are also compelling, potentially requiring 1.5-2x the cost versus 4-8x for competing approaches.
+
+But I need to probe three critical gaps: First, whether formal verification is truly necessary for uncertain blocks or if simply running more diverse LLM-as-judge passes with higher temperature would suffice as a lighter alternative. Second, the core assumption that PF block structure substantially improves autoformalization reliability remains untested—StepFun-Formalizer-32B only achieves 40.5% on FormalMATH-Lite for general statements, so it's unclear whether structural formatting alone would meaningfully boost this. Third, while the combination is novel, I need to assess whether it represents a deep conceptual advance or primarily an engineering optimization.
+
+Beyond that, the 10-20% routing strategy hinges on a calibration assumption: that uncertainty scores actually correlate with error locations, which is fragile for LLMs. And the real test of significance comes down to whether selective formal verification actually catches errors that BV misses, or if those errors happen to fall outside the routed blocks.
+
+HERMES already demonstrates strong results with 67% accuracy improvement at 80% fewer FLOPs through uniform interleaving, so this proposal needs to carve out clear differentiation—the modular structure of PF as a bridge, uncertainty-guided selectivity instead of blanket interleaving, and the focus on verifying natural language proofs rather than generating them.
+
+The most pressing question to address is whether BV's failures cluster in uncertain regions or in confidently wrong blocks where the model hallucinates verification. If it's the latter, the entire routing strategy becomes ineffective, so this needs explicit treatment in the framing.
+
+PF's block structure is the real novelty here—each block has explicit typed premises, a single conclusion, and no ambient context, making it structurally much closer to a formal theorem statement than raw natural language is. The gap between a PF block and a Lean proof is far smaller, and this could be quantified more rigorously. Additionally, the dependency graph between blocks is underutilized as a verification signal—high-fan-out blocks that many others depend on should be prioritized for formal verification regardless of uncertainty, since errors propagate downstream.
+
+The framing could emphasize that modular proof decomposition serves as a natural bridge between informal and formal verification, which has broader implications beyond this specific pipeline. And the distinction from HERMES needs clarification: HERMES interleaves informal and formal generation in a single process, whereas this approach takes an existing proof, decomposes it via PF, and selectively formalizes specific blocks—fundamentally different use cases targeting proof verification rather than proof generation.
+
+The core insight is that this creates a "verification cascade" analogous to cascade classifiers in computer vision, where the PF block structure enables independent verification at either tier. The real theoretical question is whether a two-tier cascade with uncertainty-guided routing provably outperforms uniform application of either tier, which might warrant formal analysis around calibration quality and cost-accuracy tradeoffs. I should also consider whether simpler alternatives exist, like just running the base verifier with more diverse models or temperatures.
+
+The key counterargument to those trivial alternatives is that LLM verification has a fundamental ceiling—certain logical errors like subtle gaps in proof by contradiction can't be reliably detected by language models alone, whereas formal verification provides a qualitatively different guarantee. The proposal needs to make this distinction explicit rather than just assuming formal verification is necessary. I'm also wondering what specific error types the base verifier misses in that ~50% detection rate, since if those errors cluster in particular block types, that would strongly justify the uncertainty-guided routing approach.
+
+There's a critical gap around what happens when formal verification fails on a routed block—is that a signal that the block actually contains an error, or just that the autoformalization and proof search couldn't handle a correct block? The proposal should address how to disambiguate between these cases. Overall, this is a well-motivated idea with genuine novelty in combining modular proof finding with selective formalization, though it could be sharpened by more explicitly defending why formal verification is necessary for the uncertain blocks and discussing how to interpret verification failures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54b875c2-0798-45a6-8c47-1fa3961de087",
+  "isSidechain": false,
+  "requestId": "req_011CbT6AjBSc3TSfjpMdyc9o",
+  "type": "assistant",
+  "uuid": "a80ab9e1-a71f-4fc7-bad7-c835f196db2b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WGameVHTm3NCS1E9fhCKiy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29628,
+      "output_tokens": 2305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 657,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2305,
+          "cache_read_input_tokens": 29628,
+          "cache_creation_input_tokens": 657,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 657
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-27T12:41:46.455Z_
+
+Now let me do one more targeted search on a critical question for this proposal:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a80ab9e1-a71f-4fc7-bad7-c835f196db2b",
+  "isSidechain": false,
+  "requestId": "req_011CbT6AjBSc3TSfjpMdyc9o",
+  "type": "assistant",
+  "uuid": "59dd522a-6553-4262-bde4-cdf624f59912",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WGameVHTm3NCS1E9fhCKiy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29628,
+      "output_tokens": 2305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 657,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2305,
+          "cache_read_input_tokens": 29628,
+          "cache_creation_input_tokens": 657,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 657
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-27T12:41:46.459Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QBBJW7MHaqVCDyEYPsqhjx`</summary>
+
+```json
+{
+  "query": "LLM confident but wrong mathematical reasoning calibration overconfidence error detection 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59dd522a-6553-4262-bde4-cdf624f59912",
+  "isSidechain": false,
+  "requestId": "req_011CbT6AjBSc3TSfjpMdyc9o",
+  "type": "assistant",
+  "uuid": "d9da3cc9-2dc5-44d2-bf88-936bd6d4877c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WGameVHTm3NCS1E9fhCKiy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29628,
+      "output_tokens": 2305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 657,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2305,
+          "cache_read_input_tokens": 29628,
+          "cache_creation_input_tokens": 657,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 657
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition  ## Core Problem  How can we achieve near-formal-verification reliability for natural language mathematical proof che…",
+  "leafUuid": "d9da3cc9-2dc5-44d2-bf88-936bd6d4877c",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-guided selective formal proof verification",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-27T12:41:53.892Z_
+
+<details><summary>↩ Tool result · `toolu_01QBBJW7MHaqVCDyEYPsqhjx`</summary>
+
+```text
+Web search results for query: "LLM confident but wrong mathematical reasoning calibration overconfidence error detection 2025 2026"
+
+Links: [{"title":"Confidence Calibration in LLMs","url":"https://www.emergentmind.com/topics/confidence-calibration-in-llms"},{"title":"LLMs are Overconfident: Evaluating Confidence Interval Calibration with","url":"https://arxiv.org/pdf/2510.26995"},{"title":"Unsupervised Confidence Calibration for Reasoning LLMs from a Single Generation","url":"https://arxiv.org/html/2604.19444v1"},{"title":"Don't Think Twice! Over-Reasoning Impairs Confidence Calibration","url":"https://arxiv.org/pdf/2508.15050"},{"title":"The Confidence Paradox: Can LLM Know When It’s Wrong?","url":"https://arxiv.org/html/2506.23464v1"},{"title":"Confidence over Time: Confidence Calibration with Temporal Logic for Large Language Model Reasoning","url":"https://arxiv.org/pdf/2601.13387"},{"title":"Large Language Models are overconfident and amplify human bias","url":"https://arxiv.org/pdf/2505.02151"},{"title":"Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards","url":"https://arxiv.org/pdf/2603.09117"}]
+
+Based on the search results, here's what recent research (2025-2026) shows about LLMs being confident but wrong in mathematical reasoning:
+
+## Key Findings
+
+**The Overconfidence Problem:**
+All five LLMs examined are overconfident, with models on average overestimating the probability that their answer is correct between 20% (for GPT o1) and 60% (for GPT 3.5). RL-trained models often become significantly over-confident, assigning extremely high probability mass to their outputs even when the answers are incorrect.
+
+**Mathematical Reasoning Specific Issues:**
+In scalar quantification tasks like Fermi-style estimation, LLMs are systematically overconfident. Despite their fluency, LLMs remain prone to factually incorrect or logically flawed responses that are expressed with high apparent certainty.
+
+**Calibration Solutions Being Developed:**
+Natural language critique prompts and supervised critique calibration teach LLMs patterns of over-/under-confidence, yielding significant calibration error reduction even out-of-domain. Double-Calibration calibrates both knowledge graph evidence and final LLM reasoning confidence, providing traceable provenance of uncertainty across reasoning chains.
+
+**The RL Training Challenge:**
+Reinforcement learning from verifiable rewards often leads to severe calibration degeneration, emerging as a critical bottleneck that limits practical applicability of LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9da3cc9-2dc5-44d2-bf88-936bd6d4877c",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "ec387ef4-1e20-404b-aa3e-36978c5ee974",
+  "toolUseResult": {
+    "query": "LLM confident but wrong mathematical reasoning calibration overconfidence error detection 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LTxCdsKJ79WPhtS2pDmJ5L",
+        "content": [
+          {
+            "title": "Confidence Calibration in LLMs",
+            "url": "https://www.emergentmind.com/topics/confidence-calibration-in-llms"
+          },
+          {
+            "title": "LLMs are Overconfident: Evaluating Confidence Interval Calibration with",
+            "url": "https://arxiv.org/pdf/2510.26995"
+          },
+          {
+            "title": "Unsupervised Confidence Calibration for Reasoning LLMs from a Single Generation",
+            "url": "https://arxiv.org/html/2604.19444v1"
+          },
+          {
+            "title": "Don't Think Twice! Over-Reasoning Impairs Confidence Calibration",
+            "url": "https://arxiv.org/pdf/2508.15050"
+          },
+          {
+            "title": "The Confidence Paradox: Can LLM Know When It’s Wrong?",
+            "url": "https://arxiv.org/html/2506.23464v1"
+          },
+          {
+            "title": "Confidence over Time: Confidence Calibration with Temporal Logic for Large Language Model Reasoning",
+            "url": "https://arxiv.org/pdf/2601.13387"
+          },
+          {
+            "title": "Large Language Models are overconfident and amplify human bias",
+            "url": "https://arxiv.org/pdf/2505.02151"
+          },
+          {
+            "title": "Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards",
+            "url": "https://arxiv.org/pdf/2603.09117"
+          }
+        ]
+      },
+      "Based on the search results, here's what recent research (2025-2026) shows about LLMs being confident but wrong in mathematical reasoning:\n\n## Key Findings\n\n**The Overconfidence Problem:**\nAll five LLMs examined are overconfident, with models on average overestimating the probability that their answer is correct between 20% (for GPT o1) and 60% (for GPT 3.5). RL-trained models often become significantly over-confident, assigning extremely high probability mass to their outputs even when the answers are incorrect.\n\n**Mathematical Reasoning Specific Issues:**\nIn scalar quantification tasks like Fermi-style estimation, LLMs are systematically overconfident. Despite their fluency, LLMs remain prone to factually incorrect or logically flawed responses that are expressed with high apparent certainty.\n\n**Calibration Solutions Being Developed:**\nNatural language critique prompts and supervised critique calibration teach LLMs patterns of over-/under-confidence, yielding significant calibration error reduction even out-of-domain. Double-Calibration calibrates both knowledge graph evidence and final LLM reasoning confidence, providing traceable provenance of uncertainty across reasoning chains.\n\n**The RL Training Challenge:**\nReinforcement learning from verifiable rewards often leads to severe calibration degeneration, emerging as a critical bottleneck that limits practical applicability of LLMs."
+    ],
+    "durationSeconds": 7.428159963000013,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d9da3cc9-2dc5-44d2-bf88-936bd6d4877c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-27T12:41:56.782Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018ffhP9RKXNn7VrWx6PqzEj`</summary>
+
+```json
+{
+  "query": "cascade verification model routing cost accuracy tradeoff formal informal proof verification 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec387ef4-1e20-404b-aa3e-36978c5ee974",
+  "isSidechain": false,
+  "requestId": "req_011CbT6FcNojcQaFendq9DnG",
+  "type": "assistant",
+  "uuid": "c9a6af70-3110-4f27-8588-596efabbafc8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwEFeQC9f1gFLLpbr7uGNC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3005,
+      "cache_read_input_tokens": 30285,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3005,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 30285,
+          "cache_creation_input_tokens": 3005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3005
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-27T12:42:09.362Z_
+
+<details><summary>↩ Tool result · `toolu_018ffhP9RKXNn7VrWx6PqzEj`</summary>
+
+```text
+Web search results for query: "cascade verification model routing cost accuracy tradeoff formal informal proof verification 2025 2026"
+
+Links: [{"title":"GATEKEEPER: Improving Model Cascades Through Conﬁdence Tuning","url":"https://openreview.net/pdf?id=qYI4fw3g4v"},{"title":"A Unified Approach to Routing and Cascading for LLMs","url":"https://arxiv.org/pdf/2410.10347"},{"title":"A Unified Approach to Routing and Cascading for LLMs | OpenReview","url":"https://openreview.net/forum?id=AAl89VNNy1"},{"title":"[2410.10347] A Unified Approach to Routing and Cascading for LLMs","url":"https://arxiv.org/abs/2410.10347"},{"title":"A Unified Approach to Routing and Cascading for LLMs","url":"https://arxiv.org/html/2410.10347v3"},{"title":"Router-R1 and LLM routing research – Champaign Magazine","url":"https://champaignmagazine.com/2025/10/16/router-r1-and-llm-routing-research/"},{"title":"A Self-Aware and Token-Efficient Approach to Routing and ...","url":"https://aclanthology.org/2025.emnlp-main.531.pdf"},{"title":"arXiv:2506.06579v1 [cs.LG] 6 Jun 2025","url":"https://arxiv.org/pdf/2506.06579"},{"title":"A UNIFIED APPROACH TO ROUTING AND CASCADING FOR ...","url":"https://openreview.net/pdf?id=qe8BfREMrb"}]
+
+Based on the web search results, I found several highly relevant papers and resources about cascade verification models and the cost-accuracy tradeoff in routing and cascading strategies for LLMs in 2025-2026:
+
+## Key Findings
+
+### "A Unified Approach to Routing and Cascading for LLMs"
+
+Existing strategies involve either routing, where a single model is chosen per query, or cascading, which sequentially runs increasingly larger models until a satisfactory answer is found. However, current approaches face three key limitations: they lack formal proofs of optimality, fail to identify the conditions under which these strategies are most effective to improve the cost-performance tradeoff, and are unable to combine both paradigms for further improvements.
+
+To address these issues, the research derives a novel optimal strategy for cascading and proves the optimality of an existing routing strategy, then proposes cascade routing, a unified framework that integrates routing and cascading into a theoretically optimal strategy.
+
+### Cascade Routing Performance
+
+Cascade Routing combines the strengths of routing and cascading. Traditional routing commits to an initial model without flexibility, while cascading requires executing every model in sequence which can be inefficient. Cascade routing consistently improves performance by 4% across all settings on RouterBench, representing an 80% relative improvement over a naive baseline.
+
+### GATEKEEPER: Model Cascades Through Confidence Tuning
+
+Another related work from 2025 addresses similar concerns, showing that cascading determines which inputs should be predicted by a small model or routed to a large model, with performance measured as a trade-off between joint accuracy across models and deferral ratio.
+
+These recent works from 2025 provide both theoretical foundations and practical implementations for managing the cost-accuracy tradeoff in model cascading systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9a6af70-3110-4f27-8588-596efabbafc8",
+  "isSidechain": false,
+  "promptId": "8921e5c4-ea3d-4160-a613-12d7af3209da",
+  "type": "user",
+  "uuid": "1887b5ae-6c60-417e-b036-c4b712ec04bd",
+  "toolUseResult": {
+    "query": "cascade verification model routing cost accuracy tradeoff formal informal proof verification 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014kiyP8CTdW5xav5tYbBcWb",
+        "content": [
+          {
+            "title": "GATEKEEPER: Improving Model Cascades Through Conﬁdence Tuning",
+            "url": "https://openreview.net/pdf?id=qYI4fw3g4v"
+          },
+          {
+            "title": "A Unified Approach to Routing and Cascading for LLMs",
+            "url": "https://arxiv.org/pdf/2410.10347"
+          },
+          {
+            "title": "A Unified Approach to Routing and Cascading for LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=AAl89VNNy1"
+          },
+          {
+            "title": "[2410.10347] A Unified Approach to Routing and Cascading for LLMs",
+            "url": "https://arxiv.org/abs/2410.10347"
+          },
+          {
+            "title": "A Unified Approach to Routing and Cascading for LLMs",
+            "url": "https://arxiv.org/html/2410.10347v3"
+          },
+          {
+            "title": "Router-R1 and LLM routing research – Champaign Magazine",
+            "url": "https://champaignmagazine.com/2025/10/16/router-r1-and-llm-routing-research/"
+          },
+          {
+            "title": "A Self-Aware and Token-Efficient Approach to Routing and ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.531.pdf"
+          },
+          {
+            "title": "arXiv:2506.06579v1 [cs.LG] 6 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.06579"
+          },
+          {
+            "title": "A UNIFIED APPROACH TO ROUTING AND CASCADING FOR ...",
+            "url": "https://openreview.net/pdf?id=qe8BfREMrb"
+          }
+        ]
+      },
+      "Based on the web search results, I found several highly relevant papers and resources about cascade verification models and the cost-accuracy tradeoff in routing and cascading strategies for LLMs in 2025-2026:\n\n## Key Findings\n\n### \"A Unified Approach to Routing and Cascading for LLMs\"\n\nExisting strategies involve either routing, where a single model is chosen per query, or cascading, which sequentially runs increasingly larger models until a satisfactory answer is found. However, current approaches face three key limitations: they lack formal proofs of optimality, fail to identify the conditions under which these strategies are most effective to improve the cost-performance tradeoff, and are unable to combine both paradigms for further improvements.\n\nTo address these issues, the research derives a novel optimal strategy for cascading and proves the optimality of an existing routing strategy, then proposes cascade routing, a unified framework that integrates routing and cascading into a theoretically optimal strategy.\n\n### Cascade Routing Performance\n\nCascade Routing combines the strengths of routing and cascading. Traditional routing commits to an initial model without flexibility, while cascading requires executing every model in sequence which can be inefficient. Cascade routing consistently improves performance by 4% across all settings on RouterBench, representing an 80% relative improvement over a naive baseline.\n\n### GATEKEEPER: Model Cascades Through Confidence Tuning\n\nAnother related work from 2025 addresses similar concerns, showing that cascading determines which inputs should be predicted by a small model or routed to a large model, with performance measured as a trade-off between joint accuracy across models and deferral ratio.\n\nThese recent works from 2025 provide both theoretical foundations and practical implementations for managing the cost-accuracy tradeoff in model cascading systems."
+    ],
+    "durationSeconds": 12.575680798000016,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c9a6af70-3110-4f27-8588-596efabbafc8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-27T12:42:27.074Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the landscape. Let me synthesize my analysis.
+
+Key things I've learned from my research:
+
+1. **PF (Barkallah et al., May 2026)** is very recent - just published. It introduces modular proof blocks with explicit premises/conclusions and a Block Verification algorithm. Pareto-dominates LLM-as-judge but still misses ~50% of errors.
+
+2. **Safe (ACL 2025)** does step-level formal verification in Lean 4, first to use Lean 4 for verifying LLM content, but with high cost.
+
+
+3. **HERMES (ICML 2026)** interleaves informal and formal reasoning to achieve 67% accuracy gains while cutting computational costs by 80%, though it doesn't leverage uncertainty-guided selectivity.
+
+4. **Ganguly et al. (NeurIPS 2025)** demonstrates that PCFG-based uncertainty paired with selective SMT verification can reduce errors by 14-100%, directly validating the selective verification approach.
+
+5. **VERGE (2026)** and cascade routing literature both address semantic routing and cost-accuracy tradeoffs, with VERGE specifically routing between SMT and LLM-ensemble for general claims.
+
+6. **LLM overconfidence** is well-documented in the literature.
+
+7. **StepFun-Formalizer-32B** achieves 40.5% on FormalMATH-Lite while **Goedel-Prover-V2** reaches 88.1% on miniF2F at pass@32, showing strong proof search capabilities but highlighting the gap in autoformalization.
+
+The core novelty here is combining PF blocks as autoformalization targets with uncertainty-guided routing—no existing work does this combination. But the critical vulnerability is whether the approach can actually catch cases where the verifier is confidently wrong rather than uncertain, since that's where the entire framework could fail.
+
+The real technical claim hinges on whether PF blocks genuinely improve autoformalization success over general statements, which remains completely untested. The structural argument about explicit premises and conclusions is intuitive but needs rigorous validation. Beyond that, the dependency graph structure in PF offers an underexplored dimension—blocks that feed into many downstream components should be prioritized for verification regardless of uncertainty, which could substantially refine the routing strategy. Reframing this as modular proof decomposition bridging informal and formal verification would elevate it from a pure engineering combination to something more principled.
+
+Now I need to sharpen the distinction between verification and generation in the HERMES context.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1887b5ae-6c60-417e-b036-c4b712ec04bd",
+  "isSidechain": false,
+  "requestId": "req_011CbT6GkWj6AmdSurDf9Lj2",
+  "type": "assistant",
+  "uuid": "d78c641d-2aed-4a20-97d7-2fa86aa70769",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J8fwKGDk3tzAFTrqEtvVKP",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 33290,
+      "output_tokens": 5441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5441,
+          "cache_read_input_tokens": 33290,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-27T12:43:55.110Z_
+
+Now I have enough research context. Let me synthesize my assessment.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- [Pseudo-Formalization for Automatic Proof Verification (arXiv:2605.20531)](https://arxiv.org/abs/2605.20531) (arXiv, May 2026): 核心前序工作。引入模块化 PF 块（显式前提/结论/依赖图），Block Verification Pareto-dominates LLM-as-judge，但在 ArxivMathGradingBench 上仍漏检约 50% 错误。关键：PF 块的自包含结构是本 proposal 的核心杠杆。
+- [Safe: Step-aware Formal Verification (ACL 2025)](https://aclanthology.org/2025.acl-long.594/): 首次用 Lean 4 逐步形式化验证 LLM 输出，但对所有步骤均匀验证，4-8x 成本开销。本 proposal 试图选择性替代之。
+- [HERMES (ICML 2026)](https://arxiv.org/abs/2511.18760): 首个交替非形式推理与形式化 Lean 4 验证步骤的 agent，67% 准确率提升 + 80% FLOP 减少。**但它面向 proof generation 而非 proof verification，且无 uncertainty-guided 选择性——对所有步骤均做形式化。** 这是最关键的差异化对手。
+- [Grammars of Formal Uncertainty (NeurIPS 2025)](https://arxiv.org/abs/2505.20047): 提出 PCFG 框架对 LLM 输出做不确定性分类，选择性验证在 SMT-based formalization 中实现 14-100% 错误减少。**直接验证了 selective verification 范式的可行性**，但仅在 first-order logic 领域，未应用于数学证明块。
+- [Goedel-Prover-V2 (ICLR 2026)](https://arxiv.org/abs/2508.03613): miniF2F pass@32 达 88.1%（自修正模式 90.4%），verifier-guided self-correction 是本 proposal formal verification 层的核心引擎。
+- [StepFun-Formalizer-32B (AAAI 2026)](https://arxiv.org/abs/2508.04440): BEq@1 40.5% on FormalMATH-Lite——SOTA 但仍然有限。proposal 依赖此作为 autoformalization 层。
+- [miniF2F-Lean Revisited (NeurIPS 2025)](https://arxiv.org/abs/2511.03108): 端到端 autoformalization pipeline 成功率仅 ~36%（非文献中常报的 97%），人工评估表明 autoformalization 准确率被 LLM judging 严重高估。
+- [A Unified Approach to Routing and Cascading for LLMs (2024)](https://arxiv.org/abs/2410.10347): 提供 routing + cascading 的理论最优框架，cascade routing 在所有设置上提升 4%。
+- [LLMs are Overconfident (2025-2026)](https://arxiv.org/pdf/2510.26995): RL-trained LLMs 系统性过度自信，平均高估正确概率 20-60%。**直接威胁本 proposal 的 uncertainty calibration 假设。**
+- [VERGE (arXiv 2026)](https://arxiv.org/abs/2601.20055): 语义路由 SMT/LLM-ensemble，但针对 FOL claims 而非数学证明块。
+- 调研总结：当前领域正在从"全量形式化 vs. 纯 LLM 验证"的二元格局转向**选择性、成本感知的混合验证**。核心突破点在于 (a) 如何构建可靠的 triage 信号，(b) 如何设计中间表示使 autoformalization 更 tractable。Ganguly 等人验证了 selective verification 的可行性但局限于 FOL；HERMES 验证了 informal-formal interleaving 但不做选择性路由。本 proposal 恰好占据了"选择性 + 模块化中间表示"的空白位。
+
+---
+
+【发掘点 1】
+- 维度: 前提假设质疑 / trivial alternative 威胁
+- 内容: **"Confident-but-Wrong" 盲区是本 proposal 最大的未显式化风险。** 整个 pipeline 的有效性建立在一个关键假设上：BV 漏检的错误主要集中在 BV 不确定（高 uncertainty）的块上。但文献（2025-2026 多篇 calibration 研究）已充分证明 LLM 系统性过度自信——RL-trained 模型平均高估正确概率 20-60%。如果 BV 漏检的 50% 错误中有相当比例是 BV *高置信度判错*（即 confident-but-wrong），那么 uncertainty-guided routing 根本无法触达这些错误，整个 selective verification 的收益上界会急剧缩小。**Proposal 必须在 framing 中显式讨论这一风险**，并给出缓解策略——例如：(a) 分析 PF+BV 在 ArxivMathGradingBench 上的错误分布，区分"不确定且错误"vs"自信且错误"的比例；(b) 论证 PF 的模块化分解天然将"难以验证"的推理步骤隔离到独立块中，使这些块即使 BV 过度自信也会在 ensemble disagreement 中产生更高方差；(c) 引入 "structural difficulty" 信号（如块内推理步数、依赖的定理数量）作为 uncertainty 之外的补充路由信号。**不直面这个问题，审稿人大概率会在 rebuttal 阶段提出，且它可能是 fatal 的。**
+- 价值: 直击 Novelty 和 Soundness 的核心：如果 triage 信号不可靠，selective verification 退化为随机采样 formal verification，novelty claim 崩塌。显式讨论并缓解此风险将极大增强 claim 的可信度。
+- 调研依据: 基于 [LLMs are Overconfident (2025)](https://arxiv.org/pdf/2510.26995)、[Decoupling Reasoning and Confidence (2026)](https://arxiv.org/pdf/2603.09117) 关于 RL-trained LLM 过度自信的发现，以及 [Grammars of Formal Uncertainty (NeurIPS 2025)](https://arxiv.org/abs/2505.20047) 中 token entropy 作为 uncertainty 信号在不同 domain 效果差异巨大（逻辑任务 +34.8% vs 事实任务 -44.5%）的发现。
+
+【发掘点 2】
+- 维度: novelty 锐化
+- 内容: **PF 块作为 autoformalization 目标的结构性优势——这是本 proposal 最独特的 insight，但目前论述过于轻描淡写。** Proposal 中仅用 "far more amenable" "substantially higher" 等模糊措辞来声称 PF 块比 raw NL 更适合 autoformalization，但没有给出任何结构性分析来支撑这个 claim。应当显式拆解 PF 块与 Lean 4 theorem statement 之间的结构对齐：(a) PF 块有显式 typed premises → 直接对应 Lean 4 的 `hypothesis` 列表；(b) PF 块有单一 conclusion → 直接对应 Lean 4 的 `goal`；(c) PF 块无环境上下文依赖 → 消除了 whole-proof autoformalization 中最棘手的上下文补全问题。这种"PF 块 ≈ 半结构化定理声明"的论证如果做扎实，可以将 novelty 从"工程组合"提升为"modular proof decomposition 是 informal-formal verification 的天然桥梁"这一更具普适性的 insight。这也是与 HERMES 最本质的差异：HERMES 在生成时交替 informal/formal，而本 proposal 通过 PF 的模块化分解在验证时创建了结构化的 formalization 入口点。
+- 价值: 将核心 novelty 从 "combination of existing techniques" 提升为 "architectural insight about modular decomposition as a bridge"，直接命中 Novelty 维度。如果审稿人认为这只是 engineering，中稿概率大幅下降；如果审稿人认为这揭示了一个 reusable insight，则显著提升。
+- 调研依据: 基于 [miniF2F-Lean Revisited (NeurIPS 2025)](https://arxiv.org/abs/2511.03108) 揭示端到端 autoformalization 仅 36% 成功率的原因分析（上下文补全和 statement 歧义是主要瓶颈），以及 [StepFun-Formalizer (AAAI 2026)](https://arxiv.org/abs/2508.04440) 在 FormalMATH-Lite 上 40.5% BEq@1 的性能——PF 块的结构化输入有望显著缩小这两个瓶颈。
+
+【发掘点 3】
+- 维度: significance 提升 / 核心 claim 强化
+- 内容: **PF 的 inter-block dependency graph 是一个被严重低估的信号源，应纳入路由策略以强化 significance。** 当前 proposal 仅用 uncertainty 作为路由信号，但 PF 提供了一个免费的附加结构：块间依赖图。一个 high-fan-out 块（被多个下游块依赖）如果验证错误，错误会级联传播到所有依赖块——这种块即使 BV 置信度较高，也值得投入 formal verification。将路由策略从纯 uncertainty-based 升级为 "uncertainty × dependency criticality" 的双信号策略，有三个好处：(a) 缓解发掘点 1 的 confident-but-wrong 问题（critical 块即使 BV 不 uncertain 也会被路由）；(b) 让 PF 的独特结构更深度地参与 pipeline 而不仅仅是 autoformalization 的输入格式，增强 "PF is the bridge" 的 narrative；(c) 与 cascade routing 文献（Unified Routing + Cascading, 2024）的理论框架对齐——将 dependency criticality 类比为 "cost of being wrong" 系数。
+- 价值: 从 "single-signal routing" 升级为 "graph-aware multi-signal routing"，同时命中 Novelty（新的路由策略）和 Significance（利用了 PF 的独特结构属性，非其他方法可获得的信号）。
+- 调研依据: 基于 [A Unified Approach to Routing and Cascading (2024)](https://arxiv.org/abs/2410.10347) 的 cascade routing 理论框架（routing 决策应考虑 cost of deferral），以及 PF 原文中 inter-block dependency graph 的定义。
+
+【发掘点 4】
+- 维度: related work 差异化
+- 内容: **与 HERMES 的差异化必须从"功能对比"提升到"范式差异"。** 当前 proposal 对 HERMES 的区分停留在表层：HERMES 做 uniform formalization，本 proposal 做 selective formalization。但这掩盖了一个更根本的差异：HERMES 是一个 **proof generation** agent（生成新证明时交替 informal/formal），而本 proposal 是一个 **proof verification** pipeline（检查已有证明的正确性）。这两个任务的约束完全不同——generation 时你可以控制输出格式，verification 时你必须处理任意格式的输入证明。PF 的存在恰恰解决了 verification 场景下的核心困难：将任意格式的 NL 证明转化为可模块化处理的结构。此外，HERMES 的 80% FLOP 减少是相对于 reward-based 方法（如 Best-of-N），而本 proposal 的成本比较对象是 universal formal verification（Safe）——两者的 cost baseline 不同，不应直接比较。建议在 related work 中明确建立 "generation vs. verification" 的 taxonomy，将本 proposal 定位为 "the first uncertainty-guided selective formal verification system for NL proof checking"。
+- 价值: 清晰的 taxonomy 防止审稿人将本工作与 HERMES 混为一谈（这是最可能的 novelty 质疑来源），直接命中 Related Work 差异化维度。
+- 调研依据: 基于 [HERMES (ICML 2026)](https://arxiv.org/abs/2511.18760) 的实际定位（agent for proof generation with formal checking）与本 proposal 定位（pipeline for proof verification with selective formalization）的根本差异。
+
+【发掘点 5】
+- 维度: significance 提升
+- 内容: **Framing 可以从 "cost-reliability optimization" 提升为更具普适意义的 insight："modular proof decomposition as a natural bridge between informal and formal verification."** 当前 proposal 的叙事是"我们找到了一个更好的 cost-reliability tradeoff"——这是一个 system-level 的贡献叙事，容易被审稿人归为 engineering paper。但如果核心叙事转变为"我们发现模块化证明分解（如 PF）天然地创建了从非形式到形式验证的桥梁，并通过实验验证了这一桥梁的有效性"，则贡献从 system optimization 升级为 architectural insight：不仅对本 pipeline 有效，对未来任何需要混合 informal/formal 验证的系统都有指导意义。这个 reframing 不需要改变任何技术方案，只需要调整叙事重心。
+- 价值: 将论文从"又一个 pipeline 优化"提升为"提出了一个 reusable architectural principle"，显著命中 Significance 维度。AAAI 审稿人更看重 insight 的普适性。
+- 调研依据: 基于领域整体趋势判断——当前 verification 文献（Safe, HERMES, VERGE, ProofSketcher）都在探索 informal-formal 的混合策略，但没有任何一篇工作明确提出"modular decomposition is the bridge"这一 architectural claim。
+
+Sources:
+- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531)
+- [Safe: Step-aware Formal Verification (ACL 2025)](https://aclanthology.org/2025.acl-long.594/)
+- [HERMES: Efficient and Verifiable Mathematical Reasoning (ICML 2026)](https://arxiv.org/abs/2511.18760)
+- [Grammars of Formal Uncertainty (NeurIPS 2025)](https://arxiv.org/abs/2505.20047)
+- [Goedel-Prover-V2 (ICLR 2026)](https://arxiv.org/abs/2508.03613)
+- [StepFun-Formalizer-32B (AAAI 2026)](https://arxiv.org/abs/2508.04440)
+- [miniF2F-Lean Revisited (NeurIPS 2025)](https://arxiv.org/abs/2511.03108)
+- [VERGE: Formal Refinement and Guidance Engine (arXiv 2026)](https://arxiv.org/abs/2601.20055)
+- [A Unified Approach to Routing and Cascading for LLMs](https://arxiv.org/abs/2410.10347)
+- [ProofSketcher (arXiv 2026)](https://arxiv.org/abs/2604.06401)
+- [LLMs are Overconfident (2025)](https://arxiv.org/pdf/2510.26995)
+- [Decoupling Reasoning and Confidence (2026)](https://arxiv.org/pdf/2603.09117)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d78c641d-2aed-4a20-97d7-2fa86aa70769",
+  "isSidechain": false,
+  "requestId": "req_011CbT6GkWj6AmdSurDf9Lj2",
+  "type": "assistant",
+  "uuid": "21883fcd-ebf4-4c6e-91c8-57138dbeea14",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J8fwKGDk3tzAFTrqEtvVKP",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 33290,
+      "output_tokens": 5441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5441,
+          "cache_read_input_tokens": 33290,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition  ## Core Problem  How can we achieve near-formal-verification reliability for natural language mathematical proof che…",
+  "leafUuid": "21883fcd-ebf4-4c6e-91c8-57138dbeea14",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-guided selective formal proof verification",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Uncertainty-Guided Selective Formal Verification via Pseudo-Formal Decomposition  ## Core Problem  How can we achieve near-formal-verification reliability for natural language mathematical proof che…",
+  "leafUuid": "21883fcd-ebf4-4c6e-91c8-57138dbeea14",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Uncertainty-guided selective formal proof verification",
+  "sessionId": "eea341a1-6f48-4a7d-83b3-8ee272c07c2d"
+}
+```
+
+---

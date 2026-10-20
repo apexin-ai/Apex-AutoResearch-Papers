@@ -1,0 +1,4033 @@
+# Research conversation: TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization ## Core Problem Current autof
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/exported-trajectories/account-3/afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2.jsonl`
+- **Structured JSON:** [`64de3a80d74e57b38e2a.json`](../../sessions/64/64de3a80d74e57b38e2a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T05:41:53.171Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T05:41:53.171Z",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "content": "# TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization\n\n## Core Problem\n\nCurrent autoformalization models—even those achieving strong in-distribution results (ATF: 94.51% Pass@1 on FormalMath-Lite; ATLAS: 96.93% pass@128 on miniF2F)—degrade sharply on unfamiliar mathematical domains because they lack both domain-specific Mathlib knowledge and mechanisms to adapt at deployment time. Test-time RL (TTRL) has been shown to boost informal math reasoning dramatically but cannot be naively applied to autoformalization: (1) majority voting over formal statements is ill-defined (unlike numerical answers), requiring a trained semantic critic; (2) GRPO's advantage normalization amplifies noise from ambiguous pseudo-labels in the multi-tier reward setting (compilation + critic + BEq); and (3) static retrieval of Mathlib dependencies becomes stale as the formalizer's behavior shifts during adaptation, yet no prior work fine-tunes the retriever during test-time RL.\n\nA key structural asymmetry motivates our approach: in informal math reasoning, TTRL obtains only binary correct/incorrect signals with no information about *why* a solution failed or *what knowledge is missing*. Binary rewards create a fundamental degeneracy for policy gradient methods, leading to diversity collapse (Dymetman, arXiv:2605.02375). In contrast, Lean 4's compiler produces machine-parseable error messages that precisely identify missing identifiers, type mismatches, and unresolved typeclass instances—constituting a graded hierarchy of structured feedback signals that can drive both retriever adaptation and multi-tier reward design. This structured compilation feedback makes a class of co-adaptive test-time learning possible that is fundamentally infeasible in informal reasoning settings.\n\nCan we make TTRL viable for autoformalization by combining compilation-error-driven co-adaptive retrieval that exploits Lean 4's full structured error taxonomy, a calibrated semantic critic reward, and principled adaptation of binary-reward debiased RL to multi-tier rewards?\n\n## Research Opportunity\n\nFour independently validated capabilities have never been combined, and their integration is now enabled by the structural feedback properties unique to formal languages.\n\n(1) **Co-adaptive retrieval is newly feasible, and identifier hallucination is a quantifiably dominant error mode.** R3 (NeurIPS 2025) demonstrates that RAG environment feedback can train retrievers via reinforced contrastive learning. Reinforced-IR (ACL 2025) validates alternating retriever-generator mutual adaptation through RLRF/RLGF. TTARAG (arXiv:2601.11443, Jan 2026) shows test-time retrieval adaptation is achievable via self-supervised prediction. The prevalence of identifier hallucination as the dominant error class is established by converging evidence: the Construction-Verification/AMBER benchmark (Yang et al., arXiv:2602.01291, Feb 2026) finds that 47.3% of 3,189 sampled compilation errors from DeepSeek-R1 on applied mathematics domains stem from 'invocation of non-existent theorems or definitions.' DDR (arXiv:2511.11990) quantifies that ICL-based dependency generation produces ~30% hallucinated identifiers (Hall_m=0.21-0.39 across frontier LLMs), while retrieval-based DDR reduces hallucination to <2% (Hall_m=0.016). The RAutoformalizer (ICLR 2025 Spotlight) explicitly classifies compilation errors into 'Hallucination' and 'Others', establishing identifier hallucination as a primary error class. MathAtlas (May 2026, arXiv:2605.14061) further shows a 66% performance advantage for Mathlib-grounded definitions (27.9% vs 16.8% correct, p<0.001). Yet no work applies co-adaptive retrieval to Lean 4 dependency retrieval during RL-based autoformalization—where Lean's structured error taxonomy provides a graded hierarchy of machine-parseable signals for retriever training.\n\n(2) **TTRL with debiasing has advanced rapidly, but remains limited to binary rewards.** DDRL (ACL 2026 Findings) fixes GRPO's spurious signal amplification via frequency-based balanced sampling, fixed ±1 advantages, and consensus-based off-policy refinement, achieving up to 19.0% relative improvement over ETMR on AIME 2024 (4.0pp absolute: 21.0→25.0 for Qwen2.5-Math-1.5B). But DDRL assumes binary correct/incorrect rewards, and its authors note that 'more expressive advantage formulations' are left for future work. GDPO (NVIDIA, arXiv:2601.05242, Jan 2026) addresses multi-reward GRPO through per-reward decoupled normalization, preventing reward signal collapse, but does not address debiasing. The combination—binarize multi-tier rewards for DDRL's debiasing, then enrich with GDPO's per-reward normalization for continuous components—has not been attempted.\n\n(3) **CriticLean provides the missing semantic reward signal.** CriticLeanGPT-14B-RL (arXiv:2507.06181, July 2025) achieves 84.8% accuracy on CriticLeanBench (87.0% for the 32B variant), raising autoformalization pipeline accuracy from 54% to 84% over compilation-only feedback. However, CriticLeanBench evaluates on a balanced 250-correct/250-incorrect distribution, while OOD TTRL produces heavily skewed distributions (often <10% compilable candidates). This distributional shift gap has not been characterized, motivating our Phase 0 calibration protocol.\n\n(4) **Online RL for autoformalization has been validated but only at training time.** Wang et al. (NeurIPS 2025 MAR Workshop) validates RL for autoformalization (TC1: 17.29% to 26.01% on RLMEval using GRPO with composite BEq + embedding rewards), but operates at training time with labeled/unlabeled data on in-distribution problems, without retrieval, test-time adaptation, or a trained semantic critic.\n\nRecent infrastructure (DDR's 500K-sample dependency dataset, CRAMF's 26K Mathlib concept index, FormalMATH's multi-domain benchmark, MathAtlas's 52K graduate-level problems with 178K dependency relations, Kimina Lean Server, open-source CriticLeanGPT models) makes the combined approach newly feasible. Critically, the integration is not merely additive: Lean 4's structured error taxonomy is the enabling substrate that allows co-adaptive retrieval, multi-tier reward design, and test-time learning to reinforce each other—a feedback loop unavailable in informal reasoning settings.\n\n## Research Landscape\n\nThe landscape spans six relevant lineages.\n\n**(1) RL for autoformalization.** FormaRL (COLM 2025) applies GRPO with compilation + LLM consistency rewards, improving pass@1 from 4% to 26% on ProofNet. Online RL for Autoformalization (Wang et al., NeurIPS 2025 MAR Workshop) uses GRPO with composite rewards (BEq + embedding-based similarity) for Lean 4, achieving TC1: 17.29%→26.01%, TC50: 76.41%→85.46% on RLMEval—the closest prior work to TTRA but operates at training time on in-distribution problems, uses embedding similarity rather than a trained semantic critic, and lacks retrieval and test-time adaptation. ReForm (2026, arXiv:2510.24592) applies position-aware RL rewards (PBSO) for reflective autoformalization (+22.6pp average).\n\n**(2) Semantic critics and iterative refinement.** CriticLean (July 2025) introduces CriticLeanGPT, with the 32B-RL variant achieving 87.0% accuracy and the 14B-RL variant reaching 84.8% on balanced CriticLeanBench (250 correct, 250 incorrect), reporting TPR/FPR/TNR/FNR but only on balanced distributions. ATF achieves 94.51% Pass@1 on FormalMath-Lite via SFT + expert iteration + DPO with multi-LLM consistency checking. Monotonic Refinement achieves 90.27% composite on miniF2F through multi-model ensemble orchestration. These achieve impressive results but cannot adapt model weights to new domains.\n\n**(3) Debiased RL and multi-reward optimization.** DDRL (ACL 2026 Findings) addresses GRPO's spurious signal amplification through frequency-based balanced sampling, fixed ±1 advantages, and consensus-based off-policy refinement—achieving up to 19.0% relative improvement over ETMR on AIME 2024 (the TTRL baseline without debiasing scores 15.8, illustrating the severity of signal amplification). Critically, DDRL operates exclusively with binary rewards and notes 'more expressive advantage formulations' as future work. GDPO (NVIDIA, arXiv:2601.05242) addresses multi-reward GRPO through per-reward decoupled normalization, demonstrating that standard GRPO collapses distinct reward combinations into identical advantage values. Binary Rewards and RL (Dymetman, arXiv:2605.02375, May 2026) provides theoretical grounding: binary rewards create a fundamental degeneracy for policy gradient methods, leading to diversity collapse where single-sample accuracy improves but multi-sample coverage degrades—reinforcing the necessity of multi-tier reward designs in formal verification settings where richer feedback is available.\n\n**(4) Retrieval-augmented autoformalization and co-adaptive retrieval.** Aria (ICLR 2026, arXiv:2510.04520) achieves ProofNet 91.6% compilation / 68.5% accuracy and 42.9% on homological conjectures (vs. 0% for all other models) via dependency graph decomposition + iterative formalization + AriaScorer. Aria represents the current frontier of retrieval-augmented autoformalization, but is a fixed inference-time pipeline: its retriever does not adapt to the formalizer's evolving behavior, and it does not update model weights—thus cannot perform domain adaptation on truly OOD domains where the retriever's coverage is initially poor. DRIFT (ICLR 2026) achieves 62.33% BEq+@10 on Con-NF but falls short on ProofNet (21.93% vs 27.54%). DDR builds a 500K-sample dependency dataset and quantifies that ~30% of ICL-generated dependencies are hallucinated identifiers, reduced to <2% with retrieval-based DDR. CRAMF indexes 26K+ Mathlib definitions for concept-level retrieval. ProofBridge (ICLR 2026, arXiv:2510.15681) uses joint embeddings + retrieval-augmented fine-tuning + iterative proof repair. On the co-adaptive retrieval side: R3 (NeurIPS 2025, arXiv:2510.24652) optimizes retrieval for RAG via reinforced contrastive learning; Reinforced-IR (ACL 2025) alternates RLRF and RLGF for mutual adaptation; TTARAG (arXiv:2601.11443) demonstrates test-time adaptation for RAG. None of these co-adaptive retrieval methods have been applied to autoformalization or Lean 4.\n\n**(5) Test-time compute for autoformalization.** FormalEvolve (arXiv:2603.19828, Mar 2026) formulates autoformalization as budgeted test-time evolutionary search, achieving SH@100=58.0% on CombiBench and 84.9% on ProofNet through LLM-driven mutation/crossover with AST rewrite operations. FormalEvolve represents an orthogonal test-time compute paradigm (evolutionary search) to TTRA's test-time learning (RL-based weight adaptation): FormalEvolve searches over a fixed model's output space without adapting weights, while TTRA adapts both the formalizer and retriever to new domains. TEMPO (arXiv:2604.19295, Apr 2026) demonstrates test-time training as a general scaling axis for reasoning models, interleaving policy refinement with periodic critic recalibration—a conceptual parallel to TTRA's dual-loop architecture, though TEMPO operates on informal reasoning without retrieval or formal verification.\n\n**(6) Error analysis and identifier hallucination quantification.** The Construction-Verification/AMBER benchmark (Yang et al., arXiv:2602.01291, Feb 2026) provides the most comprehensive error taxonomy: analyzing 3,189 compilation errors from DeepSeek-R1 on applied math, they find 47.3% are hallucination of non-existent theorems/definitions, 32.7% formalization competence errors, 15.2% incomplete outputs, 4.8% formatting/syntax—concluding that 'future improvements should prioritize retrieval-augmented generation.' The RAutoformalizer (ICLR 2025 Spotlight) categorizes compilation errors into 'Hallucination' vs 'Others', establishing identifier errors as a major class. MathAtlas (arXiv:2605.14061, May 2026) introduces 52K graduate-level problems where the best model achieves only 2.6% on MA-Hard.\n\nAfter exhaustive search through May 2026, no work combines (a) co-adaptive retrieval exploiting Lean 4's structured error taxonomy during test-time RL, (b) a calibrated semantic critic as RL reward with distributional shift analysis, (c) principled adaptation of binary-reward debiased RL to multi-tier rewards, and (d) test-time adaptation on fully unlabeled OOD domains. Existing retrieval-augmented methods (Aria, DRIFT, DDR) use static retrievers; existing RL methods (FormaRL, Wang et al.) operate at training time without retrieval; existing test-time methods (FormalEvolve) search without learning.\n\n## Proposed Approach\n\nWe propose TTRA (Test-Time Retrieval-Augmented autoformalization), a framework that makes TTRL viable for autoformalization through three technical innovations enabled by a unifying insight: formal languages' structured compilation feedback creates a graded hierarchy of adaptation signals unavailable in informal reasoning. (1) A dual-loop architecture with co-adaptive retrieval exploiting Lean 4's full structured error taxonomy, (2) integration of CriticLean-14B as semantic RL reward with explicit calibration under distributional shift, and (3) a binarize-then-enrich adaptation of DDRL's binary debiasing to multi-tier rewards using GDPO's per-reward decoupled normalization. Together, these innovations position test-time learning as a new scaling axis for formal mathematics—complementing training-time compute (more data, larger models) and inference-time compute (more samples, longer search) with a third axis where the formalizer continuously improves through deployment-time interaction with the verification infrastructure.\n\n**Phase -1 — Error Signal Coverage Micro-Analysis (2-3 days).** Before committing to the pipeline design, we quantify the retrieval signal coverage that Lean 4's error taxonomy provides on OOD domains. We compile 500 candidate formalizations from an existing model (e.g., FormaRL or Kimina-7B) on Con-NF (OOD) and 500 on MathAtlas MA-Hard, collecting all compilation error messages. We simultaneously verify MathAtlas MA-Hard's gold Lean 4 formalization coverage to confirm BEq computability; if coverage is incomplete, we adopt MathAtlas's native evaluation protocol supplemented by human evaluation on a 50-100 sample subset. Error classification hierarchy:\n  (a) Tier 1 — Direct identifier signals: `lean.unknownIdentifier`, `unknown namespace`. Direct, machine-parseable mapping from error to needed Mathlib dependency.\n  (b) Tier 2 — Type-based signals: `type mismatch` (expected vs actual type signatures), `failed to synthesize instance` (typeclass names). Weaker but informative retrieval signals via type-signature matching.\n  (c) Tier 3 — Indirect signals: tactic failures, elaboration errors, syntax errors. No direct retrieval signal; serve as negative examples.\n  Quantitative thresholds: Tier 1 ≥40% → co-adaptive retrieval well-supported; 20-40% → rely on Tier 1+2; <20% → fall back to Tier 2 with type-signature matching. Prior evidence strongly supports ≥40%: AMBER finds 47.3% identifier hallucination on applied math (Yang et al., arXiv:2602.01291); DDR shows Hall_m=0.21-0.39; RAutoformalizer (ICLR 2025 Spotlight) treats 'Hallucination' as primary error class; CRAMF documents systematic fabrication of close-but-wrong identifiers. Phase -1 remains essential because AMBER's distribution is from DeepSeek-R1 on applied math; our pipeline uses a smaller formalizer on different OOD domains. Resource: ~8 A100-hours generation, ~10 CPU-hours compilation/parsing.\n\n**Phase 0 — Minimal Pilot Experiment with Critic Calibration (De-risking).** Setup: FormaRL's GRPO pipeline with CriticLean-14B replacing LLM-consistency reward (reward = r_compile × r_critic). Data: 200 problems from Con-NF (OOD) + 200 from FormalMATH number theory (near-distribution). No retrieval, no curriculum, no DDRL.\n  Primary hypothesis: CriticLean-14B reward achieves ≥3pp BEq@1 improvement over compilation-only GRPO on Con-NF.\n  Secondary hypothesis — Critic calibration under distributional shift: (a) Among K=32 candidates per problem, record compile count and critic approval count. (b) For problems where <10% compile (expected hard OOD regime), manually inspect 100 critic-approved and 100 critic-rejected candidates for precision/recall. (c) Report calibration curves per confidence bin. Under OOD TTRL's skewed distribution (90%+ incorrect), moderate false positive rates produce substantial noise. Conservative binarization (requiring BOTH compile AND critic approval) prioritizes precision. If critic precision <80%, introduce confidence gating >0.8, trading recall for precision.\n  Resource: ~50 A100-hours, 2-3 weeks. Go/no-go: proceed only if primary hypothesis confirmed AND critic precision ≥80% (with or without gating).\n\n**Phase 1 — Base Formalizer and Critic Integration.** Fine-tune Qwen3-8B as retrieval-augmented autoformalizer using DDR's 500K-sample dataset and GRPO with multi-tier reward R(y, x) = r_compile × (α·r_critic + β·r_beq), where: r_compile ∈ {0,1} (Lean 4 compilation via Kimina Lean Server, 128 parallel workers); r_critic ∈ {0,1} (CriticLeanGPT-Qwen3-14B-RL, gated by Phase 0 confidence threshold); r_beq ∈ [0,1] (BEq consensus density among compilable candidates). α=0.7, β=0.3 (semantic fidelity over syntactic consensus, since BEq has 98.6% precision but ~33% recall on ProofNet). Adaptive fallback: when &lt;M=4 of K=32 candidates compile, R = r_compile × r_critic.\n\n**Phase 2 — Dual-Loop Co-Adaptive Retrieval with Graded Error Signals (Core Innovation #1).** The retriever is a DDR-style dense encoder whose parameters ARE updated during TTRL—not frozen. This exploits the key structural property that distinguishes formal from informal reasoning: Lean 4's type checker produces machine-parseable error messages with a hierarchy of retrieval informativeness.\n\n  Loop 1 — Formalizer GRPO (every step): Generate K=32 candidates per problem, compile, compute multi-tier rewards, perform debiased GRPO updates.\n\n  Loop 2 — Retriever contrastive update (every N_ret=50 GRPO steps): Accumulated compilation feedback generates contrastive training data using graded error signals:\n    (a) Tier 1 — Direct identifier signals (highest confidence): `lean.unknownIdentifier` names the missing constant → dependencies that excluded it are hard negatives; the constant (via CRAMF/DDR Mathlib index) is the positive. `unknown namespace` maps to a Mathlib module (coarser positive).\n    (b) Tier 2 — Type-based signals (moderate confidence): `type mismatch` type signatures matched against Mathlib's type index → softer positives with 0.5× weight in InfoNCE. `failed to synthesize instance` → typeclass instances as positives.\n    (c) Tier 3 — Negative confirmation: tactic/elaboration/syntax errors confirm retrieved dependencies were insufficient; contribute only negatives.\n    (d) Positive confirmation: successfully compiled formalizations → all retrieved Mathlib dependencies appearing in compilation are confirmed positives.\n    (e) Weighted InfoNCE: L = -Σ_k w_k · log(exp(sim(q, d_k+)/τ) / Σ_j exp(sim(q, d_j)/τ)), w_k = 1.0 (Tier 1/compilation-confirmed), 0.5 (Tier 2), τ=0.07.\n    (f) Decoupled optimization: retriever gradient does NOT flow through formalizer's policy gradient (alternating optimization per R3 and Reinforced-IR). FAISS index rebuilt after each retriever update.\n\n  Signal accumulation: 50 steps × 32 candidates × ~15% compile rate ≈ 240 compile/fail pairs per cycle, sufficient for stable InfoNCE learning. Phase -1's micro-analysis calibrates the empirical Tier 1/2/3 signal mix.\n\n**Phase 3 — Binarize-Then-Enrich: Adapting DDRL to Multi-Tier Rewards (Core Innovation #2).** DDRL's three-component fix was designed for binary rewards on informal math. Autoformalization's multi-tier reward poses a specific challenge that neither DDRL nor GDPO alone can address: DDRL cannot handle multi-tier rewards (its debiasing requires binary partitioning); GDPO handles multi-reward normalization but does not address GRPO's spurious signal amplification under noisy pseudo-labels. The three reward components have fundamentally different natures—compilation is a hard binary gate, the critic is a soft noisy signal, BEq is a population statistic that drifts with the policy—requiring a principled two-layer adaptation:\n\n  (a) Binarization layer (for DDRL compatibility): Define r_accept = I(r_compile=1 AND r_critic=1).\n    - Balanced sampling: partition K=32 candidates into 'accepted' vs 'rejected'; exclude ambiguous-zone problems (30-70% acceptance rate) per DDRL.\n    - Fixed advantages: A_i = +1 (accepted), -1 (rejected), eliminating GRPO's group-relative normalization.\n    - Consensus off-policy refinement: after each TTRL epoch, sample M=128 per problem, rejection-sample high-confidence (>80% acceptance) candidates, SFT for 5 epochs.\n  (b) GDPO-style enrichment layer (preserving BEq ranking): among accepted candidates only, apply per-reward decoupled normalization for BEq. Additive gradient bonus δ·norm(r_beq) to the fixed +1 advantage, where δ=0.3.\n  (c) This binarize-then-enrich adaptation addresses the specific problem of safely extending binary debiasing to multi-tier rewards under TTRL's pseudo-label noise, where the heterogeneous nature of reward components (hard gate, soft signal, population statistic) makes uniform treatment inadequate.\n\n**Phase 4 — Progressive Domain Curriculum for Test-Time Adaptation.** Progressive curriculum with quantitative transition criteria to break the bootstrapping problem:\n  (a) Near-distribution warm-start: TTRL where retrieval coverage is high. Transition: compilation ≥40%, critic approval ≥60% among compilable, BEq@32 ≥3pp above pre-adaptation baseline. Timeout: T_max=500 steps.\n  (b) Retrieval bootstrapping: adapted model on moderately OOD domains; failed attempts with Tier 1/2 errors feed retriever updates. Transition: retrieval recall@10 ≥30%, compilation ≥25% on moderate-OOD. Early transition: plateau (<2pp over 200 consecutive steps).\n  (c) Far-OOD adaptation: TTRL on algebraic geometry, condensed mathematics, MathAtlas MA-Hard using bootstrapped retriever and adaptive reward fallback.\n\n**Contribution Floor Analysis.** The three innovations are synergistic but independently valuable:\n  (1) Co-adaptive retrieval (Phase 2) + CriticLean TTRL (Phase 0-1): if binarize-then-enrich provides marginal gains, the paper contributes the first co-adaptive retrieval for autoformalization exploiting Lean 4's structured error taxonomy, and the first TTRL application to formal math with a calibrated semantic critic.\n  (2) Binarize-then-enrich alone (Phase 3): if co-adaptive retrieval is marginal, the adaptation of DDRL to multi-tier rewards under TTRL pseudo-label noise is a standalone contribution addressing DDRL's explicitly stated future work direction.\n  (3) Progressive curriculum (Phase 4): droppable without losing core contributions.\n  (4) Essential floor: CriticLean-guided TTRL outperforms compilation-only TTRL on OOD (Phase 0 gate) AND at least one of co-adaptive retrieval or binarize-then-enrich provides statistically significant improvement.\n\n**Evaluation.**\n\n  *Benchmarks:* (a) In-distribution reference: miniF2F-test (244 problems, olympiad-level) and ProofNet (~371 problems, undergraduate-level)—ensuring OOD adaptation does not degrade in-distribution performance, and enabling apple-to-apple comparison with all major baselines. (b) Multi-domain scale: FormalMATH's 5,560-problem benchmark. (c) OOD stress tests: Con-NF, CombiBench, and MathAtlas MA-Hard (700 entities, average dependency depth 30, best current: 2.6%).\n\n  *Metrics:* BEq@K, BEq+@K (higher recall than BEq per DRIFT), pass@K (K=1,32), compilation@K on all benchmarks. Additionally, Hall_m (DDR's identifier hallucination rate metric) reported in the retriever ablation (frozen vs. co-adaptive) to directly quantify the co-adaptive retriever's impact on identifier hallucination.\n\n  *Same-scale primary baselines (all ~7-8B):* (1) FormaRL (Qwen2.5-Coder-7B, COLM 2025) — RL without retrieval; (2) Online RL for Autoformalization (Wang et al., NeurIPS 2025 MAR Workshop) — training-time RL with composite rewards (reimplemented faithfully if code unavailable, with reported numbers as cross-check); (3) DRIFT with Qwen3-8B (ICLR 2026) — static retrieval; (4) Aria (ICLR 2026) — iterative retrieval via dependency graph (reimplemented on shared benchmarks; reported numbers used where reimplementation is infeasible, explicitly annotated); (5) StepFun-Formalizer-7B (AAAI 2026) — knowledge-reasoning fusion (open-source code and weights available); (6) compilation-only TTRL and critic-only TTRL ablations.\n\n  *Ablations:* (7) Standard GRPO vs. DDRL debiased vs. binarize-then-enrich (with separate ablations for each DDRL component and the GDPO enrichment layer); (8) frozen retriever vs. co-adaptive retriever during TTRL; (9) Tier 1-only vs. Tier 1+2 vs. all-tier error signals; (10) no curriculum vs. progressive curriculum.\n\n  *Sensitivity analysis:* (11) N_ret ∈ {25, 50, 100} (retriever update frequency); (12) δ ∈ {0.0, 0.1, 0.3, 0.5} (enrichment weight; δ=0.0 = pure DDRL, providing clean binarize-then-enrich vs. DDRL ablation); (13) ambiguity zone ∈ {[20%-80%], [30%-70%], [40%-60%]}; (14) critic confidence threshold ∈ {0.6, 0.7, 0.8, 0.9}.\n\n  *Cross-scale reference points (context only):* ATF-32B (94.51%/65.38% FormalMath-Lite/CombiBench), ATLAS (70.08% pass@1 miniF2F, NeurIPS 2025), Monotonic Refinement (90.27% miniF2F, multi-model ensemble). All tables annotate model scale and compute budget.\n\n  *Statistical rigor:* All key comparisons (CriticLean TTRL vs. compilation-only TTRL, co-adaptive vs. frozen retriever, binarize-then-enrich vs. plain DDRL, and core ablations) run with ≥3 random seeds, reporting mean ± std with paired significance tests (bootstrap CI, p<0.05).\n\n## Detailed Description\n\nTTRA makes TTRL viable for autoformalization by exploiting a structural asymmetry between formal and informal reasoning: Lean 4's compiler provides a graded hierarchy of machine-parseable error signals (identifier names, type signatures, typeclass requirements) that serve simultaneously as retriever training signal, multi-tier reward components, and domain adaptation indicators. The dual-loop architecture co-adapts the retriever during test-time RL using weighted InfoNCE over Lean 4's error hierarchy (Tier 1: direct identifier → Tier 2: type-based → Tier 3: negative confirmation), addressing the fundamental limitation that static retrievers (Aria, DRIFT, DDR) cannot track the formalizer's evolving OOD behavior. CriticLean-14B integration includes explicit calibration under the heavily skewed distributions expected during OOD TTRL (>90% incorrect candidates), with Phase 0 establishing precision guarantees before full-pipeline commitment. The binarize-then-enrich adaptation addresses the specific gap between DDRL (binary-only debiasing) and GDPO (multi-reward normalization without debiasing) by layering binary acceptance gating for debiasing stability atop per-reward decoupled normalization for BEq ranking preservation—handling the heterogeneous nature of autoformalization's reward components (hard compilation gate, noisy critic signal, policy-drifting BEq statistic). A progressive curriculum with quantitative transition criteria breaks the OOD bootstrapping problem. The framework positions test-time learning alongside training-time and inference-time compute as a scaling axis for formal mathematics, where formal verification infrastructure (Lean compiler, Mathlib) serves as a perpetual learning signal enabling continuous domain adaptation.\n\n## Key References\n\n- TTRL: Test-Time Reinforcement Learning (NeurIPS 2025)\n- Understanding and Mitigating Spurious Signal Amplification in Test-Time Reinforcement Learning for Math Reasoning [DDRL] (ACL 2026 Findings)\n- GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization (arXiv:2601.05242, NVIDIA, January 2026)\n- CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization (arXiv:2507.06181, ByteDance/Nanjing)\n- Online Reinforcement Learning for Autoformalization (Haiming Wang et al., NeurIPS 2025 MAR Workshop)\n- R3: Optimizing Retrieval for RAG via Reinforced Contrastive Learning (NeurIPS 2025, arXiv:2510.24652)\n- Reinforced-IR: A Self-Boosting Framework for Domain-Adaptive Cross-Domain Retrieval (ACL 2025)\n- TTARAG: Predict the Retrieval! Test-Time Adaptation for Retrieval Augmented Generation (arXiv:2601.11443, January 2026)\n- Construction-Verification: A Benchmark for Applied Mathematics in Lean 4 [AMBER] (Yang et al., arXiv:2602.01291, February 2026)\n- Autoformalizer with Tool Feedback [ATF] (arXiv 2025)\n- ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data (NeurIPS 2025)\n- Monotonic Reference-Free Refinement for Autoformalization (arXiv 2026)\n- Olympiad-level formal mathematical reasoning with reinforcement learning [AlphaProof] (Nature 2025)\n- FormaRL: Enhancing Autoformalization with no Labeled Data (COLM 2025)\n- Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach [RAutoformalizer] (ICLR 2025 Spotlight)\n- Improving Autoformalization Using Direct Dependency Retrieval [DDR] (arXiv:2511.11990)\n- DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems (ICLR 2026)\n- Automated Formalization via Conceptual Retrieval-Augmented LLMs [CRAMF] (arXiv 2025)\n- Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning (arXiv 2025)\n- Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification (arXiv 2025)\n- FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models (arXiv:2505.02735)\n- MathAtlas: A Benchmark for Autoformalization in the Wild (arXiv:2605.14061, May 2026)\n- StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion (AAAI 2026)\n- Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph (ICLR 2026, arXiv:2510.04520)\n- ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings (ICLR 2026, arXiv:2510.15681)\n- ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization (arXiv:2510.24592)\n- IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch (arXiv:2512.00997, Microsoft Research)\n- FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization (arXiv:2603.19828, March 2026)\n- Binary Rewards and Reinforcement Learning: Fundamental Challenges (Dymetman, arXiv:2605.02375, May 2026)\n- TEMPO: Scaling Test-time Training for Large Reasoning Models (arXiv:2604.19295, April 2026)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 1200-1700 A100-80GB hours (Phase -1 error micro-analysis + MathAtlas coverage verification: ~10h; Phase 0 pilot with critic calibration: ~50h; base formalizer GRPO training with multi-tier reward: ~300h on 8 GPUs; DDR retriever fine-tuning + co-adaptive contrastive updates: ~100h on 4 GPUs; TTRL progressive adaptation across 3 curriculum stages with binarize-then-enrich and ablations: ~400h on 4 GPUs; CriticLean-14B inference across all phases: ~200-300h on 2 GPUs; N_ret sensitivity: ~50h; error tier ablation: ~40h; δ/ambiguity-zone/critic-threshold sensitivity: ~50h; new baseline evaluation (Aria reimplementation + StepFun-Formalizer-7B): ~80-120h; multi-seed evaluation (3 seeds on 4 key ablations): ~200h; miniF2F/ProofNet evaluation: ~10h; remaining evaluation: ~80h) + 12,000-18,000 CPU-hours for Lean 4 verification (128 parallel workers via Kimina Lean Server), timeline: 14-18 weeks (0.5 wk Phase -1; 2-3 wk Phase 0 + critic calibration + go/no-go; 3 wk base training + critic integration; 2 wk retriever co-adaptation infrastructure; 4 wk progressive TTRL experiments; 3 wk ablations including multi-seed + sensitivity analyses; 2 wk writing), estimated_gpu_cost: $2,400-$4,200 at ~$2.00/A100-hr + $600-$900 CPU costs. GPU memory architecture: policy (8B) + reference (8B) on 4×A100 (tensor parallel), CriticLean-14B on dedicated 2×A100 with batch inference (vLLM), retriever + FAISS on CPU/1×A100; async pipeline (formalizer generates batch → critic scores → rewards returned).\n- **human_in_loop**: gpu_hours: 950-1350 A100-80GB hours (Claude handles Phase -1 analysis, Phase 0 calibration, experiment scheduling; ~25% reduction in ablation overhead) + 10,000-15,000 CPU-hours, timeline: 11-14 weeks, claude_api_cost: $400-$700, estimated_gpu_cost: $1,900-$3,300 + $500-$750 CPU costs\n- **auto_research**: gpu_hours: 1800-2500 A100-80GB hours (automated hyperparameter sweeps, multi-seed, full sensitivity grid) + 25,000-35,000 CPU-hours, timeline: 8-11 weeks (parallelized), claude_api_cost: $800-$1,200, estimated_gpu_cost: $3,600-$6,200 + $1,250-$1,750 CPU costs, speed_bottleneck: Lean 4 compilation latency (~3.65s per statement with warm LRU cache; ~0.10s amortized at 64 workers) dominates reward computation. CriticLean-14B inference ~0.5s/candidate on A100 (reducible to ~0.1-0.2s with vLLM batching). Retriever co-adaptation adds ~15 min per update cycle for re-encoding 26K Mathlib constants and rebuilding FAISS index."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T05:41:53.178Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T05:41:53.178Z",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+## Round 1
+
+57 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T05:41:53.203Z_
+
+# TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization
+
+## Core Problem
+
+Current autoformalization models—even those achieving strong in-distribution results (ATF: 94.51% Pass@1 on FormalMath-Lite; ATLAS: 96.93% pass@128 on miniF2F)—degrade sharply on unfamiliar mathematical domains because they lack both domain-specific Mathlib knowledge and mechanisms to adapt at deployment time. Test-time RL (TTRL) has been shown to boost informal math reasoning dramatically but cannot be naively applied to autoformalization: (1) majority voting over formal statements is ill-defined (unlike numerical answers), requiring a trained semantic critic; (2) GRPO's advantage normalization amplifies noise from ambiguous pseudo-labels in the multi-tier reward setting (compilation + critic + BEq); and (3) static retrieval of Mathlib dependencies becomes stale as the formalizer's behavior shifts during adaptation, yet no prior work fine-tunes the retriever during test-time RL.
+
+A key structural asymmetry motivates our approach: in informal math reasoning, TTRL obtains only binary correct/incorrect signals with no information about *why* a solution failed or *what knowledge is missing*. Binary rewards create a fundamental degeneracy for policy gradient methods, leading to diversity collapse (Dymetman, arXiv:2605.02375). In contrast, Lean 4's compiler produces machine-parseable error messages that precisely identify missing identifiers, type mismatches, and unresolved typeclass instances—constituting a graded hierarchy of structured feedback signals that can drive both retriever adaptation and multi-tier reward design. This structured compilation feedback makes a class of co-adaptive test-time learning possible that is fundamentally infeasible in informal reasoning settings.
+
+Can we make TTRL viable for autoformalization by combining compilation-error-driven co-adaptive retrieval that exploits Lean 4's full structured error taxonomy, a calibrated semantic critic reward, and principled adaptation of binary-reward debiased RL to multi-tier rewards?
+
+## Research Opportunity
+
+Four independently validated capabilities have never been combined, and their integration is now enabled by the structural feedback properties unique to formal languages.
+
+(1) **Co-adaptive retrieval is newly feasible, and identifier hallucination is a quantifiably dominant error mode.** R3 (NeurIPS 2025) demonstrates that RAG environment feedback can train retrievers via reinforced contrastive learning. Reinforced-IR (ACL 2025) validates alternating retriever-generator mutual adaptation through RLRF/RLGF. TTARAG (arXiv:2601.11443, Jan 2026) shows test-time retrieval adaptation is achievable via self-supervised prediction. The prevalence of identifier hallucination as the dominant error class is established by converging evidence: the Construction-Verification/AMBER benchmark (Yang et al., arXiv:2602.01291, Feb 2026) finds that 47.3% of 3,189 sampled compilation errors from DeepSeek-R1 on applied mathematics domains stem from 'invocation of non-existent theorems or definitions.' DDR (arXiv:2511.11990) quantifies that ICL-based dependency generation produces ~30% hallucinated identifiers (Hall_m=0.21-0.39 across frontier LLMs), while retrieval-based DDR reduces hallucination to <2% (Hall_m=0.016). The RAutoformalizer (ICLR 2025 Spotlight) explicitly classifies compilation errors into 'Hallucination' and 'Others', establishing identifier hallucination as a primary error class. MathAtlas (May 2026, arXiv:2605.14061) further shows a 66% performance advantage for Mathlib-grounded definitions (27.9% vs 16.8% correct, p<0.001). Yet no work applies co-adaptive retrieval to Lean 4 dependency retrieval during RL-based autoformalization—where Lean's structured error taxonomy provides a graded hierarchy of machine-parseable signals for retriever training.
+
+(2) **TTRL with debiasing has advanced rapidly, but remains limited to binary rewards.** DDRL (ACL 2026 Findings) fixes GRPO's spurious signal amplification via frequency-based balanced sampling, fixed ±1 advantages, and consensus-based off-policy refinement, achieving up to 19.0% relative improvement over ETMR on AIME 2024 (4.0pp absolute: 21.0→25.0 for Qwen2.5-Math-1.5B). But DDRL assumes binary correct/incorrect rewards, and its authors note that 'more expressive advantage formulations' are left for future work. GDPO (NVIDIA, arXiv:2601.05242, Jan 2026) addresses multi-reward GRPO through per-reward decoupled normalization, preventing reward signal collapse, but does not address debiasing. The combination—binarize multi-tier rewards for DDRL's debiasing, then enrich with GDPO's per-reward normalization for continuous components—has not been attempted.
+
+(3) **CriticLean provides the missing semantic reward signal.** CriticLeanGPT-14B-RL (arXiv:2507.06181, July 2025) achieves 84.8% accuracy on CriticLeanBench (87.0% for the 32B variant), raising autoformalization pipeline accuracy from 54% to 84% over compilation-only feedback. However, CriticLeanBench evaluates on a balanced 250-correct/250-incorrect distribution, while OOD TTRL produces heavily skewed distributions (often <10% compilable candidates). This distributional shift gap has not been characterized, motivating our Phase 0 calibration protocol.
+
+(4) **Online RL for autoformalization has been validated but only at training time.** Wang et al. (NeurIPS 2025 MAR Workshop) validates RL for autoformalization (TC1: 17.29% to 26.01% on RLMEval using GRPO with composite BEq + embedding rewards), but operates at training time with labeled/unlabeled data on in-distribution problems, without retrieval, test-time adaptation, or a trained semantic critic.
+
+Recent infrastructure (DDR's 500K-sample dependency dataset, CRAMF's 26K Mathlib concept index, FormalMATH's multi-domain benchmark, MathAtlas's 52K graduate-level problems with 178K dependency relations, Kimina Lean Server, open-source CriticLeanGPT models) makes the combined approach newly feasible. Critically, the integration is not merely additive: Lean 4's structured error taxonomy is the enabling substrate that allows co-adaptive retrieval, multi-tier reward design, and test-time learning to reinforce each other—a feedback loop unavailable in informal reasoning settings.
+
+## Research Landscape
+
+The landscape spans six relevant lineages.
+
+**(1) RL for autoformalization.** FormaRL (COLM 2025) applies GRPO with compilation + LLM consistency rewards, improving pass@1 from 4% to 26% on ProofNet. Online RL for Autoformalization (Wang et al., NeurIPS 2025 MAR Workshop) uses GRPO with composite rewards (BEq + embedding-based similarity) for Lean 4, achieving TC1: 17.29%→26.01%, TC50: 76.41%→85.46% on RLMEval—the closest prior work to TTRA but operates at training time on in-distribution problems, uses embedding similarity rather than a trained semantic critic, and lacks retrieval and test-time adaptation. ReForm (2026, arXiv:2510.24592) applies position-aware RL rewards (PBSO) for reflective autoformalization (+22.6pp average).
+
+**(2) Semantic critics and iterative refinement.** CriticLean (July 2025) introduces CriticLeanGPT, with the 32B-RL variant achieving 87.0% accuracy and the 14B-RL variant reaching 84.8% on balanced CriticLeanBench (250 correct, 250 incorrect), reporting TPR/FPR/TNR/FNR but only on balanced distributions. ATF achieves 94.51% Pass@1 on FormalMath-Lite via SFT + expert iteration + DPO with multi-LLM consistency checking. Monotonic Refinement achieves 90.27% composite on miniF2F through multi-model ensemble orchestration. These achieve impressive results but cannot adapt model weights to new domains.
+
+**(3) Debiased RL and multi-reward optimization.** DDRL (ACL 2026 Findings) addresses GRPO's spurious signal amplification through frequency-based balanced sampling, fixed ±1 advantages, and consensus-based off-policy refinement—achieving up to 19.0% relative improvement over ETMR on AIME 2024 (the TTRL baseline without debiasing scores 15.8, illustrating the severity of signal amplification). Critically, DDRL operates exclusively with binary rewards and notes 'more expressive advantage formulations' as future work. GDPO (NVIDIA, arXiv:2601.05242) addresses multi-reward GRPO through per-reward decoupled normalization, demonstrating that standard GRPO collapses distinct reward combinations into identical advantage values. Binary Rewards and RL (Dymetman, arXiv:2605.02375, May 2026) provides theoretical grounding: binary rewards create a fundamental degeneracy for policy gradient methods, leading to diversity collapse where single-sample accuracy improves but multi-sample coverage degrades—reinforcing the necessity of multi-tier reward designs in formal verification settings where richer feedback is available.
+
+**(4) Retrieval-augmented autoformalization and co-adaptive retrieval.** Aria (ICLR 2026, arXiv:2510.04520) achieves ProofNet 91.6% compilation / 68.5% accuracy and 42.9% on homological conjectures (vs. 0% for all other models) via dependency graph decomposition + iterative formalization + AriaScorer. Aria represents the current frontier of retrieval-augmented autoformalization, but is a fixed inference-time pipeline: its retriever does not adapt to the formalizer's evolving behavior, and it does not update model weights—thus cannot perform domain adaptation on truly OOD domains where the retriever's coverage is initially poor. DRIFT (ICLR 2026) achieves 62.33% BEq+@10 on Con-NF but falls short on ProofNet (21.93% vs 27.54%). DDR builds a 500K-sample dependency dataset and quantifies that ~30% of ICL-generated dependencies are hallucinated identifiers, reduced to <2% with retrieval-based DDR. CRAMF indexes 26K+ Mathlib definitions for concept-level retrieval. ProofBridge (ICLR 2026, arXiv:2510.15681) uses joint embeddings + retrieval-augmented fine-tuning + iterative proof repair. On the co-adaptive retrieval side: R3 (NeurIPS 2025, arXiv:2510.24652) optimizes retrieval for RAG via reinforced contrastive learning; Reinforced-IR (ACL 2025) alternates RLRF and RLGF for mutual adaptation; TTARAG (arXiv:2601.11443) demonstrates test-time adaptation for RAG. None of these co-adaptive retrieval methods have been applied to autoformalization or Lean 4.
+
+**(5) Test-time compute for autoformalization.** FormalEvolve (arXiv:2603.19828, Mar 2026) formulates autoformalization as budgeted test-time evolutionary search, achieving SH@100=58.0% on CombiBench and 84.9% on ProofNet through LLM-driven mutation/crossover with AST rewrite operations. FormalEvolve represents an orthogonal test-time compute paradigm (evolutionary search) to TTRA's test-time learning (RL-based weight adaptation): FormalEvolve searches over a fixed model's output space without adapting weights, while TTRA adapts both the formalizer and retriever to new domains. TEMPO (arXiv:2604.19295, Apr 2026) demonstrates test-time training as a general scaling axis for reasoning models, interleaving policy refinement with periodic critic recalibration—a conceptual parallel to TTRA's dual-loop architecture, though TEMPO operates on informal reasoning without retrieval or formal verification.
+
+**(6) Error analysis and identifier hallucination quantification.** The Construction-Verification/AMBER benchmark (Yang et al., arXiv:2602.01291, Feb 2026) provides the most comprehensive error taxonomy: analyzing 3,189 compilation errors from DeepSeek-R1 on applied math, they find 47.3% are hallucination of non-existent theorems/definitions, 32.7% formalization competence errors, 15.2% incomplete outputs, 4.8% formatting/syntax—concluding that 'future improvements should prioritize retrieval-augmented generation.' The RAutoformalizer (ICLR 2025 Spotlight) categorizes compilation errors into 'Hallucination' vs 'Others', establishing identifier errors as a major class. MathAtlas (arXiv:2605.14061, May 2026) introduces 52K graduate-level problems where the best model achieves only 2.6% on MA-Hard.
+
+After exhaustive search through May 2026, no work combines (a) co-adaptive retrieval exploiting Lean 4's structured error taxonomy during test-time RL, (b) a calibrated semantic critic as RL reward with distributional shift analysis, (c) principled adaptation of binary-reward debiased RL to multi-tier rewards, and (d) test-time adaptation on fully unlabeled OOD domains. Existing retrieval-augmented methods (Aria, DRIFT, DDR) use static retrievers; existing RL methods (FormaRL, Wang et al.) operate at training time without retrieval; existing test-time methods (FormalEvolve) search without learning.
+
+## Proposed Approach
+
+We propose TTRA (Test-Time Retrieval-Augmented autoformalization), a framework that makes TTRL viable for autoformalization through three technical innovations enabled by a unifying insight: formal languages' structured compilation feedback creates a graded hierarchy of adaptation signals unavailable in informal reasoning. (1) A dual-loop architecture with co-adaptive retrieval exploiting Lean 4's full structured error taxonomy, (2) integration of CriticLean-14B as semantic RL reward with explicit calibration under distributional shift, and (3) a binarize-then-enrich adaptation of DDRL's binary debiasing to multi-tier rewards using GDPO's per-reward decoupled normalization. Together, these innovations position test-time learning as a new scaling axis for formal mathematics—complementing training-time compute (more data, larger models) and inference-time compute (more samples, longer search) with a third axis where the formalizer continuously improves through deployment-time interaction with the verification infrastructure.
+
+**Phase -1 — Error Signal Coverage Micro-Analysis (2-3 days).** Before committing to the pipeline design, we quantify the retrieval signal coverage that Lean 4's error taxonomy provides on OOD domains. We compile 500 candidate formalizations from an existing model (e.g., FormaRL or Kimina-7B) on Con-NF (OOD) and 500 on MathAtlas MA-Hard, collecting all compilation error messages. We simultaneously verify MathAtlas MA-Hard's gold Lean 4 formalization coverage to confirm BEq computability; if coverage is incomplete, we adopt MathAtlas's native evaluation protocol supplemented by human evaluation on a 50-100 sample subset. Error classification hierarchy:
+  (a) Tier 1 — Direct identifier signals: `lean.unknownIdentifier`, `unknown namespace`. Direct, machine-parseable mapping from error to needed Mathlib dependency.
+  (b) Tier 2 — Type-based signals: `type mismatch` (expected vs actual type signatures), `failed to synthesize instance` (typeclass names). Weaker but informative retrieval signals via type-signature matching.
+  (c) Tier 3 — Indirect signals: tactic failures, elaboration errors, syntax errors. No direct retrieval signal; serve as negative examples.
+  Quantitative thresholds: Tier 1 ≥40% → co-adaptive retrieval well-supported; 20-40% → rely on Tier 1+2; <20% → fall back to Tier 2 with type-signature matching. Prior evidence strongly supports ≥40%: AMBER finds 47.3% identifier hallucination on applied math (Yang et al., arXiv:2602.01291); DDR shows Hall_m=0.21-0.39; RAutoformalizer (ICLR 2025 Spotlight) treats 'Hallucination' as primary error class; CRAMF documents systematic fabrication of close-but-wrong identifiers. Phase -1 remains essential because AMBER's distribution is from DeepSeek-R1 on applied math; our pipeline uses a smaller formalizer on different OOD domains. Resource: ~8 A100-hours generation, ~10 CPU-hours compilation/parsing.
+
+**Phase 0 — Minimal Pilot Experiment with Critic Calibration (De-risking).** Setup: FormaRL's GRPO pipeline with CriticLean-14B replacing LLM-consistency reward (reward = r_compile × r_critic). Data: 200 problems from Con-NF (OOD) + 200 from FormalMATH number theory (near-distribution). No retrieval, no curriculum, no DDRL.
+  Primary hypothesis: CriticLean-14B reward achieves ≥3pp BEq@1 improvement over compilation-only GRPO on Con-NF.
+  Secondary hypothesis — Critic calibration under distributional shift: (a) Among K=32 candidates per problem, record compile count and critic approval count. (b) For problems where <10% compile (expected hard OOD regime), manually inspect 100 critic-approved and 100 critic-rejected candidates for precision/recall. (c) Report calibration curves per confidence bin. Under OOD TTRL's skewed distribution (90%+ incorrect), moderate false positive rates produce substantial noise. Conservative binarization (requiring BOTH compile AND critic approval) prioritizes precision. If critic precision <80%, introduce confidence gating >0.8, trading recall for precision.
+  Resource: ~50 A100-hours, 2-3 weeks. Go/no-go: proceed only if primary hypothesis confirmed AND critic precision ≥80% (with or without gating).
+
+**Phase 1 — Base Formalizer and Critic Integration.** Fine-tune Qwen3-8B as retrieval-augmented autoformalizer using DDR's 500K-sample dataset and GRPO with multi-tier reward R(y, x) = r_compile × (α·r_critic + β·r_beq), where: r_compile ∈ {0,1} (Lean 4 compilation via Kimina Lean Server, 128 parallel workers); r_critic ∈ {0,1} (CriticLeanGPT-Qwen3-14B-RL, gated by Phase 0 confidence threshold); r_beq ∈ [0,1] (BEq consensus density among compilable candidates). α=0.7, β=0.3 (semantic fidelity over syntactic consensus, since BEq has 98.6% precision but ~33% recall on ProofNet). Adaptive fallback: when &lt;M=4 of K=32 candidates compile, R = r_compile × r_critic.
+
+**Phase 2 — Dual-Loop Co-Adaptive Retrieval with Graded Error Signals (Core Innovation #1).** The retriever is a DDR-style dense encoder whose parameters ARE updated during TTRL—not frozen. This exploits the key structural property that distinguishes formal from informal reasoning: Lean 4's type checker produces machine-parseable error messages with a hierarchy of retrieval informativeness.
+
+  Loop 1 — Formalizer GRPO (every step): Generate K=32 candidates per problem, compile, compute multi-tier rewards, perform debiased GRPO updates.
+
+  Loop 2 — Retriever contrastive update (every N_ret=50 GRPO steps): Accumulated compilation feedback generates contrastive training data using graded error signals:
+    (a) Tier 1 — Direct identifier signals (highest confidence): `lean.unknownIdentifier` names the missing constant → dependencies that excluded it are hard negatives; the constant (via CRAMF/DDR Mathlib index) is the positive. `unknown namespace` maps to a Mathlib module (coarser positive).
+    (b) Tier 2 — Type-based signals (moderate confidence): `type mismatch` type signatures matched against Mathlib's type index → softer positives with 0.5× weight in InfoNCE. `failed to synthesize instance` → typeclass instances as positives.
+    (c) Tier 3 — Negative confirmation: tactic/elaboration/syntax errors confirm retrieved dependencies were insufficient; contribute only negatives.
+    (d) Positive confirmation: successfully compiled formalizations → all retrieved Mathlib dependencies appearing in compilation are confirmed positives.
+    (e) Weighted InfoNCE: L = -Σ_k w_k · log(exp(sim(q, d_k+)/τ) / Σ_j exp(sim(q, d_j)/τ)), w_k = 1.0 (Tier 1/compilation-confirmed), 0.5 (Tier 2), τ=0.07.
+    (f) Decoupled optimization: retriever gradient does NOT flow through formalizer's policy gradient (alternating optimization per R3 and Reinforced-IR). FAISS index rebuilt after each retriever update.
+
+  Signal accumulation: 50 steps × 32 candidates × ~15% compile rate ≈ 240 compile/fail pairs per cycle, sufficient for stable InfoNCE learning. Phase -1's micro-analysis calibrates the empirical Tier 1/2/3 signal mix.
+
+**Phase 3 — Binarize-Then-Enrich: Adapting DDRL to Multi-Tier Rewards (Core Innovation #2).** DDRL's three-component fix was designed for binary rewards on informal math. Autoformalization's multi-tier reward poses a specific challenge that neither DDRL nor GDPO alone can address: DDRL cannot handle multi-tier rewards (its debiasing requires binary partitioning); GDPO handles multi-reward normalization but does not address GRPO's spurious signal amplification under noisy pseudo-labels. The three reward components have fundamentally different natures—compilation is a hard binary gate, the critic is a soft noisy signal, BEq is a population statistic that drifts with the policy—requiring a principled two-layer adaptation:
+
+  (a) Binarization layer (for DDRL compatibility): Define r_accept = I(r_compile=1 AND r_critic=1).
+    - Balanced sampling: partition K=32 candidates into 'accepted' vs 'rejected'; exclude ambiguous-zone problems (30-70% acceptance rate) per DDRL.
+    - Fixed advantages: A_i = +1 (accepted), -1 (rejected), eliminating GRPO's group-relative normalization.
+    - Consensus off-policy refinement: after each TTRL epoch, sample M=128 per problem, rejection-sample high-confidence (>80% acceptance) candidates, SFT for 5 epochs.
+  (b) GDPO-style enrichment layer (preserving BEq ranking): among accepted candidates only, apply per-reward decoupled normalization for BEq. Additive gradient bonus δ·norm(r_beq) to the fixed +1 advantage, where δ=0.3.
+  (c) This binarize-then-enrich adaptation addresses the specific problem of safely extending binary debiasing to multi-tier rewards under TTRL's pseudo-label noise, where the heterogeneous nature of reward components (hard gate, soft signal, population statistic) makes uniform treatment inadequate.
+
+**Phase 4 — Progressive Domain Curriculum for Test-Time Adaptation.** Progressive curriculum with quantitative transition criteria to break the bootstrapping problem:
+  (a) Near-distribution warm-start: TTRL where retrieval coverage is high. Transition: compilation ≥40%, critic approval ≥60% among compilable, BEq@32 ≥3pp above pre-adaptation baseline. Timeout: T_max=500 steps.
+  (b) Retrieval bootstrapping: adapted model on moderately OOD domains; failed attempts with Tier 1/2 errors feed retriever updates. Transition: retrieval recall@10 ≥30%, compilation ≥25% on moderate-OOD. Early transition: plateau (<2pp over 200 consecutive steps).
+  (c) Far-OOD adaptation: TTRL on algebraic geometry, condensed mathematics, MathAtlas MA-Hard using bootstrapped retriever and adaptive reward fallback.
+
+**Contribution Floor Analysis.** The three innovations are synergistic but independently valuable:
+  (1) Co-adaptive retrieval (Phase 2) + CriticLean TTRL (Phase 0-1): if binarize-then-enrich provides marginal gains, the paper contributes the first co-adaptive retrieval for autoformalization exploiting Lean 4's structured error taxonomy, and the first TTRL application to formal math with a calibrated semantic critic.
+  (2) Binarize-then-enrich alone (Phase 3): if co-adaptive retrieval is marginal, the adaptation of DDRL to multi-tier rewards under TTRL pseudo-label noise is a standalone contribution addressing DDRL's explicitly stated future work direction.
+  (3) Progressive curriculum (Phase 4): droppable without losing core contributions.
+  (4) Essential floor: CriticLean-guided TTRL outperforms compilation-only TTRL on OOD (Phase 0 gate) AND at least one of co-adaptive retrieval or binarize-then-enrich provides statistically significant improvement.
+
+**Evaluation.**
+
+  *Benchmarks:* (a) In-distribution reference: miniF2F-test (244 problems, olympiad-level) and ProofNet (~371 problems, undergraduate-level)—ensuring OOD adaptation does not degrade in-distribution performance, and enabling apple-to-apple comparison with all major baselines. (b) Multi-domain scale: FormalMATH's 5,560-problem benchmark. (c) OOD stress tests: Con-NF, CombiBench, and MathAtlas MA-Hard (700 entities, average dependency depth 30, best current: 2.6%).
+
+  *Metrics:* BEq@K, BEq+@K (higher recall than BEq per DRIFT), pass@K (K=1,32), compilation@K on all benchmarks. Additionally, Hall_m (DDR's identifier hallucination rate metric) reported in the retriever ablation (frozen vs. co-adaptive) to directly quantify the co-adaptive retriever's impact on identifier hallucination.
+
+  *Same-scale primary baselines (all ~7-8B):* (1) FormaRL (Qwen2.5-Coder-7B, COLM 2025) — RL without retrieval; (2) Online RL for Autoformalization (Wang et al., NeurIPS 2025 MAR Workshop) — training-time RL with composite rewards (reimplemented faithfully if code unavailable, with reported numbers as cross-check); (3) DRIFT with Qwen3-8B (ICLR 2026) — static retrieval; (4) Aria (ICLR 2026) — iterative retrieval via dependency graph (reimplemented on shared benchmarks; reported numbers used where reimplementation is infeasible, explicitly annotated); (5) StepFun-Formalizer-7B (AAAI 2026) — knowledge-reasoning fusion (open-source code and weights available); (6) compilation-only TTRL and critic-only TTRL ablations.
+
+  *Ablations:* (7) Standard GRPO vs. DDRL debiased vs. binarize-then-enrich (with separate ablations for each DDRL component and the GDPO enrichment layer); (8) frozen retriever vs. co-adaptive retriever during TTRL; (9) Tier 1-only vs. Tier 1+2 vs. all-tier error signals; (10) no curriculum vs. progressive curriculum.
+
+  *Sensitivity analysis:* (11) N_ret ∈ {25, 50, 100} (retriever update frequency); (12) δ ∈ {0.0, 0.1, 0.3, 0.5} (enrichment weight; δ=0.0 = pure DDRL, providing clean binarize-then-enrich vs. DDRL ablation); (13) ambiguity zone ∈ {[20%-80%], [30%-70%], [40%-60%]}; (14) critic confidence threshold ∈ {0.6, 0.7, 0.8, 0.9}.
+
+  *Cross-scale reference points (context only):* ATF-32B (94.51%/65.38% FormalMath-Lite/CombiBench), ATLAS (70.08% pass@1 miniF2F, NeurIPS 2025), Monotonic Refinement (90.27% miniF2F, multi-model ensemble). All tables annotate model scale and compute budget.
+
+  *Statistical rigor:* All key comparisons (CriticLean TTRL vs. compilation-only TTRL, co-adaptive vs. frozen retriever, binarize-then-enrich vs. plain DDRL, and core ablations) run with ≥3 random seeds, reporting mean ± std with paired significance tests (bootstrap CI, p<0.05).
+
+## Detailed Description
+
+TTRA makes TTRL viable for autoformalization by exploiting a structural asymmetry between formal and informal reasoning: Lean 4's compiler provides a graded hierarchy of machine-parseable error signals (identifier names, type signatures, typeclass requirements) that serve simultaneously as retriever training signal, multi-tier reward components, and domain adaptation indicators. The dual-loop architecture co-adapts the retriever during test-time RL using weighted InfoNCE over Lean 4's error hierarchy (Tier 1: direct identifier → Tier 2: type-based → Tier 3: negative confirmation), addressing the fundamental limitation that static retrievers (Aria, DRIFT, DDR) cannot track the formalizer's evolving OOD behavior. CriticLean-14B integration includes explicit calibration under the heavily skewed distributions expected during OOD TTRL (>90% incorrect candidates), with Phase 0 establishing precision guarantees before full-pipeline commitment. The binarize-then-enrich adaptation addresses the specific gap between DDRL (binary-only debiasing) and GDPO (multi-reward normalization without debiasing) by layering binary acceptance gating for debiasing stability atop per-reward decoupled normalization for BEq ranking preservation—handling the heterogeneous nature of autoformalization's reward components (hard compilation gate, noisy critic signal, policy-drifting BEq statistic). A progressive curriculum with quantitative transition criteria breaks the OOD bootstrapping problem. The framework positions test-time learning alongside training-time and inference-time compute as a scaling axis for formal mathematics, where formal verification infrastructure (Lean compiler, Mathlib) serves as a perpetual learning signal enabling continuous domain adaptation.
+
+## Key References
+
+- TTRL: Test-Time Reinforcement Learning (NeurIPS 2025)
+- Understanding and Mitigating Spurious Signal Amplification in Test-Time Reinforcement Learning for Math Reasoning [DDRL] (ACL 2026 Findings)
+- GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization (arXiv:2601.05242, NVIDIA, January 2026)
+- CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization (arXiv:2507.06181, ByteDance/Nanjing)
+- Online Reinforcement Learning for Autoformalization (Haiming Wang et al., NeurIPS 2025 MAR Workshop)
+- R3: Optimizing Retrieval for RAG via Reinforced Contrastive Learning (NeurIPS 2025, arXiv:2510.24652)
+- Reinforced-IR: A Self-Boosting Framework for Domain-Adaptive Cross-Domain Retrieval (ACL 2025)
+- TTARAG: Predict the Retrieval! Test-Time Adaptation for Retrieval Augmented Generation (arXiv:2601.11443, January 2026)
+- Construction-Verification: A Benchmark for Applied Mathematics in Lean 4 [AMBER] (Yang et al., arXiv:2602.01291, February 2026)
+- Autoformalizer with Tool Feedback [ATF] (arXiv 2025)
+- ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data (NeurIPS 2025)
+- Monotonic Reference-Free Refinement for Autoformalization (arXiv 2026)
+- Olympiad-level formal mathematical reasoning with reinforcement learning [AlphaProof] (Nature 2025)
+- FormaRL: Enhancing Autoformalization with no Labeled Data (COLM 2025)
+- Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach [RAutoformalizer] (ICLR 2025 Spotlight)
+- Improving Autoformalization Using Direct Dependency Retrieval [DDR] (arXiv:2511.11990)
+- DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems (ICLR 2026)
+- Automated Formalization via Conceptual Retrieval-Augmented LLMs [CRAMF] (arXiv 2025)
+- Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning (arXiv 2025)
+- Kimina Lean Server: A High-Performance Lean Server for Large-Scale Verification (arXiv 2025)
+- FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models (arXiv:2505.02735)
+- MathAtlas: A Benchmark for Autoformalization in the Wild (arXiv:2605.14061, May 2026)
+- StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion (AAAI 2026)
+- Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph (ICLR 2026, arXiv:2510.04520)
+- ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings (ICLR 2026, arXiv:2510.15681)
+- ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization (arXiv:2510.24592)
+- IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch (arXiv:2512.00997, Microsoft Research)
+- FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization (arXiv:2603.19828, March 2026)
+- Binary Rewards and Reinforcement Learning: Fundamental Challenges (Dymetman, arXiv:2605.02375, May 2026)
+- TEMPO: Scaling Test-time Training for Large Reasoning Models (arXiv:2604.19295, April 2026)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 1200-1700 A100-80GB hours (Phase -1 error micro-analysis + MathAtlas coverage verification: ~10h; Phase 0 pilot with critic calibration: ~50h; base formalizer GRPO training with multi-tier reward: ~300h on 8 GPUs; DDR retriever fine-tuning + co-adaptive contrastive updates: ~100h on 4 GPUs; TTRL progressive adaptation across 3 curriculum stages with binarize-then-enrich and ablations: ~400h on 4 GPUs; CriticLean-14B inference across all phases: ~200-300h on 2 GPUs; N_ret sensitivity: ~50h; error tier ablation: ~40h; δ/ambiguity-zone/critic-threshold sensitivity: ~50h; new baseline evaluation (Aria reimplementation + StepFun-Formalizer-7B): ~80-120h; multi-seed evaluation (3 seeds on 4 key ablations): ~200h; miniF2F/ProofNet evaluation: ~10h; remaining evaluation: ~80h) + 12,000-18,000 CPU-hours for Lean 4 verification (128 parallel workers via Kimina Lean Server), timeline: 14-18 weeks (0.5 wk Phase -1; 2-3 wk Phase 0 + critic calibration + go/no-go; 3 wk base training + critic integration; 2 wk retriever co-adaptation infrastructure; 4 wk progressive TTRL experiments; 3 wk ablations including multi-seed + sensitivity analyses; 2 wk writing), estimated_gpu_cost: $2,400-$4,200 at ~$2.00/A100-hr + $600-$900 CPU costs. GPU memory architecture: policy (8B) + reference (8B) on 4×A100 (tensor parallel), CriticLean-14B on dedicated 2×A100 with batch inference (vLLM), retriever + FAISS on CPU/1×A100; async pipeline (formalizer generates batch → critic scores → rewards returned).
+- **human_in_loop**: gpu_hours: 950-1350 A100-80GB hours (Claude handles Phase -1 analysis, Phase 0 calibration, experiment scheduling; ~25% reduction in ablation overhead) + 10,000-15,000 CPU-hours, timeline: 11-14 weeks, claude_api_cost: $400-$700, estimated_gpu_cost: $1,900-$3,300 + $500-$750 CPU costs
+- **auto_research**: gpu_hours: 1800-2500 A100-80GB hours (automated hyperparameter sweeps, multi-seed, full sensitivity grid) + 25,000-35,000 CPU-hours, timeline: 8-11 weeks (parallelized), claude_api_cost: $800-$1,200, estimated_gpu_cost: $3,600-$6,200 + $1,250-$1,750 CPU costs, speed_bottleneck: Lean 4 compilation latency (~3.65s per statement with warm LRU cache; ~0.10s amortized at 64 workers) dominates reward computation. CriticLean-14B inference ~0.5s/candidate on A100 (reducible to ~0.1-0.2s with vLLM batching). Retriever co-adaptation adds ~15 min per update cycle for re-encoding 26K Mathlib constants and rebuilding FAISS index.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "61a610a3-41b7-4730-b78a-ac3bdc1318a7",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T05:41:53.201Z_
+
+```json
+{
+  "parentUuid": "61a610a3-41b7-4730-b78a-ac3bdc1318a7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "3caef170-7ed8-4c81-90a0-4d83c5876dc9",
+  "timestamp": "2026-05-28T05:41:53.201Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T05:41:53.201Z_
+
+```json
+{
+  "parentUuid": "3caef170-7ed8-4c81-90a0-4d83c5876dc9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2b50c161-3d1f-4bcb-9d2f-e30b116d3e01",
+  "timestamp": "2026-05-28T05:41:53.201Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization  ## Core Problem  Current autoformalization models—even those achieving strong in-distribution results (ATF…",
+  "leafUuid": "2b50c161-3d1f-4bcb-9d2f-e30b116d3e01",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "TTRA: Test-time retrieval-augmented autoformalization research",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T05:42:00.755Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a very detailed and well-developed research proposal for TTRA (Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization). I need to act as the "发掘 agent" (Discovery Agent) and evaluate this proposal's novelty, significance, and related work differentiation.
+
+Let me first carefully read and understand the proposal, then conduct web searches to understand the current landscape, and finally provide my assessment.
+
+Key aspects of the proposal:
+1. Co-adaptive retrieval exploiting Lean 4's structured error taxonomy during test-time RL
+
+
+2. CriticLean as semantic RL reward with calibration under distributional shift
+3. Binarize-then-enrich adaptation of DDRL to multi-tier rewards
+4. Progressive domain curriculum for test-time adaptation
+
+Now I'm searching the literature to understand where this work sits relative to existing approaches in autoformalization, test-time adaptation, and retrieval-augmented learning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b50c161-3d1f-4bcb-9d2f-e30b116d3e01",
+  "isSidechain": false,
+  "requestId": "req_011CbUS2t1d5TdQLx3mecAv2",
+  "type": "assistant",
+  "uuid": "cddf2d09-d0d6-4d17-b1ae-ff66beee8ae0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Lj9KQK9z1iXyeMtpSUV25",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10930,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 340,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 10930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T05:42:01.174Z_
+
+I need to first thoroughly read and understand this proposal, then conduct targeted web searches to assess the novelty, significance, and related work landscape before providing my analysis.
+
+Let me start with targeted literature searches across several key dimensions of this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cddf2d09-d0d6-4d17-b1ae-ff66beee8ae0",
+  "isSidechain": false,
+  "requestId": "req_011CbUS2t1d5TdQLx3mecAv2",
+  "type": "assistant",
+  "uuid": "39111dc3-e23e-4bc9-9888-0d19d4163de6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Lj9KQK9z1iXyeMtpSUV25",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10930,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 340,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 10930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T05:42:01.281Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HuZQU86atUXmWVyXY8Jhzu`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39111dc3-e23e-4bc9-9888-0d19d4163de6",
+  "isSidechain": false,
+  "requestId": "req_011CbUS2t1d5TdQLx3mecAv2",
+  "type": "assistant",
+  "uuid": "209219b6-507b-4abe-9eb0-13c436b2f213",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Lj9KQK9z1iXyeMtpSUV25",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10930,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 340,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 10930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T05:42:01.290Z_
+
+<details><summary>↩ Tool result · `toolu_01HuZQU86atUXmWVyXY8Jhzu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "209219b6-507b-4abe-9eb0-13c436b2f213",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "60166f1d-4341-4247-ad04-9c72d999ceaa",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "209219b6-507b-4abe-9eb0-13c436b2f213",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T05:42:05.484Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me conduct several targeted web searches to understand the current landscape. I need to search for:
+
+1. Test-time RL for autoformalization - to see if anyone has done this
+2. Co-adaptive retrieval in formal mathematics / Lean 4
+3. DDRL multi-tier reward extensions
+4. Recent advances in autoformalization (2025-2026)
+5. CriticLean applications beyond the original paper
+
+Let me run these searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60166f1d-4341-4247-ad04-9c72d999ceaa",
+  "isSidechain": false,
+  "requestId": "req_011CbUS3UcjBGE9RcUotAyVk",
+  "type": "assistant",
+  "uuid": "2dd9a5df-da19-4674-8d6a-a6deb1eb55ea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC9wXuQMp5dzGCke2gPgKG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 25114,
+      "output_tokens": 212,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 868,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 212,
+          "cache_read_input_tokens": 25114,
+          "cache_creation_input_tokens": 868,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 868
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-28T05:42:06.051Z_
+
+Now let me conduct targeted web searches to assess the proposal's novelty claims and understand the current research landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2dd9a5df-da19-4674-8d6a-a6deb1eb55ea",
+  "isSidechain": false,
+  "requestId": "req_011CbUS3UcjBGE9RcUotAyVk",
+  "type": "assistant",
+  "uuid": "8f6bc1c0-445c-44f0-b6e7-eba9449de08d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC9wXuQMp5dzGCke2gPgKG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 25114,
+      "output_tokens": 212,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 868,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 212,
+          "cache_read_input_tokens": 25114,
+          "cache_creation_input_tokens": 868,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 868
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T05:42:06.729Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VeCP6t4i3vBYKVtCcsAE6w`</summary>
+
+```json
+{
+  "query": "test-time reinforcement learning autoformalization Lean 4 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f6bc1c0-445c-44f0-b6e7-eba9449de08d",
+  "isSidechain": false,
+  "requestId": "req_011CbUS3UcjBGE9RcUotAyVk",
+  "type": "assistant",
+  "uuid": "68542635-5d46-46df-8e77-4f6a2ce443e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DC9wXuQMp5dzGCke2gPgKG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 25114,
+      "output_tokens": 212,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 868,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 212,
+          "cache_read_input_tokens": 25114,
+          "cache_creation_input_tokens": 868,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 868
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T05:42:14.491Z_
+
+<details><summary>↩ Tool result · `toolu_01VeCP6t4i3vBYKVtCcsAE6w`</summary>
+
+```text
+Web search results for query: "test-time reinforcement learning autoformalization Lean 4 2025 2026"
+
+Links: [{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372v1"},{"title":"(PDF) Online Reinforcement Learning for Autoformalization","url":"https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"},{"title":"Goedel-Prover: Open-Source ATP in Lean 4","url":"https://www.emergentmind.com/topics/goedel-prover"},{"title":"Process-Driven Autoformalization in Lean 4 | OpenReview","url":"https://openreview.net/forum?id=k8KsI84Ds7"},{"title":"Towards Formalizing Reinforcement Learning Theory","url":"https://arxiv.org/pdf/2511.03618"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/pdf/2406.06555"},{"title":"PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4","url":"https://openreview.net/pdf?id=k8KsI84Ds7"}]
+
+I've found several relevant results about test-time reinforcement learning and autoformalization in Lean 4 from 2025-2026:
+
+## Key Developments
+
+**Test-Time Reinforcement Learning (TTRL)**
+
+For the most difficult problems, TTRL is a method of generating and learning from millions of related problem variants at inference time to enable deep, problem-specific adaptation. TTRL enables discovery, combination, and reuse of intermediate lemmas autonomously.
+
+**Recent Breakthroughs**
+
+AlphaProof is an AlphaZero-inspired agent that learns to find formal proofs through reinforcement learning by training on millions of auto-formalized problems. In 2025, multiple independent systems achieved gold-medal equivalent performance with formally verified Lean 4 proofs, with 80.7% on MiniF2F with pass@8192 (April 2025 release) and 92.2% on MiniF2F with full Test-Time RL search framework.
+
+**Reinforcement Learning Approaches**
+
+Online reinforcement learning for autoformalization translates informal mathematical conjectures into formal statements in Lean 4. FormaRL is a reinforcement learning framework for autoformalization that requires only a small amount of unlabeled data—addressing the critical data scarcity problem in formal verification.
+
+**Autoformalization Frameworks**
+
+The FormL4 benchmark evaluates autoformalization in Lean 4, along with a process-supervised verifier that enhances the accuracy of LLMs in converting informal statements and proofs into formal ones.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68542635-5d46-46df-8e77-4f6a2ce443e5",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "57d997c0-e441-45f3-810a-e69fc2db9e50",
+  "toolUseResult": {
+    "query": "test-time reinforcement learning autoformalization Lean 4 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WXnHwg9nLKh61D72cosEmJ",
+        "content": [
+          {
+            "title": "Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics",
+            "url": "https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project",
+            "url": "https://arxiv.org/html/2603.24372v1"
+          },
+          {
+            "title": "(PDF) Online Reinforcement Learning for Autoformalization",
+            "url": "https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"
+          },
+          {
+            "title": "Goedel-Prover: Open-Source ATP in Lean 4",
+            "url": "https://www.emergentmind.com/topics/goedel-prover"
+          },
+          {
+            "title": "Process-Driven Autoformalization in Lean 4 | OpenReview",
+            "url": "https://openreview.net/forum?id=k8KsI84Ds7"
+          },
+          {
+            "title": "Towards Formalizing Reinforcement Learning Theory",
+            "url": "https://arxiv.org/pdf/2511.03618"
+          },
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/pdf/2406.06555"
+          },
+          {
+            "title": "PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4",
+            "url": "https://openreview.net/pdf?id=k8KsI84Ds7"
+          }
+        ]
+      },
+      "I've found several relevant results about test-time reinforcement learning and autoformalization in Lean 4 from 2025-2026:\n\n## Key Developments\n\n**Test-Time Reinforcement Learning (TTRL)**\n\nFor the most difficult problems, TTRL is a method of generating and learning from millions of related problem variants at inference time to enable deep, problem-specific adaptation. TTRL enables discovery, combination, and reuse of intermediate lemmas autonomously.\n\n**Recent Breakthroughs**\n\nAlphaProof is an AlphaZero-inspired agent that learns to find formal proofs through reinforcement learning by training on millions of auto-formalized problems. In 2025, multiple independent systems achieved gold-medal equivalent performance with formally verified Lean 4 proofs, with 80.7% on MiniF2F with pass@8192 (April 2025 release) and 92.2% on MiniF2F with full Test-Time RL search framework.\n\n**Reinforcement Learning Approaches**\n\nOnline reinforcement learning for autoformalization translates informal mathematical conjectures into formal statements in Lean 4. FormaRL is a reinforcement learning framework for autoformalization that requires only a small amount of unlabeled data—addressing the critical data scarcity problem in formal verification.\n\n**Autoformalization Frameworks**\n\nThe FormL4 benchmark evaluates autoformalization in Lean 4, along with a process-supervised verifier that enhances the accuracy of LLMs in converting informal statements and proofs into formal ones."
+    ],
+    "durationSeconds": 7.754962643000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "68542635-5d46-46df-8e77-4f6a2ce443e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-28T05:42:17.155Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TPDVtveYZt41bsGHD35gAb`</summary>
+
+```json
+{
+  "query": "co-adaptive retrieval augmented generation reinforcement learning retriever training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57d997c0-e441-45f3-810a-e69fc2db9e50",
+  "isSidechain": false,
+  "requestId": "req_011CbUS4SnNdWZDHoJzp1cK3",
+  "type": "assistant",
+  "uuid": "81b12671-36c8-4488-8378-c55d40dc013b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014RpKc7SN1qSXAakXvTctq1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1010,
+      "cache_read_input_tokens": 25982,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 25982,
+          "cache_creation_input_tokens": 1010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T05:42:24.830Z_
+
+<details><summary>↩ Tool result · `toolu_01TPDVtveYZt41bsGHD35gAb`</summary>
+
+```text
+Web search results for query: "co-adaptive retrieval augmented generation reinforcement learning retriever training 2025 2026"
+
+Links: [{"title":"Collab-RAG: Boosting Retrieval-Augmented Generation for ...","url":"https://www.cs.emory.edu/~jyang71/files/collab-rag.pdf"},{"title":"Reinforced Information Retrieval","url":"https://arxiv.org/pdf/2502.11562"},{"title":"FrugalRAG: Learning to retrieve and reason for multi-hop QA","url":"https://arxiv.org/pdf/2507.07634"},{"title":"Boosting Retrieval-Augmented Generation with Generation-Augmented Retrieval: A Co-Training Approach | Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/10.1145/3726302.3729907"},{"title":"Hindsight: Posterior-guided training of retrievers for improved   open-ended generation","url":"https://arxiv.org/pdf/2110.07752"},{"title":"RAG in 2026: How Retrieval-Augmented Generation Works for Enterprise AI","url":"https://www.techment.com/blogs/rag-in-2026/"},{"title":"Harnessing the Power of Reinforcement Learning for Language-Model-Based Information Retriever via Query-Document Co-Augmentation","url":"https://arxiv.org/pdf/2506.18670"},{"title":"Reinforcement Fine-Tuning for History-Aware Dense Retriever in RAG","url":"https://arxiv.org/pdf/2602.03645"}]
+
+Based on the web search results, here are the key findings related to co-adaptive retrieval augmented generation, reinforcement learning, and retriever training from 2025-2026:
+
+## Recent Research Developments
+
+Recent work focuses on enhancing the ability of LLMs to improve information retrieval accuracy using reinforcement learning. One significant approach involves addressing poor query quality through query rewriting to enhance IR accuracy, as queries might not provide sufficient information that can be faithfully related to documents.
+
+## Co-Training and Generation-Augmented Approaches
+
+The research landscape includes work on co-training approaches, with evidence of work by Yujia Zhou and colleagues on "Boosting Retrieval-Augmented Generation with Generation-Augmented Retrieval: A Co-Training Approach" presented at the 2025 ACM SIGIR Conference.
+
+## RL-Based Retriever Training
+
+Recent approaches replace deterministic retrieval with stochastic sampling and formulate RAG as a Markov decision process, making retrievers optimizable by RL, while incorporating retrieval history into the state at each retrieval step to mitigate state aliasing. Such work has been documented as of February 4, 2026.
+
+## Broader 2025-2026 RAG Trends
+
+Traditional semantic search alone is no longer sufficient, with leading research and enterprise implementations now using hybrid retrieval combining multiple methods for improved accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81b12671-36c8-4488-8378-c55d40dc013b",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "5240fe71-1d52-4cf3-85cf-03bd4a82bc27",
+  "toolUseResult": {
+    "query": "co-adaptive retrieval augmented generation reinforcement learning retriever training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NA8YWpv39Fo2BAsf7hH5kJ",
+        "content": [
+          {
+            "title": "Collab-RAG: Boosting Retrieval-Augmented Generation for ...",
+            "url": "https://www.cs.emory.edu/~jyang71/files/collab-rag.pdf"
+          },
+          {
+            "title": "Reinforced Information Retrieval",
+            "url": "https://arxiv.org/pdf/2502.11562"
+          },
+          {
+            "title": "FrugalRAG: Learning to retrieve and reason for multi-hop QA",
+            "url": "https://arxiv.org/pdf/2507.07634"
+          },
+          {
+            "title": "Boosting Retrieval-Augmented Generation with Generation-Augmented Retrieval: A Co-Training Approach | Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "url": "https://dl.acm.org/doi/10.1145/3726302.3729907"
+          },
+          {
+            "title": "Hindsight: Posterior-guided training of retrievers for improved   open-ended generation",
+            "url": "https://arxiv.org/pdf/2110.07752"
+          },
+          {
+            "title": "RAG in 2026: How Retrieval-Augmented Generation Works for Enterprise AI",
+            "url": "https://www.techment.com/blogs/rag-in-2026/"
+          },
+          {
+            "title": "Harnessing the Power of Reinforcement Learning for Language-Model-Based Information Retriever via Query-Document Co-Augmentation",
+            "url": "https://arxiv.org/pdf/2506.18670"
+          },
+          {
+            "title": "Reinforcement Fine-Tuning for History-Aware Dense Retriever in RAG",
+            "url": "https://arxiv.org/pdf/2602.03645"
+          }
+        ]
+      },
+      "Based on the web search results, here are the key findings related to co-adaptive retrieval augmented generation, reinforcement learning, and retriever training from 2025-2026:\n\n## Recent Research Developments\n\nRecent work focuses on enhancing the ability of LLMs to improve information retrieval accuracy using reinforcement learning. One significant approach involves addressing poor query quality through query rewriting to enhance IR accuracy, as queries might not provide sufficient information that can be faithfully related to documents.\n\n## Co-Training and Generation-Augmented Approaches\n\nThe research landscape includes work on co-training approaches, with evidence of work by Yujia Zhou and colleagues on \"Boosting Retrieval-Augmented Generation with Generation-Augmented Retrieval: A Co-Training Approach\" presented at the 2025 ACM SIGIR Conference.\n\n## RL-Based Retriever Training\n\nRecent approaches replace deterministic retrieval with stochastic sampling and formulate RAG as a Markov decision process, making retrievers optimizable by RL, while incorporating retrieval history into the state at each retrieval step to mitigate state aliasing. Such work has been documented as of February 4, 2026.\n\n## Broader 2025-2026 RAG Trends\n\nTraditional semantic search alone is no longer sufficient, with leading research and enterprise implementations now using hybrid retrieval combining multiple methods for improved accuracy."
+    ],
+    "durationSeconds": 7.671217911999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "81b12671-36c8-4488-8378-c55d40dc013b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-28T05:42:27.690Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017PUtEt8PsBjnFwahgJXJhV`</summary>
+
+```json
+{
+  "query": "DDRL GRPO debiased multi-tier reward extension binary reward limitation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5240fe71-1d52-4cf3-85cf-03bd4a82bc27",
+  "isSidechain": false,
+  "requestId": "req_011CbUS5CszS3ccdcibwhShi",
+  "type": "assistant",
+  "uuid": "8bb66bc8-6f19-4243-a8dd-1f478dcbcdad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019t6us4ekhRSekM6z2sSpQZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 26992,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 26992,
+          "cache_creation_input_tokens": 824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T05:42:35.566Z_
+
+<details><summary>↩ Tool result · `toolu_017PUtEt8PsBjnFwahgJXJhV`</summary>
+
+```text
+Web search results for query: "DDRL GRPO debiased multi-tier reward extension binary reward limitation 2026"
+
+Links: [{"title":"GDPO Explained: How NVIDIA Fixes GRPO for Multi-Reward LLM Reinforcement Learning - AI Papers Academy","url":"https://aipapersacademy.com/gdpo/"},{"title":"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://nvlabs.github.io/GDPO/"},{"title":"Noise-corrected GRPO: From Noisy Rewards to Unbiased Gradients","url":"https://arxiv.org/pdf/2510.18924"},{"title":"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://arxiv.org/html/2601.05242v1"},{"title":"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://www.emergent-behaviors.com/gdpo-group-reward-decoupled-normalization-policy-optimization-for-multi-reward-rl-optimization/"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/pdf/2509.22047"}]
+
+Based on the search results, I found relevant information about GRPO and its extensions related to multi-reward and binary reward limitations. Here are the key findings:
+
+## GRPO and Binary Reward Limitations
+
+In multi-reward settings with binary rewards (values of 0 or 1), the total reward for each response can only take on limited values, such as 0, 1, or 2 when summed across two binary rewards.
+
+## GDPO Solution for Multi-Tier Reward Extension
+
+GRPO inherently collapses reward signals, resulting in information loss in the advantage estimates. More specifically, directly applying GRPO for advantage estimation collapses distinct reward combinations into identical normalized advantages.
+
+To address this, Group reward-Decoupled normalization Policy Optimization (GDPO) was proposed, which performs group-wise normalization on each reward independently prior to aggregation. GDPO normalizes each reward independently and retains three distinct groups of advantage values, whereas GRPO maps different reward combinations into only two distinct advantage groups.
+
+## Other GRPO Extensions
+
+Beyond GDPO, recent variants include Dr.GRPO and DAPO to curb entropy collapse and question-level bias, and MO-GRPO extends GRPO with a normalization method to reweight reward functions according to the variances of their values.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8bb66bc8-6f19-4243-a8dd-1f478dcbcdad",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "13774b8a-f792-4178-91bb-4befc579f86b",
+  "toolUseResult": {
+    "query": "DDRL GRPO debiased multi-tier reward extension binary reward limitation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LM38gsnCbZA4vdfmYWS4H2",
+        "content": [
+          {
+            "title": "GDPO Explained: How NVIDIA Fixes GRPO for Multi-Reward LLM Reinforcement Learning - AI Papers Academy",
+            "url": "https://aipapersacademy.com/gdpo/"
+          },
+          {
+            "title": "GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://nvlabs.github.io/GDPO/"
+          },
+          {
+            "title": "Noise-corrected GRPO: From Noisy Rewards to Unbiased Gradients",
+            "url": "https://arxiv.org/pdf/2510.18924"
+          },
+          {
+            "title": "GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://arxiv.org/html/2601.05242v1"
+          },
+          {
+            "title": "GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://www.emergent-behaviors.com/gdpo-group-reward-decoupled-normalization-policy-optimization-for-multi-reward-rl-optimization/"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/pdf/2509.22047"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about GRPO and its extensions related to multi-reward and binary reward limitations. Here are the key findings:\n\n## GRPO and Binary Reward Limitations\n\nIn multi-reward settings with binary rewards (values of 0 or 1), the total reward for each response can only take on limited values, such as 0, 1, or 2 when summed across two binary rewards.\n\n## GDPO Solution for Multi-Tier Reward Extension\n\nGRPO inherently collapses reward signals, resulting in information loss in the advantage estimates. More specifically, directly applying GRPO for advantage estimation collapses distinct reward combinations into identical normalized advantages.\n\nTo address this, Group reward-Decoupled normalization Policy Optimization (GDPO) was proposed, which performs group-wise normalization on each reward independently prior to aggregation. GDPO normalizes each reward independently and retains three distinct groups of advantage values, whereas GRPO maps different reward combinations into only two distinct advantage groups.\n\n## Other GRPO Extensions\n\nBeyond GDPO, recent variants include Dr.GRPO and DAPO to curb entropy collapse and question-level bias, and MO-GRPO extends GRPO with a normalization method to reweight reward functions according to the variances of their values."
+    ],
+    "durationSeconds": 7.872272166000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8bb66bc8-6f19-4243-a8dd-1f478dcbcdad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization  ## Core Problem  Current autoformalization models—even those achieving strong in-distribution results (ATF…",
+  "leafUuid": "13774b8a-f792-4178-91bb-4befc579f86b",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "TTRA: Test-time retrieval-augmented autoformalization research",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-28T05:42:38.296Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K34KhEgWBo7x2bHyR4AXir`</summary>
+
+```json
+{
+  "query": "CriticLean autoformalization semantic critic reward OOD distribution shift calibration 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13774b8a-f792-4178-91bb-4befc579f86b",
+  "isSidechain": false,
+  "requestId": "req_011CbUS5zuC4BsTxKKsqwvwf",
+  "type": "assistant",
+  "uuid": "e14fc1fa-bd7f-45a1-80aa-c5c51c6ba990",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQautgocVtipRWKB5JUFsP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 743,
+      "cache_read_input_tokens": 27816,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 743,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 27816,
+          "cache_creation_input_tokens": 743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 743
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T05:42:48.663Z_
+
+<details><summary>↩ Tool result · `toolu_01K34KhEgWBo7x2bHyR4AXir`</summary>
+
+```text
+Web search results for query: "CriticLean autoformalization semantic critic reward OOD distribution shift calibration 2025 2026"
+
+Links: [{"title":"(PDF) CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization","url":"https://www.researchgate.net/publication/393512361_CriticLean_Critic-Guided_Reinforcement_Learning_for_Mathematical_Formalization"},{"title":"[2507.06181] CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization","url":"https://arxiv.org/abs/2507.06181"},{"title":"CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/criticlean-critic-guided-reinforcement-learning-mathematical-formalization"},{"title":"CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization","url":"https://openreview.net/pdf/604b63db1bbddb963505ecbeca441f5b94bd143c.pdf"},{"title":"Exploring Covariate and Concept Shift for Detection and Calibration of   Out-of-Distribution Data","url":"https://arxiv.org/pdf/2110.15231"},{"title":"A Baseline Analysis of Reward Models' Ability To Accurately Analyze   Foundation Models Under Distribution Shift","url":"https://arxiv.org/pdf/2311.14743"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/html/2510.24592"},{"title":"M-A-P CriticLean: Critic-Guided Reinforcement Learning for","url":"https://arxiv.org/pdf/2507.06181"}]
+
+Based on the search results, here's what I found about CriticLean and related concepts:
+
+## CriticLean Overview
+
+CriticLean is a novel framework that elevates the critic from a passive validator to an active learning component, placing it at the center of the formalization pipeline and creating a feedback loop that drives iterative refinement of generated Lean 4 code.
+
+## Key Components and Approach
+
+The framework works by applying autoformalization iteratively based on feedback from both the Lean compiler and specialized critic models trained to assess semantic fidelity. By focusing on semantic fidelity rather than just syntactic correctness or compilation success, the CriticLean approach offers a more complete solution to the challenge of mathematical autoformalization.
+
+## Datasets and Resources
+
+CriticLean builds upon a critic-centric pipeline and proposes FineLeanCorpus, a high-quality open-source Lean 4 statement dataset comprising 285,957 fully verified entries, distinguished by its diversity in mathematical domains, difficulty distribution, and strict semantic validation via critical feedback loops.
+
+## Reward Mechanisms
+
+Recent work using CriticLean discusses reward design: A positive reward is assigned to formal statements only when they achieve both syntactic and semantic correctness, where syntactic validity is verified through the Lean compiler and semantic consistency is assessed between the formal statement and the original question.
+
+The search results show CriticLean was published in July 2025 as a research paper on arXiv focusing on critic-guided reinforcement learning for mathematical formalization. While the search results contain some references to OOD (out-of-distribution) and calibration topics in other contexts, they don't specifically detail how CriticLean addresses OOD distribution shift and calibration challenges.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e14fc1fa-bd7f-45a1-80aa-c5c51c6ba990",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "f96ab6f9-f243-4edf-8073-3ed33c0d6d56",
+  "toolUseResult": {
+    "query": "CriticLean autoformalization semantic critic reward OOD distribution shift calibration 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XZVvzTUanaKKPNficVg9jf",
+        "content": [
+          {
+            "title": "(PDF) CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization",
+            "url": "https://www.researchgate.net/publication/393512361_CriticLean_Critic-Guided_Reinforcement_Learning_for_Mathematical_Formalization"
+          },
+          {
+            "title": "[2507.06181] CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization",
+            "url": "https://arxiv.org/abs/2507.06181"
+          },
+          {
+            "title": "CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/criticlean-critic-guided-reinforcement-learning-mathematical-formalization"
+          },
+          {
+            "title": "CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization",
+            "url": "https://openreview.net/pdf/604b63db1bbddb963505ecbeca441f5b94bd143c.pdf"
+          },
+          {
+            "title": "Exploring Covariate and Concept Shift for Detection and Calibration of   Out-of-Distribution Data",
+            "url": "https://arxiv.org/pdf/2110.15231"
+          },
+          {
+            "title": "A Baseline Analysis of Reward Models' Ability To Accurately Analyze   Foundation Models Under Distribution Shift",
+            "url": "https://arxiv.org/pdf/2311.14743"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/html/2510.24592"
+          },
+          {
+            "title": "M-A-P CriticLean: Critic-Guided Reinforcement Learning for",
+            "url": "https://arxiv.org/pdf/2507.06181"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CriticLean and related concepts:\n\n## CriticLean Overview\n\nCriticLean is a novel framework that elevates the critic from a passive validator to an active learning component, placing it at the center of the formalization pipeline and creating a feedback loop that drives iterative refinement of generated Lean 4 code.\n\n## Key Components and Approach\n\nThe framework works by applying autoformalization iteratively based on feedback from both the Lean compiler and specialized critic models trained to assess semantic fidelity. By focusing on semantic fidelity rather than just syntactic correctness or compilation success, the CriticLean approach offers a more complete solution to the challenge of mathematical autoformalization.\n\n## Datasets and Resources\n\nCriticLean builds upon a critic-centric pipeline and proposes FineLeanCorpus, a high-quality open-source Lean 4 statement dataset comprising 285,957 fully verified entries, distinguished by its diversity in mathematical domains, difficulty distribution, and strict semantic validation via critical feedback loops.\n\n## Reward Mechanisms\n\nRecent work using CriticLean discusses reward design: A positive reward is assigned to formal statements only when they achieve both syntactic and semantic correctness, where syntactic validity is verified through the Lean compiler and semantic consistency is assessed between the formal statement and the original question.\n\nThe search results show CriticLean was published in July 2025 as a research paper on arXiv focusing on critic-guided reinforcement learning for mathematical formalization. While the search results contain some references to OOD (out-of-distribution) and calibration topics in other contexts, they don't specifically detail how CriticLean addresses OOD distribution shift and calibration challenges."
+    ],
+    "durationSeconds": 10.359704071,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e14fc1fa-bd7f-45a1-80aa-c5c51c6ba990",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-28T05:42:51.955Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016T4mcFE2FxnA1LBZqgBFpw`</summary>
+
+```json
+{
+  "query": "test-time training adaptation formal verification theorem proving 2025 2026 TEMPO"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f96ab6f9-f243-4edf-8073-3ed33c0d6d56",
+  "isSidechain": false,
+  "requestId": "req_011CbUS6xwtfBwD45S82wAQo",
+  "type": "assistant",
+  "uuid": "dc25e259-5d4b-4576-9963-484b098513fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011q3hiAAZr7xGukU2ibLYdn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 28559,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 951,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 28559,
+          "cache_creation_input_tokens": 951,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 951
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T05:43:02.038Z_
+
+<details><summary>↩ Tool result · `toolu_016T4mcFE2FxnA1LBZqgBFpw`</summary>
+
+```text
+Web search results for query: "test-time training adaptation formal verification theorem proving 2025 2026 TEMPO"
+
+Links: [{"title":"April 22, 2026 TEMPO: Scaling Test-time Training for Large Reasoning Models","url":"https://arxiv.org/pdf/2604.19295"},{"title":"[2604.19295] TEMPO: Scaling Test-time Training for Large Reasoning Models","url":"https://arxiv.org/abs/2604.19295"},{"title":"TEMPO: Scaling Test-time Training for Large Reasoning Models","url":"https://arxiv.org/html/2604.19295v1"},{"title":"Seed-Prover 1.5: Automated Lean Theorem Prover","url":"https://www.emergentmind.com/topics/seed-prover-1-5"},{"title":"Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience","url":"https://arxiv.org/pdf/2512.17260"},{"title":"Test-Time Scaling Part 2: The Verification Revolution | by Nilanshu Twinkle | Medium","url":"https://medium.com/@nilanshut/test-time-scaling-part-2-the-verification-revolution-cfb69882b3e5"},{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/pdf/2508.03613"}]
+
+I found several relevant results about TEMPO and related work in test-time training, formal verification, and theorem proving from 2025-2026. Here's what the search revealed:
+
+## TEMPO: Scaling Test-Time Training
+
+Test-time training (TTT) adapts model parameters on unlabeled test instances during inference time, which continuously extends capabilities beyond the reach of offline training. TEMPO is a TTT framework that interleaves policy refinement on unlabeled questions with periodic critic recalibration on a labeled dataset.
+
+Despite initial gains, existing TTT methods for large reasoning models plateau quickly and do not benefit from additional test-time compute, as the self-generated reward signal increasingly drifts as the policy model evolves, leading to both performance plateaus and diversity collapse. By formalizing this alternating procedure through the Expectation-Maximization (EM) algorithm, prior methods can be interpreted as incomplete variants that omit the crucial recalibration step, and reintroducing this step tightens the evidence lower bound (ELBO) and enables sustained improvement.
+
+**Performance Results**: On AIME 2024 and 2025, TEMPO improves OLMO3-7B from 33.0% and 26.3% to 51.1% and 37.0%, and for Qwen3-14B, TEMPO pushes the accuracy from 42.3% and 37.1% to 65.8% and 44.6%.
+
+## Related Work in Formal Theorem Proving
+
+The search also revealed parallel advances in formal verification: Seed-Prover 1.5 is a formal theorem-proving model developed for undergraduate- and graduate-level mathematics, grounded in large-scale agentic reinforcement learning (RL) and efficient test-time scaling (TTS) routines. It solves 88% of PutnamBench (undergraduate-level), 80% of Fate-H (graduate-level), and 33% of Fate-X (PhD-level) problems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc25e259-5d4b-4576-9963-484b098513fa",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "9568d165-89d5-4964-b6e1-c97bc33f07df",
+  "toolUseResult": {
+    "query": "test-time training adaptation formal verification theorem proving 2025 2026 TEMPO",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XcVcfZUv5opaigmLoNprjY",
+        "content": [
+          {
+            "title": "April 22, 2026 TEMPO: Scaling Test-time Training for Large Reasoning Models",
+            "url": "https://arxiv.org/pdf/2604.19295"
+          },
+          {
+            "title": "[2604.19295] TEMPO: Scaling Test-time Training for Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2604.19295"
+          },
+          {
+            "title": "TEMPO: Scaling Test-time Training for Large Reasoning Models",
+            "url": "https://arxiv.org/html/2604.19295v1"
+          },
+          {
+            "title": "Seed-Prover 1.5: Automated Lean Theorem Prover",
+            "url": "https://www.emergentmind.com/topics/seed-prover-1-5"
+          },
+          {
+            "title": "Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience",
+            "url": "https://arxiv.org/pdf/2512.17260"
+          },
+          {
+            "title": "Test-Time Scaling Part 2: The Verification Revolution | by Nilanshu Twinkle | Medium",
+            "url": "https://medium.com/@nilanshut/test-time-scaling-part-2-the-verification-revolution-cfb69882b3e5"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          }
+        ]
+      },
+      "I found several relevant results about TEMPO and related work in test-time training, formal verification, and theorem proving from 2025-2026. Here's what the search revealed:\n\n## TEMPO: Scaling Test-Time Training\n\nTest-time training (TTT) adapts model parameters on unlabeled test instances during inference time, which continuously extends capabilities beyond the reach of offline training. TEMPO is a TTT framework that interleaves policy refinement on unlabeled questions with periodic critic recalibration on a labeled dataset.\n\nDespite initial gains, existing TTT methods for large reasoning models plateau quickly and do not benefit from additional test-time compute, as the self-generated reward signal increasingly drifts as the policy model evolves, leading to both performance plateaus and diversity collapse. By formalizing this alternating procedure through the Expectation-Maximization (EM) algorithm, prior methods can be interpreted as incomplete variants that omit the crucial recalibration step, and reintroducing this step tightens the evidence lower bound (ELBO) and enables sustained improvement.\n\n**Performance Results**: On AIME 2024 and 2025, TEMPO improves OLMO3-7B from 33.0% and 26.3% to 51.1% and 37.0%, and for Qwen3-14B, TEMPO pushes the accuracy from 42.3% and 37.1% to 65.8% and 44.6%.\n\n## Related Work in Formal Theorem Proving\n\nThe search also revealed parallel advances in formal verification: Seed-Prover 1.5 is a formal theorem-proving model developed for undergraduate- and graduate-level mathematics, grounded in large-scale agentic reinforcement learning (RL) and efficient test-time scaling (TTS) routines. It solves 88% of PutnamBench (undergraduate-level), 80% of Fate-H (graduate-level), and 33% of Fate-X (PhD-level) problems."
+    ],
+    "durationSeconds": 10.076208143999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dc25e259-5d4b-4576-9963-484b098513fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-28T05:43:05.091Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HUDvZafMEvwjmudKMucqwJ`</summary>
+
+```json
+{
+  "query": "Lean 4 compilation error structured feedback retriever adaptation identifier hallucination Mathlib dependency 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9568d165-89d5-4964-b6e1-c97bc33f07df",
+  "isSidechain": false,
+  "requestId": "req_011CbUS7x5ag5AXckBrNzpRx",
+  "type": "assistant",
+  "uuid": "c54e7480-07bb-4f6e-a45a-bbb805072bd9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WGUTfChwPW9nFfmfhdvdWj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 925,
+      "cache_read_input_tokens": 29510,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 29510,
+          "cache_creation_input_tokens": 925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T05:43:12.981Z_
+
+<details><summary>↩ Tool result · `toolu_01HUDvZafMEvwjmudKMucqwJ`</summary>
+
+```text
+Web search results for query: "Lean 4 compilation error structured feedback retriever adaptation identifier hallucination Mathlib dependency 2025 2026"
+
+Links: [{"title":"Lean 4.22.0 (2025-08-14)","url":"https://lean-lang.org/doc/reference/latest/releases/v4.22.0/"},{"title":"towards a faithful metric and a dependency retrieval","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"Getting Started with Lean 4: Proofs as Code for Real Developers | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/getting-started-with-lean-4-proofs-as-code-for-real-developers-475affcf3f30"},{"title":"Why the open-source programming language is becoming a key tool to inject rigor and certainty into AI systems.","url":"https://venturebeat.com/ai/lean4-how-the-theorem-prover-works-and-why-its-the-new-competitive-edge-in"},{"title":"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/pdf/2510.04520"},{"title":"Learning to Repair Lean Proofs from Compiler Feedback","url":"https://arxiv.org/pdf/2602.02990"}]
+
+I found search results related to your query. Here's what the web search revealed:
+
+The search results contain information about several relevant topics:
+
+1. **Lean 4 Recent Updates**: The old compiler has been replaced by the new compiler, closing many long-standing issues and laying the foundation for many future features and performance improvements.
+
+2. **Retriever and Dependency Adaptation**: LLMs exhibit critical failure modes with research-level statements, where they are prone to hallucination and outdated pre-trained knowledge, generating invalid codes with functions either non-existent in Mathlib or incompatible with rapidly evolving library toolchains.
+
+3. **Structured Feedback for Proof Repair**: Researchers have created datasets pairing erroneous proofs and error information with structured labels containing error interpretation from LLM and corresponding correct proofs.
+
+4. **Hallucination Prevention**: A 2025 research framework called Safe uses Lean4 to verify each step of an LLM's reasoning, where each step in the AI's chain-of-thought translates the claim into Lean4's formal language, and if the proof fails, the system knows the reasoning was flawed.
+
+5. **Dependency Graph Approaches**: Recent approaches emulate an expert mathematician's workflow by recursively decomposing dependencies of definitions until they are well-grounded, then synthesizing their formal statements in a bottom-up order.
+
+These results suggest active research into improving Lean 4's error handling, structured feedback mechanisms, and reducing hallucinations in AI-assisted theorem proving.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c54e7480-07bb-4f6e-a45a-bbb805072bd9",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "78945736-a2a2-467d-8751-1c1079f822b8",
+  "toolUseResult": {
+    "query": "Lean 4 compilation error structured feedback retriever adaptation identifier hallucination Mathlib dependency 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016umbNZmRcmVZ9BmeEuXyuK",
+        "content": [
+          {
+            "title": "Lean 4.22.0 (2025-08-14)",
+            "url": "https://lean-lang.org/doc/reference/latest/releases/v4.22.0/"
+          },
+          {
+            "title": "towards a faithful metric and a dependency retrieval",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "Getting Started with Lean 4: Proofs as Code for Real Developers | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/getting-started-with-lean-4-proofs-as-code-for-real-developers-475affcf3f30"
+          },
+          {
+            "title": "Why the open-source programming language is becoming a key tool to inject rigor and certainty into AI systems.",
+            "url": "https://venturebeat.com/ai/lean4-how-the-theorem-prover-works-and-why-its-the-new-competitive-edge-in"
+          },
+          {
+            "title": "Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/pdf/2510.04520"
+          },
+          {
+            "title": "Learning to Repair Lean Proofs from Compiler Feedback",
+            "url": "https://arxiv.org/pdf/2602.02990"
+          }
+        ]
+      },
+      "I found search results related to your query. Here's what the web search revealed:\n\nThe search results contain information about several relevant topics:\n\n1. **Lean 4 Recent Updates**: The old compiler has been replaced by the new compiler, closing many long-standing issues and laying the foundation for many future features and performance improvements.\n\n2. **Retriever and Dependency Adaptation**: LLMs exhibit critical failure modes with research-level statements, where they are prone to hallucination and outdated pre-trained knowledge, generating invalid codes with functions either non-existent in Mathlib or incompatible with rapidly evolving library toolchains.\n\n3. **Structured Feedback for Proof Repair**: Researchers have created datasets pairing erroneous proofs and error information with structured labels containing error interpretation from LLM and corresponding correct proofs.\n\n4. **Hallucination Prevention**: A 2025 research framework called Safe uses Lean4 to verify each step of an LLM's reasoning, where each step in the AI's chain-of-thought translates the claim into Lean4's formal language, and if the proof fails, the system knows the reasoning was flawed.\n\n5. **Dependency Graph Approaches**: Recent approaches emulate an expert mathematician's workflow by recursively decomposing dependencies of definitions until they are well-grounded, then synthesizing their formal statements in a bottom-up order.\n\nThese results suggest active research into improving Lean 4's error handling, structured feedback mechanisms, and reducing hallucinations in AI-assisted theorem proving."
+    ],
+    "durationSeconds": 7.884902596000014,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c54e7480-07bb-4f6e-a45a-bbb805072bd9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-28T05:43:15.598Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GYHCjXcLE3KS6ND3yv5hLe`</summary>
+
+```json
+{
+  "query": "MathAtlas benchmark autoformalization graduate level 2026 arXiv 2605"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78945736-a2a2-467d-8751-1c1079f822b8",
+  "isSidechain": false,
+  "requestId": "req_011CbUS8ksfdxniWPjPzfauD",
+  "type": "assistant",
+  "uuid": "fa10c5f8-d104-4111-a501-3442241491d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyhJKzGQYR7vyEpbphUoz8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 829,
+      "cache_read_input_tokens": 30435,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 829,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 30435,
+          "cache_creation_input_tokens": 829,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 829
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T05:43:22.842Z_
+
+<details><summary>↩ Tool result · `toolu_01GYHCjXcLE3KS6ND3yv5hLe`</summary>
+
+```text
+Web search results for query: "MathAtlas benchmark autoformalization graduate level 2026 arXiv 2605"
+
+Links: [{"title":"[2605.14061] MathAtlas: A Benchmark for Autoformalization in the Wild","url":"https://arxiv.org/abs/2605.14061"},{"title":"MathAtlas: A Benchmark for Autoformalization in the Wild","url":"https://arxiv.org/html/2605.14061"},{"title":"LemmaBench: A Live, Research-Level Benchmark to Evaluate LLM Capabilities in Mathematics","url":"https://arxiv.org/html/2602.24173v1"},{"title":"Reliable Evaluation and Benchmarks for Statement Autoformalization","url":"https://arxiv.org/pdf/2406.07222"},{"title":"(PDF) FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?","url":"https://www.researchgate.net/publication/403308231_FormalProofBench_Can_Models_Write_Graduate_Level_Math_Proofs_That_Are_Formally_Verified"},{"title":"ProofNet: Autoformalizing and Formally Proving Undergraduate-Level   Mathematics","url":"https://arxiv.org/pdf/2302.12433"}]
+
+Based on the search results, I found the paper you're looking for:
+
+MathAtlas is the first large-scale autoformalization benchmark of in the wild graduate-level mathematics, containing ~52k theorems, definitions, exercises, examples, and proofs extracted from 103 graduate mathematics textbooks.
+
+MathAtlas is enriched with a mathematical dependency graph containing ~178k relations, and is the first autoformalization benchmark to include such relations, facilitating evaluation and development of dependency-aware autoformalization systems.
+
+The benchmark is high quality but extremely challenging: strong baselines achieve at most 9.8% correctness on theorem statements and 16.7% on definitions. Additionally, entities in MathAtlas span 87 areas of mathematics, including real analysis, differential geometry, category theory, topology, quantum groups, among others.
+
+The paper (arXiv:2605.14061) was submitted on May 13, 2026, and addresses the gap in existing autoformalization benchmarks, which have largely focused on olympiad or undergraduate mathematics rather than graduate and research-level work.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa10c5f8-d104-4111-a501-3442241491d6",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "32c8f68d-ab84-479b-b573-78ece3ac196c",
+  "toolUseResult": {
+    "query": "MathAtlas benchmark autoformalization graduate level 2026 arXiv 2605",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XbcLFe1veyST5Jw7zCpJ3g",
+        "content": [
+          {
+            "title": "[2605.14061] MathAtlas: A Benchmark for Autoformalization in the Wild",
+            "url": "https://arxiv.org/abs/2605.14061"
+          },
+          {
+            "title": "MathAtlas: A Benchmark for Autoformalization in the Wild",
+            "url": "https://arxiv.org/html/2605.14061"
+          },
+          {
+            "title": "LemmaBench: A Live, Research-Level Benchmark to Evaluate LLM Capabilities in Mathematics",
+            "url": "https://arxiv.org/html/2602.24173v1"
+          },
+          {
+            "title": "Reliable Evaluation and Benchmarks for Statement Autoformalization",
+            "url": "https://arxiv.org/pdf/2406.07222"
+          },
+          {
+            "title": "(PDF) FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?",
+            "url": "https://www.researchgate.net/publication/403308231_FormalProofBench_Can_Models_Write_Graduate_Level_Math_Proofs_That_Are_Formally_Verified"
+          },
+          {
+            "title": "ProofNet: Autoformalizing and Formally Proving Undergraduate-Level   Mathematics",
+            "url": "https://arxiv.org/pdf/2302.12433"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nMathAtlas is the first large-scale autoformalization benchmark of in the wild graduate-level mathematics, containing ~52k theorems, definitions, exercises, examples, and proofs extracted from 103 graduate mathematics textbooks.\n\nMathAtlas is enriched with a mathematical dependency graph containing ~178k relations, and is the first autoformalization benchmark to include such relations, facilitating evaluation and development of dependency-aware autoformalization systems.\n\nThe benchmark is high quality but extremely challenging: strong baselines achieve at most 9.8% correctness on theorem statements and 16.7% on definitions. Additionally, entities in MathAtlas span 87 areas of mathematics, including real analysis, differential geometry, category theory, topology, quantum groups, among others.\n\nThe paper (arXiv:2605.14061) was submitted on May 13, 2026, and addresses the gap in existing autoformalization benchmarks, which have largely focused on olympiad or undergraduate mathematics rather than graduate and research-level work."
+    ],
+    "durationSeconds": 7.2392272549999905,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fa10c5f8-d104-4111-a501-3442241491d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-28T05:43:22.859Z_
+
+```json
+{
+  "parentUuid": "32c8f68d-ab84-479b-b573-78ece3ac196c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1f441854-340f-4455-b53d-d0ea7096cc86",
+  "timestamp": "2026-05-28T05:43:22.859Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-28T05:43:29.995Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KL2wURKfiz8mgnqUpzpq9P`</summary>
+
+```json
+{
+  "query": "\"test-time reinforcement learning\" \"formal\" OR \"autoformalization\" OR \"Lean\" weight adaptation deployment 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f441854-340f-4455-b53d-d0ea7096cc86",
+  "isSidechain": false,
+  "requestId": "req_011CbUS9V9Q3RnprSahsmLGn",
+  "type": "assistant",
+  "uuid": "05a27c2f-8288-4cff-897e-a5d79976f6dc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3T4oaBo8rjrDgYFq2Xgic",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 31264,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 31264,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization  ## Core Problem  Current autoformalization models—even those achieving strong in-distribution results (ATF…",
+  "leafUuid": "05a27c2f-8288-4cff-897e-a5d79976f6dc",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "TTRA: Test-time retrieval-augmented autoformalization research",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-28T05:43:38.262Z_
+
+<details><summary>↩ Tool result · `toolu_01KL2wURKfiz8mgnqUpzpq9P`</summary>
+
+```text
+Web search results for query: ""test-time reinforcement learning" "formal" OR "autoformalization" OR "Lean" weight adaptation deployment 2026"
+
+Links: [{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"Formalization and autoformalization 2026-2027","url":"https://web.math.utk.edu/~yqing/lean.html"},{"title":"(PDF) Online Reinforcement Learning for Autoformalization","url":"https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"},{"title":"Towards Formalizing Reinforcement Learning Theory","url":"https://arxiv.org/pdf/2511.03618"},{"title":"Test-time Adapted Reinforcement Learning with Action Entropy Regularization | OpenReview","url":"https://openreview.net/forum?id=Xv1jY6U0pT"},{"title":"TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2504.16084"}]
+
+Based on the search results, here are the key findings related to test-time reinforcement learning, formal mathematics, autoformalization, and Lean:
+
+## AlphaProof and Test-Time RL
+
+AlphaProof is an AlphaZero-inspired agent that learns to find formal proofs through reinforcement learning by training on millions of auto-formalized problems. For the most difficult problems, it uses Test-Time RL, a method of generating and learning from millions of related problem variants at inference time to enable deep, problem-specific adaptation.
+
+## Recent 2026 Breakthroughs
+
+In 2025, multiple independent systems achieved gold-medal equivalent performance with formally verified Lean 4 proofs. A notable success was using Gauss, Math Inc. completed a challenge set by Fields Medallist Terence Tao and Alex Kontorovich in January 2024 to formalize the strong Prime Number Theorem in Lean, which had stalled after 18+ months of human expert effort and was completed in just three weeks.
+
+## RL-Based Autoformalization
+
+FormaRL is a reinforcement learning framework for autoformalization that requires only a small amount of unlabeled data—addressing the critical data scarcity problem in formal verification.
+
+Recent research also explores online reinforcement learning for autoformalization: translating informal mathematical conjectures into formal statements in Lean 4. Fine-tuning has been applied to natural language to Lean4 formalization using supervised fine-tuning with curriculum learning and reinforcement learning using group relative policy optimization with a cycle consistency reward.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05a27c2f-8288-4cff-897e-a5d79976f6dc",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "0381a6df-d4d2-4616-84ec-c2aa7e621cd8",
+  "toolUseResult": {
+    "query": "\"test-time reinforcement learning\" \"formal\" OR \"autoformalization\" OR \"Lean\" weight adaptation deployment 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UvY6MjHBog5aRpPzNKXS32",
+        "content": [
+          {
+            "title": "Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics",
+            "url": "https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"
+          },
+          {
+            "title": "Formalization and autoformalization 2026-2027",
+            "url": "https://web.math.utk.edu/~yqing/lean.html"
+          },
+          {
+            "title": "(PDF) Online Reinforcement Learning for Autoformalization",
+            "url": "https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project",
+            "url": "https://arxiv.org/html/2603.24372"
+          },
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/pdf/2508.18914"
+          },
+          {
+            "title": "Towards Formalizing Reinforcement Learning Theory",
+            "url": "https://arxiv.org/pdf/2511.03618"
+          },
+          {
+            "title": "Test-time Adapted Reinforcement Learning with Action Entropy Regularization | OpenReview",
+            "url": "https://openreview.net/forum?id=Xv1jY6U0pT"
+          },
+          {
+            "title": "TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2504.16084"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to test-time reinforcement learning, formal mathematics, autoformalization, and Lean:\n\n## AlphaProof and Test-Time RL\n\nAlphaProof is an AlphaZero-inspired agent that learns to find formal proofs through reinforcement learning by training on millions of auto-formalized problems. For the most difficult problems, it uses Test-Time RL, a method of generating and learning from millions of related problem variants at inference time to enable deep, problem-specific adaptation.\n\n## Recent 2026 Breakthroughs\n\nIn 2025, multiple independent systems achieved gold-medal equivalent performance with formally verified Lean 4 proofs. A notable success was using Gauss, Math Inc. completed a challenge set by Fields Medallist Terence Tao and Alex Kontorovich in January 2024 to formalize the strong Prime Number Theorem in Lean, which had stalled after 18+ months of human expert effort and was completed in just three weeks.\n\n## RL-Based Autoformalization\n\nFormaRL is a reinforcement learning framework for autoformalization that requires only a small amount of unlabeled data—addressing the critical data scarcity problem in formal verification.\n\nRecent research also explores online reinforcement learning for autoformalization: translating informal mathematical conjectures into formal statements in Lean 4. Fine-tuning has been applied to natural language to Lean4 formalization using supervised fine-tuning with curriculum learning and reinforcement learning using group relative policy optimization with a cycle consistency reward."
+    ],
+    "durationSeconds": 8.26138783800001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "05a27c2f-8288-4cff-897e-a5d79976f6dc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T05:43:41.093Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012cFGmii6PYWVR6zC74w9s7`</summary>
+
+```json
+{
+  "query": "retrieval augmented autoformalization adaptive retriever Lean Mathlib dependency co-training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0381a6df-d4d2-4616-84ec-c2aa7e621cd8",
+  "isSidechain": false,
+  "requestId": "req_011CbUSAcqn4Lq6aFz4ZYrrr",
+  "type": "assistant",
+  "uuid": "63b6b7a2-6be6-4664-ba2b-eb0b2a24460c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vytLdrbv4hT4Pd8w1pVCF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 32021,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 874,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 32021,
+          "cache_creation_input_tokens": 874,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 874
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-28T05:43:50.654Z_
+
+<details><summary>↩ Tool result · `toolu_012cFGmii6PYWVR6zC74w9s7`</summary>
+
+```text
+Web search results for query: "retrieval augmented autoformalization adaptive retriever Lean Mathlib dependency co-training 2025 2026"
+
+Links: [{"title":"towards a faithful metric and a dependency retrieval","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS","url":"https://arxiv.org/pdf/2510.10815"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf?id=IGEs577RFz"},{"title":"ConNF Benchmark Overview","url":"https://www.emergentmind.com/topics/connf-benchmark"},{"title":"An Agent For Retrieval and Iterative Auto-Formalization via ...","url":"https://arxiv.org/pdf/2510.04520"},{"title":"REAL-Prover: Retrieval Augmented Lean ...","url":"https://arxiv.org/pdf/2505.20613"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/html/2508.06931"},{"title":"Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/pdf/2511.11990"}]
+
+Based on the web search results, here are the key findings related to retrieval-augmented autoformalization with adaptive retrievers, Lean Mathlib, and dependency-based approaches:
+
+## Retrieval-Augmented Autoformalization (RAutoformalizer)
+
+Dependency retrieval seeks to select potentially dependent formal objects given an informal statement, with RAutoformalizer using the retrievals to enhance autoformalization. The approach parses dependencies in libraries like Mathlib 4, informalizes formal objects by topological order with their dependencies' information, and uses the resulting parallel data to train the retriever (encoder) and autoformalizer.
+
+## ConNF Benchmark and Out-of-Distribution Evaluation
+
+The ConNF Benchmark is an out-of-distribution (OOD) evaluation suite designed to assess the performance of retrieval-augmented automatic formalization systems when tested on mathematical statements drawn from a domain not previously encountered by either the retrievers or the formalizers. The ConNF benchmark is based on the con-nf library, containing 1,348 formal objects, each codified for the purposes of formalizing advanced set-theoretic results in Lean.
+
+## Conceptual Retrieval-Augmented Formalization (CRAMF)
+
+CRAMF operates under a retrieval-augmented paradigm: given a natural language description of a mathematical theorem, it first retrieves formal definitions of relevant concepts from a structured knowledge base, then supplies them as contextual grounding to an LLM-based autoformalizer.
+
+## Recent Developments (2025-2026)
+
+The search results indicate active research in this area with papers appearing in conferences like ICLR 2025 and recent arXiv preprints from 2025-2026 exploring direct dependency retrieval methods and improved retrieval-augmented approaches for Lean-based formalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63b6b7a2-6be6-4664-ba2b-eb0b2a24460c",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "6077f039-c7d5-4949-b35e-087e4ff7ce16",
+  "toolUseResult": {
+    "query": "retrieval augmented autoformalization adaptive retriever Lean Mathlib dependency co-training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Frni9rryNUMBggpfkE631z",
+        "content": [
+          {
+            "title": "towards a faithful metric and a dependency retrieval",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf?id=IGEs577RFz"
+          },
+          {
+            "title": "ConNF Benchmark Overview",
+            "url": "https://www.emergentmind.com/topics/connf-benchmark"
+          },
+          {
+            "title": "An Agent For Retrieval and Iterative Auto-Formalization via ...",
+            "url": "https://arxiv.org/pdf/2510.04520"
+          },
+          {
+            "title": "REAL-Prover: Retrieval Augmented Lean ...",
+            "url": "https://arxiv.org/pdf/2505.20613"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/html/2508.06931"
+          },
+          {
+            "title": "Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/pdf/2511.11990"
+          }
+        ]
+      },
+      "Based on the web search results, here are the key findings related to retrieval-augmented autoformalization with adaptive retrievers, Lean Mathlib, and dependency-based approaches:\n\n## Retrieval-Augmented Autoformalization (RAutoformalizer)\n\nDependency retrieval seeks to select potentially dependent formal objects given an informal statement, with RAutoformalizer using the retrievals to enhance autoformalization. The approach parses dependencies in libraries like Mathlib 4, informalizes formal objects by topological order with their dependencies' information, and uses the resulting parallel data to train the retriever (encoder) and autoformalizer.\n\n## ConNF Benchmark and Out-of-Distribution Evaluation\n\nThe ConNF Benchmark is an out-of-distribution (OOD) evaluation suite designed to assess the performance of retrieval-augmented automatic formalization systems when tested on mathematical statements drawn from a domain not previously encountered by either the retrievers or the formalizers. The ConNF benchmark is based on the con-nf library, containing 1,348 formal objects, each codified for the purposes of formalizing advanced set-theoretic results in Lean.\n\n## Conceptual Retrieval-Augmented Formalization (CRAMF)\n\nCRAMF operates under a retrieval-augmented paradigm: given a natural language description of a mathematical theorem, it first retrieves formal definitions of relevant concepts from a structured knowledge base, then supplies them as contextual grounding to an LLM-based autoformalizer.\n\n## Recent Developments (2025-2026)\n\nThe search results indicate active research in this area with papers appearing in conferences like ICLR 2025 and recent arXiv preprints from 2025-2026 exploring direct dependency retrieval methods and improved retrieval-augmented approaches for Lean-based formalization."
+    ],
+    "durationSeconds": 9.554254058000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "63b6b7a2-6be6-4664-ba2b-eb0b2a24460c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-28T05:43:54.036Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UgNBwdSkd75dmFWoB5Xt8W`</summary>
+
+```json
+{
+  "query": "DDRL \"spurious signal amplification\" test-time RL debiasing ACL 2026 binary reward multi-tier extension"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6077f039-c7d5-4949-b35e-087e4ff7ce16",
+  "isSidechain": false,
+  "requestId": "req_011CbUSBXv8yfRVPzTaBTBXk",
+  "type": "assistant",
+  "uuid": "01200969-de11-45e8-afc5-78a41d033a8c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KU7Ji1snXwnRnyh6MVY4Us",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 32895,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 32895,
+          "cache_creation_input_tokens": 911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-28T05:44:01.162Z_
+
+<details><summary>↩ Tool result · `toolu_01UgNBwdSkd75dmFWoB5Xt8W`</summary>
+
+```text
+Web search results for query: "DDRL "spurious signal amplification" test-time RL debiasing ACL 2026 binary reward multi-tier extension"
+
+Links: [{"title":"Understanding and Mitigating Spurious Signal Amplification in Test-Time Reinforcement Learning for Math Reasoning","url":"https://arxiv.org/html/2604.21327"},{"title":"Tool Verification for Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2603.02203"},{"title":"Amplification Effects in Test-Time Reinforcement Learning: Safety and Reasoning Vulnerabilities","url":"https://arxiv.org/pdf/2603.15417"},{"title":"What If Consensus Lies? Selective-Complementary Reinforcement Learning at Test Time","url":"https://arxiv.org/pdf/2603.19880"},{"title":"Beyond Spurious Signals: Debiasing Multimodal Large Language Models via Counterfactual Inference and Adaptive Expert Routing","url":"https://arxiv.org/pdf/2509.15361"},{"title":"Diffusing DeBias: Synthetic Bias Amplification for Model Debiasing | OpenReview","url":"https://openreview.net/forum?id=66Z5tS8E45"}]
+
+Based on the search results, I found highly relevant information about your query:
+
+The DDRL (Debiased and Denoised test-time Reinforcement Learning) framework is designed to mitigate spurious signals in test-time reinforcement learning for mathematical reasoning. 
+
+The framework introduces a balanced confidence-aware sampling strategy that selects rollout samples based on their reliability while maintaining a balanced set of positive and negative examples. It also replaces group-relative advantage estimation with a bias-corrected scheme that assigns fixed, label-dependent advantages to eliminate the amplification effect.
+
+Additionally, DDRL incorporates a consensus-based off-policy refinement stage after the RL phase, where a rejection sampling dataset is constructed to enable efficient and stable post-RL optimization.
+
+Demonstrated by experiments on multiple mathematical benchmarks and several LLMs, DDRL achieves significant relative improvements over TTRL, with gains of 15.3% on Qwen2.5-MATH-1.5B and 12.7% on LLaMA-3.1-8B-Instruct.
+
+The paper appears to be from April 2026 based on the arxiv metadata, and addresses the problem of spurious signal amplification in test-time reinforcement learning contexts. However, the search results do not contain specific information about "multi-tier extension" or other detailed technical extensions you may be referring to.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01200969-de11-45e8-afc5-78a41d033a8c",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "842f08ca-ea05-44ee-817c-7eb08fa1f9dd",
+  "toolUseResult": {
+    "query": "DDRL \"spurious signal amplification\" test-time RL debiasing ACL 2026 binary reward multi-tier extension",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tvw8vDBkBhVcFZqNXYsZPY",
+        "content": [
+          {
+            "title": "Understanding and Mitigating Spurious Signal Amplification in Test-Time Reinforcement Learning for Math Reasoning",
+            "url": "https://arxiv.org/html/2604.21327"
+          },
+          {
+            "title": "Tool Verification for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2603.02203"
+          },
+          {
+            "title": "Amplification Effects in Test-Time Reinforcement Learning: Safety and Reasoning Vulnerabilities",
+            "url": "https://arxiv.org/pdf/2603.15417"
+          },
+          {
+            "title": "What If Consensus Lies? Selective-Complementary Reinforcement Learning at Test Time",
+            "url": "https://arxiv.org/pdf/2603.19880"
+          },
+          {
+            "title": "Beyond Spurious Signals: Debiasing Multimodal Large Language Models via Counterfactual Inference and Adaptive Expert Routing",
+            "url": "https://arxiv.org/pdf/2509.15361"
+          },
+          {
+            "title": "Diffusing DeBias: Synthetic Bias Amplification for Model Debiasing | OpenReview",
+            "url": "https://openreview.net/forum?id=66Z5tS8E45"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about your query:\n\nThe DDRL (Debiased and Denoised test-time Reinforcement Learning) framework is designed to mitigate spurious signals in test-time reinforcement learning for mathematical reasoning. \n\nThe framework introduces a balanced confidence-aware sampling strategy that selects rollout samples based on their reliability while maintaining a balanced set of positive and negative examples. It also replaces group-relative advantage estimation with a bias-corrected scheme that assigns fixed, label-dependent advantages to eliminate the amplification effect.\n\nAdditionally, DDRL incorporates a consensus-based off-policy refinement stage after the RL phase, where a rejection sampling dataset is constructed to enable efficient and stable post-RL optimization.\n\nDemonstrated by experiments on multiple mathematical benchmarks and several LLMs, DDRL achieves significant relative improvements over TTRL, with gains of 15.3% on Qwen2.5-MATH-1.5B and 12.7% on LLaMA-3.1-8B-Instruct.\n\nThe paper appears to be from April 2026 based on the arxiv metadata, and addresses the problem of spurious signal amplification in test-time reinforcement learning contexts. However, the search results do not contain specific information about \"multi-tier extension\" or other detailed technical extensions you may be referring to."
+    ],
+    "durationSeconds": 7.119522188999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "01200969-de11-45e8-afc5-78a41d033a8c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-28T05:45:21.365Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the current landscape. Let me synthesize my findings and assess this proposal.
+
+Key observations from my research:
+
+1. **TTRL for autoformalization**: No one has applied test-time RL specifically to autoformalization. AlphaProof uses TTRL for theorem proving (a different task), but not for autoformalization. The closest work is Wang et al.'s Online RL for Autoformalization, which operates at training time. This is a genuine gap.
+
+2. **Co-adaptive retrieval for autoformalization**: All existing retrieval-augmented autoformalization methods (Aria, DRIFT, DDR, CRAMF, RAutoformalizer) use static retrievers. 
+
+The co-adaptive retrieval approach from R3, Reinforced-IR, and TTARAG hasn't been explored in autoformalization either—another genuine gap.
+
+3. **DDRL multi-tier extension**: DDRL is explicitly limited to binary rewards and notes multi-tier rewards as future work. GDPO handles multi-reward normalization but doesn't address debiasing. The combination hasn't been attempted. This is a genuine, though more incremental, gap.
+
+4. **CriticLean under OOD distributional shift**: CriticLean was only evaluated on balanced distributions. No one has characterized its behavior under heavily skewed TTRL distributions. This is a valid concern and a reasonable contribution.
+
+5. **Structured**
+
+Lean 4's typed error messages can be used as a graded hierarchy of training signals for the retriever—a novel approach that no prior work has applied taxonomically to co-adaptive retrieval in this way.
+
+Now I'm questioning whether the core novelty holds up. Could you just use static retrieval with TTRL and CriticLean as reward without co-adaptation? The proposal assumes that as the formalizer adapts, static retrieval becomes stale, which is plausible but not obvious. The real question is how much co-adaptive retrieval actually improves over that simpler baseline during TTRL—the Phase -1 and Phase 0 design hints at this, but the central claim depends on demonstrating substantial gains from co-adaptation rather than just fixed retrieval.
+
+Looking at the core premises: identifier hallucination is well-documented across AMBER, DDR, and RAutoformalizer, so that's solid. The claim that static retrieval degrades during TTRL as the formalizer shifts to new domains is reasonable—different error patterns would require different dependencies—but I don't see empirical evidence for how strong this effect actually is. CriticLean's precision under skewed distributions is a legitimate concern, though the actual magnitude of degradation remains unclear. And composing DDRL's binary debiasing with GDPO's multi-reward normalization is technically feasible, but the interaction effects between these mechanisms are still uncertain.
+
+The novelty itself is genuine and multifaceted, though some of the supporting claims rest on assumptions rather than demonstrated facts.
+
+What strikes me most is that TTRL hasn't been applied to autoformalization before, and the formal setting does create unique opportunities—the structured error feedback from a proof checker enables a kind of co-adaptive learning that wouldn't work in informal reasoning. That's a real conceptual contribution. The significance is there too, though it's somewhat specialized to the autoformalization community. The related work is comprehensive and clearly positions this against prior approaches.
+
+Now I'm thinking about what could actually strengthen this proposal further...
+
+The insight about formal languages providing structured feedback could be reframed as something bigger—not just a technical enabler for retrieval, but a fundamental principle about why test-time learning becomes qualitatively more powerful when you have formal verification. That shifts the framing from "a system for autoformalization" to "a new paradigm for test-time learning in formally verifiable domains."
+
+There's also potential in connecting this more explicitly to TEMPO's EM framework. TEMPO shows how critic recalibration prevents signal drift through EM, and TTRA's dual-loop architecture—the formalizer and retriever working together—could be interpreted through that same lens, where the retriever updates act as additional latent variable refinements. That would give the approach stronger theoretical grounding.
+
+The claim about test-time learning as a scaling axis needs more development... The proposal's strongest unique insight is that formal language verification creates a qualitatively different feedback regime for test-time learning than informal reasoning. In informal reasoning, you only get binary correct/incorrect. In formal reasoning, you get a rich hierarchy of error types that can drive different kinds of adaptation. This is genuinely novel and surprising — most TTRL papers treat the reward as a given, and this proposal shows that the reward structure itself enables new algorithmic possibilities.
+
+I'm seeing two main ways to raise the ceiling here. First, the structured error feedback insight could generalize beyond autoformalization to other formally verifiable domains like program synthesis or hardware verification — framing this as a broader paradigm for test-time learning in formal settings would significantly expand its impact. Second, there's a natural connection to TEMPO's EM framework where the E-step covers candidate generation and error classification, while the M-steps handle both the formalizer's multi-tier reward updates and the retriever's contrastive learning from error signals, which would give the work stronger theoretical grounding.
+
+But I need to be honest about whether these are genuinely valuable or just academic window-dressing. The generalization idea could be real if the discussion frames it as a paradigm shift, but without empirical evidence in other domains it risks feeling speculative — better to keep the core contribution focused on autoformalization while leaving the door open. The TEMPO connection is interesting but might come across as forced since the dual-loop architecture is already well-motivated by practical needs, so I'd mention it lightly rather than as a primary contribution.
+
+Now I'm questioning the core assumption behind the co-adaptive retrieval claim. The argument hinges on the retriever becoming stale during TTRL as the formalizer adapts to new domains, but the actual Mathlib concept space is fixed at 26K regardless of what the formalizer learns. What actually changes is the query distribution — the formalizer might shift toward different intermediate representations or decomposition strategies — but I'm not certain how significant that shift really is. The stronger case for co-adaptive retrieval isn't staleness but rather that compilation errors provide targeted, high-quality training signals for the retriever.
+
+When the formalizer generates a failing statement with an `unknownIdentifier` error, that's oracle-quality feedback about exactly which dependency is needed — far richer than any static pre-computed training signal could be. So the real advantage isn't adapting to the formalizer's drift, but learning from fundamentally superior training data that only emerges during deployment.
+
+This also suggests the three innovations might be more tightly integrated than the "independently valuable" framing implies. Better retrieval candidates feed into more compilable outputs, which in turn generate richer reward signals for the decision-making component — the synergy runs deeper than just having three separate improvements.
+
+Now I'm thinking about a potential vulnerability: couldn't you just throw more inference-time compute at a static system like Aria instead of doing weight updates? Aria already hits 42.9% on homological conjectures while other models are at zero, and approaches like FormalEvolve use test-time search without any weight adaptation. What's the actual advantage of learning during deployment versus simply scaling up sampling or iterations?
+
+The proposal frames TTRL as a third scaling axis alongside training and inference compute, which is clever, but it doesn't make a direct case for why weight adaptation beats just generating more samples. That's a gap worth addressing.
+
+Though thinking it through more carefully, TTRL and sampling aren't really competing—TTRL improves the quality of each sample rather than just multiplying them. And for truly out-of-distribution domains where the model has weak initial coverage, no amount of sampling from a frozen model will help. The real argument is that the model needs to *learn* new patterns, not just search harder within its existing capabilities. That's actually quite compelling if stated directly.
+
+So the core opportunities I'm seeing: the feedback loop between DDRL optimization and CriticLean calibration is the real innovation here, but it's undersold. And the case for why weight adaptation matters more than inference-time scaling could be sharpened. , which would fundamentally reshape how we think about scaling in code generation. I should also check whether anyone's already explored test-time reinforcement learning in code or formal verification contexts—that would be the most direct competitor to what we're proposing here.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "842f08ca-ea05-44ee-817c-7eb08fa1f9dd",
+  "isSidechain": false,
+  "requestId": "req_011CbUSCJrc4Ao95jyuPLsFT",
+  "type": "assistant",
+  "uuid": "969f5782-8aa6-4440-8546-cdb6c74613d0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QpLqskkbMAAkGaH34b7epe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 33806,
+      "output_tokens": 2966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2966,
+          "cache_read_input_tokens": 33806,
+          "cache_creation_input_tokens": 728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-28T05:45:21.411Z_
+
+Let me do one more targeted search to check for potential threats to the novelty claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "969f5782-8aa6-4440-8546-cdb6c74613d0",
+  "isSidechain": false,
+  "requestId": "req_011CbUSCJrc4Ao95jyuPLsFT",
+  "type": "assistant",
+  "uuid": "5b3f4fbd-5463-4fbf-9e48-fe5ba4f500e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QpLqskkbMAAkGaH34b7epe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 33806,
+      "output_tokens": 2966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2966,
+          "cache_read_input_tokens": 33806,
+          "cache_creation_input_tokens": 728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-28T05:45:21.414Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019WUzdPKXN4iD8aAtWQBpfN`</summary>
+
+```json
+{
+  "query": "test-time reinforcement learning code generation formal verification compiler feedback weight adaptation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b3f4fbd-5463-4fbf-9e48-fe5ba4f500e5",
+  "isSidechain": false,
+  "requestId": "req_011CbUSCJrc4Ao95jyuPLsFT",
+  "type": "assistant",
+  "uuid": "d5bd264f-8288-4bb2-b131-adf526c726a5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QpLqskkbMAAkGaH34b7epe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 33806,
+      "output_tokens": 2966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2966,
+          "cache_read_input_tokens": 33806,
+          "cache_creation_input_tokens": 728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization  ## Core Problem  Current autoformalization models—even those achieving strong in-distribution results (ATF…",
+  "leafUuid": "d5bd264f-8288-4bb2-b131-adf526c726a5",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "TTRA: Test-time retrieval-augmented autoformalization research",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-28T05:45:31.759Z_
+
+<details><summary>↩ Tool result · `toolu_019WUzdPKXN4iD8aAtWQBpfN`</summary>
+
+```text
+Web search results for query: "test-time reinforcement learning code generation formal verification compiler feedback weight adaptation 2025 2026"
+
+Links: [{"title":"ReVeal: Self-Evolving Code Agents via Reliable Self-Verification","url":"https://arxiv.org/pdf/2506.11442"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"LLM-VeriOpt: Verification-Guided Reinforcement Learning for LLM-Based Compiler Optimization (CGO 2026 - Main Conference) - CGO 2026","url":"https://2026.cgo.org/details/cgo-2026-papers/37/LLM-VeriOpt-Verification-Guided-Reinforcement-Learning-for-LLM-Based-Compiler-Optimi"},{"title":"AlphaVerus: Bootstrapping Formally Verified Code Generation through   Self-Improving Translation and Treefinement","url":"https://arxiv.org/pdf/2412.06176"},{"title":"Inference-Time Scaling of Verification: Self-Evolving Deep Research Agents via Test-Time Rubric-Guided Verification","url":"https://arxiv.org/html/2601.15808v2"},{"title":"Propose, Solve, Verify: Self-Play Through Formal Verification","url":"https://arxiv.org/pdf/2512.18160"}]
+
+Based on the web search results, here are some highly relevant recent papers and research on test-time reinforcement learning, code generation, formal verification, and compiler feedback for 2025-2026:
+
+## Key Recent Works
+
+**ReVeal: Self-Evolving Code Agents via Reliable Self-Verification**
+ReVeal enables effective test-time scaling, with Pass@1 accuracy improving from 36.9% at turn 1 to 42.4% at turn 19. This turn-level supervision explicitly optimizes self-verification and iterative refinement, and enables effective verification-driven test-time scaling.
+
+**LLM-VeriOpt: Verification-Guided Reinforcement Learning for LLM-Based Compiler Optimization**
+LLM-VeriOpt presents a novel reinforcement-learning methodology that incorporates feedback from a formal verifier, Alive2, to guide the training of a small-scale model, Qwen-3B. This directly addresses compiler feedback with formal verification.
+
+**Propose, Solve, Verify: Self-Play Through Formal Verification**
+PSV uses formal verification to unlock a new paradigm for self-play in code generation. The work includes a difficulty-aware proposer that adapts the difficulty of proposed specifications based on the solver's current pass rates, which relates to weight adaptation mechanisms.
+
+**AlphaVerus: Bootstrapping Formally Verified Code Generation**
+This approach generates code in verification-aware programming languages such as Dafny, F*, or Verus, which offer mathematical guarantees that a program obeys a specification for all possible inputs.
+
+These papers represent cutting-edge research combining test-time reinforcement learning with formal verification for code generation and compiler optimization in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5bd264f-8288-4bb2-b131-adf526c726a5",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "cc9ed8bb-8464-4266-aa5e-b4fdadec9144",
+  "toolUseResult": {
+    "query": "test-time reinforcement learning code generation formal verification compiler feedback weight adaptation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QwXuaGDiJL81bz6VwDCAvK",
+        "content": [
+          {
+            "title": "ReVeal: Self-Evolving Code Agents via Reliable Self-Verification",
+            "url": "https://arxiv.org/pdf/2506.11442"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "LLM-VeriOpt: Verification-Guided Reinforcement Learning for LLM-Based Compiler Optimization (CGO 2026 - Main Conference) - CGO 2026",
+            "url": "https://2026.cgo.org/details/cgo-2026-papers/37/LLM-VeriOpt-Verification-Guided-Reinforcement-Learning-for-LLM-Based-Compiler-Optimi"
+          },
+          {
+            "title": "AlphaVerus: Bootstrapping Formally Verified Code Generation through   Self-Improving Translation and Treefinement",
+            "url": "https://arxiv.org/pdf/2412.06176"
+          },
+          {
+            "title": "Inference-Time Scaling of Verification: Self-Evolving Deep Research Agents via Test-Time Rubric-Guided Verification",
+            "url": "https://arxiv.org/html/2601.15808v2"
+          },
+          {
+            "title": "Propose, Solve, Verify: Self-Play Through Formal Verification",
+            "url": "https://arxiv.org/pdf/2512.18160"
+          }
+        ]
+      },
+      "Based on the web search results, here are some highly relevant recent papers and research on test-time reinforcement learning, code generation, formal verification, and compiler feedback for 2025-2026:\n\n## Key Recent Works\n\n**ReVeal: Self-Evolving Code Agents via Reliable Self-Verification**\nReVeal enables effective test-time scaling, with Pass@1 accuracy improving from 36.9% at turn 1 to 42.4% at turn 19. This turn-level supervision explicitly optimizes self-verification and iterative refinement, and enables effective verification-driven test-time scaling.\n\n**LLM-VeriOpt: Verification-Guided Reinforcement Learning for LLM-Based Compiler Optimization**\nLLM-VeriOpt presents a novel reinforcement-learning methodology that incorporates feedback from a formal verifier, Alive2, to guide the training of a small-scale model, Qwen-3B. This directly addresses compiler feedback with formal verification.\n\n**Propose, Solve, Verify: Self-Play Through Formal Verification**\nPSV uses formal verification to unlock a new paradigm for self-play in code generation. The work includes a difficulty-aware proposer that adapts the difficulty of proposed specifications based on the solver's current pass rates, which relates to weight adaptation mechanisms.\n\n**AlphaVerus: Bootstrapping Formally Verified Code Generation**\nThis approach generates code in verification-aware programming languages such as Dafny, F*, or Verus, which offer mathematical guarantees that a program obeys a specification for all possible inputs.\n\nThese papers represent cutting-edge research combining test-time reinforcement learning with formal verification for code generation and compiler optimization in 2025-2026."
+    ],
+    "durationSeconds": 10.338789110000013,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d5bd264f-8288-4bb2-b131-adf526c726a5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-28T05:45:37.774Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting — LLM-VeriOpt is somewhat related: it uses formal verification feedback (from Alive2) to guide RL training. But it's for compiler optimization, not autoformalization. PSV uses formal verification for self-play in code generation, but again, it's not TTRL for autoformalization.
+
+None of these directly threaten the core novelty claim of TTRA. The closest is LLM-VeriOpt, which uses formal verifier feedback in RL, but it's at training time, not test time, and it's for a completely different domain (compiler optimization).
+
+
+Let me also check if there's recent work combining test-time RL with more nuanced reward structures beyond just pass/fail signals.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc9ed8bb-8464-4266-aa5e-b4fdadec9144",
+  "isSidechain": false,
+  "requestId": "req_011CbUSJzBtnrS7EWy4jATc8",
+  "type": "assistant",
+  "uuid": "697535ab-4ab0-4ac4-a9d9-a7badecbe358",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8Z9JHk2xC7UDaVppwsRvg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 34534,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 34534,
+          "cache_creation_input_tokens": 3769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-28T05:45:37.782Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LnL5rhLtXheR1xGkXGiWeT`</summary>
+
+```json
+{
+  "query": "\"test-time RL\" OR \"TTRL\" structured reward multi-tier beyond binary verifiable 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "697535ab-4ab0-4ac4-a9d9-a7badecbe358",
+  "isSidechain": false,
+  "requestId": "req_011CbUSJzBtnrS7EWy4jATc8",
+  "type": "assistant",
+  "uuid": "1de5b4ae-4fd7-4ed9-bf07-f52370fac9fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8Z9JHk2xC7UDaVppwsRvg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3769,
+      "cache_read_input_tokens": 34534,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 34534,
+          "cache_creation_input_tokens": 3769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-28T05:45:47.670Z_
+
+<details><summary>↩ Tool result · `toolu_01LnL5rhLtXheR1xGkXGiWeT`</summary>
+
+```text
+Web search results for query: ""test-time RL" OR "TTRL" structured reward multi-tier beyond binary verifiable 2026"
+
+Links: [{"title":"TTRL: Test-Time Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=VuVhgEiu20"},{"title":"arXiv:2504.16084v3 [cs.CL] 30 Jun 2025 TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2504.16084"},{"title":"GitHub - PRIME-RL/TTRL: [NeurIPS 2025] TTRL: Test-Time Reinforcement Learning · GitHub","url":"https://github.com/prime-rl/ttrl"},{"title":"[2504.16084] TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/abs/2504.16084"},{"title":"[Literature Review] TTRL: Test-Time Reinforcement Learning","url":"https://www.themoonlight.io/en/review/ttrl-test-time-reinforcement-learning"},{"title":"Tool Verification for Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2603.02203"},{"title":"ETTRL: Balancing Exploration and Exploitation in LLM Test-Time Reinforcement Learning Via Entropy Mechanism","url":"https://arxiv.org/html/2508.11356v1"},{"title":"Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2512.15146"},{"title":"How Top AI Labs Are Building RL Agents in 2026","url":"https://blog.dailydoseofds.com/p/how-top-ai-labs-are-building-rl-agents"}]
+
+I found several relevant results on Test-Time Reinforcement Learning (TTRL) and related approaches. Here's what the search revealed:
+
+## Core TTRL Framework
+
+Test-Time Reinforcement Learning (TTRL) is a novel method for training LLMs using RL on unlabeled data. The core challenge is reward estimation during inference without ground-truth information, though common practices in Test-Time Scaling like majority voting yield surprisingly effective rewards suitable for driving RL training.
+
+TTRL is an open-source solution for online RL on data without ground-truth labels, especially test data. TTRL boosts the pass@1 performance of Qwen-2.5-Math-7B by approximately 211% on the AIME 2024 with only unlabeled test data.
+
+## Beyond Binary Rewards: Structured Reward Approaches
+
+Recent work extends beyond simple binary verification. While TTRL provides an effective framework, its reliance on majority voting for pseudo-label generation represents a significant bottleneck, as this coarse-grained estimation treats all votes equally regardless of their underlying confidence.
+
+T³RL (Tool-Verification for Test-Time Reinforcement Learning) introduces test-time tool verification into reward estimation, with a verifier utilizing external tools as evidence to upweight verified rollouts in verification-aware voting, producing more reliable pseudo-labels.
+
+Additionally, OpenAI is developing "Universal Verifiers" to extend RL beyond math and code into domains like biology and medicine where answers can't be checked with simple matching, seeking general-purpose reward signals that work across any domain.
+
+## 2026 Developments
+
+As of March 2026, research has investigated Unsupervised RLVR (URLVR), which is particularly well suited for test-time training, with the paper accepted to ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1de5b4ae-4fd7-4ed9-bf07-f52370fac9fa",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "991f00a5-7f8b-4092-b127-24ee58934658",
+  "toolUseResult": {
+    "query": "\"test-time RL\" OR \"TTRL\" structured reward multi-tier beyond binary verifiable 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VVNzv7gk2QSoBvPxo3rAzM",
+        "content": [
+          {
+            "title": "TTRL: Test-Time Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=VuVhgEiu20"
+          },
+          {
+            "title": "arXiv:2504.16084v3 [cs.CL] 30 Jun 2025 TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2504.16084"
+          },
+          {
+            "title": "GitHub - PRIME-RL/TTRL: [NeurIPS 2025] TTRL: Test-Time Reinforcement Learning · GitHub",
+            "url": "https://github.com/prime-rl/ttrl"
+          },
+          {
+            "title": "[2504.16084] TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2504.16084"
+          },
+          {
+            "title": "[Literature Review] TTRL: Test-Time Reinforcement Learning",
+            "url": "https://www.themoonlight.io/en/review/ttrl-test-time-reinforcement-learning"
+          },
+          {
+            "title": "Tool Verification for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2603.02203"
+          },
+          {
+            "title": "ETTRL: Balancing Exploration and Exploitation in LLM Test-Time Reinforcement Learning Via Entropy Mechanism",
+            "url": "https://arxiv.org/html/2508.11356v1"
+          },
+          {
+            "title": "Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2512.15146"
+          },
+          {
+            "title": "How Top AI Labs Are Building RL Agents in 2026",
+            "url": "https://blog.dailydoseofds.com/p/how-top-ai-labs-are-building-rl-agents"
+          }
+        ]
+      },
+      "I found several relevant results on Test-Time Reinforcement Learning (TTRL) and related approaches. Here's what the search revealed:\n\n## Core TTRL Framework\n\nTest-Time Reinforcement Learning (TTRL) is a novel method for training LLMs using RL on unlabeled data. The core challenge is reward estimation during inference without ground-truth information, though common practices in Test-Time Scaling like majority voting yield surprisingly effective rewards suitable for driving RL training.\n\nTTRL is an open-source solution for online RL on data without ground-truth labels, especially test data. TTRL boosts the pass@1 performance of Qwen-2.5-Math-7B by approximately 211% on the AIME 2024 with only unlabeled test data.\n\n## Beyond Binary Rewards: Structured Reward Approaches\n\nRecent work extends beyond simple binary verification. While TTRL provides an effective framework, its reliance on majority voting for pseudo-label generation represents a significant bottleneck, as this coarse-grained estimation treats all votes equally regardless of their underlying confidence.\n\nT³RL (Tool-Verification for Test-Time Reinforcement Learning) introduces test-time tool verification into reward estimation, with a verifier utilizing external tools as evidence to upweight verified rollouts in verification-aware voting, producing more reliable pseudo-labels.\n\nAdditionally, OpenAI is developing \"Universal Verifiers\" to extend RL beyond math and code into domains like biology and medicine where answers can't be checked with simple matching, seeking general-purpose reward signals that work across any domain.\n\n## 2026 Developments\n\nAs of March 2026, research has investigated Unsupervised RLVR (URLVR), which is particularly well suited for test-time training, with the paper accepted to ICLR 2026."
+    ],
+    "durationSeconds": 9.883307120000012,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1de5b4ae-4fd7-4ed9-bf07-f52370fac9fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-28T05:45:53.298Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very interesting! "Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning" (arXiv:2512.15146) is potentially relevant. Let me check this more carefully, as it seems to address the issue of moving beyond binary rewards in TTRL settings.
+
+Also "Tool Verification for Test-Time Reinforcement Learning" (T³RL) is relevant — it introduces external tool verification into TTRL reward estimation, which is conceptually parallel to using Lean's compiler as a verification tool for TTRL.
+
+Let me search for the "Beyond Majority Voting" paper specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "991f00a5-7f8b-4092-b127-24ee58934658",
+  "isSidechain": false,
+  "requestId": "req_011CbUSLABS9RqW4aicgaEYA",
+  "type": "assistant",
+  "uuid": "9b11e4fc-d795-4849-9a59-664c55e01f9f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvvoEgLAVesFnQKh6NnKmB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 38303,
+      "output_tokens": 238,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 238,
+          "cache_read_input_tokens": 38303,
+          "cache_creation_input_tokens": 1149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-28T05:45:54.627Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FoB6GAGWVB8N9vwZPrGBhL`</summary>
+
+```json
+{
+  "query": "\"Beyond Majority Voting\" fine-grained reward signal test-time reinforcement learning arXiv 2512.15146"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b11e4fc-d795-4849-9a59-664c55e01f9f",
+  "isSidechain": false,
+  "requestId": "req_011CbUSLABS9RqW4aicgaEYA",
+  "type": "assistant",
+  "uuid": "edad0636-9a95-481f-bd16-a693a98a24ab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvvoEgLAVesFnQKh6NnKmB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 38303,
+      "output_tokens": 238,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 238,
+          "cache_read_input_tokens": 38303,
+          "cache_creation_input_tokens": 1149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-28T05:46:01.040Z_
+
+<details><summary>↩ Tool result · `toolu_01FoB6GAGWVB8N9vwZPrGBhL`</summary>
+
+```text
+Web search results for query: ""Beyond Majority Voting" fine-grained reward signal test-time reinforcement learning arXiv 2512.15146"
+
+Links: [{"title":"GitHub - szu-tera/SCOPE: Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement","url":"https://github.com/szu-tera/SCOPE"},{"title":"[2512.15146] Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning","url":"https://arxiv.org/abs/2512.15146"},{"title":"Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2512.15146"},{"title":"(PDF) Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning","url":"https://www.researchgate.net/publication/398806159_Beyond_Majority_Voting_Towards_Fine-grained_and_More_Reliable_Reward_Signal_for_Test-Time_Reinforcement_Learning"},{"title":"Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2512.15146v1"}]
+
+Based on the search results, here's what I found:
+
+This paper is titled "Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning" by Wang, Weiqin and Wang, Yile and Chen, Kehao and Huang, Hui, published on arXiv as preprint 2512.15146 in 2025.
+
+**Summary of the work:**
+
+Test-time reinforcement learning mitigates the reliance on annotated data by using majority voting results as pseudo-labels, emerging as a complementary direction to reinforcement learning with verifiable rewards (RLVR) for improving reasoning ability of large language models (LLMs). However, this voting strategy often induces confirmation bias and suffers from sparse rewards, limiting the overall performance.
+
+**Proposed Solution:**
+
+The authors propose SCOPE (subgroup-specific step-wise confidence-weighted pseudo-label estimation), a framework integrating model confidence and dynamic subgroup partitioning to address these issues. SCOPE integrates step-wise confidence into pseudo label deduction, prioritizing high-quality reasoning paths over simple frequency count, and dynamically partitions the candidate outputs pool into independent subgroups by balancing reasoning quality against exploration diversity.
+
+You can access the full paper on [arXiv](https://arxiv.org/abs/2512.15146) or the [GitHub repository](https://github.com/szu-tera/SCOPE).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "edad0636-9a95-481f-bd16-a693a98a24ab",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "038d05c9-3068-4602-a224-bfc61cdcb956",
+  "toolUseResult": {
+    "query": "\"Beyond Majority Voting\" fine-grained reward signal test-time reinforcement learning arXiv 2512.15146",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wf27Un7nGkczqVLXVaax3q",
+        "content": [
+          {
+            "title": "GitHub - szu-tera/SCOPE: Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement",
+            "url": "https://github.com/szu-tera/SCOPE"
+          },
+          {
+            "title": "[2512.15146] Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2512.15146"
+          },
+          {
+            "title": "Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2512.15146"
+          },
+          {
+            "title": "(PDF) Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/398806159_Beyond_Majority_Voting_Towards_Fine-grained_and_More_Reliable_Reward_Signal_for_Test-Time_Reinforcement_Learning"
+          },
+          {
+            "title": "Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2512.15146v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\nThis paper is titled \"Beyond Majority Voting: Towards Fine-grained and More Reliable Reward Signal for Test-Time Reinforcement Learning\" by Wang, Weiqin and Wang, Yile and Chen, Kehao and Huang, Hui, published on arXiv as preprint 2512.15146 in 2025.\n\n**Summary of the work:**\n\nTest-time reinforcement learning mitigates the reliance on annotated data by using majority voting results as pseudo-labels, emerging as a complementary direction to reinforcement learning with verifiable rewards (RLVR) for improving reasoning ability of large language models (LLMs). However, this voting strategy often induces confirmation bias and suffers from sparse rewards, limiting the overall performance.\n\n**Proposed Solution:**\n\nThe authors propose SCOPE (subgroup-specific step-wise confidence-weighted pseudo-label estimation), a framework integrating model confidence and dynamic subgroup partitioning to address these issues. SCOPE integrates step-wise confidence into pseudo label deduction, prioritizing high-quality reasoning paths over simple frequency count, and dynamically partitions the candidate outputs pool into independent subgroups by balancing reasoning quality against exploration diversity.\n\nYou can access the full paper on [arXiv](https://arxiv.org/abs/2512.15146) or the [GitHub repository](https://github.com/szu-tera/SCOPE)."
+    ],
+    "durationSeconds": 6.408207813000016,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "edad0636-9a95-481f-bd16-a693a98a24ab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-28T05:46:06.462Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+SCOPE is relevant but addresses a different aspect — it's about improving pseudo-label quality through step-wise confidence and subgroup partitioning. It doesn't use structured compiler feedback or multi-tier rewards. TTRA's approach is fundamentally different: it leverages the formal verification infrastructure to get richer reward signals, not just better pseudo-labels.
+
+Also, T³RL (Tool Verification for Test-Time RL) uses external tools for verification, which is conceptually related to using Lean's compiler. Let me check this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "038d05c9-3068-4602-a224-bfc61cdcb956",
+  "isSidechain": false,
+  "requestId": "req_011CbUSM9NqmVEDW67tcWuJV",
+  "type": "assistant",
+  "uuid": "cb759a7e-100d-406f-a07c-dbdc7e9d8430",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Bvtk4VrK5S5Q1jdwQkiv6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 39452,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 39452,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-28T05:46:07.257Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FrDwR28PVftSqEESnsjsv7`</summary>
+
+```json
+{
+  "query": "T3RL \"tool verification\" test-time reinforcement learning external tools reward estimation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb759a7e-100d-406f-a07c-dbdc7e9d8430",
+  "isSidechain": false,
+  "requestId": "req_011CbUSM9NqmVEDW67tcWuJV",
+  "type": "assistant",
+  "uuid": "d34877b1-abd7-4004-82a8-3fa9eb6696da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Bvtk4VrK5S5Q1jdwQkiv6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 39452,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 39452,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-28T05:46:13.734Z_
+
+<details><summary>↩ Tool result · `toolu_01FrDwR28PVftSqEESnsjsv7`</summary>
+
+```text
+Web search results for query: "T3RL "tool verification" test-time reinforcement learning external tools reward estimation 2026"
+
+Links: [{"title":"Tool Verification for Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2603.02203"},{"title":"[2603.02203] Tool Verification for Test-Time Reinforcement Learning","url":"https://arxiv.org/abs/2603.02203"},{"title":"Tool Verification for Test-Time Reinforcement Learning","url":"https://arxiv.org/html/2603.02203v1"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Test-Time+Reinforcement+Learning+(TTRL)"},{"title":"Distribution-Aware Reward Estimation for Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2601.21804"}]
+
+I found the paper you're looking for! Here are the search results:
+
+## T³RL: Tool Verification for Test-Time Reinforcement Learning
+
+T³RL (Tool-Verification for Test-Time Reinforcement Learning) introduces test-time tool verification into reward estimation. Test-time reinforcement learning (TTRL) enables online adaptation on unlabeled test inputs via self-induced rewards through majority voting, but a spurious yet high-frequency unverified consensus can become a biased and reinforced reward signal, leading to incorrect mode collapse.
+
+**Key Innovation:**
+A verifier uses an external tool as evidence (e.g., from code execution) to upweight verified rollouts in a verification-aware voting, producing more reliable pseudo-labels for training.
+
+**Results:**
+Across various math difficulties (MATH-500, AMC, and AIME 2024) and diverse backbone types, T³RL significantly improves over TTRL, with larger gains on harder problems.
+
+The paper was published in March 2026 on arXiv (paper ID: 2603.02203) and represents a contribution to verified online data synthesis and self-evolving large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d34877b1-abd7-4004-82a8-3fa9eb6696da",
+  "isSidechain": false,
+  "promptId": "c2d2d6e3-378e-4b56-b22f-1be7ee5dd2b8",
+  "type": "user",
+  "uuid": "4402187e-280e-4216-a087-2ad1cc55bfc2",
+  "toolUseResult": {
+    "query": "T3RL \"tool verification\" test-time reinforcement learning external tools reward estimation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012M6TyVuT9CSusdHfqp2pqk",
+        "content": [
+          {
+            "title": "Tool Verification for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2603.02203"
+          },
+          {
+            "title": "[2603.02203] Tool Verification for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2603.02203"
+          },
+          {
+            "title": "Tool Verification for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.02203v1"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Test-Time+Reinforcement+Learning+(TTRL)"
+          },
+          {
+            "title": "Distribution-Aware Reward Estimation for Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2601.21804"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the search results:\n\n## T³RL: Tool Verification for Test-Time Reinforcement Learning\n\nT³RL (Tool-Verification for Test-Time Reinforcement Learning) introduces test-time tool verification into reward estimation. Test-time reinforcement learning (TTRL) enables online adaptation on unlabeled test inputs via self-induced rewards through majority voting, but a spurious yet high-frequency unverified consensus can become a biased and reinforced reward signal, leading to incorrect mode collapse.\n\n**Key Innovation:**\nA verifier uses an external tool as evidence (e.g., from code execution) to upweight verified rollouts in a verification-aware voting, producing more reliable pseudo-labels for training.\n\n**Results:**\nAcross various math difficulties (MATH-500, AMC, and AIME 2024) and diverse backbone types, T³RL significantly improves over TTRL, with larger gains on harder problems.\n\nThe paper was published in March 2026 on arXiv (paper ID: 2603.02203) and represents a contribution to verified online data synthesis and self-evolving large language models."
+    ],
+    "durationSeconds": 6.471136280999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d34877b1-abd7-4004-82a8-3fa9eb6696da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization  ## Core Problem  Current autoformalization models—even those achieving strong in-distribution results (ATF…",
+  "leafUuid": "4402187e-280e-4216-a087-2ad1cc55bfc2",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "TTRA: Test-time retrieval-augmented autoformalization research",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-28T05:46:21.812Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+T³RL is relevant but different from TTRA. T³RL uses external tools (code execution) to verify majority voting results, essentially improving pseudo-label quality. TTRA uses the Lean compiler's structured error messages not just for verification but as a graded hierarchy of adaptation signals for retriever training. The key difference:
+- T³RL: tool verification → better pseudo-labels → better binary reward
+- TTRA: compiler errors → graded error taxonomy → retriever training + multi-tier reward
+
+TTRA goes much further by exploiting the *structure* of the error messages, not just their binary verdict.
+
+
+I should also look into whether there's existing work on using error signals to directly guide retriever adaptation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4402187e-280e-4216-a087-2ad1cc55bfc2",
+  "isSidechain": false,
+  "requestId": "req_011CbUSN5naAgsojQkG3DPbX",
+  "type": "assistant",
+  "uuid": "bd28da75-545a-474a-9924-da99be9c4bfa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DDpvqG1YSeFkY997cNZFAH",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 40393,
+      "output_tokens": 4309,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 714,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4309,
+          "cache_read_input_tokens": 40393,
+          "cache_creation_input_tokens": 714,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 714
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-28T05:47:52.513Z_
+
+Now I have sufficient research context. Let me synthesize my findings and produce the assessment.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **T³RL (arXiv:2603.02203, Mar 2026)**: Uses external tool verification (code execution) to improve TTRL pseudo-labels via verification-aware voting. Conceptually adjacent to TTRA's use of Lean compiler as verification tool, but T³RL treats tool output as binary (verified/unverified) to upweight majority voting, whereas TTRA exploits the *structure* of compiler error messages as graded retriever training signals. TTRA should explicitly distinguish itself from T³RL.
+- **SCOPE (arXiv:2512.15146, Dec 2025)**: Proposes step-wise confidence-weighted pseudo-labels and dynamic subgroup partitioning to move beyond majority voting in TTRL. Addresses reward quality but stays within the binary-reward paradigm for informal math. Does not use structured external feedback.
+- **TEMPO (arXiv:2604.19295, Apr 2026)**: Formalizes test-time training via EM, showing critic recalibration prevents signal drift and enables sustained improvement. Directly parallel to TTRA's dual-loop design (formalizer update = M-step; retriever update + critic recalibration = E-step analogue). TTRA does not leverage this theoretical connection.
+- **LLM-VeriOpt (CGO 2026)**: Uses formal verifier (Alive2) feedback to guide RL training for compiler optimization. Demonstrates verification-guided RL at training time, but in a completely different domain and not at test time.
+- **MathAtlas (arXiv:2605.14061, May 2026)**: 52K graduate-level problems; best model achieves only 2.6% on MA-Hard (9.8% on theorems overall). Confirms massive OOD gap and validates the need for domain adaptation. The 66% advantage for Mathlib-grounded definitions (27.9% vs 16.8%, p<0.001) directly supports TTRA's retrieval-centric thesis.
+- **AMBER/Construction-Verification (arXiv:2602.01291, Feb 2026)**: 47.3% of compilation errors are identifier hallucination on applied math domains. The strongest quantitative evidence for TTRA's retrieval hypothesis.
+- **FormalEvolve (arXiv:2603.19828, Mar 2026)**: Evolutionary test-time search without weight adaptation. SH@100=58.0% on CombiBench. Represents the strongest "trivial alternative" to TTRA's test-time weight adaptation — achieves strong results through search over fixed models.
+- **Seed-Prover 1.5**: Agentic RL + test-time scaling for theorem *proving* (not autoformalization). 88% PutnamBench, 80% Fate-H. Shows the power of formal verification as an RL training signal, but for a different task.
+- **Dymetman (arXiv:2605.02375, May 2026)**: Theoretical analysis showing binary rewards create fundamental degeneracy for policy gradient methods, leading to diversity collapse. Directly supports TTRA's argument for multi-tier reward designs.
+- 调研总结: The field is converging on two parallel fronts — (1) improving TTRL reward quality beyond naive majority voting (T³RL, SCOPE, DDRL) but still within informal-math binary-reward settings, and (2) leveraging formal verification as RL training signal (LLM-VeriOpt, Seed-Prover, AlphaProof) but for theorem proving, not autoformalization. The intersection — using formal language's structured feedback to enable qualitatively richer TTRL for autoformalization — is genuinely unoccupied. However, the *framing* of why this intersection matters could be substantially sharper.
+
+---
+
+【发掘点 1】
+- 维度: related work 差异化 / trivial alternative 威胁
+- 内容: **T³RL (Mar 2026) is a missing, highly relevant baseline that directly threatens the novelty narrative if not addressed.** T³RL introduces tool-verified rewards into TTRL — conceptually, Lean compilation is also "tool verification." The proposal must explicitly articulate the qualitative gap: T³RL uses tool output as a *binary* verification signal to upweight majority voting (verified vs. unverified), collapsing all tool feedback into a single bit. TTRA exploits the *internal structure* of Lean's error messages as a graded hierarchy of retriever training signals (Tier 1: exact identifier → Tier 2: type signature → Tier 3: negative confirmation). This is not "using a tool for verification" — it's "mining structured feedback for co-adaptive learning." Without this distinction, a reviewer familiar with T³RL will see TTRA as an incremental application of tool-verified TTRL to a new domain.
+- 价值: 提升 Related Work 差异化的精确度。如果审稿人知道 T³RL，当前 proposal 的 novelty claim 可能被质疑为 "tool-verified TTRL applied to Lean"。显式区分 binary verification vs. structured error mining 可以防住这个攻击角度。
+- 调研依据: T³RL (arXiv:2603.02203) uses code execution as tool verification for TTRL, published Mar 2026. 当前 proposal 的 Related Work 中未提及。
+
+【发掘点 2】
+- 维度: 核心 claim 强化 / novelty 锐化
+- 内容: **Co-adaptive retrieval 的核心论点应从 "static retriever becomes stale" 重新锐化为 "compilation errors provide oracle-quality, on-demand retrieval training signals unavailable at any other time."** 当前 framing 是"static retrieval becomes stale as the formalizer's behavior shifts"，这是一个防御性论点（反驳 static retrieval 的不足），但不够有力——审稿人可能反驳说 static retriever 在大多数场景下足够好（Aria 已经在 homological conjectures 上做到 42.9%）。更有力的 framing 是进攻性的：当 Lean 编译器报告 `unknownIdentifier "Finset.sum_bij"` 时，这直接告诉你需要检索什么 Mathlib 定义——这是一个精确到 token 级别的 oracle 信号。在预训练或 SFT 阶段，这种信号不存在（因为没有 compilation feedback）；在 inference-time search 中，这种信号被丢弃（FormalEvolve 只用编译成功/失败）。只有在 test-time RL 过程中，compilation errors 才能被持续收集并用于检索器训练——这使 co-adaptive retrieval 成为一种只有 TTRL 才能 unlock 的能力，而不仅仅是"让 TTRL 更好的辅助手段"。
+- 价值: 将 co-adaptive retrieval 从"辅助组件"提升为"TTRL 在形式化设定下独有的 emergent capability"，直接提升 Novelty 维度的说服力。同时更好地回答"为什么不直接用 Aria/FormalEvolve 这类 inference-time 方法"这个 trivial alternative 质疑。
+- 调研依据: FormalEvolve (arXiv:2603.19828) 在 CombiBench 上达到 SH@100=58.0%，证明 inference-time search 本身有效，但不适应检索器；Aria (ICLR 2026) 的 static retriever 在 OOD 覆盖不足时无法自我改进。二者都浪费了 compilation error 中的结构化信息。
+
+【发掘点 3】
+- 维度: significance 提升
+- 内容: **利用 TEMPO 的 EM 理论框架为 TTRA 的 dual-loop 架构提供理论 grounding，将 TTRA 从 "an engineering system" 提升为 "a theoretically motivated paradigm."** TEMPO (Apr 2026) 将 TTT 形式化为 EM 算法：policy refinement 是 M-step，critic recalibration 是 E-step。TTRA 的 dual-loop 架构天然对应一个扩展的 EM：(1) candidate generation + compilation + error classification = E-step（观测隐变量：哪些 Mathlib 依赖是 relevant 的）；(2) formalizer GRPO update = M-step for policy；(3) retriever contrastive update = M-step for retrieval model（或可视为隐变量更新）。TEMPO 的核心理论贡献是证明忽略 recalibration step 会导致 ELBO 退化和 diversity collapse。TTRA 可以类比论证：忽略 retriever update（= 退化为 static retrieval TTRL）会导致 retrieval ELBO 退化，即 retriever 与 formalizer 的分布 mismatch 持续累积。这不需要严格的数学证明，只需要将 TEMPO 的 EM interpretation 作为 conceptual framework 来 motivate dual-loop 设计的理论必要性。
+- 价值: 提升 Significance 维度。当前 proposal 的理论 grounding 较弱——三个技术创新的动机都是经验性的（"identifier hallucination 很多所以需要 retrieval"、"GRPO 有 bias 所以需要 debiasing"）。EM 框架可以将这些经验性动机统一在一个理论框架下，使 reviewer 看到 TTRA 不仅是"组合了三个 trick"，而是一个理论上 well-motivated 的 paradigm。TEMPO 已被接受为有影响力的工作，引用其理论框架可以提升 TTRA 的学术站位。
+- 调研依据: TEMPO (arXiv:2604.19295, Apr 2026) 的 EM 形式化和 "incomplete EM variants lead to ELBO degradation" 理论结果。
+
+【发掘点 4】
+- 维度: trivial alternative 威胁
+- 内容: **当前 proposal 未充分回应 "inference-time scaling as trivial alternative" 这一最强质疑。** FormalEvolve 通过 evolutionary search 在 CombiBench 上达到 SH@100=58.0%，Aria 通过 iterative retrieval 在 homological conjectures 上达到 42.9%（其他模型 0%）。这些方法不需要 weight adaptation，计算成本更可预测。审稿人完全可能质疑：为什么不直接用 Aria + 更多 compute，或 FormalEvolve + 更大 budget，而要做 TTRL 这种更复杂的 weight adaptation？Proposal 的 "test-time learning as a third scaling axis" 说法目前只是一个口号，缺少具体论证。建议在 framing 中明确论证 weight adaptation 的不可替代性：(1) 对于模型初始覆盖率极低的 far-OOD domain（MathAtlas MA-Hard: 2.6%），fixed model 的 output space 中可能根本不包含正确答案——no amount of sampling can find what the model cannot generate；(2) weight adaptation 可以产生 compounding improvement（第 N 轮生成的更好 formalization 提供更好的 retriever training signal，进一步提升第 N+1 轮），而 inference-time search 没有这种累积效应。
+- 价值: 直接防御 Novelty 和 Significance 维度的最强攻击。如果不回应，reviewer 可能判定 "the added complexity of TTRL is not justified when simpler inference-time methods exist"。
+- 调研依据: FormalEvolve (arXiv:2603.19828) 和 Aria (ICLR 2026, arXiv:2510.04520) 的实验结果表明 inference-time scaling 在某些 OOD benchmark 上已经有效。
+
+【发掘点 5】
+- 维度: novelty 锐化
+- 内容: **"Binarize-then-enrich" 的 novelty 需要更精确地与 SCOPE、Distribution-Aware Reward Estimation 等近期 TTRL reward 改进工作区分。** 当前 proposal 正确指出 DDRL 限于 binary reward、GDPO 不解决 debiasing，二者组合是新的。但近期有多个工作在改进 TTRL reward quality（SCOPE 的 step-wise confidence + subgroup partitioning，T³RL 的 tool-verified voting，Dymetman 的 binary reward 理论分析）。Proposal 应明确定位 "binarize-then-enrich" 的独特价值：它不是一个通用的 "better reward" 方法，而是针对 **heterogeneous reward components**（hard binary gate + noisy soft signal + drifting population statistic）的特定 composition strategy。这种 heterogeneity 只出现在有 formal verification infrastructure 的设定中——informal math reasoning 的 reward 本质上都是 homogeneous 的（都是 binary correct/incorrect 的变体）。
+- 价值: 防御 Novelty 维度中 "binarize-then-enrich 只是另一个 TTRL reward 改进" 的攻击，通过强调 reward heterogeneity 是 formal settings 特有的问题。
+- 调研依据: SCOPE (arXiv:2512.15146)、T³RL (arXiv:2603.02203)、Dymetman (arXiv:2605.02375) 均在改进 TTRL reward，但都假设 homogeneous reward setting。
+
+Sources:
+- [T³RL: Tool Verification for Test-Time Reinforcement Learning](https://arxiv.org/abs/2603.02203)
+- [SCOPE: Beyond Majority Voting](https://arxiv.org/abs/2512.15146)
+- [TEMPO: Scaling Test-time Training for Large Reasoning Models](https://arxiv.org/abs/2604.19295)
+- [GDPO: Group reward-Decoupled Normalization Policy Optimization](https://arxiv.org/abs/2601.05242)
+- [LLM-VeriOpt: Verification-Guided Reinforcement Learning](https://2026.cgo.org/details/cgo-2026-papers/37/LLM-VeriOpt-Verification-Guided-Reinforcement-Learning-for-LLM-Based-Compiler-Optimi)
+- [MathAtlas: A Benchmark for Autoformalization in the Wild](https://arxiv.org/abs/2605.14061)
+- [AMBER/Construction-Verification Benchmark](https://arxiv.org/abs/2602.01291)
+- [FormalEvolve: Neuro-Symbolic Evolutionary Search](https://arxiv.org/abs/2603.19828)
+- [Binary Rewards and RL (Dymetman)](https://arxiv.org/abs/2605.02375)
+- [DDRL: Spurious Signal Amplification in TTRL](https://arxiv.org/abs/2604.21327)
+- [CriticLean](https://arxiv.org/abs/2507.06181)
+- [Aria: Retrieval and Iterative Auto-Formalization](https://arxiv.org/abs/2510.04520)
+- [Distribution-Aware Reward Estimation for TTRL](https://arxiv.org/abs/2601.21804)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd28da75-545a-474a-9924-da99be9c4bfa",
+  "isSidechain": false,
+  "requestId": "req_011CbUSN5naAgsojQkG3DPbX",
+  "type": "assistant",
+  "uuid": "9719b889-bb42-4615-8b45-26ff06db15cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DDpvqG1YSeFkY997cNZFAH",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 40393,
+      "output_tokens": 4309,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 714,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4309,
+          "cache_read_input_tokens": 40393,
+          "cache_creation_input_tokens": 714,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 714
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# TTRA: Critic-Guided Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization  ## Core Problem  Current autoformalization models—even those achieving strong in-distribution results (ATF…",
+  "leafUuid": "9719b889-bb42-4615-8b45-26ff06db15cc",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "TTRA: Test-time retrieval-augmented autoformalization research",
+  "sessionId": "afc9bdd4-3d4d-4d43-a2f3-f495eab5e2e2"
+}
+```
+
+---

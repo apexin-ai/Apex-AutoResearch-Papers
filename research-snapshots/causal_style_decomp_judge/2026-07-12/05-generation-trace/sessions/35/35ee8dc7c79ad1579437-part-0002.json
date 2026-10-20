@@ -1,0 +1,926 @@
+{
+  "schema_version": "1.0",
+  "session_id": "35ee8dc7c79ad1579437",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-28T11:38:03.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FMF4c7U28eaGqQdWMxzeKC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv May 2026 difficulty-aware rubric reward calibration gaming interaction math GRPO\"\n\nLinks: [{\"title\":\"[2602.06717] F-GRPO: Don't Let Your Policy Learn the Obvious and Forget the Rare\",\"url\":\"https://arxiv.org/abs/2602.06717\"},{\"title\":\"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning\",\"url\":\"https://arxiv.org/pdf/2505.09655\"},{\"title\":\"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning\",\"url\":\"https://arxiv.org/pdf/2511.12344\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2505.02387\"},{\"title\":\"Reinforcement Learning with Verifiable Rewards: GRPO's Effective Loss, Dynamics, and Success Amplification\",\"url\":\"https://arxiv.org/pdf/2503.06639\"},{\"title\":\"Training AI Co-Scientists Using Rubric Rewards\",\"url\":\"https://arxiv.org/html/2512.23707\"},{\"title\":\"Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts\",\"url\":\"https://arxiv.org/pdf/2603.21177\"},{\"title\":\"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models\",\"url\":\"https://arxiv.org/html/2605.08061\"},{\"title\":\"Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation\",\"url\":\"https://arxiv.org/pdf/2602.05548\"},{\"title\":\"Rubric-Based Rewards for RL - Deep (Learning) Focus\",\"url\":\"https://cameronrwolfe.substack.com/p/rubric-rl\"}]\n\nI found several relevant arXiv papers related to your search query. Here are the key results:\n\n## Highly Relevant Papers:\n\n1. **Rubric-Grounded Reinforcement Learning** (May 2026) - This paper instantiates a framework using rubrics derived from scientific documents and trains Llama-3.1-8B-Instruct with GRPO, achieving 71.7% normalized reward on held-out rubric evaluation. The framework is domain-agnostic and applies to tasks whose quality can be written as a checklist of weighted criteria.\n\n2. **Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation** (February 2026) - This paper addresses how samples of medium-difficulty exhibit the largest sum of absolute advantage values leading to insufficient training on harder data, and how the reward mechanism is difficulty-agnostic, treating all tasks uniformly without accounting for their complexity.\n\n3. **DRA-GRPO: Diverse Reasoning Paths for Mathematical Reasoning** (May 2026) - This proposes Diversity-aware Reward Adjustment (DRA), which calibrates the reward signal using the semantic density of sampled groups through Submodular Mutual Information (SMI) and Inverse Propensity Scoring (IPS).\n\n4. **RGR-GRPO: Reward and Guidance through Rubrics** (November 2025) - This demonstrates improvements across 14 benchmarks with average improvements of +7.0%, +5.4%, +8.4%, and +6.6% on mathematics, physics, chemistry, and general reasoning tasks, respectively.\n\nThese papers directly address difficulty-aware reward calibration, rubric-based rewards, and GRPO optimization for mathematical and reasoning tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b8febb7-bbd0-4155-8558-45da63d2a4c2",
+            "isSidechain": false,
+            "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+            "type": "user",
+            "uuid": "59281c03-bf9f-4407-8e19-afae6628d882",
+            "toolUseResult": {
+              "query": "arxiv May 2026 difficulty-aware rubric reward calibration gaming interaction math GRPO",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01BFosvCEuEubbgAkk3ChxSB",
+                  "content": [
+                    {
+                      "title": "[2602.06717] F-GRPO: Don't Let Your Policy Learn the Obvious and Forget the Rare",
+                      "url": "https://arxiv.org/abs/2602.06717"
+                    },
+                    {
+                      "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+                      "url": "https://arxiv.org/pdf/2505.09655"
+                    },
+                    {
+                      "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+                      "url": "https://arxiv.org/pdf/2511.12344"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026",
+                      "url": "https://arxiv.org/pdf/2505.02387"
+                    },
+                    {
+                      "title": "Reinforcement Learning with Verifiable Rewards: GRPO's Effective Loss, Dynamics, and Success Amplification",
+                      "url": "https://arxiv.org/pdf/2503.06639"
+                    },
+                    {
+                      "title": "Training AI Co-Scientists Using Rubric Rewards",
+                      "url": "https://arxiv.org/html/2512.23707"
+                    },
+                    {
+                      "title": "Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts",
+                      "url": "https://arxiv.org/pdf/2603.21177"
+                    },
+                    {
+                      "title": "Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models",
+                      "url": "https://arxiv.org/html/2605.08061"
+                    },
+                    {
+                      "title": "Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation",
+                      "url": "https://arxiv.org/pdf/2602.05548"
+                    },
+                    {
+                      "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+                      "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+                    }
+                  ]
+                },
+                "I found several relevant arXiv papers related to your search query. Here are the key results:\n\n## Highly Relevant Papers:\n\n1. **Rubric-Grounded Reinforcement Learning** (May 2026) - This paper instantiates a framework using rubrics derived from scientific documents and trains Llama-3.1-8B-Instruct with GRPO, achieving 71.7% normalized reward on held-out rubric evaluation. The framework is domain-agnostic and applies to tasks whose quality can be written as a checklist of weighted criteria.\n\n2. **Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation** (February 2026) - This paper addresses how samples of medium-difficulty exhibit the largest sum of absolute advantage values leading to insufficient training on harder data, and how the reward mechanism is difficulty-agnostic, treating all tasks uniformly without accounting for their complexity.\n\n3. **DRA-GRPO: Diverse Reasoning Paths for Mathematical Reasoning** (May 2026) - This proposes Diversity-aware Reward Adjustment (DRA), which calibrates the reward signal using the semantic density of sampled groups through Submodular Mutual Information (SMI) and Inverse Propensity Scoring (IPS).\n\n4. **RGR-GRPO: Reward and Guidance through Rubrics** (November 2025) - This demonstrates improvements across 14 benchmarks with average improvements of +7.0%, +5.4%, +8.4%, and +6.6% on mathematics, physics, chemistry, and general reasoning tasks, respectively.\n\nThese papers directly address difficulty-aware reward calibration, rubric-based rewards, and GRPO optimization for mathematical and reasoning tasks."
+              ],
+              "durationSeconds": 7.878702130999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "0b8febb7-bbd0-4155-8558-45da63d2a4c2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+                "leafUuid": "59281c03-bf9f-4407-8e19-afae6628d882",
+                "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+              }
+            }
+          ],
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+                "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-28T11:38:09.167Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YLsNg3tWrGEqRiR8xnFRqS",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.05548",
+                "prompt": "Extract: 1) Full abstract, 2) What is \"Implicit Advantage Symmetry\"? 3) How does GRPO struggle with difficulty adaptation? 4) What solution do they propose? 5) Is rubric reward discussed? 6) Relationship to DGPO's difficulty bias analysis"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59281c03-bf9f-4407-8e19-afae6628d882",
+            "isSidechain": false,
+            "requestId": "req_011CbUuCCiuPSU2xZSAxMZcR",
+            "type": "assistant",
+            "uuid": "035fe8b6-6760-4a0b-a38d-d6d9d5901bc3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018YZNhVZLY9kdQCorZgXHBq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3354,
+                "cache_read_input_tokens": 70341,
+                "output_tokens": 149,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3354,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 149,
+                    "cache_read_input_tokens": 70341,
+                    "cache_creation_input_tokens": 3354,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3354
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-28T11:38:15.921Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YLsNg3tWrGEqRiR8xnFRqS",
+              "type": "tool_result",
+              "content": "# Analysis of arXiv:2602.05548\n\n## 1) Full Abstract\n\n\"Reinforcement Learning with Verifiable Rewards (RLVR), particularly GRPO, has become the standard for eliciting LLM reasoning. However, its efficiency in exploration and difficulty adaptation remains an open challenge.\" The authors identify that implicit advantage symmetry in Group Relative Advantage Estimation creates bottlenecks. They propose Asymmetric GRAE (A-GRAE) to dynamically modulate exploration and sample-difficulty focus, demonstrating improvements across seven benchmarks for both language and multimodal models.\n\n## 2) What is \"Implicit Advantage Symmetry\"?\n\nThis refers to symmetric weighting mechanisms in GRAE between correct and incorrect trajectories. The symmetry manifests at two levels: group-level effects where \"strict symmetry in weights between correct and incorrect trajectories leaves unsampled action logits unchanged,\" and sample-level effects where the algorithm gravitates toward medium-difficulty samples rather than adapting to changing difficulty requirements.\n\n## 3) How Does GRPO Struggle with Difficulty Adaptation?\n\nThe paper reveals that GRPO \"implicitly prioritizes medium-difficulty samples, remaining agnostic to the non-stationary demands of difficulty focus.\" This symmetric weighting prevents the algorithm from dynamically adjusting which sample difficulties receive priority during training.\n\n## 4) What Solution Do They Propose?\n\nThey introduce Asymmetric GRAE (A-GRAE), which \"dynamically modulates exploration incentives and sample-difficulty focus.\" The approach uses curriculum-like prioritization, starting with simpler samples before transitioning to complex ones.\n\n## 5) Is Rubric Reward Discussed?\n\nThe provided content does not discuss rubric rewards. This detail is absent from the abstract and metadata shown.\n\n## 6) Relationship to DGPO's Difficulty Bias Analysis\n\nNo mention of DGPO or comparative difficulty bias analysis appears in the available page content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "035fe8b6-6760-4a0b-a38d-d6d9d5901bc3",
+            "isSidechain": false,
+            "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+            "type": "user",
+            "uuid": "d89404fe-a3a7-4955-8e9f-f1a96d5c3ce0",
+            "toolUseResult": {
+              "bytes": 48256,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Analysis of arXiv:2602.05548\n\n## 1) Full Abstract\n\n\"Reinforcement Learning with Verifiable Rewards (RLVR), particularly GRPO, has become the standard for eliciting LLM reasoning. However, its efficiency in exploration and difficulty adaptation remains an open challenge.\" The authors identify that implicit advantage symmetry in Group Relative Advantage Estimation creates bottlenecks. They propose Asymmetric GRAE (A-GRAE) to dynamically modulate exploration and sample-difficulty focus, demonstrating improvements across seven benchmarks for both language and multimodal models.\n\n## 2) What is \"Implicit Advantage Symmetry\"?\n\nThis refers to symmetric weighting mechanisms in GRAE between correct and incorrect trajectories. The symmetry manifests at two levels: group-level effects where \"strict symmetry in weights between correct and incorrect trajectories leaves unsampled action logits unchanged,\" and sample-level effects where the algorithm gravitates toward medium-difficulty samples rather than adapting to changing difficulty requirements.\n\n## 3) How Does GRPO Struggle with Difficulty Adaptation?\n\nThe paper reveals that GRPO \"implicitly prioritizes medium-difficulty samples, remaining agnostic to the non-stationary demands of difficulty focus.\" This symmetric weighting prevents the algorithm from dynamically adjusting which sample difficulties receive priority during training.\n\n## 4) What Solution Do They Propose?\n\nThey introduce Asymmetric GRAE (A-GRAE), which \"dynamically modulates exploration incentives and sample-difficulty focus.\" The approach uses curriculum-like prioritization, starting with simpler samples before transitioning to complex ones.\n\n## 5) Is Rubric Reward Discussed?\n\nThe provided content does not discuss rubric rewards. This detail is absent from the abstract and metadata shown.\n\n## 6) Relationship to DGPO's Difficulty Bias Analysis\n\nNo mention of DGPO or comparative difficulty bias analysis appears in the available page content.",
+              "durationMs": 6747,
+              "url": "https://arxiv.org/abs/2602.05548"
+            },
+            "sourceToolAssistantUUID": "035fe8b6-6760-4a0b-a38d-d6d9d5901bc3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-28T11:38:20.123Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is another difficulty-aware GRPO paper (A-GRAE) but it doesn't address rubric rewards or gaming. It's focused on exploration and difficulty adaptation in binary reward settings.\n\nNow I'm confident that I have a thorough picture. Let me do one more search to make sure the pass@k + rubric angle isn't covered.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d89404fe-a3a7-4955-8e9f-f1a96d5c3ce0",
+            "isSidechain": false,
+            "requestId": "req_011CbUuD636S8iGDU4SN82Pa",
+            "type": "assistant",
+            "uuid": "641df951-34d8-416d-9aca-23640c6df116",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Du23i7ptpZcAk7QhDYerMx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 598,
+                "cache_read_input_tokens": 73695,
+                "output_tokens": 168,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 598,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 168,
+                    "cache_read_input_tokens": 73695,
+                    "cache_creation_input_tokens": 598,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 598
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-28T11:38:20.940Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X1KNHdUvBLo72Nr9gqh1Vq",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"pass@k\" OR \"pass@1024\" rubric-trained model versus outcome-only reasoning frontier comparison 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "641df951-34d8-416d-9aca-23640c6df116",
+            "isSidechain": false,
+            "requestId": "req_011CbUuD636S8iGDU4SN82Pa",
+            "type": "assistant",
+            "uuid": "5cdc92af-3b76-446f-bd11-2e8ac8277beb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Du23i7ptpZcAk7QhDYerMx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 598,
+                "cache_read_input_tokens": 73695,
+                "output_tokens": 168,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 598,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 168,
+                    "cache_read_input_tokens": 73695,
+                    "cache_creation_input_tokens": 598,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 598
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-28T11:38:28.086Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X1KNHdUvBLo72Nr9gqh1Vq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"pass@k\" OR \"pass@1024\" rubric-trained model versus outcome-only reasoning frontier comparison 2026\"\n\nLinks: [{\"title\":\"Curing \\\"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview\",\"url\":\"https://openreview.net/forum?id=FGkknrhv09\"},{\"title\":\"Don’t Pass@k: A Bayesian Framework for Large Language Model Evaluation | OpenReview\",\"url\":\"https://openreview.net/forum?id=PTXi3Ef4sT\"},{\"title\":\"Chain-of-Rubrics Reasoning Models\",\"url\":\"https://www.emergentmind.com/topics/chain-of-rubrics-reasoning-models\"},{\"title\":\"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards\",\"url\":\"https://arxiv.org/pdf/2510.07774\"},{\"title\":\"Tsinghua paper: Does RL Really Incentivize Reasoning ...\",\"url\":\"https://www.lesswrong.com/posts/s3NaETDujoxj4GbEm/tsinghua-paper-does-rl-really-incentivize-reasoning-capacity\"},{\"title\":\"Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards\",\"url\":\"https://arxiv.org/html/2510.07774\"},{\"title\":\"[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards\",\"url\":\"https://arxiv.org/abs/2510.07774\"},{\"title\":\"Beyond Pass@k: Breadth-Depth Metrics for Reasoning Boundaries\",\"url\":\"https://arxiv.org/pdf/2510.08325\"},{\"title\":\"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2510.07774v1\"},{\"title\":\"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning\",\"url\":\"https://arxiv.org/pdf/2511.12344\"}]\n\nBased on the search results, here's what I found regarding rubric-trained models versus outcome-only reasoning in 2026:\n\n## Key Findings\n\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained rewards that explicitly penalize logical flaws and encourage rigorous deduction. When integrated into a reinforcement learning pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks.\n\n### Pass@1024 Performance Comparison\n\nThe most striking comparison comes from mathematical reasoning benchmarks: RRM-based training boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reduces the incidence of Miracle Steps by 71% compared to outcome-only approaches.\n\n### The Problem with Outcome-Only Training\n\nLarge language models for mathematical reasoning are typically trained with outcome-based rewards, which credit only the final answer. This paradigm is highly susceptible to reward hacking, leading to a substantial overestimation of a model's reasoning ability. This includes failure modes like \"Miracle Steps\"—abrupt jumps to a correct output without a valid preceding derivation.\n\n### Broader Implications\n\nMulti-domain reasoning models using rubric-guided approaches (RGR-GRPO) yielded +7.0%, +5.4%, +8.4%, and +6.6% average improvements on mathematics, physics, chemistry, and general reasoning respectively, over verifiable reward RL.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5cdc92af-3b76-446f-bd11-2e8ac8277beb",
+            "isSidechain": false,
+            "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+            "type": "user",
+            "uuid": "910f0111-99b5-4212-90f7-ceb890e2d38b",
+            "toolUseResult": {
+              "query": "\"pass@k\" OR \"pass@1024\" rubric-trained model versus outcome-only reasoning frontier comparison 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01KbRys4JFNvebPf6GtyKb8K",
+                  "content": [
+                    {
+                      "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+                      "url": "https://openreview.net/forum?id=FGkknrhv09"
+                    },
+                    {
+                      "title": "Don’t Pass@k: A Bayesian Framework for Large Language Model Evaluation | OpenReview",
+                      "url": "https://openreview.net/forum?id=PTXi3Ef4sT"
+                    },
+                    {
+                      "title": "Chain-of-Rubrics Reasoning Models",
+                      "url": "https://www.emergentmind.com/topics/chain-of-rubrics-reasoning-models"
+                    },
+                    {
+                      "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+                      "url": "https://arxiv.org/pdf/2510.07774"
+                    },
+                    {
+                      "title": "Tsinghua paper: Does RL Really Incentivize Reasoning ...",
+                      "url": "https://www.lesswrong.com/posts/s3NaETDujoxj4GbEm/tsinghua-paper-does-rl-really-incentivize-reasoning-capacity"
+                    },
+                    {
+                      "title": "Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards",
+                      "url": "https://arxiv.org/html/2510.07774"
+                    },
+                    {
+                      "title": "[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+                      "url": "https://arxiv.org/abs/2510.07774"
+                    },
+                    {
+                      "title": "Beyond Pass@k: Breadth-Depth Metrics for Reasoning Boundaries",
+                      "url": "https://arxiv.org/pdf/2510.08325"
+                    },
+                    {
+                      "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | alphaXiv",
+                      "url": "https://www.alphaxiv.org/overview/2510.07774v1"
+                    },
+                    {
+                      "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+                      "url": "https://arxiv.org/pdf/2511.12344"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found regarding rubric-trained models versus outcome-only reasoning in 2026:\n\n## Key Findings\n\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained rewards that explicitly penalize logical flaws and encourage rigorous deduction. When integrated into a reinforcement learning pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks.\n\n### Pass@1024 Performance Comparison\n\nThe most striking comparison comes from mathematical reasoning benchmarks: RRM-based training boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reduces the incidence of Miracle Steps by 71% compared to outcome-only approaches.\n\n### The Problem with Outcome-Only Training\n\nLarge language models for mathematical reasoning are typically trained with outcome-based rewards, which credit only the final answer. This paradigm is highly susceptible to reward hacking, leading to a substantial overestimation of a model's reasoning ability. This includes failure modes like \"Miracle Steps\"—abrupt jumps to a correct output without a valid preceding derivation.\n\n### Broader Implications\n\nMulti-domain reasoning models using rubric-guided approaches (RGR-GRPO) yielded +7.0%, +5.4%, +8.4%, and +6.6% average improvements on mathematics, physics, chemistry, and general reasoning respectively, over verifiable reward RL."
+              ],
+              "durationSeconds": 7.141425030000042,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "5cdc92af-3b76-446f-bd11-2e8ac8277beb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-28T11:39:12.536Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "RRM reports Verified Pass@1024, which is related to pass@k evaluation, but it's specifically testing whether rubric rewards improve the quality of solutions (verified = checking reasoning quality), not whether they expand the reasoning frontier (pass@k at large k vs base model). The \"Does RL Really Incentivize Reasoning\" paper's key finding was about pass@k at large k showing that RLVR doesn't expand the set of solvable problems — it only narrows the distribution. No one has tested this specific question with rubric rewards.\n\nOK, I've completed thorough research. Let me now synthesize everything into the final research direction.\n\n\nSo the core novelty here is combining four elements: first, I'll show that rubric gaming rates vary systematically with problem difficulty, where harder problems exhibit higher gaming rates on easier rubric dimensions. Second, I'll extend DGPO's difficulty bias analysis to multi-dimensional rubric rewards and prove there's a \"dimension exploitation gradient\" at play. Third, I'll develop a method called Difficulty-Calibrated Rubric Strictness that adjusts per-dimension strictness based on problem difficulty. And fourth, I'll use the pass@k framework to test whether this approach can actually expand the reasoning frontier — something that hasn't been explored with rubric rewards yet.\n\nThis goes beyond just combining DGPO with rubric rewards because the difficulty-dependent gaming pattern itself is a diagnostic contribution, the formal extension to multi-dimensional rewards is non-trivial, and the interaction between calibration and gaming is the real theoretical question I'm investigating. The pass@k frontier analysis with calibrated rubric rewards is also novel experimental design.\n\nFor reviewers, this hits the patterns they reward: strong formal analysis proving the dimension exploitation gradient, deep problem diagnosis before proposing a solution, honest ablations comparing DGPO+RRM baseline against the calibration approach to show where the interaction provides gains, and triangulation across per-dimension gaming rates, pass@k frontier analysis, and verified pass@N results.\n\nThe most compelling framing is actually that rubric gaming exhibits a systematic bias toward harder problems — that's the insight that would resonate most with reviewers. clean diagnostic finding that's irrefutable once demonstrated, similar to how DGPO proved GRPO's update magnitude bias.\n\nThe paper structure:\n1. Section 3: Formal analysis — extend DGPO's Theorems 1-2 to K-dimensional rubric rewards, prove that GRPO's advantage estimation creates a difficulty-dependent dimension exploitation gradient\n2. Section 4: Empirical diagnosis — measure per-dimension rubric gaming rates stratified by difficulty, showing that easy dimensions have higher gaming rates on hard problems\n3. Section 5: Method — DCRS (Difficulty-Calibrated Rubric Strictness) that modulates per-dimension strictness based on problem difficulty\n4. Section 6: Evaluation — (a) Standard math benchmarks (MATH, AIME, AMC), (b) Pass@k frontier analysis, (c) Ablation against DGPO+RRM baseline\n\nThis fits a 7-page AAAI paper and is computationally feasible with 60-90 H100-hours for training 7B models. Now I'm compiling the related work landscape using only methods and results from recent papers: RRM achieved 26.7%→62.6% verified pass@1024 on AIME2024 with 71% fewer miracle steps, DGPO/MathForge proved a specific bias term and showed +2.18% improvement over GRPO, and I'm tracking down the remaining recent baselines. Looking at the landscape of recent work, most approaches either miss the difficulty-rubric interaction entirely or lack the specificity needed for math reasoning — A-GRAE exposes GRPO's medium-difficulty bias, Auto-Rubric shows hard samples benefit twice as much from rubric guidance, and a comprehensive survey confirms no existing work addresses difficulty-calibrated rubric strictness or ensemble diversity for preventing gaming. The recent papers on RL for reasoning (including RuscaRL's rubric-scaffolded exploration and DARO's difficulty-aware reweighting) still don't combine these insights effectively.\n\nNow I'm ready to finalize the JSON structure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "910f0111-99b5-4212-90f7-ceb890e2d38b",
+            "isSidechain": false,
+            "requestId": "req_011CbUuDyzF1gmx42kSQ9xJT",
+            "type": "assistant",
+            "uuid": "9b60a551-3b40-46c1-bbe6-5de4eb85f78d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GWBZRXUHDDE7KQnuxn68P",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 74293,
+                "output_tokens": 1520,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1059,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1520,
+                    "cache_read_input_tokens": 74293,
+                    "cache_creation_input_tokens": 1059,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1059
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-28T11:39:12.539Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've now completed extensive research with 20+ targeted searches. Let me consolidate my findings and verify the gap one final time."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b60a551-3b40-46c1-bbe6-5de4eb85f78d",
+            "isSidechain": false,
+            "requestId": "req_011CbUuDyzF1gmx42kSQ9xJT",
+            "type": "assistant",
+            "uuid": "e611b9b1-af11-42ee-a3c2-e95fa3b483c6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GWBZRXUHDDE7KQnuxn68P",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 74293,
+                "output_tokens": 1520,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1059,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1520,
+                    "cache_read_input_tokens": 74293,
+                    "cache_creation_input_tokens": 1059,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1059
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-28T11:39:12.546Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PBwJCf42haPtfgKgxwa7r1",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"difficulty\" \"per-dimension\" OR \"dimension-level\" rubric strictness calibration reward math reasoning LLM 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e611b9b1-af11-42ee-a3c2-e95fa3b483c6",
+            "isSidechain": false,
+            "requestId": "req_011CbUuDyzF1gmx42kSQ9xJT",
+            "type": "assistant",
+            "uuid": "caef1720-427e-4eee-9c64-61369c257dc2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GWBZRXUHDDE7KQnuxn68P",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 74293,
+                "output_tokens": 1520,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1059,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1520,
+                    "cache_read_input_tokens": 74293,
+                    "cache_creation_input_tokens": 1059,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1059
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-28T11:39:21.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PBwJCf42haPtfgKgxwa7r1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"difficulty\" \"per-dimension\" OR \"dimension-level\" rubric strictness calibration reward math reasoning LLM 2025 2026\"\n\nLinks: [{\"title\":\"Curing \\\"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview\",\"url\":\"https://openreview.net/forum?id=FGkknrhv09\"},{\"title\":\"Step-wise Rubric Rewards for LLM Reasoning\",\"url\":\"https://arxiv.org/html/2605.17291v1\"},{\"title\":\"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium\",\"url\":\"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80\"},{\"title\":\"Mathematical Reasoning in Large Language Models: Benchmarks, Architectures, Evaluation, and Open Challenges\",\"url\":\"https://arxiv.org/html/2605.19723v1\"},{\"title\":\"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards\",\"url\":\"https://arxiv.org/pdf/2510.07774\"},{\"title\":\"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks\",\"url\":\"https://arxiv.org/pdf/2602.05125\"},{\"title\":\"Enhancing Math Reasoning in Small-sized LLMs via Preview Difficulty-Aware Intervention\",\"url\":\"https://arxiv.org/html/2508.01604\"},{\"title\":\"Generating Data-Driven Reasoning Rubrics for Domain-Adaptive Reward Modeling\",\"url\":\"https://arxiv.org/pdf/2602.06795\"}]\n\nI found several highly relevant results about rubric-based reward modeling for LLM mathematical reasoning. Here's what the search uncovered:\n\n## Key Research Areas\n\n**Rubric Reward Models for Math Reasoning:**\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction. When integrated into a reinforcement learning pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks, boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reducing the incidence of \"Miracle Steps\" by 71%.\n\n**Dimension-Level Rubrics:**\nTraditional scalar reward models compress many latent quality dimensions into one latent preference number, while rubric-based reward models try to preserve more structure by judging outputs against a set of criteria and often using those criterion-level signals as supervision or reward. The approach involves asking a judge to apply an explicit rubric whose dimensions can be refined, filtered, and weighted, as explored in evaluator models such as Prometheus and newer rubric-refinement work from Meta researchers.\n\n**Difficulty-Aware Intervention:**\nRecent work proposes a preview difficulty-aware intervention-based RL algorithm that improves the math reasoning ability in small-sized large language models.\n\n**Coverage and Calibration Challenges:**\nExisting rubric generation methods face two key limitations: coverage deficiency, where the rubric set fails to comprehensively capture the diverse and nuanced dimensions of generation quality; and noisy evaluation outcomes, where misaligned, overlapping, or highly correlated rubrics introduce unreliable signals.\n\nThese papers represent very recent work (2025-2026) directly addressing the intersection of strictness calibration, dimension-level rubrics, and reward modeling for mathematical reasoning in LLMs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "caef1720-427e-4eee-9c64-61369c257dc2",
+            "isSidechain": false,
+            "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+            "type": "user",
+            "uuid": "749d9ce5-e641-44d2-b2dd-1e3a5cf1d503",
+            "toolUseResult": {
+              "query": "\"difficulty\" \"per-dimension\" OR \"dimension-level\" rubric strictness calibration reward math reasoning LLM 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01YMrVN4KyiKeTQJVmvsnkMX",
+                  "content": [
+                    {
+                      "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+                      "url": "https://openreview.net/forum?id=FGkknrhv09"
+                    },
+                    {
+                      "title": "Step-wise Rubric Rewards for LLM Reasoning",
+                      "url": "https://arxiv.org/html/2605.17291v1"
+                    },
+                    {
+                      "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+                      "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+                    },
+                    {
+                      "title": "Mathematical Reasoning in Large Language Models: Benchmarks, Architectures, Evaluation, and Open Challenges",
+                      "url": "https://arxiv.org/html/2605.19723v1"
+                    },
+                    {
+                      "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+                      "url": "https://arxiv.org/pdf/2510.07774"
+                    },
+                    {
+                      "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+                      "url": "https://arxiv.org/pdf/2602.05125"
+                    },
+                    {
+                      "title": "Enhancing Math Reasoning in Small-sized LLMs via Preview Difficulty-Aware Intervention",
+                      "url": "https://arxiv.org/html/2508.01604"
+                    },
+                    {
+                      "title": "Generating Data-Driven Reasoning Rubrics for Domain-Adaptive Reward Modeling",
+                      "url": "https://arxiv.org/pdf/2602.06795"
+                    }
+                  ]
+                },
+                "I found several highly relevant results about rubric-based reward modeling for LLM mathematical reasoning. Here's what the search uncovered:\n\n## Key Research Areas\n\n**Rubric Reward Models for Math Reasoning:**\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction. When integrated into a reinforcement learning pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks, boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reducing the incidence of \"Miracle Steps\" by 71%.\n\n**Dimension-Level Rubrics:**\nTraditional scalar reward models compress many latent quality dimensions into one latent preference number, while rubric-based reward models try to preserve more structure by judging outputs against a set of criteria and often using those criterion-level signals as supervision or reward. The approach involves asking a judge to apply an explicit rubric whose dimensions can be refined, filtered, and weighted, as explored in evaluator models such as Prometheus and newer rubric-refinement work from Meta researchers.\n\n**Difficulty-Aware Intervention:**\nRecent work proposes a preview difficulty-aware intervention-based RL algorithm that improves the math reasoning ability in small-sized large language models.\n\n**Coverage and Calibration Challenges:**\nExisting rubric generation methods face two key limitations: coverage deficiency, where the rubric set fails to comprehensively capture the diverse and nuanced dimensions of generation quality; and noisy evaluation outcomes, where misaligned, overlapping, or highly correlated rubrics introduce unreliable signals.\n\nThese papers represent very recent work (2025-2026) directly addressing the intersection of strictness calibration, dimension-level rubrics, and reward modeling for mathematical reasoning in LLMs."
+              ],
+              "durationSeconds": 9.277814474000014,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "caef1720-427e-4eee-9c64-61369c257dc2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+                "leafUuid": "749d9ce5-e641-44d2-b2dd-1e3a5cf1d503",
+                "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+              }
+            }
+          ],
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+                "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+              }
+            }
+          ],
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-28T11:39:33.888Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The search confirms the gap. No paper on difficulty-calibrated per-dimension rubric strictness exists. The \"preview difficulty-aware intervention\" paper (2508.01604) is about difficulty-aware RL for small LLMs but doesn't use rubric rewards or address per-dimension calibration.\n\nNow let me write the final research direction. I have all the evidence I need.\n\nLet me be very careful about the output format: a JSON array with exactly 1 element, each with these fields:\n- title: max 10 words\n- core_problem: 1-2 sentences\n\n\n- opportunity: 2-3 sentences\n- landscape: 3-5 sentences, grounded in papers found\n- inspired_by: which field guide evidence\n\nI'm drafting the title now. \"Harder Problems, Easier Gaming: Difficulty-Calibrated Rubric Rewards\" comes to 7 words, which fits. Let me consider alternatives like \"Difficulty-Aware Rubric Strictness Resists Gaming in Math\" but I think the first option is clearer about the core tension I'm trying to capture.\n\nActually, I can extend it to \"Harder Problems, Easier Gaming: Difficulty-Calibrated Rubric Rewards for Math RLVR\" — that's 10 words and hits the limit nicely. Let me verify the count and then move forward with writing out the full structure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "749d9ce5-e641-44d2-b2dd-1e3a5cf1d503",
+            "isSidechain": false,
+            "requestId": "req_011CbUuHwodx41GTGguH4ir3",
+            "type": "assistant",
+            "uuid": "2eeb3c1e-bc8a-419f-800f-3f2f7846166d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fzp5yhwy7afPn59dNQDu4Y",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2460,
+                "cache_read_input_tokens": 75352,
+                "output_tokens": 2754,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2754,
+                    "cache_read_input_tokens": 75352,
+                    "cache_creation_input_tokens": 2460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-28T11:40:28.156Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive evidence from 25+ searches across multiple dimensions. Let me synthesize my findings into the final research direction.\n\n**Research Summary:**\n\nMy investigation confirmed the following verified gaps:\n1. **No work combines difficulty calibration with rubric rewards for math** — 15+ difficulty-aware methods (DGPO, DARO, F-GRPO, A-GRAE, Online Difficulty Filtering) all use binary rewards; 15+ rubric methods (RRM, RaR, SRaR, POW3R, PAPO, ARL-RR, ARES, GDPO, OpenRS, etc.) all use uniform strictness\n2. **The ~150-paper rubrics survey (RUC-NLPIR/Rubrics_Survey) explicitly confirms** no work on difficulty-calibrated rubric strictness or rubric ensemble diversity for anti-gaming\n3. **POW3R** (the closest work) adapts rubric weights by rollout contrast (which criteria currently discriminate outputs), NOT by problem difficulty — and doesn't target math or analyze gaming\n4. **Rubric gaming has been diagnosed** (arXiv:2605.12474) but no defense mechanism exists; gaming concentrates in partial satisfaction of presence-based criteria (90.2% of criteria)\n5. **No paper has tested whether rubric rewards expand the reasoning frontier** via pass@k at large k — \"Does RL Really Incentivize Reasoning\" tested 6 algorithms, all with binary rewards\n6. **Auto-Rubric** provides indirect evidence: hard samples benefit 2× more from rubric guidance (+4.68% vs +2.45%), suggesting the difficulty-rubric interaction is impactful but unexploited\n\n```json\n[\n  {\n    \"title\": \"Harder Problems, Easier Gaming: Difficulty-Calibrated Rubric Rewards for Math RLVR\",\n    \"core_problem\": \"When rubric rewards are applied with uniform strictness across difficulty levels in math RLVR, models exploit a systematic 'dimension exploitation gradient' — satisfying easy rubric criteria (problem reformulation, variable identification) via shallow pattern-matching while gaming hard criteria (proof verification, logical transitions) on difficult problems. Does this difficulty-dependent gaming bias exist, can it be formally characterized, and does difficulty-calibrated per-dimension rubric strictness close the gap while expanding the reasoning frontier?\",\n    \"opportunity\": \"Three independently verified gaps converge: (1) DGPO's formal difficulty-bias framework (ICLR 2026, Theorems 1-2 proving GRPO's 2G√(p(1−p)) update magnitude) applies only to binary rewards, leaving multi-dimensional rubric rewards without theoretical grounding; (2) rubric gaming has been diagnosed (arXiv:2605.12474, showing 90.2% presence-based criteria create systematic exploitation surfaces) but no defense mechanism has been proposed or validated; (3) the comprehensive ~150-paper Rubrics Survey (RUC-NLPIR, 2026) confirms no work on difficulty-calibrated rubric strictness or rubric ensemble diversity for anti-gaming. All building blocks matured in Q1-Q2 2026 (DGPO, ARES, RRM gaming taxonomy, POW3R, PAPO, SRaR), making the synthesis timely — but POW3R adapts by rollout contrast (not difficulty), PAPO decouples advantage (not strictness calibration), and ARES automates rubric generation (not for math, without difficulty metadata). The marginal contribution lies not in combining these pieces but in formally characterizing and empirically demonstrating the difficulty-gaming interaction that none of them address.\",\n    \"landscape\": \"Rubric rewards for math RLVR achieve strong results — RRM (ACL 2026) boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% with 71% fewer Miracle Steps, while SRaR (arXiv:2605.17291) adds step-level rubric attribution gaining +3.57 points on Qwen3-8B — but all methods apply uniform rubric strictness regardless of problem difficulty. Difficulty-aware RL methods exist in parallel: DGPO/MathForge (ICLR 2026) proves GRPO systematically suppresses hard-problem updates and fixes this via MAD normalization (+2.18%), DARO (arXiv:2510.09001) and F-GRPO (arXiv:2602.06717) provide complementary difficulty-aware reweighting, and A-GRAE (arXiv:2602.05548) reveals GRPO's implicit medium-difficulty bias — but all operate exclusively on binary outcome rewards. The closest convergence point is POW3R (arXiv:2605.20164), which adapts rubric criterion weights during training via rollout-level contrast, but it does not model problem difficulty, does not analyze gaming behavior, and evaluates only on multimodal/health tasks without math benchmarks. Meanwhile, Auto-Rubric (arXiv:2510.17314) provides indirect evidence that the difficulty-rubric interaction is impactful — hard samples benefit 2× more from rubric guidance (+4.68% vs. +2.45%) — but doesn't analyze gaming. The critical missing piece is the interaction between difficulty calibration and rubric gaming susceptibility: whether harder problems have systematically higher per-dimension gaming rates, whether calibrating strictness reduces or amplifies gaming, and whether difficulty-calibrated rubric rewards can expand the reasoning frontier (pass@k at large k) — something 'Does RL Really Incentivize Reasoning' (NeurIPS 2025 Best Paper Runner-Up) tested for 6 binary-reward algorithms but never for rubric rewards.\",\n    \"inspired_by\": \"Field guide gaps: 'No framework combines automated rubric generation with difficulty-calibrated rubric strictness for math RLVR' + 'The interaction between difficulty calibration and rubric gaming susceptibility is completely unexplored' + 'No rubric-dimension-level gaming analysis exists.' Innovation patterns: 'Formal analysis exposing hidden bias in standard methods' (high success rate — extending DGPO Theorems 1-2 to K-dimensional rubric rewards) + 'Rigorous problem diagnosis as standalone contribution' (high success rate — difficulty-stratified per-dimension gaming analysis as reusable diagnostic framework). Untried combinations: 'DGPO difficulty weighting extended to continuous rubric reward vectors' + 'Pass@k evaluation framework applied to rubric-trained models to test whether rubric rewards expand the reasoning frontier.' Reviewer preferences: formal theoretical grounding, deep problem characterization before solution, honest ablation testing the DGPO+RRM baseline.\"\n  }\n]\n```\n\nSources:\n- [DGPO/MathForge (ICLR 2026)](https://arxiv.org/abs/2601.20614)\n- [RRM: Curing Miracle Steps (ACL 2026)](https://arxiv.org/abs/2510.07774)\n- [Reward Hacking in Rubric-Based RL](https://arxiv.org/abs/2605.12474)\n- [POW3R: Policy-Aware Rubric Rewards](https://arxiv.org/abs/2605.20164)\n- [ARES: Automated Rubric Synthesis](https://arxiv.org/abs/2605.23454)\n- [SRaR: Step-wise Rubric Rewards](https://arxiv.org/abs/2605.17291)\n- [PAPO: Decoupled Advantage Normalization](https://arxiv.org/abs/2603.26535)\n- [ARL-RR: Alternating RL with Rubric Rewards](https://arxiv.org/abs/2603.15646)\n- [GDPO: Group reward-Decoupled Normalization](https://arxiv.org/abs/2601.05242)\n- [DARO: Difficulty-Aware Reweighting](https://arxiv.org/abs/2510.09001)\n- [F-GRPO: Difficulty-Aware Advantage Scaling](https://arxiv.org/abs/2602.06717)\n- [A-GRAE: Implicit Advantage Symmetry](https://arxiv.org/abs/2602.05548)\n- [Auto-Rubric](https://arxiv.org/abs/2510.17314)\n- [Rubrics Survey (RUC-NLPIR)](https://github.com/RUC-NLPIR/Rubrics_Survey)\n- [Does RL Really Incentivize Reasoning (NeurIPS 2025)](https://openreview.net/forum?id=4OsgYD7em5)\n- [DR Tulu: RL with Evolving Rubrics](https://arxiv.org/abs/2511.19399)\n- [RuscaRL: Rubric-Scaffolded RL](https://arxiv.org/abs/2508.16949)\n- [Open Rubric System](https://arxiv.org/abs/2602.14069)\n- [Reward Under Attack: PRM Robustness](https://arxiv.org/abs/2603.06621)\n- [LLMs Gaming Verifiers (ICLR 2026 Workshop)](https://arxiv.org/abs/2604.15149)\n- [Crome: Causal Rubrics for Robust RM](https://arxiv.org/abs/2506.16507)\n- [AAAI 2027 Call for Papers](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2eeb3c1e-bc8a-419f-800f-3f2f7846166d",
+            "isSidechain": false,
+            "requestId": "req_011CbUuHwodx41GTGguH4ir3",
+            "type": "assistant",
+            "uuid": "53276626-be9b-409d-9bfa-78e5942b59d9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fzp5yhwy7afPn59dNQDu4Y",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2460,
+                "cache_read_input_tokens": 75352,
+                "output_tokens": 2754,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2754,
+                    "cache_read_input_tokens": 75352,
+                    "cache_creation_input_tokens": 2460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+                "leafUuid": "53276626-be9b-409d-9bfa-78e5942b59d9",
+                "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+              }
+            }
+          ],
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+                "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+              }
+            }
+          ],
+          "id": "event-000198"
+        }
+      ]
+    }
+  ]
+}

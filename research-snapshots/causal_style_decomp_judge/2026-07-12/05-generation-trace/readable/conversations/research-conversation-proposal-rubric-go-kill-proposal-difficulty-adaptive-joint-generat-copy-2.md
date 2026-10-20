@@ -1,0 +1,2296 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Difficulty-Adaptive Joint Generat
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-2/ce1f9605-2c53-4a2c-836e-7125be50bd10.jsonl`
+- **Structured JSON:** [`a2e50d20b0fb9b19b5fd.json`](../../sessions/a2/a2e50d20b0fb9b19b5fd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T06:51:04.301Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T06:51:04.301Z",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning\n\n## Core Problem and Motivation\n\nDifferent verification methods exhibit heterogeneous reliability profiles across problem difficulty levels: lightweight verifiers may achieve adequate TNR on easy problems, while GenRM achieves substantially higher TPR on hard problems (Variation in Verification, ICLR 2026, arXiv 2509.17995). This heterogeneity means selecting a single verification type is structurally suboptimal regardless of compute budget.\n\nThe current aggregate consensus — \"self-consistency beats GenRM under most practical budgets\" (Singhi et al., COLM 2025, arXiv 2504.01005) — masks this difficulty-heterogeneous value structure, analogous to Simpson's Paradox: the aggregate trend (SC > GenRM) may reverse in difficulty strata where GenRM's higher TPR on hard problems dominates. JOVA reveals and exploits this blind spot by enabling per-instance verification type selection conditioned on difficulty.\n\nSimultaneously, under a shared inference budget, K (candidate count) and d (verification type) are coupled through C(K,d) = K·(c_g + c_v(d)), where c_v spans ~2% (latent-ORM) to ~76× (GenRM) of c_g. We ask: how should a system jointly select (K, d) per-instance to maximize accuracy, exploiting both the reliability mismatch and the cost structure?\n\n**Structural insight: K-d interaction is maximally non-decomposable in the medium-difficulty regime.** For easy problems, optimal (K, d) ≈ (high K, low d) — both K-only and d-only optimization independently converge here. For hard problems, optimal (K, d) ≈ (low K, high d) — again independently recoverable. But for medium-difficulty problems, the iso-compute Pareto tradeoff is sharpest: switching from PRM to GenRM requires reducing K from ~16 to ~3, and whether this trade improves accuracy depends on the verifier's difficulty-specific TPR/TNR. Under a simplified analytical model where verifier d at difficulty h has TPR(d,h) and TNR(d,h), and K candidates each have correctness probability p(h), the expected BoN accuracy is a function of K, d, and h. When p(h) is extreme (easy/hard), optimal (K,d) is insensitive to boundary perturbations; when p(h) is moderate, small TPR/TNR shifts cause discontinuous jumps in optimal (K,d). This composition gap — the accuracy loss from independently optimizing K and d vs. jointly — is predicted to peak in the medium-difficulty regime. The experiments will quantify this.\n\n**Practical relevance.** When serving infrastructure deploys multiple verifiers (latent-ORM near-free, disc-ORM moderate cost, GenRM expensive), JOVA provides a principled routing policy to maximize accuracy within a fixed serving budget — answering the deployment question \"given these verifiers, how do I use them optimally per query?\"\n\n## Research Landscape\n\n**Generation-verification tradeoff foundations.** Singhi et al. (COLM 2025, arXiv 2504.01005) established aggregate scaling laws showing SC beats GenRM under most practical budgets, but this is difficulty-averaged. Rethinking Reward Models (arXiv 2510.00492) characterizes verifier effectiveness across domains with uniform strategies. Trust but Verify (arXiv 2508.16665) provides a verification taxonomy (discriminative/generative, process/outcome, prompt-based/fine-tuned).\n\n**Adaptive K (fixed verifier).** Strategic Scaling bandit (Zuo et al., arXiv 2506.12721) achieves up to 11.10% improvement on MATH-500 via UCB-adaptive K, but assumes a fixed reward oracle and ignores verification cost. AdaBoN (arXiv 2505.12050) adapts K for alignment, not verification selection.\n\n**Adaptive verification (fixed K or type).** VG-Search (Chen et al., arXiv 2505.11730) introduces a continuous granularity parameter unifying beam search and BoN with 52% FLOPs reduction but does not select between verification types. FlexiVe/SDV (arXiv 2505.11966) introduces fast/slow binary verification gated by consensus via GRPO, limited to binary hierarchy. Budget-aware Verification (Montgomery et al., arXiv 2510.14913) demonstrates hybrid discriminative+generative verification surpasses pure generative by up to 15.3% on AIME25 under fixed compute, but applies uniform per-dataset strategy. GenPRM (arXiv 2504.00891, AAAI 2026) trains generative PRMs with CoT reasoning + code verification; 1.5B GenPRM surpasses GPT-4o in BoN selection, 7B surpasses Qwen2.5-Math-PRM-72B — establishing the current verification SOTA but using a single fixed verifier type. \"Putting the Value Back in RL\" (arXiv 2505.04842) jointly trains reasoner and verifier with dynamic compute via confidence thresholds — a unified-model alternative to JOVA's modular approach.\n\n**Heterogeneous verifier combination.** Multi-Agent Verification (MAV, arXiv 2502.20379) scales test-time compute by combining multiple heterogeneous Aspect Verifiers via voting (BoN-MAV). MAV **combines** all available verifiers simultaneously (ensemble); JOVA **routes** to a single optimal verifier per instance (selection). MAV does not consider per-instance difficulty conditioning or compute budget constraints — under budget constraints, running all verifiers is infeasible, making difficulty-conditioned routing the appropriate strategy.\n\n**Adaptive reasoning length (orthogonal axis).** DiffAdapt (ICLR 2026) adapts reasoning length per instance. CODA (arXiv 2603.08659) formalizes difficulty-aware allocation as utility maximization over reasoning length. CPO (arXiv 2604.14853) uses constrained optimization with Lagrangian dual for reasoning strategy selection (12.8% relative improvement). LATTS (arXiv 2509.20368) performs step-level adaptive scaling via verifier acceptance criteria.\n\n**Adaptive routing (model-level).** ODAR (arXiv 2602.23681) uses active-inference-based difficulty estimation to route between fast/slow agents (82% cost savings), routing between models rather than verification types.\n\n**Multi-dimensional budget allocation.** AVA (Anytime Verified Agents, OpenReview 2026) dynamically allocates compute across search, sampling, and verification using calibrated uncertainty and selective verification cascades with early exits. JOVA differs in three dimensions: (1) Signal — difficulty (intrinsic problem property via DTR) vs. uncertainty (model-problem interaction); (2) Space — discrete (K, d) menu with bilinear cost vs. continuous search/sampling/verification allocation; (3) Mechanism — cross-type switching (latent-ORM → GenRM with distinct TPR/TNR) vs. early exit within a single verification pipeline.\n\n**Difficulty signals and lightweight verifiers.** DTR (arXiv 2602.13517) provides a difficulty signal with r=0.828 average accuracy correlation (validated on GPT-OSS-120B, DeepSeek-R1-70B, Qwen3-30B-Thinking across AIME 24/25, HMMT 25, GPQA-diamond; not yet validated on distilled ≤14B models). LiLaVe (arXiv 2504.16760) enables near-free hidden-state-based verification. TrajSelector (arXiv 2510.16449) uses hidden states for process-level scoring via a 0.6B verifier, exceeding majority voting by 4.61%.\n\n**Gap.** All existing work optimizes a single variable (K, granularity, binary type, reasoning length, or model routing), or combines all verifiers without selection (MAV). AVA allocates multi-dimensionally but uses uncertainty-driven cascades, not difficulty-driven type switching. No work jointly optimizes (K, d) over a verifier type hierarchy under a shared budget with a continuous difficulty signal, nor reveals the difficulty-dependent composition gap structure.\n\n## Proposed Approach: JOVA\n\n**Formulation.** Per-instance allocation over a discrete (K, d) menu under C(K,d) = K·(c_g + c_v(d)) ≤ B.\n\n**Verifier type hierarchy.** We treat the four-tier ordering (latent-ORM < disc-ORM < PRM < GenRM in cost and expected precision) as an empirical hypothesis to be validated in Phase 0, not an assumption. If the actual reliability structure is non-monotonic (e.g., PRM outperforms GenRM on certain problem types), the (K, d) menu is reorganized accordingly.\n\n**Difficulty routing.** DTR-based router estimates difficulty from short prefix hidden states. Honest limitation: DTR primarily captures reasoning effort intensity; domain-specific factors (algebraic vs. geometric vs. combinatorial) and generator confidence may additionally influence optimal verification type. DTR provides a strong but not exhaustive routing signal; multi-signal routing is a natural future extension.\n\n**Fallback difficulty signals.** DTR has been validated only on ≥30B models. For ≤14B distilled models, we include fallbacks: (a) generator logit entropy (zero-overhead, extracted during generation), (b) two-stage SC agreement rate (fixed K_0=4 pilot samples to estimate difficulty, then allocate remaining budget B − K_0·c_g adaptively; cost model explicitly includes pilot overhead: C_total = K_0·c_g + K·(c_g + c_v(d))). Phase 0 selects the best signal for the target model scale.\n\n**Online refinement.** UCB bandit refines (K, d) via correctness feedback. Protocol: bandit pre-trained on held-out validation split, then frozen for test evaluation. For small benchmarks (AIME25), transfer policy learned on MATH-500 validation split.\n\n**Why learned routing exceeds static lookup.** Grid-Search-(K,d)-per-bucket (exhaustive search per difficulty tercile on validation data) is a strong trivial alternative. JOVA's advantages: (a) difficulty is continuous — discrete bins lose boundary information; (b) optimal (K, d) depends on domain-specific factors beyond scalar difficulty; (c) UCB adapts to distribution shift across benchmarks.\n\n## Experimental Design\n\n**Phase 0 (pilot, ~50 A100-hours).** (a) DTR correlation on DeepSeek-R1-Distill-14B and Qwen3-8B using MATH-500; compare DTR vs. SC agreement rate vs. logit entropy vs. prompt perplexity; proceed if best signal achieves r ≥ 0.6. (b) Validate verifier hierarchy: measure TPR/TNR of each verifier tier per difficulty bin; test whether ordering is monotonic. (c) Profile LiLaVe hidden state extraction overhead.\n\n**Benchmarks.** MATH-500 (primary per-difficulty analysis), AIME25 (aggregate + qualitative case study; ≥10 seeds due to n=30), GPQA-Diamond (aggregate). Optional: LiveCodeBench for cross-domain generalization.\n\n**Models.** Primary: DeepSeek-R1-Distill-Qwen-14B, Qwen3-8B. Extended: DeepSeek-R1-Distill-Qwen-32B. Supplementary: DeepSeek-R1 full (671B MoE) if resources permit.\n\n**Verifier specification:**\n\n| Tier | Implementation | Params | Approx. Cost |\n|---|---|---|---|\n| Latent-ORM | LiLaVe: XGBoost on hidden states (arXiv 2504.16760) | ~0 (reuses forward pass) | ~2% of c_g |\n| Disc-ORM | InternLM2-7B-Reward (or comparable open-source outcome RM) | 7B | ~50% of c_g |\n| PRM | Skywork-o1-Open-PRM-Qwen-2.5-7B, step-level scoring (note: robustness limitations per arXiv 2603.06621; Phase 0 validates on target generations) | 7B | ~60% of c_g |\n| GenRM | Generator self-verification via CoT | same as generator | ~76× of c_g |\n\nDisc-ORM and PRM intentionally use different model families to ensure the hierarchy captures genuine type diversity rather than scoring-granularity-within-one-model artifacts. FLOPs cost table calibrated per model-verifier pair; distinguishes prefill vs decode.\n\n**Baselines (compute-matched via FLOPs as primary metric; wall-clock as supplementary):**\n1. Static Best-of-N with each single verifier type (4 configs)\n2. Self-Consistency (majority voting)\n3. Strategic Scaling bandit (Zuo et al., arXiv 2506.12721) — adaptive K + fixed best verifier\n4. VG-Search (Chen et al., arXiv 2505.11730) — adaptive granularity, uniform type\n5. FlexiVe/SDV (arXiv 2505.11966) — fast/slow binary verification\n6. Grid-Search-(K,d)-per-bucket — static lookup per difficulty tercile\n7. Montgomery et al. hybrid disc+gen verification (arXiv 2510.14913) — uniform per-dataset\n8. GenPRM-7B BoN (arXiv 2504.00891, AAAI 2026) — fixed GenPRM verifier + best K\n\n**Ablations:**\n\n| Configuration | K | d | Router | Purpose |\n|---|---|---|---|---|\n| JOVA-full | adaptive | adaptive | DTR+UCB | Complete system |\n| Fix-d-best | adaptive | fixed best d | DTR+UCB | Isolate d-selection gain |\n| Fix-K-best | fixed best K | adaptive | DTR+UCB | Isolate K-selection gain |\n| DTR-only | DTR preset | DTR preset | DTR only | Isolate UCB refinement gain |\n| UCB-only | UCB learned | UCB learned | UCB only | Isolate DTR initialization gain |\n| Oracle-router | adaptive | adaptive | Oracle | Performance upper bound |\n\nAdditional analyses: (a) difficulty signal comparison (DTR vs SC-agreement vs logit entropy vs perplexity); (b) tier dropout: 2-tier (Latent-ORM + GenRM only) vs 3-tier (drop Disc-ORM or PRM) vs 4-tier (full) — quantifies marginal contribution of intermediate tiers; (c) binning sensitivity (2/3/5-bin vs continuous mapping); (d) router robustness (10%/20%/30% simulated routing error); (e) per-difficulty-bin (K,d) allocation distribution (MATH-500 only); (f) composition gap measurement: compare JOVA-full accuracy vs max(Fix-d-best, Fix-K-best), stratified by difficulty, to directly quantify the joint optimization benefit per regime.\n\n**Evaluation protocol:**\n- 8 budget levels at log-spacing: 1×, 2×, 4×, 8×, 16×, 32×, 64×, 128× of pass@1 cost\n- Accuracy-vs-FLOPs Pareto curves (primary) + accuracy-vs-wall-clock (supplementary, measured on single A100-80G, batch size 1)\n- Bootstrap 95% CI; ≥5 seeds (MATH-500, GPQA), ≥10 seeds (AIME25)\n- Gains reported in two tiers: (a) vs static BoN, (b) vs best adaptive-K-only baseline\n\n**Compute estimate (~350-550 A100-hours total):**\n- Phase 0 (pilot): ~50 hours\n- Phase 1 (core): MATH-500 + 14B + main ablations + Grid-Search baseline (~120 hours)\n- Phase 2 (extension): AIME25 + GPQA + Qwen3-8B + all baselines (~180 hours)\n- Phase 3 (analysis): difficulty breakdown, tier dropout, router robustness, Pareto curves, binning sensitivity, 32B model (~100 hours)\n\nPrimary target: AAAI 2027 (Jul 28).\n\n## Key References\n\n- When To Solve, When To Verify (Singhi et al., COLM 2025, arXiv 2504.01005)\n- Strategic Scaling of Test-Time Compute: A Bandit Approach (Zuo et al., arXiv 2506.12721)\n- VG-Search: Rethinking Optimal Verification Granularity (Chen et al., arXiv 2505.11730)\n- FlexiVe/SDV: Flexible Generative Verifier (arXiv 2505.11966)\n- Variation in Verification (ICLR 2026, arXiv 2509.17995)\n- Think Deep, Not Just Long: DTR via Deep-Thinking Tokens (arXiv 2602.13517)\n- Lightweight Latent Verifiers for Meta-Generation: LiLaVe (arXiv 2504.16760)\n- TrajSelector: Latent Representations for Best-of-N (arXiv 2510.16449)\n- Rethinking Reward Models for Multi-Domain Scaling (arXiv 2510.00492)\n- Budget-aware Test-time Scaling via Discriminative Verification (Montgomery et al., arXiv 2510.14913)\n- DiffAdapt: Difficulty-Adaptive Reasoning (ICLR 2026)\n- CODA: Difficulty-Aware Compute Allocation (arXiv 2603.08659)\n- ODAR: Principled Adaptive Routing via Active Inference (arXiv 2602.23681)\n- Adaptive TTC via Constrained Policy Optimization (arXiv 2604.14853)\n- LATTS: Locally Adaptive Test-Time Scaling (arXiv 2509.20368)\n- AdaBoN: Adaptive Best-of-N (arXiv 2505.12050)\n- AVA: Anytime Verified Agents (OpenReview 2026)\n- Putting the Value Back in RL: Unifying Reasoners With Verifiers (arXiv 2505.04842)\n- Trust but Verify! Survey on Verification Design (arXiv 2508.16665)\n- Multi-Agent Verification: BoN-MAV (arXiv 2502.20379)\n- GenPRM: Generative Process Reward Model (arXiv 2504.00891, AAAI 2026)\n- Reward Under Attack: PRM Robustness (arXiv 2603.06621)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T06:51:04.307Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T06:51:04.307Z",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---
+
+## Round 1
+
+33 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T06:51:04.331Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning
+
+## Core Problem and Motivation
+
+Different verification methods exhibit heterogeneous reliability profiles across problem difficulty levels: lightweight verifiers may achieve adequate TNR on easy problems, while GenRM achieves substantially higher TPR on hard problems (Variation in Verification, ICLR 2026, arXiv 2509.17995). This heterogeneity means selecting a single verification type is structurally suboptimal regardless of compute budget.
+
+The current aggregate consensus — "self-consistency beats GenRM under most practical budgets" (Singhi et al., COLM 2025, arXiv 2504.01005) — masks this difficulty-heterogeneous value structure, analogous to Simpson's Paradox: the aggregate trend (SC > GenRM) may reverse in difficulty strata where GenRM's higher TPR on hard problems dominates. JOVA reveals and exploits this blind spot by enabling per-instance verification type selection conditioned on difficulty.
+
+Simultaneously, under a shared inference budget, K (candidate count) and d (verification type) are coupled through C(K,d) = K·(c_g + c_v(d)), where c_v spans ~2% (latent-ORM) to ~76× (GenRM) of c_g. We ask: how should a system jointly select (K, d) per-instance to maximize accuracy, exploiting both the reliability mismatch and the cost structure?
+
+**Structural insight: K-d interaction is maximally non-decomposable in the medium-difficulty regime.** For easy problems, optimal (K, d) ≈ (high K, low d) — both K-only and d-only optimization independently converge here. For hard problems, optimal (K, d) ≈ (low K, high d) — again independently recoverable. But for medium-difficulty problems, the iso-compute Pareto tradeoff is sharpest: switching from PRM to GenRM requires reducing K from ~16 to ~3, and whether this trade improves accuracy depends on the verifier's difficulty-specific TPR/TNR. Under a simplified analytical model where verifier d at difficulty h has TPR(d,h) and TNR(d,h), and K candidates each have correctness probability p(h), the expected BoN accuracy is a function of K, d, and h. When p(h) is extreme (easy/hard), optimal (K,d) is insensitive to boundary perturbations; when p(h) is moderate, small TPR/TNR shifts cause discontinuous jumps in optimal (K,d). This composition gap — the accuracy loss from independently optimizing K and d vs. jointly — is predicted to peak in the medium-difficulty regime. The experiments will quantify this.
+
+**Practical relevance.** When serving infrastructure deploys multiple verifiers (latent-ORM near-free, disc-ORM moderate cost, GenRM expensive), JOVA provides a principled routing policy to maximize accuracy within a fixed serving budget — answering the deployment question "given these verifiers, how do I use them optimally per query?"
+
+## Research Landscape
+
+**Generation-verification tradeoff foundations.** Singhi et al. (COLM 2025, arXiv 2504.01005) established aggregate scaling laws showing SC beats GenRM under most practical budgets, but this is difficulty-averaged. Rethinking Reward Models (arXiv 2510.00492) characterizes verifier effectiveness across domains with uniform strategies. Trust but Verify (arXiv 2508.16665) provides a verification taxonomy (discriminative/generative, process/outcome, prompt-based/fine-tuned).
+
+**Adaptive K (fixed verifier).** Strategic Scaling bandit (Zuo et al., arXiv 2506.12721) achieves up to 11.10% improvement on MATH-500 via UCB-adaptive K, but assumes a fixed reward oracle and ignores verification cost. AdaBoN (arXiv 2505.12050) adapts K for alignment, not verification selection.
+
+**Adaptive verification (fixed K or type).** VG-Search (Chen et al., arXiv 2505.11730) introduces a continuous granularity parameter unifying beam search and BoN with 52% FLOPs reduction but does not select between verification types. FlexiVe/SDV (arXiv 2505.11966) introduces fast/slow binary verification gated by consensus via GRPO, limited to binary hierarchy. Budget-aware Verification (Montgomery et al., arXiv 2510.14913) demonstrates hybrid discriminative+generative verification surpasses pure generative by up to 15.3% on AIME25 under fixed compute, but applies uniform per-dataset strategy. GenPRM (arXiv 2504.00891, AAAI 2026) trains generative PRMs with CoT reasoning + code verification; 1.5B GenPRM surpasses GPT-4o in BoN selection, 7B surpasses Qwen2.5-Math-PRM-72B — establishing the current verification SOTA but using a single fixed verifier type. "Putting the Value Back in RL" (arXiv 2505.04842) jointly trains reasoner and verifier with dynamic compute via confidence thresholds — a unified-model alternative to JOVA's modular approach.
+
+**Heterogeneous verifier combination.** Multi-Agent Verification (MAV, arXiv 2502.20379) scales test-time compute by combining multiple heterogeneous Aspect Verifiers via voting (BoN-MAV). MAV **combines** all available verifiers simultaneously (ensemble); JOVA **routes** to a single optimal verifier per instance (selection). MAV does not consider per-instance difficulty conditioning or compute budget constraints — under budget constraints, running all verifiers is infeasible, making difficulty-conditioned routing the appropriate strategy.
+
+**Adaptive reasoning length (orthogonal axis).** DiffAdapt (ICLR 2026) adapts reasoning length per instance. CODA (arXiv 2603.08659) formalizes difficulty-aware allocation as utility maximization over reasoning length. CPO (arXiv 2604.14853) uses constrained optimization with Lagrangian dual for reasoning strategy selection (12.8% relative improvement). LATTS (arXiv 2509.20368) performs step-level adaptive scaling via verifier acceptance criteria.
+
+**Adaptive routing (model-level).** ODAR (arXiv 2602.23681) uses active-inference-based difficulty estimation to route between fast/slow agents (82% cost savings), routing between models rather than verification types.
+
+**Multi-dimensional budget allocation.** AVA (Anytime Verified Agents, OpenReview 2026) dynamically allocates compute across search, sampling, and verification using calibrated uncertainty and selective verification cascades with early exits. JOVA differs in three dimensions: (1) Signal — difficulty (intrinsic problem property via DTR) vs. uncertainty (model-problem interaction); (2) Space — discrete (K, d) menu with bilinear cost vs. continuous search/sampling/verification allocation; (3) Mechanism — cross-type switching (latent-ORM → GenRM with distinct TPR/TNR) vs. early exit within a single verification pipeline.
+
+**Difficulty signals and lightweight verifiers.** DTR (arXiv 2602.13517) provides a difficulty signal with r=0.828 average accuracy correlation (validated on GPT-OSS-120B, DeepSeek-R1-70B, Qwen3-30B-Thinking across AIME 24/25, HMMT 25, GPQA-diamond; not yet validated on distilled ≤14B models). LiLaVe (arXiv 2504.16760) enables near-free hidden-state-based verification. TrajSelector (arXiv 2510.16449) uses hidden states for process-level scoring via a 0.6B verifier, exceeding majority voting by 4.61%.
+
+**Gap.** All existing work optimizes a single variable (K, granularity, binary type, reasoning length, or model routing), or combines all verifiers without selection (MAV). AVA allocates multi-dimensionally but uses uncertainty-driven cascades, not difficulty-driven type switching. No work jointly optimizes (K, d) over a verifier type hierarchy under a shared budget with a continuous difficulty signal, nor reveals the difficulty-dependent composition gap structure.
+
+## Proposed Approach: JOVA
+
+**Formulation.** Per-instance allocation over a discrete (K, d) menu under C(K,d) = K·(c_g + c_v(d)) ≤ B.
+
+**Verifier type hierarchy.** We treat the four-tier ordering (latent-ORM < disc-ORM < PRM < GenRM in cost and expected precision) as an empirical hypothesis to be validated in Phase 0, not an assumption. If the actual reliability structure is non-monotonic (e.g., PRM outperforms GenRM on certain problem types), the (K, d) menu is reorganized accordingly.
+
+**Difficulty routing.** DTR-based router estimates difficulty from short prefix hidden states. Honest limitation: DTR primarily captures reasoning effort intensity; domain-specific factors (algebraic vs. geometric vs. combinatorial) and generator confidence may additionally influence optimal verification type. DTR provides a strong but not exhaustive routing signal; multi-signal routing is a natural future extension.
+
+**Fallback difficulty signals.** DTR has been validated only on ≥30B models. For ≤14B distilled models, we include fallbacks: (a) generator logit entropy (zero-overhead, extracted during generation), (b) two-stage SC agreement rate (fixed K_0=4 pilot samples to estimate difficulty, then allocate remaining budget B − K_0·c_g adaptively; cost model explicitly includes pilot overhead: C_total = K_0·c_g + K·(c_g + c_v(d))). Phase 0 selects the best signal for the target model scale.
+
+**Online refinement.** UCB bandit refines (K, d) via correctness feedback. Protocol: bandit pre-trained on held-out validation split, then frozen for test evaluation. For small benchmarks (AIME25), transfer policy learned on MATH-500 validation split.
+
+**Why learned routing exceeds static lookup.** Grid-Search-(K,d)-per-bucket (exhaustive search per difficulty tercile on validation data) is a strong trivial alternative. JOVA's advantages: (a) difficulty is continuous — discrete bins lose boundary information; (b) optimal (K, d) depends on domain-specific factors beyond scalar difficulty; (c) UCB adapts to distribution shift across benchmarks.
+
+## Experimental Design
+
+**Phase 0 (pilot, ~50 A100-hours).** (a) DTR correlation on DeepSeek-R1-Distill-14B and Qwen3-8B using MATH-500; compare DTR vs. SC agreement rate vs. logit entropy vs. prompt perplexity; proceed if best signal achieves r ≥ 0.6. (b) Validate verifier hierarchy: measure TPR/TNR of each verifier tier per difficulty bin; test whether ordering is monotonic. (c) Profile LiLaVe hidden state extraction overhead.
+
+**Benchmarks.** MATH-500 (primary per-difficulty analysis), AIME25 (aggregate + qualitative case study; ≥10 seeds due to n=30), GPQA-Diamond (aggregate). Optional: LiveCodeBench for cross-domain generalization.
+
+**Models.** Primary: DeepSeek-R1-Distill-Qwen-14B, Qwen3-8B. Extended: DeepSeek-R1-Distill-Qwen-32B. Supplementary: DeepSeek-R1 full (671B MoE) if resources permit.
+
+**Verifier specification:**
+
+| Tier | Implementation | Params | Approx. Cost |
+|---|---|---|---|
+| Latent-ORM | LiLaVe: XGBoost on hidden states (arXiv 2504.16760) | ~0 (reuses forward pass) | ~2% of c_g |
+| Disc-ORM | InternLM2-7B-Reward (or comparable open-source outcome RM) | 7B | ~50% of c_g |
+| PRM | Skywork-o1-Open-PRM-Qwen-2.5-7B, step-level scoring (note: robustness limitations per arXiv 2603.06621; Phase 0 validates on target generations) | 7B | ~60% of c_g |
+| GenRM | Generator self-verification via CoT | same as generator | ~76× of c_g |
+
+Disc-ORM and PRM intentionally use different model families to ensure the hierarchy captures genuine type diversity rather than scoring-granularity-within-one-model artifacts. FLOPs cost table calibrated per model-verifier pair; distinguishes prefill vs decode.
+
+**Baselines (compute-matched via FLOPs as primary metric; wall-clock as supplementary):**
+1. Static Best-of-N with each single verifier type (4 configs)
+2. Self-Consistency (majority voting)
+3. Strategic Scaling bandit (Zuo et al., arXiv 2506.12721) — adaptive K + fixed best verifier
+4. VG-Search (Chen et al., arXiv 2505.11730) — adaptive granularity, uniform type
+5. FlexiVe/SDV (arXiv 2505.11966) — fast/slow binary verification
+6. Grid-Search-(K,d)-per-bucket — static lookup per difficulty tercile
+7. Montgomery et al. hybrid disc+gen verification (arXiv 2510.14913) — uniform per-dataset
+8. GenPRM-7B BoN (arXiv 2504.00891, AAAI 2026) — fixed GenPRM verifier + best K
+
+**Ablations:**
+
+| Configuration | K | d | Router | Purpose |
+|---|---|---|---|---|
+| JOVA-full | adaptive | adaptive | DTR+UCB | Complete system |
+| Fix-d-best | adaptive | fixed best d | DTR+UCB | Isolate d-selection gain |
+| Fix-K-best | fixed best K | adaptive | DTR+UCB | Isolate K-selection gain |
+| DTR-only | DTR preset | DTR preset | DTR only | Isolate UCB refinement gain |
+| UCB-only | UCB learned | UCB learned | UCB only | Isolate DTR initialization gain |
+| Oracle-router | adaptive | adaptive | Oracle | Performance upper bound |
+
+Additional analyses: (a) difficulty signal comparison (DTR vs SC-agreement vs logit entropy vs perplexity); (b) tier dropout: 2-tier (Latent-ORM + GenRM only) vs 3-tier (drop Disc-ORM or PRM) vs 4-tier (full) — quantifies marginal contribution of intermediate tiers; (c) binning sensitivity (2/3/5-bin vs continuous mapping); (d) router robustness (10%/20%/30% simulated routing error); (e) per-difficulty-bin (K,d) allocation distribution (MATH-500 only); (f) composition gap measurement: compare JOVA-full accuracy vs max(Fix-d-best, Fix-K-best), stratified by difficulty, to directly quantify the joint optimization benefit per regime.
+
+**Evaluation protocol:**
+- 8 budget levels at log-spacing: 1×, 2×, 4×, 8×, 16×, 32×, 64×, 128× of pass@1 cost
+- Accuracy-vs-FLOPs Pareto curves (primary) + accuracy-vs-wall-clock (supplementary, measured on single A100-80G, batch size 1)
+- Bootstrap 95% CI; ≥5 seeds (MATH-500, GPQA), ≥10 seeds (AIME25)
+- Gains reported in two tiers: (a) vs static BoN, (b) vs best adaptive-K-only baseline
+
+**Compute estimate (~350-550 A100-hours total):**
+- Phase 0 (pilot): ~50 hours
+- Phase 1 (core): MATH-500 + 14B + main ablations + Grid-Search baseline (~120 hours)
+- Phase 2 (extension): AIME25 + GPQA + Qwen3-8B + all baselines (~180 hours)
+- Phase 3 (analysis): difficulty breakdown, tier dropout, router robustness, Pareto curves, binning sensitivity, 32B model (~100 hours)
+
+Primary target: AAAI 2027 (Jul 28).
+
+## Key References
+
+- When To Solve, When To Verify (Singhi et al., COLM 2025, arXiv 2504.01005)
+- Strategic Scaling of Test-Time Compute: A Bandit Approach (Zuo et al., arXiv 2506.12721)
+- VG-Search: Rethinking Optimal Verification Granularity (Chen et al., arXiv 2505.11730)
+- FlexiVe/SDV: Flexible Generative Verifier (arXiv 2505.11966)
+- Variation in Verification (ICLR 2026, arXiv 2509.17995)
+- Think Deep, Not Just Long: DTR via Deep-Thinking Tokens (arXiv 2602.13517)
+- Lightweight Latent Verifiers for Meta-Generation: LiLaVe (arXiv 2504.16760)
+- TrajSelector: Latent Representations for Best-of-N (arXiv 2510.16449)
+- Rethinking Reward Models for Multi-Domain Scaling (arXiv 2510.00492)
+- Budget-aware Test-time Scaling via Discriminative Verification (Montgomery et al., arXiv 2510.14913)
+- DiffAdapt: Difficulty-Adaptive Reasoning (ICLR 2026)
+- CODA: Difficulty-Aware Compute Allocation (arXiv 2603.08659)
+- ODAR: Principled Adaptive Routing via Active Inference (arXiv 2602.23681)
+- Adaptive TTC via Constrained Policy Optimization (arXiv 2604.14853)
+- LATTS: Locally Adaptive Test-Time Scaling (arXiv 2509.20368)
+- AdaBoN: Adaptive Best-of-N (arXiv 2505.12050)
+- AVA: Anytime Verified Agents (OpenReview 2026)
+- Putting the Value Back in RL: Unifying Reasoners With Verifiers (arXiv 2505.04842)
+- Trust but Verify! Survey on Verification Design (arXiv 2508.16665)
+- Multi-Agent Verification: BoN-MAV (arXiv 2502.20379)
+- GenPRM: Generative Process Reward Model (arXiv 2504.00891, AAAI 2026)
+- Reward Under Attack: PRM Robustness (arXiv 2603.06621)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "f1bfdd6f-426d-45c3-90fd-09bc2864e835",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T06:51:04.329Z_
+
+```json
+{
+  "parentUuid": "f1bfdd6f-426d-45c3-90fd-09bc2864e835",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "211bdbb9-005d-41cb-9c38-0b62119df520",
+  "timestamp": "2026-05-29T06:51:04.329Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T06:51:04.329Z_
+
+```json
+{
+  "parentUuid": "211bdbb9-005d-41cb-9c38-0b62119df520",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a55aa6dc-e40a-4826-8580-a3bf186e3202",
+  "timestamp": "2026-05-29T06:51:04.329Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning  ## Core Problem and Moti…",
+  "leafUuid": "a55aa6dc-e40a-4826-8580-a3bf186e3202",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive verification type selection for LLM reasoning",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-29T06:51:09.333Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for AAAI 2026 (though the proposal itself says "AAAI 2027" as target). Let me first do thorough web searches to understand the current landscape, then provide my evaluation.
+
+Let me search for the key topics and related works mentioned in the proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a55aa6dc-e40a-4826-8580-a3bf186e3202",
+  "isSidechain": false,
+  "requestId": "req_011CbWR7ntLA17L3Yu6AnEeH",
+  "type": "assistant",
+  "uuid": "4c93a02b-982b-4fab-b1c0-14ac52ba77d0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcNvc6QXrGLQy7qPjqju9f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8518,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8518,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 8518,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8518
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-29T06:51:09.832Z_
+
+I'll start by conducting thorough web searches to understand the current research landscape before evaluating this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c93a02b-982b-4fab-b1c0-14ac52ba77d0",
+  "isSidechain": false,
+  "requestId": "req_011CbWR7ntLA17L3Yu6AnEeH",
+  "type": "assistant",
+  "uuid": "0b466c3e-fc20-4edf-a413-db118c7e5466",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcNvc6QXrGLQy7qPjqju9f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8518,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8518,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 8518,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8518
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-29T06:51:10.253Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01T9bTrWaDK7co8TZu2Pu8aY`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b466c3e-fc20-4edf-a413-db118c7e5466",
+  "isSidechain": false,
+  "requestId": "req_011CbWR7ntLA17L3Yu6AnEeH",
+  "type": "assistant",
+  "uuid": "6a61dfaa-0ed7-4d5b-ab16-f96be516c1a0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LcNvc6QXrGLQy7qPjqju9f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8518,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8518,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 8518,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8518
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-29T06:51:10.262Z_
+
+<details><summary>↩ Tool result · `toolu_01T9bTrWaDK7co8TZu2Pu8aY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a61dfaa-0ed7-4d5b-ab16-f96be516c1a0",
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "caeeb07a-2957-4b57-b236-399c1ec910ff",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "6a61dfaa-0ed7-4d5b-ab16-f96be516c1a0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-29T06:51:14.379Z_
+
+Now let me conduct the required research searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "caeeb07a-2957-4b57-b236-399c1ec910ff",
+  "isSidechain": false,
+  "requestId": "req_011CbWR8EGoUfQfYh55oSJ1z",
+  "type": "assistant",
+  "uuid": "63a829c4-64f4-41cf-a915-03715dfeea78",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uEP4vFwu8nUg4jLZJ1eN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 19532,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 19532,
+          "cache_creation_input_tokens": 712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-29T06:51:14.877Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MyCmNDeJW8cx67KDvCoyya`</summary>
+
+```json
+{
+  "query": "adaptive test-time compute allocation LLM reasoning verification 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63a829c4-64f4-41cf-a915-03715dfeea78",
+  "isSidechain": false,
+  "requestId": "req_011CbWR8EGoUfQfYh55oSJ1z",
+  "type": "assistant",
+  "uuid": "390b415b-54d9-459c-9541-13061f8bd9fd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uEP4vFwu8nUg4jLZJ1eN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 19532,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 19532,
+          "cache_creation_input_tokens": 712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-29T06:51:21.514Z_
+
+<details><summary>↩ Tool result · `toolu_01MyCmNDeJW8cx67KDvCoyya`</summary>
+
+```text
+Web search results for query: "adaptive test-time compute allocation LLM reasoning verification 2025 2026"
+
+Links: [{"title":"Adaptive Test-Time Compute Allocation","url":"https://www.emergentmind.com/topics/adaptive-test-time-compute-allocation"},{"title":"What If We Allocate Test-Time Compute Adaptively?","url":"https://arxiv.org/html/2602.01070"},{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/html/2602.03975v1"},{"title":"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization","url":"https://arxiv.org/html/2604.14853v1"},{"title":"Adaptive Test-Time Compute Allocation for Reasoning LLMs via...","url":"https://arxiv.org/abs/2604.14853"},{"title":"[2602.03975] Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/abs/2602.03975"}]
+
+I've found several recent research papers and resources on adaptive test-time compute allocation for LLM reasoning verification from 2025-2026. Here are the key findings:
+
+## Recent Research Developments
+
+Adaptive test-time compute allocation provides a foundation for more efficient and reliable LLM reasoning by allocating compute adaptively rather than uniformly.
+
+### Key Approaches
+
+LATTS (Locally Adaptive Test-Time Scaling) employs step-level verifier scores to decide whether to accept, resample, backtrack, or terminate each reasoning step, allowing per-step compute adaptivity.
+
+A state-level selective verification framework combines deterministic feasibility gating, pre-verification ranking using learned state-distance and residual scoring, and adaptive allocation of verifier calls based on local uncertainty.
+
+### Implementation Strategies
+
+Implementation of adaptive compute allocation requires careful proxy selection and calibration through difficulty or uncertainty estimation, and mapping difficulty scores to pre-profiled compute or energy allocations.
+
+LLM and vision models, code generators, and decision planners can all leverage adaptive compute structuring for sample- and energy-efficient inference.
+
+### Recent Results
+
+Recent experiments on MATH and GSM8K with multiple LLMs show methods achieving up to 12.8% relative accuracy improvement under matched budget constraints.
+
+On the MATH benchmark, adaptive verification approaches achieve higher accuracy than baseline methods while using 44% fewer verifier calls.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "390b415b-54d9-459c-9541-13061f8bd9fd",
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "152bea48-9aa1-482b-8954-cf13f9669db4",
+  "toolUseResult": {
+    "query": "adaptive test-time compute allocation LLM reasoning verification 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013S1ctEBoqwJnJ6bdbcnLwd",
+        "content": [
+          {
+            "title": "Adaptive Test-Time Compute Allocation",
+            "url": "https://www.emergentmind.com/topics/adaptive-test-time-compute-allocation"
+          },
+          {
+            "title": "What If We Allocate Test-Time Compute Adaptively?",
+            "url": "https://arxiv.org/html/2602.01070"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/html/2602.03975v1"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization",
+            "url": "https://arxiv.org/html/2604.14853v1"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation for Reasoning LLMs via...",
+            "url": "https://arxiv.org/abs/2604.14853"
+          },
+          {
+            "title": "[2602.03975] Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/abs/2602.03975"
+          }
+        ]
+      },
+      "I've found several recent research papers and resources on adaptive test-time compute allocation for LLM reasoning verification from 2025-2026. Here are the key findings:\n\n## Recent Research Developments\n\nAdaptive test-time compute allocation provides a foundation for more efficient and reliable LLM reasoning by allocating compute adaptively rather than uniformly.\n\n### Key Approaches\n\nLATTS (Locally Adaptive Test-Time Scaling) employs step-level verifier scores to decide whether to accept, resample, backtrack, or terminate each reasoning step, allowing per-step compute adaptivity.\n\nA state-level selective verification framework combines deterministic feasibility gating, pre-verification ranking using learned state-distance and residual scoring, and adaptive allocation of verifier calls based on local uncertainty.\n\n### Implementation Strategies\n\nImplementation of adaptive compute allocation requires careful proxy selection and calibration through difficulty or uncertainty estimation, and mapping difficulty scores to pre-profiled compute or energy allocations.\n\nLLM and vision models, code generators, and decision planners can all leverage adaptive compute structuring for sample- and energy-efficient inference.\n\n### Recent Results\n\nRecent experiments on MATH and GSM8K with multiple LLMs show methods achieving up to 12.8% relative accuracy improvement under matched budget constraints.\n\nOn the MATH benchmark, adaptive verification approaches achieve higher accuracy than baseline methods while using 44% fewer verifier calls."
+    ],
+    "durationSeconds": 6.630395415000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "390b415b-54d9-459c-9541-13061f8bd9fd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-29T06:51:27.894Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01McAuy5Zpr3WDndRdwfHfKZ`</summary>
+
+```json
+{
+  "query": "joint generation verification compute budget LLM best-of-N verifier selection 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "152bea48-9aa1-482b-8954-cf13f9669db4",
+  "isSidechain": false,
+  "requestId": "req_011CbWR949NkTVhgfTbNckDd",
+  "type": "assistant",
+  "uuid": "1015315a-092b-4569-affb-f1c4b05775e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018EFXfV43Tk8srY9FuyP3dR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 20244,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 20244,
+          "cache_creation_input_tokens": 697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-29T06:51:37.422Z_
+
+<details><summary>↩ Tool result · `toolu_01McAuy5Zpr3WDndRdwfHfKZ`</summary>
+
+```text
+Web search results for query: "joint generation verification compute budget LLM best-of-N verifier selection 2025 2026"
+
+Links: [{"title":"Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM Reasoners With Verifiers","url":"https://arxiv.org/html/2505.04842v2"},{"title":"Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling","url":"https://arxiv.org/pdf/2505.11730"},{"title":"Generative Verifiers: Reward Modeling as Next-Token Prediction","url":"https://arxiv.org/pdf/2408.15240"},{"title":"Generative Verifiers: Reward Modeling as Next-Token Prediction | OpenReview","url":"https://openreview.net/forum?id=Ccwp4tFEtE"},{"title":"Published as a conference paper at ICLR 2025 GENERATIVE VERIFIERS:","url":"https://openreview.net/pdf?id=Ccwp4tFEtE"},{"title":"Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM   Reasoners With Verifiers","url":"https://arxiv.org/pdf/2505.04842"},{"title":"Multi-Agent Verification: Scaling Test-Time Compute with Multiple   Verifiers","url":"https://arxiv.org/pdf/2502.20379"},{"title":"Budget-aware Test-time Scaling via Discriminative Verification","url":"https://arxiv.org/html/2510.14913v1"}]
+
+Based on the web search results, here's what I found regarding joint generation verification, compute budgets, LLM verifiers, and best-of-N selection in 2025-2026:
+
+## Key Research Areas
+
+**Joint Generation and Verification:**
+Recent work has explored jointly training a single LLM using RL and generative verification, offering a capable verifier essentially for free with no memory and very minimal compute cost. A proposed approach augments "value-free" methods with a generative verifier, utilizing the abundant data generated during RL training to simultaneously train the LLM as both a reasoner and a verifier.
+
+**Verification Granularity and Compute Efficiency:**
+Variable Granularity Search (VG-Search) is a unified algorithm that generalizes beam search and Best-of-N sampling, with adaptive strategies achieving accuracy gains of up to 3.1% over Beam Search and 3.6% over Best-of-N while reducing FLOPs by over 52%. By iteratively increasing the generation length until a chosen confidence threshold is met, models can obtain maximum accuracy at a given sequential compute budget, allowing dynamic allocation of more sequential compute to difficult problems.
+
+**Generative Verifiers:**
+Generative verifiers trained using next-token prediction can integrate seamlessly with instruction tuning, enable chain-of-thought reasoning, and can utilize additional test-time compute via majority voting for better verification. On GSM8K with Gemini 1.0 Pro generator solutions, a Gemma2-9B GenRM-CoT verifier showed improvement from 73% to 93.4% in the number of problems solved.
+
+**Multi-Verifier Approaches:**
+A new scaling dimension involves scaling the number of verifiers, with Multi-Agent Verification (MAV) combining multiple verifiers to improve performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1015315a-092b-4569-affb-f1c4b05775e8",
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "7279036b-f933-4cde-a39d-469aca42550e",
+  "toolUseResult": {
+    "query": "joint generation verification compute budget LLM best-of-N verifier selection 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DhTTNBbJMnRytNgLDCWVSa",
+        "content": [
+          {
+            "title": "Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM Reasoners With Verifiers",
+            "url": "https://arxiv.org/html/2505.04842v2"
+          },
+          {
+            "title": "Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling",
+            "url": "https://arxiv.org/pdf/2505.11730"
+          },
+          {
+            "title": "Generative Verifiers: Reward Modeling as Next-Token Prediction",
+            "url": "https://arxiv.org/pdf/2408.15240"
+          },
+          {
+            "title": "Generative Verifiers: Reward Modeling as Next-Token Prediction | OpenReview",
+            "url": "https://openreview.net/forum?id=Ccwp4tFEtE"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 GENERATIVE VERIFIERS:",
+            "url": "https://openreview.net/pdf?id=Ccwp4tFEtE"
+          },
+          {
+            "title": "Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM   Reasoners With Verifiers",
+            "url": "https://arxiv.org/pdf/2505.04842"
+          },
+          {
+            "title": "Multi-Agent Verification: Scaling Test-Time Compute with Multiple   Verifiers",
+            "url": "https://arxiv.org/pdf/2502.20379"
+          },
+          {
+            "title": "Budget-aware Test-time Scaling via Discriminative Verification",
+            "url": "https://arxiv.org/html/2510.14913v1"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding joint generation verification, compute budgets, LLM verifiers, and best-of-N selection in 2025-2026:\n\n## Key Research Areas\n\n**Joint Generation and Verification:**\nRecent work has explored jointly training a single LLM using RL and generative verification, offering a capable verifier essentially for free with no memory and very minimal compute cost. A proposed approach augments \"value-free\" methods with a generative verifier, utilizing the abundant data generated during RL training to simultaneously train the LLM as both a reasoner and a verifier.\n\n**Verification Granularity and Compute Efficiency:**\nVariable Granularity Search (VG-Search) is a unified algorithm that generalizes beam search and Best-of-N sampling, with adaptive strategies achieving accuracy gains of up to 3.1% over Beam Search and 3.6% over Best-of-N while reducing FLOPs by over 52%. By iteratively increasing the generation length until a chosen confidence threshold is met, models can obtain maximum accuracy at a given sequential compute budget, allowing dynamic allocation of more sequential compute to difficult problems.\n\n**Generative Verifiers:**\nGenerative verifiers trained using next-token prediction can integrate seamlessly with instruction tuning, enable chain-of-thought reasoning, and can utilize additional test-time compute via majority voting for better verification. On GSM8K with Gemini 1.0 Pro generator solutions, a Gemma2-9B GenRM-CoT verifier showed improvement from 73% to 93.4% in the number of problems solved.\n\n**Multi-Verifier Approaches:**\nA new scaling dimension involves scaling the number of verifiers, with Multi-Agent Verification (MAV) combining multiple verifiers to improve performance."
+    ],
+    "durationSeconds": 9.523698245000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1015315a-092b-4569-affb-f1c4b05775e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-29T06:51:42.485Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RqVxLAjTjmZxWC8SXt4V42`</summary>
+
+```json
+{
+  "query": "difficulty-aware routing LLM inference DTR deep thinking tokens difficulty estimation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7279036b-f933-4cde-a39d-469aca42550e",
+  "isSidechain": false,
+  "requestId": "req_011CbWRAE9AsEFT3h8BCeZXB",
+  "type": "assistant",
+  "uuid": "ad8d5673-d2c2-4c7e-b543-07e61fd17f84",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCMx5xsoxuq2QW2w6L2Ps2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 20941,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 20941,
+          "cache_creation_input_tokens": 909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-29T06:51:51.058Z_
+
+<details><summary>↩ Tool result · `toolu_01RqVxLAjTjmZxWC8SXt4V42`</summary>
+
+```text
+Web search results for query: "difficulty-aware routing LLM inference DTR deep thinking tokens difficulty estimation 2025 2026"
+
+Links: [{"title":"Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiviq.substack.com/p/think-deep-not-just-long-measuring"},{"title":"Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiv.org/pdf/2602.13517"},{"title":"Deep-Thinking Tokens in LLM Reasoning","url":"https://www.emergentmind.com/papers/2602.13517"},{"title":"Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiv.org/html/2602.13517v1"},{"title":"Google Introduces Deep Thinking Ratio to Boost LLM Accuracy and Cut Inference Costs - UBOS","url":"https://ubos.tech/news/google-introduces-deep-thinking-ratio-to-boost-llm-accuracy-and-cut-inference-costs/"},{"title":"Informed Routing in LLMs: Smarter Token-Level Computation for Faster Inference","url":"https://arxiv.org/pdf/2510.13831"},{"title":"Paper page - Rethinking Thinking Tokens: LLMs as Improvement Operators","url":"https://huggingface.co/papers/2510.01123"}]
+
+Based on the search results, I found recent research on difficulty-aware routing and deep-thinking tokens for LLM inference. Here's what I discovered:
+
+## Deep-Thinking Ratio (DTR) and Think@n Method
+
+The "deep-thinking ratio" (DTR) is a metric that quantifies the proportion of output tokens requiring continued revision across deeper layers prior to prediction distribution stabilization. By counting the proportion of deep-thinking tokens in a generated sequence, DTR provides a mechanistically grounded measure of thinking effort, requiring neither task-specific heuristics nor external structural annotations.
+
+## Difficulty-Aware Routing Strategy
+
+The authors engineered this insight into Think@n, an aggressive parallel inference routing strategy where the system generates a constrained prefix for all candidates, the DTR is calculated over this short prefix, and candidates are ranked by their DTR scores with only the top percent granted the compute budget to decode fully.
+
+## Performance Results
+
+The approach has shown impressive results: On the AIME-2025 math benchmark, Think@n achieved 94.7% accuracy versus 92.7% for Cons@n, with average token usage dropping from 307.6k to 155.4k, a 49% reduction in inference cost.
+
+Across AIME 2024, AIME 2025, HMMT 2025, and GPQA benchmarks using models like GPT-OSS, DeepSeek-R1, and Qwen3 families, measuring deep-thinking tokens yields strong correlations with task accuracy, substantially higher than those obtained using length-based or confidence-based baselines.
+
+This research represents a significant advancement in optimizing inference-time compute allocation in 2025-2026 by moving beyond simple token length metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad8d5673-d2c2-4c7e-b543-07e61fd17f84",
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "0787540c-1aa4-4f40-871e-0cf7d005c629",
+  "toolUseResult": {
+    "query": "difficulty-aware routing LLM inference DTR deep thinking tokens difficulty estimation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YDNGF9dqxFDBVRL2YWVYMX",
+        "content": [
+          {
+            "title": "Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiviq.substack.com/p/think-deep-not-just-long-measuring"
+          },
+          {
+            "title": "Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiv.org/pdf/2602.13517"
+          },
+          {
+            "title": "Deep-Thinking Tokens in LLM Reasoning",
+            "url": "https://www.emergentmind.com/papers/2602.13517"
+          },
+          {
+            "title": "Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiv.org/html/2602.13517v1"
+          },
+          {
+            "title": "Google Introduces Deep Thinking Ratio to Boost LLM Accuracy and Cut Inference Costs - UBOS",
+            "url": "https://ubos.tech/news/google-introduces-deep-thinking-ratio-to-boost-llm-accuracy-and-cut-inference-costs/"
+          },
+          {
+            "title": "Informed Routing in LLMs: Smarter Token-Level Computation for Faster Inference",
+            "url": "https://arxiv.org/pdf/2510.13831"
+          },
+          {
+            "title": "Paper page - Rethinking Thinking Tokens: LLMs as Improvement Operators",
+            "url": "https://huggingface.co/papers/2510.01123"
+          }
+        ]
+      },
+      "Based on the search results, I found recent research on difficulty-aware routing and deep-thinking tokens for LLM inference. Here's what I discovered:\n\n## Deep-Thinking Ratio (DTR) and Think@n Method\n\nThe \"deep-thinking ratio\" (DTR) is a metric that quantifies the proportion of output tokens requiring continued revision across deeper layers prior to prediction distribution stabilization. By counting the proportion of deep-thinking tokens in a generated sequence, DTR provides a mechanistically grounded measure of thinking effort, requiring neither task-specific heuristics nor external structural annotations.\n\n## Difficulty-Aware Routing Strategy\n\nThe authors engineered this insight into Think@n, an aggressive parallel inference routing strategy where the system generates a constrained prefix for all candidates, the DTR is calculated over this short prefix, and candidates are ranked by their DTR scores with only the top percent granted the compute budget to decode fully.\n\n## Performance Results\n\nThe approach has shown impressive results: On the AIME-2025 math benchmark, Think@n achieved 94.7% accuracy versus 92.7% for Cons@n, with average token usage dropping from 307.6k to 155.4k, a 49% reduction in inference cost.\n\nAcross AIME 2024, AIME 2025, HMMT 2025, and GPQA benchmarks using models like GPT-OSS, DeepSeek-R1, and Qwen3 families, measuring deep-thinking tokens yields strong correlations with task accuracy, substantially higher than those obtained using length-based or confidence-based baselines.\n\nThis research represents a significant advancement in optimizing inference-time compute allocation in 2025-2026 by moving beyond simple token length metrics."
+    ],
+    "durationSeconds": 8.566859416,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ad8d5673-d2c2-4c7e-b543-07e61fd17f84",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-29T06:51:53.352Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LWLZKJ5GHsBsehPWPsUh4b`</summary>
+
+```json
+{
+  "query": "self-consistency vs generative reward model verification LLM scaling law \"when to verify\" 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0787540c-1aa4-4f40-871e-0cf7d005c629",
+  "isSidechain": false,
+  "requestId": "req_011CbWRBEUHny7bL5RFRsYfX",
+  "type": "assistant",
+  "uuid": "205474c8-9858-4488-a0e5-5480145f600b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X2UBziMGrps1xE4wN2KdRL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 854,
+      "cache_read_input_tokens": 21850,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 854,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 21850,
+          "cache_creation_input_tokens": 854,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 854
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-29T06:52:00.384Z_
+
+<details><summary>↩ Tool result · `toolu_01LWLZKJ5GHsBsehPWPsUh4b`</summary>
+
+```text
+Web search results for query: "self-consistency vs generative reward model verification LLM scaling law "when to verify" 2025"
+
+Links: [{"title":"[2504.01005] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/abs/2504.01005"},{"title":"When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/html/2504.01005v2"},{"title":"When Does Verification Pay Off? A Closer Look at LLMs as Solution Verifiers","url":"https://www.arxiv.org/pdf/2512.02304"},{"title":"Published as a conference paper at ICLR 2025 INFERENCE SCALING LAWS:","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8c3caae2f725c8e2a55ecd600563d172-Paper-Conference.pdf"},{"title":"When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/pdf/2504.01005"},{"title":"Latent Reward Self-Verification","url":"https://www.emergentmind.com/topics/latent-reward-self-verification"},{"title":"Rethinking Reward Models for Multi-Domain Test-Time Scaling","url":"https://arxiv.org/pdf/2510.00492"},{"title":"Variation in Verification: Understanding Verification Dynamics in Large Language Models","url":"https://arxiv.org/html/2509.17995v1"}]
+
+Based on the search results, here's what I found regarding self-consistency versus generative reward model verification, LLM scaling laws, and when to verify:
+
+## Key Research Finding: "When To Solve, When To Verify"
+
+Scaling test-time compute has emerged as a key strategy for enhancing reasoning capabilities of LLMs, particularly in mathematical problem-solving. A traditional approach, Self-Consistency (SC), generates multiple solutions to a problem and selects the most common answer via majority voting. Another common method involves scoring each solution with a reward model (verifier) and choosing the best one.
+
+Recent advancements in Generative Reward Models (GenRM) reframe verification as a next-token prediction task, enabling inference-time scaling along a new axis. GenRM generates multiple verification chains-of-thought to score each solution.
+
+## The Core Trade-off
+
+Under a limited inference budget, this introduces a fundamental trade-off: should you spend the budget on scaling solutions via SC or generate fewer solutions and allocate compute to verification via GenRM?
+
+## Verification Efficiency Insights
+
+Results identify regimes where investing in larger verifiers yields no benefit, such as when evaluating responses from strong generators or problems at difficulty extremes.
+
+The research indicates that the choice between SC and GenRM depends on inference budget constraints, with different approaches being optimal at different computational scales.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "205474c8-9858-4488-a0e5-5480145f600b",
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "6c33c291-0734-45eb-8953-f4c004422858",
+  "toolUseResult": {
+    "query": "self-consistency vs generative reward model verification LLM scaling law \"when to verify\" 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JrHe8bKkDFWf3zy9UVxQYy",
+        "content": [
+          {
+            "title": "[2504.01005] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2504.01005"
+          },
+          {
+            "title": "When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning",
+            "url": "https://arxiv.org/html/2504.01005v2"
+          },
+          {
+            "title": "When Does Verification Pay Off? A Closer Look at LLMs as Solution Verifiers",
+            "url": "https://www.arxiv.org/pdf/2512.02304"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 INFERENCE SCALING LAWS:",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8c3caae2f725c8e2a55ecd600563d172-Paper-Conference.pdf"
+          },
+          {
+            "title": "When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2504.01005"
+          },
+          {
+            "title": "Latent Reward Self-Verification",
+            "url": "https://www.emergentmind.com/topics/latent-reward-self-verification"
+          },
+          {
+            "title": "Rethinking Reward Models for Multi-Domain Test-Time Scaling",
+            "url": "https://arxiv.org/pdf/2510.00492"
+          },
+          {
+            "title": "Variation in Verification: Understanding Verification Dynamics in Large Language Models",
+            "url": "https://arxiv.org/html/2509.17995v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding self-consistency versus generative reward model verification, LLM scaling laws, and when to verify:\n\n## Key Research Finding: \"When To Solve, When To Verify\"\n\nScaling test-time compute has emerged as a key strategy for enhancing reasoning capabilities of LLMs, particularly in mathematical problem-solving. A traditional approach, Self-Consistency (SC), generates multiple solutions to a problem and selects the most common answer via majority voting. Another common method involves scoring each solution with a reward model (verifier) and choosing the best one.\n\nRecent advancements in Generative Reward Models (GenRM) reframe verification as a next-token prediction task, enabling inference-time scaling along a new axis. GenRM generates multiple verification chains-of-thought to score each solution.\n\n## The Core Trade-off\n\nUnder a limited inference budget, this introduces a fundamental trade-off: should you spend the budget on scaling solutions via SC or generate fewer solutions and allocate compute to verification via GenRM?\n\n## Verification Efficiency Insights\n\nResults identify regimes where investing in larger verifiers yields no benefit, such as when evaluating responses from strong generators or problems at difficulty extremes.\n\nThe research indicates that the choice between SC and GenRM depends on inference budget constraints, with different approaches being optimal at different computational scales."
+    ],
+    "durationSeconds": 7.0251022540000045,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "205474c8-9858-4488-a0e5-5480145f600b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning  ## Core Problem and Moti…",
+  "leafUuid": "6c33c291-0734-45eb-8953-f4c004422858",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive verification type selection for LLM reasoning",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-29T06:52:07.945Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G5vvcP9cnfQhuMKkLQMaph`</summary>
+
+```json
+{
+  "query": "heterogeneous verifier routing per-instance difficulty LLM reasoning \"composition gap\" joint optimization K d 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c33c291-0734-45eb-8953-f4c004422858",
+  "isSidechain": false,
+  "requestId": "req_011CbWRBvNeSDNj3kqyK2iS4",
+  "type": "assistant",
+  "uuid": "2991580a-93b5-4a0a-b460-cd699412c6e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ar2rp6cFw9fUp1JkvLbBy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 828,
+      "cache_read_input_tokens": 22704,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 22704,
+          "cache_creation_input_tokens": 828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-29T06:52:16.319Z_
+
+<details><summary>↩ Tool result · `toolu_01G5vvcP9cnfQhuMKkLQMaph`</summary>
+
+```text
+Web search results for query: "heterogeneous verifier routing per-instance difficulty LLM reasoning "composition gap" joint optimization K d 2025 2026"
+
+Links: [{"title":"Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection","url":"https://arxiv.org/pdf/2505.19435"},{"title":"R2-Router: A New Paradigm for LLM Routing with Reasoning","url":"https://arxiv.org/html/2602.02823v1"},{"title":"Reasoning Routing Framework","url":"https://www.emergentmind.com/topics/reasoning-routing-framework"},{"title":"Efficient and Interpretable Multi-Agent LLM Routing via Ant Colony Optimization","url":"https://arxiv.org/html/2603.12933"},{"title":"Verifiable Reasoning for LLM-based Generative Recommendation","url":"https://arxiv.org/pdf/2603.07725"},{"title":"VeriDispatcher: Multi-Model Dispatching through Pre-Inference Difficulty Prediction for RTL Generation Optimization","url":"https://arxiv.org/pdf/2511.22749"},{"title":"GitHub - chenhongyu2048/LLM-inference-optimization-paper: Summary of some awesome work for optimizing LLM inference · GitHub","url":"https://github.com/chenhongyu2048/LLM-inference-optimization-paper"}]
+
+I found several relevant research papers on LLM routing and reasoning strategies. Here are the key findings:
+
+## Recent Research on LLM Routing and Reasoning
+
+Route to Reason (RTR) learns compressed representations of both expert models and reasoning strategies, enabling their joint and adaptive selection at inference time. This method achieves higher accuracy than the best single model while reducing token usage by over 60%.
+
+R2-Router uses a heterogeneous LLM pool consisting of 15 LLMs, spanning model sizes from 0.6B to 235B parameters, including both general-purpose models and domain-specific models.
+
+SynapseRoute uses text embeddings and a logistic regression classifier to route each instance to either a "thinking" or "non-thinking" mode within a dual-state LLM, with a calibration regime explicitly optimizing an aggregate Accuracy-Inference-Token (AIT) index.
+
+VeriDispatcher is a multi-LLM framework that dispatches each task to suitable LLMs based on pre-inference difficulty prediction, training a compact classifier over semantic embeddings using difficulty scores derived from benchmark variants.
+
+The search results show active research in 2025-2026 on per-instance difficulty prediction, heterogeneous model routing, and joint optimization of model-strategy selection for efficient LLM reasoning. These approaches aim to reduce computational costs while maintaining or improving accuracy on reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2991580a-93b5-4a0a-b460-cd699412c6e4",
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "aa32c215-641c-48f0-8d76-a8abc2c17e27",
+  "toolUseResult": {
+    "query": "heterogeneous verifier routing per-instance difficulty LLM reasoning \"composition gap\" joint optimization K d 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C1XZs6p1pAAEpX9tCMjNpy",
+        "content": [
+          {
+            "title": "Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection",
+            "url": "https://arxiv.org/pdf/2505.19435"
+          },
+          {
+            "title": "R2-Router: A New Paradigm for LLM Routing with Reasoning",
+            "url": "https://arxiv.org/html/2602.02823v1"
+          },
+          {
+            "title": "Reasoning Routing Framework",
+            "url": "https://www.emergentmind.com/topics/reasoning-routing-framework"
+          },
+          {
+            "title": "Efficient and Interpretable Multi-Agent LLM Routing via Ant Colony Optimization",
+            "url": "https://arxiv.org/html/2603.12933"
+          },
+          {
+            "title": "Verifiable Reasoning for LLM-based Generative Recommendation",
+            "url": "https://arxiv.org/pdf/2603.07725"
+          },
+          {
+            "title": "VeriDispatcher: Multi-Model Dispatching through Pre-Inference Difficulty Prediction for RTL Generation Optimization",
+            "url": "https://arxiv.org/pdf/2511.22749"
+          },
+          {
+            "title": "GitHub - chenhongyu2048/LLM-inference-optimization-paper: Summary of some awesome work for optimizing LLM inference · GitHub",
+            "url": "https://github.com/chenhongyu2048/LLM-inference-optimization-paper"
+          }
+        ]
+      },
+      "I found several relevant research papers on LLM routing and reasoning strategies. Here are the key findings:\n\n## Recent Research on LLM Routing and Reasoning\n\nRoute to Reason (RTR) learns compressed representations of both expert models and reasoning strategies, enabling their joint and adaptive selection at inference time. This method achieves higher accuracy than the best single model while reducing token usage by over 60%.\n\nR2-Router uses a heterogeneous LLM pool consisting of 15 LLMs, spanning model sizes from 0.6B to 235B parameters, including both general-purpose models and domain-specific models.\n\nSynapseRoute uses text embeddings and a logistic regression classifier to route each instance to either a \"thinking\" or \"non-thinking\" mode within a dual-state LLM, with a calibration regime explicitly optimizing an aggregate Accuracy-Inference-Token (AIT) index.\n\nVeriDispatcher is a multi-LLM framework that dispatches each task to suitable LLMs based on pre-inference difficulty prediction, training a compact classifier over semantic embeddings using difficulty scores derived from benchmark variants.\n\nThe search results show active research in 2025-2026 on per-instance difficulty prediction, heterogeneous model routing, and joint optimization of model-strategy selection for efficient LLM reasoning. These approaches aim to reduce computational costs while maintaining or improving accuracy on reasoning tasks."
+    ],
+    "durationSeconds": 8.366839833999991,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2991580a-93b5-4a0a-b460-cd699412c6e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-29T06:52:21.639Z_
+
+Now let me do one more targeted search to check for any very recent work that directly competes with this proposal's core contribution.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa32c215-641c-48f0-8d76-a8abc2c17e27",
+  "isSidechain": false,
+  "requestId": "req_011CbWRD6cKgmKRsNYSMqUuX",
+  "type": "assistant",
+  "uuid": "920b564e-9da2-45f0-99fd-f9bde0a40c7c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012QVrx6htg8mq7ovaxJwRpH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 23532,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 23532,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-29T06:52:22.565Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BAPAg6qGjq5wWLqvGUzj5R`</summary>
+
+```json
+{
+  "query": "LiLaVe lightweight latent verifier hidden state verification LLM 2025 GenPRM generative process reward model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "920b564e-9da2-45f0-99fd-f9bde0a40c7c",
+  "isSidechain": false,
+  "requestId": "req_011CbWRD6cKgmKRsNYSMqUuX",
+  "type": "assistant",
+  "uuid": "7fffacb4-867c-4e6a-815a-318178754eb2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012QVrx6htg8mq7ovaxJwRpH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 23532,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 23532,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-29T06:52:30.831Z_
+
+<details><summary>↩ Tool result · `toolu_01BAPAg6qGjq5wWLqvGUzj5R`</summary>
+
+```text
+Web search results for query: "LiLaVe lightweight latent verifier hidden state verification LLM 2025 GenPRM generative process reward model"
+
+Links: [{"title":"[2504.16760] Lightweight Latent Verifiers for Efficient Meta-Generation Strategies","url":"https://arxiv.org/abs/2504.16760"},{"title":"Lightweight Latent Verifiers for Efficient Meta-Generation Strategies | OpenReview","url":"https://openreview.net/forum?id=JQ0OdJHOsQ"},{"title":"Preprint. Under review. Lightweight Latent Verifiers","url":"https://arxiv.org/pdf/2504.16760"},{"title":"LLM Verifier","url":"https://www.emergentmind.com/topics/llm-verifier"},{"title":"Lightweight Latent Verifiers for Efficient Meta-Generation Strategies","url":"https://arxiv.org/html/2504.16760"},{"title":"Technical Report CLUE: Non-parametric Verification from Experience via Hidden-","url":"https://arxiv.org/pdf/2510.01591"},{"title":"TensorCommitments: A Lightweight Verifiable Inference for Language Models","url":"https://arxiv.org/html/2602.12630"},{"title":"Efficient Test-Time Scaling of Multi-Step Reasoning by Probing Internal States of Large Language Models","url":"https://arxiv.org/pdf/2511.06209"}]
+
+Links: [{"title":"[PDF] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GenPRM:-Scaling-Test-Time-Compute-of-Process-Reward-Zhao-Liu/bd94932b7604933a11d1538b0de6f9543089711f"},{"title":"Paper page - GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://huggingface.co/papers/2504.00891"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/genprm-scaling-test-time-compute-process-reward"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://ryanliu112.github.io/GenPRM/"},{"title":"Breaking the LLM Bottleneck: GenPRM’s approach to Scale test-time compute via generative reasoning | by SACHIN KUMAR | Medium","url":"https://medium.com/@techsachin/breaking-the-llm-bottleneck-genprms-approach-to-scale-test-time-compute-via-generative-reasoning-0e90e3ffa71e"},{"title":"[2504.00891] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning","url":"https://arxiv.org/abs/2504.00891"},{"title":"GitHub - RyanLiu112/GenPRM: [AAAI 2026] Official codebase for \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning\".","url":"https://github.com/RyanLiu112/GenPRM"},{"title":"GenPRM/GenPRM-7B · Hugging Face","url":"https://huggingface.co/GenPRM/GenPRM-7B"},{"title":"GenPRM: Scaling Test-Time Compute of Process Reward ...","url":"https://arxiv.org/pdf/2504.00891"},{"title":"LLM-as-GenPRM: Generative Process Reward Model","url":"https://www.emergentmind.com/topics/generative-process-reward-model-llm-as-genprm"}]
+
+Based on the search results, here's what I found about both LiLaVe and GenPRM:
+
+## LiLaVe (Lightweight Latent Verifier)
+
+LiLaVe is a novel lightweight verification approach that reliably extracts correctness signals from the hidden states of the base LLM. A key advantage is its ability to operate with only a small fraction of the computational budget required by traditional LLM-based verifiers.
+
+LiLaVe learns to extract correctness signals from base model hidden states using shallow models (e.g., XGBoost), accelerating best-of-n selection and iterative self-correction. LiLaVe is coupled with popular meta-generation strategies, like best-of-n or self-consistency. The approach was published in April 2025 (arXiv:2504.16760).
+
+## GenPRM (Generative Process Reward Model)
+
+GenPRM is a generative process reward model that performs explicit Chain-of-Thought (CoT) reasoning with code verification before judging each reasoning step. Current PRMs face challenges with limited process supervision, dependence on scalar value prediction, and inability to scale test-time compute, which GenPRM addresses.
+
+Instead of coarse scalar rewards, GenPRM provides localized credit or blame—down to tokens, steps, or thoughts—based on the verifiability or correctness of each generated segment. GenPRM was accepted by AAAI 2026. The paper was published in April 2025 (arXiv:2504.00891).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7fffacb4-867c-4e6a-815a-318178754eb2",
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "572bf342-17a3-4388-b2ee-c04d6e761336",
+  "toolUseResult": {
+    "query": "LiLaVe lightweight latent verifier hidden state verification LLM 2025 GenPRM generative process reward model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017vSLfMCtvW1gGE6xmGrS3A",
+        "content": [
+          {
+            "title": "[2504.16760] Lightweight Latent Verifiers for Efficient Meta-Generation Strategies",
+            "url": "https://arxiv.org/abs/2504.16760"
+          },
+          {
+            "title": "Lightweight Latent Verifiers for Efficient Meta-Generation Strategies | OpenReview",
+            "url": "https://openreview.net/forum?id=JQ0OdJHOsQ"
+          },
+          {
+            "title": "Preprint. Under review. Lightweight Latent Verifiers",
+            "url": "https://arxiv.org/pdf/2504.16760"
+          },
+          {
+            "title": "LLM Verifier",
+            "url": "https://www.emergentmind.com/topics/llm-verifier"
+          },
+          {
+            "title": "Lightweight Latent Verifiers for Efficient Meta-Generation Strategies",
+            "url": "https://arxiv.org/html/2504.16760"
+          },
+          {
+            "title": "Technical Report CLUE: Non-parametric Verification from Experience via Hidden-",
+            "url": "https://arxiv.org/pdf/2510.01591"
+          },
+          {
+            "title": "TensorCommitments: A Lightweight Verifiable Inference for Language Models",
+            "url": "https://arxiv.org/html/2602.12630"
+          },
+          {
+            "title": "Efficient Test-Time Scaling of Multi-Step Reasoning by Probing Internal States of Large Language Models",
+            "url": "https://arxiv.org/pdf/2511.06209"
+          }
+        ]
+      },
+      {
+        "tool_use_id": "srvtoolu_01DqheFDXG9bKW5QqX1rdFRk",
+        "content": [
+          {
+            "title": "[PDF] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/GenPRM:-Scaling-Test-Time-Compute-of-Process-Reward-Zhao-Liu/bd94932b7604933a11d1538b0de6f9543089711f"
+          },
+          {
+            "title": "Paper page - GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
+            "url": "https://huggingface.co/papers/2504.00891"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/genprm-scaling-test-time-compute-process-reward"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
+            "url": "https://ryanliu112.github.io/GenPRM/"
+          },
+          {
+            "title": "Breaking the LLM Bottleneck: GenPRM’s approach to Scale test-time compute via generative reasoning | by SACHIN KUMAR | Medium",
+            "url": "https://medium.com/@techsachin/breaking-the-llm-bottleneck-genprms-approach-to-scale-test-time-compute-via-generative-reasoning-0e90e3ffa71e"
+          },
+          {
+            "title": "[2504.00891] GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning",
+            "url": "https://arxiv.org/abs/2504.00891"
+          },
+          {
+            "title": "GitHub - RyanLiu112/GenPRM: [AAAI 2026] Official codebase for \"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning\".",
+            "url": "https://github.com/RyanLiu112/GenPRM"
+          },
+          {
+            "title": "GenPRM/GenPRM-7B · Hugging Face",
+            "url": "https://huggingface.co/GenPRM/GenPRM-7B"
+          },
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward ...",
+            "url": "https://arxiv.org/pdf/2504.00891"
+          },
+          {
+            "title": "LLM-as-GenPRM: Generative Process Reward Model",
+            "url": "https://www.emergentmind.com/topics/generative-process-reward-model-llm-as-genprm"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about both LiLaVe and GenPRM:\n\n## LiLaVe (Lightweight Latent Verifier)\n\nLiLaVe is a novel lightweight verification approach that reliably extracts correctness signals from the hidden states of the base LLM. A key advantage is its ability to operate with only a small fraction of the computational budget required by traditional LLM-based verifiers.\n\nLiLaVe learns to extract correctness signals from base model hidden states using shallow models (e.g., XGBoost), accelerating best-of-n selection and iterative self-correction. LiLaVe is coupled with popular meta-generation strategies, like best-of-n or self-consistency. The approach was published in April 2025 (arXiv:2504.16760).\n\n## GenPRM (Generative Process Reward Model)\n\nGenPRM is a generative process reward model that performs explicit Chain-of-Thought (CoT) reasoning with code verification before judging each reasoning step. Current PRMs face challenges with limited process supervision, dependence on scalar value prediction, and inability to scale test-time compute, which GenPRM addresses.\n\nInstead of coarse scalar rewards, GenPRM provides localized credit or blame—down to tokens, steps, or thoughts—based on the verifiability or correctness of each generated segment. GenPRM was accepted by AAAI 2026. The paper was published in April 2025 (arXiv:2504.00891)."
+    ],
+    "durationSeconds": 8.262027109999995,
+    "searchCount": 2
+  },
+  "sourceToolAssistantUUID": "7fffacb4-867c-4e6a-815a-318178754eb2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-29T06:52:30.835Z_
+
+```json
+{
+  "parentUuid": "572bf342-17a3-4388-b2ee-c04d6e761336",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f5b54350-582a-4ebd-bce6-2d1daffce2fe",
+  "timestamp": "2026-05-29T06:52:30.835Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-29T06:52:34.127Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XhHrE1fofdyqAYawFZfPQU`</summary>
+
+```json
+{
+  "query": "AVA anytime verified agents dynamic compute allocation verification cascade 2026 OpenReview"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5b54350-582a-4ebd-bce6-2d1daffce2fe",
+  "isSidechain": false,
+  "requestId": "req_011CbWREAVWiHh4kb2sF8yvQ",
+  "type": "assistant",
+  "uuid": "4dee9a53-bfd9-49bd-8f1d-34fc426dc8ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0155VwB6FXaHyobBfhT6kLmn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1560,
+      "cache_read_input_tokens": 24289,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1560,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 24289,
+          "cache_creation_input_tokens": 1560,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1560
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-29T06:52:41.452Z_
+
+<details><summary>↩ Tool result · `toolu_01XhHrE1fofdyqAYawFZfPQU`</summary>
+
+```text
+Web search results for query: "AVA anytime verified agents dynamic compute allocation verification cascade 2026 OpenReview"
+
+Links: [{"title":"Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints | OpenReview","url":"https://openreview.net/forum?id=JMDCMf7mlF"},{"title":"Unified Plan Verification with Static Rubrics and Dynamic Policies for Reliable LLM Planning | OpenReview","url":"https://openreview.net/forum?id=qDFegAnCin"},{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/pdf/2602.03975"},{"title":"Multi-Agent Verification: Scaling Test-Time Compute with Multiple   Verifiers","url":"https://arxiv.org/pdf/2502.20379"},{"title":"Pushing Test-Time Scaling Limits of Deep Search with Asymmetric Verification","url":"https://arxiv.org/pdf/2510.06135"},{"title":"Agentic Test-Time Scaling for WebAgents","url":"https://arxiv.org/pdf/2602.12276"}]
+
+I found the paper you're looking for! Here's what I found:
+
+Anytime Verified Agents (AVA) is a framework that dynamically allocates compute across search, sampling, and verification within a user-specified budget, with an extensible interface for tool use. AVA combines calibrated uncertainty estimation, value-of-information-guided search expansion, and selective verification cascades with early exits.
+
+The controller allocates compute based on uncertainty and estimated marginal reliability gains. AVA is evaluated on mathematical reasoning (GSM8K and MATH), multi-hop question answering (HotpotQA), and code generation (HumanEval), with two model backends (GPT-3.5 and GPT-4o).
+
+The paper is published on OpenReview and was last updated in April 2026. You can access the full paper at: https://openreview.net/forum?id=JMDCMf7mlF
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4dee9a53-bfd9-49bd-8f1d-34fc426dc8ca",
+  "isSidechain": false,
+  "promptId": "47f0b9cd-7b1e-4251-ae4c-1bdc7223ab2a",
+  "type": "user",
+  "uuid": "4715109b-261d-47c4-8b37-4c0057d56de0",
+  "toolUseResult": {
+    "query": "AVA anytime verified agents dynamic compute allocation verification cascade 2026 OpenReview",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NzrXZK4rh8W6SjC2YErjJv",
+        "content": [
+          {
+            "title": "Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints | OpenReview",
+            "url": "https://openreview.net/forum?id=JMDCMf7mlF"
+          },
+          {
+            "title": "Unified Plan Verification with Static Rubrics and Dynamic Policies for Reliable LLM Planning | OpenReview",
+            "url": "https://openreview.net/forum?id=qDFegAnCin"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/pdf/2602.03975"
+          },
+          {
+            "title": "Multi-Agent Verification: Scaling Test-Time Compute with Multiple   Verifiers",
+            "url": "https://arxiv.org/pdf/2502.20379"
+          },
+          {
+            "title": "Pushing Test-Time Scaling Limits of Deep Search with Asymmetric Verification",
+            "url": "https://arxiv.org/pdf/2510.06135"
+          },
+          {
+            "title": "Agentic Test-Time Scaling for WebAgents",
+            "url": "https://arxiv.org/pdf/2602.12276"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\nAnytime Verified Agents (AVA) is a framework that dynamically allocates compute across search, sampling, and verification within a user-specified budget, with an extensible interface for tool use. AVA combines calibrated uncertainty estimation, value-of-information-guided search expansion, and selective verification cascades with early exits.\n\nThe controller allocates compute based on uncertainty and estimated marginal reliability gains. AVA is evaluated on mathematical reasoning (GSM8K and MATH), multi-hop question answering (HotpotQA), and code generation (HumanEval), with two model backends (GPT-3.5 and GPT-4o).\n\nThe paper is published on OpenReview and was last updated in April 2026. You can access the full paper at: https://openreview.net/forum?id=JMDCMf7mlF"
+    ],
+    "durationSeconds": 7.318666190000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4dee9a53-bfd9-49bd-8f1d-34fc426dc8ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-29T06:54:41.969Z_
+
+Now I have enough information to provide a thorough evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [When To Solve, When To Verify (Singhi et al.)](https://arxiv.org/abs/2504.01005) (COLM 2025): 建立了 SC vs GenRM 的聚合 scaling law，发现在大多数实际 budget 下 SC 优于 GenRM。本 proposal 的核心出发点——认为这一聚合结论掩盖了 difficulty-heterogeneous 的结构——直接建立在此工作之上，是合理的理论推进。
+- [Variation in Verification](https://arxiv.org/abs/2509.17995) (ICLR 2026): 实证展示了不同验证方法在不同难度下的异质可靠性（TPR/TNR 差异），为本 proposal 的 difficulty-conditioned routing 提供了直接经验支持。proposal 正确引用并基于此构建。
+- [Strategic Scaling Bandit (Zuo et al.)](https://arxiv.org/abs/2506.12721): 用 UCB bandit 自适应调整 K，在 MATH-500 上获得 11.1% 提升，但假设固定 verifier。是本 proposal 的关键 baseline，JOVA 在其基础上增加了 d 维度。
+- [VG-Search (Chen et al.)](https://arxiv.org/abs/2505.11730): 统一 beam search 和 BoN 的连续粒度参数，减少 52% FLOPs，但不在验证类型间选择。是重要 baseline。
+- [GenPRM](https://arxiv.org/abs/2504.00891) (AAAI 2026): 当前验证 SOTA，1.5B GenPRM 超越 GPT-4o 的 BoN 选择。proposal 将其作为最高成本 tier 纳入，合理。
+- [Budget-aware Verification (Montgomery et al.)](https://arxiv.org/abs/2510.14913): 混合 discriminative+generative 验证在 AIME25 上超过纯 generative 15.3%，但采用 uniform per-dataset 策略。是最接近的竞争工作之一，JOVA 的差异化在于 per-instance difficulty conditioning。
+- [Multi-Agent Verification (MAV)](https://arxiv.org/abs/2502.20379): 通过投票组合多个异构 verifier。MAV 是 ensemble（全用），JOVA 是 routing（选一个）。在 budget 受限时 routing 比 ensemble 更合理。
+- [LiLaVe](https://arxiv.org/abs/2504.16760): 基于隐状态的近零成本验证，XGBoost 浅层模型。proposal 将其作为最低成本 tier。
+- [DTR / Think@n](https://arxiv.org/abs/2602.13517): 基于深度思考 token 比率的难度信号，r=0.828 准确度相关。proposal 以此为核心路由信号，但诚实承认仅在 ≥30B 模型上验证过。
+- [AVA (Anytime Verified Agents)](https://openreview.net/forum?id=JMDCMf7mlF) (OpenReview 2026): 动态分配 compute 于 search/sampling/verification，基于 uncertainty 的 cascade。与 JOVA 并行但方法论不同（uncertainty vs difficulty, cascade vs routing）。
+- [CPO](https://arxiv.org/abs/2604.14853): 使用约束策略优化的自适应推理策略选择，12.8% 相对提升。在 adaptive reasoning 方向上的竞争工作。
+- [FlexiVe/SDV](https://arxiv.org/abs/2505.11966): 快/慢二元验证，通过 GRPO 门控。JOVA 扩展到 4-tier 层级。
+- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435): 学习压缩表示以联合选择模型和推理策略。路由思路相近但在模型层面而非验证类型层面。
+
+- 调研总结: 2025-2026 年 test-time compute 的自适应分配是极热门方向，但现有工作均在单一维度优化（K、粒度、二元类型、推理长度、模型路由）或无选择地组合所有 verifier。在 (K, d) 二维联合优化 + difficulty-conditioned routing 这一特定组合上，proposal 确实占据了一个未被填充的 niche，但该 niche 的实际增量价值需实验验证。
+
+【整体印象】:
+作为审稿人，我的第一印象是这是一篇 **well-motivated, carefully positioned** 的系统性工作。proposal 展示了对领域的深入理解，文献综述极为全面（覆盖 20+ 篇高度相关工作），定位清晰。核心 insight（difficulty-dependent composition gap 使得联合优化 K 和 d 优于独立优化）在理论上合理且直觉上有吸引力。Simpson's Paradox 的类比恰当。
+
+然而，我会倾向于 **borderline accept / weak accept**，主要顾虑在于：
+1. **增量性风险**：核心贡献本质上是将两个已知维度（adaptive K + adaptive verifier type）组合起来，并用 difficulty 做路由。组合本身的创新度有限，价值取决于 composition gap 的实际大小。
+2. **DTR 信号在小模型上的不确定性**：DTR 仅在 ≥30B 模型上验证，而主要实验模型是 14B 和 8B，这是一个实质性风险。proposal 准备了 fallback 方案，但如果 DTR 不 work 且 fallback 信号也弱，整个系统的核心假设就会动摇。
+3. **实验 burden 极高**：8 baseline × 8 budget levels × 多个 benchmark × 多个 ablation，工作量巨大但每个对比的增量可能较小。
+
+【核心贡献】:
+核心贡献是 JOVA 框架——一个 difficulty-conditioned (K, d) 联合分配系统，在给定 compute budget 下通过路由到最优验证类型并同时调整候选数量来最大化准确率。具体包括：
+1. **理论层面**：揭示 difficulty-dependent composition gap 结构，即联合优化 (K,d) 相对于独立优化的增益在中等难度区间最大
+2. **系统层面**：基于 DTR 的轻量路由器 + UCB bandit refinement 的实际可部署方案
+3. **实验层面**：首次在 4-tier verifier hierarchy 下系统性地量化 (K,d) 联合优化的增量
+
+对领域的价值：中等偏上。如果 composition gap 确实显著（比如在中等难度问题上 ≥3-5% 准确率提升），这对 LLM serving 部署有实际意义。但如果 gap 很小（<2%），则贡献会被认为过于 incremental。
+
+【方法合理性】:
+方法整体合理，各组件有文献支撑：
+- DTR 作为 difficulty signal 有实证基础（r=0.828），但需要在目标模型规模上重新验证
+- UCB bandit refinement 是标准的在线优化方法，有理论保证
+- 4-tier verifier hierarchy 的设计合理，涵盖了从近零成本到高成本的完整光谱
+- Phase 0 pilot 设计（先验证假设再全面实验）是负责任的做法
+
+**更简单的替代方案问题**：Grid-Search-(K,d)-per-bucket 是一个强 trivial baseline。proposal 已经意识到这一点并将其纳入 baseline 6，同时论证了连续 difficulty、domain-specific factors 和 distribution shift 使得 learned routing 优于 static lookup。这个论证合理但需要实验验证——如果 Grid-Search 与 JOVA-full 差距很小（<1%），审稿人可能会质疑系统复杂性是否值得。
+
+【5 维度打分】:
+
+1. 研究问题: [强] — 在 test-time compute 这个 AAAI 高度关注的热点方向上，(K,d) 联合优化是一个自然但未被探索的问题。difficulty-dependent composition gap 的概念有理论吸引力，Simpson's Paradox 类比增强了 motivation。问题的实际部署价值（heterogeneous verifier routing）也有实际意义。
+
+2. 方法与创新: [中] — 方法合理但创新度有限。核心是将 adaptive K (Strategic Scaling Bandit, arXiv 2506.12721) 和 adaptive verifier type (Montgomery et al., arXiv 2510.14913; FlexiVe, arXiv 2505.11966) 两个已知维度组合，用 DTR (arXiv 2602.13517) 做路由信号。各组件都有先例，组合本身的技术贡献较为 incremental。与 AVA (OpenReview 2026) 的差异化（difficulty vs uncertainty, routing vs cascade）清晰但需要实验证明 difficulty-driven routing 的优越性。UCB bandit 是标准方法，不构成独立贡献。
+
+3. 实验设计: [强] — 这是 proposal 的最大亮点。8 个 compute-matched baseline（涵盖所有关键竞争工作），6 个 ablation configuration（系统性分离各组件贡献），8 个 log-spaced budget level，bootstrap 95% CI，多 seed 重复，per-difficulty-bin 分析，tier dropout 分析，router robustness 分析，composition gap 直接量化。Phase 0 pilot 验证核心假设的设计非常审慎。实验方案的完备性远超该方向的平均水平（对比 Montgomery et al. 仅使用 uniform per-dataset 策略，FlexiVe 仅有 binary hierarchy）。
+
+4. 可行性: [中] — 350-550 A100-hours 对学术实验室可行但不轻松。主要风险：(a) DTR 在 ≤14B 模型上可能不 work，虽有 fallback 但增加了不确定性；(b) 4-tier verifier hierarchy 需要部署和校准多个不同模型（LiLaVe XGBoost、InternLM2-7B-Reward、Skywork-PRM-7B、generator self-verification），工程复杂度高；(c) GenRM 成本 ~76× c_g 意味着高 budget 实验消耗巨大。但 proposal 的分阶段设计（Phase 0 先验证可行性）降低了沉没成本风险。
+
+5. 写作与呈现: [强] — proposal 写作极为清晰，逻辑严密。Problem formulation（C(K,d) = K·(c_g + c_v(d))）简洁有力。Simpson's Paradox 类比直觉化了核心 insight。文献定位精准（对每个 related work 明确指出了差异化维度）。诚实地承认了 DTR 的局限性。Phase 0 / Phase 1-3 的分阶段叙述增强了可执行感。verifier specification 表格和 ablation 表格增强了可读性。
+
+【概率估计】: [28% - 42%] 中位 35%
+
+【估计理由】:
+- **加分项**：(1) 研究问题 well-motivated，处于 AAAI 热点方向（test-time compute scaling）；(2) 实验设计极为完备，远超同方向多数工作；(3) 写作和定位清晰，文献综述全面；(4) 有实际部署价值（heterogeneous verifier serving）；(5) Phase 0 pilot 设计降低了风险。
+- **减分项**：(1) 方法创新度有限——本质是两个已知维度的组合 + 已知路由信号，审稿人可能认为 "engineering contribution > scientific contribution"；(2) composition gap 的实际大小未知——如果在中等难度区间仅有 1-2% 提升，贡献会被认为 trivial；(3) DTR 在目标模型规模上的有效性未验证，是系统核心假设的风险点；(4) 该方向竞争极为激烈（2025-2026 年有大量工作），差异化窗口正在关闭；(5) Grid-Search-per-bucket baseline 可能表现接近 JOVA-full，削弱 learned routing 的必要性。
+- **综合判断**：这是一篇 solid 的投稿，研究问题有价值、方法合理、实验设计出色。但在 AAAI 这样的顶会，方法创新度是核心评判维度，而本工作的组合性质可能让部分审稿人倾向 borderline reject。如果实验结果显示 composition gap 显著且 Grid-Search baseline 被明确击败，概率会上移到 38-42%；如果 gap 小或 DTR fallback 效果差，概率会下移到 28-32%。中位取 35%，反映"整体扎实但缺少 breakthrough-level novelty"的定位。
+
+【主要风险】:
+1. **Composition gap 过小**：如果联合优化 (K,d) 相比独立优化各维度的最佳值仅带来 <2% 的准确率提升，审稿人会认为系统复杂性不值得，方法贡献 incremental。这是最可能导致被拒的原因——"interesting idea but marginal empirical gains"。
+2. **DTR 信号在 ≤14B 模型上失效 + Grid-Search baseline 表现接近**：如果 DTR 在目标规模不 work，退化为 SC agreement 或 logit entropy 等弱信号，同时 Grid-Search-per-bucket 这个 trivial baseline 达到接近 JOVA-full 的效果，那么整个 learned routing 的必要性会被根本性质疑——"a static lookup table suffices"。
+
+【实施评估】:
+  - 计算资源: 350-550 A100-hours（中等规模，学术实验室可行但需要充足的 GPU 资源）
+  - 数据需求: 使用现有公开 benchmark（MATH-500, AIME25, GPQA-Diamond），无需构建新数据集
+  - 人工介入: 中等——需要部署和校准 4 种不同的 verifier（LiLaVe XGBoost 训练、InternLM2-7B-Reward 部署、Skywork-PRM 部署、GenRM prompt 设计），工程量不小
+  - 训练需求: 轻量——LiLaVe XGBoost 训练（分钟级）、UCB bandit 预训练（validation split 上，小时级）；不涉及大模型训练/微调
+  - 新 Benchmark: 不需要——完全基于现有 benchmark
+  - 预估周期: 约 8-12 周（Phase 0: 1-2 周, Phase 1: 2-3 周, Phase 2: 2-3 周, Phase 3: 2-3 周, 论文撰写: 2-3 周），但并行度有限（Phase 依赖前序结果），且 debug 和 unexpected failures 可能延长周期
+```
+
+Sources:
+- [When To Solve, When To Verify (Singhi et al., COLM 2025)](https://arxiv.org/abs/2504.01005)
+- [Variation in Verification (ICLR 2026)](https://arxiv.org/abs/2509.17995)
+- [Strategic Scaling Bandit (Zuo et al.)](https://arxiv.org/abs/2506.12721)
+- [VG-Search (Chen et al.)](https://arxiv.org/abs/2505.11730)
+- [GenPRM (AAAI 2026)](https://arxiv.org/abs/2504.00891)
+- [Budget-aware Verification (Montgomery et al.)](https://arxiv.org/abs/2510.14913)
+- [Multi-Agent Verification (MAV)](https://arxiv.org/abs/2502.20379)
+- [LiLaVe](https://arxiv.org/abs/2504.16760)
+- [DTR / Think@n](https://arxiv.org/abs/2602.13517)
+- [AVA (Anytime Verified Agents)](https://openreview.net/forum?id=JMDCMf7mlF)
+- [CPO (Constrained Policy Optimization)](https://arxiv.org/abs/2604.14853)
+- [FlexiVe/SDV](https://arxiv.org/abs/2505.11966)
+- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435)
+- [Adaptive Test-Time Compute Allocation](https://www.emergentmind.com/topics/adaptive-test-time-compute-allocation)
+- [Putting the Value Back in RL](https://arxiv.org/abs/2505.04842)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4715109b-261d-47c4-8b37-4c0057d56de0",
+  "isSidechain": false,
+  "requestId": "req_011CbWREwwEkVWd5WcXtN5DJ",
+  "type": "assistant",
+  "uuid": "9750b5d6-cb03-4a75-906a-c368f544ae7f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017dPMbBodgQcXf6bdi45mLQ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 25849,
+      "output_tokens": 4938,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4938,
+          "cache_read_input_tokens": 25849,
+          "cache_creation_input_tokens": 607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning  ## Core Problem and Moti…",
+  "leafUuid": "9750b5d6-cb03-4a75-906a-c368f544ae7f",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive verification type selection for LLM reasoning",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning  ## Core Problem and Moti…",
+  "leafUuid": "9750b5d6-cb03-4a75-906a-c368f544ae7f",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive verification type selection for LLM reasoning",
+  "sessionId": "ce1f9605-2c53-4a2c-836e-7125be50bd10"
+}
+```
+
+---

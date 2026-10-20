@@ -1,0 +1,3212 @@
+# Research conversation: Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts ## Core Problem How can a RAG system
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 48
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-2/5d2b3df2-f0a5-4252-8521-b78a42f42376.jsonl`
+- **Structured JSON:** [`c3ec5b1f18a528697647.json`](../../sessions/c3/c3ec5b1f18a528697647.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T07:23:06.061Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:23:06.061Z",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "content": "# Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts\n\n## Core Problem\n\nHow can a RAG system provide distribution-free, certified abstention guarantees on answer correctness when the retrieval corpus is adversarially poisoned — a setting where standard conformal prediction (TRAQ, C-RAG) breaks due to exchangeability violation, and existing certified defenses (RobustRAG, ReliabilityRAG) can only generate answers but cannot formally decide when to abstain?\n\n## Core Insight\n\nWe show that anchoring the nonconformity score at the retrieval-agreement level — rather than the answer-confidence level used by prior CP-for-RAG methods (TRAQ, C-RAG) — is what enables LP-CP's score propagation theorem to apply under adversarial retrieval corruption. The key reason: answer-level scores (e.g., LLM output probabilities) have uncontrollable Lipschitz constants with respect to input perturbations, making worst-case quantile propagation vacuous. Retrieval-level pairwise cosine similarity on normalized embeddings admits an analytically bounded Lipschitz constant, yielding non-trivial closed-form worst-case quantiles. This design choice simultaneously (1) directly probes the attack surface (poisoning acts on retrieval, not generation), (2) makes the method LLM-agnostic and composable with any downstream generator, and (3) enables the first certified abstention guarantee for adversarial RAG.\n\n## Research Opportunity\n\nThe intersection of {conformal prediction} ∩ {RAG} ∩ {adversarial robustness} is empty as of May 2026, verified across two RAG security surveys (arXiv:2603.21654, arXiv:2604.08304), the TACL CP-for-NLP survey, and 15+ targeted searches. Chen et al. (arXiv:2603.16817, Mar 2026) explicitly diagnosed that conformal factuality guarantees break under RAG distribution shift but proposed no solution. The Lévy-Prokhorov conformal prediction framework (LP-CP, NeurIPS 2025, arXiv:2502.14105) provides the exact mathematical decomposition — ρ for global contamination fraction, ε for local embedding perturbation — that maps onto corpus poisoning parameters. No concurrent work addresses this gap.\n\n## Research Landscape\n\n**CP for benign RAG.** TRAQ (NAACL 2024) provides end-to-end coverage via calibrated retrieval and answer sets. C-RAG (ICML 2024) certifies conformal generation risk bounds. Conformal-RAG (SIGIR 2025) offers group-conditional coverage for sub-claims. Principled Context Engineering for RAG (arXiv:2511.17908) uses CP for context filtering, reducing retained context by 2–3× while maintaining coverage — but only in benign settings. None handle adversarial retrieval.\n\n**Certified RAG defenses (answer-only, no abstention).** RobustRAG (SaTML 2026) achieves 26–36% certified robust accuracy on NQ via isolate-then-aggregate. ReliabilityRAG (NeurIPS 2025) uses graph-theoretic MIS with reliability-weighted documents under k′ ≤ k/5 poisoning budget. Both must produce an answer even under high uncertainty; neither offers formal abstention.\n\n**Heuristic RAG defenses.** RAGDefender (ACSAC 2025) achieves 0.18 ASR at 10× poisoning ratio via cosine-similarity clustering, finding poisoned docs cluster tightly (0.976 vs 0.309 cosine similarity). TrustRAG (arXiv:2501.00879) uses K-means clustering + cosine similarity for plug-and-play detection. RAGPart & RAGMask (arXiv:2512.24268) use document partitioning and token masking at retrieval stage, evaluated across four retrievers. These methods rely on heuristic thresholds — no coverage guarantees, no formal abstention decision, no robustness certificate parameterized by attack budget.\n\n**Poisoning-robust CP (non-RAG).** RPS (ICLR 2025 Spotlight) uses partition-and-vote with smoothed scores for calibration poisoning. LP-CP (NeurIPS 2025, arXiv:2502.14105) provides closed-form worst-case quantiles under Lévy-Prokhorov distribution shifts. Neither addresses test-time retrieval corruption in RAG.\n\n**Conformal abstention (non-adversarial).** Learning Conformal Abstention Policies (arXiv:2502.06884) integrates RL with CP for adaptive abstention in LLMs/VLMs but relies on training and does not handle adversarial settings. Selective Conformal Risk Control (arXiv:2512.12844) integrates CP with selective classification but not in RAG or adversarial contexts.\n\n**Attack landscape.** PoisonedRAG (USENIX Security 2025) achieves 97% ASR via multi-document injection. CorruptRAG (arXiv:2504.03957) demonstrates high ASR with single-document injection (ρ→0), representing the most practical and stealthy attack regime. Benchmarking Poisoning Attacks against RAG (arXiv:2505.18543) provides a unified evaluation framework across 5 datasets, 13 attacks, and 7 defenses.\n\n**Critical gap.** No existing method provides distribution-free, certified abstention for RAG under adversarial retrieval corruption parameterized by attack budget.\n\n## Proposed Approach\n\n**LP-RAG-Abstain** provides distribution-free certified abstention for RAG under adversarial corpus poisoning.\n\n**Threat model.** Attacker injects poisoned documents into the corpus. Defense assumes upper bounds (ρ₀, ε₀) on: ρ = fraction of poisoned documents in top-k retrieval, ε = maximum embedding perturbation per poisoned document. These are defense input parameters (analogous to RobustRAG's k′ ≤ k/5), not quantities to estimate. Guarantees are conditional: valid whenever the actual attack falls within (ρ₀, ε₀).\n\n**Score design.** Define retrieval-agreement nonconformity score s(q) from pairwise cosine similarities among top-k retrieved passages for query q. For normalized embeddings on the unit sphere, cosine similarity is Lipschitz-continuous with analytically bounded constant. The aggregate score (mean pairwise similarity) inherits a Lipschitz constant of O(2/k) with respect to single-document replacement, enabling LP-CP's propagation theorem to yield closed-form worst-case quantiles that are non-vacuous for practical (ρ, ε) ranges.\n\n**Lipschitz tightness.** The practical utility of LP-RAG-Abstain depends on the Lipschitz constant being small enough that worst-case quantile shifts remain manageable. We will: (1) derive the analytic Lipschitz upper bound for the proposed score, (2) empirically estimate the constant on real embedding data to verify tightness, (3) report the gap between certified coverage and empirical coverage to quantify conservatism, and (4) if necessary, explore Lipschitz-regularized score designs (cf. Efficient Robust CP via Lipschitz-Bounded Networks, arXiv:2506.05434).\n\n**Abstention rule.** Map (ρ₀, ε₀) to LP ambiguity set. Compute worst-case conformal quantile via LP-CP's closed-form expression. Abstain when prediction set is empty under worst-case quantile. Guarantee: P(correct ∈ set ∨ abstain) ≥ 1−α.\n\n**Adversary-budget monotonicity.** LP-RAG-Abstain exhibits a favorable theoretical property: certified coverage improves as attacker budget (ρ, ε) decreases, with the tightest guarantees (lowest abstention rate, smallest prediction sets) at the most practical attack regime — single/few-document poisoning (CorruptRAG, arXiv:2504.03957). This contrasts with isolate-then-aggregate methods (RobustRAG) whose partitioning overhead is constant regardless of attack strength.\n\n**Why not just threshold on clustering scores?** Heuristic detection methods (RAGDefender, TrustRAG) use cosine similarity clustering with tuned thresholds. LP-RAG-Abstain provides three advantages: (1) distribution-free finite-sample coverage guarantee vs. no statistical guarantee; (2) guarantees parameterized by attack budget (ρ, ε) — users declare threat tolerance, system adapts automatically; (3) no threshold tuning or dataset-specific calibration beyond standard CP calibration set.\n\n**\"Safe Silence\" guarantee.** Unlike answer-only defenses (RobustRAG, ReliabilityRAG) that must produce output even under high uncertainty, LP-RAG-Abstain formally guarantees: \"either I return a set containing the correct answer, or I explicitly abstain.\" In safety-critical RAG applications (medical, legal, financial), confidently wrong answers are far more harmful than acknowledged uncertainty. This directly addresses the \"robustness + usefulness\" desiderata identified by Chen et al. (arXiv:2603.16817).\n\n## Experimental Design\n\n**Datasets.** NQ, HotpotQA, MS-MARCO — covering Wikipedia-based and web-passage corpora.\n\n**Attacks.** PoisonedRAG (multi-document, USENIX Security 2025), CorruptRAG (single-document, arXiv:2504.03957).\n\n**Embedding models.** Qwen3-Embedding-8B (primary), BGE-large, Contriever — testing generalization across embedding architectures and dimensionalities. Report empirical Lipschitz constant for each.\n\n**Generator LLMs.** Llama-3.1-8B (open-source) and GPT-4o (closed-source) — testing across LLM vulnerability profiles.\n\n**Baselines.**\n- No-defense vanilla RAG (lower bound)\n- TRAQ (NAACL 2024): CP without adversarial awareness — demonstrate coverage breakdown under attack\n- RobustRAG (SaTML 2026): certified answer-only defense\n- ReliabilityRAG (NeurIPS 2025): certified answer-only defense (stronger)\n- RAGDefender (ACSAC 2025): heuristic detection\n- Naive selective prediction: LLM confidence threshold abstention\n- LP-RAG-Abstain (proposed)\n\n**Evaluation metrics.**\n- Coverage (poisoned): P(correct ∈ set ∨ abstain) — core guarantee\n- Coverage (clean): P(correct ∈ set) without poisoning — should ≥ 1−α\n- Abstention rate (poisoned vs. clean)\n- Certified robust accuracy on non-abstained queries (EM and F1)\n- Prediction set size (mean/median)\n- Accuracy-abstention tradeoff AUC (varying α)\n- Wall-clock inference time per query\n- LLM API call count per query\n\n**Ablation studies.**\n1. ρ sensitivity: fix ε, vary ρ ∈ {0, 0.05, 0.1, 0.2, 0.4} — certified accuracy and abstention rate curves\n2. ε sensitivity: fix ρ, vary ε — LP bound tightness\n3. Score function: pairwise cosine agreement (proposed) vs. average retrieval score vs. answer entropy\n4. k sensitivity: k ∈ {5, 10, 20, 50} — effect on retrieval-agreement score\n5. α sweep: α ∈ {0.01, 0.05, 0.10, 0.20} — coverage-abstention tradeoff\n6. Calibration set size: {100, 300, 500, 1000, 2000} — sample efficiency\n7. LP-CP vs. Bonferroni correction: demonstrate tightness advantage of closed-form quantile\n\n**(ρ, ε) heatmap.** Jointly vary (ρ, ε) and plot certified accuracy and abstention rate as 2D heatmaps, enabling users to select operating points matching their threat assumptions.\n\n**Adaptive attack evaluation.** Design adversary with full knowledge of the defense (pairwise cosine agreement score), attempting to maximize embedding distance among poisoned documents within ε constraint. Verify coverage guarantee still holds. Compare with RobustRAG's adaptive attack results.\n\n**Targets.** Exceed RobustRAG's 26–36% certified robust accuracy; maintain >90% clean coverage; achieve <15% clean abstention rate.\n\n## Key References\n\n- TRAQ: Trustworthy Retrieval Augmented QA via Conformal Prediction (NAACL 2024)\n- C-RAG: Certified Generation Risks for RAG (ICML 2024)\n- Response Quality Assessment for RAG via Conditional Conformal Factuality [Conformal-RAG] (SIGIR 2025)\n- Certifiably Robust RAG against Retrieval Corruption [RobustRAG] (SaTML 2026)\n- ReliabilityRAG: Provably Robust Defense for RAG-based Web-Search (NeurIPS 2025)\n- PoisonedRAG: Knowledge Corruption Attacks to RAG of LLMs (USENIX Security 2025)\n- CorruptRAG: Practical Poisoning Attacks against RAG (arXiv:2504.03957)\n- Conformal Prediction under Lévy-Prokhorov Distribution Shifts [LP-CP] (NeurIPS 2025, arXiv:2502.14105)\n- Provably Reliable Conformal Prediction Sets under Data Poisoning [RPS] (ICLR 2025 Spotlight)\n- Rescuing the Unpoisoned [RAGDefender] (ACSAC 2025)\n- TrustRAG: Enhancing Robustness and Trustworthiness in RAG (arXiv:2501.00879)\n- RAGPart & RAGMask: Retrieval-Stage Defenses (arXiv:2512.24268)\n- Is Conformal Factuality for RAG-based LLMs Robust? (arXiv:2603.16817, 2026)\n- RAG security surveys (arXiv:2603.21654, arXiv:2604.08304)\n- TACL CP-for-NLP survey\n- Principled Context Engineering for RAG (arXiv:2511.17908)\n- Learning Conformal Abstention Policies (arXiv:2502.06884)\n- Selective Conformal Risk Control (arXiv:2512.12844)\n- Benchmarking Poisoning Attacks against RAG (arXiv:2505.18543)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T07:23:06.067Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:23:06.067Z",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T07:23:06.089Z_
+
+# Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts
+
+## Core Problem
+
+How can a RAG system provide distribution-free, certified abstention guarantees on answer correctness when the retrieval corpus is adversarially poisoned — a setting where standard conformal prediction (TRAQ, C-RAG) breaks due to exchangeability violation, and existing certified defenses (RobustRAG, ReliabilityRAG) can only generate answers but cannot formally decide when to abstain?
+
+## Core Insight
+
+We show that anchoring the nonconformity score at the retrieval-agreement level — rather than the answer-confidence level used by prior CP-for-RAG methods (TRAQ, C-RAG) — is what enables LP-CP's score propagation theorem to apply under adversarial retrieval corruption. The key reason: answer-level scores (e.g., LLM output probabilities) have uncontrollable Lipschitz constants with respect to input perturbations, making worst-case quantile propagation vacuous. Retrieval-level pairwise cosine similarity on normalized embeddings admits an analytically bounded Lipschitz constant, yielding non-trivial closed-form worst-case quantiles. This design choice simultaneously (1) directly probes the attack surface (poisoning acts on retrieval, not generation), (2) makes the method LLM-agnostic and composable with any downstream generator, and (3) enables the first certified abstention guarantee for adversarial RAG.
+
+## Research Opportunity
+
+The intersection of {conformal prediction} ∩ {RAG} ∩ {adversarial robustness} is empty as of May 2026, verified across two RAG security surveys (arXiv:2603.21654, arXiv:2604.08304), the TACL CP-for-NLP survey, and 15+ targeted searches. Chen et al. (arXiv:2603.16817, Mar 2026) explicitly diagnosed that conformal factuality guarantees break under RAG distribution shift but proposed no solution. The Lévy-Prokhorov conformal prediction framework (LP-CP, NeurIPS 2025, arXiv:2502.14105) provides the exact mathematical decomposition — ρ for global contamination fraction, ε for local embedding perturbation — that maps onto corpus poisoning parameters. No concurrent work addresses this gap.
+
+## Research Landscape
+
+**CP for benign RAG.** TRAQ (NAACL 2024) provides end-to-end coverage via calibrated retrieval and answer sets. C-RAG (ICML 2024) certifies conformal generation risk bounds. Conformal-RAG (SIGIR 2025) offers group-conditional coverage for sub-claims. Principled Context Engineering for RAG (arXiv:2511.17908) uses CP for context filtering, reducing retained context by 2–3× while maintaining coverage — but only in benign settings. None handle adversarial retrieval.
+
+**Certified RAG defenses (answer-only, no abstention).** RobustRAG (SaTML 2026) achieves 26–36% certified robust accuracy on NQ via isolate-then-aggregate. ReliabilityRAG (NeurIPS 2025) uses graph-theoretic MIS with reliability-weighted documents under k′ ≤ k/5 poisoning budget. Both must produce an answer even under high uncertainty; neither offers formal abstention.
+
+**Heuristic RAG defenses.** RAGDefender (ACSAC 2025) achieves 0.18 ASR at 10× poisoning ratio via cosine-similarity clustering, finding poisoned docs cluster tightly (0.976 vs 0.309 cosine similarity). TrustRAG (arXiv:2501.00879) uses K-means clustering + cosine similarity for plug-and-play detection. RAGPart & RAGMask (arXiv:2512.24268) use document partitioning and token masking at retrieval stage, evaluated across four retrievers. These methods rely on heuristic thresholds — no coverage guarantees, no formal abstention decision, no robustness certificate parameterized by attack budget.
+
+**Poisoning-robust CP (non-RAG).** RPS (ICLR 2025 Spotlight) uses partition-and-vote with smoothed scores for calibration poisoning. LP-CP (NeurIPS 2025, arXiv:2502.14105) provides closed-form worst-case quantiles under Lévy-Prokhorov distribution shifts. Neither addresses test-time retrieval corruption in RAG.
+
+**Conformal abstention (non-adversarial).** Learning Conformal Abstention Policies (arXiv:2502.06884) integrates RL with CP for adaptive abstention in LLMs/VLMs but relies on training and does not handle adversarial settings. Selective Conformal Risk Control (arXiv:2512.12844) integrates CP with selective classification but not in RAG or adversarial contexts.
+
+**Attack landscape.** PoisonedRAG (USENIX Security 2025) achieves 97% ASR via multi-document injection. CorruptRAG (arXiv:2504.03957) demonstrates high ASR with single-document injection (ρ→0), representing the most practical and stealthy attack regime. Benchmarking Poisoning Attacks against RAG (arXiv:2505.18543) provides a unified evaluation framework across 5 datasets, 13 attacks, and 7 defenses.
+
+**Critical gap.** No existing method provides distribution-free, certified abstention for RAG under adversarial retrieval corruption parameterized by attack budget.
+
+## Proposed Approach
+
+**LP-RAG-Abstain** provides distribution-free certified abstention for RAG under adversarial corpus poisoning.
+
+**Threat model.** Attacker injects poisoned documents into the corpus. Defense assumes upper bounds (ρ₀, ε₀) on: ρ = fraction of poisoned documents in top-k retrieval, ε = maximum embedding perturbation per poisoned document. These are defense input parameters (analogous to RobustRAG's k′ ≤ k/5), not quantities to estimate. Guarantees are conditional: valid whenever the actual attack falls within (ρ₀, ε₀).
+
+**Score design.** Define retrieval-agreement nonconformity score s(q) from pairwise cosine similarities among top-k retrieved passages for query q. For normalized embeddings on the unit sphere, cosine similarity is Lipschitz-continuous with analytically bounded constant. The aggregate score (mean pairwise similarity) inherits a Lipschitz constant of O(2/k) with respect to single-document replacement, enabling LP-CP's propagation theorem to yield closed-form worst-case quantiles that are non-vacuous for practical (ρ, ε) ranges.
+
+**Lipschitz tightness.** The practical utility of LP-RAG-Abstain depends on the Lipschitz constant being small enough that worst-case quantile shifts remain manageable. We will: (1) derive the analytic Lipschitz upper bound for the proposed score, (2) empirically estimate the constant on real embedding data to verify tightness, (3) report the gap between certified coverage and empirical coverage to quantify conservatism, and (4) if necessary, explore Lipschitz-regularized score designs (cf. Efficient Robust CP via Lipschitz-Bounded Networks, arXiv:2506.05434).
+
+**Abstention rule.** Map (ρ₀, ε₀) to LP ambiguity set. Compute worst-case conformal quantile via LP-CP's closed-form expression. Abstain when prediction set is empty under worst-case quantile. Guarantee: P(correct ∈ set ∨ abstain) ≥ 1−α.
+
+**Adversary-budget monotonicity.** LP-RAG-Abstain exhibits a favorable theoretical property: certified coverage improves as attacker budget (ρ, ε) decreases, with the tightest guarantees (lowest abstention rate, smallest prediction sets) at the most practical attack regime — single/few-document poisoning (CorruptRAG, arXiv:2504.03957). This contrasts with isolate-then-aggregate methods (RobustRAG) whose partitioning overhead is constant regardless of attack strength.
+
+**Why not just threshold on clustering scores?** Heuristic detection methods (RAGDefender, TrustRAG) use cosine similarity clustering with tuned thresholds. LP-RAG-Abstain provides three advantages: (1) distribution-free finite-sample coverage guarantee vs. no statistical guarantee; (2) guarantees parameterized by attack budget (ρ, ε) — users declare threat tolerance, system adapts automatically; (3) no threshold tuning or dataset-specific calibration beyond standard CP calibration set.
+
+**"Safe Silence" guarantee.** Unlike answer-only defenses (RobustRAG, ReliabilityRAG) that must produce output even under high uncertainty, LP-RAG-Abstain formally guarantees: "either I return a set containing the correct answer, or I explicitly abstain." In safety-critical RAG applications (medical, legal, financial), confidently wrong answers are far more harmful than acknowledged uncertainty. This directly addresses the "robustness + usefulness" desiderata identified by Chen et al. (arXiv:2603.16817).
+
+## Experimental Design
+
+**Datasets.** NQ, HotpotQA, MS-MARCO — covering Wikipedia-based and web-passage corpora.
+
+**Attacks.** PoisonedRAG (multi-document, USENIX Security 2025), CorruptRAG (single-document, arXiv:2504.03957).
+
+**Embedding models.** Qwen3-Embedding-8B (primary), BGE-large, Contriever — testing generalization across embedding architectures and dimensionalities. Report empirical Lipschitz constant for each.
+
+**Generator LLMs.** Llama-3.1-8B (open-source) and GPT-4o (closed-source) — testing across LLM vulnerability profiles.
+
+**Baselines.**
+- No-defense vanilla RAG (lower bound)
+- TRAQ (NAACL 2024): CP without adversarial awareness — demonstrate coverage breakdown under attack
+- RobustRAG (SaTML 2026): certified answer-only defense
+- ReliabilityRAG (NeurIPS 2025): certified answer-only defense (stronger)
+- RAGDefender (ACSAC 2025): heuristic detection
+- Naive selective prediction: LLM confidence threshold abstention
+- LP-RAG-Abstain (proposed)
+
+**Evaluation metrics.**
+- Coverage (poisoned): P(correct ∈ set ∨ abstain) — core guarantee
+- Coverage (clean): P(correct ∈ set) without poisoning — should ≥ 1−α
+- Abstention rate (poisoned vs. clean)
+- Certified robust accuracy on non-abstained queries (EM and F1)
+- Prediction set size (mean/median)
+- Accuracy-abstention tradeoff AUC (varying α)
+- Wall-clock inference time per query
+- LLM API call count per query
+
+**Ablation studies.**
+1. ρ sensitivity: fix ε, vary ρ ∈ {0, 0.05, 0.1, 0.2, 0.4} — certified accuracy and abstention rate curves
+2. ε sensitivity: fix ρ, vary ε — LP bound tightness
+3. Score function: pairwise cosine agreement (proposed) vs. average retrieval score vs. answer entropy
+4. k sensitivity: k ∈ {5, 10, 20, 50} — effect on retrieval-agreement score
+5. α sweep: α ∈ {0.01, 0.05, 0.10, 0.20} — coverage-abstention tradeoff
+6. Calibration set size: {100, 300, 500, 1000, 2000} — sample efficiency
+7. LP-CP vs. Bonferroni correction: demonstrate tightness advantage of closed-form quantile
+
+**(ρ, ε) heatmap.** Jointly vary (ρ, ε) and plot certified accuracy and abstention rate as 2D heatmaps, enabling users to select operating points matching their threat assumptions.
+
+**Adaptive attack evaluation.** Design adversary with full knowledge of the defense (pairwise cosine agreement score), attempting to maximize embedding distance among poisoned documents within ε constraint. Verify coverage guarantee still holds. Compare with RobustRAG's adaptive attack results.
+
+**Targets.** Exceed RobustRAG's 26–36% certified robust accuracy; maintain >90% clean coverage; achieve <15% clean abstention rate.
+
+## Key References
+
+- TRAQ: Trustworthy Retrieval Augmented QA via Conformal Prediction (NAACL 2024)
+- C-RAG: Certified Generation Risks for RAG (ICML 2024)
+- Response Quality Assessment for RAG via Conditional Conformal Factuality [Conformal-RAG] (SIGIR 2025)
+- Certifiably Robust RAG against Retrieval Corruption [RobustRAG] (SaTML 2026)
+- ReliabilityRAG: Provably Robust Defense for RAG-based Web-Search (NeurIPS 2025)
+- PoisonedRAG: Knowledge Corruption Attacks to RAG of LLMs (USENIX Security 2025)
+- CorruptRAG: Practical Poisoning Attacks against RAG (arXiv:2504.03957)
+- Conformal Prediction under Lévy-Prokhorov Distribution Shifts [LP-CP] (NeurIPS 2025, arXiv:2502.14105)
+- Provably Reliable Conformal Prediction Sets under Data Poisoning [RPS] (ICLR 2025 Spotlight)
+- Rescuing the Unpoisoned [RAGDefender] (ACSAC 2025)
+- TrustRAG: Enhancing Robustness and Trustworthiness in RAG (arXiv:2501.00879)
+- RAGPart & RAGMask: Retrieval-Stage Defenses (arXiv:2512.24268)
+- Is Conformal Factuality for RAG-based LLMs Robust? (arXiv:2603.16817, 2026)
+- RAG security surveys (arXiv:2603.21654, arXiv:2604.08304)
+- TACL CP-for-NLP survey
+- Principled Context Engineering for RAG (arXiv:2511.17908)
+- Learning Conformal Abstention Policies (arXiv:2502.06884)
+- Selective Conformal Risk Control (arXiv:2512.12844)
+- Benchmarking Poisoning Attacks against RAG (arXiv:2505.18543)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "c72cdf07-8164-4f34-bda7-eeae59b88236",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T07:23:06.087Z_
+
+```json
+{
+  "parentUuid": "c72cdf07-8164-4f34-bda7-eeae59b88236",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "2d9f87dc-b742-425f-a99e-d369b3e3732d",
+  "timestamp": "2026-05-30T07:23:06.087Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T07:23:06.087Z_
+
+```json
+{
+  "parentUuid": "2d9f87dc-b742-425f-a99e-d369b3e3732d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c4fb9d2b-5273-4e09-8977-14b0f14302d5",
+  "timestamp": "2026-05-30T07:23:06.087Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal abstention for poisoned RAG systems",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T07:23:18.449Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to act as the "发掘 agent" (Discovery Agent) to analyze this research proposal about "Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts." I need to:
+
+1. First, do thorough web searches to understand the current landscape
+2. Evaluate the proposal's novelty, significance, and related work differentiation
+3. Identify potential areas where the idea's ceiling can be raised
+4. Be objective - if the idea is already solid, say so
+
+Let me start by reading the proposal carefully and then doing web searches.
+
+
+The proposal combines Lévy-Prokhorov conformal prediction with RAG systems to provide certified abstention guarantees against adversarial corpus poisoning, using retrieval-agreement scores rather than answer confidence to achieve bounded Lipschitz constants. Now I'm searching for existing work at the intersection of conformal prediction, RAG systems, and adversarial robustness to understand what's already been explored.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4fb9d2b-5273-4e09-8977-14b0f14302d5",
+  "isSidechain": false,
+  "requestId": "req_011CbYMNNTMszCcairkQxEQK",
+  "type": "assistant",
+  "uuid": "c3af2ae0-42d7-41d7-907c-82607939a23c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MfbcauZ95iv4Er5ov3xeAc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4970,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 480,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 480,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T07:23:18.972Z_
+
+I'll start by doing thorough web searches to understand the current landscape before making any assessments. Let me search for the key areas of this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3af2ae0-42d7-41d7-907c-82607939a23c",
+  "isSidechain": false,
+  "requestId": "req_011CbYMNNTMszCcairkQxEQK",
+  "type": "assistant",
+  "uuid": "544e2c25-0830-42b6-b2f1-4a6f1c5d1789",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MfbcauZ95iv4Er5ov3xeAc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4970,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 480,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 480,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-30T07:23:19.374Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LbrGCnU8BF4tcVosELLnfu`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "544e2c25-0830-42b6-b2f1-4a6f1c5d1789",
+  "isSidechain": false,
+  "requestId": "req_011CbYMNNTMszCcairkQxEQK",
+  "type": "assistant",
+  "uuid": "7b5a4893-c76e-49bf-b74f-8fc681b99562",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MfbcauZ95iv4Er5ov3xeAc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4970,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 480,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 480,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 4970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-30T07:23:19.384Z_
+
+<details><summary>↩ Tool result · `toolu_01LbrGCnU8BF4tcVosELLnfu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b5a4893-c76e-49bf-b74f-8fc681b99562",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "73f04755-8e34-4144-98fc-c31bd4e8862b",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "7b5a4893-c76e-49bf-b74f-8fc681b99562",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts  ## Core Problem  How can a RAG system provide distribution-free, certified abstention guarantees on answer correc…",
+  "leafUuid": "73f04755-8e34-4144-98fc-c31bd4e8862b",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal abstention for poisoned RAG systems",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-30T07:23:22.178Z_
+
+Now let me run multiple searches in parallel to cover the key areas of this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73f04755-8e34-4144-98fc-c31bd4e8862b",
+  "isSidechain": false,
+  "requestId": "req_011CbYMPMFDDAcWjg26krC6d",
+  "type": "assistant",
+  "uuid": "245e5714-37a4-4ef6-847e-ee05ca27f112",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VCHvrM8ELM64YGXJv8wTaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 19154,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 19154,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-30T07:23:22.712Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018ZVw4fDk5msuj7aWcFCzuv`</summary>
+
+```json
+{
+  "query": "Lévy-Prokhorov conformal prediction LP-CP distribution shift 2025 2026 applications"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "245e5714-37a4-4ef6-847e-ee05ca27f112",
+  "isSidechain": false,
+  "requestId": "req_011CbYMPMFDDAcWjg26krC6d",
+  "type": "assistant",
+  "uuid": "7a5b2a03-ba66-491d-a9d7-cef356afc4a2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VCHvrM8ELM64YGXJv8wTaj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 19154,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 19154,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-30T07:23:30.796Z_
+
+<details><summary>↩ Tool result · `toolu_018ZVw4fDk5msuj7aWcFCzuv`</summary>
+
+```text
+Web search results for query: "Lévy-Prokhorov conformal prediction LP-CP distribution shift 2025 2026 applications"
+
+Links: [{"title":"Conformal Prediction under Lévy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations | OpenReview","url":"https://openreview.net/forum?id=1ULQvdbZ3X"},{"title":"Conformal Prediction under Lévy-Prokhorov Distribution ...","url":"https://openreview.net/pdf/860efa6f37cc6b64df19821bba75d83edb3b9603.pdf"},{"title":"[2502.14105] Conformal Prediction under Levy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations","url":"https://arxiv.org/abs/2502.14105"},{"title":"Conformal Prediction under Lévy-Prokhorov Distribution ...","url":"https://arxiv.org/pdf/2502.14105"},{"title":"Conformal Prediction under Lévy–Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations","url":"https://arxiv.org/html/2502.14105v2"},{"title":"NeurIPS Poster Conformal Prediction under Lévy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/120230"},{"title":"Coverage Guarantees for Pseudo-Calibrated Conformal Prediction under Distribution Shift","url":"https://arxiv.org/html/2602.14913"}]
+
+Based on the search results, here's what I found about Lévy-Prokhorov conformal prediction and distribution shift:
+
+## Recent Research (2025-2026)
+
+A NeurIPS 2025 paper addresses conformal prediction robustness under distribution shifts using Lévy-Prokhorov (LP) ambiguity sets. The work was published in September 2025 and last modified in April 2026.
+
+### Key Contributions
+
+The research models distribution shifts using Lévy-Prokhorov (LP) ambiguity sets, which capture both local and global perturbations. By propagating the LP ambiguity set through the scoring function, the approach reduces complex high-dimensional distribution shifts to manageable one-dimensional distribution shifts, enabling exact quantification of worst-case quantiles and coverage.
+
+### Technical Approach
+
+The paper provides connections between LP ambiguity sets and popular metrics such as Wasserstein and Total Variation. The approach leads to interpretable and robust prediction intervals, with explicit control over how the local and global LP parameters influence interval width and confidence levels.
+
+### Related Work
+
+Robust distributional approaches construct ambiguity sets such as Lévy-Prokhorov balls around the score distribution and propagate worst-case perturbations through the conformal quantile in score space.
+
+The research demonstrates an emerging application of Lévy-Prokhorov methods in creating more robust uncertainty quantification techniques for machine learning models dealing with distribution shifts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a5b2a03-ba66-491d-a9d7-cef356afc4a2",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "914c4633-abcf-4f13-b111-9c3e3c35c2e0",
+  "toolUseResult": {
+    "query": "Lévy-Prokhorov conformal prediction LP-CP distribution shift 2025 2026 applications",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014nkseAB5ncbCMcuFyBzYZB",
+        "content": [
+          {
+            "title": "Conformal Prediction under Lévy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations | OpenReview",
+            "url": "https://openreview.net/forum?id=1ULQvdbZ3X"
+          },
+          {
+            "title": "Conformal Prediction under Lévy-Prokhorov Distribution ...",
+            "url": "https://openreview.net/pdf/860efa6f37cc6b64df19821bba75d83edb3b9603.pdf"
+          },
+          {
+            "title": "[2502.14105] Conformal Prediction under Levy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations",
+            "url": "https://arxiv.org/abs/2502.14105"
+          },
+          {
+            "title": "Conformal Prediction under Lévy-Prokhorov Distribution ...",
+            "url": "https://arxiv.org/pdf/2502.14105"
+          },
+          {
+            "title": "Conformal Prediction under Lévy–Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations",
+            "url": "https://arxiv.org/html/2502.14105v2"
+          },
+          {
+            "title": "NeurIPS Poster Conformal Prediction under Lévy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/poster/120230"
+          },
+          {
+            "title": "Coverage Guarantees for Pseudo-Calibrated Conformal Prediction under Distribution Shift",
+            "url": "https://arxiv.org/html/2602.14913"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Lévy-Prokhorov conformal prediction and distribution shift:\n\n## Recent Research (2025-2026)\n\nA NeurIPS 2025 paper addresses conformal prediction robustness under distribution shifts using Lévy-Prokhorov (LP) ambiguity sets. The work was published in September 2025 and last modified in April 2026.\n\n### Key Contributions\n\nThe research models distribution shifts using Lévy-Prokhorov (LP) ambiguity sets, which capture both local and global perturbations. By propagating the LP ambiguity set through the scoring function, the approach reduces complex high-dimensional distribution shifts to manageable one-dimensional distribution shifts, enabling exact quantification of worst-case quantiles and coverage.\n\n### Technical Approach\n\nThe paper provides connections between LP ambiguity sets and popular metrics such as Wasserstein and Total Variation. The approach leads to interpretable and robust prediction intervals, with explicit control over how the local and global LP parameters influence interval width and confidence levels.\n\n### Related Work\n\nRobust distributional approaches construct ambiguity sets such as Lévy-Prokhorov balls around the score distribution and propagate worst-case perturbations through the conformal quantile in score space.\n\nThe research demonstrates an emerging application of Lévy-Prokhorov methods in creating more robust uncertainty quantification techniques for machine learning models dealing with distribution shifts."
+    ],
+    "durationSeconds": 8.078801658,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7a5b2a03-ba66-491d-a9d7-cef356afc4a2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-30T07:23:35.435Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HqUU4LsWi3NkMyNVcknrWY`</summary>
+
+```json
+{
+  "query": "conformal prediction RAG adversarial robustness retrieval augmented generation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "914c4633-abcf-4f13-b111-9c3e3c35c2e0",
+  "isSidechain": false,
+  "requestId": "req_011CbYMQBkEzdQWfkK5KAbji",
+  "type": "assistant",
+  "uuid": "c0bd0150-b18e-4e62-9792-3a755fd7c5c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A1u5bwPxcModHGJsAuzgjr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 20162,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 20162,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-30T07:23:45.540Z_
+
+<details><summary>↩ Tool result · `toolu_01HqUU4LsWi3NkMyNVcknrWY`</summary>
+
+```text
+Web search results for query: "conformal prediction RAG adversarial robustness retrieval augmented generation 2025 2026"
+
+Links: [{"title":"GitHub - Arstanley/Awesome-Trustworthy-RAG · GitHub","url":"https://github.com/Arstanley/Awesome-Trustworthy-RAG"},{"title":"Evaluating the Robustness of Retrieval-Augmented Generation to Adversarial","url":"https://www.arxiv.org/pdf/2509.03787"},{"title":"Evaluating the Robustness of Retrieval-Augmented Generation to Adversarial Evidence in the Health Domain","url":"https://arxiv.org/html/2509.03787v1"},{"title":"Towards More Robust Retrieval-Augmented Generation: Evaluating RAG Under Adversarial Poisoning Attacks","url":"https://arxiv.org/pdf/2412.16708"},{"title":"Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality","url":"https://arxiv.org/html/2506.20978"},{"title":"[2603.16817] Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights","url":"https://arxiv.org/abs/2603.16817"}]
+
+Based on the search results, I found several relevant papers and resources on conformal prediction, RAG (Retrieval-Augmented Generation), and adversarial robustness from 2025-2026:
+
+## Key Recent Work
+
+**Conformal Prediction for RAG Quality Assessment:**
+Conformal-RAG leverages conformal prediction (CP) and internal information from the RAG mechanism to offer statistical guarantees on response quality, ensuring group-conditional coverage spanning multiple sub-domains without requiring manual labelling. Conformal prediction provides a stronger theoretical foundation for ensuring soundness of evaluations through statistical guarantees.
+
+**Robustness Against Adversarial Evidence:**
+Recent research has focused on evaluating RAG systems under adversarial conditions. Work investigates RAG systems under adversarial conditions, where the context may be intentionally crafted to mislead the LLM, thereby exposing vulnerabilities at the intersection of retrieval and generation. RAG systems are vulnerable to various adversarial poisoning attacks by injecting adversarial data into the underlying RAG database, attackers can manipulate the retriever to return factually incorrect information.
+
+**Conformal Factuality Robustness:**
+A very recent paper from March 2026 examines the robustness of conformal factuality approaches specifically for RAG-based systems, exploring novel metrics and systematic insights into whether these methods remain robust under various conditions.
+
+The search results also reference a curated resource on trustworthy RAG that lists numerous papers addressing adversarial robustness, knowledge conflicts, and noise robustness in RAG systems from 2024-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0bd0150-b18e-4e62-9792-3a755fd7c5c6",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "5fbfbedb-436b-49ee-8724-d57abe9644b7",
+  "toolUseResult": {
+    "query": "conformal prediction RAG adversarial robustness retrieval augmented generation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RsYDfu3LJgC6bYf6X6F9d3",
+        "content": [
+          {
+            "title": "GitHub - Arstanley/Awesome-Trustworthy-RAG · GitHub",
+            "url": "https://github.com/Arstanley/Awesome-Trustworthy-RAG"
+          },
+          {
+            "title": "Evaluating the Robustness of Retrieval-Augmented Generation to Adversarial",
+            "url": "https://www.arxiv.org/pdf/2509.03787"
+          },
+          {
+            "title": "Evaluating the Robustness of Retrieval-Augmented Generation to Adversarial Evidence in the Health Domain",
+            "url": "https://arxiv.org/html/2509.03787v1"
+          },
+          {
+            "title": "Towards More Robust Retrieval-Augmented Generation: Evaluating RAG Under Adversarial Poisoning Attacks",
+            "url": "https://arxiv.org/pdf/2412.16708"
+          },
+          {
+            "title": "Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality",
+            "url": "https://arxiv.org/html/2506.20978"
+          },
+          {
+            "title": "[2603.16817] Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights",
+            "url": "https://arxiv.org/abs/2603.16817"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources on conformal prediction, RAG (Retrieval-Augmented Generation), and adversarial robustness from 2025-2026:\n\n## Key Recent Work\n\n**Conformal Prediction for RAG Quality Assessment:**\nConformal-RAG leverages conformal prediction (CP) and internal information from the RAG mechanism to offer statistical guarantees on response quality, ensuring group-conditional coverage spanning multiple sub-domains without requiring manual labelling. Conformal prediction provides a stronger theoretical foundation for ensuring soundness of evaluations through statistical guarantees.\n\n**Robustness Against Adversarial Evidence:**\nRecent research has focused on evaluating RAG systems under adversarial conditions. Work investigates RAG systems under adversarial conditions, where the context may be intentionally crafted to mislead the LLM, thereby exposing vulnerabilities at the intersection of retrieval and generation. RAG systems are vulnerable to various adversarial poisoning attacks by injecting adversarial data into the underlying RAG database, attackers can manipulate the retriever to return factually incorrect information.\n\n**Conformal Factuality Robustness:**\nA very recent paper from March 2026 examines the robustness of conformal factuality approaches specifically for RAG-based systems, exploring novel metrics and systematic insights into whether these methods remain robust under various conditions.\n\nThe search results also reference a curated resource on trustworthy RAG that lists numerous papers addressing adversarial robustness, knowledge conflicts, and noise robustness in RAG systems from 2024-2026."
+    ],
+    "durationSeconds": 10.099614025999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c0bd0150-b18e-4e62-9792-3a755fd7c5c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-30T07:23:47.996Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015yGePLWLdEsWuccTvmi48y`</summary>
+
+```json
+{
+  "query": "\"conformal prediction\" \"corpus poisoning\" OR \"adversarial retrieval\" certified abstention 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fbfbedb-436b-49ee-8724-d57abe9644b7",
+  "isSidechain": false,
+  "requestId": "req_011CbYMRH5FBupEhWwby3wLU",
+  "type": "assistant",
+  "uuid": "8e20d991-d5fd-469e-8ec1-950b476b9f67",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0135PmP5YeJdGppkn9ufFFdd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 21022,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 21022,
+          "cache_creation_input_tokens": 787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-30T07:23:55.968Z_
+
+<details><summary>↩ Tool result · `toolu_015yGePLWLdEsWuccTvmi48y`</summary>
+
+```text
+Web search results for query: ""conformal prediction" "corpus poisoning" OR "adversarial retrieval" certified abstention 2025 2026"
+
+Links: [{"title":"GitHub - princeton-nlp/corpus-poisoning: [EMNLP 2023] Poisoning Retrieval Corpora by Injecting Adversarial Passages https://arxiv.org/abs/2310.19156 · GitHub","url":"https://github.com/princeton-nlp/corpus-poisoning"},{"title":"provably reliable conformal prediction sets","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4d21a4b33361c40c2142db9511c126-Paper-Conference.pdf"},{"title":"RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2512.24268"},{"title":"Verifiably robust conformal prediction for probabilistic guarantees under adversarial attacks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0031320325007113"},{"title":"Unsupervised Corpus Poisoning Attacks in Continuous Space for Dense Retrieval","url":"https://arxiv.org/pdf/2504.17884"},{"title":"Poisoning Retrieval Corpora by Injecting Adversarial Passages","url":"https://arxiv.org/pdf/2310.19156"},{"title":"Provably Reliable Conformal Prediction Sets in the Presence of Data   Poisoning","url":"https://arxiv.org/pdf/2410.09878"},{"title":"THESE DE DOCTORAT NNT : 2025UPASG102 Conformal predictions and risk","url":"https://theses.hal.science/tel-05448293v1/file/157888_BLOT_2025_archivage-3.pdf"},{"title":"Verifiably robust conformal prediction for probabilistic guarantees under adversarial attacks - King's College London","url":"https://kclpure.kcl.ac.uk/portal/en/publications/verifiably-robust-conformal-prediction-for-probabilistic-guarante"},{"title":"GitHub - Arstanley/Awesome-Trustworthy-RAG · GitHub","url":"https://github.com/Arstanley/Awesome-Trustworthy-RAG"}]
+
+I found several relevant results combining these research topics from 2025-2026. Here's a summary of the key findings:
+
+## Conformal Prediction & Certified Abstention
+
+Conformal prediction is a powerful, model-agnostic framework for distribution-free uncertainty quantification that constructs prediction sets calibrating on hold-out data to transform any black-box classifier into a predictor with formal coverage guarantees.
+
+Research includes work on prediction with abstention, and recent dissertations on conformal predictions and risk were defended in 2025.
+
+## Conformal Prediction Under Adversarial Threats
+
+Recent 2025-2026 research addresses conformal prediction's robustness to attacks:
+
+- One scalable method for making conformal prediction more reliable under training and calibration poisoning derives novel certificates that guarantee reliability under worst-case data poisoning attacks, including against label flipping attacks.
+
+- Verifiably Robust Conformal Prediction (VRCP) recovers conformal prediction's probabilistic guarantees under adversarial attacks by combining CP with neural network verification, and is also automatically robust to feature poisoning attacks.
+
+## Corpus Poisoning & Adversarial Retrieval
+
+RAG's dependence on extensive, publicly sourced corpora introduces vulnerabilities to corpus poisoning attacks. Recent work on unsupervised corpus poisoning attacks in continuous space for dense retrieval was presented at SIGIR 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e20d991-d5fd-469e-8ec1-950b476b9f67",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "5f59c6e1-289e-4fef-907b-ecadabd94091",
+  "toolUseResult": {
+    "query": "\"conformal prediction\" \"corpus poisoning\" OR \"adversarial retrieval\" certified abstention 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016e7Hoc5JxuZdcS1XTR6eh5",
+        "content": [
+          {
+            "title": "GitHub - princeton-nlp/corpus-poisoning: [EMNLP 2023] Poisoning Retrieval Corpora by Injecting Adversarial Passages https://arxiv.org/abs/2310.19156 · GitHub",
+            "url": "https://github.com/princeton-nlp/corpus-poisoning"
+          },
+          {
+            "title": "provably reliable conformal prediction sets",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4d21a4b33361c40c2142db9511c126-Paper-Conference.pdf"
+          },
+          {
+            "title": "RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2512.24268"
+          },
+          {
+            "title": "Verifiably robust conformal prediction for probabilistic guarantees under adversarial attacks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0031320325007113"
+          },
+          {
+            "title": "Unsupervised Corpus Poisoning Attacks in Continuous Space for Dense Retrieval",
+            "url": "https://arxiv.org/pdf/2504.17884"
+          },
+          {
+            "title": "Poisoning Retrieval Corpora by Injecting Adversarial Passages",
+            "url": "https://arxiv.org/pdf/2310.19156"
+          },
+          {
+            "title": "Provably Reliable Conformal Prediction Sets in the Presence of Data   Poisoning",
+            "url": "https://arxiv.org/pdf/2410.09878"
+          },
+          {
+            "title": "THESE DE DOCTORAT NNT : 2025UPASG102 Conformal predictions and risk",
+            "url": "https://theses.hal.science/tel-05448293v1/file/157888_BLOT_2025_archivage-3.pdf"
+          },
+          {
+            "title": "Verifiably robust conformal prediction for probabilistic guarantees under adversarial attacks - King's College London",
+            "url": "https://kclpure.kcl.ac.uk/portal/en/publications/verifiably-robust-conformal-prediction-for-probabilistic-guarante"
+          },
+          {
+            "title": "GitHub - Arstanley/Awesome-Trustworthy-RAG · GitHub",
+            "url": "https://github.com/Arstanley/Awesome-Trustworthy-RAG"
+          }
+        ]
+      },
+      "I found several relevant results combining these research topics from 2025-2026. Here's a summary of the key findings:\n\n## Conformal Prediction & Certified Abstention\n\nConformal prediction is a powerful, model-agnostic framework for distribution-free uncertainty quantification that constructs prediction sets calibrating on hold-out data to transform any black-box classifier into a predictor with formal coverage guarantees.\n\nResearch includes work on prediction with abstention, and recent dissertations on conformal predictions and risk were defended in 2025.\n\n## Conformal Prediction Under Adversarial Threats\n\nRecent 2025-2026 research addresses conformal prediction's robustness to attacks:\n\n- One scalable method for making conformal prediction more reliable under training and calibration poisoning derives novel certificates that guarantee reliability under worst-case data poisoning attacks, including against label flipping attacks.\n\n- Verifiably Robust Conformal Prediction (VRCP) recovers conformal prediction's probabilistic guarantees under adversarial attacks by combining CP with neural network verification, and is also automatically robust to feature poisoning attacks.\n\n## Corpus Poisoning & Adversarial Retrieval\n\nRAG's dependence on extensive, publicly sourced corpora introduces vulnerabilities to corpus poisoning attacks. Recent work on unsupervised corpus poisoning attacks in continuous space for dense retrieval was presented at SIGIR 2025."
+    ],
+    "durationSeconds": 7.965675290999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8e20d991-d5fd-469e-8ec1-950b476b9f67",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-30T07:24:01.771Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016qdEhEBUaGLY6MHa1UgjM8`</summary>
+
+```json
+{
+  "query": "RobustRAG SaTML 2026 certified robust accuracy ReliabilityRAG NeurIPS 2025 comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f59c6e1-289e-4fef-907b-ecadabd94091",
+  "isSidechain": false,
+  "requestId": "req_011CbYMS3QjreUt1hRdHb18s",
+  "type": "assistant",
+  "uuid": "a0baf7ef-1532-4bad-9a2c-996ea631fcbe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ai4m93xw1pveZzQaE7yVb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1025,
+      "cache_read_input_tokens": 21809,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 21809,
+          "cache_creation_input_tokens": 1025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-30T07:24:11.730Z_
+
+<details><summary>↩ Tool result · `toolu_016qdEhEBUaGLY6MHa1UgjM8`</summary>
+
+```text
+Web search results for query: "RobustRAG SaTML 2026 certified robust accuracy ReliabilityRAG NeurIPS 2025 comparison"
+
+Links: [{"title":"IEEE SaTML 2026 · Program","url":"https://satml.org/program/"},{"title":"IEEE SaTML 2026 · Accepted Papers","url":"https://satml.org/accepted-papers/"},{"title":"Certifiably Robust RAG against Retrieval Corruption","url":"https://openreview.net/pdf?id=qsEeACAJjD"},{"title":"Certifiably Robust RAG against Retrieval Corruption | OpenReview","url":"https://openreview.net/forum?id=qsEeACAJjD"},{"title":"Certifiably Robust RAG against Retrieval Corruption","url":"https://arxiv.org/html/2405.15556"},{"title":"Certifiably Robust RAG against Retrieval Corruption Attacks | OpenReview","url":"https://openreview.net/forum?id=cU6ZdN87p3"},{"title":"This is the preprint of the work has been accepted for publication at the IEEE Conference on Secure and Trustworthy Machine Learning (SaTML 2026). Cascading Robustness Verification: Toward Efficient Model‑Agnostic Certification","url":"https://arxiv.org/html/2602.04236"},{"title":"Certifiably Robust RAG against Retrieval Corruption","url":"https://arxiv.org/pdf/2405.15556"},{"title":"[2405.15556] Certifiably Robust RAG against Retrieval Corruption","url":"https://arxiv.org/abs/2405.15556"}]
+
+Now let me search for ReliabilityRAG and NeurIPS 2025:
+
+Links: [{"title":"ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search","url":"https://arxiv.org/pdf/2509.23519"},{"title":"NeurIPS Poster ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search","url":"https://neurips.cc/virtual/2025/poster/119236"},{"title":"ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search","url":"https://neurips.cc/media/neurips-2025/Slides/119236.pdf"},{"title":"Retrieval-Augmented Generation with Estimation of Source Reliability","url":"https://arxiv.org/pdf/2410.22954"},{"title":"Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights","url":"https://arxiv.org/pdf/2603.16817"},{"title":"NeurIPS 2025 Recap | Amplify Partners","url":"https://www.amplifypartners.com/blog-posts/neurips-2025-recap"}]
+
+Based on my web search results, I can provide you with information about both RobustRAG and ReliabilityRAG:
+
+## RobustRAG (SaTML 2026)
+
+RobustRAG is the first defense framework with certifiable robustness against retrieval corruption attacks. The key insight of RobustRAG is an isolate-then-aggregate strategy: it isolates passages into disjoint groups, generates LLM responses based on the concatenated passages from each isolated group, and then securely aggregates these responses for a robust output.
+
+RobustRAG achieves 69.0–71.0% certifiable robust accuracy for RQA-MC, 24.0–49.0% for RQA, 27.0–47.0% for NQ, and 24.0–51.2% certifiable LLM-judge score for the bio generation task.
+
+## ReliabilityRAG (NeurIPS 2025)
+
+ReliabilityRAG was presented at the 39th Conference on Neural Information Processing Systems (NeurIPS 2025). ReliabilityRAG is a framework for adversarial robustness that explicitly leverages reliability information of retrieved documents.
+
+ReliabilityRAG provides superior robustness against adversarial attacks compared to prior methods, maintains high benign accuracy, and excels in long-form generation tasks where prior robustness-focused methods struggled.
+
+## Comparison
+
+Both systems address adversarial robustness in RAG systems, but with different approaches. RobustRAG uses formal certification through an isolate-then-aggregate strategy, while ReliabilityRAG leverages document reliability signals and employs a graph-theoretic approach for improved robustness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0baf7ef-1532-4bad-9a2c-996ea631fcbe",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "533ca9e8-6932-440e-8426-b98fdda1afd3",
+  "toolUseResult": {
+    "query": "RobustRAG SaTML 2026 certified robust accuracy ReliabilityRAG NeurIPS 2025 comparison",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VftCJKy3xNt1rWhyzeBXVE",
+        "content": [
+          {
+            "title": "IEEE SaTML 2026 · Program",
+            "url": "https://satml.org/program/"
+          },
+          {
+            "title": "IEEE SaTML 2026 · Accepted Papers",
+            "url": "https://satml.org/accepted-papers/"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://openreview.net/pdf?id=qsEeACAJjD"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption | OpenReview",
+            "url": "https://openreview.net/forum?id=qsEeACAJjD"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://arxiv.org/html/2405.15556"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption Attacks | OpenReview",
+            "url": "https://openreview.net/forum?id=cU6ZdN87p3"
+          },
+          {
+            "title": "This is the preprint of the work has been accepted for publication at the IEEE Conference on Secure and Trustworthy Machine Learning (SaTML 2026). Cascading Robustness Verification: Toward Efficient Model‑Agnostic Certification",
+            "url": "https://arxiv.org/html/2602.04236"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://arxiv.org/pdf/2405.15556"
+          },
+          {
+            "title": "[2405.15556] Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://arxiv.org/abs/2405.15556"
+          }
+        ]
+      },
+      "Now let me search for ReliabilityRAG and NeurIPS 2025:",
+      {
+        "tool_use_id": "srvtoolu_01GcA1GMZdkM9YQgPmuAE9Dy",
+        "content": [
+          {
+            "title": "ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search",
+            "url": "https://arxiv.org/pdf/2509.23519"
+          },
+          {
+            "title": "NeurIPS Poster ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search",
+            "url": "https://neurips.cc/virtual/2025/poster/119236"
+          },
+          {
+            "title": "ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search",
+            "url": "https://neurips.cc/media/neurips-2025/Slides/119236.pdf"
+          },
+          {
+            "title": "Retrieval-Augmented Generation with Estimation of Source Reliability",
+            "url": "https://arxiv.org/pdf/2410.22954"
+          },
+          {
+            "title": "Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights",
+            "url": "https://arxiv.org/pdf/2603.16817"
+          },
+          {
+            "title": "NeurIPS 2025 Recap | Amplify Partners",
+            "url": "https://www.amplifypartners.com/blog-posts/neurips-2025-recap"
+          }
+        ]
+      },
+      "Based on my web search results, I can provide you with information about both RobustRAG and ReliabilityRAG:\n\n## RobustRAG (SaTML 2026)\n\nRobustRAG is the first defense framework with certifiable robustness against retrieval corruption attacks. The key insight of RobustRAG is an isolate-then-aggregate strategy: it isolates passages into disjoint groups, generates LLM responses based on the concatenated passages from each isolated group, and then securely aggregates these responses for a robust output.\n\nRobustRAG achieves 69.0–71.0% certifiable robust accuracy for RQA-MC, 24.0–49.0% for RQA, 27.0–47.0% for NQ, and 24.0–51.2% certifiable LLM-judge score for the bio generation task.\n\n## ReliabilityRAG (NeurIPS 2025)\n\nReliabilityRAG was presented at the 39th Conference on Neural Information Processing Systems (NeurIPS 2025). ReliabilityRAG is a framework for adversarial robustness that explicitly leverages reliability information of retrieved documents.\n\nReliabilityRAG provides superior robustness against adversarial attacks compared to prior methods, maintains high benign accuracy, and excels in long-form generation tasks where prior robustness-focused methods struggled.\n\n## Comparison\n\nBoth systems address adversarial robustness in RAG systems, but with different approaches. RobustRAG uses formal certification through an isolate-then-aggregate strategy, while ReliabilityRAG leverages document reliability signals and employs a graph-theoretic approach for improved robustness."
+    ],
+    "durationSeconds": 9.950810533999997,
+    "searchCount": 2
+  },
+  "sourceToolAssistantUUID": "a0baf7ef-1532-4bad-9a2c-996ea631fcbe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts  ## Core Problem  How can a RAG system provide distribution-free, certified abstention guarantees on answer correc…",
+  "leafUuid": "533ca9e8-6932-440e-8426-b98fdda1afd3",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal abstention for poisoned RAG systems",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-30T07:24:14.372Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WJegPvQj5k9wK1e9JFuh7C`</summary>
+
+```json
+{
+  "query": "Chen et al 2026 \"conformal factuality\" RAG robust distribution shift arXiv 2603.16817"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "533ca9e8-6932-440e-8426-b98fdda1afd3",
+  "isSidechain": false,
+  "requestId": "req_011CbYMTCo5QtaTmWRyuhwuL",
+  "type": "assistant",
+  "uuid": "15516c1e-c251-4e51-b66b-bff2b32af285",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RGH2LLfhgSqX9f3xsm2h7E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1236,
+      "cache_read_input_tokens": 22834,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1236,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 22834,
+          "cache_creation_input_tokens": 1236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1236
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-30T07:24:21.182Z_
+
+<details><summary>↩ Tool result · `toolu_01WJegPvQj5k9wK1e9JFuh7C`</summary>
+
+```text
+Web search results for query: "Chen et al 2026 "conformal factuality" RAG robust distribution shift arXiv 2603.16817"
+
+Links: [{"title":"[2603.16817] Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights","url":"https://arxiv.org/abs/2603.16817"},{"title":"Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights","url":"https://arxiv.org/pdf/2603.16817"},{"title":"Not all distributional shifts are equal: Fine-grained robust conformal inference","url":"https://arxiv.org/pdf/2402.13042"},{"title":"Robust Conformal Prediction under Distribution Shift via ...","url":"https://arxiv.org/pdf/2403.15025"},{"title":"C-RAG: Certified Generation Risks for Retrieval-Augmented Language   Models","url":"https://arxiv.org/pdf/2402.03181"},{"title":"[2506.20978v1] Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality","url":"https://arxiv.org/abs/2506.20978v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**"Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights"** by Yi Chen and co-authors from the University of Wisconsin-Madison, published on March 17, 2026 (arXiv 2603.16817).
+
+**Key Findings:**
+
+The paper finds that: (i) conformal filtering suffers from low usefulness at high factuality levels due to vacuous outputs, (ii) conformal factuality guarantee is not robust to distribution shifts and distractors (requiring calibration data to closely match deployment conditions), and (iii) lightweight entailment-based verifiers match or outperform LLM-based model confidence scorers while requiring over 100× fewer FLOPs.
+
+**Main Contribution:**
+
+The authors systematically analyze the reliability and usefulness of conformal factuality for RAG-based LLMs and propose novel informativeness-aware metrics that better reflect task utility under conformal filtering.
+
+The paper is available at https://arxiv.org/abs/2603.16817
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15516c1e-c251-4e51-b66b-bff2b32af285",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "d913c9a8-bfa5-49fa-8840-549800c37a17",
+  "toolUseResult": {
+    "query": "Chen et al 2026 \"conformal factuality\" RAG robust distribution shift arXiv 2603.16817",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AyG5HFhzBeVPQ1RwkLU3WS",
+        "content": [
+          {
+            "title": "[2603.16817] Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights",
+            "url": "https://arxiv.org/abs/2603.16817"
+          },
+          {
+            "title": "Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights",
+            "url": "https://arxiv.org/pdf/2603.16817"
+          },
+          {
+            "title": "Not all distributional shifts are equal: Fine-grained robust conformal inference",
+            "url": "https://arxiv.org/pdf/2402.13042"
+          },
+          {
+            "title": "Robust Conformal Prediction under Distribution Shift via ...",
+            "url": "https://arxiv.org/pdf/2403.15025"
+          },
+          {
+            "title": "C-RAG: Certified Generation Risks for Retrieval-Augmented Language   Models",
+            "url": "https://arxiv.org/pdf/2402.03181"
+          },
+          {
+            "title": "[2506.20978v1] Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality",
+            "url": "https://arxiv.org/abs/2506.20978v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**\"Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights\"** by Yi Chen and co-authors from the University of Wisconsin-Madison, published on March 17, 2026 (arXiv 2603.16817).\n\n**Key Findings:**\n\nThe paper finds that: (i) conformal filtering suffers from low usefulness at high factuality levels due to vacuous outputs, (ii) conformal factuality guarantee is not robust to distribution shifts and distractors (requiring calibration data to closely match deployment conditions), and (iii) lightweight entailment-based verifiers match or outperform LLM-based model confidence scorers while requiring over 100× fewer FLOPs.\n\n**Main Contribution:**\n\nThe authors systematically analyze the reliability and usefulness of conformal factuality for RAG-based LLMs and propose novel informativeness-aware metrics that better reflect task utility under conformal filtering.\n\nThe paper is available at https://arxiv.org/abs/2603.16817"
+    ],
+    "durationSeconds": 6.805185512000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "15516c1e-c251-4e51-b66b-bff2b32af285",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-30T07:24:24.295Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JjxRYakEzVvANnhbHWfagi`</summary>
+
+```json
+{
+  "query": "Lipschitz conformal prediction robust retrieval embedding cosine similarity nonconformity score 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d913c9a8-bfa5-49fa-8840-549800c37a17",
+  "isSidechain": false,
+  "requestId": "req_011CbYMTuACudPYxXQbBnyYy",
+  "type": "assistant",
+  "uuid": "e2a37215-042f-4222-93b7-1c9b077cf01b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvhDGMzVGJWmMpmhFPYV8H",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 672,
+      "cache_read_input_tokens": 24070,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 672,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 24070,
+          "cache_creation_input_tokens": 672,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 672
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-30T07:24:32.001Z_
+
+<details><summary>↩ Tool result · `toolu_01JjxRYakEzVvANnhbHWfagi`</summary>
+
+```text
+Web search results for query: "Lipschitz conformal prediction robust retrieval embedding cosine similarity nonconformity score 2025 2026"
+
+Links: [{"title":"Efficient Robust Conformal Prediction via Lipschitz-Bounded Networks","url":"https://arxiv.org/pdf/2506.05434"},{"title":"[2506.05434] Efficient Robust Conformal Prediction via Lipschitz-Bounded Networks","url":"https://arxiv.org/abs/2506.05434"},{"title":"Efficient Robust Conformal Prediction via Lipschitz-Bounded Networks | OpenReview","url":"https://openreview.net/forum?id=w6Ds32QkQd"},{"title":"Extending Prediction-Powered Inference through Conformal Prediction","url":"https://arxiv.org/html/2510.16166v1"},{"title":"Beyond Surface Statistics: Robust Conformal Prediction for LLMs via Internal Representations","url":"https://arxiv.org/html/2604.16217"},{"title":"Streamlining Conformal Information Retrieval via Score Refinement","url":"https://arxiv.org/pdf/2410.02914"},{"title":"Robust Conformal Prediction with a Single Binary Certificate","url":"https://arxiv.org/pdf/2503.05239"}]
+
+I found recent research related to your search query. The most relevant result is:
+
+A new method that leverages Lipschitz-bounded networks to precisely and efficiently estimate robust CP sets, which was published in 2025. Conformal Prediction (CP) has proven to be an effective post-hoc method for improving the trustworthiness of neural networks by providing prediction sets with finite-sample guarantees.
+
+However, under adversarial attacks, classical conformal guarantees do not hold anymore; several methods have been proposed to provide robust CP sets with guarantees under adversarial perturbations, but for large scale problems, these sets are either too large or the methods are too computationally demanding to be deployed in real life scenarios.
+
+When combined with a 1-Lipschitz robust network, the lip-rcp method outperforms state-of-the-art results in both the size of the robust CP sets and computational efficiency in medium and large-scale scenarios such as ImageNet.
+
+The search also found related work on conformal prediction applied to information retrieval and robust conformal prediction with robustness certificates, indicating this is an active research area in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2a37215-042f-4222-93b7-1c9b077cf01b",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "6c4ff739-5635-4374-ae34-64fc4df34419",
+  "toolUseResult": {
+    "query": "Lipschitz conformal prediction robust retrieval embedding cosine similarity nonconformity score 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A9TNB7wzKuzW3eZXfWGit8",
+        "content": [
+          {
+            "title": "Efficient Robust Conformal Prediction via Lipschitz-Bounded Networks",
+            "url": "https://arxiv.org/pdf/2506.05434"
+          },
+          {
+            "title": "[2506.05434] Efficient Robust Conformal Prediction via Lipschitz-Bounded Networks",
+            "url": "https://arxiv.org/abs/2506.05434"
+          },
+          {
+            "title": "Efficient Robust Conformal Prediction via Lipschitz-Bounded Networks | OpenReview",
+            "url": "https://openreview.net/forum?id=w6Ds32QkQd"
+          },
+          {
+            "title": "Extending Prediction-Powered Inference through Conformal Prediction",
+            "url": "https://arxiv.org/html/2510.16166v1"
+          },
+          {
+            "title": "Beyond Surface Statistics: Robust Conformal Prediction for LLMs via Internal Representations",
+            "url": "https://arxiv.org/html/2604.16217"
+          },
+          {
+            "title": "Streamlining Conformal Information Retrieval via Score Refinement",
+            "url": "https://arxiv.org/pdf/2410.02914"
+          },
+          {
+            "title": "Robust Conformal Prediction with a Single Binary Certificate",
+            "url": "https://arxiv.org/pdf/2503.05239"
+          }
+        ]
+      },
+      "I found recent research related to your search query. The most relevant result is:\n\nA new method that leverages Lipschitz-bounded networks to precisely and efficiently estimate robust CP sets, which was published in 2025. Conformal Prediction (CP) has proven to be an effective post-hoc method for improving the trustworthiness of neural networks by providing prediction sets with finite-sample guarantees.\n\nHowever, under adversarial attacks, classical conformal guarantees do not hold anymore; several methods have been proposed to provide robust CP sets with guarantees under adversarial perturbations, but for large scale problems, these sets are either too large or the methods are too computationally demanding to be deployed in real life scenarios.\n\nWhen combined with a 1-Lipschitz robust network, the lip-rcp method outperforms state-of-the-art results in both the size of the robust CP sets and computational efficiency in medium and large-scale scenarios such as ImageNet.\n\nThe search also found related work on conformal prediction applied to information retrieval and robust conformal prediction with robustness certificates, indicating this is an active research area in 2025-2026."
+    ],
+    "durationSeconds": 7.700318528000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e2a37215-042f-4222-93b7-1c9b077cf01b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-30T07:24:34.375Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015GqTZj5QBKVu98SShceDKE`</summary>
+
+```json
+{
+  "query": "retrieval agreement score pairwise cosine similarity RAG robustness detection poisoning clustering 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c4ff739-5635-4374-ae34-64fc4df34419",
+  "isSidechain": false,
+  "requestId": "req_011CbYMUhT2bZruSRa1KoqAH",
+  "type": "assistant",
+  "uuid": "5c2ea47a-36cd-4176-a6a6-83d2e205fcc9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BSqH1jCYuRuDqE4se9Kmo7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 24742,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 24742,
+          "cache_creation_input_tokens": 685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-30T07:24:42.827Z_
+
+<details><summary>↩ Tool result · `toolu_015GqTZj5QBKVu98SShceDKE`</summary>
+
+```text
+Web search results for query: "retrieval agreement score pairwise cosine similarity RAG robustness detection poisoning clustering 2025 2026"
+
+Links: [{"title":"Traceback of Poisoning Attacks to Retrieval-Augmented Generation | Proceedings of the ACM on Web Conference 2025","url":"https://dl.acm.org/doi/10.1145/3696410.3714756"},{"title":"Solving Freshness in RAG: A Simple Recency Prior and the Limits","url":"https://arxiv.org/pdf/2509.19376"},{"title":"Secure Retrieval-Augmented Generation against Poisoning Attacks","url":"https://arxiv.org/pdf/2510.25025"},{"title":"Towards More Robust Retrieval-Augmented Generation: Evaluating RAG Under Adversarial Poisoning Attacks","url":"https://arxiv.org/pdf/2412.16708"},{"title":"Fact or Facsimile? Evaluating the Factual Robustness of Modern Retrievers","url":"https://arxiv.org/pdf/2508.20408"},{"title":"RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2512.24268"}]
+
+Based on the search results, I found several relevant recent papers (2025-2026) addressing RAG robustness, poisoning detection, and retrieval methods:
+
+**Key Findings:**
+
+RAGuard is a detection framework that identifies poisoned texts by expanding retrieval scope, applying chunk-wise perplexity filtering to detect abnormal variations, and using text similarity filtering to flag highly similar texts.
+
+RAGPart and RAGMask are retrieval-stage defenses that work through document partitioning to mitigate poisoned points, and by identifying suspicious tokens based on similarity shifts under targeted token masking, respectively.
+
+Cosine-similarity scores between queries and correct completions are significantly higher than those for incorrect ones (p < 0.01), indicating decisions driven largely by surface-level semantic proximity.
+
+**Recent Work on RAG Robustness:**
+
+RAG systems are vulnerable to adversarial poisoning attacks through injection of adversarial data into the RAG database to manipulate retrievers into returning factually incorrect information.
+
+An upcoming work (IRAG) focuses on robust multimodal retrieval-augmented generation via hazard separation, published in the ACM Web Conference 2026.
+
+The search results reveal an active research area in 2025-2026 focused on defending RAG systems against poisoning attacks using various detection and filtering mechanisms based on similarity metrics and perplexity analysis.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c2ea47a-36cd-4176-a6a6-83d2e205fcc9",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "c478b9fd-4e4f-4f17-a89f-5f5328fbb03b",
+  "toolUseResult": {
+    "query": "retrieval agreement score pairwise cosine similarity RAG robustness detection poisoning clustering 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HJa9Z2gxrTGGZxcXwqqzHq",
+        "content": [
+          {
+            "title": "Traceback of Poisoning Attacks to Retrieval-Augmented Generation | Proceedings of the ACM on Web Conference 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3696410.3714756"
+          },
+          {
+            "title": "Solving Freshness in RAG: A Simple Recency Prior and the Limits",
+            "url": "https://arxiv.org/pdf/2509.19376"
+          },
+          {
+            "title": "Secure Retrieval-Augmented Generation against Poisoning Attacks",
+            "url": "https://arxiv.org/pdf/2510.25025"
+          },
+          {
+            "title": "Towards More Robust Retrieval-Augmented Generation: Evaluating RAG Under Adversarial Poisoning Attacks",
+            "url": "https://arxiv.org/pdf/2412.16708"
+          },
+          {
+            "title": "Fact or Facsimile? Evaluating the Factual Robustness of Modern Retrievers",
+            "url": "https://arxiv.org/pdf/2508.20408"
+          },
+          {
+            "title": "RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2512.24268"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant recent papers (2025-2026) addressing RAG robustness, poisoning detection, and retrieval methods:\n\n**Key Findings:**\n\nRAGuard is a detection framework that identifies poisoned texts by expanding retrieval scope, applying chunk-wise perplexity filtering to detect abnormal variations, and using text similarity filtering to flag highly similar texts.\n\nRAGPart and RAGMask are retrieval-stage defenses that work through document partitioning to mitigate poisoned points, and by identifying suspicious tokens based on similarity shifts under targeted token masking, respectively.\n\nCosine-similarity scores between queries and correct completions are significantly higher than those for incorrect ones (p < 0.01), indicating decisions driven largely by surface-level semantic proximity.\n\n**Recent Work on RAG Robustness:**\n\nRAG systems are vulnerable to adversarial poisoning attacks through injection of adversarial data into the RAG database to manipulate retrievers into returning factually incorrect information.\n\nAn upcoming work (IRAG) focuses on robust multimodal retrieval-augmented generation via hazard separation, published in the ACM Web Conference 2026.\n\nThe search results reveal an active research area in 2025-2026 focused on defending RAG systems against poisoning attacks using various detection and filtering mechanisms based on similarity metrics and perplexity analysis."
+    ],
+    "durationSeconds": 8.44686823800001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5c2ea47a-36cd-4176-a6a6-83d2e205fcc9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-30T07:24:42.835Z_
+
+```json
+{
+  "parentUuid": "c478b9fd-4e4f-4f17-a89f-5f5328fbb03b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b54c8510-41b9-4e37-abe3-e19002bf5ae7",
+  "timestamp": "2026-05-30T07:24:42.835Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-30T07:24:45.757Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LjmXjaypCUbYZuiKjm9qQB`</summary>
+
+```json
+{
+  "query": "CorruptRAG single document poisoning RAG 2025 arXiv 2504.03957"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b54c8510-41b9-4e37-abe3-e19002bf5ae7",
+  "isSidechain": false,
+  "requestId": "req_011CbYMVVkMFFyUuQRePnt69",
+  "type": "assistant",
+  "uuid": "587e043b-b481-488b-9005-149c1548b4ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015cJgDi5upBwqcNh3txQ3E9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 840,
+      "cache_read_input_tokens": 25427,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 840,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 25427,
+          "cache_creation_input_tokens": 840,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 840
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-30T07:24:55.853Z_
+
+<details><summary>↩ Tool result · `toolu_01LjmXjaypCUbYZuiKjm9qQB`</summary>
+
+```text
+Web search results for query: "CorruptRAG single document poisoning RAG 2025 arXiv 2504.03957"
+
+Links: [{"title":"[2504.03957] Practical Poisoning Attacks against Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2504.03957"},{"title":"Practical Poisoning Attacks against Retrieval-Augmented Generation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250403957Z/abstract"},{"title":"Practical Poisoning Attacks against Retrieval-Augmented Generation Baolei Zhang","url":"https://arxiv.org/pdf/2504.03957"},{"title":"MM-PoisonRAG: Disrupting Multimodal RAG with Local and Global Knowledge Poisoning Attacks","url":"https://arxiv.org/html/2502.17832v3"},{"title":"Practical Poisoning Attacks against Retrieval-Augmented Generation","url":"https://arxiv.org/html/2504.03957v1"},{"title":"Benchmarking Poisoning Attacks against Retrieval-Augmented Generation","url":"https://arxiv.org/html/2505.18543v1"},{"title":"Architecture Matters: Comparing RAG Systems under Knowledge Base Poisoning","url":"https://arxiv.org/html/2605.05632v1"}]
+
+Based on the search results, here's what I found about CorruptRAG:
+
+## Overview
+
+CorruptRAG is a practical poisoning attack against RAG systems in which the attacker injects only a single poisoned text, enhancing both feasibility and stealth.
+
+## Problem It Addresses
+
+Recent studies show that injecting poisoned text into the knowledge database can compromise RAG systems, but most existing attacks assume that the attacker can insert a sufficient number of poisoned texts per query to outnumber correct-answer texts in retrieval, an assumption that is often unrealistic.
+
+## Key Contributions
+
+Unlike existing methods that rely on injecting multiple poisoned texts, CorruptRAG constrains the attacker to injecting only one poisoned text per query, enhancing both the feasibility and stealth of the attack while still allowing the attacker to manipulate the knowledge database, ensuring that the LLM in RAG generates the attacker-desired response for a targeted query.
+
+## Performance
+
+Extensive experiments conducted on multiple large-scale datasets demonstrate that CorruptRAG achieves higher attack success rates than existing baselines.
+
+The paper (arXiv 2504.03957) was published in April 2025 and addresses an important security vulnerability in Retrieval-Augmented Generation systems used with large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "587e043b-b481-488b-9005-149c1548b4ce",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "13d8f54e-541e-469e-96f5-ec5425923e37",
+  "toolUseResult": {
+    "query": "CorruptRAG single document poisoning RAG 2025 arXiv 2504.03957",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011LpLSZXbV5QTLqoiCd6E7T",
+        "content": [
+          {
+            "title": "[2504.03957] Practical Poisoning Attacks against Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2504.03957"
+          },
+          {
+            "title": "Practical Poisoning Attacks against Retrieval-Augmented Generation - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250403957Z/abstract"
+          },
+          {
+            "title": "Practical Poisoning Attacks against Retrieval-Augmented Generation Baolei Zhang",
+            "url": "https://arxiv.org/pdf/2504.03957"
+          },
+          {
+            "title": "MM-PoisonRAG: Disrupting Multimodal RAG with Local and Global Knowledge Poisoning Attacks",
+            "url": "https://arxiv.org/html/2502.17832v3"
+          },
+          {
+            "title": "Practical Poisoning Attacks against Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2504.03957v1"
+          },
+          {
+            "title": "Benchmarking Poisoning Attacks against Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2505.18543v1"
+          },
+          {
+            "title": "Architecture Matters: Comparing RAG Systems under Knowledge Base Poisoning",
+            "url": "https://arxiv.org/html/2605.05632v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CorruptRAG:\n\n## Overview\n\nCorruptRAG is a practical poisoning attack against RAG systems in which the attacker injects only a single poisoned text, enhancing both feasibility and stealth.\n\n## Problem It Addresses\n\nRecent studies show that injecting poisoned text into the knowledge database can compromise RAG systems, but most existing attacks assume that the attacker can insert a sufficient number of poisoned texts per query to outnumber correct-answer texts in retrieval, an assumption that is often unrealistic.\n\n## Key Contributions\n\nUnlike existing methods that rely on injecting multiple poisoned texts, CorruptRAG constrains the attacker to injecting only one poisoned text per query, enhancing both the feasibility and stealth of the attack while still allowing the attacker to manipulate the knowledge database, ensuring that the LLM in RAG generates the attacker-desired response for a targeted query.\n\n## Performance\n\nExtensive experiments conducted on multiple large-scale datasets demonstrate that CorruptRAG achieves higher attack success rates than existing baselines.\n\nThe paper (arXiv 2504.03957) was published in April 2025 and addresses an important security vulnerability in Retrieval-Augmented Generation systems used with large language models."
+    ],
+    "durationSeconds": 10.092408821999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "587e043b-b481-488b-9005-149c1548b4ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-30T07:24:58.195Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LxymVzcYKKqeZed4iUK9K3`</summary>
+
+```json
+{
+  "query": "\"conformal prediction\" abstention selective prediction LLM RAG certified guarantee 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13d8f54e-541e-469e-96f5-ec5425923e37",
+  "isSidechain": false,
+  "requestId": "req_011CbYMWTQjtFKbjswAydTg6",
+  "type": "assistant",
+  "uuid": "007c79ec-19b3-4641-bc72-be9e6bd3e354",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121khJQcDyXtLExDhPf8BYA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 739,
+      "cache_read_input_tokens": 26267,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 739,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 26267,
+          "cache_creation_input_tokens": 739,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 739
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-30T07:25:06.990Z_
+
+<details><summary>↩ Tool result · `toolu_01LxymVzcYKKqeZed4iUK9K3`</summary>
+
+```text
+Web search results for query: ""conformal prediction" abstention selective prediction LLM RAG certified guarantee 2025 2026"
+
+Links: [{"title":"Conformal Abstention Framework","url":"https://www.emergentmind.com/topics/conformal-abstention"},{"title":"Large language model validity via enhanced conformal prediction methods","url":"https://www.researchgate.net/publication/397200904_Large_language_model_validity_via_enhanced_conformal_prediction_methods"},{"title":"PASC: Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP and LLM Pipelines","url":"https://arxiv.org/html/2605.18812"},{"title":"Principled Context Engineering for RAG: Statistical Guarantees via Conformal Prediction","url":"https://arxiv.org/pdf/2511.17908"},{"title":"Know Your Limits: A Survey of Abstention in Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/393331033_Know_Your_Limits_A_Survey_of_Abstention_in_Large_Language_Models"},{"title":"Selective Risk Certification for LLM Outputs via Information-Lift Statistics: PAC-Bayes, Robustness, and Skeleton Design","url":"https://arxiv.org/pdf/2509.12527"},{"title":"Selective \"Selective Prediction\": Reducing Unnecessary Abstention in   Vision-Language Reasoning","url":"https://arxiv.org/pdf/2402.15610"}]
+
+I've found recent research on conformal prediction with abstention and selective prediction for LLMs and RAG systems. Here are the key findings:
+
+## Conformal Abstention for LLMs
+
+Conformal abstention applies a thresholding rule to a nonconformity score, and upon exceeding a calibrated threshold, the system abstains from outputting a prediction (e.g., an LLM answers "I don't know"). Empirical results consistently confirm that conformal abstention methods achieve the target risk level on in-domain data, with ongoing research into formalizing robustness under covariate shift and handling dynamic, non-exchangeable scenarios.
+
+## RAG-Specific Applications
+
+Retrieval-Augmented Generation (RAG) enhances factual grounding in LLMs by incorporating retrieved evidence, and conformal prediction provides a coverage-controlled filtering framework that removes irrelevant content while preserving recall of supporting evidence. Conformal filtering consistently meets its target coverage, ensuring that a specified fraction of relevant snippets are retained, and reduces retained context by 2-3× relative to unfiltered retrieval.
+
+## Certified Guarantees
+
+Conformal prediction is used to provide rigorous statistical guarantees on hallucination rates through calibrated abstention. Conformal abstention now underlies risk-controlling systems in language, vision, and high-stakes autonomous applications, providing statistically rigorous error guarantees while maximizing utility and informativeness of model outputs.
+
+## Recent Research Directions
+
+Research on conformal abstention is advancing toward adaptive, data-driven, and multimodal selective prediction, including extending abstention to phrase or rationale-level and integrating multiple nonconformity signals for multimodal and retrieval-augmented scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "007c79ec-19b3-4641-bc72-be9e6bd3e354",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "4ea35651-7fea-4a2b-ad8b-d58e9eba8fe2",
+  "toolUseResult": {
+    "query": "\"conformal prediction\" abstention selective prediction LLM RAG certified guarantee 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HByRkfKYNDxQmk9Pmryeyx",
+        "content": [
+          {
+            "title": "Conformal Abstention Framework",
+            "url": "https://www.emergentmind.com/topics/conformal-abstention"
+          },
+          {
+            "title": "Large language model validity via enhanced conformal prediction methods",
+            "url": "https://www.researchgate.net/publication/397200904_Large_language_model_validity_via_enhanced_conformal_prediction_methods"
+          },
+          {
+            "title": "PASC: Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP and LLM Pipelines",
+            "url": "https://arxiv.org/html/2605.18812"
+          },
+          {
+            "title": "Principled Context Engineering for RAG: Statistical Guarantees via Conformal Prediction",
+            "url": "https://arxiv.org/pdf/2511.17908"
+          },
+          {
+            "title": "Know Your Limits: A Survey of Abstention in Large Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/393331033_Know_Your_Limits_A_Survey_of_Abstention_in_Large_Language_Models"
+          },
+          {
+            "title": "Selective Risk Certification for LLM Outputs via Information-Lift Statistics: PAC-Bayes, Robustness, and Skeleton Design",
+            "url": "https://arxiv.org/pdf/2509.12527"
+          },
+          {
+            "title": "Selective \"Selective Prediction\": Reducing Unnecessary Abstention in   Vision-Language Reasoning",
+            "url": "https://arxiv.org/pdf/2402.15610"
+          }
+        ]
+      },
+      "I've found recent research on conformal prediction with abstention and selective prediction for LLMs and RAG systems. Here are the key findings:\n\n## Conformal Abstention for LLMs\n\nConformal abstention applies a thresholding rule to a nonconformity score, and upon exceeding a calibrated threshold, the system abstains from outputting a prediction (e.g., an LLM answers \"I don't know\"). Empirical results consistently confirm that conformal abstention methods achieve the target risk level on in-domain data, with ongoing research into formalizing robustness under covariate shift and handling dynamic, non-exchangeable scenarios.\n\n## RAG-Specific Applications\n\nRetrieval-Augmented Generation (RAG) enhances factual grounding in LLMs by incorporating retrieved evidence, and conformal prediction provides a coverage-controlled filtering framework that removes irrelevant content while preserving recall of supporting evidence. Conformal filtering consistently meets its target coverage, ensuring that a specified fraction of relevant snippets are retained, and reduces retained context by 2-3× relative to unfiltered retrieval.\n\n## Certified Guarantees\n\nConformal prediction is used to provide rigorous statistical guarantees on hallucination rates through calibrated abstention. Conformal abstention now underlies risk-controlling systems in language, vision, and high-stakes autonomous applications, providing statistically rigorous error guarantees while maximizing utility and informativeness of model outputs.\n\n## Recent Research Directions\n\nResearch on conformal abstention is advancing toward adaptive, data-driven, and multimodal selective prediction, including extending abstention to phrase or rationale-level and integrating multiple nonconformity signals for multimodal and retrieval-augmented scenarios."
+    ],
+    "durationSeconds": 8.788523819000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "007c79ec-19b3-4641-bc72-be9e6bd3e354",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts  ## Core Problem  How can a RAG system provide distribution-free, certified abstention guarantees on answer correc…",
+  "leafUuid": "4ea35651-7fea-4a2b-ad8b-d58e9eba8fe2",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal abstention for poisoned RAG systems",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-30T07:25:10.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W1ekq1ARLBEKGH2Gnyidmy`</summary>
+
+```json
+{
+  "query": "PASC pipeline-aware conformal prediction multi-stage NLP 2025 2026 arXiv 2605"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ea35651-7fea-4a2b-ad8b-d58e9eba8fe2",
+  "isSidechain": false,
+  "requestId": "req_011CbYMXHcexP9PoQn4oKJyS",
+  "type": "assistant",
+  "uuid": "286d8c19-72c1-4e04-82d6-6332daf0f06a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019bQjKPUKysbGUbBZnuDCs5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 863,
+      "cache_read_input_tokens": 27006,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 27006,
+          "cache_creation_input_tokens": 863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-30T07:25:19.428Z_
+
+<details><summary>↩ Tool result · `toolu_01W1ekq1ARLBEKGH2Gnyidmy`</summary>
+
+```text
+Web search results for query: "PASC pipeline-aware conformal prediction multi-stage NLP 2025 2026 arXiv 2605"
+
+Links: [{"title":"[2605.18812] PASC: Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP and LLM Pipelines","url":"https://arxiv.org/abs/2605.18812"},{"title":"PASC: Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP and LLM Pipelines","url":"https://arxiv.org/html/2605.18812"},{"title":"[2605.20468] CASCADE Conformal Prediction: Uncertainty-Adaptive Prediction Intervals for Two-Stage Clinical Decision Support","url":"https://arxiv.org/abs/2605.20468"},{"title":"[2605.25852] A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores","url":"https://arxiv.org/abs/2605.25852"},{"title":"Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition","url":"https://arxiv.org/pdf/2510.04406"}]
+
+I found the paper you're looking for! Here are the results:
+
+## PASC: Pipeline-Aware Conformal Prediction
+
+PASC addresses modern NLP and LLM systems that function as pipelines, such as named entity recognition (NER) → entity disambiguation (NED) → entity typing, retrieval-augmented generation (retriever → reader), and agentic chains of planner → tool → critic.
+
+**The Core Problem:**
+Errors compound across stages, but existing uncertainty quantification methods either calibrate each stage independently (no joint coverage) or apply a Bonferroni union bound (joint coverage, but conservative).
+
+**The Solution:**
+PASC (Pipeline-Aware Split Conformal) reduces multi-stage joint coverage to a single scalar conformal prediction problem on the joint maximum nonconformity score. PASC provides a finite-sample distribution-free guarantee that all K stages are simultaneously covered with probability at least 1 - alpha, and is nearly tight up to a 1/(n+1) factor.
+
+**Results:**
+On a three-stage NER → NED → entity-typing pipeline over CoNLL-2003, PASC achieves 96.4% end-to-end coverage versus 93.4% for Bonferroni and 86.5% for independent CP, at identical average prediction.
+
+**arXiv Details:**
+- **Paper ID:** 2605.18812
+- **URL:** https://arxiv.org/abs/2605.18812
+- **Posted:** 3 weeks ago
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "286d8c19-72c1-4e04-82d6-6332daf0f06a",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "019cac81-f05d-4672-ba88-87c31e0d979a",
+  "toolUseResult": {
+    "query": "PASC pipeline-aware conformal prediction multi-stage NLP 2025 2026 arXiv 2605",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GiMJPwDBfW5VpZNaqpBM7N",
+        "content": [
+          {
+            "title": "[2605.18812] PASC: Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP and LLM Pipelines",
+            "url": "https://arxiv.org/abs/2605.18812"
+          },
+          {
+            "title": "PASC: Pipeline-Aware Conformal Prediction with Joint Coverage Guarantees for Multi-Stage NLP and LLM Pipelines",
+            "url": "https://arxiv.org/html/2605.18812"
+          },
+          {
+            "title": "[2605.20468] CASCADE Conformal Prediction: Uncertainty-Adaptive Prediction Intervals for Two-Stage Clinical Decision Support",
+            "url": "https://arxiv.org/abs/2605.20468"
+          },
+          {
+            "title": "[2605.25852] A Post-Processing Conformal Prediction Approach for Conditional Coverage via Pivotal Scores",
+            "url": "https://arxiv.org/abs/2605.25852"
+          },
+          {
+            "title": "Modular and Adaptive Conformal Prediction for Sequential Models via Residual Decomposition",
+            "url": "https://arxiv.org/pdf/2510.04406"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the results:\n\n## PASC: Pipeline-Aware Conformal Prediction\n\nPASC addresses modern NLP and LLM systems that function as pipelines, such as named entity recognition (NER) → entity disambiguation (NED) → entity typing, retrieval-augmented generation (retriever → reader), and agentic chains of planner → tool → critic.\n\n**The Core Problem:**\nErrors compound across stages, but existing uncertainty quantification methods either calibrate each stage independently (no joint coverage) or apply a Bonferroni union bound (joint coverage, but conservative).\n\n**The Solution:**\nPASC (Pipeline-Aware Split Conformal) reduces multi-stage joint coverage to a single scalar conformal prediction problem on the joint maximum nonconformity score. PASC provides a finite-sample distribution-free guarantee that all K stages are simultaneously covered with probability at least 1 - alpha, and is nearly tight up to a 1/(n+1) factor.\n\n**Results:**\nOn a three-stage NER → NED → entity-typing pipeline over CoNLL-2003, PASC achieves 96.4% end-to-end coverage versus 93.4% for Bonferroni and 86.5% for independent CP, at identical average prediction.\n\n**arXiv Details:**\n- **Paper ID:** 2605.18812\n- **URL:** https://arxiv.org/abs/2605.18812\n- **Posted:** 3 weeks ago"
+    ],
+    "durationSeconds": 8.624494072999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "286d8c19-72c1-4e04-82d6-6332daf0f06a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-30T07:25:22.350Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GCYS4n8GXNEJvvaQSN5AnS`</summary>
+
+```json
+{
+  "query": "robust conformal prediction data poisoning calibration ICLR 2025 RPS partition vote smoothed scores"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "019cac81-f05d-4672-ba88-87c31e0d979a",
+  "isSidechain": false,
+  "requestId": "req_011CbYMYCLvixoPgAa4GroGu",
+  "type": "assistant",
+  "uuid": "5e8c1751-a5c5-47e4-893c-ab3629f4b82d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bac1cv7S33UV2WuZAnHya2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 27869,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 754,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 27869,
+          "cache_creation_input_tokens": 754,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 754
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-30T07:25:27.917Z_
+
+<details><summary>↩ Tool result · `toolu_01GCYS4n8GXNEJvvaQSN5AnS`</summary>
+
+```text
+Web search results for query: "robust conformal prediction data poisoning calibration ICLR 2025 RPS partition vote smoothed scores"
+
+Links: [{"title":"Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning | OpenReview","url":"https://openreview.net/forum?id=ofuLWn8DFZ"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4d21a4b33361c40c2142db9511c126-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://yascho.github.io/assets/pdf/scholten2025provably.pdf"},{"title":"Nine papers accepted at ICLR 2025, one at KAIS 2025 - Data Analytics and Machine Learning","url":"https://www.cs.cit.tum.de/en/daml/all-news/article/nine-papers-accepted-at-iclr-2025/"},{"title":"GitHub - yascho/reliable_conformal_prediction: Implementation of the reliable conformal prediction sets introduced in the paper: \"Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning\" accepted at ICLR 2025 (Spotlight).","url":"https://github.com/yascho/reliable_conformal_prediction"},{"title":"Robust Yet Efficient Conformal Prediction Sets","url":"https://arxiv.org/pdf/2407.09165"},{"title":"Provably Reliable Conformal Prediction Sets in the Presence of Data   Poisoning","url":"https://arxiv.org/pdf/2410.09878"},{"title":"ICLR Poster Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning","url":"https://iclr.cc/virtual/2025/poster/28340"}]
+
+I found the paper you're looking for! Here's what the search reveals:
+
+The paper "Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning" by Yan Scholten and Stephan Günnemann was accepted as a Spotlight paper at ICLR 2025.
+
+The key technical approach of the paper involves:
+
+- Smoothed score functions that reliably aggregate predictions of classifiers trained on distinct partitions of the training data to ensure reliability under training poisoning
+- Multiple prediction sets, each calibrated on distinct subsets of the calibration data to ensure reliability under calibration poisoning
+
+The paper proposes Reliable Prediction Sets (RPS): the first efficient method for constructing conformal prediction sets with provable reliability guarantees under poisoning. The method uses smoothed score functions and majority-voting prediction sets calibrated on distinct data subsets to ensure reliability even under malicious poisoning manipulations.
+
+The code implementation is available on GitHub, and the work addresses how to construct prediction sets that cover the ground truth with any user-specified probability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e8c1751-a5c5-47e4-893c-ab3629f4b82d",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "83d03311-c6db-4797-86b4-7c5eed4dc6b0",
+  "toolUseResult": {
+    "query": "robust conformal prediction data poisoning calibration ICLR 2025 RPS partition vote smoothed scores",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QiZcNJ5KU2soBUzSUzwz9x",
+        "content": [
+          {
+            "title": "Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning | OpenReview",
+            "url": "https://openreview.net/forum?id=ofuLWn8DFZ"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4d21a4b33361c40c2142db9511c126-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://yascho.github.io/assets/pdf/scholten2025provably.pdf"
+          },
+          {
+            "title": "Nine papers accepted at ICLR 2025, one at KAIS 2025 - Data Analytics and Machine Learning",
+            "url": "https://www.cs.cit.tum.de/en/daml/all-news/article/nine-papers-accepted-at-iclr-2025/"
+          },
+          {
+            "title": "GitHub - yascho/reliable_conformal_prediction: Implementation of the reliable conformal prediction sets introduced in the paper: \"Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning\" accepted at ICLR 2025 (Spotlight).",
+            "url": "https://github.com/yascho/reliable_conformal_prediction"
+          },
+          {
+            "title": "Robust Yet Efficient Conformal Prediction Sets",
+            "url": "https://arxiv.org/pdf/2407.09165"
+          },
+          {
+            "title": "Provably Reliable Conformal Prediction Sets in the Presence of Data   Poisoning",
+            "url": "https://arxiv.org/pdf/2410.09878"
+          },
+          {
+            "title": "ICLR Poster Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning",
+            "url": "https://iclr.cc/virtual/2025/poster/28340"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search reveals:\n\nThe paper \"Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning\" by Yan Scholten and Stephan Günnemann was accepted as a Spotlight paper at ICLR 2025.\n\nThe key technical approach of the paper involves:\n\n- Smoothed score functions that reliably aggregate predictions of classifiers trained on distinct partitions of the training data to ensure reliability under training poisoning\n- Multiple prediction sets, each calibrated on distinct subsets of the calibration data to ensure reliability under calibration poisoning\n\nThe paper proposes Reliable Prediction Sets (RPS): the first efficient method for constructing conformal prediction sets with provable reliability guarantees under poisoning. The method uses smoothed score functions and majority-voting prediction sets calibrated on distinct data subsets to ensure reliability even under malicious poisoning manipulations.\n\nThe code implementation is available on GitHub, and the work addresses how to construct prediction sets that cover the ground truth with any user-specified probability."
+    ],
+    "durationSeconds": 5.5623251210000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5e8c1751-a5c5-47e4-893c-ab3629f4b82d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-30T07:25:31.043Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DFVKNNt9LivuJiyejea2tW`</summary>
+
+```json
+{
+  "query": "\"Lévy-Prokhorov\" OR \"LP-CP\" conformal RAG retrieval application beyond original paper 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83d03311-c6db-4797-86b4-7c5eed4dc6b0",
+  "isSidechain": false,
+  "requestId": "req_011CbYMYpYnPH33iMK7GPLtL",
+  "type": "assistant",
+  "uuid": "02e98ac2-5128-4d6f-a8be-7bc19c603966",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017kTpJtJi2eq3pBhAq9ZhG9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 822,
+      "cache_read_input_tokens": 28623,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 822,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 28623,
+          "cache_creation_input_tokens": 822,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 822
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-30T07:25:41.511Z_
+
+<details><summary>↩ Tool result · `toolu_01DFVKNNt9LivuJiyejea2tW`</summary>
+
+```text
+Web search results for query: ""Lévy-Prokhorov" OR "LP-CP" conformal RAG retrieval application beyond original paper 2026"
+
+Links: [{"title":"Why RAG Apps in Production Are Confidently Wrong","url":"https://www.techaimag.com/generative-ai/rag-apps-in-production-confidently-wrong"},{"title":"Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality","url":"https://arxiv.org/html/2506.20978"},{"title":"Conformal Prediction under Lévy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations | OpenReview","url":"https://openreview.net/forum?id=1ULQvdbZ3X"},{"title":"C-RAG: Certified Generation Risks for Retrieval-Augmented Language   Models","url":"https://arxiv.org/pdf/2402.03181"},{"title":"Conformal Prediction under Lévy-Prokhorov Distribution ...","url":"https://arxiv.org/pdf/2502.14105"},{"title":"Conformal Prediction under Lévy–Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations","url":"https://arxiv.org/html/2502.14105v2"},{"title":"[2502.14105] Conformal Prediction under Levy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations","url":"https://arxiv.org/abs/2502.14105"}]
+
+Based on the search results, I found relevant research on both Lévy-Prokhorov (LP) distribution shifts in conformal prediction and RAG applications, though the direct connection to "LP-CP" terminology requires some clarification.
+
+## Key Findings:
+
+**Lévy-Prokhorov Conformal Prediction:**
+A 2025 paper addresses conformal prediction robustness under distribution shifts by modeling them using Lévy–Prokhorov (LP) ambiguity sets that capture both local and global perturbations, reducing high-dimensional distribution shifts to manageable one-dimensional shifts in the score space.
+
+**RAG Applications with Conformal Prediction:**
+Conformal-RAG is a conformal prediction framework tailored for RAG systems that leverages contextual information from retrieved external knowledge and high-quality scoring functions, leading to substantially more retained response content compared to existing solutions. It can ensure group-conditional factuality spanning multiple sub-domains without requiring manual annotation of conformal set validity, making it highly adaptable for complex RAG applications.
+
+**2026 Production Systems:**
+Production-grade RAG in 2026 treats retrieval sufficiency, context ambiguity, and entropy calibration as first-class constraints, with conformal prediction as the baseline for systems operating under regulatory scrutiny and real-world distribution shift.
+
+The search results show active development in both areas, though I didn't find papers explicitly combining "LP-CP" terminology with RAG retrieval applications. The Lévy-Prokhorov work (NeurIPS 2025 poster) and Conformal-RAG framework appear to be parallel developments in this research space.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02e98ac2-5128-4d6f-a8be-7bc19c603966",
+  "isSidechain": false,
+  "promptId": "af01625e-016c-4e2c-9cfb-71a796c57e2e",
+  "type": "user",
+  "uuid": "204d2c20-3eee-448a-8075-ea865f5b7622",
+  "toolUseResult": {
+    "query": "\"Lévy-Prokhorov\" OR \"LP-CP\" conformal RAG retrieval application beyond original paper 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011DLziCapTKxeYW5yYw97aN",
+        "content": [
+          {
+            "title": "Why RAG Apps in Production Are Confidently Wrong",
+            "url": "https://www.techaimag.com/generative-ai/rag-apps-in-production-confidently-wrong"
+          },
+          {
+            "title": "Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality",
+            "url": "https://arxiv.org/html/2506.20978"
+          },
+          {
+            "title": "Conformal Prediction under Lévy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations | OpenReview",
+            "url": "https://openreview.net/forum?id=1ULQvdbZ3X"
+          },
+          {
+            "title": "C-RAG: Certified Generation Risks for Retrieval-Augmented Language   Models",
+            "url": "https://arxiv.org/pdf/2402.03181"
+          },
+          {
+            "title": "Conformal Prediction under Lévy-Prokhorov Distribution ...",
+            "url": "https://arxiv.org/pdf/2502.14105"
+          },
+          {
+            "title": "Conformal Prediction under Lévy–Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations",
+            "url": "https://arxiv.org/html/2502.14105v2"
+          },
+          {
+            "title": "[2502.14105] Conformal Prediction under Levy-Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations",
+            "url": "https://arxiv.org/abs/2502.14105"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant research on both Lévy-Prokhorov (LP) distribution shifts in conformal prediction and RAG applications, though the direct connection to \"LP-CP\" terminology requires some clarification.\n\n## Key Findings:\n\n**Lévy-Prokhorov Conformal Prediction:**\nA 2025 paper addresses conformal prediction robustness under distribution shifts by modeling them using Lévy–Prokhorov (LP) ambiguity sets that capture both local and global perturbations, reducing high-dimensional distribution shifts to manageable one-dimensional shifts in the score space.\n\n**RAG Applications with Conformal Prediction:**\nConformal-RAG is a conformal prediction framework tailored for RAG systems that leverages contextual information from retrieved external knowledge and high-quality scoring functions, leading to substantially more retained response content compared to existing solutions. It can ensure group-conditional factuality spanning multiple sub-domains without requiring manual annotation of conformal set validity, making it highly adaptable for complex RAG applications.\n\n**2026 Production Systems:**\nProduction-grade RAG in 2026 treats retrieval sufficiency, context ambiguity, and entropy calibration as first-class constraints, with conformal prediction as the baseline for systems operating under regulatory scrutiny and real-world distribution shift.\n\nThe search results show active development in both areas, though I didn't find papers explicitly combining \"LP-CP\" terminology with RAG retrieval applications. The Lévy-Prokhorov work (NeurIPS 2025 poster) and Conformal-RAG framework appear to be parallel developments in this research space."
+    ],
+    "durationSeconds": 10.458733390000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "02e98ac2-5128-4d6f-a8be-7bc19c603966",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-30T07:27:16.800Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the landscape. Let me synthesize my findings and assess this proposal.
+
+Key findings from my research:
+
+1. **LP-CP (NeurIPS 2025)** - The foundational framework is real and published. It models distribution shifts via LP ambiguity sets with both local (ε) and global (ρ) perturbation parameters. The key theorem is about propagating LP ambiguity sets through scoring functions to get worst-case quantiles.
+
+2. **The gap claim seems valid** - I found no work at the intersection of {CP} ∩ {RAG} ∩ {adversarial robustness}. 
+
+3. **Chen et al. (2603.16817)** identified the exact problem—conformal prediction's factuality guarantees collapse when RAG systems encounter distribution shifts—but stopped short of proposing a fix.
+
+4. **RobustRAG and ReliabilityRAG** - Both are real, certified defenses for RAG but answer-only (no abstention). RobustRAG achieves 26-51% certified robust accuracy depending on the task.
+
+5. **RPS (ICLR 2025 Spotlight)** - Addresses calibration poisoning in CP via partition-and-vote, but doesn't address test-time retrieval corruption in RAG.
+
+6. **PASC** - Still examining this work...
+
+7. **Efficient Robust CP via Lipschitz-Bounded Networks** - Uses Lipschitz bounds for robust CP, but in vision/classification, not RAG.
+
+8. **RAGDefender, TrustRAG** - Heuristic methods using cosine similarity clustering, no formal guarantees.
+
+Looking at the proposal itself, the gap at the intersection of conformal prediction, RAG systems, and adversarial robustness does seem to be a genuine opening. The core insight about anchoring at retrieval-time rather than answer-time appears to be the key differentiator here.
+
+Now I'm evaluating the strengths and weaknesses. The mapping between LP-CP's parameters and corpus poisoning is elegant, and the "Safe Silence" guarantee addresses a real practical concern for safety-critical applications. But I need to think carefully about whether the retrieval-agreement score is truly novel—RAGDefender and TrustRAG already use cosine similarity for detecting poisoned documents, so the real contribution is formalizing this within the LP-CP framework rather than inventing a new signal. I'm also concerned about the Lipschitz constant claim and whether it holds up under scrutiny.
+
+The core issue is that the proposal claims O(2/k) Lipschitz constant with respect to single-document replacement, but that's not the same as the constant with respect to embedding perturbation ε—the actual bound could be tighter or looser. The proposal plans to empirically estimate this, but it's a critical technical gap. There's also the practical limitation that defenders rarely know the actual attack budget (ρ₀, ε₀) in advance, even though the heatmap approach provides some mitigation. And I'm wondering whether this method can actually detect poisoned documents or if it's fundamentally limited to abstaining when uncertain.
+
+The PASC paper from May 2026 on pipeline-aware conformal prediction for multi-stage NLP systems seems potentially relevant since LP-RAG-Abstain only operates at retrieval, not across the full pipeline. On framing, "Safe Silence" works as motivation, but I need to be precise about what's actually novel here—it's not abstention itself or adversarial robustness for RAG individually, but their specific combination with distribution-free guarantees under adversarial retrieval. That's the real contribution to highlight.
+
+Now I'm reconsidering what would actually strengthen this work. The retrieval-agreement score could be reframed more broadly as a general-purpose retrieval quality measure with conformal guarantees, applicable beyond just adversarial cases to out-of-domain queries and low-resource settings. And there's potential to explore compositional guarantees when pairing this with answer-level conformal prediction on the generator side, which would leverage the claim about being LLM-agnostic and composable. I'm re-reading the proposal to see what's actually there versus what I thought was missing. It does cover the LLM-agnostic composability and safety-critical applications, but I don't see explicit discussion of formal composition with answer-level conformal prediction or the agentic RAG angle. There's also the question of whether a simpler heuristic—just thresholding disagreement in RobustRAG's outputs—could achieve similar practical results without formal guarantees, though the proposal's strength lies in having those guarantees rather than relying on heuristics.
+
+I'm also checking whether RPS from ICLR 2025 could be a direct alternative since it handles calibration poisoning, but the key distinction is that LP-RAG-Abstain targets test-time retrieval corruption specifically, which is a different threat model. The core assumption hinges on whether pairwise cosine similarity among retrieved passages serves as a meaningful nonconformity score, and RAGDefender's empirical findings about poisoned documents clustering at much higher similarity values (0.976 versus 0.309 for clean documents) provide some support for this, though I need to verify this holds across different scenarios.
+
+For single-document poisoning like CorruptRAG, the signal could be weaker since only 1 out of 10 retrieved documents is poisoned. The poisoned document would likely be an outlier in the similarity matrix, but if it's semantically close to the query by design, distinguishing it from legitimate documents becomes harder. The real question is whether the retrieval-agreement score—which measures pairwise similarity across all top-k documents—can reliably detect when one document breaks the coherence pattern.
+
+The Lipschitz analysis gives worst-case guarantees, but how tight those bounds are in practice matters for evaluating the defense's real-world effectiveness.
+
+Now I'm thinking about what the key insights are here. The proposal could be stronger by explicitly composing retrieval-level conformal prediction with answer-level CP, which would give end-to-end coverage guarantees rather than just protecting the retrieval stage.
+
+Beyond adversarial poisoning, the framework naturally handles distribution shift in the corpus itself—temporal drift, domain changes, and other organic shifts—not just intentional attacks. This reframes the contribution as certified abstention under any LP-bounded retrieval shift, which is a broader problem than what prior work like Chen et al. addressed.
+
+The core technical insight about retrieval-level scores having bounded Lipschitz constants while answer-level scores don't deserves stronger theoretical grounding rather than being presented as just an observation.
+
+I should formalize whether answer-level scores based on LLM logits actually have unbounded Lipschitz constants—LLMs can produce arbitrarily large probability shifts from small input changes due to softmax gradients, while normalized embeddings with cosine similarity stay bounded. The claim seems sound, but I need to be precise about the formal statement and verify this holds across different perturbation types.
+
+If I can prove this as an impossibility result or lower bound, it transforms the insight from a design choice into a fundamental principle explaining why retrieval-level anchoring is the only viable approach for LP-CP in RAG systems.
+
+For real-world impact, I should ground this in a concrete scenario—medical RAG systems are compelling because an attacker injecting misinformation about drug interactions could cause the system to confidently give wrong advice, whereas with abstention it would acknowledge uncertainty instead.
+
+Looking at my three potential improvements: broadening the framing to cover organic distribution shift alongside adversarial poisoning, formalizing the impossibility result for answer-level scores, and establishing compositional pipeline guarantees using frameworks like PASC. These are substantive upgrades, not just refinements. Though I'm noticing the PASC paper is from May 2026—I should verify whether it's actually available and relevant to cite.
+
+The compositional angle is trickier than I initially thought. PASC seems focused on benign error compounding rather than adversarial settings, so I'd need to carefully handle how adversarial retrieval errors interact with generation-level errors. But there's a cleaner framing: LP-RAG-Abstain acts as a retrieval gatekeeper that certifies cleanliness, allowing standard conformal prediction methods downstream to apply their original guarantees without modification. That's a more elegant compositional story than trying to force everything through PASC.
+
+Now I'm checking whether the core approach has any fundamental issues. The LP-CP propagation theorem should apply here since the nonconformity score is designed to be Lipschitz, and the exchangeability assumption holds if calibration happens on clean data while the LP ambiguity set captures the shift to poisoned data. The threat model with (ρ₀, ε₀) parameters is standard in certified robustness work. The main practical concern is whether the Lipschitz constant becomes too loose, potentially yielding vacuous guarantees, but that's an empirical question rather than a conceptual flaw.
+
+I'm also ruling out simpler alternatives—basic cosine similarity thresholding lacks formal guarantees, applying RPS only to calibration doesn't address test-time corruption, and RobustRAG with confidence thresholding doesn't provide certified abstention. None of these are viable shortcuts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "204d2c20-3eee-448a-8075-ea865f5b7622",
+  "isSidechain": false,
+  "requestId": "req_011CbYMZpfW6fAjg6SiVACTM",
+  "type": "assistant",
+  "uuid": "16d07fc5-0e97-4ce4-9e11-4c8fa5bc9db3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TppjLGgxaXgskCnRt8ieDK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 29445,
+      "output_tokens": 7691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7691,
+          "cache_read_input_tokens": 29445,
+          "cache_creation_input_tokens": 856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-30T07:28:35.819Z_
+
+Now I have sufficient research to form a thorough assessment. Let me compile my analysis.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **LP-CP (NeurIPS 2025, arXiv:2502.14105)**: 核心基础框架，用 LP ambiguity sets 的 (ρ, ε) 参数建模 global + local distribution shift，通过 scoring function 的 Lipschitz 连续性传播到 score space 得到 worst-case quantile 的 closed-form 表达。原文未涉及任何 RAG 应用场景。
+- **Chen et al. (arXiv:2603.16817, Mar 2026)**: 明确诊断了 conformal factuality 在 RAG 下 distribution shift 时的失效——"not robust to distribution shifts and distractors"——但未提出任何解决方案，且主要关注的是 general distribution shift（不限于 adversarial），提出了 informativeness-aware metrics。
+- **PASC (arXiv:2605.18812, May 2026)**: 非常新的工作，提出 pipeline-aware split conformal prediction，将多阶段 NLP pipeline（包括 retriever → reader 的 RAG）的 joint coverage 问题归约为 joint maximum nonconformity score 上的单变量 CP 问题。仅处理 benign error compounding，未涉及 adversarial。
+- **RPS (ICLR 2025 Spotlight)**: 处理 calibration data poisoning（训练/校准集被污染），通过 partition-and-vote + smoothed scores 实现 reliable CP sets。但处理的是 static calibration poisoning，不处理 test-time retrieval corruption。
+- **Efficient Robust CP via Lipschitz-Bounded Networks (arXiv:2506.05434)**: 用 1-Lipschitz 网络实现高效 robust CP sets，在 ImageNet 上效果显著。思路是通过控制模型本身的 Lipschitz 常数来 tighten robust CP sets——这与 proposal 中 Lipschitz-regularized score design 的 fallback 策略直接相关。
+- **RAGDefender (ACSAC 2025)**: 经验发现 poisoned docs 之间的 cosine similarity 高达 0.976 vs clean docs 的 0.309。这个经验事实支持了 retrieval-agreement score 的有效性前提，但也说明底层 signal（pairwise cosine similarity）本身并非新提出。
+- **Beyond Surface Statistics: Robust CP for LLMs via Internal Representations (arXiv:2604.16217)**: 2026 年的工作，用 LLM internal representations 作为 nonconformity score 实现 robust CP，探索了不同于 output probability 的 score 设计思路。
+- 调研总结: 该领域当前研究者正在沿两条线索推进：(1) 将 robust/distributionally-robust CP 框架应用到新场景（RAG、pipeline、LLM），关键挑战是如何设计 Lipschitz-controllable 的 nonconformity score；(2) RAG defense 领域从 heuristic detection 向 certified guarantee 演进，但"certified defense"和"certified abstention"仍是两个独立的未连通的概念。本 proposal 正好在这两条线索的交叉点上。
+
+---
+
+【发掘点 1】
+- 维度: significance 提升
+- 内容: 当前 proposal 将问题严格限定为 "adversarial corpus poisoning" 下的 certified abstention，但 LP-CP 的 (ρ, ε) 参数在数学上天然覆盖比 adversarial poisoning 更广的 "LP-bounded retrieval shift" 类别——包括 organic corpus drift（知识库随时间更新导致的 retrieval distribution 漂移）、domain mismatch（calibration set 来自 Wikipedia 但部署时 retrieval corpus 含专业文档）、以及 partial corpus corruption（非恶意的噪声/低质量文档混入）。Chen et al. (2603.16817) 诊断的问题就是 general distribution shift（不限于 adversarial），而本 proposal 的方法在数学上已经可以处理这类更广的 shift，只需要相应的 (ρ, ε) 参数化。建议将核心 framing 从 "adversarial corpus poisoning" 拓展为 "LP-bounded retrieval shifts"（adversarial poisoning 作为最具挑战性的特例），这样一来：(1) 直接回应 Chen et al. 诊断的更广问题，(2) 将方法的适用性从 adversarial safety 拓展到所有需要 retrieval robustness 的场景（如 temporal RAG、cross-domain RAG），(3) 显著扩大潜在用户基础和引用面。注意：这不是"换个标题"的形式改动，而是需要在 threat model 中增加 organic shift 作为第二类应用场景，并在实验中加入一组 non-adversarial distribution shift 实验（如 temporal corpus split）来验证。
+- 价值: 直接提升 Significance——从 "niche adversarial defense" 升级为 "general certified abstention framework for unreliable retrieval"，显著拓宽研究问题的重要性和影响面。同时回应了 Chen et al. 明确提出但未解决的更广问题。
+- 调研依据: Chen et al. (arXiv:2603.16817) 诊断的是 general distribution shift 导致 CP factuality 失效，不限于 adversarial。LP-CP 原文 (arXiv:2502.14105) 的 (ρ, ε) 参数化本身就是 distribution-shift-agnostic 的。
+
+【发掘点 2】
+- 维度: novelty 锐化
+- 内容: Proposal 的核心 insight——"retrieval-level score 有 bounded Lipschitz constant 而 answer-level score 没有"——目前仅作为 design motivation 陈述，但这实际上可以被提升为一个独立的 **理论贡献（impossibility-flavored result）**。具体地：可以证明（或给出 strong evidence）对于基于 LLM output logits 的 answer-level nonconformity scores，由于 softmax + attention 的组合，其关于 input token perturbation 的 Lipschitz 常数随 sequence length 指数增长或无法被 non-vacuously bounded，从而使 LP-CP 的 worst-case quantile propagation 在 answer-level 上不可避免地 vacuous。而对于 normalized embedding 空间上的 pairwise cosine similarity，Lipschitz 常数 analytically bounded 且与 model depth 无关。这将 proposal 的核心 insight 从 "我们选择了一个更好的 score"（design choice）提升为 "retrieval-level anchoring 是 LP-CP 在 RAG 中唯一可行的锚点"（fundamental principle）。这类 impossibility result 对审稿人的说服力远强于 empirical motivation，因为它回答了 "为什么不直接在 answer-level 做 robust CP" 这个最自然的 counterargument。
+- 价值: 直接锐化 Novelty——将核心贡献从 "application of LP-CP to RAG" 升级为 "discovery of a fundamental bottleneck + principled solution"，使 novelty claim 更难被审稿人 dismiss 为 "straightforward application"。
+- 调研依据: LP-CP 原文 (arXiv:2502.14105) 的 propagation theorem 要求 Lipschitz continuity，但未讨论不同 score 设计的 Lipschitz 可控性差异。Efficient Robust CP via Lipschitz-Bounded Networks (arXiv:2506.05434) 从模型端控制 Lipschitz 常数，与 proposal 从 score 设计端控制形成互补视角。Beyond Surface Statistics (arXiv:2604.16217) 探索了 LLM internal representations 作为 score 的思路，但未分析 Lipschitz 性质。
+
+【发掘点 3】
+- 维度: 核心 claim 强化
+- 内容: Proposal 声称 "LLM-agnostic and composable with any downstream generator"，但当前的 composability claim 仅是定性描述，缺乏正式的 compositional guarantee。结合 PASC (arXiv:2605.18812, May 2026) 的 pipeline-aware CP 框架，可以构建一个更强的 claim：LP-RAG-Abstain 作为 retrieval-stage gatekeeper 与 answer-level CP（TRAQ/C-RAG）的 **formal composition**。逻辑是：(1) LP-RAG-Abstain 在 retrieval stage 判断——如果不 abstain，则 certified 认为 retrieval 在 LP tolerance 内是 clean 的；(2) 在 certified clean retrieval 条件下，exchangeability 近似恢复，标准 CP 方法（TRAQ, C-RAG）的原始 guarantee 重新生效；(3) 通过 PASC 式的 union bound 或 joint maximum score 方法，可以给出 end-to-end joint coverage guarantee。这种 "gatekeeper + downstream CP" 的 compositional architecture 不仅强化了 claim，更创造了一个新的 contribution：**第一个 end-to-end certified RAG pipeline under adversarial retrieval**，而不只是 retrieval-stage abstention。
+- 价值: 同时提升 Novelty 和 Significance——从 "retrieval-stage certified abstention" 升级为 "end-to-end certified RAG pipeline"，贡献从单点方法变为可组合的架构范式。
+- 调研依据: PASC (arXiv:2605.18812) 提出了 pipeline-aware CP 的形式化框架（joint coverage via maximum nonconformity score），但仅处理 benign 场景。将其与 LP-RAG-Abstain 的 adversarial robustness 结合是自然的延伸。TRAQ (NAACL 2024) 和 C-RAG (ICML 2024) 的 guarantee 都依赖 exchangeability，LP-RAG-Abstain 的 gatekeeper 角色恰好为 exchangeability 的恢复提供了条件。
+
+【发掘点 4】
+- 维度: related work 差异化
+- 内容: Proposal 目前将 RAGDefender/TrustRAG 定位为 "heuristic threshold, no formal guarantee" 的方法，但差异化描述不够精确，可能被审稿人追问。核心问题是：LP-RAG-Abstain 使用的底层 signal（pairwise cosine similarity）与 RAGDefender 使用的 signal **完全相同**（RAGDefender 的核心发现就是 poisoned docs 的 pairwise cosine similarity 异常高）。需要更精确地阐明差异化层次：(1) signal level: 相同（都用 pairwise cosine similarity）——应坦诚承认这一点；(2) decision rule level: RAGDefender 用 tuned threshold on cluster membership，LP-RAG-Abstain 用 LP-CP worst-case quantile——这是方法论差异；(3) guarantee level: RAGDefender 无 finite-sample guarantee 且 threshold 对 attack budget 无 parametric 响应，LP-RAG-Abstain 提供 distribution-free coverage guarantee parameterized by (ρ, ε)——这是核心优势。坦诚承认 signal 相同反而强化了论文的定位："相同的经验观察（pairwise similarity 可以区分 poisoned retrieval）需要什么样的理论框架才能转化为 formal guarantee？"——这正是本文的贡献。
+- 价值: 强化 Related Work 差异化——防止审稿人以 "underlying signal is the same as RAGDefender" 为由质疑 novelty，通过坦诚 + 精确分层的差异化描述，将潜在 weakness 转化为 narrative strength。
+- 调研依据: RAGDefender (ACSAC 2025) 的核心实验数据：poisoned docs 间 cosine similarity 0.976 vs clean docs 0.309。这个经验事实支持了 retrieval-agreement score 的有效性，但也意味着底层 signal 不是本文首创——clarity on this is essential。
+
+Sources:
+- [LP-CP (NeurIPS 2025)](https://arxiv.org/abs/2502.14105)
+- [Chen et al. 2026 - Is Conformal Factuality for RAG-based LLMs Robust?](https://arxiv.org/abs/2603.16817)
+- [PASC - Pipeline-Aware Conformal Prediction](https://arxiv.org/abs/2605.18812)
+- [RPS - Provably Reliable Conformal Prediction Sets (ICLR 2025)](https://openreview.net/forum?id=ofuLWn8DFZ)
+- [Efficient Robust CP via Lipschitz-Bounded Networks](https://arxiv.org/abs/2506.05434)
+- [RobustRAG - Certifiably Robust RAG (SaTML 2026)](https://arxiv.org/abs/2405.15556)
+- [ReliabilityRAG (NeurIPS 2025)](https://neurips.cc/virtual/2025/poster/119236)
+- [CorruptRAG - Practical Poisoning Attacks](https://arxiv.org/abs/2504.03957)
+- [Beyond Surface Statistics: Robust CP for LLMs via Internal Representations](https://arxiv.org/abs/2604.16217)
+- [RAGDefender (ACSAC 2025)](https://arxiv.org/abs/2412.16708)
+- [Conformal-RAG (SIGIR 2025)](https://arxiv.org/abs/2506.20978)
+- [Awesome-Trustworthy-RAG](https://github.com/Arstanley/Awesome-Trustworthy-RAG)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16d07fc5-0e97-4ce4-9e11-4c8fa5bc9db3",
+  "isSidechain": false,
+  "requestId": "req_011CbYMZpfW6fAjg6SiVACTM",
+  "type": "assistant",
+  "uuid": "909d03fe-bcab-4c2c-86bf-aee03f203b42",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TppjLGgxaXgskCnRt8ieDK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 29445,
+      "output_tokens": 7691,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7691,
+          "cache_read_input_tokens": 29445,
+          "cache_creation_input_tokens": 856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts  ## Core Problem  How can a RAG system provide distribution-free, certified abstention guarantees on answer correc…",
+  "leafUuid": "909d03fe-bcab-4c2c-86bf-aee03f203b42",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal abstention for poisoned RAG systems",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Conformal Abstention for RAG under Corpus Poisoning via LP-Bounded Retrieval Shifts  ## Core Problem  How can a RAG system provide distribution-free, certified abstention guarantees on answer correc…",
+  "leafUuid": "909d03fe-bcab-4c2c-86bf-aee03f203b42",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Conformal abstention for poisoned RAG systems",
+  "sessionId": "5d2b3df2-f0a5-4252-8521-b78a42f42376"
+}
+```
+
+---

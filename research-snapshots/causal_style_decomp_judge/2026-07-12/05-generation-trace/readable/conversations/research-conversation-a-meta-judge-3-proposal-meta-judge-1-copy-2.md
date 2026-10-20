@@ -1,0 +1,765 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/b2576bbd-7cd9-4995-82f0-4100c725c405.jsonl`
+- **Structured JSON:** [`f33ef6f32583916789ed.json`](../../sessions/f3/f33ef6f32583916789ed.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T11:21:13.998Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T11:21:13.998Z",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research to provide a thorough evaluation. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853) (arXiv, April 2026): 本 proposal 最直接的前序工作。用 Lagrangian 松弛将全局预算约束分解为 per-instance 子问题，闭式解求最优 K，MLP probe 做部署。报告在 MATH 上 12.8% 相对提升。本 proposal 的 C3 是其从 1D→2D 的直接扩展。\n- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005) (COLM 2025): 研究 SC vs. GenRM 的 aggregate compute-optimal trade-off。核心发现：SC 在多数预算水平更高效，GenRM 在高预算/难题上更优（最高 30% 相对提升）。本 proposal 将此 aggregate 发现推向 per-instance 精细化。\n- [DiffAdapt](https://openreview.net/forum?id=644FH1vVIl) (ICLR 2026): 用 hidden state probe 预测问题难度并路由至 Easy/Normal/Hard 推理策略，减少 22.4% token。本 proposal 借鉴其 hidden-state probe 方案，但扩展到 (K,d) 联合空间。\n- [OSCA](https://aclanthology.org/2025.naacl-long.404/) (NAACL 2025): 证明 mixed-config allocation 在 domain 级是凸最优的。k-NN instance-level 方法效果差于 domain-level。本 proposal 明确以此为对照，用 MLP 替代 k-NN。\n- [VG-Search / Rethinking Optimal Verification Granularity](https://arxiv.org/abs/2505.11730) (NeurIPS 2025): 用可调粒度参数统一 beam search 和 Best-of-N，per-task 动态选择粒度。本 proposal 在更粗的 verifier type 维度做 per-instance 优化，互补而非竞争。\n- [Variation in Verification](https://arxiv.org/abs/2509.17995) (arXiv 2025): 系统分析验证效果随 difficulty×generator×verifier 非线性变化，但未提出 per-instance 度量或分配机制。本 proposal 的 VV 指标填补此空白。\n- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435) (arXiv 2025): per-instance 联合路由 (model, strategy)，但纯离散维度、无 formal optimality 分析。与本 proposal 的 continuous K + formal duality 形成对比。\n- [AVA](https://openreview.net/forum?id=JMDCMf7mlF) (OpenReview 2026): 动态分配 search/sampling/verification 计算，基于 value-of-information 启发式，无 formal optimality guarantee，不建模 K×d 双线性耦合。\n- [Rethinking Reward Models](https://arxiv.org/abs/2510.00492) (arXiv 2025): 发现最优 verification type 按 domain 变化。本 proposal 进一步推向 instance level。\n\n- **调研总结**: Test-time compute 的自适应分配是 2025-2026 年最活跃的研究方向之一。现有工作分别优化了 K（Adaptive Constrained）、generation strategy（DiffAdapt/RTR）、verification granularity（VG-Search），或在 aggregate/domain 级分析了 generation-verification trade-off（\"When To Solve, When To Verify\"、OSCA）。**Per-instance 联合 (K,d) 优化确实是一个尚未被占据的交叉空白**，但这个空白的大小（即实际收益上限）尚未被验证——这既是本 proposal 的核心 bet，也是主要风险。\n\n【整体印象】:\n作为审稿人，第一反应是 **borderline accept — 倾向弱 accept**。这是一篇定位精准、结构清晰、实验设计极为扎实的 proposal。它识别了一个真实的研究空白（per-instance joint (K,d) allocation），提出了三层递进的贡献（Discover → Measure → Exploit），每一层都有独立价值。然而，核心技术贡献（C3: 2D Lagrangian 扩展）在方法论深度上偏 incremental——本质是在 4 个离散验证类型上枚举，每个类型复用已有 1D 闭式解。审稿人中很可能有 1-2 人认为这是\"engineering contribution rather than methodological innovation\"。最终是否 accept 取决于：(1) C1 的 oracle 分析是否揭示了足够大的 d* 变异性；(2) 实际 accuracy gain 是否达到承诺的 15%。\n\n【核心贡献】:\n本工作的核心贡献有三层：\n1. **经验发现（C1）**：首次系统量化 per-instance 验证策略最优选择的变异性。这是领域中一个基础性的经验问题——\"When To Solve, When To Verify\" 的 aggregate 发现暗示了 per-instance 变异，但从未有人量化其上限。即使结果显示变异小（负面结果），也有独立发表价值。\n2. **度量工具（C2）**：Verification Value (VV) 作为 per-instance 指标量化 generation-verification 互补性。概念简洁，可被其他方法复用。\n3. **优化框架（C3）**：将 1D Lagrangian 扩展到 2D，提供 formal duality guarantee。\n\n**贡献价值评估**：C1 最有独立价值，C2 是有用但较轻量的概念贡献，C3 的技术深度有限但实用性强。整体而言，这是一个\"系统性深挖\"类型的贡献——不是提出全新范式，而是将已有思路推向更精细的粒度并做彻底的经验验证。对领域有实际价值，但在 novelty 光谱上偏中间。\n\n【方法合理性】:\n方法整体合理且有坚实的理论基础。具体来说：\n- **Lagrangian 2D 分解**：由于 d 是有限离散集（4 个值），per-instance 子问题可以通过枚举精确求解，这在数学上是正确的。dual variable λ 通过 binary search 求解也是标准做法。\n- **MLP probe**：相比 OSCA 失败的 k-NN，MLP 能学习非线性决策边界是合理的改进方向。DiffAdapt 已证明 hidden-state probe 在类似任务上有效。\n- **关于更简单的替代方案**：一个明显的替代方案是\"对每个 domain 或 difficulty bin 固定最优 d，只做 per-instance K 优化\"——这本质上是 OSCA 的 domain-level 方案 + Adaptive Constrained。如果 C1 的 oracle 分析显示 d* 在 domain/difficulty bin 内变异很小，那么这个更简单的替代方案可能效果相当。这是审稿人最可能提出的\"Occam's razor\"质疑。proposal 需要在 C1 中明确展示 per-instance d* 的 within-bin 变异来回应这一点。\n\n【5 维度打分】:\n\n  1. 研究问题: 【强】 — 问题重要且 timely。Test-time compute allocation 是当前最活跃的研究方向之一。Per-instance joint (K,d) 优化是一个自然的下一步问题，由 \"When To Solve, When To Verify\" 和 \"Variation in Verification\" 的发现直接 motivate。问题表述清晰，有明确的科学假设（\"d* 的 per-instance 变异是否足够大以证明联合优化的价值\"）。\n\n  2. 方法与创新: 【中】 — 方法 principled 且合理，但 novelty 有限。C3 的核心技术是在 Adaptive Constrained (arXiv 2604.14853) 的 1D Lagrangian 上加一层 4-way 枚举——数学上正确但不深。与 RTR (arXiv 2505.19435) 相比，formal duality guarantee 是差异化优势；与 AVA (OpenReview 2026) 相比，Lagrangian 框架的 principled nature 是优势。但这些优势来自\"用已有工具的正确组合\"而非\"提出新工具\"。VV 指标（C2）概念简洁但也不复杂。真正的 novelty 更多在于 C1 的 empirical contribution。\n\n  3. 实验设计: 【强】 — 这是 proposal 最突出的优势。7 个 baseline（含 oracle 上限）、6 组 ablation、3 个 benchmark、3 个 generator、3 个 verifier、FLOPs 为主 + wall-clock 为辅的 cost metric、bootstrap CI + McNemar's test 的统计严格性——这在 proposal 阶段已经达到了非常高的完备度。特别值得赞赏的是：(a) Ablation A1（K-only vs. d-only vs. joint）直接回答了 reviewer 最可能的质疑；(b) Ablation A2（MLP vs. k-NN vs. domain-level）对标了 OSCA 的失败案例；(c) 预算敏感性分析（0.25×-4×）展示了方法的鲁棒性。唯一的改进空间是可以增加一个 \"greedy d-selection then adaptive K\" 的 baseline 来对标 Occam's razor 方案。\n\n  4. 可行性: 【中偏强】 — Oracle 数据收集（~500 GPU-hours）是主要成本，但以 8B 模型为主、现成 verifier 可用，在合理范围内。MLP probe 训练成本微小。主要风险不在资源而在结果不确定性：如果 C1 显示 oracle 上限低（joint vs. K-only 差距 <5%），整个 C3 的价值就被削弱。proposal 已经预设了\"负面结果也有价值\"的退路，但这在审稿时说服力有限。\n\n  5. 写作与呈现: 【强】 — Proposal 的结构（Discover → Measure → Exploit）逻辑清晰，递进自然。Related work 的定位极为精确——对每一篇竞争性工作都明确指出了其覆盖的维度和留下的空白。研究问题的表述（\"does d* vary enough...\"）是可证伪的，这在 ML 论文中不常见，值得赞赏。写作中能看出作者对领域有深入理解。\n\n【概率估计】: [28% - 42%] 中位 35%\n\n【估计理由】:\n- **上行因素**（推向 42%）：问题 timely 且重要；实验设计异常完备；C1 的 oracle 分析若显示显著变异，整个 narrative 很 compelling；写作和定位精准，审稿人容易理解贡献。\n- **下行因素**（拉向 28%）：C3 的 technical novelty 偏 incremental（4-way 枚举 + 已有 1D 闭式解），可能被 1-2 个审稿人打 \"limited novelty\"；如果 oracle 上限低（joint vs. K-only gap 小），整篇论文的 motivation 被动摇；500 GPU-hours 的 oracle collection 可能被质疑 scalability；AAAI 近年 acceptance rate ~24%，竞争激烈。\n- **中位推理**：这是一篇\"方向正确、执行计划完善、但核心 novelty 偏工程性\"的投稿。在 3 个审稿人中，大概率获得 1 个 accept（认可实验完备性和 empirical contribution）、1 个 borderline（技术深度存疑）、1 个 weak reject（novelty 不够）。这个分布对应约 35% 的中稿概率，取决于 AC 的倾向和 rebuttal 中能否展示强实验结果。\n\n【主要风险】:\n1. **Oracle 上限风险（致命级）**：如果 C1 的 oracle 分析显示 joint (K*,d*) 相对于 K-only 的 accuracy gain 仅有 2-5%，那么整个联合优化框架的 raison d'être 被严重削弱。\"负面结果也有价值\"的论点在顶会评审中说服力有限——审稿人通常期望 positive results 作为主要贡献。\n2. **Technical novelty 不足（高概率）**：至少 1 个审稿人会指出 C3 本质上是 \"enumerate 4 verification types × reuse existing 1D solution\"，认为方法论贡献不够。如果同时 C1 的 empirical 发现不够 surprising（比如 d* 简单地与 difficulty 单调相关），论文将缺乏 \"aha moment\"。\n\n【实施评估】:\n  - 计算资源: ~500 GPU-hours（以 Qwen3-8B 为主的 oracle collection） + Qwen3-235B-A22B 的 spot-check 验证（额外 ~50-100 GPU-hours）。总体在单个 A100 集群 2-3 周可完成，资源需求中等。\n  - 数据需求: MATH (5000)、GPQA Diamond (198)、LiveCodeBench (1055) 均为公开 benchmark，无数据获取障碍。\n  - 人工介入: 低。Oracle collection 可自动化；MLP 训练标准化。主要人工在于实验分析和论文撰写。\n  - 训练需求: MLP probe 训练（轻量），不需要训练/微调 LLM 本身。所有 generator 和 verifier 使用预训练模型。\n  - 新 Benchmark: 不需要。使用现有 benchmark。\n  - 预估周期: Oracle data collection（2-3 周）→ 分析 + C1/C2 结果（1 周）→ MLP probe 训练 + C3 实验（1-2 周）→ Ablation + 补充实验（1-2 周）→ 论文撰写（2-3 周）。总计约 8-11 周。\n```\n\nSources:\n- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853)\n- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005)\n- [DiffAdapt: Difficulty-Adaptive Reasoning for Token-Efficient LLM Inference](https://openreview.net/forum?id=644FH1vVIl)\n- [OSCA: Scaling LLM Inference with Optimized Sample Compute Allocation](https://aclanthology.org/2025.naacl-long.404/)\n- [VG-Search: Rethinking Optimal Verification Granularity](https://arxiv.org/abs/2505.11730)\n- [Variation in Verification](https://arxiv.org/abs/2509.17995)\n- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435)\n- [AVA: Anytime Verified Agents](https://openreview.net/forum?id=JMDCMf7mlF)\n- [Rethinking Reward Models](https://arxiv.org/abs/2510.00492)\n- [RL^V: Putting the Value Back in RL](https://arxiv.org/abs/2505.04842)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient research context. Let me compile the full evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853) (arXiv, April 2026): 本 proposal 最直接的前驱工作。用 Lagrangian 松弛将全局预算约束分解为 per-instance 子问题，优化 K（采样数），但明确未优化 verification 维度 d。本 proposal 的 C3 是对其 1D 框架的 2D 扩展。\n- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005) (COLM 2025): 在 aggregate 层面研究 Self-Consistency vs GenRM 的 compute-optimal trade-off。发现 SC 在多数预算下更优，但 GenRM 在难题上可带来 ~30% 相对提升。这一发现直接为 per-instance 优化提供动机，但原论文未做 per-instance 分析。\n- [DiffAdapt](https://arxiv.org/abs/2510.19669) (ICLR 2026): 用 hidden-state probe 预测难度并路由至不同推理策略，减少 token 用量达 22.4%。但路由目标是 reasoning 策略（Easy/Normal/Hard），不涉及 verification type 选择。本 proposal 借鉴其 probe 方法。\n- [OSCA](https://arxiv.org/abs/2410.22480) (NAACL 2025): 证明 mixed-config allocation 在 domain 级是 convex-optimal，可用 128× 更少计算达到最佳单配置精度。但关键发现是 k-NN 做 instance-level allocation 反而不如 domain-level，说明 instance-level 路由是公认的难点。\n- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435) (arXiv, May 2025): 联合路由 (model, strategy) per-instance，学习压缩表示实现即插即用选择。但纯基于 learned heuristic scoring，缺乏形式化最优性保证，不利用连续维度做闭式解。\n- [AVA](https://openreview.net/forum?id=JMDCMf7mlF) (OpenReview 2026): 动态分配 search/sampling/verification 计算，用 value-of-information 启发式。但缺乏形式化最优性保证，且未建模 K×d 双线性代价耦合。\n- [Variation in Verification](https://arxiv.org/abs/2509.17995) (arXiv, Sep 2025): 系统分析 verification 效果随 difficulty×generator×verifier 非线性变化，但未提供 per-instance 度量或优化机制。\n- 调研总结: 2025-2026 年 adaptive inference compute 领域非常活跃，K-维度的 per-instance 优化（Adaptive Constrained）和 aggregate 级别的 generation-verification trade-off（When To Solve, When To Verify）已有成熟工作，但「per-instance 联合 (K,d) 优化」这一具体 gap 确实存在。竞争者 RTR 和 AVA 在类似方向上发力但缺乏形式化框架。Proposal 定位精准但技术创新幅度有限——核心是将已有 1D Lagrangian 框架自然扩展到 2D 有限枚举。\n\n【整体印象】:\n如果我是审稿人，第一反应是：这是一份定位精准、实验设计极其完备的 proposal，作者对领域现状的把握远超平均水平。但紧接着的疑虑是——核心技术贡献（C3: 1D Lagrangian → 2D 枚举）在方法论层面相当 straightforward，任何读过 Adaptive Constrained 论文的人都会想到\"加一个 d 的枚举\"。真正的价值完全取决于 C1 的实证发现：如果 oracle (K*,d*) 相比 oracle K-only 的提升不够大（比如 < 5-8%），整篇论文的 narrative 就会塌陷。我会倾向于 weak accept / borderline，最终决定取决于实验结果的 magnitude。\n\n【核心贡献】:\n本工作有三层贡献：\n1. **C1 (实证发现)**: 首次系统量化 per-instance verification strategy 的变异性及其对精度的 ceiling effect——这是潜在最有价值的贡献，因为它回答了\"联合优化是否值得做\"这一基础性经验问题。\n2. **C2 (度量工具)**: Verification Value 指标——概念清晰但技术含量有限，本质是两个 oracle K* 的差值。\n3. **C3 (优化框架)**: 2D Lagrangian 分解——理论上是 1D 的自然推广，实践上通过 MLP probe 部署。\n\n对领域的价值：如果 C1 揭示了显著的 per-instance variation（且 MLP probe 能有效捕捉），这篇工作为 inference-time scaling 社区提供了一个新的维度和实用工具。但如果 variation 很小，贡献退化为\"验证了一个 negative result + 一个简单扩展\"。\n\n【方法合理性】:\n方法在逻辑上是合理的——Lagrangian 松弛处理预算约束、有限枚举处理离散 d、MLP probe 做 amortized deployment，每一步都 sound。但存在两个合理性质疑：\n1. **更简单的替代方案**: 一个 domain-level 的 (K, d) grid search（类似 OSCA 的 domain-level allocation）可能已经捕获了大部分收益，不需要 per-instance probe。OSCA 的教训正是 instance-level 比 domain-level 更难且未必更好。\n2. **MLP probe 的瓶颈**: 从 prefill hidden states 预测最优 (K*, d*) 是一个非常困难的学习问题——需要同时预测问题难度和最优 verification 类型。如果 probe 精度不够（OSCA 的 k-NN 就失败了），实际收益会远低于 oracle ceiling。Proposal 设定 ≥91% imitation accuracy 但未讨论这一目标是否现实。\n\n【5 维度打分】:\n\n  1. 研究问题: 【强】 — 问题定位精准且有实际意义。\"When To Solve, When To Verify\" 的 aggregate 发现（SC 多数情况更优但 GenRM 在难题上强 30%）自然引出 per-instance 优化的动机。该问题同时具有理论价值（complementarity 是否存在）和实践价值（如何高效利用异构 verifier）。领域内确实缺乏对这个 gap 的系统研究。\n\n  2. 方法与创新: 【中偏弱】 — C3 的核心技术——将 Adaptive Constrained 的 1D Lagrangian 扩展到 2D（对 4 个离散 d 值枚举，每个 d 下复用 1D 闭式解）——在数学上是 trivial 的扩展。Duality analysis 是标准的。MLP probe 借鉴 DiffAdapt 的思路。VV 指标虽然概念上有用但定义简单。与 RTR (arXiv 2505.19435) 相比，本 proposal 的优势在于有 formal duality guarantee，但 RTR 处理的维度更多（model × strategy）。与 AVA 相比，本 proposal 更 principled 但 scope 更窄。总体而言，方法的 novelty 不足以独立支撑一篇顶会论文——需要 C1 的 empirical findings 来补偿。\n\n  3. 实验设计: 【强】 — 这是 proposal 最突出的亮点。7 个 baseline（包含 4 条 fixed-config 曲线、K-only adaptive、d-only adaptive、DiffAdapt、AVA、oracle ceiling），6 组 ablation（维度隔离、probe 方法、d-space 大小、预算敏感度、分配模式分析、probe 质量），3 个 benchmark 跨数学/科学/代码，3 个 generator 模型，4 种 verifier 配置，统计严格性（3 runs + bootstrap CI + McNemar test）。这是我在 proposal 阶段见过的最完备的实验计划之一。\n\n  4. 可行性: 【中】 — Oracle 数据收集（24 configurations × thousands of instances）预估 ~500 GPU-hours，这在学术实验室可行但不轻松。Qwen3-235B-A22B 的验证实验需要大 GPU（至少 4×A100）。ThinkPRM-GenRM 的 verification CoT 可能很长，实际 cost 可能超预估。此外，OSCA 的 k-NN instance-level 失败的教训表明 MLP probe 的学习本身可能比预想更困难——如果 probe 失败，C3 的实际系统就没有意义。\n\n  5. 写作与呈现: 【强】 — Proposal 的逻辑结构非常清晰（Discover → Measure → Exploit），每个 contribution 的 motivation 都从具体前驱工作的 gap 出发，related work 的 differentiation 精确到具体论文的具体局限。cost model、baseline 选择、ablation 设计都有清晰的 rationale。\n\n【概率估计】: [25% - 40%] 中位 32%\n\n【估计理由】:\n该 proposal 的核心矛盾在于：实验设计和问题定位是 top-tier 水平，但技术 novelty 偏弱。在 AAAI 这样的顶会中，一篇方法论上是\"对已有框架的自然 2D 扩展 + 有限枚举\"的论文，即使实验做得再好，也容易被审稿人归类为 incremental。\n\n上界 40% 的条件：C1 的 oracle analysis 揭示 ≥15% 的 accuracy gap（joint vs K-only），MLP probe 达到 ≥90% imitation accuracy，实际系统在 2/3 benchmark 上达到 target（≥15% relative gain over Adaptive-K SC）。这些条件同时满足时，论文可以凭\"strong empirical contribution + practical framework\"被接收。\n\n下界 25% 的条件：C1 的 oracle ceiling 较小（~5-8%），或 MLP probe 精度不足导致实际 gain 远低于 oracle，审稿人可能判定\"per-instance joint optimization 在实践中不如 domain-level 或 K-only\"，整篇论文的 motivation 被动摇。\n\n中位 32% 反映了：问题和实验设计的优势 vs. 方法 novelty 的短板，以及 C1 结果不确定性的对冲。\n\n【主要风险】:\n1. **Oracle ceiling 风险 (致命级)**: C1 可能揭示 per-instance (K*,d*) 相比 K-only 的提升有限（例如 < 5%），这将从根本上瓦解\"joint optimization is worthwhile\"的核心叙事。\"When To Solve, When To Verify\" 发现 SC 在大多数预算下已经是 compute-optimal 的，暗示 d 维度的边际贡献可能本身就不大。\n2. **Novelty 不足风险 (高级)**: 至少 1-2 位审稿人可能认为\"对 4 个离散值枚举 + 已有 1D 闭式解 = trivial extension\"，即使实验结果良好也给 borderline reject。这是系统/实证论文在方法论导向的审稿人面前的固有风险。\n\n【实施评估】:\n  - 计算资源: ~500 GPU-hours 用于 oracle collection（Qwen3-8B 主实验）；Qwen3-235B-A22B 验证实验需额外 ~100-200 GPU-hours 和大显存 GPU（≥4×A100-80G）。总计 ~600-700 GPU-hours。\n  - 数据需求: MATH (5000)、GPQA Diamond (198)、LiveCodeBench (1055) 均为公开 benchmark，无数据获取障碍。\n  - 人工介入: 低。主要工程工作是 oracle collection pipeline 和 cost estimation 校准，不需要人工标注。\n  - 训练需求: MLP probe 训练（轻量级，分钟级）。不需要训练/微调 LLM。Verifier 模型均使用现成 checkpoint。\n  - 新 Benchmark: 不需要。使用现有 benchmark + 自建 oracle annotation（可公开作为资源贡献）。\n  - 预估周期: 6-8 周（含 oracle collection 3-4 周、实验 2-3 周、写作 1-2 周），前提是 GPU 资源充足。如资源有限，oracle collection 可能延长至 5-6 周。\n```\n\nSources:\n- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853)\n- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005)\n- [DiffAdapt: Difficulty-Adaptive Reasoning for Token-Efficient LLM Inference](https://arxiv.org/abs/2510.19669)\n- [OSCA: Scaling LLM Inference with Optimized Sample Compute Allocation](https://arxiv.org/abs/2410.22480)\n- [Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection](https://arxiv.org/abs/2505.19435)\n- [AVA: Anytime Verified Agents](https://openreview.net/forum?id=JMDCMf7mlF)\n- [Variation in Verification](https://arxiv.org/abs/2509.17995)\n- [Scaling LLM Test-Time Compute Optimally](https://arxiv.org/abs/2408.03314)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient context to provide a thorough evaluation. Let me compile my analysis.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853) (arXiv, April 2026): 本 proposal 的直接前驱工作。用 Lagrangian relaxation 将全局预算约束分解为 per-instance 子问题，对 K（采样数）进行自适应分配，在 MATH 上实现 12.8% 相对提升。该论文明确指出\"response depth d entirely unaddressed\"——本 proposal 正是填补这一空白。核心技术贡献 C3 本质上是将该论文的 1D 优化扩展为 2D。\n- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005) (COLM 2025): 研究 Self-Consistency vs GenRM 的 compute-optimal trade-off。关键发现：SC 在大多数预算下更高效，但 GenRM 在难题上可带来 30% 相对提升。这一**聚合级**发现直接激发本 proposal 的 per-instance 优化动机，但也暗示 d* 变异可能集中在少数难题上，整体 gap 可能有限。\n- [DiffAdapt](https://openreview.net/forum?id=644FH1vVIl) (ICLR 2026): 用 hidden-state probe 将问题按难度路由到不同推理策略，减少 22.4% token 用量。路由维度是生成策略（prompt/temperature/max_length），不涉及 verification type 选择。本 proposal 借鉴其 hidden-state probe 方法但扩展到 (K,d) 联合决策。\n- [OSCA](https://arxiv.org/abs/2410.22480) (NAACL 2025): 在 domain 级证明混合配置分配是 convex-optimal，128× 计算节省。但其 k-NN instance-level 分配**不如** domain-level——这是一个重要的负面信号，说明 instance-level 分配的 probe 质量至关重要。\n- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435) (arXiv, May 2025): 联合路由 (model, strategy) per-instance under budget，用 learned scoring。与本 proposal 最直接竞争：RTR 已经做了 per-instance joint routing，虽然没有形式化最优性分析。reviewers 可能认为 novelty 差异不够大。\n- [AVA](https://openreview.net/forum?id=JMDCMf7mlF) (OpenReview 2026): 动态分配 search/sampling/verification，基于 value-of-information 启发式。涵盖更广的决策空间但缺乏形式化保证。\n- [Variation in Verification](https://arxiv.org/abs/2509.17995) (arXiv 2025): 系统分析 verification 效果在 difficulty×generator×verifier 三维上的非线性变化。支持本 proposal 的核心假设（per-instance d* 变化大），但未提供 per-instance 度量或优化机制。\n- [Rethinking Reward Models](https://arxiv.org/pdf/2510.00492) (arXiv 2025): 统一评估 dORM/dPRM/gORM/gPRM 四种 verifier，发现最优 verification type 因 domain 而异。提供 domain-level 证据，但非 instance-level。\n\n- **调研总结**: Test-time compute 的自适应分配是 2025-2026 年的活跃研究方向，已有大量工作分别优化 K（采样数）或 d（verification 策略）或两者的 heuristic 联合路由。本 proposal 填补的 gap——**principled per-instance joint (K,d) 优化 with formal duality guarantees**——是真实存在的，但 gap 的宽度取决于 (a) oracle (K*,d*) 相比 oracle K*-only 的 ceiling gap 有多大，(b) 与 RTR 等 heuristic routing 方法的差异是否在实践中显著。\n\n【整体印象】:\n作为审稿人，我的第一反应是\"这是一篇组织非常精良、对领域理解很深的 proposal，研究问题清晰且填补了一个明确的 gap\"。但随即会产生一个核心疑虑：**技术贡献 C3 的 novelty 深度是否足够？** 其核心操作是：对每个 instance，在 4 个离散 d 值上各跑一遍已有的 1D Lagrangian 优化器，取最优——这在技术上是比较直接的枚举扩展。我会倾向于 borderline accept/weak reject，取决于 C1（oracle analysis）揭示的 gap 大小和实验结果的说服力。\n\n【核心贡献】:\n本工作有三个层次的贡献：\n1. **C1（最有价值）**: 首次系统性的 oracle analysis，量化 per-instance (K*,d*) 变异程度。无论结果是正面（大 gap → 验证联合优化价值）还是负面（小 gap → 重要的 negative result 说明单维优化已够），这都是独立有价值的实证贡献。\n2. **C2（有用但增量）**: Verification Value 指标。概念清晰，可被其他方法复用，但本质是一个直观的差值度量，创新性有限。\n3. **C3（技术核心但 novelty 受质疑）**: 2D Lagrangian 框架。数学上干净，但因为 d 是有限离散集（仅 4 个值），扩展的技术难度不高。形式化的 duality analysis 是加分项，但 relaxation gap 分析可能也比较标准。\n\n整体贡献对领域有实际价值（提供了一个 principled 方法和实证工具），但缺乏深层技术突破。\n\n【方法合理性】:\n方法在数学上是合理且正确的。Lagrangian 分解 + 枚举 d + 闭式解 K 是一个 sound 的框架。但存在两个方法论层面的疑虑：\n\n1. **是否有更简单的替代方案？** 是的——RTR 的 learned scoring 方法更简单，不需要 oracle collection 就能做 per-instance (model, strategy) routing。如果 RTR 在相同 benchmark 上表现接近，本 proposal 的 formal duality guarantee 的实际价值就会被削弱。一个自然的 reviewer 反问是：\"你花 500 GPU-hours 收集 oracle data 只为获得 formal guarantee，但实际精度提升多少？\"\n\n2. **Probe 质量是瓶颈**: OSCA 的 k-NN 在 instance-level 失败的教训说明，从 theory（oracle 解）到 practice（probe 预测）的 gap 可能很大。MLP probe 需要同时预测 K 和 d 两个维度，错误会相互耦合。Proposal 设定 ≥91% imitation accuracy 目标，但 2D 问题天然比 1D 更难，是否可达需要实验验证。\n\n【5 维度打分】:\n\n1. 研究问题: 【强】 — 问题动机明确，直接由 Adaptive Constrained 的明确 open problem 和 \"When To Solve, When To Verify\" 的 aggregate finding 驱动。Per-instance joint (K,d) 优化是一个 natural next step，有明确的实际价值（inference cost reduction）。即使结果是 negative（gap 小），oracle analysis 本身也有独立价值。\n\n2. 方法与创新: 【中】 — 技术方法正确且优雅，但核心创新（enumerate d × run 1D optimizer）的 novelty 深度有限。与 RTR（arXiv 2505.19435）相比，主要差异在于 formal duality guarantee vs. learned heuristic scoring，但 RTR 不需要昂贵的 oracle collection。与 AVA 相比，主要差异在于 formal guarantee vs. heuristic VOI。Verification Value (C2) 是一个有用但增量的概念贡献。duality analysis 本身可能较为标准（finite d + convex K → standard mixed-integer relaxation）。\n\n3. 实验设计: 【强】 — 这是本 proposal 最突出的优势。7 个 baseline（包括直接竞品和 oracle 上界）、6 个 ablation（每个都回答一个具体的研究问题）、严谨的统计处理（多次 run + bootstrap CI + McNemar test）、FLOPs 主度量 + wall-clock 副度量、预测 vs 实际 FLOPs 的 gap 分析。A1（dimension isolation）和 A3（d-space size）的 ablation 设计特别好，直接回答了 joint optimization 是否 worthwhile 的问题。实验设计的完备程度远超同类 proposal。\n\n4. 可行性: 【中】 — 方案整体可行，但有几个风险点：(a) ~500 GPU-hours 的 oracle collection 成本不低，尤其对于一个声称优化 inference efficiency 的工作；(b) 需要同时部署 generator + 3 种 verifier，工程复杂度不小；(c) Qwen3-235B-A22B 的 scaling validation 可能需要额外大量资源；(d) LiveCodeBench 的 code generation 评估需要沙盒执行环境。总体可行但需要合理的 GPU 预算和工程投入。\n\n5. 写作与呈现: 【强】 — Proposal 结构清晰（Discover → Measure → Exploit），对相关工作的定位精准（明确指出每个工作的 gap），贡献表述 well-scoped。每个 baseline 和 ablation 都有清晰的 rationale。写作展现了对领域的深度理解。唯一的小瑕疵是 contribution 的层次感可以更强——C1 可能比 C3 更有价值，但 framing 上 C3 被作为主要贡献。\n\n【概率估计】: [28% - 40%] 中位 33%\n\n【估计理由】:\n**上界推理 (40%)**: 如果 oracle analysis 揭示显著的 (K*,d*) gap（如 >10% absolute），MLP probe 达到高 imitation accuracy，且在 2/3 benchmarks 上实现 ≥15% relative gain over Adaptive-K SC，这将是一篇扎实的 empirical + systems contribution 论文。结合出色的实验设计和清晰的写作，有可能获得 weak accept。\n\n**下界推理 (28%)**: 如果 oracle gap 较小（如 <5% absolute），reviewers 会质疑整篇工作的 motivation——\"all this machinery for marginal gain\"。此外，核心技术贡献（enumerate 4 values × 1D optimizer）可能被多个 reviewer 认为 novelty 不足。RTR 的存在进一步压缩了 novelty space。\n\n**中位推理 (33%)**: 最可能的情况是：oracle gap 中等（5-10%），MLP probe 部分兑现但不完美，在部分 benchmark 上有显著提升但不是全部。这会产生一篇 solid but not exciting 的论文。AAAI 的竞争激烈（接收率约 20-25%），一篇 novelty 中等但 execution 很好的工作处于 borderline 区域。考虑到实验设计的出色程度是一个显著加分项，我给出 33% 的中位估计——略高于 baseline acceptance rate 但不到\"大概率中\"的水平。\n\n【主要风险】:\n1. **Oracle gap 过小**: 如果 per-instance d* 变异度有限（\"When To Solve, When To Verify\" 的聚合结果暗示 SC 在大多数 budget 下占优，变异可能集中在少数 hard problems），整个 joint optimization 的 motivation 被釜底抽薪。C1 的 oracle analysis 本身仍有价值，但论文的 impact narrative 会大幅弱化。\n2. **Novelty 深度不足**: 核心技术贡献是\"enumerate 4 d values × reuse existing 1D optimizer\"，在 formal 层面是 clean 的但在 intellectual depth 上可能被 reviewers 认为 straightforward。加上 RTR 已做了 per-instance joint routing（虽无 formal guarantee），reviewers 可能判定 marginal novelty 不够支撑顶会。\n\n【实施评估】:\n  - 计算资源: ~500 GPU-hours 用于 oracle data collection（Qwen3-8B 主生成器，24 configurations × 数千 instances）；额外需要 GPU 资源部署 3 种 verifier (Skywork-8B, dPRM-14B, ThinkPRM-14B)；Qwen3-235B-A22B 的 scaling validation 可能再需 100-200 GPU-hours。**总估计：700-1000 GPU-hours**，中等偏高。\n  - 数据需求: MATH (5000), GPQA Diamond (198), LiveCodeBench (1055) 均为公开数据集，无额外数据收集需求。需要生成大量 oracle 数据（每个 instance × 24 configurations 的推理结果）。\n  - 人工介入: 低。主要是实验设计、结果分析和论文写作。无需人工标注。\n  - 训练需求: MLP probe 训练（轻量级，几分钟级别）。不需要微调大模型。主要计算瓶颈在 oracle data collection（inference），不在 training。\n  - 新 Benchmark: 否。使用现有 benchmarks。但会产出 oracle analysis 数据集（per-instance optimal (K*,d*) labels），可作为资源贡献。\n  - 预估周期: 3-5 个月。Oracle data collection ~2-3 周（受 GPU 并行度影响），实验 + ablation ~3-4 周，分析 + 论文写作 ~4-6 周。关键路径在 oracle collection 的计算时间。\n```\n\nSources:\n- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853)\n- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005)\n- [DiffAdapt: Difficulty-Adaptive Reasoning](https://openreview.net/forum?id=644FH1vVIl)\n- [OSCA: Scaling LLM Inference with Optimized Sample Compute Allocation](https://arxiv.org/abs/2410.22480)\n- [Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection](https://arxiv.org/abs/2505.19435)\n- [Anytime Verified Agents (AVA)](https://openreview.net/forum?id=JMDCMf7mlF)\n- [Variation in Verification](https://arxiv.org/abs/2509.17995)\n- [Rethinking Reward Models for Multi-Domain Test-Time Scaling](https://arxiv.org/pdf/2510.00492)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Per-Instance Generation-Verification Complementarity: Discovery, Measurement, and Exploitation via Lagrangian Decomposition\n\n## Core Problem\n\nGiven a fixed inference compute budget, how should we jointly select the number of generated solutions K and the verification depth d (none/ORM/PRM/GenRM) for each problem instance to maximize overall accuracy? More fundamentally: does the optimal verification strategy d\\* vary enough across instances to make per-instance joint (K,d) allocation meaningfully better than single-dimension optimization?\n\n## Research Opportunity\n\nExisting adaptive compute methods optimize only one dimension of the generation-verification trade-off. The Adaptive Constrained paper (arXiv 2604.14853, April 2026) optimizes K alone via Lagrangian relaxation, explicitly stating \"response depth d entirely unaddressed.\" DiffAdapt (ICLR 2026) routes between generation strategies but ignores verification type selection. VG-Search (NeurIPS 2025) optimizes verification granularity per-task, not per-instance. OSCA (NAACL 2025) proves mixed-config allocation is convex-optimal at domain level, but its k-NN instance-level allocation performed worse than domain-level. Route to Reason (RTR, arXiv 2505.19435) jointly routes (model, strategy) per-instance under budget constraints via learned scoring, but operates on purely discrete dimensions without formal optimality analysis.\n\nCrucially, \"When To Solve, When To Verify\" (arXiv 2504.01005, COLM 2025) studied the aggregate compute-optimal trade-off between Self-Consistency and GenRM, finding SC more compute-efficient for most budgets but GenRM yields up to 30% relative improvement on hard problems. This aggregate finding directly motivates per-instance optimization: the optimal verification strategy varies systematically with problem characteristics, but no existing work quantifies this variation at the instance level or provides a principled mechanism to exploit it.\n\n\"Variation in Verification\" (arXiv 2509.17995) showed verification effectiveness varies non-linearly across difficulty×generator×verifier. \"Rethinking Reward Models\" (arXiv 2510.00492) found the best verification type varies by domain. AVA (OpenReview 2026) dynamically allocates across search/sampling/verification via heuristic value-of-information but lacks formal optimality guarantees and does not model the bilinear K×d cost coupling. RL^V (arXiv 2505.04842) shows LLMs can internalize verification ability via joint RL training, but operates at training time; at inference time with pretrained models, the generation-verification allocation problem remains.\n\n## Proposed Approach: Discover → Measure → Exploit\n\n**C1: Empirical Discovery — Per-Instance Generation-Verification Complementarity.** We conduct the first systematic oracle analysis quantifying whether and how d\\* varies across instances. For each instance in evaluation benchmarks, we exhaustively compute accuracy under all (K,d) configurations and identify oracle-optimal (K\\*,d\\*). We measure: (a) the entropy/diversity of d\\* across instances; (b) the accuracy gap between oracle joint (K\\*,d\\*) allocation vs. oracle K-only allocation with fixed best d; (c) how d\\* correlates with instance difficulty, domain, and generator capability. This analysis answers a fundamental empirical question motivated by \"When To Solve, When To Verify\" (arXiv 2504.01005): their aggregate finding (SC dominates most budgets; GenRM dominates hard problems) predicts systematic per-instance variation, but no one has quantified the ceiling for exploiting it. Regardless of whether the variation is large (validating joint optimization) or small (an important negative result showing single-dimension suffices), this is an independently valuable empirical contribution.\n\n**C2: Analytical Tool — Verification Value.** We define Verification Value for verifier type d on instance i as VV(i,d) = K\\*(i, none) − K\\*(i, d), measuring the generation budget saved by employing verifier d. This per-instance metric quantifies generation-verification complementarity — a concept the field currently lacks a formal measurement for. \"When To Solve, When To Verify\" analyzed SC-vs-GenRM trade-offs only at the aggregate level; \"Variation in Verification\" (arXiv 2509.17995) observed non-linear variation but provided no per-instance metric. VV serves three purposes: (a) diagnostic tool — if VV variance across instances is low, fixed d suffices and joint optimization is unnecessary; (b) landscape analysis — revealing which difficulty/domain regions exhibit high complementarity and whether verification types have dominance relationships; (c) transferable metric — usable by any allocation method, not limited to our Lagrangian framework.\n\n**C3: Principled Exploitation — Lagrangian 2D Framework.** We extend the 1D Lagrangian decomposition of Adaptive Constrained (arXiv 2604.14853) to jointly optimize (K,d). The bilinear cost K×(c_g + c_v(d, l_i)) decomposes: for each instance, the subproblem enumerates d∈{none, ORM, PRM, GenRM}, computes optimal K\\*(d,λ) in closed form for each d (reusing Adaptive Constrained's 1D solution), and selects the (K\\*,d\\*) pair maximizing marginal accuracy gain minus λ·cost. A single dual variable λ found via binary search enforces the global budget constraint. We provide explicit duality analysis: since d is finite (4 values) and each conditional K-optimization is convex, the per-instance subproblem is solved exactly by enumeration; the relaxation gap arises solely from the Lagrangian relaxation of the coupling budget constraint, and we characterize its magnitude both theoretically and empirically (by comparing with oracle ceiling). A learned MLP probe on prefill hidden states (following DiffAdapt's hidden-state approach) provides instance-level features, replacing OSCA's failed k-NN with a method that can learn non-linear decision boundaries. Unlike RTR (arXiv 2505.19435), which uses learned heuristic scoring over purely discrete (model, strategy) pairs, our framework exploits the continuous K dimension for closed-form solutions and provides formal duality guarantees.\n\n## Experimental Design\n\n**Models.** Generators: Qwen3-8B (primary, used for oracle collection and all experiments), DeepSeek-R1-Distill-14B (cross-family generalization), Qwen3-235B-A22B (scaling validation on best configurations). Verifiers: Skywork-Reward-V2-8B (ORM, arXiv 2507.01352), dPRM-14B (discriminative PRM, from arXiv 2510.00492), ThinkPRM-14B (generative PRM/GenRM, arXiv 2504.16828, based on R1-Distill-Qwen-14B). d∈{none, Skywork-ORM, dPRM, ThinkPRM-GenRM}.\n\n**Benchmarks.** MATH (5000 problems, supports quintile analysis), GPQA Diamond (198 problems, aggregate + binary difficulty split only), LiveCodeBench (1055 problems).\n\n**Cost metric.** FLOPs as primary (enabling fair cross-method comparison). Verification cost modeled as instance-dependent c_v(d, l_i), estimated from oracle collection data: ORM cost scales with solution length, PRM cost scales with number of reasoning steps, GenRM cost scales with verification CoT length. Report both predicted FLOPs (used during Lagrangian optimization) and actual FLOPs (measured at execution), with gap analysis. Wall-clock time as secondary metric. Qwen3-8B c_g measured in FLOPs per token; Qwen3-235B-A22B in active-parameter FLOPs (22B active).\n\n**Baselines.** (1) Fixed-config: for each d∈{none, ORM, PRM, GenRM}, uniform K allocation at matched total budget — 4 curves. (2) Adaptive-K SC: Adaptive Constrained (arXiv 2604.14853) with d=none (majority voting only) — the strongest single-dimension baseline per \"When To Solve, When To Verify\" findings. (3) K-only adaptive: Adaptive Constrained with fixed best d (d≠none). (4) d-only adaptive: fixed uniform K, per-instance d selection via probe. (5) DiffAdapt (ICLR 2026): hidden-state probe routing at FLOPs-matched budget. (6) AVA (OpenReview 2026): if code available, direct comparison; otherwise reported numbers. (7) Oracle (K\\*,d\\*): exhaustive per-instance optimal as upper bound.\n\n**Ablations.** (A1) Dimension isolation: K-only vs. d-only vs. joint (K,d) — quantify marginal gain of each dimension and their interaction. (A2) Probe method: MLP on prefill hidden states vs. k-NN on same features (OSCA's approach) vs. domain-level allocation — validate MLP's advantage and explain OSCA's k-NN failure. (A3) d-space size: {none, ORM} → {none, ORM, PRM} → {none, ORM, PRM, GenRM} — marginal gain of expanding verification action space. (A4) Budget sensitivity: accuracy-vs-cost Pareto frontier across multiple budget levels (0.25×, 0.5×, 1×, 2×, 4× reference). (A5) Allocation pattern analysis: distribution of assigned (K,d) across difficulty quintiles (on MATH) and domains, verifying meaningful differentiation. (A6) Probe quality: MLP imitation accuracy (overall and per-difficulty-bin), calibration curve, allocation regret decomposed into K-error and d-error contributions. Target: ≥ 91% imitation accuracy matching Adaptive Constrained's 1D probe.\n\n**Oracle Data Collection (Solve-then-Learn).** Stage 1: on calibration split, evaluate K∈{1,2,4,8,16,32} × 4 verifier types per instance (24 configurations). K values interpolated via log-linear method (accuracy approximately linear in log(K)). Primary generator: Qwen3-8B for full oracle collection (~500 GPU-hours estimated). Transfer validation: spot-check oracle patterns on DeepSeek-R1-Distill-14B and Qwen3-235B-A22B subsets. Stage 2: train MLP probe on calibration data, deploy on test instances.\n\n**Statistical rigor.** ≥3 independent runs with different seeds; mean ± std; bootstrap 95% CI on GPQA Diamond; McNemar's test for pairwise comparison.\n\n**Target.** ≥15% relative accuracy gain over Adaptive-K SC (strongest single-dimension baseline) under compute-matched budgets on at least 2 of 3 benchmarks, achieving ≥60% of oracle (K\\*,d\\*) ceiling.\n\n## Key References\n\n- Adaptive Test-Time Compute via Constrained Policy Optimization (arXiv 2604.14853, April 2026)\n- DiffAdapt: Difficulty-Adaptive Reasoning for Token-Efficient Inference (ICLR 2026)\n- Rethinking Optimal Verification Granularity / VG-Search (NeurIPS 2025)\n- Scaling LLM Inference with Optimized Sample Compute Allocation / OSCA (NAACL 2025)\n- Variation in Verification: Understanding Verification Dynamics in LLMs (arXiv 2509.17995, 2025)\n- Rethinking Reward Models for Multi-Domain Test-Time Scaling (arXiv 2510.00492, 2025)\n- Anytime Verified Agents / AVA (OpenReview 2026)\n- When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification (arXiv 2504.01005, COLM 2025)\n- Process Reward Models That Think / ThinkPRM (arXiv 2504.16828, 2025)\n- Generative Verifiers: Reward Modeling as Next-Token Prediction / GenRM (arXiv 2408.15240, ICLR 2025)\n- Skywork-Reward-V2 (arXiv 2507.01352, 2025)\n- Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection / RTR (arXiv 2505.19435, 2025)\n- Putting the Value Back in RL: Unifying LLM Reasoners With Verifiers / RL^V (arXiv 2505.04842, 2025)"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T11:21:14.002Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T11:21:14.002Z",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T11:21:14.036Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research to provide a thorough evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853) (arXiv, April 2026): 本 proposal 最直接的前序工作。用 Lagrangian 松弛将全局预算约束分解为 per-instance 子问题，闭式解求最优 K，MLP probe 做部署。报告在 MATH 上 12.8% 相对提升。本 proposal 的 C3 是其从 1D→2D 的直接扩展。
+- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005) (COLM 2025): 研究 SC vs. GenRM 的 aggregate compute-optimal trade-off。核心发现：SC 在多数预算水平更高效，GenRM 在高预算/难题上更优（最高 30% 相对提升）。本 proposal 将此 aggregate 发现推向 per-instance 精细化。
+- [DiffAdapt](https://openreview.net/forum?id=644FH1vVIl) (ICLR 2026): 用 hidden state probe 预测问题难度并路由至 Easy/Normal/Hard 推理策略，减少 22.4% token。本 proposal 借鉴其 hidden-state probe 方案，但扩展到 (K,d) 联合空间。
+- [OSCA](https://aclanthology.org/2025.naacl-long.404/) (NAACL 2025): 证明 mixed-config allocation 在 domain 级是凸最优的。k-NN instance-level 方法效果差于 domain-level。本 proposal 明确以此为对照，用 MLP 替代 k-NN。
+- [VG-Search / Rethinking Optimal Verification Granularity](https://arxiv.org/abs/2505.11730) (NeurIPS 2025): 用可调粒度参数统一 beam search 和 Best-of-N，per-task 动态选择粒度。本 proposal 在更粗的 verifier type 维度做 per-instance 优化，互补而非竞争。
+- [Variation in Verification](https://arxiv.org/abs/2509.17995) (arXiv 2025): 系统分析验证效果随 difficulty×generator×verifier 非线性变化，但未提出 per-instance 度量或分配机制。本 proposal 的 VV 指标填补此空白。
+- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435) (arXiv 2025): per-instance 联合路由 (model, strategy)，但纯离散维度、无 formal optimality 分析。与本 proposal 的 continuous K + formal duality 形成对比。
+- [AVA](https://openreview.net/forum?id=JMDCMf7mlF) (OpenReview 2026): 动态分配 search/sampling/verification 计算，基于 value-of-information 启发式，无 formal optimality guarantee，不建模 K×d 双线性耦合。
+- [Rethinking Reward Models](https://arxiv.org/abs/2510.00492) (arXiv 2025): 发现最优 verification type 按 domain 变化。本 proposal 进一步推向 instance level。
+
+- **调研总结**: Test-time compute 的自适应分配是 2025-2026 年最活跃的研究方向之一。现有工作分别优化了 K（Adaptive Constrained）、generation strategy（DiffAdapt/RTR）、verification granularity（VG-Search），或在 aggregate/domain 级分析了 generation-verification trade-off（"When To Solve, When To Verify"、OSCA）。**Per-instance 联合 (K,d) 优化确实是一个尚未被占据的交叉空白**，但这个空白的大小（即实际收益上限）尚未被验证——这既是本 proposal 的核心 bet，也是主要风险。
+
+【整体印象】:
+作为审稿人，第一反应是 **borderline accept — 倾向弱 accept**。这是一篇定位精准、结构清晰、实验设计极为扎实的 proposal。它识别了一个真实的研究空白（per-instance joint (K,d) allocation），提出了三层递进的贡献（Discover → Measure → Exploit），每一层都有独立价值。然而，核心技术贡献（C3: 2D Lagrangian 扩展）在方法论深度上偏 incremental——本质是在 4 个离散验证类型上枚举，每个类型复用已有 1D 闭式解。审稿人中很可能有 1-2 人认为这是"engineering contribution rather than methodological innovation"。最终是否 accept 取决于：(1) C1 的 oracle 分析是否揭示了足够大的 d* 变异性；(2) 实际 accuracy gain 是否达到承诺的 15%。
+
+【核心贡献】:
+本工作的核心贡献有三层：
+1. **经验发现（C1）**：首次系统量化 per-instance 验证策略最优选择的变异性。这是领域中一个基础性的经验问题——"When To Solve, When To Verify" 的 aggregate 发现暗示了 per-instance 变异，但从未有人量化其上限。即使结果显示变异小（负面结果），也有独立发表价值。
+2. **度量工具（C2）**：Verification Value (VV) 作为 per-instance 指标量化 generation-verification 互补性。概念简洁，可被其他方法复用。
+3. **优化框架（C3）**：将 1D Lagrangian 扩展到 2D，提供 formal duality guarantee。
+
+**贡献价值评估**：C1 最有独立价值，C2 是有用但较轻量的概念贡献，C3 的技术深度有限但实用性强。整体而言，这是一个"系统性深挖"类型的贡献——不是提出全新范式，而是将已有思路推向更精细的粒度并做彻底的经验验证。对领域有实际价值，但在 novelty 光谱上偏中间。
+
+【方法合理性】:
+方法整体合理且有坚实的理论基础。具体来说：
+- **Lagrangian 2D 分解**：由于 d 是有限离散集（4 个值），per-instance 子问题可以通过枚举精确求解，这在数学上是正确的。dual variable λ 通过 binary search 求解也是标准做法。
+- **MLP probe**：相比 OSCA 失败的 k-NN，MLP 能学习非线性决策边界是合理的改进方向。DiffAdapt 已证明 hidden-state probe 在类似任务上有效。
+- **关于更简单的替代方案**：一个明显的替代方案是"对每个 domain 或 difficulty bin 固定最优 d，只做 per-instance K 优化"——这本质上是 OSCA 的 domain-level 方案 + Adaptive Constrained。如果 C1 的 oracle 分析显示 d* 在 domain/difficulty bin 内变异很小，那么这个更简单的替代方案可能效果相当。这是审稿人最可能提出的"Occam's razor"质疑。proposal 需要在 C1 中明确展示 per-instance d* 的 within-bin 变异来回应这一点。
+
+【5 维度打分】:
+
+  1. 研究问题: 【强】 — 问题重要且 timely。Test-time compute allocation 是当前最活跃的研究方向之一。Per-instance joint (K,d) 优化是一个自然的下一步问题，由 "When To Solve, When To Verify" 和 "Variation in Verification" 的发现直接 motivate。问题表述清晰，有明确的科学假设（"d* 的 per-instance 变异是否足够大以证明联合优化的价值"）。
+
+  2. 方法与创新: 【中】 — 方法 principled 且合理，但 novelty 有限。C3 的核心技术是在 Adaptive Constrained (arXiv 2604.14853) 的 1D Lagrangian 上加一层 4-way 枚举——数学上正确但不深。与 RTR (arXiv 2505.19435) 相比，formal duality guarantee 是差异化优势；与 AVA (OpenReview 2026) 相比，Lagrangian 框架的 principled nature 是优势。但这些优势来自"用已有工具的正确组合"而非"提出新工具"。VV 指标（C2）概念简洁但也不复杂。真正的 novelty 更多在于 C1 的 empirical contribution。
+
+  3. 实验设计: 【强】 — 这是 proposal 最突出的优势。7 个 baseline（含 oracle 上限）、6 组 ablation、3 个 benchmark、3 个 generator、3 个 verifier、FLOPs 为主 + wall-clock 为辅的 cost metric、bootstrap CI + McNemar's test 的统计严格性——这在 proposal 阶段已经达到了非常高的完备度。特别值得赞赏的是：(a) Ablation A1（K-only vs. d-only vs. joint）直接回答了 reviewer 最可能的质疑；(b) Ablation A2（MLP vs. k-NN vs. domain-level）对标了 OSCA 的失败案例；(c) 预算敏感性分析（0.25×-4×）展示了方法的鲁棒性。唯一的改进空间是可以增加一个 "greedy d-selection then adaptive K" 的 baseline 来对标 Occam's razor 方案。
+
+  4. 可行性: 【中偏强】 — Oracle 数据收集（~500 GPU-hours）是主要成本，但以 8B 模型为主、现成 verifier 可用，在合理范围内。MLP probe 训练成本微小。主要风险不在资源而在结果不确定性：如果 C1 显示 oracle 上限低（joint vs. K-only 差距 <5%），整个 C3 的价值就被削弱。proposal 已经预设了"负面结果也有价值"的退路，但这在审稿时说服力有限。
+
+  5. 写作与呈现: 【强】 — Proposal 的结构（Discover → Measure → Exploit）逻辑清晰，递进自然。Related work 的定位极为精确——对每一篇竞争性工作都明确指出了其覆盖的维度和留下的空白。研究问题的表述（"does d* vary enough..."）是可证伪的，这在 ML 论文中不常见，值得赞赏。写作中能看出作者对领域有深入理解。
+
+【概率估计】: [28% - 42%] 中位 35%
+
+【估计理由】:
+- **上行因素**（推向 42%）：问题 timely 且重要；实验设计异常完备；C1 的 oracle 分析若显示显著变异，整个 narrative 很 compelling；写作和定位精准，审稿人容易理解贡献。
+- **下行因素**（拉向 28%）：C3 的 technical novelty 偏 incremental（4-way 枚举 + 已有 1D 闭式解），可能被 1-2 个审稿人打 "limited novelty"；如果 oracle 上限低（joint vs. K-only gap 小），整篇论文的 motivation 被动摇；500 GPU-hours 的 oracle collection 可能被质疑 scalability；AAAI 近年 acceptance rate ~24%，竞争激烈。
+- **中位推理**：这是一篇"方向正确、执行计划完善、但核心 novelty 偏工程性"的投稿。在 3 个审稿人中，大概率获得 1 个 accept（认可实验完备性和 empirical contribution）、1 个 borderline（技术深度存疑）、1 个 weak reject（novelty 不够）。这个分布对应约 35% 的中稿概率，取决于 AC 的倾向和 rebuttal 中能否展示强实验结果。
+
+【主要风险】:
+1. **Oracle 上限风险（致命级）**：如果 C1 的 oracle 分析显示 joint (K*,d*) 相对于 K-only 的 accuracy gain 仅有 2-5%，那么整个联合优化框架的 raison d'être 被严重削弱。"负面结果也有价值"的论点在顶会评审中说服力有限——审稿人通常期望 positive results 作为主要贡献。
+2. **Technical novelty 不足（高概率）**：至少 1 个审稿人会指出 C3 本质上是 "enumerate 4 verification types × reuse existing 1D solution"，认为方法论贡献不够。如果同时 C1 的 empirical 发现不够 surprising（比如 d* 简单地与 difficulty 单调相关），论文将缺乏 "aha moment"。
+
+【实施评估】:
+  - 计算资源: ~500 GPU-hours（以 Qwen3-8B 为主的 oracle collection） + Qwen3-235B-A22B 的 spot-check 验证（额外 ~50-100 GPU-hours）。总体在单个 A100 集群 2-3 周可完成，资源需求中等。
+  - 数据需求: MATH (5000)、GPQA Diamond (198)、LiveCodeBench (1055) 均为公开 benchmark，无数据获取障碍。
+  - 人工介入: 低。Oracle collection 可自动化；MLP 训练标准化。主要人工在于实验分析和论文撰写。
+  - 训练需求: MLP probe 训练（轻量），不需要训练/微调 LLM 本身。所有 generator 和 verifier 使用预训练模型。
+  - 新 Benchmark: 不需要。使用现有 benchmark。
+  - 预估周期: Oracle data collection（2-3 周）→ 分析 + C1/C2 结果（1 周）→ MLP probe 训练 + C3 实验（1-2 周）→ Ablation + 补充实验（1-2 周）→ 论文撰写（2-3 周）。总计约 8-11 周。
+```
+
+Sources:
+- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853)
+- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005)
+- [DiffAdapt: Difficulty-Adaptive Reasoning for Token-Efficient LLM Inference](https://openreview.net/forum?id=644FH1vVIl)
+- [OSCA: Scaling LLM Inference with Optimized Sample Compute Allocation](https://aclanthology.org/2025.naacl-long.404/)
+- [VG-Search: Rethinking Optimal Verification Granularity](https://arxiv.org/abs/2505.11730)
+- [Variation in Verification](https://arxiv.org/abs/2509.17995)
+- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435)
+- [AVA: Anytime Verified Agents](https://openreview.net/forum?id=JMDCMf7mlF)
+- [Rethinking Reward Models](https://arxiv.org/abs/2510.00492)
+- [RL^V: Putting the Value Back in RL](https://arxiv.org/abs/2505.04842)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient research context. Let me compile the full evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853) (arXiv, April 2026): 本 proposal 最直接的前驱工作。用 Lagrangian 松弛将全局预算约束分解为 per-instance 子问题，优化 K（采样数），但明确未优化 verification 维度 d。本 proposal 的 C3 是对其 1D 框架的 2D 扩展。
+- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005) (COLM 2025): 在 aggregate 层面研究 Self-Consistency vs GenRM 的 compute-optimal trade-off。发现 SC 在多数预算下更优，但 GenRM 在难题上可带来 ~30% 相对提升。这一发现直接为 per-instance 优化提供动机，但原论文未做 per-instance 分析。
+- [DiffAdapt](https://arxiv.org/abs/2510.19669) (ICLR 2026): 用 hidden-state probe 预测难度并路由至不同推理策略，减少 token 用量达 22.4%。但路由目标是 reasoning 策略（Easy/Normal/Hard），不涉及 verification type 选择。本 proposal 借鉴其 probe 方法。
+- [OSCA](https://arxiv.org/abs/2410.22480) (NAACL 2025): 证明 mixed-config allocation 在 domain 级是 convex-optimal，可用 128× 更少计算达到最佳单配置精度。但关键发现是 k-NN 做 instance-level allocation 反而不如 domain-level，说明 instance-level 路由是公认的难点。
+- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435) (arXiv, May 2025): 联合路由 (model, strategy) per-instance，学习压缩表示实现即插即用选择。但纯基于 learned heuristic scoring，缺乏形式化最优性保证，不利用连续维度做闭式解。
+- [AVA](https://openreview.net/forum?id=JMDCMf7mlF) (OpenReview 2026): 动态分配 search/sampling/verification 计算，用 value-of-information 启发式。但缺乏形式化最优性保证，且未建模 K×d 双线性代价耦合。
+- [Variation in Verification](https://arxiv.org/abs/2509.17995) (arXiv, Sep 2025): 系统分析 verification 效果随 difficulty×generator×verifier 非线性变化，但未提供 per-instance 度量或优化机制。
+- 调研总结: 2025-2026 年 adaptive inference compute 领域非常活跃，K-维度的 per-instance 优化（Adaptive Constrained）和 aggregate 级别的 generation-verification trade-off（When To Solve, When To Verify）已有成熟工作，但「per-instance 联合 (K,d) 优化」这一具体 gap 确实存在。竞争者 RTR 和 AVA 在类似方向上发力但缺乏形式化框架。Proposal 定位精准但技术创新幅度有限——核心是将已有 1D Lagrangian 框架自然扩展到 2D 有限枚举。
+
+【整体印象】:
+如果我是审稿人，第一反应是：这是一份定位精准、实验设计极其完备的 proposal，作者对领域现状的把握远超平均水平。但紧接着的疑虑是——核心技术贡献（C3: 1D Lagrangian → 2D 枚举）在方法论层面相当 straightforward，任何读过 Adaptive Constrained 论文的人都会想到"加一个 d 的枚举"。真正的价值完全取决于 C1 的实证发现：如果 oracle (K*,d*) 相比 oracle K-only 的提升不够大（比如 < 5-8%），整篇论文的 narrative 就会塌陷。我会倾向于 weak accept / borderline，最终决定取决于实验结果的 magnitude。
+
+【核心贡献】:
+本工作有三层贡献：
+1. **C1 (实证发现)**: 首次系统量化 per-instance verification strategy 的变异性及其对精度的 ceiling effect——这是潜在最有价值的贡献，因为它回答了"联合优化是否值得做"这一基础性经验问题。
+2. **C2 (度量工具)**: Verification Value 指标——概念清晰但技术含量有限，本质是两个 oracle K* 的差值。
+3. **C3 (优化框架)**: 2D Lagrangian 分解——理论上是 1D 的自然推广，实践上通过 MLP probe 部署。
+
+对领域的价值：如果 C1 揭示了显著的 per-instance variation（且 MLP probe 能有效捕捉），这篇工作为 inference-time scaling 社区提供了一个新的维度和实用工具。但如果 variation 很小，贡献退化为"验证了一个 negative result + 一个简单扩展"。
+
+【方法合理性】:
+方法在逻辑上是合理的——Lagrangian 松弛处理预算约束、有限枚举处理离散 d、MLP probe 做 amortized deployment，每一步都 sound。但存在两个合理性质疑：
+1. **更简单的替代方案**: 一个 domain-level 的 (K, d) grid search（类似 OSCA 的 domain-level allocation）可能已经捕获了大部分收益，不需要 per-instance probe。OSCA 的教训正是 instance-level 比 domain-level 更难且未必更好。
+2. **MLP probe 的瓶颈**: 从 prefill hidden states 预测最优 (K*, d*) 是一个非常困难的学习问题——需要同时预测问题难度和最优 verification 类型。如果 probe 精度不够（OSCA 的 k-NN 就失败了），实际收益会远低于 oracle ceiling。Proposal 设定 ≥91% imitation accuracy 但未讨论这一目标是否现实。
+
+【5 维度打分】:
+
+  1. 研究问题: 【强】 — 问题定位精准且有实际意义。"When To Solve, When To Verify" 的 aggregate 发现（SC 多数情况更优但 GenRM 在难题上强 30%）自然引出 per-instance 优化的动机。该问题同时具有理论价值（complementarity 是否存在）和实践价值（如何高效利用异构 verifier）。领域内确实缺乏对这个 gap 的系统研究。
+
+  2. 方法与创新: 【中偏弱】 — C3 的核心技术——将 Adaptive Constrained 的 1D Lagrangian 扩展到 2D（对 4 个离散 d 值枚举，每个 d 下复用 1D 闭式解）——在数学上是 trivial 的扩展。Duality analysis 是标准的。MLP probe 借鉴 DiffAdapt 的思路。VV 指标虽然概念上有用但定义简单。与 RTR (arXiv 2505.19435) 相比，本 proposal 的优势在于有 formal duality guarantee，但 RTR 处理的维度更多（model × strategy）。与 AVA 相比，本 proposal 更 principled 但 scope 更窄。总体而言，方法的 novelty 不足以独立支撑一篇顶会论文——需要 C1 的 empirical findings 来补偿。
+
+  3. 实验设计: 【强】 — 这是 proposal 最突出的亮点。7 个 baseline（包含 4 条 fixed-config 曲线、K-only adaptive、d-only adaptive、DiffAdapt、AVA、oracle ceiling），6 组 ablation（维度隔离、probe 方法、d-space 大小、预算敏感度、分配模式分析、probe 质量），3 个 benchmark 跨数学/科学/代码，3 个 generator 模型，4 种 verifier 配置，统计严格性（3 runs + bootstrap CI + McNemar test）。这是我在 proposal 阶段见过的最完备的实验计划之一。
+
+  4. 可行性: 【中】 — Oracle 数据收集（24 configurations × thousands of instances）预估 ~500 GPU-hours，这在学术实验室可行但不轻松。Qwen3-235B-A22B 的验证实验需要大 GPU（至少 4×A100）。ThinkPRM-GenRM 的 verification CoT 可能很长，实际 cost 可能超预估。此外，OSCA 的 k-NN instance-level 失败的教训表明 MLP probe 的学习本身可能比预想更困难——如果 probe 失败，C3 的实际系统就没有意义。
+
+  5. 写作与呈现: 【强】 — Proposal 的逻辑结构非常清晰（Discover → Measure → Exploit），每个 contribution 的 motivation 都从具体前驱工作的 gap 出发，related work 的 differentiation 精确到具体论文的具体局限。cost model、baseline 选择、ablation 设计都有清晰的 rationale。
+
+【概率估计】: [25% - 40%] 中位 32%
+
+【估计理由】:
+该 proposal 的核心矛盾在于：实验设计和问题定位是 top-tier 水平，但技术 novelty 偏弱。在 AAAI 这样的顶会中，一篇方法论上是"对已有框架的自然 2D 扩展 + 有限枚举"的论文，即使实验做得再好，也容易被审稿人归类为 incremental。
+
+上界 40% 的条件：C1 的 oracle analysis 揭示 ≥15% 的 accuracy gap（joint vs K-only），MLP probe 达到 ≥90% imitation accuracy，实际系统在 2/3 benchmark 上达到 target（≥15% relative gain over Adaptive-K SC）。这些条件同时满足时，论文可以凭"strong empirical contribution + practical framework"被接收。
+
+下界 25% 的条件：C1 的 oracle ceiling 较小（~5-8%），或 MLP probe 精度不足导致实际 gain 远低于 oracle，审稿人可能判定"per-instance joint optimization 在实践中不如 domain-level 或 K-only"，整篇论文的 motivation 被动摇。
+
+中位 32% 反映了：问题和实验设计的优势 vs. 方法 novelty 的短板，以及 C1 结果不确定性的对冲。
+
+【主要风险】:
+1. **Oracle ceiling 风险 (致命级)**: C1 可能揭示 per-instance (K*,d*) 相比 K-only 的提升有限（例如 < 5%），这将从根本上瓦解"joint optimization is worthwhile"的核心叙事。"When To Solve, When To Verify" 发现 SC 在大多数预算下已经是 compute-optimal 的，暗示 d 维度的边际贡献可能本身就不大。
+2. **Novelty 不足风险 (高级)**: 至少 1-2 位审稿人可能认为"对 4 个离散值枚举 + 已有 1D 闭式解 = trivial extension"，即使实验结果良好也给 borderline reject。这是系统/实证论文在方法论导向的审稿人面前的固有风险。
+
+【实施评估】:
+  - 计算资源: ~500 GPU-hours 用于 oracle collection（Qwen3-8B 主实验）；Qwen3-235B-A22B 验证实验需额外 ~100-200 GPU-hours 和大显存 GPU（≥4×A100-80G）。总计 ~600-700 GPU-hours。
+  - 数据需求: MATH (5000)、GPQA Diamond (198)、LiveCodeBench (1055) 均为公开 benchmark，无数据获取障碍。
+  - 人工介入: 低。主要工程工作是 oracle collection pipeline 和 cost estimation 校准，不需要人工标注。
+  - 训练需求: MLP probe 训练（轻量级，分钟级）。不需要训练/微调 LLM。Verifier 模型均使用现成 checkpoint。
+  - 新 Benchmark: 不需要。使用现有 benchmark + 自建 oracle annotation（可公开作为资源贡献）。
+  - 预估周期: 6-8 周（含 oracle collection 3-4 周、实验 2-3 周、写作 1-2 周），前提是 GPU 资源充足。如资源有限，oracle collection 可能延长至 5-6 周。
+```
+
+Sources:
+- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853)
+- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005)
+- [DiffAdapt: Difficulty-Adaptive Reasoning for Token-Efficient LLM Inference](https://arxiv.org/abs/2510.19669)
+- [OSCA: Scaling LLM Inference with Optimized Sample Compute Allocation](https://arxiv.org/abs/2410.22480)
+- [Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection](https://arxiv.org/abs/2505.19435)
+- [AVA: Anytime Verified Agents](https://openreview.net/forum?id=JMDCMf7mlF)
+- [Variation in Verification](https://arxiv.org/abs/2509.17995)
+- [Scaling LLM Test-Time Compute Optimally](https://arxiv.org/abs/2408.03314)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient context to provide a thorough evaluation. Let me compile my analysis.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853) (arXiv, April 2026): 本 proposal 的直接前驱工作。用 Lagrangian relaxation 将全局预算约束分解为 per-instance 子问题，对 K（采样数）进行自适应分配，在 MATH 上实现 12.8% 相对提升。该论文明确指出"response depth d entirely unaddressed"——本 proposal 正是填补这一空白。核心技术贡献 C3 本质上是将该论文的 1D 优化扩展为 2D。
+- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005) (COLM 2025): 研究 Self-Consistency vs GenRM 的 compute-optimal trade-off。关键发现：SC 在大多数预算下更高效，但 GenRM 在难题上可带来 30% 相对提升。这一**聚合级**发现直接激发本 proposal 的 per-instance 优化动机，但也暗示 d* 变异可能集中在少数难题上，整体 gap 可能有限。
+- [DiffAdapt](https://openreview.net/forum?id=644FH1vVIl) (ICLR 2026): 用 hidden-state probe 将问题按难度路由到不同推理策略，减少 22.4% token 用量。路由维度是生成策略（prompt/temperature/max_length），不涉及 verification type 选择。本 proposal 借鉴其 hidden-state probe 方法但扩展到 (K,d) 联合决策。
+- [OSCA](https://arxiv.org/abs/2410.22480) (NAACL 2025): 在 domain 级证明混合配置分配是 convex-optimal，128× 计算节省。但其 k-NN instance-level 分配**不如** domain-level——这是一个重要的负面信号，说明 instance-level 分配的 probe 质量至关重要。
+- [Route to Reason (RTR)](https://arxiv.org/abs/2505.19435) (arXiv, May 2025): 联合路由 (model, strategy) per-instance under budget，用 learned scoring。与本 proposal 最直接竞争：RTR 已经做了 per-instance joint routing，虽然没有形式化最优性分析。reviewers 可能认为 novelty 差异不够大。
+- [AVA](https://openreview.net/forum?id=JMDCMf7mlF) (OpenReview 2026): 动态分配 search/sampling/verification，基于 value-of-information 启发式。涵盖更广的决策空间但缺乏形式化保证。
+- [Variation in Verification](https://arxiv.org/abs/2509.17995) (arXiv 2025): 系统分析 verification 效果在 difficulty×generator×verifier 三维上的非线性变化。支持本 proposal 的核心假设（per-instance d* 变化大），但未提供 per-instance 度量或优化机制。
+- [Rethinking Reward Models](https://arxiv.org/pdf/2510.00492) (arXiv 2025): 统一评估 dORM/dPRM/gORM/gPRM 四种 verifier，发现最优 verification type 因 domain 而异。提供 domain-level 证据，但非 instance-level。
+
+- **调研总结**: Test-time compute 的自适应分配是 2025-2026 年的活跃研究方向，已有大量工作分别优化 K（采样数）或 d（verification 策略）或两者的 heuristic 联合路由。本 proposal 填补的 gap——**principled per-instance joint (K,d) 优化 with formal duality guarantees**——是真实存在的，但 gap 的宽度取决于 (a) oracle (K*,d*) 相比 oracle K*-only 的 ceiling gap 有多大，(b) 与 RTR 等 heuristic routing 方法的差异是否在实践中显著。
+
+【整体印象】:
+作为审稿人，我的第一反应是"这是一篇组织非常精良、对领域理解很深的 proposal，研究问题清晰且填补了一个明确的 gap"。但随即会产生一个核心疑虑：**技术贡献 C3 的 novelty 深度是否足够？** 其核心操作是：对每个 instance，在 4 个离散 d 值上各跑一遍已有的 1D Lagrangian 优化器，取最优——这在技术上是比较直接的枚举扩展。我会倾向于 borderline accept/weak reject，取决于 C1（oracle analysis）揭示的 gap 大小和实验结果的说服力。
+
+【核心贡献】:
+本工作有三个层次的贡献：
+1. **C1（最有价值）**: 首次系统性的 oracle analysis，量化 per-instance (K*,d*) 变异程度。无论结果是正面（大 gap → 验证联合优化价值）还是负面（小 gap → 重要的 negative result 说明单维优化已够），这都是独立有价值的实证贡献。
+2. **C2（有用但增量）**: Verification Value 指标。概念清晰，可被其他方法复用，但本质是一个直观的差值度量，创新性有限。
+3. **C3（技术核心但 novelty 受质疑）**: 2D Lagrangian 框架。数学上干净，但因为 d 是有限离散集（仅 4 个值），扩展的技术难度不高。形式化的 duality analysis 是加分项，但 relaxation gap 分析可能也比较标准。
+
+整体贡献对领域有实际价值（提供了一个 principled 方法和实证工具），但缺乏深层技术突破。
+
+【方法合理性】:
+方法在数学上是合理且正确的。Lagrangian 分解 + 枚举 d + 闭式解 K 是一个 sound 的框架。但存在两个方法论层面的疑虑：
+
+1. **是否有更简单的替代方案？** 是的——RTR 的 learned scoring 方法更简单，不需要 oracle collection 就能做 per-instance (model, strategy) routing。如果 RTR 在相同 benchmark 上表现接近，本 proposal 的 formal duality guarantee 的实际价值就会被削弱。一个自然的 reviewer 反问是："你花 500 GPU-hours 收集 oracle data 只为获得 formal guarantee，但实际精度提升多少？"
+
+2. **Probe 质量是瓶颈**: OSCA 的 k-NN 在 instance-level 失败的教训说明，从 theory（oracle 解）到 practice（probe 预测）的 gap 可能很大。MLP probe 需要同时预测 K 和 d 两个维度，错误会相互耦合。Proposal 设定 ≥91% imitation accuracy 目标，但 2D 问题天然比 1D 更难，是否可达需要实验验证。
+
+【5 维度打分】:
+
+1. 研究问题: 【强】 — 问题动机明确，直接由 Adaptive Constrained 的明确 open problem 和 "When To Solve, When To Verify" 的 aggregate finding 驱动。Per-instance joint (K,d) 优化是一个 natural next step，有明确的实际价值（inference cost reduction）。即使结果是 negative（gap 小），oracle analysis 本身也有独立价值。
+
+2. 方法与创新: 【中】 — 技术方法正确且优雅，但核心创新（enumerate d × run 1D optimizer）的 novelty 深度有限。与 RTR（arXiv 2505.19435）相比，主要差异在于 formal duality guarantee vs. learned heuristic scoring，但 RTR 不需要昂贵的 oracle collection。与 AVA 相比，主要差异在于 formal guarantee vs. heuristic VOI。Verification Value (C2) 是一个有用但增量的概念贡献。duality analysis 本身可能较为标准（finite d + convex K → standard mixed-integer relaxation）。
+
+3. 实验设计: 【强】 — 这是本 proposal 最突出的优势。7 个 baseline（包括直接竞品和 oracle 上界）、6 个 ablation（每个都回答一个具体的研究问题）、严谨的统计处理（多次 run + bootstrap CI + McNemar test）、FLOPs 主度量 + wall-clock 副度量、预测 vs 实际 FLOPs 的 gap 分析。A1（dimension isolation）和 A3（d-space size）的 ablation 设计特别好，直接回答了 joint optimization 是否 worthwhile 的问题。实验设计的完备程度远超同类 proposal。
+
+4. 可行性: 【中】 — 方案整体可行，但有几个风险点：(a) ~500 GPU-hours 的 oracle collection 成本不低，尤其对于一个声称优化 inference efficiency 的工作；(b) 需要同时部署 generator + 3 种 verifier，工程复杂度不小；(c) Qwen3-235B-A22B 的 scaling validation 可能需要额外大量资源；(d) LiveCodeBench 的 code generation 评估需要沙盒执行环境。总体可行但需要合理的 GPU 预算和工程投入。
+
+5. 写作与呈现: 【强】 — Proposal 结构清晰（Discover → Measure → Exploit），对相关工作的定位精准（明确指出每个工作的 gap），贡献表述 well-scoped。每个 baseline 和 ablation 都有清晰的 rationale。写作展现了对领域的深度理解。唯一的小瑕疵是 contribution 的层次感可以更强——C1 可能比 C3 更有价值，但 framing 上 C3 被作为主要贡献。
+
+【概率估计】: [28% - 40%] 中位 33%
+
+【估计理由】:
+**上界推理 (40%)**: 如果 oracle analysis 揭示显著的 (K*,d*) gap（如 >10% absolute），MLP probe 达到高 imitation accuracy，且在 2/3 benchmarks 上实现 ≥15% relative gain over Adaptive-K SC，这将是一篇扎实的 empirical + systems contribution 论文。结合出色的实验设计和清晰的写作，有可能获得 weak accept。
+
+**下界推理 (28%)**: 如果 oracle gap 较小（如 <5% absolute），reviewers 会质疑整篇工作的 motivation——"all this machinery for marginal gain"。此外，核心技术贡献（enumerate 4 values × 1D optimizer）可能被多个 reviewer 认为 novelty 不足。RTR 的存在进一步压缩了 novelty space。
+
+**中位推理 (33%)**: 最可能的情况是：oracle gap 中等（5-10%），MLP probe 部分兑现但不完美，在部分 benchmark 上有显著提升但不是全部。这会产生一篇 solid but not exciting 的论文。AAAI 的竞争激烈（接收率约 20-25%），一篇 novelty 中等但 execution 很好的工作处于 borderline 区域。考虑到实验设计的出色程度是一个显著加分项，我给出 33% 的中位估计——略高于 baseline acceptance rate 但不到"大概率中"的水平。
+
+【主要风险】:
+1. **Oracle gap 过小**: 如果 per-instance d* 变异度有限（"When To Solve, When To Verify" 的聚合结果暗示 SC 在大多数 budget 下占优，变异可能集中在少数 hard problems），整个 joint optimization 的 motivation 被釜底抽薪。C1 的 oracle analysis 本身仍有价值，但论文的 impact narrative 会大幅弱化。
+2. **Novelty 深度不足**: 核心技术贡献是"enumerate 4 d values × reuse existing 1D optimizer"，在 formal 层面是 clean 的但在 intellectual depth 上可能被 reviewers 认为 straightforward。加上 RTR 已做了 per-instance joint routing（虽无 formal guarantee），reviewers 可能判定 marginal novelty 不够支撑顶会。
+
+【实施评估】:
+  - 计算资源: ~500 GPU-hours 用于 oracle data collection（Qwen3-8B 主生成器，24 configurations × 数千 instances）；额外需要 GPU 资源部署 3 种 verifier (Skywork-8B, dPRM-14B, ThinkPRM-14B)；Qwen3-235B-A22B 的 scaling validation 可能再需 100-200 GPU-hours。**总估计：700-1000 GPU-hours**，中等偏高。
+  - 数据需求: MATH (5000), GPQA Diamond (198), LiveCodeBench (1055) 均为公开数据集，无额外数据收集需求。需要生成大量 oracle 数据（每个 instance × 24 configurations 的推理结果）。
+  - 人工介入: 低。主要是实验设计、结果分析和论文写作。无需人工标注。
+  - 训练需求: MLP probe 训练（轻量级，几分钟级别）。不需要微调大模型。主要计算瓶颈在 oracle data collection（inference），不在 training。
+  - 新 Benchmark: 否。使用现有 benchmarks。但会产出 oracle analysis 数据集（per-instance optimal (K*,d*) labels），可作为资源贡献。
+  - 预估周期: 3-5 个月。Oracle data collection ~2-3 周（受 GPU 并行度影响），实验 + ablation ~3-4 周，分析 + 论文写作 ~4-6 周。关键路径在 oracle collection 的计算时间。
+```
+
+Sources:
+- [Adaptive Test-Time Compute via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853)
+- [When To Solve, When To Verify](https://arxiv.org/abs/2504.01005)
+- [DiffAdapt: Difficulty-Adaptive Reasoning](https://openreview.net/forum?id=644FH1vVIl)
+- [OSCA: Scaling LLM Inference with Optimized Sample Compute Allocation](https://arxiv.org/abs/2410.22480)
+- [Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection](https://arxiv.org/abs/2505.19435)
+- [Anytime Verified Agents (AVA)](https://openreview.net/forum?id=JMDCMf7mlF)
+- [Variation in Verification](https://arxiv.org/abs/2509.17995)
+- [Rethinking Reward Models for Multi-Domain Test-Time Scaling](https://arxiv.org/pdf/2510.00492)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Per-Instance Generation-Verification Complementarity: Discovery, Measurement, and Exploitation via Lagrangian Decomposition
+
+## Core Problem
+
+Given a fixed inference compute budget, how should we jointly select the number of generated solutions K and the verification depth d (none/ORM/PRM/GenRM) for each problem instance to maximize overall accuracy? More fundamentally: does the optimal verification strategy d\* vary enough across instances to make per-instance joint (K,d) allocation meaningfully better than single-dimension optimization?
+
+## Research Opportunity
+
+Existing adaptive compute methods optimize only one dimension of the generation-verification trade-off. The Adaptive Constrained paper (arXiv 2604.14853, April 2026) optimizes K alone via Lagrangian relaxation, explicitly stating "response depth d entirely unaddressed." DiffAdapt (ICLR 2026) routes between generation strategies but ignores verification type selection. VG-Search (NeurIPS 2025) optimizes verification granularity per-task, not per-instance. OSCA (NAACL 2025) proves mixed-config allocation is convex-optimal at domain level, but its k-NN instance-level allocation performed worse than domain-level. Route to Reason (RTR, arXiv 2505.19435) jointly routes (model, strategy) per-instance under budget constraints via learned scoring, but operates on purely discrete dimensions without formal optimality analysis.
+
+Crucially, "When To Solve, When To Verify" (arXiv 2504.01005, COLM 2025) studied the aggregate compute-optimal trade-off between Self-Consistency and GenRM, finding SC more compute-efficient for most budgets but GenRM yields up to 30% relative improvement on hard problems. This aggregate finding directly motivates per-instance optimization: the optimal verification strategy varies systematically with problem characteristics, but no existing work quantifies this variation at the instance level or provides a principled mechanism to exploit it.
+
+"Variation in Verification" (arXiv 2509.17995) showed verification effectiveness varies non-linearly across difficulty×generator×verifier. "Rethinking Reward Models" (arXiv 2510.00492) found the best verification type varies by domain. AVA (OpenReview 2026) dynamically allocates across search/sampling/verification via heuristic value-of-information but lacks formal optimality guarantees and does not model the bilinear K×d cost coupling. RL^V (arXiv 2505.04842) shows LLMs can internalize verification ability via joint RL training, but operates at training time; at inference time with pretrained models, the generation-verification allocation problem remains.
+
+## Proposed Approach: Discover → Measure → Exploit
+
+**C1: Empirical Discovery — Per-Instance Generation-Verification Complementarity.** We conduct the first systematic oracle analysis quantifying whether and how d\* varies across instances. For each instance in evaluation benchmarks, we exhaustively compute accuracy under all (K,d) configurations and identify oracle-optimal (K\*,d\*). We measure: (a) the entropy/diversity of d\* across instances; (b) the accuracy gap between oracle joint (K\*,d\*) allocation vs. oracle K-only allocation with fixed best d; (c) how d\* correlates with instance difficulty, domain, and generator capability. This analysis answers a fundamental empirical question motivated by "When To Solve, When To Verify" (arXiv 2504.01005): their aggregate finding (SC dominates most budgets; GenRM dominates hard problems) predicts systematic per-instance variation, but no one has quantified the ceiling for exploiting it. Regardless of whether the variation is large (validating joint optimization) or small (an important negative result showing single-dimension suffices), this is an independently valuable empirical contribution.
+
+**C2: Analytical Tool — Verification Value.** We define Verification Value for verifier type d on instance i as VV(i,d) = K\*(i, none) − K\*(i, d), measuring the generation budget saved by employing verifier d. This per-instance metric quantifies generation-verification complementarity — a concept the field currently lacks a formal measurement for. "When To Solve, When To Verify" analyzed SC-vs-GenRM trade-offs only at the aggregate level; "Variation in Verification" (arXiv 2509.17995) observed non-linear variation but provided no per-instance metric. VV serves three purposes: (a) diagnostic tool — if VV variance across instances is low, fixed d suffices and joint optimization is unnecessary; (b) landscape analysis — revealing which difficulty/domain regions exhibit high complementarity and whether verification types have dominance relationships; (c) transferable metric — usable by any allocation method, not limited to our Lagrangian framework.
+
+**C3: Principled Exploitation — Lagrangian 2D Framework.** We extend the 1D Lagrangian decomposition of Adaptive Constrained (arXiv 2604.14853) to jointly optimize (K,d). The bilinear cost K×(c_g + c_v(d, l_i)) decomposes: for each instance, the subproblem enumerates d∈{none, ORM, PRM, GenRM}, computes optimal K\*(d,λ) in closed form for each d (reusing Adaptive Constrained's 1D solution), and selects the (K\*,d\*) pair maximizing marginal accuracy gain minus λ·cost. A single dual variable λ found via binary search enforces the global budget constraint. We provide explicit duality analysis: since d is finite (4 values) and each conditional K-optimization is convex, the per-instance subproblem is solved exactly by enumeration; the relaxation gap arises solely from the Lagrangian relaxation of the coupling budget constraint, and we characterize its magnitude both theoretically and empirically (by comparing with oracle ceiling). A learned MLP probe on prefill hidden states (following DiffAdapt's hidden-state approach) provides instance-level features, replacing OSCA's failed k-NN with a method that can learn non-linear decision boundaries. Unlike RTR (arXiv 2505.19435), which uses learned heuristic scoring over purely discrete (model, strategy) pairs, our framework exploits the continuous K dimension for closed-form solutions and provides formal duality guarantees.
+
+## Experimental Design
+
+**Models.** Generators: Qwen3-8B (primary, used for oracle collection and all experiments), DeepSeek-R1-Distill-14B (cross-family generalization), Qwen3-235B-A22B (scaling validation on best configurations). Verifiers: Skywork-Reward-V2-8B (ORM, arXiv 2507.01352), dPRM-14B (discriminative PRM, from arXiv 2510.00492), ThinkPRM-14B (generative PRM/GenRM, arXiv 2504.16828, based on R1-Distill-Qwen-14B). d∈{none, Skywork-ORM, dPRM, ThinkPRM-GenRM}.
+
+**Benchmarks.** MATH (5000 problems, supports quintile analysis), GPQA Diamond (198 problems, aggregate + binary difficulty split only), LiveCodeBench (1055 problems).
+
+**Cost metric.** FLOPs as primary (enabling fair cross-method comparison). Verification cost modeled as instance-dependent c_v(d, l_i), estimated from oracle collection data: ORM cost scales with solution length, PRM cost scales with number of reasoning steps, GenRM cost scales with verification CoT length. Report both predicted FLOPs (used during Lagrangian optimization) and actual FLOPs (measured at execution), with gap analysis. Wall-clock time as secondary metric. Qwen3-8B c_g measured in FLOPs per token; Qwen3-235B-A22B in active-parameter FLOPs (22B active).
+
+**Baselines.** (1) Fixed-config: for each d∈{none, ORM, PRM, GenRM}, uniform K allocation at matched total budget — 4 curves. (2) Adaptive-K SC: Adaptive Constrained (arXiv 2604.14853) with d=none (majority voting only) — the strongest single-dimension baseline per "When To Solve, When To Verify" findings. (3) K-only adaptive: Adaptive Constrained with fixed best d (d≠none). (4) d-only adaptive: fixed uniform K, per-instance d selection via probe. (5) DiffAdapt (ICLR 2026): hidden-state probe routing at FLOPs-matched budget. (6) AVA (OpenReview 2026): if code available, direct comparison; otherwise reported numbers. (7) Oracle (K\*,d\*): exhaustive per-instance optimal as upper bound.
+
+**Ablations.** (A1) Dimension isolation: K-only vs. d-only vs. joint (K,d) — quantify marginal gain of each dimension and their interaction. (A2) Probe method: MLP on prefill hidden states vs. k-NN on same features (OSCA's approach) vs. domain-level allocation — validate MLP's advantage and explain OSCA's k-NN failure. (A3) d-space size: {none, ORM} → {none, ORM, PRM} → {none, ORM, PRM, GenRM} — marginal gain of expanding verification action space. (A4) Budget sensitivity: accuracy-vs-cost Pareto frontier across multiple budget levels (0.25×, 0.5×, 1×, 2×, 4× reference). (A5) Allocation pattern analysis: distribution of assigned (K,d) across difficulty quintiles (on MATH) and domains, verifying meaningful differentiation. (A6) Probe quality: MLP imitation accuracy (overall and per-difficulty-bin), calibration curve, allocation regret decomposed into K-error and d-error contributions. Target: ≥ 91% imitation accuracy matching Adaptive Constrained's 1D probe.
+
+**Oracle Data Collection (Solve-then-Learn).** Stage 1: on calibration split, evaluate K∈{1,2,4,8,16,32} × 4 verifier types per instance (24 configurations). K values interpolated via log-linear method (accuracy approximately linear in log(K)). Primary generator: Qwen3-8B for full oracle collection (~500 GPU-hours estimated). Transfer validation: spot-check oracle patterns on DeepSeek-R1-Distill-14B and Qwen3-235B-A22B subsets. Stage 2: train MLP probe on calibration data, deploy on test instances.
+
+**Statistical rigor.** ≥3 independent runs with different seeds; mean ± std; bootstrap 95% CI on GPQA Diamond; McNemar's test for pairwise comparison.
+
+**Target.** ≥15% relative accuracy gain over Adaptive-K SC (strongest single-dimension baseline) under compute-matched budgets on at least 2 of 3 benchmarks, achieving ≥60% of oracle (K\*,d\*) ceiling.
+
+## Key References
+
+- Adaptive Test-Time Compute via Constrained Policy Optimization (arXiv 2604.14853, April 2026)
+- DiffAdapt: Difficulty-Adaptive Reasoning for Token-Efficient Inference (ICLR 2026)
+- Rethinking Optimal Verification Granularity / VG-Search (NeurIPS 2025)
+- Scaling LLM Inference with Optimized Sample Compute Allocation / OSCA (NAACL 2025)
+- Variation in Verification: Understanding Verification Dynamics in LLMs (arXiv 2509.17995, 2025)
+- Rethinking Reward Models for Multi-Domain Test-Time Scaling (arXiv 2510.00492, 2025)
+- Anytime Verified Agents / AVA (OpenReview 2026)
+- When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification (arXiv 2504.01005, COLM 2025)
+- Process Reward Models That Think / ThinkPRM (arXiv 2504.16828, 2025)
+- Generative Verifiers: Reward Modeling as Next-Token Prediction / GenRM (arXiv 2408.15240, ICLR 2025)
+- Skywork-Reward-V2 (arXiv 2507.01352, 2025)
+- Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection / RTR (arXiv 2505.19435, 2025)
+- Putting the Value Back in RL: Unifying LLM Reasoners With Verifiers / RL^V (arXiv 2505.04842, 2025)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "1b5f0115-7bc3-4557-a159-259160aeb5fd",
+  "type": "user",
+  "uuid": "7c9a9912-08a2-42a3-963b-b8a64bb1ac7d",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T11:21:14.035Z_
+
+```json
+{
+  "parentUuid": "7c9a9912-08a2-42a3-963b-b8a64bb1ac7d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "7e1a57b5-b8fb-44ca-b330-63d3fe43185a",
+  "timestamp": "2026-05-29T11:21:14.035Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T11:21:14.035Z_
+
+```json
+{
+  "parentUuid": "7e1a57b5-b8fb-44ca-b330-63d3fe43185a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "661c6491-6b22-4bee-b227-c30d589bb677",
+  "timestamp": "2026-05-29T11:21:14.035Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to provide a thorough evaluatio…",
+  "leafUuid": "661c6491-6b22-4bee-b227-c30d589bb677",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Per-instance joint generation-verification allocation optimization",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-29T11:21:46.428Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully analyze the three reviewers' independent evaluations and synthesize them according to the Meta Judge format.
+
+**Extracting key data points:**
+
+Reviewer 1: [28% - 42%] 中位 35%
+Reviewer 2: [25% - 40%] 中位 32%
+Reviewer 3: [28% - 40%] 中位 33%
+
+Three medians: 35%, 32%, 33%
+Mean of medians: 33.3%
+Median of medians: 33%
+
+
+Standard deviation of medians is approximately 1.25%, which indicates high consistency across reviewers since it's well below the 3% threshold.
+
+**Identifying consensus points (2+ reviewers agree):**
+
+1. 研究问题: All 3 rate 【强】 — unanimous consensus
+2. 方法与
+
+创新: R1 and R3 both rate 【中】, R2 slightly lower at 【中偏弱】 — consensus on moderate quality
+3. 实验设计: All 3 rate 【强】 — unanimous consensus
+4. 可行性: All 3 converge around 【中】 to 【中偏强】 — consensus on moderate feasibility
+5. 写作与呈现: All 3 rate 【强】 — unanimous consensus
+
+**Consensus risk points (2+ reviewers):**
+
+All three reviewers unanimously flag the oracle ceiling risk as critical — if the performance gap between the joint (K*,d*) and K-only approaches is negligible, the entire research motivation falls apart. Additionally, there's agreement that the technical novelty is limited, with C3 essentially reducing to an enumeration strategy.
+
+All three also cite the OSCA k-NN failure as precedent for why instance-level probing is fundamentally difficult, and R2 and R3 both note that RTR as a competing method significantly narrows the novelty space.
+
+**Anomalous points:**
+
+R2 is notably harsher on innovation compared to the others, while R1 shows more optimism about feasibility. R3 raises a framing concern — C1 might actually be the more valuable contribution, yet C3 is positioned as primary.
+
+**Convergence analysis:**
+
+The reviewers show strong alignment overall, with standard deviation around 1.25%.
+
+The three probability ranges cluster tightly around 28-40%, with medians at 32%, 33%, and 35%. Given this high consistency, I'm centering my estimate near 33% with a narrowed interval of 28-38%.
+
+For the implementation assessment, the GPU-hour estimates converge around 600-1000 hours when I take the conservative end of each range, while data access and human effort are uniformly low across all three, and training relies solely on an MLP probe.
+
+On timeline, the three estimates span quite a bit — from R1's 8-11 weeks to R3's 3-5 months — but 8-12 weeks feels like a reasonable middle ground that accounts for the variation without being overly optimistic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "661c6491-6b22-4bee-b227-c30d589bb677",
+  "isSidechain": false,
+  "requestId": "req_011CbWmigKVYAV8BJaHPzqVJ",
+  "type": "assistant",
+  "uuid": "ae18c96a-9f3d-4f8e-893d-7cac0e4b2509",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vyrk8wQHTtzZbRakBpxDLG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17738,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 3077,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3077,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 17738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-29T11:22:26.795Z_
+
+【阶段】: Meta Judge
+【三次中位】: [35%, 32%, 33%]  std=1.25%
+【共识维度】:
+- 研究问题=【强】（3/3 一致）：per-instance joint (K,d) 优化是 timely 且重要的问题，由 Adaptive Constrained 的明确 open problem 和 "When To Solve, When To Verify" 的 aggregate finding 直接驱动
+- 方法与创新=【中】（3/3 一致，R2 略偏弱至【中偏弱】）：C3 核心技术是"enumerate 4 discrete d values × reuse existing 1D closed-form solver"，数学上正确但 novelty 深度有限；VV 指标概念清晰但定义简单
+- 实验设计=【强】（3/3 一致）：7 baseline、6 ablation、3 benchmark、统计严格性，proposal 阶段罕见的完备度
+- 可行性=【中】（3/3 一致，R1 略偏强至【中偏强】）：~500+ GPU-hours 的 oracle collection 可行但不轻松；probe 学习难度是核心不确定性
+- 写作与呈现=【强】（3/3 一致）：Discover→Measure→Exploit 结构清晰，related work 定位精准
+- Oracle ceiling 风险=致命级（3/3 一致）：若 joint (K*,d*) vs. K-only gap < 5%，整个联合优化的 raison d'être 被动摇
+- Technical novelty 不足=高概率风险（3/3 一致）：至少 1-2 位审稿人会判定"trivial extension"
+- OSCA k-NN 失败先例（3/3 一致）：instance-level probe 的学习难度被低估的风险
+- RTR 压缩 novelty 空间（2/3 提及，R2+R3）：RTR 已做 per-instance joint routing，虽无 formal guarantee，但进一步缩窄差异化空间
+
+【异常维度】:
+- R2 给方法与创新【中偏弱】（其余两位给【中】）→ R2 对 novelty 更悲观，但方向一致，非 outlier，仅程度差异
+- R1 给可行性【中偏强】（其余两位给【中】）→ R1 对资源评估略乐观，差距小
+- R3 指出 framing 问题（C1 可能比 C3 更有价值但 C3 被定位为主要贡献）→ 仅 R3 明确提出，但这一观察合理且 actionable
+
+【最终概率】: [28% - 38%] 中位 33%
+【一致性】: 高
+【综合理由】:
+三位审稿人在所有 5 个 rubric 维度上判决高度一致（std=1.25%），核心矛盾的诊断完全趋同：**问题定位（强）+ 实验设计（强）+ 写作（强） vs. 方法 novelty（中/中偏弱）+ oracle 结果不确定性**。这是一篇典型的"方向正确、执行计划完善、但核心方法论贡献偏 incremental"的投稿。
+
+具体综合逻辑：
+1. **上界压缩至 38%**（低于 R1 的 42%）：因为三位审稿人均指出 C3 的技术深度有限，即使实验结果全面达标，novelty 短板限制了概率天花板。R1 的 42% 上界条件（oracle gap ≥15% + probe ≥90% + 2/3 benchmark 达标）同时满足的概率本身不高。
+2. **下界维持 28%**：三位审稿人的下界在 25%-28% 之间，其中 R2 的 25% 对应最悲观场景（oracle gap <5% + novelty 被多人判为不足）。考虑到实验设计的出色程度和写作质量提供了一定的 floor protection，28% 是合理的保守下界。
+3. **中位取 33%**：三位中位的中位数恰好是 33%，且高一致性下无需大幅调整。这反映了：在 AAAI ~24% 接收率下，一篇 strong execution + moderate novelty 的工作处于 borderline 偏上区域，最终命运取决于 (a) C1 oracle 结果的 magnitude，(b) 审稿人组成中方法论导向 vs. 实证导向的比例，(c) rebuttal 中能否展示 compelling 实验数据。
+
+【建议】: 边缘
+【实施评估】:
+  - 计算资源: ~500 GPU-hours 用于 Qwen3-8B 的 oracle collection（24 configurations × 数千 instances）；Qwen3-235B-A22B scaling validation 额外 100-200 GPU-hours（需 ≥4×A100-80G）；verifier 部署（Skywork-8B, dPRM-14B, ThinkPRM-14B）需额外推理资源。**总计 ~700-1000 GPU-hours**，中等偏高。
+  - 数据需求: MATH (5000)、GPQA Diamond (198)、LiveCodeBench (1055) 均为公开 benchmark，无数据获取障碍。Oracle annotation 数据可自动化生成并作为资源贡献公开。
+  - 人工介入: 低。Oracle collection pipeline 和 MLP 训练均可自动化。主要人工投入在实验分析设计和论文撰写。
+  - 训练需求: 仅 MLP probe 训练（轻量级，分钟级别）。不需要训练或微调任何 LLM，所有 generator 和 verifier 使用现成预训练 checkpoint。
+  - 新 Benchmark: 不需要。使用现有公开 benchmark。会产出 per-instance oracle (K*,d*) annotation 数据集作为附带资源贡献。
+  - 预估周期: Oracle data collection 2-4 周（受 GPU 并行度影响）→ C1/C2 分析 1-2 周 → MLP probe + C3 实验 2-3 周 → Ablation + 补充实验 1-2 周 → 论文撰写 2-3 周。**总计约 8-12 周**，前提是 GPU 资源充足；若资源受限，oracle collection 可能延长至 5-6 周。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae18c96a-9f3d-4f8e-893d-7cac0e4b2509",
+  "isSidechain": false,
+  "requestId": "req_011CbWmigKVYAV8BJaHPzqVJ",
+  "type": "assistant",
+  "uuid": "b292b016-1b3a-41f6-a534-15323044aaf7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vyrk8wQHTtzZbRakBpxDLG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17738,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 3077,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3077,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 17738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to provide a thorough evaluatio…",
+  "leafUuid": "b292b016-1b3a-41f6-a534-15323044aaf7",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Per-instance joint generation-verification allocation optimization",
+  "sessionId": "b2576bbd-7cd9-4995-82f0-4100c725c405"
+}
+```
+
+---

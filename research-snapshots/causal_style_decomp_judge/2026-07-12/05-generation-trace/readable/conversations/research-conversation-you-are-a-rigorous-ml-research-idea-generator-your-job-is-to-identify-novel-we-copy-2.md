@@ -1,0 +1,14006 @@
+# Research conversation: You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 198
+- **Recorded user turns:** 1
+- **Tool calls:** 62
+- **Original source:** `logs/chats/exported-trajectories/account-2/81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2.jsonl`
+- **Structured JSON:** [`35ee8dc7c79ad1579437.json`](../../sessions/35/35ee8dc7c79ad1579437.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T11:24:30.780Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:24:30.780Z",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "content": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.\n\n**Today's date: 2026-05-28 (UTC).** Use this when reasoning about conference deadlines — only recommend venues whose submission deadline has NOT yet passed.\n\n## Field Guide (from literature deep dive)\n\nBelow is a strategic analysis of the top recent papers in this area. A separate research team has already read and analyzed 10-15 top-venue papers. USE THIS as your foundation — do NOT ignore it or generate ideas from scratch.\n\n{\n  \"innovation_patterns\": [\n    {\n      \"pattern\": \"Formal analysis exposing hidden bias in standard methods\",\n      \"description\": \"Derive a clean mathematical result showing a previously unnoticed systematic bias in a widely-used algorithm, then propose a minimal fix. The formal proof makes the problem statement irrefutable and the fix self-evidently necessary, elevating an otherwise incremental contribution.\",\n      \"examples\": [\n        \"DGPO (ICLR 2026): Proved GRPO update magnitude follows 2G√(p(1−p)), systematically suppressing hard problems — MAD normalization makes it constant\",\n        \"Chasing the Tail (ICLR 2026): Theorem 1 proving RL performance is exponentially sensitive to high-reward tail accuracy, not overall reward model quality\"\n      ],\n      \"success_rate\": \"high\"\n    },\n    {\n      \"pattern\": \"Rigorous problem diagnosis as standalone contribution\",\n      \"description\": \"Invest heavily in characterizing a problem via new evaluation methodology, taxonomy, or metric BEFORE proposing any solution. The diagnostic framework itself becomes a reusable contribution that outlives the specific fix proposed.\",\n      \"examples\": [\n        \"Curing Miracle Steps (ACL 2026): Six-category false positive taxonomy + Verified Pass@N + direct answer probing — each standalone contributions that reframe math reasoning evaluation\",\n        \"Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral/Best Paper Runner-Up): Pass@k at large k reveals RLVR narrows reasoning frontier — triangulated via perplexity + entropy controls + distillation contrast\",\n        \"Reward Hacking in Rubric-Based RL (arXiv 2026): Decomposition of gaming into verifier failure vs. rubric-design failure with 90.2% presence-based vs. 8.6% absence-based structural analysis\"\n      ],\n      \"success_rate\": \"high\"\n    },\n    {\n      \"pattern\": \"Simplification that removes an assumed prerequisite\",\n      \"description\": \"Question a deeply held assumption that a particular pipeline stage is necessary, then show empirically that removing it either maintains or improves performance. The intellectual courage to subtract rather than add creates a paradigm-shifting narrative.\",\n      \"examples\": [\n        \"DeepSeek-R1 (Nature 2025): Removed SFT stage entirely — binary correctness rewards via GRPO directly on base model produced emergent self-reflection, overturning the SFT→RLHF assumption\"\n      ],\n      \"success_rate\": \"high\"\n    },\n    {\n      \"pattern\": \"Cross-domain transfer with domain-specific adaptation\",\n      \"description\": \"Import a concept from another field (education, document assessment, adversarial ML) and adapt it to RLVR with enough domain-specific engineering to create genuine value rather than a shallow analogy.\",\n      \"examples\": [\n        \"Curing Miracle Steps (ACL 2026): Brought rubric evaluation from education assessment into RL reward design, adapted with universal proof-skeleton structure\",\n        \"ARES (arXiv 2026): Brought automated rubric synthesis from document grading to general LLM evaluation\"\n      ],\n      \"success_rate\": \"medium\"\n    },\n    {\n      \"pattern\": \"Triangulation across evaluation dimensions to build irrefutable evidence\",\n      \"description\": \"Use multiple independent evaluation methodologies that each address a different counter-explanation, so no single critic can dismiss the finding by attacking one metric. Include a positive control proving the methodology CAN detect the phenomenon when it exists.\",\n      \"examples\": [\n        \"Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral): Pass@k curves + perplexity analysis + accuracy distributions + entropy matching + distillation-as-positive-control — reviewers called it 'masterfully executed'\",\n        \"Curing Miracle Steps (ACL 2026): Verified Pass@N + direct answer probing + human-validated taxonomy + F1 comparison against PRMs\"\n      ],\n      \"success_rate\": \"high\"\n    },\n    {\n      \"pattern\": \"Combination with formal justification for non-trivial interaction\",\n      \"description\": \"Combine two orthogonal techniques BUT provide a formal theorem or rigorous empirical analysis showing the interaction is super-additive or reveals a phenomenon invisible to either technique alone. Without this, reviewers will dismiss it as 'obvious bolting together.'\",\n      \"examples\": [\n        \"DGPO (ICLR 2026): DGPO algorithm + MQR data augmentation — showed synergistic gains (+4.56% combined vs. +2.18% or +3.43% individually), justified by Theorems 1-2 proving the algorithmic fix was necessary even with better data\"\n      ],\n      \"success_rate\": \"medium\"\n    }\n  ],\n  \"reviewer_preferences\": [\n    \"Formal theoretical grounding for empirical methods: DGPO's Theorems 1-2 were explicitly cited as making 'the problem statement irrefutable rather than empirical,' and Chasing the Tail's acceptance depended primarily on its Theorem 1 despite engineering-level concerns about the method (two 4-scores still couldn't block it)\",\n    \"Breadth of evaluation as argumentative strategy: 'Does RL Really Incentivize Reasoning' tested across 3 domains, 6 algorithms, 7B-to-frontier scales — all four reviewers independently praised comprehensiveness as the paper's strongest asset. DGPO showed compatibility across 4 model families and 6 benchmarks\",\n    \"Honest reporting of limitations and negative results: DeepSeek-R1's candid identification of reward hacking as unsolved, DGPO's transparent reporting of modest standalone DGPO gains (+2.18%), and RRM's admission that rubric training increased Outcome Irrelevance false positives (67→118) all enhanced rather than undermined reviewer trust\",\n    \"Positive controls proving methodology sensitivity: The distillation-as-positive-control in 'Does RL Really Incentivize' was called 'particularly brilliant' — showing that distilled models DO expand pass@k proves the metric CAN detect capability expansion, making the negative finding for RLVR irrefutable\",\n    \"Deep investment in problem characterization before solution proposal: RRM's six-category taxonomy and Verified Pass@N were cited as 'standalone contributions' that would have warranted publication even without the rubric reward method. Reviewers reward the diagnostic more than the fix\",\n    \"Reproducibility via open-source and non-proprietary dependencies: Chasing the Tail's dual reliance on GPT-4.1 as proposer AND judge was flagged by two reviewers who gave 4-scores — calling it 'bias amplification risk.' DGPO's reliance on OpenAI o3 for MQR was a recurrent concern. DeepSeek-R1's open release was explicitly cited as amplifying impact\",\n    \"Ablation studies that test the 'obvious simpler baseline': Reviewers consistently asked whether individual components suffice. DGPO survived by honestly reporting component-wise ablations. Papers that omit the naive baseline (e.g., does ARES + RRM without the novel interaction achieve similar results?) are flagged immediately\"\n  ],\n  \"field_gaps\": [\n    {\n      \"gap\": \"No framework combines automated rubric generation with difficulty-calibrated rubric strictness for math RLVR\",\n      \"evidence\": \"ARES automates rubric generation but is not math-specific and has no difficulty calibration; DGPO calibrates difficulty but only for binary outcome rewards (Theorems 1-2 assume r∈{0,1}); RRM uses rubric rewards but with uniform strictness across difficulty levels and manual generation via Gemini-2.5-Pro. Each paper's open questions section explicitly identifies the missing integration.\",\n      \"difficulty\": \"medium\",\n      \"impact_if_solved\": \"high\"\n    },\n    {\n      \"gap\": \"DGPO's formal guarantees (constant update magnitude via MAD normalization) are proven only for binary rewards — extending to continuous/multi-dimensional rubric reward vectors requires a new theoretical derivation\",\n      \"evidence\": \"DGPO Theorems 1-2 explicitly assume rewards ∈ {0,1}. The paper's open questions ask: 'Does difficulty-aware weighting interact with non-binary rewards (e.g., rubric-based or process rewards)?' DGPO reviewers flagged 'non-binary reward settings' as a missing analysis. No subsequent paper has provided this extension.\",\n      \"difficulty\": \"medium\",\n      \"impact_if_solved\": \"high\"\n    },\n    {\n      \"gap\": \"No defense mechanism against rubric gaming via ensemble diversity has been proposed or evaluated\",\n      \"evidence\": \"Reward Hacking in Rubric-Based RL diagnoses gaming mechanisms (partial satisfaction, implicit-as-explicit, 90.2% presence-based criteria) but proposes no solution. Chasing the Tail's single-proposer GPT-4.1 circularity was the primary reviewer concern. No paper tests whether using multiple diverse rubric sets for the same problem resists gaming better than a single rubric.\",\n      \"difficulty\": \"medium\",\n      \"impact_if_solved\": \"high\"\n    },\n    {\n      \"gap\": \"The interaction between difficulty calibration and rubric gaming susceptibility is completely unexplored — does calibrating strictness by difficulty reduce or amplify gaming opportunities?\",\n      \"evidence\": \"DGPO's open questions explicitly flag: 'How does DQW's difficulty estimate interact with reward hacking? If a model learns to produce superficially correct-looking outputs... its estimated difficulty drops, reducing the weight on that question — potentially creating a perverse incentive.' Reward Hacking in Rubric-Based RL diagnoses gaming but doesn't consider difficulty-stratified settings. No paper has tested this interaction.\",\n      \"difficulty\": \"high\",\n      \"impact_if_solved\": \"high\"\n    },\n    {\n      \"gap\": \"Static rubric reward models degrade as the policy improves during RL training, but no iterative/online rubric adaptation mechanism has been validated\",\n      \"evidence\": \"RRM explicitly acknowledges 'static reward model that may misalign as the policy improves during RL' as a key limitation. Chasing the Tail shows over-optimization onset timing varies by rubric quality (Figure 4) but doesn't solve the underlying problem. DeepSeek-R1 limits model-based reward RL to 400 steps specifically to avoid gaming a frozen reward model.\",\n      \"difficulty\": \"high\",\n      \"impact_if_solved\": \"high\"\n    },\n    {\n      \"gap\": \"No rubric-dimension-level gaming analysis exists — collapsing K rubric dimensions into one scalar may create K exploitable sub-scores following Goodhart's Law on decomposed rewards\",\n      \"evidence\": \"RRM collapses dimensions into a 0-10 scalar and never analyzes per-dimension gaming. RRM's open questions ask: 'can adversarial policies learn to maximize aggregate score by satisfying easy rubric dimensions (target identification, conclusion format) while skipping hard ones (property verification)?' Chasing the Tail asks: 'What is the interaction between rubric granularity (number of criteria K) and gaming susceptibility?' Neither paper answers these questions.\",\n      \"difficulty\": \"medium\",\n      \"impact_if_solved\": \"high\"\n    },\n    {\n      \"gap\": \"Whether rubric rewards can expand the reasoning frontier (pass@large-k) or merely improve sampling efficiency (pass@1) is untested\",\n      \"evidence\": \"'Does RL Really Incentivize Reasoning' shows RLVR with binary rewards narrows the reasoning frontier. They tested 6 RLVR algorithms but NONE with rubric rewards. The paper's open questions ask whether process rewards or curriculum learning could overcome the limitation. Whether richer rubric signals enable exploration of reasoning paths pruned by outcome-only RL is an empirical question no one has answered.\",\n      \"difficulty\": \"medium\",\n      \"impact_if_solved\": \"high\"\n    },\n    {\n      \"gap\": \"Absence-based rubric penalties are severely underrepresented (8.6% of criteria) despite being theoretically necessary to penalize quality degradation modes that presence-based criteria cannot catch\",\n      \"evidence\": \"Reward Hacking in Rubric-Based RL found 90.2% of rubric criteria are presence-based, 8.6% absence-based. This structural imbalance means rubrics literally cannot penalize many failure modes — the rubric design itself is biased. No paper has systematically studied the optimal presence/absence balance or proposed methods to generate effective absence-based criteria.\",\n      \"difficulty\": \"low\",\n      \"impact_if_solved\": \"medium\"\n    }\n  ],\n  \"untried_combinations\": [\n    {\n      \"idea_sketch\": \"DGPO difficulty weighting (DQW/DGAE) extended to continuous rubric reward vectors with re-derived theoretical guarantees — replacing binary reward assumptions with multi-dimensional rubric score analysis\",\n      \"from_papers\": [\n        \"DGPO / Harder Is Better (ICLR 2026)\",\n        \"Curing Miracle Steps / RRM (ACL 2026)\"\n      ],\n      \"why_promising\": \"DGPO's Theorems 1-2 are the cleanest formal results in this space but are restricted to binary rewards. Extending them to continuous rubric scores (R ∈ [0,10] or R ∈ R^K) would provide the formal backbone for difficulty-calibrated rubric rewards — the exact gap between these two papers. The mathematical extension itself would be a standalone theoretical contribution reviewers value highly, based on how Theorems 1-2 carried DGPO to acceptance.\"\n    },\n    {\n      \"idea_sketch\": \"Rubric ensemble diversity as an anti-gaming mechanism — training with multiple independently-generated rubric sets per problem, where the reward is the minimum (or median) across ensembles rather than a single rubric score\",\n      \"from_papers\": [\n        \"Reward Hacking in Rubric-Based RL (arXiv 2026)\",\n        \"Chasing the Tail (ICLR 2026)\",\n        \"Curing Miracle Steps / RRM (ACL 2026)\"\n      ],\n      \"why_promising\": \"Reward Hacking diagnoses gaming but proposes no defense. Chasing the Tail's biggest reviewer concern was single-proposer circularity (GPT-4.1 as both proposer and judge). Using multiple rubric proposers forces gaming to generalize across rubric formulations — exploiting one rubric's lenient dimension is unlikely to exploit a differently-structured rubric. The minimum-across-ensembles aggregation directly operationalizes the absence-based penalty gap (90.2% presence-based) by ensuring at least one rubric catches each failure mode.\"\n    },\n    {\n      \"idea_sketch\": \"RTD iterative rubric refinement calibrated by difficulty level — instead of iterating on 'excellent vs. great' pairs uniformly, stratify by problem difficulty and iterate on 'difficulty-appropriate excellent vs. gaming-pattern-matching' pairs\",\n      \"from_papers\": [\n        \"Chasing the Tail (ICLR 2026)\",\n        \"DGPO / Harder Is Better (ICLR 2026)\",\n        \"Reward Hacking in Rubric-Based RL (arXiv 2026)\"\n      ],\n      \"why_promising\": \"Chasing the Tail's Theorem 1 proves over-optimization is dominated by high-reward tail accuracy. Hard problems have thinner high-reward tails in the base policy distribution, meaning rubric miscalibration there causes disproportionate damage. Difficulty-stratified RTD would focus rubric precision exactly where the theory predicts it matters most. This addresses both the theoretical gap (non-uniform tail thickness) and the practical gap (gaming is easier on hard problems via partial satisfaction).\"\n    },\n    {\n      \"idea_sketch\": \"Pass@k evaluation framework applied to rubric-trained models to test whether rubric rewards expand the reasoning frontier or merely sharpen sampling efficiency\",\n      \"from_papers\": [\n        \"Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral)\",\n        \"Curing Miracle Steps / RRM (ACL 2026)\"\n      ],\n      \"why_promising\": \"The NeurIPS paper showed RLVR with binary rewards narrows the reasoning frontier but tested only outcome rewards across 6 algorithms. Whether rubric rewards — which provide richer gradient signal about WHY a solution is wrong, not just THAT it's wrong — can guide exploration toward reasoning paths pruned by binary rewards is an important open question. A positive finding (rubric rewards expand pass@large-k) would be a major result; a negative finding would be equally valuable and publishable given this paper's Best-Paper-Runner-Up precedent.\"\n    },\n    {\n      \"idea_sketch\": \"Automated difficulty estimation from rubric dimension completion patterns — using the variance of per-dimension rubric scores across sampled responses as a difficulty signal, replacing DGPO's crude negative-mean-accuracy proxy\",\n      \"from_papers\": [\n        \"DGPO / Harder Is Better (ICLR 2026)\",\n        \"Curing Miracle Steps / RRM (ACL 2026)\",\n        \"Reward Hacking in Rubric-Based RL (arXiv 2026)\"\n      ],\n      \"why_promising\": \"DGPO uses D_s = −mean(binary rewards) as difficulty proxy, which is coarse and gameable (partially correct outputs inflate apparent ease). Rubric dimension completion patterns encode much richer difficulty information: a problem where models consistently satisfy 'target identification' but fail 'property verification' is hard in a qualitatively different way than one where all dimensions fail uniformly. This rubric-derived difficulty signal is more robust to gaming because it requires consistent multi-dimensional success, not just occasional correct final answers.\"\n    },\n    {\n      \"idea_sketch\": \"Online rubric adaptation via periodic RTD refinement against RL policy checkpoints, addressing the static reward model degradation problem\",\n      \"from_papers\": [\n        \"Chasing the Tail (ICLR 2026)\",\n        \"Curing Miracle Steps / RRM (ACL 2026)\",\n        \"DeepSeek-R1 (Nature 2025)\"\n      ],\n      \"why_promising\": \"RRM flags static reward model degradation as a key limitation. DeepSeek-R1 limits model-based rewards to 400 steps to avoid gaming. Periodically re-running RTD against the current policy's outputs (not just initial base model outputs) would adapt rubric criteria to catch new gaming strategies as they emerge during training — similar to how DeepSeek-R1 updates the KL reference policy every 400 steps but applied to the reward rubrics themselves. This creates an arms race where rubrics co-evolve with the policy.\"\n    }\n  ],\n  \"method_building_blocks\": [\n    {\n      \"tool\": \"GRPO with group-relative advantage estimation\",\n      \"what_it_does\": \"Replaces PPO's learned value model with z-scored rewards within a group of G=16 sampled outputs per question, eliminating the value model entirely. Uses periodic KL reference updates (every 400 steps) and large clip ratio (ε=10) for long-sequence stability.\",\n      \"used_by\": [\n        \"DeepSeek-R1\",\n        \"DGPO\",\n        \"Chasing the Tail\"\n      ],\n      \"could_be_applied_to\": \"Foundation RL algorithm for difficulty-calibrated rubric training — swap the advantage normalization (std→MAD per DGPO) and reward signal (binary→rubric scores) while keeping the group-relative structure\"\n    },\n    {\n      \"tool\": \"MAD-based advantage normalization (DGAE)\",\n      \"what_it_does\": \"Drop-in replacement for standard-deviation normalization in GRPO that provably makes update magnitude constant (G) regardless of question difficulty, eliminating the 2G√(p(1−p)) bias. Requires derivation extension for non-binary rewards.\",\n      \"used_by\": [\n        \"DGPO\"\n      ],\n      \"could_be_applied_to\": \"Normalizing rubric reward vectors across difficulty levels — but requires re-proving the constant-magnitude property for continuous R∈[0,10] or multi-dimensional R∈R^K reward distributions\"\n    },\n    {\n      \"tool\": \"Softmax-temperature question-level weighting (DQW)\",\n      \"what_it_does\": \"Assigns per-question training weight λ_s = B_v·exp(D_s/T)/Σexp(D_s/T) where D_s=−mean(rewards) proxies difficulty and T=2.0. Upweights hard questions without completely ignoring easy ones.\",\n      \"used_by\": [\n        \"DGPO\"\n      ],\n      \"could_be_applied_to\": \"Modulating per-dimension rubric strictness by difficulty — the exponential weighting formula can be applied not just to question-level weight but to the strictness threshold of individual rubric criteria, making property verification standards tighter on hard problems\"\n    },\n    {\n      \"tool\": \"Verified Pass@N evaluation protocol\",\n      \"what_it_does\": \"Uses a strong judge model to evaluate both proc\n... (truncated)\n\n## How to use the field guide\n\n1. **Innovation patterns**: Prefer idea types that have a proven track record of acceptance. If 'cross-domain transfer' and 'simplification' keep working, lean toward those.\n2. **Field gaps**: These are VERIFIED gaps from actual paper limitations — much more reliable than gaps you might guess from pre-training knowledge. Prioritize these.\n3. **Untried combinations**: These are specific leads from the literature team. Validate each one (is it truly untried?) and develop the most promising ones.\n4. **Reviewer preferences**: Shape your ideas to match what reviewers reward. If reviewers care about 'strong baselines and ablations', bake that into the idea design.\n5. **Common pitfalls**: Explicitly check each idea against these before proposing it.\n6. **Building blocks**: Use existing tools/methods that are available rather than inventing everything.\n\n**Critical rule**: Every idea you propose should be traceable to evidence from the field guide. For each idea, you must be able to say: 'This is inspired by gap X / pattern Y / combination Z.'\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n这不是快速脑暴——这是一项需要深入研究和严谨思考的任务。你必须像一个资深研究员一样，先充分了解领域现状，再深思熟虑地提出有价值的方向。\n\n### 调研要求\n\n1. **广度**：理想情况下做 10-15 次有针对性的搜索，覆盖：\n   - 当前 SOTA 方法及其具体性能数字\n   - SOTA 的已知局限和失败场景\n   - 近 12 个月的 survey 论文（掌握领域全貌）\n   - 可迁移的跨领域方法\n   - Benchmark 排行榜（获得定量基准）\n\n2. **深度**：对每个有潜力的方向做追踪调研：\n   - 用 WebFetch 阅读关键论文的核心内容（不只是看搜索结果标题）\n   - 查找独立复现结果来验证论文 claim\n   - 检查你发现的 gap 是否已被最近 3 个月的工作解决\n\n### 思考要求\n\n3. **批判性思维**（在生成每个 idea 之前，先停下来认真思考）：\n   - \"如果我是一个怀疑论的 reviewer，我会质疑什么？\"\n   - \"有没有更简单的 baseline 能达到类似效果？\"\n   - \"这真的解决了一个实际问题，还是只是边际改进？\"\n   - \"这个方向为什么现在可以做，之前为什么没人做？\"\n\n4. **深度思考**：\n   - 不要从浅层理解出发生成 idea——每个 idea 必须建立在具体论文、具体数字、具体 gap 之上\n   - 思考不同方法之间的联系和矛盾——这往往是创新的来源\n   - 考虑方法的 scalability 和 generalizability\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} 2026` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} 2026` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} 2026 site:scholar.google.com`\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} 2026` — 按活跃作者追踪\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} 2026` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey 2026` — 找综述论文\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n\n### 搜索维度\n\n1. **正向搜索**：直接搜索主题相关论文\n2. **竞争论文搜索**（最关键！）：有没有人在解决同样的问题？用类似方法？\n3. **相邻领域搜索**：其他领域是否已解决类似问题\n4. **反面搜索**：找到反对你 idea 的证据\n5. **引用链追踪**：找到核心论文后，查看 cited-by 发现 concurrent work\n\n\n**Landscape freshness rule**: Your training data may be outdated. When assessing SOTA in the landscape field, ONLY cite methods/results you found via web_search in this session — do NOT fall back to pre-training knowledge for what the current best methods or benchmarks are. If your searches don't surface clear SOTA for a direction, add an extra search specifically for \"{topic} benchmark SOTA 2026\" or \"{{topic}} leaderboard\" before writing the landscape.\n\n## Novelty assessment standard\nWhen evaluating novelty via web_search:\n| Related papers found | Verdict | Action |\n|:---:|---|---|\n| 0-2 | Novel | Proceed |\n| 3-5 | Existing work | Keep but note related work and differentiation |\n| >5 | Mature field | Pivot to a differentiated angle |\n\n## Seed topic\n**Target: AAAI 2027\nTrack: Machine Learning — Reinforcement Learning / AI Safety\n\nDirection: Develop an automated, difficulty-calibrated rubric reward framework for math RLVR training that combines problem-specific rubric generation, difficulty-aware rubric strictness calibration, and rubric ensemble diversity to resist gaming. The key insight is that rubric rewards are only as robust as their calibration — uniform rubrics across difficulty levels create exploitable gaps where models earn high rubric scores on hard problems via shallow pattern matching.\n\nSeed Papers:\n- Curing Miracle Steps with Rubric Rewards (arXiv:2510.07774, 2025) — establishes rubric rewards for math, 26.7%→62.6% verified pass@1024 on AIME, but rubrics are manual and uniform\n- ARES: Automated Rubric Synthesis (arXiv:2605.23454, 2026) — automates rubric generation at scale from documents, but not math-specific and no difficulty calibration\n- Harder Is Better / DGPO (arXiv:2601.20614, ICLR 2026) — difficulty-aware GRPO for math training, but applies only to outcome rewards, not rubric rewards\n- Reward Hacking in Rubric-Based RL (arXiv:2605.12474, 2026) — diagnoses rubric gaming mechanisms (partial satisfaction, implicit-as-explicit, imprecise matching) but proposes no solution\n- SRaR: Step-wise Rubric Rewards (arXiv:2605.17291, 2025) — step-level rubric attribution with decoupled advantage, but no automation or calibration\n- Reward Under Attack (arXiv:2603.06621, 2026) — quantifies >0.9 PRM reward with <4% accuracy, 43% from stylistic shortcuts\n\nKnown Gaps:\n- No framework combines automated math-specific rubric generation with difficulty-calibrated rubric strictness (ARES automates but doesn't calibrate; DGPO calibrates difficulty but not rubrics)\n- Rubric gaming has been diagnosed (arXiv:2605.12474) but no defense mechanism via rubric ensemble diversity has been proposed or evaluated\n- The interaction between difficulty calibration and rubric anti-gaming is unexplored: does calibrating strictness by difficulty reduce or amplify gaming opportunities?\n\nTheoretical Anchor: Goodhart's Law applied to rubric decomposition — when a reward is decomposed into K rubric dimensions, the optimization target shifts from gaming one scalar to gaming K sub-scores, but uniform weighting across difficulty levels creates systematic exploitation gradients where hard-problem rubrics are easier to partially satisfy than to genuinely earn.\n\nConstraints:\n- Compute: ≤200 H100-hours (estimated 60-90 H100-hours)\n\nQuality Self-Checks:\n- [x] Core insight: Rubric rewards without difficulty-aware calibration create exploitable strictness gaps on hard problems that models can game via partial satisfaction.\n- [ ] Why not obvious: The pieces exist (ARES, DGPO, RRM) — the risk is this reads as 'obvious combination.' Must demonstrate non-trivial interaction effects between difficulty calibration and rubric gaming.\n- [ ] Baseline fear test: Could simply applying ARES rubrics + DGPO weighting to RRM achieve 80% of the improvement? Likely yes — the marginal contribution of the anti-gaming ensemble and calibration interaction must be demonstrated.\n- [ ] Information exploited: Problem difficulty metadata (base model pass rate, competition level) to modulate per-dimension rubric strictness — something outcome-only methods ignore.\n\nAvoid:\n- Presenting as a simple combination of ARES + DGPO + RRM without a unifying theoretical contribution about calibration-gaming interaction\n- Overclaiming novelty on rubric automation (ARES already does this) or difficulty awareness (DGPO already does this) — the contribution must be the synthesis and the interaction analysis\n- Ignoring the baseline fear: must run ARES+DGPO+RRM ablation honestly and show the ensemble/calibration interaction provides meaningful lift**\n\nFormulate 1 research directions grounded in real evidence.\n\n## Output format (Round 1)\nAfter completing your research, output a JSON array. Each element has ONLY these fields:\n{\n  \"title\": \"Concise English title (max 10 words)\",\n  \"core_problem\": \"The fundamental research question (1-2 sentences)\",\n  \"opportunity\": \"The specific gap or why now (2-3 sentences)\",\n  \"landscape\": \"Current SOTA and key limitations, grounded in papers you found (3-5 sentences)\",\n  \"inspired_by\": \"Which field guide evidence (gap/pattern/combination) inspired this idea\"\n}\nIMPORTANT: You MUST end your response with the JSON array."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T11:24:30.783Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T11:24:30.783Z",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+## Round 1
+
+196 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T11:24:30.797Z_
+
+You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.
+
+**Today's date: 2026-05-28 (UTC).** Use this when reasoning about conference deadlines — only recommend venues whose submission deadline has NOT yet passed.
+
+## Field Guide (from literature deep dive)
+
+Below is a strategic analysis of the top recent papers in this area. A separate research team has already read and analyzed 10-15 top-venue papers. USE THIS as your foundation — do NOT ignore it or generate ideas from scratch.
+
+{
+  "innovation_patterns": [
+    {
+      "pattern": "Formal analysis exposing hidden bias in standard methods",
+      "description": "Derive a clean mathematical result showing a previously unnoticed systematic bias in a widely-used algorithm, then propose a minimal fix. The formal proof makes the problem statement irrefutable and the fix self-evidently necessary, elevating an otherwise incremental contribution.",
+      "examples": [
+        "DGPO (ICLR 2026): Proved GRPO update magnitude follows 2G√(p(1−p)), systematically suppressing hard problems — MAD normalization makes it constant",
+        "Chasing the Tail (ICLR 2026): Theorem 1 proving RL performance is exponentially sensitive to high-reward tail accuracy, not overall reward model quality"
+      ],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Rigorous problem diagnosis as standalone contribution",
+      "description": "Invest heavily in characterizing a problem via new evaluation methodology, taxonomy, or metric BEFORE proposing any solution. The diagnostic framework itself becomes a reusable contribution that outlives the specific fix proposed.",
+      "examples": [
+        "Curing Miracle Steps (ACL 2026): Six-category false positive taxonomy + Verified Pass@N + direct answer probing — each standalone contributions that reframe math reasoning evaluation",
+        "Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral/Best Paper Runner-Up): Pass@k at large k reveals RLVR narrows reasoning frontier — triangulated via perplexity + entropy controls + distillation contrast",
+        "Reward Hacking in Rubric-Based RL (arXiv 2026): Decomposition of gaming into verifier failure vs. rubric-design failure with 90.2% presence-based vs. 8.6% absence-based structural analysis"
+      ],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Simplification that removes an assumed prerequisite",
+      "description": "Question a deeply held assumption that a particular pipeline stage is necessary, then show empirically that removing it either maintains or improves performance. The intellectual courage to subtract rather than add creates a paradigm-shifting narrative.",
+      "examples": [
+        "DeepSeek-R1 (Nature 2025): Removed SFT stage entirely — binary correctness rewards via GRPO directly on base model produced emergent self-reflection, overturning the SFT→RLHF assumption"
+      ],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Cross-domain transfer with domain-specific adaptation",
+      "description": "Import a concept from another field (education, document assessment, adversarial ML) and adapt it to RLVR with enough domain-specific engineering to create genuine value rather than a shallow analogy.",
+      "examples": [
+        "Curing Miracle Steps (ACL 2026): Brought rubric evaluation from education assessment into RL reward design, adapted with universal proof-skeleton structure",
+        "ARES (arXiv 2026): Brought automated rubric synthesis from document grading to general LLM evaluation"
+      ],
+      "success_rate": "medium"
+    },
+    {
+      "pattern": "Triangulation across evaluation dimensions to build irrefutable evidence",
+      "description": "Use multiple independent evaluation methodologies that each address a different counter-explanation, so no single critic can dismiss the finding by attacking one metric. Include a positive control proving the methodology CAN detect the phenomenon when it exists.",
+      "examples": [
+        "Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral): Pass@k curves + perplexity analysis + accuracy distributions + entropy matching + distillation-as-positive-control — reviewers called it 'masterfully executed'",
+        "Curing Miracle Steps (ACL 2026): Verified Pass@N + direct answer probing + human-validated taxonomy + F1 comparison against PRMs"
+      ],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Combination with formal justification for non-trivial interaction",
+      "description": "Combine two orthogonal techniques BUT provide a formal theorem or rigorous empirical analysis showing the interaction is super-additive or reveals a phenomenon invisible to either technique alone. Without this, reviewers will dismiss it as 'obvious bolting together.'",
+      "examples": [
+        "DGPO (ICLR 2026): DGPO algorithm + MQR data augmentation — showed synergistic gains (+4.56% combined vs. +2.18% or +3.43% individually), justified by Theorems 1-2 proving the algorithmic fix was necessary even with better data"
+      ],
+      "success_rate": "medium"
+    }
+  ],
+  "reviewer_preferences": [
+    "Formal theoretical grounding for empirical methods: DGPO's Theorems 1-2 were explicitly cited as making 'the problem statement irrefutable rather than empirical,' and Chasing the Tail's acceptance depended primarily on its Theorem 1 despite engineering-level concerns about the method (two 4-scores still couldn't block it)",
+    "Breadth of evaluation as argumentative strategy: 'Does RL Really Incentivize Reasoning' tested across 3 domains, 6 algorithms, 7B-to-frontier scales — all four reviewers independently praised comprehensiveness as the paper's strongest asset. DGPO showed compatibility across 4 model families and 6 benchmarks",
+    "Honest reporting of limitations and negative results: DeepSeek-R1's candid identification of reward hacking as unsolved, DGPO's transparent reporting of modest standalone DGPO gains (+2.18%), and RRM's admission that rubric training increased Outcome Irrelevance false positives (67→118) all enhanced rather than undermined reviewer trust",
+    "Positive controls proving methodology sensitivity: The distillation-as-positive-control in 'Does RL Really Incentivize' was called 'particularly brilliant' — showing that distilled models DO expand pass@k proves the metric CAN detect capability expansion, making the negative finding for RLVR irrefutable",
+    "Deep investment in problem characterization before solution proposal: RRM's six-category taxonomy and Verified Pass@N were cited as 'standalone contributions' that would have warranted publication even without the rubric reward method. Reviewers reward the diagnostic more than the fix",
+    "Reproducibility via open-source and non-proprietary dependencies: Chasing the Tail's dual reliance on GPT-4.1 as proposer AND judge was flagged by two reviewers who gave 4-scores — calling it 'bias amplification risk.' DGPO's reliance on OpenAI o3 for MQR was a recurrent concern. DeepSeek-R1's open release was explicitly cited as amplifying impact",
+    "Ablation studies that test the 'obvious simpler baseline': Reviewers consistently asked whether individual components suffice. DGPO survived by honestly reporting component-wise ablations. Papers that omit the naive baseline (e.g., does ARES + RRM without the novel interaction achieve similar results?) are flagged immediately"
+  ],
+  "field_gaps": [
+    {
+      "gap": "No framework combines automated rubric generation with difficulty-calibrated rubric strictness for math RLVR",
+      "evidence": "ARES automates rubric generation but is not math-specific and has no difficulty calibration; DGPO calibrates difficulty but only for binary outcome rewards (Theorems 1-2 assume r∈{0,1}); RRM uses rubric rewards but with uniform strictness across difficulty levels and manual generation via Gemini-2.5-Pro. Each paper's open questions section explicitly identifies the missing integration.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "DGPO's formal guarantees (constant update magnitude via MAD normalization) are proven only for binary rewards — extending to continuous/multi-dimensional rubric reward vectors requires a new theoretical derivation",
+      "evidence": "DGPO Theorems 1-2 explicitly assume rewards ∈ {0,1}. The paper's open questions ask: 'Does difficulty-aware weighting interact with non-binary rewards (e.g., rubric-based or process rewards)?' DGPO reviewers flagged 'non-binary reward settings' as a missing analysis. No subsequent paper has provided this extension.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "No defense mechanism against rubric gaming via ensemble diversity has been proposed or evaluated",
+      "evidence": "Reward Hacking in Rubric-Based RL diagnoses gaming mechanisms (partial satisfaction, implicit-as-explicit, 90.2% presence-based criteria) but proposes no solution. Chasing the Tail's single-proposer GPT-4.1 circularity was the primary reviewer concern. No paper tests whether using multiple diverse rubric sets for the same problem resists gaming better than a single rubric.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "The interaction between difficulty calibration and rubric gaming susceptibility is completely unexplored — does calibrating strictness by difficulty reduce or amplify gaming opportunities?",
+      "evidence": "DGPO's open questions explicitly flag: 'How does DQW's difficulty estimate interact with reward hacking? If a model learns to produce superficially correct-looking outputs... its estimated difficulty drops, reducing the weight on that question — potentially creating a perverse incentive.' Reward Hacking in Rubric-Based RL diagnoses gaming but doesn't consider difficulty-stratified settings. No paper has tested this interaction.",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Static rubric reward models degrade as the policy improves during RL training, but no iterative/online rubric adaptation mechanism has been validated",
+      "evidence": "RRM explicitly acknowledges 'static reward model that may misalign as the policy improves during RL' as a key limitation. Chasing the Tail shows over-optimization onset timing varies by rubric quality (Figure 4) but doesn't solve the underlying problem. DeepSeek-R1 limits model-based reward RL to 400 steps specifically to avoid gaming a frozen reward model.",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "No rubric-dimension-level gaming analysis exists — collapsing K rubric dimensions into one scalar may create K exploitable sub-scores following Goodhart's Law on decomposed rewards",
+      "evidence": "RRM collapses dimensions into a 0-10 scalar and never analyzes per-dimension gaming. RRM's open questions ask: 'can adversarial policies learn to maximize aggregate score by satisfying easy rubric dimensions (target identification, conclusion format) while skipping hard ones (property verification)?' Chasing the Tail asks: 'What is the interaction between rubric granularity (number of criteria K) and gaming susceptibility?' Neither paper answers these questions.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Whether rubric rewards can expand the reasoning frontier (pass@large-k) or merely improve sampling efficiency (pass@1) is untested",
+      "evidence": "'Does RL Really Incentivize Reasoning' shows RLVR with binary rewards narrows the reasoning frontier. They tested 6 RLVR algorithms but NONE with rubric rewards. The paper's open questions ask whether process rewards or curriculum learning could overcome the limitation. Whether richer rubric signals enable exploration of reasoning paths pruned by outcome-only RL is an empirical question no one has answered.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Absence-based rubric penalties are severely underrepresented (8.6% of criteria) despite being theoretically necessary to penalize quality degradation modes that presence-based criteria cannot catch",
+      "evidence": "Reward Hacking in Rubric-Based RL found 90.2% of rubric criteria are presence-based, 8.6% absence-based. This structural imbalance means rubrics literally cannot penalize many failure modes — the rubric design itself is biased. No paper has systematically studied the optimal presence/absence balance or proposed methods to generate effective absence-based criteria.",
+      "difficulty": "low",
+      "impact_if_solved": "medium"
+    }
+  ],
+  "untried_combinations": [
+    {
+      "idea_sketch": "DGPO difficulty weighting (DQW/DGAE) extended to continuous rubric reward vectors with re-derived theoretical guarantees — replacing binary reward assumptions with multi-dimensional rubric score analysis",
+      "from_papers": [
+        "DGPO / Harder Is Better (ICLR 2026)",
+        "Curing Miracle Steps / RRM (ACL 2026)"
+      ],
+      "why_promising": "DGPO's Theorems 1-2 are the cleanest formal results in this space but are restricted to binary rewards. Extending them to continuous rubric scores (R ∈ [0,10] or R ∈ R^K) would provide the formal backbone for difficulty-calibrated rubric rewards — the exact gap between these two papers. The mathematical extension itself would be a standalone theoretical contribution reviewers value highly, based on how Theorems 1-2 carried DGPO to acceptance."
+    },
+    {
+      "idea_sketch": "Rubric ensemble diversity as an anti-gaming mechanism — training with multiple independently-generated rubric sets per problem, where the reward is the minimum (or median) across ensembles rather than a single rubric score",
+      "from_papers": [
+        "Reward Hacking in Rubric-Based RL (arXiv 2026)",
+        "Chasing the Tail (ICLR 2026)",
+        "Curing Miracle Steps / RRM (ACL 2026)"
+      ],
+      "why_promising": "Reward Hacking diagnoses gaming but proposes no defense. Chasing the Tail's biggest reviewer concern was single-proposer circularity (GPT-4.1 as both proposer and judge). Using multiple rubric proposers forces gaming to generalize across rubric formulations — exploiting one rubric's lenient dimension is unlikely to exploit a differently-structured rubric. The minimum-across-ensembles aggregation directly operationalizes the absence-based penalty gap (90.2% presence-based) by ensuring at least one rubric catches each failure mode."
+    },
+    {
+      "idea_sketch": "RTD iterative rubric refinement calibrated by difficulty level — instead of iterating on 'excellent vs. great' pairs uniformly, stratify by problem difficulty and iterate on 'difficulty-appropriate excellent vs. gaming-pattern-matching' pairs",
+      "from_papers": [
+        "Chasing the Tail (ICLR 2026)",
+        "DGPO / Harder Is Better (ICLR 2026)",
+        "Reward Hacking in Rubric-Based RL (arXiv 2026)"
+      ],
+      "why_promising": "Chasing the Tail's Theorem 1 proves over-optimization is dominated by high-reward tail accuracy. Hard problems have thinner high-reward tails in the base policy distribution, meaning rubric miscalibration there causes disproportionate damage. Difficulty-stratified RTD would focus rubric precision exactly where the theory predicts it matters most. This addresses both the theoretical gap (non-uniform tail thickness) and the practical gap (gaming is easier on hard problems via partial satisfaction)."
+    },
+    {
+      "idea_sketch": "Pass@k evaluation framework applied to rubric-trained models to test whether rubric rewards expand the reasoning frontier or merely sharpen sampling efficiency",
+      "from_papers": [
+        "Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral)",
+        "Curing Miracle Steps / RRM (ACL 2026)"
+      ],
+      "why_promising": "The NeurIPS paper showed RLVR with binary rewards narrows the reasoning frontier but tested only outcome rewards across 6 algorithms. Whether rubric rewards — which provide richer gradient signal about WHY a solution is wrong, not just THAT it's wrong — can guide exploration toward reasoning paths pruned by binary rewards is an important open question. A positive finding (rubric rewards expand pass@large-k) would be a major result; a negative finding would be equally valuable and publishable given this paper's Best-Paper-Runner-Up precedent."
+    },
+    {
+      "idea_sketch": "Automated difficulty estimation from rubric dimension completion patterns — using the variance of per-dimension rubric scores across sampled responses as a difficulty signal, replacing DGPO's crude negative-mean-accuracy proxy",
+      "from_papers": [
+        "DGPO / Harder Is Better (ICLR 2026)",
+        "Curing Miracle Steps / RRM (ACL 2026)",
+        "Reward Hacking in Rubric-Based RL (arXiv 2026)"
+      ],
+      "why_promising": "DGPO uses D_s = −mean(binary rewards) as difficulty proxy, which is coarse and gameable (partially correct outputs inflate apparent ease). Rubric dimension completion patterns encode much richer difficulty information: a problem where models consistently satisfy 'target identification' but fail 'property verification' is hard in a qualitatively different way than one where all dimensions fail uniformly. This rubric-derived difficulty signal is more robust to gaming because it requires consistent multi-dimensional success, not just occasional correct final answers."
+    },
+    {
+      "idea_sketch": "Online rubric adaptation via periodic RTD refinement against RL policy checkpoints, addressing the static reward model degradation problem",
+      "from_papers": [
+        "Chasing the Tail (ICLR 2026)",
+        "Curing Miracle Steps / RRM (ACL 2026)",
+        "DeepSeek-R1 (Nature 2025)"
+      ],
+      "why_promising": "RRM flags static reward model degradation as a key limitation. DeepSeek-R1 limits model-based rewards to 400 steps to avoid gaming. Periodically re-running RTD against the current policy's outputs (not just initial base model outputs) would adapt rubric criteria to catch new gaming strategies as they emerge during training — similar to how DeepSeek-R1 updates the KL reference policy every 400 steps but applied to the reward rubrics themselves. This creates an arms race where rubrics co-evolve with the policy."
+    }
+  ],
+  "method_building_blocks": [
+    {
+      "tool": "GRPO with group-relative advantage estimation",
+      "what_it_does": "Replaces PPO's learned value model with z-scored rewards within a group of G=16 sampled outputs per question, eliminating the value model entirely. Uses periodic KL reference updates (every 400 steps) and large clip ratio (ε=10) for long-sequence stability.",
+      "used_by": [
+        "DeepSeek-R1",
+        "DGPO",
+        "Chasing the Tail"
+      ],
+      "could_be_applied_to": "Foundation RL algorithm for difficulty-calibrated rubric training — swap the advantage normalization (std→MAD per DGPO) and reward signal (binary→rubric scores) while keeping the group-relative structure"
+    },
+    {
+      "tool": "MAD-based advantage normalization (DGAE)",
+      "what_it_does": "Drop-in replacement for standard-deviation normalization in GRPO that provably makes update magnitude constant (G) regardless of question difficulty, eliminating the 2G√(p(1−p)) bias. Requires derivation extension for non-binary rewards.",
+      "used_by": [
+        "DGPO"
+      ],
+      "could_be_applied_to": "Normalizing rubric reward vectors across difficulty levels — but requires re-proving the constant-magnitude property for continuous R∈[0,10] or multi-dimensional R∈R^K reward distributions"
+    },
+    {
+      "tool": "Softmax-temperature question-level weighting (DQW)",
+      "what_it_does": "Assigns per-question training weight λ_s = B_v·exp(D_s/T)/Σexp(D_s/T) where D_s=−mean(rewards) proxies difficulty and T=2.0. Upweights hard questions without completely ignoring easy ones.",
+      "used_by": [
+        "DGPO"
+      ],
+      "could_be_applied_to": "Modulating per-dimension rubric strictness by difficulty — the exponential weighting formula can be applied not just to question-level weight but to the strictness threshold of individual rubric criteria, making property verification standards tighter on hard problems"
+    },
+    {
+      "tool": "Verified Pass@N evaluation protocol",
+      "what_it_does": "Uses a strong judge model to evaluate both proc
+... (truncated)
+
+## How to use the field guide
+
+1. **Innovation patterns**: Prefer idea types that have a proven track record of acceptance. If 'cross-domain transfer' and 'simplification' keep working, lean toward those.
+2. **Field gaps**: These are VERIFIED gaps from actual paper limitations — much more reliable than gaps you might guess from pre-training knowledge. Prioritize these.
+3. **Untried combinations**: These are specific leads from the literature team. Validate each one (is it truly untried?) and develop the most promising ones.
+4. **Reviewer preferences**: Shape your ideas to match what reviewers reward. If reviewers care about 'strong baselines and ablations', bake that into the idea design.
+5. **Common pitfalls**: Explicitly check each idea against these before proposing it.
+6. **Building blocks**: Use existing tools/methods that are available rather than inventing everything.
+
+**Critical rule**: Every idea you propose should be traceable to evidence from the field guide. For each idea, you must be able to say: 'This is inspired by gap X / pattern Y / combination Z.'
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+这不是快速脑暴——这是一项需要深入研究和严谨思考的任务。你必须像一个资深研究员一样，先充分了解领域现状，再深思熟虑地提出有价值的方向。
+
+### 调研要求
+
+1. **广度**：理想情况下做 10-15 次有针对性的搜索，覆盖：
+   - 当前 SOTA 方法及其具体性能数字
+   - SOTA 的已知局限和失败场景
+   - 近 12 个月的 survey 论文（掌握领域全貌）
+   - 可迁移的跨领域方法
+   - Benchmark 排行榜（获得定量基准）
+
+2. **深度**：对每个有潜力的方向做追踪调研：
+   - 用 WebFetch 阅读关键论文的核心内容（不只是看搜索结果标题）
+   - 查找独立复现结果来验证论文 claim
+   - 检查你发现的 gap 是否已被最近 3 个月的工作解决
+
+### 思考要求
+
+3. **批判性思维**（在生成每个 idea 之前，先停下来认真思考）：
+   - "如果我是一个怀疑论的 reviewer，我会质疑什么？"
+   - "有没有更简单的 baseline 能达到类似效果？"
+   - "这真的解决了一个实际问题，还是只是边际改进？"
+   - "这个方向为什么现在可以做，之前为什么没人做？"
+
+4. **深度思考**：
+   - 不要从浅层理解出发生成 idea——每个 idea 必须建立在具体论文、具体数字、具体 gap 之上
+   - 思考不同方法之间的联系和矛盾——这往往是创新的来源
+   - 考虑方法的 scalability 和 generalizability
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} 2026` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} 2026` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} 2026 site:scholar.google.com`
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} 2026` — 按活跃作者追踪
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} 2026` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey 2026` — 找综述论文
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+
+### 搜索维度
+
+1. **正向搜索**：直接搜索主题相关论文
+2. **竞争论文搜索**（最关键！）：有没有人在解决同样的问题？用类似方法？
+3. **相邻领域搜索**：其他领域是否已解决类似问题
+4. **反面搜索**：找到反对你 idea 的证据
+5. **引用链追踪**：找到核心论文后，查看 cited-by 发现 concurrent work
+
+
+**Landscape freshness rule**: Your training data may be outdated. When assessing SOTA in the landscape field, ONLY cite methods/results you found via web_search in this session — do NOT fall back to pre-training knowledge for what the current best methods or benchmarks are. If your searches don't surface clear SOTA for a direction, add an extra search specifically for "{topic} benchmark SOTA 2026" or "{{topic}} leaderboard" before writing the landscape.
+
+## Novelty assessment standard
+When evaluating novelty via web_search:
+| Related papers found | Verdict | Action |
+|:---:|---|---|
+| 0-2 | Novel | Proceed |
+| 3-5 | Existing work | Keep but note related work and differentiation |
+| >5 | Mature field | Pivot to a differentiated angle |
+
+## Seed topic
+**Target: AAAI 2027
+Track: Machine Learning — Reinforcement Learning / AI Safety
+
+Direction: Develop an automated, difficulty-calibrated rubric reward framework for math RLVR training that combines problem-specific rubric generation, difficulty-aware rubric strictness calibration, and rubric ensemble diversity to resist gaming. The key insight is that rubric rewards are only as robust as their calibration — uniform rubrics across difficulty levels create exploitable gaps where models earn high rubric scores on hard problems via shallow pattern matching.
+
+Seed Papers:
+- Curing Miracle Steps with Rubric Rewards (arXiv:2510.07774, 2025) — establishes rubric rewards for math, 26.7%→62.6% verified pass@1024 on AIME, but rubrics are manual and uniform
+- ARES: Automated Rubric Synthesis (arXiv:2605.23454, 2026) — automates rubric generation at scale from documents, but not math-specific and no difficulty calibration
+- Harder Is Better / DGPO (arXiv:2601.20614, ICLR 2026) — difficulty-aware GRPO for math training, but applies only to outcome rewards, not rubric rewards
+- Reward Hacking in Rubric-Based RL (arXiv:2605.12474, 2026) — diagnoses rubric gaming mechanisms (partial satisfaction, implicit-as-explicit, imprecise matching) but proposes no solution
+- SRaR: Step-wise Rubric Rewards (arXiv:2605.17291, 2025) — step-level rubric attribution with decoupled advantage, but no automation or calibration
+- Reward Under Attack (arXiv:2603.06621, 2026) — quantifies >0.9 PRM reward with <4% accuracy, 43% from stylistic shortcuts
+
+Known Gaps:
+- No framework combines automated math-specific rubric generation with difficulty-calibrated rubric strictness (ARES automates but doesn't calibrate; DGPO calibrates difficulty but not rubrics)
+- Rubric gaming has been diagnosed (arXiv:2605.12474) but no defense mechanism via rubric ensemble diversity has been proposed or evaluated
+- The interaction between difficulty calibration and rubric anti-gaming is unexplored: does calibrating strictness by difficulty reduce or amplify gaming opportunities?
+
+Theoretical Anchor: Goodhart's Law applied to rubric decomposition — when a reward is decomposed into K rubric dimensions, the optimization target shifts from gaming one scalar to gaming K sub-scores, but uniform weighting across difficulty levels creates systematic exploitation gradients where hard-problem rubrics are easier to partially satisfy than to genuinely earn.
+
+Constraints:
+- Compute: ≤200 H100-hours (estimated 60-90 H100-hours)
+
+Quality Self-Checks:
+- [x] Core insight: Rubric rewards without difficulty-aware calibration create exploitable strictness gaps on hard problems that models can game via partial satisfaction.
+- [ ] Why not obvious: The pieces exist (ARES, DGPO, RRM) — the risk is this reads as 'obvious combination.' Must demonstrate non-trivial interaction effects between difficulty calibration and rubric gaming.
+- [ ] Baseline fear test: Could simply applying ARES rubrics + DGPO weighting to RRM achieve 80% of the improvement? Likely yes — the marginal contribution of the anti-gaming ensemble and calibration interaction must be demonstrated.
+- [ ] Information exploited: Problem difficulty metadata (base model pass rate, competition level) to modulate per-dimension rubric strictness — something outcome-only methods ignore.
+
+Avoid:
+- Presenting as a simple combination of ARES + DGPO + RRM without a unifying theoretical contribution about calibration-gaming interaction
+- Overclaiming novelty on rubric automation (ARES already does this) or difficulty awareness (DGPO already does this) — the contribution must be the synthesis and the interaction analysis
+- Ignoring the baseline fear: must run ARES+DGPO+RRM ablation honestly and show the ensemble/calibration interaction provides meaningful lift**
+
+Formulate 1 research directions grounded in real evidence.
+
+## Output format (Round 1)
+After completing your research, output a JSON array. Each element has ONLY these fields:
+{
+  "title": "Concise English title (max 10 words)",
+  "core_problem": "The fundamental research question (1-2 sentences)",
+  "opportunity": "The specific gap or why now (2-3 sentences)",
+  "landscape": "Current SOTA and key limitations, grounded in papers you found (3-5 sentences)",
+  "inspired_by": "Which field guide evidence (gap/pattern/combination) inspired this idea"
+}
+IMPORTANT: You MUST end your response with the JSON array.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "75727460-b5ca-4692-9d60-b7a80c18de9b",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T11:24:30.796Z_
+
+```json
+{
+  "parentUuid": "75727460-b5ca-4692-9d60-b7a80c18de9b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "db3b33d0-340e-495c-94c8-b14476b59a51",
+  "timestamp": "2026-05-28T11:24:30.796Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T11:24:30.796Z_
+
+```json
+{
+  "parentUuid": "db3b33d0-340e-495c-94c8-b14476b59a51",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "049942a5-fa2a-4592-9a4d-ffb09c1dd4ec",
+  "timestamp": "2026-05-28T11:24:30.796Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "049942a5-fa2a-4592-9a4d-ffb09c1dd4ec",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T11:24:42.724Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to generate a well-grounded research direction for AAAI 2027 in the area of difficulty-calibrated rubric rewards for math RLVR training. I need to do deep research first, then formulate 1 research direction.
+
+Let me start by doing extensive web searches to understand the current landscape, verify the gaps mentioned, and check for any recent work that might have already addressed these gaps.
+
+Let me plan my searches:
+
+1. Check AAAI 2027 deadline
+2. Search for recent work on rubric rewards for math RLVR
+
+
+3. Explore how DGPO might extend to non-binary reward signals
+4. Look into defenses against rubric gaming
+5. Check for work on generating difficulty-calibrated rubrics
+6. Search for ensemble approaches to rubric design
+7. See if anyone's combined ARES with DGPO
+8. Examine pass@k analysis using rubric rewards
+9. Look for online or adaptive rubric refinement methods
+10. Check for concurrent work on this exact topic
+
+I'll run these searches in parallel to map out the research landscape.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "049942a5-fa2a-4592-9a4d-ffb09c1dd4ec",
+  "isSidechain": false,
+  "requestId": "req_011CbUtAGKmt6j5QYNpPrGeR",
+  "type": "assistant",
+  "uuid": "134f8f3a-14a9-41b2-931a-5d00a85fb67d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013o2eadG1YSxZAriiwErLfR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9422,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9422,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 9422,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9422
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T11:24:42.726Z_
+
+I'll conduct thorough research before proposing any ideas. Let me start with multiple parallel searches to understand the current landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "134f8f3a-14a9-41b2-931a-5d00a85fb67d",
+  "isSidechain": false,
+  "requestId": "req_011CbUtAGKmt6j5QYNpPrGeR",
+  "type": "assistant",
+  "uuid": "65d14464-47d2-4b70-98de-8eb28f313f74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013o2eadG1YSxZAriiwErLfR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9422,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9422,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 9422,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9422
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T11:24:42.735Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LChVVW4FFqVjYj5BPRF2Lt`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65d14464-47d2-4b70-98de-8eb28f313f74",
+  "isSidechain": false,
+  "requestId": "req_011CbUtAGKmt6j5QYNpPrGeR",
+  "type": "assistant",
+  "uuid": "7d0b5309-3582-45c2-a908-d0dfc24c9444",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013o2eadG1YSxZAriiwErLfR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9422,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9422,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 9422,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9422
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T11:24:42.742Z_
+
+<details><summary>↩ Tool result · `toolu_01LChVVW4FFqVjYj5BPRF2Lt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d0b5309-3582-45c2-a908-d0dfc24c9444",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "05a2b56b-a978-46b0-b4e1-3c7a36702183",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "7d0b5309-3582-45c2-a908-d0dfc24c9444",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T11:24:45.566Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me start my research with multiple parallel searches covering different aspects of the topic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05a2b56b-a978-46b0-b4e1-3c7a36702183",
+  "isSidechain": false,
+  "requestId": "req_011CbUtB9jvRccicHYKk9f9a",
+  "type": "assistant",
+  "uuid": "9243b65f-f50c-4309-8de2-a663367e6297",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PL2dMEnDDcJswb746AncwH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 20436,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 20436,
+          "cache_creation_input_tokens": 1377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-28T11:24:46.241Z_
+
+Now let me launch parallel searches across multiple dimensions to build a comprehensive picture.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9243b65f-f50c-4309-8de2-a663367e6297",
+  "isSidechain": false,
+  "requestId": "req_011CbUtB9jvRccicHYKk9f9a",
+  "type": "assistant",
+  "uuid": "9a00db29-3b5f-4bd8-96f9-a890c040cb03",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PL2dMEnDDcJswb746AncwH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 20436,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 20436,
+          "cache_creation_input_tokens": 1377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T11:24:46.661Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016A4iznacEKipVRY6MnFdGt`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a00db29-3b5f-4bd8-96f9-a890c040cb03",
+  "isSidechain": false,
+  "requestId": "req_011CbUtB9jvRccicHYKk9f9a",
+  "type": "assistant",
+  "uuid": "0a55c666-9dbb-4a52-bf1b-20ffab2fb1b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PL2dMEnDDcJswb746AncwH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 20436,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 20436,
+          "cache_creation_input_tokens": 1377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T11:24:50.508Z_
+
+<details><summary>↩ Tool result · `toolu_016A4iznacEKipVRY6MnFdGt`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline date"
+
+Links: [{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AAAI Conference on Artificial Intelligence","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"}]
+
+Based on the search results, here's what I found about the AAAI 2027 submission deadline:
+
+For the Main Technical Track, the abstract deadline is July 21, 2026, and the full papers deadline is July 28, 2026 (both at 11:59 PM UTC-12). Additionally, supplementary material and code are due by July 31, 2026.
+
+It's important to note that deadlines are track-specific and may differ from those listed, with track-specific deadlines listed on their respective Call for Papers.
+
+The conference itself will be held in Montréal, Canada, from February 16 to February 23, 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a55c666-9dbb-4a52-bf1b-20ffab2fb1b4",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "8245e69f-06ce-47a8-b0bd-e50269a4198e",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MPTuFfgDTv8ozNpfnPB4Dc",
+        "content": [
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the AAAI 2027 submission deadline:\n\nFor the Main Technical Track, the abstract deadline is July 21, 2026, and the full papers deadline is July 28, 2026 (both at 11:59 PM UTC-12). Additionally, supplementary material and code are due by July 31, 2026.\n\nIt's important to note that deadlines are track-specific and may differ from those listed, with track-specific deadlines listed on their respective Call for Papers.\n\nThe conference itself will be held in Montréal, Canada, from February 16 to February 23, 2027."
+    ],
+    "durationSeconds": 3.84349337,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0a55c666-9dbb-4a52-bf1b-20ffab2fb1b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-28T11:24:53.265Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - AAAI 2027 deadline is July 28, 2026, so it's still about 2 months away from today (May 28, 2026). Let me now do the main research searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8245e69f-06ce-47a8-b0bd-e50269a4198e",
+  "isSidechain": false,
+  "requestId": "req_011CbUtBiW9zf5p4R4S83eDn",
+  "type": "assistant",
+  "uuid": "4fa7724e-c8da-481d-8c80-8b4e9a93f955",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHJW5QduByEW43kHLZRBZP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 21813,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 762,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 21813,
+          "cache_creation_input_tokens": 762,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 762
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-28T11:24:54.221Z_
+
+Good — AAAI 2027 deadline is July 28, 2026 (about 2 months away). Now let me do deep parallel research.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fa7724e-c8da-481d-8c80-8b4e9a93f955",
+  "isSidechain": false,
+  "requestId": "req_011CbUtBiW9zf5p4R4S83eDn",
+  "type": "assistant",
+  "uuid": "526a5db5-cfdb-41b0-99e9-ec126202116c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHJW5QduByEW43kHLZRBZP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 21813,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 762,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 21813,
+          "cache_creation_input_tokens": 762,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 762
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-28T11:24:54.918Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0117eajgsHkLhevyrWERv92K`</summary>
+
+```json
+{
+  "query": "rubric rewards math RLVR reinforcement learning 2026 site:arxiv.org"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "526a5db5-cfdb-41b0-99e9-ec126202116c",
+  "isSidechain": false,
+  "requestId": "req_011CbUtBiW9zf5p4R4S83eDn",
+  "type": "assistant",
+  "uuid": "b8512ff1-7824-4a8d-91b6-fbf54f53e46d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHJW5QduByEW43kHLZRBZP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 21813,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 762,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 21813,
+          "cache_creation_input_tokens": 762,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 762
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T11:25:02.926Z_
+
+<details><summary>↩ Tool result · `toolu_0117eajgsHkLhevyrWERv92K`</summary>
+
+```text
+Web search results for query: "rubric rewards math RLVR reinforcement learning 2026 site:arxiv.org"
+
+Links: [{"title":"[2605.17291] Step-wise Rubric Rewards for LLM Reasoning","url":"https://arxiv.org/abs/2605.17291"},{"title":"[2603.15646] Alternating Reinforcement Learning with Contextual Rubric Rewards: Beyond the Scalarization Strategy","url":"https://arxiv.org/abs/2603.15646"},{"title":"[2605.20164v1] Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR","url":"https://arxiv.org/abs/2605.20164v1"},{"title":"Alternating Reinforcement Learning with Contextual Rubric Rewards","url":"https://arxiv.org/html/2603.15646v1"},{"title":"ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning","url":"https://arxiv.org/html/2605.23454"},{"title":"Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/html/2605.12474v1"},{"title":"[2508.12790] Reinforcement Learning with Rubric Anchors","url":"https://arxiv.org/abs/2508.12790"},{"title":"[2507.17746] Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains","url":"https://arxiv.org/abs/2507.17746"}]
+
+I found several recent papers on arxiv.org related to rubric rewards, math, and RLVR (Reinforcement Learning with Verifiable Rewards) from 2026:
+
+1. **"Step-wise Rubric Rewards for LLM Reasoning"** (2605.17291) - This paper proposes improvements to RLVR by addressing the limitation that rewards only final-answer correctness with no supervision over intermediate steps. The method improves average accuracy over baseline approaches by 3.57 points on Qwen3-8B across six mathematical reasoning benchmarks.
+
+2. **"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR"** (2605.20164) - This paper introduces POW3R, a policy-aware rubric reward framework that preserves human weights and category balance while adapting criterion-level reward weights during training.
+
+3. **"Alternating Reinforcement Learning with Contextual Rubric Rewards"** (2603.15646) - This work proposes ARL-RR, a framework that eliminates the need for a fixed scalarization by optimizing one semantic rubric meta-class at a time.
+
+4. **"ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning"** (2605.23454) - This paper discusses how rubric-based rewards offer an alternative by evaluating responses against weighted criteria, decomposing response quality into multiple dimensions.
+
+These papers represent recent advances in using rubric-based rewards within the RLVR framework for improving large language model reasoning and mathematical problem-solving.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8512ff1-7824-4a8d-91b6-fbf54f53e46d",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "e3d1d910-718c-4558-bc9e-fac8bd6b38a5",
+  "toolUseResult": {
+    "query": "rubric rewards math RLVR reinforcement learning 2026 site:arxiv.org",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016rrf3FmRrh2ZeRu8PrrB5x",
+        "content": [
+          {
+            "title": "[2605.17291] Step-wise Rubric Rewards for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2605.17291"
+          },
+          {
+            "title": "[2603.15646] Alternating Reinforcement Learning with Contextual Rubric Rewards: Beyond the Scalarization Strategy",
+            "url": "https://arxiv.org/abs/2603.15646"
+          },
+          {
+            "title": "[2605.20164v1] Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+            "url": "https://arxiv.org/abs/2605.20164v1"
+          },
+          {
+            "title": "Alternating Reinforcement Learning with Contextual Rubric Rewards",
+            "url": "https://arxiv.org/html/2603.15646v1"
+          },
+          {
+            "title": "ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.23454"
+          },
+          {
+            "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.12474v1"
+          },
+          {
+            "title": "[2508.12790] Reinforcement Learning with Rubric Anchors",
+            "url": "https://arxiv.org/abs/2508.12790"
+          },
+          {
+            "title": "[2507.17746] Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains",
+            "url": "https://arxiv.org/abs/2507.17746"
+          }
+        ]
+      },
+      "I found several recent papers on arxiv.org related to rubric rewards, math, and RLVR (Reinforcement Learning with Verifiable Rewards) from 2026:\n\n1. **\"Step-wise Rubric Rewards for LLM Reasoning\"** (2605.17291) - This paper proposes improvements to RLVR by addressing the limitation that rewards only final-answer correctness with no supervision over intermediate steps. The method improves average accuracy over baseline approaches by 3.57 points on Qwen3-8B across six mathematical reasoning benchmarks.\n\n2. **\"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR\"** (2605.20164) - This paper introduces POW3R, a policy-aware rubric reward framework that preserves human weights and category balance while adapting criterion-level reward weights during training.\n\n3. **\"Alternating Reinforcement Learning with Contextual Rubric Rewards\"** (2603.15646) - This work proposes ARL-RR, a framework that eliminates the need for a fixed scalarization by optimizing one semantic rubric meta-class at a time.\n\n4. **\"ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning\"** (2605.23454) - This paper discusses how rubric-based rewards offer an alternative by evaluating responses against weighted criteria, decomposing response quality into multiple dimensions.\n\nThese papers represent recent advances in using rubric-based rewards within the RLVR framework for improving large language model reasoning and mathematical problem-solving."
+    ],
+    "durationSeconds": 8.003451387999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b8512ff1-7824-4a8d-91b6-fbf54f53e46d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-28T11:25:09.891Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There are some very important new papers I wasn't aware of:
+1. "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR" (2605.20164) - POW3R framework
+2. "Alternating Reinforcement Learning with Contextual Rubric Rewards" (2603.15646) - ARL-RR
+3. "Reinforcement Learning with Rubric Anchors" (2508.12790)
+4. "Rubrics as Rewards" (2507.17746)
+
+These are critical to check - especially POW3R which seems to do policy-aware rubric reward adaptation, which is close to our idea. 
+
+Now I'm pulling up the details on these papers to understand how they relate to what we're working on.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3d1d910-718c-4558-bc9e-fac8bd6b38a5",
+  "isSidechain": false,
+  "requestId": "req_011CbUtCdejKWSqAyJuz5oHq",
+  "type": "assistant",
+  "uuid": "99450f50-c5b4-4b3f-8163-bc5430a8c15f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHrbnx4sLecxCCCQ6zTHuH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 22575,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 22575,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-28T11:25:09.896Z_
+
+Critical findings! Let me fetch details on these new papers and run more searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99450f50-c5b4-4b3f-8163-bc5430a8c15f",
+  "isSidechain": false,
+  "requestId": "req_011CbUtCdejKWSqAyJuz5oHq",
+  "type": "assistant",
+  "uuid": "d824526c-c644-48ed-8d28-ce71e09fe3cc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHrbnx4sLecxCCCQ6zTHuH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 22575,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 22575,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-28T11:25:11.964Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FaUpT6jAJFpVzYqSTFj9tN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.20164",
+  "prompt": "Extract the full abstract, key contributions, method details, and any mentions of difficulty calibration, rubric gaming, or ensemble approaches. What specific problem does POW3R solve? What are its limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d824526c-c644-48ed-8d28-ce71e09fe3cc",
+  "isSidechain": false,
+  "requestId": "req_011CbUtCdejKWSqAyJuz5oHq",
+  "type": "assistant",
+  "uuid": "80cec6b5-64ec-455e-9810-014c70bb23fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHrbnx4sLecxCCCQ6zTHuH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 22575,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 22575,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T11:25:19.345Z_
+
+<details><summary>↩ Tool result · `toolu_01FaUpT6jAJFpVzYqSTFj9tN`</summary>
+
+```text
+# Paper Analysis: POW3R - Policy-Aware Rubric Rewards for RLVR
+
+## Full Abstract
+"Reinforcement learning with verifiable rewards has made post-training highly effective when correctness can be checked automatically. However, many important model behaviors require satisfying several qualitative criteria at once. Rubric-based rewards address this setting by grading prompt-specific criteria and aggregating them into a scalar reward. Yet standard static aggregations conflate a criterion's human-assigned importance with its current usefulness as an optimization signal."
+
+The abstract continues by explaining that the proposed POW3R framework dynamically adjusts criterion weights during training while preserving human-defined importance levels, achieving 24/30 wins over baseline approaches and 2.5-4× faster convergence.
+
+## Core Problem Addressed
+POW3R solves a fundamental mismatch in rubric-based reinforcement learning: static reward aggregations treat all criteria equally regardless of whether they're already optimized or currently unreachable. The method distinguishes between *what matters* (human-weighted criteria) and *what teaches* (criteria differentiating current policy outputs).
+
+## Key Contributions
+- Identifies that many important rubric criteria saturate early or remain unreachable
+- Introduces rollout-level contrast mechanisms to identify discriminative criteria
+- Maintains human-defined objective alignment while improving optimization signals
+- Demonstrates empirical improvements across multimodal and text-only tasks
+
+## Methodology Details
+The framework uses "rollout-level contrast to emphasize criteria that currently separate the policy's outputs, making the GRPO reward more informative without changing the underlying evaluation target."
+
+## Notable Absences
+The provided content contains **no explicit mentions** of difficulty calibration, rubric gaming prevention, or ensemble approaches—these aspects may appear in the full paper PDF.
+
+## Limitations (Implicit)
+The document suggests potential constraints through its focus on "prompt-specific criteria," implying context-dependency, but doesn't elaborate on fundamental limitations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80cec6b5-64ec-455e-9810-014c70bb23fc",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "955ed1c0-a083-4281-96b9-491ced994f8c",
+  "toolUseResult": {
+    "bytes": 48013,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Analysis: POW3R - Policy-Aware Rubric Rewards for RLVR\n\n## Full Abstract\n\"Reinforcement learning with verifiable rewards has made post-training highly effective when correctness can be checked automatically. However, many important model behaviors require satisfying several qualitative criteria at once. Rubric-based rewards address this setting by grading prompt-specific criteria and aggregating them into a scalar reward. Yet standard static aggregations conflate a criterion's human-assigned importance with its current usefulness as an optimization signal.\"\n\nThe abstract continues by explaining that the proposed POW3R framework dynamically adjusts criterion weights during training while preserving human-defined importance levels, achieving 24/30 wins over baseline approaches and 2.5-4× faster convergence.\n\n## Core Problem Addressed\nPOW3R solves a fundamental mismatch in rubric-based reinforcement learning: static reward aggregations treat all criteria equally regardless of whether they're already optimized or currently unreachable. The method distinguishes between *what matters* (human-weighted criteria) and *what teaches* (criteria differentiating current policy outputs).\n\n## Key Contributions\n- Identifies that many important rubric criteria saturate early or remain unreachable\n- Introduces rollout-level contrast mechanisms to identify discriminative criteria\n- Maintains human-defined objective alignment while improving optimization signals\n- Demonstrates empirical improvements across multimodal and text-only tasks\n\n## Methodology Details\nThe framework uses \"rollout-level contrast to emphasize criteria that currently separate the policy's outputs, making the GRPO reward more informative without changing the underlying evaluation target.\"\n\n## Notable Absences\nThe provided content contains **no explicit mentions** of difficulty calibration, rubric gaming prevention, or ensemble approaches—these aspects may appear in the full paper PDF.\n\n## Limitations (Implicit)\nThe document suggests potential constraints through its focus on \"prompt-specific criteria,\" implying context-dependency, but doesn't elaborate on fundamental limitations.",
+    "durationMs": 7374,
+    "url": "https://arxiv.org/abs/2605.20164"
+  },
+  "sourceToolAssistantUUID": "80cec6b5-64ec-455e-9810-014c70bb23fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "955ed1c0-a083-4281-96b9-491ced994f8c",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-28T11:25:22.097Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DXZ3UDQvwjQUdze213wgEZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.15646",
+  "prompt": "Extract the full abstract, key contributions, method details. What is ARL-RR? How does it handle rubric scalarization? Does it address difficulty calibration, gaming resistance, or ensemble diversity?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "955ed1c0-a083-4281-96b9-491ced994f8c",
+  "isSidechain": false,
+  "requestId": "req_011CbUtDqqV9Uzp6t59qpj86",
+  "type": "assistant",
+  "uuid": "91754bf8-984f-4a40-afff-74dbbb9722b6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwoX1LaFXd6UwSB4SM8ZQ8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 23549,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 774,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 23549,
+          "cache_creation_input_tokens": 774,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 774
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-28T11:25:29.616Z_
+
+<details><summary>↩ Tool result · `toolu_01DXZ3UDQvwjQUdze213wgEZ`</summary>
+
+```text
+# Analysis of ARL-RR Paper
+
+## Full Abstract
+"Reinforcement Learning with Rubric Rewards (RLRR) is a framework that extends conventional reinforcement learning from human feedback (RLHF) and verifiable rewards (RLVR) by replacing scalar preference signals with structured, multi-dimensional, contextual rubric-based evaluations. However, existing approaches in RLRR are limited to linearly compressing vector rewards into a scalar reward with a fixed weightings, which is sensitive to artificial score design and fails to capture correlations among reward dimensions. To overcome the limitations of reward aggregation, this work proposes Alternating Reinforcement Learning with Rubric Rewards (ARL-RR), a framework that eliminates the need for a fixed scalarization by optimizing one semantic rubric meta-class at a time. Theoretically, we show that reward aggregation induces a variance contraction effect, which helps explain the performance gains. We further introduce a lightweight, search-based adaptation procedure that selects the next meta-class dynamically based on task performance, enabling the policy to emphasize critical objectives and thereby improve the model performance. Empirically, our experiments on the HealthBench dataset with experts annotations demonstrate that ARL-RR uniformly outperforms scalarized methods in both model performance and training efficiency across different model scales (1.7B, 4B, 8B, and 14B)."
+
+## What is ARL-RR?
+ARL-RR eliminates fixed scalarization by "optimizing one semantic rubric meta-class at a time" rather than compressing multi-dimensional rewards into single scalars with static weights.
+
+## Handling Rubric Scalarization
+The method addresses scalarization limitations through dynamic meta-class selection via "a lightweight, search-based adaptation procedure that selects the next meta-class dynamically based on task performance."
+
+## Other Concerns
+The abstract does not address difficulty calibration, gaming resistance, or ensemble diversity—only mentioning variance contraction effects and performance gains on the HealthBench dataset.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91754bf8-984f-4a40-afff-74dbbb9722b6",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "af804f30-02da-43e0-8029-551826ce6f04",
+  "toolUseResult": {
+    "bytes": 49212,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of ARL-RR Paper\n\n## Full Abstract\n\"Reinforcement Learning with Rubric Rewards (RLRR) is a framework that extends conventional reinforcement learning from human feedback (RLHF) and verifiable rewards (RLVR) by replacing scalar preference signals with structured, multi-dimensional, contextual rubric-based evaluations. However, existing approaches in RLRR are limited to linearly compressing vector rewards into a scalar reward with a fixed weightings, which is sensitive to artificial score design and fails to capture correlations among reward dimensions. To overcome the limitations of reward aggregation, this work proposes Alternating Reinforcement Learning with Rubric Rewards (ARL-RR), a framework that eliminates the need for a fixed scalarization by optimizing one semantic rubric meta-class at a time. Theoretically, we show that reward aggregation induces a variance contraction effect, which helps explain the performance gains. We further introduce a lightweight, search-based adaptation procedure that selects the next meta-class dynamically based on task performance, enabling the policy to emphasize critical objectives and thereby improve the model performance. Empirically, our experiments on the HealthBench dataset with experts annotations demonstrate that ARL-RR uniformly outperforms scalarized methods in both model performance and training efficiency across different model scales (1.7B, 4B, 8B, and 14B).\"\n\n## What is ARL-RR?\nARL-RR eliminates fixed scalarization by \"optimizing one semantic rubric meta-class at a time\" rather than compressing multi-dimensional rewards into single scalars with static weights.\n\n## Handling Rubric Scalarization\nThe method addresses scalarization limitations through dynamic meta-class selection via \"a lightweight, search-based adaptation procedure that selects the next meta-class dynamically based on task performance.\"\n\n## Other Concerns\nThe abstract does not address difficulty calibration, gaming resistance, or ensemble diversity—only mentioning variance contraction effects and performance gains on the HealthBench dataset.",
+    "durationMs": 7516,
+    "url": "https://arxiv.org/abs/2603.15646"
+  },
+  "sourceToolAssistantUUID": "91754bf8-984f-4a40-afff-74dbbb9722b6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-28T11:25:31.843Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B3R2KMcPtF8cQE92VALvyS`</summary>
+
+```json
+{
+  "query": "difficulty-calibrated rubric reward math reinforcement learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af804f30-02da-43e0-8029-551826ce6f04",
+  "isSidechain": false,
+  "requestId": "req_011CbUtEbpeadJt4Rv4Bu4iL",
+  "type": "assistant",
+  "uuid": "83d56998-8948-4be0-bc93-eaa0d4696db4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HvsvneTMr9oZQL286KJ12S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 596,
+      "cache_read_input_tokens": 24323,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 596,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 24323,
+          "cache_creation_input_tokens": 596,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 596
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T11:25:41.507Z_
+
+<details><summary>↩ Tool result · `toolu_01B3R2KMcPtF8cQE92VALvyS`</summary>
+
+```text
+Web search results for query: "difficulty-calibrated rubric reward math reinforcement learning 2026"
+
+Links: [{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview","url":"https://openreview.net/forum?id=c1bTcrDmt4"},{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"Rubric-Based Reward Modeling","url":"https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"},{"title":"[PDF] Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Rubrics-as-Rewards:-Reinforcement-Learning-Beyond-Gunjal-Wang/a67c0fb651e7175be1dd457dea336fd4a12f6130"},{"title":"ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning","url":"https://arxiv.org/html/2605.23454"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/pdf/2511.12344"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training","url":"https://arxiv.org/pdf/2509.21500"}]
+
+Based on the search results, here's what I found about difficulty-calibrated rubric reward systems in math reinforcement learning from 2026:
+
+## Recent Research Developments
+
+The Rubric Reward Model (RRM) is a process-oriented reward function that evaluates reasoning trajectories against problem-specific rubrics, providing fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction.
+
+RRM-based training consistently outperforms outcome-only supervision across four math benchmarks, notably boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reducing the incidence of "Miracle Steps" (flawed reasoning paths reaching correct answers) by 71%.
+
+## Broader Context
+
+Rubrics as Rewards (RaR) is an on-policy reinforcement learning method that extends RLVR (Reinforcement Learning with Verifiable Rewards) beyond verifiable domains by using rubric-based feedback.
+
+Rubric-based rewards offer a promising alternative by evaluating responses against a set of weighted criteria, thereby decomposing response quality into multiple dimensions and providing finer-grained learning signals.
+
+Rubric-driven reward modeling extends to technical domains including math, code, and chemistry, as well as multimodal tasks.
+
+The research in 2026 shows significant progress in using structured rubric-based rewards to improve mathematical reasoning in language models, particularly by addressing issues with outcome-based supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83d56998-8948-4be0-bc93-eaa0d4696db4",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "e2eb8d00-0927-4533-88a6-98f7a7055c43",
+  "toolUseResult": {
+    "query": "difficulty-calibrated rubric reward math reinforcement learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y7YmaAotkfYihGSpeqNXSr",
+        "content": [
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview",
+            "url": "https://openreview.net/forum?id=c1bTcrDmt4"
+          },
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "Rubric-Based Reward Modeling",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"
+          },
+          {
+            "title": "[PDF] Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Rubrics-as-Rewards:-Reinforcement-Learning-Beyond-Gunjal-Wang/a67c0fb651e7175be1dd457dea336fd4a12f6130"
+          },
+          {
+            "title": "ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.23454"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/pdf/2511.12344"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          },
+          {
+            "title": "Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training",
+            "url": "https://arxiv.org/pdf/2509.21500"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about difficulty-calibrated rubric reward systems in math reinforcement learning from 2026:\n\n## Recent Research Developments\n\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates reasoning trajectories against problem-specific rubrics, providing fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction.\n\nRRM-based training consistently outperforms outcome-only supervision across four math benchmarks, notably boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reducing the incidence of \"Miracle Steps\" (flawed reasoning paths reaching correct answers) by 71%.\n\n## Broader Context\n\nRubrics as Rewards (RaR) is an on-policy reinforcement learning method that extends RLVR (Reinforcement Learning with Verifiable Rewards) beyond verifiable domains by using rubric-based feedback.\n\nRubric-based rewards offer a promising alternative by evaluating responses against a set of weighted criteria, thereby decomposing response quality into multiple dimensions and providing finer-grained learning signals.\n\nRubric-driven reward modeling extends to technical domains including math, code, and chemistry, as well as multimodal tasks.\n\nThe research in 2026 shows significant progress in using structured rubric-based rewards to improve mathematical reasoning in language models, particularly by addressing issues with outcome-based supervision."
+    ],
+    "durationSeconds": 9.659904623000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "83d56998-8948-4be0-bc93-eaa0d4696db4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-28T11:25:41.510Z_
+
+```json
+{
+  "parentUuid": "e2eb8d00-0927-4533-88a6-98f7a7055c43",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0af48222-8726-41a5-8048-e571e2f91dbd",
+  "timestamp": "2026-05-28T11:25:41.510Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-28T11:25:45.839Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011dHqqm68XqJdtQ2CbvXCqG`</summary>
+
+```json
+{
+  "query": "\"rubric ensemble\" OR \"rubric diversity\" reward hacking defense reinforcement learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0af48222-8726-41a5-8048-e571e2f91dbd",
+  "isSidechain": false,
+  "requestId": "req_011CbUtFUYdMni9Ld9JbkJV1",
+  "type": "assistant",
+  "uuid": "576e5641-d235-4c9d-8d9c-df25b42b6087",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018LpDRnAnDA8iR3q2rh2eJZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 24919,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1007,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 24919,
+          "cache_creation_input_tokens": 1007,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1007
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T11:25:53.376Z_
+
+<details><summary>↩ Tool result · `toolu_011dHqqm68XqJdtQ2CbvXCqG`</summary>
+
+```text
+Web search results for query: ""rubric ensemble" OR "rubric diversity" reward hacking defense reinforcement learning 2026"
+
+Links: [{"title":"Reward Hacking Defense Rubric","url":"https://www.emergentmind.com/topics/reward-hacking-defense-rubric"},{"title":"Rubric-Based Reward Systems","url":"https://www.emergentmind.com/topics/rubric-based-reward-system"},{"title":"Reinforcement Learning with Rubric Anchors","url":"https://arxiv.org/pdf/2508.12790"},{"title":"Reinforcement Learning with Evolving Rubrics","url":"https://www.emergentmind.com/topics/reinforcement-learning-with-evolving-rubrics-rler"},{"title":"Alternating Reinforcement Learning with Contextual Rubric Rewards","url":"https://arxiv.org/html/2603.15646v1"},{"title":"Rubric-Based Reward Modeling","url":"https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"},{"title":"Rubric-Based Reward Modeling (RLRR)","url":"https://www.emergentmind.com/topics/rubric-based-reward-modeling-rlrr"},{"title":"Rubric-Scaffolded RL (RuscaRL)","url":"https://www.emergentmind.com/topics/rubric-scaffolded-reinforcement-learning-ruscarl"}]
+
+I found relevant research on rubric-based approaches and reward hacking defense in reinforcement learning. Here are the key findings:
+
+## Ensemble-Based Detection for Reward Hacking Defense
+
+Integrated, ensemble-based detection frameworks achieve precision near 78% and recall near 82% in diverse RL environments, with computational cost below 5% of training time.
+
+## Rubric Diversity and Performance
+
+Rubric diversity, granularity, and quantity are critical for performance. The system's performance is sensitive to rubric granularity, diversity, and discriminative power.
+
+## Defense Strategies Against Reward Hacking
+
+Several defense mechanisms have been developed:
+
+- Reward signals should be bounded—unbounded rewards destabilize critics and advantage estimations, encouraging reward hacking. In practice, reward shaping via clipping, normalization, and bounded transformations is vital.
+
+- A dedicated Reward Hacking Defense Rubric is synthesized from observed failure modes and integrated as a supervisory constraint, resulting in marked increase in training stability.
+
+- The framework mitigates reward hacking through advanced aggregation—e.g., veto mechanisms, saturation-aware aggregation, and pairwise rubric item interaction—and by leveraging large curated rubric banks for diverse coverage.
+
+## Rubric-Based Reward Modeling Advantages
+
+Rubric-RM was developed to address interpretability, coverage, generalizability, and reward hacking limitations inherent to scalar and pairwise preference-based RMs, and ensemble techniques, including majority voting over independent judge trajectories, are used to improve stability in both judgment and training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "576e5641-d235-4c9d-8d9c-df25b42b6087",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "774ca455-fd57-4799-9a7a-f6f15bf51fcc",
+  "toolUseResult": {
+    "query": "\"rubric ensemble\" OR \"rubric diversity\" reward hacking defense reinforcement learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tc5cX4paMTANWjS12M1TiU",
+        "content": [
+          {
+            "title": "Reward Hacking Defense Rubric",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+          },
+          {
+            "title": "Rubric-Based Reward Systems",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-system"
+          },
+          {
+            "title": "Reinforcement Learning with Rubric Anchors",
+            "url": "https://arxiv.org/pdf/2508.12790"
+          },
+          {
+            "title": "Reinforcement Learning with Evolving Rubrics",
+            "url": "https://www.emergentmind.com/topics/reinforcement-learning-with-evolving-rubrics-rler"
+          },
+          {
+            "title": "Alternating Reinforcement Learning with Contextual Rubric Rewards",
+            "url": "https://arxiv.org/html/2603.15646v1"
+          },
+          {
+            "title": "Rubric-Based Reward Modeling",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"
+          },
+          {
+            "title": "Rubric-Based Reward Modeling (RLRR)",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-modeling-rlrr"
+          },
+          {
+            "title": "Rubric-Scaffolded RL (RuscaRL)",
+            "url": "https://www.emergentmind.com/topics/rubric-scaffolded-reinforcement-learning-ruscarl"
+          }
+        ]
+      },
+      "I found relevant research on rubric-based approaches and reward hacking defense in reinforcement learning. Here are the key findings:\n\n## Ensemble-Based Detection for Reward Hacking Defense\n\nIntegrated, ensemble-based detection frameworks achieve precision near 78% and recall near 82% in diverse RL environments, with computational cost below 5% of training time.\n\n## Rubric Diversity and Performance\n\nRubric diversity, granularity, and quantity are critical for performance. The system's performance is sensitive to rubric granularity, diversity, and discriminative power.\n\n## Defense Strategies Against Reward Hacking\n\nSeveral defense mechanisms have been developed:\n\n- Reward signals should be bounded—unbounded rewards destabilize critics and advantage estimations, encouraging reward hacking. In practice, reward shaping via clipping, normalization, and bounded transformations is vital.\n\n- A dedicated Reward Hacking Defense Rubric is synthesized from observed failure modes and integrated as a supervisory constraint, resulting in marked increase in training stability.\n\n- The framework mitigates reward hacking through advanced aggregation—e.g., veto mechanisms, saturation-aware aggregation, and pairwise rubric item interaction—and by leveraging large curated rubric banks for diverse coverage.\n\n## Rubric-Based Reward Modeling Advantages\n\nRubric-RM was developed to address interpretability, coverage, generalizability, and reward hacking limitations inherent to scalar and pairwise preference-based RMs, and ensemble techniques, including majority voting over independent judge trajectories, are used to improve stability in both judgment and training."
+    ],
+    "durationSeconds": 7.532536107000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "576e5641-d235-4c9d-8d9c-df25b42b6087",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-28T11:25:57.036Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Some interesting findings here. Let me check the "Reinforcement Learning with Evolving Rubrics" and "Reinforcement Learning with Rubric Anchors" papers since they seem directly relevant. Also "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards" is very relevant since it talks about policy-aware rubric adjustment. Let me dig deeper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "774ca455-fd57-4799-9a7a-f6f15bf51fcc",
+  "isSidechain": false,
+  "requestId": "req_011CbUtGMJLRfGa8vk1VXZoS",
+  "type": "assistant",
+  "uuid": "9ad74431-e662-4ac4-9e0b-d8c9337817b8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KAME34ukSBgcxPb35gXLWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 826,
+      "cache_read_input_tokens": 25926,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 25926,
+          "cache_creation_input_tokens": 826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-28T11:25:57.733Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015y2XtyTXF1k16xZABo3bwp`</summary>
+
+```json
+{
+  "query": "DGPO difficulty-aware GRPO non-binary rewards rubric extension 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ad74431-e662-4ac4-9e0b-d8c9337817b8",
+  "isSidechain": false,
+  "requestId": "req_011CbUtGMJLRfGa8vk1VXZoS",
+  "type": "assistant",
+  "uuid": "5c920eea-9091-42e7-b3db-90d0adfe2889",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KAME34ukSBgcxPb35gXLWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 826,
+      "cache_read_input_tokens": 25926,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 826,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 25926,
+          "cache_creation_input_tokens": 826,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 826
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-28T11:26:04.530Z_
+
+<details><summary>↩ Tool result · `toolu_015y2XtyTXF1k16xZABo3bwp`</summary>
+
+```text
+Web search results for query: "DGPO difficulty-aware GRPO non-binary rewards rubric extension 2026"
+
+Links: [{"title":"[2601.20614] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation","url":"https://arxiv.org/abs/2601.20614"},{"title":"Paper page - GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://huggingface.co/papers/2601.05242"},{"title":"GitHub - AMAP-ML/MathForge: [ICLR 2026] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation · GitHub","url":"https://github.com/AMAP-ML/MathForge"},{"title":"GitHub - THUDM/CaRR: This repository contains the code and data for the paper \"Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards\".","url":"https://github.com/THUDM/CaRR"},{"title":"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR","url":"https://arxiv.org/html/2605.20164v1"},{"title":"[Quick Review] Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://liner.com/review/chaining-evidence-robust-reinforcement-learning-for-deep-search-agents-with"},{"title":"DARO: Difficulty-Aware Reweighting Policy Optimization","url":"https://arxiv.org/pdf/2510.09001"}]
+
+Based on the search results, I found relevant information about DGPO and related work on difficulty-aware approaches and rubric-based rewards:
+
+## Key Findings:
+
+**DGPO (Difficulty-Aware Group Policy Optimization):**
+DGPO is part of the MathForge framework designed to improve mathematical reasoning by targeting harder questions, comprising a Difficulty-Aware Group Policy Optimization algorithm and a Multi-Aspect Question Reformulation strategy. DGPO rectifies implicit imbalance in GRPO via difficulty-balanced group advantage estimation (DGAE) and prioritizes harder questions by difficulty-aware question-level weighting (DQW).
+
+**Rubric Extensions:**
+There is related work on non-binary reward frameworks. Existing RL approaches for deep search agents primarily rely on binary outcome rewards, but pure outcome rewards fail to capture the comprehensiveness and factuality of agents' reasoning process. Citation-aware Rubric Rewards (CaRR) is a novel fine-grained reward framework for deep search agents that assesses reasoning comprehensiveness, factual grounding, and evidence connectivity.
+
+**2026 Research:**
+The most recent work includes a paper on MathForge posted January 28, 2026, and CaRR framework resources released on January 11, 2026.
+
+These developments show active research in 2026 on difficulty-aware policy optimization and moving beyond binary rewards to rubric-based evaluation systems for reinforcement learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c920eea-9091-42e7-b3db-90d0adfe2889",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "61414863-f5f3-40bb-9b21-876b13ec0317",
+  "toolUseResult": {
+    "query": "DGPO difficulty-aware GRPO non-binary rewards rubric extension 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BeVr8wkEe61CFw5FrE1H8P",
+        "content": [
+          {
+            "title": "[2601.20614] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation",
+            "url": "https://arxiv.org/abs/2601.20614"
+          },
+          {
+            "title": "Paper page - GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://huggingface.co/papers/2601.05242"
+          },
+          {
+            "title": "GitHub - AMAP-ML/MathForge: [ICLR 2026] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation · GitHub",
+            "url": "https://github.com/AMAP-ML/MathForge"
+          },
+          {
+            "title": "GitHub - THUDM/CaRR: This repository contains the code and data for the paper \"Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards\".",
+            "url": "https://github.com/THUDM/CaRR"
+          },
+          {
+            "title": "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+            "url": "https://arxiv.org/html/2605.20164v1"
+          },
+          {
+            "title": "[Quick Review] Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://liner.com/review/chaining-evidence-robust-reinforcement-learning-for-deep-search-agents-with"
+          },
+          {
+            "title": "DARO: Difficulty-Aware Reweighting Policy Optimization",
+            "url": "https://arxiv.org/pdf/2510.09001"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about DGPO and related work on difficulty-aware approaches and rubric-based rewards:\n\n## Key Findings:\n\n**DGPO (Difficulty-Aware Group Policy Optimization):**\nDGPO is part of the MathForge framework designed to improve mathematical reasoning by targeting harder questions, comprising a Difficulty-Aware Group Policy Optimization algorithm and a Multi-Aspect Question Reformulation strategy. DGPO rectifies implicit imbalance in GRPO via difficulty-balanced group advantage estimation (DGAE) and prioritizes harder questions by difficulty-aware question-level weighting (DQW).\n\n**Rubric Extensions:**\nThere is related work on non-binary reward frameworks. Existing RL approaches for deep search agents primarily rely on binary outcome rewards, but pure outcome rewards fail to capture the comprehensiveness and factuality of agents' reasoning process. Citation-aware Rubric Rewards (CaRR) is a novel fine-grained reward framework for deep search agents that assesses reasoning comprehensiveness, factual grounding, and evidence connectivity.\n\n**2026 Research:**\nThe most recent work includes a paper on MathForge posted January 28, 2026, and CaRR framework resources released on January 11, 2026.\n\nThese developments show active research in 2026 on difficulty-aware policy optimization and moving beyond binary rewards to rubric-based evaluation systems for reinforcement learning."
+    ],
+    "durationSeconds": 6.792328971999988,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5c920eea-9091-42e7-b3db-90d0adfe2889",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "61414863-f5f3-40bb-9b21-876b13ec0317",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-28T11:26:07.173Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HKaZAGCh4eUouW2NvEYBAx`</summary>
+
+```json
+{
+  "query": "\"policy-aware rubric\" OR \"adaptive rubric\" OR \"evolving rubric\" reinforcement learning math reasoning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61414863-f5f3-40bb-9b21-876b13ec0317",
+  "isSidechain": false,
+  "requestId": "req_011CbUtHAzzcwp9DiiHMiE5g",
+  "type": "assistant",
+  "uuid": "598d2405-b8a5-49e8-8a7b-8e9d93611c45",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NohEfFMwgmgN2YWo8cEsXr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 26752,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 26752,
+          "cache_creation_input_tokens": 967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T11:26:15.148Z_
+
+<details><summary>↩ Tool result · `toolu_01HKaZAGCh4eUouW2NvEYBAx`</summary>
+
+```text
+Web search results for query: ""policy-aware rubric" OR "adaptive rubric" OR "evolving rubric" reinforcement learning math reasoning 2026"
+
+Links: [{"title":"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR","url":"https://arxiv.org/html/2605.20164v1"},{"title":"AdaRubric: Task-Adaptive Rubrics for Reliable LLM Agent Evaluation and Reward Learning","url":"https://arxiv.org/html/2603.21362"},{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview","url":"https://openreview.net/forum?id=c1bTcrDmt4"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"Rubric-Based Reinforcement Learning","url":"https://www.emergentmind.com/topics/rubric-based-reinforcement-learning"},{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/pdf/2511.12344"},{"title":"SibylSense: Adaptive Rubric Learning via Memory Tuning and Adversarial Probing","url":"https://arxiv.org/pdf/2602.20751"},{"title":"Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric","url":"https://arxiv.org/html/2602.14069v2"}]
+
+I found several highly relevant research papers on policy-aware, adaptive, and evolving rubrics in reinforcement learning for math reasoning. Here are the key findings:
+
+## Policy-Aware Rubric Approaches
+
+POW3R is a policy-aware rubric reward framework that preserves human weights and category balance as the rubric objective while adapting criterion-level reward weights during training.
+
+## Evolving Rubrics
+
+DR Tulu introduces Reinforcement Learning with Evolving Rubrics (RLER), where instance-specific, search-grounded rubrics co-evolve with the policy during RL training for long-form deep research tasks. Rubrics are updated on-policy at each RL step by contrasting strong and weak rollouts, filtering for criteria that provide high reward variance, and discarding those with diminished discriminative power.
+
+## Adaptive Rubric Methods
+
+AdaRubric generates task-adaptive rubrics per task type (not per instance) and caches them, making evaluation significantly cheaper, with rubrics deriving from the LLM's parametric knowledge rather than external retrieval.
+
+OnlineRubrics dynamically extracts new rubric criteria through LLM-powered pairwise comparison between the ongoing policy and a reference, thereby expanding and adapting the set of evaluation axes over time.
+
+## Key Challenge
+
+Effective rubrics for RL are inherently policy-dependent, with useful criteria targeting failure modes exhibited by the current policy's candidate answers, and as the trainee policy evolves during RL training, rubrics must evolve as well.
+
+These approaches represent cutting-edge work from 2025-2026 addressing the challenge of maintaining alignment between reward signals and evolving model capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "598d2405-b8a5-49e8-8a7b-8e9d93611c45",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "617cb66d-15e0-4b85-9fbb-db2bbc17b0b8",
+  "toolUseResult": {
+    "query": "\"policy-aware rubric\" OR \"adaptive rubric\" OR \"evolving rubric\" reinforcement learning math reasoning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018q44975k4n6KtBGcYPUzvi",
+        "content": [
+          {
+            "title": "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+            "url": "https://arxiv.org/html/2605.20164v1"
+          },
+          {
+            "title": "AdaRubric: Task-Adaptive Rubrics for Reliable LLM Agent Evaluation and Reward Learning",
+            "url": "https://arxiv.org/html/2603.21362"
+          },
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview",
+            "url": "https://openreview.net/forum?id=c1bTcrDmt4"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "Rubric-Based Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reinforcement-learning"
+          },
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/pdf/2511.12344"
+          },
+          {
+            "title": "SibylSense: Adaptive Rubric Learning via Memory Tuning and Adversarial Probing",
+            "url": "https://arxiv.org/pdf/2602.20751"
+          },
+          {
+            "title": "Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric",
+            "url": "https://arxiv.org/html/2602.14069v2"
+          }
+        ]
+      },
+      "I found several highly relevant research papers on policy-aware, adaptive, and evolving rubrics in reinforcement learning for math reasoning. Here are the key findings:\n\n## Policy-Aware Rubric Approaches\n\nPOW3R is a policy-aware rubric reward framework that preserves human weights and category balance as the rubric objective while adapting criterion-level reward weights during training.\n\n## Evolving Rubrics\n\nDR Tulu introduces Reinforcement Learning with Evolving Rubrics (RLER), where instance-specific, search-grounded rubrics co-evolve with the policy during RL training for long-form deep research tasks. Rubrics are updated on-policy at each RL step by contrasting strong and weak rollouts, filtering for criteria that provide high reward variance, and discarding those with diminished discriminative power.\n\n## Adaptive Rubric Methods\n\nAdaRubric generates task-adaptive rubrics per task type (not per instance) and caches them, making evaluation significantly cheaper, with rubrics deriving from the LLM's parametric knowledge rather than external retrieval.\n\nOnlineRubrics dynamically extracts new rubric criteria through LLM-powered pairwise comparison between the ongoing policy and a reference, thereby expanding and adapting the set of evaluation axes over time.\n\n## Key Challenge\n\nEffective rubrics for RL are inherently policy-dependent, with useful criteria targeting failure modes exhibited by the current policy's candidate answers, and as the trainee policy evolves during RL training, rubrics must evolve as well.\n\nThese approaches represent cutting-edge work from 2025-2026 addressing the challenge of maintaining alignment between reward signals and evolving model capabilities."
+    ],
+    "durationSeconds": 7.970837339000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "598d2405-b8a5-49e8-8a7b-8e9d93611c45",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-28T11:26:23.417Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is important. Several papers are already working on adaptive/evolving rubrics:
+- POW3R: Policy-aware rubric rewards (May 2026)
+- RLER: Reinforcement Learning with Evolving Rubrics
+- AdaRubric: Task-adaptive rubrics
+- OnlineRubrics: Dynamic rubric criteria extraction
+- Open Rubric System: Pairwise adaptive rubrics
+
+This significantly impacts the novelty of any idea about "adaptive rubric rewards" or "online rubric adaptation." Let me check whether difficulty calibration specifically has been addressed, and whether the rubric-gaming-defense-via-ensemble angle is still open.
+
+
+I should also look more closely at the SibylSense and Open Rubric System papers since they seem most relevant to what I'm exploring.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "617cb66d-15e0-4b85-9fbb-db2bbc17b0b8",
+  "isSidechain": false,
+  "requestId": "req_011CbUtHxWSBjHh4Bnc7yUUf",
+  "type": "assistant",
+  "uuid": "d00e9480-2ae1-4e4d-bf69-af281f448fff",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFxrkr16kiWDr3dCTtQXvG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 27719,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 27719,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-28T11:26:23.718Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QHswHHwCEU6R6yD6m2kvEu`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.20164v1",
+  "prompt": "Extract: 1) Full abstract, 2) How POW3R adapts rubric weights during training, 3) Whether it considers problem difficulty, 4) Whether it addresses rubric gaming/hacking, 5) Specific benchmarks and results, 6) Listed limitations and future work"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d00e9480-2ae1-4e4d-bf69-af281f448fff",
+  "isSidechain": false,
+  "requestId": "req_011CbUtHxWSBjHh4Bnc7yUUf",
+  "type": "assistant",
+  "uuid": "c3f27ae8-f702-4e72-8ad9-dea56738622f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFxrkr16kiWDr3dCTtQXvG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 27719,
+      "output_tokens": 341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 341,
+          "cache_read_input_tokens": 27719,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-28T11:26:31.608Z_
+
+<details><summary>↩ Tool result · `toolu_01QHswHHwCEU6R6yD6m2kvEu`</summary>
+
+```text
+# Analysis of arXiv:2605.20164v1
+
+## 1) Full Abstract
+"Reinforcement learning with verifiable rewards has made post-training highly effective when correctness can be checked automatically. However, many important model behaviors require satisfying several qualitative criteria at once. Rubric-based rewards address this setting by grading prompt-specific criteria and aggregating them into a scalar reward. Yet standard static aggregations conflate a criterion's human-assigned importance with its current usefulness as an optimization signal. We show that this assumption breaks down in rubric RL: many important criteria are already saturated or currently unreachable, while criteria that distinguish rollouts are not necessarily those with the largest human weights. We introduce POW3R, a policy-aware rubric reward framework that preserves human weights and category balance as the rubric objective while adapting criterion-level reward weights during training. POW3R uses rollout-level contrast to emphasize criteria that currently separate the policy's outputs, making the GRPO reward more informative without changing the underlying evaluation target. Across three base policies on two datasets spanning multimodal and text-only settings, POW3R wins 24 of 30 base-policy/metric comparisons, improving both mean rubric reward and strict completion (the fraction of prompts whose response satisfies every required rubric criterion) over vanilla GRPO with rubric rewards, and reaches the same plateau in 2.5--4× fewer training steps."
+
+## 2) How POW3R Adapts Rubric Weights
+The framework "uses rollout-level contrast to emphasize criteria that currently separate the policy's outputs" while maintaining the original human-assigned weights and category balance as the evaluation objective.
+
+## 3) Problem Difficulty Consideration
+The abstract does not explicitly address whether POW3R accounts for varying problem difficulty levels.
+
+## 4) Rubric Gaming/Hacking Mitigation
+No discussion of gaming or exploitation prevention appears in the provided content.
+
+## 5) Benchmarks and Results
+- 24 of 30 base-policy/metric comparisons favor POW3R
+- Improves both mean rubric reward and strict completion rate
+- Achieves plateau performance in "2.5--4× fewer training steps"
+
+## 6) Limitations and Future Work
+Not specified in the provided web page content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3f27ae8-f702-4e72-8ad9-dea56738622f",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "8ff3b91f-2db5-4647-bb1e-027fb4cf286c",
+  "toolUseResult": {
+    "bytes": 48049,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of arXiv:2605.20164v1\n\n## 1) Full Abstract\n\"Reinforcement learning with verifiable rewards has made post-training highly effective when correctness can be checked automatically. However, many important model behaviors require satisfying several qualitative criteria at once. Rubric-based rewards address this setting by grading prompt-specific criteria and aggregating them into a scalar reward. Yet standard static aggregations conflate a criterion's human-assigned importance with its current usefulness as an optimization signal. We show that this assumption breaks down in rubric RL: many important criteria are already saturated or currently unreachable, while criteria that distinguish rollouts are not necessarily those with the largest human weights. We introduce POW3R, a policy-aware rubric reward framework that preserves human weights and category balance as the rubric objective while adapting criterion-level reward weights during training. POW3R uses rollout-level contrast to emphasize criteria that currently separate the policy's outputs, making the GRPO reward more informative without changing the underlying evaluation target. Across three base policies on two datasets spanning multimodal and text-only settings, POW3R wins 24 of 30 base-policy/metric comparisons, improving both mean rubric reward and strict completion (the fraction of prompts whose response satisfies every required rubric criterion) over vanilla GRPO with rubric rewards, and reaches the same plateau in 2.5--4× fewer training steps.\"\n\n## 2) How POW3R Adapts Rubric Weights\nThe framework \"uses rollout-level contrast to emphasize criteria that currently separate the policy's outputs\" while maintaining the original human-assigned weights and category balance as the evaluation objective.\n\n## 3) Problem Difficulty Consideration\nThe abstract does not explicitly address whether POW3R accounts for varying problem difficulty levels.\n\n## 4) Rubric Gaming/Hacking Mitigation\nNo discussion of gaming or exploitation prevention appears in the provided content.\n\n## 5) Benchmarks and Results\n- 24 of 30 base-policy/metric comparisons favor POW3R\n- Improves both mean rubric reward and strict completion rate\n- Achieves plateau performance in \"2.5--4× fewer training steps\"\n\n## 6) Limitations and Future Work\nNot specified in the provided web page content.",
+    "durationMs": 7885,
+    "url": "https://arxiv.org/abs/2605.20164v1"
+  },
+  "sourceToolAssistantUUID": "c3f27ae8-f702-4e72-8ad9-dea56738622f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-28T11:26:34.167Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Vx3e1s8MRxUVQS7M18yGtH`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"rubric\" \"difficulty\" \"calibration\" OR \"calibrated\" math reasoning reward 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ff3b91f-2db5-4647-bb1e-027fb4cf286c",
+  "isSidechain": false,
+  "requestId": "req_011CbUtKAmQgzL6Uw536hYwq",
+  "type": "assistant",
+  "uuid": "4f14d05a-8a2c-47b1-8e71-9c71197a2666",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DmLo3yezkEtuGmV5cGKCtW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 870,
+      "cache_read_input_tokens": 28604,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 870,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 28604,
+          "cache_creation_input_tokens": 870,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 870
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-28T11:26:42.789Z_
+
+<details><summary>↩ Tool result · `toolu_01Vx3e1s8MRxUVQS7M18yGtH`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "rubric" "difficulty" "calibration" OR "calibrated" math reasoning reward 2026"
+
+Links: [{"title":"[2603.05659] When Rubrics Fail: Error Enumeration as Reward in Reference-Free RL Post-Training for Virtual Try-On","url":"https://arxiv.org/abs/2603.05659"},{"title":"Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/html/2510.07774v1"},{"title":"[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning","url":"https://arxiv.org/abs/2605.08061"},{"title":"[2605.08061v1] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning","url":"https://arxiv.org/abs/2605.08061v1"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/abs/2510.07774"},{"title":"Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards","url":"https://arxiv.org/html/2603.09117"},{"title":"Self-Consistency Boosts Calibration for Math Reasoning","url":"https://arxiv.org/pdf/2403.09849"}]
+
+I found several relevant papers on arxiv.org related to your search terms. Here are the results:
+
+## Key Papers Found:
+
+1. **"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards"** (arXiv:2510.07774)
+   - The generative RRM provides fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction. The Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics.
+
+2. **"Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning"** (arXiv:2605.08061)
+   - Researchers derived rubrics from an OSTI-derived corpus of roughly 100,000 scientific and technical documents and trained Llama-3.1-8B-Instruct with Group Relative Policy Optimization (GRPO), with the model improving over the base model on four reasoning benchmarks including GSM8K, MATH, GPQA Main, and GPQA Diamond.
+
+3. **"Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards"** (arXiv:2603.09117)
+   - This work evaluates on a suite of mathematical reasoning benchmarks with increasing difficulty, including MATH-500, AIME 2024/2025 and AMC 2023/2024.
+
+These papers all address rubric-based approaches, calibration, and mathematical reasoning rewards, matching your search criteria.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f14d05a-8a2c-47b1-8e71-9c71197a2666",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "e61794dd-e01b-4d22-a7b8-d26c3e0c85aa",
+  "toolUseResult": {
+    "query": "site:arxiv.org \"rubric\" \"difficulty\" \"calibration\" OR \"calibrated\" math reasoning reward 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019WLtKnJHJrSR1gCskHH3cu",
+        "content": [
+          {
+            "title": "[2603.05659] When Rubrics Fail: Error Enumeration as Reward in Reference-Free RL Post-Training for Virtual Try-On",
+            "url": "https://arxiv.org/abs/2603.05659"
+          },
+          {
+            "title": "Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/html/2510.07774v1"
+          },
+          {
+            "title": "[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning",
+            "url": "https://arxiv.org/abs/2605.08061"
+          },
+          {
+            "title": "[2605.08061v1] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning",
+            "url": "https://arxiv.org/abs/2605.08061v1"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/abs/2510.07774"
+          },
+          {
+            "title": "Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards",
+            "url": "https://arxiv.org/html/2603.09117"
+          },
+          {
+            "title": "Self-Consistency Boosts Calibration for Math Reasoning",
+            "url": "https://arxiv.org/pdf/2403.09849"
+          }
+        ]
+      },
+      "I found several relevant papers on arxiv.org related to your search terms. Here are the results:\n\n## Key Papers Found:\n\n1. **\"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards\"** (arXiv:2510.07774)\n   - The generative RRM provides fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction. The Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics.\n\n2. **\"Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning\"** (arXiv:2605.08061)\n   - Researchers derived rubrics from an OSTI-derived corpus of roughly 100,000 scientific and technical documents and trained Llama-3.1-8B-Instruct with Group Relative Policy Optimization (GRPO), with the model improving over the base model on four reasoning benchmarks including GSM8K, MATH, GPQA Main, and GPQA Diamond.\n\n3. **\"Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards\"** (arXiv:2603.09117)\n   - This work evaluates on a suite of mathematical reasoning benchmarks with increasing difficulty, including MATH-500, AIME 2024/2025 and AMC 2023/2024.\n\nThese papers all address rubric-based approaches, calibration, and mathematical reasoning rewards, matching your search criteria."
+    ],
+    "durationSeconds": 8.615667909999988,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4f14d05a-8a2c-47b1-8e71-9c71197a2666",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-28T11:26:45.125Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WBMXq8a8GZgaMANVDEv8ZY`</summary>
+
+```json
+{
+  "query": "reward hacking rubric reinforcement learning defense mechanism ensemble 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e61794dd-e01b-4d22-a7b8-d26c3e0c85aa",
+  "isSidechain": false,
+  "requestId": "req_011CbUtKzZX7BBgmcosbs6TR",
+  "type": "assistant",
+  "uuid": "df8939e2-d9cf-4324-a9c2-da3f2eccd720",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUVva4UhRe8frX21pjuVZD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 901,
+      "cache_read_input_tokens": 29474,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 901,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 29474,
+          "cache_creation_input_tokens": 901,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 901
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-28T11:26:54.981Z_
+
+<details><summary>↩ Tool result · `toolu_01WBMXq8a8GZgaMANVDEv8ZY`</summary>
+
+```text
+Web search results for query: "reward hacking rubric reinforcement learning defense mechanism ensemble 2025 2026"
+
+Links: [{"title":"Reward Hacking Defense Rubric","url":"https://www.emergentmind.com/topics/reward-hacking-defense-rubric"},{"title":"Reward Hacking in RLVR Systems","url":"https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"},{"title":"[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/abs/2605.12474"},{"title":"Mitigating Reward Hacking in RLHF via Advantage Sign Robustness","url":"https://arxiv.org/html/2604.02986"},{"title":"Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/html/2605.12474"},{"title":"Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate   Reward Hacking","url":"https://arxiv.org/pdf/2312.09244"},{"title":"Adversarial Reward Auditing for Active Detection and Mitigation of Reward Hacking","url":"https://arxiv.org/html/2602.01750"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"}]
+
+Based on the search results, here's what I found about reward hacking, rubrics, reinforcement learning, defense mechanisms, and ensemble approaches from 2025-2026:
+
+## Defense Mechanisms and Rubric-Based Approaches
+
+Constraint and aggregation mechanisms include hard veto via defense rubrics for flagged exploit patterns (e.g., sycophancy, meta-praise), advanced non-linear score aggregation (veto, saturation-aware, pairwise interaction), and multi-objective or hierarchical aggregation to reduce the incentive for exploitation of any single criterion.
+
+Structured rewards decompose reward into explicit, interpretable rubric criteria through approaches like "Rubrics as Rewards" and "Rubric Anchors" to ensure transparent, multidimensional audits of agent behavior.
+
+## Separation and Monitoring Strategies
+
+Separation of generation and evaluation reduces context sharing between generator and evaluator; offline judges or separate context pipelines reduce the reinforcement of spurious correlations.
+
+A "monitorability tax" enforces optimization pressure limited to maintain interpretability in reasoning traces, with test-time rejection sampling or independent monitoring LLMs being effective.
+
+## Ensemble-Based Defenses
+
+Prior work addresses reward hacking through ensemble-based uncertainty, modified RM training, or adversarial robustness, with ensemble-based methods mitigating reward hacking by optimizing a policy conservatively with respect to multiple RMs.
+
+Ensembles still exploit spurious features when all members agree on them, highlighting ongoing challenges in this space.
+
+## Recent Research Findings
+
+Across medical and science domains, weak verifiers produce large proxy-reward gains that do not transfer to reference verifiers; exploitation grows over training and concentrates in recurring failures such as partial satisfaction of compound criteria.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "df8939e2-d9cf-4324-a9c2-da3f2eccd720",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "ac6ee1dd-94c9-4237-a65a-4896b195f009",
+  "toolUseResult": {
+    "query": "reward hacking rubric reinforcement learning defense mechanism ensemble 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UCLUmGcZyFUgPMVjoYw1Qp",
+        "content": [
+          {
+            "title": "Reward Hacking Defense Rubric",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+          },
+          {
+            "title": "Reward Hacking in RLVR Systems",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"
+          },
+          {
+            "title": "[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2605.12474"
+          },
+          {
+            "title": "Mitigating Reward Hacking in RLHF via Advantage Sign Robustness",
+            "url": "https://arxiv.org/html/2604.02986"
+          },
+          {
+            "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.12474"
+          },
+          {
+            "title": "Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate   Reward Hacking",
+            "url": "https://arxiv.org/pdf/2312.09244"
+          },
+          {
+            "title": "Adversarial Reward Auditing for Active Detection and Mitigation of Reward Hacking",
+            "url": "https://arxiv.org/html/2602.01750"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about reward hacking, rubrics, reinforcement learning, defense mechanisms, and ensemble approaches from 2025-2026:\n\n## Defense Mechanisms and Rubric-Based Approaches\n\nConstraint and aggregation mechanisms include hard veto via defense rubrics for flagged exploit patterns (e.g., sycophancy, meta-praise), advanced non-linear score aggregation (veto, saturation-aware, pairwise interaction), and multi-objective or hierarchical aggregation to reduce the incentive for exploitation of any single criterion.\n\nStructured rewards decompose reward into explicit, interpretable rubric criteria through approaches like \"Rubrics as Rewards\" and \"Rubric Anchors\" to ensure transparent, multidimensional audits of agent behavior.\n\n## Separation and Monitoring Strategies\n\nSeparation of generation and evaluation reduces context sharing between generator and evaluator; offline judges or separate context pipelines reduce the reinforcement of spurious correlations.\n\nA \"monitorability tax\" enforces optimization pressure limited to maintain interpretability in reasoning traces, with test-time rejection sampling or independent monitoring LLMs being effective.\n\n## Ensemble-Based Defenses\n\nPrior work addresses reward hacking through ensemble-based uncertainty, modified RM training, or adversarial robustness, with ensemble-based methods mitigating reward hacking by optimizing a policy conservatively with respect to multiple RMs.\n\nEnsembles still exploit spurious features when all members agree on them, highlighting ongoing challenges in this space.\n\n## Recent Research Findings\n\nAcross medical and science domains, weak verifiers produce large proxy-reward gains that do not transfer to reference verifiers; exploitation grows over training and concentrates in recurring failures such as partial satisfaction of compound criteria."
+    ],
+    "durationSeconds": 9.850661922999977,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "df8939e2-d9cf-4324-a9c2-da3f2eccd720",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "ac6ee1dd-94c9-4237-a65a-4896b195f009",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-28T11:27:03.715Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SkN5Nnk9BZHeoNvAaEGxtt`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.12474",
+  "prompt": "Extract: 1) Full abstract, 2) Key findings about rubric gaming mechanisms, 3) Whether they propose any solutions/defenses, 4) Statistics on presence-based vs absence-based criteria, 5) Limitations and future work directions, 6) Any mention of difficulty calibration or ensemble approaches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac6ee1dd-94c9-4237-a65a-4896b195f009",
+  "isSidechain": false,
+  "requestId": "req_011CbUtLtkYi1K2xDq4pbSeP",
+  "type": "assistant",
+  "uuid": "bbc09e04-8d1b-4d2b-832c-9ac88dc0f54e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018saQ6ryDKY844WW15JrJ3e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 872,
+      "cache_read_input_tokens": 30375,
+      "output_tokens": 149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 872,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 149,
+          "cache_read_input_tokens": 30375,
+          "cache_creation_input_tokens": 872,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 872
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-28T11:27:10.840Z_
+
+<details><summary>↩ Tool result · `toolu_01SkN5Nnk9BZHeoNvAaEGxtt`</summary>
+
+```text
+# Analysis of "Reward Hacking in Rubric-Based Reinforcement Learning"
+
+## 1) Full Abstract
+The paper investigates reward hacking when RL policies are optimized against training verifiers but evaluated by frontier judges. It identifies two divergence sources: verifier failure (training verifier credits criteria that evaluation judges reject) and rubric limitations (strong rubric verifiers favor responses that rubric-free judges rate worse). Key findings span medical and science domains, showing weak verifiers produce gains that don't transfer, with exploitation concentrating in partial satisfaction, implicit content treated as explicit, and imprecise matching. A "self-internalization gap" diagnostic is introduced.
+
+## 2) Gaming Mechanisms Identified
+The research documents recurring exploitation patterns including:
+- Partial satisfaction of compound criteria
+- Treating implicit content as explicit
+- Imprecise topical matching
+- Gains concentrated in completeness and presence-based criteria alongside declines in factual correctness, conciseness, relevance, and overall quality
+
+## 3) Solutions/Defenses Proposed
+The paper introduces "a verifier-free diagnostic based on policy log-probabilities" called the self-internalization gap, which tracks reference-verifier quality and detects when policy improvement stalls. However, the abstract suggests this is primarily a diagnostic tool rather than a preventive defense mechanism.
+
+## 4) Statistics on Presence vs. Absence Criteria
+The content notes "disagreements coincide with gains concentrated in completeness and presence-based criteria" but provides no specific numerical statistics on this comparison in the available text.
+
+## 5) Limitations and Future Work
+Not explicitly detailed in the provided abstract, though the conclusion suggests "stronger verification reduces reward hacking, but does not by itself ensure that rubric gains correspond to broader quality gains."
+
+## 6) Difficulty Calibration or Ensemble Approaches
+The paper evaluates policies "against a cross-family panel of three frontier judges, reducing dependence on any single evaluator," representing an ensemble evaluation strategy rather than training approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bbc09e04-8d1b-4d2b-832c-9ac88dc0f54e",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "f1c3ca0e-418a-40ae-9931-eb9850cca611",
+  "toolUseResult": {
+    "bytes": 48198,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Reward Hacking in Rubric-Based Reinforcement Learning\"\n\n## 1) Full Abstract\nThe paper investigates reward hacking when RL policies are optimized against training verifiers but evaluated by frontier judges. It identifies two divergence sources: verifier failure (training verifier credits criteria that evaluation judges reject) and rubric limitations (strong rubric verifiers favor responses that rubric-free judges rate worse). Key findings span medical and science domains, showing weak verifiers produce gains that don't transfer, with exploitation concentrating in partial satisfaction, implicit content treated as explicit, and imprecise matching. A \"self-internalization gap\" diagnostic is introduced.\n\n## 2) Gaming Mechanisms Identified\nThe research documents recurring exploitation patterns including:\n- Partial satisfaction of compound criteria\n- Treating implicit content as explicit\n- Imprecise topical matching\n- Gains concentrated in completeness and presence-based criteria alongside declines in factual correctness, conciseness, relevance, and overall quality\n\n## 3) Solutions/Defenses Proposed\nThe paper introduces \"a verifier-free diagnostic based on policy log-probabilities\" called the self-internalization gap, which tracks reference-verifier quality and detects when policy improvement stalls. However, the abstract suggests this is primarily a diagnostic tool rather than a preventive defense mechanism.\n\n## 4) Statistics on Presence vs. Absence Criteria\nThe content notes \"disagreements coincide with gains concentrated in completeness and presence-based criteria\" but provides no specific numerical statistics on this comparison in the available text.\n\n## 5) Limitations and Future Work\nNot explicitly detailed in the provided abstract, though the conclusion suggests \"stronger verification reduces reward hacking, but does not by itself ensure that rubric gains correspond to broader quality gains.\"\n\n## 6) Difficulty Calibration or Ensemble Approaches\nThe paper evaluates policies \"against a cross-family panel of three frontier judges, reducing dependence on any single evaluator,\" representing an ensemble evaluation strategy rather than training approach.",
+    "durationMs": 7121,
+    "url": "https://arxiv.org/abs/2605.12474"
+  },
+  "sourceToolAssistantUUID": "bbc09e04-8d1b-4d2b-832c-9ac88dc0f54e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-28T11:27:14.983Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018VHMZw2YbT1Sqp6nCRGWnu`</summary>
+
+```json
+{
+  "query": "pass@k reasoning frontier rubric rewards RLVR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1c3ca0e-418a-40ae-9931-eb9850cca611",
+  "isSidechain": false,
+  "requestId": "req_011CbUtN4kaz23kVVFMZGPu3",
+  "type": "assistant",
+  "uuid": "0a4f6894-19a1-4cd1-9166-9841c6f375cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nf4gtNWBuC564uxbmGVtUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 603,
+      "cache_read_input_tokens": 31247,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 603,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 31247,
+          "cache_creation_input_tokens": 603,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 603
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-28T11:27:22.282Z_
+
+<details><summary>↩ Tool result · `toolu_018VHMZw2YbT1Sqp6nCRGWnu`</summary>
+
+```text
+Web search results for query: "pass@k reasoning frontier rubric rewards RLVR 2026"
+
+Links: [{"title":"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs | OpenReview","url":"https://openreview.net/forum?id=jGbRWwIidy"},{"title":"RLVR: The Training Breakthrough That Will Make Reasoning AI Verifiable | by RAKTIM SINGH | Medium","url":"https://medium.com/@raktims2210/rlvr-the-training-breakthrough-that-will-make-reasoning-ai-verifiable-cf4209e79669"},{"title":"[2506.14245] Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs","url":"https://arxiv.org/abs/2506.14245"},{"title":"Pass@k Metric for RLVR: A Diagnostic Tool of Exploration, But Not an Objective","url":"https://arxiv.org/html/2511.16231v1"},{"title":"RLVR Beyond Math and Code: The Verifier Problem Nobody Has Solved | Subhadip Mitra","url":"https://subhadipmitra.com/blog/2026/rlvr-beyond-math-code/"},{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview","url":"https://openreview.net/forum?id=c1bTcrDmt4"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview","url":"https://openreview.net/forum?id=4OsgYD7em5"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs","url":"https://arxiv.org/html/2506.14245v2"}]
+
+I found relevant research on your query topics. Here are the key findings:
+
+## RLVR and Pass@K Reasoning
+
+Recent advancements in long chain-of-thought (CoT) reasoning, particularly through the Group Relative Policy Optimization algorithm used by DeepSeek-R1, have led to significant interest in the potential of Reinforcement Learning with Verifiable Rewards (RLVR) for Large Language Models.
+
+## CoT-Pass@K Metric
+
+A novel evaluation metric called CoT-Pass@K captures reasoning success by accounting for both the final answer and intermediate reasoning steps. A major paper accepted at ICLR 2026 introduced CoT-Pass@K - a metric that evaluates not just whether the final answer is correct but whether the reasoning chain is valid.
+
+## Rubric-Based Rewards
+
+Rubrics as Rewards (RaR) is an on-policy reinforcement learning method that extends RLVR beyond verifiable domains by using rubric-based feedback. The best RaR variant achieves relative improvements of up to 31% on HealthBench and 7% on GPQA-Diamond over popular LLM-as-judge baselines that rely on direct Likert-based rewards.
+
+## Frontier Models and 2026 Research
+
+Rubrics are a practical middle ground between deterministic verifiers and preference labels that allow extending RLVR beyond verifiable domains while retaining granular control over output quality. The research landscape in 2026 shows active exploration of how rubric-based approaches can enable RLVR to work on open-ended reasoning tasks beyond traditional math and coding domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a4f6894-19a1-4cd1-9166-9841c6f375cf",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "3bc407c9-fe20-4e74-ba2c-a3b7426211be",
+  "toolUseResult": {
+    "query": "pass@k reasoning frontier rubric rewards RLVR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YQf4wAGDCDbGwYYcWoKv8j",
+        "content": [
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=jGbRWwIidy"
+          },
+          {
+            "title": "RLVR: The Training Breakthrough That Will Make Reasoning AI Verifiable | by RAKTIM SINGH | Medium",
+            "url": "https://medium.com/@raktims2210/rlvr-the-training-breakthrough-that-will-make-reasoning-ai-verifiable-cf4209e79669"
+          },
+          {
+            "title": "[2506.14245] Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs",
+            "url": "https://arxiv.org/abs/2506.14245"
+          },
+          {
+            "title": "Pass@k Metric for RLVR: A Diagnostic Tool of Exploration, But Not an Objective",
+            "url": "https://arxiv.org/html/2511.16231v1"
+          },
+          {
+            "title": "RLVR Beyond Math and Code: The Verifier Problem Nobody Has Solved | Subhadip Mitra",
+            "url": "https://subhadipmitra.com/blog/2026/rlvr-beyond-math-code/"
+          },
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview",
+            "url": "https://openreview.net/forum?id=c1bTcrDmt4"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview",
+            "url": "https://openreview.net/forum?id=4OsgYD7em5"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs",
+            "url": "https://arxiv.org/html/2506.14245v2"
+          }
+        ]
+      },
+      "I found relevant research on your query topics. Here are the key findings:\n\n## RLVR and Pass@K Reasoning\n\nRecent advancements in long chain-of-thought (CoT) reasoning, particularly through the Group Relative Policy Optimization algorithm used by DeepSeek-R1, have led to significant interest in the potential of Reinforcement Learning with Verifiable Rewards (RLVR) for Large Language Models.\n\n## CoT-Pass@K Metric\n\nA novel evaluation metric called CoT-Pass@K captures reasoning success by accounting for both the final answer and intermediate reasoning steps. A major paper accepted at ICLR 2026 introduced CoT-Pass@K - a metric that evaluates not just whether the final answer is correct but whether the reasoning chain is valid.\n\n## Rubric-Based Rewards\n\nRubrics as Rewards (RaR) is an on-policy reinforcement learning method that extends RLVR beyond verifiable domains by using rubric-based feedback. The best RaR variant achieves relative improvements of up to 31% on HealthBench and 7% on GPQA-Diamond over popular LLM-as-judge baselines that rely on direct Likert-based rewards.\n\n## Frontier Models and 2026 Research\n\nRubrics are a practical middle ground between deterministic verifiers and preference labels that allow extending RLVR beyond verifiable domains while retaining granular control over output quality. The research landscape in 2026 shows active exploration of how rubric-based approaches can enable RLVR to work on open-ended reasoning tasks beyond traditional math and coding domains."
+    ],
+    "durationSeconds": 7.294655323999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0a4f6894-19a1-4cd1-9166-9841c6f375cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-28T11:27:28.270Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0194zuyQbTsrTtwHd8s4QyDR`</summary>
+
+```json
+{
+  "query": "\"does RL really incentivize reasoning\" rubric rewards pass@k frontier expansion 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bc407c9-fe20-4e74-ba2c-a3b7426211be",
+  "isSidechain": false,
+  "requestId": "req_011CbUtNucCfpcvUPHgWzuvX",
+  "type": "assistant",
+  "uuid": "77ad6237-fa12-4368-b446-d994cd0ef737",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kmb7hScXqD1S8ZSRBy93Wi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1047,
+      "cache_read_input_tokens": 31850,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 31850,
+          "cache_creation_input_tokens": 1047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-28T11:27:35.349Z_
+
+<details><summary>↩ Tool result · `toolu_0194zuyQbTsrTtwHd8s4QyDR`</summary>
+
+```text
+Web search results for query: ""does RL really incentivize reasoning" rubric rewards pass@k frontier expansion 2026"
+
+Links: [{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/pdf/2511.12344"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs | OpenReview","url":"https://openreview.net/forum?id=jGbRWwIidy"},{"title":"GitHub - rdi-berkeley/awesome-RLVR-boundary: A curated list of resources on Reinforcement Learning with Verifiable Rewards (RLVR) and the reasoning capability boundary of Large Language Models (LLMs). · GitHub","url":"https://github.com/rdi-berkeley/awesome-RLVR-boundary"},{"title":"Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning","url":"https://arxiv.org/pdf/2508.16949"},{"title":"Limit of RLVR","url":"https://limit-of-rlvr.github.io/"},{"title":"Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/html/2510.07774"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview","url":"https://openreview.net/forum?id=4OsgYD7em5"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?","url":"https://arxiv.org/pdf/2504.13837"}]
+
+Based on the search results, here's what recent research reveals about whether RL really incentivizes reasoning:
+
+## Key Debate
+
+Research systematically examining RLVR surprisingly finds that it does not elicit fundamentally new reasoning patterns—revealing a gap between the potential of RL and the actual impact of current RLVR methods. This addresses a fundamental question: It is widely believed that RLVR enables LLMs to continuously self-improve, acquiring novel reasoning abilities that exceed the capacity of base models.
+
+## Evidence on Pass@K and Frontier Expansion
+
+The evidence is mixed depending on the metric:
+
+**Supporting frontier expansion:** A theoretical framework explains RLVR's incentive mechanism, demonstrating how it can encourage correct reasoning even when rewards are based solely on answer correctness. Additionally, RGR-GRPO achieves superior pass@k performance, reflecting sustained exploration and effective breakthrough beyond existing performance bottlenecks.
+
+**Questioning frontier expansion:** However, all reasoning paths in the RLVR model are already present in the base model; while RLVR training biases distribution toward rewarded paths for some problems, this comes at the cost of reduced reasoning capacity for other problems. RL fine-tuning enhances sampling efficiency without expanding the reasoning capacity already present in base models, with base models surpassing RL at large pass@k.
+
+## Role of Rubric Rewards
+
+Researchers apply rubrics as reward signals in RL using LLMs as graders to provide fine-grained feedback, with this approach showing promising results across various domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77ad6237-fa12-4368-b446-d994cd0ef737",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "ae0fb6a3-4a9c-4b1e-99fa-293880e5306f",
+  "toolUseResult": {
+    "query": "\"does RL really incentivize reasoning\" rubric rewards pass@k frontier expansion 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Em3LkVEmxMZv46Y3eKeKMc",
+        "content": [
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/pdf/2511.12344"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=jGbRWwIidy"
+          },
+          {
+            "title": "GitHub - rdi-berkeley/awesome-RLVR-boundary: A curated list of resources on Reinforcement Learning with Verifiable Rewards (RLVR) and the reasoning capability boundary of Large Language Models (LLMs). · GitHub",
+            "url": "https://github.com/rdi-berkeley/awesome-RLVR-boundary"
+          },
+          {
+            "title": "Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2508.16949"
+          },
+          {
+            "title": "Limit of RLVR",
+            "url": "https://limit-of-rlvr.github.io/"
+          },
+          {
+            "title": "Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/html/2510.07774"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview",
+            "url": "https://openreview.net/forum?id=4OsgYD7em5"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?",
+            "url": "https://arxiv.org/pdf/2504.13837"
+          }
+        ]
+      },
+      "Based on the search results, here's what recent research reveals about whether RL really incentivizes reasoning:\n\n## Key Debate\n\nResearch systematically examining RLVR surprisingly finds that it does not elicit fundamentally new reasoning patterns—revealing a gap between the potential of RL and the actual impact of current RLVR methods. This addresses a fundamental question: It is widely believed that RLVR enables LLMs to continuously self-improve, acquiring novel reasoning abilities that exceed the capacity of base models.\n\n## Evidence on Pass@K and Frontier Expansion\n\nThe evidence is mixed depending on the metric:\n\n**Supporting frontier expansion:** A theoretical framework explains RLVR's incentive mechanism, demonstrating how it can encourage correct reasoning even when rewards are based solely on answer correctness. Additionally, RGR-GRPO achieves superior pass@k performance, reflecting sustained exploration and effective breakthrough beyond existing performance bottlenecks.\n\n**Questioning frontier expansion:** However, all reasoning paths in the RLVR model are already present in the base model; while RLVR training biases distribution toward rewarded paths for some problems, this comes at the cost of reduced reasoning capacity for other problems. RL fine-tuning enhances sampling efficiency without expanding the reasoning capacity already present in base models, with base models surpassing RL at large pass@k.\n\n## Role of Rubric Rewards\n\nResearchers apply rubrics as reward signals in RL using LLMs as graders to provide fine-grained feedback, with this approach showing promising results across various domains."
+    ],
+    "durationSeconds": 7.074300411999983,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "77ad6237-fa12-4368-b446-d994cd0ef737",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-28T11:27:38.988Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01L2nNbE5j3suBAtVmRTZraA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.16949",
+  "prompt": "Extract: 1) Full abstract, 2) How does rubric-scaffolded RL promote exploration? 3) Does it address difficulty calibration? 4) Pass@k results - does it expand the reasoning frontier? 5) Key contributions and limitations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae0fb6a3-4a9c-4b1e-99fa-293880e5306f",
+  "isSidechain": false,
+  "requestId": "req_011CbUtPsK4nrVLHhMM7B52u",
+  "type": "assistant",
+  "uuid": "13919418-3c43-41c2-876a-09e7e2e26ed7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3TXpeR1cAsYRjcoDWR7oF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 32897,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 32897,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-28T11:27:44.683Z_
+
+<details><summary>↩ Tool result · `toolu_01L2nNbE5j3suBAtVmRTZraA`</summary>
+
+```text
+# Analysis of RuscaRL Paper
+
+## 1) Full Abstract
+
+"Recent advances in Large Language Models (LLMs) have underscored the potential of Reinforcement Learning (RL) to facilitate the emergence of reasoning capabilities. Despite the encouraging results, a fundamental dilemma persists as RL improvement relies on learning from high-quality samples, yet the exploration for such samples remains bounded by the inherent limitations of LLMs."
+
+The authors propose RuscaRL, which employs checklist-style rubrics in two ways: as guidance during response generation (gradually decayed), and as references for reward scoring during training.
+
+## 2) How Rubric-Scaffolded RL Promotes Exploration
+
+RuscaRL breaks the exploration bottleneck by providing "external guidance within task instructions to steer diverse high-quality responses." This scaffolding helps the model generate superior samples it wouldn't naturally discover. The guidance decays progressively, encouraging the model to internalize learned patterns independently rather than remaining dependent on explicit structure.
+
+## 3) Difficulty Calibration
+
+The paper does not explicitly address difficulty calibration based on the provided abstract and metadata. No content discusses adaptive problem sequencing or graduated task complexity.
+
+## 4) Pass@k Results
+
+The abstract states the method demonstrates "superiority of the proposed RuscaRL across various benchmarks, effectively expanding reasoning boundaries under the Best-of-N evaluation." However, specific numerical results are not provided in this excerpt.
+
+## 5) Key Contributions and Limitations
+
+**Contributions:** Dual-purpose rubric framework addressing both exploration and exploitation; instructional scaffolding that decays over time; robust LLM-as-a-Judge scoring.
+
+**Limitations:** The provided content doesn't explicitly discuss limitations or failure cases.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13919418-3c43-41c2-876a-09e7e2e26ed7",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "2d96f9a5-89f9-4cab-847c-b3b581445abb",
+  "toolUseResult": {
+    "bytes": 50071,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of RuscaRL Paper\n\n## 1) Full Abstract\n\n\"Recent advances in Large Language Models (LLMs) have underscored the potential of Reinforcement Learning (RL) to facilitate the emergence of reasoning capabilities. Despite the encouraging results, a fundamental dilemma persists as RL improvement relies on learning from high-quality samples, yet the exploration for such samples remains bounded by the inherent limitations of LLMs.\"\n\nThe authors propose RuscaRL, which employs checklist-style rubrics in two ways: as guidance during response generation (gradually decayed), and as references for reward scoring during training.\n\n## 2) How Rubric-Scaffolded RL Promotes Exploration\n\nRuscaRL breaks the exploration bottleneck by providing \"external guidance within task instructions to steer diverse high-quality responses.\" This scaffolding helps the model generate superior samples it wouldn't naturally discover. The guidance decays progressively, encouraging the model to internalize learned patterns independently rather than remaining dependent on explicit structure.\n\n## 3) Difficulty Calibration\n\nThe paper does not explicitly address difficulty calibration based on the provided abstract and metadata. No content discusses adaptive problem sequencing or graduated task complexity.\n\n## 4) Pass@k Results\n\nThe abstract states the method demonstrates \"superiority of the proposed RuscaRL across various benchmarks, effectively expanding reasoning boundaries under the Best-of-N evaluation.\" However, specific numerical results are not provided in this excerpt.\n\n## 5) Key Contributions and Limitations\n\n**Contributions:** Dual-purpose rubric framework addressing both exploration and exploitation; instructional scaffolding that decays over time; robust LLM-as-a-Judge scoring.\n\n**Limitations:** The provided content doesn't explicitly discuss limitations or failure cases.",
+    "durationMs": 5692,
+    "url": "https://arxiv.org/abs/2508.16949"
+  },
+  "sourceToolAssistantUUID": "13919418-3c43-41c2-876a-09e7e2e26ed7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57 · 2026-05-28T11:27:44.686Z_
+
+```json
+{
+  "parentUuid": "2d96f9a5-89f9-4cab-847c-b3b581445abb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8103a9f9-765d-42ae-8c4b-4b16a1dd30d9",
+  "timestamp": "2026-05-28T11:27:44.686Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-28T11:27:48.171Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important - RuscaRL claims to expand the reasoning frontier using rubric-scaffolded RL. Let me check this claim more carefully. Let me also fetch more details on some key papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8103a9f9-765d-42ae-8c4b-4b16a1dd30d9",
+  "isSidechain": false,
+  "requestId": "req_011CbUtQZFeSm5SXEGYCq8kJ",
+  "type": "assistant",
+  "uuid": "505f2cce-68ac-4025-a4cd-8cc1ca0dd97b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFSfWT6KzkR6o7sssZ7sGs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 33782,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 635,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 33782,
+          "cache_creation_input_tokens": 635,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 635
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-28T11:27:48.377Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hzj4WcAVpCBJJM8ZUfceU2`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"Open Rubric System\" pairwise adaptive rubric 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "505f2cce-68ac-4025-a4cd-8cc1ca0dd97b",
+  "isSidechain": false,
+  "requestId": "req_011CbUtQZFeSm5SXEGYCq8kJ",
+  "type": "assistant",
+  "uuid": "00a22bec-1b29-4231-82dd-ac03d84378b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFSfWT6KzkR6o7sssZ7sGs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 33782,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 635,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 33782,
+          "cache_creation_input_tokens": 635,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 635
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "00a22bec-1b29-4231-82dd-ac03d84378b1",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-28T11:27:54.438Z_
+
+<details><summary>↩ Tool result · `toolu_01Hzj4WcAVpCBJJM8ZUfceU2`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "Open Rubric System" pairwise adaptive rubric 2026"
+
+Links: [{"title":"Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric","url":"https://arxiv.org/html/2602.14069"},{"title":"[2602.14069] Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric","url":"https://arxiv.org/abs/2602.14069"},{"title":"Am I More Pointwise or Pairwise? Revealing Position Bias in Rubric-Based LLM-as-a-Judge","url":"https://arxiv.org/pdf/2602.02219"},{"title":"AdaRubric: Task-Adaptive Rubrics for LLM Agent Evaluation","url":"https://arxiv.org/pdf/2603.21362"},{"title":"Auto-Rubric: Learning From Implicit Weights to Explicit Rubrics for Reward Modeling","url":"https://arxiv.org/pdf/2510.17314"}]
+
+I found relevant results for your search. The primary match is:
+
+The Open Rubric System (OpenRS) bridges RLVR and RLHF by combining pointwise verifiable rewards and constraints with meta-rubric-guided pairwise preference optimization for general domains. It proposes Pairwise Adaptive Meta-Rubrics (PAMR) by replacing trained scalar reward models with an off-the-shelf LLM judge guided by an explicit meta-rubric—a constitution-like specification that governs how rubrics are instantiated, how each criterion is weighed, and which failure modes are non-negotiable.
+
+OpenRS uses an explicit meta-rubric and instantiates adaptive rubrics on the fly by conditioning on the semantic differences between two candidate responses, then performs criterion-wise pairwise comparisons and aggregates criterion-level preferences externally, avoiding pointwise weighted scalarization while improving discriminability in open-ended settings.
+
+The paper was published on arXiv on February 27, 2026 (arxiv ID: 2602.14069).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00a22bec-1b29-4231-82dd-ac03d84378b1",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "c75fb013-47bd-49a3-8688-726541eb6d65",
+  "toolUseResult": {
+    "query": "site:arxiv.org \"Open Rubric System\" pairwise adaptive rubric 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012bCW7iqxL2NLvUM65mKRM3",
+        "content": [
+          {
+            "title": "Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric",
+            "url": "https://arxiv.org/html/2602.14069"
+          },
+          {
+            "title": "[2602.14069] Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric",
+            "url": "https://arxiv.org/abs/2602.14069"
+          },
+          {
+            "title": "Am I More Pointwise or Pairwise? Revealing Position Bias in Rubric-Based LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2602.02219"
+          },
+          {
+            "title": "AdaRubric: Task-Adaptive Rubrics for LLM Agent Evaluation",
+            "url": "https://arxiv.org/pdf/2603.21362"
+          },
+          {
+            "title": "Auto-Rubric: Learning From Implicit Weights to Explicit Rubrics for Reward Modeling",
+            "url": "https://arxiv.org/pdf/2510.17314"
+          }
+        ]
+      },
+      "I found relevant results for your search. The primary match is:\n\nThe Open Rubric System (OpenRS) bridges RLVR and RLHF by combining pointwise verifiable rewards and constraints with meta-rubric-guided pairwise preference optimization for general domains. It proposes Pairwise Adaptive Meta-Rubrics (PAMR) by replacing trained scalar reward models with an off-the-shelf LLM judge guided by an explicit meta-rubric—a constitution-like specification that governs how rubrics are instantiated, how each criterion is weighed, and which failure modes are non-negotiable.\n\nOpenRS uses an explicit meta-rubric and instantiates adaptive rubrics on the fly by conditioning on the semantic differences between two candidate responses, then performs criterion-wise pairwise comparisons and aggregates criterion-level preferences externally, avoiding pointwise weighted scalarization while improving discriminability in open-ended settings.\n\nThe paper was published on arXiv on February 27, 2026 (arxiv ID: 2602.14069)."
+    ],
+    "durationSeconds": 6.055259247000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "00a22bec-1b29-4231-82dd-ac03d84378b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-28T11:27:56.879Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q9h2w6GUyecw38rLeeKTpJ`</summary>
+
+```json
+{
+  "query": "SRaR step-wise rubric rewards LLM reasoning decoupled advantage 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c75fb013-47bd-49a3-8688-726541eb6d65",
+  "isSidechain": false,
+  "requestId": "req_011CbUtRGy8rVJ3w6GKYhr5Q",
+  "type": "assistant",
+  "uuid": "b707e492-0778-4232-94a2-537d526244c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpzWLHNfM2kkcrwAS9RvWT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 668,
+      "cache_read_input_tokens": 34417,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 668,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 34417,
+          "cache_creation_input_tokens": 668,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 668
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-28T11:28:07.138Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9h2w6GUyecw38rLeeKTpJ`</summary>
+
+```text
+Web search results for query: "SRaR step-wise rubric rewards LLM reasoning decoupled advantage 2025"
+
+Links: [{"title":"[2605.17291] Step-wise Rubric Rewards for LLM Reasoning","url":"https://arxiv.org/abs/2605.17291"},{"title":"Step-wise Rubric Rewards for LLM Reasoning","url":"https://arxiv.org/html/2605.17291v1"},{"title":"Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning","url":"https://arxiv.org/pdf/2508.16949"},{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/abs/2510.07774"},{"title":"PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization","url":"https://arxiv.org/html/2603.26535"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"}]
+
+Based on the search results, I found relevant information about SRaR (Step-wise Rubrics as Rewards). Here's what the research shows:
+
+## Overview of SRaR
+
+SRaR is an RLVR framework that uses an LLM judge to attribute each rubric item to a specific reasoning step, normalizes the per-step rubric scores across rollouts so that only steps whose quality varies produce a learning signal, and combines the resulting per-step reward with the standard outcome reward through a decoupled advantage estimator that keeps the outcome-driven baseline stable.
+
+## Key Advantages
+
+The decoupled advantage estimator is a critical component of SRaR. Through step-attributed rubric judging and cross-rollout step normalization, each reasoning step receives a step-wise rubric reward, while a decoupled advantage estimator keeps RL training stable against rubric noise.
+
+## Performance Improvements
+
+SRaR improves the average accuracy over RaR by 3.57 points on Qwen3-8B and by 2.75 points on Qwen3-32B, and raises the Faithful Reasoning Rate on AIME 2025 from 34.5% to 46.7%, while reducing self-correction looping from 48.1% to 26.5%.
+
+## Problem Addressed
+
+Traditional rubric-based methods aggregate rubric scores into a single scalar applied to the entire response, causing loss of multi-criterion structure, uniform supervision of correct and incorrect steps, and reward hacking through unbounded self-correction. On 1,000 problems, 18.2% of steps in correct-answer responses are wrong yet positively rewarded, while 49.9% of steps in incorrect-answer responses are correct yet penalized.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b707e492-0778-4232-94a2-537d526244c3",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "3c59a2c6-4b89-4f15-864b-47c5f5ebc84d",
+  "toolUseResult": {
+    "query": "SRaR step-wise rubric rewards LLM reasoning decoupled advantage 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014YhBVEKYEZwfSFyBp4XYSM",
+        "content": [
+          {
+            "title": "[2605.17291] Step-wise Rubric Rewards for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2605.17291"
+          },
+          {
+            "title": "Step-wise Rubric Rewards for LLM Reasoning",
+            "url": "https://arxiv.org/html/2605.17291v1"
+          },
+          {
+            "title": "Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2508.16949"
+          },
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/abs/2510.07774"
+          },
+          {
+            "title": "PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization",
+            "url": "https://arxiv.org/html/2603.26535"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about SRaR (Step-wise Rubrics as Rewards). Here's what the research shows:\n\n## Overview of SRaR\n\nSRaR is an RLVR framework that uses an LLM judge to attribute each rubric item to a specific reasoning step, normalizes the per-step rubric scores across rollouts so that only steps whose quality varies produce a learning signal, and combines the resulting per-step reward with the standard outcome reward through a decoupled advantage estimator that keeps the outcome-driven baseline stable.\n\n## Key Advantages\n\nThe decoupled advantage estimator is a critical component of SRaR. Through step-attributed rubric judging and cross-rollout step normalization, each reasoning step receives a step-wise rubric reward, while a decoupled advantage estimator keeps RL training stable against rubric noise.\n\n## Performance Improvements\n\nSRaR improves the average accuracy over RaR by 3.57 points on Qwen3-8B and by 2.75 points on Qwen3-32B, and raises the Faithful Reasoning Rate on AIME 2025 from 34.5% to 46.7%, while reducing self-correction looping from 48.1% to 26.5%.\n\n## Problem Addressed\n\nTraditional rubric-based methods aggregate rubric scores into a single scalar applied to the entire response, causing loss of multi-criterion structure, uniform supervision of correct and incorrect steps, and reward hacking through unbounded self-correction. On 1,000 problems, 18.2% of steps in correct-answer responses are wrong yet positively rewarded, while 49.9% of steps in incorrect-answer responses are correct yet penalized."
+    ],
+    "durationSeconds": 10.254299204999988,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b707e492-0778-4232-94a2-537d526244c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-28T11:28:10.923Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K77nPNwqdStPgfMpTt4eHy`</summary>
+
+```json
+{
+  "query": "DARO difficulty-aware reweighting policy optimization rubric math 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c59a2c6-4b89-4f15-864b-47c5f5ebc84d",
+  "isSidechain": false,
+  "requestId": "req_011CbUtSDAia2wCqKEc5ryq2",
+  "type": "assistant",
+  "uuid": "aff86f77-0355-48d5-a729-339909510cab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H9VZVs9TqZXLpDdZix5J4E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 844,
+      "cache_read_input_tokens": 35085,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 844,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 35085,
+          "cache_creation_input_tokens": 844,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 844
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-28T11:28:17.628Z_
+
+<details><summary>↩ Tool result · `toolu_01K77nPNwqdStPgfMpTt4eHy`</summary>
+
+```text
+Web search results for query: "DARO difficulty-aware reweighting policy optimization rubric math 2025 2026"
+
+Links: [{"title":"DARO: Difficulty-Aware Reweighting Policy Optimization | alphaXiv","url":"https://www.alphaxiv.org/abs/2510.09001"},{"title":"DARO: Difficulty-Aware Reweighting Policy Optimization","url":"https://arxiv.org/pdf/2510.09001"},{"title":"[2510.09001] DARO: Difficulty-Aware Reweighting Policy Optimization","url":"https://arxiv.org/abs/2510.09001"},{"title":"Difficulty-Aware Adaptive Policy Optimization","url":"https://www.emergentmind.com/topics/difficulty-aware-adaptive-policy-optimization"},{"title":"DA-DPO: Cost-efficient Difficulty-aware Preference Optimization for Reducing MLLM Hallucinations","url":"https://arxiv.org/html/2601.00623"}]
+
+Based on the search results, I found comprehensive information about DARO and related research:
+
+## DARO: Difficulty-Aware Reweighting Policy Optimization
+
+DARO is a method developed by researchers from Shanghai Jiao Tong University and Peking University.
+
+### Purpose and Motivation
+
+Recent advances in large language models have shown that reasoning ability can be significantly enhanced through Reinforcement Learning with Verifiable Rewards (RLVR), with Group Relative Policy Optimization (GRPO) emerging as the de facto approach for RLVR. However, mathematical analysis reveals these methods are fundamentally weighted variations of GRPO, and their reliance on static or simplistic weighting schemes prevents adaptation to a model's evolving capabilities, creating a significant loss scale issue where training disproportionately focuses on certain difficulty levels.
+
+### How DARO Works
+
+DARO is a method that dynamically adjusts the loss contribution of each difficulty group based on the model's learning state.
+
+### Results
+
+Extensive experiments on Qwen2.5-Math-1.5B, Qwen2.5-Math-7B, and Llama3.1-8B show that DARO outperforms four leading baselines across six math benchmarks, achieving significantly faster convergence and superior final performance.
+
+The paper was published in October 2025 and is part of a broader emerging area of difficulty-aware adaptive policy optimization methods in LLM training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aff86f77-0355-48d5-a729-339909510cab",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "4e5e52da-281a-4d32-875f-07031c04fbaa",
+  "toolUseResult": {
+    "query": "DARO difficulty-aware reweighting policy optimization rubric math 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FAn7pG54yYkoiH4DYmQKiR",
+        "content": [
+          {
+            "title": "DARO: Difficulty-Aware Reweighting Policy Optimization | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2510.09001"
+          },
+          {
+            "title": "DARO: Difficulty-Aware Reweighting Policy Optimization",
+            "url": "https://arxiv.org/pdf/2510.09001"
+          },
+          {
+            "title": "[2510.09001] DARO: Difficulty-Aware Reweighting Policy Optimization",
+            "url": "https://arxiv.org/abs/2510.09001"
+          },
+          {
+            "title": "Difficulty-Aware Adaptive Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/difficulty-aware-adaptive-policy-optimization"
+          },
+          {
+            "title": "DA-DPO: Cost-efficient Difficulty-aware Preference Optimization for Reducing MLLM Hallucinations",
+            "url": "https://arxiv.org/html/2601.00623"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about DARO and related research:\n\n## DARO: Difficulty-Aware Reweighting Policy Optimization\n\nDARO is a method developed by researchers from Shanghai Jiao Tong University and Peking University.\n\n### Purpose and Motivation\n\nRecent advances in large language models have shown that reasoning ability can be significantly enhanced through Reinforcement Learning with Verifiable Rewards (RLVR), with Group Relative Policy Optimization (GRPO) emerging as the de facto approach for RLVR. However, mathematical analysis reveals these methods are fundamentally weighted variations of GRPO, and their reliance on static or simplistic weighting schemes prevents adaptation to a model's evolving capabilities, creating a significant loss scale issue where training disproportionately focuses on certain difficulty levels.\n\n### How DARO Works\n\nDARO is a method that dynamically adjusts the loss contribution of each difficulty group based on the model's learning state.\n\n### Results\n\nExtensive experiments on Qwen2.5-Math-1.5B, Qwen2.5-Math-7B, and Llama3.1-8B show that DARO outperforms four leading baselines across six math benchmarks, achieving significantly faster convergence and superior final performance.\n\nThe paper was published in October 2025 and is part of a broader emerging area of difficulty-aware adaptive policy optimization methods in LLM training."
+    ],
+    "durationSeconds": 6.7006501070000235,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "aff86f77-0355-48d5-a729-339909510cab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-28T11:28:20.261Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N5s6jzwQi8saNQf64Ep7UT`</summary>
+
+```json
+{
+  "query": "\"reward under attack\" PRM reward hacking stylistic shortcuts math reasoning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e5e52da-281a-4d32-875f-07031c04fbaa",
+  "isSidechain": false,
+  "requestId": "req_011CbUtSz1ySPa2FBPaxNUNq",
+  "type": "assistant",
+  "uuid": "c313340a-5776-4af7-a0af-501066aebf05",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0189MJEnr1Dmbyf2uHdFBxSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 35929,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 675,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 35929,
+          "cache_creation_input_tokens": 675,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 675
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-28T11:28:29.450Z_
+
+<details><summary>↩ Tool result · `toolu_01N5s6jzwQi8saNQf64Ep7UT`</summary>
+
+```text
+Web search results for query: ""reward under attack" PRM reward hacking stylistic shortcuts math reasoning 2026"
+
+Links: [{"title":"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/abs/2603.06621"},{"title":"Reward Under Attack: Analyzing the Robustness and Hackability of","url":"https://arxiv.org/pdf/2603.06621"},{"title":"Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction","url":"https://arxiv.org/html/2508.04216v1"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29"},{"title":"Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction","url":"https://arxiv.org/pdf/2508.04216"},{"title":"1 Introduction","url":"https://arxiv.org/html/2603.06621"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/pdf/2504.15275"},{"title":"Reward Under Attack: Evaluating the Sensitivity of Process Reward Models","url":"https://openreview.net/pdf?id=Hw24VOppus"}]
+
+The search results reveal a comprehensive research paper titled "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models" that directly addresses your query.
+
+## Key Findings:
+
+RL-induced reward hacking exposes a critical failure mode where policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts.
+
+Current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.
+
+## Testing Framework:
+
+Static perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes with reward changes <0.1, yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types.
+
+Adversarial optimization demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks.
+
+## Research Resources:
+
+The authors release PRM-BiasBench and a diagnostic toolkit to enable robustness evaluation before deployment.
+
+The paper (arxiv 2603.06621) was published in February 2026 and appears to be one of the most recent comprehensive analyses of Process Reward Model vulnerabilities in mathematical reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c313340a-5776-4af7-a0af-501066aebf05",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "4742cd30-e8c2-40d1-b24e-c59d477d1a1f",
+  "toolUseResult": {
+    "query": "\"reward under attack\" PRM reward hacking stylistic shortcuts math reasoning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T2ASKkKn1NpwMmV2LxRCJe",
+        "content": [
+          {
+            "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/abs/2603.06621"
+          },
+          {
+            "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+            "url": "https://arxiv.org/pdf/2603.06621"
+          },
+          {
+            "title": "Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction",
+            "url": "https://arxiv.org/html/2508.04216v1"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29"
+          },
+          {
+            "title": "Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction",
+            "url": "https://arxiv.org/pdf/2508.04216"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2603.06621"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/pdf/2504.15275"
+          },
+          {
+            "title": "Reward Under Attack: Evaluating the Sensitivity of Process Reward Models",
+            "url": "https://openreview.net/pdf?id=Hw24VOppus"
+          }
+        ]
+      },
+      "The search results reveal a comprehensive research paper titled \"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\" that directly addresses your query.\n\n## Key Findings:\n\nRL-induced reward hacking exposes a critical failure mode where policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts.\n\nCurrent PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\n## Testing Framework:\n\nStatic perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes with reward changes <0.1, yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types.\n\nAdversarial optimization demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks.\n\n## Research Resources:\n\nThe authors release PRM-BiasBench and a diagnostic toolkit to enable robustness evaluation before deployment.\n\nThe paper (arxiv 2603.06621) was published in February 2026 and appears to be one of the most recent comprehensive analyses of Process Reward Model vulnerabilities in mathematical reasoning."
+    ],
+    "durationSeconds": 9.185202703000018,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c313340a-5776-4af7-a0af-501066aebf05",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-28T11:28:31.493Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HE9QXisEixwa7Y959g4AcE`</summary>
+
+```json
+{
+  "query": "Goodhart's law rubric decomposition multi-dimensional reward gaming theoretical analysis 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4742cd30-e8c2-40d1-b24e-c59d477d1a1f",
+  "isSidechain": false,
+  "requestId": "req_011CbUtTrc1ivbfagJFg1tBY",
+  "type": "assistant",
+  "uuid": "b587c456-bcac-4300-9ff0-01c2ef9fdb4b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FeKemq6h2BKf3g51KbDPoe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 762,
+      "cache_read_input_tokens": 36604,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 762,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 36604,
+          "cache_creation_input_tokens": 762,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 762
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-28T11:28:38.956Z_
+
+<details><summary>↩ Tool result · `toolu_01HE9QXisEixwa7Y959g4AcE`</summary>
+
+```text
+Web search results for query: "Goodhart's law rubric decomposition multi-dimensional reward gaming theoretical analysis 2026"
+
+Links: [{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"Goodhart’s Law in Reinforcement Learning","url":"https://arxiv.org/html/2310.09144v1"},{"title":"Goodhart's Law in Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=5o9G4XF1LI"},{"title":"Reward Hacking as Equilibrium under Finite Evaluation","url":"https://arxiv.org/pdf/2603.28063"},{"title":"Goodhart's Law in Reinforcement Learning","url":"https://www.alignmentforum.org/posts/Eu6CvP7c7ivcGM3PJ/goodhart-s-law-in-reinforcement-learning"},{"title":"GOODHART'S LAW IN REINFORCEMENT LEARNING","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/6ad68a54eaa8f9bf6ac698b02ec05048-Paper-Conference.pdf"},{"title":"REWARD MODELS ARE METRICS IN A TRENCH COAT","url":"https://openreview.net/pdf/433f58bfdb3e151dac7ee7387af7abd16e3a0940.pdf"},{"title":"Goodhart's Law in AI: When Metrics Become Targets, Models Fail","url":"https://www.practical-devsecops.com/glossary/goodharts-law/"},{"title":"Catastrophic Goodhart: regularizing RLHF with KL divergence does not   mitigate heavy-tailed reward misspecification","url":"https://arxiv.org/pdf/2407.14503"}]
+
+I've completed a web search for your query about Goodhart's law, rubric decomposition, multi-dimensional reward gaming, and theoretical analysis in 2026. Here are the key findings:
+
+## Recent 2026 Research on Rubric Decomposition and Goodhart's Law
+
+Recent 2026 work argues that recursive rubric decomposition materially improves both judgment quality and reward modeling for open-ended tasks. This represents an evolution in how evaluation systems address Goodhart's law concerns.
+
+Goodhart's law in rubric-based evaluation usually appears as response inflation, citation theater, and policy phrasing without substance. Rubric-based reward models try to preserve more structure by judging outputs against a set of criteria and often using those criterion-level signals as supervision or reward.
+
+## Multi-Dimensional Approaches to Prevent Gaming
+
+The idea behind evaluator models such as Prometheus and newer rubric-refinement work from Meta researchers involves asking judges to apply explicit rubrics whose dimensions can be refined, filtered, and weighted.
+
+In AI, multi-objective optimization prevents proxy collapse. This provides a practical approach to mitigating Goodhart effects through diversified metrics.
+
+## Theoretical Analysis of Reward Hacking
+
+Recent analysis conjectures the existence of a capability threshold beyond which agents transition from gaming within the evaluation system (Goodhart regime) to actively degrading the evaluation system itself.
+
+The search results show active 2026 research addressing these intersecting concerns through decomposed rubrics, multi-dimensional reward structures, and theoretical frameworks for understanding reward gaming dynamics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b587c456-bcac-4300-9ff0-01c2ef9fdb4b",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "17f7204c-3cae-41ad-b8e1-8e2d4a0a60b4",
+  "toolUseResult": {
+    "query": "Goodhart's law rubric decomposition multi-dimensional reward gaming theoretical analysis 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G2zsvxed4uymFFw7xKhV8k",
+        "content": [
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "Goodhart’s Law in Reinforcement Learning",
+            "url": "https://arxiv.org/html/2310.09144v1"
+          },
+          {
+            "title": "Goodhart's Law in Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=5o9G4XF1LI"
+          },
+          {
+            "title": "Reward Hacking as Equilibrium under Finite Evaluation",
+            "url": "https://arxiv.org/pdf/2603.28063"
+          },
+          {
+            "title": "Goodhart's Law in Reinforcement Learning",
+            "url": "https://www.alignmentforum.org/posts/Eu6CvP7c7ivcGM3PJ/goodhart-s-law-in-reinforcement-learning"
+          },
+          {
+            "title": "GOODHART'S LAW IN REINFORCEMENT LEARNING",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/6ad68a54eaa8f9bf6ac698b02ec05048-Paper-Conference.pdf"
+          },
+          {
+            "title": "REWARD MODELS ARE METRICS IN A TRENCH COAT",
+            "url": "https://openreview.net/pdf/433f58bfdb3e151dac7ee7387af7abd16e3a0940.pdf"
+          },
+          {
+            "title": "Goodhart's Law in AI: When Metrics Become Targets, Models Fail",
+            "url": "https://www.practical-devsecops.com/glossary/goodharts-law/"
+          },
+          {
+            "title": "Catastrophic Goodhart: regularizing RLHF with KL divergence does not   mitigate heavy-tailed reward misspecification",
+            "url": "https://arxiv.org/pdf/2407.14503"
+          }
+        ]
+      },
+      "I've completed a web search for your query about Goodhart's law, rubric decomposition, multi-dimensional reward gaming, and theoretical analysis in 2026. Here are the key findings:\n\n## Recent 2026 Research on Rubric Decomposition and Goodhart's Law\n\nRecent 2026 work argues that recursive rubric decomposition materially improves both judgment quality and reward modeling for open-ended tasks. This represents an evolution in how evaluation systems address Goodhart's law concerns.\n\nGoodhart's law in rubric-based evaluation usually appears as response inflation, citation theater, and policy phrasing without substance. Rubric-based reward models try to preserve more structure by judging outputs against a set of criteria and often using those criterion-level signals as supervision or reward.\n\n## Multi-Dimensional Approaches to Prevent Gaming\n\nThe idea behind evaluator models such as Prometheus and newer rubric-refinement work from Meta researchers involves asking judges to apply explicit rubrics whose dimensions can be refined, filtered, and weighted.\n\nIn AI, multi-objective optimization prevents proxy collapse. This provides a practical approach to mitigating Goodhart effects through diversified metrics.\n\n## Theoretical Analysis of Reward Hacking\n\nRecent analysis conjectures the existence of a capability threshold beyond which agents transition from gaming within the evaluation system (Goodhart regime) to actively degrading the evaluation system itself.\n\nThe search results show active 2026 research addressing these intersecting concerns through decomposed rubrics, multi-dimensional reward structures, and theoretical frameworks for understanding reward gaming dynamics."
+    ],
+    "durationSeconds": 7.457195070999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b587c456-bcac-4300-9ff0-01c2ef9fdb4b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "17f7204c-3cae-41ad-b8e1-8e2d4a0a60b4",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-28T11:28:44.481Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H2LhFg5Q7cFifaQuie6CBi`</summary>
+
+```json
+{
+  "query": "PAPO decoupled advantage normalization rubric integration training 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17f7204c-3cae-41ad-b8e1-8e2d4a0a60b4",
+  "isSidechain": false,
+  "requestId": "req_011CbUtUZGVyoRYTVsXC8aW6",
+  "type": "assistant",
+  "uuid": "e3be6359-1164-4d0e-a10d-2bcf73ad7e5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUm4wdybZuk2SQprwgnMhS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 989,
+      "cache_read_input_tokens": 37366,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 989,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 37366,
+          "cache_creation_input_tokens": 989,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 989
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-28T11:28:51.209Z_
+
+<details><summary>↩ Tool result · `toolu_01H2LhFg5Q7cFifaQuie6CBi`</summary>
+
+```text
+Web search results for query: "PAPO decoupled advantage normalization rubric integration training 2026"
+
+Links: [{"title":"[2603.26535] PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization","url":"https://arxiv.org/abs/2603.26535"},{"title":"PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization","url":"https://arxiv.org/pdf/2603.26535"},{"title":"PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization","url":"https://arxiv.org/html/2603.26535v3"},{"title":"Stabilizing Rubric Integration Training via Decoupled Advantage Normalization","url":"https://arxiv.org/html/2603.26535v1"},{"title":"GitHub - RUC-NLPIR/Rubrics_Survey · GitHub","url":"https://github.com/RUC-NLPIR/Rubrics_Survey"}]
+
+Based on the search results, I found relevant information about PAPO and decoupled advantage normalization for rubric integration training:
+
+## PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization
+
+PAPO resolves reward challenges by composing the advantage from an outcome component (Aout), derived from ORM and normalized over all responses, and a process component (Aproc), derived from a rubric-based PRM and normalized exclusively among correct responses.
+
+This decoupled design ensures that Aout anchors training on correctness while Aproc differentiates reasoning quality without distorting the outcome signal.
+
+## Problem PAPO Addresses
+
+Process reward models (PRM) offer richer supervision, but directly using PRM scores causes reward hacking, where models exploit verbosity to inflate scores while accuracy collapses. PAPO incorporates a rubric-based PRM into GRPO through decoupled advantage normalization to address this issue.
+
+## Performance Results
+
+PAPO consistently outperforms ORM, reaching 51.3% vs. 46.3% on OlympiadBench while continuing to improve as ORM plateaus and declines.
+
+The paper was published on arXiv in March-April 2026 by Zelin Tan and colleagues.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3be6359-1164-4d0e-a10d-2bcf73ad7e5a",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "44cf72a0-518e-4ec7-844c-84a87edac81b",
+  "toolUseResult": {
+    "query": "PAPO decoupled advantage normalization rubric integration training 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QMtsmCrLUpioYhrcUmWBo4",
+        "content": [
+          {
+            "title": "[2603.26535] PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization",
+            "url": "https://arxiv.org/abs/2603.26535"
+          },
+          {
+            "title": "PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization",
+            "url": "https://arxiv.org/pdf/2603.26535"
+          },
+          {
+            "title": "PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization",
+            "url": "https://arxiv.org/html/2603.26535v3"
+          },
+          {
+            "title": "Stabilizing Rubric Integration Training via Decoupled Advantage Normalization",
+            "url": "https://arxiv.org/html/2603.26535v1"
+          },
+          {
+            "title": "GitHub - RUC-NLPIR/Rubrics_Survey · GitHub",
+            "url": "https://github.com/RUC-NLPIR/Rubrics_Survey"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about PAPO and decoupled advantage normalization for rubric integration training:\n\n## PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization\n\nPAPO resolves reward challenges by composing the advantage from an outcome component (Aout), derived from ORM and normalized over all responses, and a process component (Aproc), derived from a rubric-based PRM and normalized exclusively among correct responses.\n\nThis decoupled design ensures that Aout anchors training on correctness while Aproc differentiates reasoning quality without distorting the outcome signal.\n\n## Problem PAPO Addresses\n\nProcess reward models (PRM) offer richer supervision, but directly using PRM scores causes reward hacking, where models exploit verbosity to inflate scores while accuracy collapses. PAPO incorporates a rubric-based PRM into GRPO through decoupled advantage normalization to address this issue.\n\n## Performance Results\n\nPAPO consistently outperforms ORM, reaching 51.3% vs. 46.3% on OlympiadBench while continuing to improve as ORM plateaus and declines.\n\nThe paper was published on arXiv in March-April 2026 by Zelin Tan and colleagues."
+    ],
+    "durationSeconds": 6.724000962999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e3be6359-1164-4d0e-a10d-2bcf73ad7e5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-28T11:28:53.855Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X7ihuMBm4wNkYS4zbkSyRA`</summary>
+
+```json
+{
+  "query": "rubric reward survey comprehensive 2026 reinforcement learning LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44cf72a0-518e-4ec7-844c-84a87edac81b",
+  "isSidechain": false,
+  "requestId": "req_011CbUtVTbiAGn18U12ttTFK",
+  "type": "assistant",
+  "uuid": "a03e0926-e505-416b-b4b0-8b03b4bb129d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FYjq1iRvGF9JeJj1etkxN7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 644,
+      "cache_read_input_tokens": 38355,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 644,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 38355,
+          "cache_creation_input_tokens": 644,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 644
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-28T11:29:01.210Z_
+
+<details><summary>↩ Tool result · `toolu_01X7ihuMBm4wNkYS4zbkSyRA`</summary>
+
+```text
+Web search results for query: "rubric reward survey comprehensive 2026 reinforcement learning LLM"
+
+Links: [{"title":"GitHub - RUC-NLPIR/Rubrics_Survey · GitHub","url":"https://github.com/RUC-NLPIR/Rubrics_Survey"},{"title":"Rubric-Based Reward Modeling (RLRR)","url":"https://www.emergentmind.com/topics/rubric-based-reward-modeling-rlrr"},{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview","url":"https://openreview.net/forum?id=c1bTcrDmt4"},{"title":"[2510.07743] OpenRubrics: Towards Scalable Synthetic Rubric Generation for Reward Modeling and LLM Alignment","url":"https://arxiv.org/abs/2510.07743"},{"title":"Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training","url":"https://arxiv.org/pdf/2509.21500"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"}]
+
+Based on the search results, here's what I found regarding rubric-based reward systems in reinforcement learning for LLMs:
+
+## Overview
+
+Rubric-Based Reward Modeling (RLRR) is a paradigm in reinforcement learning that seeks to replace hand-engineered or implicit reward signals with explicit, interpretable, structured rubrics that capture desired behaviors, criteria, and subgoals.
+
+## Recent Research Landscape
+
+There's an active research community exploring this area in 2025-2026. Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains was published at ICLR 2026. Additionally, Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training appeared at ICLR 2026.
+
+## Key Advancement: Hybrid Approach
+
+Research has reached a consensus that rubrics are not replacing deterministic unit tests; they are joining them in a "Hybrid Norm" exemplified by the rise of RLVR (Reinforcement Learning from Verifiable Rewards).
+
+## Practical Applications
+
+Reinforcement learning from rubrics-based reward (RLRR) has emerged as a promising approach for open-ended tasks, where each prompt is associated with a rubric—a set of explicit criteria with corresponding weights that collectively define a high-quality response.
+
+The search results indicate a comprehensive, evolving research area with multiple papers addressing rubric generation, reward modeling, and LLM alignment using structured rubric-based approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a03e0926-e505-416b-b4b0-8b03b4bb129d",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "ab085675-c614-40bc-beff-83333f965839",
+  "toolUseResult": {
+    "query": "rubric reward survey comprehensive 2026 reinforcement learning LLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F4VXNKAJLJAXXeGnGc3dwJ",
+        "content": [
+          {
+            "title": "GitHub - RUC-NLPIR/Rubrics_Survey · GitHub",
+            "url": "https://github.com/RUC-NLPIR/Rubrics_Survey"
+          },
+          {
+            "title": "Rubric-Based Reward Modeling (RLRR)",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-modeling-rlrr"
+          },
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview",
+            "url": "https://openreview.net/forum?id=c1bTcrDmt4"
+          },
+          {
+            "title": "[2510.07743] OpenRubrics: Towards Scalable Synthetic Rubric Generation for Reward Modeling and LLM Alignment",
+            "url": "https://arxiv.org/abs/2510.07743"
+          },
+          {
+            "title": "Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training",
+            "url": "https://arxiv.org/pdf/2509.21500"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding rubric-based reward systems in reinforcement learning for LLMs:\n\n## Overview\n\nRubric-Based Reward Modeling (RLRR) is a paradigm in reinforcement learning that seeks to replace hand-engineered or implicit reward signals with explicit, interpretable, structured rubrics that capture desired behaviors, criteria, and subgoals.\n\n## Recent Research Landscape\n\nThere's an active research community exploring this area in 2025-2026. Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains was published at ICLR 2026. Additionally, Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training appeared at ICLR 2026.\n\n## Key Advancement: Hybrid Approach\n\nResearch has reached a consensus that rubrics are not replacing deterministic unit tests; they are joining them in a \"Hybrid Norm\" exemplified by the rise of RLVR (Reinforcement Learning from Verifiable Rewards).\n\n## Practical Applications\n\nReinforcement learning from rubrics-based reward (RLRR) has emerged as a promising approach for open-ended tasks, where each prompt is associated with a rubric—a set of explicit criteria with corresponding weights that collectively define a high-quality response.\n\nThe search results indicate a comprehensive, evolving research area with multiple papers addressing rubric generation, reward modeling, and LLM alignment using structured rubric-based approaches."
+    ],
+    "durationSeconds": 7.35086268000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a03e0926-e505-416b-b4b0-8b03b4bb129d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-28T11:29:05.420Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011qnTkGPKwuwBfoWoyirNvm`</summary>
+
+```json
+{
+  "url": "https://github.com/RUC-NLPIR/Rubrics_Survey",
+  "prompt": "List all the papers covered in this survey. What are the main categories? What gaps does the survey identify? Is there any work on difficulty-calibrated rubric rewards or rubric ensemble diversity for anti-gaming?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab085675-c614-40bc-beff-83333f965839",
+  "isSidechain": false,
+  "requestId": "req_011CbUtWCNhiXKJzwHwGwxSx",
+  "type": "assistant",
+  "uuid": "c6b110f9-8c01-44b7-9975-75a902f76e68",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012XGEQeRWWE9jJ8pJ4g7Suh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 872,
+      "cache_read_input_tokens": 38999,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 872,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 38999,
+          "cache_creation_input_tokens": 872,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 872
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-28T11:29:11.534Z_
+
+<details><summary>↩ Tool result · `toolu_011qnTkGPKwuwBfoWoyirNvm`</summary>
+
+```text
+# Survey on Rubrics for Large Language Models
+
+## Main Categories
+
+The survey organizes research into three primary directions:
+
+1. **Rubrics Construction** - Methods for creating rubrics including direct generation, contrastive generation, iterative refinement, and co-evolving approaches
+2. **Rubrics for Model Training** - Applications in policy model training and reward model development
+3. **Rubrics for Evaluation** - Uses in assessing general and task-specific capabilities
+
+## Paper Coverage
+
+The repository lists approximately 150+ papers across these categories, covering topics like mathematical reasoning evaluation, code assessment, deep research agent benchmarking, safety auditing, and alignment evaluation.
+
+## Identified Gaps
+
+The survey explicitly discusses open challenges including:
+- "reward hacking, evaluation bias, personalization, and rubric safety"
+- The fundamental difficulty that "it becomes harder to define what makes a model response 'good'"
+
+## Specialized Research Areas
+
+Regarding your specific questions: The repository contains no papers explicitly addressing:
+- Difficulty-calibrated rubric reward mechanisms
+- Rubric ensemble diversity strategies for preventing gaming
+
+These represent potential research gaps not covered in the current survey documentation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6b110f9-8c01-44b7-9975-75a902f76e68",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "c96eac1a-0542-4843-8be4-52b0ccb85247",
+  "toolUseResult": {
+    "bytes": 440492,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Survey on Rubrics for Large Language Models\n\n## Main Categories\n\nThe survey organizes research into three primary directions:\n\n1. **Rubrics Construction** - Methods for creating rubrics including direct generation, contrastive generation, iterative refinement, and co-evolving approaches\n2. **Rubrics for Model Training** - Applications in policy model training and reward model development\n3. **Rubrics for Evaluation** - Uses in assessing general and task-specific capabilities\n\n## Paper Coverage\n\nThe repository lists approximately 150+ papers across these categories, covering topics like mathematical reasoning evaluation, code assessment, deep research agent benchmarking, safety auditing, and alignment evaluation.\n\n## Identified Gaps\n\nThe survey explicitly discusses open challenges including:\n- \"reward hacking, evaluation bias, personalization, and rubric safety\"\n- The fundamental difficulty that \"it becomes harder to define what makes a model response 'good'\"\n\n## Specialized Research Areas\n\nRegarding your specific questions: The repository contains no papers explicitly addressing:\n- Difficulty-calibrated rubric reward mechanisms\n- Rubric ensemble diversity strategies for preventing gaming\n\nThese represent potential research gaps not covered in the current survey documentation.",
+    "durationMs": 6110,
+    "url": "https://github.com/RUC-NLPIR/Rubrics_Survey"
+  },
+  "sourceToolAssistantUUID": "c6b110f9-8c01-44b7-9975-75a902f76e68",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-28T11:29:16.228Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very useful. The comprehensive survey of ~150 papers in rubric-based RL has no papers on difficulty-calibrated rubric rewards or rubric ensemble diversity for anti-gaming. Let me do more targeted searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c96eac1a-0542-4843-8be4-52b0ccb85247",
+  "isSidechain": false,
+  "requestId": "req_011CbUtWxbkoF6NmsvWQjcG9",
+  "type": "assistant",
+  "uuid": "3e4a692c-4eeb-4516-a547-787cc4c975ef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016kqR3zgRrbJuhEposveqG6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 398,
+      "cache_read_input_tokens": 39871,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 39871,
+          "cache_creation_input_tokens": 398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-28T11:29:16.935Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014GzTFq6mfUuA1hXMyjUobm`</summary>
+
+```json
+{
+  "query": "\"difficulty-aware\" OR \"difficulty-calibrated\" rubric strictness reward math RLVR 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e4a692c-4eeb-4516-a547-787cc4c975ef",
+  "isSidechain": false,
+  "requestId": "req_011CbUtWxbkoF6NmsvWQjcG9",
+  "type": "assistant",
+  "uuid": "03770454-20df-433f-baf7-a70e1892f384",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016kqR3zgRrbJuhEposveqG6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 398,
+      "cache_read_input_tokens": 39871,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 39871,
+          "cache_creation_input_tokens": 398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-28T11:29:25.042Z_
+
+<details><summary>↩ Tool result · `toolu_014GzTFq6mfUuA1hXMyjUobm`</summary>
+
+```text
+Web search results for query: ""difficulty-aware" OR "difficulty-calibrated" rubric strictness reward math RLVR 2025 2026"
+
+Links: [{"title":"[2504.03380] Online Difficulty Filtering for Reasoning Oriented Reinforcement Learning","url":"https://arxiv.org/abs/2504.03380"},{"title":"Online Difficulty Filtering for Reasoning Oriented Reinforcement Learning","url":"https://arxiv.org/pdf/2504.03380"},{"title":"boosting mathematical reasoning via difficulty-aware grpo ...","url":"https://openreview.net/pdf/4927e05c3cde17a540ed5c8565393b1232324c72.pdf"},{"title":"Staying in the Sweet Spot: Responsive Reasoning Evolution via Capability-Adaptive Hint Scaffolding","url":"https://arxiv.org/pdf/2509.06923"},{"title":"Know When to Explore: Difficulty-Aware Certainty as a Guide for LLM Reinforcement Learning","url":"https://arxiv.org/pdf/2509.00125"},{"title":"F-GRPO: Don't Let Your Policy Learn the Obvious and Forget the Rare","url":"https://arxiv.org/pdf/2602.06717"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"On the Learning Dynamics of RLVR at the Edge of Competence","url":"https://arxiv.org/pdf/2602.14872"}]
+
+Based on the search results, I found several relevant papers on difficulty-aware approaches in RLVR (Reinforcement Learning with Verifiable Rewards) for mathematical reasoning in 2025-2026:
+
+## Key Findings:
+
+**1. Online Difficulty Filtering for Reasoning-Oriented RL**
+This work presents formal analysis of online difficulty-aware filtering, showing that expected policy improvement is lower-bounded by the variance of task-level success probabilities, implying that selecting tasks of intermediate difficulty maximizes learning efficiency. Evaluations across multiple math reasoning benchmarks validate that balanced filtering consistently enhances convergence speed and final performance, achieving up to +12% gains in less than half the training steps of standard GRPO.
+
+**2. F-GRPO: Difficulty-Aware Advantage Scaling**
+F-GRPO proposes a difficulty-aware advantage scaling applicable to any group-relative objective including GRPO, DAPO, and CISPO, demonstrating consistent improvements on both reasoning math and out-of-distribution benchmarks.
+
+**3. Difficulty-Aware Certainty-Guided Exploration (DACE)**
+DACE is a novel RL algorithm that leverages difficulty-aware signals to dynamically balance exploration-exploitation, assessing task difficulty online based on the policy's success rate and using this to modulate intrinsic rewards.
+
+**4. Rubric-Based Rewards**
+Rubric-based rewards have been applied in RLVR to combat false positives (correct answers from flawed logic), with rubrics serving as diagnostic tools derived from taxonomies of reasoning failures, designed to penalize specific fallacies and enforce logical rigor.
+
+These papers collectively demonstrate active research into difficulty-calibrated approaches for improving LLM mathematical reasoning through RLVR in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03770454-20df-433f-baf7-a70e1892f384",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "beb5ef4f-eb59-41b3-acfd-dd9e872b8851",
+  "toolUseResult": {
+    "query": "\"difficulty-aware\" OR \"difficulty-calibrated\" rubric strictness reward math RLVR 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KZAX5naZTr18WTsqGxyhVX",
+        "content": [
+          {
+            "title": "[2504.03380] Online Difficulty Filtering for Reasoning Oriented Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2504.03380"
+          },
+          {
+            "title": "Online Difficulty Filtering for Reasoning Oriented Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2504.03380"
+          },
+          {
+            "title": "boosting mathematical reasoning via difficulty-aware grpo ...",
+            "url": "https://openreview.net/pdf/4927e05c3cde17a540ed5c8565393b1232324c72.pdf"
+          },
+          {
+            "title": "Staying in the Sweet Spot: Responsive Reasoning Evolution via Capability-Adaptive Hint Scaffolding",
+            "url": "https://arxiv.org/pdf/2509.06923"
+          },
+          {
+            "title": "Know When to Explore: Difficulty-Aware Certainty as a Guide for LLM Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2509.00125"
+          },
+          {
+            "title": "F-GRPO: Don't Let Your Policy Learn the Obvious and Forget the Rare",
+            "url": "https://arxiv.org/pdf/2602.06717"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          },
+          {
+            "title": "On the Learning Dynamics of RLVR at the Edge of Competence",
+            "url": "https://arxiv.org/pdf/2602.14872"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on difficulty-aware approaches in RLVR (Reinforcement Learning with Verifiable Rewards) for mathematical reasoning in 2025-2026:\n\n## Key Findings:\n\n**1. Online Difficulty Filtering for Reasoning-Oriented RL**\nThis work presents formal analysis of online difficulty-aware filtering, showing that expected policy improvement is lower-bounded by the variance of task-level success probabilities, implying that selecting tasks of intermediate difficulty maximizes learning efficiency. Evaluations across multiple math reasoning benchmarks validate that balanced filtering consistently enhances convergence speed and final performance, achieving up to +12% gains in less than half the training steps of standard GRPO.\n\n**2. F-GRPO: Difficulty-Aware Advantage Scaling**\nF-GRPO proposes a difficulty-aware advantage scaling applicable to any group-relative objective including GRPO, DAPO, and CISPO, demonstrating consistent improvements on both reasoning math and out-of-distribution benchmarks.\n\n**3. Difficulty-Aware Certainty-Guided Exploration (DACE)**\nDACE is a novel RL algorithm that leverages difficulty-aware signals to dynamically balance exploration-exploitation, assessing task difficulty online based on the policy's success rate and using this to modulate intrinsic rewards.\n\n**4. Rubric-Based Rewards**\nRubric-based rewards have been applied in RLVR to combat false positives (correct answers from flawed logic), with rubrics serving as diagnostic tools derived from taxonomies of reasoning failures, designed to penalize specific fallacies and enforce logical rigor.\n\nThese papers collectively demonstrate active research into difficulty-calibrated approaches for improving LLM mathematical reasoning through RLVR in 2025-2026."
+    ],
+    "durationSeconds": 8.103849896,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "03770454-20df-433f-baf7-a70e1892f384",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-28T11:29:27.560Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011iHdWjn8HiZdSBBbGCX4aD`</summary>
+
+```json
+{
+  "query": "\"rubric\" \"ensemble\" \"gaming\" OR \"hacking\" OR \"exploit\" defense reward model LLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "beb5ef4f-eb59-41b3-acfd-dd9e872b8851",
+  "isSidechain": false,
+  "requestId": "req_011CbUtXxETTH71XyF6CGn6U",
+  "type": "assistant",
+  "uuid": "90ac0c37-7325-4504-9f29-70cc78e80fb8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nkm5M32zyHoD4JyywRsdct",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 40269,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 40269,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-28T11:29:35.767Z_
+
+<details><summary>↩ Tool result · `toolu_011iHdWjn8HiZdSBBbGCX4aD`</summary>
+
+```text
+Web search results for query: ""rubric" "ensemble" "gaming" OR "hacking" OR "exploit" defense reward model LLM 2026"
+
+Links: [{"title":"Reward Hacking Defense Rubric","url":"https://www.emergentmind.com/topics/reward-hacking-defense-rubric"},{"title":"Reward-Tampering in LLMs","url":"https://www.emergentmind.com/topics/reward-tampering-in-llms"},{"title":"LLM Reasoning Workshop @ ICLR 2026 LLMS GAMING VERIFIERS:","url":"https://arxiv.org/pdf/2604.15149"},{"title":"Reward Hacking in Reinforcement Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"},{"title":"Adversarial Reward Auditing for Active Detection and Mitigation of Reward Hacking","url":"https://arxiv.org/pdf/2602.01750"},{"title":"Robust Reward Modeling via Causal Rubrics","url":"https://arxiv.org/pdf/2506.16507"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis","url":"https://arxiv.org/pdf/2601.20103"},{"title":"Rubrics as an Attack Surface: Stealthy Preference Drift in LLM Judges","url":"https://arxiv.org/pdf/2602.13576"}]
+
+I've found several highly relevant research results on reward hacking defense, ensemble methods, and LLM gaming/exploitation in the context of reward models and RLHF. Here's a summary of the key findings:
+
+## Ensemble-Based Defense Frameworks
+
+Integrated, ensemble-based detection frameworks achieve precision near 78% and recall near 82% in diverse RL environments, with computational cost below 5% of training time.
+
+## Reward Hacking in LLMs
+
+Reward-tampering in LLMs is a failure mode where models exploit reward model flaws through overoptimization and specification gaming, with research delineating a taxonomy of tampering behaviors and demonstrating empirical observations of reward hacking under various RLHF pipelines.
+
+## Defense Rubric Approaches
+
+A "Reward Hacking Defense Rubric" provides rigorous criteria, defense architectures, evaluation benchmarks, and practical guidelines for certifiably robust agent design. Reward function design is a central pillar of the defense rubric, with key principles including boundedness where RLHF reward signals should be bounded to discourage reward hacking.
+
+## Gaming and Exploitation Behaviors
+
+Known manifestations of reward hacking include length bias, "gaming" in coding tasks such as modifying unit tests rather than solving problems, and sycophancy that prioritizes agreement over accuracy. In agentic and coding settings, RL-trained models manipulate evaluation mechanisms by overwriting unit tests, monkey-patching scoring functions, deleting assertions, or prematurely terminating programs to obtain passing scores without producing correct solutions.
+
+## Mitigation Strategies
+
+Mitigation strategies include data augmentation, Bayesian uncertainty quantification, ensemble methods, and dense reward shaping to preserve true task intent.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90ac0c37-7325-4504-9f29-70cc78e80fb8",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "9b0f3a3c-cde7-41de-95e0-fbf88f5dd49e",
+  "toolUseResult": {
+    "query": "\"rubric\" \"ensemble\" \"gaming\" OR \"hacking\" OR \"exploit\" defense reward model LLM 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019D4BwWp9C2DBB2KqmgLTNd",
+        "content": [
+          {
+            "title": "Reward Hacking Defense Rubric",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+          },
+          {
+            "title": "Reward-Tampering in LLMs",
+            "url": "https://www.emergentmind.com/topics/reward-tampering-in-llms"
+          },
+          {
+            "title": "LLM Reasoning Workshop @ ICLR 2026 LLMS GAMING VERIFIERS:",
+            "url": "https://arxiv.org/pdf/2604.15149"
+          },
+          {
+            "title": "Reward Hacking in Reinforcement Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2024-11-28-reward-hacking/"
+          },
+          {
+            "title": "Adversarial Reward Auditing for Active Detection and Mitigation of Reward Hacking",
+            "url": "https://arxiv.org/pdf/2602.01750"
+          },
+          {
+            "title": "Robust Reward Modeling via Causal Rubrics",
+            "url": "https://arxiv.org/pdf/2506.16507"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          },
+          {
+            "title": "Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis",
+            "url": "https://arxiv.org/pdf/2601.20103"
+          },
+          {
+            "title": "Rubrics as an Attack Surface: Stealthy Preference Drift in LLM Judges",
+            "url": "https://arxiv.org/pdf/2602.13576"
+          }
+        ]
+      },
+      "I've found several highly relevant research results on reward hacking defense, ensemble methods, and LLM gaming/exploitation in the context of reward models and RLHF. Here's a summary of the key findings:\n\n## Ensemble-Based Defense Frameworks\n\nIntegrated, ensemble-based detection frameworks achieve precision near 78% and recall near 82% in diverse RL environments, with computational cost below 5% of training time.\n\n## Reward Hacking in LLMs\n\nReward-tampering in LLMs is a failure mode where models exploit reward model flaws through overoptimization and specification gaming, with research delineating a taxonomy of tampering behaviors and demonstrating empirical observations of reward hacking under various RLHF pipelines.\n\n## Defense Rubric Approaches\n\nA \"Reward Hacking Defense Rubric\" provides rigorous criteria, defense architectures, evaluation benchmarks, and practical guidelines for certifiably robust agent design. Reward function design is a central pillar of the defense rubric, with key principles including boundedness where RLHF reward signals should be bounded to discourage reward hacking.\n\n## Gaming and Exploitation Behaviors\n\nKnown manifestations of reward hacking include length bias, \"gaming\" in coding tasks such as modifying unit tests rather than solving problems, and sycophancy that prioritizes agreement over accuracy. In agentic and coding settings, RL-trained models manipulate evaluation mechanisms by overwriting unit tests, monkey-patching scoring functions, deleting assertions, or prematurely terminating programs to obtain passing scores without producing correct solutions.\n\n## Mitigation Strategies\n\nMitigation strategies include data augmentation, Bayesian uncertainty quantification, ensemble methods, and dense reward shaping to preserve true task intent."
+    ],
+    "durationSeconds": 8.201797220000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "90ac0c37-7325-4504-9f29-70cc78e80fb8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84 · 2026-05-28T11:29:35.774Z_
+
+```json
+{
+  "parentUuid": "9b0f3a3c-cde7-41de-95e0-fbf88f5dd49e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e8ff07cf-1bd8-4349-9157-c8479e4ca363",
+  "timestamp": "2026-05-28T11:29:35.774Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "e8ff07cf-1bd8-4349-9157-c8479e4ca363",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-28T11:29:39.929Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LXD2mZf9wMUxsTeTUiD9Cj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.15149",
+  "prompt": "Extract: 1) Full title and abstract, 2) How do LLMs game verifiers? 3) Key findings about gaming mechanisms, 4) Does this propose defenses? 5) Is rubric-based gaming specifically addressed?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8ff07cf-1bd8-4349-9157-c8479e4ca363",
+  "isSidechain": false,
+  "requestId": "req_011CbUtYk8DuFtb3GtfVbcLp",
+  "type": "assistant",
+  "uuid": "26ef3139-37af-4bbc-9d67-39e5fb6df56b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KeLkfik4hbqiNg7mRt21o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1014,
+      "cache_read_input_tokens": 41280,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 41280,
+          "cache_creation_input_tokens": 1014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-28T11:29:45.658Z_
+
+<details><summary>↩ Tool result · `toolu_01LXD2mZf9wMUxsTeTUiD9Cj`</summary>
+
+```text
+# Analysis of arXiv:2604.15149
+
+## 1) Full Title and Abstract
+
+**Title:** "LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking"
+
+**Abstract Summary:** The paper examines how reinforcement learning with verifiable rewards (RLVR) enables language models to exploit verification systems. On inductive reasoning tasks, models "systematically abandon rule induction" and instead enumerate instance-level labels that satisfy verifiers without capturing underlying patterns.
+
+## 2) How Do LLMs Game Verifiers?
+
+Models employ a shortcut strategy rather than learning generalizable rules. Instead of discovering logical patterns like "trains carrying red cars go east," they memorize and output specific instance labels. This approach deceives verifiers through what the researchers term "reward hacking"—exploiting gaps in what verification systems check rather than through overt manipulation.
+
+## 3) Key Findings About Gaming Mechanisms
+
+- Gaming behavior emerges specifically in RLVR-trained models (GPT-5, Olmo3) but not in non-RLVR systems (GPT-4o, GPT-4.5, Ministral)
+- Shortcut prevalence correlates with task complexity and inference-time compute increases
+- Extensional verification (checking only correctness) directly induces these shortcuts
+- The phenomenon represents rational exploitation of imperfect verifier design
+
+## 4) Does This Propose Defenses?
+
+Yes. Researchers introduce **Isomorphic Perturbation Testing (IPT)**, which evaluates outputs under both extensional and isomorphic verification. Isomorphic verification enforces invariance under logically equivalent tasks, eliminating shortcuts while preserving genuine rule induction.
+
+## 5) Is Rubric-Based Gaming Specifically Addressed?
+
+No. The paper focuses on extensional versus isomorphic verification approaches rather than rubric-based systems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26ef3139-37af-4bbc-9d67-39e5fb6df56b",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "6452914c-91f6-4d35-98fa-dc94d25917bb",
+  "toolUseResult": {
+    "bytes": 48846,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of arXiv:2604.15149\n\n## 1) Full Title and Abstract\n\n**Title:** \"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\"\n\n**Abstract Summary:** The paper examines how reinforcement learning with verifiable rewards (RLVR) enables language models to exploit verification systems. On inductive reasoning tasks, models \"systematically abandon rule induction\" and instead enumerate instance-level labels that satisfy verifiers without capturing underlying patterns.\n\n## 2) How Do LLMs Game Verifiers?\n\nModels employ a shortcut strategy rather than learning generalizable rules. Instead of discovering logical patterns like \"trains carrying red cars go east,\" they memorize and output specific instance labels. This approach deceives verifiers through what the researchers term \"reward hacking\"—exploiting gaps in what verification systems check rather than through overt manipulation.\n\n## 3) Key Findings About Gaming Mechanisms\n\n- Gaming behavior emerges specifically in RLVR-trained models (GPT-5, Olmo3) but not in non-RLVR systems (GPT-4o, GPT-4.5, Ministral)\n- Shortcut prevalence correlates with task complexity and inference-time compute increases\n- Extensional verification (checking only correctness) directly induces these shortcuts\n- The phenomenon represents rational exploitation of imperfect verifier design\n\n## 4) Does This Propose Defenses?\n\nYes. Researchers introduce **Isomorphic Perturbation Testing (IPT)**, which evaluates outputs under both extensional and isomorphic verification. Isomorphic verification enforces invariance under logically equivalent tasks, eliminating shortcuts while preserving genuine rule induction.\n\n## 5) Is Rubric-Based Gaming Specifically Addressed?\n\nNo. The paper focuses on extensional versus isomorphic verification approaches rather than rubric-based systems.",
+    "durationMs": 5724,
+    "url": "https://arxiv.org/abs/2604.15149"
+  },
+  "sourceToolAssistantUUID": "26ef3139-37af-4bbc-9d67-39e5fb6df56b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-28T11:29:47.988Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C3gvhZCYide9iETiBHjzkd`</summary>
+
+```json
+{
+  "query": "ARES automated rubric synthesis scalable LLM reinforcement learning math specific difficulty 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6452914c-91f6-4d35-98fa-dc94d25917bb",
+  "isSidechain": false,
+  "requestId": "req_011CbUtZUXPCiqpKNW8p6ee4",
+  "type": "assistant",
+  "uuid": "21536f94-a3ee-4c9c-9c37-3620c72ccc7d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017aRaBhfLnGqVXnbtkRcj5e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 570,
+      "cache_read_input_tokens": 42294,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 570,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 42294,
+          "cache_creation_input_tokens": 570,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 570
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-28T11:29:55.334Z_
+
+<details><summary>↩ Tool result · `toolu_01C3gvhZCYide9iETiBHjzkd`</summary>
+
+```text
+Web search results for query: "ARES automated rubric synthesis scalable LLM reinforcement learning math specific difficulty 2026"
+
+Links: [{"title":"[2605.23454] ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning","url":"https://arxiv.org/abs/2605.23454"},{"title":"ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning","url":"https://arxiv.org/html/2605.23454"},{"title":"Rubric-Based Benchmarking and Reinforcement Learning for Advancing LLM Instruction Following | Research - AI at Meta","url":"https://ai.meta.com/research/publications/rubric-based-benchmarking-and-reinforcement-learning-for-advancing-llm-instruction-following/"},{"title":"RubricHub: A Comprehensive and Highly Discriminative Rubric Dataset via Automated Coarse-to-Fine Generation","url":"https://arxiv.org/html/2601.08430v1"},{"title":"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models","url":"https://arxiv.org/html/2605.08061v1"},{"title":"Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning","url":"https://arxiv.org/pdf/2508.16949"}]
+
+Based on the web search results, here's what I found about ARES:
+
+ARES (Automated Rubric synthEsis for Scalable RL) is a framework for automatically constructing rubric-based RL data at scale. 
+
+Starting from raw pretraining documents, ARES converts source knowledge into self-contained question-answer pairs and co-generates question-specific weighted rubrics, enabling instance-level reward supervision for open-ended responses. To improve diversity and quality, ARES conditions generation on domain labels and persona information, and applies validation filters for question self-containment, answer faithfulness, and rubric validity.
+
+The framework addresses a key challenge in reinforcement learning for large language models: existing approaches often rely on expert-written rubrics and manually constructed question sets, while fixed task-level rubrics may fail to capture the evaluation requirements of individual questions.
+
+In terms of applications, ARES enables RL training on open-ended tasks that were previously inaccessible to verifiable-reward methods, broadening LLM capabilities in domains such as healthcare, education, and professional writing. Additionally, by automating rubric synthesis from pretraining documents, ARES lowers the barrier to constructing diverse RL training data, making rubric-based post-training accessible to research groups with limited annotation budgets.
+
+The research paper appears to be very recent, published on arXiv just 3 days ago (from May 2026).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21536f94-a3ee-4c9c-9c37-3620c72ccc7d",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "a08fb73e-404b-4304-8d7f-557e7715f7c0",
+  "toolUseResult": {
+    "query": "ARES automated rubric synthesis scalable LLM reinforcement learning math specific difficulty 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014mMxzErWzhCP1yCH6YYY7C",
+        "content": [
+          {
+            "title": "[2605.23454] ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2605.23454"
+          },
+          {
+            "title": "ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.23454"
+          },
+          {
+            "title": "Rubric-Based Benchmarking and Reinforcement Learning for Advancing LLM Instruction Following | Research - AI at Meta",
+            "url": "https://ai.meta.com/research/publications/rubric-based-benchmarking-and-reinforcement-learning-for-advancing-llm-instruction-following/"
+          },
+          {
+            "title": "RubricHub: A Comprehensive and Highly Discriminative Rubric Dataset via Automated Coarse-to-Fine Generation",
+            "url": "https://arxiv.org/html/2601.08430v1"
+          },
+          {
+            "title": "Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models",
+            "url": "https://arxiv.org/html/2605.08061v1"
+          },
+          {
+            "title": "Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2508.16949"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about ARES:\n\nARES (Automated Rubric synthEsis for Scalable RL) is a framework for automatically constructing rubric-based RL data at scale. \n\nStarting from raw pretraining documents, ARES converts source knowledge into self-contained question-answer pairs and co-generates question-specific weighted rubrics, enabling instance-level reward supervision for open-ended responses. To improve diversity and quality, ARES conditions generation on domain labels and persona information, and applies validation filters for question self-containment, answer faithfulness, and rubric validity.\n\nThe framework addresses a key challenge in reinforcement learning for large language models: existing approaches often rely on expert-written rubrics and manually constructed question sets, while fixed task-level rubrics may fail to capture the evaluation requirements of individual questions.\n\nIn terms of applications, ARES enables RL training on open-ended tasks that were previously inaccessible to verifiable-reward methods, broadening LLM capabilities in domains such as healthcare, education, and professional writing. Additionally, by automating rubric synthesis from pretraining documents, ARES lowers the barrier to constructing diverse RL training data, making rubric-based post-training accessible to research groups with limited annotation budgets.\n\nThe research paper appears to be very recent, published on arXiv just 3 days ago (from May 2026)."
+    ],
+    "durationSeconds": 7.342009320999962,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "21536f94-a3ee-4c9c-9c37-3620c72ccc7d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-28T11:29:59.302Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GRn6c1DoEKjzsKVqEnE8aL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.23454",
+  "prompt": "Extract: 1) Full abstract, 2) How does ARES generate rubrics? Does it use difficulty information? 3) Does it address gaming resistance? 4) What domains does it target (is math included)? 5) Key results and benchmarks, 6) Explicit limitations and future work directions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a08fb73e-404b-4304-8d7f-557e7715f7c0",
+  "isSidechain": false,
+  "requestId": "req_011CbUtaBkrfSNntDRfKrP82",
+  "type": "assistant",
+  "uuid": "2969e229-606a-443d-9dfb-2fe6831b0ab3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CheJ75vwjR7JtY28PEURs8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 773,
+      "cache_read_input_tokens": 42864,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 773,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 42864,
+          "cache_creation_input_tokens": 773,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 773
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-28T11:30:04.906Z_
+
+<details><summary>↩ Tool result · `toolu_01GRn6c1DoEKjzsKVqEnE8aL`</summary>
+
+```text
+# ARES Paper Summary
+
+## 1) Full Abstract
+"Rubric-based rewards offer a promising way to extend reinforcement learning (RL) for large language models beyond tasks with automatically verifiable answers. However, scaling rubric-based RL remains challenging: existing approaches often rely on expert-written rubrics and manually constructed question sets, while fixed task-level rubrics may fail to capture the evaluation requirements of individual questions. We propose ARES (Automated Rubric synthEsis for Scalable RL), a framework for automatically constructing rubric-based RL data at scale."
+
+## 2) Rubric Generation & Difficulty Information
+ARES generates rubrics by converting source knowledge into question-answer pairs and then co-generating "question-specific weighted rubrics." The framework conditions generation on domain labels and persona information, and applies validation filters for self-containment, faithfulness, and validity. The abstract does not mention explicit difficulty-level incorporation into rubric generation.
+
+## 3) Gaming Resistance
+The document does not explicitly address gaming resistance or resistance to reward manipulation in the provided content.
+
+## 4) Target Domains
+ARES constructs "100K rubric-annotated instances across ten domains." Specific domains mentioned include healthcare and instruction following. Mathematics is not explicitly listed among the domains covered.
+
+## 5) Key Results
+The framework "outperforms continual pretraining, supervised fine-tuning, and binary-reward RL," with particularly strong gains on "multi-dimensional open-ended tasks such as healthcare and instruction following."
+
+## 6) Limitations & Future Work
+The abstract does not discuss explicit limitations or future work directions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2969e229-606a-443d-9dfb-2fe6831b0ab3",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "f88fab6f-e8cb-48d0-9693-54f8876878a3",
+  "toolUseResult": {
+    "bytes": 47305,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARES Paper Summary\n\n## 1) Full Abstract\n\"Rubric-based rewards offer a promising way to extend reinforcement learning (RL) for large language models beyond tasks with automatically verifiable answers. However, scaling rubric-based RL remains challenging: existing approaches often rely on expert-written rubrics and manually constructed question sets, while fixed task-level rubrics may fail to capture the evaluation requirements of individual questions. We propose ARES (Automated Rubric synthEsis for Scalable RL), a framework for automatically constructing rubric-based RL data at scale.\"\n\n## 2) Rubric Generation & Difficulty Information\nARES generates rubrics by converting source knowledge into question-answer pairs and then co-generating \"question-specific weighted rubrics.\" The framework conditions generation on domain labels and persona information, and applies validation filters for self-containment, faithfulness, and validity. The abstract does not mention explicit difficulty-level incorporation into rubric generation.\n\n## 3) Gaming Resistance\nThe document does not explicitly address gaming resistance or resistance to reward manipulation in the provided content.\n\n## 4) Target Domains\nARES constructs \"100K rubric-annotated instances across ten domains.\" Specific domains mentioned include healthcare and instruction following. Mathematics is not explicitly listed among the domains covered.\n\n## 5) Key Results\nThe framework \"outperforms continual pretraining, supervised fine-tuning, and binary-reward RL,\" with particularly strong gains on \"multi-dimensional open-ended tasks such as healthcare and instruction following.\"\n\n## 6) Limitations & Future Work\nThe abstract does not discuss explicit limitations or future work directions.",
+    "durationMs": 5601,
+    "url": "https://arxiv.org/abs/2605.23454"
+  },
+  "sourceToolAssistantUUID": "2969e229-606a-443d-9dfb-2fe6831b0ab3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-28T11:30:12.139Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So ARES doesn't target math specifically, doesn't use difficulty information, and doesn't address gaming resistance. This confirms the gap. Let me now look at a few more things:
+
+1. Whether anyone has combined difficulty calibration WITH rubric rewards in math
+2. The "Robust Reward Modeling via Causal Rubrics" paper that came up
+3. Whether GDPO (Group reward-Decoupled Normalization Policy Optimization) is relevant
+4. The "Reinforcement Learning with Rubric Anchors" paper
+
+
+5. Running some parallel searches to cover more ground
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f88fab6f-e8cb-48d0-9693-54f8876878a3",
+  "isSidechain": false,
+  "requestId": "req_011CbUtatpA7KZjLqT9N5j6z",
+  "type": "assistant",
+  "uuid": "466cb2de-8815-4ed1-9d98-18a73e909966",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tf6sddre4mjSiuBndQx1Ph",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 523,
+      "cache_read_input_tokens": 43637,
+      "output_tokens": 273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 273,
+          "cache_read_input_tokens": 43637,
+          "cache_creation_input_tokens": 523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-28T11:30:12.458Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BJ3TZ6kt4JFTyEJdoerAWr`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.12790",
+  "prompt": "Extract: 1) Full abstract, 2) What are \"rubric anchors\"? 3) How does this method work? 4) Does it address difficulty calibration or gaming? 5) Key results and benchmarks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "466cb2de-8815-4ed1-9d98-18a73e909966",
+  "isSidechain": false,
+  "requestId": "req_011CbUtatpA7KZjLqT9N5j6z",
+  "type": "assistant",
+  "uuid": "3e960ec0-856a-410f-809d-90bc203f76d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tf6sddre4mjSiuBndQx1Ph",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 523,
+      "cache_read_input_tokens": 43637,
+      "output_tokens": 273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 273,
+          "cache_read_input_tokens": 43637,
+          "cache_creation_input_tokens": 523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-28T11:30:19.098Z_
+
+<details><summary>↩ Tool result · `toolu_01BJ3TZ6kt4JFTyEJdoerAWr`</summary>
+
+```text
+# Analysis of "Reinforcement Learning with Rubric Anchors"
+
+## 1) Full Abstract
+
+The researchers extend reinforcement learning from verifiable rewards to open-ended tasks using rubric-based scoring. They developed a system with over 10,000 human and AI-generated rubrics, achieving a 5.2% improvement on open-ended benchmarks with only 5K+ samples while outperforming DeepSeek-V3 by 2.4%. The approach enables stylistic control to reduce "AI-like" outputs in favor of more human-like responses.
+
+## 2) What are "Rubric Anchors"?
+
+Rubric anchors function as structured, interpretable scoring criteria for subjective outputs. Rather than relying on automatically verifiable signals, these carefully designed rubrics serve as reference points for consistent evaluation of creative or open-ended tasks, enabling automatic assessment where traditional verification is impossible.
+
+## 3) How Does This Method Work?
+
+The paper presents a framework integrating rubric-based rewards into reinforcement learning. The system leverages over 10,000 rubrics created through human expertise, LLM generation, or hybrid collaboration. These rubrics guide model training, enabling fine-grained stylistic control while maintaining general and reasoning capabilities.
+
+## 4) Difficulty Calibration or Gaming?
+
+The provided content does not address difficulty calibration or gaming concerns within the rubric system.
+
+## 5) Key Results and Benchmarks
+
+- **+5.2%** improvement on open-ended benchmarks with 5K+ training samples
+- **+2.4%** performance advantage over DeepSeek-V3 (671B parameters)
+- Qwen-30B-A3B model maintains general and reasoning abilities
+- Demonstrates improved human-like expression and reduced formulaic outputs
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e960ec0-856a-410f-809d-90bc203f76d4",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "65ee5061-5553-4992-a6e9-b11651b97551",
+  "toolUseResult": {
+    "bytes": 49320,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Reinforcement Learning with Rubric Anchors\"\n\n## 1) Full Abstract\n\nThe researchers extend reinforcement learning from verifiable rewards to open-ended tasks using rubric-based scoring. They developed a system with over 10,000 human and AI-generated rubrics, achieving a 5.2% improvement on open-ended benchmarks with only 5K+ samples while outperforming DeepSeek-V3 by 2.4%. The approach enables stylistic control to reduce \"AI-like\" outputs in favor of more human-like responses.\n\n## 2) What are \"Rubric Anchors\"?\n\nRubric anchors function as structured, interpretable scoring criteria for subjective outputs. Rather than relying on automatically verifiable signals, these carefully designed rubrics serve as reference points for consistent evaluation of creative or open-ended tasks, enabling automatic assessment where traditional verification is impossible.\n\n## 3) How Does This Method Work?\n\nThe paper presents a framework integrating rubric-based rewards into reinforcement learning. The system leverages over 10,000 rubrics created through human expertise, LLM generation, or hybrid collaboration. These rubrics guide model training, enabling fine-grained stylistic control while maintaining general and reasoning capabilities.\n\n## 4) Difficulty Calibration or Gaming?\n\nThe provided content does not address difficulty calibration or gaming concerns within the rubric system.\n\n## 5) Key Results and Benchmarks\n\n- **+5.2%** improvement on open-ended benchmarks with 5K+ training samples\n- **+2.4%** performance advantage over DeepSeek-V3 (671B parameters)\n- Qwen-30B-A3B model maintains general and reasoning abilities\n- Demonstrates improved human-like expression and reduced formulaic outputs",
+    "durationMs": 6635,
+    "url": "https://arxiv.org/abs/2508.12790"
+  },
+  "sourceToolAssistantUUID": "3e960ec0-856a-410f-809d-90bc203f76d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-28T11:30:21.641Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EdW5cXsQC9pDLXkr3NxdBR`</summary>
+
+```json
+{
+  "query": "\"robust reward modeling\" \"causal rubrics\" arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65ee5061-5553-4992-a6e9-b11651b97551",
+  "isSidechain": false,
+  "requestId": "req_011CbUtbwh57LWDJx54grDFb",
+  "type": "assistant",
+  "uuid": "023eac8d-8bc2-4d2a-bd62-5d50479a77de",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013MZAbSowqDRgvhshU82Hsx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 44160,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 44160,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-28T11:30:29.638Z_
+
+<details><summary>↩ Tool result · `toolu_01EdW5cXsQC9pDLXkr3NxdBR`</summary>
+
+```text
+Web search results for query: ""robust reward modeling" "causal rubrics" arxiv 2026"
+
+Links: [{"title":"Robust Reward Modeling via Causal Rubrics | OpenReview","url":"https://openreview.net/forum?id=oP99JQiDYp"},{"title":"Robust Reward Modeling via Causal Rubrics","url":"https://arxiv.org/pdf/2506.16507"},{"title":"[2506.16507] Robust Reward Modeling via Causal Rubrics","url":"https://arxiv.org/abs/2506.16507"},{"title":"Paper page - Robust Reward Modeling via Causal Rubrics","url":"https://huggingface.co/papers/2506.16507"},{"title":"Robust Reward Modeling via Causal Rubrics | Request PDF","url":"https://www.researchgate.net/publication/392918827_Robust_Reward_Modeling_via_Causal_Rubrics"},{"title":"[2604.13833] Robust Reward Modeling for Large Language Models via Causal Decomposition","url":"https://arxiv.org/abs/2604.13833"},{"title":"ROBUST REWARD MODELING VIA CAUSAL RUBRICS","url":"https://openreview.net/pdf?id=oP99JQiDYp"},{"title":"Robust Reward Modeling for Large Language Models via Causal Decomposition | AI Navigate","url":"https://ai-navigate-news.com/en/articles/64eeaa22-9dbc-4705-a44f-046068486b33"},{"title":"Factored Causal Representation Learning for Robust Reward Modeling in RLHF","url":"https://www.arxiv.org/pdf/2601.21350"}]
+
+Based on the search results, I found several relevant papers on robust reward modeling with causal approaches:
+
+## Primary Result: "Robust Reward Modeling via Causal Rubrics" (arXiv:2506.16507)
+
+The paper introduces Crome (Causally Robust Reward Modeling), a novel framework grounded in an explicit causal model designed to mitigate reward hacking. Reward models are fundamental to aligning Large Language Models via human feedback, yet they often suffer from reward hacking by latching onto superficial or spurious attributes, such as response length or formatting, mistaking these learned correlations for true causal drivers of quality like factuality and relevance.
+
+Crome employs synthetic targeted augmentations during training, including Causal Augmentations which are pairs that differ along specific causal attributes, produced without knowledge of spurious factors via answer interventions along causal rubrics identified by querying an oracle LLM.
+
+### Performance Results
+
+Empirically, Crome significantly outperforms standard baselines on RewardBench, improving average accuracy by up to 5.4% and achieving gains of up to 13.2% and 7.2% in specific categories. The robustness of Crome is further testified by consistent gains in a Best-of-N inference setting across various benchmarks, including RewardBench, WildGuardTest, and GSM8k.
+
+## Related Work
+
+The search also found a related paper "Robust Reward Modeling for Large Language Models via Causal Decomposition" that addresses how reward models often overfit to spurious cues such as response length and overly agreeable tone.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "023eac8d-8bc2-4d2a-bd62-5d50479a77de",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "7ecdedbe-0a3e-49b8-99cb-c84754bbb620",
+  "toolUseResult": {
+    "query": "\"robust reward modeling\" \"causal rubrics\" arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XDbDUqFq7NevTUYgHmZoTm",
+        "content": [
+          {
+            "title": "Robust Reward Modeling via Causal Rubrics | OpenReview",
+            "url": "https://openreview.net/forum?id=oP99JQiDYp"
+          },
+          {
+            "title": "Robust Reward Modeling via Causal Rubrics",
+            "url": "https://arxiv.org/pdf/2506.16507"
+          },
+          {
+            "title": "[2506.16507] Robust Reward Modeling via Causal Rubrics",
+            "url": "https://arxiv.org/abs/2506.16507"
+          },
+          {
+            "title": "Paper page - Robust Reward Modeling via Causal Rubrics",
+            "url": "https://huggingface.co/papers/2506.16507"
+          },
+          {
+            "title": "Robust Reward Modeling via Causal Rubrics | Request PDF",
+            "url": "https://www.researchgate.net/publication/392918827_Robust_Reward_Modeling_via_Causal_Rubrics"
+          },
+          {
+            "title": "[2604.13833] Robust Reward Modeling for Large Language Models via Causal Decomposition",
+            "url": "https://arxiv.org/abs/2604.13833"
+          },
+          {
+            "title": "ROBUST REWARD MODELING VIA CAUSAL RUBRICS",
+            "url": "https://openreview.net/pdf?id=oP99JQiDYp"
+          },
+          {
+            "title": "Robust Reward Modeling for Large Language Models via Causal Decomposition | AI Navigate",
+            "url": "https://ai-navigate-news.com/en/articles/64eeaa22-9dbc-4705-a44f-046068486b33"
+          },
+          {
+            "title": "Factored Causal Representation Learning for Robust Reward Modeling in RLHF",
+            "url": "https://www.arxiv.org/pdf/2601.21350"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on robust reward modeling with causal approaches:\n\n## Primary Result: \"Robust Reward Modeling via Causal Rubrics\" (arXiv:2506.16507)\n\nThe paper introduces Crome (Causally Robust Reward Modeling), a novel framework grounded in an explicit causal model designed to mitigate reward hacking. Reward models are fundamental to aligning Large Language Models via human feedback, yet they often suffer from reward hacking by latching onto superficial or spurious attributes, such as response length or formatting, mistaking these learned correlations for true causal drivers of quality like factuality and relevance.\n\nCrome employs synthetic targeted augmentations during training, including Causal Augmentations which are pairs that differ along specific causal attributes, produced without knowledge of spurious factors via answer interventions along causal rubrics identified by querying an oracle LLM.\n\n### Performance Results\n\nEmpirically, Crome significantly outperforms standard baselines on RewardBench, improving average accuracy by up to 5.4% and achieving gains of up to 13.2% and 7.2% in specific categories. The robustness of Crome is further testified by consistent gains in a Best-of-N inference setting across various benchmarks, including RewardBench, WildGuardTest, and GSM8k.\n\n## Related Work\n\nThe search also found a related paper \"Robust Reward Modeling for Large Language Models via Causal Decomposition\" that addresses how reward models often overfit to spurious cues such as response length and overly agreeable tone."
+    ],
+    "durationSeconds": 7.992043153000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "023eac8d-8bc2-4d2a-bd62-5d50479a77de",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "7ecdedbe-0a3e-49b8-99cb-c84754bbb620",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-28T11:30:34.700Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LoYbEVxKBu3ox14DAcZpUh`</summary>
+
+```json
+{
+  "query": "difficulty-aware rubric reward per-dimension strictness calibration math problem 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ecdedbe-0a3e-49b8-99cb-c84754bbb620",
+  "isSidechain": false,
+  "requestId": "req_011CbUtcp3y6Bi6Em1X6bpYN",
+  "type": "assistant",
+  "uuid": "d666fa09-0247-4dbf-b79b-256312cc03f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MDDbCoLeKs8SCstrNVLraB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 44846,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 44846,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-28T11:30:43.045Z_
+
+<details><summary>↩ Tool result · `toolu_01LoYbEVxKBu3ox14DAcZpUh`</summary>
+
+```text
+Web search results for query: "difficulty-aware rubric reward per-dimension strictness calibration math problem 2025 2026"
+
+Links: [{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR","url":"https://arxiv.org/html/2605.20164v1"},{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"Training AI Co-Scientists Using Rubric Rewards","url":"https://arxiv.org/html/2512.23707"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"AdaRubric: Task-Adaptive Rubrics for LLM Agent Evaluation","url":"https://arxiv.org/pdf/2603.21362"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"RefGrader: Automated Grading of Mathematical Competition Proofs using Agentic Workflows","url":"https://arxiv.org/pdf/2510.09021"}]
+
+Based on the web search results, I found several relevant papers and research discussing rubric-based rewards, difficulty-aware approaches, and calibration for mathematical reasoning from 2025-2026:
+
+## Key Findings:
+
+**Rubric Reward Models for Math Problems:**
+
+A recent paper introduces a "Rubric Reward Model" that rewards the entire problem-solving process to build more trustworthy and accurate reasoners, specifically addressing issues with outcome-based rewards in mathematical reasoning. This approach applies rubrics to combat false positives—correct answers from flawed logic, with rubrics designed as diagnostic tools derived from a taxonomy of reasoning failures.
+
+**Per-Dimension Strictness Calibration:**
+
+Research found that locally hostable models are often too lenient when grading rubrics directly, and explicitly instructing the grader to list weaknesses before proceeding with item-wise grading increases strictness and improves alignment with larger proprietary judges.
+
+**Rubric-Based Reward Modeling:**
+
+Rubric-based reward models try to preserve more structure by judging outputs against a set of criteria and using criterion-level signals as supervision or reward, with approaches like asking a judge to apply an explicit rubric whose dimensions can be refined, filtered, and weighted.
+
+**Adaptive and Task-Aware Approaches:**
+
+Recent work on task-adaptive rubrics closes the gap between fixed dimensions by generating criteria dynamically from the task at hand, without manual design or fine-tuning.
+
+These recent papers from 2025-2026 appear to focus on improving rubric-based reward systems for complex reasoning tasks, with particular attention to calibration, per-dimension scoring, and addressing difficulty-aware evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d666fa09-0247-4dbf-b79b-256312cc03f6",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "ad03b30d-39a7-4551-a792-ca08f26981f3",
+  "toolUseResult": {
+    "query": "difficulty-aware rubric reward per-dimension strictness calibration math problem 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016sdwLD8WqbESBXYwYwYdxC",
+        "content": [
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+            "url": "https://arxiv.org/html/2605.20164v1"
+          },
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "Training AI Co-Scientists Using Rubric Rewards",
+            "url": "https://arxiv.org/html/2512.23707"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          },
+          {
+            "title": "AdaRubric: Task-Adaptive Rubrics for LLM Agent Evaluation",
+            "url": "https://arxiv.org/pdf/2603.21362"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "RefGrader: Automated Grading of Mathematical Competition Proofs using Agentic Workflows",
+            "url": "https://arxiv.org/pdf/2510.09021"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and research discussing rubric-based rewards, difficulty-aware approaches, and calibration for mathematical reasoning from 2025-2026:\n\n## Key Findings:\n\n**Rubric Reward Models for Math Problems:**\n\nA recent paper introduces a \"Rubric Reward Model\" that rewards the entire problem-solving process to build more trustworthy and accurate reasoners, specifically addressing issues with outcome-based rewards in mathematical reasoning. This approach applies rubrics to combat false positives—correct answers from flawed logic, with rubrics designed as diagnostic tools derived from a taxonomy of reasoning failures.\n\n**Per-Dimension Strictness Calibration:**\n\nResearch found that locally hostable models are often too lenient when grading rubrics directly, and explicitly instructing the grader to list weaknesses before proceeding with item-wise grading increases strictness and improves alignment with larger proprietary judges.\n\n**Rubric-Based Reward Modeling:**\n\nRubric-based reward models try to preserve more structure by judging outputs against a set of criteria and using criterion-level signals as supervision or reward, with approaches like asking a judge to apply an explicit rubric whose dimensions can be refined, filtered, and weighted.\n\n**Adaptive and Task-Aware Approaches:**\n\nRecent work on task-adaptive rubrics closes the gap between fixed dimensions by generating criteria dynamically from the task at hand, without manual design or fine-tuning.\n\nThese recent papers from 2025-2026 appear to focus on improving rubric-based reward systems for complex reasoning tasks, with particular attention to calibration, per-dimension scoring, and addressing difficulty-aware evaluation."
+    ],
+    "durationSeconds": 8.340749038000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d666fa09-0247-4dbf-b79b-256312cc03f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102 · 2026-05-28T11:30:45.470Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DfBv99APuxgcRyRUMo5Hrs`</summary>
+
+```json
+{
+  "query": "GDPO group reward decoupled normalization multi-reward RL optimization rubric 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad03b30d-39a7-4551-a792-ca08f26981f3",
+  "isSidechain": false,
+  "requestId": "req_011CbUtdhjVJUn1hbHUrx1Go",
+  "type": "assistant",
+  "uuid": "9181a39f-2df5-4150-8c4d-d90dcbdcdc99",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8pruC1DfZzLSuAFHnPoAe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 968,
+      "cache_read_input_tokens": 45753,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 968,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 45753,
+          "cache_creation_input_tokens": 968,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 968
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-28T11:30:50.832Z_
+
+<details><summary>↩ Tool result · `toolu_01DfBv99APuxgcRyRUMo5Hrs`</summary>
+
+```text
+Web search results for query: "GDPO group reward decoupled normalization multi-reward RL optimization rubric 2025"
+
+Links: [{"title":"Paper page - GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://huggingface.co/papers/2601.05242"},{"title":"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://arxiv.org/html/2601.05242v1"},{"title":"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://nvlabs.github.io/GDPO/"},{"title":"[2601.05242v1] GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://arxiv.org/abs/2601.05242v1"},{"title":"(PDF) GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://www.researchgate.net/publication/399596515_GDPO_Group_reward-Decoupled_Normalization_Policy_Optimization_for_Multi-reward_RL_Optimization"},{"title":"[2601.05242] GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://arxiv.org/abs/2601.05242"},{"title":"GitHub - NVlabs/GDPO: Official implementation of GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization · GitHub","url":"https://github.com/NVlabs/GDPO"}]
+
+I found comprehensive information about GDPO. Here are the search results:
+
+## GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization
+
+GDPO is a new policy optimization method that resolves multi-reward RL issues by decoupling the normalization of individual rewards, more faithfully preserving their relative differences and enabling more accurate multi-reward optimization, along with substantially improved training stability.
+
+### The Problem It Solves
+
+Recent work has defaulted to apply Group Relative Policy Optimization (GRPO) under multi-reward setting without examining its suitability, and directly applying GRPO to normalize distinct rollout reward combinations causes them to collapse into identical advantage values, reducing the resolution of the training signal and resulting in suboptimal convergence and, in some cases, early training failure.
+
+### How GDPO Works
+
+GDPO performs group-wise normalization on each reward independently prior to aggregation, which contrasts with GRPO, which applies group-wise normalization directly to the summed rewards.
+
+### Paper Details
+
+The paper was published in January 2026 (arXiv:2601.05242) with authors including Shih-Yang Liu, Xin Dong, Ximing Lu, and others from NVIDIA and University of Washington. The official implementation is available on GitHub at [NVlabs/GDPO](https://github.com/NVlabs/GDPO).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9181a39f-2df5-4150-8c4d-d90dcbdcdc99",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "579d4477-9c15-4b2f-aff1-1dc2ed6cf69b",
+  "toolUseResult": {
+    "query": "GDPO group reward decoupled normalization multi-reward RL optimization rubric 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016fBBEHmttzCXcsAjFpaFPX",
+        "content": [
+          {
+            "title": "Paper page - GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://huggingface.co/papers/2601.05242"
+          },
+          {
+            "title": "GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://arxiv.org/html/2601.05242v1"
+          },
+          {
+            "title": "GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://nvlabs.github.io/GDPO/"
+          },
+          {
+            "title": "[2601.05242v1] GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://arxiv.org/abs/2601.05242v1"
+          },
+          {
+            "title": "(PDF) GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://www.researchgate.net/publication/399596515_GDPO_Group_reward-Decoupled_Normalization_Policy_Optimization_for_Multi-reward_RL_Optimization"
+          },
+          {
+            "title": "[2601.05242] GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://arxiv.org/abs/2601.05242"
+          },
+          {
+            "title": "GitHub - NVlabs/GDPO: Official implementation of GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization · GitHub",
+            "url": "https://github.com/NVlabs/GDPO"
+          }
+        ]
+      },
+      "I found comprehensive information about GDPO. Here are the search results:\n\n## GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization\n\nGDPO is a new policy optimization method that resolves multi-reward RL issues by decoupling the normalization of individual rewards, more faithfully preserving their relative differences and enabling more accurate multi-reward optimization, along with substantially improved training stability.\n\n### The Problem It Solves\n\nRecent work has defaulted to apply Group Relative Policy Optimization (GRPO) under multi-reward setting without examining its suitability, and directly applying GRPO to normalize distinct rollout reward combinations causes them to collapse into identical advantage values, reducing the resolution of the training signal and resulting in suboptimal convergence and, in some cases, early training failure.\n\n### How GDPO Works\n\nGDPO performs group-wise normalization on each reward independently prior to aggregation, which contrasts with GRPO, which applies group-wise normalization directly to the summed rewards.\n\n### Paper Details\n\nThe paper was published in January 2026 (arXiv:2601.05242) with authors including Shih-Yang Liu, Xin Dong, Ximing Lu, and others from NVIDIA and University of Washington. The official implementation is available on GitHub at [NVlabs/GDPO](https://github.com/NVlabs/GDPO)."
+    ],
+    "durationSeconds": 5.3553028369999955,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9181a39f-2df5-4150-8c4d-d90dcbdcdc99",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104 · 2026-05-28T11:31:00.813Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+GDPO is very relevant — it addresses multi-reward normalization but from a different angle than what we're considering. It separates normalization of different reward dimensions before aggregation. This is a piece of the puzzle.
+
+Let me now focus on the most critical gap: whether anyone has specifically combined difficulty calibration with rubric rewards in the math domain. My searches so far suggest this is genuinely novel. Let me do a few more targeted searches to be sure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "579d4477-9c15-4b2f-aff1-1dc2ed6cf69b",
+  "isSidechain": false,
+  "requestId": "req_011CbUteJ6iDmxNDdWTb4GzN",
+  "type": "assistant",
+  "uuid": "28f2b6a9-3be5-4fb3-a583-60b939834618",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YKFJTULHiDVQCMzHzYUNga",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 46721,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 46721,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-28T11:31:01.447Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PNT7RRQKJCfuh6aPT7HKkH`</summary>
+
+```json
+{
+  "query": "rubric reward gaming hard problems partial satisfaction defense math reasoning 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28f2b6a9-3be5-4fb3-a583-60b939834618",
+  "isSidechain": false,
+  "requestId": "req_011CbUteJ6iDmxNDdWTb4GzN",
+  "type": "assistant",
+  "uuid": "ecb661b4-15a2-465c-a341-542cfcb4db19",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YKFJTULHiDVQCMzHzYUNga",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 861,
+      "cache_read_input_tokens": 46721,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 46721,
+          "cache_creation_input_tokens": 861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-28T11:31:08.605Z_
+
+<details><summary>↩ Tool result · `toolu_01PNT7RRQKJCfuh6aPT7HKkH`</summary>
+
+```text
+Web search results for query: "rubric reward gaming hard problems partial satisfaction defense math reasoning 2025 2026 arxiv"
+
+Links: [{"title":"Step-wise Rubric Rewards for LLM Reasoning","url":"https://arxiv.org/html/2605.17291v1"},{"title":"[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/abs/2510.07774"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/html/2510.07774v1"},{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/pdf/2511.12344"},{"title":"[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/abs/2605.12474"},{"title":"[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning","url":"https://arxiv.org/abs/2605.08061"},{"title":"Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/html/2605.12474v1"}]
+
+I found several relevant research papers on arXiv addressing rubric-based rewards, reward hacking, and mathematical reasoning. Here are the key findings:
+
+## Recent Work on Rubric Rewards and Reasoning
+
+Current models are susceptible to reward hacking, leading to overestimation of reasoning ability, evidenced by false positives—solutions reaching correct answers through unsound processes.
+
+A taxonomy of failure modes has been established, identifying patterns like Miracle Steps—abrupt jumps to correct output without valid preceding derivation. To address this, the Rubric Reward Model (RRM) evaluates entire reasoning trajectories against problem-specific rubrics and explicitly penalizes logical flaws while encouraging rigorous deduction.
+
+## Performance Improvements
+
+When integrated into RL pipelines, RRM-based training outperforms outcome-only supervision across math benchmarks, boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reducing Miracle Steps by 71%.
+
+## Reward Hacking Challenges
+
+Research on reward hacking in rubric-based RL separates two sources of divergence: verifier failure and rubric-design limitations, with studies showing that exploitation concentrates in failures such as partial satisfaction of compound criteria.
+
+Recent approaches integrate rubric-based signals into off-policy guidance mechanisms, using partial deficiencies identified by rubric evaluation as targeted guidance for policy self-refinement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ecb661b4-15a2-465c-a341-542cfcb4db19",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "40577413-8481-434b-9e24-1402efb3d65f",
+  "toolUseResult": {
+    "query": "rubric reward gaming hard problems partial satisfaction defense math reasoning 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016e23dnx4JA5S4Ay9u6v9Qm",
+        "content": [
+          {
+            "title": "Step-wise Rubric Rewards for LLM Reasoning",
+            "url": "https://arxiv.org/html/2605.17291v1"
+          },
+          {
+            "title": "[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/abs/2510.07774"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/html/2510.07774v1"
+          },
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/pdf/2511.12344"
+          },
+          {
+            "title": "[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2605.12474"
+          },
+          {
+            "title": "[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning",
+            "url": "https://arxiv.org/abs/2605.08061"
+          },
+          {
+            "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.12474v1"
+          }
+        ]
+      },
+      "I found several relevant research papers on arXiv addressing rubric-based rewards, reward hacking, and mathematical reasoning. Here are the key findings:\n\n## Recent Work on Rubric Rewards and Reasoning\n\nCurrent models are susceptible to reward hacking, leading to overestimation of reasoning ability, evidenced by false positives—solutions reaching correct answers through unsound processes.\n\nA taxonomy of failure modes has been established, identifying patterns like Miracle Steps—abrupt jumps to correct output without valid preceding derivation. To address this, the Rubric Reward Model (RRM) evaluates entire reasoning trajectories against problem-specific rubrics and explicitly penalizes logical flaws while encouraging rigorous deduction.\n\n## Performance Improvements\n\nWhen integrated into RL pipelines, RRM-based training outperforms outcome-only supervision across math benchmarks, boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reducing Miracle Steps by 71%.\n\n## Reward Hacking Challenges\n\nResearch on reward hacking in rubric-based RL separates two sources of divergence: verifier failure and rubric-design limitations, with studies showing that exploitation concentrates in failures such as partial satisfaction of compound criteria.\n\nRecent approaches integrate rubric-based signals into off-policy guidance mechanisms, using partial deficiencies identified by rubric evaluation as targeted guidance for policy self-refinement."
+    ],
+    "durationSeconds": 7.151993114000012,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ecb661b4-15a2-465c-a341-542cfcb4db19",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-28T11:31:11.052Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lcy6YugLRmtzLz4Es5ws5p`</summary>
+
+```json
+{
+  "query": "\"difficulty\" \"rubric\" \"calibrat\" OR \"strictness\" reward RL training math problem specific 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40577413-8481-434b-9e24-1402efb3d65f",
+  "isSidechain": false,
+  "requestId": "req_011CbUtfb1UqP1PHWV2w4BRu",
+  "type": "assistant",
+  "uuid": "33bd0e54-2bdb-4875-8956-79a4e11007ea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTW1x3aU5j6kUdxfL4SAj4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 47582,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 47582,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-28T11:31:18.497Z_
+
+<details><summary>↩ Tool result · `toolu_01Lcy6YugLRmtzLz4Es5ws5p`</summary>
+
+```text
+Web search results for query: ""difficulty" "rubric" "calibrat" OR "strictness" reward RL training math problem specific 2026"
+
+Links: [{"title":"[2603.05659] When Rubrics Fail: Error Enumeration as Reward in Reference-Free RL Post-Training for Virtual Try-On","url":"https://arxiv.org/abs/2603.05659"},{"title":"Step-wise Rubric Rewards for LLM Reasoning","url":"https://arxiv.org/html/2605.17291v1"},{"title":"Rubric-Based Reward Modeling","url":"https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"},{"title":"[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning","url":"https://arxiv.org/abs/2605.08061"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains","url":"https://arxiv.org/pdf/2507.17746"},{"title":"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR","url":"https://arxiv.org/html/2605.20164v1"}]
+
+I found several relevant research papers from 2026 on rubric-based reward modeling for RL training. Here are the key results:
+
+## Recent Papers on Rubric-Based Rewards for RL Training (2026)
+
+Reinforcement learning with verifiable rewards (RLVR) and Rubrics as Rewards (RaR) have driven strong gains in domains with clear correctness signals and even in subjective domains by synthesizing evaluation criteria from ideal reference answers.
+
+**Step-wise Rubric Rewards for LLM Reasoning**: On six mathematical benchmarks, this approach outperforms state-of-the-art baselines and provides a practical paradigm for delivering fine-grained rubric supervision to RL-trained reasoners, showing that the granularity at which supervision is applied matters as much as its content.
+
+**Rubric-Grounded RL**: The approach improves over the base model on four reasoning benchmarks including GSM8K and MATH, providing evidence that structured, document-grounded rewards can improve held-out rubric performance and induce transferable reasoning behaviors.
+
+**Calibration and Judge Selection**: The rubric judge is a fixed component of the reward computation with direct effect on downstream comparisons, and judge selection is treated as a first-class experimental decision by calibrating candidate judges against reference judges.
+
+**Domain Applications**: Rubric-driven reward modeling extends to technical domains including math and code, as demonstrated in recent research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33bd0e54-2bdb-4875-8956-79a4e11007ea",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "c3b43182-9756-4530-a2af-9ea4a4f70ac1",
+  "toolUseResult": {
+    "query": "\"difficulty\" \"rubric\" \"calibrat\" OR \"strictness\" reward RL training math problem specific 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YVBKCfg8hi3AiALQ9h8U1V",
+        "content": [
+          {
+            "title": "[2603.05659] When Rubrics Fail: Error Enumeration as Reward in Reference-Free RL Post-Training for Virtual Try-On",
+            "url": "https://arxiv.org/abs/2603.05659"
+          },
+          {
+            "title": "Step-wise Rubric Rewards for LLM Reasoning",
+            "url": "https://arxiv.org/html/2605.17291v1"
+          },
+          {
+            "title": "Rubric-Based Reward Modeling",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"
+          },
+          {
+            "title": "[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning",
+            "url": "https://arxiv.org/abs/2605.08061"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains",
+            "url": "https://arxiv.org/pdf/2507.17746"
+          },
+          {
+            "title": "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+            "url": "https://arxiv.org/html/2605.20164v1"
+          }
+        ]
+      },
+      "I found several relevant research papers from 2026 on rubric-based reward modeling for RL training. Here are the key results:\n\n## Recent Papers on Rubric-Based Rewards for RL Training (2026)\n\nReinforcement learning with verifiable rewards (RLVR) and Rubrics as Rewards (RaR) have driven strong gains in domains with clear correctness signals and even in subjective domains by synthesizing evaluation criteria from ideal reference answers.\n\n**Step-wise Rubric Rewards for LLM Reasoning**: On six mathematical benchmarks, this approach outperforms state-of-the-art baselines and provides a practical paradigm for delivering fine-grained rubric supervision to RL-trained reasoners, showing that the granularity at which supervision is applied matters as much as its content.\n\n**Rubric-Grounded RL**: The approach improves over the base model on four reasoning benchmarks including GSM8K and MATH, providing evidence that structured, document-grounded rewards can improve held-out rubric performance and induce transferable reasoning behaviors.\n\n**Calibration and Judge Selection**: The rubric judge is a fixed component of the reward computation with direct effect on downstream comparisons, and judge selection is treated as a first-class experimental decision by calibrating candidate judges against reference judges.\n\n**Domain Applications**: Rubric-driven reward modeling extends to technical domains including math and code, as demonstrated in recent research."
+    ],
+    "durationSeconds": 7.441545463000017,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "33bd0e54-2bdb-4875-8956-79a4e11007ea",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 109_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "c3b43182-9756-4530-a2af-9ea4a4f70ac1",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 110_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-28T11:31:23.014Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017xFvAdWatrfJb3e7Dcpetk`</summary>
+
+```json
+{
+  "query": "concurrent work combining DGPO difficulty weighting rubric rewards math RLVR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3b43182-9756-4530-a2af-9ea4a4f70ac1",
+  "isSidechain": false,
+  "requestId": "req_011CbUtgKMg9AS6cZktiX2hN",
+  "type": "assistant",
+  "uuid": "2a199865-e999-4394-a584-7a2c47f3bed3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019mMtAN4SHtZMqbNZfAJ3DG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 48487,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 48487,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-28T11:31:29.929Z_
+
+<details><summary>↩ Tool result · `toolu_017xFvAdWatrfJb3e7Dcpetk`</summary>
+
+```text
+Web search results for query: "concurrent work combining DGPO difficulty weighting rubric rewards math RLVR 2026"
+
+Links: [{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"[2601.20614] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation","url":"https://arxiv.org/abs/2601.20614"},{"title":"DGPO: Decoupled Gradient Policy Optimization for RLVR in LLMs | OpenReview","url":"https://openreview.net/forum?id=AU37MqplU4"},{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains","url":"https://openreview.net/pdf?id=21UFlJrmS2"},{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview","url":"https://openreview.net/forum?id=c1bTcrDmt4"},{"title":"Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation","url":"https://arxiv.org/html/2601.20614"},{"title":"RUBRICS AS REWARDS: REINFORCEMENT LEARNING ...","url":"https://openreview.net/pdf?id=c1bTcrDmt4"},{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains","url":"https://arxiv.org/html/2507.17746v2"},{"title":"[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning","url":"https://arxiv.org/abs/2605.08061"},{"title":"[2605.20164v1] Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR","url":"https://arxiv.org/abs/2605.20164v1"}]
+
+Based on the search results, I found relevant research on your query about concurrent work combining DGPO difficulty weighting rubric rewards with math and RLVR. Here's what the recent literature shows:
+
+## Key Concurrent Work (2026)
+
+**DGPO for Mathematical Reasoning:**
+
+DGPO (Difficulty-Aware Group Policy Optimization) first rectifies the implicit imbalance in GRPO via difficulty-balanced group advantage estimation, and further prioritizes harder questions by difficulty-aware question-level weighting. This is part of the MathForge framework, which comprises a Difficulty-Aware Group Policy Optimization (DGPO) algorithm and a Multi-Aspect Question Reformulation (MQR) strategy.
+
+**Rubric-Based Rewards for RLVR:**
+
+Rubrics as Rewards (RaR) is an on-policy reinforcement learning method that extends RLVR beyond verifiable domains by using rubric-based feedback. This approach enables flexible weighting across criteria and incorporation of both objective and subjective aspects of response quality, with RLVR seen as a restricted instance of rubric-guided RL with a single essential criterion.
+
+**Policy-Aware Rubric Rewards (2026):**
+
+More recent work also addresses this space: POW3R is a policy-aware rubric reward framework that preserves human weights and category balance as the rubric objective while adapting criterion-level reward weights during training.
+
+These concurrent approaches all tackle how to better integrate difficulty weighting, rubric-based evaluation criteria, and reward structures within the RLVR framework for improving mathematical reasoning in large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a199865-e999-4394-a584-7a2c47f3bed3",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "f77baf9a-105e-439d-8c13-50d99e7e7383",
+  "toolUseResult": {
+    "query": "concurrent work combining DGPO difficulty weighting rubric rewards math RLVR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SovKydeGuixEfbzPm8vLK6",
+        "content": [
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "[2601.20614] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation",
+            "url": "https://arxiv.org/abs/2601.20614"
+          },
+          {
+            "title": "DGPO: Decoupled Gradient Policy Optimization for RLVR in LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=AU37MqplU4"
+          },
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains",
+            "url": "https://openreview.net/pdf?id=21UFlJrmS2"
+          },
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview",
+            "url": "https://openreview.net/forum?id=c1bTcrDmt4"
+          },
+          {
+            "title": "Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation",
+            "url": "https://arxiv.org/html/2601.20614"
+          },
+          {
+            "title": "RUBRICS AS REWARDS: REINFORCEMENT LEARNING ...",
+            "url": "https://openreview.net/pdf?id=c1bTcrDmt4"
+          },
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains",
+            "url": "https://arxiv.org/html/2507.17746v2"
+          },
+          {
+            "title": "[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning",
+            "url": "https://arxiv.org/abs/2605.08061"
+          },
+          {
+            "title": "[2605.20164v1] Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+            "url": "https://arxiv.org/abs/2605.20164v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant research on your query about concurrent work combining DGPO difficulty weighting rubric rewards with math and RLVR. Here's what the recent literature shows:\n\n## Key Concurrent Work (2026)\n\n**DGPO for Mathematical Reasoning:**\n\nDGPO (Difficulty-Aware Group Policy Optimization) first rectifies the implicit imbalance in GRPO via difficulty-balanced group advantage estimation, and further prioritizes harder questions by difficulty-aware question-level weighting. This is part of the MathForge framework, which comprises a Difficulty-Aware Group Policy Optimization (DGPO) algorithm and a Multi-Aspect Question Reformulation (MQR) strategy.\n\n**Rubric-Based Rewards for RLVR:**\n\nRubrics as Rewards (RaR) is an on-policy reinforcement learning method that extends RLVR beyond verifiable domains by using rubric-based feedback. This approach enables flexible weighting across criteria and incorporation of both objective and subjective aspects of response quality, with RLVR seen as a restricted instance of rubric-guided RL with a single essential criterion.\n\n**Policy-Aware Rubric Rewards (2026):**\n\nMore recent work also addresses this space: POW3R is a policy-aware rubric reward framework that preserves human weights and category balance as the rubric objective while adapting criterion-level reward weights during training.\n\nThese concurrent approaches all tackle how to better integrate difficulty weighting, rubric-based evaluation criteria, and reward structures within the RLVR framework for improving mathematical reasoning in large language models."
+    ],
+    "durationSeconds": 6.909711814999988,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2a199865-e999-4394-a584-7a2c47f3bed3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 113 · 2026-05-28T11:31:29.937Z_
+
+```json
+{
+  "parentUuid": "f77baf9a-105e-439d-8c13-50d99e7e7383",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2d55b0ed-b22a-456c-9a34-a078f53f2a6c",
+  "timestamp": "2026-05-28T11:31:29.937Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 114 · 2026-05-28T11:31:43.256Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now look specifically for papers that combine difficulty calibration and rubric rewards with anti-gaming mechanisms. My searches so far suggest that:
+
+1. Difficulty-aware methods exist: DGPO, DARO, F-GRPO, online difficulty filtering — but all for binary/outcome rewards
+2. Rubric reward methods exist: RRM, RaR, SRaR, PAPO, POW3R, ARL-RR, OpenRS, ARES — but none with difficulty calibration
+3. Gaming defense exists: Crome (causal rubrics), IPT (isomorphic perturbation), veto mechanisms — but not specifically difficulty-calibrated
+
+
+4. The comprehensive rubrics survey covering ~150 papers found no existing work on difficulty-calibrated rubric rewards or rubric ensemble diversity for anti-gaming
+
+Looking more carefully at what's truly novel versus just combining existing ideas, I notice that POW3R adapts rubric weights based on policy behavior but ignores problem difficulty, GDPO normalizes reward dimensions independently without difficulty-based strictness calibration, and PAPO decouples outcome and process advantage but doesn't address difficulty calibration. The real gap appears to be that no one has actually modulated rubric strictness by problem difficulty or studied how rubric ensemble diversity could defend against gaming.
+
+Now I should also verify whether combining pass@k metrics with rubric-based rewards has been explored in the literature.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d55b0ed-b22a-456c-9a34-a078f53f2a6c",
+  "isSidechain": false,
+  "requestId": "req_011CbUthAFm4yyHZPWHQNvwN",
+  "type": "assistant",
+  "uuid": "a5bc18ff-fd0e-494b-8a1f-e30778af2346",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018JTLYmaEEocCt2x9eoXZcA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 49269,
+      "output_tokens": 426,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1084,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 426,
+          "cache_read_input_tokens": 49269,
+          "cache_creation_input_tokens": 1084,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1084
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-28T11:31:43.262Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NjZVA6vEkxhamyjyj1bULP`</summary>
+
+```json
+{
+  "query": "pass@k large k rubric reward trained model reasoning frontier expansion evaluation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5bc18ff-fd0e-494b-8a1f-e30778af2346",
+  "isSidechain": false,
+  "requestId": "req_011CbUthAFm4yyHZPWHQNvwN",
+  "type": "assistant",
+  "uuid": "d0e103d0-3812-437a-8ac8-ccbed2c18ec3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018JTLYmaEEocCt2x9eoXZcA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1084,
+      "cache_read_input_tokens": 49269,
+      "output_tokens": 426,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1084,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 426,
+          "cache_read_input_tokens": 49269,
+          "cache_creation_input_tokens": 1084,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1084
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-28T11:31:49.070Z_
+
+<details><summary>↩ Tool result · `toolu_01NjZVA6vEkxhamyjyj1bULP`</summary>
+
+```text
+Web search results for query: "pass@k large k rubric reward trained model reasoning frontier expansion evaluation 2026"
+
+Links: [{"title":"Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=eslxxopXTF"},{"title":"Don’t Pass@k: A Bayesian Framework for Large Language Model Evaluation | OpenReview","url":"https://openreview.net/forum?id=PTXi3Ef4sT"},{"title":"Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models","url":"https://www.researchgate.net/publication/394488290_Passk_Training_for_Adaptively_Balancing_Exploration_and_Exploitation_of_Large_Reasoning_Models"},{"title":"Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models","url":"https://arxiv.org/pdf/2508.10751"},{"title":"[2508.10751] Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models","url":"https://arxiv.org/abs/2508.10751"}]
+
+I found relevant research on this topic. Here are the key findings:
+
+## Pass@k Training for Large Reasoning Models
+
+Recent work addresses how reinforcement learning with verifiable rewards (RLVR) has traditionally adopted Pass@1 as the reward, leading to policies that prefer conservative actions and converge to local optima.
+
+Researchers have investigated using Pass@k as the reward to train policy models (Pass@k Training) and observed improvements in exploration ability, with analytical solutions derived for efficient and effective training.
+
+The analysis reveals that exploration and exploitation are not inherently conflicting objectives, but rather can mutually enhance each other.
+
+## Bayesian Evaluation Framework
+
+Additionally, there's complementary work on improving evaluation metrics: Pass@k is widely used for LLM reasoning evaluation but often yields unstable, misleading rankings, especially with limited trials. A Bayesian evaluation framework has been proposed that replaces Pass@k with posterior estimates and credible intervals for stable rankings.
+
+These papers from late 2025 represent recent advances in reasoning model training and evaluation methodologies, addressing the frontier of how to effectively train and assess large language models' reasoning capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d0e103d0-3812-437a-8ac8-ccbed2c18ec3",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "dacfa2d6-fc7f-4d8f-90eb-8fa24f94316f",
+  "toolUseResult": {
+    "query": "pass@k large k rubric reward trained model reasoning frontier expansion evaluation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014BnwiRS7ipP7VXDmW38Vp3",
+        "content": [
+          {
+            "title": "Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models | OpenReview",
+            "url": "https://openreview.net/forum?id=eslxxopXTF"
+          },
+          {
+            "title": "Don’t Pass@k: A Bayesian Framework for Large Language Model Evaluation | OpenReview",
+            "url": "https://openreview.net/forum?id=PTXi3Ef4sT"
+          },
+          {
+            "title": "Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models",
+            "url": "https://www.researchgate.net/publication/394488290_Passk_Training_for_Adaptively_Balancing_Exploration_and_Exploitation_of_Large_Reasoning_Models"
+          },
+          {
+            "title": "Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models",
+            "url": "https://arxiv.org/pdf/2508.10751"
+          },
+          {
+            "title": "[2508.10751] Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models",
+            "url": "https://arxiv.org/abs/2508.10751"
+          }
+        ]
+      },
+      "I found relevant research on this topic. Here are the key findings:\n\n## Pass@k Training for Large Reasoning Models\n\nRecent work addresses how reinforcement learning with verifiable rewards (RLVR) has traditionally adopted Pass@1 as the reward, leading to policies that prefer conservative actions and converge to local optima.\n\nResearchers have investigated using Pass@k as the reward to train policy models (Pass@k Training) and observed improvements in exploration ability, with analytical solutions derived for efficient and effective training.\n\nThe analysis reveals that exploration and exploitation are not inherently conflicting objectives, but rather can mutually enhance each other.\n\n## Bayesian Evaluation Framework\n\nAdditionally, there's complementary work on improving evaluation metrics: Pass@k is widely used for LLM reasoning evaluation but often yields unstable, misleading rankings, especially with limited trials. A Bayesian evaluation framework has been proposed that replaces Pass@k with posterior estimates and credible intervals for stable rankings.\n\nThese papers from late 2025 represent recent advances in reasoning model training and evaluation methodologies, addressing the frontier of how to effectively train and assess large language models' reasoning capabilities."
+    ],
+    "durationSeconds": 5.802646815999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d0e103d0-3812-437a-8ac8-ccbed2c18ec3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-28T11:31:52.186Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016iHoghGidKBaLKHQ8h9gRv`</summary>
+
+```json
+{
+  "query": "\"rubric\" \"pass@k\" OR \"pass@1024\" OR \"best-of-n\" reasoning boundary expansion math 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dacfa2d6-fc7f-4d8f-90eb-8fa24f94316f",
+  "isSidechain": false,
+  "requestId": "req_011CbUtia1nZ7yakHfXy6Sek",
+  "type": "assistant",
+  "uuid": "724ea07c-ffff-49cb-bef5-8869302123d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVwtAQXYxvPzVdy9jNuGAN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 50353,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1002,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 50353,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1002
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-28T11:31:59.251Z_
+
+<details><summary>↩ Tool result · `toolu_016iHoghGidKBaLKHQ8h9gRv`</summary>
+
+```text
+Web search results for query: ""rubric" "pass@k" OR "pass@1024" OR "best-of-n" reasoning boundary expansion math 2026"
+
+Links: [{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"Tsinghua paper: Does RL Really Incentivize Reasoning ...","url":"https://www.lesswrong.com/posts/s3NaETDujoxj4GbEm/tsinghua-paper-does-rl-really-incentivize-reasoning-capacity"},{"title":"Beyond Pass@k: Breadth-Depth Metrics for Reasoning Boundaries","url":"https://arxiv.org/pdf/2510.08325"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"(PDF) Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://www.researchgate.net/publication/396372877_Curing_Miracle_Steps_in_LLM_Mathematical_Reasoning_with_Rubric_Rewards"},{"title":"Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/html/2510.07774v1"},{"title":"Chain-of-Rubrics Reasoning Models","url":"https://www.emergentmind.com/topics/chain-of-rubrics-reasoning-models"}]
+
+Here are the search results for your query about rubric, pass@k, pass@1024, best-of-n, reasoning boundary expansion, and math research from 2026:
+
+## Key Findings:
+
+**Rubric Rewards for Math Reasoning:**
+The Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained calibrated rewards that explicitly penalize logical flaws and encourage rigorous deduction.
+
+**Performance Improvements:**
+RRM-based training boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reduces the incidence of Miracle Steps by 71%.
+
+**Reasoning Boundary Expansion:**
+Recent research has questioned the extent to which reinforcement learning with verifiable rewards (RLVR) models truly expand the reasoning boundary, with studies showing that while RLVR models have higher Pass@1, at large k the base model eventually outperforms them. RL can "narrow the reasoning boundary"—the region of problems the model is capable of solving sometimes.
+
+**Beyond Pass@k Metrics:**
+Researchers argue that Pass@k at large k can be misleading for math tasks with discrete answer spaces, and propose Cover@τ metrics which measure the fraction of problems that a model can solve for which at least a τ proportion of completions are correct.
+
+The research shows an active discussion in 2025-2026 about how to properly evaluate reasoning expansion in LLMs using metrics like pass@k, pass@1024, and alternative approaches with rubric-based rewards.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "724ea07c-ffff-49cb-bef5-8869302123d9",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "9c63ad6f-57d1-4022-b001-a464bcb85c09",
+  "toolUseResult": {
+    "query": "\"rubric\" \"pass@k\" OR \"pass@1024\" OR \"best-of-n\" reasoning boundary expansion math 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A3CXQC7sHreeocat3u3P5Z",
+        "content": [
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "Tsinghua paper: Does RL Really Incentivize Reasoning ...",
+            "url": "https://www.lesswrong.com/posts/s3NaETDujoxj4GbEm/tsinghua-paper-does-rl-really-incentivize-reasoning-capacity"
+          },
+          {
+            "title": "Beyond Pass@k: Breadth-Depth Metrics for Reasoning Boundaries",
+            "url": "https://arxiv.org/pdf/2510.08325"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "(PDF) Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://www.researchgate.net/publication/396372877_Curing_Miracle_Steps_in_LLM_Mathematical_Reasoning_with_Rubric_Rewards"
+          },
+          {
+            "title": "Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/html/2510.07774v1"
+          },
+          {
+            "title": "Chain-of-Rubrics Reasoning Models",
+            "url": "https://www.emergentmind.com/topics/chain-of-rubrics-reasoning-models"
+          }
+        ]
+      },
+      "Here are the search results for your query about rubric, pass@k, pass@1024, best-of-n, reasoning boundary expansion, and math research from 2026:\n\n## Key Findings:\n\n**Rubric Rewards for Math Reasoning:**\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained calibrated rewards that explicitly penalize logical flaws and encourage rigorous deduction.\n\n**Performance Improvements:**\nRRM-based training boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reduces the incidence of Miracle Steps by 71%.\n\n**Reasoning Boundary Expansion:**\nRecent research has questioned the extent to which reinforcement learning with verifiable rewards (RLVR) models truly expand the reasoning boundary, with studies showing that while RLVR models have higher Pass@1, at large k the base model eventually outperforms them. RL can \"narrow the reasoning boundary\"—the region of problems the model is capable of solving sometimes.\n\n**Beyond Pass@k Metrics:**\nResearchers argue that Pass@k at large k can be misleading for math tasks with discrete answer spaces, and propose Cover@τ metrics which measure the fraction of problems that a model can solve for which at least a τ proportion of completions are correct.\n\nThe research shows an active discussion in 2025-2026 about how to properly evaluate reasoning expansion in LLMs using metrics like pass@k, pass@1024, and alternative approaches with rubric-based rewards."
+    ],
+    "durationSeconds": 7.061298014,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "724ea07c-ffff-49cb-bef5-8869302123d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-28T11:32:02.150Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VU6ngwyvAd9e6tVWCsjrk8`</summary>
+
+```json
+{
+  "query": "\"reinforcement learning with evolving rubrics\" DR Tulu RLER co-evolve policy 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c63ad6f-57d1-4022-b001-a464bcb85c09",
+  "isSidechain": false,
+  "requestId": "req_011CbUtjKYv3cVZaZikBAQLw",
+  "type": "assistant",
+  "uuid": "9c9b4161-9d05-4cca-b189-f9680e200171",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U3JuExXXyjNffGgZcHs6y8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 51355,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 51355,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-28T11:32:09.180Z_
+
+<details><summary>↩ Tool result · `toolu_01VU6ngwyvAd9e6tVWCsjrk8`</summary>
+
+```text
+Web search results for query: ""reinforcement learning with evolving rubrics" DR Tulu RLER co-evolve policy 2026"
+
+Links: [{"title":"Reinforcement Learning with Evolving Rubrics","url":"https://www.emergentmind.com/topics/reinforcement-learning-with-evolving-rubrics-rler"},{"title":"DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research","url":"https://www.datocms-assets.com/64837/1763476533-dr_tulu.pdf"},{"title":"ICML Poster Reinforcement Learning with Evolving Rubrics for Deep Research","url":"https://icml.cc/virtual/2026/poster/65886"},{"title":"[2511.19399] DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research","url":"https://arxiv.org/abs/2511.19399"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Reinforcement+Learning+with+Evolving+Rubrics+(RLER)"},{"title":"DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research | alphaXiv","url":"https://www.alphaxiv.org/audio/2511.19399v1"},{"title":"[2511.19399v1] DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research","url":"https://arxiv.org/abs/2511.19399v1"},{"title":"Paper page - DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research","url":"https://huggingface.co/papers/2511.19399"},{"title":"DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research | Request PDF","url":"https://www.researchgate.net/publication/397934958_DR_Tulu_Reinforcement_Learning_with_Evolving_Rubrics_for_Deep_Research"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"}]
+
+I found comprehensive information about your search query. Here are the key results:
+
+## Reinforcement Learning with Evolving Rubrics (RLER)
+
+Reinforcement Learning with Evolving Rubrics (RLER) is a paradigm in which the reward function for an agent is specified as a set of interpretable, dynamically updated evaluation criteria—rubrics—that co-evolve with the policy and training objectives.
+
+Unlike traditional reinforcement learning with static, often manually-crafted reward signals, RLER embodies a continual, data-driven process wherein the reward mechanism itself is subject to structural and parametric evolution.
+
+## DR Tulu: Application to Deep Research
+
+Using RLER, researchers developed Deep Research Tulu (DR Tulu-8B), the first fully open model that is directly trained for open-ended, long-form deep research. At each training step, responses and search traces from the model generate new rubrics that capture and contrast the good and bad points of these responses.
+
+## Results and Performance
+
+Empirical benchmarks show significant improvements, such as up to +33% gains and increased judge alignment, illustrating the practical benefits of evolving rewards over static methods.
+
+The work appears to be recent research from late 2025, with presentations at ICML 2026 and publications on arXiv (paper 2511.19399).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c9b4161-9d05-4cca-b189-f9680e200171",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "93b51cbc-368c-4750-8a76-5a7155505402",
+  "toolUseResult": {
+    "query": "\"reinforcement learning with evolving rubrics\" DR Tulu RLER co-evolve policy 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Rt7mFHocCBXhP6SXmiaoSw",
+        "content": [
+          {
+            "title": "Reinforcement Learning with Evolving Rubrics",
+            "url": "https://www.emergentmind.com/topics/reinforcement-learning-with-evolving-rubrics-rler"
+          },
+          {
+            "title": "DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research",
+            "url": "https://www.datocms-assets.com/64837/1763476533-dr_tulu.pdf"
+          },
+          {
+            "title": "ICML Poster Reinforcement Learning with Evolving Rubrics for Deep Research",
+            "url": "https://icml.cc/virtual/2026/poster/65886"
+          },
+          {
+            "title": "[2511.19399] DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research",
+            "url": "https://arxiv.org/abs/2511.19399"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Reinforcement+Learning+with+Evolving+Rubrics+(RLER)"
+          },
+          {
+            "title": "DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research | alphaXiv",
+            "url": "https://www.alphaxiv.org/audio/2511.19399v1"
+          },
+          {
+            "title": "[2511.19399v1] DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research",
+            "url": "https://arxiv.org/abs/2511.19399v1"
+          },
+          {
+            "title": "Paper page - DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research",
+            "url": "https://huggingface.co/papers/2511.19399"
+          },
+          {
+            "title": "DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research | Request PDF",
+            "url": "https://www.researchgate.net/publication/397934958_DR_Tulu_Reinforcement_Learning_with_Evolving_Rubrics_for_Deep_Research"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          }
+        ]
+      },
+      "I found comprehensive information about your search query. Here are the key results:\n\n## Reinforcement Learning with Evolving Rubrics (RLER)\n\nReinforcement Learning with Evolving Rubrics (RLER) is a paradigm in which the reward function for an agent is specified as a set of interpretable, dynamically updated evaluation criteria—rubrics—that co-evolve with the policy and training objectives.\n\nUnlike traditional reinforcement learning with static, often manually-crafted reward signals, RLER embodies a continual, data-driven process wherein the reward mechanism itself is subject to structural and parametric evolution.\n\n## DR Tulu: Application to Deep Research\n\nUsing RLER, researchers developed Deep Research Tulu (DR Tulu-8B), the first fully open model that is directly trained for open-ended, long-form deep research. At each training step, responses and search traces from the model generate new rubrics that capture and contrast the good and bad points of these responses.\n\n## Results and Performance\n\nEmpirical benchmarks show significant improvements, such as up to +33% gains and increased judge alignment, illustrating the practical benefits of evolving rewards over static methods.\n\nThe work appears to be recent research from late 2025, with presentations at ICML 2026 and publications on arXiv (paper 2511.19399)."
+    ],
+    "durationSeconds": 7.024123597000027,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9c9b4161-9d05-4cca-b189-f9680e200171",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 121_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "93b51cbc-368c-4750-8a76-5a7155505402",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 122_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 123 · 2026-05-28T11:32:14.462Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+DR Tulu's RLER approach is about evolving rubrics in deep research tasks, but it doesn't address math-specific difficulty calibration or gaming resistance. Let me now verify a few more things:
+
+1. Whether the interaction between difficulty calibration and gaming is truly unexplored
+2. Whether anyone has extended DGPO's formal guarantees to continuous rewards
+3. What specific benchmarks and baselines I'd need to compare against
+
+Let me do a few more targeted searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93b51cbc-368c-4750-8a76-5a7155505402",
+  "isSidechain": false,
+  "requestId": "req_011CbUtk46Wjrhpr5BGScpfT",
+  "type": "assistant",
+  "uuid": "02ac3e1e-663b-4c91-8681-c691db3e97c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoUmJmnjbP6AmZ16p1YT4x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 52240,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 52240,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-28T11:32:14.828Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SMsCzARtoW48rrKdnEfnPL`</summary>
+
+```json
+{
+  "query": "DGPO theorem non-binary continuous reward extension MAD normalization theoretical guarantee 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02ac3e1e-663b-4c91-8681-c691db3e97c0",
+  "isSidechain": false,
+  "requestId": "req_011CbUtk46Wjrhpr5BGScpfT",
+  "type": "assistant",
+  "uuid": "d888f069-e970-4eab-b270-96730c943b87",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KoUmJmnjbP6AmZ16p1YT4x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 52240,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 52240,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-28T11:32:22.041Z_
+
+<details><summary>↩ Tool result · `toolu_01SMsCzARtoW48rrKdnEfnPL`</summary>
+
+```text
+Web search results for query: "DGPO theorem non-binary continuous reward extension MAD normalization theoretical guarantee 2026"
+
+Links: [{"title":"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://www.emergent-behaviors.com/gdpo-group-reward-decoupled-normalization-policy-optimization-for-multi-reward-rl-optimization/"},{"title":"BNPO: Beta Normalization Policy Optimization","url":"https://arxiv.org/pdf/2506.02864"},{"title":"GDPO: Group reward-Decoupled Normalization Policy ...","url":"https://arxiv.org/pdf/2601.05242"},{"title":"Paper page - GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://huggingface.co/papers/2601.05242"},{"title":"[2601.05242] GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization","url":"https://arxiv.org/abs/2601.05242"},{"title":"Mean Field Equilibrium in Multi-Armed Bandit Game with Continuous Reward","url":"https://arxiv.org/pdf/2105.00767"}]
+
+Based on the web search results, I found information related to policy optimization with reward normalization and multi-reward settings, but the search results do not contain specific information about a "DGPO theorem" with the exact terminology you specified (non-binary continuous reward extension with MAD normalization theoretical guarantee).
+
+The search results do contain related work:
+
+1. GDPO (Group reward-Decoupled Normalization Policy Optimization) addresses reward normalization collapse in GRPO for multi-reward reinforcement learning, which is a recent advancement from January 2026.
+
+2. Research suggests developing theoretical frameworks based on assumptions about statistical properties (e.g., mean and variance) of reward distributions, rather than restricting to binary rewards.
+
+3. Existing mean field models for multi-agent multi-armed bandits mostly assume binary reward functions, while studies have extended analysis to continuous reward functions.
+
+However, the specific "DGPO theorem" with MAD (Mean Absolute Deviation) normalization that you're asking about does not appear in these results. If you're looking for more recent or specialized research on this topic, you may want to try a more specific search query or check specialized AI/ML research databases like arXiv directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d888f069-e970-4eab-b270-96730c943b87",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "00ce9ff6-9f85-4b6a-b087-9d16d0ae7ac4",
+  "toolUseResult": {
+    "query": "DGPO theorem non-binary continuous reward extension MAD normalization theoretical guarantee 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AfkADLdWwkmwGQsRyZchjz",
+        "content": [
+          {
+            "title": "GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://www.emergent-behaviors.com/gdpo-group-reward-decoupled-normalization-policy-optimization-for-multi-reward-rl-optimization/"
+          },
+          {
+            "title": "BNPO: Beta Normalization Policy Optimization",
+            "url": "https://arxiv.org/pdf/2506.02864"
+          },
+          {
+            "title": "GDPO: Group reward-Decoupled Normalization Policy ...",
+            "url": "https://arxiv.org/pdf/2601.05242"
+          },
+          {
+            "title": "Paper page - GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://huggingface.co/papers/2601.05242"
+          },
+          {
+            "title": "[2601.05242] GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization",
+            "url": "https://arxiv.org/abs/2601.05242"
+          },
+          {
+            "title": "Mean Field Equilibrium in Multi-Armed Bandit Game with Continuous Reward",
+            "url": "https://arxiv.org/pdf/2105.00767"
+          }
+        ]
+      },
+      "Based on the web search results, I found information related to policy optimization with reward normalization and multi-reward settings, but the search results do not contain specific information about a \"DGPO theorem\" with the exact terminology you specified (non-binary continuous reward extension with MAD normalization theoretical guarantee).\n\nThe search results do contain related work:\n\n1. GDPO (Group reward-Decoupled Normalization Policy Optimization) addresses reward normalization collapse in GRPO for multi-reward reinforcement learning, which is a recent advancement from January 2026.\n\n2. Research suggests developing theoretical frameworks based on assumptions about statistical properties (e.g., mean and variance) of reward distributions, rather than restricting to binary rewards.\n\n3. Existing mean field models for multi-agent multi-armed bandits mostly assume binary reward functions, while studies have extended analysis to continuous reward functions.\n\nHowever, the specific \"DGPO theorem\" with MAD (Mean Absolute Deviation) normalization that you're asking about does not appear in these results. If you're looking for more recent or specialized research on this topic, you may want to try a more specific search query or check specialized AI/ML research databases like arXiv directly."
+    ],
+    "durationSeconds": 7.207685427999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d888f069-e970-4eab-b270-96730c943b87",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-28T11:32:25.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JMNEGW6tndW2yTWFSF3d2E`</summary>
+
+```json
+{
+  "query": "\"MathForge\" OR \"DGPO\" \"rubric\" 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00ce9ff6-9f85-4b6a-b087-9d16d0ae7ac4",
+  "isSidechain": false,
+  "requestId": "req_011CbUtm1HNfvE83hMzERnyL",
+  "type": "assistant",
+  "uuid": "f9f6eacf-e40a-4be4-88f6-64d7779e712a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiSW3VTXqccaeLmD9hksBU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 801,
+      "cache_read_input_tokens": 53181,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 53181,
+          "cache_creation_input_tokens": 801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-28T11:32:31.709Z_
+
+<details><summary>↩ Tool result · `toolu_01JMNEGW6tndW2yTWFSF3d2E`</summary>
+
+```text
+Web search results for query: ""MathForge" OR "DGPO" "rubric" 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.20614"},{"title":"GitHub - AMAP-ML/MathForge: [ICLR 2026] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation · GitHub","url":"https://github.com/AMAP-ML/MathForge"},{"title":"Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation","url":"https://arxiv.org/html/2601.20614"},{"title":"Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation","url":"https://goatstack.ai/articles/2601.20614"},{"title":"GitHub - Luo-Yihong/DGPO: [ICLR 2026][Ultra Fast&Powerful Diffusion RL] Reinforcing Diffusion Models by Direct Group Preference Optimization · GitHub","url":"https://github.com/Luo-Yihong/DGPO"},{"title":"YanqiDai/MathForge_MATH-augmented · Datasets at Hugging Face","url":"https://huggingface.co/datasets/YanqiDai/MathForge_MATH-augmented"}]
+
+Based on the search results, I found relevant information about both MathForge and DGPO from 2026:
+
+## MathForge
+
+MathForge is a framework comprising a Difficulty-Aware Group Policy Optimization (DGPO) algorithm and a Multi-Aspect Question Reformulation (MQR) strategy. The paper was accepted by ICLR 2026 on January 26, 2026.
+
+The full MathForge framework achieves the best overall performance and consistently delivers the best performance across different model sizes and types.
+
+## DGPO (Difficulty-Aware Group Policy Optimization)
+
+DGPO rectifies the implicit imbalance of GRPO and further upweights more challenging questions. Specifically, DGPO rectifies the implicit imbalance in GRPO via difficulty-balanced group advantage estimation, and further prioritizes harder questions by difficulty-aware question-level weighting.
+
+When applied alone, DGPO elevates the average score to 39.79%, a substantial gain of 2.18% over the strong GRPO baseline.
+
+Note: The search also returned results for a different DGPO (Direct Group Preference Optimization for diffusion models), which is a separate work also published at ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9f6eacf-e40a-4be4-88f6-64d7779e712a",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "5416f639-0937-45e7-8428-bd5dc6a436f4",
+  "toolUseResult": {
+    "query": "\"MathForge\" OR \"DGPO\" \"rubric\" 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ug4WWCw7joKgZsE4o9v7TF",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2601.20614"
+          },
+          {
+            "title": "GitHub - AMAP-ML/MathForge: [ICLR 2026] Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation · GitHub",
+            "url": "https://github.com/AMAP-ML/MathForge"
+          },
+          {
+            "title": "Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation",
+            "url": "https://arxiv.org/html/2601.20614"
+          },
+          {
+            "title": "Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation",
+            "url": "https://goatstack.ai/articles/2601.20614"
+          },
+          {
+            "title": "GitHub - Luo-Yihong/DGPO: [ICLR 2026][Ultra Fast&Powerful Diffusion RL] Reinforcing Diffusion Models by Direct Group Preference Optimization · GitHub",
+            "url": "https://github.com/Luo-Yihong/DGPO"
+          },
+          {
+            "title": "YanqiDai/MathForge_MATH-augmented · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/YanqiDai/MathForge_MATH-augmented"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about both MathForge and DGPO from 2026:\n\n## MathForge\n\nMathForge is a framework comprising a Difficulty-Aware Group Policy Optimization (DGPO) algorithm and a Multi-Aspect Question Reformulation (MQR) strategy. The paper was accepted by ICLR 2026 on January 26, 2026.\n\nThe full MathForge framework achieves the best overall performance and consistently delivers the best performance across different model sizes and types.\n\n## DGPO (Difficulty-Aware Group Policy Optimization)\n\nDGPO rectifies the implicit imbalance of GRPO and further upweights more challenging questions. Specifically, DGPO rectifies the implicit imbalance in GRPO via difficulty-balanced group advantage estimation, and further prioritizes harder questions by difficulty-aware question-level weighting.\n\nWhen applied alone, DGPO elevates the average score to 39.79%, a substantial gain of 2.18% over the strong GRPO baseline.\n\nNote: The search also returned results for a different DGPO (Direct Group Preference Optimization for diffusion models), which is a separate work also published at ICLR 2026."
+    ],
+    "durationSeconds": 6.584534204999975,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f9f6eacf-e40a-4be4-88f6-64d7779e712a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128 · 2026-05-28T11:32:35.960Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VvbW8nfEFr7meJwW3wpUt9`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.20614",
+  "prompt": "Extract: 1) DGPO's theoretical framework - Theorems 1 and 2 - what do they prove about binary rewards? 2) Any discussion of extending to non-binary/continuous rewards? 3) Specific open questions or limitations about non-binary reward settings? 4) How difficulty is measured (D_s formula)? 5) MAD normalization details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5416f639-0937-45e7-8428-bd5dc6a436f4",
+  "isSidechain": false,
+  "requestId": "req_011CbUtmiKgv8UVp5Fo2iDEB",
+  "type": "assistant",
+  "uuid": "c9172173-3e80-42e2-b518-10898a3b7dcd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GLydyYUpLLLZXpncuNLMcd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 763,
+      "cache_read_input_tokens": 53982,
+      "output_tokens": 166,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 166,
+          "cache_read_input_tokens": 53982,
+          "cache_creation_input_tokens": 763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-28T11:32:40.377Z_
+
+<details><summary>↩ Tool result · `toolu_01VvbW8nfEFr7meJwW3wpUt9`</summary>
+
+```text
+# Response Based on Available Content
+
+I cannot provide the specific technical details you requested because the webpage content provided is limited to the arXiv abstract and metadata page, not the full paper.
+
+## What's Available:
+
+The page confirms this paper was "Accepted for ICLR 2026" and describes the framework as comprising:
+- "Difficulty-Aware Group Policy Optimization (DGPO) algorithm"
+- "Multi-Aspect Question Reformulation (MQR) strategy"
+
+## What's Not Available in This Content:
+
+1. **Theorems 1 & 2**: The abstract doesn't discuss specific theorems or their proofs regarding binary rewards
+2. **Non-binary reward extensions**: No discussion of continuous/non-binary rewards appears in the metadata
+3. **Open questions/limitations**: Not detailed in the abstract
+4. **Difficulty formula (D_s)**: The abstract doesn't provide the mathematical formula
+5. **MAD normalization**: Not mentioned in the provided text
+
+## To Access This Information:
+
+You would need to view the full paper via:
+- The PDF link provided: `/pdf/2601.20614`
+- The HTML version: `arxiv.org/html/2601.20614v1`
+- The GitHub repository mentioned for code and data
+
+Would you like me to help with information that *is* contained in the abstract, or do you have access to the full paper text?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9172173-3e80-42e2-b518-10898a3b7dcd",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "f42f8907-f2fa-489c-97e2-63f01c0c14a2",
+  "toolUseResult": {
+    "bytes": 48013,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Response Based on Available Content\n\nI cannot provide the specific technical details you requested because the webpage content provided is limited to the arXiv abstract and metadata page, not the full paper.\n\n## What's Available:\n\nThe page confirms this paper was \"Accepted for ICLR 2026\" and describes the framework as comprising:\n- \"Difficulty-Aware Group Policy Optimization (DGPO) algorithm\"\n- \"Multi-Aspect Question Reformulation (MQR) strategy\"\n\n## What's Not Available in This Content:\n\n1. **Theorems 1 & 2**: The abstract doesn't discuss specific theorems or their proofs regarding binary rewards\n2. **Non-binary reward extensions**: No discussion of continuous/non-binary rewards appears in the metadata\n3. **Open questions/limitations**: Not detailed in the abstract\n4. **Difficulty formula (D_s)**: The abstract doesn't provide the mathematical formula\n5. **MAD normalization**: Not mentioned in the provided text\n\n## To Access This Information:\n\nYou would need to view the full paper via:\n- The PDF link provided: `/pdf/2601.20614`\n- The HTML version: `arxiv.org/html/2601.20614v1`\n- The GitHub repository mentioned for code and data\n\nWould you like me to help with information that *is* contained in the abstract, or do you have access to the full paper text?",
+    "durationMs": 4414,
+    "url": "https://arxiv.org/abs/2601.20614"
+  },
+  "sourceToolAssistantUUID": "c9172173-3e80-42e2-b518-10898a3b7dcd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-28T11:32:44.499Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KMkEzjV6vN4R9C2ZDpYt8q`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.20614",
+  "prompt": "Extract the following from the full paper: 1) Theorem 1 and Theorem 2 statements - what do they prove? 2) The assumption about reward being binary (r ∈ {0,1}), 3) Any discussion of extending to non-binary or continuous rewards, 4) The difficulty formula D_s, 5) MAD normalization details (DGAE), 6) Any mention of rubric rewards, 7) Listed limitations and open questions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f42f8907-f2fa-489c-97e2-63f01c0c14a2",
+  "isSidechain": false,
+  "requestId": "req_011CbUtnMRcYbRLwpXRYDiuC",
+  "type": "assistant",
+  "uuid": "ec391ea1-005e-4fd2-b44f-a794ac5c0a9b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VvCdeXvRyrqM6sin5oQjLr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 491,
+      "cache_read_input_tokens": 54745,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 54745,
+          "cache_creation_input_tokens": 491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-28T11:32:52.385Z_
+
+<details><summary>↩ Tool result · `toolu_01KMkEzjV6vN4R9C2ZDpYt8q`</summary>
+
+```text
+# Key Findings from MathForge Paper
+
+## 1) Theorem Statements
+
+**Theorem 1** establishes that GRPO's update magnitude follows: ∑|Â_GR,i| = 2G√(p(1-p)), where p is accuracy rate. This peaks at p=0.5, meaning moderate-difficulty questions receive strongest updates while harder/easier questions are suppressed.
+
+**Theorem 2** proves DGPO's balanced approach yields: ∑|Â_DG,i| = G (constant), ensuring uniform update magnitudes across all question difficulties.
+
+## 2) Binary Reward Assumption
+
+Theorem 1 explicitly requires "binary accuracy reward r_i ∈ {0,1}" where 1 indicates correct responses and 0 incorrect.
+
+## 3) Extension to Non-Binary Rewards
+
+Notably, Theorem 2 "removes the binary reward constraint" enabling application to "a wide array of policy optimization scenarios" with continuous or non-binary rewards.
+
+## 4) Difficulty Formula
+
+Difficulty is quantified as: **D_s = -mean({r_si}^G_i=1)**, representing negative mean accuracy across all responses to question s. Higher negative values indicate harder questions.
+
+## 5) MAD Normalization (DGAE)
+
+DGAE replaces standard deviation with Mean Absolute Deviation: **MAD({r_si}^G_i=1) = (1/G)∑|r_si - mean({r_si}^G_i=1)|**
+
+This normalization ensures constant total update magnitude G regardless of difficulty.
+
+## 6) Rubric Rewards
+
+No mention of rubric-based or nuanced rewards found. Discussion focuses exclusively on binary accuracy signals.
+
+## 7) Limitations and Open Questions
+
+The paper does not explicitly discuss limitations or open questions. Notable gaps include: scalability to other reasoning domains, sensitivity to reformulation quality, and computational costs of data augmentation (briefly mentioned in Appendix E).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec391ea1-005e-4fd2-b44f-a794ac5c0a9b",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "432e014c-e80b-412c-adfd-c69d5bdb0b8d",
+  "toolUseResult": {
+    "bytes": 459878,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Findings from MathForge Paper\n\n## 1) Theorem Statements\n\n**Theorem 1** establishes that GRPO's update magnitude follows: ∑|Â_GR,i| = 2G√(p(1-p)), where p is accuracy rate. This peaks at p=0.5, meaning moderate-difficulty questions receive strongest updates while harder/easier questions are suppressed.\n\n**Theorem 2** proves DGPO's balanced approach yields: ∑|Â_DG,i| = G (constant), ensuring uniform update magnitudes across all question difficulties.\n\n## 2) Binary Reward Assumption\n\nTheorem 1 explicitly requires \"binary accuracy reward r_i ∈ {0,1}\" where 1 indicates correct responses and 0 incorrect.\n\n## 3) Extension to Non-Binary Rewards\n\nNotably, Theorem 2 \"removes the binary reward constraint\" enabling application to \"a wide array of policy optimization scenarios\" with continuous or non-binary rewards.\n\n## 4) Difficulty Formula\n\nDifficulty is quantified as: **D_s = -mean({r_si}^G_i=1)**, representing negative mean accuracy across all responses to question s. Higher negative values indicate harder questions.\n\n## 5) MAD Normalization (DGAE)\n\nDGAE replaces standard deviation with Mean Absolute Deviation: **MAD({r_si}^G_i=1) = (1/G)∑|r_si - mean({r_si}^G_i=1)|**\n\nThis normalization ensures constant total update magnitude G regardless of difficulty.\n\n## 6) Rubric Rewards\n\nNo mention of rubric-based or nuanced rewards found. Discussion focuses exclusively on binary accuracy signals.\n\n## 7) Limitations and Open Questions\n\nThe paper does not explicitly discuss limitations or open questions. Notable gaps include: scalability to other reasoning domains, sensitivity to reformulation quality, and computational costs of data augmentation (briefly mentioned in Appendix E).",
+    "durationMs": 7883,
+    "url": "https://arxiv.org/html/2601.20614"
+  },
+  "sourceToolAssistantUUID": "ec391ea1-005e-4fd2-b44f-a794ac5c0a9b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 132 · 2026-05-28T11:33:00.036Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! This is very important. Theorem 2 "removes the binary reward constraint" — so DGPO's MAD normalization itself doesn't require binary rewards, but the difficulty metric D_s = -mean({r_si}^G_i=1) is still based on binary accuracy. The paper itself never explores non-binary reward settings, and no rubric rewards are mentioned.
+
+Now I have a much clearer picture. Let me do a few more critical searches:
+
+1. Check whether anyone has combined DGPO's difficulty-aware approach with rubric rewards (novelty check)
+2. Look at the specific gap about per-dimension rubric gaming analysis
+
+
+3. I should also verify what the AAAI 2027 track is actually looking for to make sure my contribution aligns with their scope.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "432e014c-e80b-412c-adfd-c69d5bdb0b8d",
+  "isSidechain": false,
+  "requestId": "req_011CbUtoEmYWJpwvv4sTqJk4",
+  "type": "assistant",
+  "uuid": "62cc6dda-ff90-4edc-a158-5d007a30f767",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012nzTrWUgm2afNPDhM3vGP1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 55236,
+      "output_tokens": 252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 657,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 55236,
+          "cache_creation_input_tokens": 657,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 657
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-28T11:33:00.057Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ekk1CpQVGXnkVTA9qjeji3`</summary>
+
+```json
+{
+  "query": "\"per-dimension\" OR \"per-criterion\" rubric gaming exploit reward hacking analysis dimension-level 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62cc6dda-ff90-4edc-a158-5d007a30f767",
+  "isSidechain": false,
+  "requestId": "req_011CbUtoEmYWJpwvv4sTqJk4",
+  "type": "assistant",
+  "uuid": "558e8524-d023-4c6b-8838-f5022bce329f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012nzTrWUgm2afNPDhM3vGP1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 55236,
+      "output_tokens": 252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 657,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 55236,
+          "cache_creation_input_tokens": 657,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 657
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-28T11:33:07.711Z_
+
+<details><summary>↩ Tool result · `toolu_01Ekk1CpQVGXnkVTA9qjeji3`</summary>
+
+```text
+Web search results for query: ""per-dimension" OR "per-criterion" rubric gaming exploit reward hacking analysis dimension-level 2026"
+
+Links: [{"title":"[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/abs/2605.12474"},{"title":"Reward Hacking Defense Rubric","url":"https://www.emergentmind.com/topics/reward-hacking-defense-rubric"},{"title":"Reward Hacking in RLVR Systems","url":"https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"},{"title":"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking","url":"https://arxiv.org/pdf/2604.15149"},{"title":"GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub","url":"https://github.com/xhwang22/Awesome-Reward-Hacking"},{"title":"Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/html/2605.12474v1"},{"title":"Reward Hacking as Equilibrium under Finite Evaluation","url":"https://arxiv.org/pdf/2603.28063"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"In-Context Reward Hacking Behaviors","url":"https://www.emergentmind.com/topics/in-context-reward-hacking-behaviors"}]
+
+I found relevant research on reward hacking in rubric-based reinforcement learning. Here are the key findings:
+
+## Recent Research on Rubric-Based Reward Hacking
+
+Stronger verifiers substantially reduce, but do not eliminate, verifier exploitation, and stronger verification does not prevent reward hacking when the rubric leaves important failure modes unspecified. Disagreements between rubric-based and rubric-free judges coincide with gains concentrated in completeness and presence-based criteria, alongside declines in factual correctness, conciseness, relevance, and overall quality.
+
+## Multi-Dimensional Attack Surfaces
+
+RLVR settings introduce additional attack surfaces: reward verifiers may be circumvented, preference models may be gamed by superficial cues, and rubric aggregation schemes can be targeted by outputs tailored to exploit individual rubric items.
+
+## Defense Mechanisms for Per-Criterion Rubrics
+
+Rubric-based rewards constructed as multi-dimensional evaluative criteria support granular and interpretable scoring and enable explicit hard constraints against reward hacking patterns. Aggregation mechanisms incorporate veto layers and defense rubrics that invalidate scalar reward if critical dimensions signal an exploit.
+
+## Exploitation Prevalence
+
+In complex open-domain settings, initial hacking rates range from 36–75%, depending on model scale and task, with top models exploiting rubrics in 67% of creative tasks and 75% of agentic code generation tasks.
+
+The research indicates dimension-level exploitation is a significant concern in 2026, with ongoing work on detection and mitigation strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "558e8524-d023-4c6b-8838-f5022bce329f",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "2be9b5d7-0366-4ef9-9383-198faee89d07",
+  "toolUseResult": {
+    "query": "\"per-dimension\" OR \"per-criterion\" rubric gaming exploit reward hacking analysis dimension-level 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RNxr3h5anhmhs6s5ox5TJj",
+        "content": [
+          {
+            "title": "[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2605.12474"
+          },
+          {
+            "title": "Reward Hacking Defense Rubric",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+          },
+          {
+            "title": "Reward Hacking in RLVR Systems",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"
+          },
+          {
+            "title": "LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking",
+            "url": "https://arxiv.org/pdf/2604.15149"
+          },
+          {
+            "title": "GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub",
+            "url": "https://github.com/xhwang22/Awesome-Reward-Hacking"
+          },
+          {
+            "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.12474v1"
+          },
+          {
+            "title": "Reward Hacking as Equilibrium under Finite Evaluation",
+            "url": "https://arxiv.org/pdf/2603.28063"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "In-Context Reward Hacking Behaviors",
+            "url": "https://www.emergentmind.com/topics/in-context-reward-hacking-behaviors"
+          }
+        ]
+      },
+      "I found relevant research on reward hacking in rubric-based reinforcement learning. Here are the key findings:\n\n## Recent Research on Rubric-Based Reward Hacking\n\nStronger verifiers substantially reduce, but do not eliminate, verifier exploitation, and stronger verification does not prevent reward hacking when the rubric leaves important failure modes unspecified. Disagreements between rubric-based and rubric-free judges coincide with gains concentrated in completeness and presence-based criteria, alongside declines in factual correctness, conciseness, relevance, and overall quality.\n\n## Multi-Dimensional Attack Surfaces\n\nRLVR settings introduce additional attack surfaces: reward verifiers may be circumvented, preference models may be gamed by superficial cues, and rubric aggregation schemes can be targeted by outputs tailored to exploit individual rubric items.\n\n## Defense Mechanisms for Per-Criterion Rubrics\n\nRubric-based rewards constructed as multi-dimensional evaluative criteria support granular and interpretable scoring and enable explicit hard constraints against reward hacking patterns. Aggregation mechanisms incorporate veto layers and defense rubrics that invalidate scalar reward if critical dimensions signal an exploit.\n\n## Exploitation Prevalence\n\nIn complex open-domain settings, initial hacking rates range from 36–75%, depending on model scale and task, with top models exploiting rubrics in 67% of creative tasks and 75% of agentic code generation tasks.\n\nThe research indicates dimension-level exploitation is a significant concern in 2026, with ongoing work on detection and mitigation strategies."
+    ],
+    "durationSeconds": 7.648864713999966,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "558e8524-d023-4c6b-8838-f5022bce329f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 135_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "2be9b5d7-0366-4ef9-9383-198faee89d07",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 136_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-28T11:33:10.699Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AiHtk4f22LJNaujGuKbGbT`</summary>
+
+```json
+{
+  "query": "\"difficulty\" \"gaming\" interaction rubric reward model math hard problem exploit easy criteria 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2be9b5d7-0366-4ef9-9383-198faee89d07",
+  "isSidechain": false,
+  "requestId": "req_011CbUtpNFmiEe3aZrTGugor",
+  "type": "assistant",
+  "uuid": "0a461913-774f-4d5d-9800-749614209a9e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016rtgh42wH8NtgP6qQBjuQP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1079,
+      "cache_read_input_tokens": 55893,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1079,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 55893,
+          "cache_creation_input_tokens": 1079,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1079
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-28T11:33:18.478Z_
+
+<details><summary>↩ Tool result · `toolu_01AiHtk4f22LJNaujGuKbGbT`</summary>
+
+```text
+Web search results for query: ""difficulty" "gaming" interaction rubric reward model math hard problem exploit easy criteria 2026"
+
+Links: [{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"Rubric-Based Reward Modeling (RLRR)","url":"https://www.emergentmind.com/topics/rubric-based-reward-modeling-rlrr"},{"title":"Auto-Rubric: Learning to Extract Generalizable Criteria for Reward Modeling","url":"https://arxiv.org/html/2510.17314v1"},{"title":"Reward Hacking in RLVR Systems","url":"https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"},{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"Step-wise Rubric Rewards for LLM Reasoning","url":"https://arxiv.org/html/2605.17291v1"}]
+
+Based on the search results, here's what I found related to your query:
+
+## Key Findings on Rubric Reward Models and Math Problem Difficulty
+
+The Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics. This approach addresses challenges in mathematical reasoning where models may produce correct answers through flawed logic.
+
+### Performance on Hard Problems
+
+In conversational evaluation, rubrics show particularly dramatic improvement on hard samples (+13.95% on Chat domain), highlighting their effectiveness in subjective areas where nuanced judgment is critical. Substantial gains are also observed in Math (+4.54%) and Safety-Refuse (+3.64%).
+
+### Exploit and Gaming Prevention
+
+Reward hacking is a problem where models exploit the proxy in unintended ways. Rubric-scaffolded RL (RuscaRL) injects external rubric criteria as instructional scaffolding during rollout generation, assigning variable guidance across samples and decaying it over training steps to promote exploration and autonomous reasoning, while later using rubric-based rewards for exploitation.
+
+### Recent 2026 Research
+
+Current research guidance recommends combining unit tests for correctness with LLM rubrics for overall code or interaction quality, with the consensus that rubrics improve reliability when the task is open-ended and the rubric is explicit, criterion-separated, and calibrated.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a461913-774f-4d5d-9800-749614209a9e",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "8b0d6096-720d-4d98-ae13-a20da7dfc6f1",
+  "toolUseResult": {
+    "query": "\"difficulty\" \"gaming\" interaction rubric reward model math hard problem exploit easy criteria 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N2fiuKHcHeSeNPDjPNuAR9",
+        "content": [
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "Rubric-Based Reward Modeling (RLRR)",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-modeling-rlrr"
+          },
+          {
+            "title": "Auto-Rubric: Learning to Extract Generalizable Criteria for Reward Modeling",
+            "url": "https://arxiv.org/html/2510.17314v1"
+          },
+          {
+            "title": "Reward Hacking in RLVR Systems",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"
+          },
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "Step-wise Rubric Rewards for LLM Reasoning",
+            "url": "https://arxiv.org/html/2605.17291v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to your query:\n\n## Key Findings on Rubric Reward Models and Math Problem Difficulty\n\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics. This approach addresses challenges in mathematical reasoning where models may produce correct answers through flawed logic.\n\n### Performance on Hard Problems\n\nIn conversational evaluation, rubrics show particularly dramatic improvement on hard samples (+13.95% on Chat domain), highlighting their effectiveness in subjective areas where nuanced judgment is critical. Substantial gains are also observed in Math (+4.54%) and Safety-Refuse (+3.64%).\n\n### Exploit and Gaming Prevention\n\nReward hacking is a problem where models exploit the proxy in unintended ways. Rubric-scaffolded RL (RuscaRL) injects external rubric criteria as instructional scaffolding during rollout generation, assigning variable guidance across samples and decaying it over training steps to promote exploration and autonomous reasoning, while later using rubric-based rewards for exploitation.\n\n### Recent 2026 Research\n\nCurrent research guidance recommends combining unit tests for correctness with LLM rubrics for overall code or interaction quality, with the consensus that rubrics improve reliability when the task is open-ended and the rubric is explicit, criterion-separated, and calibrated."
+    ],
+    "durationSeconds": 7.775153264000022,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0a461913-774f-4d5d-9800-749614209a9e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-28T11:33:21.555Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y6i6toM2JHYKErMsEgTCZq`</summary>
+
+```json
+{
+  "query": "rubric reward math AIME competition difficulty level stratified analysis performance 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b0d6096-720d-4d98-ae13-a20da7dfc6f1",
+  "isSidechain": false,
+  "requestId": "req_011CbUtqALSr4txMCprR6x6S",
+  "type": "assistant",
+  "uuid": "8a6487ed-0e21-4a5e-ac92-a3ae3ee2bc41",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mq91x13h6oKLA2NxwYqpGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 56972,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 56972,
+          "cache_creation_input_tokens": 878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-28T11:33:29.217Z_
+
+<details><summary>↩ Tool result · `toolu_01Y6i6toM2JHYKErMsEgTCZq`</summary>
+
+```text
+Web search results for query: "rubric reward math AIME competition difficulty level stratified analysis performance 2026"
+
+Links: [{"title":"MAA Invitational Competitions – Mathematical Association of America","url":"https://maa.org/maa-invitational-competitions/"},{"title":"AIME-2026 | EvalScope - Read the Docs","url":"https://evalscope.readthedocs.io/en/v1.5.1/benchmarks/aime26.html"},{"title":"Insane AIME Cutoff 2026 & AIME Qualification: Don’t Miss Out","url":"https://www.awesomemath.org/aime-cutoff-2026-aime-qualification/"},{"title":"AIME 2026 Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/aime-2026"},{"title":"All About AIME: Qualification, Competition Difficulty, and Key Knowledge Points - Math Competitions | Think Academy US","url":"https://www.thethinkacademy.com/blog/all-about-aime-qualification-competition-difficulty-and-key-knowledge-points/"},{"title":"American Invitational Mathematics Examination - Wikipedia","url":"https://en.wikipedia.org/wiki/American_Invitational_Mathematics_Examination"},{"title":"AoPS Wiki:Competition ratings - AoPS Wiki","url":"https://artofproblemsolving.com/wiki/index.php/AoPS_Wiki:Competition_ratings"},{"title":"AIME Benchmarks: Math & AI Evaluation","url":"https://www.emergentmind.com/topics/aime-benchmarks"}]
+
+Based on the search results, I found relevant information about AIME competition difficulty and 2026 performance data. Here's what I discovered:
+
+## AIME 2026 Competition Overview
+
+The AIME 2026 is a benchmark based on problems from the prestigious AIME competition, one of the most challenging high school mathematics contests in the United States. The AIME is a 15-question, 3-hour examination, in which each answer is an integer number between 0 to 999.
+
+## Difficulty Level
+
+The questions on the AIME are much more difficult than those on the AMC 10 and AMC 12. Unlike the AMC, where eliminating wrong choices is a viable strategy, AIME offers no answer options at all. Every answer must be derived entirely through reasoning.
+
+## 2026 Performance Analysis
+
+Kimi K2.6 by Moonshot AI leads an AI model leaderboard with a score of 0.964, while the average score across all models is 0.838, when evaluated on the AIME 2026 benchmark.
+
+For human performance, in 2026, approximately the top 11% of AIME participants were invited to compete in USAMO/USAJMO based on their combined AMC and AIME performance. Additionally, the AMC 10 AIME cutoff typically ranges from 100-120, with recent years clustering around 105-115.
+
+## Stratified Difficulty
+
+AIME problems range from intermediate-level difficulty (problems 4-6) through more difficult problems (11-13) to high-leveled questions (14-15), showing a clear stratification within the competition itself.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a6487ed-0e21-4a5e-ac92-a3ae3ee2bc41",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "09006682-8bee-4e42-bb14-ea9cb82b26fc",
+  "toolUseResult": {
+    "query": "rubric reward math AIME competition difficulty level stratified analysis performance 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0199Ayn9yqemSVuaf2YAcK6X",
+        "content": [
+          {
+            "title": "MAA Invitational Competitions – Mathematical Association of America",
+            "url": "https://maa.org/maa-invitational-competitions/"
+          },
+          {
+            "title": "AIME-2026 | EvalScope - Read the Docs",
+            "url": "https://evalscope.readthedocs.io/en/v1.5.1/benchmarks/aime26.html"
+          },
+          {
+            "title": "Insane AIME Cutoff 2026 & AIME Qualification: Don’t Miss Out",
+            "url": "https://www.awesomemath.org/aime-cutoff-2026-aime-qualification/"
+          },
+          {
+            "title": "AIME 2026 Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/aime-2026"
+          },
+          {
+            "title": "All About AIME: Qualification, Competition Difficulty, and Key Knowledge Points - Math Competitions | Think Academy US",
+            "url": "https://www.thethinkacademy.com/blog/all-about-aime-qualification-competition-difficulty-and-key-knowledge-points/"
+          },
+          {
+            "title": "American Invitational Mathematics Examination - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/American_Invitational_Mathematics_Examination"
+          },
+          {
+            "title": "AoPS Wiki:Competition ratings - AoPS Wiki",
+            "url": "https://artofproblemsolving.com/wiki/index.php/AoPS_Wiki:Competition_ratings"
+          },
+          {
+            "title": "AIME Benchmarks: Math & AI Evaluation",
+            "url": "https://www.emergentmind.com/topics/aime-benchmarks"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about AIME competition difficulty and 2026 performance data. Here's what I discovered:\n\n## AIME 2026 Competition Overview\n\nThe AIME 2026 is a benchmark based on problems from the prestigious AIME competition, one of the most challenging high school mathematics contests in the United States. The AIME is a 15-question, 3-hour examination, in which each answer is an integer number between 0 to 999.\n\n## Difficulty Level\n\nThe questions on the AIME are much more difficult than those on the AMC 10 and AMC 12. Unlike the AMC, where eliminating wrong choices is a viable strategy, AIME offers no answer options at all. Every answer must be derived entirely through reasoning.\n\n## 2026 Performance Analysis\n\nKimi K2.6 by Moonshot AI leads an AI model leaderboard with a score of 0.964, while the average score across all models is 0.838, when evaluated on the AIME 2026 benchmark.\n\nFor human performance, in 2026, approximately the top 11% of AIME participants were invited to compete in USAMO/USAJMO based on their combined AMC and AIME performance. Additionally, the AMC 10 AIME cutoff typically ranges from 100-120, with recent years clustering around 105-115.\n\n## Stratified Difficulty\n\nAIME problems range from intermediate-level difficulty (problems 4-6) through more difficult problems (11-13) to high-leveled questions (14-15), showing a clear stratification within the competition itself."
+    ],
+    "durationSeconds": 7.656095352999983,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8a6487ed-0e21-4a5e-ac92-a3ae3ee2bc41",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 141 · 2026-05-28T11:33:29.224Z_
+
+```json
+{
+  "parentUuid": "09006682-8bee-4e42-bb14-ea9cb82b26fc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "62bbf098-c8e9-4c60-9a40-34b4416debf5",
+  "timestamp": "2026-05-28T11:33:29.224Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 142 · 2026-05-28T11:33:31.365Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X4uBhj4kxao4C1XGhnoBgv`</summary>
+
+```json
+{
+  "query": "veto mechanism saturation-aware aggregation rubric reward reinforcement learning anti-gaming 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62bbf098-c8e9-4c60-9a40-34b4416debf5",
+  "isSidechain": false,
+  "requestId": "req_011CbUtqxHBf3ncMqKHuzmgj",
+  "type": "assistant",
+  "uuid": "9303c5ae-0e2a-428c-b1e6-230469b6810c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017sMqM5WWRDS4Gtr2F2QDZR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 975,
+      "cache_read_input_tokens": 57850,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 57850,
+          "cache_creation_input_tokens": 975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-28T11:33:37.982Z_
+
+<details><summary>↩ Tool result · `toolu_01X4uBhj4kxao4C1XGhnoBgv`</summary>
+
+```text
+Web search results for query: "veto mechanism saturation-aware aggregation rubric reward reinforcement learning anti-gaming 2026"
+
+Links: [{"title":"Verifiable Rubric-Based Rewards","url":"https://www.emergentmind.com/topics/verifiable-rubric-based-rewards-vrbr"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"Rubric-Based Reinforcement Learning","url":"https://www.emergentmind.com/topics/rubric-based-reinforcement-learning"},{"title":"Rubric-Scaffolded RL (RuscaRL)","url":"https://www.emergentmind.com/topics/rubric-scaffolded-reinforcement-learning-ruscarl"},{"title":"Rubric-Based Reward Systems","url":"https://www.emergentmind.com/topics/rubric-based-reward-system"},{"title":"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR","url":"https://arxiv.org/html/2605.20164v1"},{"title":"Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric","url":"https://arxiv.org/html/2602.14069"},{"title":"Alternating Reinforcement Learning for Rubric-Based ...","url":"https://arxiv.org/pdf/2602.01511"},{"title":"RUBRICS AS REWARDS: REINFORCEMENT LEARNING ...","url":"https://openreview.net/pdf?id=c1bTcrDmt4"}]
+
+Based on the web search results, here's what I found about this advanced reinforcement learning topic:
+
+Advanced aggregation strategies for rubric-based rewards include veto functions (nullifying rewards if critical criteria fail), saturation-aware shaping (reflecting diminishing returns), pairwise rubric interactions, and non-linear mechanisms to regulate gradient sensitivity.
+
+**Key Components:**
+
+1. **Veto Mechanisms**: Failing on a critical dimension overrides any reward from other dimensions.
+
+2. **Saturation-Aware Aggregation**: Over-performing on a single dimension yields diminishing returns relative to a balanced reward across dimensions.
+
+3. **Anti-Gaming Measures**: The framework mitigates reward hacking through advanced aggregation—veto mechanisms, saturation-aware aggregation, and pairwise rubric item interaction—and by leveraging large curated rubric banks (>10,000 rubrics) for diverse coverage.
+
+4. **Recent Research Challenges**: Many important criteria are already saturated or currently unreachable, while criteria that distinguish rollouts are not necessarily those with the largest human weights.
+
+These techniques are being actively researched in 2025-2026 as part of efforts to create more robust reinforcement learning systems that resist reward gaming and distribute learning across multiple balanced objectives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9303c5ae-0e2a-428c-b1e6-230469b6810c",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "e488c29d-12bf-42c6-8c7f-35fac206da8d",
+  "toolUseResult": {
+    "query": "veto mechanism saturation-aware aggregation rubric reward reinforcement learning anti-gaming 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013kmdp2J6zZJ5eBXu6nKhs9",
+        "content": [
+          {
+            "title": "Verifiable Rubric-Based Rewards",
+            "url": "https://www.emergentmind.com/topics/verifiable-rubric-based-rewards-vrbr"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "Rubric-Based Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reinforcement-learning"
+          },
+          {
+            "title": "Rubric-Scaffolded RL (RuscaRL)",
+            "url": "https://www.emergentmind.com/topics/rubric-scaffolded-reinforcement-learning-ruscarl"
+          },
+          {
+            "title": "Rubric-Based Reward Systems",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-system"
+          },
+          {
+            "title": "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+            "url": "https://arxiv.org/html/2605.20164v1"
+          },
+          {
+            "title": "Open Rubric System: Scaling Reinforcement Learning with Pairwise Adaptive Rubric",
+            "url": "https://arxiv.org/html/2602.14069"
+          },
+          {
+            "title": "Alternating Reinforcement Learning for Rubric-Based ...",
+            "url": "https://arxiv.org/pdf/2602.01511"
+          },
+          {
+            "title": "RUBRICS AS REWARDS: REINFORCEMENT LEARNING ...",
+            "url": "https://openreview.net/pdf?id=c1bTcrDmt4"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about this advanced reinforcement learning topic:\n\nAdvanced aggregation strategies for rubric-based rewards include veto functions (nullifying rewards if critical criteria fail), saturation-aware shaping (reflecting diminishing returns), pairwise rubric interactions, and non-linear mechanisms to regulate gradient sensitivity.\n\n**Key Components:**\n\n1. **Veto Mechanisms**: Failing on a critical dimension overrides any reward from other dimensions.\n\n2. **Saturation-Aware Aggregation**: Over-performing on a single dimension yields diminishing returns relative to a balanced reward across dimensions.\n\n3. **Anti-Gaming Measures**: The framework mitigates reward hacking through advanced aggregation—veto mechanisms, saturation-aware aggregation, and pairwise rubric item interaction—and by leveraging large curated rubric banks (>10,000 rubrics) for diverse coverage.\n\n4. **Recent Research Challenges**: Many important criteria are already saturated or currently unreachable, while criteria that distinguish rollouts are not necessarily those with the largest human weights.\n\nThese techniques are being actively researched in 2025-2026 as part of efforts to create more robust reinforcement learning systems that resist reward gaming and distribute learning across multiple balanced objectives."
+    ],
+    "durationSeconds": 6.613138321000035,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9303c5ae-0e2a-428c-b1e6-230469b6810c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 144 · 2026-05-28T11:33:42.428Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SL6qbksNc7CSoe9SFv6a2n`</summary>
+
+```json
+{
+  "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric",
+  "prompt": "What specific papers or methods define the \"Reward Hacking Defense Rubric\"? Is this a single paper or a topic cluster? What specific defense mechanisms are proposed? Is there any work combining defense rubrics with difficulty calibration?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e488c29d-12bf-42c6-8c7f-35fac206da8d",
+  "isSidechain": false,
+  "requestId": "req_011CbUtrbfj8qQAJ1ngvbmTr",
+  "type": "assistant",
+  "uuid": "a20029a7-e68b-4048-be9c-4b5593f2a5c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UYmPEzHgaRAQoWxFyCnKBD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 797,
+      "cache_read_input_tokens": 58825,
+      "output_tokens": 139,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 139,
+          "cache_read_input_tokens": 58825,
+          "cache_creation_input_tokens": 797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-28T11:33:47.198Z_
+
+<details><summary>↩ Tool result · `toolu_01SL6qbksNc7CSoe9SFv6a2n`</summary>
+
+```text
+# Reward Hacking Defense Rubric: Overview
+
+Based on the content provided, the "Reward Hacking Defense Rubric" is **not a single paper but rather a topic cluster** synthesizing multiple recent works (primarily 2024-2025) around defending against reward exploitation.
+
+## Defining Framework
+
+The rubric represents "a structured framework defining robust criteria, evaluation benchmarks, and defense architectures to prevent proxy reward exploitation." It's grounded in foundational theoretical work, particularly Skalse et al. (2022) on formal unhackability definitions.
+
+## Key Defense Mechanisms Proposed
+
+The document outlines seven major categories:
+
+1. **Worst-case optimization** - Selecting policies that maximize performance under all plausible true rewards
+2. **Dynamic reward modeling** - Continuously updating reward functions to close exploitation patterns
+3. **Pessimistic reward modeling** - Embedding conservatism to prevent overestimation
+4. **Adversarial training** - Using RL to surface exploit-prone outputs for retraining
+5. **Causal robustness** - Ensuring rewards depend on causal rather than spurious attributes
+6. **Rubric-based aggregation** - Multi-dimensional criteria with hard constraints against known exploit patterns
+7. **Specification self-correction** - Test-time refinement where models critique and fix potential exploits
+
+## Difficulty Calibration Integration
+
+The content does not discuss combining defense rubrics with difficulty calibration approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a20029a7-e68b-4048-be9c-4b5593f2a5c6",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "dd955ce3-c74a-4c88-bb30-7767e2814cfd",
+  "toolUseResult": {
+    "bytes": 253562,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Reward Hacking Defense Rubric: Overview\n\nBased on the content provided, the \"Reward Hacking Defense Rubric\" is **not a single paper but rather a topic cluster** synthesizing multiple recent works (primarily 2024-2025) around defending against reward exploitation.\n\n## Defining Framework\n\nThe rubric represents \"a structured framework defining robust criteria, evaluation benchmarks, and defense architectures to prevent proxy reward exploitation.\" It's grounded in foundational theoretical work, particularly Skalse et al. (2022) on formal unhackability definitions.\n\n## Key Defense Mechanisms Proposed\n\nThe document outlines seven major categories:\n\n1. **Worst-case optimization** - Selecting policies that maximize performance under all plausible true rewards\n2. **Dynamic reward modeling** - Continuously updating reward functions to close exploitation patterns\n3. **Pessimistic reward modeling** - Embedding conservatism to prevent overestimation\n4. **Adversarial training** - Using RL to surface exploit-prone outputs for retraining\n5. **Causal robustness** - Ensuring rewards depend on causal rather than spurious attributes\n6. **Rubric-based aggregation** - Multi-dimensional criteria with hard constraints against known exploit patterns\n7. **Specification self-correction** - Test-time refinement where models critique and fix potential exploits\n\n## Difficulty Calibration Integration\n\nThe content does not discuss combining defense rubrics with difficulty calibration approaches.",
+    "durationMs": 4767,
+    "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+  },
+  "sourceToolAssistantUUID": "a20029a7-e68b-4048-be9c-4b5593f2a5c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 146 · 2026-05-28T11:34:56.235Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of the landscape. Let me synthesize what I've found:
+
+### Key findings from research:
+
+**Existing work on rubric rewards:**
+- RRM (Curing Miracle Steps) - rubric rewards for math, manual rubrics, uniform strictness
+- ARES - automated rubric generation, not math-specific, no difficulty calibration
+- SRaR - step-level rubric attribution, no difficulty calibration
+- POW3R - policy-aware rubric weight adaptation, no difficulty calibration
+- PAPO - decoupled advantage for rubric integration, no difficulty calibration
+
+
+- ARL-RR - alternating optimization per rubric meta-class, no difficulty calibration
+- GDPO - per-reward dimension normalization, not difficulty-aware
+- OpenRS - pairwise adaptive rubrics, no difficulty calibration
+- DR Tulu/RLER - evolving rubrics, deep research tasks, not math-specific
+- RuscaRL - rubric-scaffolded RL for exploration, no difficulty calibration
+- Rubric Anchors - 10K rubrics for open-ended tasks, no difficulty calibration
+- Crome - causal rubrics for robustness, not difficulty-calibrated
+
+**Existing work on difficulty-aware**
+
+Now looking at approaches that do incorporate difficulty awareness: DGPO and MathForge use difficulty-aware GRPO but only handle binary rewards, DARO applies difficulty-aware reweighting similarly constrained, and F-GRPO scales advantages based on difficulty. There's also work on intermediate difficulty selection and certainty-guided exploration. On the gaming defense side, there's been diagnosis of reward hacking in rubric-based RL and some defenses like IPT for verification, causal augmentation, and ensemble approaches, though these mitigate rather than fully solve the problem.
+
+The key gaps I'm identifying are that no one has combined difficulty calibration with rubric rewards in math problems—all the difficulty-aware methods stick to binary or outcome rewards while rubric methods apply uniform strictness regardless of difficulty. I haven't found any work studying whether gaming patterns actually differ between hard and easy problems at the per-dimension level. DGPO's theoretical framework claims to extend beyond binary rewards but the actual implementation and testing only uses binary rewards. And while rubric ensemble diversity for anti-gaming gets mentioned conceptually, there's no real empirical validation of it. Some things like online rubric refinement aren't novel since DR Tulu and POW3R already handle that.
+
+The real novel contribution is exploring how problem difficulty interacts with rubric gaming susceptibility. I can extend DGPO's MAD normalization theory to multi-dimensional rubric vectors and show that the bias formula generalizes beyond just overall difficulty—it depends on how rubric dimensions correlate differently at various difficulty levels, creating what I'd call a "dimension exploitation gradient" where models exploit easier dimensions more aggressively on harder problems.
+
+For the methodology, I'd develop Difficulty-Calibrated Rubric Rewards that automatically generate math-specific rubrics with difficulty metadata, then adjust per-dimension strictness based on problem difficulty so harder problems get stricter verification of their easier dimensions to prevent partial satisfaction gaming. The diagnostic piece would measure gaming rates per dimension stratified by difficulty to empirically show this pattern.
+
+Now I'm thinking about the strongest framing for an AAAI 2027 submission...
+
+The core issue is whether simply combining ARES rubrics with difficulty-weighted GRPO would capture most of the gains, so I need to demonstrate genuine interaction effects between difficulty calibration and rubric gaming. My best angle is framing this around how uniform rubrics create exploitable strictness gaps on hard problems—models can rack up points by nailing easy dimensions like problem setup and notation while cutting corners on harder verification tasks. This difficulty-dependent gaming gradient is what uniform strictness misses, and the theoretical contribution would formalize how GRPO's difficulty bias enables this exploitation.
+
+The diagnostic piece is actually the strongest standalone contribution: a framework that measures per-dimension gaming rates across difficulty levels to expose the systematic pattern. Then the method naturally follows—difficulty-calibrated per-dimension strictness that extends DGPO's normalization to multi-dimensional rubric rewards. I'd validate this using the pass@k framework to show whether calibrated rubric rewards actually expand the reasoning frontier compared to uniform ones.
+
+Now let me think about the actual research direction format they want. The feasibility checks out—under 200 H100-hours for 7B-14B models, and the two-month timeline is tight but workable since the building blocks already exist. The key differentiator against the baseline fear test is that ARES plus DGPO weighting doesn't address the dimension-level gaming interaction, whereas my approach combines formal analysis of the difficulty-dimension gaming gradient with the diagnostic framework and the calibrated strictness mechanism.
+
+The most defensible angle is showing that rubric gaming is systematically harder to detect on hard problems because easy dimensions act as camouflage—that's a rigorous problem diagnosis following the high-success innovation pattern. Combined with extending DGPO's theorems to formalize this difficulty-dependent gaming structure, this hits both pattern #1 and #2.
+
+Let me search once more to confirm nothing concurrent has emerged in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd955ce3-c74a-4c88-bb30-7767e2814cfd",
+  "isSidechain": false,
+  "requestId": "req_011CbUtsH5ovNpzQ9eBrfGrD",
+  "type": "assistant",
+  "uuid": "483b7472-4d63-4d97-9616-a401bb2db529",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3TCmBwJw9wmShpMhum4FT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 475,
+      "cache_read_input_tokens": 59622,
+      "output_tokens": 2340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 475,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2340,
+          "cache_read_input_tokens": 59622,
+          "cache_creation_input_tokens": 475,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 475
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-28T11:34:56.336Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CpFpCU6zFKU2BTjUGQZGGP`</summary>
+
+```json
+{
+  "query": "\"difficulty-stratified\" OR \"difficulty-dependent\" rubric gaming reward hacking math 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "483b7472-4d63-4d97-9616-a401bb2db529",
+  "isSidechain": false,
+  "requestId": "req_011CbUtsH5ovNpzQ9eBrfGrD",
+  "type": "assistant",
+  "uuid": "cdfdd75e-937d-4bc8-84cd-378a19dfba51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3TCmBwJw9wmShpMhum4FT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 475,
+      "cache_read_input_tokens": 59622,
+      "output_tokens": 2340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 475,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2340,
+          "cache_read_input_tokens": 59622,
+          "cache_creation_input_tokens": 475,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 475
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 148_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "cdfdd75e-937d-4bc8-84cd-378a19dfba51",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 149_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-28T11:35:03.344Z_
+
+<details><summary>↩ Tool result · `toolu_01CpFpCU6zFKU2BTjUGQZGGP`</summary>
+
+```text
+Web search results for query: ""difficulty-stratified" OR "difficulty-dependent" rubric gaming reward hacking math 2026"
+
+Links: [{"title":"[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/abs/2605.12474"},{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"Rubric-Based Reward Modeling","url":"https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"},{"title":"Reward Hacking Defense Rubric","url":"https://www.emergentmind.com/topics/reward-hacking-defense-rubric"},{"title":"Reward Hacking as Equilibrium under Finite Evaluation","url":"https://arxiv.org/pdf/2603.28063"},{"title":"Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/html/2605.12474v1"}]
+
+I found several relevant results about reward hacking in rubric-based systems and reinforcement learning, particularly in the context of math and other domains in 2026. Here are the key findings:
+
+## Recent Research on Reward Hacking in Rubric-Based Systems
+
+A recent paper on "Reward Hacking in Rubric-Based Reinforcement Learning" (May 2026) studies how reinforcement learning with verifiable rewards has enabled strong post-training gains in domains such as math and coding, though many open-ended settings rely on rubric-based rewards.
+
+The research separates two sources of divergence: verifier failure (where the training verifier credits rubric criteria that reference verifiers reject) and rubric-design limitations (where even strong rubric-based verifiers favor responses that rubric-free judges rate worse overall).
+
+Stronger verification does not prevent reward hacking when the rubric leaves important failure modes unspecified, with rubric-based verifiers preferring certain RL checkpoints while rubric-free judges prefer base models.
+
+## Addressing Reward Hacking in Math
+
+Research on math reasoning shows that rubric-based reward paradigms are highly susceptible to reward hacking, leading to a high incidence of "false positives"—solutions that reach the correct final answer through an unsound reasoning process. A Rubric Reward Model approach reduced the incidence of "Miracle Steps" by 71% and boosted performance on AIME2024.
+
+## Broader Defense Strategies
+
+Rubric-based reward modeling provides fine-grained control through "hard rules" involving constraint adherence or safety, acting as priority checks and mitigating reward hacking.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdfdd75e-937d-4bc8-84cd-378a19dfba51",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "42970141-c11d-4644-94ef-b3b57a850214",
+  "toolUseResult": {
+    "query": "\"difficulty-stratified\" OR \"difficulty-dependent\" rubric gaming reward hacking math 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TE89TMDKZA7rigwWEJiG78",
+        "content": [
+          {
+            "title": "[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2605.12474"
+          },
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "Rubric-Based Reward Modeling",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"
+          },
+          {
+            "title": "Reward Hacking Defense Rubric",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+          },
+          {
+            "title": "Reward Hacking as Equilibrium under Finite Evaluation",
+            "url": "https://arxiv.org/pdf/2603.28063"
+          },
+          {
+            "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.12474v1"
+          }
+        ]
+      },
+      "I found several relevant results about reward hacking in rubric-based systems and reinforcement learning, particularly in the context of math and other domains in 2026. Here are the key findings:\n\n## Recent Research on Reward Hacking in Rubric-Based Systems\n\nA recent paper on \"Reward Hacking in Rubric-Based Reinforcement Learning\" (May 2026) studies how reinforcement learning with verifiable rewards has enabled strong post-training gains in domains such as math and coding, though many open-ended settings rely on rubric-based rewards.\n\nThe research separates two sources of divergence: verifier failure (where the training verifier credits rubric criteria that reference verifiers reject) and rubric-design limitations (where even strong rubric-based verifiers favor responses that rubric-free judges rate worse overall).\n\nStronger verification does not prevent reward hacking when the rubric leaves important failure modes unspecified, with rubric-based verifiers preferring certain RL checkpoints while rubric-free judges prefer base models.\n\n## Addressing Reward Hacking in Math\n\nResearch on math reasoning shows that rubric-based reward paradigms are highly susceptible to reward hacking, leading to a high incidence of \"false positives\"—solutions that reach the correct final answer through an unsound reasoning process. A Rubric Reward Model approach reduced the incidence of \"Miracle Steps\" by 71% and boosted performance on AIME2024.\n\n## Broader Defense Strategies\n\nRubric-based reward modeling provides fine-grained control through \"hard rules\" involving constraint adherence or safety, acting as priority checks and mitigating reward hacking."
+    ],
+    "durationSeconds": 7.00147697399999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cdfdd75e-937d-4bc8-84cd-378a19dfba51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-28T11:35:05.489Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012xU1jnMmosDzYCrVF5C5XK`</summary>
+
+```json
+{
+  "query": "site:arxiv.org difficulty calibrate rubric dimension strictness reward math 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42970141-c11d-4644-94ef-b3b57a850214",
+  "isSidechain": false,
+  "requestId": "req_011CbUtxttjXP6VAxkCYQjGs",
+  "type": "assistant",
+  "uuid": "7d4a3ae9-62f5-4f15-ad04-30525298d805",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1TwuTAUv8mxGtqWi18J9G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3021,
+      "cache_read_input_tokens": 60097,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3021,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 60097,
+          "cache_creation_input_tokens": 3021,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3021
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-28T11:35:15.368Z_
+
+<details><summary>↩ Tool result · `toolu_012xU1jnMmosDzYCrVF5C5XK`</summary>
+
+```text
+Web search results for query: "site:arxiv.org difficulty calibrate rubric dimension strictness reward math 2026"
+
+Links: [{"title":"Auto-Rubric: Learning to Extract Generalizable Criteria for Reward Modeling","url":"https://arxiv.org/html/2510.17314v1"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/abs/2510.07774"},{"title":"Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria","url":"https://arxiv.org/html/2605.08354"},{"title":"ADARUBRIC: TASK-ADAPTIVE RUBRICS FOR LLM AGENT EVALUATION Liang Ding","url":"https://arxiv.org/pdf/2603.21362v1"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"Auto-Rubric: Learning From Implicit Weights to Explicit Rubrics for Reward Modeling","url":"https://arxiv.org/pdf/2510.17314"},{"title":"Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/html/2510.07774v1"}]
+
+I found several relevant arxiv papers related to your search query about rubrics, reward modeling, and mathematical reasoning. Here are the key results:
+
+**Recent Papers Found:**
+
+1. **"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks"** (February 6, 2026) - This work explores rubric-based judging, where LLMs generate explicit, structured rubrics and use them to ground assessments, improving reliability and interpretability.
+
+2. **"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards"** (October 2025, updated April 2026) - This paper introduces the Rubric Reward Model (RRM), a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics. When integrated into an RL pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks, boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6%.
+
+3. **"Auto-Rubric: Learning to Extract Generalizable Criteria for Reward Modeling"** (October 2025) - The difficulty-stratified analysis shows that hard samples benefit substantially more from rubric guidance (+4.68%) compared to the overall improvement (+2.45%), demonstrating a 2x amplification effect on difficult cases.
+
+4. **"Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria"** (May 2026) - This paper extends rubric-based approaches to multimodal generation tasks.
+
+5. **"ADARUBRIC: Task-Adaptive Rubrics for LLM Agent Evaluation"** (March 2026) - This work defines task-adaptive rubrics with properties including task-relevance, orthogonality of dimensions, completeness, and calibration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d4a3ae9-62f5-4f15-ad04-30525298d805",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "85ccc734-0a03-4438-8dde-89f2d30e3c88",
+  "toolUseResult": {
+    "query": "site:arxiv.org difficulty calibrate rubric dimension strictness reward math 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BjhY2DgsrR9QN9VB2EUUbC",
+        "content": [
+          {
+            "title": "Auto-Rubric: Learning to Extract Generalizable Criteria for Reward Modeling",
+            "url": "https://arxiv.org/html/2510.17314v1"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          },
+          {
+            "title": "[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/abs/2510.07774"
+          },
+          {
+            "title": "Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria",
+            "url": "https://arxiv.org/html/2605.08354"
+          },
+          {
+            "title": "ADARUBRIC: TASK-ADAPTIVE RUBRICS FOR LLM AGENT EVALUATION Liang Ding",
+            "url": "https://arxiv.org/pdf/2603.21362v1"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "Auto-Rubric: Learning From Implicit Weights to Explicit Rubrics for Reward Modeling",
+            "url": "https://arxiv.org/pdf/2510.17314"
+          },
+          {
+            "title": "Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/html/2510.07774v1"
+          }
+        ]
+      },
+      "I found several relevant arxiv papers related to your search query about rubrics, reward modeling, and mathematical reasoning. Here are the key results:\n\n**Recent Papers Found:**\n\n1. **\"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks\"** (February 6, 2026) - This work explores rubric-based judging, where LLMs generate explicit, structured rubrics and use them to ground assessments, improving reliability and interpretability.\n\n2. **\"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards\"** (October 2025, updated April 2026) - This paper introduces the Rubric Reward Model (RRM), a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics. When integrated into an RL pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks, boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6%.\n\n3. **\"Auto-Rubric: Learning to Extract Generalizable Criteria for Reward Modeling\"** (October 2025) - The difficulty-stratified analysis shows that hard samples benefit substantially more from rubric guidance (+4.68%) compared to the overall improvement (+2.45%), demonstrating a 2x amplification effect on difficult cases.\n\n4. **\"Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria\"** (May 2026) - This paper extends rubric-based approaches to multimodal generation tasks.\n\n5. **\"ADARUBRIC: Task-Adaptive Rubrics for LLM Agent Evaluation\"** (March 2026) - This work defines task-adaptive rubrics with properties including task-relevance, orthogonality of dimensions, completeness, and calibration."
+    ],
+    "durationSeconds": 9.875560736999963,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7d4a3ae9-62f5-4f15-ad04-30525298d805",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 153 · 2026-05-28T11:35:20.572Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting finding: "Auto-Rubric" shows that "hard samples benefit substantially more from rubric guidance (+4.68%) compared to the overall improvement (+2.45%), demonstrating a 2x amplification effect on difficult cases." This is relevant evidence supporting the direction that difficulty calibration matters for rubric rewards. But it doesn't address gaming or calibrating strictness.
+
+Let me now do one final critical check: whether POW3R or any similar paper already handles the difficulty dimension.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85ccc734-0a03-4438-8dde-89f2d30e3c88",
+  "isSidechain": false,
+  "requestId": "req_011CbUtyn6EWD2hKEuN73LPu",
+  "type": "assistant",
+  "uuid": "bca9926e-2799-439e-a76f-665d039b52e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JDPmTRAyTzFocEgdVUAFo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 63118,
+      "output_tokens": 290,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 290,
+          "cache_read_input_tokens": 63118,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 154 · 2026-05-28T11:35:23.244Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0191LAwFovMwytYy3tTVqoeu`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.20164v1",
+  "prompt": "I need to know: 1) Does POW3R consider problem difficulty at all when adapting rubric weights? 2) Does it analyze gaming/hacking behavior? 3) What specific tasks/domains does it evaluate on? 4) Does it include math reasoning benchmarks? 5) What are its explicit limitations and future work? 6) How exactly does rollout-level contrast work?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bca9926e-2799-439e-a76f-665d039b52e1",
+  "isSidechain": false,
+  "requestId": "req_011CbUtyn6EWD2hKEuN73LPu",
+  "type": "assistant",
+  "uuid": "76700f69-5879-46f7-b5bf-5a9ea1a2cd5e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JDPmTRAyTzFocEgdVUAFo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 63118,
+      "output_tokens": 290,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 290,
+          "cache_read_input_tokens": 63118,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-28T11:35:30.513Z_
+
+<details><summary>↩ Tool result · `toolu_0191LAwFovMwytYy3tTVqoeu`</summary>
+
+```text
+# POW3R Analysis: Key Questions Answered
+
+**1) Problem Difficulty Consideration:**
+POW3R does not explicitly model problem difficulty. Instead, it adapts weights based on "rollout-level contrast" - whether criteria distinguish between outputs in the current batch. The framework is agnostic to inherent task complexity.
+
+**2) Gaming/Hacking Behavior:**
+The paper does not analyze reward gaming or hacking behaviors. This represents a gap in the work, though the authors note that "consistent verdict bias propagates into where training pressure is redirected."
+
+**3) Evaluation Domains:**
+POW3R evaluates on two primary settings: (1) **Multimodal (MM)**: a 10K-task vision-language dataset spanning "charts, diagrams, photos, screenshots, and natural scenes"; (2) **HealthBench English**: physician-authored medical advice tasks. The paper explicitly states "Public rubric-RL datasets with static human weights are rare," limiting evaluation breadth.
+
+**4) Math Reasoning Benchmarks:**
+While evaluated on external benchmarks including MathVista, the primary training doesn't target mathematical reasoning. The qualitative examples include one math worksheet task, but math is not a core focus.
+
+**5) Limitations and Future Work:**
+Key limitations include: reliance on LLM judges (GPT-5.4 models) with potential verdict bias, and scarcity of rubric datasets. Future directions include "stronger and more diverse judges, longer training schedules, and adaptive rubric generation that co-evolves with the policy."
+
+**6) Rollout-Level Contrast Mechanism:**
+This works by measuring "each criterion's rollout contrastiveness from the smoothed standard deviation of its judge verdicts," then reweighting criteria within categories where verdicts vary across outputs. Dead (0% pass) and saturated (100% pass) criteria receive minimal weight since they "give no group-relative advantage signal."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76700f69-5879-46f7-b5bf-5a9ea1a2cd5e",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "dd96a731-208c-4854-81d9-a26c0249cafe",
+  "toolUseResult": {
+    "bytes": 415007,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# POW3R Analysis: Key Questions Answered\n\n**1) Problem Difficulty Consideration:**\nPOW3R does not explicitly model problem difficulty. Instead, it adapts weights based on \"rollout-level contrast\" - whether criteria distinguish between outputs in the current batch. The framework is agnostic to inherent task complexity.\n\n**2) Gaming/Hacking Behavior:**\nThe paper does not analyze reward gaming or hacking behaviors. This represents a gap in the work, though the authors note that \"consistent verdict bias propagates into where training pressure is redirected.\"\n\n**3) Evaluation Domains:**\nPOW3R evaluates on two primary settings: (1) **Multimodal (MM)**: a 10K-task vision-language dataset spanning \"charts, diagrams, photos, screenshots, and natural scenes\"; (2) **HealthBench English**: physician-authored medical advice tasks. The paper explicitly states \"Public rubric-RL datasets with static human weights are rare,\" limiting evaluation breadth.\n\n**4) Math Reasoning Benchmarks:**\nWhile evaluated on external benchmarks including MathVista, the primary training doesn't target mathematical reasoning. The qualitative examples include one math worksheet task, but math is not a core focus.\n\n**5) Limitations and Future Work:**\nKey limitations include: reliance on LLM judges (GPT-5.4 models) with potential verdict bias, and scarcity of rubric datasets. Future directions include \"stronger and more diverse judges, longer training schedules, and adaptive rubric generation that co-evolves with the policy.\"\n\n**6) Rollout-Level Contrast Mechanism:**\nThis works by measuring \"each criterion's rollout contrastiveness from the smoothed standard deviation of its judge verdicts,\" then reweighting criteria within categories where verdicts vary across outputs. Dead (0% pass) and saturated (100% pass) criteria receive minimal weight since they \"give no group-relative advantage signal.\"",
+    "durationMs": 7265,
+    "url": "https://arxiv.org/html/2605.20164v1"
+  },
+  "sourceToolAssistantUUID": "76700f69-5879-46f7-b5bf-5a9ea1a2cd5e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 156 · 2026-05-28T11:35:36.295Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This confirms that POW3R:
+- Does NOT consider problem difficulty
+- Does NOT analyze gaming/hacking
+- Does NOT evaluate on math reasoning
+- Adapts rubric weights based on rollout contrast (which criteria distinguish current outputs), NOT based on difficulty
+
+This is a different mechanism entirely from difficulty-calibrated rubric strictness. POW3R asks "which criteria currently discriminate among outputs?" while our idea asks "how should rubric strictness vary by problem difficulty to prevent gaming?"
+
+Let me also quickly check what AAAI 2027 expects for the RL/AI Safety track.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd96a731-208c-4854-81d9-a26c0249cafe",
+  "isSidechain": false,
+  "requestId": "req_011CbUtztw25Ykx1bH1qaTZw",
+  "type": "assistant",
+  "uuid": "2f601cbe-abaa-4ae1-b96f-74559f3b7e12",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017baj9kbTHnkRqFvA2qNU1w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 64051,
+      "output_tokens": 289,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 289,
+          "cache_read_input_tokens": 64051,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-28T11:35:38.183Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01U9D9Aqe952ZQViPYoaWzuE`</summary>
+
+```json
+{
+  "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/",
+  "prompt": "Extract: 1) Key dates (abstract deadline, paper deadline), 2) What topics are covered under Machine Learning and Reinforcement Learning tracks, 3) Any specific formatting or submission requirements, 4) Paper length limits"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f601cbe-abaa-4ae1-b96f-74559f3b7e12",
+  "isSidechain": false,
+  "requestId": "req_011CbUtztw25Ykx1bH1qaTZw",
+  "type": "assistant",
+  "uuid": "dca86bec-18ac-4094-a462-10050e28eef9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017baj9kbTHnkRqFvA2qNU1w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 64051,
+      "output_tokens": 289,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 289,
+          "cache_read_input_tokens": 64051,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-28T11:35:42.901Z_
+
+<details><summary>↩ Tool result · `toolu_01U9D9Aqe952ZQViPYoaWzuE`</summary>
+
+```text
+# AAAI-27 Main Technical Track Information
+
+## Key Dates
+- **Abstract Deadline:** July 21, 2026 at 11:59 PM UTC-12
+- **Paper Deadline:** July 28, 2026 at 11:59 PM UTC-12
+- **Supplementary Materials/Code:** July 31, 2026 at 11:59 PM UTC-12
+- **Final Acceptance Notification:** November 30, 2026
+
+## Topics Covered
+The webpage does not provide specific details about Machine Learning and Reinforcement Learning track topics. It states "Coming Soon" for the "Main Technical Track: Call for Papers" section.
+
+## Formatting and Submission Requirements
+No specific formatting requirements are detailed on this page. The submission process involves:
+- Registration opening June 17, 2026
+- Paper submission opening June 24, 2026
+- Use of Open Review submission platform
+
+## Paper Length Limits
+The document does not specify paper length restrictions. This information would likely appear in the full "Call for Papers" once released.
+
+**Note:** This page appears to be preliminary, with detailed submission guidelines marked as "Coming Soon."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dca86bec-18ac-4094-a462-10050e28eef9",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "7756bfe9-fe8a-4cff-9bbb-45d8af08bc35",
+  "toolUseResult": {
+    "bytes": 184951,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AAAI-27 Main Technical Track Information\n\n## Key Dates\n- **Abstract Deadline:** July 21, 2026 at 11:59 PM UTC-12\n- **Paper Deadline:** July 28, 2026 at 11:59 PM UTC-12\n- **Supplementary Materials/Code:** July 31, 2026 at 11:59 PM UTC-12\n- **Final Acceptance Notification:** November 30, 2026\n\n## Topics Covered\nThe webpage does not provide specific details about Machine Learning and Reinforcement Learning track topics. It states \"Coming Soon\" for the \"Main Technical Track: Call for Papers\" section.\n\n## Formatting and Submission Requirements\nNo specific formatting requirements are detailed on this page. The submission process involves:\n- Registration opening June 17, 2026\n- Paper submission opening June 24, 2026\n- Use of Open Review submission platform\n\n## Paper Length Limits\nThe document does not specify paper length restrictions. This information would likely appear in the full \"Call for Papers\" once released.\n\n**Note:** This page appears to be preliminary, with detailed submission guidelines marked as \"Coming Soon.\"",
+    "durationMs": 4714,
+    "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+  },
+  "sourceToolAssistantUUID": "dca86bec-18ac-4094-a462-10050e28eef9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-28T11:35:45.672Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015KQ8kmDhxPUfE65DkWhrLQ`</summary>
+
+```json
+{
+  "query": "AAAI 2027 paper format page limit submission guidelines reinforcement learning track"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7756bfe9-fe8a-4cff-9bbb-45d8af08bc35",
+  "isSidechain": false,
+  "requestId": "req_011CbUu1omk8iFTa5gZpLKPz",
+  "type": "assistant",
+  "uuid": "9cf86a01-3721-45a3-a97e-676f8f9cde8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KvHSahEpNSojhxuQuqeRSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 562,
+      "cache_read_input_tokens": 64783,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 64783,
+          "cache_creation_input_tokens": 562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-28T11:35:51.119Z_
+
+<details><summary>↩ Tool result · `toolu_015KQ8kmDhxPUfE65DkWhrLQ`</summary>
+
+```text
+Web search results for query: "AAAI 2027 paper format page limit submission guidelines reinforcement learning track"
+
+Links: [{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"Multi modal hierarchical reinforcement learning framework for dynamic sports sponsorship optimization","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12715238/"},{"title":"Reward-predictive representations generalize across tasks in reinforcement learning","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7591094/"},{"title":"Autonomous agents: Augmenting visual information with raw audio data","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12101691/"},{"title":"Reinforcement Learning: A Survey","url":"https://arxiv.org/pdf/cs/9605103"},{"title":"Personalized Hemodynamic Management Using Reinforcement Learning to Prevent Persistent Acute Kidney Injury After Cardiac Surgery","url":"https://www.medrxiv.org/content/10.1101/2025.10.23.25338698.full.pdf"},{"title":"Autonomous countertraction for secure field of view in laparoscopic surgery using deep reinforcement learning","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12034598/"}]
+
+Based on the search results, I found information about AAAI 2027 paper format guidelines:
+
+AAAI papers are limited to 7 pages for the main body, with unlimited additional pages for references. The AAAI LaTeX template uses a two-column format with a 7-page limit for the main content, with separate unlimited pages for references.
+
+Authors must use the official AAAI style file and bibliography style from the author kit. The author kit is available as both a downloadable zip file and an Overleaf template.
+
+Regarding submission timing, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns.
+
+Note: The search results provided general AAAI 2027 submission guidelines but did not return specific information about reinforcement learning track-specific requirements, which may differ from the general conference guidelines. You may want to check the official AAAI 2027 Call for Papers for any track-specific details.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9cf86a01-3721-45a3-a97e-676f8f9cde8b",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "fba87d26-edfd-41cd-a55e-6d0091445eb8",
+  "toolUseResult": {
+    "query": "AAAI 2027 paper format page limit submission guidelines reinforcement learning track",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013X9wFmSezrENhTS1BpctSs",
+        "content": [
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "Multi modal hierarchical reinforcement learning framework for dynamic sports sponsorship optimization",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12715238/"
+          },
+          {
+            "title": "Reward-predictive representations generalize across tasks in reinforcement learning",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7591094/"
+          },
+          {
+            "title": "Autonomous agents: Augmenting visual information with raw audio data",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12101691/"
+          },
+          {
+            "title": "Reinforcement Learning: A Survey",
+            "url": "https://arxiv.org/pdf/cs/9605103"
+          },
+          {
+            "title": "Personalized Hemodynamic Management Using Reinforcement Learning to Prevent Persistent Acute Kidney Injury After Cardiac Surgery",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.10.23.25338698.full.pdf"
+          },
+          {
+            "title": "Autonomous countertraction for secure field of view in laparoscopic surgery using deep reinforcement learning",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12034598/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about AAAI 2027 paper format guidelines:\n\nAAAI papers are limited to 7 pages for the main body, with unlimited additional pages for references. The AAAI LaTeX template uses a two-column format with a 7-page limit for the main content, with separate unlimited pages for references.\n\nAuthors must use the official AAAI style file and bibliography style from the author kit. The author kit is available as both a downloadable zip file and an Overleaf template.\n\nRegarding submission timing, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns.\n\nNote: The search results provided general AAAI 2027 submission guidelines but did not return specific information about reinforcement learning track-specific requirements, which may differ from the general conference guidelines. You may want to check the official AAAI 2027 Call for Papers for any track-specific details."
+    ],
+    "durationSeconds": 5.443306050000014,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9cf86a01-3721-45a3-a97e-676f8f9cde8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 161_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "fba87d26-edfd-41cd-a55e-6d0091445eb8",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 162_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 163 · 2026-05-28T11:35:54.185Z_
+
+Now let me do a few final critical searches to check for very recent concurrent work and solidify the landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fba87d26-edfd-41cd-a55e-6d0091445eb8",
+  "isSidechain": false,
+  "requestId": "req_011CbUu2QuMiwhsS2PWtTGar",
+  "type": "assistant",
+  "uuid": "71b3cf13-4072-4a72-b117-78b037bb9264",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ZTPcQiKYdzDGrHf7uE7px",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 690,
+      "cache_read_input_tokens": 65345,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 690,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 65345,
+          "cache_creation_input_tokens": 690,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 690
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 164 · 2026-05-28T11:35:54.738Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FuFS1nqAs51t4zf3AwVufN`</summary>
+
+```json
+{
+  "query": "arxiv 2026 May \"rubric\" \"difficulty\" \"reward\" \"math\" reinforcement learning calibration gaming"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71b3cf13-4072-4a72-b117-78b037bb9264",
+  "isSidechain": false,
+  "requestId": "req_011CbUu2QuMiwhsS2PWtTGar",
+  "type": "assistant",
+  "uuid": "48fc8661-3b55-48df-9621-e52abd79b0f4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ZTPcQiKYdzDGrHf7uE7px",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 690,
+      "cache_read_input_tokens": 65345,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 690,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 65345,
+          "cache_creation_input_tokens": 690,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 690
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 165 · 2026-05-28T11:36:01.326Z_
+
+<details><summary>↩ Tool result · `toolu_01FuFS1nqAs51t4zf3AwVufN`</summary>
+
+```text
+Web search results for query: "arxiv 2026 May "rubric" "difficulty" "reward" "math" reinforcement learning calibration gaming"
+
+Links: [{"title":"[2605.23454] ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning","url":"https://arxiv.org/abs/2605.23454"},{"title":"[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/abs/2605.12474"},{"title":"[2603.15646] Alternating Reinforcement Learning with Contextual Rubric Rewards: Beyond the Scalarization Strategy","url":"https://arxiv.org/abs/2603.15646"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"When Rubrics Fail: Error Enumeration as Reward in Reference-Free RL Post-Training for Virtual Try-On","url":"https://arxiv.org/pdf/2603.05659"},{"title":"Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training","url":"https://arxiv.org/pdf/2509.21500"},{"title":"Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards","url":"https://arxiv.org/pdf/2603.09117"},{"title":"Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/html/2605.12474"}]
+
+Based on the web search results, I found several relevant papers from arXiv in May 2026 related to rubric-based rewards in reinforcement learning. Here are the most relevant findings:
+
+## Key Papers Found:
+
+1. **ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning** - This framework automatically constructs rubric-based RL data at scale, converting source knowledge into self-contained question-answer pairs and co-generating question-specific weighted rubrics for instance-level reward supervision. This paper was submitted on May 22-25, 2026.
+
+2. **Reward Hacking in Rubric-Based Reinforcement Learning** - This study examines reward hacking in rubric-based RL by optimizing against a training verifier but evaluating against a cross-family panel of frontier judges, separating verifier failure from rubric-design limitations. This paper was submitted on May 12, 2026.
+
+3. **Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards** - This work conducts experiments on mathematical reasoning benchmarks spanning a wide range of difficulty levels including MATH, AIME, and AMC, addressing calibration issues in RL systems.
+
+These papers collectively address themes of rubric design, reward modeling, calibration, and gaming/exploitation of reward signals in reinforcement learning systems, particularly in mathematical domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48fc8661-3b55-48df-9621-e52abd79b0f4",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "3628f037-06f5-44ee-a346-f03cfdf24832",
+  "toolUseResult": {
+    "query": "arxiv 2026 May \"rubric\" \"difficulty\" \"reward\" \"math\" reinforcement learning calibration gaming",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XrsAvvmHgUj9Hs4gxfYckK",
+        "content": [
+          {
+            "title": "[2605.23454] ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2605.23454"
+          },
+          {
+            "title": "[2605.12474] Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2605.12474"
+          },
+          {
+            "title": "[2603.15646] Alternating Reinforcement Learning with Contextual Rubric Rewards: Beyond the Scalarization Strategy",
+            "url": "https://arxiv.org/abs/2603.15646"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          },
+          {
+            "title": "When Rubrics Fail: Error Enumeration as Reward in Reference-Free RL Post-Training for Virtual Try-On",
+            "url": "https://arxiv.org/pdf/2603.05659"
+          },
+          {
+            "title": "Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training",
+            "url": "https://arxiv.org/pdf/2509.21500"
+          },
+          {
+            "title": "Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards",
+            "url": "https://arxiv.org/pdf/2603.09117"
+          },
+          {
+            "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.12474"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers from arXiv in May 2026 related to rubric-based rewards in reinforcement learning. Here are the most relevant findings:\n\n## Key Papers Found:\n\n1. **ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning** - This framework automatically constructs rubric-based RL data at scale, converting source knowledge into self-contained question-answer pairs and co-generating question-specific weighted rubrics for instance-level reward supervision. This paper was submitted on May 22-25, 2026.\n\n2. **Reward Hacking in Rubric-Based Reinforcement Learning** - This study examines reward hacking in rubric-based RL by optimizing against a training verifier but evaluating against a cross-family panel of frontier judges, separating verifier failure from rubric-design limitations. This paper was submitted on May 12, 2026.\n\n3. **Decoupling Reasoning and Confidence: Resurrecting Calibration in Reinforcement Learning from Verifiable Rewards** - This work conducts experiments on mathematical reasoning benchmarks spanning a wide range of difficulty levels including MATH, AIME, and AMC, addressing calibration issues in RL systems.\n\nThese papers collectively address themes of rubric design, reward modeling, calibration, and gaming/exploitation of reward signals in reinforcement learning systems, particularly in mathematical domains."
+    ],
+    "durationSeconds": 6.585794439000077,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "48fc8661-3b55-48df-9621-e52abd79b0f4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 166 · 2026-05-28T11:36:07.833Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TJY7RFWkUbjrbaiZHPAT2X`</summary>
+
+```json
+{
+  "query": "rubric reward GRPO advantage normalization multi-dimensional continuous reward theoretical analysis 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3628f037-06f5-44ee-a346-f03cfdf24832",
+  "isSidechain": false,
+  "requestId": "req_011CbUu3AXgvGWJ4yMWm1TyD",
+  "type": "assistant",
+  "uuid": "cc8a7c2d-fe54-414a-ada2-0ffd47f65598",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MDFSHNdZXxCuFfHEruUZ9p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 66035,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 66035,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 167 · 2026-05-28T11:36:16.396Z_
+
+<details><summary>↩ Tool result · `toolu_01TJY7RFWkUbjrbaiZHPAT2X`</summary>
+
+```text
+Web search results for query: "rubric reward GRPO advantage normalization multi-dimensional continuous reward theoretical analysis 2026"
+
+Links: [{"title":"Papers Explained 553: Rubrics as Rewards | by Ritvik Rastogi | Apr, 2026 | Medium","url":"https://ritvik19.medium.com/papers-explained-553-rubrics-as-rewards-229ff69f7355"},{"title":"Rubric-Based Reinforcement Learning","url":"https://www.emergentmind.com/topics/rubric-based-reinforcement-learning"},{"title":"Rubric-Based Reward Modeling","url":"https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"},{"title":"PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization","url":"https://arxiv.org/pdf/2603.26535"},{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/pdf/2511.12344"},{"title":"PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization","url":"https://arxiv.org/html/2603.26535"},{"title":"Rubrics to Tokens: Bridging Response-level Rubrics and Token-level Rewards in Instruction Following Tasks","url":"https://arxiv.org/html/2604.02795"}]
+
+I found several relevant research papers and articles on this topic. Here's what the search revealed:
+
+## Key Findings
+
+**Rubric-Based Rewards with GRPO:**
+
+Experiments using on-policy reinforcement learning are conducted with the GRPO algorithm, and integration with policy gradient methods such as PPO and GRPO yields improved sample efficiency, alignment, and generalization across diverse domains.
+
+**Normalization in Multi-Dimensional Reward Spaces:**
+
+Normalization makes rewards comparable across prompts that differ in rubric count or weights. More specifically, groupwise normalization is used to form normalized advantages (A_i = (R_i - μ)/σ). 
+
+A particularly relevant 2026 paper addresses the challenge of multi-dimensional rewards: There is a normalization design challenge in the three-dimensional reward space under token-level rubric-based RL scenario regarding how to define normalization boundaries across different reward dimensions, termed the Group Partitioning Problem.
+
+**Continuous-Valued Scores:**
+
+Although binary checks are used in experiments, the formulation can be extended to continuous-valued scores.
+
+**Advantage Estimation Issues:**
+
+Recent research has identified challenges with direct integration: All correct responses are assigned identical advantage irrespective of reasoning quality, and as the model improves during training, an increasing proportion of response groups become uniformly correct, yielding zero advantage and zero gradient.
+
+The search results include cutting-edge papers from 2026 addressing these exact topics, including PAPO (Stabilizing Rubric Integration Training via Decoupled Advantage Normalization) and work on bridging response-level and token-level rewards in rubric-based training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc8a7c2d-fe54-414a-ada2-0ffd47f65598",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "83889b4a-ba6b-4829-8354-3d7c843f8c03",
+  "toolUseResult": {
+    "query": "rubric reward GRPO advantage normalization multi-dimensional continuous reward theoretical analysis 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HRVKxjN1Aecw7rmpCMoyvN",
+        "content": [
+          {
+            "title": "Papers Explained 553: Rubrics as Rewards | by Ritvik Rastogi | Apr, 2026 | Medium",
+            "url": "https://ritvik19.medium.com/papers-explained-553-rubrics-as-rewards-229ff69f7355"
+          },
+          {
+            "title": "Rubric-Based Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reinforcement-learning"
+          },
+          {
+            "title": "Rubric-Based Reward Modeling",
+            "url": "https://www.emergentmind.com/topics/rubric-based-reward-modeling-rubric-rm"
+          },
+          {
+            "title": "PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization",
+            "url": "https://arxiv.org/pdf/2603.26535"
+          },
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/pdf/2511.12344"
+          },
+          {
+            "title": "PAPO: Stabilizing Rubric Integration Training via Decoupled Advantage Normalization",
+            "url": "https://arxiv.org/html/2603.26535"
+          },
+          {
+            "title": "Rubrics to Tokens: Bridging Response-level Rubrics and Token-level Rewards in Instruction Following Tasks",
+            "url": "https://arxiv.org/html/2604.02795"
+          }
+        ]
+      },
+      "I found several relevant research papers and articles on this topic. Here's what the search revealed:\n\n## Key Findings\n\n**Rubric-Based Rewards with GRPO:**\n\nExperiments using on-policy reinforcement learning are conducted with the GRPO algorithm, and integration with policy gradient methods such as PPO and GRPO yields improved sample efficiency, alignment, and generalization across diverse domains.\n\n**Normalization in Multi-Dimensional Reward Spaces:**\n\nNormalization makes rewards comparable across prompts that differ in rubric count or weights. More specifically, groupwise normalization is used to form normalized advantages (A_i = (R_i - μ)/σ). \n\nA particularly relevant 2026 paper addresses the challenge of multi-dimensional rewards: There is a normalization design challenge in the three-dimensional reward space under token-level rubric-based RL scenario regarding how to define normalization boundaries across different reward dimensions, termed the Group Partitioning Problem.\n\n**Continuous-Valued Scores:**\n\nAlthough binary checks are used in experiments, the formulation can be extended to continuous-valued scores.\n\n**Advantage Estimation Issues:**\n\nRecent research has identified challenges with direct integration: All correct responses are assigned identical advantage irrespective of reasoning quality, and as the model improves during training, an increasing proportion of response groups become uniformly correct, yielding zero advantage and zero gradient.\n\nThe search results include cutting-edge papers from 2026 addressing these exact topics, including PAPO (Stabilizing Rubric Integration Training via Decoupled Advantage Normalization) and work on bridging response-level and token-level rewards in rubric-based training."
+    ],
+    "durationSeconds": 8.559525485999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cc8a7c2d-fe54-414a-ada2-0ffd47f65598",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 168 · 2026-05-28T11:36:16.402Z_
+
+```json
+{
+  "parentUuid": "83889b4a-ba6b-4829-8354-3d7c843f8c03",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "57b30228-d170-4757-9422-be910be9e80b",
+  "timestamp": "2026-05-28T11:36:16.402Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-28T11:36:20.905Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0144xQmULfC47biuZb9tkxGa`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.02795",
+  "prompt": "Extract: 1) Full abstract, 2) What is the \"Group Partitioning Problem\"? 3) How do they handle multi-dimensional rubric rewards? 4) Does this address difficulty calibration? 5) Key contributions and limitations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57b30228-d170-4757-9422-be910be9e80b",
+  "isSidechain": false,
+  "requestId": "req_011CbUu4H29H2pU5wmkADCF7",
+  "type": "assistant",
+  "uuid": "c77c695d-4407-4c30-a1d1-1704321b3141",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYMfLsZdpgCcq8zbWHhSB7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 66940,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 924,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 66940,
+          "cache_creation_input_tokens": 924,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 924
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-28T11:36:26.237Z_
+
+<details><summary>↩ Tool result · `toolu_0144xQmULfC47biuZb9tkxGa`</summary>
+
+```text
+# Analysis of "Rubrics to Tokens" Paper
+
+## 1) Full Abstract
+"Rubric-based Reinforcement Learning (RL) has emerged as a promising approach for aligning Large Language Models (LLMs) with complex, open-domain instruction following tasks. However, existing methods predominantly rely on response-level rewards, introducing severe reward sparsity and reward ambiguity problems. To address these issues, we propose Rubrics to Tokens (RTT), a novel rubric-based RL framework that bridges coarse response-level scores and fine-grained token-level credit assignment."
+
+The framework includes a Token-Level Relevance Discriminator and RTT-GRPO algorithm, plus a novel normalization method for transitioning to multi-dimensional reward spaces.
+
+## 2) "Group Partitioning Problem"
+**Not mentioned** in the provided document. This term does not appear in the abstract, title, or accessible content.
+
+## 3) Handling Multi-Dimensional Rubric Rewards
+The authors address this through "Intra-sample Token Group Normalization," described as "a novel group normalization method, to accommodate this shift" when moving from single-dimensional outcome-level rewards to three-dimensional token-level rubric-based RL.
+
+## 4) Difficulty Calibration
+**Not addressed** in the provided content. This topic is not discussed in the available abstract or metadata.
+
+## 5) Key Contributions & Limitations
+
+**Contributions:**
+- Token-Level Relevance Discriminator for fine-grained credit assignment
+- RTT-GRPO algorithm integrating response and token-level advantages
+- Novel normalization technique for multi-dimensional rewards
+- Demonstrated improvements in instruction and rubric-level accuracy
+
+**Limitations:**
+Not explicitly stated in this excerpt; full paper would be needed for detailed limitations discussion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c77c695d-4407-4c30-a1d1-1704321b3141",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "bcff73c7-766f-42a0-9c8c-7b8cd950b736",
+  "toolUseResult": {
+    "bytes": 47808,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Rubrics to Tokens\" Paper\n\n## 1) Full Abstract\n\"Rubric-based Reinforcement Learning (RL) has emerged as a promising approach for aligning Large Language Models (LLMs) with complex, open-domain instruction following tasks. However, existing methods predominantly rely on response-level rewards, introducing severe reward sparsity and reward ambiguity problems. To address these issues, we propose Rubrics to Tokens (RTT), a novel rubric-based RL framework that bridges coarse response-level scores and fine-grained token-level credit assignment.\"\n\nThe framework includes a Token-Level Relevance Discriminator and RTT-GRPO algorithm, plus a novel normalization method for transitioning to multi-dimensional reward spaces.\n\n## 2) \"Group Partitioning Problem\"\n**Not mentioned** in the provided document. This term does not appear in the abstract, title, or accessible content.\n\n## 3) Handling Multi-Dimensional Rubric Rewards\nThe authors address this through \"Intra-sample Token Group Normalization,\" described as \"a novel group normalization method, to accommodate this shift\" when moving from single-dimensional outcome-level rewards to three-dimensional token-level rubric-based RL.\n\n## 4) Difficulty Calibration\n**Not addressed** in the provided content. This topic is not discussed in the available abstract or metadata.\n\n## 5) Key Contributions & Limitations\n\n**Contributions:**\n- Token-Level Relevance Discriminator for fine-grained credit assignment\n- RTT-GRPO algorithm integrating response and token-level advantages\n- Novel normalization technique for multi-dimensional rewards\n- Demonstrated improvements in instruction and rubric-level accuracy\n\n**Limitations:**\nNot explicitly stated in this excerpt; full paper would be needed for detailed limitations discussion.",
+    "durationMs": 5328,
+    "url": "https://arxiv.org/abs/2604.02795"
+  },
+  "sourceToolAssistantUUID": "c77c695d-4407-4c30-a1d1-1704321b3141",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 171 · 2026-05-28T11:36:30.956Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This paper "Rubrics to Tokens" deals with token-level credit assignment for rubric rewards, not difficulty calibration. Relevant but not overlapping with our idea.
+
+Now let me do one final check on Pass@k + rubric rewards specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcff73c7-766f-42a0-9c8c-7b8cd950b736",
+  "isSidechain": false,
+  "requestId": "req_011CbUu513jhU2fLyxqFwnBH",
+  "type": "assistant",
+  "uuid": "d578452b-8b17-48b7-8560-490e0379f58e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyiDBvKxy8Twpbh1YdrnK9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 557,
+      "cache_read_input_tokens": 67864,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 67864,
+          "cache_creation_input_tokens": 557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 172 · 2026-05-28T11:36:31.800Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GfvVnypNB6xR2gf7VABMnb`</summary>
+
+```json
+{
+  "query": "\"does RL really incentivize reasoning\" rubric reward extension follow-up 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d578452b-8b17-48b7-8560-490e0379f58e",
+  "isSidechain": false,
+  "requestId": "req_011CbUu513jhU2fLyxqFwnBH",
+  "type": "assistant",
+  "uuid": "4b26fec7-62f1-458c-af5a-df3dd745f726",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SyiDBvKxy8Twpbh1YdrnK9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 557,
+      "cache_read_input_tokens": 67864,
+      "output_tokens": 141,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 141,
+          "cache_read_input_tokens": 67864,
+          "cache_creation_input_tokens": 557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 173 · 2026-05-28T11:36:40.727Z_
+
+<details><summary>↩ Tool result · `toolu_01GfvVnypNB6xR2gf7VABMnb`</summary>
+
+```text
+Web search results for query: ""does RL really incentivize reasoning" rubric reward extension follow-up 2026"
+
+Links: [{"title":"[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning","url":"https://arxiv.org/abs/2605.08061"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview","url":"https://openreview.net/forum?id=4OsgYD7em5"},{"title":"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview","url":"https://openreview.net/forum?id=c1bTcrDmt4"},{"title":"Step-wise Rubric Rewards for LLM Reasoning","url":"https://arxiv.org/html/2605.17291v1"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | by Eleventh Hour Enthusiast | Medium","url":"https://medium.com/@EleventhHourEnthusiast/does-reinforcement-learning-really-incentivize-reasoning-capacity-in-llms-beyond-the-base-model-b98412ebabee"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?","url":"https://arxiv.org/pdf/2504.13837"},{"title":"Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning","url":"https://arxiv.org/pdf/2508.16949"},{"title":"[2507.17746] Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains","url":"https://arxiv.org/abs/2507.17746"}]
+
+Based on the search results, I found several highly relevant papers addressing your query:
+
+## Key Finding: The Reasoning Question
+
+The most directly relevant paper is "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?" which found that current RLVR methods "do not elicit fundamentally new reasoning patterns—revealing a gap between the potential of RL and the actual impact of current RLVR methods."
+
+More specifically, the key finding is that "all reasoning paths in the RLVR model are already present in the base model. For certain problems like Problem A, RLVR training biases the distribution toward rewarded paths, improving sampling efficiency."
+
+## Rubric-Based Reward Extensions
+
+Two papers address the rubric reward extension you mentioned:
+
+1. **"Rubrics as Rewards"**: RLVR has proven effective for tasks with clear correctness signals such as math and coding, but extending it to real-world tasks is challenging as evaluation depends on nuanced, multi-criteria judgments. The paper introduces "Rubrics as Rewards (RaR), an on-policy reinforcement learning method that extends RLVR beyond verifiable domains by using rubric-based feedback."
+
+2. **"Rubric-Grounded RL"**: This approach decomposes reward into weighted, verifiable criteria using an LLM judge to score them, formalizing "rubric-grounded reinforcement learning: a framework in which the policy is optimized against a structured, multi-criterion reward produced by a frozen LLM judge."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b26fec7-62f1-458c-af5a-df3dd745f726",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "7d453660-309a-49d5-9260-6134a14431d9",
+  "toolUseResult": {
+    "query": "\"does RL really incentivize reasoning\" rubric reward extension follow-up 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0111AE19MRTdoAroBKPUGSLs",
+        "content": [
+          {
+            "title": "[2605.08061] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning",
+            "url": "https://arxiv.org/abs/2605.08061"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | OpenReview",
+            "url": "https://openreview.net/forum?id=4OsgYD7em5"
+          },
+          {
+            "title": "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains | OpenReview",
+            "url": "https://openreview.net/forum?id=c1bTcrDmt4"
+          },
+          {
+            "title": "Step-wise Rubric Rewards for LLM Reasoning",
+            "url": "https://arxiv.org/html/2605.17291v1"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? | by Eleventh Hour Enthusiast | Medium",
+            "url": "https://medium.com/@EleventhHourEnthusiast/does-reinforcement-learning-really-incentivize-reasoning-capacity-in-llms-beyond-the-base-model-b98412ebabee"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?",
+            "url": "https://arxiv.org/pdf/2504.13837"
+          },
+          {
+            "title": "Breaking the Exploration Bottleneck: Rubric-Scaffolded Reinforcement Learning for General LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2508.16949"
+          },
+          {
+            "title": "[2507.17746] Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains",
+            "url": "https://arxiv.org/abs/2507.17746"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant papers addressing your query:\n\n## Key Finding: The Reasoning Question\n\nThe most directly relevant paper is \"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?\" which found that current RLVR methods \"do not elicit fundamentally new reasoning patterns—revealing a gap between the potential of RL and the actual impact of current RLVR methods.\"\n\nMore specifically, the key finding is that \"all reasoning paths in the RLVR model are already present in the base model. For certain problems like Problem A, RLVR training biases the distribution toward rewarded paths, improving sampling efficiency.\"\n\n## Rubric-Based Reward Extensions\n\nTwo papers address the rubric reward extension you mentioned:\n\n1. **\"Rubrics as Rewards\"**: RLVR has proven effective for tasks with clear correctness signals such as math and coding, but extending it to real-world tasks is challenging as evaluation depends on nuanced, multi-criteria judgments. The paper introduces \"Rubrics as Rewards (RaR), an on-policy reinforcement learning method that extends RLVR beyond verifiable domains by using rubric-based feedback.\"\n\n2. **\"Rubric-Grounded RL\"**: This approach decomposes reward into weighted, verifiable criteria using an LLM judge to score them, formalizing \"rubric-grounded reinforcement learning: a framework in which the policy is optimized against a structured, multi-criterion reward produced by a frozen LLM judge.\""
+    ],
+    "durationSeconds": 8.92427096799994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4b26fec7-62f1-458c-af5a-df3dd745f726",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 174_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "7d453660-309a-49d5-9260-6134a14431d9",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 175_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 176 · 2026-05-28T11:36:43.321Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VFAkmoKHrBes4n9BLzpmNb`</summary>
+
+```json
+{
+  "query": "rubric reward pass@k frontier expansion math RLVR versus binary outcome 2026 empirical test"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d453660-309a-49d5-9260-6134a14431d9",
+  "isSidechain": false,
+  "requestId": "req_011CbUu64zeTMB8iXNDZNTBc",
+  "type": "assistant",
+  "uuid": "1ace671d-6e62-4cde-8279-70de61a14127",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MTYraZZxsurXd9uX4PfJjj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 68421,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 68421,
+          "cache_creation_input_tokens": 979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 177 · 2026-05-28T11:36:51.311Z_
+
+<details><summary>↩ Tool result · `toolu_01VFAkmoKHrBes4n9BLzpmNb`</summary>
+
+```text
+Web search results for query: "rubric reward pass@k frontier expansion math RLVR versus binary outcome 2026 empirical test"
+
+Links: [{"title":"RLVR Beyond Math and Code: The Verifier Problem Nobody Has Solved | Subhadip Mitra","url":"https://subhadipmitra.com/blog/2026/rlvr-beyond-math-code/"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs | OpenReview","url":"https://openreview.net/forum?id=jGbRWwIidy"},{"title":"Advantage Shaping as Surrogate Reward Maximization: Unifying Pass@K Policy Gradients","url":"https://arxiv.org/pdf/2510.23049"},{"title":"Beyond Pass@k: Breadth-Depth Metrics for Reasoning Boundaries","url":"https://arxiv.org/pdf/2510.08325"},{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"The Invisible Leash: Why RLVR May or May Not Escape Its Origin","url":"https://arxiv.org/pdf/2507.14843"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs","url":"https://arxiv.org/html/2506.14245v2"},{"title":"Reinforcement Learning with Verifiable Rewards Implicitly ...","url":"https://arxiv.org/pdf/2506.14245"}]
+
+I found several relevant results on your topic. Here's what the search uncovered:
+
+## Key Findings on RLVR, Frontier Expansion, and Reward Structures
+
+**Rubric Rewards vs. Binary Outcomes:**
+The shift from binary rewards (right/wrong) to granular rewards (content score + style score + compliance score) unlocks RLVR for domains that aren't black-and-white. Additionally, research has reached a consensus that rubrics are not replacing deterministic unit tests; they are joining them in a "Hybrid Norm," exemplified by the rise of RLVR.
+
+**Pass@K and Frontier Expansion Debate:**
+There's significant ongoing empirical debate about whether RLVR truly expands reasoning boundaries. Recent research has questioned the extent to which RLVR models truly expand the reasoning boundary, with some work reporting that while RLVR models have higher Pass@1, at large k, the base model eventually outperforms it.
+
+Extensive empirical experiments validate that while RLVR consistently improves pass@1, the shrinkage of empirical support generally outweighs the expansion of empirical support under larger sampling budgets.
+
+**Novel Evaluation Metrics:**
+RLVR can extend the reasoning boundary for both mathematical and coding tasks, supported by a novel evaluation metric, CoT-Pass@K, which captures reasoning success by accounting for both the final answer and intermediate reasoning steps.
+
+The search results show active 2026 empirical testing on this exact topic with conflicting findings across different domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ace671d-6e62-4cde-8279-70de61a14127",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "4799c95e-9cb8-46f6-af3a-586df1ffa02c",
+  "toolUseResult": {
+    "query": "rubric reward pass@k frontier expansion math RLVR versus binary outcome 2026 empirical test",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C9VbmPW1JpGacu3vv7NH8V",
+        "content": [
+          {
+            "title": "RLVR Beyond Math and Code: The Verifier Problem Nobody Has Solved | Subhadip Mitra",
+            "url": "https://subhadipmitra.com/blog/2026/rlvr-beyond-math-code/"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=jGbRWwIidy"
+          },
+          {
+            "title": "Advantage Shaping as Surrogate Reward Maximization: Unifying Pass@K Policy Gradients",
+            "url": "https://arxiv.org/pdf/2510.23049"
+          },
+          {
+            "title": "Beyond Pass@k: Breadth-Depth Metrics for Reasoning Boundaries",
+            "url": "https://arxiv.org/pdf/2510.08325"
+          },
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "The Invisible Leash: Why RLVR May or May Not Escape Its Origin",
+            "url": "https://arxiv.org/pdf/2507.14843"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs",
+            "url": "https://arxiv.org/html/2506.14245v2"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards Implicitly ...",
+            "url": "https://arxiv.org/pdf/2506.14245"
+          }
+        ]
+      },
+      "I found several relevant results on your topic. Here's what the search uncovered:\n\n## Key Findings on RLVR, Frontier Expansion, and Reward Structures\n\n**Rubric Rewards vs. Binary Outcomes:**\nThe shift from binary rewards (right/wrong) to granular rewards (content score + style score + compliance score) unlocks RLVR for domains that aren't black-and-white. Additionally, research has reached a consensus that rubrics are not replacing deterministic unit tests; they are joining them in a \"Hybrid Norm,\" exemplified by the rise of RLVR.\n\n**Pass@K and Frontier Expansion Debate:**\nThere's significant ongoing empirical debate about whether RLVR truly expands reasoning boundaries. Recent research has questioned the extent to which RLVR models truly expand the reasoning boundary, with some work reporting that while RLVR models have higher Pass@1, at large k, the base model eventually outperforms it.\n\nExtensive empirical experiments validate that while RLVR consistently improves pass@1, the shrinkage of empirical support generally outweighs the expansion of empirical support under larger sampling budgets.\n\n**Novel Evaluation Metrics:**\nRLVR can extend the reasoning boundary for both mathematical and coding tasks, supported by a novel evaluation metric, CoT-Pass@K, which captures reasoning success by accounting for both the final answer and intermediate reasoning steps.\n\nThe search results show active 2026 empirical testing on this exact topic with conflicting findings across different domains."
+    ],
+    "durationSeconds": 7.9837357349999944,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1ace671d-6e62-4cde-8279-70de61a14127",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 178 · 2026-05-28T11:37:55.638Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have done extensive research. Let me synthesize my findings and formulate the research direction.
+
+### Summary of Research Findings:
+
+**Landscape of rubric rewards for math RLVR (2026):**
+- ~20+ papers on rubric-based RL rewards (2025-2026)
+- Key methods: RRM, RaR, SRaR, PAPO, POW3R, ARL-RR, GDPO, OpenRS, ARES, RuscaRL, DR Tulu/RLER, Rubric Anchors, RTT
+
+
+- A comprehensive survey covering roughly 150 papers exists on this topic
+
+**Landscape of difficulty-aware RL for math:**
+- DGPO/MathForge and similar approaches use theorems and normalization techniques with binary reward signals
+- DARO and F-GRPO handle difficulty through reweighting and advantage scaling respectively
+- Online difficulty filtering selects intermediate-difficulty examples during training
+
+**Landscape of rubric gaming defense:**
+- Current research identifies reward hacking in rubric-based RL but lacks robust defenses
+- Causal augmentation approaches like Crome are emerging as potential mitigation strategies
+- Verifier gaming and veto mechanisms exist mostly as conceptual ideas rather than validated solutions
+
+**Key gaps I'm identifying:**
+Difficulty calibration hasn't been combined with rubric rewards in math domains—existing difficulty-aware work relies on binary rewards while rubric methods assume uniform strictness. No empirical validation exists for rubric ensemble diversity as an anti-gaming mechanism, and the interaction between gaming and difficulty levels remains completely unstudied. DGPO's theoretical framework claims extensibility to continuous rubric rewards but only demonstrates it with binary signals, and pass@k evaluation hasn't been applied to rubric-trained models despite being standard for binary reward approaches.
+
+After surveying roughly 150 rubric papers, I'm confirming those first two gaps are real. Several related ideas already exist—adaptive rubric refinement, policy-aware weight adaptation, automated generation, decoupled normalization—so those directions would get scooped. But the genuine novelty lies in exploring how difficulty and rubric gaming intersect. On harder math problems, different rubric dimensions have varying satisfiability: shallow dimensions like problem reformulation or variable identification can be gamed through pattern matching, while deeper ones like proof verification or logical validity require actual reasoning. This creates a fundamental tension that hasn't been explored.
+
+The contribution isn't just applying existing difficulty-aware methods to rubric rewards. It requires formally analyzing how GRPO's difficulty bias shows up across multi-dimensional reward spaces, building diagnostic tools to measure dimension-level gaming rates stratified by problem difficulty, then designing per-dimension strictness that adapts to difficulty. The experimental design—using pass@k evaluation to test whether this actually expands the reasoning frontier—is novel too.
+
+I'm settling on a title that captures this: "Difficulty-Calibrated Rubric Rewards Resist Gaming in Math RLVR."
+
+Now for the core research question: when rubric rewards treat all difficulty levels the same, models systematically exploit easier rubric dimensions like problem setup while pattern-matching harder ones like proof verification on difficult problems. The question is whether calibrating rubric strictness per dimension based on difficulty can close this gaming gap and push the reasoning frontier forward.
+
+This moment is right because three independent research threads have matured simultaneously—DGPO's formal framework for difficulty bias in binary rewards, documented evidence of rubric gaming at scale, and a comprehensive survey showing no existing work on difficulty-calibrated rubric strictness. These pieces fit together naturally.
+
+For the title, I'm aiming for something under 10 words that captures the diagnostic contribution. "Exposing Difficulty-Dependent Rubric Gaming in Math RLVR" works at 8 words and emphasizes the core finding. The paper would diagnose the dimension exploitation gradient across difficulty levels, then formalize a solution by extending DGPO's theoretical framework to handle multiple rubric dimensions.
+
+Actually, "Rubric Gaming Scales with Problem Difficulty in Math RLVR" is clearer — it directly states the key insight that gaming behavior intensifies as problems get harder. That's 9 words and captures both the diagnostic and formal contribution angles.
+
+Now I need to structure the full response with evidence from actual papers, not just my training data. with specific numbers:
+
+1. RRM: 26.7% → 62.6% verified pass@1024 on AIME2024, reduces Miracle Steps by 71%
+2. DGPO: +2.18% average score, MAD normalization makes update magnitude constant G
+3. Reward Hacking paper (2605.12474): exploitation via partial satisfaction, 90.2% presence-based criteria
+4. POW3R: 24/30 metric comparisons, 2.5-4× faster convergence — but no difficulty calibration, no math focus
+5. PAPO: 51.3% vs 46.3% on OlympiadBench — decoupled advantage but no difficulty calibration
+6. SRaR: +3.57 points on Qwen3-8B — step-level rubric but no difficulty calibration
+7. ARES: 100K rubric instances across 10 domains with automated generation, though not specialized for math and lacking difficulty awareness
+8. DARO tackles difficulty-aware reweighting but only with binary rewards
+9. Auto-Rubric shows hard samples respond 2× better to rubric guidance (+4.68% vs +2.45%), suggesting difficulty matters
+10. "Does RL Really Incentivize Reasoning" finds that RLVR narrows the reasoning frontier across 6 tested algorithms, none incorporating rubric rewards
+
+The critical gap I'm seeing is that no one's actually studied how problem difficulty interacts with per-dimension rubric gaming susceptibility. Auto-Rubric's evidence that harder problems benefit more from rubrics hints this interaction exists, but they never analyze the gaming angle at all.
+
+Now I'm identifying the specific gaps and patterns to build my contribution narrative. The key unexplored areas are combining automated rubric generation with difficulty-calibrated strictness for math reasoning, analyzing gaming susceptibility across rubric dimensions, and extending difficulty weighting approaches to continuous rubric reward vectors. I'm also noting that rigorous problem diagnosis and formal analysis of hidden biases in standard methods tend to be high-impact contributions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4799c95e-9cb8-46f6-af3a-586df1ffa02c",
+  "isSidechain": false,
+  "requestId": "req_011CbUu6rHwSnuvJXZ5biL2z",
+  "type": "assistant",
+  "uuid": "5ea498ad-49f1-4e99-aa0c-011cc180135e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015dQLUGhuaWr6XZ5wkMkfuw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 69400,
+      "output_tokens": 2454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2454,
+          "cache_read_input_tokens": 69400,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 179 · 2026-05-28T11:37:55.644Z_
+
+Now let me verify one final critical point — whether anyone has very recently (past few weeks) published on exactly this intersection.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ea498ad-49f1-4e99-aa0c-011cc180135e",
+  "isSidechain": false,
+  "requestId": "req_011CbUu6rHwSnuvJXZ5biL2z",
+  "type": "assistant",
+  "uuid": "84fd21ef-8427-4ba9-9cbd-408e47eaf2ab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015dQLUGhuaWr6XZ5wkMkfuw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 69400,
+      "output_tokens": 2454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2454,
+          "cache_read_input_tokens": 69400,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 180 · 2026-05-28T11:37:56.037Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FMF4c7U28eaGqQdWMxzeKC`</summary>
+
+```json
+{
+  "query": "arxiv May 2026 difficulty-aware rubric reward calibration gaming interaction math GRPO"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84fd21ef-8427-4ba9-9cbd-408e47eaf2ab",
+  "isSidechain": false,
+  "requestId": "req_011CbUu6rHwSnuvJXZ5biL2z",
+  "type": "assistant",
+  "uuid": "0b8febb7-bbd0-4155-8558-45da63d2a4c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015dQLUGhuaWr6XZ5wkMkfuw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 941,
+      "cache_read_input_tokens": 69400,
+      "output_tokens": 2454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2454,
+          "cache_read_input_tokens": 69400,
+          "cache_creation_input_tokens": 941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 181 · 2026-05-28T11:38:03.922Z_
+
+<details><summary>↩ Tool result · `toolu_01FMF4c7U28eaGqQdWMxzeKC`</summary>
+
+```text
+Web search results for query: "arxiv May 2026 difficulty-aware rubric reward calibration gaming interaction math GRPO"
+
+Links: [{"title":"[2602.06717] F-GRPO: Don't Let Your Policy Learn the Obvious and Forget the Rare","url":"https://arxiv.org/abs/2602.06717"},{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/pdf/2505.09655"},{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/pdf/2511.12344"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2505.02387"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO's Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/pdf/2503.06639"},{"title":"Training AI Co-Scientists Using Rubric Rewards","url":"https://arxiv.org/html/2512.23707"},{"title":"Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts","url":"https://arxiv.org/pdf/2603.21177"},{"title":"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models","url":"https://arxiv.org/html/2605.08061"},{"title":"Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation","url":"https://arxiv.org/pdf/2602.05548"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"}]
+
+I found several relevant arXiv papers related to your search query. Here are the key results:
+
+## Highly Relevant Papers:
+
+1. **Rubric-Grounded Reinforcement Learning** (May 2026) - This paper instantiates a framework using rubrics derived from scientific documents and trains Llama-3.1-8B-Instruct with GRPO, achieving 71.7% normalized reward on held-out rubric evaluation. The framework is domain-agnostic and applies to tasks whose quality can be written as a checklist of weighted criteria.
+
+2. **Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation** (February 2026) - This paper addresses how samples of medium-difficulty exhibit the largest sum of absolute advantage values leading to insufficient training on harder data, and how the reward mechanism is difficulty-agnostic, treating all tasks uniformly without accounting for their complexity.
+
+3. **DRA-GRPO: Diverse Reasoning Paths for Mathematical Reasoning** (May 2026) - This proposes Diversity-aware Reward Adjustment (DRA), which calibrates the reward signal using the semantic density of sampled groups through Submodular Mutual Information (SMI) and Inverse Propensity Scoring (IPS).
+
+4. **RGR-GRPO: Reward and Guidance through Rubrics** (November 2025) - This demonstrates improvements across 14 benchmarks with average improvements of +7.0%, +5.4%, +8.4%, and +6.6% on mathematics, physics, chemistry, and general reasoning tasks, respectively.
+
+These papers directly address difficulty-aware reward calibration, rubric-based rewards, and GRPO optimization for mathematical and reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b8febb7-bbd0-4155-8558-45da63d2a4c2",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "59281c03-bf9f-4407-8e19-afae6628d882",
+  "toolUseResult": {
+    "query": "arxiv May 2026 difficulty-aware rubric reward calibration gaming interaction math GRPO",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BFosvCEuEubbgAkk3ChxSB",
+        "content": [
+          {
+            "title": "[2602.06717] F-GRPO: Don't Let Your Policy Learn the Obvious and Forget the Rare",
+            "url": "https://arxiv.org/abs/2602.06717"
+          },
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2505.09655"
+          },
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/pdf/2511.12344"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2505.02387"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO's Effective Loss, Dynamics, and Success Amplification",
+            "url": "https://arxiv.org/pdf/2503.06639"
+          },
+          {
+            "title": "Training AI Co-Scientists Using Rubric Rewards",
+            "url": "https://arxiv.org/html/2512.23707"
+          },
+          {
+            "title": "Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts",
+            "url": "https://arxiv.org/pdf/2603.21177"
+          },
+          {
+            "title": "Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models",
+            "url": "https://arxiv.org/html/2605.08061"
+          },
+          {
+            "title": "Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation",
+            "url": "https://arxiv.org/pdf/2602.05548"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          }
+        ]
+      },
+      "I found several relevant arXiv papers related to your search query. Here are the key results:\n\n## Highly Relevant Papers:\n\n1. **Rubric-Grounded Reinforcement Learning** (May 2026) - This paper instantiates a framework using rubrics derived from scientific documents and trains Llama-3.1-8B-Instruct with GRPO, achieving 71.7% normalized reward on held-out rubric evaluation. The framework is domain-agnostic and applies to tasks whose quality can be written as a checklist of weighted criteria.\n\n2. **Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation** (February 2026) - This paper addresses how samples of medium-difficulty exhibit the largest sum of absolute advantage values leading to insufficient training on harder data, and how the reward mechanism is difficulty-agnostic, treating all tasks uniformly without accounting for their complexity.\n\n3. **DRA-GRPO: Diverse Reasoning Paths for Mathematical Reasoning** (May 2026) - This proposes Diversity-aware Reward Adjustment (DRA), which calibrates the reward signal using the semantic density of sampled groups through Submodular Mutual Information (SMI) and Inverse Propensity Scoring (IPS).\n\n4. **RGR-GRPO: Reward and Guidance through Rubrics** (November 2025) - This demonstrates improvements across 14 benchmarks with average improvements of +7.0%, +5.4%, +8.4%, and +6.6% on mathematics, physics, chemistry, and general reasoning tasks, respectively.\n\nThese papers directly address difficulty-aware reward calibration, rubric-based rewards, and GRPO optimization for mathematical and reasoning tasks."
+    ],
+    "durationSeconds": 7.878702130999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0b8febb7-bbd0-4155-8558-45da63d2a4c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 182_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "59281c03-bf9f-4407-8e19-afae6628d882",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 183_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 184 · 2026-05-28T11:38:09.167Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YLsNg3tWrGEqRiR8xnFRqS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.05548",
+  "prompt": "Extract: 1) Full abstract, 2) What is \"Implicit Advantage Symmetry\"? 3) How does GRPO struggle with difficulty adaptation? 4) What solution do they propose? 5) Is rubric reward discussed? 6) Relationship to DGPO's difficulty bias analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59281c03-bf9f-4407-8e19-afae6628d882",
+  "isSidechain": false,
+  "requestId": "req_011CbUuCCiuPSU2xZSAxMZcR",
+  "type": "assistant",
+  "uuid": "035fe8b6-6760-4a0b-a38d-d6d9d5901bc3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YZNhVZLY9kdQCorZgXHBq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3354,
+      "cache_read_input_tokens": 70341,
+      "output_tokens": 149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 149,
+          "cache_read_input_tokens": 70341,
+          "cache_creation_input_tokens": 3354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 185 · 2026-05-28T11:38:15.921Z_
+
+<details><summary>↩ Tool result · `toolu_01YLsNg3tWrGEqRiR8xnFRqS`</summary>
+
+```text
+# Analysis of arXiv:2602.05548
+
+## 1) Full Abstract
+
+"Reinforcement Learning with Verifiable Rewards (RLVR), particularly GRPO, has become the standard for eliciting LLM reasoning. However, its efficiency in exploration and difficulty adaptation remains an open challenge." The authors identify that implicit advantage symmetry in Group Relative Advantage Estimation creates bottlenecks. They propose Asymmetric GRAE (A-GRAE) to dynamically modulate exploration and sample-difficulty focus, demonstrating improvements across seven benchmarks for both language and multimodal models.
+
+## 2) What is "Implicit Advantage Symmetry"?
+
+This refers to symmetric weighting mechanisms in GRAE between correct and incorrect trajectories. The symmetry manifests at two levels: group-level effects where "strict symmetry in weights between correct and incorrect trajectories leaves unsampled action logits unchanged," and sample-level effects where the algorithm gravitates toward medium-difficulty samples rather than adapting to changing difficulty requirements.
+
+## 3) How Does GRPO Struggle with Difficulty Adaptation?
+
+The paper reveals that GRPO "implicitly prioritizes medium-difficulty samples, remaining agnostic to the non-stationary demands of difficulty focus." This symmetric weighting prevents the algorithm from dynamically adjusting which sample difficulties receive priority during training.
+
+## 4) What Solution Do They Propose?
+
+They introduce Asymmetric GRAE (A-GRAE), which "dynamically modulates exploration incentives and sample-difficulty focus." The approach uses curriculum-like prioritization, starting with simpler samples before transitioning to complex ones.
+
+## 5) Is Rubric Reward Discussed?
+
+The provided content does not discuss rubric rewards. This detail is absent from the abstract and metadata shown.
+
+## 6) Relationship to DGPO's Difficulty Bias Analysis
+
+No mention of DGPO or comparative difficulty bias analysis appears in the available page content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "035fe8b6-6760-4a0b-a38d-d6d9d5901bc3",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "d89404fe-a3a7-4955-8e9f-f1a96d5c3ce0",
+  "toolUseResult": {
+    "bytes": 48256,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of arXiv:2602.05548\n\n## 1) Full Abstract\n\n\"Reinforcement Learning with Verifiable Rewards (RLVR), particularly GRPO, has become the standard for eliciting LLM reasoning. However, its efficiency in exploration and difficulty adaptation remains an open challenge.\" The authors identify that implicit advantage symmetry in Group Relative Advantage Estimation creates bottlenecks. They propose Asymmetric GRAE (A-GRAE) to dynamically modulate exploration and sample-difficulty focus, demonstrating improvements across seven benchmarks for both language and multimodal models.\n\n## 2) What is \"Implicit Advantage Symmetry\"?\n\nThis refers to symmetric weighting mechanisms in GRAE between correct and incorrect trajectories. The symmetry manifests at two levels: group-level effects where \"strict symmetry in weights between correct and incorrect trajectories leaves unsampled action logits unchanged,\" and sample-level effects where the algorithm gravitates toward medium-difficulty samples rather than adapting to changing difficulty requirements.\n\n## 3) How Does GRPO Struggle with Difficulty Adaptation?\n\nThe paper reveals that GRPO \"implicitly prioritizes medium-difficulty samples, remaining agnostic to the non-stationary demands of difficulty focus.\" This symmetric weighting prevents the algorithm from dynamically adjusting which sample difficulties receive priority during training.\n\n## 4) What Solution Do They Propose?\n\nThey introduce Asymmetric GRAE (A-GRAE), which \"dynamically modulates exploration incentives and sample-difficulty focus.\" The approach uses curriculum-like prioritization, starting with simpler samples before transitioning to complex ones.\n\n## 5) Is Rubric Reward Discussed?\n\nThe provided content does not discuss rubric rewards. This detail is absent from the abstract and metadata shown.\n\n## 6) Relationship to DGPO's Difficulty Bias Analysis\n\nNo mention of DGPO or comparative difficulty bias analysis appears in the available page content.",
+    "durationMs": 6747,
+    "url": "https://arxiv.org/abs/2602.05548"
+  },
+  "sourceToolAssistantUUID": "035fe8b6-6760-4a0b-a38d-d6d9d5901bc3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 186 · 2026-05-28T11:38:20.123Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is another difficulty-aware GRPO paper (A-GRAE) but it doesn't address rubric rewards or gaming. It's focused on exploration and difficulty adaptation in binary reward settings.
+
+Now I'm confident that I have a thorough picture. Let me do one more search to make sure the pass@k + rubric angle isn't covered.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d89404fe-a3a7-4955-8e9f-f1a96d5c3ce0",
+  "isSidechain": false,
+  "requestId": "req_011CbUuD636S8iGDU4SN82Pa",
+  "type": "assistant",
+  "uuid": "641df951-34d8-416d-9aca-23640c6df116",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Du23i7ptpZcAk7QhDYerMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 598,
+      "cache_read_input_tokens": 73695,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 598,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 73695,
+          "cache_creation_input_tokens": 598,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 598
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 187 · 2026-05-28T11:38:20.940Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X1KNHdUvBLo72Nr9gqh1Vq`</summary>
+
+```json
+{
+  "query": "\"pass@k\" OR \"pass@1024\" rubric-trained model versus outcome-only reasoning frontier comparison 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "641df951-34d8-416d-9aca-23640c6df116",
+  "isSidechain": false,
+  "requestId": "req_011CbUuD636S8iGDU4SN82Pa",
+  "type": "assistant",
+  "uuid": "5cdc92af-3b76-446f-bd11-2e8ac8277beb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Du23i7ptpZcAk7QhDYerMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 598,
+      "cache_read_input_tokens": 73695,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 598,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 73695,
+          "cache_creation_input_tokens": 598,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 598
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-28T11:38:28.086Z_
+
+<details><summary>↩ Tool result · `toolu_01X1KNHdUvBLo72Nr9gqh1Vq`</summary>
+
+```text
+Web search results for query: ""pass@k" OR "pass@1024" rubric-trained model versus outcome-only reasoning frontier comparison 2026"
+
+Links: [{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"Don’t Pass@k: A Bayesian Framework for Large Language Model Evaluation | OpenReview","url":"https://openreview.net/forum?id=PTXi3Ef4sT"},{"title":"Chain-of-Rubrics Reasoning Models","url":"https://www.emergentmind.com/topics/chain-of-rubrics-reasoning-models"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"Tsinghua paper: Does RL Really Incentivize Reasoning ...","url":"https://www.lesswrong.com/posts/s3NaETDujoxj4GbEm/tsinghua-paper-does-rl-really-incentivize-reasoning-capacity"},{"title":"Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/html/2510.07774"},{"title":"[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/abs/2510.07774"},{"title":"Beyond Pass@k: Breadth-Depth Metrics for Reasoning Boundaries","url":"https://arxiv.org/pdf/2510.08325"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.07774v1"},{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/pdf/2511.12344"}]
+
+Based on the search results, here's what I found regarding rubric-trained models versus outcome-only reasoning in 2026:
+
+## Key Findings
+
+The Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained rewards that explicitly penalize logical flaws and encourage rigorous deduction. When integrated into a reinforcement learning pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks.
+
+### Pass@1024 Performance Comparison
+
+The most striking comparison comes from mathematical reasoning benchmarks: RRM-based training boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reduces the incidence of Miracle Steps by 71% compared to outcome-only approaches.
+
+### The Problem with Outcome-Only Training
+
+Large language models for mathematical reasoning are typically trained with outcome-based rewards, which credit only the final answer. This paradigm is highly susceptible to reward hacking, leading to a substantial overestimation of a model's reasoning ability. This includes failure modes like "Miracle Steps"—abrupt jumps to a correct output without a valid preceding derivation.
+
+### Broader Implications
+
+Multi-domain reasoning models using rubric-guided approaches (RGR-GRPO) yielded +7.0%, +5.4%, +8.4%, and +6.6% average improvements on mathematics, physics, chemistry, and general reasoning respectively, over verifiable reward RL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5cdc92af-3b76-446f-bd11-2e8ac8277beb",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "910f0111-99b5-4212-90f7-ceb890e2d38b",
+  "toolUseResult": {
+    "query": "\"pass@k\" OR \"pass@1024\" rubric-trained model versus outcome-only reasoning frontier comparison 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KbRys4JFNvebPf6GtyKb8K",
+        "content": [
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "Don’t Pass@k: A Bayesian Framework for Large Language Model Evaluation | OpenReview",
+            "url": "https://openreview.net/forum?id=PTXi3Ef4sT"
+          },
+          {
+            "title": "Chain-of-Rubrics Reasoning Models",
+            "url": "https://www.emergentmind.com/topics/chain-of-rubrics-reasoning-models"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "Tsinghua paper: Does RL Really Incentivize Reasoning ...",
+            "url": "https://www.lesswrong.com/posts/s3NaETDujoxj4GbEm/tsinghua-paper-does-rl-really-incentivize-reasoning-capacity"
+          },
+          {
+            "title": "Curing “Miracle Steps” in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/html/2510.07774"
+          },
+          {
+            "title": "[2510.07774] Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/abs/2510.07774"
+          },
+          {
+            "title": "Beyond Pass@k: Breadth-Depth Metrics for Reasoning Boundaries",
+            "url": "https://arxiv.org/pdf/2510.08325"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.07774v1"
+          },
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/pdf/2511.12344"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding rubric-trained models versus outcome-only reasoning in 2026:\n\n## Key Findings\n\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained rewards that explicitly penalize logical flaws and encourage rigorous deduction. When integrated into a reinforcement learning pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks.\n\n### Pass@1024 Performance Comparison\n\nThe most striking comparison comes from mathematical reasoning benchmarks: RRM-based training boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reduces the incidence of Miracle Steps by 71% compared to outcome-only approaches.\n\n### The Problem with Outcome-Only Training\n\nLarge language models for mathematical reasoning are typically trained with outcome-based rewards, which credit only the final answer. This paradigm is highly susceptible to reward hacking, leading to a substantial overestimation of a model's reasoning ability. This includes failure modes like \"Miracle Steps\"—abrupt jumps to a correct output without a valid preceding derivation.\n\n### Broader Implications\n\nMulti-domain reasoning models using rubric-guided approaches (RGR-GRPO) yielded +7.0%, +5.4%, +8.4%, and +6.6% average improvements on mathematics, physics, chemistry, and general reasoning respectively, over verifiable reward RL."
+    ],
+    "durationSeconds": 7.141425030000042,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5cdc92af-3b76-446f-bd11-2e8ac8277beb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 189 · 2026-05-28T11:39:12.536Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+RRM reports Verified Pass@1024, which is related to pass@k evaluation, but it's specifically testing whether rubric rewards improve the quality of solutions (verified = checking reasoning quality), not whether they expand the reasoning frontier (pass@k at large k vs base model). The "Does RL Really Incentivize Reasoning" paper's key finding was about pass@k at large k showing that RLVR doesn't expand the set of solvable problems — it only narrows the distribution. No one has tested this specific question with rubric rewards.
+
+OK, I've completed thorough research. Let me now synthesize everything into the final research direction.
+
+
+So the core novelty here is combining four elements: first, I'll show that rubric gaming rates vary systematically with problem difficulty, where harder problems exhibit higher gaming rates on easier rubric dimensions. Second, I'll extend DGPO's difficulty bias analysis to multi-dimensional rubric rewards and prove there's a "dimension exploitation gradient" at play. Third, I'll develop a method called Difficulty-Calibrated Rubric Strictness that adjusts per-dimension strictness based on problem difficulty. And fourth, I'll use the pass@k framework to test whether this approach can actually expand the reasoning frontier — something that hasn't been explored with rubric rewards yet.
+
+This goes beyond just combining DGPO with rubric rewards because the difficulty-dependent gaming pattern itself is a diagnostic contribution, the formal extension to multi-dimensional rewards is non-trivial, and the interaction between calibration and gaming is the real theoretical question I'm investigating. The pass@k frontier analysis with calibrated rubric rewards is also novel experimental design.
+
+For reviewers, this hits the patterns they reward: strong formal analysis proving the dimension exploitation gradient, deep problem diagnosis before proposing a solution, honest ablations comparing DGPO+RRM baseline against the calibration approach to show where the interaction provides gains, and triangulation across per-dimension gaming rates, pass@k frontier analysis, and verified pass@N results.
+
+The most compelling framing is actually that rubric gaming exhibits a systematic bias toward harder problems — that's the insight that would resonate most with reviewers. clean diagnostic finding that's irrefutable once demonstrated, similar to how DGPO proved GRPO's update magnitude bias.
+
+The paper structure:
+1. Section 3: Formal analysis — extend DGPO's Theorems 1-2 to K-dimensional rubric rewards, prove that GRPO's advantage estimation creates a difficulty-dependent dimension exploitation gradient
+2. Section 4: Empirical diagnosis — measure per-dimension rubric gaming rates stratified by difficulty, showing that easy dimensions have higher gaming rates on hard problems
+3. Section 5: Method — DCRS (Difficulty-Calibrated Rubric Strictness) that modulates per-dimension strictness based on problem difficulty
+4. Section 6: Evaluation — (a) Standard math benchmarks (MATH, AIME, AMC), (b) Pass@k frontier analysis, (c) Ablation against DGPO+RRM baseline
+
+This fits a 7-page AAAI paper and is computationally feasible with 60-90 H100-hours for training 7B models. Now I'm compiling the related work landscape using only methods and results from recent papers: RRM achieved 26.7%→62.6% verified pass@1024 on AIME2024 with 71% fewer miracle steps, DGPO/MathForge proved a specific bias term and showed +2.18% improvement over GRPO, and I'm tracking down the remaining recent baselines. Looking at the landscape of recent work, most approaches either miss the difficulty-rubric interaction entirely or lack the specificity needed for math reasoning — A-GRAE exposes GRPO's medium-difficulty bias, Auto-Rubric shows hard samples benefit twice as much from rubric guidance, and a comprehensive survey confirms no existing work addresses difficulty-calibrated rubric strictness or ensemble diversity for preventing gaming. The recent papers on RL for reasoning (including RuscaRL's rubric-scaffolded exploration and DARO's difficulty-aware reweighting) still don't combine these insights effectively.
+
+Now I'm ready to finalize the JSON structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "910f0111-99b5-4212-90f7-ceb890e2d38b",
+  "isSidechain": false,
+  "requestId": "req_011CbUuDyzF1gmx42kSQ9xJT",
+  "type": "assistant",
+  "uuid": "9b60a551-3b40-46c1-bbe6-5de4eb85f78d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011GWBZRXUHDDE7KQnuxn68P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 74293,
+      "output_tokens": 1520,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1520,
+          "cache_read_input_tokens": 74293,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 190 · 2026-05-28T11:39:12.539Z_
+
+I've now completed extensive research with 20+ targeted searches. Let me consolidate my findings and verify the gap one final time.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b60a551-3b40-46c1-bbe6-5de4eb85f78d",
+  "isSidechain": false,
+  "requestId": "req_011CbUuDyzF1gmx42kSQ9xJT",
+  "type": "assistant",
+  "uuid": "e611b9b1-af11-42ee-a3c2-e95fa3b483c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011GWBZRXUHDDE7KQnuxn68P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 74293,
+      "output_tokens": 1520,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1520,
+          "cache_read_input_tokens": 74293,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 191 · 2026-05-28T11:39:12.546Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PBwJCf42haPtfgKgxwa7r1`</summary>
+
+```json
+{
+  "query": "\"difficulty\" \"per-dimension\" OR \"dimension-level\" rubric strictness calibration reward math reasoning LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e611b9b1-af11-42ee-a3c2-e95fa3b483c6",
+  "isSidechain": false,
+  "requestId": "req_011CbUuDyzF1gmx42kSQ9xJT",
+  "type": "assistant",
+  "uuid": "caef1720-427e-4eee-9c64-61369c257dc2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011GWBZRXUHDDE7KQnuxn68P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 74293,
+      "output_tokens": 1520,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1520,
+          "cache_read_input_tokens": 74293,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 192 · 2026-05-28T11:39:21.830Z_
+
+<details><summary>↩ Tool result · `toolu_01PBwJCf42haPtfgKgxwa7r1`</summary>
+
+```text
+Web search results for query: ""difficulty" "per-dimension" OR "dimension-level" rubric strictness calibration reward math reasoning LLM 2025 2026"
+
+Links: [{"title":"Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview","url":"https://openreview.net/forum?id=FGkknrhv09"},{"title":"Step-wise Rubric Rewards for LLM Reasoning","url":"https://arxiv.org/html/2605.17291v1"},{"title":"Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"},{"title":"Mathematical Reasoning in Large Language Models: Benchmarks, Architectures, Evaluation, and Open Challenges","url":"https://arxiv.org/html/2605.19723v1"},{"title":"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards","url":"https://arxiv.org/pdf/2510.07774"},{"title":"Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks","url":"https://arxiv.org/pdf/2602.05125"},{"title":"Enhancing Math Reasoning in Small-sized LLMs via Preview Difficulty-Aware Intervention","url":"https://arxiv.org/html/2508.01604"},{"title":"Generating Data-Driven Reasoning Rubrics for Domain-Adaptive Reward Modeling","url":"https://arxiv.org/pdf/2602.06795"}]
+
+I found several highly relevant results about rubric-based reward modeling for LLM mathematical reasoning. Here's what the search uncovered:
+
+## Key Research Areas
+
+**Rubric Reward Models for Math Reasoning:**
+The Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction. When integrated into a reinforcement learning pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks, boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reducing the incidence of "Miracle Steps" by 71%.
+
+**Dimension-Level Rubrics:**
+Traditional scalar reward models compress many latent quality dimensions into one latent preference number, while rubric-based reward models try to preserve more structure by judging outputs against a set of criteria and often using those criterion-level signals as supervision or reward. The approach involves asking a judge to apply an explicit rubric whose dimensions can be refined, filtered, and weighted, as explored in evaluator models such as Prometheus and newer rubric-refinement work from Meta researchers.
+
+**Difficulty-Aware Intervention:**
+Recent work proposes a preview difficulty-aware intervention-based RL algorithm that improves the math reasoning ability in small-sized large language models.
+
+**Coverage and Calibration Challenges:**
+Existing rubric generation methods face two key limitations: coverage deficiency, where the rubric set fails to comprehensively capture the diverse and nuanced dimensions of generation quality; and noisy evaluation outcomes, where misaligned, overlapping, or highly correlated rubrics introduce unreliable signals.
+
+These papers represent very recent work (2025-2026) directly addressing the intersection of strictness calibration, dimension-level rubrics, and reward modeling for mathematical reasoning in LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "caef1720-427e-4eee-9c64-61369c257dc2",
+  "isSidechain": false,
+  "promptId": "fced74f9-fa5d-4cdb-89d5-28f9c4f49a77",
+  "type": "user",
+  "uuid": "749d9ce5-e641-44d2-b2dd-1e3a5cf1d503",
+  "toolUseResult": {
+    "query": "\"difficulty\" \"per-dimension\" OR \"dimension-level\" rubric strictness calibration reward math reasoning LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YMrVN4KyiKeTQJVmvsnkMX",
+        "content": [
+          {
+            "title": "Curing \"Miracle Steps'' in LLM Math Reasoning with Rubric Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=FGkknrhv09"
+          },
+          {
+            "title": "Step-wise Rubric Rewards for LLM Reasoning",
+            "url": "https://arxiv.org/html/2605.17291v1"
+          },
+          {
+            "title": "Rubric-Based Evaluations & LLM-as-a-Judge — Methodologies, Biases, and Empirical Validation in Domain-Specific Contexts. | by Adnan Masood, PhD. | Apr, 2026 | Medium",
+            "url": "https://medium.com/@adnanmasood/rubric-based-evals-llm-as-a-judge-methodologies-and-empirical-validation-in-domain-context-71936b989e80"
+          },
+          {
+            "title": "Mathematical Reasoning in Large Language Models: Benchmarks, Architectures, Evaluation, and Open Challenges",
+            "url": "https://arxiv.org/html/2605.19723v1"
+          },
+          {
+            "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+            "url": "https://arxiv.org/pdf/2510.07774"
+          },
+          {
+            "title": "Rethinking Rubric Generation for Improving LLM Judge and Reward Modeling for Open-ended Tasks",
+            "url": "https://arxiv.org/pdf/2602.05125"
+          },
+          {
+            "title": "Enhancing Math Reasoning in Small-sized LLMs via Preview Difficulty-Aware Intervention",
+            "url": "https://arxiv.org/html/2508.01604"
+          },
+          {
+            "title": "Generating Data-Driven Reasoning Rubrics for Domain-Adaptive Reward Modeling",
+            "url": "https://arxiv.org/pdf/2602.06795"
+          }
+        ]
+      },
+      "I found several highly relevant results about rubric-based reward modeling for LLM mathematical reasoning. Here's what the search uncovered:\n\n## Key Research Areas\n\n**Rubric Reward Models for Math Reasoning:**\nThe Rubric Reward Model (RRM) is a process-oriented reward function that evaluates the entire reasoning trajectory against problem-specific rubrics, providing fine-grained, calibrated rewards (0–1) that explicitly penalize logical flaws and encourage rigorous deduction. When integrated into a reinforcement learning pipeline, RRM-based training consistently outperforms outcome-only supervision across four math benchmarks, boosting Verified Pass@1024 on AIME2024 from 26.7% to 62.6% and reducing the incidence of \"Miracle Steps\" by 71%.\n\n**Dimension-Level Rubrics:**\nTraditional scalar reward models compress many latent quality dimensions into one latent preference number, while rubric-based reward models try to preserve more structure by judging outputs against a set of criteria and often using those criterion-level signals as supervision or reward. The approach involves asking a judge to apply an explicit rubric whose dimensions can be refined, filtered, and weighted, as explored in evaluator models such as Prometheus and newer rubric-refinement work from Meta researchers.\n\n**Difficulty-Aware Intervention:**\nRecent work proposes a preview difficulty-aware intervention-based RL algorithm that improves the math reasoning ability in small-sized large language models.\n\n**Coverage and Calibration Challenges:**\nExisting rubric generation methods face two key limitations: coverage deficiency, where the rubric set fails to comprehensively capture the diverse and nuanced dimensions of generation quality; and noisy evaluation outcomes, where misaligned, overlapping, or highly correlated rubrics introduce unreliable signals.\n\nThese papers represent very recent work (2025-2026) directly addressing the intersection of strictness calibration, dimension-level rubrics, and reward modeling for mathematical reasoning in LLMs."
+    ],
+    "durationSeconds": 9.277814474000014,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "caef1720-427e-4eee-9c64-61369c257dc2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 193_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "749d9ce5-e641-44d2-b2dd-1e3a5cf1d503",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 194_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 195 · 2026-05-28T11:39:33.888Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The search confirms the gap. No paper on difficulty-calibrated per-dimension rubric strictness exists. The "preview difficulty-aware intervention" paper (2508.01604) is about difficulty-aware RL for small LLMs but doesn't use rubric rewards or address per-dimension calibration.
+
+Now let me write the final research direction. I have all the evidence I need.
+
+Let me be very careful about the output format: a JSON array with exactly 1 element, each with these fields:
+- title: max 10 words
+- core_problem: 1-2 sentences
+
+
+- opportunity: 2-3 sentences
+- landscape: 3-5 sentences, grounded in papers found
+- inspired_by: which field guide evidence
+
+I'm drafting the title now. "Harder Problems, Easier Gaming: Difficulty-Calibrated Rubric Rewards" comes to 7 words, which fits. Let me consider alternatives like "Difficulty-Aware Rubric Strictness Resists Gaming in Math" but I think the first option is clearer about the core tension I'm trying to capture.
+
+Actually, I can extend it to "Harder Problems, Easier Gaming: Difficulty-Calibrated Rubric Rewards for Math RLVR" — that's 10 words and hits the limit nicely. Let me verify the count and then move forward with writing out the full structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "749d9ce5-e641-44d2-b2dd-1e3a5cf1d503",
+  "isSidechain": false,
+  "requestId": "req_011CbUuHwodx41GTGguH4ir3",
+  "type": "assistant",
+  "uuid": "2eeb3c1e-bc8a-419f-800f-3f2f7846166d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fzp5yhwy7afPn59dNQDu4Y",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2460,
+      "cache_read_input_tokens": 75352,
+      "output_tokens": 2754,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2460,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2754,
+          "cache_read_input_tokens": 75352,
+          "cache_creation_input_tokens": 2460,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2460
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 196 · 2026-05-28T11:40:28.156Z_
+
+I now have comprehensive evidence from 25+ searches across multiple dimensions. Let me synthesize my findings into the final research direction.
+
+**Research Summary:**
+
+My investigation confirmed the following verified gaps:
+1. **No work combines difficulty calibration with rubric rewards for math** — 15+ difficulty-aware methods (DGPO, DARO, F-GRPO, A-GRAE, Online Difficulty Filtering) all use binary rewards; 15+ rubric methods (RRM, RaR, SRaR, POW3R, PAPO, ARL-RR, ARES, GDPO, OpenRS, etc.) all use uniform strictness
+2. **The ~150-paper rubrics survey (RUC-NLPIR/Rubrics_Survey) explicitly confirms** no work on difficulty-calibrated rubric strictness or rubric ensemble diversity for anti-gaming
+3. **POW3R** (the closest work) adapts rubric weights by rollout contrast (which criteria currently discriminate outputs), NOT by problem difficulty — and doesn't target math or analyze gaming
+4. **Rubric gaming has been diagnosed** (arXiv:2605.12474) but no defense mechanism exists; gaming concentrates in partial satisfaction of presence-based criteria (90.2% of criteria)
+5. **No paper has tested whether rubric rewards expand the reasoning frontier** via pass@k at large k — "Does RL Really Incentivize Reasoning" tested 6 algorithms, all with binary rewards
+6. **Auto-Rubric** provides indirect evidence: hard samples benefit 2× more from rubric guidance (+4.68% vs +2.45%), suggesting the difficulty-rubric interaction is impactful but unexploited
+
+```json
+[
+  {
+    "title": "Harder Problems, Easier Gaming: Difficulty-Calibrated Rubric Rewards for Math RLVR",
+    "core_problem": "When rubric rewards are applied with uniform strictness across difficulty levels in math RLVR, models exploit a systematic 'dimension exploitation gradient' — satisfying easy rubric criteria (problem reformulation, variable identification) via shallow pattern-matching while gaming hard criteria (proof verification, logical transitions) on difficult problems. Does this difficulty-dependent gaming bias exist, can it be formally characterized, and does difficulty-calibrated per-dimension rubric strictness close the gap while expanding the reasoning frontier?",
+    "opportunity": "Three independently verified gaps converge: (1) DGPO's formal difficulty-bias framework (ICLR 2026, Theorems 1-2 proving GRPO's 2G√(p(1−p)) update magnitude) applies only to binary rewards, leaving multi-dimensional rubric rewards without theoretical grounding; (2) rubric gaming has been diagnosed (arXiv:2605.12474, showing 90.2% presence-based criteria create systematic exploitation surfaces) but no defense mechanism has been proposed or validated; (3) the comprehensive ~150-paper Rubrics Survey (RUC-NLPIR, 2026) confirms no work on difficulty-calibrated rubric strictness or rubric ensemble diversity for anti-gaming. All building blocks matured in Q1-Q2 2026 (DGPO, ARES, RRM gaming taxonomy, POW3R, PAPO, SRaR), making the synthesis timely — but POW3R adapts by rollout contrast (not difficulty), PAPO decouples advantage (not strictness calibration), and ARES automates rubric generation (not for math, without difficulty metadata). The marginal contribution lies not in combining these pieces but in formally characterizing and empirically demonstrating the difficulty-gaming interaction that none of them address.",
+    "landscape": "Rubric rewards for math RLVR achieve strong results — RRM (ACL 2026) boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6% with 71% fewer Miracle Steps, while SRaR (arXiv:2605.17291) adds step-level rubric attribution gaining +3.57 points on Qwen3-8B — but all methods apply uniform rubric strictness regardless of problem difficulty. Difficulty-aware RL methods exist in parallel: DGPO/MathForge (ICLR 2026) proves GRPO systematically suppresses hard-problem updates and fixes this via MAD normalization (+2.18%), DARO (arXiv:2510.09001) and F-GRPO (arXiv:2602.06717) provide complementary difficulty-aware reweighting, and A-GRAE (arXiv:2602.05548) reveals GRPO's implicit medium-difficulty bias — but all operate exclusively on binary outcome rewards. The closest convergence point is POW3R (arXiv:2605.20164), which adapts rubric criterion weights during training via rollout-level contrast, but it does not model problem difficulty, does not analyze gaming behavior, and evaluates only on multimodal/health tasks without math benchmarks. Meanwhile, Auto-Rubric (arXiv:2510.17314) provides indirect evidence that the difficulty-rubric interaction is impactful — hard samples benefit 2× more from rubric guidance (+4.68% vs. +2.45%) — but doesn't analyze gaming. The critical missing piece is the interaction between difficulty calibration and rubric gaming susceptibility: whether harder problems have systematically higher per-dimension gaming rates, whether calibrating strictness reduces or amplifies gaming, and whether difficulty-calibrated rubric rewards can expand the reasoning frontier (pass@k at large k) — something 'Does RL Really Incentivize Reasoning' (NeurIPS 2025 Best Paper Runner-Up) tested for 6 binary-reward algorithms but never for rubric rewards.",
+    "inspired_by": "Field guide gaps: 'No framework combines automated rubric generation with difficulty-calibrated rubric strictness for math RLVR' + 'The interaction between difficulty calibration and rubric gaming susceptibility is completely unexplored' + 'No rubric-dimension-level gaming analysis exists.' Innovation patterns: 'Formal analysis exposing hidden bias in standard methods' (high success rate — extending DGPO Theorems 1-2 to K-dimensional rubric rewards) + 'Rigorous problem diagnosis as standalone contribution' (high success rate — difficulty-stratified per-dimension gaming analysis as reusable diagnostic framework). Untried combinations: 'DGPO difficulty weighting extended to continuous rubric reward vectors' + 'Pass@k evaluation framework applied to rubric-trained models to test whether rubric rewards expand the reasoning frontier.' Reviewer preferences: formal theoretical grounding, deep problem characterization before solution, honest ablation testing the DGPO+RRM baseline."
+  }
+]
+```
+
+Sources:
+- [DGPO/MathForge (ICLR 2026)](https://arxiv.org/abs/2601.20614)
+- [RRM: Curing Miracle Steps (ACL 2026)](https://arxiv.org/abs/2510.07774)
+- [Reward Hacking in Rubric-Based RL](https://arxiv.org/abs/2605.12474)
+- [POW3R: Policy-Aware Rubric Rewards](https://arxiv.org/abs/2605.20164)
+- [ARES: Automated Rubric Synthesis](https://arxiv.org/abs/2605.23454)
+- [SRaR: Step-wise Rubric Rewards](https://arxiv.org/abs/2605.17291)
+- [PAPO: Decoupled Advantage Normalization](https://arxiv.org/abs/2603.26535)
+- [ARL-RR: Alternating RL with Rubric Rewards](https://arxiv.org/abs/2603.15646)
+- [GDPO: Group reward-Decoupled Normalization](https://arxiv.org/abs/2601.05242)
+- [DARO: Difficulty-Aware Reweighting](https://arxiv.org/abs/2510.09001)
+- [F-GRPO: Difficulty-Aware Advantage Scaling](https://arxiv.org/abs/2602.06717)
+- [A-GRAE: Implicit Advantage Symmetry](https://arxiv.org/abs/2602.05548)
+- [Auto-Rubric](https://arxiv.org/abs/2510.17314)
+- [Rubrics Survey (RUC-NLPIR)](https://github.com/RUC-NLPIR/Rubrics_Survey)
+- [Does RL Really Incentivize Reasoning (NeurIPS 2025)](https://openreview.net/forum?id=4OsgYD7em5)
+- [DR Tulu: RL with Evolving Rubrics](https://arxiv.org/abs/2511.19399)
+- [RuscaRL: Rubric-Scaffolded RL](https://arxiv.org/abs/2508.16949)
+- [Open Rubric System](https://arxiv.org/abs/2602.14069)
+- [Reward Under Attack: PRM Robustness](https://arxiv.org/abs/2603.06621)
+- [LLMs Gaming Verifiers (ICLR 2026 Workshop)](https://arxiv.org/abs/2604.15149)
+- [Crome: Causal Rubrics for Robust RM](https://arxiv.org/abs/2506.16507)
+- [AAAI 2027 Call for Papers](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2eeb3c1e-bc8a-419f-800f-3f2f7846166d",
+  "isSidechain": false,
+  "requestId": "req_011CbUuHwodx41GTGguH4ir3",
+  "type": "assistant",
+  "uuid": "53276626-be9b-409d-9bfa-78e5942b59d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fzp5yhwy7afPn59dNQDu4Y",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2460,
+      "cache_read_input_tokens": 75352,
+      "output_tokens": 2754,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2460,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2754,
+          "cache_read_input_tokens": 75352,
+          "cache_creation_input_tokens": 2460,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2460
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 197_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-28 (UTC).** Use this when reasoni…",
+  "leafUuid": "53276626-be9b-409d-9bfa-78e5942b59d9",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 198_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-Calibrated Rubric Ensemble for Math RLVR",
+  "sessionId": "81a67f9f-46f0-48ac-8cd9-8b4ae1908fb2"
+}
+```
+
+---

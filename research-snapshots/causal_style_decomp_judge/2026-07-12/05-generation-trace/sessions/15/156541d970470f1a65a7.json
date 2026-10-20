@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "id": "156541d970470f1a65a7",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: causal_style_decomp_judge ## 运行环境 - 服务器名: westb-29275 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "0c532f6c-d815-415e-8395-2c0009979c43",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/0c532f6c-d815-415e-8395-2c0009979c43.jsonl",
+    "occurrence": 1,
+    "bytes": 1900943,
+    "sha256": "0a0cf6a62143384ba68f0f775d76fb284463b7520b164a108a5961b241f8c4b0"
+  },
+  "statistics": {
+    "messages": 1163,
+    "user_turns": 2,
+    "tool_calls": 447,
+    "roles": {
+      "record": 170,
+      "user": 2,
+      "assistant": 96,
+      "tool_call": 447,
+      "tool_result": 447,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "156541d970470f1a65a7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 931,
+      "chunks": [
+        {
+          "path": "156541d970470f1a65a7-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "156541d970470f1a65a7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "156541d970470f1a65a7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "156541d970470f1a65a7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "156541d970470f1a65a7-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "156541d970470f1a65a7-part-0006.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 230,
+      "chunks": [
+        {
+          "path": "156541d970470f1a65a7-part-0006.json",
+          "message_count": 147
+        },
+        {
+          "path": "156541d970470f1a65a7-part-0007.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-causal-style-decomp-judge-westb-29275-ssh-root-ssh-execute-sub-copy-18.md"
+}

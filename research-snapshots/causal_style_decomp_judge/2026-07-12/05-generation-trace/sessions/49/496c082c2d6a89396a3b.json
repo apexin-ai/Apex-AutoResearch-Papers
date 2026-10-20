@@ -1,0 +1,1162 @@
+{
+  "schema_version": "1.0",
+  "id": "496c082c2d6a89396a3b",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need details on two papers to cite them accurately: 1. **Wilson et al. (2019), \"The Eighty Five Percent Rule for Optim",
+  "task_key": "agent-aedc97a984ac18058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aedc97a984ac18058.jsonl",
+    "occurrence": 1,
+    "bytes": 38545,
+    "sha256": "68f9ccb7c175f63b0feb1e1368c86587c14f4c0c9b7bc815de42033ff61f3d46"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 4,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T16:33:28.907Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need details on two papers to cite them accurately:\n\n1. **Wilson et al. (2019), \"The Eighty Five Percent Rule for Optimal Learning\"** — published in Nature Communications. What exactly does it prove? The claim is that gradient-based learners in binary classification tasks learn fastest at ~15.87% error rate (not 50%). What's the precise result and how does it relate to p=0.5 symmetry?\n\n2. **Rollout Pass-Rate Control (arXiv:2605.05112)** — What exactly does this paper contribute? I've heard it formalizes 4 independent criteria all showing p=0.5 maximizes GRPO learning signal: reward entropy, group-filtering survival, RLOO advantage energy, and contrastive pair count k(N-k). Get the exact title, authors, and key results.\n\nSearch for these papers, read their abstracts, and report:\n- Full title and authors\n- Key results relevant to my use case\n- Any caveats or limitations\n\nReport in under 300 words."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "ec1ce000-33e0-4877-b110-6ec6b7193273",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T16:33:28.912Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ec1ce000-33e0-4877-b110-6ec6b7193273",
+                "isSidechain": true,
+                "agentId": "aedc97a984ac18058",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "e3945b6f-4b83-42fe-9fe5-2c397aa4a3e2",
+                "timestamp": "2026-05-28T16:33:28.912Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu",
+                "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T16:33:28.913Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e3945b6f-4b83-42fe-9fe5-2c397aa4a3e2",
+                "isSidechain": true,
+                "agentId": "aedc97a984ac18058",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "aac1baa5-58e0-4b44-a4ec-ad999b9dc970",
+                "timestamp": "2026-05-28T16:33:28.913Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu",
+                "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T16:33:32.529Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for both papers online."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aac1baa5-58e0-4b44-a4ec-ad999b9dc970",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHinfyAaMWgMbzRgk52",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "48408960-fc76-4c29-b983-e9d6912f61a9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FN8XUaEizY9rcngUKWb9Y9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1582,
+                "cache_read_input_tokens": 7407,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1582,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T16:33:32.831Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VFzcqzoFhr379p7FiU4Dqr",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48408960-fc76-4c29-b983-e9d6912f61a9",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHinfyAaMWgMbzRgk52",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a02de81d-7528-4340-955a-10cdbb42633a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FN8XUaEizY9rcngUKWb9Y9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1582,
+                "cache_read_input_tokens": 7407,
+                "output_tokens": 89,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1582
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 89,
+                    "cache_read_input_tokens": 7407,
+                    "cache_creation_input_tokens": 1582,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1582,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T16:33:32.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01VFzcqzoFhr379p7FiU4Dqr",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a02de81d-7528-4340-955a-10cdbb42633a",
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "a5dd65f1-ff0d-4862-b889-bb2d299f68b7",
+            "sourceToolAssistantUUID": "a02de81d-7528-4340-955a-10cdbb42633a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T16:33:35.334Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me search for both papers simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5dd65f1-ff0d-4862-b889-bb2d299f68b7",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHj5huFYTRaEMkuCrSH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b5822c21-768e-4d9e-8d56-af791056ceaa",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R92W53Y8CrgFp9TECC1WxR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1111,
+                "cache_read_input_tokens": 8989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1111,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T16:33:36.816Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019YZVxN3PcSuDwzKfhnwxR9",
+              "name": "WebSearch",
+              "input": {
+                "query": "Wilson et al 2019 \"The Eighty Five Percent Rule for Optimal Learning\" Nature Communications"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5822c21-768e-4d9e-8d56-af791056ceaa",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHj5huFYTRaEMkuCrSH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5eb169cf-6cbb-47f6-aedb-acca8b1243da",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R92W53Y8CrgFp9TECC1WxR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1111,
+                "cache_read_input_tokens": 8989,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1111,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T16:33:37.424Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KNpypZvHG7DjUrGKApRwZJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2605.05112 \"Rollout Pass-Rate Control\" GRPO learning signal"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5eb169cf-6cbb-47f6-aedb-acca8b1243da",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHj5huFYTRaEMkuCrSH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a784516e-fe88-433a-be65-429b5715dc2b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R92W53Y8CrgFp9TECC1WxR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1111,
+                "cache_read_input_tokens": 8989,
+                "output_tokens": 143,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1111
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 143,
+                    "cache_read_input_tokens": 8989,
+                    "cache_creation_input_tokens": 1111,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1111,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T16:33:42.771Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019YZVxN3PcSuDwzKfhnwxR9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Wilson et al 2019 \"The Eighty Five Percent Rule for Optimal Learning\" Nature Communications\"\n\nLinks: [{\"title\":\"The Eighty Five Percent Rule for optimal learning | Nature Communications\",\"url\":\"https://www.nature.com/articles/s41467-019-12552-4\"},{\"title\":\"The Eighty Five Percent Rule for optimal learning - Princeton University\",\"url\":\"https://collaborate.princeton.edu/en/publications/the-eighty-five-percent-rule-for-optimal-learning/\"},{\"title\":\"The Eighty Five Percent Rule for optimal learning - University of Arizona\",\"url\":\"https://experts.arizona.edu/en/publications/the-eighty-five-percent-rule-for-optimal-learning\"},{\"title\":\"The Eighty Five Percent Rule for optimal learning\",\"url\":\"https://repository.arizona.edu/handle/10150/636293\"},{\"title\":\"85% Rule of Optimal Learning. Science has discovered the sweet spot… | by Drenizë Rama | Medium\",\"url\":\"https://medium.com/@drenizerama/85-rule-of-optimal-learning-15581eca9842\"},{\"title\":\"(PDF) The Eighty Five Percent Rule for optimal learning\",\"url\":\"https://www.researchgate.net/publication/337036886_The_Eighty_Five_Percent_Rule_for_optimal_learning\"},{\"title\":\"Learning is optimized when we fail 15% of the time | ScienceDaily\",\"url\":\"https://www.sciencedaily.com/releases/2019/11/191105113457.htm\"},{\"title\":\"The Eighty Five Percent Rule for optimal learning\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6831579/\"}]\n\nI found the paper you're looking for! Here are the search results:\n\nThe article \"The Eighty Five Percent Rule for optimal learning\" was published by Wilson, R.C., Shenhav, A., Straccia, M. et al. in Nature Communications, volume 10, article 4646 (2019).\n\nThe paper is available through multiple sources:\n- **Official Nature Communications article**: https://www.nature.com/articles/s41467-019-12552-4\n- **PubMed Central**: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6831579/\n- **DOI**: 10.1038/s41467-019-12552-4\n\n**Key findings**: The study found that for stochastic gradient-descent based learning algorithms, the optimal error rate for training is around 15.87%, or conversely, that optimal training accuracy is about 85%, and demonstrated this \"Eighty Five Percent Rule\" for both artificial neural networks used in AI and biologically plausible neural networks thought to describe animal learning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5eb169cf-6cbb-47f6-aedb-acca8b1243da",
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "0b2704cd-94bb-4ea4-81e8-c5a274e306c8",
+            "sourceToolAssistantUUID": "5eb169cf-6cbb-47f6-aedb-acca8b1243da",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T16:33:45.708Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KNpypZvHG7DjUrGKApRwZJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2605.05112 \"Rollout Pass-Rate Control\" GRPO learning signal\"\n\nLinks: [{\"title\":\"[2605.05112] Rollout Pass-Rate Control: Steering Binary-Reward RL Toward Its Most Informative Regime\",\"url\":\"https://arxiv.org/abs/2605.05112\"},{\"title\":\"Rollout Pass-Rate Control: Steering Binary-Reward RL Toward Its Most Informative Regime\",\"url\":\"https://arxiv.org/html/2605.05112v1\"},{\"title\":\"Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts\",\"url\":\"https://arxiv.org/pdf/2603.21177\"},{\"title\":\"Exploring Pass-Rate Reward in Reinforcement Learning for Code Generation\",\"url\":\"https://arxiv.org/html/2605.02944\"},{\"title\":\"Train Less, Learn More: Adaptive Efficient Rollout Optimization for Group-Based Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2602.14338\"},{\"title\":\"Transform-Augmented GRPO Improves Pass@k\",\"url\":\"https://arxiv.org/pdf/2601.22478\"}]\n\nI found the paper! Here are the key details:\n\narXiv paper 2605.05112, titled \"Rollout Pass-Rate Control: Steering Binary-Reward RL Toward Its Most Informative Regime,\" was authored by Tianshu Zhu and colleagues from Baidu.\n\n**Main Contribution:**\n\nThe paper shows that the binary reward-side signal is strongest near a 50% rollout pass rate under four criteria: reward entropy, group-filtering survival, leave-one-out (RLOO) advantage energy under Group Relative Policy Optimization (GRPO), and success-failure pair count.\n\n**Problem & Solution:**\n\nThe paper addresses the inefficiency in agentic reinforcement learning for software engineering, where much compute is spent on stateful trajectories with highly skewed and weakly contrastive grouped binary rewards. The authors propose Prefix Sampling (PS), which replays self-generated trajectory prefixes to steer skewed groups toward the 50% pass-rate regime: successful prefixes give mostly failing groups a head start, while failing prefixes handicap mostly passing groups.\n\nThe paper demonstrates that optimizing for a 50% pass rate creates the strongest learning signal for GRPO and other binary-reward RL algorithms in code generation and software engineering tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a784516e-fe88-433a-be65-429b5715dc2b",
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "9082f4de-7487-47fe-85b3-b907b5921dfa",
+            "sourceToolAssistantUUID": "a784516e-fe88-433a-be65-429b5715dc2b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T16:33:48.868Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the actual paper pages for more precise details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9082f4de-7487-47fe-85b3-b907b5921dfa",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHk2REcSYTbXZotWbS8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7c270d8a-cb87-4232-bc0d-2d70c693805d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F4MepRkp9NTtmWwUk4eJ4c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1494,
+                "cache_read_input_tokens": 10100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1494,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-28T16:33:51.041Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FBWM5vVMBmAqZeQ8pvjbKF",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://www.nature.com/articles/s41467-019-12552-4",
+                "prompt": "Extract: full list of authors, the precise mathematical result (what is the optimal error rate and how is it derived — specifically its relationship to 1/e and p=0.5), and any stated limitations or caveats."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c270d8a-cb87-4232-bc0d-2d70c693805d",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHk2REcSYTbXZotWbS8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "be60a019-9648-48bd-a4c2-2088be3afdb5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F4MepRkp9NTtmWwUk4eJ4c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1494,
+                "cache_read_input_tokens": 10100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1494,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T16:33:51.586Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FBWM5vVMBmAqZeQ8pvjbKF",
+              "type": "tool_result",
+              "content": "REDIRECT DETECTED: The URL redirects to a different host.\n\nOriginal URL: https://www.nature.com/articles/s41467-019-12552-4\nRedirect URL: https://idp.nature.com/authorize?response_type=cookie&client_id=grover&redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41467-019-12552-4\nStatus: 303 See Other\n\nTo complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:\n- url: \"https://idp.nature.com/authorize?response_type=cookie&client_id=grover&redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41467-019-12552-4\"\n- prompt: \"Extract: full list of authors, the precise mathematical result (what is the optimal error rate and how is it derived — specifically its relationship to 1/e and p=0.5), and any stated limitations or caveats.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be60a019-9648-48bd-a4c2-2088be3afdb5",
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "7b997f8c-c3b9-4e46-b185-89688ac8b5c0",
+            "sourceToolAssistantUUID": "be60a019-9648-48bd-a4c2-2088be3afdb5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T16:33:53.196Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0144uNHoz7sRdtRyZyf3bVCq",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2605.05112",
+                "prompt": "Extract: full title, complete author list, and the four criteria that all peak at p=0.5. Also extract any caveats or limitations mentioned. Report the exact mathematical expressions if available (e.g. k(N-k) for contrastive pairs)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b997f8c-c3b9-4e46-b185-89688ac8b5c0",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHk2REcSYTbXZotWbS8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0aa4bee2-45f6-4a76-93cd-25d88c58e96c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F4MepRkp9NTtmWwUk4eJ4c",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1494,
+                "cache_read_input_tokens": 10100,
+                "output_tokens": 271,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1494
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 271,
+                    "cache_read_input_tokens": 10100,
+                    "cache_creation_input_tokens": 1494,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1494,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T16:33:58.338Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0144uNHoz7sRdtRyZyf3bVCq",
+              "type": "tool_result",
+              "content": "# Paper Extraction Summary\n\n**Full Title:** \"Rollout Pass-Rate Control: Steering Binary-Reward RL Toward Its Most Informative Regime\"\n\n**Complete Author List:** Tianshu Zhu, Wenyu Zhang, Xiaoying Zuo, Lun Tian, Haotian Zhao, Yucheng Zeng, Jingnan Gu, Daxiang Dong, Jianmin Wu, Dawei Yin, Dou Shen\n\n**Four Criteria Peaking at 50% Pass Rate:**\n1. Reward entropy\n2. Group-filtering survival\n3. Leave-one-out (RLOO) advantage energy under Group Relative Policy Optimization (GRPO)\n4. Success-failure pair count\n\n**Mathematical Expressions:** The abstract does not provide explicit mathematical formulas for these criteria. The document mentions \"success-failure pair count\" but does not express it as k(N-k) or similar notation.\n\n**Caveats/Limitations Mentioned:**\n- The method is evaluated specifically on software engineering tasks (SWE-bench Verified and AIME 2025)\n- Results show \"evaluation variability\" considerations\n- The approach requires \"reconstructed\" states through existing rollout paths\n- Gains are attributed to specific components in ablations: \"replay, bidirectional coverage, and adaptive control\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0aa4bee2-45f6-4a76-93cd-25d88c58e96c",
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "f4330596-0259-46a3-b743-ed31c07f19d1",
+            "sourceToolAssistantUUID": "0aa4bee2-45f6-4a76-93cd-25d88c58e96c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T16:34:02.753Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013X3ieANi3Zdo5j26txv91w",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6831579/",
+                "prompt": "Extract: full list of authors, the precise mathematical result for the optimal error rate (how 15.87% is derived, its relationship to 1/e), and any stated limitations or caveats. Also clarify: does the result apply only to binary classification with gradient descent? What is the connection to p=0.5?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4330596-0259-46a3-b743-ed31c07f19d1",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHkxRAD1ZtNCYk18ydE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7290b9a4-c236-4ebd-bde2-3e7652a8d164",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018kpPNjqp7BHrQQGwWeQq39",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 917,
+                "cache_read_input_tokens": 11594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 917,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-28T16:34:03.468Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013X3ieANi3Zdo5j26txv91w",
+              "type": "tool_result",
+              "content": "REDIRECT DETECTED: The URL redirects to a different host.\n\nOriginal URL: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6831579/\nRedirect URL: https://pmc.ncbi.nlm.nih.gov/articles/PMC6831579/\nStatus: 301 Moved Permanently\n\nTo complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:\n- url: \"https://pmc.ncbi.nlm.nih.gov/articles/PMC6831579/\"\n- prompt: \"Extract: full list of authors, the precise mathematical result for the optimal error rate (how 15.87% is derived, its relationship to 1/e), and any stated limitations or caveats. Also clarify: does the result apply only to binary classification with gradient descent? What is the connection to p=0.5?\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7290b9a4-c236-4ebd-bde2-3e7652a8d164",
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "ca423fea-1bfd-437f-a598-5fc406b83a7b",
+            "sourceToolAssistantUUID": "7290b9a4-c236-4ebd-bde2-3e7652a8d164",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-28T16:34:04.067Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VzT9FzFqGsukXWFvWD2V3v",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2605.05112v1",
+                "prompt": "Extract the precise mathematical expressions for the four criteria that peak at p=0.5: reward entropy, group-filtering survival, RLOO advantage energy, and contrastive pair count k(N-k). Report exact formulas. Also report any caveats or limitations."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca423fea-1bfd-437f-a598-5fc406b83a7b",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHkxRAD1ZtNCYk18ydE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2a3c9f10-c832-4c06-8689-49f50f49137d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018kpPNjqp7BHrQQGwWeQq39",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 917,
+                "cache_read_input_tokens": 11594,
+                "output_tokens": 288,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 917
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 288,
+                    "cache_read_input_tokens": 11594,
+                    "cache_creation_input_tokens": 917,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 917,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-28T16:34:09.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VzT9FzFqGsukXWFvWD2V3v",
+              "type": "tool_result",
+              "content": "# Mathematical Expressions for p=0.5 Optimality\n\n## Four Peak Criteria\n\n**1. Reward Entropy**\n```\nH(p) = -p log₂(p) - (1-p) log₂(1-p)\nMaximized at: p = 0.5\n```\n\n**2. Group-Filtering Survival Probability**\n```\nS_N(p) = Pr(0 < K < N) = 1 - p^N - (1-p)^N\nMaximized at: p = 0.5\n```\n\n**3. RLOO Advantage Energy**\n```\nE_RLOO(k) = k(N-k)/(N-1)²\nMaximized at: k = N/2\n```\n\n**4. Contrastive Pair Count**\n```\nC(k) = k(N-k)\nMaximized at: k = N/2\n```\n\n## Key Caveats\n\nThe paper explicitly states these measures identify \"the binary reward-side signal available to a grouped policy-gradient update\" and do not claim that \"every global curriculum, every rollout count N, or every controller hyperparameter schedule is globally optimal.\"\n\nAdditional limitations noted:\n- Claims are scoped to binary-reward RLVR with grouped rollouts using N=8 configurations\n- The 50% target applies during training, not necessarily as a final model success rate\n- Results depend on implementation-specific framework details for stateful agents"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a3c9f10-c832-4c06-8689-49f50f49137d",
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "c4a8323f-a037-44df-a1fc-089573f973ea",
+            "sourceToolAssistantUUID": "2a3c9f10-c832-4c06-8689-49f50f49137d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-28T16:34:12.741Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HsSzYCehCTr26LJhWyuXXU",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6831579/",
+                "prompt": "Extract: full list of authors, the precise mathematical result for the optimal error rate (how 15.87% is derived, its relationship to 1/e), and any stated limitations or caveats. Does the result apply only to binary classification with gradient descent? What is the connection to p=0.5?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4a8323f-a037-44df-a1fc-089573f973ea",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHmnn185NzbjzGgkqCU",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "55a17763-a28b-4536-8a17-1c66ab218284",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9MkHbFpWNSwGY6DM4w1xi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1006,
+                "cache_read_input_tokens": 12511,
+                "output_tokens": 158,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1006
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 158,
+                    "cache_read_input_tokens": 12511,
+                    "cache_creation_input_tokens": 1006,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1006,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-28T16:34:19.591Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HsSzYCehCTr26LJhWyuXXU",
+              "type": "tool_result",
+              "content": "# The Eighty Five Percent Rule: Key Details\n\n## Authors\nRobert C Wilson, Amitai Shenhav, Mark Straccia, and Jonathan D Cohen\n\n## Mathematical Derivation of 15.87%\n\nThe optimal error rate emerges from maximizing the learning gradient ∂ER/∂β. For Gaussian noise, the paper derives:\n\n**ER* = ½(1 − erf(1/√2)) ≈ 0.1587**\n\nThis connects to 1/e through the standard normal distribution. The constant arises because the optimal difficulty occurs where βΔ* = 1, making the cumulative distribution function F(−1) yield approximately 15.87%.\n\n## Scope and Limitations\n\n**Applies specifically to:**\n- \"Binary classification tasks\" with \"stochastic gradient-descent based learning algorithms\"\n- The analysis assumes Gaussian noise in the decision variable representation\n\n**Important caveats stated:**\n- Different noise distributions yield different optima (82% for Laplacian noise, 75% for Cauchy)\n- \"Batch-based training changes the optimal accuracy\"\n- Extensions to \"multi-category\" tasks would be more complex\n- Assumes noise affects only the scale factor β, not the noise form itself\n\nThe authors note that \"Bayesian learners with perfect memory\" show no optimal difficulty, demonstrating the result is specific to gradient-based approaches.\n\n## No Connection to p=0.5\n\nThe document contains no discussion of p=0.5 or probability relationships beyond error rate thresholds."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55a17763-a28b-4536-8a17-1c66ab218284",
+            "isSidechain": true,
+            "promptId": "3fdf0914-321d-49ba-a4b5-3866e437b394",
+            "agentId": "aedc97a984ac18058",
+            "type": "user",
+            "uuid": "1a46cc12-5b1a-465a-bd10-cd7b48286860",
+            "sourceToolAssistantUUID": "55a17763-a28b-4536-8a17-1c66ab218284",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-28T16:34:39.027Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the details needed. Here is the report.\n\n---\n\n**Paper 1: The Eighty Five Percent Rule for Optimal Learning**\n\n- **Authors:** Robert C. Wilson, Amitai Shenhav, Mark Straccia, Jonathan D. Cohen\n- **Published:** Nature Communications 10, 4646 (2019)\n\n**Key result:** For binary classification with stochastic gradient descent under Gaussian noise, the learning rate (gradient magnitude dER/d-beta) is maximized when difficulty is tuned so the error rate equals ER* = 1/2(1 - erf(1/sqrt(2))) = ~15.87%. This is not 50% -- it arises because the steepest point of the Gaussian CDF is at one standard deviation, not at the midpoint of [0,1]. The 85% accuracy figure is specific to Gaussian noise; Laplacian noise gives ~82%, Cauchy ~75%. The result does not apply to Bayesian learners with perfect memory, batch training changes the optimum, and multi-class extensions are unaddressed. There is no direct connection to p=0.5 symmetry in this paper.\n\n**Paper 2: Rollout Pass-Rate Control: Steering Binary-Reward RL Toward Its Most Informative Regime**\n\n- **Authors:** Tianshu Zhu, Wenyu Zhang, Xiaoying Zuo, Lun Tian, Haotian Zhao, Yucheng Zeng, Jingnan Gu, Daxiang Dong, Jianmin Wu, Dawei Yin, Dou Shen\n- **Published:** arXiv:2605.05112\n\n**Key result:** Four independent measures of binary-reward learning signal under grouped rollouts all peak at pass-rate p=0.5:\n1. **Reward entropy:** H(p) = -p log p - (1-p) log(1-p), maximized at p=0.5\n2. **Group-filtering survival:** S_N(p) = 1 - p^N - (1-p)^N, maximized at p=0.5\n3. **RLOO advantage energy:** k(N-k)/(N-1)^2, maximized at k=N/2\n4. **Contrastive pair count:** k(N-k), maximized at k=N/2\n\nThey propose Prefix Sampling (PS) to steer skewed groups toward p=0.5. **Caveats:** scoped to binary-reward RLVR with grouped rollouts (N=8); does not claim global optimality across all curricula or hyperparameter schedules; evaluated on SWE-bench Verified and AIME 2025 only.\n\n**Important distinction:** Wilson's 85% rule and this paper's 50% rule are not contradictory -- they optimize different quantities (single-example gradient magnitude vs. group-level reward contrast in GRPO).\n\nSources:\n- [The Eighty Five Percent Rule - Nature Communications](https://www.nature.com/articles/s41467-019-12552-4)\n- [The Eighty Five Percent Rule - PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC6831579/)\n- [Rollout Pass-Rate Control - arXiv](https://arxiv.org/abs/2605.05112)\n- [Rollout Pass-Rate Control - HTML](https://arxiv.org/html/2605.05112v1)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a46cc12-5b1a-465a-bd10-cd7b48286860",
+            "isSidechain": true,
+            "agentId": "aedc97a984ac18058",
+            "requestId": "req_011CbVHnXLbVxLjQfMAS64kb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3b7aaf9b-e03d-4d7b-8324-3c8ef22b97f0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "3e2a6ee4-c608-4da9-8a29-ea30b57d8b30",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018mwSD3YBpqQtWHQVDNSUSW",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 522,
+                "cache_read_input_tokens": 13517,
+                "output_tokens": 835,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 522
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 835,
+                    "cache_read_input_tokens": 13517,
+                    "cache_creation_input_tokens": 522,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 522,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-details-on-two-papers-to-cite-them-accurately-1-wilson-et-al-2019-the-e.md"
+}

@@ -1,0 +1,7795 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-27 (UTC).** ## Original idea { "tit
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 114
+- **Recorded user turns:** 1
+- **Tool calls:** 35
+- **Original source:** `logs/chats/exported-trajectories/account-2/2f4846e0-c6ab-4a28-b8d4-16058867fd7f.jsonl`
+- **Structured JSON:** [`e278e05e8c770bb60f9f.json`](../../sessions/e2/e278e05e8c770bb60f9f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T21:33:01.872Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T21:33:01.872Z",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-27 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Routing for Hard Theorem Proving\",\n  \"core_problem\": \"RL-trained theorem provers suffer from strategy-level diversity collapse — converging to narrow proof strategies despite many mathematically valid approaches existing. While token-level and distribution-level diversity methods (α-DPG, UCPO, DyJR) partially address this, they cannot guarantee structural diversity in proof strategies. Current frontier systems decompose by task (LongCat-Flash-Prover: formalization/sketching/proving) or by role (Decoupled Reasoning and Proving: Reasoner/Prover), but no system decomposes by proof strategy — training experts explicitly specialized on induction vs. contradiction vs. construction within the proof-generation step itself. This strategy-level diversity gap becomes critical on hard, unsaturated benchmarks (FATE-H at 80%, FATE-X at 33%) where different problems demand fundamentally different proof approaches.\",\n  \"opportunity\": \"The benchmark landscape has shifted dramatically in early 2026: miniF2F is saturated (97.1%, LongCat-Flash-Prover) and PutnamBench is near-saturated (99.4%, Aleph/GPT-5.2; 88%, Seed-Prover 1.5). The new frontier is graduate-to-PhD-level benchmarks — FATE-H (best: 80%), FATE-X (best: 33%), FormalProofBench (best: 33.5%) — where massive headroom remains and problem diversity demands strategic flexibility. Meanwhile, diversity collapse research has matured: 'Assessing Diversity Collapse in Reasoning' provides concrete metrics (semantic diversity, operation diversity, RPD), and UCPO's +10% Pass@64 on AIME24 validates that diversity-aware RL yields concrete gains. Yet ALL existing diversity methods operate at the output-distribution level. The opportunity is architectural: train strategy-specialized LoRA experts (each dominant in one proof strategy family), route via verifier-informed signals, and show that strategic complementarity — different experts solving different hard problems — yields coverage gains on benchmarks where scale alone plateaus. This exploits a genuine gap: LongCat's task-level MoE, Seed-Prover 1.5's agentic pipeline, and Decoupled Reasoning's role separation all leave strategy-level specialization untouched.\",\n  \"landscape\": {\n    \"saturated_benchmarks\": \"miniF2F-test: LongCat-Flash-Prover 97.1% (72 attempts), BFS-Prover-V2 95.08%, Goedel-Prover-V2-8B 84.6% pass@32. PutnamBench: Aleph 99.4% (668/672, powered by GPT-5.2), Seed-Prover 1.5 88%. These benchmarks can no longer differentiate meaningful improvements.\",\n    \"frontier_benchmarks\": \"FATE-H (graduate-level algebra, 100 problems): Seed-Prover 1.5 achieves 80%, earlier SOTA was 3%. FATE-X (PhD-level, 100 problems): Seed-Prover 1.5 at 33%, earlier 0%. FormalProofBench (graduate-level, multiple topics): best 33.5%. These benchmarks have massive headroom and demand diverse proof strategies across algebra, analysis, topology.\",\n    \"task_level_decomposition\": \"LongCat-Flash-Prover (560B MoE, ~27B active) decomposes formal reasoning into three task-level experts — auto-formalization, sketch generation, full proof — trained via Hybrid-Experts Iteration Framework with HisPO for RL stabilization. Achieves 97.1% miniF2F, 41.5% PutnamBench. Critically, this is TASK-level specialization (each expert handles a different pipeline stage), not strategy-level specialization within proof generation.\",\n    \"role_level_decomposition\": \"Decoupled Reasoning and Proving (arXiv 2507.06804) separates a powerful general-purpose Reasoner (generates diverse strategic subgoal lemmas) from an efficient Prover (verifies and completes them). Solved 5 post-2000 IMO problems no prior open-source prover could. Again, ROLE-level decomposition — the Reasoner is general-purpose, not strategy-specialized.\",\n    \"diversity_methods\": \"α-DPG (ICLR 2026): pass@256 81.0% GRPO → 88.5% via α-divergence on Lean benchmark. UCPO (May 2026): conditional uniformity penalty, +10% Pass@64 on AIME24. DyJR (Mar 2026): dynamic Jensen-Shannon replay of early trajectories. STARS (ICLR 2026): Stiefel-manifold activation steering, training-free. 'Assessing Diversity Collapse in Reasoning' introduces semantic diversity, operation diversity, and Reasoning Path Divergence (RPD) metrics. All operate at token/distribution level, none at strategy level.\",\n    \"small_model_viability\": \"Goedel-Prover-V2-8B outperforms DeepSeek-Prover-V2-671B (80x larger) at pass@32 on miniF2F. QED-Nano (4B) competes with 120B+ models on olympiad proofs via rubric-based RL. LoRA MoE methods (SMoRA, SAMoRA) enable efficient specialization with only 12.5% active LoRA parameters per token.\",\n    \"structural_proof_metrics\": \"ProofFlow introduces ProofScore — a composite metric for syntactic correctness, semantic faithfulness, and structural fidelity via dependency graphs. PROMISE (Apr 2026) mines structural similarity over proof states and tactic-transition traces. MPS-Prover uses multi-perspective search with heuristic tactic effectiveness scoring. 3D-Prover uses DPP-based tactic filtering for step-level diversity.\",\n    \"tactic_analysis\": \"TacMiner (OOPSLA 2025) discovers reusable proof strategies via Tactic Dependence Graphs (TDGs), learning 3x more tactics than anti-unification baselines and reducing proof size by 26%. This validates that tactic patterns can be clustered into coherent strategy families.\",\n    \"gap\": \"No system trains proof-strategy-specialized experts — each trained on proofs dominated by a particular strategic approach (induction, contradiction, construction, case analysis, algebraic rewriting) — with verifier-informed routing for expert selection. Task-level decomposition (LongCat), role-level decomposition (DRP), and distribution-level diversity (α-DPG, UCPO, DyJR) leave this architectural dimension unexplored.\"\n  },\n  \"inspired_by\": \"Field guide gap 5 'Diversity collapse during SFT/RL training' + clear gap between task-level decomposition (LongCat), role-level decomposition (DRP), and the missing strategy-level decomposition + TacMiner's validation that tactic patterns form coherent reusable clusters + concrete diversity metrics from 'Assessing Diversity Collapse in Reasoning' + RocqStar's +20% from multi-agent planning debate\",\n  \"approach\": {\n    \"phase1_strategy_labeling\": \"Extract strategy-annotated proof data from Mathlib4 (~274K theorems). Use a two-stage labeling pipeline: (1) Rule-based primary strategy classification via top-level tactic pattern matching — proofs starting with `induction` → induction family, `by_contra` → contradiction family, `constructor`/`use`/`exact ⟨...⟩` → construction family, `rcases`/`cases` at top level → case-split family, `ring`/`field_simp`/`norm_num` chains → algebraic-rewrite family, `simp`/`omega`/`decide` one-liners → direct-computation family. (2) LLM-augmented soft classification for ambiguous proofs using Sonnet 4.6 batch API, outputting a probability distribution over strategy families rather than hard labels. Crucially, we use PRIMARY strategy labels — a proof using induction as the main structure with case analysis within the inductive step is labeled primary=induction, secondary=case_analysis. This addresses the valid concern about mixed strategies: we do not assume clean separation, only dominant-strategy identification. We will run a pilot study on 2000 Mathlib proofs measuring (a) agreement between rule-based and LLM classifiers (target: >0.75 Cohen's κ), (b) cluster separation via tactic-pattern embeddings (target: silhouette score >0.3), and (c) primary-strategy dominance (target: >70% of proofs have a single strategy contributing >60% of proof structure).\",\n    \"phase2_expert_training\": \"Fine-tune 5 lightweight LoRA expert modules on a shared Qwen3-8B backbone, each specialized on its primary-strategy subset. Use SAMoRA-style semantic-aware routing within the LoRA architecture, where each expert comprises rank-16 LoRA adapters applied to attention and FFN layers (~40M parameters per expert, ~200M total added). Each expert is trained via SFT on its strategy-family subset, with a small proportion (10%) of cross-strategy examples to prevent catastrophic forgetting of general proving ability. A shared 'generalist' adapter handles proofs that don't fit any strategy cleanly.\",\n    \"phase3_verifier_informed_routing\": \"At inference time, each expert proposes an informal decomposition plan (natural-language strategy description + sequence of have-lemma statements) and an initial proof sketch. A verifier-informed router scores each proposal using three signals: (1) Subgoal progress — fraction of proposed have-lemmas that individually type-check in Lean4 (necessary but not sufficient signal; we explicitly acknowledge this is a noisy proxy, not a 'perfect arbiter'). (2) Strategy coherence — does the proof sketch's tactic structure match the expert's declared strategy family? Measured via AST-level pattern matching. (3) Proof-state complexity reduction — does the proposed decomposition reduce the proof state's complexity (measured by goal term size after applying the first N tactics)? The router selects top-2 experts for full elaboration via best-of-N, with the verifier providing the terminal reward (proof completion).\",\n    \"phase4_rl_training\": \"Apply GRPO-based RL with a composite reward: R = R_completion + λ₁·R_faithfulness + λ₂·R_diversity. R_completion: binary proof completion verified by Lean4. R_faithfulness (Strategy Faithfulness Score): SFS = w₁·type_match + w₂·(1 - norm_edit_dist(plan_DAG, proof_DAG)), where type_match is a binary indicator that the proof's dominant top-level tactic matches the decomposition plan's declared strategy, and norm_edit_dist computes the normalized tree edit distance between the planned subgoal DAG and the actual proof's have-lemma dependency graph (inspired by ProofFlow's structural fidelity metric). R_diversity: a per-batch bonus for expert utilization entropy — penalizes batches where a single expert dominates, encouraging the router to maintain expert coverage. Regularize with α-divergence (α=0.5) against the SFT initialization to prevent collapse to a single dominant expert.\",\n    \"phase5_evaluation\": \"Evaluate on FATE-H (100 graduate-level problems), FATE-X (100 PhD-level problems), FormalProofBench, and miniF2F (as a sanity check, not primary). Key metrics: (1) Pass@k accuracy (k ∈ {8, 32, 64}) on each benchmark. (2) Strategy Entropy: Shannon entropy over strategy families among successful proofs — higher entropy means the system leverages diverse strategies. (3) Complementarity Score: fraction of problems uniquely solved by each expert (not solvable by any other expert alone). (4) Coverage Gain: |union of expert-solved problems| / |best single expert's solved problems| — measures how much the ensemble outperforms any individual strategy. (5) Reasoning Path Divergence (RPD) adapted from 'Assessing Diversity Collapse in Reasoning'. Primary hypothesis: on FATE-H, Strategy-MoE achieves 5-12% higher pass@32 than a same-compute single-strategy baseline (Goedel-Prover-V2-8B or equivalent), with coverage gain >1.15x and strategy entropy >1.5 bits (vs <0.8 bits for monolithic baselines).\"\n  },\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"2200–3200 H100-hours (strategy labeling pilot ~80h, strategy labeling pipeline ~120h, 5 expert LoRA SFT ~500h, router training ~200h, RL w/ Lean verifier ~1000h, evaluation on FATE-H/X/FPB ~300h)\",\n      \"timeline\": \"12–16 weeks (2 weeks pilot + data pipeline, 3 weeks expert SFT, 2 weeks router, 3 weeks RL, 2 weeks eval & ablations, 1-2 weeks writing)\",\n      \"estimated_gpu_cost\": \"$5,500–$8,000 at ~$2.50/H100-hr spot\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"1800–2600 H100-hours (LLM-assisted strategy labeling cuts annotation time 60%; human steers RL hyperparameters, pilot study design, and ablation priorities)\",\n      \"timeline\": \"10–13 weeks\",\n      \"claude_api_cost\": \"$900–$1,400 (strategy classification of ~120K proofs via Sonnet 4.6 batch API at 50% discount, pilot study analysis, ablation proposal, code scaffolding)\",\n      \"estimated_gpu_cost\": \"$4,500–$6,500\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"2800–4200 H100-hours (broader hyperparameter sweeps for α-divergence coefficient, expert count ablations, routing strategy comparisons)\",\n      \"timeline\": \"6–9 weeks wall-clock (high parallelism across experts and ablations)\",\n      \"claude_api_cost\": \"$2,200–$3,800 (extensive strategy annotation, automated ablation proposal, pilot study execution, paper drafting)\",\n      \"estimated_gpu_cost\": \"$7,000–$10,500\",\n      \"speed_bottleneck\": \"Lean4 kernel verification throughput during RL rollouts (~0.3–0.8s per tactic check); mitigated by batched async verification across 8–16 Lean worker processes per GPU node\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (abstracts Sep 19, full papers Sep 24, 2026) — PRIMARY, ~17 weeks from now, feasible with human-in-loop timeline\",\n    \"ICML 2027 (papers Jan 29, 2027) — BACKUP, ~35 weeks, very comfortable\",\n    \"NeurIPS 2027 (papers May 16, 2027) — FALLBACK if major revisions needed\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"LongCat-Flash-Prover: Advancing Native Formal Reasoning via Agentic Tool-Integrated Reinforcement Learning (arXiv 2603.21065, Mar 2026) — 560B MoE with TASK-level expert specialization (formalization/sketching/proving), 97.1% miniF2F\",\n    \"Towards Solving More Challenging IMO Problems via Decoupled Reasoning and Proving (arXiv 2507.06804) — ROLE-level decomposition (Reasoner/Prover), solves 5 hard IMO problems\",\n    \"Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience (arXiv 2512.17260) — Agentic RL, 88% PutnamBench, 80% FATE-H, 33% FATE-X\",\n    \"Whatever Remains Must Be True: Filtering Drives Diversity Collapse in Reinforcement Learning with Verifiable Reward (ICLR 2026) — α-divergence family for precision-diversity tradeoff\",\n    \"Assessing Diversity Collapse in Reasoning (2026) — Semantic diversity, operation diversity, RPD metrics for quantifying diversity collapse\",\n    \"Uniform-Correct Policy Optimization: Breaking RLVR's Indifference to Diversity (arXiv 2605.00365, May 2026) — Conditional uniformity penalty, +10% Pass@64 AIME24\",\n    \"FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels (arXiv 2511.02872) — Graduate/PhD-level benchmark, massive headroom\",\n    \"FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified? (arXiv 2603.26996, Mar 2026) — Graduate-level benchmark, best 33.5%\",\n    \"ProofFlow: A Dependency Graph Approach to Faithful Proof Autoformalization (arXiv 2510.15981) — ProofScore metric for structural fidelity\",\n    \"Automated Discovery of Tactic Libraries for Interactive Theorem Proving (OOPSLA 2025) — TacMiner validates tactic-pattern clustering into reusable strategies\",\n    \"SAMoRA: Semantic-Aware Mixture of LoRA Experts for Task-Adaptive Learning (arXiv 2604.19048) — Efficient LoRA MoE routing architecture\",\n    \"QED-Nano: Teaching a Tiny Model to Prove Hard Theorems (arXiv 2604.04898, Apr 2026) — 4B model competitive with 120B+ via rubric-based RL\",\n    \"Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction (arXiv 2508.03613) — 8B model outperforms 671B at pass@32\",\n    \"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition (arXiv 2025)\",\n    \"RocqStar: Leveraging Similarity-driven Retrieval and Agentic Systems for Rocq Generation (arXiv 2025) — +20% from multi-agent planning debate\",\n    \"MPS-Prover: Advancing Stepwise Theorem Proving by Multi-Perspective Search and Data Curation (NeurIPS 2025) — Multi-perspective tactic selection with heuristic diversity\",\n    \"3D-Prover: Diversity Driven Theorem Proving With Determinantal Point Processes (arXiv 2024)\",\n    \"DyJR: Preserving Diversity in Reinforcement Learning with Verifiable Rewards via Dynamic Jensen-Shannon Replay (arXiv 2026)\",\n    \"SD-MoE: Spectral Decomposition for Effective Expert Specialization (arXiv 2026)\",\n    \"STARS: Exploring Diverse Generation Paths via Inference-time Stiefel Activation Steering (ICLR 2026)\",\n    \"Formal Theorem Proving by Rewarding LLMs to Decompose Proofs Hierarchically (arXiv 2411.01829)\",\n    \"PROMISE: Proof Automation as Structural Imitation of Human Reasoning (arXiv 2604.05399, Apr 2026)\",\n    \"Aristotle: IMO-level Automated Theorem Proving (arXiv 2510.01346) — 200B+ parameter system, gold-medal IMO 2025\"\n  ],\n  \"description\": \"We propose Strategy-MoE, a mixture-of-experts architecture where each expert is explicitly trained on proofs dominated by a distinct proof-strategy family (induction, contradiction, construction, case analysis, algebraic rewriting), with verifier-informed routing that exploits Lean4's feedback as a noisy but useful signal for expert selection. Our key insight is that existing frontier systems decompose theorem proving by task (LongCat-Flash-Prover: formalization → sketching → proving) or by role (Decoupled Reasoning and Proving: Reasoner → Prover), but none decompose by proof strategy within the proof-generation step itself. We address strategy-level diversity collapse — a deeper problem than the token-level collapse targeted by α-DPG, UCPO, and DyJR — by structurally encoding strategic diversity into the model architecture.\\n\\nWe extract primary-strategy labels from Mathlib4's ~274K theorems via heuristic tactic-pattern matching augmented by LLM soft classification, validated through a pilot study measuring inter-classifier agreement and cluster separation. We train per-strategy LoRA experts on a Qwen3-8B backbone using SAMoRA-style semantic-aware routing (~200M total added parameters), and implement a verifier-informed routing mechanism where each expert's decomposition sketch is scored by three signals: Lean4 subgoal type-checking progress, strategy-coherence via AST pattern matching, and proof-state complexity reduction. RL training uses GRPO with a composite reward combining proof completion, a concretely-defined Strategy Faithfulness Score (plan-proof DAG edit distance + strategy type match), and an expert-utilization entropy bonus, regularized by α-divergence.\\n\\nCritically, we target benchmarks with massive headroom — FATE-H (graduate-level, best 80%), FATE-X (PhD-level, best 33%), and FormalProofBench (best 33.5%) — where strategic diversity should matter most, rather than saturated benchmarks (miniF2F 97.1%, PutnamBench 99.4%). We hypothesize 5–12% pass@32 improvement on FATE-H over same-compute monolithic baselines, with coverage gain >1.15x (union of expert solutions exceeds best single expert) and strategy entropy >1.5 bits among successful proofs. This work establishes strategy-level decomposition as a new architectural dimension for theorem proving, complementary to existing task-level and role-level approaches.\",\n  \"project_name\": \"strat_moe_verifier_routing\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"issue_1_miniF2F_saturation\": \"ADDRESSED (major). miniF2F is now 97.1% (LongCat) and PutnamBench is 99.4% (Aleph). Both are dropped as primary benchmarks. New primary targets: FATE-H (80% ceiling), FATE-X (33% ceiling), FormalProofBench (33.5% ceiling) — all with massive headroom where strategy diversity matters most.\",\n    \"issue_2_LongCat_missing\": \"ADDRESSED. LongCat-Flash-Prover thoroughly analyzed. Key differentiation: LongCat does TASK-level decomposition (formalization/sketching/proving experts), we do STRATEGY-level decomposition within proof generation. These are orthogonal and potentially complementary.\",\n    \"issue_3_strategy_classification_feasibility\": \"ADDRESSED. Reframed from mutually exclusive families to PRIMARY strategy labels with soft multi-label support. Added concrete pilot study protocol (2000 proofs, Cohen's κ >0.75 target, silhouette score >0.3 target, primary dominance >70% target). TacMiner (OOPSLA 2025) validates that tactic patterns form coherent clusterable strategies.\",\n    \"issue_4_AAAI_infeasible\": \"ADDRESSED. AAAI 2027 dropped. Primary target: ICLR 2027 (Sep 19/24, ~17 weeks, feasible). Backup: ICML 2027 (Jan 29, ~35 weeks). Fallback: NeurIPS 2027 (May 16, ~52 weeks). ICLR 2027 dates verified via trybibby.com conference deadlines tracker.\",\n    \"issue_5_ICLR_dates_unverified\": \"ADDRESSED. ICLR 2027 dates (abstracts Sep 19, papers Sep 24, 2026) verified via trybibby.com. Note: while sourced from a third-party tracker rather than the official ICLR website (which has not yet published the 2027 CFP), these dates are consistent with ICLR's historical pattern.\",\n    \"issue_6_verifier_overstatement\": \"ADDRESSED. 'Perfect arbiter' language completely removed. Reframed as 'verifier-informed routing' with explicit acknowledgment that subgoal type-checking is a 'noisy but useful signal' and 'necessary but not sufficient.' Added two additional routing signals (strategy coherence via AST matching, proof-state complexity reduction) to complement the noisy verifier signal.\",\n    \"issue_7_scale_mismatch\": \"ADDRESSED. Added explicit discussion of small-model viability: Goedel-V2-8B outperforms DeepSeek-V2-671B (80x larger) at pass@32; QED-Nano (4B) competes with 120B+ models. Our LoRA MoE approach adds only ~200M parameters total. The scale argument is that specialized small models can outperform generalist large models on specific capabilities.\",\n    \"issue_8_DRP_missing\": \"ADDRESSED. 'Towards Solving More Challenging IMO Problems via Decoupled Reasoning and Proving' (arXiv 2507.06804) added to landscape and references. Explicitly differentiated: DRP does ROLE-level decomposition (general Reasoner + specialized Prover), we do STRATEGY-level decomposition within proof generation.\",\n    \"issue_9_faithfulness_underspecified\": \"ADDRESSED. Strategy Faithfulness Score (SFS) now concretely defined: SFS = w₁·type_match + w₂·(1 - norm_edit_dist(plan_DAG, proof_DAG)). type_match: binary indicator that proof's dominant top-level tactic matches declared strategy. norm_edit_dist: normalized tree edit distance between planned subgoal DAG and actual proof's have-lemma dependency graph, inspired by ProofFlow's structural fidelity metric.\",\n    \"additional_improvements\": [\n      \"Added 9 new references including LongCat-Flash-Prover, DRP, Seed-Prover 1.5, FATE, FormalProofBench, ProofFlow, TacMiner, SAMoRA, QED-Nano, PROMISE, Aristotle, MPS-Prover, and 'Assessing Diversity Collapse in Reasoning'\",\n      \"Reframed improvement target from '3-8% over GP-V2-8B on miniF2F' to '5-12% on FATE-H over same-compute baselines with coverage gain >1.15x and strategy entropy >1.5 bits'\",\n      \"Added novel evaluation metrics: Complementarity Score, Coverage Gain, RPD (from diversity collapse literature), and Strategy Entropy\",\n      \"Added pilot study protocol as a go/no-go validation gate before full training\",\n      \"Introduced three-signal routing (subgoal progress + strategy coherence + complexity reduction) instead of single verifier signal\",\n      \"Added expert-utilization entropy bonus in RL reward to prevent expert collapse\",\n      \"Referenced SAMoRA-style LoRA MoE architecture for parameter efficiency\"\n    ]\n  }\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"SIGNIFICANT: 'The Myth of Expert Specialization in MoEs' (arXiv 2604.09780, April 2026) shows that MoE routing reflects hidden-state geometry, not domain expertise, and that 'specialization patterns resist human interpretation.' This directly challenges the core thesis that training strategy-partitioned LoRA experts will yield meaningfully different proof strategies. The proposal must engage with this finding and explain why explicit data-partitioned training differs from emergent specialization — possibly connecting to SD-MoE's spectral decomposition (already cited but not linked to this concern).\", \"SIGNIFICANT: The baseline performance on FATE-H for an 8B model at pass@32 is completely unspecified. Goedel-Prover-V2-8B does not report FATE-H results. The FATE paper shows 3% pass@64 as the best result (pre-agentic systems). The claimed '5-12% improvement' is meaningless without a concrete baseline number. Run a preliminary evaluation or cite comparable 8B results on FATE-H.\", \"MODERATE: Missing key concurrent diversity methods from the landscape: GCPO (arXiv 2605.11461, May 2026) proposes team-level cooperative credit assignment for diversity — conceptually parallel to expert complementarity. SetPO (arXiv 2602.01062, Feb 2026) proposes set-level policy optimization. 'Diversity-Aware Policy Optimization' (arXiv 2505.23433, May 2026) proposes token-level diversity measures. These should be discussed as distribution-level alternatives.\", \"MODERATE: 'Adaptive Proof Refinement with LLM-Guided Strategy Selection' (Adapt, arXiv 2510.25103) dynamically selects proof refinement strategies based on proof state — the most directly related work on strategy selection for theorem proving. Though it uses a single LLM (not specialized experts) and targets Coq (not Lean), it must be cited and differentiated.\", \"MINOR: HILBERT (ICLR 2026) achieves 99.2% on miniF2F (not 97.1% as implied by calling LongCat the SOTA). While the saturation argument is even stronger, the landscape should report the actual current SOTA.\", \"MINOR: Seed-Prover 1.5's 80% on FATE-H uses ~10 H20-days per problem (an agentic pipeline with ~10 search calls per trajectory). The proposal should explicitly contextualize this: its improvements are claimed at fixed moderate compute (pass@32), not competing with agentic systems spending orders of magnitude more compute per problem.\"]\nFeedback: The revision quality is excellent — all 9 Round 1 issues were substantively addressed. The core novelty (strategy-level MoE decomposition) remains genuine after extensive search. However, two new issues emerged that need attention: (1) 'The Myth of Expert Specialization in MoEs' (April 2026) provides empirical and theoretical arguments that MoE routing reflects geometry, not domain expertise. Your proposal MUST engage with this — argue that explicit data-partitioned LoRA training with strategy-specific loss (your SFS reward) creates a fundamentally different training signal from emergent routing, and connect to SD-MoE's spectral decomposition as a mitigation. (2) Specify the actual FATE-H baseline for 8B models. If Goedel-V2-8B scores ~5-10% on FATE-H at pass@32, then '5-12% improvement' means reaching 10-22% — a meaningful but modest gain that should be honestly positioned against Seed-Prover 1.5's 80% (achieved with 100x more compute per problem). This honest positioning could actually strengthen the paper by demonstrating compute-efficient strategy diversity. Additionally: add GCPO, SetPO, and Adapt to the related work; note HILBERT's 99.2% miniF2F SOTA; and clarify the Seed-Prover compute context. These are all straightforward revisions that should take one round to address.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T21:33:01.875Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T21:33:01.875Z",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+## Round 1
+
+112 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T21:33:01.936Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-27 (UTC).**
+
+## Original idea
+{
+  "title": "Strategy-Specialized Decomposition Experts with Verifier-Informed Routing for Hard Theorem Proving",
+  "core_problem": "RL-trained theorem provers suffer from strategy-level diversity collapse — converging to narrow proof strategies despite many mathematically valid approaches existing. While token-level and distribution-level diversity methods (α-DPG, UCPO, DyJR) partially address this, they cannot guarantee structural diversity in proof strategies. Current frontier systems decompose by task (LongCat-Flash-Prover: formalization/sketching/proving) or by role (Decoupled Reasoning and Proving: Reasoner/Prover), but no system decomposes by proof strategy — training experts explicitly specialized on induction vs. contradiction vs. construction within the proof-generation step itself. This strategy-level diversity gap becomes critical on hard, unsaturated benchmarks (FATE-H at 80%, FATE-X at 33%) where different problems demand fundamentally different proof approaches.",
+  "opportunity": "The benchmark landscape has shifted dramatically in early 2026: miniF2F is saturated (97.1%, LongCat-Flash-Prover) and PutnamBench is near-saturated (99.4%, Aleph/GPT-5.2; 88%, Seed-Prover 1.5). The new frontier is graduate-to-PhD-level benchmarks — FATE-H (best: 80%), FATE-X (best: 33%), FormalProofBench (best: 33.5%) — where massive headroom remains and problem diversity demands strategic flexibility. Meanwhile, diversity collapse research has matured: 'Assessing Diversity Collapse in Reasoning' provides concrete metrics (semantic diversity, operation diversity, RPD), and UCPO's +10% Pass@64 on AIME24 validates that diversity-aware RL yields concrete gains. Yet ALL existing diversity methods operate at the output-distribution level. The opportunity is architectural: train strategy-specialized LoRA experts (each dominant in one proof strategy family), route via verifier-informed signals, and show that strategic complementarity — different experts solving different hard problems — yields coverage gains on benchmarks where scale alone plateaus. This exploits a genuine gap: LongCat's task-level MoE, Seed-Prover 1.5's agentic pipeline, and Decoupled Reasoning's role separation all leave strategy-level specialization untouched.",
+  "landscape": {
+    "saturated_benchmarks": "miniF2F-test: LongCat-Flash-Prover 97.1% (72 attempts), BFS-Prover-V2 95.08%, Goedel-Prover-V2-8B 84.6% pass@32. PutnamBench: Aleph 99.4% (668/672, powered by GPT-5.2), Seed-Prover 1.5 88%. These benchmarks can no longer differentiate meaningful improvements.",
+    "frontier_benchmarks": "FATE-H (graduate-level algebra, 100 problems): Seed-Prover 1.5 achieves 80%, earlier SOTA was 3%. FATE-X (PhD-level, 100 problems): Seed-Prover 1.5 at 33%, earlier 0%. FormalProofBench (graduate-level, multiple topics): best 33.5%. These benchmarks have massive headroom and demand diverse proof strategies across algebra, analysis, topology.",
+    "task_level_decomposition": "LongCat-Flash-Prover (560B MoE, ~27B active) decomposes formal reasoning into three task-level experts — auto-formalization, sketch generation, full proof — trained via Hybrid-Experts Iteration Framework with HisPO for RL stabilization. Achieves 97.1% miniF2F, 41.5% PutnamBench. Critically, this is TASK-level specialization (each expert handles a different pipeline stage), not strategy-level specialization within proof generation.",
+    "role_level_decomposition": "Decoupled Reasoning and Proving (arXiv 2507.06804) separates a powerful general-purpose Reasoner (generates diverse strategic subgoal lemmas) from an efficient Prover (verifies and completes them). Solved 5 post-2000 IMO problems no prior open-source prover could. Again, ROLE-level decomposition — the Reasoner is general-purpose, not strategy-specialized.",
+    "diversity_methods": "α-DPG (ICLR 2026): pass@256 81.0% GRPO → 88.5% via α-divergence on Lean benchmark. UCPO (May 2026): conditional uniformity penalty, +10% Pass@64 on AIME24. DyJR (Mar 2026): dynamic Jensen-Shannon replay of early trajectories. STARS (ICLR 2026): Stiefel-manifold activation steering, training-free. 'Assessing Diversity Collapse in Reasoning' introduces semantic diversity, operation diversity, and Reasoning Path Divergence (RPD) metrics. All operate at token/distribution level, none at strategy level.",
+    "small_model_viability": "Goedel-Prover-V2-8B outperforms DeepSeek-Prover-V2-671B (80x larger) at pass@32 on miniF2F. QED-Nano (4B) competes with 120B+ models on olympiad proofs via rubric-based RL. LoRA MoE methods (SMoRA, SAMoRA) enable efficient specialization with only 12.5% active LoRA parameters per token.",
+    "structural_proof_metrics": "ProofFlow introduces ProofScore — a composite metric for syntactic correctness, semantic faithfulness, and structural fidelity via dependency graphs. PROMISE (Apr 2026) mines structural similarity over proof states and tactic-transition traces. MPS-Prover uses multi-perspective search with heuristic tactic effectiveness scoring. 3D-Prover uses DPP-based tactic filtering for step-level diversity.",
+    "tactic_analysis": "TacMiner (OOPSLA 2025) discovers reusable proof strategies via Tactic Dependence Graphs (TDGs), learning 3x more tactics than anti-unification baselines and reducing proof size by 26%. This validates that tactic patterns can be clustered into coherent strategy families.",
+    "gap": "No system trains proof-strategy-specialized experts — each trained on proofs dominated by a particular strategic approach (induction, contradiction, construction, case analysis, algebraic rewriting) — with verifier-informed routing for expert selection. Task-level decomposition (LongCat), role-level decomposition (DRP), and distribution-level diversity (α-DPG, UCPO, DyJR) leave this architectural dimension unexplored."
+  },
+  "inspired_by": "Field guide gap 5 'Diversity collapse during SFT/RL training' + clear gap between task-level decomposition (LongCat), role-level decomposition (DRP), and the missing strategy-level decomposition + TacMiner's validation that tactic patterns form coherent reusable clusters + concrete diversity metrics from 'Assessing Diversity Collapse in Reasoning' + RocqStar's +20% from multi-agent planning debate",
+  "approach": {
+    "phase1_strategy_labeling": "Extract strategy-annotated proof data from Mathlib4 (~274K theorems). Use a two-stage labeling pipeline: (1) Rule-based primary strategy classification via top-level tactic pattern matching — proofs starting with `induction` → induction family, `by_contra` → contradiction family, `constructor`/`use`/`exact ⟨...⟩` → construction family, `rcases`/`cases` at top level → case-split family, `ring`/`field_simp`/`norm_num` chains → algebraic-rewrite family, `simp`/`omega`/`decide` one-liners → direct-computation family. (2) LLM-augmented soft classification for ambiguous proofs using Sonnet 4.6 batch API, outputting a probability distribution over strategy families rather than hard labels. Crucially, we use PRIMARY strategy labels — a proof using induction as the main structure with case analysis within the inductive step is labeled primary=induction, secondary=case_analysis. This addresses the valid concern about mixed strategies: we do not assume clean separation, only dominant-strategy identification. We will run a pilot study on 2000 Mathlib proofs measuring (a) agreement between rule-based and LLM classifiers (target: >0.75 Cohen's κ), (b) cluster separation via tactic-pattern embeddings (target: silhouette score >0.3), and (c) primary-strategy dominance (target: >70% of proofs have a single strategy contributing >60% of proof structure).",
+    "phase2_expert_training": "Fine-tune 5 lightweight LoRA expert modules on a shared Qwen3-8B backbone, each specialized on its primary-strategy subset. Use SAMoRA-style semantic-aware routing within the LoRA architecture, where each expert comprises rank-16 LoRA adapters applied to attention and FFN layers (~40M parameters per expert, ~200M total added). Each expert is trained via SFT on its strategy-family subset, with a small proportion (10%) of cross-strategy examples to prevent catastrophic forgetting of general proving ability. A shared 'generalist' adapter handles proofs that don't fit any strategy cleanly.",
+    "phase3_verifier_informed_routing": "At inference time, each expert proposes an informal decomposition plan (natural-language strategy description + sequence of have-lemma statements) and an initial proof sketch. A verifier-informed router scores each proposal using three signals: (1) Subgoal progress — fraction of proposed have-lemmas that individually type-check in Lean4 (necessary but not sufficient signal; we explicitly acknowledge this is a noisy proxy, not a 'perfect arbiter'). (2) Strategy coherence — does the proof sketch's tactic structure match the expert's declared strategy family? Measured via AST-level pattern matching. (3) Proof-state complexity reduction — does the proposed decomposition reduce the proof state's complexity (measured by goal term size after applying the first N tactics)? The router selects top-2 experts for full elaboration via best-of-N, with the verifier providing the terminal reward (proof completion).",
+    "phase4_rl_training": "Apply GRPO-based RL with a composite reward: R = R_completion + λ₁·R_faithfulness + λ₂·R_diversity. R_completion: binary proof completion verified by Lean4. R_faithfulness (Strategy Faithfulness Score): SFS = w₁·type_match + w₂·(1 - norm_edit_dist(plan_DAG, proof_DAG)), where type_match is a binary indicator that the proof's dominant top-level tactic matches the decomposition plan's declared strategy, and norm_edit_dist computes the normalized tree edit distance between the planned subgoal DAG and the actual proof's have-lemma dependency graph (inspired by ProofFlow's structural fidelity metric). R_diversity: a per-batch bonus for expert utilization entropy — penalizes batches where a single expert dominates, encouraging the router to maintain expert coverage. Regularize with α-divergence (α=0.5) against the SFT initialization to prevent collapse to a single dominant expert.",
+    "phase5_evaluation": "Evaluate on FATE-H (100 graduate-level problems), FATE-X (100 PhD-level problems), FormalProofBench, and miniF2F (as a sanity check, not primary). Key metrics: (1) Pass@k accuracy (k ∈ {8, 32, 64}) on each benchmark. (2) Strategy Entropy: Shannon entropy over strategy families among successful proofs — higher entropy means the system leverages diverse strategies. (3) Complementarity Score: fraction of problems uniquely solved by each expert (not solvable by any other expert alone). (4) Coverage Gain: |union of expert-solved problems| / |best single expert's solved problems| — measures how much the ensemble outperforms any individual strategy. (5) Reasoning Path Divergence (RPD) adapted from 'Assessing Diversity Collapse in Reasoning'. Primary hypothesis: on FATE-H, Strategy-MoE achieves 5-12% higher pass@32 than a same-compute single-strategy baseline (Goedel-Prover-V2-8B or equivalent), with coverage gain >1.15x and strategy entropy >1.5 bits (vs <0.8 bits for monolithic baselines)."
+  },
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "2200–3200 H100-hours (strategy labeling pilot ~80h, strategy labeling pipeline ~120h, 5 expert LoRA SFT ~500h, router training ~200h, RL w/ Lean verifier ~1000h, evaluation on FATE-H/X/FPB ~300h)",
+      "timeline": "12–16 weeks (2 weeks pilot + data pipeline, 3 weeks expert SFT, 2 weeks router, 3 weeks RL, 2 weeks eval & ablations, 1-2 weeks writing)",
+      "estimated_gpu_cost": "$5,500–$8,000 at ~$2.50/H100-hr spot"
+    },
+    "human_in_loop": {
+      "gpu_hours": "1800–2600 H100-hours (LLM-assisted strategy labeling cuts annotation time 60%; human steers RL hyperparameters, pilot study design, and ablation priorities)",
+      "timeline": "10–13 weeks",
+      "claude_api_cost": "$900–$1,400 (strategy classification of ~120K proofs via Sonnet 4.6 batch API at 50% discount, pilot study analysis, ablation proposal, code scaffolding)",
+      "estimated_gpu_cost": "$4,500–$6,500"
+    },
+    "auto_research": {
+      "gpu_hours": "2800–4200 H100-hours (broader hyperparameter sweeps for α-divergence coefficient, expert count ablations, routing strategy comparisons)",
+      "timeline": "6–9 weeks wall-clock (high parallelism across experts and ablations)",
+      "claude_api_cost": "$2,200–$3,800 (extensive strategy annotation, automated ablation proposal, pilot study execution, paper drafting)",
+      "estimated_gpu_cost": "$7,000–$10,500",
+      "speed_bottleneck": "Lean4 kernel verification throughput during RL rollouts (~0.3–0.8s per tactic check); mitigated by batched async verification across 8–16 Lean worker processes per GPU node"
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (abstracts Sep 19, full papers Sep 24, 2026) — PRIMARY, ~17 weeks from now, feasible with human-in-loop timeline",
+    "ICML 2027 (papers Jan 29, 2027) — BACKUP, ~35 weeks, very comfortable",
+    "NeurIPS 2027 (papers May 16, 2027) — FALLBACK if major revisions needed"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "LongCat-Flash-Prover: Advancing Native Formal Reasoning via Agentic Tool-Integrated Reinforcement Learning (arXiv 2603.21065, Mar 2026) — 560B MoE with TASK-level expert specialization (formalization/sketching/proving), 97.1% miniF2F",
+    "Towards Solving More Challenging IMO Problems via Decoupled Reasoning and Proving (arXiv 2507.06804) — ROLE-level decomposition (Reasoner/Prover), solves 5 hard IMO problems",
+    "Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience (arXiv 2512.17260) — Agentic RL, 88% PutnamBench, 80% FATE-H, 33% FATE-X",
+    "Whatever Remains Must Be True: Filtering Drives Diversity Collapse in Reinforcement Learning with Verifiable Reward (ICLR 2026) — α-divergence family for precision-diversity tradeoff",
+    "Assessing Diversity Collapse in Reasoning (2026) — Semantic diversity, operation diversity, RPD metrics for quantifying diversity collapse",
+    "Uniform-Correct Policy Optimization: Breaking RLVR's Indifference to Diversity (arXiv 2605.00365, May 2026) — Conditional uniformity penalty, +10% Pass@64 AIME24",
+    "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels (arXiv 2511.02872) — Graduate/PhD-level benchmark, massive headroom",
+    "FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified? (arXiv 2603.26996, Mar 2026) — Graduate-level benchmark, best 33.5%",
+    "ProofFlow: A Dependency Graph Approach to Faithful Proof Autoformalization (arXiv 2510.15981) — ProofScore metric for structural fidelity",
+    "Automated Discovery of Tactic Libraries for Interactive Theorem Proving (OOPSLA 2025) — TacMiner validates tactic-pattern clustering into reusable strategies",
+    "SAMoRA: Semantic-Aware Mixture of LoRA Experts for Task-Adaptive Learning (arXiv 2604.19048) — Efficient LoRA MoE routing architecture",
+    "QED-Nano: Teaching a Tiny Model to Prove Hard Theorems (arXiv 2604.04898, Apr 2026) — 4B model competitive with 120B+ via rubric-based RL",
+    "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction (arXiv 2508.03613) — 8B model outperforms 671B at pass@32",
+    "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition (arXiv 2025)",
+    "RocqStar: Leveraging Similarity-driven Retrieval and Agentic Systems for Rocq Generation (arXiv 2025) — +20% from multi-agent planning debate",
+    "MPS-Prover: Advancing Stepwise Theorem Proving by Multi-Perspective Search and Data Curation (NeurIPS 2025) — Multi-perspective tactic selection with heuristic diversity",
+    "3D-Prover: Diversity Driven Theorem Proving With Determinantal Point Processes (arXiv 2024)",
+    "DyJR: Preserving Diversity in Reinforcement Learning with Verifiable Rewards via Dynamic Jensen-Shannon Replay (arXiv 2026)",
+    "SD-MoE: Spectral Decomposition for Effective Expert Specialization (arXiv 2026)",
+    "STARS: Exploring Diverse Generation Paths via Inference-time Stiefel Activation Steering (ICLR 2026)",
+    "Formal Theorem Proving by Rewarding LLMs to Decompose Proofs Hierarchically (arXiv 2411.01829)",
+    "PROMISE: Proof Automation as Structural Imitation of Human Reasoning (arXiv 2604.05399, Apr 2026)",
+    "Aristotle: IMO-level Automated Theorem Proving (arXiv 2510.01346) — 200B+ parameter system, gold-medal IMO 2025"
+  ],
+  "description": "We propose Strategy-MoE, a mixture-of-experts architecture where each expert is explicitly trained on proofs dominated by a distinct proof-strategy family (induction, contradiction, construction, case analysis, algebraic rewriting), with verifier-informed routing that exploits Lean4's feedback as a noisy but useful signal for expert selection. Our key insight is that existing frontier systems decompose theorem proving by task (LongCat-Flash-Prover: formalization → sketching → proving) or by role (Decoupled Reasoning and Proving: Reasoner → Prover), but none decompose by proof strategy within the proof-generation step itself. We address strategy-level diversity collapse — a deeper problem than the token-level collapse targeted by α-DPG, UCPO, and DyJR — by structurally encoding strategic diversity into the model architecture.\n\nWe extract primary-strategy labels from Mathlib4's ~274K theorems via heuristic tactic-pattern matching augmented by LLM soft classification, validated through a pilot study measuring inter-classifier agreement and cluster separation. We train per-strategy LoRA experts on a Qwen3-8B backbone using SAMoRA-style semantic-aware routing (~200M total added parameters), and implement a verifier-informed routing mechanism where each expert's decomposition sketch is scored by three signals: Lean4 subgoal type-checking progress, strategy-coherence via AST pattern matching, and proof-state complexity reduction. RL training uses GRPO with a composite reward combining proof completion, a concretely-defined Strategy Faithfulness Score (plan-proof DAG edit distance + strategy type match), and an expert-utilization entropy bonus, regularized by α-divergence.\n\nCritically, we target benchmarks with massive headroom — FATE-H (graduate-level, best 80%), FATE-X (PhD-level, best 33%), and FormalProofBench (best 33.5%) — where strategic diversity should matter most, rather than saturated benchmarks (miniF2F 97.1%, PutnamBench 99.4%). We hypothesize 5–12% pass@32 improvement on FATE-H over same-compute monolithic baselines, with coverage gain >1.15x (union of expert solutions exceeds best single expert) and strategy entropy >1.5 bits among successful proofs. This work establishes strategy-level decomposition as a new architectural dimension for theorem proving, complementary to existing task-level and role-level approaches.",
+  "project_name": "strat_moe_verifier_routing",
+  "source": "web_research",
+  "revision_notes": {
+    "issue_1_miniF2F_saturation": "ADDRESSED (major). miniF2F is now 97.1% (LongCat) and PutnamBench is 99.4% (Aleph). Both are dropped as primary benchmarks. New primary targets: FATE-H (80% ceiling), FATE-X (33% ceiling), FormalProofBench (33.5% ceiling) — all with massive headroom where strategy diversity matters most.",
+    "issue_2_LongCat_missing": "ADDRESSED. LongCat-Flash-Prover thoroughly analyzed. Key differentiation: LongCat does TASK-level decomposition (formalization/sketching/proving experts), we do STRATEGY-level decomposition within proof generation. These are orthogonal and potentially complementary.",
+    "issue_3_strategy_classification_feasibility": "ADDRESSED. Reframed from mutually exclusive families to PRIMARY strategy labels with soft multi-label support. Added concrete pilot study protocol (2000 proofs, Cohen's κ >0.75 target, silhouette score >0.3 target, primary dominance >70% target). TacMiner (OOPSLA 2025) validates that tactic patterns form coherent clusterable strategies.",
+    "issue_4_AAAI_infeasible": "ADDRESSED. AAAI 2027 dropped. Primary target: ICLR 2027 (Sep 19/24, ~17 weeks, feasible). Backup: ICML 2027 (Jan 29, ~35 weeks). Fallback: NeurIPS 2027 (May 16, ~52 weeks). ICLR 2027 dates verified via trybibby.com conference deadlines tracker.",
+    "issue_5_ICLR_dates_unverified": "ADDRESSED. ICLR 2027 dates (abstracts Sep 19, papers Sep 24, 2026) verified via trybibby.com. Note: while sourced from a third-party tracker rather than the official ICLR website (which has not yet published the 2027 CFP), these dates are consistent with ICLR's historical pattern.",
+    "issue_6_verifier_overstatement": "ADDRESSED. 'Perfect arbiter' language completely removed. Reframed as 'verifier-informed routing' with explicit acknowledgment that subgoal type-checking is a 'noisy but useful signal' and 'necessary but not sufficient.' Added two additional routing signals (strategy coherence via AST matching, proof-state complexity reduction) to complement the noisy verifier signal.",
+    "issue_7_scale_mismatch": "ADDRESSED. Added explicit discussion of small-model viability: Goedel-V2-8B outperforms DeepSeek-V2-671B (80x larger) at pass@32; QED-Nano (4B) competes with 120B+ models. Our LoRA MoE approach adds only ~200M parameters total. The scale argument is that specialized small models can outperform generalist large models on specific capabilities.",
+    "issue_8_DRP_missing": "ADDRESSED. 'Towards Solving More Challenging IMO Problems via Decoupled Reasoning and Proving' (arXiv 2507.06804) added to landscape and references. Explicitly differentiated: DRP does ROLE-level decomposition (general Reasoner + specialized Prover), we do STRATEGY-level decomposition within proof generation.",
+    "issue_9_faithfulness_underspecified": "ADDRESSED. Strategy Faithfulness Score (SFS) now concretely defined: SFS = w₁·type_match + w₂·(1 - norm_edit_dist(plan_DAG, proof_DAG)). type_match: binary indicator that proof's dominant top-level tactic matches declared strategy. norm_edit_dist: normalized tree edit distance between planned subgoal DAG and actual proof's have-lemma dependency graph, inspired by ProofFlow's structural fidelity metric.",
+    "additional_improvements": [
+      "Added 9 new references including LongCat-Flash-Prover, DRP, Seed-Prover 1.5, FATE, FormalProofBench, ProofFlow, TacMiner, SAMoRA, QED-Nano, PROMISE, Aristotle, MPS-Prover, and 'Assessing Diversity Collapse in Reasoning'",
+      "Reframed improvement target from '3-8% over GP-V2-8B on miniF2F' to '5-12% on FATE-H over same-compute baselines with coverage gain >1.15x and strategy entropy >1.5 bits'",
+      "Added novel evaluation metrics: Complementarity Score, Coverage Gain, RPD (from diversity collapse literature), and Strategy Entropy",
+      "Added pilot study protocol as a go/no-go validation gate before full training",
+      "Introduced three-signal routing (subgoal progress + strategy coherence + complexity reduction) instead of single verifier signal",
+      "Added expert-utilization entropy bonus in RL reward to prevent expert collapse",
+      "Referenced SAMoRA-style LoRA MoE architecture for parameter efficiency"
+    ]
+  }
+}
+
+## Reviewer feedback (round 2)
+Issues: ["SIGNIFICANT: 'The Myth of Expert Specialization in MoEs' (arXiv 2604.09780, April 2026) shows that MoE routing reflects hidden-state geometry, not domain expertise, and that 'specialization patterns resist human interpretation.' This directly challenges the core thesis that training strategy-partitioned LoRA experts will yield meaningfully different proof strategies. The proposal must engage with this finding and explain why explicit data-partitioned training differs from emergent specialization — possibly connecting to SD-MoE's spectral decomposition (already cited but not linked to this concern).", "SIGNIFICANT: The baseline performance on FATE-H for an 8B model at pass@32 is completely unspecified. Goedel-Prover-V2-8B does not report FATE-H results. The FATE paper shows 3% pass@64 as the best result (pre-agentic systems). The claimed '5-12% improvement' is meaningless without a concrete baseline number. Run a preliminary evaluation or cite comparable 8B results on FATE-H.", "MODERATE: Missing key concurrent diversity methods from the landscape: GCPO (arXiv 2605.11461, May 2026) proposes team-level cooperative credit assignment for diversity — conceptually parallel to expert complementarity. SetPO (arXiv 2602.01062, Feb 2026) proposes set-level policy optimization. 'Diversity-Aware Policy Optimization' (arXiv 2505.23433, May 2026) proposes token-level diversity measures. These should be discussed as distribution-level alternatives.", "MODERATE: 'Adaptive Proof Refinement with LLM-Guided Strategy Selection' (Adapt, arXiv 2510.25103) dynamically selects proof refinement strategies based on proof state — the most directly related work on strategy selection for theorem proving. Though it uses a single LLM (not specialized experts) and targets Coq (not Lean), it must be cited and differentiated.", "MINOR: HILBERT (ICLR 2026) achieves 99.2% on miniF2F (not 97.1% as implied by calling LongCat the SOTA). While the saturation argument is even stronger, the landscape should report the actual current SOTA.", "MINOR: Seed-Prover 1.5's 80% on FATE-H uses ~10 H20-days per problem (an agentic pipeline with ~10 search calls per trajectory). The proposal should explicitly contextualize this: its improvements are claimed at fixed moderate compute (pass@32), not competing with agentic systems spending orders of magnitude more compute per problem."]
+Feedback: The revision quality is excellent — all 9 Round 1 issues were substantively addressed. The core novelty (strategy-level MoE decomposition) remains genuine after extensive search. However, two new issues emerged that need attention: (1) 'The Myth of Expert Specialization in MoEs' (April 2026) provides empirical and theoretical arguments that MoE routing reflects geometry, not domain expertise. Your proposal MUST engage with this — argue that explicit data-partitioned LoRA training with strategy-specific loss (your SFS reward) creates a fundamentally different training signal from emergent routing, and connect to SD-MoE's spectral decomposition as a mitigation. (2) Specify the actual FATE-H baseline for 8B models. If Goedel-V2-8B scores ~5-10% on FATE-H at pass@32, then '5-12% improvement' means reaching 10-22% — a meaningful but modest gain that should be honestly positioned against Seed-Prover 1.5's 80% (achieved with 100x more compute per problem). This honest positioning could actually strengthen the paper by demonstrating compute-efficient strategy diversity. Additionally: add GCPO, SetPO, and Adapt to the related work; note HILBERT's 99.2% miniF2F SOTA; and clarify the Seed-Prover compute context. These are all straightforward revisions that should take one round to address.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "868702dc-4a5b-40fe-ab0e-1022de456785",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T21:33:01.934Z_
+
+```json
+{
+  "parentUuid": "868702dc-4a5b-40fe-ab0e-1022de456785",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "9bb14bc6-75ec-488f-80ee-6323be0c444a",
+  "timestamp": "2026-05-27T21:33:01.934Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T21:33:01.934Z_
+
+```json
+{
+  "parentUuid": "9bb14bc6-75ec-488f-80ee-6323be0c444a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f1333217-2db2-46c0-8d50-003b800a353d",
+  "timestamp": "2026-05-27T21:33:01.934Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "f1333217-2db2-46c0-8d50-003b800a353d",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T21:33:08.555Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research accordingly.
+
+The key issues to address:
+
+1. **SIGNIFICANT**: "The Myth of Expert Specialization in MoEs" (arXiv 2604.09780) - challenges core thesis that MoE routing reflects domain expertise
+2. **SIGNIFICANT**: FATE-H baseline for 8B models is unspecified - need concrete numbers
+3. **MODERATE**: Missing GCPO, SetPO, "Diversity-Aware Policy Optimization" from landscape
+
+
+4. **MODERATE**: "Adaptive Proof Refinement with LLM-Guided Strategy Selection" (Adapt) - most directly related work
+5. **MINOR**: HILBERT achieves 99.2% on miniF2F, not LongCat's 97.1%
+6. **MINOR**: Seed-Prover 1.5's compute context (~10 H20-days per problem)
+
+I need to dive into research on each of these points to address the gaps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1333217-2db2-46c0-8d50-003b800a353d",
+  "isSidechain": false,
+  "requestId": "req_011CbTnkk2ehD2f2ivjoEt5W",
+  "type": "assistant",
+  "uuid": "6417d48b-961d-4f32-a8aa-11b13151352f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nyvyJWhCuVvpjbkm7bHMq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9509,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9509,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 9509,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9509
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T21:33:08.557Z_
+
+I need to do deep research on each reviewer issue before revising. Let me start by investigating the key papers and claims in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6417d48b-961d-4f32-a8aa-11b13151352f",
+  "isSidechain": false,
+  "requestId": "req_011CbTnkk2ehD2f2ivjoEt5W",
+  "type": "assistant",
+  "uuid": "e08a0bf5-6f05-41a1-80d1-baee9bf335bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nyvyJWhCuVvpjbkm7bHMq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9509,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9509,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 9509,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9509
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T21:33:08.879Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UajEMzSk73uMe2uvH7RNix`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e08a0bf5-6f05-41a1-80d1-baee9bf335bc",
+  "isSidechain": false,
+  "requestId": "req_011CbTnkk2ehD2f2ivjoEt5W",
+  "type": "assistant",
+  "uuid": "70c483b8-9d61-4d32-89a8-60662d340751",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nyvyJWhCuVvpjbkm7bHMq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9509,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9509,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 9509,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9509
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T21:33:08.906Z_
+
+<details><summary>↩ Tool result · `toolu_01UajEMzSk73uMe2uvH7RNix`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70c483b8-9d61-4d32-89a8-60662d340751",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "e0d12389-1250-4b6a-9c18-d42a2247080d",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "70c483b8-9d61-4d32-89a8-60662d340751",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T21:33:12.146Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now do parallel research on all the key issues raised by reviewers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0d12389-1250-4b6a-9c18-d42a2247080d",
+  "isSidechain": false,
+  "requestId": "req_011CbTnmFvjoUMSsYeCSeYs2",
+  "type": "assistant",
+  "uuid": "b3d1eda7-8c9a-4bae-8bcc-74c3f592bf2f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQvPrDksi4qKK29SbXmU9c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1369,
+      "cache_read_input_tokens": 20523,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1369,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 20523,
+          "cache_creation_input_tokens": 1369,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1369
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-27T21:33:12.147Z_
+
+Now let me launch parallel research on all the key issues:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3d1eda7-8c9a-4bae-8bcc-74c3f592bf2f",
+  "isSidechain": false,
+  "requestId": "req_011CbTnmFvjoUMSsYeCSeYs2",
+  "type": "assistant",
+  "uuid": "84e4bd31-2f58-448c-b1c1-ffa584d1d18d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQvPrDksi4qKK29SbXmU9c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1369,
+      "cache_read_input_tokens": 20523,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1369,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 20523,
+          "cache_creation_input_tokens": 1369,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1369
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T21:33:12.851Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017SxSiJibGuvyhkQkouY3iW`</summary>
+
+```json
+{
+  "query": "arXiv 2604.09780 \"Myth of Expert Specialization\" MoE routing geometry 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84e4bd31-2f58-448c-b1c1-ffa584d1d18d",
+  "isSidechain": false,
+  "requestId": "req_011CbTnmFvjoUMSsYeCSeYs2",
+  "type": "assistant",
+  "uuid": "a8b577f7-8965-4511-ac71-b9db106bda2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CQvPrDksi4qKK29SbXmU9c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1369,
+      "cache_read_input_tokens": 20523,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1369,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 20523,
+          "cache_creation_input_tokens": 1369,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1369
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T21:33:19.009Z_
+
+<details><summary>↩ Tool result · `toolu_017SxSiJibGuvyhkQkouY3iW`</summary>
+
+```text
+Web search results for query: "arXiv 2604.09780 "Myth of Expert Specialization" MoE routing geometry 2026"
+
+Links: [{"title":"The Myth of Expert Specialization in MoEs: Why Routing Reflects Geometry, Not Necessarily Domain Expertise.","url":"https://arxiv.org/html/2604.09780v1"},{"title":"Geometric Routing Enables Causal Expert Control in Mixture of Experts","url":"https://arxiv.org/html/2604.14434"},{"title":"Geometric Metrics for MoE Specialization: From Fisher Information to Early Failure Detection","url":"https://arxiv.org/html/2604.14500"},{"title":"[2604.14434] Geometric Routing Enables Causal Expert Control in Mixture of Experts","url":"https://arxiv.org/abs/2604.14434"},{"title":"Polysemantic Experts, Monosemantic Paths: Routing as Control in MoEs","url":"https://arxiv.org/html/2604.17837v1"},{"title":"MoE Routing Testbed: Studying Expert Specialization and Routing Behavior at Small Scale","url":"https://arxiv.org/pdf/2604.07030"},{"title":"[2604.14500] Geometric Metrics for MoE Specialization: From Fisher Information to Early Failure Detection","url":"https://arxiv.org/abs/2604.14500"}]
+
+I found the paper you're looking for! Here's what I found:
+
+The paper "The Myth of Expert Specialization in MoEs: Why Routing Reflects Geometry, Not Necessarily Domain Expertise" was published on arXiv (2604.09780) on April 10, 2026 by Xi Wang, Soufiane Hayou, and Eric Nalisnick from Johns Hopkins University.
+
+The key finding is that since MoE routers are linear maps, hidden state similarity is both necessary and sufficient to explain expert usage similarity, and specialization is therefore an emergent property of the representation space, not of the routing architecture itself.
+
+The authors confirm this finding at both token and sequence level across five pre-trained models. Additionally, they prove that load-balancing loss suppresses shared hidden state directions to maintain routing diversity, which might provide a theoretical explanation for specialization collapse under less diverse data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8b577f7-8965-4511-ac71-b9db106bda2d",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "81e7a9e1-5571-463a-9be4-dc5400dddd6b",
+  "toolUseResult": {
+    "query": "arXiv 2604.09780 \"Myth of Expert Specialization\" MoE routing geometry 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012BQm529tEcLJ3kLC9h1Lph",
+        "content": [
+          {
+            "title": "The Myth of Expert Specialization in MoEs: Why Routing Reflects Geometry, Not Necessarily Domain Expertise.",
+            "url": "https://arxiv.org/html/2604.09780v1"
+          },
+          {
+            "title": "Geometric Routing Enables Causal Expert Control in Mixture of Experts",
+            "url": "https://arxiv.org/html/2604.14434"
+          },
+          {
+            "title": "Geometric Metrics for MoE Specialization: From Fisher Information to Early Failure Detection",
+            "url": "https://arxiv.org/html/2604.14500"
+          },
+          {
+            "title": "[2604.14434] Geometric Routing Enables Causal Expert Control in Mixture of Experts",
+            "url": "https://arxiv.org/abs/2604.14434"
+          },
+          {
+            "title": "Polysemantic Experts, Monosemantic Paths: Routing as Control in MoEs",
+            "url": "https://arxiv.org/html/2604.17837v1"
+          },
+          {
+            "title": "MoE Routing Testbed: Studying Expert Specialization and Routing Behavior at Small Scale",
+            "url": "https://arxiv.org/pdf/2604.07030"
+          },
+          {
+            "title": "[2604.14500] Geometric Metrics for MoE Specialization: From Fisher Information to Early Failure Detection",
+            "url": "https://arxiv.org/abs/2604.14500"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\nThe paper \"The Myth of Expert Specialization in MoEs: Why Routing Reflects Geometry, Not Necessarily Domain Expertise\" was published on arXiv (2604.09780) on April 10, 2026 by Xi Wang, Soufiane Hayou, and Eric Nalisnick from Johns Hopkins University.\n\nThe key finding is that since MoE routers are linear maps, hidden state similarity is both necessary and sufficient to explain expert usage similarity, and specialization is therefore an emergent property of the representation space, not of the routing architecture itself.\n\nThe authors confirm this finding at both token and sequence level across five pre-trained models. Additionally, they prove that load-balancing loss suppresses shared hidden state directions to maintain routing diversity, which might provide a theoretical explanation for specialization collapse under less diverse data."
+    ],
+    "durationSeconds": 6.153763624000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a8b577f7-8965-4511-ac71-b9db106bda2d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T21:33:21.935Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RJe3EYQ5g4UeuSidsW48F9`</summary>
+
+```json
+{
+  "query": "GCPO arXiv 2605.11461 team cooperative credit assignment diversity 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81e7a9e1-5571-463a-9be4-dc5400dddd6b",
+  "isSidechain": false,
+  "requestId": "req_011CbTnmzudCMdrVESJMAQds",
+  "type": "assistant",
+  "uuid": "e3e914ec-442a-46df-ae1f-b197c5e94a3b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013KiE9WMcfo9iyY6Yx2Gg3y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 21892,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 21892,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T21:33:27.594Z_
+
+<details><summary>↩ Tool result · `toolu_01RJe3EYQ5g4UeuSidsW48F9`</summary>
+
+```text
+Web search results for query: "GCPO arXiv 2605.11461 team cooperative credit assignment diversity 2026"
+
+Links: [{"title":"[2605.11461] Breaking $\\textit{Winner-Takes-All}$: Cooperative Policy Optimization Improves Diverse LLM Reasoning","url":"https://arxiv.org/abs/2605.11461"},{"title":"Breaking Winner-Takes-All: Cooperative Policy Optimization Improves Diverse LLM Reasoning","url":"https://arxiv.org/html/2605.11461"},{"title":"Nucleolus Credit Assignment for Effective Coalitions in Multi-agent   Reinforcement Learning","url":"https://arxiv.org/pdf/2503.00372"},{"title":"Cooperative Game-Theoretic Credit Assignment for Multi-Agent Policy Gradients via the Core","url":"https://arxiv.org/pdf/2506.04265"},{"title":"Learning Implicit Credit Assignment for Cooperative Multi-Agent   Reinforcement Learning","url":"https://arxiv.org/pdf/2007.02529"},{"title":"[2508.06836] Multi-level Advantage Credit Assignment for Cooperative Multi-Agent Reinforcement Learning","url":"https://arxiv.org/abs/2508.06836"}]
+
+Based on the search results, I found information about arXiv paper 2605.11461:
+
+The paper proposes Group Cooperative Policy Optimization (GCPO), which shifts the training paradigm from rollout competition to team cooperation. Specifically, GCPO replaces independent rollout scoring with team-level credit assignment: a rollout is rewarded by how much it contributes to the team's valid solution coverage, rather than its individual accuracy.
+
+The paper addresses a problem in reinforcement learning with verifiers (RLVR) for improving LLM reasoning. Popular group-based optimization algorithms like GRPO often suffer from exploration collapse, where the models prematurely converge on a narrow set of high-scoring patterns, lacking the ability to explore new solutions. The approaches do not change the winner-takes-all nature, where rollouts still compete for individual advantage rather than cooperating for maximizing global diversity.
+
+The paper was posted on arXiv in May 2026 by researchers from ISEE Lab at Sun Yat-sen University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3e914ec-442a-46df-ae1f-b197c5e94a3b",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "749d479f-ed4f-4ba6-b91a-c98432d8cb96",
+  "toolUseResult": {
+    "query": "GCPO arXiv 2605.11461 team cooperative credit assignment diversity 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0167SyugtQDBvQfBuR7aN5hQ",
+        "content": [
+          {
+            "title": "[2605.11461] Breaking $\\textit{Winner-Takes-All}$: Cooperative Policy Optimization Improves Diverse LLM Reasoning",
+            "url": "https://arxiv.org/abs/2605.11461"
+          },
+          {
+            "title": "Breaking Winner-Takes-All: Cooperative Policy Optimization Improves Diverse LLM Reasoning",
+            "url": "https://arxiv.org/html/2605.11461"
+          },
+          {
+            "title": "Nucleolus Credit Assignment for Effective Coalitions in Multi-agent   Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2503.00372"
+          },
+          {
+            "title": "Cooperative Game-Theoretic Credit Assignment for Multi-Agent Policy Gradients via the Core",
+            "url": "https://arxiv.org/pdf/2506.04265"
+          },
+          {
+            "title": "Learning Implicit Credit Assignment for Cooperative Multi-Agent   Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2007.02529"
+          },
+          {
+            "title": "[2508.06836] Multi-level Advantage Credit Assignment for Cooperative Multi-Agent Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2508.06836"
+          }
+        ]
+      },
+      "Based on the search results, I found information about arXiv paper 2605.11461:\n\nThe paper proposes Group Cooperative Policy Optimization (GCPO), which shifts the training paradigm from rollout competition to team cooperation. Specifically, GCPO replaces independent rollout scoring with team-level credit assignment: a rollout is rewarded by how much it contributes to the team's valid solution coverage, rather than its individual accuracy.\n\nThe paper addresses a problem in reinforcement learning with verifiers (RLVR) for improving LLM reasoning. Popular group-based optimization algorithms like GRPO often suffer from exploration collapse, where the models prematurely converge on a narrow set of high-scoring patterns, lacking the ability to explore new solutions. The approaches do not change the winner-takes-all nature, where rollouts still compete for individual advantage rather than cooperating for maximizing global diversity.\n\nThe paper was posted on arXiv in May 2026 by researchers from ISEE Lab at Sun Yat-sen University."
+    ],
+    "durationSeconds": 5.654642453,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e3e914ec-442a-46df-ae1f-b197c5e94a3b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T21:33:30.288Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019eGKBGyaNhu4HkKDcCF2qS`</summary>
+
+```json
+{
+  "query": "SetPO arXiv 2602.01062 set-level policy optimization diversity 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "749d479f-ed4f-4ba6-b91a-c98432d8cb96",
+  "isSidechain": false,
+  "requestId": "req_011CbTnndczTMiCkpZKYULVB",
+  "type": "assistant",
+  "uuid": "e05b123f-6bf1-4d0d-b8df-9e4b0566ced6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CvpvqKMTTBpRkr3vSz66CP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 632,
+      "cache_read_input_tokens": 22603,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 632,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 22603,
+          "cache_creation_input_tokens": 632,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 632
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T21:33:36.725Z_
+
+<details><summary>↩ Tool result · `toolu_019eGKBGyaNhu4HkKDcCF2qS`</summary>
+
+```text
+Web search results for query: "SetPO arXiv 2602.01062 set-level policy optimization diversity 2026"
+
+Links: [{"title":"[2602.01062] SetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning","url":"https://arxiv.org/abs/2602.01062"},{"title":"SetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning","url":"https://arxiv.org/html/2602.01062"},{"title":"SetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning","url":"https://arxiv.org/pdf/2602.01062"},{"title":"On the Sample Complexity of Differentially Private Policy Optimization","url":"https://arxiv.org/pdf/2510.21060"},{"title":"Policy Optimization via Importance Sampling","url":"https://arxiv.org/pdf/1809.06098"}]
+
+Based on the search results, here's what I found about SetPO:
+
+SetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning is a paper submitted to arXiv on February 1, 2026 by authors Chenyi Li, Yuan Zhang, Bo Wang, Guoqing Ma, Wei Tang, Haoyang Huang, and Nan Duan.
+
+**Main Contribution:**
+The paper addresses how reinforcement learning with verifiable rewards enhances LLM reasoning performance, especially in mathematics tasks, but often reduces outcome diversity, where the model concentrates probability mass on a narrow set of solutions.
+
+**The Approach:**
+SetPO introduces a set-level diversity objective defined over sampled trajectories using kernelized similarity, deriving a leave-one-out marginal contribution for each trajectory and integrating this as a plug-in advantage shaping term for policy optimization.
+
+**Key Results:**
+The analysis theoretically confirms a monotonicity property, proving that rarer trajectories yield consistently higher marginal contributions to global diversity. Extensive experiments across various model scales demonstrate effectiveness, consistently outperforming strong baselines in both Pass@1 and Pass@K across different benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e05b123f-6bf1-4d0d-b8df-9e4b0566ced6",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "8825d857-63e1-4ed0-a35a-e1a64f02a0e4",
+  "toolUseResult": {
+    "query": "SetPO arXiv 2602.01062 set-level policy optimization diversity 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018LrBdMPjBuXV1MjodogesN",
+        "content": [
+          {
+            "title": "[2602.01062] SetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning",
+            "url": "https://arxiv.org/abs/2602.01062"
+          },
+          {
+            "title": "SetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning",
+            "url": "https://arxiv.org/html/2602.01062"
+          },
+          {
+            "title": "SetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.01062"
+          },
+          {
+            "title": "On the Sample Complexity of Differentially Private Policy Optimization",
+            "url": "https://arxiv.org/pdf/2510.21060"
+          },
+          {
+            "title": "Policy Optimization via Importance Sampling",
+            "url": "https://arxiv.org/pdf/1809.06098"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SetPO:\n\nSetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning is a paper submitted to arXiv on February 1, 2026 by authors Chenyi Li, Yuan Zhang, Bo Wang, Guoqing Ma, Wei Tang, Haoyang Huang, and Nan Duan.\n\n**Main Contribution:**\nThe paper addresses how reinforcement learning with verifiable rewards enhances LLM reasoning performance, especially in mathematics tasks, but often reduces outcome diversity, where the model concentrates probability mass on a narrow set of solutions.\n\n**The Approach:**\nSetPO introduces a set-level diversity objective defined over sampled trajectories using kernelized similarity, deriving a leave-one-out marginal contribution for each trajectory and integrating this as a plug-in advantage shaping term for policy optimization.\n\n**Key Results:**\nThe analysis theoretically confirms a monotonicity property, proving that rarer trajectories yield consistently higher marginal contributions to global diversity. Extensive experiments across various model scales demonstrate effectiveness, consistently outperforming strong baselines in both Pass@1 and Pass@K across different benchmarks."
+    ],
+    "durationSeconds": 6.432589792999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e05b123f-6bf1-4d0d-b8df-9e4b0566ced6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T21:33:39.734Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014rZuXd39rQ6tNVyMSDcvX8`</summary>
+
+```json
+{
+  "query": "arXiv 2510.25103 \"Adaptive Proof Refinement\" LLM strategy selection theorem proving Adapt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8825d857-63e1-4ed0-a35a-e1a64f02a0e4",
+  "isSidechain": false,
+  "requestId": "req_011CbTnoJe1J9vs2yiPhYVqn",
+  "type": "assistant",
+  "uuid": "c0dcfa6d-4fd4-4198-821e-7c80af730ffc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MRtj9jpAVYrrdCX6tyGwDG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 611,
+      "cache_read_input_tokens": 23235,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 611,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 23235,
+          "cache_creation_input_tokens": 611,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 611
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T21:33:47.358Z_
+
+<details><summary>↩ Tool result · `toolu_014rZuXd39rQ6tNVyMSDcvX8`</summary>
+
+```text
+Web search results for query: "arXiv 2510.25103 "Adaptive Proof Refinement" LLM strategy selection theorem proving Adapt"
+
+Links: [{"title":"[2510.25103] Adaptive Proof Refinement with LLM-Guided Strategy Selection","url":"https://arxiv.org/abs/2510.25103"},{"title":"Adaptive Proof Refinement with LLM-Guided Strategy Selection","url":"https://arxiv.org/html/2510.25103"},{"title":"Adaptive Proof Refinement with LLM-Guided Strategy Selection Minghai Lu","url":"https://arxiv.org/pdf/2510.25103"},{"title":"LLM-Based Theorem Provers","url":"https://www.emergentmind.com/topics/llm-based-theorem-provers"},{"title":"HybridProver: Augmenting Theorem Proving with LLM-Driven Proof Synthesis and Refinement","url":"https://arxiv.org/html/2505.15740"},{"title":"HybridProver: Augmenting Theorem Proving with LLM-Driven Proof Synthesis and Refinement","url":"https://arxiv.org/pdf/2505.15740"},{"title":"Advancing Theorem Proving in LLMs through Large-Scale Synthetic Data","url":"https://openreview.net/pdf?id=TPtXLihkny"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Adaptive Proof Refinement with LLM-Guided Strategy Selection** is a paper by Minghai Lu and 4 other authors that addresses formal verification via theorem proving.
+
+**Key points about the paper (arXiv 2510.25103):**
+
+- **Problem**: While Large Language Models (LLMs) show potential in proof generation, they frequently produce incorrect proofs on the first attempt and require additional strategies for iterative refinement. Existing approaches employ fixed refinement strategies and cannot dynamically choose an effective strategy based on the particular issues in a generated proof.
+
+- **Solution - Adapt Framework**: The paper introduces Adapt, a novel proof refinement framework that leverages an LLM-guided decision-maker to dynamically select a suitable refinement strategy according to the state of the proof assistant and available context of an incorrect proof.
+
+- **Performance**: The framework significantly outperforms existing baselines by proving 16.63% and 18.58% more theorems on two benchmarks, respectively.
+
+- **Evaluation**: The paper demonstrates Adapt's generalizability by evaluating it across five different LLMs and conducts ablation studies to measure the contribution of each component.
+
+The paper was published on October 29, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0dcfa6d-4fd4-4198-821e-7c80af730ffc",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "2e263dd9-ad96-4859-9d25-713a38c4b79c",
+  "toolUseResult": {
+    "query": "arXiv 2510.25103 \"Adaptive Proof Refinement\" LLM strategy selection theorem proving Adapt",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MZacvDHKRsHVbJqeLCQFLM",
+        "content": [
+          {
+            "title": "[2510.25103] Adaptive Proof Refinement with LLM-Guided Strategy Selection",
+            "url": "https://arxiv.org/abs/2510.25103"
+          },
+          {
+            "title": "Adaptive Proof Refinement with LLM-Guided Strategy Selection",
+            "url": "https://arxiv.org/html/2510.25103"
+          },
+          {
+            "title": "Adaptive Proof Refinement with LLM-Guided Strategy Selection Minghai Lu",
+            "url": "https://arxiv.org/pdf/2510.25103"
+          },
+          {
+            "title": "LLM-Based Theorem Provers",
+            "url": "https://www.emergentmind.com/topics/llm-based-theorem-provers"
+          },
+          {
+            "title": "HybridProver: Augmenting Theorem Proving with LLM-Driven Proof Synthesis and Refinement",
+            "url": "https://arxiv.org/html/2505.15740"
+          },
+          {
+            "title": "HybridProver: Augmenting Theorem Proving with LLM-Driven Proof Synthesis and Refinement",
+            "url": "https://arxiv.org/pdf/2505.15740"
+          },
+          {
+            "title": "Advancing Theorem Proving in LLMs through Large-Scale Synthetic Data",
+            "url": "https://openreview.net/pdf?id=TPtXLihkny"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Adaptive Proof Refinement with LLM-Guided Strategy Selection** is a paper by Minghai Lu and 4 other authors that addresses formal verification via theorem proving.\n\n**Key points about the paper (arXiv 2510.25103):**\n\n- **Problem**: While Large Language Models (LLMs) show potential in proof generation, they frequently produce incorrect proofs on the first attempt and require additional strategies for iterative refinement. Existing approaches employ fixed refinement strategies and cannot dynamically choose an effective strategy based on the particular issues in a generated proof.\n\n- **Solution - Adapt Framework**: The paper introduces Adapt, a novel proof refinement framework that leverages an LLM-guided decision-maker to dynamically select a suitable refinement strategy according to the state of the proof assistant and available context of an incorrect proof.\n\n- **Performance**: The framework significantly outperforms existing baselines by proving 16.63% and 18.58% more theorems on two benchmarks, respectively.\n\n- **Evaluation**: The paper demonstrates Adapt's generalizability by evaluating it across five different LLMs and conducts ablation studies to measure the contribution of each component.\n\nThe paper was published on October 29, 2025."
+    ],
+    "durationSeconds": 7.620086921000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c0dcfa6d-4fd4-4198-821e-7c80af730ffc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "2e263dd9-ad96-4859-9d25-713a38c4b79c",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-27T21:33:50.146Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SSAkzdZwX6BqvXgpWp74zv`</summary>
+
+```json
+{
+  "query": "HILBERT theorem prover miniF2F 99.2% ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e263dd9-ad96-4859-9d25-713a38c4b79c",
+  "isSidechain": false,
+  "requestId": "req_011CbTnp68DMdFBUvSf9ewnD",
+  "type": "assistant",
+  "uuid": "132847e4-c11a-4c3e-bfd8-fb4e70ec9b6a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0175J59BgHTEjfeabGzGSod9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 747,
+      "cache_read_input_tokens": 23846,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 747,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 23846,
+          "cache_creation_input_tokens": 747,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 747
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T21:33:57.322Z_
+
+<details><summary>↩ Tool result · `toolu_01SSAkzdZwX6BqvXgpWp74zv`</summary>
+
+```text
+Web search results for query: "HILBERT theorem prover miniF2F 99.2% ICLR 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.22819"},{"title":"[2509.22819] Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/abs/2509.22819"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning | OpenReview","url":"https://openreview.net/forum?id=GN8OdkTo3B"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/html/2509.22819v1"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning [Quick Review]","url":"https://liner.com/review/hilbert-recursively-building-formal-proofs-with-informal-reasoning"},{"title":"MINIF2F-DAFNY: LLM-Guided Mathematical Theorem ...","url":"https://arxiv.org/pdf/2512.10187"},{"title":"HILBERT: Recursively Building Formal Proofs with Informal Reasoning","url":"https://openreview.net/pdf?id=ljAHonPrs1"},{"title":"GÖDEL’S POETRY Kelly J. Davis Unaffiliated kdavis@alum.mit.edu ABSTRACT","url":"https://arxiv.org/pdf/2512.14252"},{"title":"miniF2F-Dafny: LLM-Guided Mathematical Theorem Proving via Auto-Active Verification","url":"https://arxiv.org/html/2512.10187v1"}]
+
+Based on the search results, I found comprehensive information about the HILBERT theorem prover and its performance on miniF2F:
+
+## Overview
+
+HILBERT is an agentic framework that bridges the gap between informal reasoning and formal verification by orchestrating four components: an informal LLM that excels at mathematical reasoning, a specialized prover LLM optimized for Lean 4 tactics, a formal verifier, and a semantic theorem retriever.
+
+## Performance
+
+HILBERT achieves state-of-the-art performance on miniF2F with pass rates of 90.8% to 99.2%. More specifically, the best setup (Gemini 2.5 Pro + Goedel-Prover-V2-32B) reaches 99.2% pass rate, failing only two problems.
+
+HILBERT substantially outperforms existing approaches on key benchmarks, achieving 99.2% on miniF2F, 6.6 percentage points above the best publicly available method.
+
+## How It Works
+
+Given a problem that the prover is unable to solve, HILBERT employs recursive decomposition to split the problem into subgoals that it solves with the prover or reasoner LLM, and leverages verifier feedback to refine incorrect proofs as necessary.
+
+## Additional Achievements
+
+On the challenging PutnamBench dataset, HILBERT with Gemini 2.5 Pro achieves 70.0% pass rate, nearly 20 percentage points above previous methods.
+
+The paper was published as a conference paper at ICLR 2026, representing state-of-the-art results in formal theorem proving.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "132847e4-c11a-4c3e-bfd8-fb4e70ec9b6a",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "16c47b00-dd3e-4624-8822-1bb187589650",
+  "toolUseResult": {
+    "query": "HILBERT theorem prover miniF2F 99.2% ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017sHYyozEjtyq19wXLo8ZDY",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "[2509.22819] Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/abs/2509.22819"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=GN8OdkTo3B"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/html/2509.22819v1"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning [Quick Review]",
+            "url": "https://liner.com/review/hilbert-recursively-building-formal-proofs-with-informal-reasoning"
+          },
+          {
+            "title": "MINIF2F-DAFNY: LLM-Guided Mathematical Theorem ...",
+            "url": "https://arxiv.org/pdf/2512.10187"
+          },
+          {
+            "title": "HILBERT: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://openreview.net/pdf?id=ljAHonPrs1"
+          },
+          {
+            "title": "GÖDEL’S POETRY Kelly J. Davis Unaffiliated kdavis@alum.mit.edu ABSTRACT",
+            "url": "https://arxiv.org/pdf/2512.14252"
+          },
+          {
+            "title": "miniF2F-Dafny: LLM-Guided Mathematical Theorem Proving via Auto-Active Verification",
+            "url": "https://arxiv.org/html/2512.10187v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the HILBERT theorem prover and its performance on miniF2F:\n\n## Overview\n\nHILBERT is an agentic framework that bridges the gap between informal reasoning and formal verification by orchestrating four components: an informal LLM that excels at mathematical reasoning, a specialized prover LLM optimized for Lean 4 tactics, a formal verifier, and a semantic theorem retriever.\n\n## Performance\n\nHILBERT achieves state-of-the-art performance on miniF2F with pass rates of 90.8% to 99.2%. More specifically, the best setup (Gemini 2.5 Pro + Goedel-Prover-V2-32B) reaches 99.2% pass rate, failing only two problems.\n\nHILBERT substantially outperforms existing approaches on key benchmarks, achieving 99.2% on miniF2F, 6.6 percentage points above the best publicly available method.\n\n## How It Works\n\nGiven a problem that the prover is unable to solve, HILBERT employs recursive decomposition to split the problem into subgoals that it solves with the prover or reasoner LLM, and leverages verifier feedback to refine incorrect proofs as necessary.\n\n## Additional Achievements\n\nOn the challenging PutnamBench dataset, HILBERT with Gemini 2.5 Pro achieves 70.0% pass rate, nearly 20 percentage points above previous methods.\n\nThe paper was published as a conference paper at ICLR 2026, representing state-of-the-art results in formal theorem proving."
+    ],
+    "durationSeconds": 7.171519669000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "132847e4-c11a-4c3e-bfd8-fb4e70ec9b6a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-27T21:34:00.646Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JZawUywKWfirB1zidxCxSv`</summary>
+
+```json
+{
+  "query": "Seed-Prover 1.5 FATE-H compute cost H20 days per problem agentic search"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16c47b00-dd3e-4624-8822-1bb187589650",
+  "isSidechain": false,
+  "requestId": "req_011CbTnpphYn5uEeYj7N8o9N",
+  "type": "assistant",
+  "uuid": "c861acb8-75bc-470f-816c-ee701f6f0994",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqF3KSkWcfFmMMK1jVELPA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 920,
+      "cache_read_input_tokens": 24593,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 24593,
+          "cache_creation_input_tokens": 920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T21:34:06.201Z_
+
+<details><summary>↩ Tool result · `toolu_01JZawUywKWfirB1zidxCxSv`</summary>
+
+```text
+Web search results for query: "Seed-Prover 1.5 FATE-H compute cost H20 days per problem agentic search"
+
+Links: [{"title":"Seed-Prover 1.5: Mastering Undergraduate-Level Theorem ...","url":"https://arxiv.org/pdf/2512.17260"},{"title":"Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience","url":"https://arxiv.org/html/2512.17260v1"},{"title":"(PDF) Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience","url":"https://www.researchgate.net/publication/398937108_Seed-Prover_15_Mastering_Undergraduate-Level_Theorem_Proving_via_Learning_from_Experience"},{"title":"Seed-Prover 1.5: Agentic RL for Theorem Proving","url":"https://www.emergentmind.com/papers/2512.17260"},{"title":"Seed-Prover 1.5: Automated Lean Theorem Prover","url":"https://www.emergentmind.com/topics/seed-prover-1-5"},{"title":"Seed-Prover/SeedProver-1.5 at main · ByteDance-Seed/Seed-Prover","url":"https://github.com/ByteDance-Seed/Seed-Prover/tree/main/SeedProver-1.5"},{"title":"Seed Prover 1.5: Advanced Mathematical Reasoning ...","url":"https://seed.bytedance.com/en/blog/seed-prover-1-5-advanced-mathematical-reasoning-through-a-novel-agentic-architecture"},{"title":"[2512.17260] Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience","url":"https://arxiv.org/abs/2512.17260"},{"title":"Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2512.17260"}]
+
+Based on the search results, here's what I found about Seed-Prover 1.5:
+
+Seed-Prover 1.5 solves 87.9% of problems on PutnamBench and 80% on Fate-H, demonstrating its proficiency in handling formal proofs for undergraduate and graduate-level mathematics.
+
+Regarding the compute cost specifically: Seed-Prover 1.5 achieved the same solve rate as Seed-Prover 1.0 using compute resources comparable to the 1.0 "Medium" setting (20 H20-days/problem), with a significantly shorter runtime. Additionally, for Putnam 2025, Seed-Prover 1.5 utilized a maximum compute budget of 40 H20-days/problem and successfully solved 11 of 12 problems within 9 hours.
+
+The system uses an agentic approach to theorem proving. Rather than generating an entire proof and repeatedly evaluating it, Seed-Prover 1.5 proposes a more efficient strategy that incrementally invokes multiple tools to construct formal proofs step by step.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c861acb8-75bc-470f-816c-ee701f6f0994",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "02f7762d-1c82-4dc3-b5c9-9bcbe2bc98f9",
+  "toolUseResult": {
+    "query": "Seed-Prover 1.5 FATE-H compute cost H20 days per problem agentic search",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y487zw51Uyhd6tiAKdAzhK",
+        "content": [
+          {
+            "title": "Seed-Prover 1.5: Mastering Undergraduate-Level Theorem ...",
+            "url": "https://arxiv.org/pdf/2512.17260"
+          },
+          {
+            "title": "Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience",
+            "url": "https://arxiv.org/html/2512.17260v1"
+          },
+          {
+            "title": "(PDF) Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience",
+            "url": "https://www.researchgate.net/publication/398937108_Seed-Prover_15_Mastering_Undergraduate-Level_Theorem_Proving_via_Learning_from_Experience"
+          },
+          {
+            "title": "Seed-Prover 1.5: Agentic RL for Theorem Proving",
+            "url": "https://www.emergentmind.com/papers/2512.17260"
+          },
+          {
+            "title": "Seed-Prover 1.5: Automated Lean Theorem Prover",
+            "url": "https://www.emergentmind.com/topics/seed-prover-1-5"
+          },
+          {
+            "title": "Seed-Prover/SeedProver-1.5 at main · ByteDance-Seed/Seed-Prover",
+            "url": "https://github.com/ByteDance-Seed/Seed-Prover/tree/main/SeedProver-1.5"
+          },
+          {
+            "title": "Seed Prover 1.5: Advanced Mathematical Reasoning ...",
+            "url": "https://seed.bytedance.com/en/blog/seed-prover-1-5-advanced-mathematical-reasoning-through-a-novel-agentic-architecture"
+          },
+          {
+            "title": "[2512.17260] Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience",
+            "url": "https://arxiv.org/abs/2512.17260"
+          },
+          {
+            "title": "Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2512.17260"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Seed-Prover 1.5:\n\nSeed-Prover 1.5 solves 87.9% of problems on PutnamBench and 80% on Fate-H, demonstrating its proficiency in handling formal proofs for undergraduate and graduate-level mathematics.\n\nRegarding the compute cost specifically: Seed-Prover 1.5 achieved the same solve rate as Seed-Prover 1.0 using compute resources comparable to the 1.0 \"Medium\" setting (20 H20-days/problem), with a significantly shorter runtime. Additionally, for Putnam 2025, Seed-Prover 1.5 utilized a maximum compute budget of 40 H20-days/problem and successfully solved 11 of 12 problems within 9 hours.\n\nThe system uses an agentic approach to theorem proving. Rather than generating an entire proof and repeatedly evaluating it, Seed-Prover 1.5 proposes a more efficient strategy that incrementally invokes multiple tools to construct formal proofs step by step."
+    ],
+    "durationSeconds": 5.550490576000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c861acb8-75bc-470f-816c-ee701f6f0994",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T21:34:09.330Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Skpw3w8brLGpfXr8DPbTRu`</summary>
+
+```json
+{
+  "query": "Goedel-Prover-V2 8B FATE benchmark results graduate level performance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02f7762d-1c82-4dc3-b5c9-9bcbe2bc98f9",
+  "isSidechain": false,
+  "requestId": "req_011CbTnqUiHftENByf9txXLf",
+  "type": "assistant",
+  "uuid": "d6b9e99d-2278-4313-9b57-ae1e12b9534e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMT4GK5Qbr3ishsCCaQcW2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 25513,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 921,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 25513,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 921
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T21:34:15.024Z_
+
+<details><summary>↩ Tool result · `toolu_01Skpw3w8brLGpfXr8DPbTRu`</summary>
+
+```text
+Web search results for query: "Goedel-Prover-V2 8B FATE benchmark results graduate level performance"
+
+Links: [{"title":"Goedel-Prover-V2: Advances in Formal Theorem Proving","url":"https://www.emergentmind.com/topics/goedel-prover-v2"},{"title":"Goedel-LM/Goedel-Prover-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"},{"title":"Goedel-Prover-V2","url":"https://blog.goedel-prover.com/"},{"title":"[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/abs/2508.03613"},{"title":"GitHub - Goedel-LM/Goedel-Prover-V2 · GitHub","url":"https://github.com/Goedel-LM/Goedel-Prover-V2"},{"title":"Goedel-Code-Prover: Hierarchical Proof Search for Open State-of-the-Art Code Verification","url":"https://arxiv.org/pdf/2603.19329"},{"title":"Technical Report GOEDEL-PROVER-V2: SCALING FORMAL THEOREM","url":"https://arxiv.org/pdf/2508.03613"},{"title":"(PDF) Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://www.researchgate.net/publication/394323255_Goedel-Prover-V2_Scaling_Formal_Theorem_Proving_with_Scaffolded_Data_Synthesis_and_Self-Correction"},{"title":"FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels","url":"https://arxiv.org/html/2511.02872v3"}]
+
+Based on the search results, here's what I found regarding Goedel-Prover-V2 8B and FATE benchmark performance:
+
+## Key Performance Results
+
+Goedel-Prover-V2-8B reaches 84.6% on MiniF2F test set at Pass@32, matching the performance of prior state-of-the-art DeepSeek-Prover-V2-671B while being nearly 100 times smaller in model size.
+
+## FATE Benchmark (Graduate Level)
+
+The search results reference FATE (Formal Benchmark Series for Frontier Algebra), which includes graduate-level mathematics problems. Mathematics experts evaluated the pass@1 correctness of natural language proofs generated by DeepSeek-R1, DeepSeek-Prover-V2, Kimina-Prover, and Goedel-Prover-V2 on FATE-H and FATE-X.
+
+However, the search results don't provide specific numerical results for Goedel-Prover-V2-8B's performance on the FATE benchmark at graduate difficulty levels. The results mention that evaluations reveal significantly higher accuracy in natural language reasoning versus formalization, but specific performance metrics for the 8B model on FATE are not detailed in these search results.
+
+For the most comprehensive and specific performance numbers on FATE graduate-level benchmarks, you may want to consult the full FATE benchmark paper or the official Goedel-Prover-V2 documentation directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6b9e99d-2278-4313-9b57-ae1e12b9534e",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "7e1ca805-b7be-466e-ae14-a7422f796503",
+  "toolUseResult": {
+    "query": "Goedel-Prover-V2 8B FATE benchmark results graduate level performance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QEquPx9A1gQVgS6XakJ7Ch",
+        "content": [
+          {
+            "title": "Goedel-Prover-V2: Advances in Formal Theorem Proving",
+            "url": "https://www.emergentmind.com/topics/goedel-prover-v2"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Prover-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"
+          },
+          {
+            "title": "Goedel-Prover-V2",
+            "url": "https://blog.goedel-prover.com/"
+          },
+          {
+            "title": "[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/abs/2508.03613"
+          },
+          {
+            "title": "GitHub - Goedel-LM/Goedel-Prover-V2 · GitHub",
+            "url": "https://github.com/Goedel-LM/Goedel-Prover-V2"
+          },
+          {
+            "title": "Goedel-Code-Prover: Hierarchical Proof Search for Open State-of-the-Art Code Verification",
+            "url": "https://arxiv.org/pdf/2603.19329"
+          },
+          {
+            "title": "Technical Report GOEDEL-PROVER-V2: SCALING FORMAL THEOREM",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          },
+          {
+            "title": "(PDF) Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://www.researchgate.net/publication/394323255_Goedel-Prover-V2_Scaling_Formal_Theorem_Proving_with_Scaffolded_Data_Synthesis_and_Self-Correction"
+          },
+          {
+            "title": "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels",
+            "url": "https://arxiv.org/html/2511.02872v3"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding Goedel-Prover-V2 8B and FATE benchmark performance:\n\n## Key Performance Results\n\nGoedel-Prover-V2-8B reaches 84.6% on MiniF2F test set at Pass@32, matching the performance of prior state-of-the-art DeepSeek-Prover-V2-671B while being nearly 100 times smaller in model size.\n\n## FATE Benchmark (Graduate Level)\n\nThe search results reference FATE (Formal Benchmark Series for Frontier Algebra), which includes graduate-level mathematics problems. Mathematics experts evaluated the pass@1 correctness of natural language proofs generated by DeepSeek-R1, DeepSeek-Prover-V2, Kimina-Prover, and Goedel-Prover-V2 on FATE-H and FATE-X.\n\nHowever, the search results don't provide specific numerical results for Goedel-Prover-V2-8B's performance on the FATE benchmark at graduate difficulty levels. The results mention that evaluations reveal significantly higher accuracy in natural language reasoning versus formalization, but specific performance metrics for the 8B model on FATE are not detailed in these search results.\n\nFor the most comprehensive and specific performance numbers on FATE graduate-level benchmarks, you may want to consult the full FATE benchmark paper or the official Goedel-Prover-V2 documentation directly."
+    ],
+    "durationSeconds": 5.6901109,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d6b9e99d-2278-4313-9b57-ae1e12b9534e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-27T21:34:15.027Z_
+
+```json
+{
+  "parentUuid": "7e1ca805-b7be-466e-ae14-a7422f796503",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "82075d4a-6f13-4f5f-91b7-cb009f04a707",
+  "timestamp": "2026-05-27T21:34:15.027Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T21:34:18.695Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QyQ91fENRKEyMHMMfQYGPc`</summary>
+
+```json
+{
+  "query": "arXiv 2505.23433 \"Diversity-Aware Policy Optimization\" token-level diversity 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82075d4a-6f13-4f5f-91b7-cb009f04a707",
+  "isSidechain": false,
+  "requestId": "req_011CbTnr8QBnTuMdd9U2GTd5",
+  "type": "assistant",
+  "uuid": "448a342a-61a6-4f34-8c91-14b10371ae97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VG58izRCGURgNdE4fusoWM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1078,
+      "cache_read_input_tokens": 26434,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1078,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 26434,
+          "cache_creation_input_tokens": 1078,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1078
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T21:34:26.188Z_
+
+<details><summary>↩ Tool result · `toolu_01QyQ91fENRKEyMHMMfQYGPc`</summary>
+
+```text
+Web search results for query: "arXiv 2505.23433 "Diversity-Aware Policy Optimization" token-level diversity 2026"
+
+Links: [{"title":"[2505.23433] Diversity-Aware Policy Optimization for Large Language Model Reasoning","url":"https://arxiv.org/abs/2505.23433"},{"title":"[Literature Review] Diversity-Aware Policy Optimization for Large Language Model Reasoning","url":"https://www.themoonlight.io/en/review/diversity-aware-policy-optimization-for-large-language-model-reasoning"},{"title":"Diversity-Aware Policy Optimization for Large Language Model Reasoning","url":"https://arxiv.org/pdf/2505.23433"},{"title":"NeurIPS Poster Diversity-Aware Policy Optimization for Large Language Model Reasoning","url":"https://neurips.cc/virtual/2025/poster/119844"},{"title":"Diversity-Aware Policy Optimization for Large Language Model Reasoning","url":"https://arxiv.org/html/2505.23433v2"},{"title":"Diversity-Aware Policy Optimization for Large Language Model Reasoning | OpenReview","url":"https://openreview.net/forum?id=5eZ0iykpDU"},{"title":"[PDF] Diversity-Aware Policy Optimization for Large Language Model Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Diversity-Aware-Policy-Optimization-for-Large-Model-Yao-Cheng/4a0be5039b2d462fedafec282ac19dce5746dad8"},{"title":"DSDR: Dual-Scale Diversity Regularization for Exploration in LLM Reasoning","url":"https://arxiv.org/html/2602.19895v1"}]
+
+I found the research paper arXiv 2505.23433 on "Diversity-Aware Policy Optimization for Large Language Model Reasoning." Here's what the paper covers:
+
+## Overview
+
+The work presents a systematic investigation into the impact of diversity in RL-based training for LLM reasoning, and proposes a novel diversity-aware policy optimization method.
+
+## Key Findings
+
+Across evaluations on 12 LLMs, there is a strong positive correlation between the solution diversity and Potential at k (a novel metric quantifying an LLM's reasoning potential) in high-performing models.
+
+## Token-Level Diversity Approach
+
+The authors introduce a token-level diversity metric and reformulate the diversity objective into a practical form. The authors propose using token-level entropy as a diversity measure, defined as the average entropy of the policy distribution over tokens at each step, conditioned on the input and previously generated tokens.
+
+## Results and Implementation
+
+The method designs a token-level diversity and reformulates it into a practical objective, then selectively applies it to positive samples. Integrated into the R1-zero training framework, the method achieves a 3.5% average improvement across four mathematical reasoning benchmarks, while generating more diverse and robust solutions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "448a342a-61a6-4f34-8c91-14b10371ae97",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "4b893ee3-9956-476e-b86e-b06a22e1475b",
+  "toolUseResult": {
+    "query": "arXiv 2505.23433 \"Diversity-Aware Policy Optimization\" token-level diversity 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EewqJXaSauYX4ZjaADbkuw",
+        "content": [
+          {
+            "title": "[2505.23433] Diversity-Aware Policy Optimization for Large Language Model Reasoning",
+            "url": "https://arxiv.org/abs/2505.23433"
+          },
+          {
+            "title": "[Literature Review] Diversity-Aware Policy Optimization for Large Language Model Reasoning",
+            "url": "https://www.themoonlight.io/en/review/diversity-aware-policy-optimization-for-large-language-model-reasoning"
+          },
+          {
+            "title": "Diversity-Aware Policy Optimization for Large Language Model Reasoning",
+            "url": "https://arxiv.org/pdf/2505.23433"
+          },
+          {
+            "title": "NeurIPS Poster Diversity-Aware Policy Optimization for Large Language Model Reasoning",
+            "url": "https://neurips.cc/virtual/2025/poster/119844"
+          },
+          {
+            "title": "Diversity-Aware Policy Optimization for Large Language Model Reasoning",
+            "url": "https://arxiv.org/html/2505.23433v2"
+          },
+          {
+            "title": "Diversity-Aware Policy Optimization for Large Language Model Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=5eZ0iykpDU"
+          },
+          {
+            "title": "[PDF] Diversity-Aware Policy Optimization for Large Language Model Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Diversity-Aware-Policy-Optimization-for-Large-Model-Yao-Cheng/4a0be5039b2d462fedafec282ac19dce5746dad8"
+          },
+          {
+            "title": "DSDR: Dual-Scale Diversity Regularization for Exploration in LLM Reasoning",
+            "url": "https://arxiv.org/html/2602.19895v1"
+          }
+        ]
+      },
+      "I found the research paper arXiv 2505.23433 on \"Diversity-Aware Policy Optimization for Large Language Model Reasoning.\" Here's what the paper covers:\n\n## Overview\n\nThe work presents a systematic investigation into the impact of diversity in RL-based training for LLM reasoning, and proposes a novel diversity-aware policy optimization method.\n\n## Key Findings\n\nAcross evaluations on 12 LLMs, there is a strong positive correlation between the solution diversity and Potential at k (a novel metric quantifying an LLM's reasoning potential) in high-performing models.\n\n## Token-Level Diversity Approach\n\nThe authors introduce a token-level diversity metric and reformulate the diversity objective into a practical form. The authors propose using token-level entropy as a diversity measure, defined as the average entropy of the policy distribution over tokens at each step, conditioned on the input and previously generated tokens.\n\n## Results and Implementation\n\nThe method designs a token-level diversity and reformulates it into a practical objective, then selectively applies it to positive samples. Integrated into the R1-zero training framework, the method achieves a 3.5% average improvement across four mathematical reasoning benchmarks, while generating more diverse and robust solutions."
+    ],
+    "durationSeconds": 7.489139857999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "448a342a-61a6-4f34-8c91-14b10371ae97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-27T21:34:29.324Z_
+
+Now let me fetch the actual key papers for deeper reading:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b893ee3-9956-476e-b86e-b06a22e1475b",
+  "isSidechain": false,
+  "requestId": "req_011CbTnrxCJav1eofFoU1UR6",
+  "type": "assistant",
+  "uuid": "ae2bbc73-15be-4722-8a5b-4fb29de114ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ppLosXb3r5EzvL91U25Gb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 813,
+      "cache_read_input_tokens": 27512,
+      "output_tokens": 226,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 813,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 226,
+          "cache_read_input_tokens": 27512,
+          "cache_creation_input_tokens": 813,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 813
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-27T21:34:33.794Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014J5nDcQcYYjqWEv5YcBC4Y`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.09780v1",
+  "prompt": "Extract the main claims and evidence about MoE expert specialization being a myth. Specifically:\n1. What is the core theoretical argument about routing reflecting geometry vs domain expertise?\n2. What experiments did they run and on which models?\n3. What are their specific findings about specialization patterns?\n4. What do they say about load-balancing loss?\n5. Do they discuss any exceptions or conditions where explicit specialization COULD work?\n6. Do they discuss data-partitioned training or LoRA-based MoE specifically?\n7. What are their limitations and caveats?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae2bbc73-15be-4722-8a5b-4fb29de114ca",
+  "isSidechain": false,
+  "requestId": "req_011CbTnrxCJav1eofFoU1UR6",
+  "type": "assistant",
+  "uuid": "8f3f4634-9a49-47c9-b2da-e5dc68e6e387",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ppLosXb3r5EzvL91U25Gb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 813,
+      "cache_read_input_tokens": 27512,
+      "output_tokens": 226,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 813,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 226,
+          "cache_read_input_tokens": 27512,
+          "cache_creation_input_tokens": 813,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 813
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "8f3f4634-9a49-47c9-b2da-e5dc68e6e387",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-27T21:34:48.397Z_
+
+<details><summary>↩ Tool result · `toolu_014J5nDcQcYYjqWEv5YcBC4Y`</summary>
+
+```text
+# Core Analysis of MoE Expert Specialization Claims
+
+## 1. Core Theoretical Argument
+
+The paper's fundamental claim is that **routing reflects hidden state geometry, not domain expertise**. They formalize this through Proposition 1:
+
+Since MoE routers are linear projections (equation 2: g = Ph), tokens with similar hidden states must activate similar experts. The authors prove a tight upper bound showing logit distance depends on hidden state similarity in the principal subspace. As they state: **"specialization is therefore an emergent property of the representation space, not of the routing architecture itself."**
+
+The key insight: this relationship is *necessary* (similar hidden states → similar routing) but *insufficient* for interpretability (different hidden states can still route similarly, and identical routing can occur despite semantic differences).
+
+## 2. Experimental Setup
+
+**Models tested:** Five pre-trained MoEs including GPT-OSS-20b, ERNIE-4.5-21B, Qwen-3-30B, and others
+
+**Datasets:** OpenWebText, Nemotron-CC-Math, HMMT math competition problems, reasoning chains
+
+**Key metrics:** RMS distance, cosine similarity, Hamming similarity, router confidence, "Top-P" expert overlap (measuring what fraction of experts handle P% of tokens)
+
+## 3. Specific Findings About Specialization Patterns
+
+**Three striking empirical findings:**
+
+- **Cross-model solving:** Different models solving the same math problem show only ~60% expert overlap—**"as dissimilar as those for entirely different questions"**
+  
+- **Prompt-rollout divergence:** During prefilling, semantically different prompts activate nearly identical experts; during generation, patterns diverge unpredictably (Figure 7)
+
+- **Router collapse in reasoning models:** Unrelated inputs activate identical experts in deep layers during prefilling, yet these "suppressed" experts become consequential during generation (Figures 9-10)
+
+## 4. Load-Balancing Loss Discussion
+
+Proposition 2 theoretically shows that load-balancing loss forces routers to suppress *shared directions* in correlated hidden states. They demonstrate empirically that:
+
+- Hidden states become increasingly correlated with depth (rank collapse)
+- Load-balanced routers learn to ignore these shared directions to maintain diversity
+- Auxiliary-loss-free models (Muon-trained) don't exhibit this suppression pattern
+- Small-batch training breaks specialization because batches lack diversity to define stable "shared directions"
+
+They cite prior work showing specialization collapse under small-batch training, offering a mechanistic explanation.
+
+## 5. Exceptions or Conditions for Explicit Specialization
+
+The authors acknowledge **one notable exception:** Mistral exhibits little expert specialization, likely due to sparse upcycling during training. However, they **do not identify conditions where explicit semantic specialization *would* emerge naturally**.
+
+Critically, they note: **"unless an explicit objective is introduced (e.g. Li et al. 2026), we should not expect the hidden state and router logit space to have a metric system aligned with human standards."**
+
+This suggests domain-specific specialization requires explicit training objectives, not emergence from standard MoE training.
+
+## 6. Data-Partitioned and LoRA-based MoE
+
+**Not addressed in this paper.** The analysis focuses on token-choice sparse routing in standard pre-trained MoEs. No discussion of expert-partitioned training or parameter-efficient fine-tuning approaches.
+
+## 7. Limitations and Caveats
+
+**Key limitations acknowledged:**
+
+- Analysis requires observing *complete generation trajectories*, not just prompts (prefilling alone is uninformative)
+- Router collapse appears model-specific (reasoning models vs. instruction-tuned models show different behavior)
+- Findings apply specifically to models trained with auxiliary load-balancing loss
+- The connection between hidden state geometry and expert usage, while mechanistically clear, provides **"at least as hard [as understanding] geometry, a long-standing open problem"** for interpretation
+
+**Methodological note:** They use hand-written validation paragraphs and synthetic OOD inputs (shuffled/reversed sequences), which may not reflect realistic distribution shifts.
+
+The core tension they emphasize: understanding expert specialization requires understanding LLM hidden state evolution across layers—a fundamentally unsolved problem in deep learning interpretability.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f3f4634-9a49-47c9-b2da-e5dc68e6e387",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "ef2d1e61-3fe1-4b14-bdcb-a96711a274a2",
+  "toolUseResult": {
+    "bytes": 421575,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Core Analysis of MoE Expert Specialization Claims\n\n## 1. Core Theoretical Argument\n\nThe paper's fundamental claim is that **routing reflects hidden state geometry, not domain expertise**. They formalize this through Proposition 1:\n\nSince MoE routers are linear projections (equation 2: g = Ph), tokens with similar hidden states must activate similar experts. The authors prove a tight upper bound showing logit distance depends on hidden state similarity in the principal subspace. As they state: **\"specialization is therefore an emergent property of the representation space, not of the routing architecture itself.\"**\n\nThe key insight: this relationship is *necessary* (similar hidden states → similar routing) but *insufficient* for interpretability (different hidden states can still route similarly, and identical routing can occur despite semantic differences).\n\n## 2. Experimental Setup\n\n**Models tested:** Five pre-trained MoEs including GPT-OSS-20b, ERNIE-4.5-21B, Qwen-3-30B, and others\n\n**Datasets:** OpenWebText, Nemotron-CC-Math, HMMT math competition problems, reasoning chains\n\n**Key metrics:** RMS distance, cosine similarity, Hamming similarity, router confidence, \"Top-P\" expert overlap (measuring what fraction of experts handle P% of tokens)\n\n## 3. Specific Findings About Specialization Patterns\n\n**Three striking empirical findings:**\n\n- **Cross-model solving:** Different models solving the same math problem show only ~60% expert overlap—**\"as dissimilar as those for entirely different questions\"**\n  \n- **Prompt-rollout divergence:** During prefilling, semantically different prompts activate nearly identical experts; during generation, patterns diverge unpredictably (Figure 7)\n\n- **Router collapse in reasoning models:** Unrelated inputs activate identical experts in deep layers during prefilling, yet these \"suppressed\" experts become consequential during generation (Figures 9-10)\n\n## 4. Load-Balancing Loss Discussion\n\nProposition 2 theoretically shows that load-balancing loss forces routers to suppress *shared directions* in correlated hidden states. They demonstrate empirically that:\n\n- Hidden states become increasingly correlated with depth (rank collapse)\n- Load-balanced routers learn to ignore these shared directions to maintain diversity\n- Auxiliary-loss-free models (Muon-trained) don't exhibit this suppression pattern\n- Small-batch training breaks specialization because batches lack diversity to define stable \"shared directions\"\n\nThey cite prior work showing specialization collapse under small-batch training, offering a mechanistic explanation.\n\n## 5. Exceptions or Conditions for Explicit Specialization\n\nThe authors acknowledge **one notable exception:** Mistral exhibits little expert specialization, likely due to sparse upcycling during training. However, they **do not identify conditions where explicit semantic specialization *would* emerge naturally**.\n\nCritically, they note: **\"unless an explicit objective is introduced (e.g. Li et al. 2026), we should not expect the hidden state and router logit space to have a metric system aligned with human standards.\"**\n\nThis suggests domain-specific specialization requires explicit training objectives, not emergence from standard MoE training.\n\n## 6. Data-Partitioned and LoRA-based MoE\n\n**Not addressed in this paper.** The analysis focuses on token-choice sparse routing in standard pre-trained MoEs. No discussion of expert-partitioned training or parameter-efficient fine-tuning approaches.\n\n## 7. Limitations and Caveats\n\n**Key limitations acknowledged:**\n\n- Analysis requires observing *complete generation trajectories*, not just prompts (prefilling alone is uninformative)\n- Router collapse appears model-specific (reasoning models vs. instruction-tuned models show different behavior)\n- Findings apply specifically to models trained with auxiliary load-balancing loss\n- The connection between hidden state geometry and expert usage, while mechanistically clear, provides **\"at least as hard [as understanding] geometry, a long-standing open problem\"** for interpretation\n\n**Methodological note:** They use hand-written validation paragraphs and synthetic OOD inputs (shuffled/reversed sequences), which may not reflect realistic distribution shifts.\n\nThe core tension they emphasize: understanding expert specialization requires understanding LLM hidden state evolution across layers—a fundamentally unsolved problem in deep learning interpretability.",
+    "durationMs": 14599,
+    "url": "https://arxiv.org/html/2604.09780v1"
+  },
+  "sourceToolAssistantUUID": "8f3f4634-9a49-47c9-b2da-e5dc68e6e387",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-27T21:34:54.288Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HmXf4QoYEfRHZJxHLVWX27`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.25103",
+  "prompt": "Extract the key details about the Adapt framework for adaptive proof refinement with strategy selection:\n1. What strategies does it select between? List them specifically.\n2. How does the strategy selector work (architecture, training)?\n3. What benchmarks and proof assistants does it target?\n4. What are the specific results (theorem proving rates)?\n5. Does it use specialized models per strategy, or a single model?\n6. How does it differ from having multiple specialized experts?\n7. What are the limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef2d1e61-3fe1-4b14-bdcb-a96711a274a2",
+  "isSidechain": false,
+  "requestId": "req_011CbTntb861rmio9iizYEkx",
+  "type": "assistant",
+  "uuid": "58ce66cf-616d-47b6-a638-08abb3feaded",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rp366a9bLQjd2g9Mv5eJrb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1212,
+      "cache_read_input_tokens": 28325,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1212,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 28325,
+          "cache_creation_input_tokens": 1212,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1212
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-27T21:35:03.001Z_
+
+<details><summary>↩ Tool result · `toolu_01HmXf4QoYEfRHZJxHLVWX27`</summary>
+
+```text
+# Adapt: Adaptive Proof Refinement Framework
+
+## 1. Three Core Strategies
+
+Adapt dynamically selects among three refinement approaches:
+- **Lemma Discovery**: Proposing new helper lemmas or refining existing ones to decompose complex proofs
+- **Context Enrichment**: Retrieving additional definitions, lemmas, theorems, and proofs from the global repository
+- **Regeneration**: Repairing simple errors or attempting entirely new proof approaches
+
+## 2. Strategy Selection Mechanism
+
+The decision-maker employs an LLM-based reasoning system. It analyzes the theorem statement, proof assistant state (stuck proof state, erroneous tactic, error message, partial proof), and working context, then selects the most suitable strategy. The prompt instructs the LLM to "analyze the failure reasons and assess the sufficiency of the current context for solving the proof goal."
+
+## 3. Benchmarks and Target Systems
+
+Adapt targets **Coq** as its primary interactive theorem prover. It evaluates on:
+- **CoqStoq**: 1,171 theorems from 14 real-world GitHub projects
+- **CoqDev**: 1,720 theorems newly mined from Coq commit histories, representing incremental development
+
+## 4. Specific Results
+
+On CoqStoq, Adapt proved 484 theorems (41.33%), outperforming the strongest baseline (PALM) by 16.63%. On the more challenging CoqDev benchmark, it achieved 651 proven theorems (37.85%), exceeding baselines by 18.58%.
+
+## 5. Model Architecture
+
+Adapt uses a **single unified LLM** (GPT-4o primarily) across all components—initial proof generation, decision-making, lemma discovery, and regeneration. Different prompts guide the same model toward different tasks rather than deploying specialized models per strategy.
+
+## 6. Distinction from Multiple Experts
+
+Unlike systems with separate specialized models, Adapt's single LLM makes adaptive routing decisions based on proof context. This is more efficient because costly operations like lemma discovery occur only when the decision-maker deems them necessary, rather than always invoking multiple experts.
+
+## 7. Key Limitations
+
+- Implementation restricted to Coq; generalization to Isabelle or Lean requires future work
+- LLM-generated lemma statements can be "trivial, syntactically flawed, or unprovable"
+- Learning-based decision alternatives underperformed compared to LLM reasoning
+- Three strategies may not be exhaustive for all proof challenges
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58ce66cf-616d-47b6-a638-08abb3feaded",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "daa1adce-b447-4116-a002-cad09eec84f3",
+  "toolUseResult": {
+    "bytes": 295343,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Adapt: Adaptive Proof Refinement Framework\n\n## 1. Three Core Strategies\n\nAdapt dynamically selects among three refinement approaches:\n- **Lemma Discovery**: Proposing new helper lemmas or refining existing ones to decompose complex proofs\n- **Context Enrichment**: Retrieving additional definitions, lemmas, theorems, and proofs from the global repository\n- **Regeneration**: Repairing simple errors or attempting entirely new proof approaches\n\n## 2. Strategy Selection Mechanism\n\nThe decision-maker employs an LLM-based reasoning system. It analyzes the theorem statement, proof assistant state (stuck proof state, erroneous tactic, error message, partial proof), and working context, then selects the most suitable strategy. The prompt instructs the LLM to \"analyze the failure reasons and assess the sufficiency of the current context for solving the proof goal.\"\n\n## 3. Benchmarks and Target Systems\n\nAdapt targets **Coq** as its primary interactive theorem prover. It evaluates on:\n- **CoqStoq**: 1,171 theorems from 14 real-world GitHub projects\n- **CoqDev**: 1,720 theorems newly mined from Coq commit histories, representing incremental development\n\n## 4. Specific Results\n\nOn CoqStoq, Adapt proved 484 theorems (41.33%), outperforming the strongest baseline (PALM) by 16.63%. On the more challenging CoqDev benchmark, it achieved 651 proven theorems (37.85%), exceeding baselines by 18.58%.\n\n## 5. Model Architecture\n\nAdapt uses a **single unified LLM** (GPT-4o primarily) across all components—initial proof generation, decision-making, lemma discovery, and regeneration. Different prompts guide the same model toward different tasks rather than deploying specialized models per strategy.\n\n## 6. Distinction from Multiple Experts\n\nUnlike systems with separate specialized models, Adapt's single LLM makes adaptive routing decisions based on proof context. This is more efficient because costly operations like lemma discovery occur only when the decision-maker deems them necessary, rather than always invoking multiple experts.\n\n## 7. Key Limitations\n\n- Implementation restricted to Coq; generalization to Isabelle or Lean requires future work\n- LLM-generated lemma statements can be \"trivial, syntactically flawed, or unprovable\"\n- Learning-based decision alternatives underperformed compared to LLM reasoning\n- Three strategies may not be exhaustive for all proof challenges",
+    "durationMs": 8709,
+    "url": "https://arxiv.org/html/2510.25103"
+  },
+  "sourceToolAssistantUUID": "58ce66cf-616d-47b6-a638-08abb3feaded",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-27T21:35:07.707Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UdiHzA1NfLR1AajNyrxQnq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.11461",
+  "prompt": "Extract the key details about GCPO (Group Cooperative Policy Optimization):\n1. What is the core mechanism of team-level cooperative credit assignment?\n2. How does it differ from GRPO and other group-based methods?\n3. What benchmarks and results does it report?\n4. How does it relate to diversity in reasoning specifically?\n5. What are the key metrics reported?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "daa1adce-b447-4116-a002-cad09eec84f3",
+  "isSidechain": false,
+  "requestId": "req_011CbTnufZWkPDLQPc4pSQro",
+  "type": "assistant",
+  "uuid": "b6ab5ce8-034d-464c-9eac-66f228519c38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E49RWAGpFfHJoMiFp1s6Ke",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 785,
+      "cache_read_input_tokens": 29537,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 785,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 29537,
+          "cache_creation_input_tokens": 785,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 785
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-27T21:35:16.164Z_
+
+<details><summary>↩ Tool result · `toolu_01UdiHzA1NfLR1AajNyrxQnq`</summary>
+
+```text
+# GCPO: Group Cooperative Policy Optimization - Key Details
+
+## 1. Core Team-Level Credit Assignment Mechanism
+
+GCPO treats sampled rollouts as a cooperative team rather than competitors. Each response receives credit based on "how much it expands the team's coverage beyond what the others already provide." The system uses a determinantal volume over reward-weighted semantic embeddings to quantify collective coverage. Critically, "only correct and non-redundant rollouts contribute to this volume," ensuring that incorrect or duplicate solutions receive minimal credit.
+
+## 2. Distinctions from GRPO and Alternatives
+
+Unlike GRPO's individual rollout scoring, GCPO implements team-level evaluation. The paper contrasts this with diversity-regularized approaches: "such regularization paradigms do not essentially change the winner-takes-all nature: rollouts are still evaluated and optimized by their competitive advantages over others." GCPO preserves the task-level reward budget while reallocating it—avoiding the reward inflation problems of additive diversity bonuses.
+
+## 3. Benchmark Performance
+
+GCPO was evaluated on in-domain tasks (AIME2024, AIME2025, MATH500, Minerva, Olympiad) and out-of-domain benchmarks (ARC-Challenge, GPQA, MMLU-Pro). On Qwen3-4B, it achieved 46.9% in-domain average and 67.6% out-of-domain average, "outperforming DAPO by +8.0 points" on in-domain metrics.
+
+## 4. Diversity in Reasoning Focus
+
+The approach specifically addresses "exploration collapse" in reasoning tasks, where models converge on narrow patterns. GCPO "sustains exploration over non-redundant correct reasoning paths" while maintaining accuracy gains, evidenced by eigenvalue analysis showing "a flatter spectral profile" compared to baseline methods.
+
+## 5. Key Evaluation Metrics
+
+- **Pass@k**: Success rate with k samples
+- **Self-BLEU/Self-ROUGE**: Lexical and structural redundancy measures
+- **Distinct-n**: Token-level variety
+- **LLM-as-Judge Diversity**: Semantic and reasoning-level variety assessment
+- **Training dynamics**: Policy entropy and determinantal team value progression
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6ab5ce8-034d-464c-9eac-66f228519c38",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "6af65ff7-b52d-4150-91a0-d311c794d4be",
+  "toolUseResult": {
+    "bytes": 720193,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# GCPO: Group Cooperative Policy Optimization - Key Details\n\n## 1. Core Team-Level Credit Assignment Mechanism\n\nGCPO treats sampled rollouts as a cooperative team rather than competitors. Each response receives credit based on \"how much it expands the team's coverage beyond what the others already provide.\" The system uses a determinantal volume over reward-weighted semantic embeddings to quantify collective coverage. Critically, \"only correct and non-redundant rollouts contribute to this volume,\" ensuring that incorrect or duplicate solutions receive minimal credit.\n\n## 2. Distinctions from GRPO and Alternatives\n\nUnlike GRPO's individual rollout scoring, GCPO implements team-level evaluation. The paper contrasts this with diversity-regularized approaches: \"such regularization paradigms do not essentially change the winner-takes-all nature: rollouts are still evaluated and optimized by their competitive advantages over others.\" GCPO preserves the task-level reward budget while reallocating it—avoiding the reward inflation problems of additive diversity bonuses.\n\n## 3. Benchmark Performance\n\nGCPO was evaluated on in-domain tasks (AIME2024, AIME2025, MATH500, Minerva, Olympiad) and out-of-domain benchmarks (ARC-Challenge, GPQA, MMLU-Pro). On Qwen3-4B, it achieved 46.9% in-domain average and 67.6% out-of-domain average, \"outperforming DAPO by +8.0 points\" on in-domain metrics.\n\n## 4. Diversity in Reasoning Focus\n\nThe approach specifically addresses \"exploration collapse\" in reasoning tasks, where models converge on narrow patterns. GCPO \"sustains exploration over non-redundant correct reasoning paths\" while maintaining accuracy gains, evidenced by eigenvalue analysis showing \"a flatter spectral profile\" compared to baseline methods.\n\n## 5. Key Evaluation Metrics\n\n- **Pass@k**: Success rate with k samples\n- **Self-BLEU/Self-ROUGE**: Lexical and structural redundancy measures\n- **Distinct-n**: Token-level variety\n- **LLM-as-Judge Diversity**: Semantic and reasoning-level variety assessment\n- **Training dynamics**: Policy entropy and determinantal team value progression",
+    "durationMs": 8453,
+    "url": "https://arxiv.org/html/2605.11461"
+  },
+  "sourceToolAssistantUUID": "b6ab5ce8-034d-464c-9eac-66f228519c38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-27T21:35:22.400Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Rrea3jubxTmzcm16kgot1d`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2511.02872v3",
+  "prompt": "I need to find FATE-H and FATE-X benchmark results for different provers. Specifically:\n1. What are the results for Goedel-Prover-V2 on FATE-H and FATE-X?\n2. What are the results for any 8B-class models on FATE-H?\n3. What were the pre-Seed-Prover results (the 3% baseline mentioned)?\n4. What pass@k settings are used for each system?\n5. What is the compute budget used by different systems?\n6. List ALL systems evaluated on FATE-H with their scores."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6af65ff7-b52d-4150-91a0-d311c794d4be",
+  "isSidechain": false,
+  "requestId": "req_011CbTnvdqc1gU3XokEzvEDy",
+  "type": "assistant",
+  "uuid": "46ad1876-5ddc-462a-8d43-bc83c8253b01",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TuXEi3BDyNs5RaH6hAh5vg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 689,
+      "cache_read_input_tokens": 30322,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 689,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 30322,
+          "cache_creation_input_tokens": 689,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 689
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-27T21:35:27.708Z_
+
+<details><summary>↩ Tool result · `toolu_01Rrea3jubxTmzcm16kgot1d`</summary>
+
+```text
+# FATE Benchmark Results Summary
+
+## Goedel-Prover-V2 Performance
+According to Table 1, Goedel-Prover-V2 achieved:
+- **FATE-H**: 2.0% (pass@64)
+- **FATE-X**: 0.0% (pass@64)
+
+## 8B-Class Models on FATE-H
+The document does not evaluate any 8B-parameter models. The smallest specialized prover tested was Goedel-Prover-V2-32B, which scored 2.0% on FATE-H.
+
+## Pre-Seed-Prover Baseline (3% Reference)
+The 3% baseline mentioned represents the best performance on FATE-H, achieved by two models:
+- DeepSeek-Prover-V2-671B: 3.0%
+- o3: 3.0%
+
+## Pass@k Settings
+All evaluations used "pass@64 metric (Chen et al., 2021)—defined as successful if at least one correct proof is found within 64 independent attempts—with a maximum token limit of 64k."
+
+## Complete FATE-H Results (All Systems)
+
+| Model | FATE-H Score |
+|-------|--------------|
+| o3 | 3.0% |
+| DeepSeek-Prover-V2-671B | 3.0% |
+| Goedel-Prover-V2-32B | 2.0% |
+| Kimina-Prover-72B | 2.0% |
+| Claude-Sonnet-4 | 0.0% |
+| Gemini-2.5-Pro | 0.0% |
+| DeepSeek-R1 | 0.0% |
+| Qwen3-235B-A22B-Thinking | 0.0% |
+
+**Compute budget details are not specified in the document.**
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46ad1876-5ddc-462a-8d43-bc83c8253b01",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "528dade6-208b-4abf-9011-60c9afd7bd86",
+  "toolUseResult": {
+    "bytes": 748214,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# FATE Benchmark Results Summary\n\n## Goedel-Prover-V2 Performance\nAccording to Table 1, Goedel-Prover-V2 achieved:\n- **FATE-H**: 2.0% (pass@64)\n- **FATE-X**: 0.0% (pass@64)\n\n## 8B-Class Models on FATE-H\nThe document does not evaluate any 8B-parameter models. The smallest specialized prover tested was Goedel-Prover-V2-32B, which scored 2.0% on FATE-H.\n\n## Pre-Seed-Prover Baseline (3% Reference)\nThe 3% baseline mentioned represents the best performance on FATE-H, achieved by two models:\n- DeepSeek-Prover-V2-671B: 3.0%\n- o3: 3.0%\n\n## Pass@k Settings\nAll evaluations used \"pass@64 metric (Chen et al., 2021)—defined as successful if at least one correct proof is found within 64 independent attempts—with a maximum token limit of 64k.\"\n\n## Complete FATE-H Results (All Systems)\n\n| Model | FATE-H Score |\n|-------|--------------|\n| o3 | 3.0% |\n| DeepSeek-Prover-V2-671B | 3.0% |\n| Goedel-Prover-V2-32B | 2.0% |\n| Kimina-Prover-72B | 2.0% |\n| Claude-Sonnet-4 | 0.0% |\n| Gemini-2.5-Pro | 0.0% |\n| DeepSeek-R1 | 0.0% |\n| Qwen3-235B-A22B-Thinking | 0.0% |\n\n**Compute budget details are not specified in the document.**",
+    "durationMs": 5304,
+    "url": "https://arxiv.org/html/2511.02872v3"
+  },
+  "sourceToolAssistantUUID": "46ad1876-5ddc-462a-8d43-bc83c8253b01",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-27T21:35:34.308Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important. The FATE benchmark paper shows that the best non-agentic systems score only 3% on FATE-H at pass@64. Seed-Prover 1.5's 80% is from a later paper using an agentic pipeline with massive compute (20 H20-days per problem). So the actual baseline for a non-agentic 8B model on FATE-H would likely be around 0-2%.
+
+Let me search for more details about FATE-H results with Seed-Prover 1.5 and the compute context.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "528dade6-208b-4abf-9011-60c9afd7bd86",
+  "isSidechain": false,
+  "requestId": "req_011CbTnwVDDvNoWc8wda7Fa5",
+  "type": "assistant",
+  "uuid": "689fdadb-dd95-48bf-a493-7171f74a55f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGXQoWcsBhPWSYkzoqwtcR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 31011,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 31011,
+          "cache_creation_input_tokens": 695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-27T21:35:34.342Z_
+
+This is crucial - FATE-H results are very low for non-agentic systems. Let me dig deeper:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "689fdadb-dd95-48bf-a493-7171f74a55f1",
+  "isSidechain": false,
+  "requestId": "req_011CbTnwVDDvNoWc8wda7Fa5",
+  "type": "assistant",
+  "uuid": "be933675-6166-400b-81fa-342d17d8f806",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGXQoWcsBhPWSYkzoqwtcR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 31011,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 31011,
+          "cache_creation_input_tokens": 695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-27T21:35:37.438Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01ST56ucVJwGYCccNF2AtyWH`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2512.17260v1",
+  "prompt": "I need specific details about Seed-Prover 1.5:\n1. What is the exact compute budget for FATE-H evaluation? How many H20-days per problem?\n2. How many search calls per trajectory?\n3. What model size is used?\n4. What is the exact FATE-H and FATE-X score?\n5. How does the agentic pipeline work - step by step?\n6. What is the difference between their \"Medium\" and \"High\" compute settings?\n7. Any results at lower compute budgets (e.g., pass@32 without agentic search)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be933675-6166-400b-81fa-342d17d8f806",
+  "isSidechain": false,
+  "requestId": "req_011CbTnwVDDvNoWc8wda7Fa5",
+  "type": "assistant",
+  "uuid": "9525bf07-da8e-42b6-b729-2c7551d9c152",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGXQoWcsBhPWSYkzoqwtcR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 31011,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 31011,
+          "cache_creation_input_tokens": 695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "9525bf07-da8e-42b6-b729-2c7551d9c152",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-27T21:35:43.629Z_
+
+<details><summary>↩ Tool result · `toolu_01ST56ucVJwGYCccNF2AtyWH`</summary>
+
+```text
+# Seed-Prover 1.5: Key Technical Details
+
+## Compute Budget & Performance Metrics
+
+**FATE-H Evaluation:** The paper specifies "10 H20 days / problem" as the overall compute budget for Seed-Prover 1.5, achieving "80%" on FATE-H and "33%" on FATE-X respectively.
+
+**Search Behavior:** During inference, "the model averaged approximately 10 search calls per trajectory" on FATE-H, but only "1-2" calls on Putnam, demonstrating adaptive tool usage across different problem types.
+
+## Model Architecture
+
+The paper does not explicitly disclose the model size or base model parameters, only referencing that the sketch model is "initialized from Doubao-Seed-1.6."
+
+## Agentic Pipeline Overview
+
+The three-step workflow functions as follows:
+
+1. **Natural Language Phase:** An LLM generates informal proofs structured as lemmas
+2. **Sketch Translation:** A dedicated model converts these into Lean sketches with admitted sub-goals
+3. **Formal Verification:** The agentic Lean prover attempts proving each lemma, with "Pass@3 × 3" budget per unsolved lemma
+
+If proofs fail, the system recursively decomposes problems further up to a maximum search depth of 4 (extendable to 8 with restarts).
+
+## Medium vs. Higher Compute Settings
+
+The paper contrasts Seed-Prover 1.0's "Medium" workflow (requiring "18 H20 days / problem") with 1.5's efficiency gains but doesn't explicitly define distinct "High" settings for version 1.5.
+
+## Lower-Budget Results
+
+No results are provided for reduced compute budgets like pass@32 without hierarchical decomposition.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9525bf07-da8e-42b6-b729-2c7551d9c152",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "3a661a3d-752a-47e6-8bb3-1f21865cec5e",
+  "toolUseResult": {
+    "bytes": 112330,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Seed-Prover 1.5: Key Technical Details\n\n## Compute Budget & Performance Metrics\n\n**FATE-H Evaluation:** The paper specifies \"10 H20 days / problem\" as the overall compute budget for Seed-Prover 1.5, achieving \"80%\" on FATE-H and \"33%\" on FATE-X respectively.\n\n**Search Behavior:** During inference, \"the model averaged approximately 10 search calls per trajectory\" on FATE-H, but only \"1-2\" calls on Putnam, demonstrating adaptive tool usage across different problem types.\n\n## Model Architecture\n\nThe paper does not explicitly disclose the model size or base model parameters, only referencing that the sketch model is \"initialized from Doubao-Seed-1.6.\"\n\n## Agentic Pipeline Overview\n\nThe three-step workflow functions as follows:\n\n1. **Natural Language Phase:** An LLM generates informal proofs structured as lemmas\n2. **Sketch Translation:** A dedicated model converts these into Lean sketches with admitted sub-goals\n3. **Formal Verification:** The agentic Lean prover attempts proving each lemma, with \"Pass@3 × 3\" budget per unsolved lemma\n\nIf proofs fail, the system recursively decomposes problems further up to a maximum search depth of 4 (extendable to 8 with restarts).\n\n## Medium vs. Higher Compute Settings\n\nThe paper contrasts Seed-Prover 1.0's \"Medium\" workflow (requiring \"18 H20 days / problem\") with 1.5's efficiency gains but doesn't explicitly define distinct \"High\" settings for version 1.5.\n\n## Lower-Budget Results\n\nNo results are provided for reduced compute budgets like pass@32 without hierarchical decomposition.",
+    "durationMs": 6185,
+    "url": "https://arxiv.org/html/2512.17260v1"
+  },
+  "sourceToolAssistantUUID": "9525bf07-da8e-42b6-b729-2c7551d9c152",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-27T21:35:46.334Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EGBLsW5jqMkKStkvNNVEiH`</summary>
+
+```json
+{
+  "query": "FATE-H benchmark 8B model results formal theorem proving 2026 non-agentic"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a661a3d-752a-47e6-8bb3-1f21865cec5e",
+  "isSidechain": false,
+  "requestId": "req_011CbTnxfEWKwc3gAWiA4FcQ",
+  "type": "assistant",
+  "uuid": "1127e2d8-0543-4bc7-b0f7-991ea46252f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UVvLiEvKe7up5W9x2RJMkC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 31706,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 31706,
+          "cache_creation_input_tokens": 812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-27T21:35:54.290Z_
+
+<details><summary>↩ Tool result · `toolu_01EGBLsW5jqMkKStkvNNVEiH`</summary>
+
+```text
+Web search results for query: "FATE-H benchmark 8B model results formal theorem proving 2026 non-agentic"
+
+Links: [{"title":"[2511.02872] FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels","url":"https://arxiv.org/abs/2511.02872"},{"title":"FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models","url":"https://arxiv.org/html/2605.10141"},{"title":"FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels | OpenReview","url":"https://openreview.net/forum?id=3bD19r4jqh"},{"title":"FATE: A Formal Benchmark Series for Fron- tier Algebra of ...","url":"https://openreview.net/pdf/4810c78fef948856eb79811f42f18a35143ae442.pdf"},{"title":"FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels","url":"https://arxiv.org/html/2511.02872v4"},{"title":"(PDF) FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels","url":"https://www.researchgate.net/publication/397322167_FATE_A_Formal_Benchmark_Series_for_Frontier_Algebra_of_Multiple_Difficulty_Levels"},{"title":"FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels","url":"https://arxiv.org/pdf/2511.02872"},{"title":"FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels | alphaXiv","url":"https://www.alphaxiv.org/overview/2511.02872v1"},{"title":"Formal Conjectures: An Open and Evolving Benchmark for Verified Discovery in Mathematics","url":"https://arxiv.org/html/2605.13171"}]
+
+I found search results for the FATE-H benchmark and formal theorem proving. Here are the key findings:
+
+## FATE-H Benchmark Overview
+
+FATE (Formal Algebra Theorem Evaluation) is a new benchmark series in formal algebra with two components, FATE-H and FATE-X, each containing 100 problems in abstract and commutative algebra. The FATE series spans a difficulty spectrum from undergraduate exercises to problems exceeding PhD qualifying exams.
+
+## 8B Model Results and Performance
+
+The search results do not show specific 8B model results on FATE-H. However, they do show general performance patterns. The best model achieves only 3% (pass@64) accuracy on FATE-H and 0% on FATE-X.
+
+For instance, DeepSeek-R1 achieved 71.0% natural language accuracy on FATE-H but 0% formalization accuracy, indicating that models often understand the mathematical concepts but fail to translate them into formal code.
+
+## Non-Agentic vs. Reasoning Models
+
+The research evaluated both general reasoning models (OpenAI o3, Gemini-2.5-Pro, Claude-4-Sonnet-thinking, DeepSeek-R1) and specialized theorem provers (DeepSeek-Prover-V2-671B, Kimina-Prover-72B, Goedel-Prover-72B).
+
+The search results don't contain specific breakdowns comparing 8B model results or detailed information contrasting agentic versus non-agentic approaches on FATE-H specifically. You may want to consult the full FATE paper on arXiv (2511.02872) for more detailed model comparisons.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1127e2d8-0543-4bc7-b0f7-991ea46252f3",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "245b5773-a035-47fa-976a-9595b565820f",
+  "toolUseResult": {
+    "query": "FATE-H benchmark 8B model results formal theorem proving 2026 non-agentic",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ai3RLuvfjqJdsDfF8dqpMV",
+        "content": [
+          {
+            "title": "[2511.02872] FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels",
+            "url": "https://arxiv.org/abs/2511.02872"
+          },
+          {
+            "title": "FormalRewardBench: A Benchmark for Formal Theorem Proving Reward Models",
+            "url": "https://arxiv.org/html/2605.10141"
+          },
+          {
+            "title": "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels | OpenReview",
+            "url": "https://openreview.net/forum?id=3bD19r4jqh"
+          },
+          {
+            "title": "FATE: A Formal Benchmark Series for Fron- tier Algebra of ...",
+            "url": "https://openreview.net/pdf/4810c78fef948856eb79811f42f18a35143ae442.pdf"
+          },
+          {
+            "title": "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels",
+            "url": "https://arxiv.org/html/2511.02872v4"
+          },
+          {
+            "title": "(PDF) FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels",
+            "url": "https://www.researchgate.net/publication/397322167_FATE_A_Formal_Benchmark_Series_for_Frontier_Algebra_of_Multiple_Difficulty_Levels"
+          },
+          {
+            "title": "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels",
+            "url": "https://arxiv.org/pdf/2511.02872"
+          },
+          {
+            "title": "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2511.02872v1"
+          },
+          {
+            "title": "Formal Conjectures: An Open and Evolving Benchmark for Verified Discovery in Mathematics",
+            "url": "https://arxiv.org/html/2605.13171"
+          }
+        ]
+      },
+      "I found search results for the FATE-H benchmark and formal theorem proving. Here are the key findings:\n\n## FATE-H Benchmark Overview\n\nFATE (Formal Algebra Theorem Evaluation) is a new benchmark series in formal algebra with two components, FATE-H and FATE-X, each containing 100 problems in abstract and commutative algebra. The FATE series spans a difficulty spectrum from undergraduate exercises to problems exceeding PhD qualifying exams.\n\n## 8B Model Results and Performance\n\nThe search results do not show specific 8B model results on FATE-H. However, they do show general performance patterns. The best model achieves only 3% (pass@64) accuracy on FATE-H and 0% on FATE-X.\n\nFor instance, DeepSeek-R1 achieved 71.0% natural language accuracy on FATE-H but 0% formalization accuracy, indicating that models often understand the mathematical concepts but fail to translate them into formal code.\n\n## Non-Agentic vs. Reasoning Models\n\nThe research evaluated both general reasoning models (OpenAI o3, Gemini-2.5-Pro, Claude-4-Sonnet-thinking, DeepSeek-R1) and specialized theorem provers (DeepSeek-Prover-V2-671B, Kimina-Prover-72B, Goedel-Prover-72B).\n\nThe search results don't contain specific breakdowns comparing 8B model results or detailed information contrasting agentic versus non-agentic approaches on FATE-H specifically. You may want to consult the full FATE paper on arXiv (2511.02872) for more detailed model comparisons."
+    ],
+    "durationSeconds": 7.952930737999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1127e2d8-0543-4bc7-b0f7-991ea46252f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T21:35:57.518Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A99bHsBW42J78hXdQA9sYi`</summary>
+
+```json
+{
+  "query": "SD-MoE spectral decomposition expert specialization LoRA data-partitioned training 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "245b5773-a035-47fa-976a-9595b565820f",
+  "isSidechain": false,
+  "requestId": "req_011CbTnySpudBoBQz4qKhXfy",
+  "type": "assistant",
+  "uuid": "a6168eab-eb4c-4271-b31b-2c4f4d9a48d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SnBCtmZVKh7XhRd6yadwQN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 32518,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 32518,
+          "cache_creation_input_tokens": 979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-27T21:36:04.603Z_
+
+<details><summary>↩ Tool result · `toolu_01A99bHsBW42J78hXdQA9sYi`</summary>
+
+```text
+Web search results for query: "SD-MoE spectral decomposition expert specialization LoRA data-partitioned training 2026"
+
+Links: [{"title":"SD-MoE: Spectral Decomposition for Effective Expert Specialization","url":"https://arxiv.org/html/2602.12556v1"},{"title":"[2602.12556] SD-MoE: Spectral Decomposition for Effective Expert Specialization","url":"https://arxiv.org/abs/2602.12556"},{"title":"SD-MoE: Spectral Decomposition for Effective Expert Specialization","url":"https://arxiv.org/pdf/2602.12556"},{"title":"(PDF) SD-MoE: Spectral Decomposition for Effective Expert Specialization","url":"https://www.researchgate.net/publication/400812661_SD-MoE_Spectral_Decomposition_for_Effective_Expert_Specialization"},{"title":"SD-MoE: Spectral Decomposition for Effective Expert Specialization - haebom","url":"https://slashpage.com/haebom/1q3vdn2px4p512xy49pr"}]
+
+I found research on SD-MoE (Spectral Decomposition for Effective Expert Specialization), which addresses expert specialization in Mixture-of-Experts architectures. Here are the key findings:
+
+## SD-MoE Overview
+
+SD-MoE proposes Spectral-Decoupled MoE to address spectral entanglement by decomposing each expert matrix into a shared low-rank spectral subspace and an orthogonal, expert-specific complement in the long-tail subspace.
+
+## Key Problem Identified
+
+The research found that experts share highly overlapping dominant spectral components in their parameters, dominant gradient subspaces are strongly aligned across experts (driven by low-rank structure in human corpus), and gating mechanisms preferentially route inputs along these dominant directions, further limiting specialization.
+
+## Solution Approach
+
+During training, the gradient is similarly decomposed: the projection onto the shared subspace updates the common expert, while the residual updates corresponding unique experts.
+
+## Performance Benefits
+
+SD-MoE improves performance across downstream tasks, enables effective expert specialization, incurs minimal additional computation, and can be seamlessly integrated into a wide range of existing MoE architectures, including Qwen and DeepSeek.
+
+The paper was published on arxiv on February 13, 2026. However, my search results don't contain specific information about LoRA or data-partitioned training integration with SD-MoE. Would you like me to search for more specific information about those aspects?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6168eab-eb4c-4271-b31b-2c4f4d9a48d9",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "cacdbf46-de25-46c9-a9d6-47a94b9a2073",
+  "toolUseResult": {
+    "query": "SD-MoE spectral decomposition expert specialization LoRA data-partitioned training 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011h3Yxt8rDCZUg4zomop5us",
+        "content": [
+          {
+            "title": "SD-MoE: Spectral Decomposition for Effective Expert Specialization",
+            "url": "https://arxiv.org/html/2602.12556v1"
+          },
+          {
+            "title": "[2602.12556] SD-MoE: Spectral Decomposition for Effective Expert Specialization",
+            "url": "https://arxiv.org/abs/2602.12556"
+          },
+          {
+            "title": "SD-MoE: Spectral Decomposition for Effective Expert Specialization",
+            "url": "https://arxiv.org/pdf/2602.12556"
+          },
+          {
+            "title": "(PDF) SD-MoE: Spectral Decomposition for Effective Expert Specialization",
+            "url": "https://www.researchgate.net/publication/400812661_SD-MoE_Spectral_Decomposition_for_Effective_Expert_Specialization"
+          },
+          {
+            "title": "SD-MoE: Spectral Decomposition for Effective Expert Specialization - haebom",
+            "url": "https://slashpage.com/haebom/1q3vdn2px4p512xy49pr"
+          }
+        ]
+      },
+      "I found research on SD-MoE (Spectral Decomposition for Effective Expert Specialization), which addresses expert specialization in Mixture-of-Experts architectures. Here are the key findings:\n\n## SD-MoE Overview\n\nSD-MoE proposes Spectral-Decoupled MoE to address spectral entanglement by decomposing each expert matrix into a shared low-rank spectral subspace and an orthogonal, expert-specific complement in the long-tail subspace.\n\n## Key Problem Identified\n\nThe research found that experts share highly overlapping dominant spectral components in their parameters, dominant gradient subspaces are strongly aligned across experts (driven by low-rank structure in human corpus), and gating mechanisms preferentially route inputs along these dominant directions, further limiting specialization.\n\n## Solution Approach\n\nDuring training, the gradient is similarly decomposed: the projection onto the shared subspace updates the common expert, while the residual updates corresponding unique experts.\n\n## Performance Benefits\n\nSD-MoE improves performance across downstream tasks, enables effective expert specialization, incurs minimal additional computation, and can be seamlessly integrated into a wide range of existing MoE architectures, including Qwen and DeepSeek.\n\nThe paper was published on arxiv on February 13, 2026. However, my search results don't contain specific information about LoRA or data-partitioned training integration with SD-MoE. Would you like me to search for more specific information about those aspects?"
+    ],
+    "durationSeconds": 7.082595182999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a6168eab-eb4c-4271-b31b-2c4f4d9a48d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-27T21:36:04.606Z_
+
+```json
+{
+  "parentUuid": "cacdbf46-de25-46c9-a9d6-47a94b9a2073",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "01a864fd-c816-4028-89a9-21c18f509ff4",
+  "timestamp": "2026-05-27T21:36:04.606Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-27T21:36:09.119Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DRszEd73rzLWLWCssFZjhD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.12556v1",
+  "prompt": "Extract the key details about SD-MoE:\n1. What is spectral entanglement and how does it cause poor specialization?\n2. How does the spectral decomposition work specifically?\n3. What is the shared low-rank subspace vs expert-specific complement?\n4. How does gradient decomposition training work?\n5. What models and benchmarks are used?\n6. Can this approach be applied to LoRA-based experts?\n7. What are the key results showing improved specialization?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01a864fd-c816-4028-89a9-21c18f509ff4",
+  "isSidechain": false,
+  "requestId": "req_011CbTnzCuH4sNQcWhUWQ67m",
+  "type": "assistant",
+  "uuid": "94fc7aea-1930-4fe5-acaf-d351fb2bdd7c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqUJztNnnQ2S4ZFnLWzeT9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 33497,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 827,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 33497,
+          "cache_creation_input_tokens": 827,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 827
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-27T21:36:16.995Z_
+
+<details><summary>↩ Tool result · `toolu_01DRszEd73rzLWLWCssFZjhD`</summary>
+
+```text
+# SD-MoE: Key Details Summary
+
+## 1. Spectral Entanglement and Poor Specialization
+
+Spectral entanglement occurs when experts share highly aligned dominant spectral components in their parameters. The research reveals that "the top 1% spectral subspace in DeepSeek model is highly aligned (similarity 0.8)" while carrying over 30% of the energy. This shared structure causes experts to become functionally similar rather than specialized, limiting effective model capacity.
+
+## 2. Spectral Decomposition Mechanism
+
+SD-MoE decomposes each expert matrix into two components:
+- **Shared component**: A low-rank matrix capturing common information across all experts
+- **Unique component**: Expert-specific transformations in the orthogonal complement
+
+The approach "decomposes each expert matrix into a shared low-rank spectral subspace, and an orthogonal, expert-specific complement in the long-tail subspace."
+
+## 3. Shared Low-Rank Subspace vs. Expert-Specific Complement
+
+The shared subspace encodes general syntactic and linguistic features present across inputs. The research shows that "leading singular directions are activated by nearly all input tokens," indicating broad applicability. The expert-specific complement captures specialized, non-overlapping information through directions orthogonal to the shared basis.
+
+## 4. Gradient Decomposition During Training
+
+During backpropagation, gradients split into components: the low-rank component updates the common expert, while the long-tail residual updates unique experts. This prevents cross-expert interference and allows independent optimization paths, improving training stability at higher learning rates.
+
+## 5. Models and Benchmarks
+
+Experiments use:
+- **Models**: Qwen and DeepSeek MoE variants (2B/0.8B and 7B/1.5B scales)
+- **Training data**: 100B subset of DCLM corpus
+- **Evaluation**: 8 downstream tasks including ARC, HellaSwag, PIQA, Winogrande
+
+## 6. Application to LoRA-based Experts
+
+The paper does not discuss LoRA-based expert variants. The approach focuses on standard SwiGLU expert architectures with linear projections that can be spectrally decomposed.
+
+## 7. Key Specialization Improvements
+
+Results demonstrate substantial improvements:
+- Inter-expert similarity reduced from ~0.7 to below 0.1
+- Average 3% gains on downstream tasks
+- 30% training efficiency improvement
+- Stable learning rates 4× higher than baselines
+- Only 5% computational overhead at training time
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94fc7aea-1930-4fe5-acaf-d351fb2bdd7c",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "65ee84af-fc8b-46fa-881f-caec84a9bfa0",
+  "toolUseResult": {
+    "bytes": 282167,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SD-MoE: Key Details Summary\n\n## 1. Spectral Entanglement and Poor Specialization\n\nSpectral entanglement occurs when experts share highly aligned dominant spectral components in their parameters. The research reveals that \"the top 1% spectral subspace in DeepSeek model is highly aligned (similarity 0.8)\" while carrying over 30% of the energy. This shared structure causes experts to become functionally similar rather than specialized, limiting effective model capacity.\n\n## 2. Spectral Decomposition Mechanism\n\nSD-MoE decomposes each expert matrix into two components:\n- **Shared component**: A low-rank matrix capturing common information across all experts\n- **Unique component**: Expert-specific transformations in the orthogonal complement\n\nThe approach \"decomposes each expert matrix into a shared low-rank spectral subspace, and an orthogonal, expert-specific complement in the long-tail subspace.\"\n\n## 3. Shared Low-Rank Subspace vs. Expert-Specific Complement\n\nThe shared subspace encodes general syntactic and linguistic features present across inputs. The research shows that \"leading singular directions are activated by nearly all input tokens,\" indicating broad applicability. The expert-specific complement captures specialized, non-overlapping information through directions orthogonal to the shared basis.\n\n## 4. Gradient Decomposition During Training\n\nDuring backpropagation, gradients split into components: the low-rank component updates the common expert, while the long-tail residual updates unique experts. This prevents cross-expert interference and allows independent optimization paths, improving training stability at higher learning rates.\n\n## 5. Models and Benchmarks\n\nExperiments use:\n- **Models**: Qwen and DeepSeek MoE variants (2B/0.8B and 7B/1.5B scales)\n- **Training data**: 100B subset of DCLM corpus\n- **Evaluation**: 8 downstream tasks including ARC, HellaSwag, PIQA, Winogrande\n\n## 6. Application to LoRA-based Experts\n\nThe paper does not discuss LoRA-based expert variants. The approach focuses on standard SwiGLU expert architectures with linear projections that can be spectrally decomposed.\n\n## 7. Key Specialization Improvements\n\nResults demonstrate substantial improvements:\n- Inter-expert similarity reduced from ~0.7 to below 0.1\n- Average 3% gains on downstream tasks\n- 30% training efficiency improvement\n- Stable learning rates 4× higher than baselines\n- Only 5% computational overhead at training time",
+    "durationMs": 7869,
+    "url": "https://arxiv.org/html/2602.12556v1"
+  },
+  "sourceToolAssistantUUID": "94fc7aea-1930-4fe5-acaf-d351fb2bdd7c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-27T21:36:20.009Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ACSDi8vovJG43vxWTHjLQg`</summary>
+
+```json
+{
+  "query": "\"data-partitioned\" OR \"explicitly partitioned\" MoE training specialization vs emergent routing 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65ee84af-fc8b-46fa-881f-caec84a9bfa0",
+  "isSidechain": false,
+  "requestId": "req_011CbTo17yPozoWrMr5Cyx7x",
+  "type": "assistant",
+  "uuid": "f71e3da7-d6b8-4c49-8b18-257a4dd30d6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrQp2Bd4sLNdXUhb73aoeH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 797,
+      "cache_read_input_tokens": 34324,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 34324,
+          "cache_creation_input_tokens": 797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-27T21:36:27.388Z_
+
+<details><summary>↩ Tool result · `toolu_01ACSDi8vovJG43vxWTHjLQg`</summary>
+
+```text
+Web search results for query: ""data-partitioned" OR "explicitly partitioned" MoE training specialization vs emergent routing 2025 2026"
+
+Links: [{"title":"Routing Matters in MoE: Scaling Diffusion Transformers with Explicit Routing Guidance","url":"https://arxiv.org/pdf/2510.24711"},{"title":"EMoE: Eigenbasis-Guided Routing for Mixture-of-Experts","url":"https://arxiv.org/pdf/2601.12137"},{"title":"Expert Divergence Learning for MoE-based Language Models","url":"https://arxiv.org/pdf/2603.00054"},{"title":"Tight Clusters Make Specialized Experts","url":"https://arxiv.org/pdf/2502.15315"},{"title":"[2604.07030] MoE Routing Testbed: Studying Expert Specialization and Routing Behavior at Small Scale","url":"https://arxiv.org/abs/2604.07030"},{"title":"X-MoE: Enabling Scalable Training for Emerging Mixture-of-Experts Architectures on HPC Platforms","url":"https://arxiv.org/pdf/2508.13337"},{"title":"The Myth of Expert Specialization in MoEs: Why Routing Reflects Geometry, Not Necessarily Domain Expertise.","url":"https://arxiv.org/html/2604.09780v1"}]
+
+I found several relevant papers on MoE (Mixture-of-Experts) training and expert specialization from 2025-2026. Here are the key findings:
+
+## Expert Specialization vs. Emergent Routing
+
+Current MoE training techniques face a trade-off: they achieve either balanced loads or highly specialized experts, but not both simultaneously.
+
+Several recent approaches address this tension:
+
+**Explicit Routing Guidance:**
+ProMoE features a two-step router with explicit routing guidance that promotes expert specialization by partitioning tokens into sets through conditional routing and refining assignments through prototypical routing with learnable prototypes.
+
+**Eigenbasis-Guided Routing:**
+EMoE makes routing decisions by projecting input features onto an eigenbasis derived from the data, with this geometric partitioning naturally assigning coherent clusters of inputs to different experts.
+
+**Expert Divergence Learning:**
+Expert Divergence Learning allocates total routing diversity to develop diverged routing policies for varied domains, leading to well-coordinated expert specialization.
+
+## Questioning the Specialization Narrative
+
+Interestingly, a 2026 paper challenges conventional assumptions about expert specialization: There exists a compact, domain-invariant expert that captures the majority of routing mass across domains, with shared committee experts likely reflecting shared information in the hidden state space rather than true domain specialization.
+
+The search results show active research in 2025-2026 exploring both explicit data-partitioned routing strategies and the nature of emergent routing behavior in MoE models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f71e3da7-d6b8-4c49-8b18-257a4dd30d6b",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "4773f314-eaa7-4e09-bc8d-c04ffd1ceb88",
+  "toolUseResult": {
+    "query": "\"data-partitioned\" OR \"explicitly partitioned\" MoE training specialization vs emergent routing 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019z4F9u9behWTrzuVPSiw4t",
+        "content": [
+          {
+            "title": "Routing Matters in MoE: Scaling Diffusion Transformers with Explicit Routing Guidance",
+            "url": "https://arxiv.org/pdf/2510.24711"
+          },
+          {
+            "title": "EMoE: Eigenbasis-Guided Routing for Mixture-of-Experts",
+            "url": "https://arxiv.org/pdf/2601.12137"
+          },
+          {
+            "title": "Expert Divergence Learning for MoE-based Language Models",
+            "url": "https://arxiv.org/pdf/2603.00054"
+          },
+          {
+            "title": "Tight Clusters Make Specialized Experts",
+            "url": "https://arxiv.org/pdf/2502.15315"
+          },
+          {
+            "title": "[2604.07030] MoE Routing Testbed: Studying Expert Specialization and Routing Behavior at Small Scale",
+            "url": "https://arxiv.org/abs/2604.07030"
+          },
+          {
+            "title": "X-MoE: Enabling Scalable Training for Emerging Mixture-of-Experts Architectures on HPC Platforms",
+            "url": "https://arxiv.org/pdf/2508.13337"
+          },
+          {
+            "title": "The Myth of Expert Specialization in MoEs: Why Routing Reflects Geometry, Not Necessarily Domain Expertise.",
+            "url": "https://arxiv.org/html/2604.09780v1"
+          }
+        ]
+      },
+      "I found several relevant papers on MoE (Mixture-of-Experts) training and expert specialization from 2025-2026. Here are the key findings:\n\n## Expert Specialization vs. Emergent Routing\n\nCurrent MoE training techniques face a trade-off: they achieve either balanced loads or highly specialized experts, but not both simultaneously.\n\nSeveral recent approaches address this tension:\n\n**Explicit Routing Guidance:**\nProMoE features a two-step router with explicit routing guidance that promotes expert specialization by partitioning tokens into sets through conditional routing and refining assignments through prototypical routing with learnable prototypes.\n\n**Eigenbasis-Guided Routing:**\nEMoE makes routing decisions by projecting input features onto an eigenbasis derived from the data, with this geometric partitioning naturally assigning coherent clusters of inputs to different experts.\n\n**Expert Divergence Learning:**\nExpert Divergence Learning allocates total routing diversity to develop diverged routing policies for varied domains, leading to well-coordinated expert specialization.\n\n## Questioning the Specialization Narrative\n\nInterestingly, a 2026 paper challenges conventional assumptions about expert specialization: There exists a compact, domain-invariant expert that captures the majority of routing mass across domains, with shared committee experts likely reflecting shared information in the hidden state space rather than true domain specialization.\n\nThe search results show active research in 2025-2026 exploring both explicit data-partitioned routing strategies and the nature of emergent routing behavior in MoE models."
+    ],
+    "durationSeconds": 7.376037084000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f71e3da7-d6b8-4c49-8b18-257a4dd30d6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "4773f314-eaa7-4e09-bc8d-c04ffd1ceb88",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-27T21:36:31.796Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019nP14AcpU1QdYF31m2bo42`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2502.15315",
+  "prompt": "Extract key details about \"Tight Clusters Make Specialized Experts\":\n1. What is the main argument about data clustering and expert specialization?\n2. How do they train experts on clustered/partitioned data?\n3. What results show that explicit data partitioning leads to better specialization than emergent routing?\n4. How does this relate to the \"Myth of Expert Specialization\" paper's claims?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4773f314-eaa7-4e09-bc8d-c04ffd1ceb88",
+  "isSidechain": false,
+  "requestId": "req_011CbTo1tLdeWJbtG8XwobsR",
+  "type": "assistant",
+  "uuid": "551f0ebf-454a-467b-ac65-d8c55d6f148c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABwoUaiEomUWqdG62bWbkh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 35121,
+      "output_tokens": 173,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 796,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 173,
+          "cache_read_input_tokens": 35121,
+          "cache_creation_input_tokens": 796,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 796
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-27T21:36:38.863Z_
+
+<details><summary>↩ Tool result · `toolu_019nP14AcpU1QdYF31m2bo42`</summary>
+
+```text
+# Analysis of "Tight Clusters Make Specialized Experts"
+
+Based on the PDF metadata provided, I can only extract limited information, as the document content itself is not fully visible in the raw PDF structure.
+
+## What I Can Confirm:
+
+**Document Details:**
+- Title: "Tight Clusters Make Specialized Experts"
+- Authors: Stefan K. Nielsen, Rachel S. Y. Teo, Laziz U. Abdullaev, Tan M. Nguyen
+- arXiv ID: 2502.15315v3
+- License: CC-BY 4.0
+
+## Key References Identified:
+
+The paper heavily cites work on:
+- Mixture of Experts (MoE) architectures (Shazeer et al., Fedus et al.)
+- Sparse routing mechanisms (Switch Transformers, GLaM)
+- Clustering and partitioning strategies
+- Vision transformers with localized attention (Swin)
+
+## Limitation:
+
+I cannot directly extract the paper's core arguments about data clustering, expert specialization mechanisms, or comparative results without access to the actual text content. The PDF structure shows extensive internal citations and cross-references to equations and theorems, but the substantive claims require the document's body text.
+
+**To properly address your questions about the main argument, training methodology, and relationships to prior work on expert specialization, I would need the actual rendered text from the paper rather than just its structural metadata.**
+
+[Binary content (application/pdf, 2.6MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-review/2f4846e0-c6ab-4a28-b8d4-16058867fd7f/tool-results/webfetch-1779917793084-3hh08z.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "551f0ebf-454a-467b-ac65-d8c55d6f148c",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "57cb3ac0-60b2-4b13-9b69-f1e332845e9d",
+  "toolUseResult": {
+    "bytes": 2762802,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Tight Clusters Make Specialized Experts\"\n\nBased on the PDF metadata provided, I can only extract limited information, as the document content itself is not fully visible in the raw PDF structure.\n\n## What I Can Confirm:\n\n**Document Details:**\n- Title: \"Tight Clusters Make Specialized Experts\"\n- Authors: Stefan K. Nielsen, Rachel S. Y. Teo, Laziz U. Abdullaev, Tan M. Nguyen\n- arXiv ID: 2502.15315v3\n- License: CC-BY 4.0\n\n## Key References Identified:\n\nThe paper heavily cites work on:\n- Mixture of Experts (MoE) architectures (Shazeer et al., Fedus et al.)\n- Sparse routing mechanisms (Switch Transformers, GLaM)\n- Clustering and partitioning strategies\n- Vision transformers with localized attention (Swin)\n\n## Limitation:\n\nI cannot directly extract the paper's core arguments about data clustering, expert specialization mechanisms, or comparative results without access to the actual text content. The PDF structure shows extensive internal citations and cross-references to equations and theorems, but the substantive claims require the document's body text.\n\n**To properly address your questions about the main argument, training methodology, and relationships to prior work on expert specialization, I would need the actual rendered text from the paper rather than just its structural metadata.**\n\n[Binary content (application/pdf, 2.6MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-review/2f4846e0-c6ab-4a28-b8d4-16058867fd7f/tool-results/webfetch-1779917793084-3hh08z.pdf]",
+    "durationMs": 7062,
+    "url": "https://arxiv.org/pdf/2502.15315"
+  },
+  "sourceToolAssistantUUID": "551f0ebf-454a-467b-ac65-d8c55d6f148c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-27T21:36:41.597Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019uenk1P34xTAQcSmxNf56e`</summary>
+
+```json
+{
+  "query": "\"Tight Clusters Make Specialized Experts\" MoE data clustering partitioning specialization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57cb3ac0-60b2-4b13-9b69-f1e332845e9d",
+  "isSidechain": false,
+  "requestId": "req_011CbTo2jSNPeab6DBxX2itx",
+  "type": "assistant",
+  "uuid": "e7d671f9-dd69-455e-955c-6dfb9ede5568",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpHWUPtuRHhv1JHz8hDHiF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 595,
+      "cache_read_input_tokens": 35917,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 595,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 35917,
+          "cache_creation_input_tokens": 595,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 595
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-27T21:36:49.072Z_
+
+<details><summary>↩ Tool result · `toolu_019uenk1P34xTAQcSmxNf56e`</summary>
+
+```text
+Web search results for query: ""Tight Clusters Make Specialized Experts" MoE data clustering partitioning specialization"
+
+Links: [{"title":"[Literature Review] Tight Clusters Make Specialized Experts","url":"https://www.themoonlight.io/en/review/tight-clusters-make-specialized-experts"},{"title":"Tight Clusters Make Specialized Experts","url":"https://arxiv.org/html/2502.15315v2"},{"title":"[Quick Review] Tight Clusters Make Specialized Experts","url":"https://liner.com/review/tight-clusters-make-specialized-experts"},{"title":"Tight Clusters Make Specialized Experts | OpenReview","url":"https://openreview.net/forum?id=Pu3c0209cx"},{"title":"[2502.15315] Tight Clusters Make Specialized Experts","url":"https://arxiv.org/abs/2502.15315"},{"title":"Mixture of Expert Clusters (MoEC)","url":"https://www.emergentmind.com/topics/mixture-of-expert-clusters-moec"}]
+
+Based on the search results, here's what I found about "Tight Clusters Make Specialized Experts":
+
+## Overview
+
+The paper titled "Tight Clusters Make Specialized Experts" presents a novel routing mechanism within the Sparse Mixture-of-Experts (MoE) architecture, aimed at overcoming challenges associated with input data clustering in high-dimensional spaces.
+
+## The Problem
+
+The authors identify issues such as slow convergence rates, difficulties with data contamination, and degraded expert performance stemming from the inability of traditional routing methods to identify latent clusters effectively.
+
+## The Solution: Adaptive Clustering Router
+
+The paper presents the Adaptive Clustering (AC) router and ACMoE layer, a novel MoE routing method that computes token-expert assignments in a transformed space that maximally identifies latent clusters in the data and more easily discovers the best-matched expert for each token.
+
+The core innovation is that the method adaptively learns for each input which features are relevant to determining its latent cluster assignment and scale its features accordingly such that features that promote tight clustering are upweighted and features that produce dispersed clusters are downweighted.
+
+## Key Benefits
+
+The AC router enables the MoE model to obtain three connected benefits: 1) faster convergence, 2) better robustness to data corruption, and 3) overall performance improvement, as experts are specialized in semantically distinct regions of the input space.
+
+The faster convergence is achieved without introducing additional learnable parameters or significant computational overhead, as confirmed by efficiency analysis showing changes in compute speed and memory allocation within approximately 1% or less compared to baselines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7d671f9-dd69-455e-955c-6dfb9ede5568",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "1ad40b20-f237-4a95-a243-c17e33d78ced",
+  "toolUseResult": {
+    "query": "\"Tight Clusters Make Specialized Experts\" MoE data clustering partitioning specialization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B1ybZqxPJE4npZEhTpFZcf",
+        "content": [
+          {
+            "title": "[Literature Review] Tight Clusters Make Specialized Experts",
+            "url": "https://www.themoonlight.io/en/review/tight-clusters-make-specialized-experts"
+          },
+          {
+            "title": "Tight Clusters Make Specialized Experts",
+            "url": "https://arxiv.org/html/2502.15315v2"
+          },
+          {
+            "title": "[Quick Review] Tight Clusters Make Specialized Experts",
+            "url": "https://liner.com/review/tight-clusters-make-specialized-experts"
+          },
+          {
+            "title": "Tight Clusters Make Specialized Experts | OpenReview",
+            "url": "https://openreview.net/forum?id=Pu3c0209cx"
+          },
+          {
+            "title": "[2502.15315] Tight Clusters Make Specialized Experts",
+            "url": "https://arxiv.org/abs/2502.15315"
+          },
+          {
+            "title": "Mixture of Expert Clusters (MoEC)",
+            "url": "https://www.emergentmind.com/topics/mixture-of-expert-clusters-moec"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about \"Tight Clusters Make Specialized Experts\":\n\n## Overview\n\nThe paper titled \"Tight Clusters Make Specialized Experts\" presents a novel routing mechanism within the Sparse Mixture-of-Experts (MoE) architecture, aimed at overcoming challenges associated with input data clustering in high-dimensional spaces.\n\n## The Problem\n\nThe authors identify issues such as slow convergence rates, difficulties with data contamination, and degraded expert performance stemming from the inability of traditional routing methods to identify latent clusters effectively.\n\n## The Solution: Adaptive Clustering Router\n\nThe paper presents the Adaptive Clustering (AC) router and ACMoE layer, a novel MoE routing method that computes token-expert assignments in a transformed space that maximally identifies latent clusters in the data and more easily discovers the best-matched expert for each token.\n\nThe core innovation is that the method adaptively learns for each input which features are relevant to determining its latent cluster assignment and scale its features accordingly such that features that promote tight clustering are upweighted and features that produce dispersed clusters are downweighted.\n\n## Key Benefits\n\nThe AC router enables the MoE model to obtain three connected benefits: 1) faster convergence, 2) better robustness to data corruption, and 3) overall performance improvement, as experts are specialized in semantically distinct regions of the input space.\n\nThe faster convergence is achieved without introducing additional learnable parameters or significant computational overhead, as confirmed by efficiency analysis showing changes in compute speed and memory allocation within approximately 1% or less compared to baselines."
+    ],
+    "durationSeconds": 7.47068824399999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e7d671f9-dd69-455e-955c-6dfb9ede5568",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-27T21:36:52.433Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wk3AnGoWG6hHg1PwHztMZk`</summary>
+
+```json
+{
+  "query": "BFS-Prover-V2 FATE-H results 8B model theorem proving frontier benchmarks 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ad40b20-f237-4a95-a243-c17e33d78ced",
+  "isSidechain": false,
+  "requestId": "req_011CbTo3V3DyJ1mFDiYuEfaX",
+  "type": "assistant",
+  "uuid": "5fce0843-efe5-4277-b1d9-563cbf24b53c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRPBtEaGzLUUB9SChdFjCN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 36512,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 719,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 36512,
+          "cache_creation_input_tokens": 719,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 719
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-27T21:36:58.881Z_
+
+<details><summary>↩ Tool result · `toolu_01Wk3AnGoWG6hHg1PwHztMZk`</summary>
+
+```text
+Web search results for query: "BFS-Prover-V2 FATE-H results 8B model theorem proving frontier benchmarks 2026"
+
+Links: [{"title":"BFS-Prover-V2: Scalable Theorem Prover","url":"https://www.emergentmind.com/topics/bfs-prover-v2"},{"title":"GitHub - ByteDance-Seed/BFS-Prover-V2 · GitHub","url":"https://github.com/ByteDance-Seed/BFS-Prover-V2"},{"title":"ByteDance-Seed/BFS-Prover-V2-7B · Hugging Face","url":"https://huggingface.co/ByteDance-Seed/BFS-Prover-V2-7B"},{"title":"Goedel-Prover-V2: Scaffolded Theorem Proving","url":"https://www.emergentmind.com/papers/2508.03613"},{"title":"Goedel-Prover-V2: Advances in Formal Theorem Proving","url":"https://www.emergentmind.com/topics/goedel-prover-v2"},{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with ...","url":"https://arxiv.org/pdf/2508.03613"},{"title":"ByteDance-Seed/BFS-Prover-V2-32B · Hugging Face","url":"https://huggingface.co/ByteDance-Seed/BFS-Prover-V2-32B"},{"title":"Goedel-LM/Goedel-Prover-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"}]
+
+Based on the search results, I found relevant information about theorem proving systems with 8B models in 2025, though the specific "FATE-H" benchmark mentioned in your query doesn't appear in the results. Here's what I found:
+
+## BFS-Prover-V2
+
+BFS-Prover-V2 is the state-of-the-art open-source step-level theorem proving system for Lean4, designed to address the dual challenges of scaling both training and inference in neural theorem proving. It integrates multi-turn off-policy reinforcement learning with hierarchical tree search for formal proofs and long-horizon reasoning. BFS-Prover-V2 achieves 95.08% and 41.4% on the miniF2F and ProofNet test sets respectively, setting a new state-of-the-art for step-level provers.
+
+## Goedel-Prover-V2-8B
+
+For an 8B model specifically, Goedel-Prover-V2-8B reaches 84.6% pass@32 on MiniF2F and outperforms DeepSeek-Prover-V2-671B under the same metric, despite being 80X smaller. Goedel-Prover-V2-8B reaches 83.0% on MiniF2F test set at Pass@32, matching the performance of prior state-of-the-art DeepSeek-Prover-V2-671B while being nearly 100 times smaller in model size.
+
+However, I did not find specific information about "FATE-H" benchmarks in the search results. If you're looking for information about that specific benchmark, you may want to search for it directly or provide additional context about what FATE-H refers to.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5fce0843-efe5-4277-b1d9-563cbf24b53c",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "1fa9cd41-991d-4ff5-a0a0-4d1e30d92009",
+  "toolUseResult": {
+    "query": "BFS-Prover-V2 FATE-H results 8B model theorem proving frontier benchmarks 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018L1CtUiBoMVzz63Ti4PRyn",
+        "content": [
+          {
+            "title": "BFS-Prover-V2: Scalable Theorem Prover",
+            "url": "https://www.emergentmind.com/topics/bfs-prover-v2"
+          },
+          {
+            "title": "GitHub - ByteDance-Seed/BFS-Prover-V2 · GitHub",
+            "url": "https://github.com/ByteDance-Seed/BFS-Prover-V2"
+          },
+          {
+            "title": "ByteDance-Seed/BFS-Prover-V2-7B · Hugging Face",
+            "url": "https://huggingface.co/ByteDance-Seed/BFS-Prover-V2-7B"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaffolded Theorem Proving",
+            "url": "https://www.emergentmind.com/papers/2508.03613"
+          },
+          {
+            "title": "Goedel-Prover-V2: Advances in Formal Theorem Proving",
+            "url": "https://www.emergentmind.com/topics/goedel-prover-v2"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with ...",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          },
+          {
+            "title": "ByteDance-Seed/BFS-Prover-V2-32B · Hugging Face",
+            "url": "https://huggingface.co/ByteDance-Seed/BFS-Prover-V2-32B"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Prover-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about theorem proving systems with 8B models in 2025, though the specific \"FATE-H\" benchmark mentioned in your query doesn't appear in the results. Here's what I found:\n\n## BFS-Prover-V2\n\nBFS-Prover-V2 is the state-of-the-art open-source step-level theorem proving system for Lean4, designed to address the dual challenges of scaling both training and inference in neural theorem proving. It integrates multi-turn off-policy reinforcement learning with hierarchical tree search for formal proofs and long-horizon reasoning. BFS-Prover-V2 achieves 95.08% and 41.4% on the miniF2F and ProofNet test sets respectively, setting a new state-of-the-art for step-level provers.\n\n## Goedel-Prover-V2-8B\n\nFor an 8B model specifically, Goedel-Prover-V2-8B reaches 84.6% pass@32 on MiniF2F and outperforms DeepSeek-Prover-V2-671B under the same metric, despite being 80X smaller. Goedel-Prover-V2-8B reaches 83.0% on MiniF2F test set at Pass@32, matching the performance of prior state-of-the-art DeepSeek-Prover-V2-671B while being nearly 100 times smaller in model size.\n\nHowever, I did not find specific information about \"FATE-H\" benchmarks in the search results. If you're looking for information about that specific benchmark, you may want to search for it directly or provide additional context about what FATE-H refers to."
+    ],
+    "durationSeconds": 6.443570097000018,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5fce0843-efe5-4277-b1d9-563cbf24b53c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-27T21:37:02.765Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S725LztaNTbFKCAQjsQJWL`</summary>
+
+```json
+{
+  "query": "HILBERT theorem prover miniF2F 99.2% Gemini Goedel architecture details ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fa9cd41-991d-4ff5-a0a0-4d1e30d92009",
+  "isSidechain": false,
+  "requestId": "req_011CbTo4Cz6puXvEBGxgfCAA",
+  "type": "assistant",
+  "uuid": "e0b516ec-6fde-42b2-a56c-2b682559549c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121qn3yBagSFZxhnEjPLxuu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 37231,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 37231,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-27T21:37:12.610Z_
+
+<details><summary>↩ Tool result · `toolu_01S725LztaNTbFKCAQjsQJWL`</summary>
+
+```text
+Web search results for query: "HILBERT theorem prover miniF2F 99.2% Gemini Goedel architecture details ICLR 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.22819"},{"title":"Hilbert: Recursively Building Formal Proofs with Informal Reasoning","url":"https://arxiv.org/html/2509.22819v1"},{"title":"Goedel-Prover: the self improving super human AI mathematician | by Anatol Wegner | Apr, 2026 | Medium","url":"https://medium.com/@AIchats/goedel-prover-the-self-improving-super-human-ai-mathematician-fb03a004dc8b"},{"title":"HILBERT: Recursively Building Formal Proofs with Informal Reasoning","url":"https://openreview.net/pdf?id=ljAHonPrs1"},{"title":"ICLR Poster Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://iclr.cc/virtual/2026/poster/10007912"},{"title":"A Minimal Agent for Automated Theorem Proving","url":"https://arxiv.org/html/2602.24273v1"},{"title":"Goedel-Prover: A Frontier Model for Open-Source Automated Theorem   Proving","url":"https://arxiv.org/pdf/2502.07640"}]
+
+Based on the search results, I found comprehensive information about HILBERT and its results:
+
+## HILBERT Overview
+
+HILBERT is a hierarchical agentic framework that bridges formal theorem proving in Lean with the informal mathematical reasoning capabilities of general-purpose LLMs.
+
+## Architecture and Components
+
+HILBERT recursively decomposes complex problems into manageable subgoals and orchestrates informal reasoners (Gemini 2.5 Pro/Flash) with formal provers (DeepSeek-Prover-V2-7B and Goedel-Prover-V2-32B) to solve theorems that neither component can handle alone.
+
+## MiniF2F Performance
+
+HILBERT achieves state-of-the-art performance on miniF2F with pass rates of 90.8% to 99.2%. The best setup using Gemini 2.5 Pro + Goedel-Prover-V2-32B reaches 99.2% pass rate, failing only two problems.
+
+## Performance Details with Retrieval
+
+With retrieval enabled, HILBERT achieves higher pass rates across both configurations: 98.4% vs 97.1% for DeepSeek Prover and 99.2% vs 97.9% for Goedel Prover. Retrieval significantly reduces inference-time compute utilization, and for HILBERT with Goedel Prover V2, retrieval reduces average reasoner calls from 862 to 548 and average reasoner tokens from 4.0M to 2.3M.
+
+## PutnamBench Results
+
+On the challenging PutnamBench dataset, HILBERT achieves 70.0% pass rate, nearly 20 percentage points above previous methods and approaching the 82% informal proof rate reported in Dekoninck et al.
+
+This work was published as a conference paper at ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0b516ec-6fde-42b2-a56c-2b682559549c",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "e7dd5738-288c-475b-9029-7417a71c4e17",
+  "toolUseResult": {
+    "query": "HILBERT theorem prover miniF2F 99.2% Gemini Goedel architecture details ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N8XDMnJAxyQ983ztCsXmqA",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "Hilbert: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://arxiv.org/html/2509.22819v1"
+          },
+          {
+            "title": "Goedel-Prover: the self improving super human AI mathematician | by Anatol Wegner | Apr, 2026 | Medium",
+            "url": "https://medium.com/@AIchats/goedel-prover-the-self-improving-super-human-ai-mathematician-fb03a004dc8b"
+          },
+          {
+            "title": "HILBERT: Recursively Building Formal Proofs with Informal Reasoning",
+            "url": "https://openreview.net/pdf?id=ljAHonPrs1"
+          },
+          {
+            "title": "ICLR Poster Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://iclr.cc/virtual/2026/poster/10007912"
+          },
+          {
+            "title": "A Minimal Agent for Automated Theorem Proving",
+            "url": "https://arxiv.org/html/2602.24273v1"
+          },
+          {
+            "title": "Goedel-Prover: A Frontier Model for Open-Source Automated Theorem   Proving",
+            "url": "https://arxiv.org/pdf/2502.07640"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about HILBERT and its results:\n\n## HILBERT Overview\n\nHILBERT is a hierarchical agentic framework that bridges formal theorem proving in Lean with the informal mathematical reasoning capabilities of general-purpose LLMs.\n\n## Architecture and Components\n\nHILBERT recursively decomposes complex problems into manageable subgoals and orchestrates informal reasoners (Gemini 2.5 Pro/Flash) with formal provers (DeepSeek-Prover-V2-7B and Goedel-Prover-V2-32B) to solve theorems that neither component can handle alone.\n\n## MiniF2F Performance\n\nHILBERT achieves state-of-the-art performance on miniF2F with pass rates of 90.8% to 99.2%. The best setup using Gemini 2.5 Pro + Goedel-Prover-V2-32B reaches 99.2% pass rate, failing only two problems.\n\n## Performance Details with Retrieval\n\nWith retrieval enabled, HILBERT achieves higher pass rates across both configurations: 98.4% vs 97.1% for DeepSeek Prover and 99.2% vs 97.9% for Goedel Prover. Retrieval significantly reduces inference-time compute utilization, and for HILBERT with Goedel Prover V2, retrieval reduces average reasoner calls from 862 to 548 and average reasoner tokens from 4.0M to 2.3M.\n\n## PutnamBench Results\n\nOn the challenging PutnamBench dataset, HILBERT achieves 70.0% pass rate, nearly 20 percentage points above previous methods and approaching the 82% informal proof rate reported in Dekoninck et al.\n\nThis work was published as a conference paper at ICLR 2026."
+    ],
+    "durationSeconds": 9.840172275999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e0b516ec-6fde-42b2-a56c-2b682559549c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-27T21:37:15.575Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016zqQ7pCw9CMFSDJ7QPK52x`</summary>
+
+```json
+{
+  "query": "LoRA mixture of experts explicit data partitioned specialization emergent routing comparison 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7dd5738-288c-475b-9029-7417a71c4e17",
+  "isSidechain": false,
+  "requestId": "req_011CbTo5Di331RfRVQhqWbjA",
+  "type": "assistant",
+  "uuid": "8e596787-c614-4ab7-8178-44b16d74338a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZTw4tbQFTx4AkF1cAHFLy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 38205,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 38205,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-27T21:37:24.926Z_
+
+<details><summary>↩ Tool result · `toolu_016zqQ7pCw9CMFSDJ7QPK52x`</summary>
+
+```text
+Web search results for query: "LoRA mixture of experts explicit data partitioned specialization emergent routing comparison 2025 2026"
+
+Links: [{"title":"Mixture of Rank-Wise Experts (MoRE)","url":"https://www.emergentmind.com/topics/mixture-of-rank-wise-experts-more"},{"title":"Mixture of LoRA Experts Strategy","url":"https://www.emergentmind.com/topics/mixture-of-lora-experts-strategy"},{"title":"DR-LoRA: Dynamic Rank LoRA for Fine-Tuning Mixture-of-Experts Models","url":"https://arxiv.org/html/2601.04823v4"},{"title":"Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-task Learning","url":"https://arxiv.org/html/2501.15103v1"},{"title":"L2R: Low-Rank and Lipschitz-Controlled Routing for Mixture-of-Experts","url":"https://arxiv.org/pdf/2601.21349"},{"title":"Mixture of Experts in Large Language Models †: Corresponding author: Junhao Song (junhao.song23@imperial.ac.uk)","url":"https://arxiv.org/html/2507.11181v2"},{"title":"LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts","url":"https://arxiv.org/pdf/2509.25684"}]
+
+I've found relevant research on LoRA mixture of experts with explicit data partitioned specialization and emergent routing mechanisms. Here are the key findings:
+
+## Mixture of Rank-Wise Experts (MoRE)
+
+This fine partitioning is mathematically equivalent to a block-diagonal gating on a larger LoRA, unifying blockwise MoE-LoRA and rank-wise routed LoRA within a single framework (Zhao et al., 25 Jan 2025). MoRE implementations utilize either explicit routing networks or implicit mechanisms. In explicit routing, a learnable function (MLP, shallow conv, or linear) computes gating logits per expert. Inputs are dynamically assigned to the most relevant rank-level experts, enabling input-conditional specialization and parameter sparsity.
+
+## Mixture of LoRA Experts (MoLE) Extensions
+
+DR-LoRA (Deng et al., 8 Jan 2026) introduces dynamic rank growth, using expert saliency scores between router frequency and LoRA gradient importances to allocate more (or fewer) ranks to each expert, leading to heterogeneous rank profiles tailored to the utilization and demand across tasks. AT-MoE (Li et al., 2024) and HDMoLE (Mu et al., 2024, Mu et al., 12 Jul 2025) demonstrate that two-stage routing—coarse group/domain, then fine expert—improves interpretability and capacity balance.
+
+## Recent Comparisons and Approaches
+
+Typical methods directly inject LoRA into each expert and use a uniform rank allocation strategy. However, these methods implicitly assume that all experts require similar fine-tuning capacity, overlooking the task-dependent imbalance in expert activation induced by routing. Many recent MoE variants remain constrained by rigid routing strategies. A prominent example is MoLA (Gao et al., 2024), which relies on conventional TopK routing. This approach forces every token to consult a fixed number of experts, introducing a manually tuned hyperparameter that prevents adaptive allocation of resources based on token complexity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e596787-c614-4ab7-8178-44b16d74338a",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "efa4d825-4891-45a5-b5b5-adec97b71a3c",
+  "toolUseResult": {
+    "query": "LoRA mixture of experts explicit data partitioned specialization emergent routing comparison 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017MPthbz8BTBihRi4ZT1Urf",
+        "content": [
+          {
+            "title": "Mixture of Rank-Wise Experts (MoRE)",
+            "url": "https://www.emergentmind.com/topics/mixture-of-rank-wise-experts-more"
+          },
+          {
+            "title": "Mixture of LoRA Experts Strategy",
+            "url": "https://www.emergentmind.com/topics/mixture-of-lora-experts-strategy"
+          },
+          {
+            "title": "DR-LoRA: Dynamic Rank LoRA for Fine-Tuning Mixture-of-Experts Models",
+            "url": "https://arxiv.org/html/2601.04823v4"
+          },
+          {
+            "title": "Each Rank Could be an Expert: Single-Ranked Mixture of Experts LoRA for Multi-task Learning",
+            "url": "https://arxiv.org/html/2501.15103v1"
+          },
+          {
+            "title": "L2R: Low-Rank and Lipschitz-Controlled Routing for Mixture-of-Experts",
+            "url": "https://arxiv.org/pdf/2601.21349"
+          },
+          {
+            "title": "Mixture of Experts in Large Language Models †: Corresponding author: Junhao Song (junhao.song23@imperial.ac.uk)",
+            "url": "https://arxiv.org/html/2507.11181v2"
+          },
+          {
+            "title": "LD-MoLE: Learnable Dynamic Routing for Mixture of LoRA Experts",
+            "url": "https://arxiv.org/pdf/2509.25684"
+          }
+        ]
+      },
+      "I've found relevant research on LoRA mixture of experts with explicit data partitioned specialization and emergent routing mechanisms. Here are the key findings:\n\n## Mixture of Rank-Wise Experts (MoRE)\n\nThis fine partitioning is mathematically equivalent to a block-diagonal gating on a larger LoRA, unifying blockwise MoE-LoRA and rank-wise routed LoRA within a single framework (Zhao et al., 25 Jan 2025). MoRE implementations utilize either explicit routing networks or implicit mechanisms. In explicit routing, a learnable function (MLP, shallow conv, or linear) computes gating logits per expert. Inputs are dynamically assigned to the most relevant rank-level experts, enabling input-conditional specialization and parameter sparsity.\n\n## Mixture of LoRA Experts (MoLE) Extensions\n\nDR-LoRA (Deng et al., 8 Jan 2026) introduces dynamic rank growth, using expert saliency scores between router frequency and LoRA gradient importances to allocate more (or fewer) ranks to each expert, leading to heterogeneous rank profiles tailored to the utilization and demand across tasks. AT-MoE (Li et al., 2024) and HDMoLE (Mu et al., 2024, Mu et al., 12 Jul 2025) demonstrate that two-stage routing—coarse group/domain, then fine expert—improves interpretability and capacity balance.\n\n## Recent Comparisons and Approaches\n\nTypical methods directly inject LoRA into each expert and use a uniform rank allocation strategy. However, these methods implicitly assume that all experts require similar fine-tuning capacity, overlooking the task-dependent imbalance in expert activation induced by routing. Many recent MoE variants remain constrained by rigid routing strategies. A prominent example is MoLA (Gao et al., 2024), which relies on conventional TopK routing. This approach forces every token to consult a fixed number of experts, introducing a manually tuned hyperparameter that prevents adaptive allocation of resources based on token complexity."
+    ],
+    "durationSeconds": 9.345867758999987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8e596787-c614-4ab7-8178-44b16d74338a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "efa4d825-4891-45a5-b5b5-adec97b71a3c",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-27T21:37:27.858Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DVpHhLG6dJVxEL6eBDGpg5`</summary>
+
+```json
+{
+  "query": "explicit domain-partitioned expert training MoE vs learned routing specialization knowledge diversity"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efa4d825-4891-45a5-b5b5-adec97b71a3c",
+  "isSidechain": false,
+  "requestId": "req_011CbTo68JsXZFWxM5vfoQuo",
+  "type": "assistant",
+  "uuid": "0773f0ef-370a-4d27-8bb6-301286118eae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q13pErBWJuiNpBoaW8rTB2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 39139,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 39139,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-27T21:37:37.180Z_
+
+<details><summary>↩ Tool result · `toolu_01DVpHhLG6dJVxEL6eBDGpg5`</summary>
+
+```text
+Web search results for query: "explicit domain-partitioned expert training MoE vs learned routing specialization knowledge diversity"
+
+Links: [{"title":"Expert Divergence Learning for MoE-based Language Models","url":"https://arxiv.org/pdf/2603.00054"},{"title":"Input Domain Aware MoE: Decoupling Routing Decisions from Task Optimization in Mixture of Experts","url":"https://arxiv.org/html/2510.16448v1"},{"title":"Routing Matters in MoE: Scaling Diffusion Transformers with Explicit Routing Guidance","url":"https://arxiv.org/pdf/2510.24711"},{"title":"EMoE: Eigenbasis-Guided Routing for Mixture-of-Experts","url":"https://arxiv.org/pdf/2601.12137"},{"title":"[2510.24711] Routing Matters in MoE: Scaling Diffusion Transformers with Explicit Routing Guidance","url":"https://arxiv.org/abs/2510.24711"},{"title":"Decoupling Mixture-of-experts Routing from Gradient Noise: A Framework for Structured Specialization and Soft Generalization Toward Robust and Efficient Inference - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0957417426000424"},{"title":"Input Domain Aware MoE: Decoupling Routing Decisions from Task Optimization in Mixture of Experts","url":"https://arxiv.org/pdf/2510.16448"},{"title":"DSMoE: Matrix-Partitioned Experts with Dynamic Routing for","url":"https://openreview.net/pdf?id=3SMEhMSrsm"}]
+
+I found several relevant papers on MoE (Mixture-of-Experts) architectures that compare explicit domain-partitioned and learned routing approaches:
+
+## Key Research Findings
+
+**Expert Divergence Learning:** Expert Divergence Learning introduces a pre-training strategy that explicitly encourages functional specialization among experts by leveraging domain labels to maximize Jensen-Shannon Divergence between expert routing distributions of different data domains. This optimization allocates routing diversity to develop diverged routing policies for varied domains, leading to well-coordinated expert specialization.
+
+**Input Domain Aware MoE (IDA-MoE):** Research suggests a fundamental need to decouple routing from task-specific learning signals and ground it in the inherent structure of the input distribution. IDA-MoE explicitly models the input space through a Gaussian Mixture Model to create data-driven routing boundaries that partition inputs based on distribution characteristics rather than loss contributions. Task-specific loss optimization can concentrate computation on versatile experts rather than developing complementary specializations, necessitating decoupling of routing from task-specific signals.
+
+**Routing with Explicit Guidance:** Research decomposes MoE objectives into Intra-Expert Coherence (ensuring experts process similar patterns) and Inter-Expert Diversity (encouraging functional differentiation), with explicit routing guidance designs promoting both criteria.
+
+**Eigenbasis-Guided Routing (EMoE):** Current MoE training faces a trade-off between balanced loads and specialized experts. EMoE eliminates the conventional learned gating network and instead makes routing decisions by projecting inputs onto an eigenbasis derived from data, with geometric partitioning of feature space naturally assigning coherent clusters to different experts.
+
+These approaches generally show that **explicit domain-partitioned routing** can better achieve both expert specialization and knowledge diversity compared to purely learned routing strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0773f0ef-370a-4d27-8bb6-301286118eae",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "23d80d9d-f396-48d8-9ba3-93638337d40a",
+  "toolUseResult": {
+    "query": "explicit domain-partitioned expert training MoE vs learned routing specialization knowledge diversity",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NXWxxjBDLPQ2oPsBPjVRez",
+        "content": [
+          {
+            "title": "Expert Divergence Learning for MoE-based Language Models",
+            "url": "https://arxiv.org/pdf/2603.00054"
+          },
+          {
+            "title": "Input Domain Aware MoE: Decoupling Routing Decisions from Task Optimization in Mixture of Experts",
+            "url": "https://arxiv.org/html/2510.16448v1"
+          },
+          {
+            "title": "Routing Matters in MoE: Scaling Diffusion Transformers with Explicit Routing Guidance",
+            "url": "https://arxiv.org/pdf/2510.24711"
+          },
+          {
+            "title": "EMoE: Eigenbasis-Guided Routing for Mixture-of-Experts",
+            "url": "https://arxiv.org/pdf/2601.12137"
+          },
+          {
+            "title": "[2510.24711] Routing Matters in MoE: Scaling Diffusion Transformers with Explicit Routing Guidance",
+            "url": "https://arxiv.org/abs/2510.24711"
+          },
+          {
+            "title": "Decoupling Mixture-of-experts Routing from Gradient Noise: A Framework for Structured Specialization and Soft Generalization Toward Robust and Efficient Inference - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0957417426000424"
+          },
+          {
+            "title": "Input Domain Aware MoE: Decoupling Routing Decisions from Task Optimization in Mixture of Experts",
+            "url": "https://arxiv.org/pdf/2510.16448"
+          },
+          {
+            "title": "DSMoE: Matrix-Partitioned Experts with Dynamic Routing for",
+            "url": "https://openreview.net/pdf?id=3SMEhMSrsm"
+          }
+        ]
+      },
+      "I found several relevant papers on MoE (Mixture-of-Experts) architectures that compare explicit domain-partitioned and learned routing approaches:\n\n## Key Research Findings\n\n**Expert Divergence Learning:** Expert Divergence Learning introduces a pre-training strategy that explicitly encourages functional specialization among experts by leveraging domain labels to maximize Jensen-Shannon Divergence between expert routing distributions of different data domains. This optimization allocates routing diversity to develop diverged routing policies for varied domains, leading to well-coordinated expert specialization.\n\n**Input Domain Aware MoE (IDA-MoE):** Research suggests a fundamental need to decouple routing from task-specific learning signals and ground it in the inherent structure of the input distribution. IDA-MoE explicitly models the input space through a Gaussian Mixture Model to create data-driven routing boundaries that partition inputs based on distribution characteristics rather than loss contributions. Task-specific loss optimization can concentrate computation on versatile experts rather than developing complementary specializations, necessitating decoupling of routing from task-specific signals.\n\n**Routing with Explicit Guidance:** Research decomposes MoE objectives into Intra-Expert Coherence (ensuring experts process similar patterns) and Inter-Expert Diversity (encouraging functional differentiation), with explicit routing guidance designs promoting both criteria.\n\n**Eigenbasis-Guided Routing (EMoE):** Current MoE training faces a trade-off between balanced loads and specialized experts. EMoE eliminates the conventional learned gating network and instead makes routing decisions by projecting inputs onto an eigenbasis derived from data, with geometric partitioning of feature space naturally assigning coherent clusters to different experts.\n\nThese approaches generally show that **explicit domain-partitioned routing** can better achieve both expert specialization and knowledge diversity compared to purely learned routing strategies."
+    ],
+    "durationSeconds": 9.317644950999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0773f0ef-370a-4d27-8bb6-301286118eae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-27T21:37:40.324Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012vNn4YpPZqCtKssqTCwsvx`</summary>
+
+```json
+{
+  "query": "FATE-H FormalProofBench pass@32 non-agentic 7B 8B model lean theorem proving 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23d80d9d-f396-48d8-9ba3-93638337d40a",
+  "isSidechain": false,
+  "requestId": "req_011CbTo72jYGJUNnjB4Nzi3U",
+  "type": "assistant",
+  "uuid": "d7419553-d169-4cfa-93b2-14abf1000d15",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFwfCZZDpBHgGECC9hYLbA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 40082,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 40082,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-27T21:37:46.304Z_
+
+<details><summary>↩ Tool result · `toolu_012vNn4YpPZqCtKssqTCwsvx`</summary>
+
+```text
+Web search results for query: "FATE-H FormalProofBench pass@32 non-agentic 7B 8B model lean theorem proving 2026"
+
+Links: [{"title":"FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?","url":"https://arxiv.org/pdf/2603.26996"},{"title":"(PDF) FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?","url":"https://www.researchgate.net/publication/403308231_FormalProofBench_Can_Models_Write_Graduate_Level_Math_Proofs_That_Are_Formally_Verified"},{"title":"AI-Driven Formal Theorem Proving in the Lean Ecosystem","url":"https://leandojo.org/"},{"title":"Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience","url":"https://arxiv.org/pdf/2512.17260"},{"title":"FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels","url":"https://arxiv.org/pdf/2511.02872"},{"title":"FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels","url":"https://arxiv.org/html/2511.02872v3"},{"title":"Goedel-Prover: A Frontier Model for Open-Source Automated Theorem   Proving","url":"https://arxiv.org/pdf/2502.07640"},{"title":"An In-Context Learning Agent for Formal Theorem-Proving","url":"https://arxiv.org/pdf/2310.04353"}]
+
+Based on the search results, I found relevant information about FATE-H and formal theorem proving benchmarks:
+
+FATE-H is a formal benchmark where the best model achieves only 3% (pass@64) accuracy. However, the search results don't contain specific information about pass@32 performance metrics for 7B and 8B non-agentic models on FATE-H.
+
+The search results do reveal that FATE-X is the first formal benchmark to surpass both PhD-level exam difficulty and the coverage of the Mathlib library, and the best model achieves only 3% (pass@64) accuracy on FATE-H and 0% on FATE-X.
+
+Additionally, Seed-Prover 1.5 has an example of an agentic prover running on FATE-H problem, suggesting that agentic approaches are being evaluated on this benchmark.
+
+The search results don't provide the specific pass@32 pass rates you're looking for comparing 7B and 8B non-agentic models. You may need to consult the full FormalProofBench paper or related research papers for those specific performance metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7419553-d169-4cfa-93b2-14abf1000d15",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "badc598e-e617-438b-9391-651ca83e1605",
+  "toolUseResult": {
+    "query": "FATE-H FormalProofBench pass@32 non-agentic 7B 8B model lean theorem proving 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RhYcEeNUFnx6xvcerkyFjm",
+        "content": [
+          {
+            "title": "FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?",
+            "url": "https://arxiv.org/pdf/2603.26996"
+          },
+          {
+            "title": "(PDF) FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?",
+            "url": "https://www.researchgate.net/publication/403308231_FormalProofBench_Can_Models_Write_Graduate_Level_Math_Proofs_That_Are_Formally_Verified"
+          },
+          {
+            "title": "AI-Driven Formal Theorem Proving in the Lean Ecosystem",
+            "url": "https://leandojo.org/"
+          },
+          {
+            "title": "Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience",
+            "url": "https://arxiv.org/pdf/2512.17260"
+          },
+          {
+            "title": "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels",
+            "url": "https://arxiv.org/pdf/2511.02872"
+          },
+          {
+            "title": "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels",
+            "url": "https://arxiv.org/html/2511.02872v3"
+          },
+          {
+            "title": "Goedel-Prover: A Frontier Model for Open-Source Automated Theorem   Proving",
+            "url": "https://arxiv.org/pdf/2502.07640"
+          },
+          {
+            "title": "An In-Context Learning Agent for Formal Theorem-Proving",
+            "url": "https://arxiv.org/pdf/2310.04353"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about FATE-H and formal theorem proving benchmarks:\n\nFATE-H is a formal benchmark where the best model achieves only 3% (pass@64) accuracy. However, the search results don't contain specific information about pass@32 performance metrics for 7B and 8B non-agentic models on FATE-H.\n\nThe search results do reveal that FATE-X is the first formal benchmark to surpass both PhD-level exam difficulty and the coverage of the Mathlib library, and the best model achieves only 3% (pass@64) accuracy on FATE-H and 0% on FATE-X.\n\nAdditionally, Seed-Prover 1.5 has an example of an agentic prover running on FATE-H problem, suggesting that agentic approaches are being evaluated on this benchmark.\n\nThe search results don't provide the specific pass@32 pass rates you're looking for comparing 7B and 8B non-agentic models. You may need to consult the full FormalProofBench paper or related research papers for those specific performance metrics."
+    ],
+    "durationSeconds": 5.976763768000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d7419553-d169-4cfa-93b2-14abf1000d15",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-27T21:37:50.984Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01B9Q6roK4utQfzahzPgTSdQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.26996",
+  "prompt": "Extract the key results from FormalProofBench:\n1. List ALL models evaluated with their scores\n2. What are the results for 7B/8B class models?\n3. What pass@k settings are used?\n4. What is the best overall result?\n5. How do non-agentic provers compare to agentic ones?\n6. Any compute budget information?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "badc598e-e617-438b-9391-651ca83e1605",
+  "isSidechain": false,
+  "requestId": "req_011CbTo7hj5JRS5v9LFVS2k4",
+  "type": "assistant",
+  "uuid": "dbe50678-2fa6-4e40-8a48-a11dcf37068c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ULwYnMKyk9V6Q9nWCoTwgB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 784,
+      "cache_read_input_tokens": 41005,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 41005,
+          "cache_creation_input_tokens": 784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-27T21:37:58.810Z_
+
+<details><summary>↩ Tool result · `toolu_01B9Q6roK4utQfzahzPgTSdQ`</summary>
+
+```text
+# FormalProofBench Results Summary
+
+## 1. All Evaluated Models and Scores
+
+The benchmark evaluated 13 frontier models:
+
+| Rank | Model | Accuracy |
+|------|-------|----------|
+| 1 | Claude Opus 4.5 (Thinking) | 33.50% |
+| 2 | Gemini 3 Pro | 18.50% |
+| 3 | Claude Sonnet 4.5 (Thinking) | 18.00% |
+| 4 | GPT 5 | 17.00% |
+| 5 | Gemini 3 Flash | 15.00% |
+| 6 | GPT 5.2 | 13.50% |
+| 7 | GPT 5 Nano | 12.50% |
+| 8 | GPT 5.1 Codex Max | 12.00% |
+| 9 | DeepSeek V3.2 (Nonthinking) | 8.00% |
+| 10 | GPT 5 Mini | 7.00% |
+| 11 | GLM 4.7 | 4.50% |
+| 12 | Grok 4.1 Fast (Reasoning) | 4.00% |
+| 13 | DeepSeek V3.2 (Thinking) | 3.00% |
+
+## 2. 7B/8B Class Models
+
+The paper does not evaluate smaller open-source models in the 7B/8B parameter range, focusing instead on "stronger frontier foundation models" from major providers.
+
+## 3. Pass@k Settings
+
+The benchmark employs a "pass@1" evaluation structure with up to 40 agentic turns per problem. The document states: "each problem allows up to 40 turns," but this reflects iterative attempts within a single evaluation, not traditional pass@k scoring.
+
+## 4. Best Overall Result
+
+"Claude Opus 4.5 (Thinking) achieves the best performance of 33.5% accuracy, with performance dropping rapidly after that."
+
+## 5. Agentic vs. Non-Agentic Comparison
+
+The paper exclusively uses an agentic harness with tool access. No direct comparison between agentic and non-agentic approaches is provided; all results reflect models operating with code execution and search tools available.
+
+## 6. Compute Budget Information
+
+Average cost per test ranges from $0.05 to $1.34, while latency averages 1,305 to 11,187 seconds per problem across different models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dbe50678-2fa6-4e40-8a48-a11dcf37068c",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "0ea823e0-8718-4f43-ab75-7d43bb07e546",
+  "toolUseResult": {
+    "bytes": 407757,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# FormalProofBench Results Summary\n\n## 1. All Evaluated Models and Scores\n\nThe benchmark evaluated 13 frontier models:\n\n| Rank | Model | Accuracy |\n|------|-------|----------|\n| 1 | Claude Opus 4.5 (Thinking) | 33.50% |\n| 2 | Gemini 3 Pro | 18.50% |\n| 3 | Claude Sonnet 4.5 (Thinking) | 18.00% |\n| 4 | GPT 5 | 17.00% |\n| 5 | Gemini 3 Flash | 15.00% |\n| 6 | GPT 5.2 | 13.50% |\n| 7 | GPT 5 Nano | 12.50% |\n| 8 | GPT 5.1 Codex Max | 12.00% |\n| 9 | DeepSeek V3.2 (Nonthinking) | 8.00% |\n| 10 | GPT 5 Mini | 7.00% |\n| 11 | GLM 4.7 | 4.50% |\n| 12 | Grok 4.1 Fast (Reasoning) | 4.00% |\n| 13 | DeepSeek V3.2 (Thinking) | 3.00% |\n\n## 2. 7B/8B Class Models\n\nThe paper does not evaluate smaller open-source models in the 7B/8B parameter range, focusing instead on \"stronger frontier foundation models\" from major providers.\n\n## 3. Pass@k Settings\n\nThe benchmark employs a \"pass@1\" evaluation structure with up to 40 agentic turns per problem. The document states: \"each problem allows up to 40 turns,\" but this reflects iterative attempts within a single evaluation, not traditional pass@k scoring.\n\n## 4. Best Overall Result\n\n\"Claude Opus 4.5 (Thinking) achieves the best performance of 33.5% accuracy, with performance dropping rapidly after that.\"\n\n## 5. Agentic vs. Non-Agentic Comparison\n\nThe paper exclusively uses an agentic harness with tool access. No direct comparison between agentic and non-agentic approaches is provided; all results reflect models operating with code execution and search tools available.\n\n## 6. Compute Budget Information\n\nAverage cost per test ranges from $0.05 to $1.34, while latency averages 1,305 to 11,187 seconds per problem across different models.",
+    "durationMs": 7819,
+    "url": "https://arxiv.org/html/2603.26996"
+  },
+  "sourceToolAssistantUUID": "dbe50678-2fa6-4e40-8a48-a11dcf37068c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79 · 2026-05-27T21:37:58.815Z_
+
+```json
+{
+  "parentUuid": "0ea823e0-8718-4f43-ab75-7d43bb07e546",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8c39573c-380c-47c1-b2c3-16d33fcb9875",
+  "timestamp": "2026-05-27T21:37:58.815Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-27T21:38:02.024Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D9cscD2KrZUDU5V16M8RUY`</summary>
+
+```json
+{
+  "query": "Goedel-Prover-V2 8B FormalProofBench ProofNet graduate theorem proving benchmarks results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c39573c-380c-47c1-b2c3-16d33fcb9875",
+  "isSidechain": false,
+  "requestId": "req_011CbTo8dHTA4oKRxRUvokWU",
+  "type": "assistant",
+  "uuid": "3e6b5944-406b-4a0e-bfc4-25a74b614aaa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KwDNrSaqYTfCFcrDfK2cwT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 41789,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 891,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 41789,
+          "cache_creation_input_tokens": 891,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 891
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-27T21:38:08.902Z_
+
+<details><summary>↩ Tool result · `toolu_01D9cscD2KrZUDU5V16M8RUY`</summary>
+
+```text
+Web search results for query: "Goedel-Prover-V2 8B FormalProofBench ProofNet graduate theorem proving benchmarks results"
+
+Links: [{"title":"FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?","url":"https://arxiv.org/html/2603.26996"},{"title":"Goedel-Prover-V2: Advances in Formal Theorem Proving","url":"https://www.emergentmind.com/topics/goedel-prover-v2"},{"title":"FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?","url":"https://arxiv.org/pdf/2603.26996"},{"title":"[Quick Review] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data\\n Synthesis and Self-Correction","url":"https://liner.com/review/goedelproverv2-scaling-formal-theorem-proving-with-scaffolded-data-synthesis-and"},{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with ...","url":"https://arxiv.org/pdf/2508.03613"},{"title":"Goedel-Prover: A Frontier Model for Open-Source Automated Theorem Proving","url":"https://arxiv.org/html/2502.07640v2"},{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction | OpenReview","url":"https://openreview.net/forum?id=j4C0nALrgK"},{"title":"[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/abs/2508.03613"}]
+
+Based on the search results, here's what I found about Goedel-Prover-V2 8B and its performance on theorem proving benchmarks:
+
+## Model Overview
+
+Goedel-Prover-V2 includes a small model at 8B parameters and a flagship at 32B parameters, both using long sequence handling (30–40K tokens) to capture whole proofs and their self-corrections.
+
+## Performance on Benchmarks
+
+The 8B variant demonstrates impressive results:
+
+- **MiniF2F**: The Goedel-Prover-V2-8B reaches 84.6% pass@32 on MiniF2F and outperforms DeepSeek-Prover-V2-671B under the same metric, despite being 80X smaller.
+
+- **Multiple Benchmarks**: The models achieve unprecedented performance on established mathematical proof benchmarks—including MiniF2F and PutnamBench—demonstrating stronger sample efficiency, higher robustness to difficult problems, and superior efficiency compared to both prior open- and closed-source formal provers.
+
+## Key Technical Innovations
+
+The approach incorporates three key innovations: (1) Scaffolded data synthesis to train the model to master increasingly complex theorems; (2) Verifier-guided self-correction to iteratively revise proofs by leveraging Lean compiler feedback; (3) Model averaging to merge model checkpoints.
+
+Note: While ProofNet and other benchmarks are mentioned in the search results, specific performance metrics on FormalProofBench itself were not detailed in the available search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e6b5944-406b-4a0e-bfc4-25a74b614aaa",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "571b4992-6344-4a30-b630-4f501dd5fe54",
+  "toolUseResult": {
+    "query": "Goedel-Prover-V2 8B FormalProofBench ProofNet graduate theorem proving benchmarks results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P94h1ysWqM3EwwsKxXMyhh",
+        "content": [
+          {
+            "title": "FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?",
+            "url": "https://arxiv.org/html/2603.26996"
+          },
+          {
+            "title": "Goedel-Prover-V2: Advances in Formal Theorem Proving",
+            "url": "https://www.emergentmind.com/topics/goedel-prover-v2"
+          },
+          {
+            "title": "FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?",
+            "url": "https://arxiv.org/pdf/2603.26996"
+          },
+          {
+            "title": "[Quick Review] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data\\n Synthesis and Self-Correction",
+            "url": "https://liner.com/review/goedelproverv2-scaling-formal-theorem-proving-with-scaffolded-data-synthesis-and"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with ...",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          },
+          {
+            "title": "Goedel-Prover: A Frontier Model for Open-Source Automated Theorem Proving",
+            "url": "https://arxiv.org/html/2502.07640v2"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction | OpenReview",
+            "url": "https://openreview.net/forum?id=j4C0nALrgK"
+          },
+          {
+            "title": "[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/abs/2508.03613"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Goedel-Prover-V2 8B and its performance on theorem proving benchmarks:\n\n## Model Overview\n\nGoedel-Prover-V2 includes a small model at 8B parameters and a flagship at 32B parameters, both using long sequence handling (30–40K tokens) to capture whole proofs and their self-corrections.\n\n## Performance on Benchmarks\n\nThe 8B variant demonstrates impressive results:\n\n- **MiniF2F**: The Goedel-Prover-V2-8B reaches 84.6% pass@32 on MiniF2F and outperforms DeepSeek-Prover-V2-671B under the same metric, despite being 80X smaller.\n\n- **Multiple Benchmarks**: The models achieve unprecedented performance on established mathematical proof benchmarks—including MiniF2F and PutnamBench—demonstrating stronger sample efficiency, higher robustness to difficult problems, and superior efficiency compared to both prior open- and closed-source formal provers.\n\n## Key Technical Innovations\n\nThe approach incorporates three key innovations: (1) Scaffolded data synthesis to train the model to master increasingly complex theorems; (2) Verifier-guided self-correction to iteratively revise proofs by leveraging Lean compiler feedback; (3) Model averaging to merge model checkpoints.\n\nNote: While ProofNet and other benchmarks are mentioned in the search results, specific performance metrics on FormalProofBench itself were not detailed in the available search results."
+    ],
+    "durationSeconds": 6.871433275000018,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3e6b5944-406b-4a0e-bfc4-25a74b614aaa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-27T21:38:11.740Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0189Ms33U357H69zMWYWysQt`</summary>
+
+```json
+{
+  "query": "Goedel-Prover-V2 8B ProofNet FATE results pass@32 pass@64 all benchmarks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "571b4992-6344-4a30-b630-4f501dd5fe54",
+  "isSidechain": false,
+  "requestId": "req_011CbTo9NP3VxuTai7HM7eBi",
+  "type": "assistant",
+  "uuid": "1518b17f-1475-490b-ba6b-26577905a7ed",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GmufczrV9qD7R8ZScyjw43",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 42680,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 42680,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-27T21:38:17.648Z_
+
+<details><summary>↩ Tool result · `toolu_0189Ms33U357H69zMWYWysQt`</summary>
+
+```text
+Web search results for query: "Goedel-Prover-V2 8B ProofNet FATE results pass@32 pass@64 all benchmarks"
+
+Links: [{"title":"Goedel-Prover-V2","url":"https://blog.goedel-prover.com/"},{"title":"GitHub - Goedel-LM/Goedel-Prover-V2 · GitHub","url":"https://github.com/Goedel-LM/Goedel-Prover-V2"},{"title":"Goedel-LM/Goedel-Prover-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"},{"title":"README.md · Goedel-LM/Goedel-Prover-V2-32B at main","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B/blob/main/README.md"},{"title":"Goedel-LM/Goedel-Prover-V2-32B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B"},{"title":"Goedel-Prover-V2-32B Free Chat Online - skywork.ai, Click to Use! - Skywork ai","url":"https://skywork.ai/blog/models/goedel-prover-v2-32b-free-chat-online-skywork-ai/"},{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/pdf/2508.03613"},{"title":"Goedel-Prover","url":"https://goedel-lm.github.io/"},{"title":"[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/abs/2508.03613"},{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction | OpenReview","url":"https://openreview.net/forum?id=j4C0nALrgK"}]
+
+Based on the search results, here are the key findings for Goedel-Prover-V2 8B performance metrics:
+
+## MiniF2F Benchmark Results
+
+Goedel-Prover-V2-8B reaches 84.6% on MiniF2F test set at Pass@32, matching the performance of prior state-of-the-art DeepSeek-Prover-V2-671B while being nearly 100 times smaller in model size.
+
+## ProofNet and Other Benchmarks
+
+While the search results mention that ProofNet, Lean-workbook, and FormalNumina are tracked as evaluation benchmarks, the specific Pass@32 and Pass@64 results for Goedel-Prover-V2-8B on ProofNet and the FATE benchmarks are not detailed in the search results. The results I found focus primarily on the MiniF2F benchmark performance.
+
+The search results do provide comprehensive details about the flagship 32B model, which achieves 88.0% on MiniF2F at Pass@32 on standard mode and 90.4% on self-correction mode, but specific ProofNet results for the 8B variant don't appear to be fully detailed in these sources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1518b17f-1475-490b-ba6b-26577905a7ed",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "95dc2b32-7c05-450a-a876-ed94d90a9408",
+  "toolUseResult": {
+    "query": "Goedel-Prover-V2 8B ProofNet FATE results pass@32 pass@64 all benchmarks",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017oSftiNvfATNqEqoE81vb7",
+        "content": [
+          {
+            "title": "Goedel-Prover-V2",
+            "url": "https://blog.goedel-prover.com/"
+          },
+          {
+            "title": "GitHub - Goedel-LM/Goedel-Prover-V2 · GitHub",
+            "url": "https://github.com/Goedel-LM/Goedel-Prover-V2"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Prover-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"
+          },
+          {
+            "title": "README.md · Goedel-LM/Goedel-Prover-V2-32B at main",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B/blob/main/README.md"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Prover-V2-32B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B"
+          },
+          {
+            "title": "Goedel-Prover-V2-32B Free Chat Online - skywork.ai, Click to Use! - Skywork ai",
+            "url": "https://skywork.ai/blog/models/goedel-prover-v2-32b-free-chat-online-skywork-ai/"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          },
+          {
+            "title": "Goedel-Prover",
+            "url": "https://goedel-lm.github.io/"
+          },
+          {
+            "title": "[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/abs/2508.03613"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction | OpenReview",
+            "url": "https://openreview.net/forum?id=j4C0nALrgK"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings for Goedel-Prover-V2 8B performance metrics:\n\n## MiniF2F Benchmark Results\n\nGoedel-Prover-V2-8B reaches 84.6% on MiniF2F test set at Pass@32, matching the performance of prior state-of-the-art DeepSeek-Prover-V2-671B while being nearly 100 times smaller in model size.\n\n## ProofNet and Other Benchmarks\n\nWhile the search results mention that ProofNet, Lean-workbook, and FormalNumina are tracked as evaluation benchmarks, the specific Pass@32 and Pass@64 results for Goedel-Prover-V2-8B on ProofNet and the FATE benchmarks are not detailed in the search results. The results I found focus primarily on the MiniF2F benchmark performance.\n\nThe search results do provide comprehensive details about the flagship 32B model, which achieves 88.0% on MiniF2F at Pass@32 on standard mode and 90.4% on self-correction mode, but specific ProofNet results for the 8B variant don't appear to be fully detailed in these sources."
+    ],
+    "durationSeconds": 5.9028726490000265,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1518b17f-1475-490b-ba6b-26577905a7ed",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "95dc2b32-7c05-450a-a876-ed94d90a9408",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-27T21:38:22.107Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XTGiDHwunw4MZ2b4FxTgeZ`</summary>
+
+```json
+{
+  "url": "https://blog.goedel-prover.com/",
+  "prompt": "Find ALL benchmark results for Goedel-Prover-V2, both 8B and 32B variants. Specifically look for:\n1. FATE-H results\n2. FATE-X results\n3. ProofNet results\n4. FormalProofBench results\n5. PutnamBench results\n6. Any non-miniF2F benchmark results\nList every benchmark and every score mentioned."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95dc2b32-7c05-450a-a876-ed94d90a9408",
+  "isSidechain": false,
+  "requestId": "req_011CbToA1kqYicL4D779igdh",
+  "type": "assistant",
+  "uuid": "68ac51ba-5982-472f-b064-dcf9ed54cef1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VW3D7GsjW7ptE83jRKhRgU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1017,
+      "cache_read_input_tokens": 43623,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1017,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 43623,
+          "cache_creation_input_tokens": 1017,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1017
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-27T21:38:26.500Z_
+
+<details><summary>↩ Tool result · `toolu_01XTGiDHwunw4MZ2b4FxTgeZ`</summary>
+
+```text
+# Benchmark Results for Goedel-Prover-V2
+
+Based on the webpage content provided, here are **all benchmark results explicitly mentioned**:
+
+## Explicitly Reported Benchmarks
+
+**MiniF2F Test Set (Pass@32):**
+- Goedel-Prover-V2-32B: 88.1% (standard mode), 90.4% (self-correction mode)
+- Goedel-Prover-V2-8B: 83.3%
+
+**PutnamBench:**
+- Goedel-Prover-V2-32B (self-correction): 64 problems solved (Pass@64), 57 problems (Pass@32)
+- Goedel-Prover-V2-32B (standard): 44 problems solved (Pass@32)
+
+**MathOlympiadBench:**
+The page references "our new MathOlympiadBench containing 360 IMO-level problems" in Figure 1's caption, but **no specific numerical scores are provided** for this benchmark on the webpage.
+
+## Benchmarks NOT Mentioned
+
+The requested benchmarks—FATE-H, FATE-X, ProofNet, and FormalProofBench—**do not appear anywhere in this webpage content**. The page focuses primarily on MiniF2F, PutnamBench, and introduces MathOlympiadBench without reporting detailed performance metrics on it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68ac51ba-5982-472f-b064-dcf9ed54cef1",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "77bf1e5e-95e9-4777-b8d3-a79eaf2db305",
+  "toolUseResult": {
+    "bytes": 29333,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Benchmark Results for Goedel-Prover-V2\n\nBased on the webpage content provided, here are **all benchmark results explicitly mentioned**:\n\n## Explicitly Reported Benchmarks\n\n**MiniF2F Test Set (Pass@32):**\n- Goedel-Prover-V2-32B: 88.1% (standard mode), 90.4% (self-correction mode)\n- Goedel-Prover-V2-8B: 83.3%\n\n**PutnamBench:**\n- Goedel-Prover-V2-32B (self-correction): 64 problems solved (Pass@64), 57 problems (Pass@32)\n- Goedel-Prover-V2-32B (standard): 44 problems solved (Pass@32)\n\n**MathOlympiadBench:**\nThe page references \"our new MathOlympiadBench containing 360 IMO-level problems\" in Figure 1's caption, but **no specific numerical scores are provided** for this benchmark on the webpage.\n\n## Benchmarks NOT Mentioned\n\nThe requested benchmarks—FATE-H, FATE-X, ProofNet, and FormalProofBench—**do not appear anywhere in this webpage content**. The page focuses primarily on MiniF2F, PutnamBench, and introduces MathOlympiadBench without reporting detailed performance metrics on it.",
+    "durationMs": 4388,
+    "url": "https://blog.goedel-prover.com/"
+  },
+  "sourceToolAssistantUUID": "68ac51ba-5982-472f-b064-dcf9ed54cef1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-27T21:39:23.674Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me summarize what I've learned:
+
+1. **"Myth of Expert Specialization"** - The paper shows MoE routing reflects hidden-state geometry, not domain expertise. BUT it explicitly notes: "unless an explicit objective is introduced, we should not expect the hidden state and router logit space to have a metric system aligned with human standards." This is actually an argument FOR our approach - explicit data-partitioned training with strategy-specific objectives creates a fundamentally different training signal. The paper only studies emergent specialization in standard pre-trained MoEs, not explicitly partitioned training. 
+
+SD-MoE's spectral decomposition demonstrates this works in practice, reducing inter-expert similarity from around 0.7 down to below 0.1, which directly addresses the similarity problem.
+
+2. **FATE-H baseline for 8B models** - Looking at the FATE paper results, the best non-agentic approaches max out around 3% pass@64 with much larger models like DeepSeek-Prover-V2-671B and o3, while smaller models like Goedel-Prover-V2-32B hit only 2%, suggesting 8B models would likely fall in the 0-2% range at pass@64.
+
+The contrast is striking: agentic systems like Seed-Prover 1.5 reach 80% but require 10 H20-days per problem, so the gap between non-agentic and agentic performance is massive. A 5-12% improvement on our 8B baseline would realistically mean moving from around 2% to 7-14%, which is substantial in relative terms even if the absolute numbers stay low.
+
+3. **GCPO** - Team-level cooperative credit assignment that directly supports our expert diversity goals
+4. **SetPO** - Set-level policy optimization using kernelized similarity measures
+5. **DAPO** - Token-level diversity metrics
+6. **Adapt** - Strategy selection mechanism for Coq that uses refinement strategies, though it targets Coq rather than Lean and operates with a single LLM
+
+7. **HILBERT** - Achieves 99.2% on miniF2F using Gemini 2.5 Pro and Goedel-V2-32B, outperforming LongCat's 97.1%
+8. **Seed-Prover 1.5 compute** - Requires 10 H20-days per problem on FATE-H with roughly 10 search calls per trajectory
+
+The fundamental reframing here is that FATE-H baselines show non-agentic 8B models at 0-2%, and Seed-Prover 1.5's 80% comes entirely from massive agentic compute. Our proposal needs honest positioning: we're building a compute-efficient system that leverages strategy diversity rather than raw search scale.
+
+The improvement claims need rethinking. If baselines sit around 2% at pass@64, doubling to 4-6% would be substantial, but the original "5-12% absolute improvement" framing doesn't hold up—that would imply reaching 7-14%, which is actually a 3.5-7x gain at a fraction of the compute. The real question is whether to shift to a benchmark where 8B models have meaningful baselines, reframe as relative improvement, or acknowledge the realistic baseline constraints and adjust expectations accordingly.
+
+Looking at the timeline more carefully, FATE was published in November 2025 with results from early non-specialized provers, while more recent systems like Seed-Prover 1.5 hit 80% with agentic search by December. The non-agentic baseline on FATE-H for an 8B model is probably still quite low—somewhere in the 0-5% range. I need to check if there are updated results from more recent provers that might give a clearer picture of what's achievable without agentic search.
+
+The data I have shows pass@64 results where even the largest models barely crack 3%, so at pass@32 the numbers would be even worse. This means I can't make a credible absolute improvement claim on FATE-H with an 8B model. I should either target a different benchmark where 8B models have more meaningful baselines, or reconsider the evaluation strategy entirely.
+
+The strongest angle is positioning this as demonstrating that strategy-level mixture-of-experts provides better coverage per compute unit than single-approach baselines. I'd evaluate on miniF2F for controlled comparison despite saturation concerns, ProofNet where there's a 41.4% baseline to compare against, and FATE-H with honest baseline reporting—even a 3x improvement from 2% to 6% would be noteworthy.
+
+Against agentic systems like Seed-Prover 1.5, I should frame this as operating in a fundamentally different regime: we're 100-1000x more compute-efficient per problem while they spend 10 H20-days each, so we're targeting where strategic diversity yields the most marginal gains.
+
+On the "Myth of Expert Specialization" critique, the key distinction is that their paper shows routing emerges from hidden-state geometry without explicit objectives, but our approach uses explicit data partitioning with strategy-labeled subsets and strategy-specific objectives in the RL training—that's a fundamentally different mechanism than what they're critiquing. -MoE-inspired spectral orthogonality constraints between expert adapters
+
+The key distinction here is that we're using explicit supervision through data partitioning and strategy labels rather than relying on emergent specialization like standard MoE training does. The Myth paper demonstrates that hoping a network learns meaningful separations without guidance is unreliable; our multi-phase approach with explicit strategy labels and the faithfulness reward directly addresses this gap.
+
+Now I need to substantially rework the baseline and evaluation framing, integrate the Myth paper's findings more deeply, and bring in these additional references to strengthen the argument.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77bf1e5e-95e9-4777-b8d3-a79eaf2db305",
+  "isSidechain": false,
+  "requestId": "req_011CbToAfe9ESMs9iE9nF4qY",
+  "type": "assistant",
+  "uuid": "c07ab570-0bd0-44d6-9920-50e3b38d2c52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XL5VKfPjDdF8SKd1ofsLDa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 44640,
+      "output_tokens": 2236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2236,
+          "cache_read_input_tokens": 44640,
+          "cache_creation_input_tokens": 520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-27T21:39:23.718Z_
+
+Now let me search for a few more critical pieces of information:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c07ab570-0bd0-44d6-9920-50e3b38d2c52",
+  "isSidechain": false,
+  "requestId": "req_011CbToAfe9ESMs9iE9nF4qY",
+  "type": "assistant",
+  "uuid": "04c171b6-17b3-44f3-b0f0-be41c850ba57",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XL5VKfPjDdF8SKd1ofsLDa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 44640,
+      "output_tokens": 2236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2236,
+          "cache_read_input_tokens": 44640,
+          "cache_creation_input_tokens": 520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-27T21:39:23.721Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FfWR8A2b46LGabVpBfgrU6`</summary>
+
+```json
+{
+  "query": "BFS-Prover-V2 7B ProofNet FATE results all benchmarks 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04c171b6-17b3-44f3-b0f0-be41c850ba57",
+  "isSidechain": false,
+  "requestId": "req_011CbToAfe9ESMs9iE9nF4qY",
+  "type": "assistant",
+  "uuid": "666c88e8-88e8-4d19-a2f8-12cdd36f95eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XL5VKfPjDdF8SKd1ofsLDa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 520,
+      "cache_read_input_tokens": 44640,
+      "output_tokens": 2236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2236,
+          "cache_read_input_tokens": 44640,
+          "cache_creation_input_tokens": 520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-27T21:39:30.494Z_
+
+<details><summary>↩ Tool result · `toolu_01FfWR8A2b46LGabVpBfgrU6`</summary>
+
+```text
+Web search results for query: "BFS-Prover-V2 7B ProofNet FATE results all benchmarks 2026"
+
+Links: [{"title":"ByteDance-Seed/BFS-Prover-V2-7B · Hugging Face","url":"https://huggingface.co/ByteDance-Seed/BFS-Prover-V2-7B"},{"title":"BFS-Prover-V2: Scalable Theorem Prover","url":"https://www.emergentmind.com/topics/bfs-prover-v2"},{"title":"GitHub - ByteDance-Seed/BFS-Prover-V2 · GitHub","url":"https://github.com/ByteDance-Seed/BFS-Prover-V2"},{"title":"BFS-PROVER-V2: SCALING UP MULTI-TURN OFF","url":"https://openreview.net/pdf/28f1ecf5ea53fbeae0fabf505fffa07d27abed83.pdf"},{"title":"MPS-Prover: Advancing Stepwise Theorem Proving by ...","url":"https://arxiv.org/pdf/2505.10962"},{"title":"Scaling up Multi-Turn Off-Policy RL and Multi-Agent Tree Search for LLM Step-Provers","url":"https://arxiv.org/pdf/2509.06493"},{"title":"LLM-Based Theorem Provers","url":"https://www.emergentmind.com/topics/llm-based-theorem-provers"},{"title":"ByteDance-Seed/BFS-Prover-V2-32B · Hugging Face","url":"https://huggingface.co/ByteDance-Seed/BFS-Prover-V2-32B"},{"title":"BFS-Prover: Scalable Best-First Tree Search for LLM-based Automatic Theorem Proving","url":"https://arxiv.org/pdf/2502.03438"}]
+
+Based on the search results, here are the key findings for BFS-Prover-V2 7B on benchmark results:
+
+## Key Performance Metrics
+
+BFS-Prover-V2 achieves 95.08% and 41.4% on the miniF2F and ProofNet test sets respectively, setting a new state-of-the-art for step-level provers.
+
+## Additional Benchmark Performance
+
+On MiniF2F, the base score is 95.08% with planner enhancement yielding 95.49%, while on ProofNet validation set it achieves 41.4%.
+
+## Architecture and Results
+
+The architecture uses a planner to decompose theorems and parallel prover agents with a shared subgoal cache, achieving state-of-the-art benchmarks on MiniF2F and ProofNet.
+
+## Model Scaling Observations
+
+Regarding the 7B model specifically, the 7B prover showed diminishing returns as its improvement rate on the training corpus and miniF2F began to saturate, suggesting a capacity limitation inherent to the model size.
+
+The search results did not include specific information about "FATE results" - if you're looking for a specific benchmark called FATE or additional metrics, you may need to provide more details about that particular evaluation framework.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "666c88e8-88e8-4d19-a2f8-12cdd36f95eb",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "187e67fa-7f0e-4220-88c5-b1d9b5cda29c",
+  "toolUseResult": {
+    "query": "BFS-Prover-V2 7B ProofNet FATE results all benchmarks 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E2dit1HNiFVyzcf1tb6DXP",
+        "content": [
+          {
+            "title": "ByteDance-Seed/BFS-Prover-V2-7B · Hugging Face",
+            "url": "https://huggingface.co/ByteDance-Seed/BFS-Prover-V2-7B"
+          },
+          {
+            "title": "BFS-Prover-V2: Scalable Theorem Prover",
+            "url": "https://www.emergentmind.com/topics/bfs-prover-v2"
+          },
+          {
+            "title": "GitHub - ByteDance-Seed/BFS-Prover-V2 · GitHub",
+            "url": "https://github.com/ByteDance-Seed/BFS-Prover-V2"
+          },
+          {
+            "title": "BFS-PROVER-V2: SCALING UP MULTI-TURN OFF",
+            "url": "https://openreview.net/pdf/28f1ecf5ea53fbeae0fabf505fffa07d27abed83.pdf"
+          },
+          {
+            "title": "MPS-Prover: Advancing Stepwise Theorem Proving by ...",
+            "url": "https://arxiv.org/pdf/2505.10962"
+          },
+          {
+            "title": "Scaling up Multi-Turn Off-Policy RL and Multi-Agent Tree Search for LLM Step-Provers",
+            "url": "https://arxiv.org/pdf/2509.06493"
+          },
+          {
+            "title": "LLM-Based Theorem Provers",
+            "url": "https://www.emergentmind.com/topics/llm-based-theorem-provers"
+          },
+          {
+            "title": "ByteDance-Seed/BFS-Prover-V2-32B · Hugging Face",
+            "url": "https://huggingface.co/ByteDance-Seed/BFS-Prover-V2-32B"
+          },
+          {
+            "title": "BFS-Prover: Scalable Best-First Tree Search for LLM-based Automatic Theorem Proving",
+            "url": "https://arxiv.org/pdf/2502.03438"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings for BFS-Prover-V2 7B on benchmark results:\n\n## Key Performance Metrics\n\nBFS-Prover-V2 achieves 95.08% and 41.4% on the miniF2F and ProofNet test sets respectively, setting a new state-of-the-art for step-level provers.\n\n## Additional Benchmark Performance\n\nOn MiniF2F, the base score is 95.08% with planner enhancement yielding 95.49%, while on ProofNet validation set it achieves 41.4%.\n\n## Architecture and Results\n\nThe architecture uses a planner to decompose theorems and parallel prover agents with a shared subgoal cache, achieving state-of-the-art benchmarks on MiniF2F and ProofNet.\n\n## Model Scaling Observations\n\nRegarding the 7B model specifically, the 7B prover showed diminishing returns as its improvement rate on the training corpus and miniF2F began to saturate, suggesting a capacity limitation inherent to the model size.\n\nThe search results did not include specific information about \"FATE results\" - if you're looking for a specific benchmark called FATE or additional metrics, you may need to provide more details about that particular evaluation framework."
+    ],
+    "durationSeconds": 6.766083429999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "666c88e8-88e8-4d19-a2f8-12cdd36f95eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-27T21:39:34.243Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0144HDmf5ycbWMjwPJuoVgBx`</summary>
+
+```json
+{
+  "query": "Qwen3 8B formal theorem proving lean4 benchmark results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "187e67fa-7f0e-4220-88c5-b1d9b5cda29c",
+  "isSidechain": false,
+  "requestId": "req_011CbToFPE4EDveuREeKraxh",
+  "type": "assistant",
+  "uuid": "061f8792-eac7-40a4-bc63-eb2fa7c9bb26",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDXzFiHFKX1r4EEANqudLa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3044,
+      "cache_read_input_tokens": 45160,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 45160,
+          "cache_creation_input_tokens": 3044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-27T21:39:41.305Z_
+
+<details><summary>↩ Tool result · `toolu_0144HDmf5ycbWMjwPJuoVgBx`</summary>
+
+```text
+Web search results for query: "Qwen3 8B formal theorem proving lean4 benchmark results 2026"
+
+Links: [{"title":"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving","url":"https://arxiv.org/html/2605.13137v2"},{"title":"FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?","url":"https://arxiv.org/pdf/2603.26996"},{"title":"Goedel-Prover-V2: Scaling Formal Theorem Proving with ...","url":"https://arxiv.org/pdf/2508.03613"},{"title":"VeriSoftBench: Repository-Scale Formal Verification Benchmarks for Lean","url":"https://arxiv.org/pdf/2602.18307"},{"title":"FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language   Models","url":"https://arxiv.org/pdf/2505.02735"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"An In-Context Learning Agent for Formal Theorem-Proving","url":"https://arxiv.org/pdf/2310.04353"}]
+
+Based on the search results, here's what I found regarding Qwen3 8B and formal theorem proving in Lean4:
+
+## Qwen3 8B in Theorem Proving
+
+Qwen3-Embedding-8B is described as a general-purpose embedding model that ranks among the strongest on MTEB (the standard benchmark suite for text embedding quality), without domain-specific fine-tuning. Additionally, Qwen3-Reranker-8B is used for reranking candidates in Lean 4 theorem proving systems.
+
+## General Qwen3 Performance
+
+All Qwen3 8B / 4B / 1.7B / 0.6B-Base models continue to maintain strong performance across nearly all benchmarks, and Qwen3-8B models even outperform larger size Qwen2.5-14B models on over half of the benchmarks, especially on STEM-related and coding benchmarks.
+
+## Related Benchmarks
+
+The search results also reference recent 2025-2026 Lean 4 benchmarking work, including FormalMATH, a large-scale Lean4 benchmark comprising 5,560 formally verified problems spanning from high-school Olympiad challenges to undergraduate-level theorems.
+
+However, the search results do not contain specific benchmark results comparing Qwen3 8B's performance on formal theorem proving tasks in Lean4. The results focus more on Qwen3's embedding and reranking capabilities rather than its direct theorem proving performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "061f8792-eac7-40a4-bc63-eb2fa7c9bb26",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "8a5d3be6-8ad5-4041-afa3-6f4eb6741a49",
+  "toolUseResult": {
+    "query": "Qwen3 8B formal theorem proving lean4 benchmark results 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VnLQuwAW5cDvPQRL112gWZ",
+        "content": [
+          {
+            "title": "LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving",
+            "url": "https://arxiv.org/html/2605.13137v2"
+          },
+          {
+            "title": "FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified?",
+            "url": "https://arxiv.org/pdf/2603.26996"
+          },
+          {
+            "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with ...",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          },
+          {
+            "title": "VeriSoftBench: Repository-Scale Formal Verification Benchmarks for Lean",
+            "url": "https://arxiv.org/pdf/2602.18307"
+          },
+          {
+            "title": "FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language   Models",
+            "url": "https://arxiv.org/pdf/2505.02735"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "An In-Context Learning Agent for Formal Theorem-Proving",
+            "url": "https://arxiv.org/pdf/2310.04353"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding Qwen3 8B and formal theorem proving in Lean4:\n\n## Qwen3 8B in Theorem Proving\n\nQwen3-Embedding-8B is described as a general-purpose embedding model that ranks among the strongest on MTEB (the standard benchmark suite for text embedding quality), without domain-specific fine-tuning. Additionally, Qwen3-Reranker-8B is used for reranking candidates in Lean 4 theorem proving systems.\n\n## General Qwen3 Performance\n\nAll Qwen3 8B / 4B / 1.7B / 0.6B-Base models continue to maintain strong performance across nearly all benchmarks, and Qwen3-8B models even outperform larger size Qwen2.5-14B models on over half of the benchmarks, especially on STEM-related and coding benchmarks.\n\n## Related Benchmarks\n\nThe search results also reference recent 2025-2026 Lean 4 benchmarking work, including FormalMATH, a large-scale Lean4 benchmark comprising 5,560 formally verified problems spanning from high-school Olympiad challenges to undergraduate-level theorems.\n\nHowever, the search results do not contain specific benchmark results comparing Qwen3 8B's performance on formal theorem proving tasks in Lean4. The results focus more on Qwen3's embedding and reranking capabilities rather than its direct theorem proving performance."
+    ],
+    "durationSeconds": 7.058854860000022,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "061f8792-eac7-40a4-bc63-eb2fa7c9bb26",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "8a5d3be6-8ad5-4041-afa3-6f4eb6741a49",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-27T21:39:44.232Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TEdhxHFrMhzbuRZkFJozyT`</summary>
+
+```json
+{
+  "query": "ICLR 2027 deadline abstract submission date September 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a5d3be6-8ad5-4041-afa3-6f4eb6741a49",
+  "isSidechain": false,
+  "requestId": "req_011CbToGBRBamXB8ydhVAMX7",
+  "type": "assistant",
+  "uuid": "54dea094-ef9a-4263-a477-c2b63b45e294",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SanNFkSfvGPuMhjrqwt1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 774,
+      "cache_read_input_tokens": 48204,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 774,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 48204,
+          "cache_creation_input_tokens": 774,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 774
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-27T21:39:48.392Z_
+
+<details><summary>↩ Tool result · `toolu_01TEdhxHFrMhzbuRZkFJozyT`</summary>
+
+```text
+Web search results for query: "ICLR 2027 deadline abstract submission date September 2026"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 Author Guide","url":"https://iclr.cc/Conferences/2026/AuthorGuide"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"ICLR on X: \"Announcing the ICLR 2026 Call for Papers! Abstract submission: Sept 19 (AoE) Paper submission: Sept 24 (AoE) Reviews released: Nov 11 Author/Reviewer discussion: Nov 11-Dec 3 Final decisions: Jan 22 2026 https://t.co/iERvCJZ8uB\" / X","url":"https://x.com/iclr_conf/status/1953093993530859654"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"ICLR on X: \"Abstracts must be registered on OpenReview by 11:59pm Anywhere on Earth today - submit within the next 24 hours.\" / X","url":"https://x.com/iclr_conf/status/1839636711187345568"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/iclr"},{"title":"ICLR on X: \"Reminder - ICLR abstract deadline is Sept 27 at 11:59pm AoE.\" / X","url":"https://x.com/iclr_conf/status/1838950256731459835"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"}]
+
+Based on the search results, I found information about ICLR submission deadlines. However, the results primarily show information for ICLR 2026 (which is the current year), not ICLR 2027.
+
+For **ICLR 2026**: The abstract submission deadline was September 19 (AoE) and paper submission was September 24 (AoE).
+
+I also found a reference to ICLR abstract deadline for September 27 at 11:59pm AoE related to ICLR 2027, which appears in a social media post.
+
+Unfortunately, the search results don't contain comprehensive official information about ICLR 2027's complete submission deadlines. For the most current and official information about ICLR 2027 deadlines, I'd recommend checking the official ICLR website directly at iclr.cc, as they typically announce the call for papers and specific deadlines for upcoming conferences.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54dea094-ef9a-4263-a477-c2b63b45e294",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "0542454f-afdd-48a2-8a39-df58a88deb11",
+  "toolUseResult": {
+    "query": "ICLR 2027 deadline abstract submission date September 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RkTFZtuzS7fRXgvebmxUqm",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026 Author Guide",
+            "url": "https://iclr.cc/Conferences/2026/AuthorGuide"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICLR on X: \"Announcing the ICLR 2026 Call for Papers! Abstract submission: Sept 19 (AoE) Paper submission: Sept 24 (AoE) Reviews released: Nov 11 Author/Reviewer discussion: Nov 11-Dec 3 Final decisions: Jan 22 2026 https://t.co/iERvCJZ8uB\" / X",
+            "url": "https://x.com/iclr_conf/status/1953093993530859654"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "ICLR on X: \"Abstracts must be registered on OpenReview by 11:59pm Anywhere on Earth today - submit within the next 24 hours.\" / X",
+            "url": "https://x.com/iclr_conf/status/1839636711187345568"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "When is ICLR 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/iclr"
+          },
+          {
+            "title": "ICLR on X: \"Reminder - ICLR abstract deadline is Sept 27 at 11:59pm AoE.\" / X",
+            "url": "https://x.com/iclr_conf/status/1838950256731459835"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR submission deadlines. However, the results primarily show information for ICLR 2026 (which is the current year), not ICLR 2027.\n\nFor **ICLR 2026**: The abstract submission deadline was September 19 (AoE) and paper submission was September 24 (AoE).\n\nI also found a reference to ICLR abstract deadline for September 27 at 11:59pm AoE related to ICLR 2027, which appears in a social media post.\n\nUnfortunately, the search results don't contain comprehensive official information about ICLR 2027's complete submission deadlines. For the most current and official information about ICLR 2027 deadlines, I'd recommend checking the official ICLR website directly at iclr.cc, as they typically announce the call for papers and specific deadlines for upcoming conferences."
+    ],
+    "durationSeconds": 4.15492035000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "54dea094-ef9a-4263-a477-c2b63b45e294",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-27T21:39:50.970Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TwtuSbc1vHG2sBUW9TZU9G`</summary>
+
+```json
+{
+  "query": "ICLR 2027 call for papers deadline submission date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0542454f-afdd-48a2-8a39-df58a88deb11",
+  "isSidechain": false,
+  "requestId": "req_011CbToGhjZqsv6JVf68Z16u",
+  "type": "assistant",
+  "uuid": "6d330e94-651c-4640-915b-3444f1ce933d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CnzZPaDSUxZ4gKmkVQSit3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 48978,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 48978,
+          "cache_creation_input_tokens": 877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-27T21:39:54.704Z_
+
+<details><summary>↩ Tool result · `toolu_01TwtuSbc1vHG2sBUW9TZU9G`</summary>
+
+```text
+Web search results for query: "ICLR 2027 call for papers deadline submission date"
+
+Links: [{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"}]
+
+Based on the search results, I was unable to find specific information about ICLR 2027's call for papers deadline. The search results primarily contain information about ICLR 2026 and earlier years, but no official announcement for ICLR 2027 submission deadlines appears to be available yet.
+
+The most recent information I found indicates that ICLR 2027 is scheduled for May 16-21, 2027 in Toronto, Canada, but the official call for papers and submission deadline have not yet been announced.
+
+Since ICLR 2027 is still over a year away, the conference organizers may not have released the official deadlines yet. I recommend checking the official ICLR website (iclr.cc) directly for the most up-to-date information when the call for papers is officially announced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d330e94-651c-4640-915b-3444f1ce933d",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "f9ad7e9c-2db8-4a9f-86b1-2efc252f42ba",
+  "toolUseResult": {
+    "query": "ICLR 2027 call for papers deadline submission date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FrKSJ8wa98CitKKv6rZ5KX",
+        "content": [
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          }
+        ]
+      },
+      "Based on the search results, I was unable to find specific information about ICLR 2027's call for papers deadline. The search results primarily contain information about ICLR 2026 and earlier years, but no official announcement for ICLR 2027 submission deadlines appears to be available yet.\n\nThe most recent information I found indicates that ICLR 2027 is scheduled for May 16-21, 2027 in Toronto, Canada, but the official call for papers and submission deadline have not yet been announced.\n\nSince ICLR 2027 is still over a year away, the conference organizers may not have released the official deadlines yet. I recommend checking the official ICLR website (iclr.cc) directly for the most up-to-date information when the call for papers is officially announced."
+    ],
+    "durationSeconds": 3.7290914559999946,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6d330e94-651c-4640-915b-3444f1ce933d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-27T21:39:59.198Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Qw2j5pypER4AtGTuSurQA1`</summary>
+
+```json
+{
+  "url": "https://trybibby.com/conference-deadlines",
+  "prompt": "Find ALL upcoming ML/AI conference deadlines for 2026-2027. Specifically look for:\n1. ICLR 2027 dates (abstract/paper submission, notification, conference)\n2. ICML 2027 dates\n3. NeurIPS 2027 dates\n4. Any other relevant ML venues with 2026-2027 deadlines\nList every date you can find."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9ad7e9c-2db8-4a9f-86b1-2efc252f42ba",
+  "isSidechain": false,
+  "requestId": "req_011CbToHAhJJgRMeEy9ZNM74",
+  "type": "assistant",
+  "uuid": "0c770989-ee7d-4e83-888a-cc94c458bc57",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ENJkQjQxVGdNzVe3wngdxR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 49855,
+      "output_tokens": 173,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 667,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 173,
+          "cache_read_input_tokens": 49855,
+          "cache_creation_input_tokens": 667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 667
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-27T21:40:04.299Z_
+
+<details><summary>↩ Tool result · `toolu_01Qw2j5pypER4AtGTuSurQA1`</summary>
+
+```text
+# ML/AI Conference Deadlines 2026-2027
+
+Based on the conference deadlines registry, here are the key dates for major ML/AI venues:
+
+## ICLR 2027
+- **Abstract deadline:** September 19, 2026, 11:59 AM UTC
+- **Paper deadline:** September 24, 2026, 11:59 AM UTC
+- **Conference:** April/May 2027
+- **Venue:** TBD
+
+## ICML 2027
+- **Paper deadline:** January 29, 2027, 11:59 AM UTC
+- **Conference:** July 2027
+- **Venue:** TBD
+
+## NeurIPS 2027
+- **Paper deadline:** May 16, 2027, 11:59 AM UTC
+- **Conference:** December 2027
+- **Venue:** TBD
+
+## Other Notable ML/AI Venues
+
+**AAAI 2027** (Montréal, Canada)
+- Abstract: July 26, 2026
+- Paper: August 2, 2026
+
+**AISTATS 2027** (TBD)
+- Paper: October 10, 2026
+
+**MLSys 2027** (TBD)
+- Paper: October 31, 2026
+
+**COLT 2027** (TBD)
+- Paper: February 5, 2027
+
+**KDD 2027** (TBD)
+- Paper: February 9, 2027
+
+All deadlines use UTC timezone unless otherwise specified. The registry notes that dates marked "[EST.]" are projected estimates based on prior years.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c770989-ee7d-4e83-888a-cc94c458bc57",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "ea762108-de3b-49fb-8fe4-f54467672e06",
+  "toolUseResult": {
+    "bytes": 444260,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ML/AI Conference Deadlines 2026-2027\n\nBased on the conference deadlines registry, here are the key dates for major ML/AI venues:\n\n## ICLR 2027\n- **Abstract deadline:** September 19, 2026, 11:59 AM UTC\n- **Paper deadline:** September 24, 2026, 11:59 AM UTC\n- **Conference:** April/May 2027\n- **Venue:** TBD\n\n## ICML 2027\n- **Paper deadline:** January 29, 2027, 11:59 AM UTC\n- **Conference:** July 2027\n- **Venue:** TBD\n\n## NeurIPS 2027\n- **Paper deadline:** May 16, 2027, 11:59 AM UTC\n- **Conference:** December 2027\n- **Venue:** TBD\n\n## Other Notable ML/AI Venues\n\n**AAAI 2027** (Montréal, Canada)\n- Abstract: July 26, 2026\n- Paper: August 2, 2026\n\n**AISTATS 2027** (TBD)\n- Paper: October 10, 2026\n\n**MLSys 2027** (TBD)\n- Paper: October 31, 2026\n\n**COLT 2027** (TBD)\n- Paper: February 5, 2027\n\n**KDD 2027** (TBD)\n- Paper: February 9, 2027\n\nAll deadlines use UTC timezone unless otherwise specified. The registry notes that dates marked \"[EST.]\" are projected estimates based on prior years.",
+    "durationMs": 5096,
+    "url": "https://trybibby.com/conference-deadlines"
+  },
+  "sourceToolAssistantUUID": "0c770989-ee7d-4e83-888a-cc94c458bc57",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-27T21:40:41.320Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me think deeply about the revision before writing it.
+
+## Key findings from research:
+
+### Issue 1: "Myth of Expert Specialization"
+- The paper shows that in standard MoE training, routing reflects hidden-state geometry, not domain expertise
+- BUT it explicitly notes: "unless an explicit objective is introduced, we should not expect the hidden state and router logit space to have a metric system aligned with human standards"
+- This actually SUPPORTS our approach: we introduce explicit objectives (data partitioning + SFS reward)
+- SD-MoE shows spectral decomposition can reduce inter-expert similarity from ~0.7 to <0.1
+
+
+- Several other approaches validate this direction: better input clustering improves specialization, domain-label-guided divergence learning creates well-coordinated experts, and decoupling routing from task-specific signals strengthens specialization
+
+### Issue 2: FATE-H baseline for 8B models
+- FATE paper results: best non-agentic is 3% (pass@64) for 671B model
+- Goedel-V2-32B: 2% pass@64
+- No 8B model tested, but expected: 0-2
+
+Looking at other benchmarks, I'm seeing much higher numbers but they're either using massive compute (Seed-Prover 1.5 at 80% with 10 H20-days per problem) or frontier models only (FormalProofBench at 33.5%). The 7B baseline on ProofNet sits at 41.4%, which gives me actual headroom to work with. This means my "5-12% absolute improvement on FATE-H" claim doesn't hold up — the real 8B baseline at pass@32 is probably just 0-2%.
+
+I need to shift my evaluation strategy entirely: focus on ProofNet as my primary controlled comparison since BFS-Prover-V2-7B gives me a meaningful 41.4% baseline, and use miniF2F to demonstrate the approach works across different problem types rather than chasing SOTA numbers.
+
+For FATE-H, I should be honest that I'm targeting 5-8% improvement (a 2.5-4x gain from ~2% baseline) while acknowledging this is nowhere near the agentic 80%. The real story isn't raw accuracy anyway — it's showing that strategy-level mixture of experts delivers better coverage per unit of compute.
+
+I'm also considering how GCPO, SetPO, and DAPO fit in as distribution-level alternatives for credit assignment and diversity measurement, each operating at different granularities from team-level cooperation down to token-level entropy.
+
+Adapt is the closest related work since it also does dynamic strategy selection for theorem proving, though it uses a single model on Coq rather than specialized experts on Lean. HILBERT's 99.2% on miniF2F with Gemini 2.5 Pro makes the saturation argument even stronger, and Seed-Prover's 10 H20-days per problem with ~10 search calls per trajectory shows I'm operating at orders of magnitude less compute with pass@32/64.
+
+Now I need to figure out the major structural changes for the revised proposal. deeply with "Myth of Expert Specialization" — argue that explicit data-partitioned training with strategy-specific objectives creates fundamentally different conditions vs. emergent routing
+2. Completely overhaul baseline/evaluation: honestly state FATE-H 8B baseline (~0-2%), add ProofNet as primary controlled comparison, reframe targets
+3. Add GCPO, SetPO, DAPO, Adapt to landscape
+4. Update HILBERT as miniF2F SOTA (99.2%)
+5. Contextualize Seed-Prover compute budget
+6. Connect SD-MoE spectral decomposition as mitigation for specialization concerns
+
+I'll also add a "MoE Specialization" subsection to the landscape, sketch out a preliminary evaluation plan to run Goedel-V2-8B on FATE-H and establish concrete baselines, and incorporate SD-MoE-inspired spectral orthogonality constraints while updating target venue dates. This is a substantial reframing rather than a fundamental shift — the core thesis around strategy-level MoE remains sound and differentiated, but I need to position it more honestly as compute-efficient strategic diversity rather than positioning it as a competitor to agentic systems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea762108-de3b-49fb-8fe4-f54467672e06",
+  "isSidechain": false,
+  "requestId": "req_011CbToHsrYvSXgz8HxvkVLF",
+  "type": "assistant",
+  "uuid": "f2a52da5-9495-40a6-9470-2469d7a43b8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JbuwgB2RsaC1mpZfTNgYG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 562,
+      "cache_read_input_tokens": 50522,
+      "output_tokens": 1327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1327,
+          "cache_read_input_tokens": 50522,
+          "cache_creation_input_tokens": 562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-27T21:40:41.322Z_
+
+Now I have comprehensive research on all issues. Let me compile the complete revised proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2a52da5-9495-40a6-9470-2469d7a43b8e",
+  "isSidechain": false,
+  "requestId": "req_011CbToHsrYvSXgz8HxvkVLF",
+  "type": "assistant",
+  "uuid": "dbfc6a6f-f2f0-4b88-a4df-b4413b73a21d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JbuwgB2RsaC1mpZfTNgYG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 562,
+      "cache_read_input_tokens": 50522,
+      "output_tokens": 1327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1327,
+          "cache_read_input_tokens": 50522,
+          "cache_creation_input_tokens": 562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-27T21:40:41.325Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CLd8wCv411PcBvxFZmYtnM`</summary>
+
+```json
+{
+  "query": "AAAI 2027 deadline abstract submission July August 2026 confirmed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbfc6a6f-f2f0-4b88-a4df-b4413b73a21d",
+  "isSidechain": false,
+  "requestId": "req_011CbToHsrYvSXgz8HxvkVLF",
+  "type": "assistant",
+  "uuid": "dcf56433-e89b-4f1f-8b6e-601da4628f7e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JbuwgB2RsaC1mpZfTNgYG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 562,
+      "cache_read_input_tokens": 50522,
+      "output_tokens": 1327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 562,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1327,
+          "cache_read_input_tokens": 50522,
+          "cache_creation_input_tokens": 562,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 562
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-27T21:40:45.190Z_
+
+<details><summary>↩ Tool result · `toolu_01CLd8wCv411PcBvxFZmYtnM`</summary>
+
+```text
+Web search results for query: "AAAI 2027 deadline abstract submission July August 2026 confirmed"
+
+Links: [{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"The 40th Annual AAAI Conference on Artificial Intelligence","url":"https://aaai.org/conference/aaai/aaai-26/"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"MPC Deadlines Hub","url":"https://mpc-deadlines.github.io/"}]
+
+Based on the search results, I can confirm the AAAI 2027 submission deadlines:
+
+The abstract submission deadline for AAAI-27 is July 21, 2026 at 11:59 PM UTC-12, and the full papers deadline is July 28, 2026 at 11:59 PM UTC-12.
+
+The conference itself will be held in Montréal, Canada, from February 16 to February 23, 2027.
+
+These deadlines have been confirmed on the official AAAI website and multiple conference deadline tracking resources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dcf56433-e89b-4f1f-8b6e-601da4628f7e",
+  "isSidechain": false,
+  "promptId": "af93a5ef-8c4a-4ed2-935b-063c64818b22",
+  "type": "user",
+  "uuid": "db08c607-158c-4582-af50-9c91deb56e29",
+  "toolUseResult": {
+    "query": "AAAI 2027 deadline abstract submission July August 2026 confirmed",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KPxpXbR8bCUZm7S11y5665",
+        "content": [
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "The 40th Annual AAAI Conference on Artificial Intelligence",
+            "url": "https://aaai.org/conference/aaai/aaai-26/"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "MPC Deadlines Hub",
+            "url": "https://mpc-deadlines.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, I can confirm the AAAI 2027 submission deadlines:\n\nThe abstract submission deadline for AAAI-27 is July 21, 2026 at 11:59 PM UTC-12, and the full papers deadline is July 28, 2026 at 11:59 PM UTC-12.\n\nThe conference itself will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\nThese deadlines have been confirmed on the official AAAI website and multiple conference deadline tracking resources."
+    ],
+    "durationSeconds": 3.859578681999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dcf56433-e89b-4f1f-8b6e-601da4628f7e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 106 · 2026-05-27T21:40:45.195Z_
+
+```json
+{
+  "parentUuid": "db08c607-158c-4582-af50-9c91deb56e29",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0ca1f7d2-0247-46dd-87a6-e65ba64721e6",
+  "timestamp": "2026-05-27T21:40:45.195Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "0ca1f7d2-0247-46dd-87a6-e65ba64721e6",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 108_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-27T21:40:50.268Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the research I need. Let me write the complete revised proposal. This is a major revision.
+
+Key changes:
+1. Deep engagement with "Myth of Expert Specialization" paper
+2. Honest FATE-H baseline specification
+3. Added GCPO, SetPO, DAPO, Adapt to landscape
+4. HILBERT as miniF2F SOTA
+5. Seed-Prover compute context
+6. ProofNet as primary controlled comparison benchmark
+7. SD-MoE-inspired spectral orthogonality
+
+
+8. Revised improvement claims
+
+Writing the proposal JSON...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ca1f7d2-0247-46dd-87a6-e65ba64721e6",
+  "isSidechain": false,
+  "requestId": "req_011CbToLtc2zkSxkQQ2WH16j",
+  "type": "assistant",
+  "uuid": "9f042acf-392a-4d2b-b8f7-a958083c9b72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsviJQS8cQJGvFBnQoJaaR",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2004,
+      "cache_read_input_tokens": 51084,
+      "output_tokens": 10303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10303,
+          "cache_read_input_tokens": 51084,
+          "cache_creation_input_tokens": 2004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-27T21:44:41.040Z_
+
+Now I have all the research needed. Let me synthesize everything and write the complete revised proposal.
+
+```json
+{
+  "title": "Strategy-Specialized Decomposition Experts with Verifier-Informed Routing for Hard Theorem Proving",
+  "change_type": "major",
+  "core_problem": "RL-trained theorem provers suffer from strategy-level diversity collapse — converging to narrow proof strategies despite many mathematically valid approaches existing. While token-level and distribution-level diversity methods (α-DPG, UCPO, DyJR, GCPO, SetPO) partially address this, they operate on output distributions without guaranteeing structural diversity in proof strategies. Current frontier systems decompose by task (LongCat-Flash-Prover: formalization/sketching/proving), by role (Decoupled Reasoning and Proving: Reasoner/Prover), or by refinement strategy (Adapt: lemma discovery/context enrichment/regeneration in Coq), but no system trains proof-strategy-specialized experts within the proof-generation step of a Lean4 pipeline. This strategy-level diversity gap becomes critical on hard, unsaturated benchmarks where different problems demand fundamentally different proof approaches: FATE-H at 3% pass@64 for non-agentic provers (80% only with Seed-Prover 1.5's agentic pipeline at 10 H20-days/problem), FATE-X at 0–33%, FormalProofBench at 33.5%, and ProofNet at 41.4%.",
+  "opportunity": "The benchmark landscape has shifted dramatically in early 2026: miniF2F is saturated (99.2%, HILBERT with Gemini 2.5 Pro + Goedel-V2-32B) and PutnamBench is near-saturated (99.4%, Aleph/GPT-5.2). The new frontier splits into two regimes: (1) Graduate-to-PhD-level benchmarks with massive headroom — FATE-H (non-agentic best: 3% pass@64), FATE-X (non-agentic best: 0%), FormalProofBench (best: 33.5% with agentic frontier models) — and (2) moderate-difficulty benchmarks where 7–8B models have meaningful baselines — ProofNet (BFS-Prover-V2-7B: 41.4%). Critically, Seed-Prover 1.5's 80% on FATE-H requires ~10 H20-days per problem (~10 search calls per trajectory), creating a massive compute-efficiency gap: non-agentic 8B provers score 0–2% at pass@64 on the same benchmark. The opportunity is architectural: strategy-specialized LoRA experts, each dominant in one proof-strategy family, can provide complementary coverage that grows the union of solved problems at a fraction of agentic compute. Meanwhile, 'The Myth of Expert Specialization in MoEs' (Wang et al., Apr 2026) shows that emergent routing in standard MoE training reflects hidden-state geometry rather than domain expertise — but critically, our approach bypasses this problem through explicit data-partitioned training with strategy-specific objectives, creating a fundamentally different training signal from emergent specialization. SD-MoE's spectral decomposition validates that inter-expert orthogonality can be enforced (reducing similarity from ~0.7 to <0.1), and Expert Divergence Learning shows domain-label-guided JSD maximization produces well-coordinated specialization.",
+  "landscape": {
+    "saturated_benchmarks": "miniF2F-test: HILBERT 99.2% (Gemini 2.5 Pro + Goedel-V2-32B, ICLR 2026), LongCat-Flash-Prover 97.1% (72 attempts), BFS-Prover-V2 95.08%. PutnamBench: Aleph 99.4% (668/672, powered by GPT-5.2), Seed-Prover 1.5 88%. These benchmarks can no longer differentiate meaningful improvements.",
+    "frontier_benchmarks": "FATE-H (graduate-level algebra, 100 problems): Seed-Prover 1.5 achieves 80% but requires ~10 H20-days per problem with an agentic pipeline (~10 search calls per trajectory); non-agentic baselines: DeepSeek-Prover-V2-671B 3% pass@64, Goedel-V2-32B 2% pass@64, 8B models untested but projected 0–2%. FATE-X (PhD-level, 100 problems): Seed-Prover 1.5 at 33%, non-agentic systems at 0%. FormalProofBench (graduate-level, multiple topics): best 33.5% (Claude Opus 4.5 Thinking, agentic with 40 turns per problem). ProofNet: BFS-Prover-V2-7B at 41.4%, providing a meaningful non-agentic 7B baseline with headroom.",
+    "task_level_decomposition": "LongCat-Flash-Prover (560B MoE, ~27B active) decomposes formal reasoning into three task-level experts — auto-formalization, sketch generation, full proof — trained via Hybrid-Experts Iteration Framework with HisPO for RL stabilization. Achieves 97.1% miniF2F, 41.5% PutnamBench. Critically, this is TASK-level specialization (each expert handles a different pipeline stage), not strategy-level specialization within proof generation.",
+    "role_level_decomposition": "Decoupled Reasoning and Proving (arXiv 2507.06804) separates a powerful general-purpose Reasoner (generates diverse strategic subgoal lemmas) from an efficient Prover (verifies and completes them). Solved 5 post-2000 IMO problems no prior open-source prover could. Again, ROLE-level decomposition — the Reasoner is general-purpose, not strategy-specialized.",
+    "strategy_selection_prior_work": "Adapt (arXiv 2510.25103) dynamically selects proof refinement strategies (lemma discovery, context enrichment, regeneration) based on proof state using a single LLM (GPT-4o) for Coq. Proved 16.6–18.6% more theorems than baselines. Adapt is the most directly related work on strategy selection for theorem proving, but differs from our approach in three key ways: (1) it uses a single general-purpose LLM, not strategy-specialized experts; (2) it targets Coq, not Lean4; (3) its 'strategies' are refinement operations (what to do when stuck), not proof-construction strategies (how to structure the proof itself — induction vs. contradiction vs. construction). Our strategy-specialized experts operate at the proof-planning level, while Adapt's strategy selection operates at the proof-repair level.",
+    "moe_specialization_debate": "'The Myth of Expert Specialization in MoEs' (Wang et al., arXiv 2604.09780, Apr 2026) proves that since MoE routers are linear maps, hidden-state similarity is necessary and sufficient to explain expert usage similarity — specialization in standard MoE training is an emergent property of representation geometry, not routing architecture. Crucially, the authors note: 'unless an explicit objective is introduced, we should not expect the hidden state and router logit space to have a metric system aligned with human standards.' Our approach creates exactly such explicit objectives: (1) data-partitioned training where each LoRA expert trains on strategy-labeled subsets, (2) Strategy Faithfulness Score reward in RL that optimizes for strategic consistency, and (3) SD-MoE-inspired spectral orthogonality constraints between expert adapters. This is analogous to the difference between hoping a network learns category structure from emergent clustering (Wang et al.'s finding) versus training with explicit category labels (our approach). Supporting evidence: SD-MoE (arXiv 2602.12556) shows spectral decomposition reduces inter-expert similarity from ~0.7 to <0.1; 'Tight Clusters Make Specialized Experts' (arXiv 2502.15315) shows adaptive clustering of input space improves expert specialization; Expert Divergence Learning (arXiv 2603.00054) shows domain-label-guided JSD maximization produces well-coordinated specialization; IDA-MoE (arXiv 2510.16448) shows decoupling routing from task-specific signals and grounding it in input distribution structure improves specialization.",
+    "diversity_methods": "α-DPG (ICLR 2026): pass@256 81.0% GRPO → 88.5% via α-divergence on Lean benchmark. UCPO (May 2026): conditional uniformity penalty, +10% Pass@64 on AIME24. DyJR (Mar 2026): dynamic Jensen-Shannon replay of early trajectories. STARS (ICLR 2026): Stiefel-manifold activation steering, training-free. GCPO (arXiv 2605.11461, May 2026): Group Cooperative Policy Optimization shifts from rollout competition to team-level cooperative credit assignment — a rollout is rewarded by how much it contributes to the team's valid solution coverage via determinantal volume over reward-weighted semantic embeddings. Outperforms DAPO by +8.0 points on in-domain benchmarks. Conceptually parallel to our expert complementarity objective. SetPO (arXiv 2602.01062, Feb 2026): set-level policy optimization with kernelized similarity and leave-one-out marginal contribution for diversity-preserving reasoning. Proves monotonicity: rarer trajectories yield higher marginal contributions. Diversity-Aware Policy Optimization (arXiv 2505.23433, May 2026): token-level entropy diversity measure applied selectively to positive samples, +3.5% average on math reasoning. 'Assessing Diversity Collapse in Reasoning' introduces semantic diversity, operation diversity, and RPD metrics. ALL these methods operate at token/distribution level within a single model — none at the architectural/strategy level across specialized experts.",
+    "small_model_viability": "Goedel-Prover-V2-8B outperforms DeepSeek-Prover-V2-671B (80x larger) at pass@32 on miniF2F (84.6% vs comparable). QED-Nano (4B) competes with 120B+ models on olympiad proofs via rubric-based RL. BFS-Prover-V2-7B achieves 95.08% miniF2F and 41.4% ProofNet. LoRA MoE methods (SMoRA, SAMoRA) enable efficient specialization with only 12.5% active LoRA parameters per token.",
+    "structural_proof_metrics": "ProofFlow introduces ProofScore — a composite metric for syntactic correctness, semantic faithfulness, and structural fidelity via dependency graphs. PROMISE (Apr 2026) mines structural similarity over proof states and tactic-transition traces. MPS-Prover uses multi-perspective search with heuristic tactic effectiveness scoring. 3D-Prover uses DPP-based tactic filtering for step-level diversity.",
+    "tactic_analysis": "TacMiner (OOPSLA 2025) discovers reusable proof strategies via Tactic Dependence Graphs (TDGs), learning 3x more tactics than anti-unification baselines and reducing proof size by 26%. This validates that tactic patterns can be clustered into coherent strategy families.",
+    "gap": "No system trains proof-strategy-specialized experts — each trained on proofs dominated by a particular strategic approach (induction, contradiction, construction, case analysis, algebraic rewriting) — with verifier-informed routing for expert selection. Task-level decomposition (LongCat), role-level decomposition (DRP), refinement-strategy selection (Adapt), and distribution-level diversity (α-DPG, UCPO, DyJR, GCPO, SetPO) leave this architectural dimension unexplored. Wang et al.'s finding that emergent MoE specialization reflects geometry rather than expertise actually motivates our approach: explicit data-partitioned training with strategy-specific objectives creates the 'explicit objective' they identify as necessary for meaningful specialization."
+  },
+  "inspired_by": "Field guide gap 5 'Diversity collapse during SFT/RL training' + clear gap between task-level decomposition (LongCat), role-level decomposition (DRP), refinement-strategy selection (Adapt), and the missing proof-strategy-level decomposition + TacMiner's validation that tactic patterns form coherent reusable clusters + concrete diversity metrics from 'Assessing Diversity Collapse in Reasoning' + RocqStar's +20% from multi-agent planning debate + Wang et al.'s identification that 'explicit objectives' are needed for meaningful MoE specialization (which our approach provides) + GCPO's team-level cooperative credit assignment as parallel to expert complementarity",
+  "approach": {
+    "phase1_strategy_labeling": "Extract strategy-annotated proof data from Mathlib4 (~274K theorems). Use a two-stage labeling pipeline: (1) Rule-based primary strategy classification via top-level tactic pattern matching — proofs starting with `induction` → induction family, `by_contra` → contradiction family, `constructor`/`use`/`exact ⟨...⟩` → construction family, `rcases`/`cases` at top level → case-split family, `ring`/`field_simp`/`norm_num` chains → algebraic-rewrite family, `simp`/`omega`/`decide` one-liners → direct-computation family. (2) LLM-augmented soft classification for ambiguous proofs using Sonnet 4.6 batch API, outputting a probability distribution over strategy families rather than hard labels. Crucially, we use PRIMARY strategy labels — a proof using induction as the main structure with case analysis within the inductive step is labeled primary=induction, secondary=case_analysis. This addresses the valid concern about mixed strategies: we do not assume clean separation, only dominant-strategy identification. We will run a pilot study on 2000 Mathlib proofs measuring (a) agreement between rule-based and LLM classifiers (target: >0.75 Cohen's κ), (b) cluster separation via tactic-pattern embeddings (target: silhouette score >0.3), and (c) primary-strategy dominance (target: >70% of proofs have a single strategy contributing >60% of proof structure).",
+    "phase2_expert_training": "Fine-tune 5 lightweight LoRA expert modules on a shared Qwen3-8B backbone, each specialized on its primary-strategy subset. Use SAMoRA-style semantic-aware routing within the LoRA architecture, where each expert comprises rank-16 LoRA adapters applied to attention and FFN layers (~40M parameters per expert, ~200M total added). Each expert is trained via SFT on its strategy-family subset, with a small proportion (10%) of cross-strategy examples to prevent catastrophic forgetting of general proving ability. A shared 'generalist' adapter handles proofs that don't fit any strategy cleanly. Critically, to address Wang et al.'s finding that emergent MoE specialization reflects geometry rather than domain expertise, we apply two explicit specialization mechanisms: (1) SD-MoE-inspired spectral orthogonality constraints — we decompose expert LoRA weight matrices into shared and expert-specific spectral subspaces, updating only the expert-specific complement during strategy-specialized training. This forces experts to develop orthogonal representations rather than converging on shared dominant directions. (2) An inter-expert divergence regularizer during SFT that maximizes Jensen-Shannon divergence between expert routing distributions across strategy domains (inspired by Expert Divergence Learning, arXiv 2603.00054). These mechanisms ensure that our strategy-partitioned data induces genuinely different expert representations, not just the geometric artifacts that Wang et al. critique.",
+    "phase2b_baseline_establishment": "Before full expert training, establish concrete baselines by evaluating the Qwen3-8B backbone (with generalist LoRA fine-tuning on full Mathlib) on all target benchmarks at pass@32 and pass@64. This produces the specific baseline numbers against which Strategy-MoE improvements are measured. We also evaluate Goedel-Prover-V2-8B (open-source, directly comparable) as an external baseline. Expected approximate baselines: miniF2F ~80–84%, ProofNet ~35–40%, FATE-H ~0–3% at pass@64. These baselines will be reported alongside Strategy-MoE results for honest comparison.",
+    "phase3_verifier_informed_routing": "At inference time, each expert proposes an informal decomposition plan (natural-language strategy description + sequence of have-lemma statements) and an initial proof sketch. A verifier-informed router scores each proposal using three signals: (1) Subgoal progress — fraction of proposed have-lemmas that individually type-check in Lean4 (necessary but not sufficient signal; we explicitly acknowledge this is a noisy proxy, not a 'perfect arbiter'). (2) Strategy coherence — does the proof sketch's tactic structure match the expert's declared strategy family? Measured via AST-level pattern matching. (3) Proof-state complexity reduction — does the proposed decomposition reduce the proof state's complexity (measured by goal term size after applying the first N tactics)? The router selects top-2 experts for full elaboration via best-of-N, with the verifier providing the terminal reward (proof completion). This differs fundamentally from Adapt's approach: Adapt selects refinement strategies (what to do when stuck) using a single general-purpose LLM, whereas our router selects between specialized experts that propose structurally different proof plans (how to construct the proof from scratch).",
+    "phase4_rl_training": "Apply GRPO-based RL with a composite reward: R = R_completion + λ₁·R_faithfulness + λ₂·R_diversity. R_completion: binary proof completion verified by Lean4. R_faithfulness (Strategy Faithfulness Score): SFS = w₁·type_match + w₂·(1 - norm_edit_dist(plan_DAG, proof_DAG)), where type_match is a binary indicator that the proof's dominant top-level tactic matches the decomposition plan's declared strategy, and norm_edit_dist computes the normalized tree edit distance between the planned subgoal DAG and the actual proof's have-lemma dependency graph (inspired by ProofFlow's structural fidelity metric). R_diversity: a per-batch bonus for expert utilization entropy — penalizes batches where a single expert dominates, encouraging the router to maintain expert coverage. This is conceptually related to GCPO's team-level cooperative credit assignment but operates at the architectural level (expert selection) rather than the rollout level. Regularize with α-divergence (α=0.5) against the SFT initialization to prevent collapse to a single dominant expert. Maintain SD-MoE spectral orthogonality constraints during RL training to preserve expert differentiation.",
+    "phase5_evaluation": "Evaluate on four benchmarks spanning two regimes, with explicitly established baselines: (A) Controlled comparison regime — ProofNet test (baseline: BFS-Prover-V2-7B 41.4%; Qwen3-8B generalist estimated ~35–40%) and miniF2F test (for diversity metrics, not SOTA claims). (B) Frontier challenge regime — FATE-H (baseline: non-agentic 8B estimated 0–3% pass@64; Seed-Prover 1.5 achieves 80% but at ~10 H20-days/problem) and FATE-X (baseline: 0% for non-agentic systems). Key metrics: (1) Pass@k accuracy (k ∈ {8, 32, 64}) on each benchmark, with honest comparison to same-compute monolithic baselines. (2) Strategy Entropy: Shannon entropy over strategy families among successful proofs — higher entropy means the system leverages diverse strategies. (3) Complementarity Score: fraction of problems uniquely solved by each expert (not solvable by any other expert alone). (4) Coverage Gain: |union of expert-solved problems| / |best single expert's solved problems| — measures how much the ensemble outperforms any individual strategy. (5) Reasoning Path Divergence (RPD) adapted from 'Assessing Diversity Collapse in Reasoning'. (6) Compute Efficiency: problems solved per H100-hour, comparing Strategy-MoE vs. monolithic baselines vs. agentic systems. Primary hypotheses: (H1) On ProofNet, Strategy-MoE achieves 3–8% higher pass@32 than same-compute monolithic Qwen3-8B baseline, with coverage gain >1.15x. (H2) On FATE-H, Strategy-MoE at pass@64 reaches 4–8% absolute (vs. projected 0–3% monolithic baseline), a 2–4x relative improvement at <0.01 H20-days/problem (vs. Seed-Prover 1.5's 10 H20-days/problem). (H3) Strategy entropy >1.5 bits among successful proofs (vs. <0.8 bits for monolithic baselines). (H4) At least 2 of 5 experts have complementarity score >0.1 (>10% of their solved problems are unique). Honest positioning: we do not compete with agentic systems like Seed-Prover 1.5 on absolute FATE-H accuracy. Our contribution is demonstrating that strategy-level architectural diversity provides measurably higher coverage per compute unit than monolithic models, establishing a new dimension of scaling that is complementary to compute scaling."
+  },
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "2400–3500 H100-hours (strategy labeling pilot ~80h, strategy labeling pipeline ~120h, baseline evaluation ~100h, 5 expert LoRA SFT with spectral orthogonality ~600h, router training ~200h, RL w/ Lean verifier ~1000h, evaluation on ProofNet/FATE-H/X ~400h)",
+      "timeline": "13–17 weeks (2 weeks pilot + baselines, 3 weeks expert SFT, 2 weeks router, 3 weeks RL, 2 weeks eval & ablations, 1-2 weeks writing)",
+      "estimated_gpu_cost": "$6,000–$8,750 at ~$2.50/H100-hr spot"
+    },
+    "human_in_loop": {
+      "gpu_hours": "2000–2900 H100-hours (LLM-assisted strategy labeling cuts annotation time 60%; human steers RL hyperparameters, pilot study design, and ablation priorities)",
+      "timeline": "11–14 weeks",
+      "claude_api_cost": "$900–$1,400 (strategy classification of ~120K proofs via Sonnet 4.6 batch API at 50% discount, pilot study analysis, ablation proposal, code scaffolding)",
+      "estimated_gpu_cost": "$5,000–$7,250"
+    },
+    "auto_research": {
+      "gpu_hours": "3000–4500 H100-hours (broader hyperparameter sweeps for α-divergence coefficient, spectral orthogonality rank selection, expert count ablations, routing strategy comparisons)",
+      "timeline": "7–10 weeks wall-clock (high parallelism across experts and ablations)",
+      "claude_api_cost": "$2,200–$3,800 (extensive strategy annotation, automated ablation proposal, pilot study execution, paper drafting)",
+      "estimated_gpu_cost": "$7,500–$11,250",
+      "speed_bottleneck": "Lean4 kernel verification throughput during RL rollouts (~0.3–0.8s per tactic check); mitigated by batched async verification across 8–16 Lean worker processes per GPU node"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstracts Jul 21, full papers Jul 28, 2026, conference Feb 16–23 in Montréal) — NEW PRIMARY, ~8 weeks from now, tight but feasible with human-in-loop timeline if pilot succeeds quickly",
+    "ICLR 2027 (abstracts Sep 19, full papers Sep 24, 2026) — PRIMARY BACKUP, ~17 weeks from now, comfortable with human-in-loop timeline",
+    "ICML 2027 (papers Jan 29, 2027) — BACKUP, ~35 weeks, very comfortable",
+    "NeurIPS 2027 (papers May 16, 2027) — FALLBACK if major revisions needed"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "LongCat-Flash-Prover: Advancing Native Formal Reasoning via Agentic Tool-Integrated Reinforcement Learning (arXiv 2603.21065, Mar 2026) — 560B MoE with TASK-level expert specialization (formalization/sketching/proving), 97.1% miniF2F",
+    "Towards Solving More Challenging IMO Problems via Decoupled Reasoning and Proving (arXiv 2507.06804) — ROLE-level decomposition (Reasoner/Prover), solves 5 hard IMO problems",
+    "Seed-Prover 1.5: Mastering Undergraduate-Level Theorem Proving via Learning from Experience (arXiv 2512.17260) — Agentic RL, 88% PutnamBench, 80% FATE-H at ~10 H20-days/problem, 33% FATE-X",
+    "Whatever Remains Must Be True: Filtering Drives Diversity Collapse in Reinforcement Learning with Verifiable Reward (ICLR 2026) — α-divergence family for precision-diversity tradeoff",
+    "Assessing Diversity Collapse in Reasoning (2026) — Semantic diversity, operation diversity, RPD metrics for quantifying diversity collapse",
+    "Uniform-Correct Policy Optimization: Breaking RLVR's Indifference to Diversity (arXiv 2605.00365, May 2026) — Conditional uniformity penalty, +10% Pass@64 AIME24",
+    "The Myth of Expert Specialization in MoEs: Why Routing Reflects Geometry, Not Necessarily Domain Expertise (arXiv 2604.09780, Apr 2026) — Proves emergent MoE routing reflects hidden-state geometry; key quote: 'unless an explicit objective is introduced, we should not expect alignment with human standards.' Motivates our explicit data-partitioned training approach",
+    "SD-MoE: Spectral Decomposition for Effective Expert Specialization (arXiv 2602.12556, Feb 2026) — Reduces inter-expert similarity from ~0.7 to <0.1 via spectral decomposition; inspires our orthogonality constraints",
+    "Tight Clusters Make Specialized Experts (arXiv 2502.15315, Feb 2025) — Adaptive Clustering router shows tighter input clustering → better expert specialization, supporting our data-partitioned approach",
+    "Expert Divergence Learning for MoE-based Language Models (arXiv 2603.00054, Mar 2026) — Domain-label-guided JSD maximization for well-coordinated expert specialization",
+    "Input Domain Aware MoE: Decoupling Routing Decisions from Task Optimization (arXiv 2510.16448, Oct 2025) — Decoupling routing from task-specific signals improves specialization",
+    "Breaking Winner-Takes-All: Cooperative Policy Optimization Improves Diverse LLM Reasoning (GCPO, arXiv 2605.11461, May 2026) — Team-level cooperative credit assignment via determinantal volume, outperforms DAPO by +8.0 points. Conceptually parallel to our expert complementarity objective",
+    "SetPO: Set-Level Policy Optimization for Diversity-Preserving LLM Reasoning (arXiv 2602.01062, Feb 2026) — Set-level diversity with kernelized similarity and leave-one-out marginal contribution",
+    "Diversity-Aware Policy Optimization for Large Language Model Reasoning (arXiv 2505.23433, May 2026) — Token-level entropy diversity measure, +3.5% on math reasoning",
+    "Adaptive Proof Refinement with LLM-Guided Strategy Selection (Adapt, arXiv 2510.25103, Oct 2025) — Dynamically selects refinement strategies (lemma discovery/context enrichment/regeneration) for Coq using a single LLM. Most directly related prior work on strategy selection in theorem proving; differs in using a single model for refinement-level strategies, not specialized experts for proof-construction strategies",
+    "Hilbert: Recursively Building Formal Proofs with Informal Reasoning (arXiv 2509.22819, ICLR 2026) — 99.2% miniF2F (Gemini 2.5 Pro + Goedel-V2-32B), 70.0% PutnamBench. Current miniF2F SOTA",
+    "FATE: A Formal Benchmark Series for Frontier Algebra of Multiple Difficulty Levels (arXiv 2511.02872) — Graduate/PhD-level benchmark. Non-agentic SOTA: DeepSeek-V2-671B 3% pass@64, Goedel-V2-32B 2% pass@64 on FATE-H",
+    "FormalProofBench: Can Models Write Graduate Level Math Proofs That Are Formally Verified? (arXiv 2603.26996, Mar 2026) — Graduate-level benchmark, best 33.5% (Claude Opus 4.5 Thinking, agentic)",
+    "ProofFlow: A Dependency Graph Approach to Faithful Proof Autoformalization (arXiv 2510.15981) — ProofScore metric for structural fidelity",
+    "Automated Discovery of Tactic Libraries for Interactive Theorem Proving (OOPSLA 2025) — TacMiner validates tactic-pattern clustering into reusable strategies",
+    "SAMoRA: Semantic-Aware Mixture of LoRA Experts for Task-Adaptive Learning (arXiv 2604.19048) — Efficient LoRA MoE routing architecture",
+    "QED-Nano: Teaching a Tiny Model to Prove Hard Theorems (arXiv 2604.04898, Apr 2026) — 4B model competitive with 120B+ via rubric-based RL",
+    "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction (arXiv 2508.03613) — 8B model outperforms 671B at pass@32 on miniF2F; FATE-H: 2% pass@64 (32B variant)",
+    "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition (arXiv 2025) — 671B model, 3% on FATE-H pass@64",
+    "RocqStar: Leveraging Similarity-driven Retrieval and Agentic Systems for Rocq Generation (arXiv 2025) — +20% from multi-agent planning debate",
+    "MPS-Prover: Advancing Stepwise Theorem Proving by Multi-Perspective Search and Data Curation (NeurIPS 2025) — Multi-perspective tactic selection with heuristic diversity",
+    "3D-Prover: Diversity Driven Theorem Proving With Determinantal Point Processes (arXiv 2024)",
+    "DyJR: Preserving Diversity in Reinforcement Learning with Verifiable Rewards via Dynamic Jensen-Shannon Replay (arXiv 2026)",
+    "STARS: Exploring Diverse Generation Paths via Inference-time Stiefel Activation Steering (ICLR 2026)",
+    "Formal Theorem Proving by Rewarding LLMs to Decompose Proofs Hierarchically (arXiv 2411.01829)",
+    "PROMISE: Proof Automation as Structural Imitation of Human Reasoning (arXiv 2604.05399, Apr 2026)",
+    "Aristotle: IMO-level Automated Theorem Proving (arXiv 2510.01346) — 200B+ parameter system, gold-medal IMO 2025",
+    "BFS-Prover-V2: Scaling Up Multi-Turn Off-Policy RL and Multi-Agent Tree Search for LLM Step-Provers (arXiv 2509.06493) — 95.08% miniF2F, 41.4% ProofNet for 7B model"
+  ],
+  "description": "We propose Strategy-MoE, a mixture-of-experts architecture where each expert is explicitly trained on proofs dominated by a distinct proof-strategy family (induction, contradiction, construction, case analysis, algebraic rewriting), with verifier-informed routing that exploits Lean4's feedback as a noisy but useful signal for expert selection. Our key insight is that existing frontier systems decompose theorem proving by task (LongCat-Flash-Prover), by role (Decoupled Reasoning and Proving), or by refinement strategy (Adapt), but none decompose by proof-construction strategy within the proof-generation step itself.\n\nA critical methodological distinction motivates our approach: Wang et al. (Apr 2026) show that emergent MoE specialization in standard training reflects hidden-state geometry rather than domain expertise — but they explicitly note this problem arises 'unless an explicit objective is introduced.' Strategy-MoE introduces exactly such explicit objectives through three mechanisms: (1) data-partitioned training where each LoRA expert trains exclusively on strategy-labeled proof subsets, (2) SD-MoE-inspired spectral orthogonality constraints that force expert weight matrices into orthogonal spectral subspaces (reducing inter-expert similarity from typical ~0.7 to <0.1), and (3) a Strategy Faithfulness Score in RL that explicitly rewards strategic consistency. This creates a fundamentally different training regime from the emergent specialization that Wang et al. critique.\n\nWe extract primary-strategy labels from Mathlib4's ~274K theorems via heuristic tactic-pattern matching augmented by LLM soft classification, validated through a pilot study measuring inter-classifier agreement and cluster separation. We train per-strategy LoRA experts on a Qwen3-8B backbone using SAMoRA-style routing (~200M total added parameters), with spectral orthogonality constraints and inter-expert divergence regularization. A verifier-informed routing mechanism scores each expert's decomposition sketch by three signals: Lean4 subgoal type-checking progress, strategy-coherence via AST pattern matching, and proof-state complexity reduction. RL training uses GRPO with a composite reward combining proof completion, Strategy Faithfulness Score (plan-proof DAG edit distance + strategy type match), and expert-utilization entropy bonus (related to GCPO's team-level credit assignment but operating at the architectural level), regularized by α-divergence.\n\nWe evaluate across two regimes with honestly established baselines. In the controlled comparison regime: ProofNet (BFS-Prover-V2-7B baseline: 41.4%) where we target 3–8% pass@32 improvement with coverage gain >1.15x. In the frontier challenge regime: FATE-H where non-agentic 8B models score ~0–3% at pass@64, and we target 4–8% absolute — a 2–4x relative improvement at <0.01 H20-days/problem versus Seed-Prover 1.5's 80% at 10 H20-days/problem. We do not compete with agentic systems on absolute accuracy; our contribution is demonstrating that strategy-level architectural diversity provides measurably higher coverage per compute unit than monolithic models, with strategy entropy >1.5 bits (vs. <0.8 for baselines) and at least 2 experts with complementarity scores >0.1. This establishes strategy-level decomposition as a new architectural dimension for theorem proving, complementary to task-level, role-level, and distribution-level diversity approaches.",
+  "project_name": "strat_moe_verifier_routing",
+  "source": "web_research",
+  "revision_notes": {
+    "round3_issue_1_myth_of_specialization": "ADDRESSED (major). Deeply engaged with Wang et al. (arXiv 2604.09780). Their core finding — that emergent MoE routing reflects hidden-state geometry, not domain expertise — applies to STANDARD MoE training with learned routing. Our approach is fundamentally different: we use EXPLICIT data-partitioned training with strategy-specific objectives, which the authors themselves identify as the condition needed for meaningful specialization ('unless an explicit objective is introduced'). Added three concrete mitigation mechanisms: (1) SD-MoE-inspired spectral orthogonality constraints between expert LoRA weight matrices, (2) inter-expert JSD divergence regularization (from Expert Divergence Learning), and (3) Strategy Faithfulness Score as an explicit specialization objective in RL. Added supporting evidence from Tight Clusters, Expert Divergence Learning, and IDA-MoE showing that explicit data/domain partitioning produces genuine specialization. New 'moe_specialization_debate' subsection in landscape.",
+    "round3_issue_2_fate_h_baseline": "ADDRESSED (major). Established concrete baseline: FATE paper (v3) reports DeepSeek-V2-671B at 3% pass@64, Goedel-V2-32B at 2% pass@64 on FATE-H. No 8B model has been tested; projected 0–2%. Seed-Prover 1.5's 80% uses ~10 H20-days/problem (massively agentic). Added Phase 2b (baseline_establishment) requiring explicit evaluation of Qwen3-8B generalist and Goedel-V2-8B on all benchmarks before claiming improvements. Revised targets: FATE-H 4–8% absolute (2–4x relative improvement at <0.01 H20-days/problem). Added ProofNet (BFS-Prover-V2-7B: 41.4%) as primary controlled comparison where baselines are meaningful. Honestly positioned: we target compute-efficient strategy diversity, not competing with agentic systems.",
+    "round3_issue_3_missing_diversity_methods": "ADDRESSED. Added GCPO (arXiv 2605.11461), SetPO (arXiv 2602.01062), and Diversity-Aware Policy Optimization (arXiv 2505.23433) to landscape with substantive descriptions. GCPO's team-level cooperative credit assignment is noted as conceptually parallel to expert complementarity. All positioned as distribution-level alternatives that operate within a single model, versus our architectural-level approach across specialized experts.",
+    "round3_issue_4_adapt_missing": "ADDRESSED. Added 'strategy_selection_prior_work' subsection with detailed analysis of Adapt (arXiv 2510.25103). Three explicit differentiators: (1) Adapt uses a single general-purpose LLM, not specialized experts; (2) targets Coq not Lean4; (3) its strategies are refinement operations (what to do when stuck), not proof-construction strategies (how to structure the proof). Adapt selects at the repair level, we select at the planning level.",
+    "round3_issue_5_hilbert_sota": "ADDRESSED. Updated miniF2F SOTA to HILBERT's 99.2% (ICLR 2026, Gemini 2.5 Pro + Goedel-V2-32B). Saturation argument is now even stronger.",
+    "round3_issue_6_seed_prover_compute": "ADDRESSED. Seed-Prover 1.5's compute contextualized throughout: ~10 H20-days/problem on FATE-H, ~10 search calls per trajectory. All FATE-H claims now explicitly compare: our non-agentic pass@64 at <0.01 H20-days/problem vs. Seed-Prover 1.5's agentic 80% at 10 H20-days/problem. This honest positioning strengthens the paper by framing our contribution as compute-efficient strategic diversity.",
+    "additional_improvements": [
+      "Added 12 new references: Wang et al. Myth paper, SD-MoE, Tight Clusters, Expert Divergence Learning, IDA-MoE, GCPO, SetPO, DAPO, Adapt, HILBERT, BFS-Prover-V2 with full details",
+      "Added AAAI 2027 (Jul 21/28 abstracts/papers) as new primary venue — 8 weeks out, tight but feasible",
+      "Added Phase 2b: explicit baseline establishment step before claiming improvements",
+      "Added ProofNet as primary controlled comparison benchmark (meaningful 7B baseline: 41.4%)",
+      "Integrated SD-MoE spectral orthogonality constraints into expert training",
+      "Added inter-expert JSD divergence regularizer inspired by Expert Divergence Learning",
+      "Added new 'moe_specialization_debate' landscape subsection",
+      "Added new 'strategy_selection_prior_work' landscape subsection for Adapt",
+      "Revised hypothesis H2 from ungrounded '5-12%' to honest '4-8% absolute, 2-4x relative' on FATE-H",
+      "Added compute efficiency metric (problems solved per H100-hour) as evaluation dimension",
+      "Connected GCPO's cooperative credit assignment to our expert-utilization entropy bonus"
+    ]
+  }
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f042acf-392a-4d2b-b8f7-a958083c9b72",
+  "isSidechain": false,
+  "requestId": "req_011CbToLtc2zkSxkQQ2WH16j",
+  "type": "assistant",
+  "uuid": "8470dec9-ef7b-4c6a-85f1-c37170044908",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsviJQS8cQJGvFBnQoJaaR",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2004,
+      "cache_read_input_tokens": 51084,
+      "output_tokens": 10303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10303,
+          "cache_read_input_tokens": 51084,
+          "cache_creation_input_tokens": 2004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 111_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "8470dec9-ef7b-4c6a-85f1-c37170044908",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 112_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Strategy-Specialized Decomposition Experts with Verifier-Informed Rout…",
+  "leafUuid": "8470dec9-ef7b-4c6a-85f1-c37170044908",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise strategy-specialized MoE theorem proving proposal",
+  "sessionId": "2f4846e0-c6ab-4a28-b8d4-16058867fd7f"
+}
+```
+
+---

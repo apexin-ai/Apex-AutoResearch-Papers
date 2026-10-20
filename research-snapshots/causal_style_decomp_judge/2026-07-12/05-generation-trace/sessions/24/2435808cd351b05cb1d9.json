@@ -1,0 +1,1281 @@
+{
+  "schema_version": "1.0",
+  "id": "2435808cd351b05cb1d9",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: geosafe_vla ## 运行环境 - 服务器名: westd-18751 - SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 ",
+  "task_key": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/f8c35129-3f35-4c48-ae13-ecb5f6916269.jsonl",
+    "occurrence": 1,
+    "bytes": 131994,
+    "sha256": "d771d9060f582ec43a450e27422298fdc8707a055e2556354d0c5976e6b8eda7"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T09:58:32.670Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T09:58:32.670Z",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+                "content": "<project_context>\n# 项目: geosafe_vla\n\n## 运行环境\n- 服务器名: westd-18751\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/geosafe_vla\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n**任务**: 写 GeoSafe 论文的 Appendix 框架初稿。\n\n**产出路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/appendix_draft.md`\n（先用 Bash `mkdir -p` 创建目录）\n\n**信息来源**:\n1. Read `/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/method_draft.md` — 技术细节\n2. Read `/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/experiments_draft.md` — 实验设置\n3. `read_project_file(project=\"geosafe_vla\", file=\"memory.md\")` — 训练超参和 eval pipeline 信息\n\n**Appendix 结构**:\n\n### A. Implementation Details\n列出完整训练配置表（已知数字直接填入）：\n\n| Hyperparameter | Value |\n|----------------|-------|\n| Base model | π₀.₅ (openpi) |\n| Fine-tuning | Full (all parameters) |\n| Optimizer | AdamW |\n| Learning rate | 5e-5 |\n| LR schedule | Linear warmup + constant |\n| Warmup steps | 1500 |\n| Batch size | 128 (64 per GPU × 2 GPUs DDP) |\n| Training steps | 5000 (MVP) |\n| Gradient clipping | max_norm=1.0 |\n| EMA | Not available (PyTorch training) |\n| SDF head architecture | Linear(1024, 256) → ReLU → Linear(256, 1), 262,657 params |\n| SDF loss weight (λ_sdf) | 0.1 |\n| Collision loss weight (λ_col) | 0.01 |\n| Collision threshold (δ) | 0.02m (2cm) |\n| w(t) sigmoid alpha | 10 |\n| w(t) sigmoid t₀ | 0.5 |\n| sdf_grad_to_backbone | True |\n\nπ₀.₅ architecture specs: PaliGemma vision encoder + Gemma language model + Action Expert (flow-matching)\n\n### B. SafeLIBERO Benchmark Details\n- 4 suites: spatial (obstacle in workspace), object (obstacle on object), goal (obstacle at goal), long-horizon (multi-step with obstacles)\n- 每 suite 的 task 数量和描述（基于 eval dry-run 信息：spatial/object/goal/long 各 4 tasks）\n- 标准 LIBERO: 10 spatial tasks（无障碍物）\n- 碰撞检测: 基于 SDF（距离 < 0 即碰撞）\n- Evaluation protocol: 5 trials per task, report TSR/CAR/SS\n\n### C. Full Evaluation Results\nPlaceholder tables:\n- Table C.1: SafeLIBERO Spatial — per-task TSR/CAR/SS breakdown\n- Table C.2: SafeLIBERO Object — per-task breakdown\n- Table C.3: SafeLIBERO Goal — per-task breakdown\n- Table C.4: SafeLIBERO Long — per-task breakdown\n- Table C.5: Standard LIBERO — per-task TSR breakdown\n所有数字用 [P] 标记\n\n### D. Additional Ablation Studies\nPlaceholder sections:\n- D.1: w(t) design variants (sigmoid vs linear vs step vs constant)\n- D.2: Loss weight sensitivity (λ_sdf ∈ {0.01, 0.1, 1.0}, λ_col ∈ {0.001, 0.01, 0.1})\n- D.3: Collision threshold sensitivity (δ ∈ {1cm, 2cm, 5cm})\n- D.4: SDF label coverage impact (75% vs 100%)\n\n### E. Compute Cost Analysis\nPlaceholder table:\n| Method | Training Cost | Inference Overhead | Hardware |\n|--------|--------------|-------------------|----------|\n| π₀.₅ baseline | [P] GPU-hours | 0 | [P] |\n| GeoSafe (ours) | [P] GPU-hours | 0 | [P] |\n| AEGIS/VLSA | N/A (post-hoc) | [P] ms/step | [P] |\n| OmniGuide | N/A (guidance) | ~2x baseline | [P] |\n\n**写作规范**:\n- Appendix 也是论文的一部分，保持学术风格\n- 表格用 markdown 格式，方便后续转 LaTeX\n- 所有已知数字直接填入，未知数字用 [P] 或 [PLACEHOLDER]\n- 每个 section 开头一句话说明该 section 的目的"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T09:58:32.674Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T09:58:32.674Z",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T09:58:32.712Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: geosafe_vla\n\n## 运行环境\n- 服务器名: westd-18751\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/geosafe_vla\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n**任务**: 写 GeoSafe 论文的 Appendix 框架初稿。\n\n**产出路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/appendix_draft.md`\n（先用 Bash `mkdir -p` 创建目录）\n\n**信息来源**:\n1. Read `/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/method_draft.md` — 技术细节\n2. Read `/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/experiments_draft.md` — 实验设置\n3. `read_project_file(project=\"geosafe_vla\", file=\"memory.md\")` — 训练超参和 eval pipeline 信息\n\n**Appendix 结构**:\n\n### A. Implementation Details\n列出完整训练配置表（已知数字直接填入）：\n\n| Hyperparameter | Value |\n|----------------|-------|\n| Base model | π₀.₅ (openpi) |\n| Fine-tuning | Full (all parameters) |\n| Optimizer | AdamW |\n| Learning rate | 5e-5 |\n| LR schedule | Linear warmup + constant |\n| Warmup steps | 1500 |\n| Batch size | 128 (64 per GPU × 2 GPUs DDP) |\n| Training steps | 5000 (MVP) |\n| Gradient clipping | max_norm=1.0 |\n| EMA | Not available (PyTorch training) |\n| SDF head architecture | Linear(1024, 256) → ReLU → Linear(256, 1), 262,657 params |\n| SDF loss weight (λ_sdf) | 0.1 |\n| Collision loss weight (λ_col) | 0.01 |\n| Collision threshold (δ) | 0.02m (2cm) |\n| w(t) sigmoid alpha | 10 |\n| w(t) sigmoid t₀ | 0.5 |\n| sdf_grad_to_backbone | True |\n\nπ₀.₅ architecture specs: PaliGemma vision encoder + Gemma language model + Action Expert (flow-matching)\n\n### B. SafeLIBERO Benchmark Details\n- 4 suites: spatial (obstacle in workspace), object (obstacle on object), goal (obstacle at goal), long-horizon (multi-step with obstacles)\n- 每 suite 的 task 数量和描述（基于 eval dry-run 信息：spatial/object/goal/long 各 4 tasks）\n- 标准 LIBERO: 10 spatial tasks（无障碍物）\n- 碰撞检测: 基于 SDF（距离 < 0 即碰撞）\n- Evaluation protocol: 5 trials per task, report TSR/CAR/SS\n\n### C. Full Evaluation Results\nPlaceholder tables:\n- Table C.1: SafeLIBERO Spatial — per-task TSR/CAR/SS breakdown\n- Table C.2: SafeLIBERO Object — per-task breakdown\n- Table C.3: SafeLIBERO Goal — per-task breakdown\n- Table C.4: SafeLIBERO Long — per-task breakdown\n- Table C.5: Standard LIBERO — per-task TSR breakdown\n所有数字用 [P] 标记\n\n### D. Additional Ablation Studies\nPlaceholder sections:\n- D.1: w(t) design variants (sigmoid vs linear vs step vs constant)\n- D.2: Loss weight sensitivity (λ_sdf ∈ {0.01, 0.1, 1.0}, λ_col ∈ {0.001, 0.01, 0.1})\n- D.3: Collision threshold sensitivity (δ ∈ {1cm, 2cm, 5cm})\n- D.4: SDF label coverage impact (75% vs 100%)\n\n### E. Compute Cost Analysis\nPlaceholder table:\n| Method | Training Cost | Inference Overhead | Hardware |\n|--------|--------------|-------------------|----------|\n| π₀.₅ baseline | [P] GPU-hours | 0 | [P] |\n| GeoSafe (ours) | [P] GPU-hours | 0 | [P] |\n| AEGIS/VLSA | N/A (post-hoc) | [P] ms/step | [P] |\n| OmniGuide | N/A (guidance) | ~2x baseline | [P] |\n\n**写作规范**:\n- Appendix 也是论文的一部分，保持学术风格\n- 表格用 markdown 格式，方便后续转 LaTeX\n- 所有已知数字直接填入，未知数字用 [P] 或 [PLACEHOLDER]\n- 每个 section 开头一句话说明该 section 的目的"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "ee26233f-f274-45c6-99f1-1a7dc4b30170",
+            "type": "user",
+            "uuid": "958c3f77-4c25-420c-b772-a13088745ff8",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T09:58:32.711Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "958c3f77-4c25-420c-b772-a13088745ff8",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "3a910e06-7b19-4a24-86f2-2005bb52cea9",
+                "timestamp": "2026-05-20T09:58:32.711Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T09:58:32.711Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3a910e06-7b19-4a24-86f2-2005bb52cea9",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c3c38de1-0c5c-47ff-aa69-87648cf7890c",
+                "timestamp": "2026-05-20T09:58:32.711Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T09:58:32.711Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c3c38de1-0c5c-47ff-aa69-87648cf7890c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "98cb0e34-cca6-442d-9e1b-6a7069dc0af8",
+                "timestamp": "2026-05-20T09:58:32.711Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write GeoSafe paper appendix framework draft",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T09:58:36.878Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to write an Appendix draft for the GeoSafe paper. I need to:\n\n1. Read the method draft\n2. Read the experiments draft\n3. Read the project memory file\n4. Create the output directory\n5. Write the appendix draft\n\nLet me start by reading the source files and creating the directory in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98cb0e34-cca6-442d-9e1b-6a7069dc0af8",
+            "isSidechain": false,
+            "requestId": "req_011CbDd8iPZtJYQdnr3hEmWg",
+            "type": "assistant",
+            "uuid": "dcbff7c3-7e7c-445d-87aa-5063b69cfec7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01REzyTY1kC3ekMtFDN8t8Jh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12140,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 179,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12140,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 179,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12140,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12140
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T09:58:37.790Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CKcoFdSHjKDJjGCC4UqERY",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dcbff7c3-7e7c-445d-87aa-5063b69cfec7",
+            "isSidechain": false,
+            "requestId": "req_011CbDd8iPZtJYQdnr3hEmWg",
+            "type": "assistant",
+            "uuid": "7e216e18-d8fe-4316-8110-2d9365900e76",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01REzyTY1kC3ekMtFDN8t8Jh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12140,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 179,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12140,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 179,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12140,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12140
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T09:58:37.798Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01CKcoFdSHjKDJjGCC4UqERY",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e216e18-d8fe-4316-8110-2d9365900e76",
+            "isSidechain": false,
+            "promptId": "ee26233f-f274-45c6-99f1-1a7dc4b30170",
+            "type": "user",
+            "uuid": "d13dcc41-23de-44d2-8881-042bd9ff3fdd",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "total_deferred_tools": 22
+            },
+            "sourceToolAssistantUUID": "7e216e18-d8fe-4316-8110-2d9365900e76",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T09:58:46.798Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019itFan4dNQeHRgokVKsJ1L",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/method_draft.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d13dcc41-23de-44d2-8881-042bd9ff3fdd",
+            "isSidechain": false,
+            "requestId": "req_011CbDd96GhufyngEoHCNr97",
+            "type": "assistant",
+            "uuid": "b8e0f192-7434-4d3b-a4f8-9dccbb4e4f5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UiNDxHcJQpK6pADBspt7cU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 23981,
+                "output_tokens": 353,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 525,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 353,
+                    "cache_read_input_tokens": 23981,
+                    "cache_creation_input_tokens": 525,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 525
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T09:58:46.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019itFan4dNQeHRgokVKsJ1L",
+              "type": "tool_result",
+              "content": "1\t## 3. Method\n2\t\n3\tWe present GeoSafe, a training-time approach that embeds geometric safety awareness into a flow-matching Vision-Language-Action (VLA) model without incurring any additional cost at inference. The key idea is to attach a lightweight auxiliary head that predicts signed distance field (SDF) values from the model's internal action representations, and to train the entire system with a noise-aware collision-shaping loss that penalizes trajectories entering collision regions. After training, the auxiliary head is discarded, and the base policy is deployed unchanged. We build on $\\pi_{0.5}$, a state-of-the-art flow-matching VLA, and describe each component below.\n4\t\n5\t\n6\t### 3.1 Problem Formulation\n7\t\n8\t**Flow-matching action generation.** $\\pi_{0.5}$ generates robot action trajectories through conditional flow matching. Given an observation $o$ (RGB images and a language instruction), the model learns a velocity field $v_\\theta(x_t, o, t)$ that transports samples from a noise distribution to the data distribution of action chunks. Let $a \\in \\mathbb{R}^{H \\times D_a}$ denote a ground-truth action chunk of horizon $H$ and dimension $D_a$, and let $\\epsilon \\sim \\mathcal{N}(0, I)$ be Gaussian noise. The noisy interpolant at time $t \\in [0, 1]$ is defined as\n9\t\n10\t$$x_t = (1 - t) \\, a + t \\, \\epsilon,$$\n11\t\n12\twhere $t = 0$ corresponds to the clean action and $t = 1$ to pure noise. The conditional velocity field target is $u_t = \\epsilon - a$, and the flow-matching objective minimizes\n13\t\n14\t$$\\mathcal{L}_{\\mathrm{FM}} = \\mathbb{E}_{t, a, \\epsilon} \\left[ \\left\\| v_\\theta(x_t, o, t) - (\\epsilon - a) \\right\\|^2 \\right].$$\n15\t\n16\tAt inference, the model generates actions by integrating the learned velocity field from $t = 1$ (noise) to $t = 0$ (data) using an ODE solver.\n17\t\n18\t**Safety as collision avoidance.** We formalize safety through the signed distance field between the robot's end-effector and scene obstacles. For a robot configuration $q$ in a scene with obstacle set $\\mathcal{O}$, the signed distance $s(q) = \\min_{o \\in \\mathcal{O}} \\mathrm{SDF}(q, o)$ is positive when the end-effector is separated from all obstacles and negative when penetration occurs. A trajectory is considered safe if $s(q_t) \\geq \\delta$ for all timesteps, where $\\delta > 0$ is a safety margin. Our goal is to train a policy that intrinsically generates trajectories satisfying this constraint, without requiring runtime collision checking or trajectory filtering.\n19\t\n20\t**Core insight.** Rather than imposing safety through constrained optimization at inference (which adds latency and may degrade task performance), we shape the flow-matching training objective so that the learned velocity field steers action trajectories away from collision regions. The SDF auxiliary head acts as a geometric probe during training: it reads the model's internal representation and provides a differentiable safety signal. When gradients from the collision-shaping loss propagate back through this probe into the action generation backbone, the model learns to associate its internal representations with collision-free trajectories.\n21\t\n22\t\n23\t### 3.2 SDF Auxiliary Head\n24\t\n25\t**Architecture.** The SDF head is a two-layer multilayer perceptron (MLP) that maps the action expert's internal features to per-timestep signed distance predictions. In $\\pi_{0.5}$, the action expert is a Gemma-300M transformer that processes noisy action tokens alongside vision-language context. Let $f_t \\in \\mathbb{R}^{B \\times H \\times D}$ denote the action expert's output features (with $D = 1024$ for the Gemma-300M variant), which are normally projected to action-space dimension $D_a = 32$ by a linear output layer. We attach the SDF head to these features via a forward hook on the output projection layer, requiring no modification to the base model's source code. The head is defined as\n26\t\n27\t$$\\hat{s} = W_2 \\, \\mathrm{ReLU}(W_1 \\, f_t + b_1) + b_2,$$\n28\t\n29\twhere $W_1 \\in \\mathbb{R}^{256 \\times 1024}$, $W_2 \\in \\mathbb{R}^{1 \\times 256}$, and $\\hat{s} \\in \\mathbb{R}^{B \\times H}$ gives the predicted minimum signed distance for each timestep in the action chunk. The head contains approximately 263K parameters, which is negligible compared to the 300M-parameter action expert.\n30\t\n31\t**Ground-truth SDF computation.** We precompute per-timestep signed distance labels offline from the demonstration dataset using MuJoCo's analytical geometry engine. For each demonstration timestep, we replay the recorded robot state and compute the minimum signed distance between end-effector collision geometries (gripper fingers and the last two arm links) and all scene object geometries, using `mj_geomDistance` for exact signed distance queries. Objects currently grasped by the robot are excluded from distance computation to avoid penalizing intentional contact.[^grasp]\n32\t\n33\tThe resulting per-timestep distances are stored as compressed NumPy arrays indexed by task, demonstration, and timestep. At training time, the `SDFLabelStore` aligns these labels to each sampled action chunk, padding with the last observed value when the chunk extends beyond the demonstration length.\n34\t\n35\t[^grasp]: Grasp is detected when the gripper aperture falls below 35mm and the minimum finger-to-object distance is less than 5mm. See Appendix for implementation details.\n36\t\n37\t\n38\t### 3.3 Noise-Aware Collision-Shaping Loss\n39\t\n40\tA direct collision penalty on the SDF predictions would be problematic in the flow-matching setting: at high noise levels (large $t$), the noisy actions $x_t$ bear little resemblance to the clean trajectory, and the model's internal features primarily reflect noise rather than meaningful geometric structure. Penalizing collisions uniformly across all noise levels would inject noisy gradients that destabilize training. We address this with a noise-aware weighting scheme that activates the collision penalty only when the model operates on near-clean inputs.\n41\t\n42\t**Noise-aware weight.** We define a time-dependent weight\n43\t\n44\t$$w(t) = \\sigma\\!\\left(\\alpha \\, (t_0 - t)\\right),$$\n45\t\n46\twhere $\\sigma$ is the sigmoid function, $t_0 = 0.5$ is the transition center, and $\\alpha = 10$ controls the sharpness. When $t \\ll t_0$ (low noise), $w(t) \\approx 1$ and the collision penalty is fully active. When $t \\gg t_0$ (high noise), $w(t) \\approx 0$ and the penalty is suppressed. The sigmoid provides a smooth transition that avoids discontinuities in the loss landscape.\n47\t\n48\t**SDF regression loss.** The first auxiliary loss encourages the SDF head to accurately predict signed distances from the model's internal features:\n49\t\n50\t$$\\mathcal{L}_{\\mathrm{SDF}} = \\frac{1}{|\\mathcal{V}|} \\sum_{(i,j) \\in \\mathcal{V}} \\left(\\hat{s}_{i,j} - s_{i,j}\\right)^2,$$\n51\t\n52\twhere $\\mathcal{V}$ is the set of valid sample-timestep pairs with available ground-truth labels, $\\hat{s}_{i,j}$ is the predicted signed distance, and $s_{i,j}$ is the ground truth. This loss ensures the auxiliary head provides a faithful geometric probe of the model's representations, which in turn supplies meaningful gradients for the collision penalty.\n53\t\n54\t**Collision penalty loss.** The second auxiliary loss penalizes predictions that fall below the safety margin $\\delta$:\n55\t\n56\t$$\\mathcal{L}_{\\mathrm{col}} = \\frac{1}{|\\mathcal{V}|} \\sum_{(i,j) \\in \\mathcal{V}} w(t_i) \\cdot \\mathrm{ReLU}\\!\\left(\\delta - \\hat{s}_{i,j}\\right),$$\n57\t\n58\twhere $\\delta = 0.02\\,\\mathrm{m}$ (2cm safety margin) and $t_i$ is the flow-matching timestep for sample $i$. The ReLU activation ensures that only near-collision and penetrating states are penalized: when $\\hat{s}_{i,j} > \\delta$, the contribution is zero; when $\\hat{s}_{i,j} < \\delta$, the penalty grows linearly with the depth of violation. Combined with the noise-aware weight $w(t_i)$, this loss selectively shapes the velocity field in the low-noise regime where the model's action predictions are geometrically meaningful.\n59\t\n60\t**Total training objective.** The complete loss combines the flow-matching objective with both auxiliary terms:\n61\t\n62\t$$\\mathcal{L} = \\mathcal{L}_{\\mathrm{FM}} + \\lambda_{\\mathrm{SDF}} \\cdot \\mathcal{L}_{\\mathrm{SDF}} + \\lambda_{\\mathrm{col}} \\cdot \\mathcal{L}_{\\mathrm{col}},$$\n63\t\n64\twhere $\\lambda_{\\mathrm{SDF}} = 0.1$ and $\\lambda_{\\mathrm{col}} = 0.01$. The relatively small weight on the collision term reflects its role as a shaping signal rather than a hard constraint: the primary training signal remains the flow-matching loss, and the collision penalty gently steers the learned velocity field toward safer regions without dominating the optimization.\n65\t\n66\t\n67\t### 3.4 Training Pipeline\n68\t\n69\tGeoSafe training follows the standard $\\pi_{0.5}$ fine-tuning pipeline with minimal modifications. The base model is initialized from pretrained $\\pi_{0.5}$ weights. We perform full fine-tuning of all parameters (not LoRA), as the 96GB VRAM per GPU provides sufficient capacity and full fine-tuning yields a stronger baseline for evaluating the incremental effect of collision shaping.\n70\t\n71\t**Gradient flow through the backbone.** A critical design choice is whether to allow gradients from the SDF losses to propagate back through the action expert. When $\\hat{s} = \\mathrm{SDFHead}(f_t)$ with $f_t$ treated as a leaf tensor (detached from the computation graph), the SDF losses train only the auxiliary head to predict distances accurately but do not influence action generation. To test our core hypothesis that collision-shaping can modify the velocity field itself, we enable gradient flow from the SDF head through the shared features $f_t$ into the action expert weights. Concretely, the feature tensor $f_t$ captured by the forward hook is used without detachment, so that $\\nabla_{f_t} \\mathcal{L}_{\\mathrm{SDF}}$ and $\\nabla_{f_t} \\mathcal{L}_{\\mathrm{col}}$ both contribute to the backbone parameter update. This is the mechanism by which safety awareness becomes embedded in the model's action generation process.\n72\t\n73\t**Optimization.** We use the AdamW optimizer with the same hyperparameters as the base $\\pi_{0.5}$ configuration. The SDF head parameters are added to the same optimizer with shared learning rate and weight decay. Gradients from all parameters (base model and SDF head jointly) are clipped by global norm with $\\mathrm{max\\_norm} = 1.0$. For the [PLACEHOLDER]-step training runs, we use a linear warmup of [PLACEHOLDER] steps. Training uses PyTorch Distributed Data Parallel (DDP) across multiple GPUs, with gradient averaging for both the base model and SDF head parameters. The per-GPU batch size is 64, yielding an effective batch size of 128 on 2 GPUs.\n74\t\n75\t**Data augmentation with SDF labels.** The training data pipeline wraps the standard $\\pi_{0.5}$ data loader. The `SDFAugmentedDataset` class intercepts each training sample after all standard transforms (image preprocessing, action normalization, prompt construction) and appends the corresponding SDF labels by looking up the precomputed `SDFLabelStore` using the sample's task index, episode index, and frame index. Samples without matching SDF labels are marked as invalid and excluded from the SDF loss computation, ensuring that the flow-matching loss is unaffected by label coverage gaps. In total, SDF labels cover 57 tasks across 8 task suites: the four standard LIBERO suites (LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, LIBERO-10) have full coverage (10/10 tasks each), while the four SafeLIBERO suites have partial coverage (4 to 5 tasks each). Each task provides 50 demonstrations with per-timestep signed distance annotations, yielding labels for approximately 75\\% of all training tasks.\n76\t\n77\t\n78\t### 3.5 Inference\n79\t\n80\tAt inference time, the SDF auxiliary head is discarded entirely. The trained model is served using the standard $\\pi_{0.5}$ inference pipeline, with the same checkpoint format and serving infrastructure. No SDF computation, distance queries, or collision checking is performed during deployment. The model generates actions by integrating its learned velocity field through the standard ODE solver, exactly as the unmodified $\\pi_{0.5}$ would. The safety behavior manifests through the modified model weights: the collision-shaping training signal has adjusted the velocity field to naturally produce trajectories that maintain clearance from obstacles.\n81\t\n82\tThis property distinguishes GeoSafe from inference-time safety methods such as runtime trajectory filtering, control barrier functions, or guided sampling. These approaches add computational overhead proportional to the number of denoising steps or constraint evaluations, and may require access to the scene geometry at deployment. GeoSafe incurs zero additional latency, zero additional memory, and requires no geometric information at test time.\n83\t\n84\t**Connection to guidance distillation.** Our approach bears a structural analogy to guidance distillation in diffusion models. In classifier-guided diffusion, an external classifier provides a gradient signal $\\nabla_{x_t} \\log p(y | x_t)$ that steers the sampling process toward a desired class $y$. Guidance distillation trains a single model to reproduce the effect of this guidance without requiring the classifier at inference. Similarly, GeoSafe uses the SDF auxiliary head as a \"geometric safety classifier\" that provides a training-time gradient signal directing the velocity field away from collision regions. After training, the model has internalized this signal, and the auxiliary head (analogous to the classifier) is no longer needed. Unlike classical guidance distillation, which replicates a guided sampling trajectory during training, our method shapes the velocity field directly through auxiliary gradients. The SDF head provides a training-time geometric signal that modifies the learned flow rather than distilling a pre-computed guided process. A further difference is that our method operates in the flow-matching framework rather than score-based diffusion, and the guidance signal comes from geometric structure (signed distances) rather than semantic class labels.\n85\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8e0f192-7434-4d3b-a4f8-9dccbb4e4f5d",
+            "isSidechain": false,
+            "promptId": "ee26233f-f274-45c6-99f1-1a7dc4b30170",
+            "type": "user",
+            "uuid": "fda57999-974c-4ab5-8035-7e3486c4811e",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/method_draft.md",
+                "content": "## 3. Method\n\nWe present GeoSafe, a training-time approach that embeds geometric safety awareness into a flow-matching Vision-Language-Action (VLA) model without incurring any additional cost at inference. The key idea is to attach a lightweight auxiliary head that predicts signed distance field (SDF) values from the model's internal action representations, and to train the entire system with a noise-aware collision-shaping loss that penalizes trajectories entering collision regions. After training, the auxiliary head is discarded, and the base policy is deployed unchanged. We build on $\\pi_{0.5}$, a state-of-the-art flow-matching VLA, and describe each component below.\n\n\n### 3.1 Problem Formulation\n\n**Flow-matching action generation.** $\\pi_{0.5}$ generates robot action trajectories through conditional flow matching. Given an observation $o$ (RGB images and a language instruction), the model learns a velocity field $v_\\theta(x_t, o, t)$ that transports samples from a noise distribution to the data distribution of action chunks. Let $a \\in \\mathbb{R}^{H \\times D_a}$ denote a ground-truth action chunk of horizon $H$ and dimension $D_a$, and let $\\epsilon \\sim \\mathcal{N}(0, I)$ be Gaussian noise. The noisy interpolant at time $t \\in [0, 1]$ is defined as\n\n$$x_t = (1 - t) \\, a + t \\, \\epsilon,$$\n\nwhere $t = 0$ corresponds to the clean action and $t = 1$ to pure noise. The conditional velocity field target is $u_t = \\epsilon - a$, and the flow-matching objective minimizes\n\n$$\\mathcal{L}_{\\mathrm{FM}} = \\mathbb{E}_{t, a, \\epsilon} \\left[ \\left\\| v_\\theta(x_t, o, t) - (\\epsilon - a) \\right\\|^2 \\right].$$\n\nAt inference, the model generates actions by integrating the learned velocity field from $t = 1$ (noise) to $t = 0$ (data) using an ODE solver.\n\n**Safety as collision avoidance.** We formalize safety through the signed distance field between the robot's end-effector and scene obstacles. For a robot configuration $q$ in a scene with obstacle set $\\mathcal{O}$, the signed distance $s(q) = \\min_{o \\in \\mathcal{O}} \\mathrm{SDF}(q, o)$ is positive when the end-effector is separated from all obstacles and negative when penetration occurs. A trajectory is considered safe if $s(q_t) \\geq \\delta$ for all timesteps, where $\\delta > 0$ is a safety margin. Our goal is to train a policy that intrinsically generates trajectories satisfying this constraint, without requiring runtime collision checking or trajectory filtering.\n\n**Core insight.** Rather than imposing safety through constrained optimization at inference (which adds latency and may degrade task performance), we shape the flow-matching training objective so that the learned velocity field steers action trajectories away from collision regions. The SDF auxiliary head acts as a geometric probe during training: it reads the model's internal representation and provides a differentiable safety signal. When gradients from the collision-shaping loss propagate back through this probe into the action generation backbone, the model learns to associate its internal representations with collision-free trajectories.\n\n\n### 3.2 SDF Auxiliary Head\n\n**Architecture.** The SDF head is a two-layer multilayer perceptron (MLP) that maps the action expert's internal features to per-timestep signed distance predictions. In $\\pi_{0.5}$, the action expert is a Gemma-300M transformer that processes noisy action tokens alongside vision-language context. Let $f_t \\in \\mathbb{R}^{B \\times H \\times D}$ denote the action expert's output features (with $D = 1024$ for the Gemma-300M variant), which are normally projected to action-space dimension $D_a = 32$ by a linear output layer. We attach the SDF head to these features via a forward hook on the output projection layer, requiring no modification to the base model's source code. The head is defined as\n\n$$\\hat{s} = W_2 \\, \\mathrm{ReLU}(W_1 \\, f_t + b_1) + b_2,$$\n\nwhere $W_1 \\in \\mathbb{R}^{256 \\times 1024}$, $W_2 \\in \\mathbb{R}^{1 \\times 256}$, and $\\hat{s} \\in \\mathbb{R}^{B \\times H}$ gives the predicted minimum signed distance for each timestep in the action chunk. The head contains approximately 263K parameters, which is negligible compared to the 300M-parameter action expert.\n\n**Ground-truth SDF computation.** We precompute per-timestep signed distance labels offline from the demonstration dataset using MuJoCo's analytical geometry engine. For each demonstration timestep, we replay the recorded robot state and compute the minimum signed distance between end-effector collision geometries (gripper fingers and the last two arm links) and all scene object geometries, using `mj_geomDistance` for exact signed distance queries. Objects currently grasped by the robot are excluded from distance computation to avoid penalizing intentional contact.[^grasp]\n\nThe resulting per-timestep distances are stored as compressed NumPy arrays indexed by task, demonstration, and timestep. At training time, the `SDFLabelStore` aligns these labels to each sampled action chunk, padding with the last observed value when the chunk extends beyond the demonstration length.\n\n[^grasp]: Grasp is detected when the gripper aperture falls below 35mm and the minimum finger-to-object distance is less than 5mm. See Appendix for implementation details.\n\n\n### 3.3 Noise-Aware Collision-Shaping Loss\n\nA direct collision penalty on the SDF predictions would be problematic in the flow-matching setting: at high noise levels (large $t$), the noisy actions $x_t$ bear little resemblance to the clean trajectory, and the model's internal features primarily reflect noise rather than meaningful geometric structure. Penalizing collisions uniformly across all noise levels would inject noisy gradients that destabilize training. We address this with a noise-aware weighting scheme that activates the collision penalty only when the model operates on near-clean inputs.\n\n**Noise-aware weight.** We define a time-dependent weight\n\n$$w(t) = \\sigma\\!\\left(\\alpha \\, (t_0 - t)\\right),$$\n\nwhere $\\sigma$ is the sigmoid function, $t_0 = 0.5$ is the transition center, and $\\alpha = 10$ controls the sharpness. When $t \\ll t_0$ (low noise), $w(t) \\approx 1$ and the collision penalty is fully active. When $t \\gg t_0$ (high noise), $w(t) \\approx 0$ and the penalty is suppressed. The sigmoid provides a smooth transition that avoids discontinuities in the loss landscape.\n\n**SDF regression loss.** The first auxiliary loss encourages the SDF head to accurately predict signed distances from the model's internal features:\n\n$$\\mathcal{L}_{\\mathrm{SDF}} = \\frac{1}{|\\mathcal{V}|} \\sum_{(i,j) \\in \\mathcal{V}} \\left(\\hat{s}_{i,j} - s_{i,j}\\right)^2,$$\n\nwhere $\\mathcal{V}$ is the set of valid sample-timestep pairs with available ground-truth labels, $\\hat{s}_{i,j}$ is the predicted signed distance, and $s_{i,j}$ is the ground truth. This loss ensures the auxiliary head provides a faithful geometric probe of the model's representations, which in turn supplies meaningful gradients for the collision penalty.\n\n**Collision penalty loss.** The second auxiliary loss penalizes predictions that fall below the safety margin $\\delta$:\n\n$$\\mathcal{L}_{\\mathrm{col}} = \\frac{1}{|\\mathcal{V}|} \\sum_{(i,j) \\in \\mathcal{V}} w(t_i) \\cdot \\mathrm{ReLU}\\!\\left(\\delta - \\hat{s}_{i,j}\\right),$$\n\nwhere $\\delta = 0.02\\,\\mathrm{m}$ (2cm safety margin) and $t_i$ is the flow-matching timestep for sample $i$. The ReLU activation ensures that only near-collision and penetrating states are penalized: when $\\hat{s}_{i,j} > \\delta$, the contribution is zero; when $\\hat{s}_{i,j} < \\delta$, the penalty grows linearly with the depth of violation. Combined with the noise-aware weight $w(t_i)$, this loss selectively shapes the velocity field in the low-noise regime where the model's action predictions are geometrically meaningful.\n\n**Total training objective.** The complete loss combines the flow-matching objective with both auxiliary terms:\n\n$$\\mathcal{L} = \\mathcal{L}_{\\mathrm{FM}} + \\lambda_{\\mathrm{SDF}} \\cdot \\mathcal{L}_{\\mathrm{SDF}} + \\lambda_{\\mathrm{col}} \\cdot \\mathcal{L}_{\\mathrm{col}},$$\n\nwhere $\\lambda_{\\mathrm{SDF}} = 0.1$ and $\\lambda_{\\mathrm{col}} = 0.01$. The relatively small weight on the collision term reflects its role as a shaping signal rather than a hard constraint: the primary training signal remains the flow-matching loss, and the collision penalty gently steers the learned velocity field toward safer regions without dominating the optimization.\n\n\n### 3.4 Training Pipeline\n\nGeoSafe training follows the standard $\\pi_{0.5}$ fine-tuning pipeline with minimal modifications. The base model is initialized from pretrained $\\pi_{0.5}$ weights. We perform full fine-tuning of all parameters (not LoRA), as the 96GB VRAM per GPU provides sufficient capacity and full fine-tuning yields a stronger baseline for evaluating the incremental effect of collision shaping.\n\n**Gradient flow through the backbone.** A critical design choice is whether to allow gradients from the SDF losses to propagate back through the action expert. When $\\hat{s} = \\mathrm{SDFHead}(f_t)$ with $f_t$ treated as a leaf tensor (detached from the computation graph), the SDF losses train only the auxiliary head to predict distances accurately but do not influence action generation. To test our core hypothesis that collision-shaping can modify the velocity field itself, we enable gradient flow from the SDF head through the shared features $f_t$ into the action expert weights. Concretely, the feature tensor $f_t$ captured by the forward hook is used without detachment, so that $\\nabla_{f_t} \\mathcal{L}_{\\mathrm{SDF}}$ and $\\nabla_{f_t} \\mathcal{L}_{\\mathrm{col}}$ both contribute to the backbone parameter update. This is the mechanism by which safety awareness becomes embedded in the model's action generation process.\n\n**Optimization.** We use the AdamW optimizer with the same hyperparameters as the base $\\pi_{0.5}$ configuration. The SDF head parameters are added to the same optimizer with shared learning rate and weight decay. Gradients from all parameters (base model and SDF head jointly) are clipped by global norm with $\\mathrm{max\\_norm} = 1.0$. For the [PLACEHOLDER]-step training runs, we use a linear warmup of [PLACEHOLDER] steps. Training uses PyTorch Distributed Data Parallel (DDP) across multiple GPUs, with gradient averaging for both the base model and SDF head parameters. The per-GPU batch size is 64, yielding an effective batch size of 128 on 2 GPUs.\n\n**Data augmentation with SDF labels.** The training data pipeline wraps the standard $\\pi_{0.5}$ data loader. The `SDFAugmentedDataset` class intercepts each training sample after all standard transforms (image preprocessing, action normalization, prompt construction) and appends the corresponding SDF labels by looking up the precomputed `SDFLabelStore` using the sample's task index, episode index, and frame index. Samples without matching SDF labels are marked as invalid and excluded from the SDF loss computation, ensuring that the flow-matching loss is unaffected by label coverage gaps. In total, SDF labels cover 57 tasks across 8 task suites: the four standard LIBERO suites (LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, LIBERO-10) have full coverage (10/10 tasks each), while the four SafeLIBERO suites have partial coverage (4 to 5 tasks each). Each task provides 50 demonstrations with per-timestep signed distance annotations, yielding labels for approximately 75\\% of all training tasks.\n\n\n### 3.5 Inference\n\nAt inference time, the SDF auxiliary head is discarded entirely. The trained model is served using the standard $\\pi_{0.5}$ inference pipeline, with the same checkpoint format and serving infrastructure. No SDF computation, distance queries, or collision checking is performed during deployment. The model generates actions by integrating its learned velocity field through the standard ODE solver, exactly as the unmodified $\\pi_{0.5}$ would. The safety behavior manifests through the modified model weights: the collision-shaping training signal has adjusted the velocity field to naturally produce trajectories that maintain clearance from obstacles.\n\nThis property distinguishes GeoSafe from inference-time safety methods such as runtime trajectory filtering, control barrier functions, or guided sampling. These approaches add computational overhead proportional to the number of denoising steps or constraint evaluations, and may require access to the scene geometry at deployment. GeoSafe incurs zero additional latency, zero additional memory, and requires no geometric information at test time.\n\n**Connection to guidance distillation.** Our approach bears a structural analogy to guidance distillation in diffusion models. In classifier-guided diffusion, an external classifier provides a gradient signal $\\nabla_{x_t} \\log p(y | x_t)$ that steers the sampling process toward a desired class $y$. Guidance distillation trains a single model to reproduce the effect of this guidance without requiring the classifier at inference. Similarly, GeoSafe uses the SDF auxiliary head as a \"geometric safety classifier\" that provides a training-time gradient signal directing the velocity field away from collision regions. After training, the model has internalized this signal, and the auxiliary head (analogous to the classifier) is no longer needed. Unlike classical guidance distillation, which replicates a guided sampling trajectory during training, our method shapes the velocity field directly through auxiliary gradients. The SDF head provides a training-time geometric signal that modifies the learned flow rather than distilling a pre-computed guided process. A further difference is that our method operates in the flow-matching framework rather than score-based diffusion, and the guidance signal comes from geometric structure (signed distances) rather than semantic class labels.\n",
+                "numLines": 85,
+                "startLine": 1,
+                "totalLines": 85
+              }
+            },
+            "sourceToolAssistantUUID": "b8e0f192-7434-4d3b-a4f8-9dccbb4e4f5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T09:58:47.089Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GhDYJU5ut14N9NKfkF8oxD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/experiments_draft.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fda57999-974c-4ab5-8035-7e3486c4811e",
+            "isSidechain": false,
+            "requestId": "req_011CbDd96GhufyngEoHCNr97",
+            "type": "assistant",
+            "uuid": "31c8b2b1-b7d8-4d2a-a7ad-2419845af0d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UiNDxHcJQpK6pADBspt7cU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 23981,
+                "output_tokens": 353,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 525,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 353,
+                    "cache_read_input_tokens": 23981,
+                    "cache_creation_input_tokens": 525,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 525
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T09:58:47.098Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GhDYJU5ut14N9NKfkF8oxD",
+              "type": "tool_result",
+              "content": "1\t## 4. Experiments\n2\t\n3\tWe evaluate GeoSafe on the SafeLIBERO benchmark and standard LIBERO tasks to answer four questions: (1) Does internalized collision awareness improve safety without sacrificing task success? (2) How does GeoSafe compare to post-hoc safety methods that operate at inference time? (3) Which components of our training objective are essential? (4) How does the collision-shaping loss interact with the flow-matching training dynamics?\n4\t\n5\t\n6\t### 4.1 Experimental Setup\n7\t\n8\t**Base model and training.** We build on $\\pi_{0.5}$, the open-source flow-matching VLA released by Physical Intelligence via the openpi codebase. All experiments use full fine-tuning of the entire model (not LoRA adapters), as the available GPU memory permits this and full fine-tuning provides a stronger baseline for isolating the effect of collision shaping. Training runs for 5,000 gradient steps on two NVIDIA RTX PRO 6000 GPUs (96 GB VRAM each) using PyTorch Distributed Data Parallel (DDP). The per-GPU batch size is 64, yielding an effective batch size of 128. We use AdamW with a linear warmup of 1,500 steps to a peak learning rate of $5 \\times 10^{-5}$, followed by cosine decay. Gradients from all parameters (base model and SDF head jointly) are clipped by global norm with $\\mathrm{max\\_norm} = 1.0$. The baseline $\\pi_{0.5}$ model is trained with the identical configuration but without the SDF auxiliary head or collision-shaping loss.\n9\t\n10\t**GeoSafe configuration.** The SDF auxiliary head is a two-layer MLP (1024 $\\to$ 256 $\\to$ 1, approximately 263K parameters) attached to the action expert's output features via a forward hook. The total training loss combines the standard flow-matching objective with two auxiliary terms weighted by $\\lambda_{\\mathrm{SDF}} = 0.1$ and $\\lambda_{\\mathrm{col}} = 0.01$. The collision penalty uses a safety margin $\\delta = 2$ cm and is gated by a noise-aware sigmoid weight $w(t) = \\sigma(\\alpha(t_0 - t))$ with transition center $t_0 = 0.5$ and sharpness $\\alpha = 10$. Gradients from both SDF losses propagate through the shared backbone features ($\\texttt{sdf\\_grad\\_to\\_backbone} = \\texttt{True}$), which is essential for the collision-shaping signal to influence action generation.\n11\t\n12\t**SDF ground-truth labels.** Per-timestep signed distance labels are precomputed offline from LIBERO demonstration data using MuJoCo's analytical geometry engine ($\\texttt{mj\\_geomDistance}$). For each demonstration timestep, the minimum signed distance between the robot's end-effector collision geometries and all scene objects (excluding currently grasped objects) is recorded. SDF labels cover all four standard LIBERO suites at full task coverage (10/10 tasks each) and partial coverage for the four SafeLIBERO suites (4 to 5 tasks each), yielding labels for approximately 75\\% of all training tasks. Each task contributes 50 demonstrations with per-timestep annotations.\n13\t\n14\t**Benchmarks.** We evaluate on two benchmarks. SafeLIBERO, introduced by Hu et al., consists of 32 collision scenarios across four suites that mirror the standard LIBERO task categories: SafeLIBERO-Spatial (4 tasks), SafeLIBERO-Object (4 tasks), SafeLIBERO-Goal (4 tasks), and SafeLIBERO-Long (4 tasks with longer horizons). Each suite tests collision avoidance under different types of distribution shift. We additionally evaluate on standard LIBERO-Spatial (10 tasks) to verify that collision awareness does not degrade manipulation performance on tasks without explicit collision hazards.\n15\t\n16\t**Metrics.** We report three metrics. Task Success Rate (TSR) measures the fraction of episodes in which the robot completes the instructed task. Collision Avoidance Rate (CAR) measures the fraction of episodes free of any contact with designated obstacle objects. Safety Score (SS) is defined as $\\mathrm{SS} = \\mathrm{TSR} \\times \\mathrm{CAR}$ and captures the joint requirement that a policy must both complete tasks and avoid collisions. We target 3 random seeds per configuration; results in this version report seed=1 with 5 eval trials per task.\n17\t\n18\t**Baselines.** We compare against two methods on the SafeLIBERO benchmark. (1) $\\pi_{0.5}$ vanilla: the same base model trained with identical hyperparameters and data but without the SDF head or collision-shaping loss, serving as a controlled ablation of our method's contribution. (2) AEGIS/VLSA: the current SafeLIBERO state-of-the-art, which applies a plug-and-play Control Barrier Function (CBF) safety layer on top of a trained VLA. AEGIS identifies obstacles via open-set detection and depth maps, then projects VLA actions onto the safe set defined by barrier constraints at each inference step. We additionally discuss OmniGuide, an inference-time SDF guidance method, in Section 4.4; it is excluded from the main SafeLIBERO comparison because its published evaluation uses the RoboCasa environment.\n19\t\n20\t\n21\t### 4.2 Main Results\n22\t\n23\tTable 1 presents results on SafeLIBERO and standard LIBERO.\n24\t\n25\t**Table 1.** Safety Score (SS = TSR $\\times$ CAR) on SafeLIBERO (4 suites) and Task Success Rate on standard LIBERO-Spatial. Results report seed=1 with 5 eval trials per task. Best results in **bold**, second-best underlined. Per-suite TSR and CAR breakdowns are provided in Appendix Table [X].\n26\t\n27\t| Method | Safe-Spatial SS | Safe-Object SS | Safe-Goal SS | Safe-Long SS | Avg SS | Std-LIBERO TSR |\n28\t|--------|:---:|:---:|:---:|:---:|:---:|:---:|\n29\t| $\\pi_{0.5}$ vanilla | [P] | [P] | [P] | [P] | [P] | [P] |\n30\t| AEGIS/VLSA | [P] | [P] | [P] | [P] | [P] | [P] |\n31\t| GeoSafe (ours) | [P] | [P] | [P] | [P] | [P] | [P] |\n32\t\n33\tGeoSafe achieves the highest average Safety Score across all four SafeLIBERO suites while maintaining competitive task success on standard LIBERO. Two trends emerge from the results. First, GeoSafe improves CAR substantially over the vanilla $\\pi_{0.5}$ baseline across all suites ([PLACEHOLDER] average improvement), confirming that collision-shaping during training produces measurably safer trajectories without runtime intervention. Second, unlike AEGIS, which improves CAR at the cost of reduced TSR (due to OOD trajectory drift from post-hoc corrections), GeoSafe preserves or improves TSR because its actions remain within the training distribution. The Safety Score gap between GeoSafe and AEGIS is most pronounced on SafeLIBERO-Long ([PLACEHOLDER] vs. [PLACEHOLDER]), where longer horizons amplify the compounding effect of repeated CBF corrections that push the policy into unfamiliar regions.\n34\t\n35\tOn standard LIBERO-Spatial (10 tasks without explicit collision scenarios), GeoSafe achieves [PLACEHOLDER] TSR compared to [PLACEHOLDER] for the vanilla baseline, indicating that the collision-shaping loss does not interfere with general manipulation capability.\n36\t\n37\t\n38\t### 4.3 Ablation Studies\n39\t\n40\tWe conduct four ablation experiments to isolate the contribution of each design choice. All ablations use the same training setup as the full GeoSafe model except for the specified modification. Results are summarized in Table 2.\n41\t\n42\t**Table 2.** Ablation study on SafeLIBERO (averaged across 4 suites). Each row modifies one component of the full GeoSafe model.\n43\t\n44\t| Variant | TSR | CAR | SS | $\\Delta$SS vs. Full |\n45\t|---------|:---:|:---:|:---:|:---:|\n46\t| Full GeoSafe | [P] | [P] | [P] | --- |\n47\t| No collision loss ($\\lambda_{\\mathrm{col}} = 0$) | [P] | [P] | [P] | [P] |\n48\t| No backbone gradient | [P] | [P] | [P] | [P] |\n49\t| Constant $w(t) = 1$ | [P] | [P] | [P] | [P] |\n50\t| High collision weight ($\\lambda_{\\mathrm{col}} = 0.1$) | [P] | [P] | [P] | [P] |\n51\t\n52\t**No collision loss** ($\\lambda_{\\mathrm{col}} = 0$, $\\lambda_{\\mathrm{SDF}} = 0.1$). This variant retains the SDF regression loss but removes the explicit collision penalty. The question is whether SDF prediction as a pure auxiliary task, without collision-specific shaping, is sufficient to improve safety. If the model learns to predict signed distances accurately, one might expect the shared features to implicitly encode collision-relevant geometry. However, accurate SDF prediction does not directly penalize collision-prone velocity vectors. We hypothesize that the collision penalty provides a crucial directional signal: it specifically discourages flow-matching trajectories that enter the safety margin, whereas SDF regression alone only encourages distance estimation accuracy without preference for the sign of the distance.\n53\t\n54\t**No backbone gradient** ($\\texttt{sdf\\_grad\\_to\\_backbone} = \\texttt{False}$). This variant detaches the SDF head's input features from the computation graph, so gradients from both $\\mathcal{L}_{\\mathrm{SDF}}$ and $\\mathcal{L}_{\\mathrm{col}}$ train only the 263K-parameter SDF head without modifying the action expert. The SDF head still learns to predict distances from the backbone's features, but the backbone itself receives no collision-related gradient signal. This ablation tests the central claim that collision awareness must be internalized into the action generation weights, not merely predicted by an auxiliary module. If backbone gradients are unnecessary, a detached SDF head could serve as a post-hoc safety monitor, and training-time internalization offers no advantage over inference-time approaches.\n55\t\n56\t**Constant weight** ($w(t) = 1$, no noise-aware gating). This variant applies the collision penalty uniformly across all noise levels in the flow-matching process, without the sigmoid gating function. At high noise levels ($t > 0.5$), the noisy action tokens $x_t$ bear little resemblance to the clean trajectory, and the backbone features primarily reflect noise rather than meaningful collision geometry. Penalizing \"collisions\" in this regime injects noisy gradients that we expect to destabilize the SDF head's predictions and, consequently, the collision-shaping signal. This ablation quantifies the importance of restricting the collision penalty to the low-noise regime where the model's representations carry reliable geometric information.\n57\t\n58\t**High collision weight** ($\\lambda_{\\mathrm{col}} = 0.1$, 10$\\times$ default). This variant increases the collision penalty weight by an order of magnitude while keeping all other hyperparameters fixed. The design intent is to characterize the TSR/CAR trade-off frontier. An excessively strong collision penalty may cause the model to generate overly conservative trajectories that avoid obstacles but fail to complete tasks requiring proximity to scene objects (e.g., reaching into a shelf, grasping near other items). We expect this variant to reveal a Pareto boundary: beyond a certain collision weight, additional CAR gains come at disproportionate TSR cost.\n59\t\n60\t\n61\t### 4.4 Analysis\n62\t\n63\t**Collision loss dynamics during training.** Figure [PLACEHOLDER] tracks the collision penalty loss $\\mathcal{L}_{\\mathrm{col}}$ across training steps for the full GeoSafe model and selected ablation variants. The full model exhibits a characteristic two-phase pattern: an initial rise as the SDF head begins producing meaningful predictions (steps 0 to [PLACEHOLDER]), followed by a steady decline as the backbone learns to generate velocity vectors that route around collision regions (steps [PLACEHOLDER] to 5,000). The no-backbone-gradient variant shows the initial rise but the subsequent decline is much slower, confirming that backbone adaptation is the primary mechanism for reducing collision loss. The constant-weight variant ($w(t)=1$) displays higher variance throughout training, consistent with our hypothesis that noisy gradients from high-noise timesteps destabilize the optimization.\n64\t\n65\t**SDF prediction accuracy.** We evaluate the SDF head's prediction quality across training by computing the mean absolute error between predicted and ground-truth signed distances on a held-out validation set. Prediction error decreases from [PLACEHOLDER] cm at step 500 to [PLACEHOLDER] cm at step 5,000 for the full model. The no-backbone-gradient variant achieves comparable final accuracy ([PLACEHOLDER] cm), confirming that the detached head can learn to read geometric information from frozen backbone features. The critical difference is that only the full model translates this predictive accuracy into improved collision avoidance at the policy level, because only backbone gradients modify the velocity field itself.\n66\t\n67\t**Per-suite analysis.** The magnitude of GeoSafe's improvement varies across SafeLIBERO suites. [PLACEHOLDER: which suite shows largest improvement and why, e.g., Spatial suite may benefit most because obstacle configurations are geometrically salient in the visual input, or Long suite may benefit most because longer horizons provide more opportunities for collision avoidance to compound.] Conversely, [PLACEHOLDER: which suite shows smallest improvement and why, e.g., certain tasks may involve unavoidable proximity where the 2 cm safety margin conflicts with task requirements.] This per-suite variation provides insight into which types of collision scenarios are most amenable to training-time internalization versus those that may benefit from the hybrid deployment modes described in Section 3.5.\n68\t\n69\t**Qualitative comparison with OmniGuide.** OmniGuide is an inference-time guidance method that computes differentiable SDF-based energy fields and backpropagates through differentiable kinematics to steer flow-matching denoising steps toward collision-free trajectories. We exclude OmniGuide from Table 1 because its published evaluation uses the RoboCasa environment rather than SafeLIBERO, precluding direct numerical comparison on our benchmark. Nevertheless, a qualitative comparison is informative. OmniGuide's explicit SDF computation at each denoising step incurs approximately 2$\\times$ inference latency relative to the base VLA (Table 3), whereas GeoSafe's zero-overhead mode adds no cost at deployment. Conceptually, OmniGuide and GeoSafe represent two ends of the internalization spectrum: OmniGuide applies geometric reasoning entirely at inference time, while GeoSafe absorbs it into the model weights during training. A hybrid approach—using GeoSafe's internalized awareness as the default with OmniGuide-style guidance for novel obstacle geometries—is a promising direction for future work.\n70\t\n71\t**Inference latency comparison.** Table 3 compares per-action-chunk inference latency across methods.\n72\t\n73\t**Table 3.** Inference latency per action chunk (ms). Measured on a single NVIDIA RTX PRO 6000 GPU.\n74\t\n75\t| Method | Latency (ms) | Overhead vs. $\\pi_{0.5}$ |\n76\t|--------|:---:|:---:|\n77\t| $\\pi_{0.5}$ vanilla | [P] | --- |\n78\t| GeoSafe (zero-overhead mode) | [P] | 0 ms |\n79\t| GeoSafe (verification mode) | [P] | ~5 ms |\n80\t| AEGIS/VLSA | [P] | [P] |\n81\t| OmniGuide | [P] | [P] |\n82\t\n83\tGeoSafe in its default zero-overhead deployment mode adds no latency because the SDF head is discarded after training. The model checkpoint is identical in size and format to the vanilla $\\pi_{0.5}$ checkpoint. AEGIS adds [PLACEHOLDER] ms per action chunk due to open-set object detection, depth map processing, and CBF projection. OmniGuide adds [PLACEHOLDER] ms due to iterative gradient computation through differentiable kinematics at each denoising step. The optional verification mode retains the SDF head as a passive safety monitor, adding approximately 5 ms for a single MLP forward pass. This latency comparison underscores GeoSafe's central advantage: collision awareness is embedded in the model's weights rather than computed at inference, eliminating the latency/safety trade-off that constrains existing approaches.\n84\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31c8b2b1-b7d8-4d2a-a7ad-2419845af0d7",
+            "isSidechain": false,
+            "promptId": "ee26233f-f274-45c6-99f1-1a7dc4b30170",
+            "type": "user",
+            "uuid": "d98b77c8-e144-49b3-b239-7ace5a1e8061",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/experiments_draft.md",
+                "content": "## 4. Experiments\n\nWe evaluate GeoSafe on the SafeLIBERO benchmark and standard LIBERO tasks to answer four questions: (1) Does internalized collision awareness improve safety without sacrificing task success? (2) How does GeoSafe compare to post-hoc safety methods that operate at inference time? (3) Which components of our training objective are essential? (4) How does the collision-shaping loss interact with the flow-matching training dynamics?\n\n\n### 4.1 Experimental Setup\n\n**Base model and training.** We build on $\\pi_{0.5}$, the open-source flow-matching VLA released by Physical Intelligence via the openpi codebase. All experiments use full fine-tuning of the entire model (not LoRA adapters), as the available GPU memory permits this and full fine-tuning provides a stronger baseline for isolating the effect of collision shaping. Training runs for 5,000 gradient steps on two NVIDIA RTX PRO 6000 GPUs (96 GB VRAM each) using PyTorch Distributed Data Parallel (DDP). The per-GPU batch size is 64, yielding an effective batch size of 128. We use AdamW with a linear warmup of 1,500 steps to a peak learning rate of $5 \\times 10^{-5}$, followed by cosine decay. Gradients from all parameters (base model and SDF head jointly) are clipped by global norm with $\\mathrm{max\\_norm} = 1.0$. The baseline $\\pi_{0.5}$ model is trained with the identical configuration but without the SDF auxiliary head or collision-shaping loss.\n\n**GeoSafe configuration.** The SDF auxiliary head is a two-layer MLP (1024 $\\to$ 256 $\\to$ 1, approximately 263K parameters) attached to the action expert's output features via a forward hook. The total training loss combines the standard flow-matching objective with two auxiliary terms weighted by $\\lambda_{\\mathrm{SDF}} = 0.1$ and $\\lambda_{\\mathrm{col}} = 0.01$. The collision penalty uses a safety margin $\\delta = 2$ cm and is gated by a noise-aware sigmoid weight $w(t) = \\sigma(\\alpha(t_0 - t))$ with transition center $t_0 = 0.5$ and sharpness $\\alpha = 10$. Gradients from both SDF losses propagate through the shared backbone features ($\\texttt{sdf\\_grad\\_to\\_backbone} = \\texttt{True}$), which is essential for the collision-shaping signal to influence action generation.\n\n**SDF ground-truth labels.** Per-timestep signed distance labels are precomputed offline from LIBERO demonstration data using MuJoCo's analytical geometry engine ($\\texttt{mj\\_geomDistance}$). For each demonstration timestep, the minimum signed distance between the robot's end-effector collision geometries and all scene objects (excluding currently grasped objects) is recorded. SDF labels cover all four standard LIBERO suites at full task coverage (10/10 tasks each) and partial coverage for the four SafeLIBERO suites (4 to 5 tasks each), yielding labels for approximately 75\\% of all training tasks. Each task contributes 50 demonstrations with per-timestep annotations.\n\n**Benchmarks.** We evaluate on two benchmarks. SafeLIBERO, introduced by Hu et al., consists of 32 collision scenarios across four suites that mirror the standard LIBERO task categories: SafeLIBERO-Spatial (4 tasks), SafeLIBERO-Object (4 tasks), SafeLIBERO-Goal (4 tasks), and SafeLIBERO-Long (4 tasks with longer horizons). Each suite tests collision avoidance under different types of distribution shift. We additionally evaluate on standard LIBERO-Spatial (10 tasks) to verify that collision awareness does not degrade manipulation performance on tasks without explicit collision hazards.\n\n**Metrics.** We report three metrics. Task Success Rate (TSR) measures the fraction of episodes in which the robot completes the instructed task. Collision Avoidance Rate (CAR) measures the fraction of episodes free of any contact with designated obstacle objects. Safety Score (SS) is defined as $\\mathrm{SS} = \\mathrm{TSR} \\times \\mathrm{CAR}$ and captures the joint requirement that a policy must both complete tasks and avoid collisions. We target 3 random seeds per configuration; results in this version report seed=1 with 5 eval trials per task.\n\n**Baselines.** We compare against two methods on the SafeLIBERO benchmark. (1) $\\pi_{0.5}$ vanilla: the same base model trained with identical hyperparameters and data but without the SDF head or collision-shaping loss, serving as a controlled ablation of our method's contribution. (2) AEGIS/VLSA: the current SafeLIBERO state-of-the-art, which applies a plug-and-play Control Barrier Function (CBF) safety layer on top of a trained VLA. AEGIS identifies obstacles via open-set detection and depth maps, then projects VLA actions onto the safe set defined by barrier constraints at each inference step. We additionally discuss OmniGuide, an inference-time SDF guidance method, in Section 4.4; it is excluded from the main SafeLIBERO comparison because its published evaluation uses the RoboCasa environment.\n\n\n### 4.2 Main Results\n\nTable 1 presents results on SafeLIBERO and standard LIBERO.\n\n**Table 1.** Safety Score (SS = TSR $\\times$ CAR) on SafeLIBERO (4 suites) and Task Success Rate on standard LIBERO-Spatial. Results report seed=1 with 5 eval trials per task. Best results in **bold**, second-best underlined. Per-suite TSR and CAR breakdowns are provided in Appendix Table [X].\n\n| Method | Safe-Spatial SS | Safe-Object SS | Safe-Goal SS | Safe-Long SS | Avg SS | Std-LIBERO TSR |\n|--------|:---:|:---:|:---:|:---:|:---:|:---:|\n| $\\pi_{0.5}$ vanilla | [P] | [P] | [P] | [P] | [P] | [P] |\n| AEGIS/VLSA | [P] | [P] | [P] | [P] | [P] | [P] |\n| GeoSafe (ours) | [P] | [P] | [P] | [P] | [P] | [P] |\n\nGeoSafe achieves the highest average Safety Score across all four SafeLIBERO suites while maintaining competitive task success on standard LIBERO. Two trends emerge from the results. First, GeoSafe improves CAR substantially over the vanilla $\\pi_{0.5}$ baseline across all suites ([PLACEHOLDER] average improvement), confirming that collision-shaping during training produces measurably safer trajectories without runtime intervention. Second, unlike AEGIS, which improves CAR at the cost of reduced TSR (due to OOD trajectory drift from post-hoc corrections), GeoSafe preserves or improves TSR because its actions remain within the training distribution. The Safety Score gap between GeoSafe and AEGIS is most pronounced on SafeLIBERO-Long ([PLACEHOLDER] vs. [PLACEHOLDER]), where longer horizons amplify the compounding effect of repeated CBF corrections that push the policy into unfamiliar regions.\n\nOn standard LIBERO-Spatial (10 tasks without explicit collision scenarios), GeoSafe achieves [PLACEHOLDER] TSR compared to [PLACEHOLDER] for the vanilla baseline, indicating that the collision-shaping loss does not interfere with general manipulation capability.\n\n\n### 4.3 Ablation Studies\n\nWe conduct four ablation experiments to isolate the contribution of each design choice. All ablations use the same training setup as the full GeoSafe model except for the specified modification. Results are summarized in Table 2.\n\n**Table 2.** Ablation study on SafeLIBERO (averaged across 4 suites). Each row modifies one component of the full GeoSafe model.\n\n| Variant | TSR | CAR | SS | $\\Delta$SS vs. Full |\n|---------|:---:|:---:|:---:|:---:|\n| Full GeoSafe | [P] | [P] | [P] | --- |\n| No collision loss ($\\lambda_{\\mathrm{col}} = 0$) | [P] | [P] | [P] | [P] |\n| No backbone gradient | [P] | [P] | [P] | [P] |\n| Constant $w(t) = 1$ | [P] | [P] | [P] | [P] |\n| High collision weight ($\\lambda_{\\mathrm{col}} = 0.1$) | [P] | [P] | [P] | [P] |\n\n**No collision loss** ($\\lambda_{\\mathrm{col}} = 0$, $\\lambda_{\\mathrm{SDF}} = 0.1$). This variant retains the SDF regression loss but removes the explicit collision penalty. The question is whether SDF prediction as a pure auxiliary task, without collision-specific shaping, is sufficient to improve safety. If the model learns to predict signed distances accurately, one might expect the shared features to implicitly encode collision-relevant geometry. However, accurate SDF prediction does not directly penalize collision-prone velocity vectors. We hypothesize that the collision penalty provides a crucial directional signal: it specifically discourages flow-matching trajectories that enter the safety margin, whereas SDF regression alone only encourages distance estimation accuracy without preference for the sign of the distance.\n\n**No backbone gradient** ($\\texttt{sdf\\_grad\\_to\\_backbone} = \\texttt{False}$). This variant detaches the SDF head's input features from the computation graph, so gradients from both $\\mathcal{L}_{\\mathrm{SDF}}$ and $\\mathcal{L}_{\\mathrm{col}}$ train only the 263K-parameter SDF head without modifying the action expert. The SDF head still learns to predict distances from the backbone's features, but the backbone itself receives no collision-related gradient signal. This ablation tests the central claim that collision awareness must be internalized into the action generation weights, not merely predicted by an auxiliary module. If backbone gradients are unnecessary, a detached SDF head could serve as a post-hoc safety monitor, and training-time internalization offers no advantage over inference-time approaches.\n\n**Constant weight** ($w(t) = 1$, no noise-aware gating). This variant applies the collision penalty uniformly across all noise levels in the flow-matching process, without the sigmoid gating function. At high noise levels ($t > 0.5$), the noisy action tokens $x_t$ bear little resemblance to the clean trajectory, and the backbone features primarily reflect noise rather than meaningful collision geometry. Penalizing \"collisions\" in this regime injects noisy gradients that we expect to destabilize the SDF head's predictions and, consequently, the collision-shaping signal. This ablation quantifies the importance of restricting the collision penalty to the low-noise regime where the model's representations carry reliable geometric information.\n\n**High collision weight** ($\\lambda_{\\mathrm{col}} = 0.1$, 10$\\times$ default). This variant increases the collision penalty weight by an order of magnitude while keeping all other hyperparameters fixed. The design intent is to characterize the TSR/CAR trade-off frontier. An excessively strong collision penalty may cause the model to generate overly conservative trajectories that avoid obstacles but fail to complete tasks requiring proximity to scene objects (e.g., reaching into a shelf, grasping near other items). We expect this variant to reveal a Pareto boundary: beyond a certain collision weight, additional CAR gains come at disproportionate TSR cost.\n\n\n### 4.4 Analysis\n\n**Collision loss dynamics during training.** Figure [PLACEHOLDER] tracks the collision penalty loss $\\mathcal{L}_{\\mathrm{col}}$ across training steps for the full GeoSafe model and selected ablation variants. The full model exhibits a characteristic two-phase pattern: an initial rise as the SDF head begins producing meaningful predictions (steps 0 to [PLACEHOLDER]), followed by a steady decline as the backbone learns to generate velocity vectors that route around collision regions (steps [PLACEHOLDER] to 5,000). The no-backbone-gradient variant shows the initial rise but the subsequent decline is much slower, confirming that backbone adaptation is the primary mechanism for reducing collision loss. The constant-weight variant ($w(t)=1$) displays higher variance throughout training, consistent with our hypothesis that noisy gradients from high-noise timesteps destabilize the optimization.\n\n**SDF prediction accuracy.** We evaluate the SDF head's prediction quality across training by computing the mean absolute error between predicted and ground-truth signed distances on a held-out validation set. Prediction error decreases from [PLACEHOLDER] cm at step 500 to [PLACEHOLDER] cm at step 5,000 for the full model. The no-backbone-gradient variant achieves comparable final accuracy ([PLACEHOLDER] cm), confirming that the detached head can learn to read geometric information from frozen backbone features. The critical difference is that only the full model translates this predictive accuracy into improved collision avoidance at the policy level, because only backbone gradients modify the velocity field itself.\n\n**Per-suite analysis.** The magnitude of GeoSafe's improvement varies across SafeLIBERO suites. [PLACEHOLDER: which suite shows largest improvement and why, e.g., Spatial suite may benefit most because obstacle configurations are geometrically salient in the visual input, or Long suite may benefit most because longer horizons provide more opportunities for collision avoidance to compound.] Conversely, [PLACEHOLDER: which suite shows smallest improvement and why, e.g., certain tasks may involve unavoidable proximity where the 2 cm safety margin conflicts with task requirements.] This per-suite variation provides insight into which types of collision scenarios are most amenable to training-time internalization versus those that may benefit from the hybrid deployment modes described in Section 3.5.\n\n**Qualitative comparison with OmniGuide.** OmniGuide is an inference-time guidance method that computes differentiable SDF-based energy fields and backpropagates through differentiable kinematics to steer flow-matching denoising steps toward collision-free trajectories. We exclude OmniGuide from Table 1 because its published evaluation uses the RoboCasa environment rather than SafeLIBERO, precluding direct numerical comparison on our benchmark. Nevertheless, a qualitative comparison is informative. OmniGuide's explicit SDF computation at each denoising step incurs approximately 2$\\times$ inference latency relative to the base VLA (Table 3), whereas GeoSafe's zero-overhead mode adds no cost at deployment. Conceptually, OmniGuide and GeoSafe represent two ends of the internalization spectrum: OmniGuide applies geometric reasoning entirely at inference time, while GeoSafe absorbs it into the model weights during training. A hybrid approach—using GeoSafe's internalized awareness as the default with OmniGuide-style guidance for novel obstacle geometries—is a promising direction for future work.\n\n**Inference latency comparison.** Table 3 compares per-action-chunk inference latency across methods.\n\n**Table 3.** Inference latency per action chunk (ms). Measured on a single NVIDIA RTX PRO 6000 GPU.\n\n| Method | Latency (ms) | Overhead vs. $\\pi_{0.5}$ |\n|--------|:---:|:---:|\n| $\\pi_{0.5}$ vanilla | [P] | --- |\n| GeoSafe (zero-overhead mode) | [P] | 0 ms |\n| GeoSafe (verification mode) | [P] | ~5 ms |\n| AEGIS/VLSA | [P] | [P] |\n| OmniGuide | [P] | [P] |\n\nGeoSafe in its default zero-overhead deployment mode adds no latency because the SDF head is discarded after training. The model checkpoint is identical in size and format to the vanilla $\\pi_{0.5}$ checkpoint. AEGIS adds [PLACEHOLDER] ms per action chunk due to open-set object detection, depth map processing, and CBF projection. OmniGuide adds [PLACEHOLDER] ms due to iterative gradient computation through differentiable kinematics at each denoising step. The optional verification mode retains the SDF head as a passive safety monitor, adding approximately 5 ms for a single MLP forward pass. This latency comparison underscores GeoSafe's central advantage: collision awareness is embedded in the model's weights rather than computed at inference, eliminating the latency/safety trade-off that constrains existing approaches.\n",
+                "numLines": 84,
+                "startLine": 1,
+                "totalLines": 84
+              }
+            },
+            "sourceToolAssistantUUID": "31c8b2b1-b7d8-4d2a-a7ad-2419845af0d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T09:58:48.040Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PsSWUA1vpC2esTSLAxvd9a",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "geosafe_vla",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d98b77c8-e144-49b3-b239-7ace5a1e8061",
+            "isSidechain": false,
+            "requestId": "req_011CbDd96GhufyngEoHCNr97",
+            "type": "assistant",
+            "uuid": "08d85d51-b413-413c-9372-d524059c4fc0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UiNDxHcJQpK6pADBspt7cU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 23981,
+                "output_tokens": 353,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 525,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 353,
+                    "cache_read_input_tokens": 23981,
+                    "cache_creation_input_tokens": 525,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 525
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T09:58:48.058Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PsSWUA1vpC2esTSLAxvd9a",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## CoRL 2026 投稿日期（2026-05-20 确认）\\\\n- Abstract deadline: 2026-05-26 (11:59 UTC)\\\\n- Paper submission: 2026-05-29 (11:59 UTC)\\\\n- Camera-ready: 2026-10-12\\\\n- Conference: 2026-11-10~12, Austin TX (JW Marriott Austin)\\\\n- 来源: corl.org 官网\\\\n\\\\n## Eval Pipeline（2026-05-20 dry-run 确认）\\\\n- eval_baseline.py: SafeLIBERO 评估（TSR/CAR/SS），4 suites: spatial/object/goal/long，每 suite 4 tasks\\\\n- eval_standard_libero.py: 标准 LIBERO 评估（TSR），10 spatial tasks\\\\n- serve: `openpi/scripts/serve_policy.py --port PORT policy:checkpoint --policy.config pi05_libero --policy.dir CKPT_PATH`\\\\n- GeoSafe sdf_head.pt 推理时不参与，serve 命令与 baseline 完全相同\\\\n- v2 训练 5K 步，最终 checkpoint 路径: `…/5000`（非 30000）\\\\n- checkpoint 格式: model.safetensors + optimizer.pt + metadata.pt（+ sdf_head.pt for geosafe）\\\\n- 环境前置: `source /root/geosafe_vla/setup_env.sh && export TORCHDYNAMO_DISABLE=1`\\\\n\\\\n## 训练超参（2026-05-20 确认）\\\\n- warmup_steps: 1500（CLI 覆盖 config 默认 10000）\\\\n- peak_lr: 5e-5\\\\n- gradient clipping: max_norm=1.0（base model + SDF head 联合裁剪）\\\\n- baseline: train_pytorch.py, --lr_schedule.warmup_steps 1500\\\\n- geosafe: train_geosafe.py, --warmup_steps 1500\\\\n- SDF loss 权重: λ_SDF=0.1, λ_col=0.01, collision margin δ=2cm\\\\n- SDF 标签覆盖率: ~75% 训练任务（标准 LIBERO 4 套全覆盖，SafeLIBERO 部分覆盖）\\\\n\\\", \\\"total_chars\\\": 1207, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08d85d51-b413-413c-9372-d524059c4fc0",
+            "isSidechain": false,
+            "promptId": "ee26233f-f274-45c6-99f1-1a7dc4b30170",
+            "type": "user",
+            "uuid": "e145e280-319a-4507-b7c0-fab93623f28e",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## CoRL 2026 投稿日期（2026-05-20 确认）\\\\n- Abstract deadline: 2026-05-26 (11:59 UTC)\\\\n- Paper submission: 2026-05-29 (11:59 UTC)\\\\n- Camera-ready: 2026-10-12\\\\n- Conference: 2026-11-10~12, Austin TX (JW Marriott Austin)\\\\n- 来源: corl.org 官网\\\\n\\\\n## Eval Pipeline（2026-05-20 dry-run 确认）\\\\n- eval_baseline.py: SafeLIBERO 评估（TSR/CAR/SS），4 suites: spatial/object/goal/long，每 suite 4 tasks\\\\n- eval_standard_libero.py: 标准 LIBERO 评估（TSR），10 spatial tasks\\\\n- serve: `openpi/scripts/serve_policy.py --port PORT policy:checkpoint --policy.config pi05_libero --policy.dir CKPT_PATH`\\\\n- GeoSafe sdf_head.pt 推理时不参与，serve 命令与 baseline 完全相同\\\\n- v2 训练 5K 步，最终 checkpoint 路径: `…/5000`（非 30000）\\\\n- checkpoint 格式: model.safetensors + optimizer.pt + metadata.pt（+ sdf_head.pt for geosafe）\\\\n- 环境前置: `source /root/geosafe_vla/setup_env.sh && export TORCHDYNAMO_DISABLE=1`\\\\n\\\\n## 训练超参（2026-05-20 确认）\\\\n- warmup_steps: 1500（CLI 覆盖 config 默认 10000）\\\\n- peak_lr: 5e-5\\\\n- gradient clipping: max_norm=1.0（base model + SDF head 联合裁剪）\\\\n- baseline: train_pytorch.py, --lr_schedule.warmup_steps 1500\\\\n- geosafe: train_geosafe.py, --warmup_steps 1500\\\\n- SDF loss 权重: λ_SDF=0.1, λ_col=0.01, collision margin δ=2cm\\\\n- SDF 标签覆盖率: ~75% 训练任务（标准 LIBERO 4 套全覆盖，SafeLIBERO 部分覆盖）\\\\n\\\", \\\"total_chars\\\": 1207, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/memory.md\", \"content\": \"# Memory\\n\\n## CoRL 2026 投稿日期（2026-05-20 确认）\\n- Abstract deadline: 2026-05-26 (11:59 UTC)\\n- Paper submission: 2026-05-29 (11:59 UTC)\\n- Camera-ready: 2026-10-12\\n- Conference: 2026-11-10~12, Austin TX (JW Marriott Austin)\\n- 来源: corl.org 官网\\n\\n## Eval Pipeline（2026-05-20 dry-run 确认）\\n- eval_baseline.py: SafeLIBERO 评估（TSR/CAR/SS），4 suites: spatial/object/goal/long，每 suite 4 tasks\\n- eval_standard_libero.py: 标准 LIBERO 评估（TSR），10 spatial tasks\\n- serve: `openpi/scripts/serve_policy.py --port PORT policy:checkpoint --policy.config pi05_libero --policy.dir CKPT_PATH`\\n- GeoSafe sdf_head.pt 推理时不参与，serve 命令与 baseline 完全相同\\n- v2 训练 5K 步，最终 checkpoint 路径: `…/5000`（非 30000）\\n- checkpoint 格式: model.safetensors + optimizer.pt + metadata.pt（+ sdf_head.pt for geosafe）\\n- 环境前置: `source /root/geosafe_vla/setup_env.sh && export TORCHDYNAMO_DISABLE=1`\\n\\n## 训练超参（2026-05-20 确认）\\n- warmup_steps: 1500（CLI 覆盖 config 默认 10000）\\n- peak_lr: 5e-5\\n- gradient clipping: max_norm=1.0（base model + SDF head 联合裁剪）\\n- baseline: train_pytorch.py, --lr_schedule.warmup_steps 1500\\n- geosafe: train_geosafe.py, --warmup_steps 1500\\n- SDF loss 权重: λ_SDF=0.1, λ_col=0.01, collision margin δ=2cm\\n- SDF 标签覆盖率: ~75% 训练任务（标准 LIBERO 4 套全覆盖，SafeLIBERO 部分覆盖）\\n\", \"total_chars\": 1207, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "08d85d51-b413-413c-9372-d524059c4fc0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T09:58:48.450Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lz1WWCZcr461KRNQwr5MV4",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts",
+                "description": "Create paper drafts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e145e280-319a-4507-b7c0-fab93623f28e",
+            "isSidechain": false,
+            "requestId": "req_011CbDd96GhufyngEoHCNr97",
+            "type": "assistant",
+            "uuid": "22c6bb90-d070-4048-9953-4affb9bf8e87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UiNDxHcJQpK6pADBspt7cU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 525,
+                "cache_read_input_tokens": 23981,
+                "output_tokens": 353,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 525,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 353,
+                    "cache_read_input_tokens": 23981,
+                    "cache_creation_input_tokens": 525,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 525
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "22c6bb90-d070-4048-9953-4affb9bf8e87",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write GeoSafe paper appendix framework draft",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T09:58:48.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lz1WWCZcr461KRNQwr5MV4",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22c6bb90-d070-4048-9953-4affb9bf8e87",
+            "isSidechain": false,
+            "promptId": "ee26233f-f274-45c6-99f1-1a7dc4b30170",
+            "type": "user",
+            "uuid": "dc21222e-c16e-4328-afa9-d9ecf5b0b094",
+            "toolUseResult": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            },
+            "sourceToolAssistantUUID": "22c6bb90-d070-4048-9953-4affb9bf8e87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T09:58:52.602Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need. Let me compile the appendix draft based on:\n\n1. Method draft - detailed technical info about SDF head, losses, training pipeline\n2. Experiments draft - experimental setup, benchmarks, metrics, baselines\n3. Memory - training hyperparams, eval pipeline info\n\nLet me write the appendix now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc21222e-c16e-4328-afa9-d9ecf5b0b094",
+            "isSidechain": false,
+            "requestId": "req_011CbDd9u1KQ96GuzM3iDcg8",
+            "type": "assistant",
+            "uuid": "c86cd732-de0c-43b5-b2db-40737726e3af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dYNMvgv392KjQtPxKkiYZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9216,
+                "cache_read_input_tokens": 24506,
+                "output_tokens": 5311,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9216,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5311,
+                    "cache_read_input_tokens": 24506,
+                    "cache_creation_input_tokens": 9216,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9216
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T09:58:53.244Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All source files read. Writing the appendix draft."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c86cd732-de0c-43b5-b2db-40737726e3af",
+            "isSidechain": false,
+            "requestId": "req_011CbDd9u1KQ96GuzM3iDcg8",
+            "type": "assistant",
+            "uuid": "5609906f-b7a2-4f14-ba73-6953c423f093",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dYNMvgv392KjQtPxKkiYZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9216,
+                "cache_read_input_tokens": 24506,
+                "output_tokens": 5311,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9216,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5311,
+                    "cache_read_input_tokens": 24506,
+                    "cache_creation_input_tokens": 9216,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9216
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T10:00:24.158Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UUz5FqvnbuSsXkHXLbdY2p",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/appendix_draft.md",
+                "content": "# Appendix\n\n## A. Implementation Details\n\nThis section provides the complete training configuration and architectural details for reproducing GeoSafe.\n\n### A.1 Model Architecture\n\nGeoSafe builds on $\\pi_{0.5}$ (openpi), a flow-matching Vision-Language-Action model comprising three components:\n\n- **Vision encoder**: PaliGemma SigLIP-based vision encoder that processes RGB observations into visual tokens.\n- **Language model**: Gemma language backbone that fuses visual tokens with tokenized language instructions to produce a joint vision-language representation.\n- **Action expert**: Gemma-300M transformer that takes the vision-language context along with noisy action tokens and predicts velocity field outputs for flow-matching action generation. The action expert's output features have dimension $D = 1024$, which are projected to the action-space dimension $D_a = 32$ by a linear output layer.\n\nThe SDF auxiliary head is attached to the action expert's output projection layer via a PyTorch forward hook, requiring no modification to the base model's source code. The head architecture is:\n\n$$\\text{Linear}(1024, 256) \\to \\text{ReLU} \\to \\text{Linear}(256, 1)$$\n\ntotaling 262,657 parameters (< 0.09% of the action expert). The head is discarded after training and does not participate in inference.\n\n### A.2 Training Configuration\n\n| Hyperparameter | Value |\n|----------------|-------|\n| Base model | $\\pi_{0.5}$ (openpi) |\n| Fine-tuning strategy | Full (all parameters) |\n| Optimizer | AdamW |\n| Peak learning rate | $5 \\times 10^{-5}$ |\n| LR schedule | Linear warmup + cosine decay |\n| Warmup steps | 1,500 |\n| Total training steps | 5,000 |\n| Effective batch size | 128 (64 per GPU $\\times$ 2 GPUs, DDP) |\n| Gradient clipping | Global norm, max\\_norm = 1.0 |\n| EMA | Not used (PyTorch training pipeline) |\n| Hardware | 2$\\times$ NVIDIA RTX PRO 6000 (96 GB VRAM each) |\n| Distributed strategy | PyTorch DDP with gradient averaging |\n| Precision | [P] |\n\n### A.3 GeoSafe-Specific Configuration\n\n| Hyperparameter | Value |\n|----------------|-------|\n| SDF head architecture | Linear(1024, 256) $\\to$ ReLU $\\to$ Linear(256, 1) |\n| SDF head parameters | 262,657 |\n| SDF loss weight ($\\lambda_{\\text{SDF}}$) | 0.1 |\n| Collision loss weight ($\\lambda_{\\text{col}}$) | 0.01 |\n| Collision threshold ($\\delta$) | 0.02 m (2 cm) |\n| Noise-aware sigmoid sharpness ($\\alpha$) | 10 |\n| Noise-aware sigmoid center ($t_0$) | 0.5 |\n| Backbone gradient from SDF losses | True |\n| SDF label coverage | ~75% of training tasks |\n\n### A.4 SDF Label Computation\n\nGround-truth signed distance labels are precomputed offline from LIBERO demonstration data. For each demonstration timestep, we replay the recorded robot state in MuJoCo and compute the minimum signed distance between the end-effector collision geometries (gripper fingers and the last two arm links) and all scene obstacle geometries using `mj_geomDistance` for exact signed distance queries.\n\n**Grasp exclusion.** Objects currently grasped by the robot are excluded from signed distance computation to avoid penalizing intentional contact during manipulation. Grasp is detected when both conditions are met: (1) gripper aperture falls below 35 mm, and (2) the minimum finger-to-object distance is less than 5 mm. When a grasp is detected, the grasped object is removed from the obstacle set $\\mathcal{O}$ for that timestep.\n\n**Label storage.** Per-timestep signed distances are stored as compressed NumPy arrays indexed by (task\\_index, episode\\_index, timestep). At training time, the `SDFLabelStore` aligns labels to each sampled action chunk. When an action chunk extends beyond the demonstration length, the last observed signed distance value is used for padding. The `SDFAugmentedDataset` wrapper marks samples without matching SDF labels as invalid, excluding them from the SDF loss computation while leaving the flow-matching loss unaffected.\n\n**Coverage.** SDF labels cover 57 tasks across 8 task suites. The four standard LIBERO suites have full coverage (10/10 tasks each, 40 tasks total), while the four SafeLIBERO suites have partial coverage (4--5 tasks each, 17 tasks total). Each task provides 50 demonstrations with per-timestep annotations.\n\n\n## B. SafeLIBERO Benchmark Details\n\nThis section describes the SafeLIBERO benchmark structure and evaluation protocol.\n\n### B.1 Benchmark Structure\n\nSafeLIBERO (Hu et al.) extends the standard LIBERO benchmark by introducing collision-relevant obstacles into tabletop manipulation scenes. The benchmark comprises four suites, each containing 4 tasks that mirror the corresponding standard LIBERO task categories:\n\n**SafeLIBERO-Spatial** (4 tasks). Obstacles are placed at various locations in the workspace, testing the robot's ability to navigate around static obstructions while performing spatial rearrangement tasks. The collision hazards arise from obstacles positioned along typical robot trajectories between pick and place locations.\n\n**SafeLIBERO-Object** (4 tasks). Obstacles are placed on or near the target objects, testing the robot's ability to interact with objects in cluttered proximity. These tasks require precise end-effector control to grasp or manipulate target objects without contacting adjacent obstacles.\n\n**SafeLIBERO-Goal** (4 tasks). Obstacles are placed at or near the goal locations, testing the robot's ability to place objects in constrained target regions. The collision risk is highest during the placement phase, when the robot must approach the goal while maintaining clearance from nearby obstacles.\n\n**SafeLIBERO-Long** (4 tasks). Multi-step manipulation tasks with obstacles present throughout the workspace, testing collision avoidance over extended horizons. Longer task horizons increase the cumulative probability of collision, making these tasks the most challenging for maintaining safety across the full episode.\n\n### B.2 Standard LIBERO Baseline\n\nWe additionally evaluate on standard LIBERO-Spatial, which contains 10 tabletop manipulation tasks without explicit collision hazards. This benchmark serves as a control to verify that collision-shaping training does not degrade general manipulation performance. Tasks involve spatial rearrangement of objects (e.g., moving bowls, stacking plates) in uncluttered scenes.\n\n### B.3 Collision Detection\n\nCollisions are detected using the signed distance field between the robot's end-effector and designated obstacle objects. A collision is registered when the signed distance $s < 0$ (i.e., geometric penetration between collision meshes). The collision detection uses the same MuJoCo analytical geometry engine and `mj_geomDistance` API as the SDF label computation, ensuring consistency between training labels and evaluation criteria.\n\n### B.4 Evaluation Protocol\n\n- **Trials**: 5 evaluation trials per task per method.\n- **Seeds**: Results in the current version report seed=1. We target 3 random seeds per configuration for the final submission.\n- **Metrics**:\n  - Task Success Rate (TSR): fraction of episodes completing the instructed task.\n  - Collision Avoidance Rate (CAR): fraction of episodes with zero contact with designated obstacles.\n  - Safety Score (SS): $\\text{SS} = \\text{TSR} \\times \\text{CAR}$, capturing the joint requirement of task completion and collision avoidance.\n- **Policy serving**: Models are served via `openpi/scripts/serve_policy.py` using the `pi05_libero` configuration. GeoSafe uses the same serving command as the baseline; the SDF head (`sdf_head.pt`) is not loaded at inference time.\n\n\n## C. Full Evaluation Results\n\nThis section provides per-task breakdowns of all evaluation metrics.\n\n### Table C.1: SafeLIBERO-Spatial (Per-Task Breakdown)\n\n| Task | TSR (GeoSafe) | CAR (GeoSafe) | SS (GeoSafe) | TSR ($\\pi_{0.5}$) | CAR ($\\pi_{0.5}$) | SS ($\\pi_{0.5}$) |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Spatial Task 1 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Spatial Task 2 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Spatial Task 3 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Spatial Task 4 | [P] | [P] | [P] | [P] | [P] | [P] |\n| **Average** | [P] | [P] | [P] | [P] | [P] | [P] |\n\n### Table C.2: SafeLIBERO-Object (Per-Task Breakdown)\n\n| Task | TSR (GeoSafe) | CAR (GeoSafe) | SS (GeoSafe) | TSR ($\\pi_{0.5}$) | CAR ($\\pi_{0.5}$) | SS ($\\pi_{0.5}$) |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Object Task 1 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Object Task 2 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Object Task 3 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Object Task 4 | [P] | [P] | [P] | [P] | [P] | [P] |\n| **Average** | [P] | [P] | [P] | [P] | [P] | [P] |\n\n### Table C.3: SafeLIBERO-Goal (Per-Task Breakdown)\n\n| Task | TSR (GeoSafe) | CAR (GeoSafe) | SS (GeoSafe) | TSR ($\\pi_{0.5}$) | CAR ($\\pi_{0.5}$) | SS ($\\pi_{0.5}$) |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Goal Task 1 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Goal Task 2 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Goal Task 3 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Goal Task 4 | [P] | [P] | [P] | [P] | [P] | [P] |\n| **Average** | [P] | [P] | [P] | [P] | [P] | [P] |\n\n### Table C.4: SafeLIBERO-Long (Per-Task Breakdown)\n\n| Task | TSR (GeoSafe) | CAR (GeoSafe) | SS (GeoSafe) | TSR ($\\pi_{0.5}$) | CAR ($\\pi_{0.5}$) | SS ($\\pi_{0.5}$) |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Long Task 1 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Long Task 2 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Long Task 3 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Long Task 4 | [P] | [P] | [P] | [P] | [P] | [P] |\n| **Average** | [P] | [P] | [P] | [P] | [P] | [P] |\n\n### Table C.5: Standard LIBERO-Spatial (Per-Task TSR)\n\n| Task | TSR (GeoSafe) | TSR ($\\pi_{0.5}$) |\n|------|:---:|:---:|\n| LIBERO-Spatial Task 1 | [P] | [P] |\n| LIBERO-Spatial Task 2 | [P] | [P] |\n| LIBERO-Spatial Task 3 | [P] | [P] |\n| LIBERO-Spatial Task 4 | [P] | [P] |\n| LIBERO-Spatial Task 5 | [P] | [P] |\n| LIBERO-Spatial Task 6 | [P] | [P] |\n| LIBERO-Spatial Task 7 | [P] | [P] |\n| LIBERO-Spatial Task 8 | [P] | [P] |\n| LIBERO-Spatial Task 9 | [P] | [P] |\n| LIBERO-Spatial Task 10 | [P] | [P] |\n| **Average** | [P] | [P] |\n\n\n## D. Additional Ablation Studies\n\nThis section presents additional ablation experiments beyond those reported in the main text.\n\n### D.1 Noise-Aware Weight Design Variants\n\nWe compare four designs for the time-dependent weight $w(t)$ that gates the collision penalty across flow-matching noise levels. All variants use $\\lambda_{\\text{col}} = 0.01$ and identical training configurations.\n\n| Weight design | Definition | Avg SS | $\\Delta$SS vs. sigmoid |\n|---------------|-----------|:---:|:---:|\n| Sigmoid (default) | $w(t) = \\sigma(\\alpha(t_0 - t))$, $\\alpha=10$, $t_0=0.5$ | [P] | --- |\n| Linear ramp | $w(t) = \\max(0, 1 - 2t)$ | [P] | [P] |\n| Step function | $w(t) = \\mathbb{1}[t < 0.5]$ | [P] | [P] |\n| Constant | $w(t) = 1$ (no gating) | [P] | [P] |\n\nThe sigmoid provides a smooth transition that avoids gradient discontinuities at $t = t_0$, which the step function introduces. The linear ramp provides a gradual alternative but begins suppressing the penalty at $t = 0$, potentially under-weighting the lowest-noise regime. [P: analysis of results]\n\n### D.2 Loss Weight Sensitivity\n\nWe vary the SDF regression weight $\\lambda_{\\text{SDF}}$ and collision penalty weight $\\lambda_{\\text{col}}$ independently to characterize the sensitivity of the TSR/CAR trade-off to these hyperparameters.\n\n**SDF loss weight ($\\lambda_{\\text{SDF}}$)**:\n\n| $\\lambda_{\\text{SDF}}$ | TSR | CAR | SS |\n|:---:|:---:|:---:|:---:|\n| 0.01 | [P] | [P] | [P] |\n| 0.1 (default) | [P] | [P] | [P] |\n| 1.0 | [P] | [P] | [P] |\n\n**Collision loss weight ($\\lambda_{\\text{col}}$)**:\n\n| $\\lambda_{\\text{col}}$ | TSR | CAR | SS |\n|:---:|:---:|:---:|:---:|\n| 0.001 | [P] | [P] | [P] |\n| 0.01 (default) | [P] | [P] | [P] |\n| 0.1 | [P] | [P] | [P] |\n\nWe expect that increasing $\\lambda_{\\text{col}}$ beyond the default improves CAR at the cost of TSR, as the model becomes overly conservative. Conversely, very small $\\lambda_{\\text{col}}$ values may produce negligible safety improvement. [P: analysis of Pareto frontier]\n\n### D.3 Collision Threshold Sensitivity\n\nWe vary the safety margin $\\delta$ in the collision penalty $\\text{ReLU}(\\delta - \\hat{s})$ to study the effect of the collision boundary on the TSR/CAR trade-off.\n\n| $\\delta$ (cm) | TSR | CAR | SS |\n|:---:|:---:|:---:|:---:|\n| 1 | [P] | [P] | [P] |\n| 2 (default) | [P] | [P] | [P] |\n| 5 | [P] | [P] | [P] |\n\nA larger $\\delta$ enforces a wider clearance margin around obstacles, which should improve CAR but may degrade TSR for tasks requiring close proximity to scene objects. A smaller $\\delta$ relaxes the constraint, potentially allowing trajectories that pass very close to obstacles without technically colliding. [P: analysis]\n\n### D.4 SDF Label Coverage Impact\n\nWe study the effect of SDF label coverage on GeoSafe's performance by comparing training with the full label set (~75% task coverage) against a reduced subset.\n\n| Coverage | Tasks with SDF labels | TSR | CAR | SS |\n|----------|:---:|:---:|:---:|:---:|\n| Full (~75%) | 57/76 | [P] | [P] | [P] |\n| Standard LIBERO only (~53%) | 40/76 | [P] | [P] | [P] |\n\nThis ablation tests whether the collision-shaping signal generalizes: if the model trained with SDF labels only on standard LIBERO tasks (which lack explicit collision hazards) still exhibits improved collision avoidance on SafeLIBERO tasks (which do contain obstacles), it would suggest that the geometric awareness learned from obstacle-free scenes transfers to novel collision scenarios. [P: analysis]\n\n\n## E. Compute Cost Analysis\n\nThis section compares the computational requirements of GeoSafe against baseline and competing methods.\n\n### Table E.1: Training Cost\n\n| Method | Training Steps | GPU Hours | Hardware | Notes |\n|--------|:---:|:---:|----------|-------|\n| $\\pi_{0.5}$ baseline | 5,000 | [P] | 2$\\times$ RTX PRO 6000 | Standard fine-tuning |\n| GeoSafe (ours) | 5,000 | [P] | 2$\\times$ RTX PRO 6000 | +SDF head forward/backward, negligible overhead |\n| AEGIS/VLSA | --- | --- | --- | No additional training (plug-and-play) |\n| OmniGuide | --- | --- | --- | No additional training (inference-time guidance) |\n\nGeoSafe's training overhead relative to the vanilla $\\pi_{0.5}$ baseline is minimal: the SDF head adds 262,657 parameters (< 0.09% of the action expert) and two scalar loss terms per batch. The additional forward and backward passes through the SDF head are dominated by the base model's computation. [P: measure exact overhead percentage]\n\n### Table E.2: Inference Cost\n\n| Method | Latency per chunk (ms) | Overhead vs. $\\pi_{0.5}$ | Additional memory | Requires scene geometry |\n|--------|:---:|:---:|:---:|:---:|\n| $\\pi_{0.5}$ vanilla | [P] | --- | --- | No |\n| GeoSafe (zero-overhead) | [P] | 0 ms | 0 | No |\n| GeoSafe (verification mode) | [P] | ~5 ms | ~1 MB (SDF head) | No |\n| AEGIS/VLSA | [P] | [P] | [P] | Yes (depth + detection) |\n| OmniGuide | [P] | ~$2\\times$ baseline | [P] | Yes (SDF field) |\n\nGeoSafe in zero-overhead mode uses the identical checkpoint and serving pipeline as the vanilla $\\pi_{0.5}$ model. The SDF head is not loaded. The optional verification mode retains the SDF head as a passive safety monitor: it predicts signed distances from the model's internal features during inference and can flag predicted near-collision events, adding approximately 5 ms for a single MLP forward pass. This mode requires no external scene geometry information, as the SDF head operates on the model's learned representations.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5609906f-b7a2-4f14-ba73-6953c423f093",
+            "isSidechain": false,
+            "requestId": "req_011CbDd9u1KQ96GuzM3iDcg8",
+            "type": "assistant",
+            "uuid": "ba19af29-9435-4a5e-8f4a-8a0318952ce0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013dYNMvgv392KjQtPxKkiYZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9216,
+                "cache_read_input_tokens": 24506,
+                "output_tokens": 5311,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9216,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5311,
+                    "cache_read_input_tokens": 24506,
+                    "cache_creation_input_tokens": 9216,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9216
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T10:00:24.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UUz5FqvnbuSsXkHXLbdY2p",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/appendix_draft.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba19af29-9435-4a5e-8f4a-8a0318952ce0",
+            "isSidechain": false,
+            "promptId": "ee26233f-f274-45c6-99f1-1a7dc4b30170",
+            "type": "user",
+            "uuid": "b0828e98-9797-428c-a24a-9d0a3a0d6619",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla/artifacts/paper_drafts/appendix_draft.md",
+              "content": "# Appendix\n\n## A. Implementation Details\n\nThis section provides the complete training configuration and architectural details for reproducing GeoSafe.\n\n### A.1 Model Architecture\n\nGeoSafe builds on $\\pi_{0.5}$ (openpi), a flow-matching Vision-Language-Action model comprising three components:\n\n- **Vision encoder**: PaliGemma SigLIP-based vision encoder that processes RGB observations into visual tokens.\n- **Language model**: Gemma language backbone that fuses visual tokens with tokenized language instructions to produce a joint vision-language representation.\n- **Action expert**: Gemma-300M transformer that takes the vision-language context along with noisy action tokens and predicts velocity field outputs for flow-matching action generation. The action expert's output features have dimension $D = 1024$, which are projected to the action-space dimension $D_a = 32$ by a linear output layer.\n\nThe SDF auxiliary head is attached to the action expert's output projection layer via a PyTorch forward hook, requiring no modification to the base model's source code. The head architecture is:\n\n$$\\text{Linear}(1024, 256) \\to \\text{ReLU} \\to \\text{Linear}(256, 1)$$\n\ntotaling 262,657 parameters (< 0.09% of the action expert). The head is discarded after training and does not participate in inference.\n\n### A.2 Training Configuration\n\n| Hyperparameter | Value |\n|----------------|-------|\n| Base model | $\\pi_{0.5}$ (openpi) |\n| Fine-tuning strategy | Full (all parameters) |\n| Optimizer | AdamW |\n| Peak learning rate | $5 \\times 10^{-5}$ |\n| LR schedule | Linear warmup + cosine decay |\n| Warmup steps | 1,500 |\n| Total training steps | 5,000 |\n| Effective batch size | 128 (64 per GPU $\\times$ 2 GPUs, DDP) |\n| Gradient clipping | Global norm, max\\_norm = 1.0 |\n| EMA | Not used (PyTorch training pipeline) |\n| Hardware | 2$\\times$ NVIDIA RTX PRO 6000 (96 GB VRAM each) |\n| Distributed strategy | PyTorch DDP with gradient averaging |\n| Precision | [P] |\n\n### A.3 GeoSafe-Specific Configuration\n\n| Hyperparameter | Value |\n|----------------|-------|\n| SDF head architecture | Linear(1024, 256) $\\to$ ReLU $\\to$ Linear(256, 1) |\n| SDF head parameters | 262,657 |\n| SDF loss weight ($\\lambda_{\\text{SDF}}$) | 0.1 |\n| Collision loss weight ($\\lambda_{\\text{col}}$) | 0.01 |\n| Collision threshold ($\\delta$) | 0.02 m (2 cm) |\n| Noise-aware sigmoid sharpness ($\\alpha$) | 10 |\n| Noise-aware sigmoid center ($t_0$) | 0.5 |\n| Backbone gradient from SDF losses | True |\n| SDF label coverage | ~75% of training tasks |\n\n### A.4 SDF Label Computation\n\nGround-truth signed distance labels are precomputed offline from LIBERO demonstration data. For each demonstration timestep, we replay the recorded robot state in MuJoCo and compute the minimum signed distance between the end-effector collision geometries (gripper fingers and the last two arm links) and all scene obstacle geometries using `mj_geomDistance` for exact signed distance queries.\n\n**Grasp exclusion.** Objects currently grasped by the robot are excluded from signed distance computation to avoid penalizing intentional contact during manipulation. Grasp is detected when both conditions are met: (1) gripper aperture falls below 35 mm, and (2) the minimum finger-to-object distance is less than 5 mm. When a grasp is detected, the grasped object is removed from the obstacle set $\\mathcal{O}$ for that timestep.\n\n**Label storage.** Per-timestep signed distances are stored as compressed NumPy arrays indexed by (task\\_index, episode\\_index, timestep). At training time, the `SDFLabelStore` aligns labels to each sampled action chunk. When an action chunk extends beyond the demonstration length, the last observed signed distance value is used for padding. The `SDFAugmentedDataset` wrapper marks samples without matching SDF labels as invalid, excluding them from the SDF loss computation while leaving the flow-matching loss unaffected.\n\n**Coverage.** SDF labels cover 57 tasks across 8 task suites. The four standard LIBERO suites have full coverage (10/10 tasks each, 40 tasks total), while the four SafeLIBERO suites have partial coverage (4--5 tasks each, 17 tasks total). Each task provides 50 demonstrations with per-timestep annotations.\n\n\n## B. SafeLIBERO Benchmark Details\n\nThis section describes the SafeLIBERO benchmark structure and evaluation protocol.\n\n### B.1 Benchmark Structure\n\nSafeLIBERO (Hu et al.) extends the standard LIBERO benchmark by introducing collision-relevant obstacles into tabletop manipulation scenes. The benchmark comprises four suites, each containing 4 tasks that mirror the corresponding standard LIBERO task categories:\n\n**SafeLIBERO-Spatial** (4 tasks). Obstacles are placed at various locations in the workspace, testing the robot's ability to navigate around static obstructions while performing spatial rearrangement tasks. The collision hazards arise from obstacles positioned along typical robot trajectories between pick and place locations.\n\n**SafeLIBERO-Object** (4 tasks). Obstacles are placed on or near the target objects, testing the robot's ability to interact with objects in cluttered proximity. These tasks require precise end-effector control to grasp or manipulate target objects without contacting adjacent obstacles.\n\n**SafeLIBERO-Goal** (4 tasks). Obstacles are placed at or near the goal locations, testing the robot's ability to place objects in constrained target regions. The collision risk is highest during the placement phase, when the robot must approach the goal while maintaining clearance from nearby obstacles.\n\n**SafeLIBERO-Long** (4 tasks). Multi-step manipulation tasks with obstacles present throughout the workspace, testing collision avoidance over extended horizons. Longer task horizons increase the cumulative probability of collision, making these tasks the most challenging for maintaining safety across the full episode.\n\n### B.2 Standard LIBERO Baseline\n\nWe additionally evaluate on standard LIBERO-Spatial, which contains 10 tabletop manipulation tasks without explicit collision hazards. This benchmark serves as a control to verify that collision-shaping training does not degrade general manipulation performance. Tasks involve spatial rearrangement of objects (e.g., moving bowls, stacking plates) in uncluttered scenes.\n\n### B.3 Collision Detection\n\nCollisions are detected using the signed distance field between the robot's end-effector and designated obstacle objects. A collision is registered when the signed distance $s < 0$ (i.e., geometric penetration between collision meshes). The collision detection uses the same MuJoCo analytical geometry engine and `mj_geomDistance` API as the SDF label computation, ensuring consistency between training labels and evaluation criteria.\n\n### B.4 Evaluation Protocol\n\n- **Trials**: 5 evaluation trials per task per method.\n- **Seeds**: Results in the current version report seed=1. We target 3 random seeds per configuration for the final submission.\n- **Metrics**:\n  - Task Success Rate (TSR): fraction of episodes completing the instructed task.\n  - Collision Avoidance Rate (CAR): fraction of episodes with zero contact with designated obstacles.\n  - Safety Score (SS): $\\text{SS} = \\text{TSR} \\times \\text{CAR}$, capturing the joint requirement of task completion and collision avoidance.\n- **Policy serving**: Models are served via `openpi/scripts/serve_policy.py` using the `pi05_libero` configuration. GeoSafe uses the same serving command as the baseline; the SDF head (`sdf_head.pt`) is not loaded at inference time.\n\n\n## C. Full Evaluation Results\n\nThis section provides per-task breakdowns of all evaluation metrics.\n\n### Table C.1: SafeLIBERO-Spatial (Per-Task Breakdown)\n\n| Task | TSR (GeoSafe) | CAR (GeoSafe) | SS (GeoSafe) | TSR ($\\pi_{0.5}$) | CAR ($\\pi_{0.5}$) | SS ($\\pi_{0.5}$) |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Spatial Task 1 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Spatial Task 2 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Spatial Task 3 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Spatial Task 4 | [P] | [P] | [P] | [P] | [P] | [P] |\n| **Average** | [P] | [P] | [P] | [P] | [P] | [P] |\n\n### Table C.2: SafeLIBERO-Object (Per-Task Breakdown)\n\n| Task | TSR (GeoSafe) | CAR (GeoSafe) | SS (GeoSafe) | TSR ($\\pi_{0.5}$) | CAR ($\\pi_{0.5}$) | SS ($\\pi_{0.5}$) |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Object Task 1 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Object Task 2 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Object Task 3 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Object Task 4 | [P] | [P] | [P] | [P] | [P] | [P] |\n| **Average** | [P] | [P] | [P] | [P] | [P] | [P] |\n\n### Table C.3: SafeLIBERO-Goal (Per-Task Breakdown)\n\n| Task | TSR (GeoSafe) | CAR (GeoSafe) | SS (GeoSafe) | TSR ($\\pi_{0.5}$) | CAR ($\\pi_{0.5}$) | SS ($\\pi_{0.5}$) |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Goal Task 1 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Goal Task 2 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Goal Task 3 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Goal Task 4 | [P] | [P] | [P] | [P] | [P] | [P] |\n| **Average** | [P] | [P] | [P] | [P] | [P] | [P] |\n\n### Table C.4: SafeLIBERO-Long (Per-Task Breakdown)\n\n| Task | TSR (GeoSafe) | CAR (GeoSafe) | SS (GeoSafe) | TSR ($\\pi_{0.5}$) | CAR ($\\pi_{0.5}$) | SS ($\\pi_{0.5}$) |\n|------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Long Task 1 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Long Task 2 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Long Task 3 | [P] | [P] | [P] | [P] | [P] | [P] |\n| Long Task 4 | [P] | [P] | [P] | [P] | [P] | [P] |\n| **Average** | [P] | [P] | [P] | [P] | [P] | [P] |\n\n### Table C.5: Standard LIBERO-Spatial (Per-Task TSR)\n\n| Task | TSR (GeoSafe) | TSR ($\\pi_{0.5}$) |\n|------|:---:|:---:|\n| LIBERO-Spatial Task 1 | [P] | [P] |\n| LIBERO-Spatial Task 2 | [P] | [P] |\n| LIBERO-Spatial Task 3 | [P] | [P] |\n| LIBERO-Spatial Task 4 | [P] | [P] |\n| LIBERO-Spatial Task 5 | [P] | [P] |\n| LIBERO-Spatial Task 6 | [P] | [P] |\n| LIBERO-Spatial Task 7 | [P] | [P] |\n| LIBERO-Spatial Task 8 | [P] | [P] |\n| LIBERO-Spatial Task 9 | [P] | [P] |\n| LIBERO-Spatial Task 10 | [P] | [P] |\n| **Average** | [P] | [P] |\n\n\n## D. Additional Ablation Studies\n\nThis section presents additional ablation experiments beyond those reported in the main text.\n\n### D.1 Noise-Aware Weight Design Variants\n\nWe compare four designs for the time-dependent weight $w(t)$ that gates the collision penalty across flow-matching noise levels. All variants use $\\lambda_{\\text{col}} = 0.01$ and identical training configurations.\n\n| Weight design | Definition | Avg SS | $\\Delta$SS vs. sigmoid |\n|---------------|-----------|:---:|:---:|\n| Sigmoid (default) | $w(t) = \\sigma(\\alpha(t_0 - t))$, $\\alpha=10$, $t_0=0.5$ | [P] | --- |\n| Linear ramp | $w(t) = \\max(0, 1 - 2t)$ | [P] | [P] |\n| Step function | $w(t) = \\mathbb{1}[t < 0.5]$ | [P] | [P] |\n| Constant | $w(t) = 1$ (no gating) | [P] | [P] |\n\nThe sigmoid provides a smooth transition that avoids gradient discontinuities at $t = t_0$, which the step function introduces. The linear ramp provides a gradual alternative but begins suppressing the penalty at $t = 0$, potentially under-weighting the lowest-noise regime. [P: analysis of results]\n\n### D.2 Loss Weight Sensitivity\n\nWe vary the SDF regression weight $\\lambda_{\\text{SDF}}$ and collision penalty weight $\\lambda_{\\text{col}}$ independently to characterize the sensitivity of the TSR/CAR trade-off to these hyperparameters.\n\n**SDF loss weight ($\\lambda_{\\text{SDF}}$)**:\n\n| $\\lambda_{\\text{SDF}}$ | TSR | CAR | SS |\n|:---:|:---:|:---:|:---:|\n| 0.01 | [P] | [P] | [P] |\n| 0.1 (default) | [P] | [P] | [P] |\n| 1.0 | [P] | [P] | [P] |\n\n**Collision loss weight ($\\lambda_{\\text{col}}$)**:\n\n| $\\lambda_{\\text{col}}$ | TSR | CAR | SS |\n|:---:|:---:|:---:|:---:|\n| 0.001 | [P] | [P] | [P] |\n| 0.01 (default) | [P] | [P] | [P] |\n| 0.1 | [P] | [P] | [P] |\n\nWe expect that increasing $\\lambda_{\\text{col}}$ beyond the default improves CAR at the cost of TSR, as the model becomes overly conservative. Conversely, very small $\\lambda_{\\text{col}}$ values may produce negligible safety improvement. [P: analysis of Pareto frontier]\n\n### D.3 Collision Threshold Sensitivity\n\nWe vary the safety margin $\\delta$ in the collision penalty $\\text{ReLU}(\\delta - \\hat{s})$ to study the effect of the collision boundary on the TSR/CAR trade-off.\n\n| $\\delta$ (cm) | TSR | CAR | SS |\n|:---:|:---:|:---:|:---:|\n| 1 | [P] | [P] | [P] |\n| 2 (default) | [P] | [P] | [P] |\n| 5 | [P] | [P] | [P] |\n\nA larger $\\delta$ enforces a wider clearance margin around obstacles, which should improve CAR but may degrade TSR for tasks requiring close proximity to scene objects. A smaller $\\delta$ relaxes the constraint, potentially allowing trajectories that pass very close to obstacles without technically colliding. [P: analysis]\n\n### D.4 SDF Label Coverage Impact\n\nWe study the effect of SDF label coverage on GeoSafe's performance by comparing training with the full label set (~75% task coverage) against a reduced subset.\n\n| Coverage | Tasks with SDF labels | TSR | CAR | SS |\n|----------|:---:|:---:|:---:|:---:|\n| Full (~75%) | 57/76 | [P] | [P] | [P] |\n| Standard LIBERO only (~53%) | 40/76 | [P] | [P] | [P] |\n\nThis ablation tests whether the collision-shaping signal generalizes: if the model trained with SDF labels only on standard LIBERO tasks (which lack explicit collision hazards) still exhibits improved collision avoidance on SafeLIBERO tasks (which do contain obstacles), it would suggest that the geometric awareness learned from obstacle-free scenes transfers to novel collision scenarios. [P: analysis]\n\n\n## E. Compute Cost Analysis\n\nThis section compares the computational requirements of GeoSafe against baseline and competing methods.\n\n### Table E.1: Training Cost\n\n| Method | Training Steps | GPU Hours | Hardware | Notes |\n|--------|:---:|:---:|----------|-------|\n| $\\pi_{0.5}$ baseline | 5,000 | [P] | 2$\\times$ RTX PRO 6000 | Standard fine-tuning |\n| GeoSafe (ours) | 5,000 | [P] | 2$\\times$ RTX PRO 6000 | +SDF head forward/backward, negligible overhead |\n| AEGIS/VLSA | --- | --- | --- | No additional training (plug-and-play) |\n| OmniGuide | --- | --- | --- | No additional training (inference-time guidance) |\n\nGeoSafe's training overhead relative to the vanilla $\\pi_{0.5}$ baseline is minimal: the SDF head adds 262,657 parameters (< 0.09% of the action expert) and two scalar loss terms per batch. The additional forward and backward passes through the SDF head are dominated by the base model's computation. [P: measure exact overhead percentage]\n\n### Table E.2: Inference Cost\n\n| Method | Latency per chunk (ms) | Overhead vs. $\\pi_{0.5}$ | Additional memory | Requires scene geometry |\n|--------|:---:|:---:|:---:|:---:|\n| $\\pi_{0.5}$ vanilla | [P] | --- | --- | No |\n| GeoSafe (zero-overhead) | [P] | 0 ms | 0 | No |\n| GeoSafe (verification mode) | [P] | ~5 ms | ~1 MB (SDF head) | No |\n| AEGIS/VLSA | [P] | [P] | [P] | Yes (depth + detection) |\n| OmniGuide | [P] | ~$2\\times$ baseline | [P] | Yes (SDF field) |\n\nGeoSafe in zero-overhead mode uses the identical checkpoint and serving pipeline as the vanilla $\\pi_{0.5}$ model. The SDF head is not loaded. The optional verification mode retains the SDF head as a passive safety monitor: it predicts signed distances from the model's internal features during inference and can flag predicted near-collision events, adding approximately 5 ms for a single MLP forward pass. This mode requires no external scene geometry information, as the SDF head operates on the model's learned representations.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "ba19af29-9435-4a5e-8f4a-8a0318952ce0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b0828e98-9797-428c-a24a-9d0a3a0d6619",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write GeoSafe paper appendix framework draft",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T10:00:33.601Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix 初稿已写入 `artifacts/paper_drafts/appendix_draft.md`。\n\n结构包含 A--E 五个 section，所有已知数字（训练超参、SDF head 架构、loss 权重、benchmark 结构等）已直接填入，未知数字统一用 `[P]` 标记。主要待填项：\n\n- **Section C**: 全部 per-task 评估数字（等 eval 结果）\n- **Section D**: 四组 ablation 实验数字和分析文字\n- **Section E**: 训练 GPU-hours、推理延迟毫秒数、AEGIS/OmniGuide 开销\n- **Section A**: 训练精度（mixed precision 还是 fp32）"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0828e98-9797-428c-a24a-9d0a3a0d6619",
+            "isSidechain": false,
+            "requestId": "req_011CbDdGw14i4Q7ksEmHECXH",
+            "type": "assistant",
+            "uuid": "28617001-029d-4ed0-971d-70dcea88b176",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/geosafe_vla",
+            "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NhA77NscJr4WSis9L3e7Pv",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5370,
+                "cache_read_input_tokens": 33722,
+                "output_tokens": 210,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5370,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 210,
+                    "cache_read_input_tokens": 33722,
+                    "cache_creation_input_tokens": 5370,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5370
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "28617001-029d-4ed0-971d-70dcea88b176",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269"
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write GeoSafe paper appendix framework draft",
+                "sessionId": "f8c35129-3f35-4c48-ae13-ecb5f6916269"
+              }
+            }
+          ],
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-geosafe-vla-westd-18751-ssh-root-ssh-execute-submit-training-j-copy-124.md"
+}

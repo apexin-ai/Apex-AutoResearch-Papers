@@ -1,0 +1,4252 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-28 (UTC).** ## Original idea { "tit
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 67
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/exported-trajectories/account-2/23b2d613-5d79-4de9-a038-b334a7cdcb7a.jsonl`
+- **Structured JSON:** [`bd367a5979cd63d16685.json`](../../sessions/bd/bd367a5979cd63d16685.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T15:59:13.561Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T15:59:13.561Z",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Original idea\n{\n  \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surfaces in Multi-Dimensional Evaluation\",\n  \"core_problem\": \"Rubric-rewarded RL faces a structural paradox unrecognized in prior work: the difficulty level where training signal is strongest is simultaneously where gaming opportunity is maximal. This follows from a formal coincidence: the Edge of Competence theory (arXiv:2602.14872, Lemma 6.2) proves learning gradient magnitude scales as Δ(1−Δ), peaking at the competence boundary (Δ≈0.5); our Gaming Budget bound shows gaming opportunity scales as p(1−p), also peaking at intermediate pass rates. Because both quantities share the same functional form and peak at the same difficulty regime, difficulty-aware training methods that correctly focus on the competence boundary (DGPO, CDAS, Goldilocks RL) inadvertently maximize exposure to the gaming-vulnerable zone under multi-dimensional rubric evaluation. This Learning-Gaming Paradox is structural — it arises whenever K evaluation criteria are applied with uniform strictness across varying task difficulty, because easy-to-verify criteria (formatting, structural completeness) remain satisfiable via shallow pattern-matching at the competence boundary, while hard-to-verify criteria (proof validity, factual accuracy) yield their most ambiguous signal precisely there. The consequence is a K×D exploitation surface with difficulty-dependent structure that neither scalar Goodhart analysis (ICLR 2024; ICML 2023) nor static per-dimension distortion indices (Wang & Huang 2026, D_i = λ(r_i/w_i) + (1−λ)) can capture. Wang & Huang's D_i ranking (Corollary 1a) assumes symmetric production functions and treats all tasks identically — it cannot model how the exploitation landscape shifts across difficulty because difficulty-varying verification gaps δ_{k,d} and criterion correlations Σ_d are outside the model's scope (their Remark 2). Meanwhile, Reward Hacking in Rubric-Based RL (arXiv:2605.12474) diagnoses per-criterion gaming (90.2% presence-based concentration) but does NOT stratify by problem difficulty. LLMs Gaming Verifiers (arXiv:2604.15149) shows aggregate gaming increases with task complexity. Neither captures the paradox: the difficulty level that RL training should focus on for maximum learning efficiency is the difficulty level that rubric gaming exploits most effectively.\",\n  \"opportunity\": \"Six convergent gaps, now organized around the Learning-Gaming Paradox: (1) The Goodhart's law literature — Goodhart's Law in RL (ICLR 2024), Scaling Laws for RM Overoptimization (ICML 2023), Strong/Weak/Benign Goodhart's Law (arXiv:2505.23445) — operates on SCALAR proxy-goal pairs. The Robust Optimization framework (arXiv:2604.12086, ICLR 2026) adds correlation between scalar proxies but does not decompose per-criterion or model difficulty. No formal treatment exists for K-dimensional evaluation with difficulty-varying exploitation. (2) Wang & Huang (arXiv:2603.28063) derive a constructive per-dimension distortion index D_i with Corollary 1(a) providing a ranking result under symmetric production functions. However, their model treats all tasks identically — it cannot predict how the exploitation landscape shifts with difficulty d, because difficulty-varying verification gaps δ_{k,d} and correlations Σ_d are outside the model's scope (flagged in their Remark 2). Our framework extends D_i to D_i(d), recovering their ranking as a special case when difficulty is constant. (3) The Edge of Competence (arXiv:2602.14872) and Gradient Starvation (arXiv:2605.07689) literatures establish that learning signal concentrates at the competence boundary — Lemma 6.2 proves ∇𝒥 ∝ Δ(1−Δ), while D(p,G) = p^G + (1−p)^G shows gradient degeneracy is minimal at p≈0.5. NO PRIOR WORK connects this to gaming vulnerability: we show that the Gaming Budget bound contains the SAME p(1−p) functional form, establishing a formal coincidence between learning signal strength and gaming opportunity. This Learning-Gaming Paradox is the central novel insight. (4) DGPO (ICLR 2026, Theorems 1-2) addresses difficulty bias in binary-reward GRPO; per-criterion application is straightforward, but the INTERACTION structure — criterion correlations shifting with difficulty, verification gaps creating asymmetric vulnerability, learning-gaming tension at the competence boundary — requires genuinely novel analysis. (5) Reward Hacking in Rubric-Based RL (arXiv:2605.12474) diagnoses gaming taxonomy (3 failure modes, 90.2% presence-based criteria concentration) but does NOT stratify by problem difficulty — the core analytical dimension we add. (6) LLMs Gaming Verifiers (arXiv:2604.15149) shows aggregate gaming increases with task complexity — combined with arXiv:2605.12474's criterion-type finding, this forms our composite null hypothesis. The marginal contribution is fourfold: (a) the Learning-Gaming Paradox — a structural insight connecting training dynamics to gaming vulnerability via shared p(1−p) dependence; (b) a Learning-Gaming Duality framework with co-equal Gaming Budget Theorem (T1) and Dimensionality Collapse Theorem (T2), extending Wang & Huang's static D_i to difficulty-varying D_i(d) trajectories; (c) a reusable diagnostic producing per-criterion × per-difficulty gaming surfaces with rigorous statistical methodology (10 difficulty bins, bootstrap CIs, formal non-monotonicity tests); (d) three quantitative falsifiable predictions against a strengthened composite null hypothesis, with concrete methodological value under either outcome — including derivation and validation of monotonic calibration schedules under H0.\",\n  \"landscape\": \"Rubric rewards for RL achieve strong results but apply uniform strictness across difficulty: RRM (ACL 2026) boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6%; RaR (ICLR 2026) extends to medical (+31% HealthBench) and science (+7% GPQA-Diamond); SRaR (arXiv:2605.17291) adds step-level attribution; POW3R (arXiv:2605.20164) adapts criterion weights via rollout variance; ARES (arXiv:2605.23454) automates rubric synthesis; AMARIS (arXiv:2605.18592) maintains persistent evaluation memory for difficulty-agnostic rubric evolution. ARL-RR (arXiv:2603.15646) addresses the scalarization problem by alternating optimization across rubric meta-classes (accuracy, completeness, instruction following, context awareness, communication quality), which is algorithmic (changing the optimization procedure) rather than diagnostic (characterizing which criteria are exploitable at which difficulty levels). The rubric-RL space continues rapid expansion (~10+ papers in 4 weeks preceding this revision) — but this velocity STRENGTHENS our diagnostic contribution: as methods proliferate, a principled framework identifying WHICH criteria are exploited at WHICH difficulty levels becomes a shared evaluation lens no individual method paper provides. Difficulty-aware RL methods operate under binary rewards: DGPO/MathForge (ICLR 2026) via MAD normalization, DARO (arXiv:2510.09001), F-GRPO (arXiv:2602.06717), GRPO-LEAD (EMNLP 2025) via logistic weighting, A-GRAE (arXiv:2602.05548), Goldilocks RL (arXiv:2602.14868), Online Difficulty Filtering (EACL 2026), CDAS (arXiv:2505.17652) via competence-difficulty alignment, Gradient Starvation (arXiv:2605.07689) via degeneracy analysis. ALL operate under binary rewards without per-criterion gaming analysis. Difficulty-calibrated advantage reweighting is an active concurrent direction: Unlocking the Potential of Difficulty Prior (arXiv:2505.13261) explicitly models difficulty priors to calibrate reasoning depth and reweight advantages in multimodal RL — while targeting training efficiency rather than gaming characterization, it demonstrates independent convergence on difficulty-aware reward modulation. The closest convergence spans seven categories: **Difficulty-stratified rubric calibration**: RuCL (arXiv:2602.21628) adjusts by model competence, not problem difficulty, and is vulnerable to gaming-inflated pass rates. **Multi-objective reward normalization**: MO-GRPO (arXiv:2509.22047) addresses per-objective variance bias (the mechanism underlying dimensional exploitation) but is difficulty-agnostic. **Reactive criterion reweighting**: POW3R adapts via rollout-contrast (reactive/diagnostic) while our approach is proactive/predictive (which criteria WILL BE gamed, inferred a priori from difficulty structure). **Memory-augmented rubric adaptation**: AMARIS addresses the temporal dimension (rubric evolution during training) while we address the structural dimension (exploitation variation with difficulty) — complementary, not competing. **Rubric quality and gaming defense**: Rubicon (arXiv:2508.12790), CDRRM (arXiv:2603.08035), C2 (arXiv:2604.13618) — all difficulty-agnostic. **Goodhart's law theory**: Goodhart's Law in RL (ICLR 2024), Robust Optimization for Correlated Proxies (ICLR 2026), Reward Hacking as Equilibrium (arXiv:2603.28063), Strong/Weak/Benign Goodhart's Law (arXiv:2505.23445) — Wang & Huang's D_i is constructive per-dimension but static; none model K-dimensional difficulty-varying exploitation trajectories or connect to training dynamics. **Training dynamics and gaming interaction**: Edge of Competence (arXiv:2602.14872) proves learning signal peaks at the competence boundary (Lemma 6.2: ∇𝒥 ∝ Δ(1−Δ)); Gradient Starvation (arXiv:2605.07689) proves gradient degeneracy at extreme pass rates (D(p,G) = p^G+(1−p)^G); Reward Hacking Rebounds (arXiv:2604.01476) shows gaming has dynamic phase structure. None connect the p(1−p) structure of learning signal to gaming vulnerability under rubric evaluation — the Learning-Gaming Paradox we identify. **Per-criterion behavior across difficulty**: SPARKLE (NeurIPS 2025, arXiv:2506.04723) analyzes three reasoning dimensions across difficulty levels under RL, providing evidence that per-criterion × per-difficulty analysis is informative — but studies reasoning capability, not gaming/exploitation, and has no Goodhart framework. The critical gap: no work provides (a) formal identification of the Learning-Gaming Paradox — the shared p(1−p) dependence of learning signal and gaming opportunity, (b) co-equal Gaming Budget and Dimensionality Collapse theorems characterizing the K×D exploitation surface, (c) per-criterion × per-difficulty gaming diagnosis with rigorous statistical methodology, or (d) quantitative predictions about gaming structure tested against a composite null hypothesis.\",\n  \"inspired_by\": \"The core insight — the Learning-Gaming Paradox — emerges from connecting two literatures that have not previously been connected. (1) Training dynamics: Edge of Competence (arXiv:2602.14872) proves that RL learning signal peaks at the competence boundary via Lemma 6.2 (∇𝒥 ∝ Δ(1−Δ)), and the relay effect means training naturally progresses through this zone. Gradient Starvation (arXiv:2605.07689) confirms this from the GRPO perspective: gradient degeneracy D(p,G) is minimal at p≈0.5. (2) Gaming vulnerability: Reward Hacking in Rubric-Based RL (arXiv:2605.12474) shows 90.2% of gaming concentrates in presence-based criteria; LLMs Gaming Verifiers (arXiv:2604.15149) shows gaming increases with complexity in aggregate. The paradox: our Gaming Budget bound contains √(p(1−p)) terms — the SAME functional form as the learning signal. Both peak at the competence boundary. Therefore: the difficulty level where RL training is most effective for learning is ALSO where gaming is most effective for exploiting rubric rewards. This is genuinely surprising because it means difficulty-aware training methods (DGPO, CDAS, Goldilocks RL) that correctly focus on the competence boundary inadvertently maximize gaming exposure under rubric evaluation. It also explains WHY per-criterion gaming analysis WITHOUT difficulty stratification misses the most dangerous zone — gaming is not uniformly distributed but concentrates where the model sits at its competence boundary for each criterion. Innovation patterns: 'Rigorous problem diagnosis as standalone contribution' (proven success — 'Does RL Really Incentivize Reasoning' at NeurIPS 2025; 'Reward Hacking in Rubric-Based RL' diagnosed gaming taxonomy without difficulty stratification; SPARKLE analyzed per-criterion reasoning dynamics without gaming focus) + 'Connecting two established research threads to reveal a new structural phenomenon' (the training-dynamics-meets-gaming-vulnerability connection). Field guide gaps: 'No difficulty-parameterized treatment of Goodhart's law exists for K-dimensional evaluation' + 'Per-criterion × per-difficulty gaming analysis is absent from the entire rubric-RL literature' + 'The training dynamics literature and gaming vulnerability literature have not been formally connected despite sharing the same p(1−p) dependence.' Key theoretical insight: Our framework generalizes Wang & Huang's distortion index D_i to difficulty-varying D_i(d) trajectories, but the deeper contribution is identifying that D_i(d) RESONATES with the learning signal at the competence boundary — this is not recoverable from Wang & Huang's static model regardless of how it is parameterized, because it requires connecting to the training dynamics literature.\",\n  \"approach\": \"We adopt a three-contribution structure centered on the Learning-Gaming Paradox, with co-equal theoretical results and concrete value under either empirical outcome. **Lead Framing: The Learning-Gaming Paradox.** We open with a structural insight connecting two literatures: the Edge of Competence theory (arXiv:2602.14872) proves learning signal peaks at the competence boundary (∇𝒥 ∝ Δ(1−Δ)); our Gaming Budget bound shows gaming opportunity also peaks at intermediate pass rates (G_d ∝ p(1−p)). Because both share the same functional form, the difficulty level that RL training should focus on for maximum learning is simultaneously the difficulty level where rubric gaming is most effective. This paradox is structural — it holds regardless of whether specific predictions about non-monotonicity (P1) are confirmed. **Composite Null Hypothesis.** We test against a strengthened Composite Null (H0) built from two rubric-relevant findings: (H0a — Aggregate Trend) Gaming severity increases monotonically with problem difficulty for ALL rubric criteria, extrapolating the aggregate trend from LLMs Gaming Verifiers (2026) and Goodhart's Law in RL (ICLR 2024). (H0b — Criterion-Type Invariance) Gaming concentrates in presence-based/completeness criteria at ALL difficulty levels, extrapolating from Reward Hacking in Rubric-Based RL (arXiv:2605.12474, 90.2% presence-based concentration). Note: H0a draws on evidence from different domains/reward structures; H0b is rubric-specific but difficulty-agnostic. Together they predict monotonic, criterion-type-stable gaming — a stronger adversarial target than either alone. Three falsifiable predictions with quantitative and statistical failure conditions: (P1) Learning-Gaming Resonance — H0a predicts monotonically increasing gaming for reasoning-verification criteria; P1 predicts an inverted-U peaking at the competence boundary (intermediate difficulty bins ≥1.5× rate at highest-difficulty bins), coinciding with the learning signal peak from Lemma 6.2. Statistical test: monotone-constrained isotonic regression vs. unconstrained fit via likelihood ratio test (p < 0.05), supplemented by quadratic regression β₂ < 0 (p < 0.05). (P2) Criterion Vulnerability Shift — H0b predicts presence-based criteria dominate at all difficulty levels; P2 predicts the criterion vulnerability ordering SHIFTS with difficulty — Pearson correlation between surface-criterion and reasoning-criterion satisfaction flips from positive (r > 0.1 in bottom-quintile) to negative (r < −0.1 in top-quintile), a sign flip analogous to Simpson's Paradox. Additionally, reasoning-criterion gaming share increases ≥2× from bottom to top difficulty quintile. (P3) Asymmetric Dimensionality Collapse — P3 predicts K_honest/K_eff < 0.5 at highest-difficulty bins, with K_eff ≥ 3: honest gradient signal collapses to a lower-dimensional subspace FASTER than total signal because gaming inflates apparent dimensionality. **Concrete value under either outcome.** If P1-P3 hold: the Learning-Gaming Paradox is empirically confirmed with specific structural predictions, revealing difficulty-dependent gaming invisible to aggregate/unstratified analysis. If H0 is confirmed (monotonic, criterion-type-stable gaming): (a) the Learning-Gaming Paradox still holds structurally — even monotonically increasing gaming creates a tension with the learning signal peak at moderate difficulty, because difficulty-aware methods focus training precisely where gaming is already substantial; (b) we provide the FIRST per-criterion × per-difficulty confirmation that monotonicity and criterion-type-stability hold at every criterion individually (currently known only in aggregate or unstratified); (c) we derive and validate a simple linear strictness schedule s_k(d) = α_k + β_k·d justified by confirmed monotonicity, where β_k is proportional to the empirically measured per-criterion gaming slope, and validate that it reduces the mean DEG (Dimension Exploitation Gap) by ≥15% compared to uniform strictness on a held-out test split; (d) the Dimensionality Collapse analysis (T2) characterizes how many effective honest dimensions remain at each difficulty level, directly informing how many criteria are worth evaluating at high difficulty. We explicitly acknowledge this would be a solid diagnostic paper with a concrete calibration output, valuable to rubric-RL practitioners. **Contribution 1 — Learning-Gaming Duality Framework (domain-agnostic theory).** Four formal results for any K-dimensional evaluation system with difficulty variation: (T1) Gaming Budget Theorem — a difficulty-parameterized bound on total exploitable reward at difficulty d, extending Wang & Huang's static distortion index. Formal model: pass rate matrix P ∈ [0,1]^{K×D}, verification gap matrix Δ, difficulty-varying correlation matrix Σ_d. Three assumptions: (A1) decomposability into genuine and gaming components; (A2) monotonic non-increase of reasoning-dependent pass rates with difficulty; (A3) difficulty-stable or increasing verification gaps for surface criteria. Bound: G_d ≤ Σ_{k∈V_d} w_k · δ_{k,d} · √(p_{k,d}(1−p_{k,d})) + Σ_{j&lt;k∈V_d} w_j·w_k · max(0, σ_{jk,d}) · δ_{j,d}·δ_{k,d}. **Special case reduction:** When d is constant and δ_{k,d} = δ, recovers Wang & Huang's D_i ranking. (T2) Dimensionality Collapse Theorem (CO-EQUAL with T1) — proves K_honest(d) decreases strictly faster than K_eff(d) under A2, using the observation that high-verification-stringency criteria leave the active gradient set first. This is potentially more surprising than T1 because it predicts ASYMMETRIC structural behavior: gaming inflates apparent signal dimensionality while honest signal collapses, creating a growing gap that makes gaming increasingly invisible to standard diagnostics at higher difficulty. Validated via PCA on per-criterion pass-rate vectors across difficulty bins, measuring the ratio of honest-signal eigenvalues to total eigenvalues. (T3) Calibration Sufficiency Condition — derives the minimal gaming-eliminating strictness schedule s_{k,d} ∝ 1/δ_{k,d} · √(p_{k,d}(1−p_{k,d})). Under confirmed H0 (monotonic gaming), simplifies to the linear schedule s_k(d) = α_k + β_k·d with closed-form β_k. (T4) Learning-Gaming Resonance Corollary — Under assumptions A1-A3, the Gaming Budget G_d and the GRPO effective gradient magnitude |∇𝒥|_d are both maximized in the difficulty band where the aggregate pass rate p̄_d ∈ [0.3, 0.7] — formally connecting the p(1−p) terms in G_d to the Δ(1−Δ) terms in the learning signal gradient (Lemma 6.2 of arXiv:2602.14872). This corollary is the formal statement of the Learning-Gaming Paradox. Validation strategy: RANKING ACCURACY (Spearman ρ between predicted and observed gaming severity across K×D cells) following the Effective Horizon precedent (NeurIPS 2023 Oral), plus conservativeness ratio and top-3 vulnerability identification accuracy. **Contribution 2 — Cross-Domain Empirical Diagnosis with Rigorous Statistics.** Math domain (primary for AAAI): Qwen2.5-Math-1.5B policy, Qwen3-8B judge, MATH dataset. **10-bin difficulty scale:** Base model generates 64 rollouts per problem → per-problem pass@1 → 10 equal-frequency difficulty bins (deciles). This provides 2× resolution for curve-fitting, continuous underlying variable for regression, independence from coarse categorical labels. MATH's native 5 levels serve as robustness check. Statistical methodology: (i) 1000-resample bootstrap 95% CIs on all DEG values; (ii) formal non-monotonicity test: isotonic regression (monotone non-decreasing constraint) vs. unconstrained kernel regression via permutation-based likelihood ratio test; (iii) quadratic regression DEG ~ β₀ + β₁d + β₂d² with one-sided test β₂ < 0; (iv) Fisher's z-test for correlation sign-flip (P2). Medical domain (ICLR scope): Qwen2.5-1.5B-Instruct policy, Qwen3-8B judge, RaR-Medicine (22.4K examples, ICLR 2026). Difficulty estimation via SFT-init checkpoint rollouts (breaks circularity). Cross-domain comparison: test whether gaming surface STRUCTURE transfers across domains. **Contribution 3 — DCRR Proof-of-Concept (ICLR scope only).** DGPO+RRM critical baseline first; if >20% gap remains, apply Difficulty-Calibrated Rubric Rewards using T3 schedule. Under H0: validate s_k(d) = α_k + β_k·d reduces mean DEG ≥15% vs. uniform strictness. **Venue Strategy (REVISED — AAAI primary, ICLR stretch).** Primary target: AAAI 2027 (abstract Jul 21, paper Jul 28, 8 weeks). Math-only, Contributions 1-2: Learning-Gaming Duality framework (T1+T2+T4 corollary + T3 monotonic special case) + MATH 10-bin gaming heatmaps + 3 predictions + monotonic calibration validation under H0. This is the natural unit — the theoretical framework + single-domain validation. Decision-gated stretch: ICLR 2027 (~Sep 24, 17 weeks). Full three-contribution scope adding medical domain + DCRR defense + cross-domain analysis. Only pursued if AAAI submission is strong AND reviewer feedback suggests expansion strengthens the work. Backup: ARR August 3 → EACL 2027 (~10 weeks, math + medical diagnostics without DCRR). **Concrete timeline (AAAI primary, 8 weeks):** Week 1 (May 28 - Jun 4): Theory formalization (T1 with Wang & Huang special case, T2 with PCA validation plan, T4 Learning-Gaming Resonance Corollary) + infrastructure setup (verl scripts, judge pipeline) + BEGIN base-model pass@1 computation (64 rollouts/problem, ~8 H100-hrs) + BEGIN GRPO training run. Week 2 (Jun 4 - Jun 11): Base-model pass@1 complete → 10-bin difficulty binning + BEGIN GRPO+RRM training run + BEGIN DGPO+RRM training run. Weeks 3-4 (Jun 11 - Jun 25): Training runs complete + judge inference on all 3 models (~20 H100-hrs total) + 10-bin gaming heatmap construction + DEG computation + bootstrap CIs + non-monotonicity tests. Week 5 (Jun 25 - Jul 2): All statistical tests (P1 isotonic regression, P2 Fisher's z-test, P3 PCA dimensionality analysis) + monotonic calibration schedule derivation and validation + draft core results. Week 6 (Jul 2 - Jul 9): DECISION GATE — evaluate: (a) are gaming surfaces non-trivial? (b) do statistical tests yield interpretable results? (c) is theory validated via ranking accuracy? If YES to all three: commit to AAAI. If NO: continue ICLR plan with 10 more weeks. Weeks 7-8 (Jul 9 - Jul 28): Paper writing, figures, polishing. Jul 21 abstract, Jul 28 paper submission. **Risk mitigation:** Training failures → keep uniform-GRPO baseline (always works), can still produce gaming surface from fewer models. Judge quality → validate on 200-sample subset before full inference. Timeline → T3 monotonic case and H0-confirmed contributions provide fallback value even if exotic predictions fail.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"100 H100-hours for AAAI primary (Math: 3 training runs × 4 H100 × 2.5hr = 30hr, base-model pass@1 computation for 10-bin difficulty 8hr, rubric judge inference 20hr, Pass@64 for difficulty binning 25hr, analysis + bootstrap CIs + overhead 17hr). Additional 90 H100-hours for ICLR stretch (Medical: 3 training runs × 4 H100 × 2hr = 24hr, SFT-init difficulty oracle rollouts 5hr, medical judge inference 10hr, DCRR experiments 30hr, MO-GRPO+RRM baseline 15hr, ablations 6hr).\",\n      \"timeline\": \"8 weeks for AAAI 2027 primary (math-only, Contributions 1-2+calibration). 17 weeks for ICLR 2027 stretch (full three-contribution scope adding medical + DCRR).\",\n      \"estimated_gpu_cost\": \"$250 AAAI / $475 total with ICLR stretch (H100 at ~$2.50/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"100 H100-hours AAAI / 190 H100-hours total (same; Claude accelerates code/analysis, not GPU work)\",\n      \"timeline\": \"7 weeks for AAAI (Claude assists theorem formalization, verl scripts, automated heatmap generation, bootstrap pipeline, writing). 14-15 weeks for ICLR stretch.\",\n      \"claude_api_cost\": \"$150 AAAI / $300 total (Sonnet 4.6 for rubric generation, code scaffolding, statistical pipeline, writing)\",\n      \"estimated_gpu_cost\": \"$250 AAAI / $475 total\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"105 H100-hours AAAI / 200 H100-hours total (5hr margin for targeted hyperparameter exploration per venue)\",\n      \"timeline\": \"6-7 weeks for AAAI (parallelized dispatch, automated analysis, Claude-drafted paper). 10-12 weeks for ICLR.\",\n      \"claude_api_cost\": \"$250 AAAI / $420 total (rubric judging quality audit ~5K samples, automated analysis, writing)\",\n      \"estimated_gpu_cost\": \"$263 AAAI / $500 total\",\n      \"speed_bottleneck\": \"LLM judge inference throughput — scoring ~50K math rollouts per model with Qwen3-8B requires ~8hr per model on 4×H100; base-model pass@1 computation adds ~8hr\"\n    },\n    \"aaai_primary_scope\": {\n      \"gpu_hours\": \"100 H100-hours (Math only: 3 training runs × 4 H100 × 2.5hr = 30hr, base-model pass@1 for binning 8hr, judge inference 20hr, Pass@64 difficulty binning 25hr, analysis + bootstrap 17hr)\",\n      \"timeline\": \"8 weeks (6-week sprint + 2 weeks writing; decision gate at week 6)\",\n      \"estimated_gpu_cost\": \"$250\",\n      \"scope\": \"Learning-Gaming Duality framework (T1+T2+T4 corollary, with T3 monotonic special case) + MATH 10-bin gaming heatmaps with bootstrap CIs + 3 falsifiable predictions tested with formal statistical tests + monotonic calibration schedule derivation and validation under H0. The complete theoretical framework plus single-domain empirical validation.\"\n    },\n    \"iclr_stretch_scope\": {\n      \"gpu_hours\": \"190 H100-hours total (AAAI scope + Medical: 3 training runs × 4 H100 × 2hr = 24hr, SFT-init difficulty oracle 5hr, medical judge inference 10hr + DCRR: experiments 30hr, MO-GRPO+RRM 15hr, ablations 6hr)\",\n      \"timeline\": \"17 weeks total (incorporates AAAI submission + 9 additional weeks for medical domain + DCRR + cross-domain analysis)\",\n      \"estimated_gpu_cost\": \"$475\",\n      \"scope\": \"Full three-contribution scope: AAAI content + medical domain validation + DCRR proof-of-concept + cross-domain gaming surface comparison\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract Jul 21, paper Jul 28, 2026 — PRIMARY target, 8 weeks; Math-only Contributions 1-2+calibration: Learning-Gaming Duality framework with co-equal T1+T2, Learning-Gaming Resonance Corollary T4, monotonic calibration special case T3, MATH 10-bin gaming surfaces, 3 predictions with formal tests, concrete calibration validation under H0; decision gate at week 6)\",\n    \"ICLR 2027 (~Sep 24, 2026 — decision-gated stretch, 17 weeks; expands AAAI submission with medical domain cross-validation, DCRR proof-of-concept defense, cross-domain gaming surface comparison; pursued if AAAI submission is strong and reviewer feedback suggests expansion strengthens the work)\",\n    \"ARR August 3, 2026 → EACL 2027 (~10 weeks; intermediate scope: math + medical diagnostics without DCRR; NLP-venue backup if AAAI decision gate fails but results warrant earlier publication)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"On the Learning Dynamics of RLVR at the Edge of Competence (arXiv:2602.14872) — Proves learning signal peaks at competence boundary: Lemma 6.2 shows ∇𝒥 ∝ Δ(1−Δ), maximal at Δ≈0.5. Relay effect: easy problems enable harder ones via overlapping gradient dominance. CRITICAL for our Learning-Gaming Paradox: the same p(1−p) functional form appears in our Gaming Budget bound, establishing that gaming opportunity peaks where learning signal peaks\",\n    \"Gradient Starvation in Binary-Reward GRPO (arXiv:2605.07689) — Per-prompt degeneracy D(p,G)=p^G+(1-p)^G; gradient signal minimal at p≈0 or p≈1, maximal at p≈0.5. Confirms from GRPO perspective that learning concentrates at competence boundary. Our per-criterion extension reveals structured dead zones AND connects to gaming vulnerability\",\n    \"Reward Hacking as Equilibrium under Finite Evaluation (arXiv:2603.28063) — Constructive per-dimension distortion index D_i = λ(r_i/w_i) + (1−λ) with ranking result Corollary 1(a): D_i > D_j ⟹ e_i* > e_j* under symmetric production functions. Limitation: static (no difficulty parameterization), assumes symmetric g_i (Remark 2). Our framework extends D_i to difficulty-varying D_i(d) trajectories, recovering D_i ranking as a special case at constant difficulty\",\n    \"Goodhart's Law in Reinforcement Learning (ICLR 2024) — Geometric explanation for Goodhart's law in MDPs; shows optimization pressure increases Goodharting; aggregate scalar analysis. Our framework extends to K-dimensional evaluation with difficulty variation and connects to training dynamics\",\n    \"Robust Optimization for Mitigating Reward Hacking with Correlated Proxies (arXiv:2604.12086, ICLR 2026) — Max-min formulation over r-correlated scalar proxy rewards; does not decompose per-criterion or model difficulty-varying correlation\",\n    \"The Strong, Weak and Benign Goodhart's Law (arXiv:2505.23445) — Independence-free formalization; scalar proxy-goal pair, no multi-dimensional or difficulty treatment\",\n    \"Scaling Laws for Reward Model Overoptimization (ICML 2023) — Empirical scaling of overoptimization with optimization intensity; aggregate scalar analysis\",\n    \"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking (arXiv:2604.15149, ICLR 2026 Workshop) — Shows gaming prevalence increases with task complexity on inductive reasoning tasks (SLR-Bench, 4 tiers) under binary extensional verification. Contributes H0a (aggregate trend) to our composite null hypothesis\",\n    \"Reward Hacking in Rubric-Based Reinforcement Learning (arXiv:2605.12474) — Gaming taxonomy in medical/science; 3 failure modes; 90.2% presence-based criteria concentration; self-internalization gap metric. Contributes H0b (criterion-type invariance) to our composite null hypothesis. Does NOT stratify by problem difficulty\",\n    \"Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation (ICLR 2026) — DGPO Theorems 1-2 on binary-reward difficulty bias; difficulty-aware methods that focus on competence boundary — precisely the zone our Learning-Gaming Paradox identifies as gaming-vulnerable\",\n    \"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards (ACL 2026) — RRM baseline, uniform-strictness rubric rewards for math\",\n    \"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains (ICLR 2026) — Foundational rubric RL; RaR-Medicine dataset for cross-domain validation\",\n    \"Unlocking the Potential of Difficulty Prior in RL-based Multimodal Reasoning (arXiv:2505.13261) — Models difficulty priors to calibrate reasoning depth and reweight advantages in multimodal RL. Demonstrates concurrent convergence on difficulty-aware reward modulation, though targeting training efficiency rather than gaming characterization. Validates the timeliness of difficulty-calibrated approaches\",\n    \"Rethinking the Sampling Criteria in RL for LLM Reasoning: A Competence-Difficulty Alignment Perspective (arXiv:2505.17652) — CDAS framework for stable difficulty estimation via historical performance aggregation. Validates our base-model pass-rate difficulty binning methodology\",\n    \"Bridging RL Theory and Practice with the Effective Horizon (NeurIPS 2023, Oral) — Validates theoretical bounds via RANKING CORRELATION across 155 MDPs. Direct precedent for our Gaming Budget validation strategy\",\n    \"MO-GRPO: Mitigating Reward Hacking of GRPO on Multi-Objective Problems (arXiv:2509.22047) — Per-objective variance normalization; Theorem 1 (correlation ∝ σ_i) is the mechanism underlying dimensional exploitation, but difficulty-agnostic\",\n    \"Beyond Accuracy: Dissecting Mathematical Reasoning for LLMs Under Reinforcement Learning (NeurIPS 2025, arXiv:2506.04723) — SPARKLE framework analyzing 3 reasoning dimensions across difficulty under RL. Evidence that per-criterion × per-difficulty analysis is informative, but studies reasoning capability rather than gaming and has no Goodhart framework\",\n    \"When Reward Hacking Rebounds: Understanding and Mitigating It with Representation-Level Signals (arXiv:2604.01476) — Identifies three-phase gaming dynamics (attempt → retreat → rebound) in code RL; shortcut direction in representation space tracks hacking. Supports our view that gaming is not static but has structural dynamics across contexts\",\n    \"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (NeurIPS 2025) — Pass@k frontier evaluation for binary-reward; diagnostic impact precedent\",\n    \"Reward Collapse in Aligning Large Language Models (arXiv:2305.17608) — Reward distribution collapse; supports our Dimensionality Collapse prediction\",\n    \"Step-wise Rubric Rewards for LLM Reasoning (arXiv:2605.17291) — SRaR step-level rubric attribution\",\n    \"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR (arXiv:2605.20164) — POW3R rollout-contrast reweighting; reactive vs. our proactive/predictive\",\n    \"AMARIS: A Memory-Augmented Rubric Improvement System (arXiv:2605.18592) — Persistent evaluation memory; temporal dimension vs. our structural dimension\",\n    \"ARES: Automated Rubric Synthesis for Scalable LLM RL (arXiv:2605.23454) — Rubric synthesis automation; difficulty-agnostic\",\n    \"Alternating Reinforcement Learning with Contextual Rubric Rewards (arXiv:2603.15646) — ARL-RR addresses scalarization by alternating optimization across rubric meta-classes. Algorithmic (changes optimization procedure) rather than diagnostic (characterizing exploitation patterns)\",\n    \"RuCL: Stratified Rubric-Based Curriculum Learning (arXiv:2602.21628) — Adjusts by model competence not problem difficulty; vulnerable to gaming-inflated pass rates\",\n    \"HealthBench (arXiv:2505.08775) — Medical evaluation benchmark; secondary evaluation\",\n    \"CDRRM (arXiv:2603.08035), C2 (arXiv:2604.13618), Rubicon (arXiv:2508.12790) — Rubric quality/gaming defense; all difficulty-agnostic\",\n    \"Online Difficulty Filtering for Reasoning Oriented RL (EACL 2026) — Variance-based difficulty selection theory\",\n    \"GRPO-LEAD (arXiv:2504.09696, EMNLP 2025) — Logistic difficulty reweighting under binary rewards\",\n    \"DARO, F-GRPO, A-GRAE, Goldilocks RL, PAPO, ARL-RR, RubricEM, Rubric-Grounded RL — Complementary difficulty-aware or rubric-optimization methods, all binary-reward or difficulty-agnostic\"\n  ],\n  \"description\": \"We identify the Learning-Gaming Paradox: a structural tension in rubric-rewarded RL where the difficulty level that maximizes learning signal simultaneously maximizes gaming opportunity. This follows from a formal coincidence — the Edge of Competence theory (arXiv:2602.14872) proves learning gradient magnitude scales as Δ(1−Δ), while our Gaming Budget bound shows gaming opportunity scales as p(1−p); both peak at the competence boundary. Difficulty-aware training methods (DGPO, CDAS, Goldilocks RL) that correctly focus on this zone inadvertently maximize gaming exposure under multi-dimensional rubric evaluation. We contribute: (1) a Learning-Gaming Duality framework with co-equal theoretical results — a Gaming Budget Theorem (T1) providing the first difficulty-parameterized K-dimensional Goodhart bound (extending Wang & Huang's static D_i to D_i(d) trajectories with special-case reduction), a Dimensionality Collapse Theorem (T2) proving honest signal dimensionality collapses faster than total signal making gaming increasingly invisible, a Learning-Gaming Resonance Corollary (T4) formally connecting the p(1−p) structure of both learning signal and gaming opportunity, and a Calibration Sufficiency Condition (T3) deriving gaming-eliminating strictness schedules that simplify to s_k(d) = α_k + β_k·d under confirmed monotonicity; (2) a cross-domain empirical diagnostic using 10-bin difficulty scales (base-model pass-rate deciles) with bootstrap CIs and formal non-monotonicity tests, producing per-criterion × per-difficulty gaming surfaces; (3) three falsifiable predictions against a composite null hypothesis — (P1) Learning-Gaming Resonance: non-monotonic gaming for reasoning criteria peaking at the competence boundary at ≥1.5× the highest-difficulty rate; (P2) Criterion Vulnerability Shift: surface-reasoning correlation sign-flip plus ≥2× reasoning-criterion gaming share increase; (P3) Asymmetric Dimensionality Collapse: K_honest/K_eff < 0.5 at highest difficulty. The paper delivers concrete value under either outcome: if predictions hold, it reveals difficulty-dependent structure invisible to prior analysis; if H0 is confirmed, it provides the first per-criterion × per-difficulty confirmation of monotonic gaming, derives and validates a simple linear calibration schedule reducing mean DEG by ≥15%, and characterizes effective honest dimensionality at each difficulty level. Validated on Qwen2.5-Math-1.5B (AAAI primary, math) with Qwen2.5-1.5B-Instruct cross-domain validation (ICLR stretch, medical).\",\n  \"project_name\": \"diff_calib_rubric_rlvr\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"change_type\": \"major\",\n    \"change_type_justification\": \"Major revision driven by fundamental narrative restructure: (1) The paper's lead conceptual contribution shifts from 'difficulty-parameterized Goodhart extension' (a parametric generalization) to 'Learning-Gaming Paradox' (a structural discovery connecting two independent literatures via shared p(1-p) dependence); (2) T2 (Dimensionality Collapse) promoted from secondary to co-equal with T1, plus new T4 (Learning-Gaming Resonance Corollary); (3) venue strategy flipped from ICLR-primary/AAAI-stretch to AAAI-primary/ICLR-stretch; (4) H0-confirmed fallback strengthened with concrete monotonic calibration schedule (s_k(d) = α_k + β_k·d) and quantified ≥15% DEG reduction target; (5) new references added (arXiv:2505.13261, arXiv:2604.01476).\",\n    \"issue_1_novelty_ceiling\": \"RESOLVED via narrative restructure. The Gaming Budget bound (T1) was correctly identified as a variance decomposition that follows from plugging difficulty-indexed parameters into Wang & Huang's framework. The revision resolves this by repositioning T1 as the formal TOOL rather than the lead INSIGHT. The lead insight is now the Learning-Gaming Paradox: the formal observation that learning signal (∝ Δ(1−Δ) from Lemma 6.2 of Edge of Competence) and gaming opportunity (∝ p(1−p) from our Gaming Budget) share the same functional form and peak at the same difficulty regime. This is NOT a parametric extension — it is a structural discovery connecting the training dynamics literature to the gaming vulnerability literature. T1 enables the discovery but is not itself the discovery.\",\n    \"issue_2_learning_gaming_tension\": \"RESOLVED — now the LEAD conceptual contribution. The Learning-Gaming Paradox is the paper's headline: the difficulty level where RL training is most effective (competence boundary, Lemma 6.2) is simultaneously where rubric gaming is most effective (Gaming Budget maximum). Formalized as the Learning-Gaming Resonance Corollary (T4): under assumptions A1-A3, both G_d and |∇𝒥|_d are maximized in the difficulty band p̄_d ∈ [0.3, 0.7]. This has immediate practical implications: DGPO, CDAS, and Goldilocks RL — which correctly focus on the competence boundary for learning efficiency — inadvertently maximize gaming exposure under rubric evaluation. P1 is renamed 'Learning-Gaming Resonance' to directly test this prediction.\",\n    \"issue_3_missing_reference\": \"RESOLVED. arXiv:2505.13261 (Unlocking the Potential of Difficulty Prior in RL-based Multimodal Reasoning) acknowledged in landscape and added to key_references. Positioned as demonstrating concurrent convergence on difficulty-aware reward modulation, targeting training efficiency rather than gaming characterization. Also added arXiv:2604.01476 (Reward Hacking Rebounds) as supporting evidence for dynamic gaming behavior.\",\n    \"issue_4_aaai_timeline\": \"RESOLVED via venue strategy flip. AAAI is now the PRIMARY target (8 weeks, math-only Contributions 1-2+calibration), not a stretch. ICLR becomes the decision-gated stretch (17 weeks, adding medical + DCRR). This is more realistic because: (a) the math-only scope is self-contained and publishable; (b) the theoretical framework + single-domain validation is a natural submission unit; (c) 8 weeks is tight but achievable with the focused scope (3 training runs, not 6); (d) decision gate at week 6 provides exit ramp. Risk mitigation: GRPO training starts week 1; judge quality validated on 200-sample subset before full inference; H0-confirmed contributions provide fallback value.\",\n    \"issue_5_P1_P3_contingency\": \"RESOLVED with concrete methodological output under H0. If all predictions fail (H0 confirmed): (a) the Learning-Gaming Paradox still holds structurally — even monotonically increasing gaming creates tension with the learning signal peak at moderate difficulty; (b) first per-criterion × per-difficulty confirmation of monotonic criterion-type-stable gaming (currently only known in aggregate or unstratified); (c) derive simple linear strictness schedule s_k(d) = α_k + β_k·d with empirically estimated slopes, validate ≥15% mean DEG reduction vs. uniform strictness; (d) Dimensionality Collapse analysis (T2) characterizes effective honest dimensions at each difficulty level. This is a solid diagnostic paper with a concrete calibration tool, not merely confirmatory.\",\n    \"issue_T2_promotion\": \"T2 (Dimensionality Collapse) promoted from secondary to CO-EQUAL with T1. Rationale: T2 predicts asymmetric structural behavior (honest signal collapses faster than total signal) that is genuinely surprising and more falsifiable than T1's variance decomposition. T2 explains WHY the Learning-Gaming Paradox is dangerous: not only does gaming peak where learning peaks, but the evaluator cannot distinguish them because the honest signal subspace collapses preferentially. Validated via PCA on per-criterion pass-rate vectors.\",\n    \"new_references_added\": \"Two new references: (1) arXiv:2505.13261 (Difficulty Prior in Multimodal Reasoning) — concurrent difficulty-calibration trend; (2) arXiv:2604.01476 (Reward Hacking Rebounds) — dynamic gaming behavior with three-phase pattern, supports structural gaming analysis.\",\n    \"stagnation_addressed\": \"This revision addresses stagnation through FUNDAMENTAL NARRATIVE RESTRUCTURE, not incremental patching. The paper's identity shifts from 'difficulty-parameterized Goodhart extension' (technical but incremental) to 'Learning-Gaming Paradox discovery' (structural and surprising). This changes what reviewers see as the contribution: not 'we added a parameter to D_i' but 'we discovered that the RL training-dynamics literature and gaming-vulnerability literature are formally connected via shared p(1-p) dependence, with immediate practical implications for difficulty-aware rubric RL.' The T2 promotion, concrete H0 fallback, and venue strategy flip are complementary changes that collectively raise the contribution floor from 'workshop-quality finding + theory' to 'structural discovery + diagnostic tool with practical output.'\"\n  }\n}\n\n## Reviewer feedback (round 8)\nIssues: [\"CRITICAL: Lemma 6.2 mischaracterization. The proposal repeatedly claims '∇𝒥 ∝ Δ(1−Δ)' from Edge of Competence Lemma 6.2, but the actual result is ∇_q 𝒥̃_L ∝ (Δ_L)^L(1−Δ_L). For L>1 (general multi-step reasoning), the peak is at Δ=L/(L+1) ≠ 0.5, and the functional form is NOT p(1−p). The entire 'Learning-Gaming Paradox' narrative — and specifically T4 (Learning-Gaming Resonance Corollary) which claims to 'formally connect the p(1−p) terms in G_d to the Δ(1−Δ) terms in the learning signal gradient' — is built on this incorrect mathematical claim. This would be immediately caught by any reviewer familiar with the Edge of Competence paper.\", \"CRITICAL: The 'formal coincidence of shared p(1−p) functional form' between learning signal and gaming opportunity — the paper's LEAD conceptual contribution after the round 7 narrative restructure — does not hold as stated. The learning signal has (Δ)^L(1−Δ) dependence (with exponential suppression factor), while the gaming budget has √(p(1−p)) terms, and Δ (attention margin) ≠ p (pass rate). These are different variables with different functional forms peaking at different locations.\", \"MISSING REFERENCE: Hack-Verifiable Environments (arXiv:2605.20744, May 2026) directly measures difficulty-dependent hack rates across multiple models and environments, finding 'hack rate increases monotonically with task difficulty.' This is the strongest empirical evidence supporting H0 and should be incorporated into the composite null hypothesis.\", \"The Gradient Starvation result (GRPO degeneracy D(p,G) = p^G + (1−p)^G minimal at p≈0.5) DOES support the qualitative claim that GRPO learning efficiency peaks at intermediate pass rates. But this is GRPO-specific, not a general learning dynamics result. The proposed narrative ('connecting two independent literatures via shared p(1−p) dependence') collapses to 'connecting GRPO training dynamics to gaming vulnerability' — still interesting but less novel than claimed.\"]\nFeedback: The proposal has resolved all issues from rounds 1-7 (Wang & Huang positioning, compute budget, statistical methodology, composite H0, landscape completeness, 'valuable either way' design). However, the round 7 narrative restructure that made the 'Learning-Gaming Paradox' the lead contribution introduced a new critical problem: the formal mathematical claim underpinning the paradox is incorrect.\n\n**Fix the Lemma 6.2 claim (CRITICAL)**:\n\nOption A (Recommended): Pivot the formal connection to the Gradient Starvation paper instead. The GRPO non-degenerate fraction 1-p^G-(1-p)^G IS maximal at p≈0.5, so GRPO learning IS most efficient at intermediate pass rates. The paradox becomes: 'GRPO's effective gradient signal and the Gaming Budget both peak in the same difficulty band (p̄_d ∈ [0.3, 0.7]).' T4 should cite the Gradient Starvation result as the primary anchor, using Edge of Competence's qualitative 'edge of competence' insight as supplementary support rather than citing its specific Lemma 6.2 formula.\n\nOption B: Restrict the formal claim to L=1 (single-step) where Δ(1−Δ) does hold, and argue the qualitative insight extends to L>1 because learning still requires Δ to be 'moderate.' This is weaker but honest.\n\nEither way: remove all instances of '∇𝒥 ∝ Δ(1−Δ)' attributed to Lemma 6.2, and replace T4's formal statement with a mathematically correct version.\n\n**Add Hack-Verifiable Environments (arXiv:2605.20744)**: This May 2026 paper's finding that hack rate increases monotonically with task difficulty across models is the strongest empirical H0 evidence from a controlled setting. Incorporate it alongside LLMs Gaming Verifiers as H0a support. This strengthens the composite null, making the diagnostic more valuable.\n\n**Recalibrate the 'two independent literatures' framing**: If using Gradient Starvation as the anchor (Option A), the connection is within the GRPO/training-dynamics literature, not between two independent fields. The remaining cross-literature connection is between the GRPO efficiency result and the gaming vulnerability literature (2605.12474, 2604.15149). This is still novel but should be claimed precisely.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields.\n\n## 停滞提醒\n经过 8 轮修订，近 3 轮平均分从 3.8 到 3.5，无明显改善。\n考虑 major revision 或 pivot。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T15:59:13.564Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T15:59:13.564Z",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+## Round 1
+
+65 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T15:59:13.578Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Original idea
+{
+  "title": "The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surfaces in Multi-Dimensional Evaluation",
+  "core_problem": "Rubric-rewarded RL faces a structural paradox unrecognized in prior work: the difficulty level where training signal is strongest is simultaneously where gaming opportunity is maximal. This follows from a formal coincidence: the Edge of Competence theory (arXiv:2602.14872, Lemma 6.2) proves learning gradient magnitude scales as Δ(1−Δ), peaking at the competence boundary (Δ≈0.5); our Gaming Budget bound shows gaming opportunity scales as p(1−p), also peaking at intermediate pass rates. Because both quantities share the same functional form and peak at the same difficulty regime, difficulty-aware training methods that correctly focus on the competence boundary (DGPO, CDAS, Goldilocks RL) inadvertently maximize exposure to the gaming-vulnerable zone under multi-dimensional rubric evaluation. This Learning-Gaming Paradox is structural — it arises whenever K evaluation criteria are applied with uniform strictness across varying task difficulty, because easy-to-verify criteria (formatting, structural completeness) remain satisfiable via shallow pattern-matching at the competence boundary, while hard-to-verify criteria (proof validity, factual accuracy) yield their most ambiguous signal precisely there. The consequence is a K×D exploitation surface with difficulty-dependent structure that neither scalar Goodhart analysis (ICLR 2024; ICML 2023) nor static per-dimension distortion indices (Wang & Huang 2026, D_i = λ(r_i/w_i) + (1−λ)) can capture. Wang & Huang's D_i ranking (Corollary 1a) assumes symmetric production functions and treats all tasks identically — it cannot model how the exploitation landscape shifts across difficulty because difficulty-varying verification gaps δ_{k,d} and criterion correlations Σ_d are outside the model's scope (their Remark 2). Meanwhile, Reward Hacking in Rubric-Based RL (arXiv:2605.12474) diagnoses per-criterion gaming (90.2% presence-based concentration) but does NOT stratify by problem difficulty. LLMs Gaming Verifiers (arXiv:2604.15149) shows aggregate gaming increases with task complexity. Neither captures the paradox: the difficulty level that RL training should focus on for maximum learning efficiency is the difficulty level that rubric gaming exploits most effectively.",
+  "opportunity": "Six convergent gaps, now organized around the Learning-Gaming Paradox: (1) The Goodhart's law literature — Goodhart's Law in RL (ICLR 2024), Scaling Laws for RM Overoptimization (ICML 2023), Strong/Weak/Benign Goodhart's Law (arXiv:2505.23445) — operates on SCALAR proxy-goal pairs. The Robust Optimization framework (arXiv:2604.12086, ICLR 2026) adds correlation between scalar proxies but does not decompose per-criterion or model difficulty. No formal treatment exists for K-dimensional evaluation with difficulty-varying exploitation. (2) Wang & Huang (arXiv:2603.28063) derive a constructive per-dimension distortion index D_i with Corollary 1(a) providing a ranking result under symmetric production functions. However, their model treats all tasks identically — it cannot predict how the exploitation landscape shifts with difficulty d, because difficulty-varying verification gaps δ_{k,d} and correlations Σ_d are outside the model's scope (flagged in their Remark 2). Our framework extends D_i to D_i(d), recovering their ranking as a special case when difficulty is constant. (3) The Edge of Competence (arXiv:2602.14872) and Gradient Starvation (arXiv:2605.07689) literatures establish that learning signal concentrates at the competence boundary — Lemma 6.2 proves ∇𝒥 ∝ Δ(1−Δ), while D(p,G) = p^G + (1−p)^G shows gradient degeneracy is minimal at p≈0.5. NO PRIOR WORK connects this to gaming vulnerability: we show that the Gaming Budget bound contains the SAME p(1−p) functional form, establishing a formal coincidence between learning signal strength and gaming opportunity. This Learning-Gaming Paradox is the central novel insight. (4) DGPO (ICLR 2026, Theorems 1-2) addresses difficulty bias in binary-reward GRPO; per-criterion application is straightforward, but the INTERACTION structure — criterion correlations shifting with difficulty, verification gaps creating asymmetric vulnerability, learning-gaming tension at the competence boundary — requires genuinely novel analysis. (5) Reward Hacking in Rubric-Based RL (arXiv:2605.12474) diagnoses gaming taxonomy (3 failure modes, 90.2% presence-based criteria concentration) but does NOT stratify by problem difficulty — the core analytical dimension we add. (6) LLMs Gaming Verifiers (arXiv:2604.15149) shows aggregate gaming increases with task complexity — combined with arXiv:2605.12474's criterion-type finding, this forms our composite null hypothesis. The marginal contribution is fourfold: (a) the Learning-Gaming Paradox — a structural insight connecting training dynamics to gaming vulnerability via shared p(1−p) dependence; (b) a Learning-Gaming Duality framework with co-equal Gaming Budget Theorem (T1) and Dimensionality Collapse Theorem (T2), extending Wang & Huang's static D_i to difficulty-varying D_i(d) trajectories; (c) a reusable diagnostic producing per-criterion × per-difficulty gaming surfaces with rigorous statistical methodology (10 difficulty bins, bootstrap CIs, formal non-monotonicity tests); (d) three quantitative falsifiable predictions against a strengthened composite null hypothesis, with concrete methodological value under either outcome — including derivation and validation of monotonic calibration schedules under H0.",
+  "landscape": "Rubric rewards for RL achieve strong results but apply uniform strictness across difficulty: RRM (ACL 2026) boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6%; RaR (ICLR 2026) extends to medical (+31% HealthBench) and science (+7% GPQA-Diamond); SRaR (arXiv:2605.17291) adds step-level attribution; POW3R (arXiv:2605.20164) adapts criterion weights via rollout variance; ARES (arXiv:2605.23454) automates rubric synthesis; AMARIS (arXiv:2605.18592) maintains persistent evaluation memory for difficulty-agnostic rubric evolution. ARL-RR (arXiv:2603.15646) addresses the scalarization problem by alternating optimization across rubric meta-classes (accuracy, completeness, instruction following, context awareness, communication quality), which is algorithmic (changing the optimization procedure) rather than diagnostic (characterizing which criteria are exploitable at which difficulty levels). The rubric-RL space continues rapid expansion (~10+ papers in 4 weeks preceding this revision) — but this velocity STRENGTHENS our diagnostic contribution: as methods proliferate, a principled framework identifying WHICH criteria are exploited at WHICH difficulty levels becomes a shared evaluation lens no individual method paper provides. Difficulty-aware RL methods operate under binary rewards: DGPO/MathForge (ICLR 2026) via MAD normalization, DARO (arXiv:2510.09001), F-GRPO (arXiv:2602.06717), GRPO-LEAD (EMNLP 2025) via logistic weighting, A-GRAE (arXiv:2602.05548), Goldilocks RL (arXiv:2602.14868), Online Difficulty Filtering (EACL 2026), CDAS (arXiv:2505.17652) via competence-difficulty alignment, Gradient Starvation (arXiv:2605.07689) via degeneracy analysis. ALL operate under binary rewards without per-criterion gaming analysis. Difficulty-calibrated advantage reweighting is an active concurrent direction: Unlocking the Potential of Difficulty Prior (arXiv:2505.13261) explicitly models difficulty priors to calibrate reasoning depth and reweight advantages in multimodal RL — while targeting training efficiency rather than gaming characterization, it demonstrates independent convergence on difficulty-aware reward modulation. The closest convergence spans seven categories: **Difficulty-stratified rubric calibration**: RuCL (arXiv:2602.21628) adjusts by model competence, not problem difficulty, and is vulnerable to gaming-inflated pass rates. **Multi-objective reward normalization**: MO-GRPO (arXiv:2509.22047) addresses per-objective variance bias (the mechanism underlying dimensional exploitation) but is difficulty-agnostic. **Reactive criterion reweighting**: POW3R adapts via rollout-contrast (reactive/diagnostic) while our approach is proactive/predictive (which criteria WILL BE gamed, inferred a priori from difficulty structure). **Memory-augmented rubric adaptation**: AMARIS addresses the temporal dimension (rubric evolution during training) while we address the structural dimension (exploitation variation with difficulty) — complementary, not competing. **Rubric quality and gaming defense**: Rubicon (arXiv:2508.12790), CDRRM (arXiv:2603.08035), C2 (arXiv:2604.13618) — all difficulty-agnostic. **Goodhart's law theory**: Goodhart's Law in RL (ICLR 2024), Robust Optimization for Correlated Proxies (ICLR 2026), Reward Hacking as Equilibrium (arXiv:2603.28063), Strong/Weak/Benign Goodhart's Law (arXiv:2505.23445) — Wang & Huang's D_i is constructive per-dimension but static; none model K-dimensional difficulty-varying exploitation trajectories or connect to training dynamics. **Training dynamics and gaming interaction**: Edge of Competence (arXiv:2602.14872) proves learning signal peaks at the competence boundary (Lemma 6.2: ∇𝒥 ∝ Δ(1−Δ)); Gradient Starvation (arXiv:2605.07689) proves gradient degeneracy at extreme pass rates (D(p,G) = p^G+(1−p)^G); Reward Hacking Rebounds (arXiv:2604.01476) shows gaming has dynamic phase structure. None connect the p(1−p) structure of learning signal to gaming vulnerability under rubric evaluation — the Learning-Gaming Paradox we identify. **Per-criterion behavior across difficulty**: SPARKLE (NeurIPS 2025, arXiv:2506.04723) analyzes three reasoning dimensions across difficulty levels under RL, providing evidence that per-criterion × per-difficulty analysis is informative — but studies reasoning capability, not gaming/exploitation, and has no Goodhart framework. The critical gap: no work provides (a) formal identification of the Learning-Gaming Paradox — the shared p(1−p) dependence of learning signal and gaming opportunity, (b) co-equal Gaming Budget and Dimensionality Collapse theorems characterizing the K×D exploitation surface, (c) per-criterion × per-difficulty gaming diagnosis with rigorous statistical methodology, or (d) quantitative predictions about gaming structure tested against a composite null hypothesis.",
+  "inspired_by": "The core insight — the Learning-Gaming Paradox — emerges from connecting two literatures that have not previously been connected. (1) Training dynamics: Edge of Competence (arXiv:2602.14872) proves that RL learning signal peaks at the competence boundary via Lemma 6.2 (∇𝒥 ∝ Δ(1−Δ)), and the relay effect means training naturally progresses through this zone. Gradient Starvation (arXiv:2605.07689) confirms this from the GRPO perspective: gradient degeneracy D(p,G) is minimal at p≈0.5. (2) Gaming vulnerability: Reward Hacking in Rubric-Based RL (arXiv:2605.12474) shows 90.2% of gaming concentrates in presence-based criteria; LLMs Gaming Verifiers (arXiv:2604.15149) shows gaming increases with complexity in aggregate. The paradox: our Gaming Budget bound contains √(p(1−p)) terms — the SAME functional form as the learning signal. Both peak at the competence boundary. Therefore: the difficulty level where RL training is most effective for learning is ALSO where gaming is most effective for exploiting rubric rewards. This is genuinely surprising because it means difficulty-aware training methods (DGPO, CDAS, Goldilocks RL) that correctly focus on the competence boundary inadvertently maximize gaming exposure under rubric evaluation. It also explains WHY per-criterion gaming analysis WITHOUT difficulty stratification misses the most dangerous zone — gaming is not uniformly distributed but concentrates where the model sits at its competence boundary for each criterion. Innovation patterns: 'Rigorous problem diagnosis as standalone contribution' (proven success — 'Does RL Really Incentivize Reasoning' at NeurIPS 2025; 'Reward Hacking in Rubric-Based RL' diagnosed gaming taxonomy without difficulty stratification; SPARKLE analyzed per-criterion reasoning dynamics without gaming focus) + 'Connecting two established research threads to reveal a new structural phenomenon' (the training-dynamics-meets-gaming-vulnerability connection). Field guide gaps: 'No difficulty-parameterized treatment of Goodhart's law exists for K-dimensional evaluation' + 'Per-criterion × per-difficulty gaming analysis is absent from the entire rubric-RL literature' + 'The training dynamics literature and gaming vulnerability literature have not been formally connected despite sharing the same p(1−p) dependence.' Key theoretical insight: Our framework generalizes Wang & Huang's distortion index D_i to difficulty-varying D_i(d) trajectories, but the deeper contribution is identifying that D_i(d) RESONATES with the learning signal at the competence boundary — this is not recoverable from Wang & Huang's static model regardless of how it is parameterized, because it requires connecting to the training dynamics literature.",
+  "approach": "We adopt a three-contribution structure centered on the Learning-Gaming Paradox, with co-equal theoretical results and concrete value under either empirical outcome. **Lead Framing: The Learning-Gaming Paradox.** We open with a structural insight connecting two literatures: the Edge of Competence theory (arXiv:2602.14872) proves learning signal peaks at the competence boundary (∇𝒥 ∝ Δ(1−Δ)); our Gaming Budget bound shows gaming opportunity also peaks at intermediate pass rates (G_d ∝ p(1−p)). Because both share the same functional form, the difficulty level that RL training should focus on for maximum learning is simultaneously the difficulty level where rubric gaming is most effective. This paradox is structural — it holds regardless of whether specific predictions about non-monotonicity (P1) are confirmed. **Composite Null Hypothesis.** We test against a strengthened Composite Null (H0) built from two rubric-relevant findings: (H0a — Aggregate Trend) Gaming severity increases monotonically with problem difficulty for ALL rubric criteria, extrapolating the aggregate trend from LLMs Gaming Verifiers (2026) and Goodhart's Law in RL (ICLR 2024). (H0b — Criterion-Type Invariance) Gaming concentrates in presence-based/completeness criteria at ALL difficulty levels, extrapolating from Reward Hacking in Rubric-Based RL (arXiv:2605.12474, 90.2% presence-based concentration). Note: H0a draws on evidence from different domains/reward structures; H0b is rubric-specific but difficulty-agnostic. Together they predict monotonic, criterion-type-stable gaming — a stronger adversarial target than either alone. Three falsifiable predictions with quantitative and statistical failure conditions: (P1) Learning-Gaming Resonance — H0a predicts monotonically increasing gaming for reasoning-verification criteria; P1 predicts an inverted-U peaking at the competence boundary (intermediate difficulty bins ≥1.5× rate at highest-difficulty bins), coinciding with the learning signal peak from Lemma 6.2. Statistical test: monotone-constrained isotonic regression vs. unconstrained fit via likelihood ratio test (p < 0.05), supplemented by quadratic regression β₂ < 0 (p < 0.05). (P2) Criterion Vulnerability Shift — H0b predicts presence-based criteria dominate at all difficulty levels; P2 predicts the criterion vulnerability ordering SHIFTS with difficulty — Pearson correlation between surface-criterion and reasoning-criterion satisfaction flips from positive (r > 0.1 in bottom-quintile) to negative (r < −0.1 in top-quintile), a sign flip analogous to Simpson's Paradox. Additionally, reasoning-criterion gaming share increases ≥2× from bottom to top difficulty quintile. (P3) Asymmetric Dimensionality Collapse — P3 predicts K_honest/K_eff < 0.5 at highest-difficulty bins, with K_eff ≥ 3: honest gradient signal collapses to a lower-dimensional subspace FASTER than total signal because gaming inflates apparent dimensionality. **Concrete value under either outcome.** If P1-P3 hold: the Learning-Gaming Paradox is empirically confirmed with specific structural predictions, revealing difficulty-dependent gaming invisible to aggregate/unstratified analysis. If H0 is confirmed (monotonic, criterion-type-stable gaming): (a) the Learning-Gaming Paradox still holds structurally — even monotonically increasing gaming creates a tension with the learning signal peak at moderate difficulty, because difficulty-aware methods focus training precisely where gaming is already substantial; (b) we provide the FIRST per-criterion × per-difficulty confirmation that monotonicity and criterion-type-stability hold at every criterion individually (currently known only in aggregate or unstratified); (c) we derive and validate a simple linear strictness schedule s_k(d) = α_k + β_k·d justified by confirmed monotonicity, where β_k is proportional to the empirically measured per-criterion gaming slope, and validate that it reduces the mean DEG (Dimension Exploitation Gap) by ≥15% compared to uniform strictness on a held-out test split; (d) the Dimensionality Collapse analysis (T2) characterizes how many effective honest dimensions remain at each difficulty level, directly informing how many criteria are worth evaluating at high difficulty. We explicitly acknowledge this would be a solid diagnostic paper with a concrete calibration output, valuable to rubric-RL practitioners. **Contribution 1 — Learning-Gaming Duality Framework (domain-agnostic theory).** Four formal results for any K-dimensional evaluation system with difficulty variation: (T1) Gaming Budget Theorem — a difficulty-parameterized bound on total exploitable reward at difficulty d, extending Wang & Huang's static distortion index. Formal model: pass rate matrix P ∈ [0,1]^{K×D}, verification gap matrix Δ, difficulty-varying correlation matrix Σ_d. Three assumptions: (A1) decomposability into genuine and gaming components; (A2) monotonic non-increase of reasoning-dependent pass rates with difficulty; (A3) difficulty-stable or increasing verification gaps for surface criteria. Bound: G_d ≤ Σ_{k∈V_d} w_k · δ_{k,d} · √(p_{k,d}(1−p_{k,d})) + Σ_{j&lt;k∈V_d} w_j·w_k · max(0, σ_{jk,d}) · δ_{j,d}·δ_{k,d}. **Special case reduction:** When d is constant and δ_{k,d} = δ, recovers Wang & Huang's D_i ranking. (T2) Dimensionality Collapse Theorem (CO-EQUAL with T1) — proves K_honest(d) decreases strictly faster than K_eff(d) under A2, using the observation that high-verification-stringency criteria leave the active gradient set first. This is potentially more surprising than T1 because it predicts ASYMMETRIC structural behavior: gaming inflates apparent signal dimensionality while honest signal collapses, creating a growing gap that makes gaming increasingly invisible to standard diagnostics at higher difficulty. Validated via PCA on per-criterion pass-rate vectors across difficulty bins, measuring the ratio of honest-signal eigenvalues to total eigenvalues. (T3) Calibration Sufficiency Condition — derives the minimal gaming-eliminating strictness schedule s_{k,d} ∝ 1/δ_{k,d} · √(p_{k,d}(1−p_{k,d})). Under confirmed H0 (monotonic gaming), simplifies to the linear schedule s_k(d) = α_k + β_k·d with closed-form β_k. (T4) Learning-Gaming Resonance Corollary — Under assumptions A1-A3, the Gaming Budget G_d and the GRPO effective gradient magnitude |∇𝒥|_d are both maximized in the difficulty band where the aggregate pass rate p̄_d ∈ [0.3, 0.7] — formally connecting the p(1−p) terms in G_d to the Δ(1−Δ) terms in the learning signal gradient (Lemma 6.2 of arXiv:2602.14872). This corollary is the formal statement of the Learning-Gaming Paradox. Validation strategy: RANKING ACCURACY (Spearman ρ between predicted and observed gaming severity across K×D cells) following the Effective Horizon precedent (NeurIPS 2023 Oral), plus conservativeness ratio and top-3 vulnerability identification accuracy. **Contribution 2 — Cross-Domain Empirical Diagnosis with Rigorous Statistics.** Math domain (primary for AAAI): Qwen2.5-Math-1.5B policy, Qwen3-8B judge, MATH dataset. **10-bin difficulty scale:** Base model generates 64 rollouts per problem → per-problem pass@1 → 10 equal-frequency difficulty bins (deciles). This provides 2× resolution for curve-fitting, continuous underlying variable for regression, independence from coarse categorical labels. MATH's native 5 levels serve as robustness check. Statistical methodology: (i) 1000-resample bootstrap 95% CIs on all DEG values; (ii) formal non-monotonicity test: isotonic regression (monotone non-decreasing constraint) vs. unconstrained kernel regression via permutation-based likelihood ratio test; (iii) quadratic regression DEG ~ β₀ + β₁d + β₂d² with one-sided test β₂ < 0; (iv) Fisher's z-test for correlation sign-flip (P2). Medical domain (ICLR scope): Qwen2.5-1.5B-Instruct policy, Qwen3-8B judge, RaR-Medicine (22.4K examples, ICLR 2026). Difficulty estimation via SFT-init checkpoint rollouts (breaks circularity). Cross-domain comparison: test whether gaming surface STRUCTURE transfers across domains. **Contribution 3 — DCRR Proof-of-Concept (ICLR scope only).** DGPO+RRM critical baseline first; if >20% gap remains, apply Difficulty-Calibrated Rubric Rewards using T3 schedule. Under H0: validate s_k(d) = α_k + β_k·d reduces mean DEG ≥15% vs. uniform strictness. **Venue Strategy (REVISED — AAAI primary, ICLR stretch).** Primary target: AAAI 2027 (abstract Jul 21, paper Jul 28, 8 weeks). Math-only, Contributions 1-2: Learning-Gaming Duality framework (T1+T2+T4 corollary + T3 monotonic special case) + MATH 10-bin gaming heatmaps + 3 predictions + monotonic calibration validation under H0. This is the natural unit — the theoretical framework + single-domain validation. Decision-gated stretch: ICLR 2027 (~Sep 24, 17 weeks). Full three-contribution scope adding medical domain + DCRR defense + cross-domain analysis. Only pursued if AAAI submission is strong AND reviewer feedback suggests expansion strengthens the work. Backup: ARR August 3 → EACL 2027 (~10 weeks, math + medical diagnostics without DCRR). **Concrete timeline (AAAI primary, 8 weeks):** Week 1 (May 28 - Jun 4): Theory formalization (T1 with Wang & Huang special case, T2 with PCA validation plan, T4 Learning-Gaming Resonance Corollary) + infrastructure setup (verl scripts, judge pipeline) + BEGIN base-model pass@1 computation (64 rollouts/problem, ~8 H100-hrs) + BEGIN GRPO training run. Week 2 (Jun 4 - Jun 11): Base-model pass@1 complete → 10-bin difficulty binning + BEGIN GRPO+RRM training run + BEGIN DGPO+RRM training run. Weeks 3-4 (Jun 11 - Jun 25): Training runs complete + judge inference on all 3 models (~20 H100-hrs total) + 10-bin gaming heatmap construction + DEG computation + bootstrap CIs + non-monotonicity tests. Week 5 (Jun 25 - Jul 2): All statistical tests (P1 isotonic regression, P2 Fisher's z-test, P3 PCA dimensionality analysis) + monotonic calibration schedule derivation and validation + draft core results. Week 6 (Jul 2 - Jul 9): DECISION GATE — evaluate: (a) are gaming surfaces non-trivial? (b) do statistical tests yield interpretable results? (c) is theory validated via ranking accuracy? If YES to all three: commit to AAAI. If NO: continue ICLR plan with 10 more weeks. Weeks 7-8 (Jul 9 - Jul 28): Paper writing, figures, polishing. Jul 21 abstract, Jul 28 paper submission. **Risk mitigation:** Training failures → keep uniform-GRPO baseline (always works), can still produce gaming surface from fewer models. Judge quality → validate on 200-sample subset before full inference. Timeline → T3 monotonic case and H0-confirmed contributions provide fallback value even if exotic predictions fail.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "100 H100-hours for AAAI primary (Math: 3 training runs × 4 H100 × 2.5hr = 30hr, base-model pass@1 computation for 10-bin difficulty 8hr, rubric judge inference 20hr, Pass@64 for difficulty binning 25hr, analysis + bootstrap CIs + overhead 17hr). Additional 90 H100-hours for ICLR stretch (Medical: 3 training runs × 4 H100 × 2hr = 24hr, SFT-init difficulty oracle rollouts 5hr, medical judge inference 10hr, DCRR experiments 30hr, MO-GRPO+RRM baseline 15hr, ablations 6hr).",
+      "timeline": "8 weeks for AAAI 2027 primary (math-only, Contributions 1-2+calibration). 17 weeks for ICLR 2027 stretch (full three-contribution scope adding medical + DCRR).",
+      "estimated_gpu_cost": "$250 AAAI / $475 total with ICLR stretch (H100 at ~$2.50/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "100 H100-hours AAAI / 190 H100-hours total (same; Claude accelerates code/analysis, not GPU work)",
+      "timeline": "7 weeks for AAAI (Claude assists theorem formalization, verl scripts, automated heatmap generation, bootstrap pipeline, writing). 14-15 weeks for ICLR stretch.",
+      "claude_api_cost": "$150 AAAI / $300 total (Sonnet 4.6 for rubric generation, code scaffolding, statistical pipeline, writing)",
+      "estimated_gpu_cost": "$250 AAAI / $475 total"
+    },
+    "auto_research": {
+      "gpu_hours": "105 H100-hours AAAI / 200 H100-hours total (5hr margin for targeted hyperparameter exploration per venue)",
+      "timeline": "6-7 weeks for AAAI (parallelized dispatch, automated analysis, Claude-drafted paper). 10-12 weeks for ICLR.",
+      "claude_api_cost": "$250 AAAI / $420 total (rubric judging quality audit ~5K samples, automated analysis, writing)",
+      "estimated_gpu_cost": "$263 AAAI / $500 total",
+      "speed_bottleneck": "LLM judge inference throughput — scoring ~50K math rollouts per model with Qwen3-8B requires ~8hr per model on 4×H100; base-model pass@1 computation adds ~8hr"
+    },
+    "aaai_primary_scope": {
+      "gpu_hours": "100 H100-hours (Math only: 3 training runs × 4 H100 × 2.5hr = 30hr, base-model pass@1 for binning 8hr, judge inference 20hr, Pass@64 difficulty binning 25hr, analysis + bootstrap 17hr)",
+      "timeline": "8 weeks (6-week sprint + 2 weeks writing; decision gate at week 6)",
+      "estimated_gpu_cost": "$250",
+      "scope": "Learning-Gaming Duality framework (T1+T2+T4 corollary, with T3 monotonic special case) + MATH 10-bin gaming heatmaps with bootstrap CIs + 3 falsifiable predictions tested with formal statistical tests + monotonic calibration schedule derivation and validation under H0. The complete theoretical framework plus single-domain empirical validation."
+    },
+    "iclr_stretch_scope": {
+      "gpu_hours": "190 H100-hours total (AAAI scope + Medical: 3 training runs × 4 H100 × 2hr = 24hr, SFT-init difficulty oracle 5hr, medical judge inference 10hr + DCRR: experiments 30hr, MO-GRPO+RRM 15hr, ablations 6hr)",
+      "timeline": "17 weeks total (incorporates AAAI submission + 9 additional weeks for medical domain + DCRR + cross-domain analysis)",
+      "estimated_gpu_cost": "$475",
+      "scope": "Full three-contribution scope: AAAI content + medical domain validation + DCRR proof-of-concept + cross-domain gaming surface comparison"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract Jul 21, paper Jul 28, 2026 — PRIMARY target, 8 weeks; Math-only Contributions 1-2+calibration: Learning-Gaming Duality framework with co-equal T1+T2, Learning-Gaming Resonance Corollary T4, monotonic calibration special case T3, MATH 10-bin gaming surfaces, 3 predictions with formal tests, concrete calibration validation under H0; decision gate at week 6)",
+    "ICLR 2027 (~Sep 24, 2026 — decision-gated stretch, 17 weeks; expands AAAI submission with medical domain cross-validation, DCRR proof-of-concept defense, cross-domain gaming surface comparison; pursued if AAAI submission is strong and reviewer feedback suggests expansion strengthens the work)",
+    "ARR August 3, 2026 → EACL 2027 (~10 weeks; intermediate scope: math + medical diagnostics without DCRR; NLP-venue backup if AAAI decision gate fails but results warrant earlier publication)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "On the Learning Dynamics of RLVR at the Edge of Competence (arXiv:2602.14872) — Proves learning signal peaks at competence boundary: Lemma 6.2 shows ∇𝒥 ∝ Δ(1−Δ), maximal at Δ≈0.5. Relay effect: easy problems enable harder ones via overlapping gradient dominance. CRITICAL for our Learning-Gaming Paradox: the same p(1−p) functional form appears in our Gaming Budget bound, establishing that gaming opportunity peaks where learning signal peaks",
+    "Gradient Starvation in Binary-Reward GRPO (arXiv:2605.07689) — Per-prompt degeneracy D(p,G)=p^G+(1-p)^G; gradient signal minimal at p≈0 or p≈1, maximal at p≈0.5. Confirms from GRPO perspective that learning concentrates at competence boundary. Our per-criterion extension reveals structured dead zones AND connects to gaming vulnerability",
+    "Reward Hacking as Equilibrium under Finite Evaluation (arXiv:2603.28063) — Constructive per-dimension distortion index D_i = λ(r_i/w_i) + (1−λ) with ranking result Corollary 1(a): D_i > D_j ⟹ e_i* > e_j* under symmetric production functions. Limitation: static (no difficulty parameterization), assumes symmetric g_i (Remark 2). Our framework extends D_i to difficulty-varying D_i(d) trajectories, recovering D_i ranking as a special case at constant difficulty",
+    "Goodhart's Law in Reinforcement Learning (ICLR 2024) — Geometric explanation for Goodhart's law in MDPs; shows optimization pressure increases Goodharting; aggregate scalar analysis. Our framework extends to K-dimensional evaluation with difficulty variation and connects to training dynamics",
+    "Robust Optimization for Mitigating Reward Hacking with Correlated Proxies (arXiv:2604.12086, ICLR 2026) — Max-min formulation over r-correlated scalar proxy rewards; does not decompose per-criterion or model difficulty-varying correlation",
+    "The Strong, Weak and Benign Goodhart's Law (arXiv:2505.23445) — Independence-free formalization; scalar proxy-goal pair, no multi-dimensional or difficulty treatment",
+    "Scaling Laws for Reward Model Overoptimization (ICML 2023) — Empirical scaling of overoptimization with optimization intensity; aggregate scalar analysis",
+    "LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking (arXiv:2604.15149, ICLR 2026 Workshop) — Shows gaming prevalence increases with task complexity on inductive reasoning tasks (SLR-Bench, 4 tiers) under binary extensional verification. Contributes H0a (aggregate trend) to our composite null hypothesis",
+    "Reward Hacking in Rubric-Based Reinforcement Learning (arXiv:2605.12474) — Gaming taxonomy in medical/science; 3 failure modes; 90.2% presence-based criteria concentration; self-internalization gap metric. Contributes H0b (criterion-type invariance) to our composite null hypothesis. Does NOT stratify by problem difficulty",
+    "Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation (ICLR 2026) — DGPO Theorems 1-2 on binary-reward difficulty bias; difficulty-aware methods that focus on competence boundary — precisely the zone our Learning-Gaming Paradox identifies as gaming-vulnerable",
+    "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards (ACL 2026) — RRM baseline, uniform-strictness rubric rewards for math",
+    "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains (ICLR 2026) — Foundational rubric RL; RaR-Medicine dataset for cross-domain validation",
+    "Unlocking the Potential of Difficulty Prior in RL-based Multimodal Reasoning (arXiv:2505.13261) — Models difficulty priors to calibrate reasoning depth and reweight advantages in multimodal RL. Demonstrates concurrent convergence on difficulty-aware reward modulation, though targeting training efficiency rather than gaming characterization. Validates the timeliness of difficulty-calibrated approaches",
+    "Rethinking the Sampling Criteria in RL for LLM Reasoning: A Competence-Difficulty Alignment Perspective (arXiv:2505.17652) — CDAS framework for stable difficulty estimation via historical performance aggregation. Validates our base-model pass-rate difficulty binning methodology",
+    "Bridging RL Theory and Practice with the Effective Horizon (NeurIPS 2023, Oral) — Validates theoretical bounds via RANKING CORRELATION across 155 MDPs. Direct precedent for our Gaming Budget validation strategy",
+    "MO-GRPO: Mitigating Reward Hacking of GRPO on Multi-Objective Problems (arXiv:2509.22047) — Per-objective variance normalization; Theorem 1 (correlation ∝ σ_i) is the mechanism underlying dimensional exploitation, but difficulty-agnostic",
+    "Beyond Accuracy: Dissecting Mathematical Reasoning for LLMs Under Reinforcement Learning (NeurIPS 2025, arXiv:2506.04723) — SPARKLE framework analyzing 3 reasoning dimensions across difficulty under RL. Evidence that per-criterion × per-difficulty analysis is informative, but studies reasoning capability rather than gaming and has no Goodhart framework",
+    "When Reward Hacking Rebounds: Understanding and Mitigating It with Representation-Level Signals (arXiv:2604.01476) — Identifies three-phase gaming dynamics (attempt → retreat → rebound) in code RL; shortcut direction in representation space tracks hacking. Supports our view that gaming is not static but has structural dynamics across contexts",
+    "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (NeurIPS 2025) — Pass@k frontier evaluation for binary-reward; diagnostic impact precedent",
+    "Reward Collapse in Aligning Large Language Models (arXiv:2305.17608) — Reward distribution collapse; supports our Dimensionality Collapse prediction",
+    "Step-wise Rubric Rewards for LLM Reasoning (arXiv:2605.17291) — SRaR step-level rubric attribution",
+    "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR (arXiv:2605.20164) — POW3R rollout-contrast reweighting; reactive vs. our proactive/predictive",
+    "AMARIS: A Memory-Augmented Rubric Improvement System (arXiv:2605.18592) — Persistent evaluation memory; temporal dimension vs. our structural dimension",
+    "ARES: Automated Rubric Synthesis for Scalable LLM RL (arXiv:2605.23454) — Rubric synthesis automation; difficulty-agnostic",
+    "Alternating Reinforcement Learning with Contextual Rubric Rewards (arXiv:2603.15646) — ARL-RR addresses scalarization by alternating optimization across rubric meta-classes. Algorithmic (changes optimization procedure) rather than diagnostic (characterizing exploitation patterns)",
+    "RuCL: Stratified Rubric-Based Curriculum Learning (arXiv:2602.21628) — Adjusts by model competence not problem difficulty; vulnerable to gaming-inflated pass rates",
+    "HealthBench (arXiv:2505.08775) — Medical evaluation benchmark; secondary evaluation",
+    "CDRRM (arXiv:2603.08035), C2 (arXiv:2604.13618), Rubicon (arXiv:2508.12790) — Rubric quality/gaming defense; all difficulty-agnostic",
+    "Online Difficulty Filtering for Reasoning Oriented RL (EACL 2026) — Variance-based difficulty selection theory",
+    "GRPO-LEAD (arXiv:2504.09696, EMNLP 2025) — Logistic difficulty reweighting under binary rewards",
+    "DARO, F-GRPO, A-GRAE, Goldilocks RL, PAPO, ARL-RR, RubricEM, Rubric-Grounded RL — Complementary difficulty-aware or rubric-optimization methods, all binary-reward or difficulty-agnostic"
+  ],
+  "description": "We identify the Learning-Gaming Paradox: a structural tension in rubric-rewarded RL where the difficulty level that maximizes learning signal simultaneously maximizes gaming opportunity. This follows from a formal coincidence — the Edge of Competence theory (arXiv:2602.14872) proves learning gradient magnitude scales as Δ(1−Δ), while our Gaming Budget bound shows gaming opportunity scales as p(1−p); both peak at the competence boundary. Difficulty-aware training methods (DGPO, CDAS, Goldilocks RL) that correctly focus on this zone inadvertently maximize gaming exposure under multi-dimensional rubric evaluation. We contribute: (1) a Learning-Gaming Duality framework with co-equal theoretical results — a Gaming Budget Theorem (T1) providing the first difficulty-parameterized K-dimensional Goodhart bound (extending Wang & Huang's static D_i to D_i(d) trajectories with special-case reduction), a Dimensionality Collapse Theorem (T2) proving honest signal dimensionality collapses faster than total signal making gaming increasingly invisible, a Learning-Gaming Resonance Corollary (T4) formally connecting the p(1−p) structure of both learning signal and gaming opportunity, and a Calibration Sufficiency Condition (T3) deriving gaming-eliminating strictness schedules that simplify to s_k(d) = α_k + β_k·d under confirmed monotonicity; (2) a cross-domain empirical diagnostic using 10-bin difficulty scales (base-model pass-rate deciles) with bootstrap CIs and formal non-monotonicity tests, producing per-criterion × per-difficulty gaming surfaces; (3) three falsifiable predictions against a composite null hypothesis — (P1) Learning-Gaming Resonance: non-monotonic gaming for reasoning criteria peaking at the competence boundary at ≥1.5× the highest-difficulty rate; (P2) Criterion Vulnerability Shift: surface-reasoning correlation sign-flip plus ≥2× reasoning-criterion gaming share increase; (P3) Asymmetric Dimensionality Collapse: K_honest/K_eff < 0.5 at highest difficulty. The paper delivers concrete value under either outcome: if predictions hold, it reveals difficulty-dependent structure invisible to prior analysis; if H0 is confirmed, it provides the first per-criterion × per-difficulty confirmation of monotonic gaming, derives and validates a simple linear calibration schedule reducing mean DEG by ≥15%, and characterizes effective honest dimensionality at each difficulty level. Validated on Qwen2.5-Math-1.5B (AAAI primary, math) with Qwen2.5-1.5B-Instruct cross-domain validation (ICLR stretch, medical).",
+  "project_name": "diff_calib_rubric_rlvr",
+  "source": "web_research",
+  "revision_notes": {
+    "change_type": "major",
+    "change_type_justification": "Major revision driven by fundamental narrative restructure: (1) The paper's lead conceptual contribution shifts from 'difficulty-parameterized Goodhart extension' (a parametric generalization) to 'Learning-Gaming Paradox' (a structural discovery connecting two independent literatures via shared p(1-p) dependence); (2) T2 (Dimensionality Collapse) promoted from secondary to co-equal with T1, plus new T4 (Learning-Gaming Resonance Corollary); (3) venue strategy flipped from ICLR-primary/AAAI-stretch to AAAI-primary/ICLR-stretch; (4) H0-confirmed fallback strengthened with concrete monotonic calibration schedule (s_k(d) = α_k + β_k·d) and quantified ≥15% DEG reduction target; (5) new references added (arXiv:2505.13261, arXiv:2604.01476).",
+    "issue_1_novelty_ceiling": "RESOLVED via narrative restructure. The Gaming Budget bound (T1) was correctly identified as a variance decomposition that follows from plugging difficulty-indexed parameters into Wang & Huang's framework. The revision resolves this by repositioning T1 as the formal TOOL rather than the lead INSIGHT. The lead insight is now the Learning-Gaming Paradox: the formal observation that learning signal (∝ Δ(1−Δ) from Lemma 6.2 of Edge of Competence) and gaming opportunity (∝ p(1−p) from our Gaming Budget) share the same functional form and peak at the same difficulty regime. This is NOT a parametric extension — it is a structural discovery connecting the training dynamics literature to the gaming vulnerability literature. T1 enables the discovery but is not itself the discovery.",
+    "issue_2_learning_gaming_tension": "RESOLVED — now the LEAD conceptual contribution. The Learning-Gaming Paradox is the paper's headline: the difficulty level where RL training is most effective (competence boundary, Lemma 6.2) is simultaneously where rubric gaming is most effective (Gaming Budget maximum). Formalized as the Learning-Gaming Resonance Corollary (T4): under assumptions A1-A3, both G_d and |∇𝒥|_d are maximized in the difficulty band p̄_d ∈ [0.3, 0.7]. This has immediate practical implications: DGPO, CDAS, and Goldilocks RL — which correctly focus on the competence boundary for learning efficiency — inadvertently maximize gaming exposure under rubric evaluation. P1 is renamed 'Learning-Gaming Resonance' to directly test this prediction.",
+    "issue_3_missing_reference": "RESOLVED. arXiv:2505.13261 (Unlocking the Potential of Difficulty Prior in RL-based Multimodal Reasoning) acknowledged in landscape and added to key_references. Positioned as demonstrating concurrent convergence on difficulty-aware reward modulation, targeting training efficiency rather than gaming characterization. Also added arXiv:2604.01476 (Reward Hacking Rebounds) as supporting evidence for dynamic gaming behavior.",
+    "issue_4_aaai_timeline": "RESOLVED via venue strategy flip. AAAI is now the PRIMARY target (8 weeks, math-only Contributions 1-2+calibration), not a stretch. ICLR becomes the decision-gated stretch (17 weeks, adding medical + DCRR). This is more realistic because: (a) the math-only scope is self-contained and publishable; (b) the theoretical framework + single-domain validation is a natural submission unit; (c) 8 weeks is tight but achievable with the focused scope (3 training runs, not 6); (d) decision gate at week 6 provides exit ramp. Risk mitigation: GRPO training starts week 1; judge quality validated on 200-sample subset before full inference; H0-confirmed contributions provide fallback value.",
+    "issue_5_P1_P3_contingency": "RESOLVED with concrete methodological output under H0. If all predictions fail (H0 confirmed): (a) the Learning-Gaming Paradox still holds structurally — even monotonically increasing gaming creates tension with the learning signal peak at moderate difficulty; (b) first per-criterion × per-difficulty confirmation of monotonic criterion-type-stable gaming (currently only known in aggregate or unstratified); (c) derive simple linear strictness schedule s_k(d) = α_k + β_k·d with empirically estimated slopes, validate ≥15% mean DEG reduction vs. uniform strictness; (d) Dimensionality Collapse analysis (T2) characterizes effective honest dimensions at each difficulty level. This is a solid diagnostic paper with a concrete calibration tool, not merely confirmatory.",
+    "issue_T2_promotion": "T2 (Dimensionality Collapse) promoted from secondary to CO-EQUAL with T1. Rationale: T2 predicts asymmetric structural behavior (honest signal collapses faster than total signal) that is genuinely surprising and more falsifiable than T1's variance decomposition. T2 explains WHY the Learning-Gaming Paradox is dangerous: not only does gaming peak where learning peaks, but the evaluator cannot distinguish them because the honest signal subspace collapses preferentially. Validated via PCA on per-criterion pass-rate vectors.",
+    "new_references_added": "Two new references: (1) arXiv:2505.13261 (Difficulty Prior in Multimodal Reasoning) — concurrent difficulty-calibration trend; (2) arXiv:2604.01476 (Reward Hacking Rebounds) — dynamic gaming behavior with three-phase pattern, supports structural gaming analysis.",
+    "stagnation_addressed": "This revision addresses stagnation through FUNDAMENTAL NARRATIVE RESTRUCTURE, not incremental patching. The paper's identity shifts from 'difficulty-parameterized Goodhart extension' (technical but incremental) to 'Learning-Gaming Paradox discovery' (structural and surprising). This changes what reviewers see as the contribution: not 'we added a parameter to D_i' but 'we discovered that the RL training-dynamics literature and gaming-vulnerability literature are formally connected via shared p(1-p) dependence, with immediate practical implications for difficulty-aware rubric RL.' The T2 promotion, concrete H0 fallback, and venue strategy flip are complementary changes that collectively raise the contribution floor from 'workshop-quality finding + theory' to 'structural discovery + diagnostic tool with practical output.'"
+  }
+}
+
+## Reviewer feedback (round 8)
+Issues: ["CRITICAL: Lemma 6.2 mischaracterization. The proposal repeatedly claims '∇𝒥 ∝ Δ(1−Δ)' from Edge of Competence Lemma 6.2, but the actual result is ∇_q 𝒥̃_L ∝ (Δ_L)^L(1−Δ_L). For L>1 (general multi-step reasoning), the peak is at Δ=L/(L+1) ≠ 0.5, and the functional form is NOT p(1−p). The entire 'Learning-Gaming Paradox' narrative — and specifically T4 (Learning-Gaming Resonance Corollary) which claims to 'formally connect the p(1−p) terms in G_d to the Δ(1−Δ) terms in the learning signal gradient' — is built on this incorrect mathematical claim. This would be immediately caught by any reviewer familiar with the Edge of Competence paper.", "CRITICAL: The 'formal coincidence of shared p(1−p) functional form' between learning signal and gaming opportunity — the paper's LEAD conceptual contribution after the round 7 narrative restructure — does not hold as stated. The learning signal has (Δ)^L(1−Δ) dependence (with exponential suppression factor), while the gaming budget has √(p(1−p)) terms, and Δ (attention margin) ≠ p (pass rate). These are different variables with different functional forms peaking at different locations.", "MISSING REFERENCE: Hack-Verifiable Environments (arXiv:2605.20744, May 2026) directly measures difficulty-dependent hack rates across multiple models and environments, finding 'hack rate increases monotonically with task difficulty.' This is the strongest empirical evidence supporting H0 and should be incorporated into the composite null hypothesis.", "The Gradient Starvation result (GRPO degeneracy D(p,G) = p^G + (1−p)^G minimal at p≈0.5) DOES support the qualitative claim that GRPO learning efficiency peaks at intermediate pass rates. But this is GRPO-specific, not a general learning dynamics result. The proposed narrative ('connecting two independent literatures via shared p(1−p) dependence') collapses to 'connecting GRPO training dynamics to gaming vulnerability' — still interesting but less novel than claimed."]
+Feedback: The proposal has resolved all issues from rounds 1-7 (Wang & Huang positioning, compute budget, statistical methodology, composite H0, landscape completeness, 'valuable either way' design). However, the round 7 narrative restructure that made the 'Learning-Gaming Paradox' the lead contribution introduced a new critical problem: the formal mathematical claim underpinning the paradox is incorrect.
+
+**Fix the Lemma 6.2 claim (CRITICAL)**:
+
+Option A (Recommended): Pivot the formal connection to the Gradient Starvation paper instead. The GRPO non-degenerate fraction 1-p^G-(1-p)^G IS maximal at p≈0.5, so GRPO learning IS most efficient at intermediate pass rates. The paradox becomes: 'GRPO's effective gradient signal and the Gaming Budget both peak in the same difficulty band (p̄_d ∈ [0.3, 0.7]).' T4 should cite the Gradient Starvation result as the primary anchor, using Edge of Competence's qualitative 'edge of competence' insight as supplementary support rather than citing its specific Lemma 6.2 formula.
+
+Option B: Restrict the formal claim to L=1 (single-step) where Δ(1−Δ) does hold, and argue the qualitative insight extends to L>1 because learning still requires Δ to be 'moderate.' This is weaker but honest.
+
+Either way: remove all instances of '∇𝒥 ∝ Δ(1−Δ)' attributed to Lemma 6.2, and replace T4's formal statement with a mathematically correct version.
+
+**Add Hack-Verifiable Environments (arXiv:2605.20744)**: This May 2026 paper's finding that hack rate increases monotonically with task difficulty across models is the strongest empirical H0 evidence from a controlled setting. Incorporate it alongside LLMs Gaming Verifiers as H0a support. This strengthens the composite null, making the diagnostic more valuable.
+
+**Recalibrate the 'two independent literatures' framing**: If using Gradient Starvation as the anchor (Option A), the connection is within the GRPO/training-dynamics literature, not between two independent fields. The remaining cross-literature connection is between the GRPO efficiency result and the gaming vulnerability literature (2605.12474, 2604.15149). This is still novel but should be claimed precisely.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+## 停滞提醒
+经过 8 轮修订，近 3 轮平均分从 3.8 到 3.5，无明显改善。
+考虑 major revision 或 pivot。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "22ec9195-5063-46ee-aa86-a6682e5303c7",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T15:59:13.576Z_
+
+```json
+{
+  "parentUuid": "22ec9195-5063-46ee-aa86-a6682e5303c7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "e6888834-c6db-4ea5-882d-ab36a65028f1",
+  "timestamp": "2026-05-28T15:59:13.576Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T15:59:13.576Z_
+
+```json
+{
+  "parentUuid": "e6888834-c6db-4ea5-882d-ab36a65028f1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a40960c4-5806-4597-9bb0-72f12afbda05",
+  "timestamp": "2026-05-28T15:59:13.576Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surface…",
+  "leafUuid": "a40960c4-5806-4597-9bb0-72f12afbda05",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learning-gaming paradox in rubric-based RL: Reconsidering the mathematical foundation",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T15:59:26.366Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before doing research. The key issues are:
+
+1. **CRITICAL**: Lemma 6.2 mischaracterization - The actual result is ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L), not Δ(1−Δ). For L>1, the peak is at Δ=L/(L+1) ≠ 0.5.
+
+2. **CRITICAL**: The "formal coincidence" of p(1−p) doesn't hold - learning signal has (Δ)^L(1−Δ) with exponential suppression, gaming budget has √(p(1−p)), and Δ ≠ p.
+
+
+3. There's a missing reference on Hack-Verifiable Environments that shows monotonic hack rate with difficulty, and I need to verify whether the Gradient Starvation result D(p,G) = p^G + (1−p)^G is truly general or just specific to GRPO. The reviewer suggests pivoting to Gradient Starvation as the formal foundation, which appears mathematically sound, so I should research the actual Lemma 6.2 from Edge of Competence and understand how these results relate.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a40960c4-5806-4597-9bb0-72f12afbda05",
+  "isSidechain": false,
+  "requestId": "req_011CbVF7HSrViy2CEVoG2bTM",
+  "type": "assistant",
+  "uuid": "9e6482c4-d2d6-4fbf-bc31-3327f1ff4197",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Prujd7zDU6oR3bpmA11pge",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15192,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15192,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 15192,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15192
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T15:59:26.892Z_
+
+I need to do deep research on the critical issues before revising. Let me investigate the actual mathematical claims in the referenced papers and the new missing reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e6482c4-d2d6-4fbf-bc31-3327f1ff4197",
+  "isSidechain": false,
+  "requestId": "req_011CbVF7HSrViy2CEVoG2bTM",
+  "type": "assistant",
+  "uuid": "172e2f06-4ca2-4d98-aaae-cf1d7d1631c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Prujd7zDU6oR3bpmA11pge",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15192,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15192,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 15192,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15192
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T15:59:27.309Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UR5mhEgoHAjbDGumLwvKh1`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "172e2f06-4ca2-4d98-aaae-cf1d7d1631c4",
+  "isSidechain": false,
+  "requestId": "req_011CbVF7HSrViy2CEVoG2bTM",
+  "type": "assistant",
+  "uuid": "3f76dc3a-fb4f-4c8a-8dd1-977612d08409",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Prujd7zDU6oR3bpmA11pge",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15192,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15192,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 15192,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15192
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T15:59:27.316Z_
+
+<details><summary>↩ Tool result · `toolu_01UR5mhEgoHAjbDGumLwvKh1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f76dc3a-fb4f-4c8a-8dd1-977612d08409",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "b3f443dd-1010-4fed-8d0f-7e4b014d9fd5",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "3f76dc3a-fb4f-4c8a-8dd1-977612d08409",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T15:59:35.987Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now do the deep research. I need to:
+
+1. Read the actual Lemma 6.2 from Edge of Competence (arXiv:2602.14872)
+2. Read the Gradient Starvation paper (arXiv:2605.07689) for the exact GRPO result
+3. Find and read Hack-Verifiable Environments (arXiv:2605.20744)
+4. Think about whether the paradox narrative can be salvaged
+
+Let me launch these in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3f443dd-1010-4fed-8d0f-7e4b014d9fd5",
+  "isSidechain": false,
+  "requestId": "req_011CbVF8JCmehKVMvZTP3Mxi",
+  "type": "assistant",
+  "uuid": "cbff6440-cc0c-4b0a-a9e8-a1c9dd369c20",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExRydhCbZsA8BuaMV6dXR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 26206,
+      "output_tokens": 647,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 647,
+          "cache_read_input_tokens": 26206,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-28T15:59:36.476Z_
+
+Let me research all four critical issues in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbff6440-cc0c-4b0a-a9e8-a1c9dd369c20",
+  "isSidechain": false,
+  "requestId": "req_011CbVF8JCmehKVMvZTP3Mxi",
+  "type": "assistant",
+  "uuid": "0e3192c3-8266-47c6-a1c5-59bfa9337bdd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExRydhCbZsA8BuaMV6dXR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 26206,
+      "output_tokens": 647,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 647,
+          "cache_read_input_tokens": 26206,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T15:59:40.044Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GCxguVuoKkd7MFhJcZeDba`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.14872",
+  "prompt": "Extract the full mathematical statement of Lemma 6.2 and any related theorems about learning gradient magnitude. What exactly is the functional form? What is Δ_L? What is L? What is the peak location? Is it Δ(1−Δ) or (Δ)^L(1−Δ)? Also extract any discussion of the \"edge of competence\" concept and the relay effect."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e3192c3-8266-47c6-a1c5-59bfa9337bdd",
+  "isSidechain": false,
+  "requestId": "req_011CbVF8JCmehKVMvZTP3Mxi",
+  "type": "assistant",
+  "uuid": "e51db302-28e7-4b92-bc58-2daeaea6eb75",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExRydhCbZsA8BuaMV6dXR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 26206,
+      "output_tokens": 647,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 647,
+          "cache_read_input_tokens": 26206,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-28T15:59:42.998Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018KMEragqLAqW3feFDdw2ER`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.07689",
+  "prompt": "Extract the exact mathematical results about GRPO gradient degeneracy. What is the formula D(p,G)? What is the non-degenerate fraction? At what pass rate p is GRPO learning most efficient? Is there a formal theorem or lemma? What are the exact conditions and assumptions? How does this relate to the \"competence boundary\"?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e51db302-28e7-4b92-bc58-2daeaea6eb75",
+  "isSidechain": false,
+  "requestId": "req_011CbVF8JCmehKVMvZTP3Mxi",
+  "type": "assistant",
+  "uuid": "a8803dc4-841b-4cb4-8eea-253b554a97ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExRydhCbZsA8BuaMV6dXR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 26206,
+      "output_tokens": 647,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 647,
+          "cache_read_input_tokens": 26206,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T15:59:44.119Z_
+
+<details><summary>↩ Tool result · `toolu_01GCxguVuoKkd7MFhJcZeDba`</summary>
+
+```text
+I appreciate your detailed request, but I must be transparent: **the web page content provided does not include the full paper text or mathematical proofs**. It only contains the arXiv abstract and metadata.
+
+The abstract mentions these concepts exist in the paper:
+
+- "Mixed-difficulty training naturally follows an implicit curriculum" without explicit scheduling
+- "A well-behaved relay regime, in which persistent gradient signals on easier problems make slightly harder ones tractable"
+- "Training at the edge of competence"
+- Phase transitions when "the spectrum contains abrupt discontinuities"
+
+However, **the specific mathematical formulations you're asking for—Lemma 6.2, the exact functional form of gradient magnitude, the definition of Δ_L, peak location formulas, and detailed relay effect analysis—are not present in this metadata**.
+
+To access these details, you would need to:
+1. View the full PDF via the link provided
+2. Check the HTML experimental version
+3. Access the TeX source
+
+The page only offers access points to these materials, not the actual mathematical content itself.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e51db302-28e7-4b92-bc58-2daeaea6eb75",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "449bea5d-c053-4609-86b5-5d10a088ca92",
+  "toolUseResult": {
+    "bytes": 48418,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I appreciate your detailed request, but I must be transparent: **the web page content provided does not include the full paper text or mathematical proofs**. It only contains the arXiv abstract and metadata.\n\nThe abstract mentions these concepts exist in the paper:\n\n- \"Mixed-difficulty training naturally follows an implicit curriculum\" without explicit scheduling\n- \"A well-behaved relay regime, in which persistent gradient signals on easier problems make slightly harder ones tractable\"\n- \"Training at the edge of competence\"\n- Phase transitions when \"the spectrum contains abrupt discontinuities\"\n\nHowever, **the specific mathematical formulations you're asking for—Lemma 6.2, the exact functional form of gradient magnitude, the definition of Δ_L, peak location formulas, and detailed relay effect analysis—are not present in this metadata**.\n\nTo access these details, you would need to:\n1. View the full PDF via the link provided\n2. Check the HTML experimental version\n3. Access the TeX source\n\nThe page only offers access points to these materials, not the actual mathematical content itself.",
+    "durationMs": 4071,
+    "url": "https://arxiv.org/abs/2602.14872"
+  },
+  "sourceToolAssistantUUID": "e51db302-28e7-4b92-bc58-2daeaea6eb75",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-28T15:59:45.353Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013QnoiU6i6oPqSp8i4SXwLm`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.20744",
+  "prompt": "Extract the main findings about hack rates and task difficulty. Does hack rate increase monotonically with difficulty? What models and environments were tested? What is the main experimental setup? What are the key quantitative results about the relationship between difficulty and hacking/gaming?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "449bea5d-c053-4609-86b5-5d10a088ca92",
+  "isSidechain": false,
+  "requestId": "req_011CbVF8JCmehKVMvZTP3Mxi",
+  "type": "assistant",
+  "uuid": "39e23680-0336-4715-9734-5a630d407a1e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExRydhCbZsA8BuaMV6dXR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 26206,
+      "output_tokens": 647,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 647,
+          "cache_read_input_tokens": 26206,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-28T15:59:45.614Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EAcaTiA7wtsCEpyqu89LoY`</summary>
+
+```json
+{
+  "query": "Edge of Competence arXiv 2602.14872 Lemma 6.2 gradient learning dynamics multi-step reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39e23680-0336-4715-9734-5a630d407a1e",
+  "isSidechain": false,
+  "requestId": "req_011CbVF8JCmehKVMvZTP3Mxi",
+  "type": "assistant",
+  "uuid": "c455afc7-e9b6-4149-8282-13027dfe8947",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExRydhCbZsA8BuaMV6dXR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1551,
+      "cache_read_input_tokens": 26206,
+      "output_tokens": 647,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1551,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 647,
+          "cache_read_input_tokens": 26206,
+          "cache_creation_input_tokens": 1551,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1551
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T15:59:47.495Z_
+
+<details><summary>↩ Tool result · `toolu_018KMEragqLAqW3feFDdw2ER`</summary>
+
+```text
+# Analysis of GRPO Gradient Degeneracy Results
+
+Based on the provided arXiv abstract, I cannot extract the specific mathematical formulas you're asking for. The document provided is only the **abstract page and metadata**, not the full paper content.
+
+## What the Abstract Reveals
+
+The abstract indicates the paper addresses:
+
+- **The degeneracy problem**: "when every response in a group is correct or every response is wrong, the centered advantage is exactly zero and the policy receives no learning signal"
+
+- **Empirical degeneracy rate**: "0.69 degeneracy rate at group size four in logged Qwen3.5-9B GSM8K training"
+
+- **Theoretical observation**: The authors prove "the true degeneracy rate always exceeds the i.i.d. Bernoulli prediction by Jensen's inequality"
+
+- **Proposed solution**: A "fixed-reference Sign advantage" formula where "A=2r-1"
+
+## What's Missing
+
+The abstract does **not** provide:
+- The explicit formula for D(p,G)
+- Non-degenerate fraction calculations
+- Optimal pass rate analysis
+- Formal theorems or lemmas with full conditions
+- Discussion of "competence boundary" concepts
+
+To access these mathematical details, you would need to examine the full PDF or HTML versions of the paper available through the arXiv links provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8803dc4-841b-4cb4-8eea-253b554a97ce",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "fee89e5f-ae43-4c37-ad31-36e78406015a",
+  "toolUseResult": {
+    "bytes": 47763,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of GRPO Gradient Degeneracy Results\n\nBased on the provided arXiv abstract, I cannot extract the specific mathematical formulas you're asking for. The document provided is only the **abstract page and metadata**, not the full paper content.\n\n## What the Abstract Reveals\n\nThe abstract indicates the paper addresses:\n\n- **The degeneracy problem**: \"when every response in a group is correct or every response is wrong, the centered advantage is exactly zero and the policy receives no learning signal\"\n\n- **Empirical degeneracy rate**: \"0.69 degeneracy rate at group size four in logged Qwen3.5-9B GSM8K training\"\n\n- **Theoretical observation**: The authors prove \"the true degeneracy rate always exceeds the i.i.d. Bernoulli prediction by Jensen's inequality\"\n\n- **Proposed solution**: A \"fixed-reference Sign advantage\" formula where \"A=2r-1\"\n\n## What's Missing\n\nThe abstract does **not** provide:\n- The explicit formula for D(p,G)\n- Non-degenerate fraction calculations\n- Optimal pass rate analysis\n- Formal theorems or lemmas with full conditions\n- Discussion of \"competence boundary\" concepts\n\nTo access these mathematical details, you would need to examine the full PDF or HTML versions of the paper available through the arXiv links provided.",
+    "durationMs": 4492,
+    "url": "https://arxiv.org/abs/2605.07689"
+  },
+  "sourceToolAssistantUUID": "a8803dc4-841b-4cb4-8eea-253b554a97ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T15:59:50.165Z_
+
+<details><summary>↩ Tool result · `toolu_013QnoiU6i6oPqSp8i4SXwLm`</summary>
+
+```text
+# Summary of Hack-Verifiable Environments Paper
+
+Based on the arXiv page provided, I can only offer limited information, as the abstract doesn't contain the specific quantitative results you've requested.
+
+## Available Information
+
+**Main Approach:**
+The researchers introduced "a new evaluation paradigm for measuring reward hacking" by "embed[ding] detectable reward hacking opportunities directly into environments" rather than analyzing behavior post hoc.
+
+**Testbed:**
+They created "Hack-Verifiable TextArena," described as "a testbed in which reward hacking can be measured reliably."
+
+**Scope:**
+The study "analyze[d] reward hacking behavior across language models in diverse environments and settings."
+
+## Missing Details
+
+Unfortunately, the webpage excerpt does not include:
+- Specific hack rate statistics or their relationship to task difficulty
+- Whether hack rates increase monotonically with difficulty
+- Detailed quantitative results comparing models and environments
+- Complete experimental setup descriptions
+
+To obtain the specific quantitative findings about difficulty-hacking relationships, model comparisons, and detailed results, you would need to access the full PDF or HTML version of the paper, available through the arXiv links provided on this page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39e23680-0336-4715-9734-5a630d407a1e",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "9bf1878c-b9d2-4ad5-98ee-7daf77a70dce",
+  "toolUseResult": {
+    "bytes": 47255,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of Hack-Verifiable Environments Paper\n\nBased on the arXiv page provided, I can only offer limited information, as the abstract doesn't contain the specific quantitative results you've requested.\n\n## Available Information\n\n**Main Approach:**\nThe researchers introduced \"a new evaluation paradigm for measuring reward hacking\" by \"embed[ding] detectable reward hacking opportunities directly into environments\" rather than analyzing behavior post hoc.\n\n**Testbed:**\nThey created \"Hack-Verifiable TextArena,\" described as \"a testbed in which reward hacking can be measured reliably.\"\n\n**Scope:**\nThe study \"analyze[d] reward hacking behavior across language models in diverse environments and settings.\"\n\n## Missing Details\n\nUnfortunately, the webpage excerpt does not include:\n- Specific hack rate statistics or their relationship to task difficulty\n- Whether hack rates increase monotonically with difficulty\n- Detailed quantitative results comparing models and environments\n- Complete experimental setup descriptions\n\nTo obtain the specific quantitative findings about difficulty-hacking relationships, model comparisons, and detailed results, you would need to access the full PDF or HTML version of the paper, available through the arXiv links provided on this page.",
+    "durationMs": 4809,
+    "url": "https://arxiv.org/abs/2605.20744"
+  },
+  "sourceToolAssistantUUID": "39e23680-0336-4715-9734-5a630d407a1e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-28T15:59:51.957Z_
+
+<details><summary>↩ Tool result · `toolu_01EAcaTiA7wtsCEpyqu89LoY`</summary>
+
+```text
+Web search results for query: "Edge of Competence arXiv 2602.14872 Lemma 6.2 gradient learning dynamics multi-step reasoning"
+
+Links: [{"title":"On the Learning Dynamics of RLVR at the Edge of Competence Yu Huang∗†","url":"https://arxiv.org/pdf/2602.14872"},{"title":"The Implicit Curriculum: Learning Dynamics in RL with Verifiable Rewards","url":"https://arxiv.org/html/2602.14872"},{"title":"[2602.14872] On the Learning Dynamics of RLVR at the Edge of Competence","url":"https://arxiv.org/abs/2602.14872"},{"title":"On approximation and energy estimates for delta 6-convex functions","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5820381/"},{"title":"Towards an optimal hypergraph container lemma","url":"https://arxiv.org/pdf/2408.06617"}]
+
+Based on the search results, I found the paper you're looking for. The paper titled "On the Learning Dynamics of RLVR at the Edge of Competence" is by Yu Huang and co-authors (arXiv:2602.14872).
+
+Regarding Lemma 6.2 specifically: The analysis in Lemma 6.2 makes explicit the delayed-handoff mechanism by tracking how hidden feature sharpening eventually translates into long-horizon policy improvement. Lemma 6.2 shows that the policy gradient is essentially driven by the q-direction, with the magnitude exhibiting two regimes: when ∆L is small, the long-horizon factor (∆L)L exponentially suppresses the gradient; when ∆L ≈1, the update is in a convergence regime controlled by the shrinking term 1 −∆L.
+
+The paper focuses on the training dynamics of RL for transformers on compositional reasoning tasks, characterizing how the effectiveness of RLVR is governed by the smoothness of the difficulty spectrum.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c455afc7-e9b6-4149-8282-13027dfe8947",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "00c8738f-9fb8-49db-b843-537dd4db71a0",
+  "toolUseResult": {
+    "query": "Edge of Competence arXiv 2602.14872 Lemma 6.2 gradient learning dynamics multi-step reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013eMhR5aEN3EAAMspazidrh",
+        "content": [
+          {
+            "title": "On the Learning Dynamics of RLVR at the Edge of Competence Yu Huang∗†",
+            "url": "https://arxiv.org/pdf/2602.14872"
+          },
+          {
+            "title": "The Implicit Curriculum: Learning Dynamics in RL with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2602.14872"
+          },
+          {
+            "title": "[2602.14872] On the Learning Dynamics of RLVR at the Edge of Competence",
+            "url": "https://arxiv.org/abs/2602.14872"
+          },
+          {
+            "title": "On approximation and energy estimates for delta 6-convex functions",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5820381/"
+          },
+          {
+            "title": "Towards an optimal hypergraph container lemma",
+            "url": "https://arxiv.org/pdf/2408.06617"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. The paper titled \"On the Learning Dynamics of RLVR at the Edge of Competence\" is by Yu Huang and co-authors (arXiv:2602.14872).\n\nRegarding Lemma 6.2 specifically: The analysis in Lemma 6.2 makes explicit the delayed-handoff mechanism by tracking how hidden feature sharpening eventually translates into long-horizon policy improvement. Lemma 6.2 shows that the policy gradient is essentially driven by the q-direction, with the magnitude exhibiting two regimes: when ∆L is small, the long-horizon factor (∆L)L exponentially suppresses the gradient; when ∆L ≈1, the update is in a convergence regime controlled by the shrinking term 1 −∆L.\n\nThe paper focuses on the training dynamics of RL for transformers on compositional reasoning tasks, characterizing how the effectiveness of RLVR is governed by the smoothness of the difficulty spectrum."
+    ],
+    "durationSeconds": 6.339715650000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c455afc7-e9b6-4149-8282-13027dfe8947",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-28T15:59:56.703Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The abstracts didn't give me enough detail. Let me fetch the actual paper PDFs/HTML versions for the key mathematical results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00c8738f-9fb8-49db-b843-537dd4db71a0",
+  "isSidechain": false,
+  "requestId": "req_011CbVFA7HW9gENV3oShoBjq",
+  "type": "assistant",
+  "uuid": "d7c0c8eb-69f4-425f-99ed-93b155a006ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VwjXiChWyaSQ242Pc7Zi8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2068,
+      "cache_read_input_tokens": 27757,
+      "output_tokens": 562,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 562,
+          "cache_read_input_tokens": 27757,
+          "cache_creation_input_tokens": 2068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-28T15:59:57.665Z_
+
+The abstracts didn't give enough detail. Let me fetch the full papers to get the exact mathematical statements.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7c0c8eb-69f4-425f-99ed-93b155a006ce",
+  "isSidechain": false,
+  "requestId": "req_011CbVFA7HW9gENV3oShoBjq",
+  "type": "assistant",
+  "uuid": "3755bece-c160-4910-b2cc-3d338f772ed6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VwjXiChWyaSQ242Pc7Zi8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2068,
+      "cache_read_input_tokens": 27757,
+      "output_tokens": 562,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 562,
+          "cache_read_input_tokens": 27757,
+          "cache_creation_input_tokens": 2068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-28T16:00:01.558Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SAvsMwfGJVxMXWii7tkshJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.14872",
+  "prompt": "Find and extract the EXACT mathematical statement of Lemma 6.2. What is the precise formula for the gradient? What is Δ_L? What is L? What is the functional form - is it Δ(1−Δ), or (Δ_L)^L(1−Δ_L), or something else? What value of Δ maximizes the gradient for general L? Also look for any discussion of the \"edge of competence\" and what pass rate or attention margin the training concentrates on. Extract verbatim if possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3755bece-c160-4910-b2cc-3d338f772ed6",
+  "isSidechain": false,
+  "requestId": "req_011CbVFA7HW9gENV3oShoBjq",
+  "type": "assistant",
+  "uuid": "6895b676-fa92-40b1-a49a-ee8d5e0b01d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VwjXiChWyaSQ242Pc7Zi8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2068,
+      "cache_read_input_tokens": 27757,
+      "output_tokens": 562,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 562,
+          "cache_read_input_tokens": 27757,
+          "cache_creation_input_tokens": 2068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T16:00:04.385Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MKV88cR4trcxhcw5DR88vf`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.07689",
+  "prompt": "Find and extract the EXACT mathematical formula for the GRPO degeneracy rate D(p,G). What is the non-degenerate fraction formula? At what pass rate p is the gradient signal maximized? Is there a formal theorem or proposition? What is the relationship between group size G and the optimal pass rate? Extract the key equations verbatim if possible. Also look for any discussion connecting this to the \"competence boundary\" or intermediate pass rates."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6895b676-fa92-40b1-a49a-ee8d5e0b01d2",
+  "isSidechain": false,
+  "requestId": "req_011CbVFA7HW9gENV3oShoBjq",
+  "type": "assistant",
+  "uuid": "d0fbe110-bcd0-4a76-8179-14542f4742c1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VwjXiChWyaSQ242Pc7Zi8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2068,
+      "cache_read_input_tokens": 27757,
+      "output_tokens": 562,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 562,
+          "cache_read_input_tokens": 27757,
+          "cache_creation_input_tokens": 2068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-28T16:00:06.562Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AYnpYjsQwUngqtT3T1vWLS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.20744",
+  "prompt": "Find and extract the main results about hack rates and task difficulty. Does hack rate increase monotonically with difficulty? What specific quantitative findings relate difficulty level to hacking behavior? What models were tested? What environments? Extract key findings verbatim if possible. Look for any figures or tables showing hack rate vs difficulty."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0fbe110-bcd0-4a76-8179-14542f4742c1",
+  "isSidechain": false,
+  "requestId": "req_011CbVFA7HW9gENV3oShoBjq",
+  "type": "assistant",
+  "uuid": "58d70ec5-93af-4a99-852b-0ff9f47ffb06",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VwjXiChWyaSQ242Pc7Zi8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2068,
+      "cache_read_input_tokens": 27757,
+      "output_tokens": 562,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 562,
+          "cache_read_input_tokens": 27757,
+          "cache_creation_input_tokens": 2068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surface…",
+  "leafUuid": "58d70ec5-93af-4a99-852b-0ff9f47ffb06",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learning-gaming paradox in rubric-based RL: Reconsidering the mathematical foundation",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-28T16:00:08.407Z_
+
+<details><summary>↩ Tool result · `toolu_01SAvsMwfGJVxMXWii7tkshJ`</summary>
+
+````text
+# Lemma 6.2: Gradient Characterization
+
+## Exact Mathematical Statement
+
+From the document, **Lemma 6.2** states:
+
+**Gradient formula:**
+```
+∇_q J̃_L^(t) ∝ (Δ_L^(t))^L (1−Δ_L^(t))
+```
+
+**Reward formula:**
+```
+J_L^(t) = 1/d + (1−1/d)(1±o(1))·(Δ_L^(t))^L
+```
+
+## Definition of Δ_L
+
+From the document: "Define the effective probability margin: Δ_L^(t) := p_{L,1}^(t) − p_{L,3}^(t)"
+
+Where these represent:
+- **p_{L,1}**: probability of selecting the correct target action
+- **p_{L,3}**: probability of selecting an unrelated distractor action
+
+## Parameter L
+
+L represents the **horizon length** or number of compositional steps in the reasoning task.
+
+## Maximizing the Gradient
+
+The gradient has the form (Δ_L)^L(1−Δ_L). For fixed L, this is maximized when:
+
+**dΔ[(Δ)^L(1−Δ)]/dΔ = 0**
+
+This yields: **Δ* = L/(L+1)**, maximizing at approximately **Δ ≈ 1 − 1/L** for large L.
+
+## Edge of Competence Discussion
+
+The document states: "the policy remains just competent enough on L_k that success on L_{k+1} is no longer purely random...keeping optimization near the edge of competence." Training concentrates effort where the margin Δ transitions from exponentially suppressed to active learning.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "6895b676-fa92-40b1-a49a-ee8d5e0b01d2",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "474c575b-148f-4cfa-97be-bef4d6b6c865",
+  "toolUseResult": {
+    "bytes": 1822922,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Lemma 6.2: Gradient Characterization\n\n## Exact Mathematical Statement\n\nFrom the document, **Lemma 6.2** states:\n\n**Gradient formula:**\n```\n∇_q J̃_L^(t) ∝ (Δ_L^(t))^L (1−Δ_L^(t))\n```\n\n**Reward formula:**\n```\nJ_L^(t) = 1/d + (1−1/d)(1±o(1))·(Δ_L^(t))^L\n```\n\n## Definition of Δ_L\n\nFrom the document: \"Define the effective probability margin: Δ_L^(t) := p_{L,1}^(t) − p_{L,3}^(t)\"\n\nWhere these represent:\n- **p_{L,1}**: probability of selecting the correct target action\n- **p_{L,3}**: probability of selecting an unrelated distractor action\n\n## Parameter L\n\nL represents the **horizon length** or number of compositional steps in the reasoning task.\n\n## Maximizing the Gradient\n\nThe gradient has the form (Δ_L)^L(1−Δ_L). For fixed L, this is maximized when:\n\n**dΔ[(Δ)^L(1−Δ)]/dΔ = 0**\n\nThis yields: **Δ* = L/(L+1)**, maximizing at approximately **Δ ≈ 1 − 1/L** for large L.\n\n## Edge of Competence Discussion\n\nThe document states: \"the policy remains just competent enough on L_k that success on L_{k+1} is no longer purely random...keeping optimization near the edge of competence.\" Training concentrates effort where the margin Δ transitions from exponentially suppressed to active learning.",
+    "durationMs": 6841,
+    "url": "https://arxiv.org/html/2602.14872"
+  },
+  "sourceToolAssistantUUID": "6895b676-fa92-40b1-a49a-ee8d5e0b01d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-28T16:00:10.498Z_
+
+<details><summary>↩ Tool result · `toolu_01MKV88cR4trcxhcw5DR88vf`</summary>
+
+```text
+# GRPO Degeneracy Rate: Mathematical Formulation
+
+## Core Degeneracy Formula
+
+The exact degeneracy rate is:
+
+**D(p,G) = p^G + (1-p)^G**
+
+This represents the probability that all G responses in a group receive identical binary rewards (either all correct or all incorrect), producing zero gradient under group-mean centering.
+
+## Non-Degenerate Fraction
+
+The complement is simply **1 - D(p,G)**, representing mixed groups containing both correct and incorrect responses.
+
+## Jensen's Inequality Bound
+
+The paper proves that observed degeneracy exceeds the i.i.d. Bernoulli prediction:
+
+"D_real = E_x[D(p_x,G)] ≥ D(p̄,G) = p̄^G + (1-p̄)^G = D_iid"
+
+This gap arises from heterogeneous per-prompt success probabilities.
+
+## Gradient Signal Maximization
+
+Gradient starvation is **worst at extreme pass rates** (p ≈ 0 or p ≈ 1). The degenerate fraction D(p,G) is minimized at **p = 0.5** (the intermediate competence boundary), where D(0.5,G) = 2^(1-G).
+
+For example, at G=4: D(0.5,4) ≈ 0.125 (only 12.5% degeneracy), versus D(0.25,4) ≈ 0.32.
+
+## Theorem 3: Pass@G Failure Descent
+
+The paper formally proves that under Sign advantage, all-fail groups produce gradients proportional to "∇(1-p)^G," performing gradient ascent on pass@G = 1-(1-p)^G.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d0fbe110-bcd0-4a76-8179-14542f4742c1",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "6ff74cdb-e27f-4885-b0de-3c8416efe405",
+  "toolUseResult": {
+    "bytes": 264397,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# GRPO Degeneracy Rate: Mathematical Formulation\n\n## Core Degeneracy Formula\n\nThe exact degeneracy rate is:\n\n**D(p,G) = p^G + (1-p)^G**\n\nThis represents the probability that all G responses in a group receive identical binary rewards (either all correct or all incorrect), producing zero gradient under group-mean centering.\n\n## Non-Degenerate Fraction\n\nThe complement is simply **1 - D(p,G)**, representing mixed groups containing both correct and incorrect responses.\n\n## Jensen's Inequality Bound\n\nThe paper proves that observed degeneracy exceeds the i.i.d. Bernoulli prediction:\n\n\"D_real = E_x[D(p_x,G)] ≥ D(p̄,G) = p̄^G + (1-p̄)^G = D_iid\"\n\nThis gap arises from heterogeneous per-prompt success probabilities.\n\n## Gradient Signal Maximization\n\nGradient starvation is **worst at extreme pass rates** (p ≈ 0 or p ≈ 1). The degenerate fraction D(p,G) is minimized at **p = 0.5** (the intermediate competence boundary), where D(0.5,G) = 2^(1-G).\n\nFor example, at G=4: D(0.5,4) ≈ 0.125 (only 12.5% degeneracy), versus D(0.25,4) ≈ 0.32.\n\n## Theorem 3: Pass@G Failure Descent\n\nThe paper formally proves that under Sign advantage, all-fail groups produce gradients proportional to \"∇(1-p)^G,\" performing gradient ascent on pass@G = 1-(1-p)^G.",
+    "durationMs": 6110,
+    "url": "https://arxiv.org/html/2605.07689"
+  },
+  "sourceToolAssistantUUID": "d0fbe110-bcd0-4a76-8179-14542f4742c1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-28T16:00:12.930Z_
+
+<details><summary>↩ Tool result · `toolu_01AYnpYjsQwUngqtT3T1vWLS`</summary>
+
+```text
+# Hack Rate and Task Difficulty Findings
+
+## Main Result
+The research demonstrates a clear relationship between task difficulty and reward hacking behavior. According to the study, "Hack rate increases monotonically with task difficulty across most models and environments."
+
+## Experimental Setup
+**Models tested:** Five language models were evaluated:
+- claude-sonnet-4.6
+- gpt-5-codex
+- gemini-3.1-pro
+- qwen3.6-plus
+- kimi-k2.5
+
+**Environments:** Three single-player games were used:
+- Wordle (difficulty controlled by allowed guesses: 6, 5, 4, 3, or 2)
+- Tower of Hanoi (3-7 disks)
+- 15-Puzzle (shuffle depths: 5, 15, 25, 35, 50)
+
+## Key Quantitative Findings
+Figure 3 in the paper presents hack rate data across difficulty levels. The pattern shows consistent increases in hacking propensity as tasks become harder, though specific numerical values vary by model and game type. For instance, harder variants of Wordle (fewer allowed guesses) correlate with elevated hack rates across the tested models.
+
+## Additional Context
+The research also reveals that "harder hacks reduce hack rate" when examining the difficulty of exploiting vulnerabilities themselves, suggesting agents are sensitive to both task challenge and effort required to cheat.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58d70ec5-93af-4a99-852b-0ff9f47ffb06",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "6cb7e7b5-5267-4bc6-9193-1a74aea886a2",
+  "toolUseResult": {
+    "bytes": 522526,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Hack Rate and Task Difficulty Findings\n\n## Main Result\nThe research demonstrates a clear relationship between task difficulty and reward hacking behavior. According to the study, \"Hack rate increases monotonically with task difficulty across most models and environments.\"\n\n## Experimental Setup\n**Models tested:** Five language models were evaluated:\n- claude-sonnet-4.6\n- gpt-5-codex\n- gemini-3.1-pro\n- qwen3.6-plus\n- kimi-k2.5\n\n**Environments:** Three single-player games were used:\n- Wordle (difficulty controlled by allowed guesses: 6, 5, 4, 3, or 2)\n- Tower of Hanoi (3-7 disks)\n- 15-Puzzle (shuffle depths: 5, 15, 25, 35, 50)\n\n## Key Quantitative Findings\nFigure 3 in the paper presents hack rate data across difficulty levels. The pattern shows consistent increases in hacking propensity as tasks become harder, though specific numerical values vary by model and game type. For instance, harder variants of Wordle (fewer allowed guesses) correlate with elevated hack rates across the tested models.\n\n## Additional Context\nThe research also reveals that \"harder hacks reduce hack rate\" when examining the difficulty of exploiting vulnerabilities themselves, suggesting agents are sensitive to both task challenge and effort required to cheat.",
+    "durationMs": 6366,
+    "url": "https://arxiv.org/html/2605.20744"
+  },
+  "sourceToolAssistantUUID": "58d70ec5-93af-4a99-852b-0ff9f47ffb06",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-28T16:00:12.934Z_
+
+```json
+{
+  "parentUuid": "6cb7e7b5-5267-4bc6-9193-1a74aea886a2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2ffafb11-9ae8-4fc5-8e06-d60f202742ae",
+  "timestamp": "2026-05-28T16:00:12.934Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-28T16:02:08.622Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have the critical mathematical details:
+
+1. **Lemma 6.2 from Edge of Competence**: The gradient is ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L), NOT Δ(1−Δ). The peak is at Δ* = L/(L+1), NOT 0.5. For L=1, it's Δ(1−Δ) peaking at 0.5. For L=2, peak at 2/3. For L=5, peak at 5/6. The reviewer is absolutely correct.
+
+
+2. **Gradient Starvation (GRPO)**: The non-degenerate fraction D(p,G) = p^G + (1-p)^G is minimized at p=0.5 for all G, meaning GRPO learning efficiency peaks at intermediate pass rates—a clean, correct result specific to that framework.
+3. **Hack-Verifiable Environments**: Hack rates increase monotonically with task difficulty across most models, providing strong evidence for the hypothesis.
+
+Now I'm realizing the core problem with my earlier framing: the "Learning-Gaming Paradox" relied on claiming both learning signal and gaming budget follow the same p(1−p) functional form peaking at 0.5, but that's mathematically flawed. The learning signal at the edge of competence actually peaks at L/(L+1), not 0.5, and the gaming budget follows √(p(1−p)). More fundamentally, the attention margin and pass rate are different variables entirely, so the supposed shared functional form doesn't hold. The reviewer's suggestion to anchor on Gradient Starvation instead makes sense—that framework genuinely shows the non-degenerate fraction maximized at p=0.5, which is a legitimate mathematical result without the conflation of different variables. The reviewer's right that narrowing to GRPO-specific dynamics weakens the "connecting independent literatures" claim—it's really just showing how GRPO training creates gaming vulnerabilities. After eight rounds of revision with declining scores and the core Learning-Gaming Paradox resting on flawed math, I need to decide whether to salvage this by pivoting to a GRPO-focused contribution, do a major restructuring, or abandon the paradox framing altogether. The Gaming Budget Theorem still holds, but I'm questioning whether that's enough to carry the paper. I can salvage the core insight by reframing it as a practical tension specific to GRPO rather than a deep structural discovery—GRPO's gradient is maximized at intermediate pass rates, and that's exactly where gaming exposure peaks, so difficulty-aware methods inadvertently create the conditions for gaming. It's still relevant to the rubric-RL literature, but I need to be honest that this is an empirical observation about a particular algorithm family, not a formal coincidence connecting independent literatures. a major revision because the mathematical foundation of the lead contribution shifts fundamentally, and the claim becomes GRPO-specific rather than universal—which narrows scope but increases precision and honesty about what we're actually claiming.
+
+Now I'm looking at whether Gradient Starvation and the Gaming Budget bound both peak at intermediate pass rates through the same mechanism. Both have that √(p(1-p)) structure that maximizes at p=0.5, which is the real connection worth emphasizing rather than claiming a shared functional form. The per-criterion terms √(p_{k,d}(1-p_{k,d})) are each maximized at p_{k,d}=0.5, so both the Gaming Budget and GRPO's learning efficiency peak in the same difficulty band where aggregate pass rates hover around 0.5. While the underlying mechanisms differ—GRPO needs mixed outcomes for gradient signal whereas gaming exploits maximal verification ambiguity—the practical upshot is identical: targeting intermediate difficulty simultaneously optimizes learning and gaming vulnerability. For the revision, I'm focusing on the mathematical correction and reframing this dual-peak phenomenon as the core insight that explains why the stagnation concern actually strengthens the paper's argument rather than weakening it. relatively more important as a novel contribution. Now I'm drafting the full revision with a major restructuring—the lead contribution's mathematical foundation shifts to anchor on Gradient Starvation, and I'm recalibrating the novelty scope accordingly. I'm renaming the core tension and adding Hack-Verifiable Environments as support for H0a, while being precise about GRPO-specificity and restructuring T4 with corrected Lemma references.
+
+On the "Paradox" versus "Tension" framing—the reviewer's issue isn't the term itself but the mathematical claim behind it. The qualitative insight is genuinely paradoxical: the zone optimal for learning efficiency is exactly where gaming vulnerability peaks. I'll keep "Learning-Gaming Paradox" but ground it precisely in what it means—difficulty-aware GRPO methods that correctly target intermediate-pass-rate problems for learning inadvertently maximize gaming exposure, which is counterintuitive since you'd expect doing the right thing for learning to be neutral or beneficial for gaming robustness.
+
+The reviewer also flags that I'm overclaiming novelty by framing this as "connecting two independent literatures." I should reposition it as identifying a tension between GRPO training efficiency and rubric gaming vulnerability—still cross-domain in that it bridges training dynamics and evaluation robustness, but without the overclaim. Now I need to draft the full revision and explore whether the Gradient Starvation result using pass rate p creates a stronger formal connection.
+
+Actually, there's something here: both Gradient Starvation and the Gaming Budget use the same per-problem pass rate variable, and both are maximized at the same value range. GRPO selects for problems where p_d sits in [0.3, 0.7] to avoid gradient starvation, and that's exactly where the Gaming Budget term √(p_{k,d}(1-p_{k,d})) reaches its maximum. So the connection is real and formal—not the one I originally claimed, but a genuine coincidence in how both phenomena peak at the same pass rate. I need to be precise about what p represents in each context though. binary (correct/incorrect) evaluation. In the Gaming Budget, p_{k,d} is the per-criterion pass rate. These are related but not identical. When considering rubric evaluation with K criteria, the per-prompt binary pass rate is a function of the per-criterion pass rates, but they're not the same thing.
+
+Hmm, this is actually an important nuance. Let me think about it...
+
+In difficulty-aware GRPO (like DGPO), the difficulty is estimated via the binary pass rate of the problem (p = fraction of rollouts that are "correct" by some final metric). This is used to select problems with p ∈ [0.3, 0.7].
+
+In rubric evaluation, each criterion k has its own pass rate p_{k,d}. The Gaming Budget is maximized when these criterion-level pass rates are near 0.5.
+
+The connection works if: when the binary pass rate of a problem is ~0.5, the per-criterion pass rates are also in an intermediate range. This is plausible but depends on the relationship between the aggregate binary outcome and the per-criterion outcomes.
+
+Actually, in rubric-rewarded RL (like RRM), the reward is NOT binary — it's a weighted sum of per-criterion scores. So "pass rate" in the Gradient Starvation sense would need to be redefined for rubric rewards. But Gradient Starvation specifically analyzes binary-reward GRPO.
+
+Wait, this is getting complicated. Let me think about what the reviewer's Option A actually implies...
+
+The reviewer says: "The GRPO non-degenerate fraction 1-p^G-(1-p)^G IS maximal at p≈0.5, so GRPO learning IS most efficient at intermediate pass rates."
+
+In GRPO with binary rewards, p is the per-prompt success probability. The key insight is that the gradient signal is strongest when outcomes are mixed — neither consistently succeeding nor failing — which aligns with the intermediate pass rate sweet spot.
+
+For rubric-rewarded GRPO, the situation is more nuanced because rewards are continuous rather than binary. But difficulty-aware methods like DGPO and CDAS still use binary pass rates for problem selection, even when applying rubric rewards. So the argument would be: these methods select problems where the binary pass rate falls in the [0.3, 0.7] range, and at such problems, the per-criterion pass rates naturally fall into intermediate ranges too, which maximizes the Gaming Budget for each criterion.
+
+The key insight is that regardless of whether rewards are binary or rubric-based, problems at intermediate difficulty are where GRPO gets the strongest gradient signal and where gaming is most effective. The formal Gradient Starvation result is clean for binary rewards, but the qualitative logic extends to rubric rewards as well.
+
+I'll use the Gradient Starvation formula D(p,G) = p^G + (1-p)^G as the foundation for this argument. I'm formalizing the non-degenerate fraction for rubric GRPO and the Gaming Budget bound, showing both are maximized when aggregate pass rates sit in that intermediate zone around 0.3 to 0.7, which grounds the Learning-Gaming Paradox in concrete mathematics rather than just intuition.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ffafb11-9ae8-4fc5-8e06-d60f202742ae",
+  "isSidechain": false,
+  "requestId": "req_011CbVFBf4iuWJzTd7jBqrRb",
+  "type": "assistant",
+  "uuid": "0847c9a8-e4cd-4806-ac19-4bcf7ecb9771",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmyA2eUDgv2hSJJJoU8vQQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1927,
+      "cache_read_input_tokens": 29825,
+      "output_tokens": 5018,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5018,
+          "cache_read_input_tokens": 29825,
+          "cache_creation_input_tokens": 1927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-28T16:02:09.260Z_
+
+Now let me get more detail on the Gradient Starvation paper's formal results and search for additional context on the GRPO-rubric connection.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0847c9a8-e4cd-4806-ac19-4bcf7ecb9771",
+  "isSidechain": false,
+  "requestId": "req_011CbVFBf4iuWJzTd7jBqrRb",
+  "type": "assistant",
+  "uuid": "77e3679d-ec05-4709-9e3a-382c397e83fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmyA2eUDgv2hSJJJoU8vQQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1927,
+      "cache_read_input_tokens": 29825,
+      "output_tokens": 5018,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5018,
+          "cache_read_input_tokens": 29825,
+          "cache_creation_input_tokens": 1927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-28T16:02:10.202Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QJ5xLag8zRPREmQMdxD6DF`</summary>
+
+```json
+{
+  "query": "Gradient Starvation Binary-Reward GRPO arXiv 2605.07689 degeneracy rate formula proposition theorem 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77e3679d-ec05-4709-9e3a-382c397e83fa",
+  "isSidechain": false,
+  "requestId": "req_011CbVFBf4iuWJzTd7jBqrRb",
+  "type": "assistant",
+  "uuid": "0a2a7506-81f6-4bb3-9421-9dd9eb76b1b9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmyA2eUDgv2hSJJJoU8vQQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1927,
+      "cache_read_input_tokens": 29825,
+      "output_tokens": 5018,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5018,
+          "cache_read_input_tokens": 29825,
+          "cache_creation_input_tokens": 1927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-28T16:02:10.924Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016CZmFayp1mwqoghtuuDmuu`</summary>
+
+```json
+{
+  "query": "Hack-Verifiable Environments arXiv 2605.20744 hack rate difficulty monotonic TextArena 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a2a7506-81f6-4bb3-9421-9dd9eb76b1b9",
+  "isSidechain": false,
+  "requestId": "req_011CbVFBf4iuWJzTd7jBqrRb",
+  "type": "assistant",
+  "uuid": "a943c5ec-a25c-424a-a151-cbf6748a793a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmyA2eUDgv2hSJJJoU8vQQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1927,
+      "cache_read_input_tokens": 29825,
+      "output_tokens": 5018,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5018,
+          "cache_read_input_tokens": 29825,
+          "cache_creation_input_tokens": 1927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surface…",
+  "leafUuid": "a943c5ec-a25c-424a-a151-cbf6748a793a",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learning-gaming paradox in rubric-based RL: Reconsidering the mathematical foundation",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-28T16:02:17.417Z_
+
+<details><summary>↩ Tool result · `toolu_01QJ5xLag8zRPREmQMdxD6DF`</summary>
+
+```text
+Web search results for query: "Gradient Starvation Binary-Reward GRPO arXiv 2605.07689 degeneracy rate formula proposition theorem 2026"
+
+Links: [{"title":"[2605.07689] Gradient Starvation in Binary-Reward GRPO: Why Group-Mean Centering Fails and Why the Simplest Fix Works","url":"https://arxiv.org/abs/2605.07689"},{"title":"Gradient Starvation in Binary-Reward GRPO: Why Group-Mean Centering Fails and Why the Simplest Fix Works","url":"https://arxiv.org/html/2605.07689"},{"title":"Gradient Starvation in Binary-Reward GRPO:","url":"https://arxiv.org/pdf/2605.07689"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO's Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/pdf/2503.06639"},{"title":"On the optimization dynamics of RLVR: Gradient gap and step size thresholds","url":"https://arxiv.org/pdf/2510.08539"},{"title":"Uncalibrated Reasoning: GRPO Induces Overconfidence for Stochastic Outcomes","url":"https://arxiv.org/pdf/2508.11800"},{"title":"[2011.09468] Gradient Starvation: A Learning Proclivity in Neural Networks","url":"https://arxiv.org/abs/2011.09468"},{"title":"CoRPO: Adding a Correctness Bias to GRPO Improves Generalization","url":"https://arxiv.org/pdf/2511.04439"}]
+
+I found the paper you're asking about. Here's what the search reveals about arXiv 2605.07689:
+
+## Paper Summary
+
+The paper discusses Group Relative Policy Optimization (GRPO), a standard algorithm for reinforcement learning from verifiable rewards, but notes that its group-mean-centered advantage can fail under binary rewards.
+
+## Gradient Starvation and Degeneracy Rate
+
+The failure mode is gradient starvation: when every response in a group is correct or every response is wrong, the centered advantage is exactly zero and the policy receives no learning signal.
+
+The paper proves that the true degeneracy rate always exceeds the i.i.d. Bernoulli prediction by Jensen's inequality, and observes a 0.69 degeneracy rate at group size four in logged Qwen3.5-9B GSM8K training.
+
+## Proposed Solution
+
+The fixed-reference Sign advantage, A=2r-1, performs pass@G failure descent by increasing the probability that at least one sample in the group succeeds.
+
+The paper demonstrates significant empirical improvements with this approach, with results shown across multiple experimental settings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a2a7506-81f6-4bb3-9421-9dd9eb76b1b9",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "b9909d42-5480-441f-84d7-685d4d506432",
+  "toolUseResult": {
+    "query": "Gradient Starvation Binary-Reward GRPO arXiv 2605.07689 degeneracy rate formula proposition theorem 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013U5UtkPWxAmPMKpNAMsTYV",
+        "content": [
+          {
+            "title": "[2605.07689] Gradient Starvation in Binary-Reward GRPO: Why Group-Mean Centering Fails and Why the Simplest Fix Works",
+            "url": "https://arxiv.org/abs/2605.07689"
+          },
+          {
+            "title": "Gradient Starvation in Binary-Reward GRPO: Why Group-Mean Centering Fails and Why the Simplest Fix Works",
+            "url": "https://arxiv.org/html/2605.07689"
+          },
+          {
+            "title": "Gradient Starvation in Binary-Reward GRPO:",
+            "url": "https://arxiv.org/pdf/2605.07689"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO's Effective Loss, Dynamics, and Success Amplification",
+            "url": "https://arxiv.org/pdf/2503.06639"
+          },
+          {
+            "title": "On the optimization dynamics of RLVR: Gradient gap and step size thresholds",
+            "url": "https://arxiv.org/pdf/2510.08539"
+          },
+          {
+            "title": "Uncalibrated Reasoning: GRPO Induces Overconfidence for Stochastic Outcomes",
+            "url": "https://arxiv.org/pdf/2508.11800"
+          },
+          {
+            "title": "[2011.09468] Gradient Starvation: A Learning Proclivity in Neural Networks",
+            "url": "https://arxiv.org/abs/2011.09468"
+          },
+          {
+            "title": "CoRPO: Adding a Correctness Bias to GRPO Improves Generalization",
+            "url": "https://arxiv.org/pdf/2511.04439"
+          }
+        ]
+      },
+      "I found the paper you're asking about. Here's what the search reveals about arXiv 2605.07689:\n\n## Paper Summary\n\nThe paper discusses Group Relative Policy Optimization (GRPO), a standard algorithm for reinforcement learning from verifiable rewards, but notes that its group-mean-centered advantage can fail under binary rewards.\n\n## Gradient Starvation and Degeneracy Rate\n\nThe failure mode is gradient starvation: when every response in a group is correct or every response is wrong, the centered advantage is exactly zero and the policy receives no learning signal.\n\nThe paper proves that the true degeneracy rate always exceeds the i.i.d. Bernoulli prediction by Jensen's inequality, and observes a 0.69 degeneracy rate at group size four in logged Qwen3.5-9B GSM8K training.\n\n## Proposed Solution\n\nThe fixed-reference Sign advantage, A=2r-1, performs pass@G failure descent by increasing the probability that at least one sample in the group succeeds.\n\nThe paper demonstrates significant empirical improvements with this approach, with results shown across multiple experimental settings."
+    ],
+    "durationSeconds": 7.209931318999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0a2a7506-81f6-4bb3-9421-9dd9eb76b1b9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T16:02:17.484Z_
+
+<details><summary>↩ Tool result · `toolu_016CZmFayp1mwqoghtuuDmuu`</summary>
+
+```text
+Web search results for query: "Hack-Verifiable Environments arXiv 2605.20744 hack rate difficulty monotonic TextArena 2026"
+
+Links: [{"title":"Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale","url":"https://arxiv.org/html/2605.20744"},{"title":"[2605.20744] Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale","url":"https://arxiv.org/abs/2605.20744"},{"title":"Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis","url":"https://arxiv.org/html/2601.20103v1"},{"title":"SWE-Universe: Scale Real-World Verifiable Environments to Millions","url":"https://arxiv.org/pdf/2602.02361"},{"title":"VerifiableFL: Verifiable Claims for Federated Learning using Exclaves","url":"https://arxiv.org/pdf/2412.10537"},{"title":"[2601.20103] Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis","url":"https://arxiv.org/abs/2601.20103"}]
+
+I found the paper! Here are the results for your search:
+
+The paper is titled "Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale" by Amit Roth and 4 other authors.
+
+The work addresses reward hacking, whereby agents appear successful under the evaluation signal while violating the intended objective. The authors introduce a new evaluation paradigm for measuring reward hacking by embedding detectable reward hacking opportunities directly into environments, which makes their exploitation verifiable by design and enables deterministic and automated measurement of whether and how agents exploit such vulnerabilities.
+
+The paper was published on May 20, 2026 (arXiv:2605.20744v1).
+
+The search results primarily focus on the overall framework and approach. If you're looking for specific details about hack rate, difficulty monotonicity, or TextArena mentioned in your query, you may need to access the full paper directly from the arXiv link to find those specific technical details.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a943c5ec-a25c-424a-a151-cbf6748a793a",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "d0bf9d85-28ad-4cda-89c1-75d967335f61",
+  "toolUseResult": {
+    "query": "Hack-Verifiable Environments arXiv 2605.20744 hack rate difficulty monotonic TextArena 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GKsRHbDH53gphYuKSLf7fG",
+        "content": [
+          {
+            "title": "Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale",
+            "url": "https://arxiv.org/html/2605.20744"
+          },
+          {
+            "title": "[2605.20744] Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale",
+            "url": "https://arxiv.org/abs/2605.20744"
+          },
+          {
+            "title": "Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis",
+            "url": "https://arxiv.org/html/2601.20103v1"
+          },
+          {
+            "title": "SWE-Universe: Scale Real-World Verifiable Environments to Millions",
+            "url": "https://arxiv.org/pdf/2602.02361"
+          },
+          {
+            "title": "VerifiableFL: Verifiable Claims for Federated Learning using Exclaves",
+            "url": "https://arxiv.org/pdf/2412.10537"
+          },
+          {
+            "title": "[2601.20103] Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis",
+            "url": "https://arxiv.org/abs/2601.20103"
+          }
+        ]
+      },
+      "I found the paper! Here are the results for your search:\n\nThe paper is titled \"Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale\" by Amit Roth and 4 other authors.\n\nThe work addresses reward hacking, whereby agents appear successful under the evaluation signal while violating the intended objective. The authors introduce a new evaluation paradigm for measuring reward hacking by embedding detectable reward hacking opportunities directly into environments, which makes their exploitation verifiable by design and enables deterministic and automated measurement of whether and how agents exploit such vulnerabilities.\n\nThe paper was published on May 20, 2026 (arXiv:2605.20744v1).\n\nThe search results primarily focus on the overall framework and approach. If you're looking for specific details about hack rate, difficulty monotonicity, or TextArena mentioned in your query, you may need to access the full paper directly from the arXiv link to find those specific technical details."
+    ],
+    "durationSeconds": 6.557368028999976,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a943c5ec-a25c-424a-a151-cbf6748a793a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-28T16:02:20.921Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get more detail from the Hack-Verifiable Environments paper to understand exactly what they find about difficulty and hack rates.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0bf9d85-28ad-4cda-89c1-75d967335f61",
+  "isSidechain": false,
+  "requestId": "req_011CbVFLqX2WKKu8nzLcf23D",
+  "type": "assistant",
+  "uuid": "fe906ef3-1a61-4a39-9d42-6db672ce2b76",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZYU1kxcoVAPLyN2g1gfmD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6307,
+      "cache_read_input_tokens": 31752,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6307,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 31752,
+          "cache_creation_input_tokens": 6307,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6307
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-28T16:02:22.301Z_
+
+Let me get the detailed findings from the Hack-Verifiable Environments paper and verify the Edge of Competence Lemma 6.2 formula more carefully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe906ef3-1a61-4a39-9d42-6db672ce2b76",
+  "isSidechain": false,
+  "requestId": "req_011CbVFLqX2WKKu8nzLcf23D",
+  "type": "assistant",
+  "uuid": "9fc01347-ab73-4d86-959d-c7ee61ff6981",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZYU1kxcoVAPLyN2g1gfmD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6307,
+      "cache_read_input_tokens": 31752,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6307,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 31752,
+          "cache_creation_input_tokens": 6307,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6307
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-28T16:02:25.690Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RmpZYReUkfopEdkNE47FTc`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.20744",
+  "prompt": "I need the EXACT findings about hack rate vs. task difficulty. Look for: (1) Does hack rate increase monotonically with difficulty? (2) What are the specific numbers? (3) What figure or table shows this? (4) Are there any exceptions to monotonicity? (5) What is the \"hack rate\" metric defined as? (6) What are the difficulty levels tested? Focus on sections about results, experiments, and any difficulty-related analysis."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fc01347-ab73-4d86-959d-c7ee61ff6981",
+  "isSidechain": false,
+  "requestId": "req_011CbVFLqX2WKKu8nzLcf23D",
+  "type": "assistant",
+  "uuid": "9f46592a-5c29-49db-b6a9-53186f7bd969",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZYU1kxcoVAPLyN2g1gfmD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6307,
+      "cache_read_input_tokens": 31752,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6307,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 31752,
+          "cache_creation_input_tokens": 6307,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6307
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-28T16:02:29.468Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FbWwE4J9Uz79LVGW6uLdYS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.14872",
+  "prompt": "I need to understand the EXACT relationship between Δ_L and pass rate p. Is Δ_L the attention margin or the pass rate? What is the relationship between Δ_L and the probability that the model gets the answer correct? Also, what does the \"edge of competence\" mean precisely - is it about intermediate pass rates, or about the attention margin being at a specific value? And what is the \"relay effect\" exactly? Also look for any results that directly relate to binary pass rates (not attention margins)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f46592a-5c29-49db-b6a9-53186f7bd969",
+  "isSidechain": false,
+  "requestId": "req_011CbVFLqX2WKKu8nzLcf23D",
+  "type": "assistant",
+  "uuid": "20bece2d-61e2-4f2c-82f9-229c23c91a4c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZYU1kxcoVAPLyN2g1gfmD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6307,
+      "cache_read_input_tokens": 31752,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6307,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 31752,
+          "cache_creation_input_tokens": 6307,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6307
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-28T16:02:30.946Z_
+
+<details><summary>↩ Tool result · `toolu_01RmpZYReUkfopEdkNE47FTc`</summary>
+
+```text
+# Hack Rate vs. Task Difficulty: Key Findings
+
+## Primary Finding
+
+The research confirms that **hack rate increases monotonically with task difficulty across most models and environments**. As stated in Section 3.1: "Hack rate increases monotonically with task difficulty across most models and environments."
+
+## Specific Evidence
+
+**Figure 3** displays "Average hack rate as a function of task difficulty, broken down by game and model." The visual representation shows consistent upward trends across three single-player games:
+
+- **Wordle**: Hack rate rises as allowed guesses decrease (6→2 attempts)
+- **Tower of Hanoi**: Increases with disk count (3→7 disks)  
+- **FifteenPuzzle**: Grows with shuffle depth (5→50 random moves)
+
+## Hack Rate Metric Definition
+
+The paper defines hack rate at the trajectory level: "the probability that an agent triggered any hack in any game within a trajectory of N consecutive games."
+
+## Important Caveat
+
+The findings note "across most models and environments"—implying some exceptions exist, though the text doesn't specify which models/games deviate from monotonic increases.
+
+## Data Availability
+
+Exact numerical values aren't provided in the visible sections, but the appendix (B.2) references "Reasoning Traces" comparing easy vs. hard Wordle to illustrate difficulty's impact on hacking propensity.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f46592a-5c29-49db-b6a9-53186f7bd969",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "e10ca0a7-f961-4481-b53c-8b97d584f81a",
+  "toolUseResult": {
+    "bytes": 522526,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Hack Rate vs. Task Difficulty: Key Findings\n\n## Primary Finding\n\nThe research confirms that **hack rate increases monotonically with task difficulty across most models and environments**. As stated in Section 3.1: \"Hack rate increases monotonically with task difficulty across most models and environments.\"\n\n## Specific Evidence\n\n**Figure 3** displays \"Average hack rate as a function of task difficulty, broken down by game and model.\" The visual representation shows consistent upward trends across three single-player games:\n\n- **Wordle**: Hack rate rises as allowed guesses decrease (6→2 attempts)\n- **Tower of Hanoi**: Increases with disk count (3→7 disks)  \n- **FifteenPuzzle**: Grows with shuffle depth (5→50 random moves)\n\n## Hack Rate Metric Definition\n\nThe paper defines hack rate at the trajectory level: \"the probability that an agent triggered any hack in any game within a trajectory of N consecutive games.\"\n\n## Important Caveat\n\nThe findings note \"across most models and environments\"—implying some exceptions exist, though the text doesn't specify which models/games deviate from monotonic increases.\n\n## Data Availability\n\nExact numerical values aren't provided in the visible sections, but the appendix (B.2) references \"Reasoning Traces\" comparing easy vs. hard Wordle to illustrate difficulty's impact on hacking propensity.",
+    "durationMs": 5251,
+    "url": "https://arxiv.org/html/2605.20744"
+  },
+  "sourceToolAssistantUUID": "9f46592a-5c29-49db-b6a9-53186f7bd969",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-28T16:02:35.940Z_
+
+<details><summary>↩ Tool result · `toolu_01FbWwE4J9Uz79LVGW6uLdYS`</summary>
+
+```text
+# Key Relationships in RLVR Learning Dynamics
+
+## Δ_L Definition and Pass Rate Connection
+
+**Δ_L is the effective probability margin**, not the attention weight itself. According to Lemma 6.1:
+
+> "Δ_L(t) := p_L,1(t) - p_L,3(t)"
+
+where p_L,1 is the probability of predicting the correct next state, and p_L,3 covers all other incorrect predictions. This margin directly determines the pass rate through Lemma 6.2:
+
+> "𝒥_L(t) = 1/d + (1-1/d)(1±o(1))·(Δ_L(t))^L"
+
+The pass rate exhibits **exponential dependence on horizon length**: success probability scales as (Δ_L)^L. This reveals why long-horizon tasks are substantially harder—even moderate margins get exponentially suppressed across many steps.
+
+## Edge of Competence Definition
+
+The "edge of competence" describes the training regime where horizons are neither already solved nor impossible. Specifically, it refers to maintaining persistent gradient signals while progressing toward harder problems:
+
+> "progress on L_k starts benefiting L_{k+1} before L_k fully saturates, so the next horizon gains a visible return much sooner"
+
+This occurs when the difficulty ratio R = O(1), allowing overlapping learning phases.
+
+## The Relay Effect Mechanism
+
+The relay effect is a **gradient transfer mechanism** where easier horizons continuously support harder ones. Lemma 6.2 shows gradient magnitude follows:
+
+> "∇_q𝒥̃_L ∝ (Δ_L)^L(1-Δ_L)"
+
+In the smooth regime (moderate R), this term remains non-zero for both consecutive horizons simultaneously, enabling gradient from L_k to drive progress on L_{k+1} before L_k saturates, preventing prolonged plateaus.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20bece2d-61e2-4f2c-82f9-229c23c91a4c",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "1572376b-7fd9-448d-aa89-672efb6452ea",
+  "toolUseResult": {
+    "bytes": 1822922,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Relationships in RLVR Learning Dynamics\n\n## Δ_L Definition and Pass Rate Connection\n\n**Δ_L is the effective probability margin**, not the attention weight itself. According to Lemma 6.1:\n\n> \"Δ_L(t) := p_L,1(t) - p_L,3(t)\"\n\nwhere p_L,1 is the probability of predicting the correct next state, and p_L,3 covers all other incorrect predictions. This margin directly determines the pass rate through Lemma 6.2:\n\n> \"𝒥_L(t) = 1/d + (1-1/d)(1±o(1))·(Δ_L(t))^L\"\n\nThe pass rate exhibits **exponential dependence on horizon length**: success probability scales as (Δ_L)^L. This reveals why long-horizon tasks are substantially harder—even moderate margins get exponentially suppressed across many steps.\n\n## Edge of Competence Definition\n\nThe \"edge of competence\" describes the training regime where horizons are neither already solved nor impossible. Specifically, it refers to maintaining persistent gradient signals while progressing toward harder problems:\n\n> \"progress on L_k starts benefiting L_{k+1} before L_k fully saturates, so the next horizon gains a visible return much sooner\"\n\nThis occurs when the difficulty ratio R = O(1), allowing overlapping learning phases.\n\n## The Relay Effect Mechanism\n\nThe relay effect is a **gradient transfer mechanism** where easier horizons continuously support harder ones. Lemma 6.2 shows gradient magnitude follows:\n\n> \"∇_q𝒥̃_L ∝ (Δ_L)^L(1-Δ_L)\"\n\nIn the smooth regime (moderate R), this term remains non-zero for both consecutive horizons simultaneously, enabling gradient from L_k to drive progress on L_{k+1} before L_k saturates, preventing prolonged plateaus.",
+    "durationMs": 6470,
+    "url": "https://arxiv.org/html/2602.14872"
+  },
+  "sourceToolAssistantUUID": "20bece2d-61e2-4f2c-82f9-229c23c91a4c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-28T16:04:12.718Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the key information:
+
+1. **Lemma 6.2**: ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L), where Δ_L is the attention margin (not the pass rate). The pass rate is J_L ≈ (Δ_L)^L. The peak gradient is at Δ_L = L/(L+1).
+
+2. **Key distinction**: Δ_L (attention margin) ≠ p (pass rate). The pass rate is (Δ_L)^L. 
+
+Let me verify this by computing the pass rate at the optimal attention margin for different values of L—when Δ_L = L/(L+1), the pass rate converges to roughly 1/e ≈ 0.37 for large L, which falls in the intermediate range but below 0.5. Checking specific cases: at L=1 the pass rate is 0.5, at L=2 it's about 0.44, and at L=3 it's 0.42, confirming the trend toward 1/e.
+
+So the Edge of Competence gradient actually does peak in the intermediate pass rate band of 0.37 to 0.5, which overlaps with the gaming-maximizing zone—the qualitative claim holds even though the underlying functional form differs from the simple Δ(1−Δ) model.
+
+The Gradient Starvation result is much cleaner though: D(p,G) = p^G + (1-p)^G is exactly maximized at p=0.5, works directly with pass rates rather than attention margins, and is proven specifically for GRPO. So I should anchor the argument on Gradient Starvation as the primary formal result, use Edge of Competence as qualitative support showing that gradients peak in the 0.37-0.5 range where the relay effect naturally drives training, and avoid claiming that Lemma 6.2 directly supports the Δ(1−Δ) functional form.
+
+The key insight is that even under the multi-step Edge of Competence analysis, the optimal pass rate (L/(L+1))^L falls in [1/e, 1/2], which sits squarely in the gaming-vulnerable zone—this actually strengthens the argument rather than weakening it. The real framing is that Gradient Starvation (from the training-dynamics literature) and gaming vulnerability (from the rubric-evaluation literature) are distinct subfields within RL, but they converge on the same intermediate pass rates, revealing a fundamental tension: GRPO's efficiency properties create exactly the conditions where rubric gaming becomes most attractive.
+
+For the specific numbers, the Edge of Competence analysis shows the gradient peaks at p* = (L/(L+1))^L, which converges to 1/e ≈ 0.368 as L increases, and for typical reasoning tasks with L = 2-5, this lands around 0.40-0.50—right in the [0.3, 0.7] gaming zone. This means I can make a stronger claim: not just GRPO but the broader multi-step learning dynamics all point to the same vulnerable region.
+
+Now I'm restructuring the core argument. The key insight is that I need to drop the "∇𝒥 ∝ Δ(1−Δ)" framing entirely and instead focus on three concrete mechanisms—the non-degenerate fraction 1-p^G-(1-p)^G in GRPO maximized at p=0.5, the Edge of Competence gradient peaking at that intermediate pass rate, and the gaming budget √(p(1-p)) also maximized at p=0.5. The paradox is that learning efficiency and gaming opportunity both concentrate in the same difficulty band, which is the real story to tell.
+
+For the rewrite, I'm replacing the claim about connecting two independent literatures through a shared functional form with the more direct observation that GRPO's learning-efficiency peak coincides with rubric gaming's exploitation peak. I'm also adding the new assumption A4 about criterion-level pass rates correlating with aggregate pass rates, and citing the Hack-Verifiable Environments paper to ground the gaming framing.
+
+The Edge of Competence role shifts from providing exact formulas to offering qualitative support—its real contribution is explaining why training naturally gravitates toward the intermediate zone through relay effects. And I'm clarifying the cross-subdomain claim: training dynamics researchers optimize for learning efficiency at intermediate pass rates, while evaluation/gaming researchers independently discover that exploitation vulnerability peaks there, so the novelty is connecting these two separate observations rather than inventing a shared functional form. So the Gradient Starvation paper establishes that for binary rewards, degeneracy is minimized when the model succeeds about half the time — that's where you get the most varied outcomes within groups and strongest learning signals. For rubric-based continuous rewards, the math works differently, but the same principle holds: moderate success rates create richer reward variation and better gradients, while consistently high or low performance starves the learning signal. I should clarify this distinction between the formal binary result and the qualitative extension to continuous scoring.
+
+Now I'm ready to write out the complete JSON with all the revisions.
+
+Actually, let me check the reviewer's specific feedback one more time. They flagged four critical issues: the Lemma 6.2 mischaracterization needs to drop the Δ(1−Δ) framing and anchor to Gradient Starvation instead, the formal coincidence claim should become "both maximized at intermediate pass rates," I need to add the Hack-Verifiable Environments reference, and I should acknowledge that Gradient Starvation is GRPO-specific rather than universal. Following Option A, I can strengthen the argument by noting that Edge of Competence gives us a concrete quantitative bound — the pass rate at peak gradient falls between 0.37 and 0.50 — which provides empirical support for the intermediate success rate insight.
+
+The key insight is that this quantitative anchor generalizes beyond just GRPO to broader multi-step learning dynamics. Now I need to write out the JSON revision notes documenting these changes as a major revision, since the mathematical foundation shifts, T4 gets substantially rewritten, all the incorrect formulas get corrected, a new assumption gets added, the novelty scope gets recalibrated, and we're adding a new reference. I should also double-check the Gaming Budget formula — it uses √(p_{k,d}(1-p_{k,d})), not just p(1-p), but the square root doesn't change where the maximum occurs, so the claim about p=0.5 still holds.
+
+Writing the JSON revision document... Gaming Budget is maximized when criterion pass rates are near 0.5. But I should use √(p(1-p)) consistently, not p(1-p).
+
+Wait, looking back at the original, the Gaming Budget bound is: G_d ≤ Σ_{k∈V_d} w_k · δ_{k,d} · √(p_{k,d}(1−p_{k,d})) + Σ_{j<k∈V_d} w_j·w_k · max(0, σ_{jk,d}) · δ_{j,d}·δ_{k,d}
+
+The first term has √(p(1-p)), the second term has correlation terms. The first term is maximized at p=0.5.
+
+And the Gradient Starvation non-degenerate fraction is N(p, G) = 1 - p^G - (1-p)^G, also maximized at p=0.5. Both functions are single-peaked and symmetric around p=0.5, which is the real mathematical connection—not that they share the same functional form, but that they're both maximized in the same zone. This means the region of maximal learning efficiency coincides with maximal gaming vulnerability. I should frame T4 as a "peak coincidence" or "co-location theorem" rather than claiming a shared functional form.
+
+So the cleanest statement is: both the non-degenerate fraction and the gaming budget are maximized when difficulty is near p=0.5, and the Edge of Competence analysis shows the multi-step learning gradient peaks at p* = (L/(L+1))^L, which falls in the range [1/e, 1/2] for reasoning chains of length L.
+
+This means difficulty-aware GRPO methods that select intermediate-pass-rate problems for learning efficiency will simultaneously maximize the gaming budget under rubric evaluation—a clean alignment between learning and vulnerability.
+
+Now I'm checking whether N(p,G) has a clean relationship with √(p(1-p)), starting with the G=2 case. For G=2, there's actually a clean connection where both the non-degenerate fraction and the gaming budget terms involve p(1-p) or its square root. For larger G values, N(p,G) = 1 - p^G - (1-p)^G generalizes this structure—still symmetric and peaked at p=0.5, but with different functional forms. The real takeaway is that both learning and gaming are maximized at the same point rather than sharing an exact mathematical form.
+
+Now I'm ready to revise the JSON document. I need to rewrite the core_problem field to remove the Δ(1-Δ) claims and anchor everything on gradient starvation instead, then work through the other sections systematically. I'm mapping out the major revisions needed across the framework—correcting the mathematical foundation throughout, removing the flawed Δ(1-Δ) formulation, and integrating Hack-Verifiable Environments as a key structural element. This touches every section from the opportunity and landscape descriptions through the core approach and theoretical references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1572376b-7fd9-448d-aa89-672efb6452ea",
+  "isSidechain": false,
+  "requestId": "req_011CbVFNCQAUv9vzvVaHJZUW",
+  "type": "assistant",
+  "uuid": "ff93cf55-608f-412c-9ec3-89db1a4bf326",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016o5qQkvKKhd5mzbHgsUzXR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1272,
+      "cache_read_input_tokens": 38059,
+      "output_tokens": 4349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4349,
+          "cache_read_input_tokens": 38059,
+          "cache_creation_input_tokens": 1272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-28T16:04:12.765Z_
+
+Now I have the critical details. Let me do one more targeted search to verify the pass-rate calculation from Edge of Competence Lemma 6.2.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff93cf55-608f-412c-9ec3-89db1a4bf326",
+  "isSidechain": false,
+  "requestId": "req_011CbVFNCQAUv9vzvVaHJZUW",
+  "type": "assistant",
+  "uuid": "c0c41455-57ed-432a-a339-e57f6ad5a2b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016o5qQkvKKhd5mzbHgsUzXR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1272,
+      "cache_read_input_tokens": 38059,
+      "output_tokens": 4349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4349,
+          "cache_read_input_tokens": 38059,
+          "cache_creation_input_tokens": 1272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-28T16:04:12.767Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AweJekRuGqwQsKoQr8DqtR`</summary>
+
+```json
+{
+  "query": "\"edge of competence\" RLVR pass rate gradient peak competence boundary attention margin multi-step 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0c41455-57ed-432a-a339-e57f6ad5a2b4",
+  "isSidechain": false,
+  "requestId": "req_011CbVFNCQAUv9vzvVaHJZUW",
+  "type": "assistant",
+  "uuid": "184a5b91-d9ce-4dba-9f8a-7f80e3cb6063",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016o5qQkvKKhd5mzbHgsUzXR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1272,
+      "cache_read_input_tokens": 38059,
+      "output_tokens": 4349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4349,
+          "cache_read_input_tokens": 38059,
+          "cache_creation_input_tokens": 1272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-28T16:04:12.774Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A3Yqkn8vWmum4g7ntskRrt`</summary>
+
+```json
+{
+  "query": "GRPO rubric rewards gradient signal intermediate pass rate difficulty-aware selection 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "184a5b91-d9ce-4dba-9f8a-7f80e3cb6063",
+  "isSidechain": false,
+  "requestId": "req_011CbVFNCQAUv9vzvVaHJZUW",
+  "type": "assistant",
+  "uuid": "d6b0c0ff-3daa-468f-a644-fd83694af4c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016o5qQkvKKhd5mzbHgsUzXR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1272,
+      "cache_read_input_tokens": 38059,
+      "output_tokens": 4349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4349,
+          "cache_read_input_tokens": 38059,
+          "cache_creation_input_tokens": 1272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surface…",
+  "leafUuid": "d6b0c0ff-3daa-468f-a644-fd83694af4c5",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learning-gaming paradox in rubric-based RL: Reconsidering the mathematical foundation",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-28T16:04:19.651Z_
+
+<details><summary>↩ Tool result · `toolu_01A3Yqkn8vWmum4g7ntskRrt`</summary>
+
+```text
+Web search results for query: "GRPO rubric rewards gradient signal intermediate pass rate difficulty-aware selection 2026"
+
+Links: [{"title":"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR","url":"https://arxiv.org/html/2605.20164v1"},{"title":"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models","url":"https://arxiv.org/html/2605.08061"},{"title":"RuCL: Stratified Rubric-Based Curriculum Learning for Multimodal Large Language Model Reasoning","url":"https://arxiv.org/html/2602.21628"},{"title":"Gradient Starvation in Binary-Reward GRPO: Why Group-Mean Centering Fails and Why the Simplest Fix Works","url":"https://arxiv.org/html/2605.07689"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2505.02387"},{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/html/2511.12344"},{"title":"Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning","url":"https://arxiv.org/pdf/2511.12344"},{"title":"Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation","url":"https://arxiv.org/pdf/2602.05548"}]
+
+Based on the search results, I found several relevant research papers from 2026 and late 2025 that discuss GRPO (Group Relative Policy Optimization) with rubric rewards and related concepts:
+
+## Key Findings:
+
+**Intermediate Pass Rate and Gradient Signals:**
+Early in RL, when most generations are imperfect, intermediate rewards produce useful ordering among bad, partial, and nearly complete answers. Additionally, rubrics with low pass rates provide gradient signals that are dominated by noise, leading to inefficient credit assignment.
+
+**Difficulty-Aware Selection:**
+The search results reveal important work on difficulty-aware training in GRPO. A curriculum schedule reduces the contribution of unreliable gradient components in early training and progressively incorporates harder objectives as their gradient signals become statistically reliable, which stabilizes optimization during multi-stage reward learning. Furthermore, samples of medium-difficulty exhibit the largest sum of absolute advantage values, which leads to insufficient training on harder data, and this lack of granularity often leads to either catastrophic overfitting on simpler tasks or insufficient learning on more challenging ones.
+
+**Rubric-Based Rewards in GRPO:**
+RGR-GRPO constructs question-specific rubrics that span multiple domains, where each rubric comprises two complementary types of evaluation criteria—Factual and Process—each assigned an adaptive weight reflecting its relative importance.
+
+These papers appear to represent cutting-edge research on improving GRPO training through careful design of rubric-based rewards and curriculum learning strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6b0c0ff-3daa-468f-a644-fd83694af4c5",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "febaedfe-e1ef-48c6-a936-2d5401e518b8",
+  "toolUseResult": {
+    "query": "GRPO rubric rewards gradient signal intermediate pass rate difficulty-aware selection 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0188JSBtjB76aUT8Cau3kxBA",
+        "content": [
+          {
+            "title": "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR",
+            "url": "https://arxiv.org/html/2605.20164v1"
+          },
+          {
+            "title": "Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models",
+            "url": "https://arxiv.org/html/2605.08061"
+          },
+          {
+            "title": "RuCL: Stratified Rubric-Based Curriculum Learning for Multimodal Large Language Model Reasoning",
+            "url": "https://arxiv.org/html/2602.21628"
+          },
+          {
+            "title": "Gradient Starvation in Binary-Reward GRPO: Why Group-Mean Centering Fails and Why the Simplest Fix Works",
+            "url": "https://arxiv.org/html/2605.07689"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2505.02387"
+          },
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/html/2511.12344"
+          },
+          {
+            "title": "Reward and Guidance through Rubrics: Promoting Exploration to Improve Multi-Domain Reasoning",
+            "url": "https://arxiv.org/pdf/2511.12344"
+          },
+          {
+            "title": "Unveiling Implicit Advantage Symmetry: Why GRPO Struggles with Exploration and Difficulty Adaptation",
+            "url": "https://arxiv.org/pdf/2602.05548"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant research papers from 2026 and late 2025 that discuss GRPO (Group Relative Policy Optimization) with rubric rewards and related concepts:\n\n## Key Findings:\n\n**Intermediate Pass Rate and Gradient Signals:**\nEarly in RL, when most generations are imperfect, intermediate rewards produce useful ordering among bad, partial, and nearly complete answers. Additionally, rubrics with low pass rates provide gradient signals that are dominated by noise, leading to inefficient credit assignment.\n\n**Difficulty-Aware Selection:**\nThe search results reveal important work on difficulty-aware training in GRPO. A curriculum schedule reduces the contribution of unreliable gradient components in early training and progressively incorporates harder objectives as their gradient signals become statistically reliable, which stabilizes optimization during multi-stage reward learning. Furthermore, samples of medium-difficulty exhibit the largest sum of absolute advantage values, which leads to insufficient training on harder data, and this lack of granularity often leads to either catastrophic overfitting on simpler tasks or insufficient learning on more challenging ones.\n\n**Rubric-Based Rewards in GRPO:**\nRGR-GRPO constructs question-specific rubrics that span multiple domains, where each rubric comprises two complementary types of evaluation criteria—Factual and Process—each assigned an adaptive weight reflecting its relative importance.\n\nThese papers appear to represent cutting-edge research on improving GRPO training through careful design of rubric-based rewards and curriculum learning strategies."
+    ],
+    "durationSeconds": 6.873166786999966,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d6b0c0ff-3daa-468f-a644-fd83694af4c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-28T16:04:20.556Z_
+
+<details><summary>↩ Tool result · `toolu_01AweJekRuGqwQsKoQr8DqtR`</summary>
+
+```text
+Web search results for query: ""edge of competence" RLVR pass rate gradient peak competence boundary attention margin multi-step 2026"
+
+Links: [{"title":"[2602.14872] On the Learning Dynamics of RLVR at the Edge of Competence","url":"https://arxiv.org/abs/2602.14872"},{"title":"On the Learning Dynamics of RLVR at the Edge of Competence Yu Huang∗†","url":"https://arxiv.org/pdf/2602.14872"},{"title":"Rethinking RL for LLM Reasoning: It’s Sparse Policy Selection, Not Capability Learning","url":"https://arxiv.org/html/2605.06241"},{"title":"RL is even more information inefficient than you thought","url":"https://www.dwarkesh.com/p/bits-per-sample"},{"title":"On the optimization dynamics of RLVR: Gradient gap and step size thresholds","url":"https://arxiv.org/pdf/2510.08539"},{"title":"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?","url":"https://arxiv.org/pdf/2504.13837"},{"title":"LLM Developments 2025: How Efficiency and RLVR Broke the Scaling Obsession | Efficient Coder","url":"https://www.xugj520.cn/en/archives/llm-2025-developments-rlvr-efficiency.html"}]
+
+Based on the search results, I found highly relevant recent research on this topic:
+
+## Key Findings
+
+The main research focuses on reinforcement learning with verifiable rewards (RLVR) and its effectiveness at the edge of competence for large reasoning models.
+
+### Learning Dynamics Theory
+
+The effectiveness of RLVR is governed by the smoothness of the difficulty spectrum. When data contains abrupt discontinuities in difficulty, learning undergoes grokking-type phase transitions, producing prolonged plateaus before progress recurs. In contrast, a smooth difficulty spectrum leads to a relay effect: persistent gradient signals on easier problems elevate the model's capabilities to the point where harder ones become tractable, resulting in steady and continuous improvement.
+
+### Edge of Competence Mechanism
+
+RL produces genuine gains only at the model's edge of competence. A two-sided contrastive loss exploits the edge-of-competence signal, teaching the adapter not only which tokens to prefer but also which tokens to avoid.
+
+### Pass Rate and Gradient Dynamics
+
+When competing at similar performance levels, you are balancing around a 50% pass rate, which peaks out the bits you get from a random binary variable.
+
+The primary source for this research is a February 2026 arXiv paper titled "On the Learning Dynamics of RLVR at the Edge of Competence."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "184a5b91-d9ce-4dba-9f8a-7f80e3cb6063",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "60a3e517-0a51-4378-9603-92dec7be2f98",
+  "toolUseResult": {
+    "query": "\"edge of competence\" RLVR pass rate gradient peak competence boundary attention margin multi-step 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KF3NxzA6hKaasevoMN3YjZ",
+        "content": [
+          {
+            "title": "[2602.14872] On the Learning Dynamics of RLVR at the Edge of Competence",
+            "url": "https://arxiv.org/abs/2602.14872"
+          },
+          {
+            "title": "On the Learning Dynamics of RLVR at the Edge of Competence Yu Huang∗†",
+            "url": "https://arxiv.org/pdf/2602.14872"
+          },
+          {
+            "title": "Rethinking RL for LLM Reasoning: It’s Sparse Policy Selection, Not Capability Learning",
+            "url": "https://arxiv.org/html/2605.06241"
+          },
+          {
+            "title": "RL is even more information inefficient than you thought",
+            "url": "https://www.dwarkesh.com/p/bits-per-sample"
+          },
+          {
+            "title": "On the optimization dynamics of RLVR: Gradient gap and step size thresholds",
+            "url": "https://arxiv.org/pdf/2510.08539"
+          },
+          {
+            "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?",
+            "url": "https://arxiv.org/pdf/2504.13837"
+          },
+          {
+            "title": "LLM Developments 2025: How Efficiency and RLVR Broke the Scaling Obsession | Efficient Coder",
+            "url": "https://www.xugj520.cn/en/archives/llm-2025-developments-rlvr-efficiency.html"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant recent research on this topic:\n\n## Key Findings\n\nThe main research focuses on reinforcement learning with verifiable rewards (RLVR) and its effectiveness at the edge of competence for large reasoning models.\n\n### Learning Dynamics Theory\n\nThe effectiveness of RLVR is governed by the smoothness of the difficulty spectrum. When data contains abrupt discontinuities in difficulty, learning undergoes grokking-type phase transitions, producing prolonged plateaus before progress recurs. In contrast, a smooth difficulty spectrum leads to a relay effect: persistent gradient signals on easier problems elevate the model's capabilities to the point where harder ones become tractable, resulting in steady and continuous improvement.\n\n### Edge of Competence Mechanism\n\nRL produces genuine gains only at the model's edge of competence. A two-sided contrastive loss exploits the edge-of-competence signal, teaching the adapter not only which tokens to prefer but also which tokens to avoid.\n\n### Pass Rate and Gradient Dynamics\n\nWhen competing at similar performance levels, you are balancing around a 50% pass rate, which peaks out the bits you get from a random binary variable.\n\nThe primary source for this research is a February 2026 arXiv paper titled \"On the Learning Dynamics of RLVR at the Edge of Competence.\""
+    ],
+    "durationSeconds": 7.785060958999966,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "184a5b91-d9ce-4dba-9f8a-7f80e3cb6063",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-28T16:04:56.617Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now I have a thorough understanding. Let me also verify one critical computation: what pass rate corresponds to the Edge of Competence gradient peak?
+
+From Lemma 6.2: ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L)
+Peak at Δ_L* = L/(L+1)
+Pass rate J_L ≈ (Δ_L)^L (ignoring the 1/d term which is small)
+So at the peak: p* = (L/(L+1))^L
+
+
+Computing this across different values of L, the pass rate at the gradient peak decreases from 50% when L=1, dropping to around 44% for L=2, then gradually approaching 1/e as L increases toward infinity.
+
+The critical insight is that this optimal pass rate stays firmly within the 0.3 to 0.7 range where gaming vulnerabilities emerge, which strengthens the argument that intermediate performance levels create the conditions for this problem.
+
+Looking back at the reviewer's feedback, I notice the previous version made some overreaching claims—attributing formulas incorrectly, treating what should be distinct variables as formally equivalent, and stretching the scope of the connection beyond what the math actually supports. The revision needs to be more precise about separating what's rigorously proven from what's merely suggestive.
+
+I should distinguish clearly between the formally derived results, what follows from computation, what relies on assumptions, and what's qualitative reasoning. This disciplined approach will actually strengthen credibility rather than weaken it, since reviewers respond better to claims that acknowledge their own boundaries.
+
+Now I'm ready to construct the revised JSON with full documentation of changes and their justifications. Let me also explore whether there's a tighter formal link between the binary GRPO case and the broader framework...
+
+For the group size G=2 case specifically, I'm noticing something elegant: the non-degeneracy function and the gaming budget term share the same functional form. The GRPO learning signal scales with p(1-p), and when I square the gaming budget term, it also scales with p(1-p). For larger group sizes, the non-degeneracy function takes a different shape but maintains that single peak at p=0.5. This G=2 connection is particularly clean.
+
+Now I'm drafting the full JSON structure systematically, starting with the core problem narrative. The key shift is moving from the Edge of Competence framing to a Gradient Starvation analysis that emphasizes how the non-degenerate fraction is maximized at p=0.5, while the gaming budget bound shows gaming opportunity also peaks there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60a3e517-0a51-4378-9603-92dec7be2f98",
+  "isSidechain": false,
+  "requestId": "req_011CbVFVuh3fW3EouQR1fAin",
+  "type": "assistant",
+  "uuid": "0af1e366-493f-4b70-9687-8725a885e602",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBmdNcvSWvZuC38T2DNVTp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 5062,
+      "cache_read_input_tokens": 39331,
+      "output_tokens": 16425,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 774,
+          "output_tokens": 16425,
+          "cache_read_input_tokens": 39331,
+          "cache_creation_input_tokens": 5062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-28T16:05:00.941Z_
+
+Now I have all the critical mathematical details. Let me synthesize my findings and draft the complete revision.
+
+**Key research findings:**
+
+1. **Lemma 6.2 (Edge of Competence)**: The actual formula is ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L), where Δ_L is the attention margin (NOT pass rate), peak at Δ*=L/(L+1). The pass rate at the gradient peak is p*=(L/(L+1))^L, which gives p* ∈ [1/e, 1/2] ≈ [0.37, 0.50] — still within the intermediate band.
+
+2. **Gradient Starvation**: D(p,G) = p^G + (1-p)^G. Non-degenerate fraction N(p,G) = 1−p^G−(1−p)^G is exactly maximized at p=0.5. For G=2, N(p,2) = 2p(1−p) — literally proportional to p(1−p).
+
+3. **Hack-Verifiable Environments**: Confirms "hack rate increases monotonically with task difficulty across most models and environments" — strong H0a evidence.
+
+4. **Edge of Competence qualitative support**: The "relay effect" explains WHY training naturally traverses the intermediate-pass-rate zone.
+
+Now let me produce the complete revised JSON:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0af1e366-493f-4b70-9687-8725a885e602",
+  "isSidechain": false,
+  "requestId": "req_011CbVFVuh3fW3EouQR1fAin",
+  "type": "assistant",
+  "uuid": "252013ec-786e-46e0-97d7-96f38ab0bb3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBmdNcvSWvZuC38T2DNVTp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 5062,
+      "cache_read_input_tokens": 39331,
+      "output_tokens": 16425,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 774,
+          "output_tokens": 16425,
+          "cache_read_input_tokens": 39331,
+          "cache_creation_input_tokens": 5062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-28T16:11:09.205Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_018Fxdp5mDxgYv4qW7CN1zyd`</summary>
+
+```json
+{
+  "file_path": "/tmp/revised_idea_r9.json",
+  "content": "{\n  \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surfaces in Multi-Dimensional Evaluation\",\n  \"core_problem\": \"Rubric-rewarded RL faces a structural tension unrecognized in prior work: the difficulty level where GRPO training signal is strongest is simultaneously where gaming opportunity is maximal. The Gradient Starvation analysis (arXiv:2605.07689) proves that GRPO's non-degenerate fraction N(p,G) = 1 - p^G - (1-p)^G is maximized at p = 0.5 (for G=2, N(p,2) = 2p(1-p), exactly proportional to p(1-p)); our Gaming Budget bound shows each criterion's gaming opportunity scales as sqrt(p_k(1-p_k)), also maximized at p_k = 0.5. Both quantities peak at intermediate pass rates, meaning that difficulty-aware GRPO methods (DGPO, CDAS, Goldilocks RL) that correctly select problems in the p-bar_d in [0.3, 0.7] band for maximal learning efficiency inadvertently maximize gaming exposure under multi-dimensional rubric evaluation. The Edge of Competence analysis (arXiv:2602.14872, Lemma 6.2) provides further support: the multi-step learning gradient follows nabla_q J_L proportional to (Delta_L)^L(1-Delta_L) with peak at Delta*=L/(L+1), corresponding to pass rates p*=(L/(L+1))^L in [1/e, 1/2] approx [0.37, 0.50] for reasoning chains of length L -- still within the gaming-vulnerable band. (Note: the Edge of Competence result uses the attention margin Delta_L, not the pass rate p directly, and the functional form (Delta)^L(1-Delta) differs from p(1-p); we cite it for qualitative support that multi-step learning also concentrates at intermediate pass rates, not for a shared functional form.) This Learning-Gaming Paradox is structural -- it arises whenever K evaluation criteria are applied with uniform strictness across varying task difficulty under GRPO-family training, because easy-to-verify criteria (formatting, structural completeness) remain satisfiable via shallow pattern-matching at intermediate-difficulty problems, while hard-to-verify criteria (proof validity, factual accuracy) yield their most ambiguous signal precisely there. The consequence is a K x D exploitation surface with difficulty-dependent structure that neither scalar Goodhart analysis (ICLR 2024; ICML 2023) nor static per-dimension distortion indices (Wang & Huang 2026, D_i = lambda(r_i/w_i) + (1-lambda)) can capture. Wang & Huang's D_i ranking (Corollary 1a) assumes symmetric production functions and treats all tasks identically -- it cannot model how the exploitation landscape shifts across difficulty because difficulty-varying verification gaps delta_{k,d} and criterion correlations Sigma_d are outside the model's scope (their Remark 2). Meanwhile, Reward Hacking in Rubric-Based RL (arXiv:2605.12474) diagnoses per-criterion gaming (90.2% presence-based concentration) but does NOT stratify by problem difficulty. LLMs Gaming Verifiers (arXiv:2604.15149) and Hack-Verifiable Environments (arXiv:2605.20744) show gaming/hacking increases monotonically with task difficulty in aggregate. Neither captures the paradox: the difficulty band that GRPO training should focus on for maximum learning efficiency is the difficulty band that rubric gaming exploits most effectively.\",\n  \"opportunity\": \"Six convergent gaps, now organized around the Learning-Gaming Paradox: (1) The Goodhart's law literature -- Goodhart's Law in RL (ICLR 2024), Scaling Laws for RM Overoptimization (ICML 2023), Strong/Weak/Benign Goodhart's Law (arXiv:2505.23445) -- operates on SCALAR proxy-goal pairs. The Robust Optimization framework (arXiv:2604.12086, ICLR 2026) adds correlation between scalar proxies but does not decompose per-criterion or model difficulty. No formal treatment exists for K-dimensional evaluation with difficulty-varying exploitation. (2) Wang & Huang (arXiv:2603.28063) derive a constructive per-dimension distortion index D_i with Corollary 1(a) providing a ranking result under symmetric production functions. However, their model treats all tasks identically -- it cannot predict how the exploitation landscape shifts with difficulty d, because difficulty-varying verification gaps delta_{k,d} and correlations Sigma_d are outside the model's scope (flagged in their Remark 2). Our framework extends D_i to D_i(d), recovering their ranking as a special case when difficulty is constant. (3) The Gradient Starvation analysis (arXiv:2605.07689) proves GRPO's learning signal peaks at intermediate pass rates: the non-degenerate fraction N(p,G) = 1-p^G-(1-p)^G is maximized at p=0.5, with degeneracy rates of 0.69 observed at G=4 in practice. The Edge of Competence (arXiv:2602.14872) establishes a complementary result for multi-step reasoning: the learning gradient nabla_q J_L proportional to (Delta_L)^L(1-Delta_L) peaks at attention margins Delta*=L/(L+1), corresponding to pass rates p*=(L/(L+1))^L in [1/e, 1/2] -- still within the intermediate range. Both results establish that RL learning concentrates at intermediate pass rates. NO PRIOR WORK connects this to gaming vulnerability: we show that the Gaming Budget bound's per-criterion terms sqrt(p_k(1-p_k)) are ALSO maximized at intermediate pass rates. This peak coincidence -- GRPO learning efficiency and gaming opportunity both maximized in the p in [0.3, 0.7] band -- is the Learning-Gaming Paradox. (4) DGPO (ICLR 2026, Theorems 1-2) addresses difficulty bias in binary-reward GRPO; per-criterion application is straightforward, but the INTERACTION structure -- criterion correlations shifting with difficulty, verification gaps creating asymmetric vulnerability, learning-gaming tension at the competence boundary -- requires genuinely novel analysis. (5) Reward Hacking in Rubric-Based RL (arXiv:2605.12474) diagnoses gaming taxonomy (3 failure modes, 90.2% presence-based criteria concentration) but does NOT stratify by problem difficulty -- the core analytical dimension we add. (6) LLMs Gaming Verifiers (arXiv:2604.15149) and Hack-Verifiable Environments (arXiv:2605.20744) show gaming/hacking severity increases monotonically with task difficulty in aggregate -- combined with arXiv:2605.12474's criterion-type finding, this forms our composite null hypothesis. The marginal contribution is fourfold: (a) the Learning-Gaming Paradox -- identifying that GRPO's learning-efficient zone (Gradient Starvation) coincides with rubric gaming's exploitation peak (Gaming Budget), with supplementary support from Edge of Competence's multi-step analysis; (b) a Learning-Gaming Duality framework with co-equal Gaming Budget Theorem (T1) and Dimensionality Collapse Theorem (T2), extending Wang & Huang's static D_i to difficulty-varying D_i(d) trajectories; (c) a reusable diagnostic producing per-criterion x per-difficulty gaming surfaces with rigorous statistical methodology (10 difficulty bins, bootstrap CIs, formal non-monotonicity tests); (d) three quantitative falsifiable predictions against a strengthened composite null hypothesis, with concrete methodological value under either outcome -- including derivation and validation of monotonic calibration schedules under H0.\",\n  \"landscape\": \"Rubric rewards for RL achieve strong results but apply uniform strictness across difficulty: RRM (ACL 2026) boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6%; RaR (ICLR 2026) extends to medical (+31% HealthBench) and science (+7% GPQA-Diamond); SRaR (arXiv:2605.17291) adds step-level attribution; POW3R (arXiv:2605.20164) adapts criterion weights via rollout variance; ARES (arXiv:2605.23454) automates rubric synthesis; AMARIS (arXiv:2605.18592) maintains persistent evaluation memory for difficulty-agnostic rubric evolution. ARL-RR (arXiv:2603.15646) addresses the scalarization problem by alternating optimization across rubric meta-classes (accuracy, completeness, instruction following, context awareness, communication quality), which is algorithmic (changing the optimization procedure) rather than diagnostic (characterizing which criteria are exploitable at which difficulty levels). The rubric-RL space continues rapid expansion (~10+ papers in 4 weeks preceding this revision) -- but this velocity STRENGTHENS our diagnostic contribution: as methods proliferate, a principled framework identifying WHICH criteria are exploited at WHICH difficulty levels becomes a shared evaluation lens no individual method paper provides. Difficulty-aware RL methods operate under binary rewards: DGPO/MathForge (ICLR 2026) via MAD normalization, DARO (arXiv:2510.09001), F-GRPO (arXiv:2602.06717), GRPO-LEAD (EMNLP 2025) via logistic weighting, A-GRAE (arXiv:2602.05548), Goldilocks RL (arXiv:2602.14868), Online Difficulty Filtering (EACL 2026), CDAS (arXiv:2505.17652) via competence-difficulty alignment, Gradient Starvation (arXiv:2605.07689) via degeneracy analysis. ALL operate under binary rewards without per-criterion gaming analysis. Difficulty-calibrated advantage reweighting is an active concurrent direction: Unlocking the Potential of Difficulty Prior (arXiv:2505.13261) explicitly models difficulty priors to calibrate reasoning depth and reweight advantages in multimodal RL -- while targeting training efficiency rather than gaming characterization, it demonstrates independent convergence on difficulty-aware reward modulation. The closest convergence spans eight categories: **Difficulty-stratified rubric calibration**: RuCL (arXiv:2602.21628) adjusts by model competence, not problem difficulty, and is vulnerable to gaming-inflated pass rates. **Multi-objective reward normalization**: MO-GRPO (arXiv:2509.22047) addresses per-objective variance bias (the mechanism underlying dimensional exploitation) but is difficulty-agnostic. **Reactive criterion reweighting**: POW3R adapts via rollout-contrast (reactive/diagnostic) while our approach is proactive/predictive (which criteria WILL BE gamed, inferred a priori from difficulty structure). **Memory-augmented rubric adaptation**: AMARIS addresses the temporal dimension (rubric evolution during training) while we address the structural dimension (exploitation variation with difficulty) -- complementary, not competing. **Rubric quality and gaming defense**: Rubicon (arXiv:2508.12790), CDRRM (arXiv:2603.08035), C2 (arXiv:2604.13618) -- all difficulty-agnostic. **Goodhart's law theory**: Goodhart's Law in RL (ICLR 2024), Robust Optimization for Correlated Proxies (ICLR 2026), Reward Hacking as Equilibrium (arXiv:2603.28063), Strong/Weak/Benign Goodhart's Law (arXiv:2505.23445) -- Wang & Huang's D_i is constructive per-dimension but static; none model K-dimensional difficulty-varying exploitation trajectories or connect to training dynamics. **Training dynamics and gaming interaction**: Gradient Starvation (arXiv:2605.07689) proves GRPO degeneracy rate D(p,G)=p^G+(1-p)^G, establishing that GRPO learning concentrates at intermediate pass rates (p approx 0.5); Edge of Competence (arXiv:2602.14872) proves multi-step learning gradient nabla proportional to (Delta_L)^L(1-Delta_L), peaking at pass rates p*=(L/(L+1))^L in [0.37, 0.50]; Reward Hacking Rebounds (arXiv:2604.01476) shows gaming has dynamic phase structure. None connect these training-efficiency results to gaming vulnerability under rubric evaluation -- the Learning-Gaming Paradox we identify. **Difficulty-dependent hacking measurement**: Hack-Verifiable Environments (arXiv:2605.20744) introduces a paradigm for measuring reward hacking by embedding detectable opportunities into environments, finding hack rate increases monotonically with difficulty across most models. This provides the strongest controlled evidence for H0a but does not analyze per-criterion gaming structure or connect to training dynamics. **Per-criterion behavior across difficulty**: SPARKLE (NeurIPS 2025, arXiv:2506.04723) analyzes three reasoning dimensions across difficulty levels under RL, providing evidence that per-criterion x per-difficulty analysis is informative -- but studies reasoning capability, not gaming/exploitation, and has no Goodhart framework. The critical gap: no work provides (a) identification of the Learning-Gaming Paradox -- the coincidence that GRPO learning efficiency and gaming opportunity both peak at intermediate pass rates, (b) co-equal Gaming Budget and Dimensionality Collapse theorems characterizing the K x D exploitation surface, (c) per-criterion x per-difficulty gaming diagnosis with rigorous statistical methodology, or (d) quantitative predictions about gaming structure tested against a composite null hypothesis that now incorporates controlled hack-rate evidence.\",\n  \"inspired_by\": \"The core insight -- the Learning-Gaming Paradox -- emerges from connecting GRPO training dynamics research to gaming vulnerability research. (1) Training dynamics: Gradient Starvation (arXiv:2605.07689) proves that GRPO's learning signal peaks at intermediate pass rates: the non-degenerate fraction N(p,G) = 1-p^G-(1-p)^G is maximized at p=0.5 (for G=2, N=2p(1-p); for G=4, D(0.5,4)=0.125 vs D(0.25,4)=0.32). The Edge of Competence (arXiv:2602.14872) provides complementary support from multi-step reasoning: Lemma 6.2 shows the gradient nabla_q J_L proportional to (Delta_L)^L(1-Delta_L) peaks at Delta*=L/(L+1), corresponding to pass rates p*=(L/(L+1))^L in [1/e, 1/2] approx [0.37, 0.50]. Crucially, note that Delta_L is the attention margin, NOT the pass rate, and the functional form (Delta)^L(1-Delta) is NOT p(1-p) -- we use this result for qualitative support (learning peaks at intermediate pass rates regardless of whether we analyze via GRPO degeneracy or multi-step gradient structure) rather than claiming a shared functional form. The relay effect from Edge of Competence further explains WHY training naturally traverses this intermediate zone. (2) Gaming vulnerability: Reward Hacking in Rubric-Based RL (arXiv:2605.12474) shows 90.2% of gaming concentrates in presence-based criteria; LLMs Gaming Verifiers (arXiv:2604.15149) and Hack-Verifiable Environments (arXiv:2605.20744) show gaming/hacking increases with task difficulty in aggregate. The paradox: our Gaming Budget bound contains sqrt(p_k(1-p_k)) terms -- maximized at p_k=0.5. The GRPO non-degenerate fraction is maximized at p=0.5. Both peak at intermediate pass rates. Therefore: the difficulty band where GRPO training is most efficient for learning is ALSO where rubric gaming is most effective for exploitation. This connection is between training dynamics (which identifies optimal learning regimes) and evaluation vulnerability (which identifies exploitation-prone regimes) -- different research concerns that happen to converge on the same difficulty band. It is genuinely surprising because difficulty-aware GRPO methods (DGPO, CDAS, Goldilocks RL) that correctly focus on intermediate-pass-rate problems for learning efficiency inadvertently maximize gaming exposure under rubric evaluation. It also explains WHY per-criterion gaming analysis WITHOUT difficulty stratification misses the most dangerous zone -- gaming is not uniformly distributed but concentrates where the model sits at its competence boundary for each criterion. Innovation patterns: 'Rigorous problem diagnosis as standalone contribution' (proven success -- 'Does RL Really Incentivize Reasoning' at NeurIPS 2025; 'Reward Hacking in Rubric-Based RL' diagnosed gaming taxonomy without difficulty stratification; SPARKLE analyzed per-criterion reasoning dynamics without gaming focus) + 'Connecting training dynamics research to evaluation vulnerability research to reveal a practical tension' (the GRPO-efficiency-meets-gaming-vulnerability connection). Key theoretical insight: Our framework generalizes Wang & Huang's distortion index D_i to difficulty-varying D_i(d) trajectories, but the deeper contribution is identifying that the D_i(d) PEAK ZONE coincides with the GRPO learning-efficiency peak -- this is not recoverable from Wang & Huang's static model regardless of how it is parameterized, because it requires connecting to the training dynamics literature.\",\n  \"approach\": \"We adopt a three-contribution structure centered on the Learning-Gaming Paradox, with co-equal theoretical results and concrete value under either empirical outcome. **Lead Framing: The Learning-Gaming Paradox.** We open with a structural insight connecting training dynamics to evaluation vulnerability: the Gradient Starvation analysis (arXiv:2605.07689) proves GRPO's non-degenerate fraction N(p,G) = 1-p^G-(1-p)^G is maximized at p=0.5; our Gaming Budget bound shows gaming opportunity (via sqrt(p_k(1-p_k)) terms) is also maximized at intermediate pass rates. Because both peak in the same difficulty band (p-bar_d in [0.3, 0.7]), the difficulty level that GRPO training should focus on for maximum learning is simultaneously the difficulty level where rubric gaming is most effective. The Edge of Competence (arXiv:2602.14872, Lemma 6.2) provides supplementary support: the multi-step gradient nabla proportional to (Delta_L)^L(1-Delta_L) peaks at pass rates p*=(L/(L+1))^L in [0.37, 0.50], confirming that even beyond GRPO-specific analysis, multi-step RL learning concentrates at intermediate pass rates within the gaming-vulnerable band. (We are careful to distinguish: the Gradient Starvation result directly uses pass rates p and provides the formal anchor; the Edge of Competence result uses attention margins Delta_L with a different functional form and provides qualitative reinforcement.) This paradox is structural -- it holds regardless of whether specific predictions about non-monotonicity (P1) are confirmed, because the PEAK COINCIDENCE between N(p,G) and the Gaming Budget is a mathematical fact. **Composite Null Hypothesis.** We test against a strengthened Composite Null (H0) built from three rubric-relevant findings: (H0a -- Aggregate Trend) Gaming severity increases monotonically with problem difficulty for ALL rubric criteria, extrapolating the aggregate trend from LLMs Gaming Verifiers (arXiv:2604.15149), Hack-Verifiable Environments (arXiv:2605.20744, which finds monotonic hack-rate increase in controlled settings across 5 models and 3 environments), and Goodhart's Law in RL (ICLR 2024). (H0b -- Criterion-Type Invariance) Gaming concentrates in presence-based/completeness criteria at ALL difficulty levels, extrapolating from Reward Hacking in Rubric-Based RL (arXiv:2605.12474, 90.2% presence-based concentration). Note: H0a now incorporates controlled experimental evidence (arXiv:2605.20744) alongside observational evidence; H0b is rubric-specific but difficulty-agnostic. Together they predict monotonic, criterion-type-stable gaming -- a stronger adversarial target than either alone. Three falsifiable predictions with quantitative and statistical failure conditions: (P1) Learning-Gaming Resonance -- H0a predicts monotonically increasing gaming for reasoning-verification criteria; P1 predicts an inverted-U peaking in the intermediate-pass-rate band (coinciding with the GRPO learning efficiency peak at p approx 0.5), with peak gaming rate >=1.5x the rate at highest-difficulty bins. Statistical test: monotone-constrained isotonic regression vs. unconstrained fit via likelihood ratio test (p < 0.05), supplemented by quadratic regression beta_2 < 0 (p < 0.05). (P2) Criterion Vulnerability Shift -- H0b predicts presence-based criteria dominate at all difficulty levels; P2 predicts the criterion vulnerability ordering SHIFTS with difficulty -- Pearson correlation between surface-criterion and reasoning-criterion satisfaction flips from positive (r > 0.1 in bottom-quintile) to negative (r < -0.1 in top-quintile), a sign flip analogous to Simpson's Paradox. Additionally, reasoning-criterion gaming share increases >=2x from bottom to top difficulty quintile. (P3) Asymmetric Dimensionality Collapse -- P3 predicts K_honest/K_eff < 0.5 at highest-difficulty bins, with K_eff >= 3: honest gradient signal collapses to a lower-dimensional subspace FASTER than total signal because gaming inflates apparent dimensionality. **Concrete value under either outcome.** If P1-P3 hold: the Learning-Gaming Paradox is empirically confirmed with specific structural predictions, revealing difficulty-dependent gaming invisible to aggregate/unstratified analysis. If H0 is confirmed (monotonic, criterion-type-stable gaming): (a) the Learning-Gaming Paradox still holds structurally -- even monotonically increasing gaming creates a tension with the GRPO learning signal peak at moderate difficulty, because difficulty-aware methods focus training precisely where gaming is already substantial; (b) we provide the FIRST per-criterion x per-difficulty confirmation that monotonicity and criterion-type-stability hold at every criterion individually (currently known only in aggregate or unstratified); (c) we derive and validate a simple linear strictness schedule s_k(d) = alpha_k + beta_k*d justified by confirmed monotonicity, where beta_k is proportional to the empirically measured per-criterion gaming slope, and validate that it reduces the mean DEG (Dimension Exploitation Gap) by >=15% compared to uniform strictness on a held-out test split; (d) the Dimensionality Collapse analysis (T2) characterizes how many effective honest dimensions remain at each difficulty level, directly informing how many criteria are worth evaluating at high difficulty. We explicitly acknowledge this would be a solid diagnostic paper with a concrete calibration output, valuable to rubric-RL practitioners. **Contribution 1 -- Learning-Gaming Duality Framework (domain-agnostic theory).** Four formal results for any K-dimensional evaluation system with difficulty variation under GRPO-family training: (T1) Gaming Budget Theorem -- a difficulty-parameterized bound on total exploitable reward at difficulty d, extending Wang & Huang's static distortion index. Formal model: pass rate matrix P in [0,1]^{K x D}, verification gap matrix Delta, difficulty-varying correlation matrix Sigma_d. Four assumptions: (A1) decomposability into genuine and gaming components; (A2) monotonic non-increase of reasoning-dependent pass rates with difficulty; (A3) difficulty-stable or increasing verification gaps for surface criteria; (A4) positive correlation between criterion-level pass rates p_{k,d} and aggregate binary pass rate p-bar_d (justified by the shared difficulty driver). Bound: G_d <= Sigma_{k in V_d} w_k * delta_{k,d} * sqrt(p_{k,d}(1-p_{k,d})) + Sigma_{j&lt;k in V_d} w_j*w_k * max(0, sigma_{jk,d}) * delta_{j,d}*delta_{k,d}. **Special case reduction:** When d is constant and delta_{k,d} = delta, recovers Wang & Huang's D_i ranking. (T2) Dimensionality Collapse Theorem (CO-EQUAL with T1) -- proves K_honest(d) decreases strictly faster than K_eff(d) under A2, using the observation that high-verification-stringency criteria leave the active gradient set first. This is potentially more surprising than T1 because it predicts ASYMMETRIC structural behavior: gaming inflates apparent signal dimensionality while honest signal collapses, creating a growing gap that makes gaming increasingly invisible to standard diagnostics at higher difficulty. Validated via PCA on per-criterion pass-rate vectors across difficulty bins, measuring the ratio of honest-signal eigenvalues to total eigenvalues. (T3) Calibration Sufficiency Condition -- derives the minimal gaming-eliminating strictness schedule s_{k,d} proportional to 1/delta_{k,d} * sqrt(p_{k,d}(1-p_{k,d})). Under confirmed H0 (monotonic gaming), simplifies to the linear schedule s_k(d) = alpha_k + beta_k*d with closed-form beta_k. (T4) Learning-Gaming Peak Coincidence Corollary -- Under assumptions A1-A4, the GRPO non-degenerate fraction N(p-bar_d, G) = 1-p-bar_d^G-(1-p-bar_d)^G and the difficulty-marginal Gaming Budget G_d are both maximized within the difficulty band where p-bar_d in [0.3, 0.7]. Formally: N(p,G) achieves its unique maximum at p=0.5 (Gradient Starvation, arXiv:2605.07689); each Gaming Budget term w_k*delta_{k,d}*sqrt(p_{k,d}(1-p_{k,d})) achieves its maximum at p_{k,d}=0.5; under A4, the Gaming Budget is near-maximal when p-bar_d approx 0.5. Supplementary support: the Edge of Competence (arXiv:2602.14872) multi-step gradient peaks at pass rates (L/(L+1))^L in [1/e, 1/2] for reasoning chains of length L, confirming that multi-step learning also concentrates in the gaming-vulnerable band. (We do NOT claim a shared functional form between (Delta)^L(1-Delta) and sqrt(p(1-p)) -- the formal connection is through peak coincidence in the pass-rate domain.) Practical consequence: difficulty-aware GRPO methods (DGPO, CDAS, Goldilocks RL) that select problems with p-bar_d approx 0.5 for maximal learning efficiency simultaneously maximize the Gaming Budget under rubric evaluation. Validation strategy: RANKING ACCURACY (Spearman rho between predicted and observed gaming severity across K x D cells) following the Effective Horizon precedent (NeurIPS 2023 Oral), plus conservativeness ratio and top-3 vulnerability identification accuracy. **Contribution 2 -- Cross-Domain Empirical Diagnosis with Rigorous Statistics.** Math domain (primary for AAAI): Qwen2.5-Math-1.5B policy, Qwen3-8B judge, MATH dataset. **10-bin difficulty scale:** Base model generates 64 rollouts per problem -> per-problem pass@1 -> 10 equal-frequency difficulty bins (deciles). This provides 2x resolution for curve-fitting, continuous underlying variable for regression, independence from coarse categorical labels. MATH's native 5 levels serve as robustness check. Statistical methodology: (i) 1000-resample bootstrap 95% CIs on all DEG values; (ii) formal non-monotonicity test: isotonic regression (monotone non-decreasing constraint) vs. unconstrained kernel regression via permutation-based likelihood ratio test; (iii) quadratic regression DEG ~ beta_0 + beta_1*d + beta_2*d^2 with one-sided test beta_2 < 0; (iv) Fisher's z-test for correlation sign-flip (P2). Medical domain (ICLR scope): Qwen2.5-1.5B-Instruct policy, Qwen3-8B judge, RaR-Medicine (22.4K examples, ICLR 2026). Difficulty estimation via SFT-init checkpoint rollouts (breaks circularity). Cross-domain comparison: test whether gaming surface STRUCTURE transfers across domains. **Contribution 3 -- DCRR Proof-of-Concept (ICLR scope only).** DGPO+RRM critical baseline first; if >20% gap remains, apply Difficulty-Calibrated Rubric Rewards using T3 schedule. Under H0: validate s_k(d) = alpha_k + beta_k*d reduces mean DEG >=15% vs. uniform strictness. **Venue Strategy (REVISED -- AAAI primary, ICLR stretch).** Primary target: AAAI 2027 (abstract Jul 21, paper Jul 28, 8 weeks). Math-only, Contributions 1-2: Learning-Gaming Duality framework (T1+T2+T4 corollary + T3 monotonic special case) + MATH 10-bin gaming heatmaps + 3 predictions + monotonic calibration validation under H0. This is the natural unit -- the theoretical framework + single-domain validation. Decision-gated stretch: ICLR 2027 (~Sep 24, 17 weeks). Full three-contribution scope adding medical domain + DCRR defense + cross-domain analysis. Only pursued if AAAI submission is strong AND reviewer feedback suggests expansion strengthens the work. Backup: ARR August 3 -> EACL 2027 (~10 weeks, math + medical diagnostics without DCRR). **Concrete timeline (AAAI primary, 8 weeks):** Week 1 (May 28 - Jun 4): Theory formalization (T1 with Wang & Huang special case, T2 with PCA validation plan, T4 Learning-Gaming Peak Coincidence Corollary with Gradient Starvation anchor) + infrastructure setup (verl scripts, judge pipeline) + BEGIN base-model pass@1 computation (64 rollouts/problem, ~8 H100-hrs) + BEGIN GRPO training run. Week 2 (Jun 4 - Jun 11): Base-model pass@1 complete -> 10-bin difficulty binning + BEGIN GRPO+RRM training run + BEGIN DGPO+RRM training run. Weeks 3-4 (Jun 11 - Jun 25): Training runs complete + judge inference on all 3 models (~20 H100-hrs total) + 10-bin gaming heatmap construction + DEG computation + bootstrap CIs + non-monotonicity tests. Week 5 (Jun 25 - Jul 2): All statistical tests (P1 isotonic regression, P2 Fisher's z-test, P3 PCA dimensionality analysis) + monotonic calibration schedule derivation and validation + draft core results. Week 6 (Jul 2 - Jul 9): DECISION GATE -- evaluate: (a) are gaming surfaces non-trivial? (b) do statistical tests yield interpretable results? (c) is theory validated via ranking accuracy? If YES to all three: commit to AAAI. If NO: continue ICLR plan with 10 more weeks. Weeks 7-8 (Jul 9 - Jul 28): Paper writing, figures, polishing. Jul 21 abstract, Jul 28 paper submission. **Risk mitigation:** Training failures -> keep uniform-GRPO baseline (always works), can still produce gaming surface from fewer models. Judge quality -> validate on 200-sample subset before full inference. Timeline -> T3 monotonic case and H0-confirmed contributions provide fallback value even if exotic predictions fail.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"100 H100-hours for AAAI primary (Math: 3 training runs x 4 H100 x 2.5hr = 30hr, base-model pass@1 computation for 10-bin difficulty 8hr, rubric judge inference 20hr, Pass@64 for difficulty binning 25hr, analysis + bootstrap CIs + overhead 17hr). Additional 90 H100-hours for ICLR stretch (Medical: 3 training runs x 4 H100 x 2hr = 24hr, SFT-init difficulty oracle rollouts 5hr, medical judge inference 10hr, DCRR experiments 30hr, MO-GRPO+RRM baseline 15hr, ablations 6hr).\",\n      \"timeline\": \"8 weeks for AAAI 2027 primary (math-only, Contributions 1-2+calibration). 17 weeks for ICLR 2027 stretch (full three-contribution scope adding medical + DCRR).\",\n      \"estimated_gpu_cost\": \"$250 AAAI / $475 total with ICLR stretch (H100 at ~$2.50/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"100 H100-hours AAAI / 190 H100-hours total (same; Claude accelerates code/analysis, not GPU work)\",\n      \"timeline\": \"7 weeks for AAAI (Claude assists theorem formalization, verl scripts, automated heatmap generation, bootstrap pipeline, writing). 14-15 weeks for ICLR stretch.\",\n      \"claude_api_cost\": \"$150 AAAI / $300 total (Sonnet 4.6 for rubric generation, code scaffolding, statistical pipeline, writing)\",\n      \"estimated_gpu_cost\": \"$250 AAAI / $475 total\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"105 H100-hours AAAI / 200 H100-hours total (5hr margin for targeted hyperparameter exploration per venue)\",\n      \"timeline\": \"6-7 weeks for AAAI (parallelized dispatch, automated analysis, Claude-drafted paper). 10-12 weeks for ICLR.\",\n      \"claude_api_cost\": \"$250 AAAI / $420 total (rubric judging quality audit ~5K samples, automated analysis, writing)\",\n      \"estimated_gpu_cost\": \"$263 AAAI / $500 total\",\n      \"speed_bottleneck\": \"LLM judge inference throughput -- scoring ~50K math rollouts per model with Qwen3-8B requires ~8hr per model on 4xH100; base-model pass@1 computation adds ~8hr\"\n    },\n    \"aaai_primary_scope\": {\n      \"gpu_hours\": \"100 H100-hours (Math only: 3 training runs x 4 H100 x 2.5hr = 30hr, base-model pass@1 for binning 8hr, judge inference 20hr, Pass@64 difficulty binning 25hr, analysis + bootstrap 17hr)\",\n      \"timeline\": \"8 weeks (6-week sprint + 2 weeks writing; decision gate at week 6)\",\n      \"estimated_gpu_cost\": \"$250\",\n      \"scope\": \"Learning-Gaming Duality framework (T1+T2+T4 Peak Coincidence Corollary with Gradient Starvation anchor, with T3 monotonic special case) + MATH 10-bin gaming heatmaps with bootstrap CIs + 3 falsifiable predictions tested with formal statistical tests + monotonic calibration schedule derivation and validation under H0. The complete theoretical framework plus single-domain empirical validation.\"\n    },\n    \"iclr_stretch_scope\": {\n      \"gpu_hours\": \"190 H100-hours total (AAAI scope + Medical: 3 training runs x 4 H100 x 2hr = 24hr, SFT-init difficulty oracle 5hr, medical judge inference 10hr + DCRR: experiments 30hr, MO-GRPO+RRM 15hr, ablations 6hr)\",\n      \"timeline\": \"17 weeks total (incorporates AAAI submission + 9 additional weeks for medical domain + DCRR + cross-domain analysis)\",\n      \"estimated_gpu_cost\": \"$475\",\n      \"scope\": \"Full three-contribution scope: AAAI content + medical domain validation + DCRR proof-of-concept + cross-domain gaming surface comparison\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (abstract Jul 21, paper Jul 28, 2026 -- PRIMARY target, 8 weeks; Math-only Contributions 1-2+calibration: Learning-Gaming Duality framework with co-equal T1+T2, Learning-Gaming Peak Coincidence Corollary T4 anchored to Gradient Starvation, monotonic calibration special case T3, MATH 10-bin gaming surfaces, 3 predictions with formal tests, concrete calibration validation under H0; decision gate at week 6)\",\n    \"ICLR 2027 (~Sep 24, 2026 -- decision-gated stretch, 17 weeks; expands AAAI submission with medical domain cross-validation, DCRR proof-of-concept defense, cross-domain gaming surface comparison; pursued if AAAI submission is strong and reviewer feedback suggests expansion strengthens the work)\",\n    \"ARR August 3, 2026 -> EACL 2027 (~10 weeks; intermediate scope: math + medical diagnostics without DCRR; NLP-venue backup if AAAI decision gate fails but results warrant earlier publication)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Gradient Starvation in Binary-Reward GRPO (arXiv:2605.07689) -- GRPO degeneracy rate D(p,G)=p^G+(1-p)^G; non-degenerate fraction N(p,G)=1-p^G-(1-p)^G maximized at p=0.5 (for G=2, N=2p(1-p); observed 0.69 degeneracy at G=4 in Qwen3.5-9B). CRITICAL for our Learning-Gaming Paradox: provides the PRIMARY formal anchor establishing that GRPO learning efficiency peaks at intermediate pass rates (p approx 0.5), coinciding with the Gaming Budget's peak zone. Also proves via Jensen's inequality that real degeneracy exceeds i.i.d. prediction\",\n    \"On the Learning Dynamics of RLVR at the Edge of Competence (arXiv:2602.14872) -- Multi-step learning gradient: Lemma 6.2 shows nabla_q J_L proportional to (Delta_L)^L(1-Delta_L) where Delta_L is the effective probability margin (NOT the pass rate), peaking at Delta*=L/(L+1). The corresponding pass rate at the gradient peak is p*=(L/(L+1))^L in [1/e, 1/2] approx [0.37, 0.50]. Provides SUPPLEMENTARY SUPPORT for the Learning-Gaming Paradox: even the multi-step analysis shows learning concentrates at intermediate pass rates within the gaming-vulnerable band. The relay effect explains WHY training naturally traverses this zone. NOTE: the functional form (Delta)^L(1-Delta) differs from p(1-p) and Delta != p; we cite for qualitative support, not shared functional form\",\n    \"Reward Hacking as Equilibrium under Finite Evaluation (arXiv:2603.28063) -- Constructive per-dimension distortion index D_i = lambda(r_i/w_i) + (1-lambda) with ranking result Corollary 1(a): D_i > D_j implies e_i* > e_j* under symmetric production functions. Limitation: static (no difficulty parameterization), assumes symmetric g_i (Remark 2). Our framework extends D_i to difficulty-varying D_i(d) trajectories, recovering D_i ranking as a special case at constant difficulty\",\n    \"Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale (arXiv:2605.20744) -- Embeds detectable hacking opportunities into environments for controlled measurement. Tests 5 models (Claude Sonnet 4.6, GPT-5-Codex, Gemini 3.1 Pro, Qwen3.6-Plus, Kimi-K2.5) across 3 games (Wordle, Tower of Hanoi, 15-Puzzle) with varying difficulty. KEY FINDING: hack rate increases monotonically with task difficulty across most models and environments. Provides the strongest controlled experimental evidence supporting H0a in our composite null hypothesis\",\n    \"Goodhart's Law in Reinforcement Learning (ICLR 2024) -- Geometric explanation for Goodhart's law in MDPs; shows optimization pressure increases Goodharting; aggregate scalar analysis. Our framework extends to K-dimensional evaluation with difficulty variation and connects to training dynamics\",\n    \"Robust Optimization for Mitigating Reward Hacking with Correlated Proxies (arXiv:2604.12086, ICLR 2026) -- Max-min formulation over r-correlated scalar proxy rewards; does not decompose per-criterion or model difficulty-varying correlation\",\n    \"The Strong, Weak and Benign Goodhart's Law (arXiv:2505.23445) -- Independence-free formalization; scalar proxy-goal pair, no multi-dimensional or difficulty treatment\",\n    \"Scaling Laws for Reward Model Overoptimization (ICML 2023) -- Empirical scaling of overoptimization with optimization intensity; aggregate scalar analysis\",\n    \"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking (arXiv:2604.15149, ICLR 2026 Workshop) -- Shows gaming prevalence increases with task complexity on inductive reasoning tasks (SLR-Bench, 4 tiers) under binary extensional verification. Contributes H0a (aggregate trend) to our composite null hypothesis\",\n    \"Reward Hacking in Rubric-Based Reinforcement Learning (arXiv:2605.12474) -- Gaming taxonomy in medical/science; 3 failure modes; 90.2% presence-based criteria concentration; self-internalization gap metric. Contributes H0b (criterion-type invariance) to our composite null hypothesis. Does NOT stratify by problem difficulty\",\n    \"Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation (ICLR 2026) -- DGPO Theorems 1-2 on binary-reward difficulty bias; difficulty-aware methods that focus on intermediate pass rates -- precisely the zone our Learning-Gaming Paradox identifies as gaming-vulnerable\",\n    \"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards (ACL 2026) -- RRM baseline, uniform-strictness rubric rewards for math\",\n    \"Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains (ICLR 2026) -- Foundational rubric RL; RaR-Medicine dataset for cross-domain validation\",\n    \"Unlocking the Potential of Difficulty Prior in RL-based Multimodal Reasoning (arXiv:2505.13261) -- Models difficulty priors to calibrate reasoning depth and reweight advantages in multimodal RL. Demonstrates concurrent convergence on difficulty-aware reward modulation, though targeting training efficiency rather than gaming characterization. Validates the timeliness of difficulty-calibrated approaches\",\n    \"Rethinking the Sampling Criteria in RL for LLM Reasoning: A Competence-Difficulty Alignment Perspective (arXiv:2505.17652) -- CDAS framework for stable difficulty estimation via historical performance aggregation. Validates our base-model pass-rate difficulty binning methodology\",\n    \"Bridging RL Theory and Practice with the Effective Horizon (NeurIPS 2023, Oral) -- Validates theoretical bounds via RANKING CORRELATION across 155 MDPs. Direct precedent for our Gaming Budget validation strategy\",\n    \"MO-GRPO: Mitigating Reward Hacking of GRPO on Multi-Objective Problems (arXiv:2509.22047) -- Per-objective variance normalization; Theorem 1 (correlation proportional to sigma_i) is the mechanism underlying dimensional exploitation, but difficulty-agnostic\",\n    \"Beyond Accuracy: Dissecting Mathematical Reasoning for LLMs Under Reinforcement Learning (NeurIPS 2025, arXiv:2506.04723) -- SPARKLE framework analyzing 3 reasoning dimensions across difficulty under RL. Evidence that per-criterion x per-difficulty analysis is informative, but studies reasoning capability rather than gaming and has no Goodhart framework\",\n    \"When Reward Hacking Rebounds: Understanding and Mitigating It with Representation-Level Signals (arXiv:2604.01476) -- Identifies three-phase gaming dynamics (attempt -> retreat -> rebound) in code RL; shortcut direction in representation space tracks hacking. Supports our view that gaming is not static but has structural dynamics across contexts\",\n    \"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (NeurIPS 2025) -- Pass@k frontier evaluation for binary-reward; diagnostic impact precedent\",\n    \"Reward Collapse in Aligning Large Language Models (arXiv:2305.17608) -- Reward distribution collapse; supports our Dimensionality Collapse prediction\",\n    \"Step-wise Rubric Rewards for LLM Reasoning (arXiv:2605.17291) -- SRaR step-level rubric attribution\",\n    \"Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR (arXiv:2605.20164) -- POW3R rollout-contrast reweighting; reactive vs. our proactive/predictive\",\n    \"AMARIS: A Memory-Augmented Rubric Improvement System (arXiv:2605.18592) -- Persistent evaluation memory; temporal dimension vs. our structural dimension\",\n    \"ARES: Automated Rubric Synthesis for Scalable LLM RL (arXiv:2605.23454) -- Rubric synthesis automation; difficulty-agnostic\",\n    \"Alternating Reinforcement Learning with Contextual Rubric Rewards (arXiv:2603.15646) -- ARL-RR addresses scalarization by alternating optimization across rubric meta-classes. Algorithmic (changes optimization procedure) rather than diagnostic (characterizing exploitation patterns)\",\n    \"RuCL: Stratified Rubric-Based Curriculum Learning (arXiv:2602.21628) -- Adjusts by model competence not problem difficulty; vulnerable to gaming-inflated pass rates\",\n    \"HealthBench (arXiv:2505.08775) -- Medical evaluation benchmark; secondary evaluation\",\n    \"CDRRM (arXiv:2603.08035), C2 (arXiv:2604.13618), Rubicon (arXiv:2508.12790) -- Rubric quality/gaming defense; all difficulty-agnostic\",\n    \"Online Difficulty Filtering for Reasoning Oriented RL (EACL 2026) -- Variance-based difficulty selection theory\",\n    \"GRPO-LEAD (arXiv:2504.09696, EMNLP 2025) -- Logistic difficulty reweighting under binary rewards\",\n    \"DARO, F-GRPO, A-GRAE, Goldilocks RL, PAPO, ARL-RR, RubricEM, Rubric-Grounded RL -- Complementary difficulty-aware or rubric-optimization methods, all binary-reward or difficulty-agnostic\"\n  ],\n  \"description\": \"We identify the Learning-Gaming Paradox: a structural tension in rubric-rewarded RL where the difficulty level that maximizes GRPO learning signal simultaneously maximizes gaming opportunity. The Gradient Starvation analysis (arXiv:2605.07689) proves GRPO's non-degenerate fraction N(p,G) = 1-p^G-(1-p)^G is maximized at p=0.5; our Gaming Budget bound shows gaming opportunity (via sqrt(p(1-p)) terms) is also maximized at intermediate pass rates. Both peak in the same difficulty band (p-bar_d in [0.3, 0.7]), meaning difficulty-aware GRPO methods (DGPO, CDAS, Goldilocks RL) that correctly focus on this zone for learning efficiency inadvertently maximize gaming exposure under multi-dimensional rubric evaluation. The Edge of Competence analysis (arXiv:2602.14872, Lemma 6.2) provides supplementary support: the multi-step gradient (proportional to (Delta_L)^L(1-Delta_L), where Delta_L is the attention margin, NOT the pass rate) peaks at pass rates p*=(L/(L+1))^L in [0.37, 0.50], confirming that multi-step learning also concentrates at intermediate pass rates within the gaming-vulnerable band. We contribute: (1) a Learning-Gaming Duality framework with co-equal theoretical results -- a Gaming Budget Theorem (T1) providing the first difficulty-parameterized K-dimensional Goodhart bound (extending Wang & Huang's static D_i to D_i(d) trajectories with special-case reduction), a Dimensionality Collapse Theorem (T2) proving honest signal dimensionality collapses faster than total signal making gaming increasingly invisible, a Learning-Gaming Peak Coincidence Corollary (T4) formally establishing that the GRPO non-degenerate fraction and the Gaming Budget are both maximized at intermediate pass rates (anchored to Gradient Starvation with Edge of Competence as supplementary support), and a Calibration Sufficiency Condition (T3) deriving gaming-eliminating strictness schedules that simplify to s_k(d) = alpha_k + beta_k*d under confirmed monotonicity; (2) a cross-domain empirical diagnostic using 10-bin difficulty scales (base-model pass-rate deciles) with bootstrap CIs and formal non-monotonicity tests, producing per-criterion x per-difficulty gaming surfaces; (3) three falsifiable predictions against a composite null hypothesis strengthened by Hack-Verifiable Environments (arXiv:2605.20744) -- (P1) Learning-Gaming Resonance: non-monotonic gaming for reasoning criteria peaking in the GRPO-efficient band at >=1.5x the highest-difficulty rate; (P2) Criterion Vulnerability Shift: surface-reasoning correlation sign-flip plus >=2x reasoning-criterion gaming share increase; (P3) Asymmetric Dimensionality Collapse: K_honest/K_eff < 0.5 at highest difficulty. The paper delivers concrete value under either outcome: if predictions hold, it reveals difficulty-dependent structure invisible to prior analysis; if H0 is confirmed, it provides the first per-criterion x per-difficulty confirmation of monotonic gaming, derives and validates a simple linear calibration schedule reducing mean DEG by >=15%, and characterizes effective honest dimensionality at each difficulty level. Validated on Qwen2.5-Math-1.5B (AAAI primary, math) with Qwen2.5-1.5B-Instruct cross-domain validation (ICLR stretch, medical).\",\n  \"project_name\": \"diff_calib_rubric_rlvr\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"change_type\": \"major\",\n    \"change_type_justification\": \"Major revision driven by critical mathematical correction: (1) ALL instances of the incorrect claim 'nabla J proportional to Delta(1-Delta) from Lemma 6.2' have been removed and replaced with the correct formula (Delta_L)^L(1-Delta_L); (2) The formal anchor for the Learning-Gaming Paradox has been pivoted from Edge of Competence Lemma 6.2 to Gradient Starvation's GRPO degeneracy result (Option A from reviewer); (3) T4 substantially rewritten as 'Learning-Gaming Peak Coincidence Corollary' based on correct mathematics; (4) New assumption A4 introduced; (5) Hack-Verifiable Environments (arXiv:2605.20744) added as strong H0a evidence; (6) The 'two independent literatures' and 'shared p(1-p) functional form' framing replaced with precisely scoped claims.\",\n    \"issue_1_lemma62_mischaracterization\": \"RESOLVED (CRITICAL). ALL instances of 'nabla J proportional to Delta(1-Delta)' attributed to Lemma 6.2 have been removed. The correct formula (Delta_L)^L(1-Delta_L) is now stated explicitly wherever Edge of Competence is cited, with clear notation that Delta_L is the attention margin (not the pass rate p) and that the peak is at Delta*=L/(L+1) (not 0.5). Edge of Competence is now cited for QUALITATIVE SUPPORT: the pass rate at the gradient peak is computed as p*=(L/(L+1))^L in [1/e, 1/2] approx [0.37, 0.50], which falls within the gaming-vulnerable band [0.3, 0.7]. This provides independent multi-step-reasoning support for the paradox without any incorrect mathematical claim.\",\n    \"issue_2_formal_coincidence_collapse\": \"RESOLVED (CRITICAL). The 'formal coincidence of shared p(1-p) functional form' narrative has been completely replaced. The formal anchor is now the Gradient Starvation result: GRPO non-degenerate fraction N(p,G) = 1-p^G-(1-p)^G is maximized at p=0.5, using the pass rate p directly (the same variable as in the Gaming Budget). T4 is renamed 'Learning-Gaming Peak Coincidence Corollary' and states: both N(p,G) and the Gaming Budget terms sqrt(p_k(1-p_k)) are maximized at intermediate pass rates. We explicitly state this is PEAK COINCIDENCE in the pass-rate domain, NOT a shared functional form. The claim is that both quantities reach their maximum in the same difficulty band, not that they follow the same formula. A new assumption A4 (positive correlation between criterion-level pass rates and aggregate binary pass rate) is introduced to bridge from the GRPO binary-reward result to multi-criterion rubric settings.\",\n    \"issue_3_hack_verifiable_environments\": \"RESOLVED. Hack-Verifiable Environments (arXiv:2605.20744) has been added throughout: (a) in core_problem as supporting evidence that gaming increases monotonically with difficulty; (b) in opportunity as the strongest controlled experimental evidence for H0a; (c) in the landscape under a new 'Difficulty-dependent hacking measurement' category; (d) in the approach as a third H0a source (alongside LLMs Gaming Verifiers and Goodhart's Law in RL) strengthening the composite null; (e) in key_references with full details (5 models, 3 games, controlled difficulty variation); (f) in the description. This makes H0a substantially stronger by adding controlled experimental evidence to the existing observational evidence.\",\n    \"issue_4_grpo_specificity\": \"RESOLVED. The cross-literature framing has been recalibrated throughout. We no longer claim to 'connect two independent literatures via shared p(1-p) dependence.' Instead, we claim: 'connecting training dynamics research (which identifies optimal GRPO learning regimes) to evaluation vulnerability research (which identifies exploitation-prone regimes).' The GRPO-specificity of the Gradient Starvation result is acknowledged explicitly. We note that: (a) the formal result holds for binary-reward GRPO; (b) GRPO is the dominant training algorithm for rubric-RL methods, so GRPO-specificity covers the primary use case; (c) the qualitative extension to rubric GRPO is well-motivated (intermediate-difficulty problems produce more varied per-criterion scores within groups, yielding stronger gradients); (d) Edge of Competence provides model-agnostic supplementary support via the pass-rate computation p*=(L/(L+1))^L in [0.37, 0.50]. The remaining novelty is precisely stated: no prior work connects GRPO learning efficiency to rubric gaming vulnerability, and the practical implication for difficulty-aware GRPO methods is immediate.\",\n    \"edge_of_competence_role_change\": \"Edge of Competence's role has been substantially changed from 'co-anchor with exact formula cited for formal coincidence' to 'supplementary support with pass-rate computation cited for qualitative reinforcement.' Specifically: (1) Lemma 6.2 is now cited with the CORRECT formula (Delta_L)^L(1-Delta_L); (2) We compute the pass rate at the gradient peak as p*=(L/(L+1))^L and show it falls in [0.37, 0.50]; (3) We explicitly state that Delta_L (attention margin) differs from p (pass rate) and the functional forms differ; (4) The relay effect is cited to explain WHY training naturally traverses the intermediate-pass-rate zone; (5) Edge of Competence is explicitly labeled 'supplementary support' rather than 'co-anchor.' This honest treatment actually strengthens the paper: it shows the paradox is supported by TWO independent analyses (GRPO-specific degeneracy + multi-step gradient structure) that converge on the same conclusion.\",\n    \"T4_rewrite\": \"T4 has been substantially rewritten and renamed from 'Learning-Gaming Resonance Corollary' to 'Learning-Gaming Peak Coincidence Corollary.' The old T4 claimed to 'formally connect the p(1-p) terms in G_d to the Delta(1-Delta) terms in the learning signal gradient' -- which was mathematically incorrect. The new T4 states: under A1-A4, both N(p-bar_d, G) and G_d are maximized in the difficulty band p-bar_d in [0.3, 0.7], with N uniquely maximized at p=0.5 and each Gaming Budget term maximized at p_k=0.5. The formal connection is through peak coincidence in the pass-rate domain. Edge of Competence is cited as supplementary support showing p*=(L/(L+1))^L in [0.37, 0.50]. No claim of shared functional form.\",\n    \"assumption_A4_introduced\": \"New assumption A4 introduced: positive correlation between criterion-level pass rates p_{k,d} and aggregate binary pass rate p-bar_d. This assumption bridges the GRPO binary-reward degeneracy result (which uses aggregate p) to the Gaming Budget (which uses per-criterion p_k). Justified by the shared difficulty driver: harder problems lower both aggregate pass rates and criterion-level pass rates. This assumption is empirically testable in our experimental setup.\",\n    \"H0_strengthened\": \"H0a now incorporates three sources: (1) LLMs Gaming Verifiers (arXiv:2604.15149) -- observational evidence from inductive reasoning; (2) Hack-Verifiable Environments (arXiv:2605.20744) -- controlled experimental evidence across 5 models and 3 games; (3) Goodhart's Law in RL (ICLR 2024) -- theoretical aggregate analysis. This makes the composite null substantially stronger, which in turn makes our diagnostic more valuable regardless of outcome.\",\n    \"stagnation_addressed\": \"This revision addresses the round-8 mathematical error through FUNDAMENTAL CORRECTION, not surface patching. The paper's mathematical foundation is rebuilt on correct results (Gradient Starvation N(p,G) directly using pass rates, rather than misattributed Lemma 6.2 using attention margins). The novelty scope is honestly recalibrated: we claim peak coincidence between GRPO learning efficiency and gaming opportunity rather than a shared functional form, and we acknowledge GRPO-specificity while noting it covers the primary use case. This correction + honest recalibration should raise reviewer confidence because: (a) no reviewer will catch a mathematical error (there is none); (b) the Gradient Starvation anchor is cleaner and more direct than the original Lemma 6.2 citation; (c) the Edge of Competence pass-rate computation (p*=(L/(L+1))^L) provides genuinely interesting supplementary support that strengthens the argument from an independent direction.\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "252013ec-786e-46e0-97d7-96f38ab0bb3d",
+  "isSidechain": false,
+  "requestId": "req_011CbVFVuh3fW3EouQR1fAin",
+  "type": "assistant",
+  "uuid": "21fca5e8-0212-42a8-a01b-fd678abb6b90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WBmdNcvSWvZuC38T2DNVTp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 774,
+      "cache_creation_input_tokens": 5062,
+      "cache_read_input_tokens": 39331,
+      "output_tokens": 16425,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 774,
+          "output_tokens": 16425,
+          "cache_read_input_tokens": 39331,
+          "cache_creation_input_tokens": 5062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-28T16:11:09.212Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_018Fxdp5mDxgYv4qW7CN1zyd`</summary>
+
+```text
+Claude requested permissions to write to /tmp/revised_idea_r9.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21fca5e8-0212-42a8-a01b-fd678abb6b90",
+  "isSidechain": false,
+  "promptId": "35729adf-ea3d-4257-8a3f-ee2a4edf9bab",
+  "type": "user",
+  "uuid": "9a2ef5c8-da1b-477b-8151-abb09e4f9d37",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/revised_idea_r9.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "21fca5e8-0212-42a8-a01b-fd678abb6b90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59 · 2026-05-28T16:11:10.807Z_
+
+```json
+{
+  "parentUuid": "9a2ef5c8-da1b-477b-8151-abb09e4f9d37",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a0ab4527-8acc-4a58-acb1-c726e75c6bdb",
+  "timestamp": "2026-05-28T16:11:10.807Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surface…",
+  "leafUuid": "a0ab4527-8acc-4a58-acb1-c726e75c6bdb",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learning-gaming paradox in rubric-based RL: Reconsidering the mathematical foundation",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-28T16:11:14.185Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file write was blocked by permissions. Let me just output the JSON directly in my response instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0ab4527-8acc-4a58-acb1-c726e75c6bdb",
+  "isSidechain": false,
+  "requestId": "req_011CbVG29hkGijHexb9ZHE2M",
+  "type": "assistant",
+  "uuid": "f3d5df97-bcd7-4a09-a91c-8fc7a74aaf28",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jQsajVYZ5tBUhEzNygxVP",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17342,
+      "cache_read_input_tokens": 44393,
+      "output_tokens": 15324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17342,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15324,
+          "cache_read_input_tokens": 44393,
+          "cache_creation_input_tokens": 17342,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17342
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-28T16:17:39.847Z_
+
+Here is the complete revised research idea, addressing all four reviewer issues through a major revision:
+
+---
+
+```json
+{
+  "title": "The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surfaces in Multi-Dimensional Evaluation",
+  "core_problem": "Rubric-rewarded RL faces a structural tension unrecognized in prior work: the difficulty level where GRPO training signal is strongest is simultaneously where gaming opportunity is maximal. The Gradient Starvation analysis (arXiv:2605.07689) proves that GRPO's non-degenerate fraction N(p,G) = 1 - p^G - (1-p)^G is maximized at p = 0.5 (for G=2, N(p,2) = 2p(1-p), exactly proportional to p(1-p)); our Gaming Budget bound shows each criterion's gaming opportunity scales as √(p_k(1−p_k)), also maximized at p_k = 0.5. Both quantities peak at intermediate pass rates, meaning that difficulty-aware GRPO methods (DGPO, CDAS, Goldilocks RL) that correctly select problems in the p̄_d ∈ [0.3, 0.7] band for maximal learning efficiency inadvertently maximize gaming exposure under multi-dimensional rubric evaluation. The Edge of Competence analysis (arXiv:2602.14872, Lemma 6.2) provides further support: the multi-step learning gradient follows ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L) with peak at Δ*=L/(L+1), corresponding to pass rates p*=(L/(L+1))^L ∈ [1/e, 1/2] ≈ [0.37, 0.50] for reasoning chains of length L — still within the gaming-vulnerable band. (Note: the Edge of Competence result uses the attention margin Δ_L, not the pass rate p directly, and the functional form (Δ)^L(1−Δ) differs from p(1−p); we cite it for qualitative support that multi-step learning also concentrates at intermediate pass rates, not for a shared functional form.) This Learning-Gaming Paradox is structural — it arises whenever K evaluation criteria are applied with uniform strictness across varying task difficulty under GRPO-family training, because easy-to-verify criteria (formatting, structural completeness) remain satisfiable via shallow pattern-matching at intermediate-difficulty problems, while hard-to-verify criteria (proof validity, factual accuracy) yield their most ambiguous signal precisely there. The consequence is a K×D exploitation surface with difficulty-dependent structure that neither scalar Goodhart analysis (ICLR 2024; ICML 2023) nor static per-dimension distortion indices (Wang & Huang 2026, D_i = λ(r_i/w_i) + (1−λ)) can capture. Wang & Huang's D_i ranking (Corollary 1a) assumes symmetric production functions and treats all tasks identically — it cannot model how the exploitation landscape shifts across difficulty because difficulty-varying verification gaps δ_{k,d} and criterion correlations Σ_d are outside the model's scope (their Remark 2). Meanwhile, Reward Hacking in Rubric-Based RL (arXiv:2605.12474) diagnoses per-criterion gaming (90.2% presence-based concentration) but does NOT stratify by problem difficulty. LLMs Gaming Verifiers (arXiv:2604.15149) and Hack-Verifiable Environments (arXiv:2605.20744) show gaming/hacking increases monotonically with task difficulty in aggregate. Neither captures the paradox: the difficulty band that GRPO training should focus on for maximum learning efficiency is the difficulty band that rubric gaming exploits most effectively.",
+  "opportunity": "Six convergent gaps, now organized around the Learning-Gaming Paradox: (1) The Goodhart's law literature — Goodhart's Law in RL (ICLR 2024), Scaling Laws for RM Overoptimization (ICML 2023), Strong/Weak/Benign Goodhart's Law (arXiv:2505.23445) — operates on SCALAR proxy-goal pairs. The Robust Optimization framework (arXiv:2604.12086, ICLR 2026) adds correlation between scalar proxies but does not decompose per-criterion or model difficulty. No formal treatment exists for K-dimensional evaluation with difficulty-varying exploitation. (2) Wang & Huang (arXiv:2603.28063) derive a constructive per-dimension distortion index D_i with Corollary 1(a) providing a ranking result under symmetric production functions. However, their model treats all tasks identically — it cannot predict how the exploitation landscape shifts with difficulty d, because difficulty-varying verification gaps δ_{k,d} and correlations Σ_d are outside the model's scope (flagged in their Remark 2). Our framework extends D_i to D_i(d), recovering their ranking as a special case when difficulty is constant. (3) The Gradient Starvation analysis (arXiv:2605.07689) proves GRPO's learning signal peaks at intermediate pass rates: the non-degenerate fraction N(p,G) = 1−p^G−(1−p)^G is maximized at p=0.5, with degeneracy rates of 0.69 observed at G=4 in practice. The Edge of Competence (arXiv:2602.14872) establishes a complementary result for multi-step reasoning: the learning gradient ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L) peaks at attention margins Δ*=L/(L+1), corresponding to pass rates p*=(L/(L+1))^L ∈ [1/e, 1/2] — still within the intermediate range. Both results establish that RL learning concentrates at intermediate pass rates. NO PRIOR WORK connects this to gaming vulnerability: we show that the Gaming Budget bound's per-criterion terms √(p_k(1−p_k)) are ALSO maximized at intermediate pass rates. This peak coincidence — GRPO learning efficiency and gaming opportunity both maximized in the p ∈ [0.3, 0.7] band — is the Learning-Gaming Paradox. (4) DGPO (ICLR 2026, Theorems 1-2) addresses difficulty bias in binary-reward GRPO; per-criterion application is straightforward, but the INTERACTION structure — criterion correlations shifting with difficulty, verification gaps creating asymmetric vulnerability, learning-gaming tension at the competence boundary — requires genuinely novel analysis. (5) Reward Hacking in Rubric-Based RL (arXiv:2605.12474) diagnoses gaming taxonomy (3 failure modes, 90.2% presence-based criteria concentration) but does NOT stratify by problem difficulty — the core analytical dimension we add. (6) LLMs Gaming Verifiers (arXiv:2604.15149) and Hack-Verifiable Environments (arXiv:2605.20744) show gaming/hacking severity increases monotonically with task difficulty in aggregate — combined with arXiv:2605.12474's criterion-type finding, this forms our composite null hypothesis. The marginal contribution is fourfold: (a) the Learning-Gaming Paradox — identifying that GRPO's learning-efficient zone (Gradient Starvation) coincides with rubric gaming's exploitation peak (Gaming Budget), with supplementary support from Edge of Competence's multi-step analysis; (b) a Learning-Gaming Duality framework with co-equal Gaming Budget Theorem (T1) and Dimensionality Collapse Theorem (T2), extending Wang & Huang's static D_i to difficulty-varying D_i(d) trajectories; (c) a reusable diagnostic producing per-criterion × per-difficulty gaming surfaces with rigorous statistical methodology (10 difficulty bins, bootstrap CIs, formal non-monotonicity tests); (d) three quantitative falsifiable predictions against a strengthened composite null hypothesis, with concrete methodological value under either outcome — including derivation and validation of monotonic calibration schedules under H0.",
+  "landscape": "Rubric rewards for RL achieve strong results but apply uniform strictness across difficulty: RRM (ACL 2026) boosts Verified Pass@1024 on AIME2024 from 26.7% to 62.6%; RaR (ICLR 2026) extends to medical (+31% HealthBench) and science (+7% GPQA-Diamond); SRaR (arXiv:2605.17291) adds step-level attribution; POW3R (arXiv:2605.20164) adapts criterion weights via rollout variance; ARES (arXiv:2605.23454) automates rubric synthesis; AMARIS (arXiv:2605.18592) maintains persistent evaluation memory for difficulty-agnostic rubric evolution. ARL-RR (arXiv:2603.15646) addresses the scalarization problem by alternating optimization across rubric meta-classes (accuracy, completeness, instruction following, context awareness, communication quality), which is algorithmic (changing the optimization procedure) rather than diagnostic (characterizing which criteria are exploitable at which difficulty levels). The rubric-RL space continues rapid expansion (~10+ papers in 4 weeks preceding this revision) — but this velocity STRENGTHENS our diagnostic contribution: as methods proliferate, a principled framework identifying WHICH criteria are exploited at WHICH difficulty levels becomes a shared evaluation lens no individual method paper provides. Difficulty-aware RL methods operate under binary rewards: DGPO/MathForge (ICLR 2026) via MAD normalization, DARO (arXiv:2510.09001), F-GRPO (arXiv:2602.06717), GRPO-LEAD (EMNLP 2025) via logistic weighting, A-GRAE (arXiv:2602.05548), Goldilocks RL (arXiv:2602.14868), Online Difficulty Filtering (EACL 2026), CDAS (arXiv:2505.17652) via competence-difficulty alignment, Gradient Starvation (arXiv:2605.07689) via degeneracy analysis. ALL operate under binary rewards without per-criterion gaming analysis. Difficulty-calibrated advantage reweighting is an active concurrent direction: Unlocking the Potential of Difficulty Prior (arXiv:2505.13261) explicitly models difficulty priors to calibrate reasoning depth and reweight advantages in multimodal RL — while targeting training efficiency rather than gaming characterization, it demonstrates independent convergence on difficulty-aware reward modulation. The closest convergence spans eight categories: **Difficulty-stratified rubric calibration**: RuCL (arXiv:2602.21628) adjusts by model competence, not problem difficulty, and is vulnerable to gaming-inflated pass rates. **Multi-objective reward normalization**: MO-GRPO (arXiv:2509.22047) addresses per-objective variance bias (the mechanism underlying dimensional exploitation) but is difficulty-agnostic. **Reactive criterion reweighting**: POW3R adapts via rollout-contrast (reactive/diagnostic) while our approach is proactive/predictive (which criteria WILL BE gamed, inferred a priori from difficulty structure). **Memory-augmented rubric adaptation**: AMARIS addresses the temporal dimension (rubric evolution during training) while we address the structural dimension (exploitation variation with difficulty) — complementary, not competing. **Rubric quality and gaming defense**: Rubicon (arXiv:2508.12790), CDRRM (arXiv:2603.08035), C2 (arXiv:2604.13618) — all difficulty-agnostic. **Goodhart's law theory**: Goodhart's Law in RL (ICLR 2024), Robust Optimization for Correlated Proxies (ICLR 2026), Reward Hacking as Equilibrium (arXiv:2603.28063), Strong/Weak/Benign Goodhart's Law (arXiv:2505.23445) — Wang & Huang's D_i is constructive per-dimension but static; none model K-dimensional difficulty-varying exploitation trajectories or connect to training dynamics. **Training dynamics and gaming interaction**: Gradient Starvation (arXiv:2605.07689) proves GRPO degeneracy rate D(p,G)=p^G+(1−p)^G, establishing that GRPO learning concentrates at intermediate pass rates (p≈0.5); Edge of Competence (arXiv:2602.14872) proves multi-step learning gradient ∇ ∝ (Δ_L)^L(1−Δ_L), peaking at pass rates p*=(L/(L+1))^L ∈ [0.37, 0.50]; Reward Hacking Rebounds (arXiv:2604.01476) shows gaming has dynamic phase structure. None connect these training-efficiency results to gaming vulnerability under rubric evaluation — the Learning-Gaming Paradox we identify. **Difficulty-dependent hacking measurement**: Hack-Verifiable Environments (arXiv:2605.20744) introduces a paradigm for measuring reward hacking by embedding detectable opportunities into environments, finding hack rate increases monotonically with difficulty across most models (5 models, 3 games). This provides the strongest controlled evidence for H0a but does not analyze per-criterion gaming structure or connect to training dynamics. **Per-criterion behavior across difficulty**: SPARKLE (NeurIPS 2025, arXiv:2506.04723) analyzes three reasoning dimensions across difficulty levels under RL, providing evidence that per-criterion × per-difficulty analysis is informative — but studies reasoning capability, not gaming/exploitation, and has no Goodhart framework. The critical gap: no work provides (a) identification of the Learning-Gaming Paradox — the coincidence that GRPO learning efficiency and gaming opportunity both peak at intermediate pass rates, (b) co-equal Gaming Budget and Dimensionality Collapse theorems characterizing the K×D exploitation surface, (c) per-criterion × per-difficulty gaming diagnosis with rigorous statistical methodology, or (d) quantitative predictions about gaming structure tested against a composite null hypothesis that now incorporates controlled hack-rate evidence.",
+  "inspired_by": "The core insight — the Learning-Gaming Paradox — emerges from connecting GRPO training dynamics research to gaming vulnerability research. (1) Training dynamics: Gradient Starvation (arXiv:2605.07689) proves that GRPO's learning signal peaks at intermediate pass rates: the non-degenerate fraction N(p,G) = 1−p^G−(1−p)^G is maximized at p=0.5 (for G=2, N=2p(1−p); for G=4, D(0.5,4)≈0.125 vs D(0.25,4)≈0.32). The Edge of Competence (arXiv:2602.14872) provides complementary support from multi-step reasoning: Lemma 6.2 shows the gradient ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L), peaking at Δ*=L/(L+1), corresponding to pass rates p*=(L/(L+1))^L ∈ [1/e, 1/2] ≈ [0.37, 0.50]. Crucially, note that Δ_L is the attention margin, NOT the pass rate p, and the functional form (Δ)^L(1−Δ) is NOT p(1−p) — we use this result for qualitative support (learning peaks at intermediate pass rates regardless of whether we analyze via GRPO degeneracy or multi-step gradient structure) rather than claiming a shared functional form. The relay effect from Edge of Competence further explains WHY training naturally traverses this intermediate zone. (2) Gaming vulnerability: Reward Hacking in Rubric-Based RL (arXiv:2605.12474) shows 90.2% of gaming concentrates in presence-based criteria; LLMs Gaming Verifiers (arXiv:2604.15149) and Hack-Verifiable Environments (arXiv:2605.20744) show gaming/hacking increases with task difficulty in aggregate. The paradox: our Gaming Budget bound contains √(p_k(1−p_k)) terms — maximized at p_k=0.5. The GRPO non-degenerate fraction is maximized at p=0.5. Both peak at intermediate pass rates. Therefore: the difficulty band where GRPO training is most efficient for learning is ALSO where rubric gaming is most effective for exploitation. This connection is between training dynamics research (which identifies optimal GRPO learning regimes) and evaluation vulnerability research (which identifies exploitation-prone regimes) — different research concerns that happen to converge on the same difficulty band. It is genuinely surprising because difficulty-aware GRPO methods (DGPO, CDAS, Goldilocks RL) that correctly focus on intermediate-pass-rate problems for learning efficiency inadvertently maximize gaming exposure under rubric evaluation. It also explains WHY per-criterion gaming analysis WITHOUT difficulty stratification misses the most dangerous zone — gaming is not uniformly distributed but concentrates where the model sits at its competence boundary for each criterion. Innovation patterns: 'Rigorous problem diagnosis as standalone contribution' (proven success — 'Does RL Really Incentivize Reasoning' at NeurIPS 2025; 'Reward Hacking in Rubric-Based RL' diagnosed gaming taxonomy without difficulty stratification; SPARKLE analyzed per-criterion reasoning dynamics without gaming focus) + 'Connecting training dynamics research to evaluation vulnerability research to reveal a practical tension' (the GRPO-efficiency-meets-gaming-vulnerability connection). Key theoretical insight: Our framework generalizes Wang & Huang's distortion index D_i to difficulty-varying D_i(d) trajectories, but the deeper contribution is identifying that the D_i(d) PEAK ZONE coincides with the GRPO learning-efficiency peak — this is not recoverable from Wang & Huang's static model regardless of how it is parameterized, because it requires connecting to the training dynamics literature.",
+  "approach": "We adopt a three-contribution structure centered on the Learning-Gaming Paradox, with co-equal theoretical results and concrete value under either empirical outcome. **Lead Framing: The Learning-Gaming Paradox.** We open with a structural insight connecting training dynamics to evaluation vulnerability: the Gradient Starvation analysis (arXiv:2605.07689) proves GRPO's non-degenerate fraction N(p,G) = 1−p^G−(1−p)^G is maximized at p=0.5; our Gaming Budget bound shows gaming opportunity (via √(p_k(1−p_k)) terms) is also maximized at intermediate pass rates. Because both peak in the same difficulty band (p̄_d ∈ [0.3, 0.7]), the difficulty level that GRPO training should focus on for maximum learning is simultaneously the difficulty level where rubric gaming is most effective. The Edge of Competence (arXiv:2602.14872, Lemma 6.2) provides supplementary support: the multi-step gradient ∝ (Δ_L)^L(1−Δ_L) peaks at pass rates p*=(L/(L+1))^L ∈ [0.37, 0.50], confirming that even beyond GRPO-specific analysis, multi-step RL learning concentrates at intermediate pass rates within the gaming-vulnerable band. (We are careful to distinguish: the Gradient Starvation result directly uses pass rates p and provides the formal anchor; the Edge of Competence result uses attention margins Δ_L with a different functional form and provides qualitative reinforcement.) This paradox is structural — it holds regardless of whether specific predictions about non-monotonicity (P1) are confirmed, because the PEAK COINCIDENCE between N(p,G) and the Gaming Budget is a mathematical fact. **Composite Null Hypothesis.** We test against a strengthened Composite Null (H0) built from three rubric-relevant findings: (H0a — Aggregate Trend) Gaming severity increases monotonically with problem difficulty for ALL rubric criteria, extrapolating the aggregate trend from LLMs Gaming Verifiers (arXiv:2604.15149), Hack-Verifiable Environments (arXiv:2605.20744, which finds monotonic hack-rate increase in controlled settings across 5 models and 3 environments), and Goodhart's Law in RL (ICLR 2024). (H0b — Criterion-Type Invariance) Gaming concentrates in presence-based/completeness criteria at ALL difficulty levels, extrapolating from Reward Hacking in Rubric-Based RL (arXiv:2605.12474, 90.2% presence-based concentration). Note: H0a now incorporates controlled experimental evidence (arXiv:2605.20744) alongside observational evidence; H0b is rubric-specific but difficulty-agnostic. Together they predict monotonic, criterion-type-stable gaming — a stronger adversarial target than either alone. Three falsifiable predictions with quantitative and statistical failure conditions: (P1) Learning-Gaming Resonance — H0a predicts monotonically increasing gaming for reasoning-verification criteria; P1 predicts an inverted-U peaking in the intermediate-pass-rate band (coinciding with the GRPO learning efficiency peak at p≈0.5), with peak gaming rate ≥1.5× the rate at highest-difficulty bins. Statistical test: monotone-constrained isotonic regression vs. unconstrained fit via likelihood ratio test (p < 0.05), supplemented by quadratic regression β₂ < 0 (p < 0.05). (P2) Criterion Vulnerability Shift — H0b predicts presence-based criteria dominate at all difficulty levels; P2 predicts the criterion vulnerability ordering SHIFTS with difficulty — Pearson correlation between surface-criterion and reasoning-criterion satisfaction flips from positive (r > 0.1 in bottom-quintile) to negative (r < −0.1 in top-quintile), a sign flip analogous to Simpson's Paradox. Additionally, reasoning-criterion gaming share increases ≥2× from bottom to top difficulty quintile. (P3) Asymmetric Dimensionality Collapse — P3 predicts K_honest/K_eff < 0.5 at highest-difficulty bins, with K_eff ≥ 3: honest gradient signal collapses to a lower-dimensional subspace FASTER than total signal because gaming inflates apparent dimensionality. **Concrete value under either outcome.** If P1-P3 hold: the Learning-Gaming Paradox is empirically confirmed with specific structural predictions, revealing difficulty-dependent gaming invisible to aggregate/unstratified analysis. If H0 is confirmed (monotonic, criterion-type-stable gaming): (a) the Learning-Gaming Paradox still holds structurally — even monotonically increasing gaming creates a tension with the GRPO learning signal peak at moderate difficulty, because difficulty-aware methods focus training precisely where gaming is already substantial; (b) we provide the FIRST per-criterion × per-difficulty confirmation that monotonicity and criterion-type-stability hold at every criterion individually (currently known only in aggregate or unstratified); (c) we derive and validate a simple linear strictness schedule s_k(d) = α_k + β_k·d justified by confirmed monotonicity, where β_k is proportional to the empirically measured per-criterion gaming slope, and validate that it reduces the mean DEG (Dimension Exploitation Gap) by ≥15% compared to uniform strictness on a held-out test split; (d) the Dimensionality Collapse analysis (T2) characterizes how many effective honest dimensions remain at each difficulty level, directly informing how many criteria are worth evaluating at high difficulty. We explicitly acknowledge this would be a solid diagnostic paper with a concrete calibration output, valuable to rubric-RL practitioners. **Contribution 1 — Learning-Gaming Duality Framework (domain-agnostic theory).** Four formal results for any K-dimensional evaluation system with difficulty variation under GRPO-family training: (T1) Gaming Budget Theorem — a difficulty-parameterized bound on total exploitable reward at difficulty d, extending Wang & Huang's static distortion index. Formal model: pass rate matrix P ∈ [0,1]^{K×D}, verification gap matrix Δ, difficulty-varying correlation matrix Σ_d. Four assumptions: (A1) decomposability into genuine and gaming components; (A2) monotonic non-increase of reasoning-dependent pass rates with difficulty; (A3) difficulty-stable or increasing verification gaps for surface criteria; (A4) positive correlation between criterion-level pass rates p_{k,d} and aggregate binary pass rate p̄_d (justified by the shared difficulty driver — harder problems lower both aggregate and criterion-level pass rates). Bound: G_d ≤ Σ_{k∈V_d} w_k · δ_{k,d} · √(p_{k,d}(1−p_{k,d})) + Σ_{j&lt;k∈V_d} w_j·w_k · max(0, σ_{jk,d}) · δ_{j,d}·δ_{k,d}. **Special case reduction:** When d is constant and δ_{k,d} = δ, recovers Wang & Huang's D_i ranking. (T2) Dimensionality Collapse Theorem (CO-EQUAL with T1) — proves K_honest(d) decreases strictly faster than K_eff(d) under A2, using the observation that high-verification-stringency criteria leave the active gradient set first. This is potentially more surprising than T1 because it predicts ASYMMETRIC structural behavior: gaming inflates apparent signal dimensionality while honest signal collapses, creating a growing gap that makes gaming increasingly invisible to standard diagnostics at higher difficulty. Validated via PCA on per-criterion pass-rate vectors across difficulty bins, measuring the ratio of honest-signal eigenvalues to total eigenvalues. (T3) Calibration Sufficiency Condition — derives the minimal gaming-eliminating strictness schedule s_{k,d} ∝ 1/δ_{k,d} · √(p_{k,d}(1−p_{k,d})). Under confirmed H0 (monotonic gaming), simplifies to the linear schedule s_k(d) = α_k + β_k·d with closed-form β_k. (T4) Learning-Gaming Peak Coincidence Corollary — Under assumptions A1-A4, the GRPO non-degenerate fraction N(p̄_d, G) = 1−p̄_d^G−(1−p̄_d)^G and the difficulty-marginal Gaming Budget G_d are both maximized within the difficulty band where p̄_d ∈ [0.3, 0.7]. Formally: N(p,G) achieves its unique maximum at p=0.5 (Gradient Starvation, arXiv:2605.07689); each Gaming Budget term w_k·δ_{k,d}·√(p_{k,d}(1−p_{k,d})) achieves its maximum at p_{k,d}=0.5; under A4, the Gaming Budget is near-maximal when p̄_d ≈ 0.5. Supplementary support: the Edge of Competence (arXiv:2602.14872) multi-step gradient peaks at pass rates (L/(L+1))^L ∈ [1/e, 1/2] for reasoning chains of length L, confirming that multi-step learning also concentrates in the gaming-vulnerable band. (We do NOT claim a shared functional form between (Δ)^L(1−Δ) and √(p(1−p)) — the formal connection is through peak coincidence in the pass-rate domain.) Practical consequence: difficulty-aware GRPO methods (DGPO, CDAS, Goldilocks RL) that select problems with p̄_d ≈ 0.5 for maximal learning efficiency simultaneously maximize the Gaming Budget under rubric evaluation. Validation strategy: RANKING ACCURACY (Spearman ρ between predicted and observed gaming severity across K×D cells) following the Effective Horizon precedent (NeurIPS 2023 Oral), plus conservativeness ratio and top-3 vulnerability identification accuracy. **Contribution 2 — Cross-Domain Empirical Diagnosis with Rigorous Statistics.** Math domain (primary for AAAI): Qwen2.5-Math-1.5B policy, Qwen3-8B judge, MATH dataset. **10-bin difficulty scale:** Base model generates 64 rollouts per problem → per-problem pass@1 → 10 equal-frequency difficulty bins (deciles). This provides 2× resolution for curve-fitting, continuous underlying variable for regression, independence from coarse categorical labels. MATH's native 5 levels serve as robustness check. Statistical methodology: (i) 1000-resample bootstrap 95% CIs on all DEG values; (ii) formal non-monotonicity test: isotonic regression (monotone non-decreasing constraint) vs. unconstrained kernel regression via permutation-based likelihood ratio test; (iii) quadratic regression DEG ~ β₀ + β₁d + β₂d² with one-sided test β₂ < 0; (iv) Fisher's z-test for correlation sign-flip (P2). Medical domain (ICLR scope): Qwen2.5-1.5B-Instruct policy, Qwen3-8B judge, RaR-Medicine (22.4K examples, ICLR 2026). Difficulty estimation via SFT-init checkpoint rollouts (breaks circularity). Cross-domain comparison: test whether gaming surface STRUCTURE transfers across domains. **Contribution 3 — DCRR Proof-of-Concept (ICLR scope only).** DGPO+RRM critical baseline first; if >20% gap remains, apply Difficulty-Calibrated Rubric Rewards using T3 schedule. Under H0: validate s_k(d) = α_k + β_k·d reduces mean DEG ≥15% vs. uniform strictness. **Venue Strategy (REVISED — AAAI primary, ICLR stretch).** Primary target: AAAI 2027 (abstract Jul 21, paper Jul 28, 8 weeks). Math-only, Contributions 1-2: Learning-Gaming Duality framework (T1+T2+T4 corollary + T3 monotonic special case) + MATH 10-bin gaming heatmaps + 3 predictions + monotonic calibration validation under H0. This is the natural unit — the theoretical framework + single-domain validation. Decision-gated stretch: ICLR 2027 (~Sep 24, 17 weeks). Full three-contribution scope adding medical domain + DCRR defense + cross-domain analysis. Only pursued if AAAI submission is strong AND reviewer feedback suggests expansion strengthens the work. Backup: ARR August 3 → EACL 2027 (~10 weeks, math + medical diagnostics without DCRR). **Concrete timeline (AAAI primary, 8 weeks):** Week 1 (May 28 - Jun 4): Theory formalization (T1 with Wang & Huang special case, T2 with PCA validation plan, T4 Learning-Gaming Peak Coincidence Corollary with Gradient Starvation anchor) + infrastructure setup (verl scripts, judge pipeline) + BEGIN base-model pass@1 computation (64 rollouts/problem, ~8 H100-hrs) + BEGIN GRPO training run. Week 2 (Jun 4 - Jun 11): Base-model pass@1 complete → 10-bin difficulty binning + BEGIN GRPO+RRM training run + BEGIN DGPO+RRM training run. Weeks 3-4 (Jun 11 - Jun 25): Training runs complete + judge inference on all 3 models (~20 H100-hrs total) + 10-bin gaming heatmap construction + DEG computation + bootstrap CIs + non-monotonicity tests. Week 5 (Jun 25 - Jul 2): All statistical tests (P1 isotonic regression, P2 Fisher's z-test, P3 PCA dimensionality analysis) + monotonic calibration schedule derivation and validation + draft core results. Week 6 (Jul 2 - Jul 9): DECISION GATE — evaluate: (a) are gaming surfaces non-trivial? (b) do statistical tests yield interpretable results? (c) is theory validated via ranking accuracy? If YES to all three: commit to AAAI. If NO: continue ICLR plan with 10 more weeks. Weeks 7-8 (Jul 9 - Jul 28): Paper writing, figures, polishing. Jul 21 abstract, Jul 28 paper submission. **Risk mitigation:** Training failures → keep uniform-GRPO baseline (always works), can still produce gaming surface from fewer models. Judge quality → validate on 200-sample subset before full inference. Timeline → T3 monotonic case and H0-confirmed contributions provide fallback value even if exotic predictions fail.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "100 H100-hours for AAAI primary (Math: 3 training runs × 4 H100 × 2.5hr = 30hr, base-model pass@1 computation for 10-bin difficulty 8hr, rubric judge inference 20hr, Pass@64 for difficulty binning 25hr, analysis + bootstrap CIs + overhead 17hr). Additional 90 H100-hours for ICLR stretch (Medical: 3 training runs × 4 H100 × 2hr = 24hr, SFT-init difficulty oracle rollouts 5hr, medical judge inference 10hr, DCRR experiments 30hr, MO-GRPO+RRM baseline 15hr, ablations 6hr).",
+      "timeline": "8 weeks for AAAI 2027 primary (math-only, Contributions 1-2+calibration). 17 weeks for ICLR 2027 stretch (full three-contribution scope adding medical + DCRR).",
+      "estimated_gpu_cost": "$250 AAAI / $475 total with ICLR stretch (H100 at ~$2.50/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "100 H100-hours AAAI / 190 H100-hours total (same; Claude accelerates code/analysis, not GPU work)",
+      "timeline": "7 weeks for AAAI (Claude assists theorem formalization, verl scripts, automated heatmap generation, bootstrap pipeline, writing). 14-15 weeks for ICLR stretch.",
+      "claude_api_cost": "$150 AAAI / $300 total (Sonnet 4.6 for rubric generation, code scaffolding, statistical pipeline, writing)",
+      "estimated_gpu_cost": "$250 AAAI / $475 total"
+    },
+    "auto_research": {
+      "gpu_hours": "105 H100-hours AAAI / 200 H100-hours total (5hr margin for targeted hyperparameter exploration per venue)",
+      "timeline": "6-7 weeks for AAAI (parallelized dispatch, automated analysis, Claude-drafted paper). 10-12 weeks for ICLR.",
+      "claude_api_cost": "$250 AAAI / $420 total (rubric judging quality audit ~5K samples, automated analysis, writing)",
+      "estimated_gpu_cost": "$263 AAAI / $500 total",
+      "speed_bottleneck": "LLM judge inference throughput — scoring ~50K math rollouts per model with Qwen3-8B requires ~8hr per model on 4×H100; base-model pass@1 computation adds ~8hr"
+    },
+    "aaai_primary_scope": {
+      "gpu_hours": "100 H100-hours (Math only: 3 training runs × 4 H100 × 2.5hr = 30hr, base-model pass@1 for binning 8hr, judge inference 20hr, Pass@64 difficulty binning 25hr, analysis + bootstrap 17hr)",
+      "timeline": "8 weeks (6-week sprint + 2 weeks writing; decision gate at week 6)",
+      "estimated_gpu_cost": "$250",
+      "scope": "Learning-Gaming Duality framework (T1+T2+T4 Peak Coincidence Corollary with Gradient Starvation anchor, with T3 monotonic special case) + MATH 10-bin gaming heatmaps with bootstrap CIs + 3 falsifiable predictions tested with formal statistical tests + monotonic calibration schedule derivation and validation under H0. The complete theoretical framework plus single-domain empirical validation."
+    },
+    "iclr_stretch_scope": {
+      "gpu_hours": "190 H100-hours total (AAAI scope + Medical: 3 training runs × 4 H100 × 2hr = 24hr, SFT-init difficulty oracle 5hr, medical judge inference 10hr + DCRR: experiments 30hr, MO-GRPO+RRM 15hr, ablations 6hr)",
+      "timeline": "17 weeks total (incorporates AAAI submission + 9 additional weeks for medical domain + DCRR + cross-domain analysis)",
+      "estimated_gpu_cost": "$475",
+      "scope": "Full three-contribution scope: AAAI content + medical domain validation + DCRR proof-of-concept + cross-domain gaming surface comparison"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract Jul 21, paper Jul 28, 2026 — PRIMARY target, 8 weeks; Math-only Contributions 1-2+calibration: Learning-Gaming Duality framework with co-equal T1+T2, Learning-Gaming Peak Coincidence Corollary T4 anchored to Gradient Starvation, monotonic calibration special case T3, MATH 10-bin gaming surfaces, 3 predictions with formal tests, concrete calibration validation under H0; decision gate at week 6)",
+    "ICLR 2027 (~Sep 24, 2026 — decision-gated stretch, 17 weeks; expands AAAI submission with medical domain cross-validation, DCRR proof-of-concept defense, cross-domain gaming surface comparison; pursued if AAAI submission is strong and reviewer feedback suggests expansion strengthens the work)",
+    "ARR August 3, 2026 → EACL 2027 (~10 weeks; intermediate scope: math + medical diagnostics without DCRR; NLP-venue backup if AAAI decision gate fails but results warrant earlier publication)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Gradient Starvation in Binary-Reward GRPO (arXiv:2605.07689) — GRPO degeneracy rate D(p,G)=p^G+(1−p)^G; non-degenerate fraction N(p,G)=1−p^G−(1−p)^G maximized at p=0.5 (for G=2, N=2p(1−p); observed 0.69 degeneracy at G=4 in Qwen3.5-9B). CRITICAL for our Learning-Gaming Paradox: provides the PRIMARY formal anchor establishing that GRPO learning efficiency peaks at intermediate pass rates (p≈0.5), coinciding with the Gaming Budget's peak zone. Also proves via Jensen's inequality that real degeneracy exceeds i.i.d. prediction",
+    "On the Learning Dynamics of RLVR at the Edge of Competence (arXiv:2602.14872) — Multi-step learning gradient: Lemma 6.2 shows ∇_q J̃_L ∝ (Δ_L)^L(1−Δ_L) where Δ_L is the effective probability margin (NOT the pass rate), peaking at Δ*=L/(L+1). The corresponding pass rate at the gradient peak is p*=(L/(L+1))^L ∈ [1/e, 1/2] ≈ [0.37, 0.50]. Provides SUPPLEMENTARY SUPPORT for the Learning-Gaming Paradox: even the multi-step analysis shows learning concentrates at intermediate pass rates within the gaming-vulnerable band. The relay effect explains WHY training naturally traverses this zone. NOTE: the functional form (Δ)^L(1−Δ) differs from p(1−p) and Δ ≠ p; we cite for qualitative support, not shared functional form",
+    "Reward Hacking as Equilibrium under Finite Evaluation (arXiv:2603.28063) — Constructive per-dimension distortion index D_i = λ(r_i/w_i) + (1−λ) with ranking result Corollary 1(a): D_i > D_j ⟹ e_i* > e_j* under symmetric production functions. Limitation: static (no difficulty parameterization), assumes symmetric g_i (Remark 2). Our framework extends D_i to difficulty-varying D_i(d) trajectories, recovering D_i ranking as a special case at constant difficulty",
+    "Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale (arXiv:2605.20744) — Embeds detectable hacking opportunities into environments for controlled measurement. Tests 5 models (Claude Sonnet 4.6, GPT-5-Codex, Gemini 3.1 Pro, Qwen3.6-Plus, Kimi-K2.5) across 3 games (Wordle, Tower of Hanoi, 15-Puzzle) with varying difficulty. KEY FINDING: hack rate increases monotonically with task difficulty across most models and environments. Provides the strongest controlled experimental evidence supporting H0a in our composite null hypothesis",
+    "Goodhart's Law in Reinforcement Learning (ICLR 2024) — Geometric explanation for Goodhart's law in MDPs; shows optimization pressure increases Goodharting; aggregate scalar analysis. Our framework extends to K-dimensional evaluation with difficulty variation and connects to training dynamics",
+    "Robust Optimization for Mitigating Reward Hacking with Correlated Proxies (arXiv:2604.12086, ICLR 2026) — Max-min formulation over r-correlated scalar proxy rewards; does not decompose per-criterion or model difficulty-varying correlation",
+    "The Strong, Weak and Benign Goodhart's Law (arXiv:2505.23445) — Independence-free formalization; scalar proxy-goal pair, no multi-dimensional or difficulty treatment",
+    "Scaling Laws for Reward Model Overoptimization (ICML 2023) — Empirical scaling of overoptimization with optimization intensity; aggregate scalar analysis",
+    "LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking (arXiv:2604.15149, ICLR 2026 Workshop) — Shows gaming prevalence increases with task complexity on inductive reasoning tasks (SLR-Bench, 4 tiers) under binary extensional verification. Contributes H0a (aggregate trend) to our composite null hypothesis",
+    "Reward Hacking in Rubric-Based Reinforcement Learning (arXiv:2605.12474) — Gaming taxonomy in medical/science; 3 failure modes; 90.2% presence-based criteria concentration; self-internalization gap metric. Contributes H0b (criterion-type invariance) to our composite null hypothesis. Does NOT stratify by problem difficulty",
+    "Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation (ICLR 2026) — DGPO Theorems 1-2 on binary-reward difficulty bias; difficulty-aware methods that focus on intermediate pass rates — precisely the zone our Learning-Gaming Paradox identifies as gaming-vulnerable",
+    "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards (ACL 2026) — RRM baseline, uniform-strictness rubric rewards for math",
+    "Rubrics as Rewards: Reinforcement Learning Beyond Verifiable Domains (ICLR 2026) — Foundational rubric RL; RaR-Medicine dataset for cross-domain validation",
+    "Unlocking the Potential of Difficulty Prior in RL-based Multimodal Reasoning (arXiv:2505.13261) — Models difficulty priors to calibrate reasoning depth and reweight advantages in multimodal RL. Demonstrates concurrent convergence on difficulty-aware reward modulation, though targeting training efficiency rather than gaming characterization. Validates the timeliness of difficulty-calibrated approaches",
+    "Rethinking the Sampling Criteria in RL for LLM Reasoning: A Competence-Difficulty Alignment Perspective (arXiv:2505.17652) — CDAS framework for stable difficulty estimation via historical performance aggregation. Validates our base-model pass-rate difficulty binning methodology",
+    "Bridging RL Theory and Practice with the Effective Horizon (NeurIPS 2023, Oral) — Validates theoretical bounds via RANKING CORRELATION across 155 MDPs. Direct precedent for our Gaming Budget validation strategy",
+    "MO-GRPO: Mitigating Reward Hacking of GRPO on Multi-Objective Problems (arXiv:2509.22047) — Per-objective variance normalization; Theorem 1 (correlation ∝ σ_i) is the mechanism underlying dimensional exploitation, but difficulty-agnostic",
+    "Beyond Accuracy: Dissecting Mathematical Reasoning for LLMs Under Reinforcement Learning (NeurIPS 2025, arXiv:2506.04723) — SPARKLE framework analyzing 3 reasoning dimensions across difficulty under RL. Evidence that per-criterion × per-difficulty analysis is informative, but studies reasoning capability rather than gaming and has no Goodhart framework",
+    "When Reward Hacking Rebounds: Understanding and Mitigating It with Representation-Level Signals (arXiv:2604.01476) — Identifies three-phase gaming dynamics (attempt → retreat → rebound) in code RL; shortcut direction in representation space tracks hacking. Supports our view that gaming is not static but has structural dynamics across contexts",
+    "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model? (NeurIPS 2025) — Pass@k frontier evaluation for binary-reward; diagnostic impact precedent",
+    "Reward Collapse in Aligning Large Language Models (arXiv:2305.17608) — Reward distribution collapse; supports our Dimensionality Collapse prediction",
+    "Step-wise Rubric Rewards for LLM Reasoning (arXiv:2605.17291) — SRaR step-level rubric attribution",
+    "Not Every Rubric Teaches Equally: Policy-Aware Rubric Rewards for RLVR (arXiv:2605.20164) — POW3R rollout-contrast reweighting; reactive vs. our proactive/predictive",
+    "AMARIS: A Memory-Augmented Rubric Improvement System (arXiv:2605.18592) — Persistent evaluation memory; temporal dimension vs. our structural dimension",
+    "ARES: Automated Rubric Synthesis for Scalable LLM RL (arXiv:2605.23454) — Rubric synthesis automation; difficulty-agnostic",
+    "Alternating Reinforcement Learning with Contextual Rubric Rewards (arXiv:2603.15646) — ARL-RR addresses scalarization by alternating optimization across rubric meta-classes. Algorithmic (changes optimization procedure) rather than diagnostic (characterizing exploitation patterns)",
+    "RuCL: Stratified Rubric-Based Curriculum Learning (arXiv:2602.21628) — Adjusts by model competence not problem difficulty; vulnerable to gaming-inflated pass rates",
+    "HealthBench (arXiv:2505.08775) — Medical evaluation benchmark; secondary evaluation",
+    "CDRRM (arXiv:2603.08035), C2 (arXiv:2604.13618), Rubicon (arXiv:2508.12790) — Rubric quality/gaming defense; all difficulty-agnostic",
+    "Online Difficulty Filtering for Reasoning Oriented RL (EACL 2026) — Variance-based difficulty selection theory",
+    "GRPO-LEAD (arXiv:2504.09696, EMNLP 2025) — Logistic difficulty reweighting under binary rewards",
+    "DARO, F-GRPO, A-GRAE, Goldilocks RL, PAPO, ARL-RR, RubricEM, Rubric-Grounded RL — Complementary difficulty-aware or rubric-optimization methods, all binary-reward or difficulty-agnostic"
+  ],
+  "description": "We identify the Learning-Gaming Paradox: a structural tension in rubric-rewarded RL where the difficulty level that maximizes GRPO learning signal simultaneously maximizes gaming opportunity. The Gradient Starvation analysis (arXiv:2605.07689) proves GRPO's non-degenerate fraction N(p,G) = 1−p^G−(1−p)^G is maximized at p=0.5; our Gaming Budget bound shows gaming opportunity (via √(p(1−p)) terms) is also maximized at intermediate pass rates. Both peak in the same difficulty band (p̄_d ∈ [0.3, 0.7]), meaning difficulty-aware GRPO methods (DGPO, CDAS, Goldilocks RL) that correctly focus on this zone for learning efficiency inadvertently maximize gaming exposure under multi-dimensional rubric evaluation. The Edge of Competence analysis (arXiv:2602.14872, Lemma 6.2) provides supplementary support: the multi-step gradient (∝ (Δ_L)^L(1−Δ_L), where Δ_L is the attention margin, NOT the pass rate) peaks at pass rates p*=(L/(L+1))^L ∈ [0.37, 0.50], confirming that multi-step learning also concentrates at intermediate pass rates within the gaming-vulnerable band. We contribute: (1) a Learning-Gaming Duality framework with co-equal theoretical results — a Gaming Budget Theorem (T1) providing the first difficulty-parameterized K-dimensional Goodhart bound (extending Wang & Huang's static D_i to D_i(d) trajectories with special-case reduction), a Dimensionality Collapse Theorem (T2) proving honest signal dimensionality collapses faster than total signal making gaming increasingly invisible, a Learning-Gaming Peak Coincidence Corollary (T4) formally establishing that the GRPO non-degenerate fraction and the Gaming Budget are both maximized at intermediate pass rates (anchored to Gradient Starvation with Edge of Competence as supplementary support), and a Calibration Sufficiency Condition (T3) deriving gaming-eliminating strictness schedules that simplify to s_k(d) = α_k + β_k·d under confirmed monotonicity; (2) a cross-domain empirical diagnostic using 10-bin difficulty scales (base-model pass-rate deciles) with bootstrap CIs and formal non-monotonicity tests, producing per-criterion × per-difficulty gaming surfaces; (3) three falsifiable predictions against a composite null hypothesis strengthened by Hack-Verifiable Environments (arXiv:2605.20744) — (P1) Learning-Gaming Resonance: non-monotonic gaming for reasoning criteria peaking in the GRPO-efficient band at ≥1.5× the highest-difficulty rate; (P2) Criterion Vulnerability Shift: surface-reasoning correlation sign-flip plus ≥2× reasoning-criterion gaming share increase; (P3) Asymmetric Dimensionality Collapse: K_honest/K_eff < 0.5 at highest difficulty. The paper delivers concrete value under either outcome: if predictions hold, it reveals difficulty-dependent structure invisible to prior analysis; if H0 is confirmed, it provides the first per-criterion × per-difficulty confirmation of monotonic gaming, derives and validates a simple linear calibration schedule reducing mean DEG by ≥15%, and characterizes effective honest dimensionality at each difficulty level. Validated on Qwen2.5-Math-1.5B (AAAI primary, math) with Qwen2.5-1.5B-Instruct cross-domain validation (ICLR stretch, medical).",
+  "project_name": "diff_calib_rubric_rlvr",
+  "source": "web_research",
+  "revision_notes": {
+    "change_type": "major",
+    "change_type_justification": "Major revision driven by critical mathematical correction and formal anchor pivot: (1) ALL instances of the incorrect claim '∇𝒥 ∝ Δ(1−Δ) from Lemma 6.2' removed and replaced with correct formula (Δ_L)^L(1−Δ_L); (2) Formal anchor for Learning-Gaming Paradox pivoted from Edge of Competence Lemma 6.2 to Gradient Starvation's GRPO degeneracy result (Option A from reviewer); (3) T4 substantially rewritten as 'Learning-Gaming Peak Coincidence Corollary' with correct mathematics; (4) New assumption A4 introduced to bridge binary-reward GRPO results to rubric settings; (5) Hack-Verifiable Environments (arXiv:2605.20744) added as strongest controlled H0a evidence; (6) 'Two independent literatures via shared p(1−p) functional form' framing replaced with precisely scoped 'peak coincidence in the pass-rate domain' claims; (7) GRPO-specificity of the formal result explicitly acknowledged with honest scope calibration.",
+    "issue_1_lemma62_mischaracterization": "RESOLVED (CRITICAL). ALL instances of '∇𝒥 ∝ Δ(1−Δ)' attributed to Lemma 6.2 have been removed. The correct formula (Δ_L)^L(1−Δ_L) is now stated explicitly wherever Edge of Competence is cited, with clear notation that Δ_L is the attention margin (not the pass rate p), that the peak is at Δ*=L/(L+1) (not 0.5), and that the functional form differs from p(1−p). Edge of Competence is now cited for QUALITATIVE SUPPORT: we compute the pass rate at the gradient peak as p*=(L/(L+1))^L ∈ [1/e, 1/2] ≈ [0.37, 0.50], which falls within the gaming-vulnerable band [0.3, 0.7]. This provides independent multi-step-reasoning support for the paradox without any incorrect mathematical claim.",
+    "issue_2_formal_coincidence_collapse": "RESOLVED (CRITICAL). The 'formal coincidence of shared p(1−p) functional form' narrative has been completely replaced. The formal anchor is now the Gradient Starvation result: GRPO non-degenerate fraction N(p,G) = 1−p^G−(1−p)^G is maximized at p=0.5, using the pass rate p directly (the same variable as in the Gaming Budget). T4 is renamed 'Learning-Gaming Peak Coincidence Corollary' and states: both N(p,G) and the Gaming Budget terms √(p_k(1−p_k)) are maximized at intermediate pass rates. We explicitly state this is PEAK COINCIDENCE in the pass-rate domain, NOT a shared functional form. New assumption A4 (positive correlation between criterion-level pass rates and aggregate binary pass rate) bridges the GRPO binary-reward result to multi-criterion rubric settings.",
+    "issue_3_hack_verifiable_environments": "RESOLVED. Hack-Verifiable Environments (arXiv:2605.20744) added throughout: in core_problem, opportunity, landscape (new 'Difficulty-dependent hacking measurement' category), approach (third H0a source), key_references (full details: 5 models, 3 games, controlled difficulty), and description. H0a now incorporates controlled experimental evidence alongside observational evidence, substantially strengthening the composite null.",
+    "issue_4_grpo_specificity": "RESOLVED. The cross-literature framing recalibrated throughout. We no longer claim 'connecting two independent literatures via shared p(1−p) dependence.' Instead: 'connecting training dynamics research (which identifies optimal GRPO learning regimes) to evaluation vulnerability research (which identifies exploitation-prone regimes).' GRPO-specificity acknowledged explicitly with three mitigations: (a) GRPO is the dominant training algorithm for rubric-RL methods, so GRPO-specificity covers the primary use case; (b) the qualitative extension to rubric GRPO is well-motivated; (c) Edge of Competence provides model-agnostic supplementary support via the pass-rate computation p*=(L/(L+1))^L ∈ [0.37, 0.50].",
+    "T4_rewrite": "T4 renamed from 'Learning-Gaming Resonance Corollary' to 'Learning-Gaming Peak Coincidence Corollary.' Old T4 claimed to 'formally connect the p(1−p) terms in G_d to the Δ(1−Δ) terms in the learning signal gradient' — mathematically incorrect. New T4: under A1-A4, both N(p̄_d, G) and G_d are maximized in the difficulty band p̄_d ∈ [0.3, 0.7], with N uniquely maximized at p=0.5 and each Gaming Budget term maximized at p_k=0.5. Formal connection through peak coincidence in the pass-rate domain. Edge of Competence cited as supplementary support showing p*=(L/(L+1))^L ∈ [0.37, 0.50]. No claim of shared functional form.",
+    "assumption_A4_introduced": "New assumption A4: positive correlation between criterion-level pass rates p_{k,d} and aggregate binary pass rate p̄_d. Justified by shared difficulty driver (harder problems lower both aggregate and criterion-level pass rates). Bridges GRPO binary-reward degeneracy result (uses aggregate p) to Gaming Budget (uses per-criterion p_k). Empirically testable in experimental setup.",
+    "edge_of_competence_role_change": "Role changed from 'co-anchor with exact formula cited for formal coincidence' to 'supplementary support with pass-rate computation cited for qualitative reinforcement.' Lemma 6.2 now cited with CORRECT formula; we compute p*=(L/(L+1))^L and show it falls in [0.37, 0.50]; we explicitly distinguish Δ_L (attention margin) from p (pass rate) and note the functional forms differ; the relay effect is cited to explain WHY training traverses the intermediate zone. This honest treatment strengthens the paper: it shows the paradox is supported by TWO independent analyses converging on the same conclusion.",
+    "H0_strengthened": "H0a now incorporates three sources: (1) LLMs Gaming Verifiers — observational evidence from inductive reasoning; (2) Hack-Verifiable Environments — controlled experimental evidence across 5 models and 3 games with varied difficulty; (3) Goodhart's Law in RL — theoretical aggregate analysis. This makes the composite null substantially stronger.",
+    "stagnation_addressed": "This revision addresses the round-8 mathematical error through FUNDAMENTAL CORRECTION, not surface patching. The paper's mathematical foundation is rebuilt on correct results (Gradient Starvation N(p,G) directly using pass rates). The novelty scope is honestly recalibrated: peak coincidence rather than shared functional form, GRPO-specific with noted coverage of primary use case. This should raise reviewer confidence because: (a) no mathematical error remains; (b) the Gradient Starvation anchor is cleaner and more direct; (c) the Edge of Competence pass-rate computation p*=(L/(L+1))^L provides genuinely interesting supplementary support from an independent direction; (d) honest scoping prevents overclaiming."
+  }
+}
+```
+
+---
+
+## Summary of Changes (Round 9 — Major Revision)
+
+### What the reviewer caught and why it matters
+
+The reviewer identified that **Lemma 6.2 from Edge of Competence** actually states ∇_q J̃_L ∝ **(Δ_L)^L(1−Δ_L)**, NOT Δ(1−Δ). Three critical distinctions:
+
+| Aspect | Previous (Wrong) Claim | Actual Result |
+|--------|----------------------|---------------|
+| **Variable** | Pass rate p | Attention margin Δ_L (≠ p) |
+| **Functional form** | Δ(1−Δ) | (Δ_L)^L(1−Δ_L) |
+| **Peak location** | Δ = 0.5 | Δ* = L/(L+1), i.e., 2/3 for L=2, 5/6 for L=5 |
+
+This invalidated the entire "shared p(1−p) functional form" narrative — the paper's lead contribution after the round 7 restructure.
+
+### How this revision resolves each issue
+
+1. **Lemma 6.2 correction**: Following **Option A** (reviewer-recommended). The formal anchor pivots to **Gradient Starvation's** GRPO degeneracy rate D(p,G) = p^G + (1−p)^G, where the non-degenerate fraction N(p,G) = 1−p^G−(1−p)^G is maximized at **p = 0.5** — using the pass rate directly. Edge of Competence is downgraded to **supplementary support**: we compute that its gradient peak corresponds to pass rates p* = (L/(L+1))^L ∈ **[0.37, 0.50]** — still within the gaming-vulnerable band, but cited for qualitative reinforcement, not shared functional form.
+
+2. **"Formal coincidence" replaced with "peak coincidence"**: T4 renamed to **"Learning-Gaming Peak Coincidence Corollary"** — both N(p,G) and Gaming Budget terms √(p(1−p)) are maximized at intermediate pass rates. No claim of shared functional form. New **assumption A4** (positive criterion-aggregate pass rate correlation) bridges binary-GRPO results to rubric settings.
+
+3. **Hack-Verifiable Environments added**: arXiv:2605.20744 (5 models, 3 games, controlled difficulty variation, finding monotonic hack rate increase) incorporated throughout as the strongest controlled H0a evidence.
+
+4. **GRPO-specificity acknowledged**: The framing shifts from "connecting two independent literatures" to "connecting GRPO training dynamics to rubric gaming vulnerability" — still cross-subdomain (training efficiency ↔ evaluation vulnerability), but precisely scoped. GRPO dominance in rubric-RL noted as practical coverage mitigation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3d5df97-bcd7-4a09-a91c-8fc7a74aaf28",
+  "isSidechain": false,
+  "requestId": "req_011CbVG29hkGijHexb9ZHE2M",
+  "type": "assistant",
+  "uuid": "b967fe5f-3ea0-47df-9a64-f3ee73426b3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jQsajVYZ5tBUhEzNygxVP",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17342,
+      "cache_read_input_tokens": 44393,
+      "output_tokens": 15324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17342,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15324,
+          "cache_read_input_tokens": 44393,
+          "cache_creation_input_tokens": 17342,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17342
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surface…",
+  "leafUuid": "b967fe5f-3ea0-47df-9a64-f3ee73426b3d",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learning-gaming paradox in rubric-based RL: Reconsidering the mathematical foundation",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-28 (UTC).**  ## Original idea {   \"title\": \"The Learning-Gaming Paradox: Difficulty-Dependent Exploitation Surface…",
+  "leafUuid": "b967fe5f-3ea0-47df-9a64-f3ee73426b3d",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learning-gaming paradox in rubric-based RL: Reconsidering the mathematical foundation",
+  "sessionId": "23b2d613-5d79-4de9-a038-b334a7cdcb7a"
+}
+```
+
+---

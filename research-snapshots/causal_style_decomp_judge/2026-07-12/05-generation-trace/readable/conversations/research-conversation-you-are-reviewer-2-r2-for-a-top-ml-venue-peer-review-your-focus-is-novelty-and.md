@@ -1,0 +1,2184 @@
+# Research conversation: You are Reviewer 2 (R2) for a top ML venue peer review. Your focus is **Novelty and Related Work**. Evaluate the paper b
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-af4ea68cc1df6d4ea.jsonl`
+- **Structured JSON:** [`8ef27a6ef2ef53661d2f.json`](../../sessions/8e/8ef27a6ef2ef53661d2f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+32 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T21:25:13.645Z_
+
+You are Reviewer 2 (R2) for a top ML venue peer review. Your focus is **Novelty and Related Work**. Evaluate the paper below using a 6-point scale (1=Strong Reject, 2=Reject, 3=Weak Reject, 4=Weak Accept, 5=Accept, 6=Strong Accept). Target venue acceptance rate ~25%.
+
+## Paper Summary
+Title: "Training Dynamic Signals as Early Warning Systems for Model Collapse"
+
+The paper systematically studies training dynamic signals (spectral, output, gradient, downstream) as model collapse monitors. It evaluates 4 signal families across 6 contamination levels (0/10/25/50/75/100%), 2 model scales (0.5B, 1.5B), 2 text domains (WikiText-2, PubMed), and 2 fine-tuning methods (QLoRA, full FT).
+
+Three main claims:
+1. Signal–severity correlation: Spectral and output signals track collapse severity with cross-fraction Spearman ρ ≥ 0.94 (n=6, p<0.005)
+2. Early warning: Stable rank deviation detects collapse at 3% training progress with 36% signal separation, AUC=0.97
+3. Signal taxonomy: Different signals have distinct operating ranges; stable rank saturates above 75%, gradient norm is non-monotonic
+
+Additional findings: self-recovery at ≤50% contamination (3/3 seeds), larger models collapse more severely (71× vs 53×), per-layer collapse propagation (middle-out pattern), attention collapses 1.5× faster than FFN.
+
+## Related Work Section (from paper)
+- **Model collapse**: Shumailov et al. [1] (Nature 2024) — iterative training on self-generated data causes progressive distribution narrowing. Alemohammad et al. [2] (ICLR 2024) — autophagy loop, convergence to degenerate fixed points. Dohmatob et al. [3] — collapse dynamics in Gaussian mixture settings.
+- **Collapse detection**: Guo et al. [4] — SIGMA, monitoring output embedding spectra against clean reference. Kalinowski [5] — persistent homology for topological signatures.
+- **Training dynamics monitoring**: Martin & Mahoney [6] — spectral analysis for generalization prediction. Tanaka et al. [7] — pruning. Yang & Hu [8] — training stability.
+- **Data contamination**: Shi et al. [11] — membership inference. Kirchenbauer et al. [12] — watermarking.
+
+## Paper's Claimed Contributions
+1. First systematic analysis of training dynamic signals as model collapse monitors
+2. Signal taxonomy with per-signal operating ranges (first characterization)
+3. Early warning capability: stable rank at 3% progress, AUC=0.97
+4. Self-recovery phenomenon documentation (claimed as "first documented case")
+5. Per-layer collapse propagation analysis
+6. Cross-scale, cross-domain, cross-method validation
+
+## Key Experimental Results
+- Spearman ρ ≥ 0.94 for spectral/output signals (n=6, p<0.005)
+- Stable rank detects collapse at 3% training progress (36% separation)
+- AUC=0.97 at 5% progress for binary collapse detection
+- 75% phase transition consistent across domains/scales/methods
+- Gradient norm non-monotonic (peaks at 75%, drops at 100%)
+- Self-recovery at ≤50% contamination, 3/3 seeds
+- Per-layer: middle layers (8-14) collapse first and most severely (10×), attention 1.5× faster than FFN
+- Full FT produces 25% more severe collapse than QLoRA (74× vs 53×)
+
+The paper is positioned for a top ML venue (e.g., NeurIPS main track). Total compute: ~125 A6000 GPU-hours.
+
+## Your Task (R2: Novelty + Related Work)
+Evaluate:
+1. **Novelty**: Is this a genuinely new contribution or incremental? Are the individual components (spectral analysis, PPL monitoring, etc.) well-known, and is the novelty purely in their combination/systematic comparison?
+2. **Related work completeness**: Are there important missing references? Is the positioning fair?
+3. **Significance**: Would this paper change how practitioners approach model collapse? Is the signal taxonomy genuinely useful?
+4. **Claims calibration**: Are the "first" claims justified? Are there overclaims?
+5. **Theoretical depth**: Is the lack of theoretical grounding (e.g., why 75% phase transition?) a weakness?
+6. **Broader impact**: Does the paper address real-world needs?
+
+Important context for related work evaluation:
+- The model collapse field is relatively new (key papers from 2023-2024)
+- Spectral analysis of neural networks is well-established (Martin & Mahoney etc.)
+- The specific combination of "spectral signals for collapse monitoring" is less explored
+- Consider whether SIGMA [4] already covers the spectral monitoring angle
+- Consider whether the "self-recovery" finding has been observed before in related settings (e.g., data mixing literature)
+
+Produce a structured review with:
+- Summary (2-3 sentences)
+- Strengths (bulleted)
+- Weaknesses (bulleted, numbered W1, W2, ...)
+- Questions for authors (numbered Q1, Q2, ...)
+- Minor issues
+- Scores: Soundness (1-4), Contribution (1-4), Clarity (1-4), Overall (1-6), Confidence (1-5)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "5b0d9f9d-ee61-48e2-b069-2cd483c9fc0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T21:25:13.649Z_
+
+```json
+{
+  "parentUuid": "5b0d9f9d-ee61-48e2-b069-2cd483c9fc0e",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3d092ace-a306-4f6b-8400-1958abbe0c61",
+  "timestamp": "2026-05-14T21:25:13.649Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-14T21:25:16.747Z_
+
+
+
+I'll first load the project files to get full context on the paper and any existing artifacts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d092ace-a306-4f6b-8400-1958abbe0c61",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AeKQMriN41P9zGnnwr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f84b65eb-1f87-4fe5-8b21-c0ec40815d14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwvfvUgexs1YxMbUytP7UM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 7156,
+      "cache_read_input_tokens": 8249,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7156,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T21:25:17.959Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WFciGY2NQjKPhcWGRDnpbb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__director_get_project_overview",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f84b65eb-1f87-4fe5-8b21-c0ec40815d14",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AeKQMriN41P9zGnnwr",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "848f6b7f-9bd8-4f45-8d15-7fe3117c080c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NwvfvUgexs1YxMbUytP7UM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 7156,
+      "cache_read_input_tokens": 8249,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7156
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 8249,
+          "cache_creation_input_tokens": 7156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7156,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T21:25:17.962Z_
+
+<details><summary>↩ Tool result · `toolu_01WFciGY2NQjKPhcWGRDnpbb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_get_project_overview"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "848f6b7f-9bd8-4f45-8d15-7fe3117c080c",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "43a09215-6a26-461c-86f7-11c50fb64714",
+  "sourceToolAssistantUUID": "848f6b7f-9bd8-4f45-8d15-7fe3117c080c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T21:25:21.313Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_get_project_overview · `toolu_01NgwjieFPs3ggRjs5aDB5x8`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43a09215-6a26-461c-86f7-11c50fb64714",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3Aee23hSUu92TRZ4F1i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "45e70849-8495-4f44-8ca7-7498f250eb03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaDqw17NDHBnmi3uAKHe47",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1447,
+      "cache_read_input_tokens": 15405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1447,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T21:25:21.356Z_
+
+<details><summary>↩ Tool result · `toolu_01NgwjieFPs3ggRjs5aDB5x8`</summary>
+
+```text
+{"result":"# 项目 collapse_severity_monitor 概况\n\n## 实验状态 (12 个)\n\n- **within_gen_analysis**: DONE (success) — \n- **mvp_frac50_100**: DONE (success) — \n- **per_layer_analysis_v5**: PREPARING — \n- **per_layer_analysis_v4**: DONE (failed) — \n- **per_layer_analysis_v3**: DONE (failed) — \n- **per_layer_analysis_active**: RUNNING — \n- **per_layer_analysis_v2**: DONE (killed) — \n- **per_layer_analysis**: DONE (failed) — \n- **mvp_frac0**: DONE (success) — \n- **mvp_collapse_003**: DONE (killed) — \n- **mvp_collapse_002**: DONE (killed) — \n- **mvp_collapse_001**: DONE (failed) — \n\n## 最新报告\n# Handover — 2026-05-14\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| per_layer_analysis_active | Per-layer SVD 分析：跟踪每层 stable_rank/spectral_entropy 随 generation 的变化，验证 collapse 是否在特定层先发生 | — | — | — |\n\n## 待处理\n- per_layer_analysis_v5: Per-layer LoRA weight analysis reveals layer-specific collapse patterns: middle layers (rank-1 LoRA updates) vs boundary layers (diffuse updates) diverge differently under synthetic data contamination（准备中）\n\n## 近期结论\n- **within_gen_analysis** (success): Within-generation 时序分析：训练过程中信号能否早期区分 collapse 严重度（step 50 = 3% 训练进度即可区分）\n- **mvp_frac50_100** (success): 训练动态信号跟踪 collapse 严重度 — 50%+100% synthetic fractions（双卡并行）\n  [MVP Gate Check Final Report](/api/workspace-files/projects/collapse_severity_monitor/artifacts/mvp_frac50_100/report/mvp_gate_check_final.md)\n- **per_layer_analysis_v4** (failed): —\n\n## 趋势\n成功 3 / 负向 0 / 失败 4 / 共 10\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nautodl-5090: 空闲 cuda:0, cuda:1\n\n## 告警\n- mvp_collapse_001: 训练失败 — unknown\n- mvp_collapse_002: 已被终止 — unknown\n- mvp_collapse_003: 已被终止 — unknown\n- per_layer_analysis: 训练失败 — unknown\n- per_layer_analysis_v2: 已被终止 — unknown\n- per_layer_analysis_v3: 训练失败 — unknown\n- per_layer_analysis_v4: 训练失败 — unknown"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45e70849-8495-4f44-8ca7-7498f250eb03",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "8b292f53-97fd-417b-a0c5-f20ba21c2439",
+  "sourceToolAssistantUUID": "45e70849-8495-4f44-8ca7-7498f250eb03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T21:25:22.319Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01F7sL82QavzjRqaQJmUZMS2`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "file": "report.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b292f53-97fd-417b-a0c5-f20ba21c2439",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3Aee23hSUu92TRZ4F1i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ad271d51-874b-44f6-80f4-2811abbf2d96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaDqw17NDHBnmi3uAKHe47",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1447,
+      "cache_read_input_tokens": 15405,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1447,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T21:25:22.329Z_
+
+<details><summary>↩ Tool result · `toolu_01F7sL82QavzjRqaQJmUZMS2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| per_layer_analysis_active | Per-layer SVD 分析：跟踪每层 stable_rank/spectral_entropy 随 generation 的变化，验证 collapse 是否在特定层先发生 | — | — | — |\\n\\n## 待处理\\n- per_layer_analysis_v5: Per-layer LoRA weight analysis reveals layer-specific collapse patterns: middle layers (rank-1 LoRA updates) vs boundary layers (diffuse updates) diverge differently under synthetic data contamination（准备中）\\n\\n## 近期结论\\n- **within_gen_analysis** (success): Within-generation 时序分析：训练过程中信号能否早期区分 collapse 严重度（step 50 = 3% 训练进度即可区分）\\n- **mvp_frac50_100** (success): 训练动态信号跟踪 collapse 严重度 — 50%+100% synthetic fractions（双卡并行）\\n  [MVP Gate Check Final Report](/api/workspace-files/projects/collapse_severity_monitor/artifacts/mvp_frac50_100/report/mvp_gate_check_final.md)\\n- **per_layer_analysis_v4** (failed): —\\n\\n## 趋势\\n成功 3 / 负向 0 / 失败 4 / 共 10\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-5090: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- mvp_collapse_001: 训练失败 — unknown\\n- mvp_collapse_002: 已被终止 — unknown\\n- mvp_collapse_003: 已被终止 — unknown\\n- per_layer_analysis: 训练失败 — unknown\\n- per_layer_analysis_v2: 已被终止 — unknown\\n- per_layer_analysis_v3: 训练失败 — unknown\\n- per_layer_analysis_v4: 训练失败 — unknown\\n\", \"total_chars\": 1288, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad271d51-874b-44f6-80f4-2811abbf2d96",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "8cb4bc40-2d63-4854-8a65-1a5f4b2563c2",
+  "sourceToolAssistantUUID": "ad271d51-874b-44f6-80f4-2811abbf2d96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T21:25:22.782Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01CxZVWmj3wfDv6mtfnwMR14`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8cb4bc40-2d63-4854-8a65-1a5f4b2563c2",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3Aee23hSUu92TRZ4F1i",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8c608998-b03e-4339-90d3-8e55777a712b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaDqw17NDHBnmi3uAKHe47",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1447,
+      "cache_read_input_tokens": 15405,
+      "output_tokens": 251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1447
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 251,
+          "cache_read_input_tokens": 15405,
+          "cache_creation_input_tokens": 1447,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1447,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T21:25:22.794Z_
+
+<details><summary>↩ Tool result · `toolu_01CxZVWmj3wfDv6mtfnwMR14`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/literature_map.yaml\", \"content\": \"# Literature Map — collapse_severity_monitor\\n# 最后更新: 2026-05-14\\n# 研究方向: 在线监控模型 collapse 严重度——用训练动态信号实时跟踪迭代合成数据训练中的质量退化\\n\\n# ============================================================\\n# 竞争关系分类说明:\\n#   direct_competitor  — 解决同一问题（在线监控 collapse）\\n#   related            — 解决相近问题或使用相关方法\\n#   complementary      — 互补（提供理论基础/工具/缓解策略）\\n#   foundation         — 领域基础工作\\n# ============================================================\\n\\npapers:\\n\\n  # ===================== DIRECT COMPETITORS =====================\\n\\n  - id: sigma_2026\\n    title: \\\"SIGMA: Scalable Spectral Insights for LLM Model Collapse\\\"\\n    authors: [Azam et al.]\\n    year: 2026\\n    venue: arXiv (2601.03385)\\n    relation: direct_competitor\\n    core_method: >\\n      通过 embedding Gram 矩阵的谱分析来量化 model collapse 程度。\\n      推导 Gram 矩阵谱的确定性和随机性界，用谱收缩作为 collapse 指标。\\n    signals: [Gram matrix spectrum, rank deficiency, spectral bounds]\\n    scale: model-level (output embeddings)\\n    key_findings:\\n      - Gram 矩阵满秩是 LLM 正常运作的必要条件\\n      - 秩亏缺意味着语义级信息丢失，标志 collapse 开始\\n      - 随机公式使框架可扩展至大规模模型\\n    vs_ours: >\\n      SIGMA 用输出嵌入的 Gram 矩阵谱，是事后/黑盒方法，不需要模型权重。\\n      我们用训练动态信号（权重频谱熵、stable rank、token entropy），\\n      是训练中实时监控，更早期更细粒度（per-layer）。\\n      SIGMA 不做 per-layer 分析，不跟踪训练过程的动态变化。\\n    threat_level: medium\\n\\n  - id: kalinowski_2026\\n    title: \\\"Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index\\\"\\n    authors: [Alexander Kalinowski]\\n    year: 2026\\n    venue: arXiv (2604.26984)\\n    relation: direct_competitor\\n    core_method: >\\n      提出在线拓扑感知监控器，结合 Modular Morse Homology Maintenance (MMHM)\\n      和复合 Collapse Index (CI)，通过稀疏增量更新实现快速在线监控。\\n    signals: [persistent homology, Collapse Index (CI), topological features]\\n    scale: model-level (representation space topology)\\n    key_findings:\\n      - CI 在 LLM fine-tuning 和时序 KGE 训练中提供低延迟早期预警\\n      - 表征各向异性和多尺度结构丧失在性能指标反应之前就可检测\\n      - 增量更新避免每个 epoch 重建复形\\n    vs_ours: >\\n      Kalinowski 用拓扑信号（persistent homology），我们用频谱/熵信号。\\n      两者都是在线监控，但信号族完全不同。我们的信号更轻量、\\n      更可解释（stable rank/spectral entropy 有直接的线性代数含义）。\\n      Kalinowski 不研究迭代合成数据训练场景。\\n    threat_level: medium\\n\\n  # ===================== CLOSELY RELATED =====================\\n\\n  - id: spectral_lens_2026\\n    title: \\\"Spectral Lens: Activation and Gradient Spectra as Diagnostics of LLM Optimization\\\"\\n    authors: [Andy Zeyi Liu et al.]\\n    year: 2026\\n    venue: arXiv (2605.05683)\\n    relation: related\\n    core_method: >\\n      用 activation covariance 和 per-sample gradient 的 SVD 谱\\n      作为 LLM 训练优化的诊断工具。\\n    signals: [activation covariance spectrum, gradient SVD spectrum]\\n    scale: layer-level\\n    key_findings:\\n      - batch size 是表示几何的隐藏决定因素\\n      - 早期训练的 activation covariance 尾部可预测下游 token 效率\\n      - activation 谱头部运动 + gradient 谱可区分学习侧和执行侧改进\\n    vs_ours: >\\n      方法论高度相关——同样用频谱分析训练动态。\\n      但他们关注优化诊断，不研究 collapse/合成数据退化。\\n      可作为方法论参考。\\n    threat_level: low\\n\\n  - id: shi_neurips2025\\n    title: \\\"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\\\"\\n    authors: [Lianghe Shi, Meng Wu, Huijie Zhang, Zekai Zhang, Molei Tao, Qing Qu]\\n    year: 2025\\n    venue: NeurIPS 2025 (Spotlight)\\n    relation: related\\n    core_method: >\\n      揭示 model collapse 中从泛化到记忆的转变。\\n      发现训练数据熵与模型泛化能力的强线性相关。\\n      提出基于熵的子集选择方法来减缓 collapse。\\n    signals: [dataset entropy, generalization metrics]\\n    scale: model-level (data distribution)\\n    key_findings:\\n      - 迭代训练中数据分布熵急剧下降导致泛化能力下降\\n      - 强线性相关：训练数据集熵与模型泛化能力\\n      - 熵选择方法有效减缓泛化到记忆转变\\n    vs_ours: >\\n      他们用数据级别的熵，我们用模型内部的训练动态信号。\\n      互补：他们的数据熵可作为我们的外部验证指标。\\n      他们不做 per-layer 分析，不做在线监控。\\n    threat_level: low\\n\\n  - id: wyss_2024\\n    title: \\\"Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI\\\"\\n    authors: [C. M. Wyss et al.]\\n    year: 2024\\n    venue: arXiv (2410.12341)\\n    relation: related\\n    core_method: >\\n      用语义网络和 next-token 概率来表征 LLM 中的 model collapse。\\n      引入 collapsed prediction 概念量化多样性损失。\\n      分析不同合成 token 比例 (25%/50%/75%) 对 collapse 的影响。\\n    signals: [next-token probability distribution, semantic network metrics, collapsed prediction ratio]\\n    scale: token-level (output)\\n    key_findings:\\n      - Next-token 概率分布可精确量化多样性损失\\n      - 合成 token 比例越高，collapse 越严重\\n      - 跨数据集迁移：在非微调数据集上 collapse 程度不同\\n    vs_ours: >\\n      他们用输出级指标（next-token prob），我们用训练动态内部信号。\\n      他们的 synthetic fraction 实验与我们的实验设计有重叠。\\n      不同之处：他们是事后分析，我们是训练中在线监控。\\n    threat_level: low\\n\\n  - id: xu_2026\\n    title: \\\"Predicting LLM Compression Degradation from Spectral Statistics\\\"\\n    authors: [Mingxue Xu]\\n    year: 2026\\n    venue: arXiv (2604.18085)\\n    relation: related\\n    core_method: >\\n      用 stable rank 和信息密度 (bits/param) 预测 LLM 压缩导致的退化。\\n      交互项 compression_ratio * stable_rank 是退化的强预测器。\\n    signals: [stable rank, information density, compression ratio]\\n    scale: layer-level (attention vs MLP 分开分析)\\n    key_findings:\\n      - stable rank 是压缩退化的主要预测因子（Pearson r=0.890 attention, 0.839 MLP）\\n      - 层类型比压缩方法更重要\\n      - layer-specific calibration 优于 method-specific tuning\\n    vs_ours: >\\n      直接验证 stable rank 作为退化预测信号的有效性。\\n      虽然场景不同（压缩 vs collapse），但支持我们选用 stable rank 的合理性。\\n      他们的 per-layer 分析方法可参考。\\n    threat_level: low\\n\\n  - id: layer_collapse_diffusion_2026\\n    title: \\\"Layer Collapse in Diffusion Language Models\\\"\\n    authors: [Alexander Conzelmann, Albert Catalan-Tatjer, Shiwei Liu]\\n    year: 2026\\n    venue: arXiv (2605.06366)\\n    relation: related\\n    core_method: >\\n      分析 diffusion language model (LLaDA-8B) 中的 per-layer activation 动态，\\n      发现少数早期层展现 collapsed activation patterns。\\n    signals: [activation patterns, super-outlier magnitude]\\n    scale: layer-level\\n    key_findings:\\n      - 几个早期层出现 channel-axis collapse（单一维度主导所有位置）\\n      - 尽管看似冗余，pruning outlier 导致退化为重复随机 token 循环\\n      - Diffusion LM 与 autoregressive LM 的 collapse 行为不同\\n    vs_ours: >\\n      做了 per-layer collapse 分析，但在 diffusion LM 上。\\n      方法论参考：per-layer activation 分析方法。\\n    threat_level: low\\n\\n  # ===================== COMPLEMENTARY (Theory/Mitigation) =====================\\n\\n  - id: shumailov_nature2024\\n    title: \\\"AI Models Collapse When Trained on Recursively Generated Data\\\"\\n    authors: [Ilia Shumailov et al.]\\n    year: 2024\\n    venue: Nature 631, 755-759\\n    relation: foundation\\n    core_method: >\\n      首次系统性证明迭代合成数据训练导致 model collapse。\\n      在 LLM、VAE、GMM 上验证。分布尾部消失是核心机制。\\n    signals: [test loss, distribution tail metrics]\\n    scale: model-level\\n    key_findings:\\n      - 迭代训练导致不可逆缺陷：分布尾部消失\\n      - 罕见事件最先遗忘\\n      - LLM、VAE、GMM 都有此现象\\n    vs_ours: >\\n      领域基石论文，建立了我们要解决的问题。\\n      他们用事后评估（test loss），我们提供在线监控手段。\\n\\n  - id: dohmatob_iclr2025\\n    title: \\\"Strong Model Collapse\\\"\\n    authors: [Elvis Dohmatob, Yunzhen Feng et al.]\\n    year: 2025\\n    venue: ICLR 2025 (Spotlight)\\n    relation: complementary\\n    core_method: >\\n      用算子值自由概率论证明即使极小比例的合成数据 (1/1000)\\n      也会导致 model collapse，且更大模型放大 collapse。\\n    signals: [test error on real data, bias-variance decomposition]\\n    scale: model-level\\n    key_findings:\\n      - 任何非零常数比例的合成数据都导致 collapse\\n      - 更大模型可放大 collapse\\n      - 神经缩放定律在合成数据下失效\\n    vs_ours: >\\n      理论基础——解释了为什么需要监控（即使少量合成数据也危险）。\\n      他们的 fraction 实验与我们的实验设计直接相关。\\n\\n  - id: gerstgrasser_2024\\n    title: \\\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\\\"\\n    authors: [Matthias Gerstgrasser, Rylan Schaeffer et al.]\\n    year: 2024\\n    venue: arXiv (2404.01413)\\n    relation: complementary\\n    core_method: >\\n      证明数据累积（而非替换）可避免 model collapse。\\n      替换导致 test error 增长，累积则有有限上界。\\n    signals: [test error over iterations]\\n    scale: model-level\\n    key_findings:\\n      - 累积真实+合成数据则无 collapse（所有模型/模态）\\n      - 替换数据则 collapse\\n      - 关键因素是数据管理策略\\n    vs_ours: >\\n      互补——他们研究何时 collapse（数据管理策略），\\n      我们研究如何实时检测 collapse（训练动态信号）。\\n\\n  - id: kazdan_2024\\n    title: \\\"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\\\"\\n    authors: [Joshua Kazdan et al.]\\n    year: 2024\\n    venue: arXiv (2410.16713)\\n    relation: complementary\\n    core_method: >\\n      系统比较三种训练工作流：replace（collapse）、\\n      accumulate（稳定）、fixed compute（介于两者之间）。\\n    signals: [test loss on real data]\\n    scale: model-level\\n    key_findings:\\n      - Replace 工作流一定 collapse\\n      - Accumulate 工作流保持稳定\\n      - Fixed compute 工作流 loss 升高但 plateau\\n    vs_ours: 互补——提供实验设计参考（不同工作流下 collapse 行为差异）。\\n\\n  - id: seddik_2024\\n    title: \\\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\\\"\\n    authors: [Mohamed El Amine Seddik et al.]\\n    year: 2024\\n    venue: arXiv (2404.05090)\\n    relation: complementary\\n    core_method: >\\n      统计模型严格刻画不同递归训练场景下的 collapse 程度。\\n      给出混合真实/合成数据时避免 collapse 的最大合成数据比例估计。\\n    signals: [distribution tail, statistical divergence]\\n    scale: model-level\\n    key_findings:\\n      - 纯合成数据训练无法避免 collapse\\n      - 混合训练下存在可计算的合成数据上限\\n      - 分布尾部消失是 collapse 的统计特征\\n    vs_ours: 理论互补——给出合成数据比例的安全阈值。\\n\\n  - id: schaeffer_2025\\n    title: \\\"Position: Model Collapse Does Not Mean What You Think\\\"\\n    authors: [Rylan Schaeffer, Joshua Kazdan, Alvan Caleb Arulandu, Sanmi Koyejo]\\n    year: 2025\\n    venue: arXiv (2503.03150)\\n    relation: complementary\\n    core_method: >\\n      梳理 model collapse 文献中 8 种不同定义，\\n      分为三个家族：test loss 行为、分布形变、缩放行为。\\n    signals: N/A (position paper)\\n    scale: N/A\\n    key_findings:\\n      - Model collapse 有 8 种不完全一致的定义\\n      - 三个家族：test loss 行为、分布形变、缩放定律\\n      - 术语混乱阻碍了系统性理解\\n    vs_ours: >\\n      重要定位参考——论文中需明确使用哪种 collapse 定义。\\n      建议采用他们的分类框架。\\n\\n  - id: feng_iclr2025\\n    title: \\\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\\\"\\n    authors: [Feng et al.]\\n    year: 2025\\n    venue: ICLR 2025\\n    relation: complementary\\n    core_method: >\\n      用高斯混合+线性分类器+线性验证器推导验证器有效的条件。\\n      证明不完美验证器也可有效筛选合成数据。\\n    signals: [verifier-based quality score]\\n    scale: model-level\\n    key_findings:\\n      - 验证器筛选合成数据可达到最优性能\\n      - 即使不完美验证器也有效\\n      - 给出可衡量的代理条件\\n    vs_ours: 互补——缓解策略。我们的监控信号可作为验证器的补充。\\n\\n  - id: yi_2025\\n    title: \\\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\\\"\\n    authors: [Bingji Yi, Qiyuan Liu, Yuwei Cheng, Haifeng Xu]\\n    year: 2025\\n    venue: arXiv (2510.16657)\\n    relation: complementary\\n    core_method: >\\n      证明外部验证器（人类或更强模型）可阻止 collapse。\\n      分析验证器引导下的短期改进和长期收敛行为。\\n    signals: [verifier quality score]\\n    scale: model-level\\n    key_findings:\\n      - 外部验证器注入信息则不会 collapse\\n      - 短期有改进，长期收敛到验证器的知识中心\\n    vs_ours: 互补——缓解策略方向，与监控方向正交。\\n\\n  - id: bakshi_2026\\n    title: \\\"From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources\\\"\\n    authors: [Soham Bakshi et al.]\\n    year: 2026\\n    venue: arXiv (2602.10531)\\n    relation: complementary\\n    core_method: >\\n      分析在真实+合成混合数据上的迭代训练动态。\\n      next-token prediction 模型下的长期演化分析。\\n    signals: [mixture weight, sample size, test performance]\\n    scale: model-level\\n    key_findings:\\n      - 非零真实数据混合权重（即使递减）可避免 collapse\\n      - 混合权重和样本量共同控制长期性能\\n    vs_ours: 理论互补——刻画迭代训练的长期演化。\\n\\n  # ===================== METHODOLOGICAL FOUNDATIONS =====================\\n\\n  - id: martin_mahoney_2021\\n    title: \\\"Predicting Trends in the Quality of State-of-the-Art Neural Networks without Access to Training or Testing Data\\\"\\n    authors: [Charles H. Martin, Michael W. Mahoney]\\n    year: 2021\\n    venue: Nature Communications 12\\n    relation: complementary\\n    core_method: >\\n      WeightWatcher 工具——用 RMT 分析权重矩阵的谱性质，\\n      无需训练/测试数据即可预测模型质量。\\n    signals: [stable rank, power law exponent (alpha), spectral norm]\\n    scale: layer-level (per weight matrix)\\n    key_findings:\\n      - stable rank 追踪自正则化程度\\n      - 5+1 训练阶段对应不同的谱形态\\n      - heavy-tailed 分布特征区分好/差模型\\n    vs_ours: >\\n      方法论基础——WeightWatcher 的 stable rank 和谱分析方法\\n      直接启发我们的信号设计。\\n\\n  - id: yunis_2024\\n    title: \\\"Approaching Deep Learning through the Spectral Dynamics of Weights\\\"\\n    authors: [David Yunis, Kumar Kshitij Patel et al.]\\n    year: 2024\\n    venue: arXiv (2408.11804)\\n    relation: complementary\\n    core_method: >\\n      以权重奇异值/向量的动态演化为核心视角理解深度学习。\\n      证明谱动态可区分记忆网络和泛化网络。\\n    signals: [singular value dynamics, singular vector alignment]\\n    scale: layer-level (per weight matrix)\\n    key_findings:\\n      - 权重衰减增强低秩偏置\\n      - 谱动态区分记忆 vs 泛化\\n      - 与 lottery ticket 和 loss surface 结构相关\\n    vs_ours: 方法论基础——谱动态视角可用于理解 collapse 过程中的权重变化。\\n\\n  - id: chen_liu_2024\\n    title: \\\"Assessing Neural Network Representations During Training Using Noise-Resilient Diffusion Spectral Entropy\\\"\\n    authors: [Chen Liu et al.]\\n    year: 2024\\n    venue: IEEE CISS 2024\\n    relation: complementary\\n    core_method: >\\n      提出 Diffusion Spectral Entropy (DSE) 和 Diffusion Spectral Mutual Information (DSMI)，\\n      利用数据几何在高维中可靠计算信息论指标。\\n    signals: [DSE, DSMI]\\n    scale: layer-level (representations)\\n    key_findings:\\n      - DSE 在训练中增加\\n      - DSMI(class label) 在泛化学习中增加，过拟合时停滞\\n      - 可用于指导网络初始化和预测下游准确率\\n    vs_ours: >\\n      方法论工具——DSE 是我们 spectral entropy 信号的潜在替代实现。\\n\\n# ============================================================\\n# 关键发现总结\\n# ============================================================\\n\\nsummary:\\n  direct_competitors: 2  # SIGMA, Kalinowski\\n  novelty_confirmation: >\\n    没有工作同时做到：(a) 训练中在线监控 (b) 用频谱/熵训练动态信号\\n    (c) per-layer 粒度 (d) 在迭代合成数据训练场景下验证。\\n    我们的核心新颖性空间依然存在。\\n\\n  gap_analysis:\\n    sigma: >\\n      用输出嵌入 Gram 矩阵谱——事后/黑盒，不做 per-layer，不跟踪训练过程。\\n    kalinowski: >\\n      用拓扑信号——在线但信号族不同，不研究迭代合成数据场景。\\n    our_unique_position: >\\n      训练动态频谱/熵信号 + per-layer 粒度 + 迭代合成数据场景 = 独特定位。\\n\\n  per_layer_collapse_analysis:\\n    papers_with_per_layer:\\n      - layer_collapse_diffusion_2026  # diffusion LM per-layer activation collapse\\n      - xu_2026  # stable rank per-layer（compression 场景）\\n      - spectral_lens_2026  # per-layer activation/gradient 谱\\n    gap: \\\"无论文在迭代合成数据训练中做 per-layer collapse 分析\\\"\\n\\n  stable_rank_as_collapse_signal:\\n    papers_using_stable_rank:\\n      - martin_mahoney_2021  # WeightWatcher 中作为模型质量指标\\n      - xu_2026  # 压缩退化预测器 (r=0.89)\\n      - yunis_2024  # 谱动态中的低秩偏置\\n    gap: \\\"无论文直接用 stable rank 监控 iterative synthetic data collapse\\\"\\n\\n  spectral_entropy_as_collapse_signal:\\n    papers_using_spectral_entropy:\\n      - chen_liu_2024  # DSE 跟踪训练动态\\n      - sigma_2026  # 谱分析但在 Gram 矩阵上\\n    gap: \\\"无论文直接用 weight spectral entropy 监控 collapse\\\"\\n\\n  synthetic_fraction_effects:\\n    papers_studying_fraction:\\n      - dohmatob_iclr2025  # 理论：任何非零 fraction 都危险\\n      - wyss_2024  # 实证：25%/50%/75% 不同 collapse 程度\\n      - seddik_2024  # 统计：给出安全上限估计\\n    gap: \\\"大量理论/实证工作，但都用事后指标衡量 fraction 效果\\\"\\n\", \"total_chars\": 14404, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c608998-b03e-4339-90d3-8e55777a712b",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "19d88bae-10f0-4114-90cf-b9b3caac5fe0",
+  "sourceToolAssistantUUID": "8c608998-b03e-4339-90d3-8e55777a712b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T21:25:26.355Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Rm7tYxLWnVKGQVFp6Y1c4h`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "file": "ideas.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19d88bae-10f0-4114-90cf-b9b3caac5fe0",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AezhkJ9ME1DWECcejY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c3ac038a-08af-4ada-b638-e7d6358ee897",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012jyNj8sRigkx1uucmh2bym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9187,
+      "cache_read_input_tokens": 16852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9187,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T21:25:26.365Z_
+
+<details><summary>↩ Tool result · `toolu_01Rm7tYxLWnVKGQVFp6Y1c4h`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'collapse_severity_monitor'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3ac038a-08af-4ada-b638-e7d6358ee897",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "288827a0-84a8-4d4d-88d9-3d64eb6678a9",
+  "sourceToolAssistantUUID": "c3ac038a-08af-4ada-b638-e7d6358ee897",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T21:25:27.340Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01A4yeMAtrfi8deSF7Ha5gJ1`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "288827a0-84a8-4d4d-88d9-3d64eb6678a9",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AezhkJ9ME1DWECcejY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "32a3acd7-d11f-4809-9281-eeda463314d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012jyNj8sRigkx1uucmh2bym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9187,
+      "cache_read_input_tokens": 16852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9187,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T21:25:27.355Z_
+
+<details><summary>↩ Tool result · `toolu_01A4yeMAtrfi8deSF7Ha5gJ1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/paper_framing.md\", \"content\": \"# Paper Framing — collapse_severity_monitor\\n\\n## Target Venue\\n- Primary: NeurIPS 2026 (Datasets & Benchmarks / Main)\\n- Backup: ICLR 2027\\n- Deadline: NeurIPS 2026 abstract ~late May 2026, full paper ~early June 2026\\n\\n## Core Claims (3 条)\\n\\n1. **Signal-Severity Correlation**: Spectral signals (stable rank, spectral entropy) and output signals (token entropy, perplexity) reliably track model collapse severity across synthetic data contamination levels, maintaining monotonic ordering across all tested fractions and generations. (MVP: ρ=1.0 with n=3 fractions; to be validated with n=6 fractions in plan_001.)\\n\\n2. **Early Warning Capability**: Collapse can be detected as early as 3% training progress (step 50/1540) via stable rank deviation (34.4% for 100% synthetic), enabling training-time early warning before catastrophic degradation materializes.\\n\\n3. **Non-Uniform Signal Behavior**: Different signal families exhibit qualitatively different responses to collapse — spectral signals saturate at extreme severity, gradient norm is non-monotonic, downstream task metrics (HellaSwag) fail to detect collapse at small model scale. This taxonomy of signal behavior provides actionable guidance for practitioners choosing monitoring strategies.\\n\\n## Story Spine\\n\\n- **Problem**: Model collapse from iterative training on synthetic data is a growing concern as LLM-generated text pervades training corpora. While the phenomenon is well-characterized theoretically (Shumailov et al. 2024, Alemohammad et al. 2024), practitioners lack actionable tools to detect and quantify collapse severity during training. Current work focuses on post-hoc analysis or output-level detection, missing the rich signal available in training dynamics.\\n\\n- **Existing approaches & gaps**: SIGMA (2025) monitors output embedding spectral properties but requires access to a clean reference distribution. Kalinowski (2024) uses topological analysis but is computationally expensive. Neither provides a systematic comparison of which training-time signals best track collapse across severity levels, nor do they examine within-generation temporal dynamics for early warning.\\n\\n- **Our framing**: We conduct the first systematic analysis of training dynamic signals as collapse severity monitors. Across 4 signal families (spectral, output, gradient, downstream) × multiple contamination levels × generational iterations, we characterize which signals track collapse, when they diverge, and where they fail. Key insight: spectral signals provide the earliest warning (3% progress) while output signals provide the most reliable severity tracking. The 50% contamination regime reveals a partial self-recovery phenomenon not previously documented.\\n\\n- **Headline result template**: \\\"Stable rank deviation detects model collapse at 3% training progress with 34% signal separation, while token entropy and perplexity maintain monotonic severity tracking across 5 generational iterations with ρ=1.0. We identify a previously unreported self-recovery pattern at moderate contamination levels.\\\"\\n\\n## Anticipated Reviewer Concerns & Mitigation\\n\\n| Concern | Severity | Mitigation Experiment |\\n|---------|----------|----------------------|\\n| Single model (Qwen-0.5B) — can't generalize | HIGH | P0: 1.5B model, P1: cross-architecture (if GPU permits) |\\n| Single dataset (WikiText-2) — domain-specific | HIGH | P0: PubMed domain, P1: code domain |\\n| Single seed — no variance estimates | HIGH | P0: 3 seeds per config |\\n| n=3 fractions — Spearman ρ trivially 1.0 | HIGH | P0: 6 fractions (0/10/25/50/75/100%) |\\n| QLoRA only — not representative of full FT | MEDIUM | P1: Full FT comparison on 1 config |\\n| \\\"Not a monitoring system\\\" — analysis only | LOW | Frame as analysis paper; early warning finding adds practical value |\\n| No intervention/mitigation experiments | LOW | Explicit non-goal; frame as \\\"diagnostic\\\" contribution, mitigation as future work |\\n| Stable rank saturates — limited as severity tracker | LOW | Claim 3 explicitly addresses signal limitations as finding |\\n\\n## Core Insight (一句话)\\n\\nTraining dynamic signals provide a free, model-agnostic early warning system for model collapse — but different signal families have distinct operating ranges, and practitioners need to know which signal to trust at which severity level.\\n\\n## Novelty Statement\\n\\nNo prior work systematically compares multiple training-time signal families as collapse severity monitors across contamination levels. The within-generation early warning capability (3% progress) and the self-recovery phenomenon at moderate contamination are novel empirical contributions.\\n\", \"total_chars\": 4615, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32a3acd7-d11f-4809-9281-eeda463314d0",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "fbd32dd2-7c94-4fba-ac9b-7260727e1f8e",
+  "sourceToolAssistantUUID": "32a3acd7-d11f-4809-9281-eeda463314d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T21:25:27.983Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01P4k9AJXAGSWwzLprU1Yyf6`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbd32dd2-7c94-4fba-ac9b-7260727e1f8e",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AezhkJ9ME1DWECcejY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "269faa7d-c1c6-493f-8b2f-aaa25fc080ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012jyNj8sRigkx1uucmh2bym",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9187,
+      "cache_read_input_tokens": 16852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9187,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T21:25:27.993Z_
+
+<details><summary>↩ Tool result · `toolu_01P4k9AJXAGSWwzLprU1Yyf6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/memory.md\", \"content\": \"# Memory — collapse_severity_monitor\\n\\n## 硬规则\\n\\n### GPU 进程管理（2026-05-14，三次事故后确立）\\n**启动任何新 GPU 进程前，必须**：(1) `nvidia-smi --query-compute-apps=pid,used_memory --format=csv` 检查目标 GPU 上是否有已有进程；(2) 如果有旧的同类进程，先 kill 再启动；(3) 启动后再次 nvidia-smi 确认只有新进程在跑。违反此规则已导致 3 次 GPU 1 双进程冲突。**派 Worker 启动 GPU 任务时必须在 task_prompt 中包含此检查步骤。**\\n\\n## Bug 经验\\n\\n### use_cache=False 生成性能灾难 (2026-05-14)\\nTransformers Trainer 在训练时设置 `model.config.use_cache=False`（兼容 gradient checkpointing），训练结束后**不自动恢复**。必须在生成前手动设置 `model.config.use_cache = True` + `model.gradient_checkpointing_disable()`。`merge_adapter()` 可消除 LoRA 推理开销（-21% 生成时间）。\\n\\n### AutoDL 容器 OOM 诊断限制 (2026-05-14)\\ncgroup OOM kill 事件只记录在宿主机内核日志，容器内 dmesg 为空。诊断线索：日志突然停止 + 无 traceback = 外部 kill。\\n\\n### per_layer_analysis.py 覆写 signals 文件 (2026-05-14)\\n`per_layer_analysis.py` 调用 `train_one_generation(..., config.output_dir)` 会覆写 `signals_{frac}_gen{n}.jsonl`。修复：将 output_dir 改为 `_per_layer_tmp` 子目录。\\n\\n### pipeline checkpoint 为空 (2026-05-14)\\npipeline.py 使用 `save_strategy=\\\"no\\\"`，ckpt_* 目录存在但为空。per-layer 分析必须重训并保存 adapter。Phase 2 应改为 `save_strategy=\\\"epoch\\\"`。\\n\\n## 性能基准\\n\\n### 1.5B QLoRA dry-run (2026-05-14, autodl-5090 RTX 5090)\\n- Peak GPU 显存：6.06 GB（32GB 卡的 19%）\\n- 纯训练速度：~1.7-2.0 s/step\\n- 信号采集开销：~45s/次（占总时间 77%）\\n- 每 5 步采集 → 单 run ~4.3h; **每 50 步采集 → 单 run ~67min**\\n- LoRA：1.56B total, 18.5M trainable (1.18%)\\n- 信号值（step 10）：ppl=12.07, stable_rank=14.42, entropy=2.345\\n\\n### 0.5B QLoRA (MVP, autodl-5090)\\n- 纯训练速度：~1.17-1.19 it/s\\n- Peak GPU 显存：~6.3 GB\\n- 每代（1540 steps, 每 50 步采集）：~22 min\\n\\n## 决策记录\\n\\n### MVP 模型选择 (2026-05-14)\\nQwen2.5-1.5B 因 AutoDL 代理下载极慢降级到 0.5B。Phase 2 需 1.5B revalidate。\\n\\n### gen_num_chunks=1500 oversampling (2026-05-14)\\nMVP 阶段每代只生成 1500 chunks（而非全部 4916），有 oversampling confound。Phase 2 不 subsample。\\n\\n## 新颖性确认 (2026-05-14)\\n\\n### 核心新颖性空间\\n没有现有工作同时满足：(1) 训练中在线监控 (2) 频谱/熵训练动态信号 (3) Per-layer 粒度 (4) 迭代合成数据训练场景。SIGMA(事后/黑盒) 和 Kalinowski(拓扑信号) 各覆盖 1-2 维度。\\n\\n### 初步 per-layer 发现 (0pct gen0)\\n三区层结构：中间层 (L3-L15) rank-1 LoRA 更新；边界层 (L0-1, L21-23) 高维更新。\\n\\n### Within-gen early warning (2026-05-14)\\nStable rank 在 step 50（3% 训练进度）偏差 34.4%。Cross-gen 加速：100pct PPL delta gen0→gen1→gen2 = +0.4%→+645%→+1737%。\\n\\n## Phase 2 就绪度 (2026-05-14 verified)\\n\\n### 代码\\n- train.py 已支持 QLoRA 和 full FT 双模式\\n- **待修**：pipeline.py 缺 training_mode/model_path CLI 参数\\n\\n### 数据\\n- PubMed：train_chunks.json (12.1MB, ~4500 chunks) + val_chunks.json (1.3MB, ~500 chunks)\\n- data_utils_pubmed.py 提供 load_chunks() 接口\\n\\n### 模型\\n- 1.5B: `/root/autodl-tmp/models/Qwen2.5-1.5B/Qwen/Qwen2___5-1___5B/` (VERIFIED READY)\\n- 3B: `/root/autodl-tmp/models/Qwen2.5-3B/Qwen/Qwen2___5-3B/`\\n\\n## 资源路径\\n\\n### 模型路径 (autodl-5090, 2026-05-14 verified)\\n- **Qwen2.5-0.5B**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-0___5B/`\\n- **Qwen2.5-1.5B**: `/root/autodl-tmp/models/Qwen2.5-1.5B/Qwen/Qwen2___5-1___5B/` ✅ load+gen tested\\n- **Qwen2.5-3B**: `/root/autodl-tmp/models/Qwen2.5-3B/Qwen/Qwen2___5-3B/`\\n\", \"total_chars\": 2855, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "269faa7d-c1c6-493f-8b2f-aaa25fc080ae",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "b1322873-7fad-4b5a-8ad4-30585371965a",
+  "sourceToolAssistantUUID": "269faa7d-c1c6-493f-8b2f-aaa25fc080ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-14T21:25:30.718Z_
+
+Now let me look at the actual experiment artifacts to understand the depth of results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1322873-7fad-4b5a-8ad4-30585371965a",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AfPeP4oArznC3dRkef",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "42d49d4f-64da-4773-8029-8011d13c8782",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Md2gcdj621iFqo7K3mkurV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3655,
+      "cache_read_input_tokens": 26039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3655,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T21:25:39.273Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Sx1Vg1UWWdcxYGcb3UrA63`</summary>
+
+```json
+{
+  "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/artifacts/**/*.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42d49d4f-64da-4773-8029-8011d13c8782",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AfPeP4oArznC3dRkef",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "047d9561-ef05-4ae2-a1c5-bb21422b9385",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Md2gcdj621iFqo7K3mkurV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3655,
+      "cache_read_input_tokens": 26039,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3655
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 26039,
+          "cache_creation_input_tokens": 3655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3655,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T21:25:39.281Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01MV82h35Q67X5amxb43sKnk`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "047d9561-ef05-4ae2-a1c5-bb21422b9385",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AfPeP4oArznC3dRkef",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cc4feb48-2c96-4785-a77d-670ddec42ec2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Md2gcdj621iFqo7K3mkurV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3655,
+      "cache_read_input_tokens": 26039,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3655
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 26039,
+          "cache_creation_input_tokens": 3655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3655,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T21:25:39.284Z_
+
+<details><summary>↩ Tool result · `toolu_01Sx1Vg1UWWdcxYGcb3UrA63`</summary>
+
+```text
+artifacts/_project/report/code_review_report.md
+artifacts/code_review_report.md
+artifacts/_project/intermediate/related_work_outline.md
+artifacts/_project/report/within_gen_analysis.md
+artifacts/mvp_frac50_100/report/mvp_gate_check_final.md
+artifacts/dream_reports/dream_20260514T204316/best/paper_framing.md
+artifacts/dream_reports/dream_20260514T204316/median/paper_framing.md
+artifacts/dream_reports/dream_20260514T204316/worst/paper_framing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "047d9561-ef05-4ae2-a1c5-bb21422b9385",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "c86816a4-8a0d-4851-b33f-3ef9884f82ee",
+  "sourceToolAssistantUUID": "047d9561-ef05-4ae2-a1c5-bb21422b9385",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T21:25:39.298Z_
+
+<details><summary>↩ Tool result · `toolu_01MV82h35Q67X5amxb43sKnk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/decisions.yaml\", \"content\": \"_next_id: 7\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 04:21 UTC\\n  summary: MVP 设计：Qwen2.5-1.5B QLoRA × WikiText-2 × 3 fractions × 5 generations，验证信号-collapse\\n    相关性\\n  rationale: 核心假设是训练动态信号能跟踪 collapse 严重度。用最小配置（1 model × 1 dataset × 3 fractions ×\\n    1 seed × 5 gens）验证是否 ≥2 信号族 Spearman ρ > 0.7。EMNLP ARR DDL 5/25 仅剩 11 天，必须 2 天内完成\\n    MVP 判定。选 1.5B+QLoRA 因为这是 proposal 的主实验配置，且计算量适中（~15-20h 单卡）。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 04:24 UTC\\n  summary: 采纳 Reviewer 4 项 MVP 设计改进：AUROC 降级为辅助、5 代 collapse 不足 contingency、边界情况 0/1/≥2\\n    预定义规则\\n  rationale: Reviewer 指出单种子 AUROC 统计效力不足（warning）、5 vs 7 代假阴性风险、n=15 置信区间宽、缺边界处理规则。全部合理：(1)\\n    AUROC 改为辅助参考不作 gate；(2) 100% fraction 5 代 perplexity 退化 &lt;10% 则追加至 7 代；(3) 0\\n    信号=hard fail, 1 信号=conditional+追加 seed, ≥2=pass；(4) MVP pass 仅为 go/no-go 不代表论文结论。防止事后\\n    rationalization。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-14 06:28 UTC\\n  summary: MVP 模型从 Qwen2.5-1.5B 切换为 Qwen2.5-0.5B，解除下载阻塞\\n  rationale: 1.5B 模型下载连续 3 次失败（AutoDL 网络不稳定），累计浪费 1.5h，GPU 0% 利用率。0.5B 已下载就绪（954MB）。MVP\\n    核心假设（信号-collapse 相关性）与模型大小无关，0.5B 足以验证 go/no-go。1.5B 留作 Phase 2 全量实验的 main sweep\\n    模型。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n  - D002\\n- id: D004\\n  date: 2026-05-14 07:42 UTC\\n  summary: MVP 生成优化：subsample 1500 chunks + gen_batch_size 32，预计 80h → 12-15h\\n  rationale: Reviewer 发现 autoregressive generation 是瓶颈（4.25h/gen × 15 gens = 64h），原预估\\n    8-12h 完全遗漏生成开销。A+B 组合：(1) subsample 从 4916→1500 chunks（768K tokens 足够训练和多样性评估，oversample\\n    填满训练集），(2) gen_batch_size 8→32（GPU 显存余量充足）。DDL 5/25 不允许 80h 单卡跑。\\n  related_experiments: []\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 20:40 UTC\\n  summary: MVP PASS — 训练动态信号追踪 collapse 严重度假设成立，进入 research 阶段\\n  rationale: Gate check 2/3 signal families PASS (spectral ρ=1.0, output ρ=1.0)。三级剂量反应清晰：0pct\\n    稳定无退化、50pct 轻微退化后部分恢复、100pct 超线性 collapse (PPL 53×, stable_rank 6.6×)。Early warning\\n    在 3% 训练进度即可检测。Downstream (HellaSwag) FAIL 因 0.5B 模型太弱，非假设问题。研究阶段需解决：n=1 seed/model/dataset、cross-fraction\\n    n=3 统计效力弱、stable_rank gen2+ 饱和、50pct non-monotonic recovery 需要解释。\\n  related_experiments:\\n  - exp_id: mvp_frac0\\n    role: control baseline\\n    result: 5 代稳定无退化\\n  - exp_id: mvp_frac50_100\\n    role: dose-response gradient\\n    result: 50pct 轻微退化+恢复, 100pct 超线性 collapse (PPL 839, SR 155.6)\\n  - exp_id: within_gen_temporal\\n    role: early warning 验证\\n    result: step 50 (3%) SR 偏差 34.4%\\n  depends_on: []\\n- id: D006\\n  date: 2026-05-14 20:41 UTC\\n  summary: MVP PASS — 进入 research 阶段，叙事方向定为 analysis paper\\n  rationale: Gate check 2/3 families PASS（spectral ρ=1.0, output ρ=1.0）。核心假设\\\"训练动态信号追踪\\n    collapse 严重度\\\"得到强支撑。Early warning 在 3% 训练进度即可检测。叙事采用 analysis paper 定位（系统性分析哪些信号能追踪\\n    collapse、在什么条件下有效），Reviewer 评估认为比 method paper 更匹配当前数据且审稿标准更有利。\\n  related_experiments:\\n  - exp_id: mvp_frac0\\n    role: control baseline\\n    result: 5 代完全稳定，PPL 波动 <0.5%\\n  - exp_id: mvp_frac50_100\\n    role: 主实验\\n    result: 2/3 gate PASS, 100pct 超线性 collapse (PPL 53×), 50pct partial recovery\\n  - exp_id: within_gen_analysis\\n    role: 补充分析\\n    result: stable_rank 3% 进度即检测到 34.4% 偏差\\n  depends_on: []\\n\", \"total_chars\": 3137, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc4feb48-2c96-4785-a77d-670ddec42ec2",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "daeaea8e-eb51-4d7f-befa-aba8636cc216",
+  "sourceToolAssistantUUID": "cc4feb48-2c96-4785-a77d-670ddec42ec2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T21:25:43.481Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01568MT7bFdWhQE2QMjyTibj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/artifacts/mvp_frac50_100/report/mvp_gate_check_final.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "daeaea8e-eb51-4d7f-befa-aba8636cc216",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AgDAsS8Tm5bL7ZGqdn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "224dcf26-62c2-4bed-a899-9e9ec4e6c233",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVBPiQxZkcGVotg7uXosfS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2490,
+      "cache_read_input_tokens": 29694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2490,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T21:25:43.485Z_
+
+<details><summary>↩ Tool result · `toolu_01568MT7bFdWhQE2QMjyTibj`</summary>
+
+```text
+1	# Collapse Severity Monitor — MVP Final Report
+2	
+3	> Updated: 2026-05-14T20:38Z
+4	
+5	## MVP Gate Check: **PASS** (3/3 signal families ρ>0.7)
+6	
+7	### Experiment: mvp_frac50_100 + mvp_frac0
+8	
+9	- Model: Qwen/Qwen2.5-0.5B (QLoRA)
+10	- Data: WikiText-2 (4916 train chunks, gen subsampled to 1500)
+11	- Fractions: 0%, 50%, 100% synthetic replacement
+12	- Generations: 5 per fraction (15 total runs)
+13	- Total GPU time: ~14.1h on RTX 5090
+14	- Status: **DONE (success)**
+15	
+16	### Final Generation (gen4) Metrics
+17	
+18	| Metric | 0pct | 50pct | 100pct |
+19	|--------|------|-------|--------|
+20	| Perplexity | 15.67 | 16.95 | **839.20** |
+21	| Stable Rank | 23.41 | 24.79 | **155.64** |
+22	| Spectral Entropy | 0.703 | 0.716 | **0.884** |
+23	| Token Entropy | 2.259 | 2.215 | **0.782** |
+24	| HellaSwag | 0.435 | 0.434 | 0.430 |
+25	
+26	### Spearman ρ per Signal Family
+27	
+28	| Family | Signals | ρ | Verdict |
+29	|--------|---------|---|---------|
+30	| Spectral | stable_rank (1.0), spectral_entropy (1.0) | **1.0** | PASS |
+31	| Output | token_entropy (|ρ|=1.0), perplexity (1.0) | **1.0** | PASS |
+32	| Downstream | hellaswag (|ρ|=1.0, effect -1.2%) | **1.0** | PASS (weak) |
+33	
+34	### Key Findings
+35	
+36	1. **Spectral/output signals are excellent collapse monitors**: stable_rank shows 6.6× separation (23.4 → 155.6) between 0% and 100% synthetic. Perfect monotonic ranking across fractions.
+37	
+38	2. **Super-linear PPL acceleration in 100% synthetic**:
+39	   - Cross-gen PPL: 15.67 → 136.9 → 394.3 → 691.4 → 839.2
+40	   - Acceleration peaks at gen2-3, then decelerates approaching collapse ceiling.
+41	
+42	3. **50% synthetic shows mild degradation**: PPL +7.8% over 5 gens (15.73→16.95), stable_rank +8.3% (22.9→24.8). Detectable but not catastrophic.
+43	
+44	4. **0% baseline is rock-stable**: PPL varies <0.5%, stable_rank ~23.4 across all 5 gens.
+45	
+46	5. **Early warning**: Collapse-indicative signals show 34.4% deviation as early as step 50 (3% training progress) in the 100% condition.
+47	
+48	6. **HellaSwag is weak as a collapse signal**: Only 1.2% drop (0.435→0.430) despite catastrophic PPL explosion. Model retains benchmark performance even under severe collapse.
+49	
+50	### 100pct Perplexity Trajectory
+51	
+52	| Gen | PPL | Δ from gen0 |
+53	|-----|-----|-------------|
+54	| 0 | 15.67 | baseline |
+55	| 1 | 136.90 | +774% |
+56	| 2 | 394.25 | +2416% |
+57	| 3 | 691.39 | +4312% |
+58	| 4 | 839.20 | +5255% |
+59	
+60	### Caveats
+61	
+62	- n=1 seed (42). Need multi-seed for statistical confidence.
+63	- HellaSwag effect size too small to be practically meaningful despite perfect rank correlation.
+64	- 100% synthetic is an extreme setting; need more fractions for nuanced dose-response curve.
+65	
+66	### Checkpoints
+67	
+68	- 0pct: `outputs/ckpt_0pct_gen{0..4}/`
+69	- 50pct: `outputs/ckpt_50pct_gen{0..4}/`
+70	- 100pct: `outputs/ckpt_100pct_gen{0..4}/`
+71	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "224dcf26-62c2-4bed-a899-9e9ec4e6c233",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "c7279eb2-e11a-46bc-9f8b-e061af88faf0",
+  "sourceToolAssistantUUID": "224dcf26-62c2-4bed-a899-9e9ec4e6c233",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T21:25:44.451Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014VDXLntpVQFsdiQsPuTtNm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/artifacts/_project/report/within_gen_analysis.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7279eb2-e11a-46bc-9f8b-e061af88faf0",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AgDAsS8Tm5bL7ZGqdn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0bcc9a14-1659-4ecc-a864-09c2ff48892a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVBPiQxZkcGVotg7uXosfS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2490,
+      "cache_read_input_tokens": 29694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2490,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T21:25:44.455Z_
+
+<details><summary>↩ Tool result · `toolu_014VDXLntpVQFsdiQsPuTtNm`</summary>
+
+```text
+1	# Within-Generation 时序分析
+2	
+3	## 数据概览
+4	
+5	| Fraction | Generations | Records/Gen | Steps | 备注 |
+6	|----------|-------------|-------------|-------|------|
+7	| 0pct (baseline) | gen0-4 | 31 | 50-1540 | 完整 |
+8	| 50pct | gen0-4 | 31 | 50-1540 | 完整 |
+9	| 100pct | gen0-3 | 31 | 50-1540 | gen4 仅 12 条 (截断) |
+10	
+11	信号字段：training_loss, gradient_norm, token_entropy, perplexity, top_singular_values, stable_rank, spectral_entropy
+12	
+13	每 50 步记录一次，每代 1540 步（31 个 checkpoint）。
+14	
+15	## 关键发现
+16	
+17	**核心结论：所有 5 个监测信号在训练最早期（step 50，仅 3% 进度）就能区分 100% 合成数据的 collapse，early warning claim 成立。**
+18	
+19	### 早期区分度
+20	
+21	#### 100% synthetic vs 0% baseline（Gen 1）
+22	
+23	| Signal | Step 50 | Step 100 | Step 150 | Step 200 | Step 300 | Step 500 |
+24	|--------|---------|----------|----------|----------|----------|----------|
+25	| Perplexity | 17.7% | 21.9% | 26.8% | 34.8% | 57.3% | 106.7% |
+26	| Stable Rank | **34.4%** | **59.8%** | **66.7%** | **85.3%** | **116.2%** | **192.8%** |
+27	| Token Entropy | 24.5% | 25.2% | 27.9% | 29.7% | 33.6% | 37.6% |
+28	| Spectral Entropy | 5.0% | 7.4% | 8.6% | 10.7% | 13.7% | 18.1% |
+29	| Gradient Norm | 2.1% | 7.3% | 19.7% | 35.1% | 82.3% | 95.4% |
+30	
+31	#### 50% synthetic vs 0% baseline（Gen 1）
+32	
+33	| Signal | Step 50 | Step 100 | Step 150 | Step 200 | Step 300 | Step 500 |
+34	|--------|---------|----------|----------|----------|----------|----------|
+35	| Perplexity | 3.2% | 3.3% | 3.3% | 2.9% | 4.1% | 6.5% |
+36	| Stable Rank | 11.8% | 18.3% | 13.6% | 8.8% | 17.4% | 16.9% |
+37	| Token Entropy | 9.3% | 8.8% | 7.8% | 3.3% | 7.9% | 7.0% |
+38	| Spectral Entropy | 1.6% | 2.5% | 2.0% | 1.2% | 2.8% | 3.1% |
+39	| Gradient Norm | 0.1% | 2.4% | 1.9% | 3.5% | 15.4% | 21.4% |
+40	
+41	#### 最早 >5% 区分步数（100% vs 0%）
+42	
+43	| 排名 | Signal | Step | 训练进度 |
+44	|------|--------|------|---------|
+45	| 1 | Perplexity | 50 | 3% |
+46	| 2 | Stable Rank | 50 | 3% |
+47	| 3 | Token Entropy | 50 | 3% |
+48	| 4 | Spectral Entropy | 100 | 6% |
+49	| 5 | Gradient Norm | 100 | 6% |
+50	
+51	**Stable Rank 是最灵敏的信号**：step 50 时差异已达 34.4%，远超其他信号。
+52	
+53	### 时序轨迹（Gen 1）
+54	
+55	图表位于 `artifacts/within_gen_plots/`。
+56	
+57	- **gen1_perplexity.{pdf,png}**: 100pct 的 perplexity 从 step ~200 开始爆发式增长，到训练结束达 136.9（baseline 15.7），+770%。50pct 轻微上升至 17.9（+14%）。
+58	- **gen1_stable_rank.{pdf,png}**: 100pct 的 stable rank 从 31.9 飙升至 130.8（+310%），表明权重矩阵谱结构严重退化。50pct 保持在 26 附近，与 baseline 接近。
+59	- **gen1_token_entropy.{pdf,png}**: 100pct 的 token entropy 从 1.96 下降至 1.18（-51%），词汇多样性大幅下降。50pct 变化微小。
+60	- **gen1_spectral_entropy.{pdf,png}**: 100pct 上升 +24%，谱结构趋向集中。变化幅度较小但单调。
+61	- **gen1_gradient_norm.{pdf,png}**: 100pct 梯度范数翻倍（+107%），训练不稳定性的直接证据。
+62	
+63	### Cross-generation 加速
+64	
+65	**Collapse 在代际间显著加速：**
+66	
+67	#### Perplexity 退化（100% synthetic）
+68	
+69	| Generation | Start | End | Delta% |
+70	|------------|-------|-----|--------|
+71	| Gen 0 | 15.6 | 15.7 | +0.4% |
+72	| Gen 1 | 18.4 | 136.9 | **+645%** |
+73	| Gen 2 | 21.5 | 394.2 | **+1737%** |
+74	
+75	Gen 2 的退化速度是 Gen 1 的 2.7 倍（1737% vs 645%），且起始 perplexity 更高（21.5 vs 18.4），说明每代继承了上一代的退化状态并进一步恶化。
+76	
+77	#### Stable Rank 退化（100% synthetic）
+78	
+79	| Generation | Start | End | Delta% |
+80	|------------|-------|-----|--------|
+81	| Gen 0 | 23.5 | 23.4 | -0.4% |
+82	| Gen 1 | 31.9 | 130.8 | **+310%** |
+83	| Gen 2 | 33.7 | 153.8 | **+356%** |
+84	
+85	Gen 0 几乎无变化（纯真实数据训练），Gen 1-2 的 stable rank 爆炸式增长。
+86	
+87	**对比 baseline（0pct）**：所有代的 delta 在 -3.5% 到 -0.4% 之间，表明纯真实数据训练不会导致谱退化。
+88	
+89	图表：`crossgen_stable_rank_100pct.{pdf,png}`, `crossgen_perplexity_100pct.{pdf,png}`
+90	
+91	## 对论文的意义
+92	
+93	1. **Early warning claim 强烈成立**：最灵敏信号（Stable Rank）在仅 3% 训练进度时差异已达 34%。即使是最慢的信号（Gradient Norm）也在 6% 时超过 5% 阈值。这意味着可以在极早期中止有 collapse 风险的训练。
+94	
+95	2. **Stable Rank 是最佳 early warning 指标**：在所有时间点上都保持最大的信号-噪声比，且几乎从第一个 checkpoint 就清晰分离。建议论文主打 stable rank 作为核心监测指标。
+96	
+97	3. **Cross-gen 加速是强有力的 model collapse 证据**：Perplexity 退化从 Gen 1 的 +645% 加速到 Gen 2 的 +1737%，符合 model collapse 理论预测的超线性退化。
+98	
+99	4. **50pct 的温和退化支持 "混合缓解" 策略**：50% 合成数据下退化显著减轻（perplexity 仅 +14% vs +770%），但仍可检测——说明监测系统对中间情况也有灵敏度。
+100	
+101	5. **多信号互补性**：不同信号捕捉不同退化侧面（perplexity=生成质量，stable rank=谱结构，token entropy=词汇多样性），支持论文提出多信号监测框架的价值。
+102	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0bcc9a14-1659-4ecc-a864-09c2ff48892a",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "5f37b896-552f-4290-a610-e5ab600a69b3",
+  "sourceToolAssistantUUID": "0bcc9a14-1659-4ecc-a864-09c2ff48892a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T21:25:45.022Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QnQdrHnQo9RRxsxjVxNoAd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/artifacts/_project/intermediate/related_work_outline.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f37b896-552f-4290-a610-e5ab600a69b3",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AgDAsS8Tm5bL7ZGqdn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4f0f86da-8eba-4158-8653-900f21f1f7eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVBPiQxZkcGVotg7uXosfS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2490,
+      "cache_read_input_tokens": 29694,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2490
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 29694,
+          "cache_creation_input_tokens": 2490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2490,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T21:25:45.028Z_
+
+<details><summary>↩ Tool result · `toolu_01QnQdrHnQo9RRxsxjVxNoAd`</summary>
+
+```text
+1	# Related Work 结构大纲
+2	
+3	> **项目**: collapse_severity_monitor — 在线监控模型 collapse 严重度
+4	> **目标会议**: EMNLP 2026 ARR
+5	> **基于**: literature_map.yaml (19 篇) + 1 篇补充 (Alemohammad 2024)
+6	
+7	---
+8	
+9	## A. Model Collapse: 理论基础与实证
+10	
+11	Model collapse 指在合成数据上迭代训练导致模型质量不可逆退化的现象。自 Shumailov et al. (2024) 在 Nature 上首次系统性证明以来，理论和实证研究迅速发展，从分布尾部消失、缩放定律失效到术语统一均有深入探讨。我们的工作建立在这些理论基础之上，旨在提供训练过程中的实时监控手段。
+12	
+13	| # | 论文 | ID | 核心贡献 | 与我们的关系 |
+14	|---|------|----|----------|-------------|
+15	| 1 | **Shumailov et al.** "AI Models Collapse When Trained on Recursively Generated Data." *Nature* 631, 755–759, 2024. | `shumailov_nature2024` | 首次系统证明迭代合成数据训练导致 model collapse（LLM/VAE/GMM），核心机制为分布尾部消失。 | **领域基石**。定义了我们要解决的问题；他们用事后评估（test loss），我们提供在线监控。 |
+16	| 2 | **Alemohammad et al.** "Self-Consuming Generative Models Go MAD." *ICLR 2024*. (arXiv: 2307.01850) | ⚠️ **需补入 literature_map.yaml** | 提出 Model Autophagy Disorder (MAD) 框架，分析三类自噬循环（fully synthetic / synthetic augmentation / fresh data）下质量-多样性退化。 | **理论基础**。MAD 框架为我们的迭代合成数据实验设计提供了分类学；他们证明无足够真实数据则 precision 或 recall 必退化。 |
+17	| 3 | **Dohmatob, Feng et al.** "Strong Model Collapse." *ICLR 2025 (Spotlight)*. | `dohmatob_iclr2025` | 用算子值自由概率论证明即使极小比例（1/1000）合成数据也导致 collapse，且更大模型放大 collapse。 | **理论支撑**。解释了为什么需要监控——即使少量合成数据也危险；其 fraction 实验与我们的实验设计直接相关。 |
+18	| 4 | **Seddik et al.** "How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse." *arXiv 2404.05090*, 2024. | `seddik_2024` | 统计模型严格刻画不同递归训练场景下的 collapse 程度，给出混合训练下合成数据比例安全上限。 | **理论互补**。提供合成数据比例的安全阈值估计，可与我们的监控信号阈值对照验证。 |
+19	| 5 | **Schaeffer, Kazdan et al.** "Position: Model Collapse Does Not Mean What You Think." *arXiv 2503.03150*, 2025. | `schaeffer_2025` | 梳理 collapse 文献中 8 种不同定义，分为三个家族：test loss 行为、分布形变、缩放行为。 | **定位参考**。论文中需明确我们采用的 collapse 定义；建议采用他们的分类框架。 |
+20	| 6 | **Shi et al.** "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective." *NeurIPS 2025 (Spotlight)*. | `shi_neurips2025` | 揭示 collapse 中从泛化到记忆的转变，发现训练数据熵与泛化能力强线性相关。 | **互补视角**。他们用数据级熵，我们用模型内部训练动态信号；其数据熵可作为我们的外部验证指标。 |
+21	| 7 | **Bakshi et al.** "From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources." *arXiv 2602.10531*, 2026. | `bakshi_2026` | 分析真实+合成混合数据的迭代训练长期演化动态，非零真实数据权重（即使递减）可避免 collapse。 | **理论互补**。刻画迭代训练的长期演化规律，为我们的多轮实验设计提供理论预期。 |
+22	
+23	---
+24	
+25	## B. Collapse 检测与监控方法
+26	
+27	现有 collapse 检测方法主要分为事后评估（test loss、分布指标）和在线监控两类。直接竞争者包括基于谱分析的 SIGMA 和基于拓扑信号的 Kalinowski 方法。**我们的独特定位**：在线 + 频谱/熵训练动态信号 + per-layer 粒度 + 迭代合成数据场景，这一组合目前无人覆盖。
+28	
+29	| # | 论文 | ID | 核心贡献 | 与我们的关系 |
+30	|---|------|----|----------|-------------|
+31	| 1 | **Azam et al.** "SIGMA: Scalable Spectral Insights for LLM Model Collapse." *arXiv 2601.03385*, 2026. | `sigma_2026` | 通过 embedding Gram 矩阵的谱分析量化 collapse，推导谱收缩的确定性和随机性界。 | **直接竞争者**。SIGMA 是事后/黑盒方法（用输出嵌入 Gram 矩阵），不需要模型权重，不做 per-layer 分析，不跟踪训练过程动态变化。我们是训练中实时监控，更早期更细粒度。 |
+32	| 2 | **Kalinowski.** "Monitoring Neural Training with Topology: A Footprint-Predictable Collapse Index." *arXiv 2604.26984*, 2026. | `kalinowski_2026` | 提出在线拓扑感知监控器（MMHM + Collapse Index），通过稀疏增量更新实现快速在线监控。 | **直接竞争者**。同为在线监控，但信号族完全不同（拓扑 vs 频谱/熵）。我们的信号更轻量、更可解释（stable rank/spectral entropy 有直接线性代数含义）。Kalinowski 不研究迭代合成数据场景。 |
+33	| 3 | **Wyss et al.** "Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI." *arXiv 2410.12341*, 2024. | `wyss_2024` | 用语义网络和 next-token 概率表征 collapse，引入 collapsed prediction 概念量化多样性损失。 | **相关方法**。用输出级指标（next-token prob），属事后分析；其 synthetic fraction 实验（25%/50%/75%）与我们的实验设计有重叠，可作为 baseline 指标。 |
+34	
+35	### 我们的定位（论文中需强调）
+36	
+37	> 现有方法要么是事后/黑盒分析（SIGMA），要么用非频谱信号（Kalinowski 的拓扑方法），要么仅关注输出级指标（Wyss）。本工作首次将频谱/熵训练动态信号（spectral entropy、stable rank、output token entropy）以 per-layer 粒度应用于迭代合成数据训练中的在线 collapse 监控。
+38	
+39	---
+40	
+41	## C. 训练动态分析与诊断
+42	
+43	频谱分析和训练动态诊断是深度学习中成熟的研究方向。WeightWatcher 等工具已证明权重矩阵的谱性质（stable rank、power law exponent）可有效评估模型质量。我们将这些方法论工具从通用训练诊断延伸到 collapse 监控这一特定场景。
+44	
+45	| # | 论文 | ID | 核心贡献 | 与我们的关系 |
+46	|---|------|----|----------|-------------|
+47	| 1 | **Martin & Mahoney.** "Predicting Trends in the Quality of State-of-the-Art Neural Networks without Access to Training or Testing Data." *Nature Communications* 12, 2021. | `martin_mahoney_2021` | WeightWatcher 工具——用 RMT 分析权重矩阵谱性质（stable rank、power law α、spectral norm），无需训练/测试数据即可预测模型质量。 | **方法论基础**。WeightWatcher 的 stable rank 和谱分析方法直接启发我们的信号设计；其 5+1 训练阶段分类可用于解释 collapse 过程中的谱形态变化。 |
+48	| 2 | **Liu et al. (Spectral Lens).** "Spectral Lens: Activation and Gradient Spectra as Diagnostics of LLM Optimization." *arXiv 2605.05683*, 2026. | `spectral_lens_2026` | 用 activation covariance 和 per-sample gradient 的 SVD 谱作为 LLM 训练优化诊断工具。 | **方法论高度相关**。同样用频谱分析训练动态，但关注优化诊断而非 collapse/合成数据退化；其 per-layer 分析方法可参考。 |
+49	| 3 | **Chen & Liu.** "Assessing Neural Network Representations During Training Using Noise-Resilient Diffusion Spectral Entropy." *IEEE CISS 2024*. | `chen_liu_2024` | 提出 Diffusion Spectral Entropy (DSE) 和 DSMI，利用数据几何在高维中可靠计算信息论指标。 | **方法论工具**。DSE 是我们 spectral entropy 信号的潜在替代实现；其 DSE 随训练增加、DSMI 在过拟合时停滞的发现可为 collapse 检测提供参照。 |
+50	| 4 | **Yunis, Patel et al.** "Approaching Deep Learning through the Spectral Dynamics of Weights." *arXiv 2408.11804*, 2024. | `yunis_2024` | 以权重奇异值/向量的动态演化为核心视角，证明谱动态可区分记忆网络和泛化网络。 | **方法论基础**。谱动态视角可用于理解 collapse 过程中的权重变化；权重衰减增强低秩偏置的发现与 collapse 中的秩退化相关。 |
+51	| 5 | **Xu.** "Predicting LLM Compression Degradation from Spectral Statistics." *arXiv 2604.18085*, 2026. | `xu_2026` | 用 stable rank 和信息密度预测 LLM 压缩退化（Pearson r=0.890 attention, 0.839 MLP），per-layer 分析。 | **信号验证**。直接验证 stable rank 作为退化预测信号的有效性；虽场景不同（压缩 vs collapse），但支持我们选用 stable rank 的合理性。 |
+52	| 6 | **Conzelmann et al.** "Layer Collapse in Diffusion Language Models." *arXiv 2605.06366*, 2026. | `layer_collapse_diffusion_2026` | 分析 diffusion LM (LLaDA-8B) 中 per-layer activation collapse，发现少数早期层出现 channel-axis collapse。 | **方法论参考**。做了 per-layer collapse 分析，但在 diffusion LM 上；其 activation 分析方法可参考，但场景和模型架构不同。 |
+53	
+54	---
+55	
+56	## D. Collapse 缓解策略
+57	
+58	缓解策略主要分为数据管理（累积 vs 替换、混合比例控制）和数据筛选/验证两类。这些工作与我们的监控方向互补——我们负责检测 collapse 何时发生及严重程度，它们负责干预和缓解。
+59	
+60	| # | 论文 | ID | 核心贡献 | 与我们的关系 |
+61	|---|------|----|----------|-------------|
+62	| 1 | **Gerstgrasser, Schaeffer et al.** "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data." *arXiv 2404.01413*, 2024. | `gerstgrasser_2024` | 证明数据累积（而非替换）可避免 collapse；替换导致 test error 增长，累积则有有限上界。 | **互补**。他们研究何时 collapse（数据管理策略），我们研究如何实时检测 collapse；累积 vs 替换的差异可作为我们监控信号的验证场景。 |
+63	| 2 | **Kazdan et al.** "Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World." *arXiv 2410.16713*, 2024. | `kazdan_2024` | 系统比较三种工作流：replace（collapse）、accumulate（稳定）、fixed compute（plateau）。 | **互补**。提供实验设计参考——不同工作流下 collapse 行为差异，可用于验证我们的监控信号在不同设定下的灵敏度。 |
+64	| 3 | **Feng et al.** "Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification." *ICLR 2025*. | `feng_iclr2025` | 用高斯混合模型推导验证器有效的条件，证明即使不完美的验证器也可有效筛选合成数据。 | **互补**。缓解策略方向；我们的监控信号可作为验证器的补充或替代——当 collapse 信号超过阈值时触发干预。 |
+65	| 4 | **Yi et al.** "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence." *arXiv 2510.16657*, 2025. | `yi_2025` | 证明外部验证器（人类或更强模型）可阻止 collapse，分析短期改进和长期收敛行为。 | **互补**。与监控方向正交；我们的贡献在于提供何时需要启动验证/干预的信号。 |
+66	
+67	---
+68	
+69	## 覆盖检查
+70	
+71	### literature_map.yaml 全部 19 篇论文分配
+72	
+73	| ID | 类别 |
+74	|----|------|
+75	| `shumailov_nature2024` | A |
+76	| `dohmatob_iclr2025` | A |
+77	| `seddik_2024` | A |
+78	| `schaeffer_2025` | A |
+79	| `shi_neurips2025` | A |
+80	| `bakshi_2026` | A |
+81	| `sigma_2026` | B |
+82	| `kalinowski_2026` | B |
+83	| `wyss_2024` | B |
+84	| `martin_mahoney_2021` | C |
+85	| `spectral_lens_2026` | C |
+86	| `chen_liu_2024` | C |
+87	| `yunis_2024` | C |
+88	| `xu_2026` | C |
+89	| `layer_collapse_diffusion_2026` | C |
+90	| `gerstgrasser_2024` | D |
+91	| `kazdan_2024` | D |
+92	| `feng_iclr2025` | D |
+93	| `yi_2025` | D |
+94	
+95	### 需补入 literature_map.yaml 的论文
+96	
+97	- **Alemohammad et al. (2024)** "Self-Consuming Generative Models Go MAD." ICLR 2024. arXiv: 2307.01850
+98	  - 分类至 A（理论基础）
+99	  - relation: foundation
+100	  - 建议 id: `alemohammad_iclr2024`
+101	
+102	---
+103	
+104	## 论文写作备注
+105	
+106	1. **开篇逻辑**: A → B → C → D，从"问题是什么"到"谁在检测"到"用什么工具"到"如何缓解"
+107	2. **核心 positioning 句**: "To the best of our knowledge, no prior work simultaneously achieves (a) online monitoring during training, (b) spectral/entropy training dynamics signals, (c) per-layer granularity, and (d) validation in the iterative synthetic data training setting."
+108	3. **Collapse 定义**: 采用 Schaeffer et al. (2025) 的分类框架，明确我们关注的是 test loss degradation + distribution tail collapse
+109	4. **Alemohammad 2024 必须引用**: Reviewer 之前指出缺失，与 Shumailov 2024 共同构成问题定义的基石
+110	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f0f86da-8eba-4158-8653-900f21f1f7eb",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "51112901-66cd-4dca-b24e-8258b8100f67",
+  "sourceToolAssistantUUID": "4f0f86da-8eba-4158-8653-900f21f1f7eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-14T21:25:48.680Z_
+
+Now I have comprehensive context on the paper, its experimental results, related work, and framing. Let me produce the structured review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51112901-66cd-4dca-b24e-8258b8100f67",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AgdmifU6eHZDPofFhi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b38c76f0-db46-440f-b3e4-c3f9a51fb205",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HRXhigx9vHpmmhMHvZFABx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9150,
+      "cache_read_input_tokens": 32184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9150,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T21:25:49.886Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XfViVofrD7osNYoUuzunUJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b38c76f0-db46-440f-b3e4-c3f9a51fb205",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AgdmifU6eHZDPofFhi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "949072da-f0cc-4d7f-ad69-800eeb0f094f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HRXhigx9vHpmmhMHvZFABx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9150,
+      "cache_read_input_tokens": 32184,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9150
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 32184,
+          "cache_creation_input_tokens": 9150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9150,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T21:25:49.889Z_
+
+<details><summary>↩ Tool result · `toolu_01XfViVofrD7osNYoUuzunUJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "949072da-f0cc-4d7f-ad69-800eeb0f094f",
+  "isSidechain": true,
+  "promptId": "e2cabbb9-daa2-4bce-b439-fb19edaa819a",
+  "agentId": "af4ea68cc1df6d4ea",
+  "type": "user",
+  "uuid": "c95f8cb4-aa64-4ce1-a0a8-83dadc217cbb",
+  "sourceToolAssistantUUID": "949072da-f0cc-4d7f-ad69-800eeb0f094f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-14T21:27:13.938Z_
+
+
+
+Here is my structured review as R2 (Novelty and Related Work).
+
+---
+
+## R2 Review: "Training Dynamic Signals as Early Warning Systems for Model Collapse"
+
+### Summary
+
+This paper conducts a systematic empirical study of four families of training-time signals (spectral, output, gradient, downstream) as monitors for model collapse severity under varying synthetic data contamination levels. The main findings are that spectral and output signals track collapse with high rank correlation, stable rank provides early warning at 3% training progress, and different signal families have distinct operating ranges. The work is positioned as an analysis paper rather than a method paper, targeting NeurIPS main track.
+
+### Strengths
+
+- **Well-scoped comparative framework.** The systematic comparison of four signal families across contamination levels, model scales, domains, and fine-tuning methods is genuinely useful. No prior work provides this specific comparison in the iterative synthetic data setting. The signal taxonomy (which signal works where and when it fails) is the paper's most valuable contribution.
+
+- **Adequate related work coverage.** The literature map is thorough for a relatively young field. The 19+ papers span foundations (Shumailov, Alemohammad, Dohmatob), direct competitors (SIGMA, Kalinowski), methodological antecedents (Martin & Mahoney, Spectral Lens), and mitigation strategies. The positioning against SIGMA and Kalinowski is fair and clearly articulated along the dimensions of online vs. post-hoc, signal family, and granularity.
+
+- **Honest characterization of signal limitations.** Reporting that stable rank saturates above 75%, gradient norm is non-monotonic, and HellaSwag fails at 0.5B scale shows intellectual honesty. These "negative" findings are arguably as valuable as the positive ones for practitioners.
+
+- **The early warning result is practically compelling.** Detecting collapse at 3% training progress with 36% signal separation and AUC=0.97 is a concrete, actionable finding that could change practitioner behavior during fine-tuning.
+
+- **The per-layer propagation analysis (middle-out pattern, attention vs. FFN) adds genuine depth** beyond simple model-level monitoring and differentiates this work from SIGMA's model-level approach.
+
+### Weaknesses
+
+**W1. The novelty is primarily in combination, not in components.** Every individual signal used is well-established: stable rank and spectral entropy come directly from Martin & Mahoney (2021) / WeightWatcher; perplexity and token entropy are standard; gradient norm is ubiquitous. The paper applies known diagnostic tools to a specific (important) setting. This is legitimate empirical science, but the novelty bar for a top venue requires acknowledging this more explicitly. The current framing as "first systematic analysis" is accurate but risks overstating the conceptual advance.
+
+**W2. The differentiation from SIGMA is thinner than claimed.** The paper positions SIGMA as "post-hoc/black-box" and contrasts it with "online/per-layer." However, SIGMA's spectral analysis of embedding Gram matrices could in principle be computed at training-time checkpoints (it does not require a held-out test set in a way that prevents online use). The paper needs to engage more carefully with whether SIGMA's approach is *inherently* post-hoc or merely *presented* as post-hoc. If the latter, the differentiation collapses to "we use weight spectra, they use output embedding spectra" -- which is a meaningful but narrower distinction than implied.
+
+**W3. Several "first" claims are overclaimed or unverifiable.**
+- "First systematic analysis of training dynamic signals as model collapse monitors" -- reasonable but should acknowledge that SIGMA and Kalinowski both monitor collapse using training-time computable signals, even if not framed as "training dynamics."
+- "First documented case of self-recovery" -- the data mixing literature (Gerstgrasser et al. 2024, Kazdan et al. 2024) extensively studies settings where mixed real+synthetic data avoids or reverses collapse. The "self-recovery at <=50% contamination" finding may be a rediscovery of the known accumulation/mixing effect rather than a genuinely novel phenomenon. The 3/3 seeds observation also lacks statistical power to claim a robust phenomenon.
+- "First characterization of per-signal operating ranges" -- given that the field is only ~2 years old with few monitoring papers, being "first" here is somewhat trivially true.
+
+**W4. Missing important related work.**
+- **Shumailov et al. (2024) "Curse of Recursion"** (the original arXiv version, 2023) and the Nature version are cited, but **Briesch et al. (2023) "Large Language Models Suffer From Their Own Output"** appears missing -- this is an early empirical study of LLM self-contamination that documents degradation patterns.
+- **Hataya et al. (2023) "Will Large-scale Generative Models Corrupt Future Datasets?"** -- relevant to the contamination framing.
+- **Dohmatob et al. (2024) "Tale of Tails"** -- a separate paper from the "Strong Model Collapse" one that specifically studies tail behavior, directly relevant to the spectral/entropy signal interpretation.
+- **Guo et al. (2024) on contamination detection** (cited as [4] in the paper summary but not clearly present in the literature map as the same entity as SIGMA) -- the relationship between [4] and SIGMA should be clarified.
+- The **random matrix theory** literature beyond Martin & Mahoney (e.g., Pennington & Worah 2017, "Nonlinear random matrix theory for deep learning") is relevant to the theoretical interpretation of spectral signals but absent.
+
+**W5. Lack of theoretical grounding for key empirical findings.**
+- The 75% phase transition is reported as consistent across domains/scales/methods but receives no theoretical explanation. Why 75%? Is this related to the mixing proportion thresholds derived in Seddik et al. (2024) or Dohmatob et al. (2025)? Without connecting to theory, this is an unexplained empirical regularity.
+- The non-monotonic gradient norm behavior (peak at 75%, drop at 100%) similarly lacks explanation. Is this an optimization landscape phenomenon? A numerical artifact of complete distribution shift?
+- The middle-out layer propagation pattern is intriguing but unexplained. Why middle layers first? Does this connect to known results about layer-wise learning dynamics (e.g., deeper layers learning more abstract features)?
+
+**W6. Statistical concerns with the Spearman correlation claims.** Reporting rho >= 0.94 with n=6 (six contamination levels) and p<0.005 is technically correct but potentially misleading. With n=6, a perfect monotonic ordering yields rho=1.0 mechanically. The p-value is from a permutation test with only 720 permutations. More importantly, Spearman correlation measures monotonicity, not the strength or practical significance of the signal. A signal that increases by 0.1% monotonically across fractions would also have rho=1.0. Effect sizes and separation ratios (which the paper does report elsewhere) are more informative.
+
+**W7. The "signal taxonomy" contribution is descriptive rather than prescriptive.** The taxonomy tells practitioners "stable rank works early but saturates; gradient norm is non-monotonic." But it does not provide a concrete monitoring protocol: which signal(s) to compute, at what frequency, with what threshold, and what action to take. Without this, the practical impact is limited to "awareness" rather than "actionable tool."
+
+### Questions for Authors
+
+**Q1.** Can you run SIGMA's Gram matrix spectral analysis at training-time checkpoints and compare directly? This would clarify whether the advantage is "online vs. post-hoc" or "weight spectra vs. output spectra."
+
+**Q2.** How does the self-recovery at <=50% contamination differ from the well-known finding that accumulating or mixing real data prevents collapse (Gerstgrasser et al. 2024)? Is there evidence this is a distinct phenomenon rather than the expected behavior of training on a mixture with sufficient real data?
+
+**Q3.** Can you connect the 75% phase transition to the theoretical thresholds derived in Seddik et al. (2024) or Dohmatob et al. (2025)? Even a back-of-envelope calculation would significantly strengthen the paper.
+
+**Q4.** The AUC=0.97 for binary collapse detection at 5% progress -- what is the binary classification setup? How is the positive/negative boundary defined? Is it robust to different threshold choices?
+
+**Q5.** How sensitive are the spectral signal measurements to LoRA rank? Would different LoRA configurations (r=4 vs r=16 vs r=64) change the signal behavior, potentially undermining the signal taxonomy?
+
+**Q6.** The paper reports 125 A6000 GPU-hours total. Can you break this down by experiment? This helps assess reproducibility cost.
+
+**Q7.** For the per-layer analysis, are you computing spectral statistics on the full weight matrices or only on the LoRA delta? For QLoRA, the LoRA delta is very low-rank by construction, which could confound stable rank measurements.
+
+### Minor Issues
+
+- The paper should explicitly state which definition of "model collapse" it adopts, following Schaeffer et al. (2025)'s taxonomy. The related work outline suggests this is planned but not yet implemented.
+- The claim "larger models collapse more severely (71x vs 53x)" is based on only two model sizes (0.5B, 1.5B). This is a single comparison, not a scaling trend. Soften the language.
+- Token entropy decreasing (vocabulary diversity loss) while stable rank increases (spectral spread) under collapse deserves more discussion -- these are anti-correlated signals measuring different aspects of the same phenomenon, which is conceptually interesting but underexplored.
+- The Alemohammad et al. (2024) ICLR paper is noted as missing from the literature map in the related work outline -- ensure it is added before submission.
+
+### Scores
+
+| Criterion | Score | Justification |
+|-----------|-------|---------------|
+| **Soundness** | 3/4 | Experiments are well-designed with reasonable controls, but statistical power is limited (few seeds in MVP, n=6 for correlations). The Spearman rho claims are technically correct but overstated given sample size. |
+| **Contribution** | 2/4 | The individual components are well-known; novelty lies in their systematic comparison in a specific setting. The signal taxonomy is useful but descriptive. Several "first" claims are overclaimed. Practical impact is limited without a concrete monitoring protocol. |
+| **Clarity** | 3/4 | The paper framing and experimental structure are clear. The related work is well-organized. Some claims need calibration (see W3, W6). |
+| **Overall** | 4/6 (Weak Accept) | A solid empirical study that fills a genuine gap (systematic comparison of monitoring signals for collapse). The practical relevance is clear and the experimental coverage (scales, domains, methods) is commendable. However, the novelty is incremental (applying known tools to a new setting), several claims are overclaimed, the differentiation from SIGMA is weaker than presented, and the lack of theoretical grounding for key findings (75% threshold, non-monotonic gradient, middle-out propagation) leaves important questions unanswered. At the margin for a 25% acceptance rate venue. |
+| **Confidence** | 4/5 | I am familiar with both the model collapse literature and the spectral analysis of neural networks literature. My main uncertainty is whether the full paper (vs. the summary reviewed here) addresses some of the theoretical gaps I identified. |
+
+### Recommendation
+
+Borderline. The paper would benefit from: (1) a head-to-head comparison with SIGMA computed online, (2) connecting the 75% phase transition to existing theory, (3) calibrating the "first" claims downward, and (4) providing a concrete monitoring protocol rather than a descriptive taxonomy. If the authors can address W2 and W3 convincingly in a revision, this moves to a comfortable accept.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c95f8cb4-aa64-4ce1-a0a8-83dadc217cbb",
+  "isSidechain": true,
+  "agentId": "af4ea68cc1df6d4ea",
+  "requestId": "req_011Cb3AgzXPCYXEjLdMgbCHo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1b031689-0aa9-4f49-a79b-74e3a1692e51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor",
+  "sessionId": "7c1967ef-5b50-47d4-abd3-fa4898db7167",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K2rgJoeBu3KzNDBjNsm9U2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 41334,
+      "output_tokens": 2855,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 695
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2855,
+          "cache_read_input_tokens": 41334,
+          "cache_creation_input_tokens": 695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 695,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

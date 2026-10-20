@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "40330b11f37113400bb0",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are a senior ML researcher conducting a comprehensive literature survey. **Today's date: 2026-05-29 (UTC).** ## Task",
+  "task_key": "33016413-cac2-4c41-b5b8-c3c78f3bfcb3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/33016413-cac2-4c41-b5b8-c3c78f3bfcb3.jsonl",
+    "occurrence": 1,
+    "bytes": 632528,
+    "sha256": "d1fccb6d0f7f09f1d8b17354b694a7dd39ff7f04439772eca64746a93865d511"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 1,
+    "tool_calls": 82,
+    "roles": {
+      "record": 48,
+      "user": 1,
+      "assistant": 22,
+      "tool_call": 82,
+      "tool_result": 82
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "40330b11f37113400bb0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 233,
+      "chunks": [
+        {
+          "path": "40330b11f37113400bb0-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "40330b11f37113400bb0-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-a-senior-ml-researcher-conducting-a-comprehensive-literature-survey-to-copy-35.md"
+}

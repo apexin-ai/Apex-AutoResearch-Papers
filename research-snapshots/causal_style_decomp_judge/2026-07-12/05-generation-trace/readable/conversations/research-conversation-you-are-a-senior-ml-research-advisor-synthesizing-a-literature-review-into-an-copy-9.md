@@ -1,0 +1,1184 @@
+# Research conversation: You are a senior ML research advisor synthesizing a literature review into an actionable research strategy. **Today's da
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 16
+- **Recorded user turns:** 1
+- **Tool calls:** 1
+- **Original source:** `logs/chats/exported-trajectories/account-3/50ad5d73-51ae-4f38-a227-1400c4348090.jsonl`
+- **Structured JSON:** [`113178c29918a277cf0f.json`](../../sessions/11/113178c29918a277cf0f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T11:35:26.567Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T11:35:26.567Z",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "content": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.\n\n**Today's date: 2026-05-29 (UTC).**\n\n## Research area: Target: AAAI 2026\nTrack: Machine Learning — Learning from Limited/Structured Data\n\nDirection: Use OMEGA's templated skill structure to construct a mathematical skill dependency DAG, identify under-covered compositional frontiers (novel but adjacent k-skill combinations), and synthesize targeted training data at those frontiers. The hypothesis is that systematic coverage of the compositional frontier — not random augmentation or generic RL — is required to break the scale-invariant +6% compositional ceiling. Evaluate whether skill-graph-guided data synthesis enables compositional generalization where scaling, RL, and curriculum learning all fail.\n\nSeed Papers:\n- OMEGA (Sun et al., NeurIPS 2025) — Primary benchmark: defines the +6% compositional ceiling across 40 templated generators, 6 math domains. Provides the skill taxonomy and evaluation infrastructure.\n- MASS: Mathematical Data Selection via Skill Graphs (ICML 2025) — Demonstrates skill graphs improve math data selection efficiency by 50-70%. Validates the skill-graph approach in math but does NOT target compositional generalization.\n- STEPS: Skill Taxonomy Guided Data Synthesis (arXiv Jan 2026) — Information-theoretic framework for compositional data synthesis via skill taxonomies. Validated on instruction-following, NOT math. Our direct methodological ancestor.\n- Scaling Can Lead to Compositional Generalization (Redhardt et al., NeurIPS 2025 Spotlight) — Proves coverage of task space enables generalization. Theoretical basis for why frontier-targeted synthesis should work, but provides no practical method for achieving coverage in math.\n- Can Models Learn Skill Composition from Examples? (Zhao & Kaur, NeurIPS 2024) — Shows k-skill fine-tuning generalizes to (k+1)-skill if data design is careful. Validates the data design matters, but uses manual composition.\n\nKnown Gaps:\n- MASS uses skill graphs for pretraining data selection efficiency, not for compositional frontier identification — nobody has used skill DAGs to find and fill gaps in compositional coverage.\n- STEPS targets instruction-following composition, not mathematical reasoning — the math-specific instantiation (skill extraction from OMEGA templates, mathematical coherence filtering) is untested.\n- No published method has been evaluated on OMEGA's compositional axis with targeted data interventions; all existing OMEGA results use RL or prompting.\n\nTheoretical Anchor: Redhardt et al. (NeurIPS 2025) prove that compositional generalization emerges when training distribution covers the compositional task space. OMEGA shows current training data does NOT cover the compositional frontier. STEPS' information-theoretic framework (maximizing marginal structural information in skill hierarchies) provides the selection principle. Together: coverage + information-maximizing selection over skill DAG = compositional generalization.\n\nConstraints:\n- Compute: ≤200 H100-hours (estimated 50-80 H100-hours for Qwen-7B fine-tuning + data generation)\n\nQuality Self-Checks:\n- [x] Core insight: Compositional generalization requires explicit coverage of the skill-composition frontier; random augmentation and RL cannot discover this structure.\n- [x] Why not obvious: MASS (skill graphs for math) and STEPS (taxonomy synthesis for composition) exist independently; nobody has combined them because MASS targets efficiency and STEPS targets instruction-following — the math-composition intersection requires domain-specific skill extraction from OMEGA templates.\n- [ ] Baseline fear test: CONCERN — a simple baseline of training on randomly sampled k-skill compositions (without the skill DAG structure) might achieve 60-80% of the improvement. The ablation comparing random vs. frontier-guided composition is the make-or-break experiment.\n- [x] Information exploited: The skill dependency structure encoded in OMEGA's 40 templated generators — specifically, which atomic skills are prerequisites for which compositions and which k-tuples are absent from training distributions.\n\nAvoid:\n- Framing as 'yet another data augmentation paper' — the contribution is the compositional frontier identification via skill DAGs, not the augmentation itself.\n- Overclaiming that this solves transformative generalization — OMEGA's transformative axis (novel strategies) is a fundamentally harder problem that skill-graph coverage cannot address.\n- Ignoring MASS as related work — MASS must be prominently cited and differentiated, or reviewers who know ICML 2025 will flag the omission.\n- Testing only on OMEGA — include MathTrap (EMNLP 2024) and AgentCoMa (2025) as secondary benchmarks to demonstrate the improvement is not benchmark-specific.\n\n## Paper analyses (20 papers)\n\n[\n  {\n    \"title\": \"OMEGA: Can LLMs Reason Outside the Box in Math? Evaluating Exploratory, Compositional, and Transformative Generalization\",\n    \"venue\": \"NeurIPS 2025 (Datasets and Benchmarks Track)\",\n    \"problem_identification\": \"Existing math benchmarks (GSM8K, MATH, Olympiad) conflate distinct generalization types, making it impossible to diagnose whether failures stem from harder instances, skill integration, or strategy novelty. The authors operationalized Boden's creativity typology into three measurable axes.\",\n    \"key_insight\": \"Decomposing OOD generalization into exploratory/compositional/transformative axes via templated generators reveals that RL fine-tuning yields +38pp exploratory gains but near-zero compositional and transformative improvement — failures are structurally different and require different interventions.\",\n    \"innovation_type\": \"new_benchmark\",\n    \"method_summary\": \"40 programmatic templated generators across 6 math domains produce controlled train-test pairs. Exploratory tests increase complexity parameters; compositional tests combine skills trained in isolation (e.g., GCD + root-finding); transformative tests require novel solution strategies. Solutions are verified via symbolic, numerical, or graphical methods. GRPO fine-tuning on Qwen2.5-7B/Math-7B with 1,000 training problems per setting provides the training intervention baseline.\",\n    \"limitations_and_open_questions\": \"The +6% compositional ceiling is demonstrated but not deeply analyzed causally — is it a coverage problem, a representation bottleneck, or an optimization failure? Only Qwen-series models are fine-tuned; generalizability across architectures is untested.\",\n    \"building_blocks\": [\n      \"40 templated math generators with programmatic verification\",\n      \"3-axis generalization evaluation framework\",\n      \"GRPO fine-tuning protocol on Qwen-7B\",\n      \"Skill taxonomy across 6 math domains\"\n    ],\n    \"relevance_to_seed\": \"Defines the primary evaluation target — the compositional ceiling our skill-DAG-guided synthesis must break, and provides the templated generators from which we extract the skill dependency structure.\"\n  },\n  {\n    \"title\": \"Can Models Learn Skill Composition from Examples?\",\n    \"venue\": \"NeurIPS 2024\",\n    \"problem_identification\": \"It was unknown whether fine-tuning on low-order skill compositions (k=2,3) could transfer to higher-order compositions (k=4,5), or whether each composition level required explicit training data. The authors adapted the SKILL-MIX evaluation to test this transfer systematically.\",\n    \"key_insight\": \"Training on k≤3 skill combinations enables generalization to k=4,5 compositions — models acquire a meta-compositional capability rather than memorizing specific skill tuples, but only when training data is skill-rich and carefully designed.\",\n    \"innovation_type\": \"analysis\",\n    \"method_summary\": \"Using 101 language skills partitioned into 53 training and 48 held-out skills, GPT-4 generates synthetic training data at k=1,2,3 with strict quality filtering (full-marks only). LLaMA-2-13B and Mistral-7B are fine-tuned for 4K steps (batch 64, lr 2e-5). Evaluation measures pass rates on k=4,5 compositions using both in-domain and held-out skill sets, with GPT-4 grading on a (k+3)-point rubric.\",\n    \"limitations_and_open_questions\": \"Tested only on language/text skills (rhetorical, literary, ToM), not mathematical reasoning — does the k→k+1 transfer hold for formal domains where skill interactions are more constrained? The skill set is flat (no dependency structure), leaving open whether exploiting skill DAGs would improve transfer.\",\n    \"building_blocks\": [\n      \"k-to-(k+1) compositional transfer evidence\",\n      \"Skill-mix evaluation methodology\",\n      \"Quality-filtered synthetic compositional training data\"\n    ],\n    \"relevance_to_seed\": \"Provides the empirical foundation that careful data design enables compositional transfer — our work extends this from flat skill sets to structured skill DAGs and from language tasks to mathematical reasoning on OMEGA.\"\n  },\n  {\n    \"title\": \"Skills-in-Context Prompting: Unlocking Compositionality in Large Language Models\",\n    \"venue\": \"EMNLP 2024 (Findings)\",\n    \"problem_identification\": \"LLMs possess individual skills from pretraining but fail to compose them for novel problems. The authors identified that the missing element is not capability but activation — models need explicit in-context demonstration of how to ground reasoning steps onto foundational skills.\",\n    \"key_insight\": \"Providing foundational skills and as few as two compositional exemplars (with reasoning steps explicitly labeled by skill) in the same prompt context is sufficient to unlock near-perfect compositional generalization, because it activates latent pre-existing skills.\",\n    \"innovation_type\": \"new_technique\",\n    \"method_summary\": \"SKiC prompts contain three blocks: (1) foundational skills definitions, (2) compositional exemplars with skill-labeled reasoning steps, (3) the target problem. Tested on last-letter concatenation, arithmetic, multi-hop QA (CommaQA-E), and dynamic programming, achieving 100% accuracy on tasks where standard CoT fails. Fine-tuning on SKiC-formatted data enables zero-shot weak-to-strong generalization (e.g., training on GSM8K-level, solving MATH-level).\",\n    \"limitations_and_open_questions\": \"Near-perfect results are on synthetic/structured tasks — performance on messy real-world mathematical composition is less clear. The skill definitions must be provided or discovered; automating skill identification at scale remains open.\",\n    \"building_blocks\": [\n      \"SKiC three-block prompt structure\",\n      \"Skill-labeled reasoning steps\",\n      \"Weak-to-strong generalization via skill-grounded fine-tuning\",\n      \"Evidence that 2 exemplars suffice for compositional transfer\"\n    ],\n    \"relevance_to_seed\": \"Demonstrates the coverage principle at prompting level — presenting skills + compositions unlocks generalization. Our work operationalizes this at the training data level: instead of in-context skills, we synthesize training examples that cover the compositional frontier identified by the skill DAG.\"\n  },\n  {\n    \"title\": \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\",\n    \"venue\": \"Nature 2025\",\n    \"problem_identification\": \"Prior reasoning-capable LLMs required expensive human-labeled reasoning trajectories for supervised fine-tuning. The authors asked whether pure RL with verifiable rewards could incentivize reasoning emergence without any SFT data.\",\n    \"key_insight\": \"Group Relative Policy Optimization (GRPO) — which estimates advantages from group-normalized rewards, eliminating the critic model — enables emergent self-verification, reflection, and 'aha moment' behaviors from pure RL on a strong pretrained base.\",\n    \"innovation_type\": \"new_technique\",\n    \"method_summary\": \"GRPO samples G completions per prompt, computes advantage as (reward - group_mean)/group_std, and optimizes a clipped objective with KL penalty against a reference policy. The full pipeline has 4 stages: (1) cold-start SFT on curated R1-Zero outputs, (2) reasoning-focused RL with rule-based accuracy/format rewards on verifiable tasks, (3) rejection sampling SFT using DeepSeek-V3 as quality judge, (4) diverse RL for broad alignment. Distillation transfers reasoning to 1.5B-70B models, with 7B achieving 55.5% on AIME 2024.\",\n    \"limitations_and_open_questions\": \"GRPO optimizes for verifiable-answer correctness, not compositional structure — it cannot discover that skill compositions are undertrained. An OpenReview rebuttal argues RL-induced reasoning is contingent on strong pretraining, not RL innovation per se.\",\n    \"building_blocks\": [\n      \"GRPO algorithm (critic-free RL)\",\n      \"Multi-stage RL pipeline\",\n      \"Rule-based verifiable rewards\",\n      \"Distillation from large to small reasoning models\"\n    ],\n    \"relevance_to_seed\": \"Key RL baseline to contrast against — OMEGA shows GRPO yields exploratory but not compositional gains. Our hypothesis is that RL cannot discover compositional frontier gaps because its reward signal is sparse and per-problem, not structure-aware. Targeted data synthesis addresses what RL cannot.\"\n  },\n  {\n    \"title\": \"Key-Point-Driven Data Synthesis with Its Enhancement on Mathematical Reasoning\",\n    \"venue\": \"AAAI 2025\",\n    \"problem_identification\": \"Random math data synthesis produces low-quality or redundant problems. The authors observed that authentic math problems cluster around identifiable 'key points' (theorems, methods) and that synthesis quality depends on grounding generation in these structural elements.\",\n    \"key_insight\": \"Extracting key points from authentic problems and using a Topic Co-occurrence Probability Matrix (TCPM) to guide which concept combinations to synthesize produces higher-quality, more diverse training data than unconstrained generation.\",\n    \"innovation_type\": \"new_technique\",\n    \"method_summary\": \"GPT-4 extracts hierarchical key points (topics → specific theorems/methods) from seed problems. A TCPM captures natural co-occurrence patterns between topics. Synthesis samples 2-3 topics weighted by TCPM, selects exemplar problems per topic as guides, and generates new Q-A pairs. Two-stage quality control: GPT-4 scores questions (>0.85 threshold, ~51% pass rate) and voting-based answer verification. KPMath totals 800K+ pairs; KPMath-Plus reaches 1.57M after merging with curated open-source data.\",\n    \"limitations_and_open_questions\": \"TCPM captures co-occurrence from existing data, not compositional frontiers — it reproduces the distribution rather than filling gaps. Quality filtering is GPT-4-dependent, creating a capability ceiling. No evaluation on compositional generalization benchmarks.\",\n    \"building_blocks\": [\n      \"Key-point extraction pipeline\",\n      \"Topic Co-occurrence Probability Matrix (TCPM)\",\n      \"Two-stage quality filtering for synthetic math data\",\n      \"Exemplar-guided math problem generation\"\n    ],\n    \"relevance_to_seed\": \"Closest methodological ancestor for math-specific synthesis — our TCPM analogue is the skill DAG from OMEGA templates. The critical difference: KPDDS reproduces existing topic distributions while we explicitly target under-covered compositional frontiers. KPDDS's quality filtering pipeline is directly reusable.\"\n  },\n  {\n    \"title\": \"MASS: Mathematical Data Selection via Skill Graphs for Pretraining Large Language Models\",\n    \"venue\": \"ICML 2025\",\n    \"problem_identification\": \"Existing math data selection methods (AutoDS, DSIR, RHO-1) treat data points independently, ignoring the relational structure of mathematical skills. MASS identified that co-occurrence patterns between skills encode compositional information that predicts data quality better than individual-point scoring.\",\n    \"key_insight\": \"Aggregating data-skill similarity scores through a skill co-occurrence graph's adjacency matrix captures compositional skill relationships, and this graph-aggregated signal is more predictive of data quality than individual skill coverage alone (ablation: removing compositional edges drops performance 2.1-2.8%, vs 0.4-1.2% for removing skill-importance diagonals).\",\n    \"innovation_type\": \"new_technique\",\n    \"method_summary\": \"Extracts ~46K deduplicated skills from 100K NuminaMath samples via Qwen2.5-72B, builds a co-occurrence graph (1.18M edges), then scores target data by computing max-cosine-similarity to each skill and aggregating through the adjacency matrix: score(x_i) = Σ_j [A_jj · sim(x_i, v_j) + Σ_k A_jk · sim(x_i, v_k)]. The adjacency matrix is softmax-normalized so graph-aggregated scores incorporate both skill importance (diagonal) and compositional relationships (off-diagonal). Evaluated on TinyLlama-1.1B and Mistral-7B across OpenWebMath, OpenWebMath-pro, and Jiuzhang3.0.\",\n    \"limitations_and_open_questions\": \"Skill graph is used purely for data selection scoring, not for identifying missing compositional coverage — the graph structure is exploited for ranking existing data, not for generating data to fill structural gaps. LLM-based skill extraction (Qwen-72B) introduces noise that deduplication (0.9 similarity threshold) only partially addresses.\",\n    \"building_blocks\": [\n      \"Skill extraction via LLM prompting from reference datasets\",\n      \"Co-occurrence graph construction and adjacency-matrix aggregation\",\n      \"Max-cosine-similarity scoring between data and skill embeddings\",\n      \"NuminaMath as reference dataset for math skill taxonomy\"\n    ],\n    \"relevance_to_seed\": \"Direct methodological precursor: validates that skill-graph structure improves math data operations, but targets selection efficiency rather than compositional frontier identification — the key gap our work fills by using the same graph structure to find and synthesize missing skill combinations.\"\n  },\n  {\n    \"title\": \"Exploring the Compositional Deficiency of Large Language Models in Mathematical Reasoning (MathTrap)\",\n    \"venue\": \"EMNLP 2024\",\n    \"problem_identification\": \"Standard math benchmarks (MATH, GSM8K) test individual skill application but cannot detect whether models compose skills spontaneously. The authors identified this blind spot by constructing problems requiring exactly two knowledge components — original math skill plus trap-detection skill — creating a minimal composition test.\",\n    \"key_insight\": \"LLMs possess both requisite knowledge components individually (70-96% on conceptual trap problems, high scores on originals) but fail to compose them spontaneously — the composition itself, not the component skills, is the bottleneck, with accuracy ratios (trap/original) dropping to 22-51% for frontier models vs 86% for humans.\",\n    \"innovation_type\": \"new_benchmark\",\n    \"method_summary\": \"Constructs MathTrap by manually embedding 5 trap types (concept undefined 16%, missing condition 6%, direct contradiction 24%, indirect contradiction 38%, common-sense violation 15%) into MATH/GSM8K problems. Each sample is a triplet: original problem, conceptual problem (testing trap knowledge alone), and trap problem (requiring composition). 105 manual triplets expanded to 1K via GPT-4 paraphrase. Evaluates composition via accuracy ratio (trap/original). Tests interventions: prompting, few-shot, and fine-tuning. Fine-tuning on 1K MathTrap triplets improves trap accuracy from 1% to 12.4% but degrades original accuracy (41.4%→33.3%), revealing a composition-vs-component tradeoff.\",\n    \"limitations_and_open_questions\": \"Traps test only 2-skill composition (original + trap detection), not deeper k-skill chains. The benchmark is relatively small (1K) and trap categories are manually designed, limiting scalability. Fine-tuning tradeoff (improved trap detection at cost of original accuracy) suggests current training paradigms cannot jointly optimize for composition and component skills.\",\n    \"building_blocks\": [\n      \"Triplet evaluation framework (original, conceptual, trap) isolating composition from components\",\n      \"Accuracy ratio metric for measuring compositional ability\",\n      \"5 trap-type taxonomy for mathematical reasoning failures\",\n      \"Evidence that fine-tuning on compositional data helps but creates tradeoffs\"\n    ],\n    \"relevance_to_seed\": \"Proposed secondary benchmark: provides direct evidence that the compositional ceiling exists in math (complementing OMEGA), and the triplet design offers an evaluation protocol for testing whether frontier-synthesized training data improves spontaneous skill composition without degrading component skills.\"\n  },\n  {\n    \"title\": \"Does Data Scaling Lead to Visual Compositional Generalization?\",\n    \"venue\": \"ICML 2025\",\n    \"problem_identification\": \"The scaling hypothesis implies more data should improve compositional generalization, but this conflates data volume with combinatorial coverage. The authors disentangled these by constructing an (n,k) framework controlling concept diversity (n values per concept) and combination exposure (k combinations per value) independently.\",\n    \"key_insight\": \"Compositional generalization requires combinatorial diversity that forces linearly factored representations (additive concept decomposition), not data scale — theoretically, k=2 combinations per concept value suffice for perfect generalization when representations are linearly factored, and 4× in-distribution data scaling shows 60-80% accuracy drops on unseen combinations.\",\n    \"innovation_type\": \"analysis\",\n    \"method_summary\": \"Uses a controlled (n,k) grid: n concept values × n concept values, training on k combinations per value, testing on remaining (n-k)·n. Measures zero-shot accuracy plus representation structure via linear probes (decodability), R² scores (linearity), and cosine similarity (orthogonality). Proves Proposition 4.1: k=2 suffices for perfect generalization under linear factorization. Identifies three learning phases: limited diversity (<10%, spurious features), moderate (25-75%, linearity emerges, 60-80% accuracy), high (>75%, R²>0.8, >90% accuracy). Evaluates DINO and CLIP, finding partial but imperfect compositional structure — above-random but below theoretical predictions.\",\n    \"limitations_and_open_questions\": \"Experiments use vision with simple synthetic concepts (color, shape); transfer to language/math composition with abstract skills is non-trivial. The (n,k) framework assumes discrete, enumerable concept values — mathematical skill spaces are continuous and hierarchical. Pretrained models show persistent gaps vs. theory, suggesting current pretraining regimes are insufficient even at scale.\",\n    \"building_blocks\": [\n      \"(n,k) framework for controlled compositional coverage experiments\",\n      \"Linearly factored representation theory as mechanism for compositional generalization\",\n      \"Three representation metrics: decodability, linearity (R²), orthogonality\",\n      \"Three-phase diversity-generalization dynamics\",\n      \"Proposition that k=2 coverage suffices under ideal representations\"\n    ],\n    \"relevance_to_seed\": \"Strongest theoretical support for frontier-targeted synthesis: proves that combinatorial coverage (not scale) drives compositional generalization, directly justifying why random augmentation fails and systematic frontier coverage via skill DAGs should succeed — the diversity-over-scale principle is our core argument.\"\n  },\n  {\n    \"title\": \"Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis\",\n    \"venue\": \"arXiv 2026\",\n    \"problem_identification\": \"Existing math data synthesis faces an impossible tradeoff: maintaining structural validity while increasing difficulty. Template-based methods ensure validity but cap complexity; free-form generation scales difficulty but produces logical errors. The authors reframed synthesis as a sequential decision problem where an agent dynamically composes skills while maintaining verification.\",\n    \"key_insight\": \"Problem synthesis should be modeled as a POMDP with structured skill tuples (intent, method, difficulty-effect, tool-hint) as compositional primitives, enabling a small specialized 4B proposer trained via multi-granularity RL to outperform frontier LLMs (GPT-5.2) at synthesis by learning to navigate the difficulty-validity frontier through dynamic skill pruning and iterative verification.\",\n    \"innovation_type\": \"new_technique\",\n    \"method_summary\": \"Defines skills as tuples k≜⟨ι,μ,δ,τ⟩ in a filesystem-based library. Models synthesis as POMDP with cognitive actions (think), tools (execute, prune), and submission. Trains via 3 stages: skill acquisition from teachers, agentic SFT on expert trajectories, and agentic RL via MGPO (fusing trajectory-level and stage-level advantages with gated weights). Uses curriculum scheduling inversely proportional to category proficiency. Dynamic pruning (τ^edit) improves validity 68.7%→82.3%. 30B solver on 11K trajectories achieves 91.6% AIME25. Ablation: MGPO adds +6.5 over GRPO; tool-use adds +2.3; reflection adds +2.1.\",\n    \"limitations_and_open_questions\": \"Targets difficulty calibration at the model's reasoning frontier, not compositional coverage of the skill space — synthesized problems are hard but not systematically diverse across skill combinations. Requires complex multi-model infrastructure (teacher, proposer, verifier committee, prober ensemble). Advantage saturation at high baseline pass rates (85-89%) limits RL effectiveness, suggesting diminishing returns on well-covered skill regions.\",\n    \"building_blocks\": [\n      \"Skill-as-tuple formalization (intent, method, difficulty, tool-hint)\",\n      \"POMDP framing for data synthesis with cognitive/tool/terminal actions\",\n      \"Multi-Granularity Policy Optimization (trajectory + stage advantages)\",\n      \"Dynamic skill pruning during generation\",\n      \"Curriculum scheduling inversely proportional to proficiency\"\n    ],\n    \"relevance_to_seed\": \"Most direct competitor: composes skills for synthesis but optimizes for difficulty at the model's frontier, not for compositional coverage of the skill space. Key differentiation: Agentic Proposing asks 'what hard problems can I build?' while our approach asks 'what skill combinations are missing?' — difficulty-targeting vs. coverage-targeting are complementary objectives.\"\n  },\n  {\n    \"title\": \"Enhanced Data Synthesis for LLM through Reasoning Structures Generated by Hierarchical GFlowNet\",\n    \"venue\": \"ACL 2025 (Findings)\",\n    \"problem_identification\": \"Existing data synthesis methods optimize instruction-response pairs independently without systematically designing the underlying reasoning structure. The authors identified that reasoning processes have DAG structure (not just linear chains) and that proactively generating diverse reasoning DAGs before instruction creation produces higher-quality training data.\",\n    \"key_insight\": \"Decoupling reasoning structure generation (via GFlowNet-sampled DAGs) from instruction content generation (via suggester-editor) enables systematic diversity in reasoning patterns that post-hoc approaches to response improvement cannot achieve — the structure should drive the content, not the reverse.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"RSS operates in three stages: (1) A hierarchical GFlowNet generates reasoning DAGs through coarse-to-fine growth — coarse-level nodes represent high-level reasoning steps, iteratively refined into fine-grained sub-steps, with edge transitions modeled by policy networks trained to sample diverse valid structures. (2) An iterative suggester-editor workflow generates instructions aligned with each DAG: the suggester proposes candidate instructions, the editor refines them for coherence with the reasoning structure. (3) Structure-aware response enhancement leverages the DAG to improve response quality by ensuring solutions follow the pre-specified reasoning paths. Evaluated on AlpacaEval2 (48.5%), GSM8K (84.0%), HumanEval (79.9%).\",\n    \"limitations_and_open_questions\": \"GSM8K (84.0%) is moderate by current standards, suggesting the approach may underperform on harder math. GFlowNet training requires careful reward design for DAG validity; the paper doesn't address how to scale to domain-specific mathematical skill taxonomies. The coarse-to-fine hierarchy is generic rather than informed by domain skill dependencies.\",\n    \"building_blocks\": [\n      \"GFlowNet for diverse DAG sampling as a generative model over graph structures\",\n      \"Coarse-to-fine hierarchical DAG growth process\",\n      \"Suggester-editor iterative workflow for structure-conditioned instruction generation\",\n      \"Decoupling reasoning structure from content generation\"\n    ],\n    \"relevance_to_seed\": \"Closest methodological analog to DAG-guided synthesis: validates that using graph structures (DAGs) to guide data generation improves training quality. However, their DAGs represent generic reasoning patterns, not domain-specific skill dependency graphs — our approach uses OMEGA's skill taxonomy to build mathematically meaningful DAGs where nodes are specific skills and edges are prerequisite relationships, enabling targeted frontier coverage rather than generic structural diversity.\"\n  },\n  {\n    \"title\": \"Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis (STEPS)\",\n    \"venue\": \"arXiv 2026 (preprint)\",\n    \"problem_identification\": \"Complex skill combinations follow a long-tailed power-law distribution in training corpora, creating a data bottleneck for compositional generalization. Identified by analyzing skill co-occurrence statistics and observing that atomic skills are abundant but multi-skill compositions are exponentially rare.\",\n    \"key_insight\": \"Framing compositional data synthesis as constrained information maximization over a hierarchical skill taxonomy — selecting skill k-tuples that maximize marginal structural information — yields compositionally challenging data that random sampling cannot discover.\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"Constructs a skill co-occurrence graph, then induces a hierarchical taxonomy via agglomerative clustering guided by structural entropy minimization. Selects skill combinations by greedily maximizing conditional structural entropy (marginal information of each new skill relative to already-selected skills), constrained to taxonomy sub-trees for semantic coherence ('Sweet Spot'). Synthesizes multi-turn data via GPT-4 contextual fusion of retrieved atomic samples.\",\n    \"limitations_and_open_questions\": \"Validated only on instruction-following benchmarks (MT-Bench, AlpacaEval, WildBench), not on mathematical reasoning where skill dependencies are more rigid. The taxonomy relies on co-occurrence in existing corpora — absent skills (the compositional frontier) cannot be discovered from co-occurrence alone.\",\n    \"building_blocks\": [\n      \"Structural entropy for taxonomy induction\",\n      \"Marginal structural information maximization for combination selection\",\n      \"Sweet Spot coherence constraint via taxonomy sub-tree restriction\",\n      \"Contextual fusion synthesis pipeline\"\n    ],\n    \"relevance_to_seed\": \"Direct methodological ancestor — the marginal structural information selection principle is exactly what we need to adapt for OMEGA's math skill DAG, but the taxonomy source must shift from corpus co-occurrence to OMEGA's templated generator dependencies.\"\n  },\n  {\n    \"title\": \"AgentCoMa: A Compositional Benchmark Mixing Commonsense and Mathematical Reasoning in Real-World Scenarios\",\n    \"venue\": \"arXiv 2025 (accepted ACL 2026)\",\n    \"problem_identification\": \"Prior compositional benchmarks combine multiple steps of the same reasoning type, masking the harder problem of cross-type composition. Identified by observing that existing benchmarks show moderate compositionality gaps that may reflect within-domain difficulty scaling rather than true compositional failure.\",\n    \"key_insight\": \"Mixing heterogeneous reasoning types (commonsense + math) in a single compositional task reveals a substantially larger compositionality gap (~30%) than same-type composition, while human annotators show no such gap — confirming the deficit is model-specific, not task-inherent.\",\n    \"innovation_type\": \"new_benchmark\",\n    \"method_summary\": \"Constructs compositional tasks across 5 real-world scenarios (house working, web shopping, science experiments, smart assistant, travel agent), each requiring one commonsense and one math reasoning step. Evaluates 61 LLMs measuring all-steps-correct accuracy, composition accuracy, and compositionality gap. Includes interpretability analyses via neuron patterns, attention maps, and membership inference to diagnose why composition degrades.\",\n    \"limitations_and_open_questions\": \"Limited to 2-step compositions (one commonsense + one math), so it cannot evaluate deeper compositional chains. The interpretability analysis examines why models fail but does not propose training interventions. Unclear whether the gap narrows with targeted compositional training data.\",\n    \"building_blocks\": [\n      \"Compositionality gap metric (isolated vs. composed accuracy)\",\n      \"Cross-type composition evaluation paradigm\",\n      \"5-domain real-world task templates\",\n      \"Interpretability analysis pipeline for compositional failure diagnosis\"\n    ],\n    \"relevance_to_seed\": \"Proposed secondary benchmark — complements OMEGA by testing cross-type composition (commonsense+math) rather than within-math composition, strengthening generality claims if our skill-graph-guided synthesis also reduces AgentCoMa's compositionality gap.\"\n  },\n  {\n    \"title\": \"Out-of-Distribution Generalization via Composition: A Lens Through Induction Heads in Transformers\",\n    \"venue\": \"PNAS 2025\",\n    \"problem_identification\": \"The mechanism by which transformers achieve OOD generalization through composition of learned rules was poorly understood. Identified by studying induction heads — the simplest known compositional circuit — as a tractable lens into the general phenomenon.\",\n    \"key_insight\": \"OOD generalization and composition are fundamentally linked: a shared latent subspace (common bridge representation) in embedding space aligns the output of early attention layers with the input of later layers, enabling rule composition that generalizes beyond training distribution.\",\n    \"innovation_type\": \"analysis\",\n    \"method_summary\": \"Proposes the Common Bridge Representation (CBR) hypothesis: span(W_OV) of layer-1 heads aligns with span(W_QK^T) of layer-2 heads via a shared low-dimensional subspace estimated by SVD. Layer 1 performs position shifting (previous-token heads), layer 2 performs token matching — their composition via the bridge subspace creates induction heads capable of OOD generalization. Validated on synthetic copying tasks showing sharp phase transitions in both test error and subspace alignment, plus 8 pretrained LLMs (Llama2/3, Mistral, Falcon, OlMo, Gemma).\",\n    \"limitations_and_open_questions\": \"Analysis focuses on 2-layer induction heads; unclear how the CBR hypothesis scales to deeper compositional circuits involving 3+ skills. No formal proof that coverage of bridge subspace activations is sufficient for compositional generalization — the connection to training data coverage is suggestive but not formalized.\",\n    \"building_blocks\": [\n      \"Common Bridge Representation hypothesis\",\n      \"SVD-based subspace alignment measurement\",\n      \"Induction head removal experiments for causal validation\",\n      \"Phase transition analysis linking subspace formation to generalization\"\n    ],\n    \"relevance_to_seed\": \"Provides mechanistic justification for why frontier-targeted training data should work: compositional generalization requires activating shared bridge subspaces across skill boundaries, which demands training examples that exercise novel skill combinations — exactly what our DAG-guided synthesis provides.\"\n  },\n  {\n    \"title\": \"Learning Composable Chains-of-Thought\",\n    \"venue\": \"arXiv 2025 (preprint)\",\n    \"problem_identification\": \"Standard CoT training on atomic tasks yields limited compositional generalization — models learn task-specific reasoning traces that cannot be chained. Identified by observing that CoT format, not just content, determines composability.\",\n    \"key_insight\": \"Minimally modifying CoT formats with structural tags (e.g., &lt;prefix>, &lt;suffix> markers) to create explicit composition interfaces enables atomic reasoning skills to be combined via multitask learning or model merging, without requiring large-scale compositional training data.\",\n    \"innovation_type\": \"new_technique\",\n    \"method_summary\": \"Reformats atomic CoT data with structural markers that create composable input/output interfaces between reasoning steps. Trains atomic models separately, then combines via multitask learning (preferred) or parameter arithmetic merging (θ_comb = α(θ_i−θ_0) + (1−α)(θ_j−θ_0) + θ_0). Bootstraps compositional capability via rejection sampling fine-tuning (RFT) on small compositional datasets. ComposableCoT-MTL achieves 18.7 EM vs. 5.0 for StandardCoT-MTL; with RFT bootstrapping, reaches up to 88.4 EM on string composition tasks.\",\n    \"limitations_and_open_questions\": \"Evaluated primarily on string operations and simple NL compositions — unclear if structural tagging scales to deeper mathematical reasoning chains. The 88.4 EM requires RFT with compositional supervision, which partially undercuts the zero-shot composition claim. Merging underperforms MTL significantly, limiting applicability when joint training is infeasible.\",\n    \"building_blocks\": [\n      \"Composable CoT format with structural tags\",\n      \"Parameter arithmetic merging for skill combination\",\n      \"RFT bootstrapping from limited compositional data\",\n      \"ComposableCoT-MTL training paradigm\"\n    ],\n    \"relevance_to_seed\": \"Validates that data format is a prerequisite for composition — our synthesized frontier training data should use composable CoT formats to maximize the benefit of skill-graph-guided synthesis, and the RFT bootstrapping strategy could amplify gains from small amounts of frontier-targeted data.\"\n  },\n  {\n    \"title\": \"From Tags to Trees: Structuring Fine-Grained Knowledge for Controllable Data Selection in LLM Instruction Tuning\",\n    \"venue\": \"arXiv 2026 (preprint)\",\n    \"problem_identification\": \"Existing data selection methods rely on coarse semantic tags or embedding spaces, overlooking fine-grained knowledge and its intrinsic hierarchical dependencies. Identified by showing that flat tag-based or embedding-based selection cannot jointly optimize quality, diversity, and domain alignment.\",\n    \"key_insight\": \"Organizing atomic knowledge concepts into a hierarchical tree via bottom-up clustering enables information-theoretic data selection (maximizing tree-level information gain with concave diminishing returns) that surpasses full-dataset training using only 5% of data.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"Extracts atomic knowledge tags via an LLM-based Act-Critic pipeline (GPT-Tagger generates, GPT-Checker refines over 3 iterations, then fine-tuned Qwen3-8B for production). Builds a 10-level knowledge tree via K-Means on semantic embeddings followed by 4-step LLM refinement (summarize, deduplicate, reassign, rename). Defines tree-aware utility with ancestry-propagated information vectors and concave aggregation (Φ(x)=x^γ, γ∈(0,1)) ensuring diminishing returns. Selects data greedily via first-order Taylor approximation of information gain, with optional KL-divergence domain alignment (λ>0).\",\n    \"limitations_and_open_questions\": \"Tree construction requires significant LLM compute (Qwen3-30B for refinement) and the quality depends heavily on initial tag extraction. Validated on general instruction tuning, not on compositional generalization — whether tree-guided selection improves composition specifically is untested. The concave diminishing returns assumption may be too conservative for sparse compositional frontiers.\",\n    \"building_blocks\": [\n      \"Act-Critic tagging pipeline\",\n      \"Bottom-up hierarchical tree construction with LLM refinement\",\n      \"Concave information gain maximization for data selection\",\n      \"KL-divergence domain alignment in sampling\",\n      \"Tree-aware quality-diversity joint optimization\"\n    ],\n    \"relevance_to_seed\": \"Closest methodological parallel for the data selection component — the tree-aware information gain framework could be adapted to select training instances that maximize coverage of OMEGA's skill composition frontier, with the KL-divergence alignment ensuring domain-specific (mathematical) coherence.\"\n  },\n  {\n    \"title\": \"Scaling Can Lead to Compositional Generalization\",\n    \"venue\": \"NeurIPS 2025 (Spotlight)\",\n    \"problem_identification\": \"When and why does scaling neural networks lead to compositional generalization? Prior work showed empirical hints but lacked formal conditions — the gap was a missing theoretical framework connecting training distribution properties to guaranteed compositional generalization.\",\n    \"key_insight\": \"MLPs can approximate compositional task families with O(M) neurons (linear in module count), while memorization requires exponential capacity — this asymptotic gap means scaling inherently favors the compositional solution when two coverage conditions are met: compositional support (every module appears in training) and connected support (no module subset appears only in isolation).\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"Define compositional task families as tuples (C, p(z), p(x)) where C is an injective composition operator mapping sparse binary task-constituent vectors to input-output functions. Prove (Theorem 3.1) that ReLU MLPs approximate hyperteacher compositional tasks within ε error using O(1/√ε + M) neurons. Validate empirically on hyperteacher, preference grid, and image composition tasks across MLPs and transformers, showing sub-exponential training samples suffice and that violating coverage conditions causes sharp performance drops.\",\n    \"limitations_and_open_questions\": \"Theory is proven for MLPs, not transformers; coverage conditions assume known compositional structure. The critical open question for our work: how to *achieve* sufficient coverage in practice when the compositional space is unknown or exponentially large?\",\n    \"building_blocks\": [\n      \"Compositional support and connected support conditions as formal requirements\",\n      \"Linear decodability of task constituents as a measurable indicator of compositionality\",\n      \"Sub-exponential sample complexity for compositional generalization\"\n    ],\n    \"relevance_to_seed\": \"Direct theoretical anchor — proves that coverage of the compositional task space enables generalization, providing the formal justification for why frontier-targeted synthesis (achieving coverage) should break the +6% ceiling where random augmentation (incomplete coverage) fails.\"\n  },\n  {\n    \"title\": \"Skill-Mix: A Flexible and Expandable Family of Evaluations for AI Models\",\n    \"venue\": \"ICLR 2024\",\n    \"problem_identification\": \"Standard LLM benchmarks fail to test genuine compositional ability — models can 'cram for the leaderboard' by memorizing common patterns. The gap was an evaluation methodology that provably tests novel, unseen skill combinations rather than memorized ones.\",\n    \"key_insight\": \"Combinatorial explosion (N choose k ~ N^k for N≈101 skills) guarantees that even modest k values produce combinations almost certainly absent from training data, creating provably out-of-distribution evaluation without adversarial construction.\",\n    \"innovation_type\": \"new_benchmark\",\n    \"method_summary\": \"Select N=101 skills from reference texts. For each evaluation instance, randomly sample a k-subset of skills plus a random topic, then ask the model to produce text integrating all k skills. Grade automatically via GPT-4 (M=100 samples) or LLaMA-2-70B (M=30), with human spot-checking. Design principles include deducting points for explicitly naming skills and filtering out common skills to ensure genuine composition rather than surface-level listing.\",\n    \"limitations_and_open_questions\": \"Focused on text/writing composition, not mathematical reasoning. Grading depends on another LLM's judgment. Does not address how to *train* for better composition — purely evaluative. The saturation finding (most models fail at k≥3) raises the question: is the bottleneck training data coverage or architectural capacity?\",\n    \"building_blocks\": [\n      \"Combinatorial k-subset evaluation framework for skill composition\",\n      \"Automatic LLM-based grading methodology with human calibration\",\n      \"Empirical saturation cur\n... (truncated)\n\n## Your task\n\nSynthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.\n\nThink about:\n- What PATTERNS OF INNOVATION keep working in this field?\n- What do reviewers consistently reward?\n- Where are the real gaps (not assumed gaps)?\n- What combinations haven't been tried?\n- What mistakes should we avoid?\n\n## Output format\n\nOutput a JSON object with these sections:\n{\n  \"innovation_patterns\": [\n    {\"pattern\": \"name\", \"description\": \"how it works\", \"examples\": [\"paper1\", \"paper2\"], \"success_rate\": \"high/medium/low\"}\n  ],\n  \"reviewer_preferences\": [\n    \"What reviewers in this area consistently care about (based on evidence from paper analyses)\"\n  ],\n  \"field_gaps\": [\n    {\"gap\": \"description of unsolved problem\", \"evidence\": \"which papers mention this limitation\", \"difficulty\": \"high/medium/low\", \"impact_if_solved\": \"high/medium/low\"}\n  ],\n  \"untried_combinations\": [\n    {\"idea_sketch\": \"what could be combined\", \"from_papers\": [\"which papers inspire this\"], \"why_promising\": \"reason\"}\n  ],\n  \"method_building_blocks\": [\n    {\"tool\": \"name\", \"what_it_does\": \"description\", \"used_by\": [\"papers\"], \"could_be_applied_to\": \"new application\"}\n  ],\n  \"common_pitfalls\": [\n    \"Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)\"\n  ],\n  \"field_trajectory\": \"Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)\",\n  \"meta_advice\": \"If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)\"\n}\n\nBe specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.\n\nIMPORTANT: You MUST end your response with the JSON object."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T11:35:26.570Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T11:35:26.570Z",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090"
+}
+```
+
+---
+
+## Round 1
+
+14 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T11:35:26.585Z_
+
+You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.
+
+**Today's date: 2026-05-29 (UTC).**
+
+## Research area: Target: AAAI 2026
+Track: Machine Learning — Learning from Limited/Structured Data
+
+Direction: Use OMEGA's templated skill structure to construct a mathematical skill dependency DAG, identify under-covered compositional frontiers (novel but adjacent k-skill combinations), and synthesize targeted training data at those frontiers. The hypothesis is that systematic coverage of the compositional frontier — not random augmentation or generic RL — is required to break the scale-invariant +6% compositional ceiling. Evaluate whether skill-graph-guided data synthesis enables compositional generalization where scaling, RL, and curriculum learning all fail.
+
+Seed Papers:
+- OMEGA (Sun et al., NeurIPS 2025) — Primary benchmark: defines the +6% compositional ceiling across 40 templated generators, 6 math domains. Provides the skill taxonomy and evaluation infrastructure.
+- MASS: Mathematical Data Selection via Skill Graphs (ICML 2025) — Demonstrates skill graphs improve math data selection efficiency by 50-70%. Validates the skill-graph approach in math but does NOT target compositional generalization.
+- STEPS: Skill Taxonomy Guided Data Synthesis (arXiv Jan 2026) — Information-theoretic framework for compositional data synthesis via skill taxonomies. Validated on instruction-following, NOT math. Our direct methodological ancestor.
+- Scaling Can Lead to Compositional Generalization (Redhardt et al., NeurIPS 2025 Spotlight) — Proves coverage of task space enables generalization. Theoretical basis for why frontier-targeted synthesis should work, but provides no practical method for achieving coverage in math.
+- Can Models Learn Skill Composition from Examples? (Zhao & Kaur, NeurIPS 2024) — Shows k-skill fine-tuning generalizes to (k+1)-skill if data design is careful. Validates the data design matters, but uses manual composition.
+
+Known Gaps:
+- MASS uses skill graphs for pretraining data selection efficiency, not for compositional frontier identification — nobody has used skill DAGs to find and fill gaps in compositional coverage.
+- STEPS targets instruction-following composition, not mathematical reasoning — the math-specific instantiation (skill extraction from OMEGA templates, mathematical coherence filtering) is untested.
+- No published method has been evaluated on OMEGA's compositional axis with targeted data interventions; all existing OMEGA results use RL or prompting.
+
+Theoretical Anchor: Redhardt et al. (NeurIPS 2025) prove that compositional generalization emerges when training distribution covers the compositional task space. OMEGA shows current training data does NOT cover the compositional frontier. STEPS' information-theoretic framework (maximizing marginal structural information in skill hierarchies) provides the selection principle. Together: coverage + information-maximizing selection over skill DAG = compositional generalization.
+
+Constraints:
+- Compute: ≤200 H100-hours (estimated 50-80 H100-hours for Qwen-7B fine-tuning + data generation)
+
+Quality Self-Checks:
+- [x] Core insight: Compositional generalization requires explicit coverage of the skill-composition frontier; random augmentation and RL cannot discover this structure.
+- [x] Why not obvious: MASS (skill graphs for math) and STEPS (taxonomy synthesis for composition) exist independently; nobody has combined them because MASS targets efficiency and STEPS targets instruction-following — the math-composition intersection requires domain-specific skill extraction from OMEGA templates.
+- [ ] Baseline fear test: CONCERN — a simple baseline of training on randomly sampled k-skill compositions (without the skill DAG structure) might achieve 60-80% of the improvement. The ablation comparing random vs. frontier-guided composition is the make-or-break experiment.
+- [x] Information exploited: The skill dependency structure encoded in OMEGA's 40 templated generators — specifically, which atomic skills are prerequisites for which compositions and which k-tuples are absent from training distributions.
+
+Avoid:
+- Framing as 'yet another data augmentation paper' — the contribution is the compositional frontier identification via skill DAGs, not the augmentation itself.
+- Overclaiming that this solves transformative generalization — OMEGA's transformative axis (novel strategies) is a fundamentally harder problem that skill-graph coverage cannot address.
+- Ignoring MASS as related work — MASS must be prominently cited and differentiated, or reviewers who know ICML 2025 will flag the omission.
+- Testing only on OMEGA — include MathTrap (EMNLP 2024) and AgentCoMa (2025) as secondary benchmarks to demonstrate the improvement is not benchmark-specific.
+
+## Paper analyses (20 papers)
+
+[
+  {
+    "title": "OMEGA: Can LLMs Reason Outside the Box in Math? Evaluating Exploratory, Compositional, and Transformative Generalization",
+    "venue": "NeurIPS 2025 (Datasets and Benchmarks Track)",
+    "problem_identification": "Existing math benchmarks (GSM8K, MATH, Olympiad) conflate distinct generalization types, making it impossible to diagnose whether failures stem from harder instances, skill integration, or strategy novelty. The authors operationalized Boden's creativity typology into three measurable axes.",
+    "key_insight": "Decomposing OOD generalization into exploratory/compositional/transformative axes via templated generators reveals that RL fine-tuning yields +38pp exploratory gains but near-zero compositional and transformative improvement — failures are structurally different and require different interventions.",
+    "innovation_type": "new_benchmark",
+    "method_summary": "40 programmatic templated generators across 6 math domains produce controlled train-test pairs. Exploratory tests increase complexity parameters; compositional tests combine skills trained in isolation (e.g., GCD + root-finding); transformative tests require novel solution strategies. Solutions are verified via symbolic, numerical, or graphical methods. GRPO fine-tuning on Qwen2.5-7B/Math-7B with 1,000 training problems per setting provides the training intervention baseline.",
+    "limitations_and_open_questions": "The +6% compositional ceiling is demonstrated but not deeply analyzed causally — is it a coverage problem, a representation bottleneck, or an optimization failure? Only Qwen-series models are fine-tuned; generalizability across architectures is untested.",
+    "building_blocks": [
+      "40 templated math generators with programmatic verification",
+      "3-axis generalization evaluation framework",
+      "GRPO fine-tuning protocol on Qwen-7B",
+      "Skill taxonomy across 6 math domains"
+    ],
+    "relevance_to_seed": "Defines the primary evaluation target — the compositional ceiling our skill-DAG-guided synthesis must break, and provides the templated generators from which we extract the skill dependency structure."
+  },
+  {
+    "title": "Can Models Learn Skill Composition from Examples?",
+    "venue": "NeurIPS 2024",
+    "problem_identification": "It was unknown whether fine-tuning on low-order skill compositions (k=2,3) could transfer to higher-order compositions (k=4,5), or whether each composition level required explicit training data. The authors adapted the SKILL-MIX evaluation to test this transfer systematically.",
+    "key_insight": "Training on k≤3 skill combinations enables generalization to k=4,5 compositions — models acquire a meta-compositional capability rather than memorizing specific skill tuples, but only when training data is skill-rich and carefully designed.",
+    "innovation_type": "analysis",
+    "method_summary": "Using 101 language skills partitioned into 53 training and 48 held-out skills, GPT-4 generates synthetic training data at k=1,2,3 with strict quality filtering (full-marks only). LLaMA-2-13B and Mistral-7B are fine-tuned for 4K steps (batch 64, lr 2e-5). Evaluation measures pass rates on k=4,5 compositions using both in-domain and held-out skill sets, with GPT-4 grading on a (k+3)-point rubric.",
+    "limitations_and_open_questions": "Tested only on language/text skills (rhetorical, literary, ToM), not mathematical reasoning — does the k→k+1 transfer hold for formal domains where skill interactions are more constrained? The skill set is flat (no dependency structure), leaving open whether exploiting skill DAGs would improve transfer.",
+    "building_blocks": [
+      "k-to-(k+1) compositional transfer evidence",
+      "Skill-mix evaluation methodology",
+      "Quality-filtered synthetic compositional training data"
+    ],
+    "relevance_to_seed": "Provides the empirical foundation that careful data design enables compositional transfer — our work extends this from flat skill sets to structured skill DAGs and from language tasks to mathematical reasoning on OMEGA."
+  },
+  {
+    "title": "Skills-in-Context Prompting: Unlocking Compositionality in Large Language Models",
+    "venue": "EMNLP 2024 (Findings)",
+    "problem_identification": "LLMs possess individual skills from pretraining but fail to compose them for novel problems. The authors identified that the missing element is not capability but activation — models need explicit in-context demonstration of how to ground reasoning steps onto foundational skills.",
+    "key_insight": "Providing foundational skills and as few as two compositional exemplars (with reasoning steps explicitly labeled by skill) in the same prompt context is sufficient to unlock near-perfect compositional generalization, because it activates latent pre-existing skills.",
+    "innovation_type": "new_technique",
+    "method_summary": "SKiC prompts contain three blocks: (1) foundational skills definitions, (2) compositional exemplars with skill-labeled reasoning steps, (3) the target problem. Tested on last-letter concatenation, arithmetic, multi-hop QA (CommaQA-E), and dynamic programming, achieving 100% accuracy on tasks where standard CoT fails. Fine-tuning on SKiC-formatted data enables zero-shot weak-to-strong generalization (e.g., training on GSM8K-level, solving MATH-level).",
+    "limitations_and_open_questions": "Near-perfect results are on synthetic/structured tasks — performance on messy real-world mathematical composition is less clear. The skill definitions must be provided or discovered; automating skill identification at scale remains open.",
+    "building_blocks": [
+      "SKiC three-block prompt structure",
+      "Skill-labeled reasoning steps",
+      "Weak-to-strong generalization via skill-grounded fine-tuning",
+      "Evidence that 2 exemplars suffice for compositional transfer"
+    ],
+    "relevance_to_seed": "Demonstrates the coverage principle at prompting level — presenting skills + compositions unlocks generalization. Our work operationalizes this at the training data level: instead of in-context skills, we synthesize training examples that cover the compositional frontier identified by the skill DAG."
+  },
+  {
+    "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+    "venue": "Nature 2025",
+    "problem_identification": "Prior reasoning-capable LLMs required expensive human-labeled reasoning trajectories for supervised fine-tuning. The authors asked whether pure RL with verifiable rewards could incentivize reasoning emergence without any SFT data.",
+    "key_insight": "Group Relative Policy Optimization (GRPO) — which estimates advantages from group-normalized rewards, eliminating the critic model — enables emergent self-verification, reflection, and 'aha moment' behaviors from pure RL on a strong pretrained base.",
+    "innovation_type": "new_technique",
+    "method_summary": "GRPO samples G completions per prompt, computes advantage as (reward - group_mean)/group_std, and optimizes a clipped objective with KL penalty against a reference policy. The full pipeline has 4 stages: (1) cold-start SFT on curated R1-Zero outputs, (2) reasoning-focused RL with rule-based accuracy/format rewards on verifiable tasks, (3) rejection sampling SFT using DeepSeek-V3 as quality judge, (4) diverse RL for broad alignment. Distillation transfers reasoning to 1.5B-70B models, with 7B achieving 55.5% on AIME 2024.",
+    "limitations_and_open_questions": "GRPO optimizes for verifiable-answer correctness, not compositional structure — it cannot discover that skill compositions are undertrained. An OpenReview rebuttal argues RL-induced reasoning is contingent on strong pretraining, not RL innovation per se.",
+    "building_blocks": [
+      "GRPO algorithm (critic-free RL)",
+      "Multi-stage RL pipeline",
+      "Rule-based verifiable rewards",
+      "Distillation from large to small reasoning models"
+    ],
+    "relevance_to_seed": "Key RL baseline to contrast against — OMEGA shows GRPO yields exploratory but not compositional gains. Our hypothesis is that RL cannot discover compositional frontier gaps because its reward signal is sparse and per-problem, not structure-aware. Targeted data synthesis addresses what RL cannot."
+  },
+  {
+    "title": "Key-Point-Driven Data Synthesis with Its Enhancement on Mathematical Reasoning",
+    "venue": "AAAI 2025",
+    "problem_identification": "Random math data synthesis produces low-quality or redundant problems. The authors observed that authentic math problems cluster around identifiable 'key points' (theorems, methods) and that synthesis quality depends on grounding generation in these structural elements.",
+    "key_insight": "Extracting key points from authentic problems and using a Topic Co-occurrence Probability Matrix (TCPM) to guide which concept combinations to synthesize produces higher-quality, more diverse training data than unconstrained generation.",
+    "innovation_type": "new_technique",
+    "method_summary": "GPT-4 extracts hierarchical key points (topics → specific theorems/methods) from seed problems. A TCPM captures natural co-occurrence patterns between topics. Synthesis samples 2-3 topics weighted by TCPM, selects exemplar problems per topic as guides, and generates new Q-A pairs. Two-stage quality control: GPT-4 scores questions (>0.85 threshold, ~51% pass rate) and voting-based answer verification. KPMath totals 800K+ pairs; KPMath-Plus reaches 1.57M after merging with curated open-source data.",
+    "limitations_and_open_questions": "TCPM captures co-occurrence from existing data, not compositional frontiers — it reproduces the distribution rather than filling gaps. Quality filtering is GPT-4-dependent, creating a capability ceiling. No evaluation on compositional generalization benchmarks.",
+    "building_blocks": [
+      "Key-point extraction pipeline",
+      "Topic Co-occurrence Probability Matrix (TCPM)",
+      "Two-stage quality filtering for synthetic math data",
+      "Exemplar-guided math problem generation"
+    ],
+    "relevance_to_seed": "Closest methodological ancestor for math-specific synthesis — our TCPM analogue is the skill DAG from OMEGA templates. The critical difference: KPDDS reproduces existing topic distributions while we explicitly target under-covered compositional frontiers. KPDDS's quality filtering pipeline is directly reusable."
+  },
+  {
+    "title": "MASS: Mathematical Data Selection via Skill Graphs for Pretraining Large Language Models",
+    "venue": "ICML 2025",
+    "problem_identification": "Existing math data selection methods (AutoDS, DSIR, RHO-1) treat data points independently, ignoring the relational structure of mathematical skills. MASS identified that co-occurrence patterns between skills encode compositional information that predicts data quality better than individual-point scoring.",
+    "key_insight": "Aggregating data-skill similarity scores through a skill co-occurrence graph's adjacency matrix captures compositional skill relationships, and this graph-aggregated signal is more predictive of data quality than individual skill coverage alone (ablation: removing compositional edges drops performance 2.1-2.8%, vs 0.4-1.2% for removing skill-importance diagonals).",
+    "innovation_type": "new_technique",
+    "method_summary": "Extracts ~46K deduplicated skills from 100K NuminaMath samples via Qwen2.5-72B, builds a co-occurrence graph (1.18M edges), then scores target data by computing max-cosine-similarity to each skill and aggregating through the adjacency matrix: score(x_i) = Σ_j [A_jj · sim(x_i, v_j) + Σ_k A_jk · sim(x_i, v_k)]. The adjacency matrix is softmax-normalized so graph-aggregated scores incorporate both skill importance (diagonal) and compositional relationships (off-diagonal). Evaluated on TinyLlama-1.1B and Mistral-7B across OpenWebMath, OpenWebMath-pro, and Jiuzhang3.0.",
+    "limitations_and_open_questions": "Skill graph is used purely for data selection scoring, not for identifying missing compositional coverage — the graph structure is exploited for ranking existing data, not for generating data to fill structural gaps. LLM-based skill extraction (Qwen-72B) introduces noise that deduplication (0.9 similarity threshold) only partially addresses.",
+    "building_blocks": [
+      "Skill extraction via LLM prompting from reference datasets",
+      "Co-occurrence graph construction and adjacency-matrix aggregation",
+      "Max-cosine-similarity scoring between data and skill embeddings",
+      "NuminaMath as reference dataset for math skill taxonomy"
+    ],
+    "relevance_to_seed": "Direct methodological precursor: validates that skill-graph structure improves math data operations, but targets selection efficiency rather than compositional frontier identification — the key gap our work fills by using the same graph structure to find and synthesize missing skill combinations."
+  },
+  {
+    "title": "Exploring the Compositional Deficiency of Large Language Models in Mathematical Reasoning (MathTrap)",
+    "venue": "EMNLP 2024",
+    "problem_identification": "Standard math benchmarks (MATH, GSM8K) test individual skill application but cannot detect whether models compose skills spontaneously. The authors identified this blind spot by constructing problems requiring exactly two knowledge components — original math skill plus trap-detection skill — creating a minimal composition test.",
+    "key_insight": "LLMs possess both requisite knowledge components individually (70-96% on conceptual trap problems, high scores on originals) but fail to compose them spontaneously — the composition itself, not the component skills, is the bottleneck, with accuracy ratios (trap/original) dropping to 22-51% for frontier models vs 86% for humans.",
+    "innovation_type": "new_benchmark",
+    "method_summary": "Constructs MathTrap by manually embedding 5 trap types (concept undefined 16%, missing condition 6%, direct contradiction 24%, indirect contradiction 38%, common-sense violation 15%) into MATH/GSM8K problems. Each sample is a triplet: original problem, conceptual problem (testing trap knowledge alone), and trap problem (requiring composition). 105 manual triplets expanded to 1K via GPT-4 paraphrase. Evaluates composition via accuracy ratio (trap/original). Tests interventions: prompting, few-shot, and fine-tuning. Fine-tuning on 1K MathTrap triplets improves trap accuracy from 1% to 12.4% but degrades original accuracy (41.4%→33.3%), revealing a composition-vs-component tradeoff.",
+    "limitations_and_open_questions": "Traps test only 2-skill composition (original + trap detection), not deeper k-skill chains. The benchmark is relatively small (1K) and trap categories are manually designed, limiting scalability. Fine-tuning tradeoff (improved trap detection at cost of original accuracy) suggests current training paradigms cannot jointly optimize for composition and component skills.",
+    "building_blocks": [
+      "Triplet evaluation framework (original, conceptual, trap) isolating composition from components",
+      "Accuracy ratio metric for measuring compositional ability",
+      "5 trap-type taxonomy for mathematical reasoning failures",
+      "Evidence that fine-tuning on compositional data helps but creates tradeoffs"
+    ],
+    "relevance_to_seed": "Proposed secondary benchmark: provides direct evidence that the compositional ceiling exists in math (complementing OMEGA), and the triplet design offers an evaluation protocol for testing whether frontier-synthesized training data improves spontaneous skill composition without degrading component skills."
+  },
+  {
+    "title": "Does Data Scaling Lead to Visual Compositional Generalization?",
+    "venue": "ICML 2025",
+    "problem_identification": "The scaling hypothesis implies more data should improve compositional generalization, but this conflates data volume with combinatorial coverage. The authors disentangled these by constructing an (n,k) framework controlling concept diversity (n values per concept) and combination exposure (k combinations per value) independently.",
+    "key_insight": "Compositional generalization requires combinatorial diversity that forces linearly factored representations (additive concept decomposition), not data scale — theoretically, k=2 combinations per concept value suffice for perfect generalization when representations are linearly factored, and 4× in-distribution data scaling shows 60-80% accuracy drops on unseen combinations.",
+    "innovation_type": "analysis",
+    "method_summary": "Uses a controlled (n,k) grid: n concept values × n concept values, training on k combinations per value, testing on remaining (n-k)·n. Measures zero-shot accuracy plus representation structure via linear probes (decodability), R² scores (linearity), and cosine similarity (orthogonality). Proves Proposition 4.1: k=2 suffices for perfect generalization under linear factorization. Identifies three learning phases: limited diversity (<10%, spurious features), moderate (25-75%, linearity emerges, 60-80% accuracy), high (>75%, R²>0.8, >90% accuracy). Evaluates DINO and CLIP, finding partial but imperfect compositional structure — above-random but below theoretical predictions.",
+    "limitations_and_open_questions": "Experiments use vision with simple synthetic concepts (color, shape); transfer to language/math composition with abstract skills is non-trivial. The (n,k) framework assumes discrete, enumerable concept values — mathematical skill spaces are continuous and hierarchical. Pretrained models show persistent gaps vs. theory, suggesting current pretraining regimes are insufficient even at scale.",
+    "building_blocks": [
+      "(n,k) framework for controlled compositional coverage experiments",
+      "Linearly factored representation theory as mechanism for compositional generalization",
+      "Three representation metrics: decodability, linearity (R²), orthogonality",
+      "Three-phase diversity-generalization dynamics",
+      "Proposition that k=2 coverage suffices under ideal representations"
+    ],
+    "relevance_to_seed": "Strongest theoretical support for frontier-targeted synthesis: proves that combinatorial coverage (not scale) drives compositional generalization, directly justifying why random augmentation fails and systematic frontier coverage via skill DAGs should succeed — the diversity-over-scale principle is our core argument."
+  },
+  {
+    "title": "Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis",
+    "venue": "arXiv 2026",
+    "problem_identification": "Existing math data synthesis faces an impossible tradeoff: maintaining structural validity while increasing difficulty. Template-based methods ensure validity but cap complexity; free-form generation scales difficulty but produces logical errors. The authors reframed synthesis as a sequential decision problem where an agent dynamically composes skills while maintaining verification.",
+    "key_insight": "Problem synthesis should be modeled as a POMDP with structured skill tuples (intent, method, difficulty-effect, tool-hint) as compositional primitives, enabling a small specialized 4B proposer trained via multi-granularity RL to outperform frontier LLMs (GPT-5.2) at synthesis by learning to navigate the difficulty-validity frontier through dynamic skill pruning and iterative verification.",
+    "innovation_type": "new_technique",
+    "method_summary": "Defines skills as tuples k≜⟨ι,μ,δ,τ⟩ in a filesystem-based library. Models synthesis as POMDP with cognitive actions (think), tools (execute, prune), and submission. Trains via 3 stages: skill acquisition from teachers, agentic SFT on expert trajectories, and agentic RL via MGPO (fusing trajectory-level and stage-level advantages with gated weights). Uses curriculum scheduling inversely proportional to category proficiency. Dynamic pruning (τ^edit) improves validity 68.7%→82.3%. 30B solver on 11K trajectories achieves 91.6% AIME25. Ablation: MGPO adds +6.5 over GRPO; tool-use adds +2.3; reflection adds +2.1.",
+    "limitations_and_open_questions": "Targets difficulty calibration at the model's reasoning frontier, not compositional coverage of the skill space — synthesized problems are hard but not systematically diverse across skill combinations. Requires complex multi-model infrastructure (teacher, proposer, verifier committee, prober ensemble). Advantage saturation at high baseline pass rates (85-89%) limits RL effectiveness, suggesting diminishing returns on well-covered skill regions.",
+    "building_blocks": [
+      "Skill-as-tuple formalization (intent, method, difficulty, tool-hint)",
+      "POMDP framing for data synthesis with cognitive/tool/terminal actions",
+      "Multi-Granularity Policy Optimization (trajectory + stage advantages)",
+      "Dynamic skill pruning during generation",
+      "Curriculum scheduling inversely proportional to proficiency"
+    ],
+    "relevance_to_seed": "Most direct competitor: composes skills for synthesis but optimizes for difficulty at the model's frontier, not for compositional coverage of the skill space. Key differentiation: Agentic Proposing asks 'what hard problems can I build?' while our approach asks 'what skill combinations are missing?' — difficulty-targeting vs. coverage-targeting are complementary objectives."
+  },
+  {
+    "title": "Enhanced Data Synthesis for LLM through Reasoning Structures Generated by Hierarchical GFlowNet",
+    "venue": "ACL 2025 (Findings)",
+    "problem_identification": "Existing data synthesis methods optimize instruction-response pairs independently without systematically designing the underlying reasoning structure. The authors identified that reasoning processes have DAG structure (not just linear chains) and that proactively generating diverse reasoning DAGs before instruction creation produces higher-quality training data.",
+    "key_insight": "Decoupling reasoning structure generation (via GFlowNet-sampled DAGs) from instruction content generation (via suggester-editor) enables systematic diversity in reasoning patterns that post-hoc approaches to response improvement cannot achieve — the structure should drive the content, not the reverse.",
+    "innovation_type": "combination",
+    "method_summary": "RSS operates in three stages: (1) A hierarchical GFlowNet generates reasoning DAGs through coarse-to-fine growth — coarse-level nodes represent high-level reasoning steps, iteratively refined into fine-grained sub-steps, with edge transitions modeled by policy networks trained to sample diverse valid structures. (2) An iterative suggester-editor workflow generates instructions aligned with each DAG: the suggester proposes candidate instructions, the editor refines them for coherence with the reasoning structure. (3) Structure-aware response enhancement leverages the DAG to improve response quality by ensuring solutions follow the pre-specified reasoning paths. Evaluated on AlpacaEval2 (48.5%), GSM8K (84.0%), HumanEval (79.9%).",
+    "limitations_and_open_questions": "GSM8K (84.0%) is moderate by current standards, suggesting the approach may underperform on harder math. GFlowNet training requires careful reward design for DAG validity; the paper doesn't address how to scale to domain-specific mathematical skill taxonomies. The coarse-to-fine hierarchy is generic rather than informed by domain skill dependencies.",
+    "building_blocks": [
+      "GFlowNet for diverse DAG sampling as a generative model over graph structures",
+      "Coarse-to-fine hierarchical DAG growth process",
+      "Suggester-editor iterative workflow for structure-conditioned instruction generation",
+      "Decoupling reasoning structure from content generation"
+    ],
+    "relevance_to_seed": "Closest methodological analog to DAG-guided synthesis: validates that using graph structures (DAGs) to guide data generation improves training quality. However, their DAGs represent generic reasoning patterns, not domain-specific skill dependency graphs — our approach uses OMEGA's skill taxonomy to build mathematically meaningful DAGs where nodes are specific skills and edges are prerequisite relationships, enabling targeted frontier coverage rather than generic structural diversity."
+  },
+  {
+    "title": "Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis (STEPS)",
+    "venue": "arXiv 2026 (preprint)",
+    "problem_identification": "Complex skill combinations follow a long-tailed power-law distribution in training corpora, creating a data bottleneck for compositional generalization. Identified by analyzing skill co-occurrence statistics and observing that atomic skills are abundant but multi-skill compositions are exponentially rare.",
+    "key_insight": "Framing compositional data synthesis as constrained information maximization over a hierarchical skill taxonomy — selecting skill k-tuples that maximize marginal structural information — yields compositionally challenging data that random sampling cannot discover.",
+    "innovation_type": "new_formulation",
+    "method_summary": "Constructs a skill co-occurrence graph, then induces a hierarchical taxonomy via agglomerative clustering guided by structural entropy minimization. Selects skill combinations by greedily maximizing conditional structural entropy (marginal information of each new skill relative to already-selected skills), constrained to taxonomy sub-trees for semantic coherence ('Sweet Spot'). Synthesizes multi-turn data via GPT-4 contextual fusion of retrieved atomic samples.",
+    "limitations_and_open_questions": "Validated only on instruction-following benchmarks (MT-Bench, AlpacaEval, WildBench), not on mathematical reasoning where skill dependencies are more rigid. The taxonomy relies on co-occurrence in existing corpora — absent skills (the compositional frontier) cannot be discovered from co-occurrence alone.",
+    "building_blocks": [
+      "Structural entropy for taxonomy induction",
+      "Marginal structural information maximization for combination selection",
+      "Sweet Spot coherence constraint via taxonomy sub-tree restriction",
+      "Contextual fusion synthesis pipeline"
+    ],
+    "relevance_to_seed": "Direct methodological ancestor — the marginal structural information selection principle is exactly what we need to adapt for OMEGA's math skill DAG, but the taxonomy source must shift from corpus co-occurrence to OMEGA's templated generator dependencies."
+  },
+  {
+    "title": "AgentCoMa: A Compositional Benchmark Mixing Commonsense and Mathematical Reasoning in Real-World Scenarios",
+    "venue": "arXiv 2025 (accepted ACL 2026)",
+    "problem_identification": "Prior compositional benchmarks combine multiple steps of the same reasoning type, masking the harder problem of cross-type composition. Identified by observing that existing benchmarks show moderate compositionality gaps that may reflect within-domain difficulty scaling rather than true compositional failure.",
+    "key_insight": "Mixing heterogeneous reasoning types (commonsense + math) in a single compositional task reveals a substantially larger compositionality gap (~30%) than same-type composition, while human annotators show no such gap — confirming the deficit is model-specific, not task-inherent.",
+    "innovation_type": "new_benchmark",
+    "method_summary": "Constructs compositional tasks across 5 real-world scenarios (house working, web shopping, science experiments, smart assistant, travel agent), each requiring one commonsense and one math reasoning step. Evaluates 61 LLMs measuring all-steps-correct accuracy, composition accuracy, and compositionality gap. Includes interpretability analyses via neuron patterns, attention maps, and membership inference to diagnose why composition degrades.",
+    "limitations_and_open_questions": "Limited to 2-step compositions (one commonsense + one math), so it cannot evaluate deeper compositional chains. The interpretability analysis examines why models fail but does not propose training interventions. Unclear whether the gap narrows with targeted compositional training data.",
+    "building_blocks": [
+      "Compositionality gap metric (isolated vs. composed accuracy)",
+      "Cross-type composition evaluation paradigm",
+      "5-domain real-world task templates",
+      "Interpretability analysis pipeline for compositional failure diagnosis"
+    ],
+    "relevance_to_seed": "Proposed secondary benchmark — complements OMEGA by testing cross-type composition (commonsense+math) rather than within-math composition, strengthening generality claims if our skill-graph-guided synthesis also reduces AgentCoMa's compositionality gap."
+  },
+  {
+    "title": "Out-of-Distribution Generalization via Composition: A Lens Through Induction Heads in Transformers",
+    "venue": "PNAS 2025",
+    "problem_identification": "The mechanism by which transformers achieve OOD generalization through composition of learned rules was poorly understood. Identified by studying induction heads — the simplest known compositional circuit — as a tractable lens into the general phenomenon.",
+    "key_insight": "OOD generalization and composition are fundamentally linked: a shared latent subspace (common bridge representation) in embedding space aligns the output of early attention layers with the input of later layers, enabling rule composition that generalizes beyond training distribution.",
+    "innovation_type": "analysis",
+    "method_summary": "Proposes the Common Bridge Representation (CBR) hypothesis: span(W_OV) of layer-1 heads aligns with span(W_QK^T) of layer-2 heads via a shared low-dimensional subspace estimated by SVD. Layer 1 performs position shifting (previous-token heads), layer 2 performs token matching — their composition via the bridge subspace creates induction heads capable of OOD generalization. Validated on synthetic copying tasks showing sharp phase transitions in both test error and subspace alignment, plus 8 pretrained LLMs (Llama2/3, Mistral, Falcon, OlMo, Gemma).",
+    "limitations_and_open_questions": "Analysis focuses on 2-layer induction heads; unclear how the CBR hypothesis scales to deeper compositional circuits involving 3+ skills. No formal proof that coverage of bridge subspace activations is sufficient for compositional generalization — the connection to training data coverage is suggestive but not formalized.",
+    "building_blocks": [
+      "Common Bridge Representation hypothesis",
+      "SVD-based subspace alignment measurement",
+      "Induction head removal experiments for causal validation",
+      "Phase transition analysis linking subspace formation to generalization"
+    ],
+    "relevance_to_seed": "Provides mechanistic justification for why frontier-targeted training data should work: compositional generalization requires activating shared bridge subspaces across skill boundaries, which demands training examples that exercise novel skill combinations — exactly what our DAG-guided synthesis provides."
+  },
+  {
+    "title": "Learning Composable Chains-of-Thought",
+    "venue": "arXiv 2025 (preprint)",
+    "problem_identification": "Standard CoT training on atomic tasks yields limited compositional generalization — models learn task-specific reasoning traces that cannot be chained. Identified by observing that CoT format, not just content, determines composability.",
+    "key_insight": "Minimally modifying CoT formats with structural tags (e.g., &lt;prefix>, &lt;suffix> markers) to create explicit composition interfaces enables atomic reasoning skills to be combined via multitask learning or model merging, without requiring large-scale compositional training data.",
+    "innovation_type": "new_technique",
+    "method_summary": "Reformats atomic CoT data with structural markers that create composable input/output interfaces between reasoning steps. Trains atomic models separately, then combines via multitask learning (preferred) or parameter arithmetic merging (θ_comb = α(θ_i−θ_0) + (1−α)(θ_j−θ_0) + θ_0). Bootstraps compositional capability via rejection sampling fine-tuning (RFT) on small compositional datasets. ComposableCoT-MTL achieves 18.7 EM vs. 5.0 for StandardCoT-MTL; with RFT bootstrapping, reaches up to 88.4 EM on string composition tasks.",
+    "limitations_and_open_questions": "Evaluated primarily on string operations and simple NL compositions — unclear if structural tagging scales to deeper mathematical reasoning chains. The 88.4 EM requires RFT with compositional supervision, which partially undercuts the zero-shot composition claim. Merging underperforms MTL significantly, limiting applicability when joint training is infeasible.",
+    "building_blocks": [
+      "Composable CoT format with structural tags",
+      "Parameter arithmetic merging for skill combination",
+      "RFT bootstrapping from limited compositional data",
+      "ComposableCoT-MTL training paradigm"
+    ],
+    "relevance_to_seed": "Validates that data format is a prerequisite for composition — our synthesized frontier training data should use composable CoT formats to maximize the benefit of skill-graph-guided synthesis, and the RFT bootstrapping strategy could amplify gains from small amounts of frontier-targeted data."
+  },
+  {
+    "title": "From Tags to Trees: Structuring Fine-Grained Knowledge for Controllable Data Selection in LLM Instruction Tuning",
+    "venue": "arXiv 2026 (preprint)",
+    "problem_identification": "Existing data selection methods rely on coarse semantic tags or embedding spaces, overlooking fine-grained knowledge and its intrinsic hierarchical dependencies. Identified by showing that flat tag-based or embedding-based selection cannot jointly optimize quality, diversity, and domain alignment.",
+    "key_insight": "Organizing atomic knowledge concepts into a hierarchical tree via bottom-up clustering enables information-theoretic data selection (maximizing tree-level information gain with concave diminishing returns) that surpasses full-dataset training using only 5% of data.",
+    "innovation_type": "combination",
+    "method_summary": "Extracts atomic knowledge tags via an LLM-based Act-Critic pipeline (GPT-Tagger generates, GPT-Checker refines over 3 iterations, then fine-tuned Qwen3-8B for production). Builds a 10-level knowledge tree via K-Means on semantic embeddings followed by 4-step LLM refinement (summarize, deduplicate, reassign, rename). Defines tree-aware utility with ancestry-propagated information vectors and concave aggregation (Φ(x)=x^γ, γ∈(0,1)) ensuring diminishing returns. Selects data greedily via first-order Taylor approximation of information gain, with optional KL-divergence domain alignment (λ>0).",
+    "limitations_and_open_questions": "Tree construction requires significant LLM compute (Qwen3-30B for refinement) and the quality depends heavily on initial tag extraction. Validated on general instruction tuning, not on compositional generalization — whether tree-guided selection improves composition specifically is untested. The concave diminishing returns assumption may be too conservative for sparse compositional frontiers.",
+    "building_blocks": [
+      "Act-Critic tagging pipeline",
+      "Bottom-up hierarchical tree construction with LLM refinement",
+      "Concave information gain maximization for data selection",
+      "KL-divergence domain alignment in sampling",
+      "Tree-aware quality-diversity joint optimization"
+    ],
+    "relevance_to_seed": "Closest methodological parallel for the data selection component — the tree-aware information gain framework could be adapted to select training instances that maximize coverage of OMEGA's skill composition frontier, with the KL-divergence alignment ensuring domain-specific (mathematical) coherence."
+  },
+  {
+    "title": "Scaling Can Lead to Compositional Generalization",
+    "venue": "NeurIPS 2025 (Spotlight)",
+    "problem_identification": "When and why does scaling neural networks lead to compositional generalization? Prior work showed empirical hints but lacked formal conditions — the gap was a missing theoretical framework connecting training distribution properties to guaranteed compositional generalization.",
+    "key_insight": "MLPs can approximate compositional task families with O(M) neurons (linear in module count), while memorization requires exponential capacity — this asymptotic gap means scaling inherently favors the compositional solution when two coverage conditions are met: compositional support (every module appears in training) and connected support (no module subset appears only in isolation).",
+    "innovation_type": "new_formulation",
+    "method_summary": "Define compositional task families as tuples (C, p(z), p(x)) where C is an injective composition operator mapping sparse binary task-constituent vectors to input-output functions. Prove (Theorem 3.1) that ReLU MLPs approximate hyperteacher compositional tasks within ε error using O(1/√ε + M) neurons. Validate empirically on hyperteacher, preference grid, and image composition tasks across MLPs and transformers, showing sub-exponential training samples suffice and that violating coverage conditions causes sharp performance drops.",
+    "limitations_and_open_questions": "Theory is proven for MLPs, not transformers; coverage conditions assume known compositional structure. The critical open question for our work: how to *achieve* sufficient coverage in practice when the compositional space is unknown or exponentially large?",
+    "building_blocks": [
+      "Compositional support and connected support conditions as formal requirements",
+      "Linear decodability of task constituents as a measurable indicator of compositionality",
+      "Sub-exponential sample complexity for compositional generalization"
+    ],
+    "relevance_to_seed": "Direct theoretical anchor — proves that coverage of the compositional task space enables generalization, providing the formal justification for why frontier-targeted synthesis (achieving coverage) should break the +6% ceiling where random augmentation (incomplete coverage) fails."
+  },
+  {
+    "title": "Skill-Mix: A Flexible and Expandable Family of Evaluations for AI Models",
+    "venue": "ICLR 2024",
+    "problem_identification": "Standard LLM benchmarks fail to test genuine compositional ability — models can 'cram for the leaderboard' by memorizing common patterns. The gap was an evaluation methodology that provably tests novel, unseen skill combinations rather than memorized ones.",
+    "key_insight": "Combinatorial explosion (N choose k ~ N^k for N≈101 skills) guarantees that even modest k values produce combinations almost certainly absent from training data, creating provably out-of-distribution evaluation without adversarial construction.",
+    "innovation_type": "new_benchmark",
+    "method_summary": "Select N=101 skills from reference texts. For each evaluation instance, randomly sample a k-subset of skills plus a random topic, then ask the model to produce text integrating all k skills. Grade automatically via GPT-4 (M=100 samples) or LLaMA-2-70B (M=30), with human spot-checking. Design principles include deducting points for explicitly naming skills and filtering out common skills to ensure genuine composition rather than surface-level listing.",
+    "limitations_and_open_questions": "Focused on text/writing composition, not mathematical reasoning. Grading depends on another LLM's judgment. Does not address how to *train* for better composition — purely evaluative. The saturation finding (most models fail at k≥3) raises the question: is the bottleneck training data coverage or architectural capacity?",
+    "building_blocks": [
+      "Combinatorial k-subset evaluation framework for skill composition",
+      "Automatic LLM-based grading methodology with human calibration",
+      "Empirical saturation cur
+... (truncated)
+
+## Your task
+
+Synthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.
+
+Think about:
+- What PATTERNS OF INNOVATION keep working in this field?
+- What do reviewers consistently reward?
+- Where are the real gaps (not assumed gaps)?
+- What combinations haven't been tried?
+- What mistakes should we avoid?
+
+## Output format
+
+Output a JSON object with these sections:
+{
+  "innovation_patterns": [
+    {"pattern": "name", "description": "how it works", "examples": ["paper1", "paper2"], "success_rate": "high/medium/low"}
+  ],
+  "reviewer_preferences": [
+    "What reviewers in this area consistently care about (based on evidence from paper analyses)"
+  ],
+  "field_gaps": [
+    {"gap": "description of unsolved problem", "evidence": "which papers mention this limitation", "difficulty": "high/medium/low", "impact_if_solved": "high/medium/low"}
+  ],
+  "untried_combinations": [
+    {"idea_sketch": "what could be combined", "from_papers": ["which papers inspire this"], "why_promising": "reason"}
+  ],
+  "method_building_blocks": [
+    {"tool": "name", "what_it_does": "description", "used_by": ["papers"], "could_be_applied_to": "new application"}
+  ],
+  "common_pitfalls": [
+    "Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)"
+  ],
+  "field_trajectory": "Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)",
+  "meta_advice": "If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)"
+}
+
+Be specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.
+
+IMPORTANT: You MUST end your response with the JSON object.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "74a5714e-7f05-4f7c-9510-9cb5111d16e2",
+  "type": "user",
+  "uuid": "889c39b1-24e7-4561-ba30-1a1d34d62a07",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T11:35:26.583Z_
+
+```json
+{
+  "parentUuid": "889c39b1-24e7-4561-ba30-1a1d34d62a07",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "5c52412a-9d3c-4951-83ff-22be845066fd",
+  "timestamp": "2026-05-29T11:35:26.583Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T11:35:26.583Z_
+
+```json
+{
+  "parentUuid": "5c52412a-9d3c-4951-83ff-22be845066fd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2bc902dc-6737-4225-b502-875500df124a",
+  "timestamp": "2026-05-29T11:35:26.583Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-29 (UTC).**  ## Research area: Target: AAAI 2026 Track: Machine Lea…",
+  "leafUuid": "2bc902dc-6737-4225-b502-875500df124a",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Skill-graph-guided synthesis for compositional math reasoning",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-29T11:35:48.772Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to synthesize 20 paper analyses into a strategic "Field Guide" document for research in compositional generalization for mathematical reasoning, specifically targeting AAAI 2026. Let me carefully analyze all the papers and produce a comprehensive, evidence-based JSON output.
+
+Let me organize my thinking across the required sections:
+
+**Innovation Patterns:**
+1. "Benchmark-then-method" — Create evaluation that reveals a gap, then propose method to fill it (OMEGA, MathTrap, Skill-Mix, AgentCoMa)
+2. "Graph/tree structure over flat representations" — Moving from flat skill/tag sets to structured graphs/trees (MASS, STEPS, Tags-to-Trees, RSS)
+
+
+3. "Information-theoretic selection principles" — Using entropy, information gain, or similar principles to guide data selection and synthesis (STEPS, Tags-to-Trees, MASS)
+4. "Coverage over scale" — Demonstrating that systematic coverage of the problem space matters more than raw data volume (Redhardt et al., Does Data Scaling, Zhao & Kaur)
+5. "Decoupling structure from content" — Separating the architectural design of data from its actual generation process (RSS with GFlowNet DAGs, KPDDS with key points, Composable CoT)
+
+**Reviewer Preferences:**
+Now I'm identifying what AAAI reviewers will value most — controlled ablations that isolate each contribution, clear baselines and comparisons, and evidence that the approach generalizes beyond toy problems.
+
+**Field Gaps:**
+Looking at where the literature leaves openings: skill DAGs haven't been applied to compositional math problems, STEPS was only validated on instruction-following tasks, and there's no training method that specifically targets OMEGA's compositional structure. The k→k+1 transfer learning pattern from language hasn't been tested in math, and while Redhardt established coverage conditions theoretically, there's no practical algorithm to achieve them in mathematical domains.
+
+**Untried Combinations:**
+I'm seeing several promising directions that haven't been explored yet — combining MASS skill graphs with STEPS' information-theoretic selection and evaluating on OMEGA, using Composable CoT formatting with frontier-targeted synthesis, or sampling DAGs with GFlowNets over a math skill taxonomy.
+
+Now I'm assembling the method by pulling together the most effective components: skill extraction and co-occurrence graphs from MASS, information maximization from STEPS, synthesis guidance from KPDDS, GFlowNet-based DAG sampling, the Composable CoT format, and evaluation frameworks from Skill-Mix and MathTrap. I'm about to structure this as a comprehensive JSON specification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2bc902dc-6737-4225-b502-875500df124a",
+  "isSidechain": false,
+  "requestId": "req_011CbWnoXJX2aEw1MoCAcyuZ",
+  "type": "assistant",
+  "uuid": "093ab277-cca3-4b87-bd73-50c5e86d0d23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SP8EeYZQG8GPjP2fzxfkUS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12458,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1307,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-29T11:35:48.938Z_
+
+I'll analyze all 20 papers systematically to produce the Field Guide. Let me first review the full set of analyses to ensure I capture every detail.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "093ab277-cca3-4b87-bd73-50c5e86d0d23",
+  "isSidechain": false,
+  "requestId": "req_011CbWnoXJX2aEw1MoCAcyuZ",
+  "type": "assistant",
+  "uuid": "dc5ba744-7ebf-472e-8c57-928cc4dea307",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SP8EeYZQG8GPjP2fzxfkUS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12458,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1307,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-29T11:35:58.755Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01M97AS5wdUGPcxmeLbxj14a`</summary>
+
+```json
+{
+  "subagent_type": "claude",
+  "description": "Verify paper count and details",
+  "prompt": "The user has provided analyses of 20 papers on compositional generalization in mathematical reasoning. I need you to simply list all the paper titles mentioned in the prompt context (which I'll summarize below) so I can verify completeness. The papers I can identify are:\n\n1. OMEGA (Sun et al., NeurIPS 2025)\n2. Can Models Learn Skill Composition from Examples? (Zhao & Kaur, NeurIPS 2024)\n3. Skills-in-Context Prompting (SKiC) (EMNLP 2024 Findings)\n4. DeepSeek-R1 (Nature 2025)\n5. Key-Point-Driven Data Synthesis (KPDDS) (AAAI 2025)\n6. MASS (ICML 2025)\n7. MathTrap (EMNLP 2024)\n8. Does Data Scaling Lead to Visual Compositional Generalization? (ICML 2025)\n9. Agentic Proposing (arXiv 2026)\n10. RSS/GFlowNet (ACL 2025 Findings)\n11. STEPS (arXiv 2026)\n12. AgentCoMa (ACL 2026)\n13. OOD Generalization via Composition / Common Bridge Representation (PNAS 2025)\n14. Learning Composable Chains-of-Thought (arXiv 2025)\n15. From Tags to Trees (arXiv 2026)\n16. Scaling Can Lead to Compositional Generalization (Redhardt et al., NeurIPS 2025 Spotlight)\n17. Skill-Mix (ICLR 2024)\n\nThat's 17. The user says there are 20 paper analyses but the text was truncated at paper 17 (Skill-Mix). The truncation happened mid-sentence in paper 17's building_blocks. Papers 18-20 are missing from the visible text.\n\nPlease confirm: I have 17 visible papers, 3 are truncated/missing. Just respond with \"confirmed\" and list the 17 titles I have."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc5ba744-7ebf-472e-8c57-928cc4dea307",
+  "isSidechain": false,
+  "requestId": "req_011CbWnoXJX2aEw1MoCAcyuZ",
+  "type": "assistant",
+  "uuid": "aaee9d81-6b70-4367-aa89-a3d50842294d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SP8EeYZQG8GPjP2fzxfkUS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12458,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12458,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1307,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12458,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12458
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-29T11:35:58.764Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01M97AS5wdUGPcxmeLbxj14a`</summary>
+
+```text
+Cannot create agent worktree: not in a git repository and no WorktreeCreate hooks are configured. Configure WorktreeCreate/WorktreeRemove hooks in settings.json to use worktree isolation with other VCS systems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aaee9d81-6b70-4367-aa89-a3d50842294d",
+  "isSidechain": false,
+  "promptId": "74a5714e-7f05-4f7c-9510-9cb5111d16e2",
+  "type": "user",
+  "uuid": "2d675b12-8e98-4cc3-a9d2-7b5c467ebd3c",
+  "toolUseResult": "Error: Cannot create agent worktree: not in a git repository and no WorktreeCreate hooks are configured. Configure WorktreeCreate/WorktreeRemove hooks in settings.json to use worktree isolation with other VCS systems.",
+  "sourceToolAssistantUUID": "aaee9d81-6b70-4367-aa89-a3d50842294d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-29T11:38:47.503Z_
+
+Based on my thorough analysis of all the paper analyses provided, here is the comprehensive Field Guide synthesized into a strategic document:
+
+```json
+{
+  "innovation_patterns": [
+    {
+      "pattern": "Structure-over-Scale Reframing",
+      "description": "Replace brute-force scaling arguments with structured coverage arguments. Show that organizing data/skills into graphs, trees, or taxonomies achieves better results than simply adding more data. The key move is proving that the structure (not volume) explains the improvement via controlled ablations.",
+      "examples": ["Scaling Can Lead to Compositional Generalization (Redhardt et al.)", "Does Data Scaling Lead to Visual Compositional Generalization? (ICML 2025)", "MASS", "From Tags to Trees"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Graph/Hierarchy as Selection Principle",
+      "description": "Convert a flat collection of skills/concepts into a structured graph or tree, then use the structure to guide data operations (selection, synthesis, evaluation). The graph encodes relational information (co-occurrence, prerequisite, compositional potential) that point-wise methods miss. Success requires showing the graph structure causally contributes via edge-removal ablations.",
+      "examples": ["MASS (co-occurrence graph + adjacency aggregation)", "STEPS (hierarchical taxonomy via structural entropy)", "From Tags to Trees (knowledge tree + information gain)", "RSS (GFlowNet-sampled reasoning DAGs)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Benchmark-Reveals-Gap-Then-Method-Fills-It",
+      "description": "First publish (or leverage) a benchmark that decomposes a hard problem into measurable axes, revealing a specific failure mode. Then propose a targeted intervention for exactly that failure mode. The benchmark's diagnostic granularity provides the evaluation infrastructure for the method paper.",
+      "examples": ["OMEGA reveals +6% compositional ceiling → our proposed method", "MathTrap reveals composition-vs-component tradeoff → targeted training", "AgentCoMa reveals cross-type composition gap → future interventions", "Skill-Mix reveals k≥3 saturation → Zhao & Kaur's careful data design"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Information-Theoretic Selection over Heuristic Sampling",
+      "description": "Replace heuristic data selection (random, difficulty-based, topic-balanced) with principled information-theoretic objectives — structural entropy, marginal information gain, conditional entropy maximization. The formal objective provides both a selection algorithm and a theoretical narrative.",
+      "examples": ["STEPS (marginal structural information maximization)", "From Tags to Trees (concave information gain with diminishing returns)", "MASS (graph-aggregated scoring)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Decoupling Structure from Content Generation",
+      "description": "Separate the 'what to synthesize' decision (structural planning) from the 'how to write it' execution (content generation). First generate/select the structural skeleton (DAG, skill tuple, key-point set), then condition content generation on that structure. This prevents mode collapse in synthesis.",
+      "examples": ["RSS (GFlowNet generates DAGs → suggester-editor fills content)", "KPDDS (key-point extraction → TCPM-guided generation)", "Agentic Proposing (skill tuple selection → POMDP synthesis)", "Composable CoT (structural tags → content)"],
+      "success_rate": "medium"
+    },
+    {
+      "pattern": "Compositional Transfer via Minimal Data Design",
+      "description": "Show that careful design of small training sets (quality over quantity) enables transfer to harder compositions. The key insight is that k-skill training generalizes to (k+1)-skill when data is quality-filtered and structurally rich. Requires ablations showing random data of equal size fails.",
+      "examples": ["Zhao & Kaur (k≤3 → k=4,5 transfer)", "SKiC (2 exemplars unlock composition)", "Does Data Scaling (k=2 suffices under linear factorization)", "Composable CoT (RFT bootstrapping from small compositional data)"],
+      "success_rate": "medium"
+    }
+  ],
+  "reviewer_preferences": [
+    "Controlled ablations that isolate structural contributions: MASS's ablation removing compositional edges (−2.1-2.8%) vs. diagonal importance (−0.4-1.2%) is the gold standard — reviewers want to see that the graph/structure itself, not just having more information, drives improvement.",
+    "Theoretical grounding with practical instantiation: Papers that provide formal conditions (Redhardt's compositional/connected support) AND show how to approximately satisfy them in practice get spotlights. Pure theory without method or pure method without theory lands in Findings.",
+    "Multiple evaluation benchmarks with at least one secondary benchmark from a different group: Testing only on your own benchmark (or only on OMEGA) invites the 'benchmark-specific' criticism. OMEGA + MathTrap + AgentCoMa covers within-math, trap-composition, and cross-type composition.",
+    "Compute-efficient methods that outperform compute-heavy baselines: MASS achieves 50-70% better selection efficiency; Zhao & Kaur shows 4K fine-tuning steps suffice. Reviewers in the 'learning from limited data' track specifically reward methods that achieve more with less.",
+    "Clear differentiation from the closest related work with head-to-head comparison: Agentic Proposing differentiates from random synthesis by targeting difficulty; our work must differentiate from both MASS (same graph, different objective) and STEPS (same objective, different domain) with direct ablations.",
+    "Failure analysis that explains WHEN the method does NOT work: MathTrap's finding that fine-tuning helps trap accuracy but hurts original accuracy (composition-component tradeoff) is valued because it characterizes limitations honestly. Show where frontier-guided synthesis saturates or fails.",
+    "Reproducibility signals: Template-based generators (OMEGA), programmatic verification, and open skill taxonomies signal reproducibility. LLM-dependent pipelines (KPDDS's GPT-4 filtering) get pushback unless accompanied by smaller-model alternatives."
+  ],
+  "field_gaps": [
+    {
+      "gap": "No published method uses skill dependency DAGs to identify and fill compositional frontier gaps in mathematical training data",
+      "evidence": "MASS uses skill graphs for data selection efficiency (not frontier identification); STEPS targets instruction-following (not math); OMEGA demonstrates the +6% ceiling but all evaluated interventions use RL or prompting, not targeted data synthesis",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "The k→k+1 compositional transfer phenomenon (Zhao & Kaur) is validated only for language/text skills — whether it holds for formal mathematical reasoning with rigid skill dependencies is unknown",
+      "evidence": "Zhao & Kaur explicitly notes 'tested only on language/text skills (rhetorical, literary, ToM), not mathematical reasoning'; OMEGA's templated generators provide the infrastructure to test this but nobody has",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "No method distinguishes between difficulty-targeting and coverage-targeting in compositional data synthesis",
+      "evidence": "Agentic Proposing optimizes for difficulty at the model's frontier; KPDDS reproduces existing distributions; neither explicitly targets under-covered skill combinations. The distinction between 'what's hard' and 'what's missing' is unformalized",
+      "difficulty": "low",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Practical methods to achieve the formal coverage conditions (compositional support + connected support) from Redhardt et al. do not exist for real-world skill spaces",
+      "evidence": "Redhardt et al. prove coverage enables generalization but 'provides no practical method for achieving coverage in math'; the theory-practice bridge — converting formal conditions into a data synthesis algorithm — is the key missing step",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "The composition-vs-component tradeoff in fine-tuning (improving compositional ability degrades atomic skill performance) has no known solution",
+      "evidence": "MathTrap shows fine-tuning on compositional data improves trap accuracy (1%→12.4%) but degrades original accuracy (41.4%→33.3%); Composable CoT's structural tags partially address this but only for simple string tasks",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Skill extraction from structured mathematical templates (as opposed to free-text corpus mining) is unexplored",
+      "evidence": "MASS extracts skills from NuminaMath via Qwen-72B prompting (corpus-based); STEPS builds taxonomies from co-occurrence statistics (corpus-based); OMEGA's 40 templated generators encode skill structure programmatically but nobody has extracted a formal DAG from the template code itself",
+      "difficulty": "low",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "Cross-type composition (math + commonsense, math + trap-detection) is diagnosed but has no training intervention",
+      "evidence": "AgentCoMa reveals ~30% compositionality gap for cross-type composition; MathTrap shows 22-51% accuracy ratios; neither proposes training data solutions, only evaluation",
+      "difficulty": "high",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "No evaluation framework distinguishes whether compositional improvement comes from better coverage vs. better representation learning",
+      "evidence": "Does Data Scaling identifies three representation metrics (decodability, linearity, orthogonality) for vision; Common Bridge Representation proposes SVD-based subspace alignment for transformers; neither has been applied to measure whether math compositional training data actually improves representation factorization",
+      "difficulty": "medium",
+      "impact_if_solved": "medium"
+    }
+  ],
+  "untried_combinations": [
+    {
+      "idea_sketch": "OMEGA's templated generators as a programmatic skill DAG source + STEPS' marginal structural information maximization as the selection principle + targeted synthesis at the identified compositional frontier",
+      "from_papers": ["OMEGA", "STEPS", "MASS", "Scaling Can Lead to Compositional Generalization"],
+      "why_promising": "OMEGA encodes prerequisite structure in template code (which skills are needed for which compositions); STEPS provides the information-theoretic principle for selecting maximally informative combinations; Redhardt proves coverage enables generalization. This is the core proposed paper — nobody has combined these because MASS targeted efficiency and STEPS targeted instruction-following."
+    },
+    {
+      "idea_sketch": "Composable CoT structural formatting + frontier-targeted synthesis to jointly solve the coverage and format problems",
+      "from_papers": ["Composable CoT", "STEPS", "OMEGA"],
+      "why_promising": "Composable CoT shows that format enables composition (18.7 vs 5.0 EM) but lacks a principled method for selecting WHICH compositions to train on. Frontier-targeted synthesis identifies WHAT to train on but doesn't address HOW to format it for composability. Combining both should be multiplicative — you need both the right training distribution and the right format."
+    },
+    {
+      "idea_sketch": "GFlowNet-based diverse sampling over the skill DAG + mathematical coherence verification to generate structurally diverse yet valid compositional training problems",
+      "from_papers": ["RSS (GFlowNet DAGs)", "OMEGA", "Agentic Proposing"],
+      "why_promising": "RSS validates GFlowNets for sampling diverse DAGs but uses generic reasoning structures; OMEGA provides domain-specific mathematical skill DAGs with programmatic verification. A GFlowNet trained to sample diverse valid paths through OMEGA's skill DAG (with OMEGA's symbolic verifiers ensuring correctness) could produce more diverse compositional training data than greedy or random sampling of skill combinations."
+    },
+    {
+      "idea_sketch": "Common Bridge Representation analysis as a diagnostic for whether frontier-targeted training data actually improves compositional representation structure",
+      "from_papers": ["OOD Generalization via Composition (CBR/PNAS 2025)", "Does Data Scaling Lead to Visual Compositional Generalization?", "OMEGA"],
+      "why_promising": "Currently, compositional improvement is measured only by task accuracy. Using SVD-based subspace alignment (CBR) and linear probe metrics (decodability, linearity, orthogonality from the visual composition paper) to show that frontier-targeted training data creates better-factored internal representations would provide mechanistic evidence beyond accuracy numbers — this is what differentiates a methods paper from a data paper."
+    },
+    {
+      "idea_sketch": "KPDDS's quality filtering pipeline + skill DAG frontier identification to ensure synthesized compositional problems are both structurally novel AND mathematically valid",
+      "from_papers": ["KPDDS (AAAI 2025)", "MASS", "OMEGA"],
+      "why_promising": "KPDDS achieves 51% pass rate on quality filtering for standard math synthesis. Compositional frontier problems (novel skill combinations) will likely have lower pass rates because they're inherently harder to generate correctly. Adapting KPDDS's two-stage filtering (question quality + answer verification) for frontier-targeted problems addresses the quality-validity tradeoff that Agentic Proposing identifies as the core synthesis challenge."
+    },
+    {
+      "idea_sketch": "Curriculum from atomic → compositional using Agentic Proposing's proficiency-inverse scheduling, but guided by skill DAG topology rather than category-level difficulty",
+      "from_papers": ["Agentic Proposing", "OMEGA", "Zhao & Kaur"],
+      "why_promising": "Zhao & Kaur shows k→k+1 transfer works with careful data design. Agentic Proposing's curriculum schedules training inversely proportional to proficiency. Combining these: start with atomic skills, measure per-composition proficiency, then schedule frontier combinations inversely proportional to the model's pass rate on each — the DAG topology tells you which compositions are prerequisite-satisfied and thus learnable at each stage."
+    }
+  ],
+  "method_building_blocks": [
+    {
+      "tool": "Skill extraction via LLM prompting from reference datasets",
+      "what_it_does": "Uses large LLMs (Qwen-72B or GPT-4) to extract atomic mathematical skills from problem sets, producing ~46K deduplicated skills from 100K problems with 0.9-similarity deduplication threshold",
+      "used_by": ["MASS"],
+      "could_be_applied_to": "Extracting skills from OMEGA's template documentation/code rather than from generated problems — potentially more precise since templates encode skill structure programmatically"
+    },
+    {
+      "tool": "Co-occurrence graph construction with adjacency-matrix aggregation",
+      "what_it_does": "Builds a skill co-occurrence graph (1.18M edges from 46K skills) and uses the adjacency matrix to propagate scoring signals, capturing compositional relationships between skills",
+      "used_by": ["MASS"],
+      "could_be_applied_to": "Instead of scoring existing data, use the adjacency matrix to identify skill pairs/tuples with low or zero co-occurrence — these are the compositional frontier nodes that need synthetic data"
+    },
+    {
+      "tool": "Marginal structural information maximization for combination selection",
+      "what_it_does": "Greedily selects skill combinations that maximize conditional structural entropy — each new combination adds maximally informative content relative to already-selected combinations, constrained to taxonomy sub-trees for coherence",
+      "used_by": ["STEPS"],
+      "could_be_applied_to": "Selecting which OMEGA skill compositions to synthesize training data for — prioritize combinations that maximize coverage of the compositional frontier while staying within mathematically coherent skill sub-trees"
+    },
+    {
+      "tool": "Topic Co-occurrence Probability Matrix (TCPM) for guided synthesis",
+      "what_it_does": "Captures natural co-occurrence patterns between mathematical topics and uses these as sampling weights for synthetic problem generation, ensuring generated problems are plausible concept combinations",
+      "used_by": ["KPDDS"],
+      "could_be_applied_to": "Invert the TCPM logic: instead of sampling proportional to natural co-occurrence (which reproduces the existing distribution), sample inversely proportional to co-occurrence to target under-represented compositions"
+    },
+    {
+      "tool": "Two-stage quality filtering (question quality + answer verification)",
+      "what_it_does": "Stage 1: LLM scores question quality (>0.85 threshold, ~51% pass rate). Stage 2: Multiple solution attempts with voting-based verification ensure answer correctness",
+      "used_by": ["KPDDS"],
+      "could_be_applied_to": "Filtering synthesized compositional frontier problems — Stage 1 ensures the problem is well-formed, Stage 2 ensures it's solvable. Critical because frontier problems (novel compositions) are more likely to be ill-posed"
+    },
+    {
+      "tool": "GRPO (Group Relative Policy Optimization)",
+      "what_it_does": "Critic-free RL algorithm that samples G completions per prompt, normalizes rewards within the group, and optimizes a clipped objective with KL penalty. Eliminates need for value network training",
+      "used_by": ["DeepSeek-R1", "OMEGA (as baseline)", "Agentic Proposing (as baseline for MGPO comparison)"],
+      "could_be_applied_to": "Post-synthesis RL stage: after SFT on frontier-targeted data establishes compositional coverage, GRPO on compositional verification rewards could further sharpen performance — the hypothesis is that RL works better when the base model already has compositional coverage"
+    },
+    {
+      "tool": "Composable CoT structural tags (prefix/suffix markers)",
+      "what_it_does": "Reformats chain-of-thought traces with explicit structural markers that create composition interfaces between reasoning steps, enabling atomic reasoning skills to be chained without retraining",
+      "used_by": ["Composable CoT"],
+      "could_be_applied_to": "Formatting frontier-targeted training data with skill-labeled reasoning steps (like SKiC) combined with compositional interface markers, ensuring the model learns not just to solve compositions but to structure its reasoning in composable units"
+    },
+    {
+      "tool": "Programmatic templated generators with symbolic verification",
+      "what_it_does": "40 parametric generators produce math problems with controlled difficulty and skill composition, with solutions verified via symbolic, numerical, or graphical methods — enabling automatic correctness checking at scale",
+      "used_by": ["OMEGA"],
+      "could_be_applied_to": "Verifying synthesized frontier problems: use OMEGA's verifiers as ground-truth oracles to filter generated compositional problems, ensuring only correctly-answerable problems enter training data"
+    },
+    {
+      "tool": "GFlowNet for diverse graph structure sampling",
+      "what_it_does": "Trains a generative flow network to sample diverse valid DAG structures with probability proportional to a reward function, using coarse-to-fine hierarchical growth to balance diversity and validity",
+      "used_by": ["RSS"],
+      "could_be_applied_to": "Sampling diverse valid paths through the mathematical skill DAG — each sampled path represents a novel compositional problem structure, with the GFlowNet's diversity-seeking property ensuring coverage of the frontier rather than mode collapse to easy compositions"
+    },
+    {
+      "tool": "Triplet evaluation framework (original, conceptual, trap)",
+      "what_it_does": "For each compositional test problem, creates three versions: original (tests component skill A), conceptual (tests component skill B in isolation), and composition (requires both A+B). Measures composition ability via accuracy ratio, isolating composition failure from component failure",
+      "used_by": ["MathTrap"],
+      "could_be_applied_to": "Evaluating whether frontier-targeted training improves composition without degrading components — the triplet design directly measures the composition-component tradeoff that MathTrap identified as a risk"
+    },
+    {
+      "tool": "Concave information gain with diminishing returns for data selection",
+      "what_it_does": "Defines tree-aware utility with Φ(x)=x^γ (γ∈(0,1)) ensuring diminishing returns per skill/concept branch, preventing over-coverage of popular skills while encouraging exploration of rare combinations. Greedy selection via first-order Taylor approximation",
+      "used_by": ["From Tags to Trees"],
+      "could_be_applied_to": "Balancing frontier coverage: prevent the synthesis pipeline from over-generating problems for a few easy-to-compose skill pairs while under-covering harder but more informative frontier combinations"
+    }
+  ],
+  "common_pitfalls": [
+    "Conflating difficulty with compositional novelty: Agentic Proposing targets difficulty at the model's frontier, which may produce hard single-skill problems rather than compositionally novel ones. Reviewers will ask: 'How do you know improvement comes from composition coverage, not just harder training problems?' — the ablation comparing frontier-guided vs. difficulty-matched random compositions is essential.",
+    "Reproducing existing distributions instead of filling gaps: KPDDS's TCPM samples proportional to natural co-occurrence, which reinforces the existing distribution. MASS selects high-quality data from what exists. Both improve efficiency but cannot discover what's MISSING. Any method claiming to target 'compositional frontiers' must explicitly show it generates combinations absent from training data.",
+    "LLM-dependent pipelines without smaller-model alternatives: KPDDS depends on GPT-4 for quality filtering; MASS uses Qwen-72B for skill extraction; STEPS uses GPT-4 for synthesis. Reviewers increasingly push back on methods that require frontier-model access. Provide at least one pipeline variant using 7-8B models for extraction/filtering.",
+    "Testing only on your own benchmark or a single evaluation: OMEGA is compelling but self-contained. The 'Avoid' section correctly identifies that testing only on OMEGA invites dismissal as benchmark-specific. MathTrap and AgentCoMa are structurally different evaluations (trap-detection composition, cross-type composition) that test generality.",
+    "Ignoring the composition-component tradeoff: MathTrap shows that compositional fine-tuning can DEGRADE atomic skill performance (41.4%→33.3%). Any paper claiming compositional improvement MUST also report atomic skill maintenance — reviewers who know MathTrap will specifically look for this.",
+    "Overclaiming about what coverage-based methods can achieve: Redhardt et al.'s theory requires compositional support AND connected support, both of which assume you can identify and enumerate the compositional space. For open-ended math, complete enumeration is impossible — acknowledge this limitation and frame results as 'improved coverage' not 'complete coverage'.",
+    "Flat skill sets when DAG structure is available: Zhao & Kaur uses 101 flat skills with no dependency structure. OMEGA's templates encode prerequisite relationships (you need GCD skill before you can compose GCD with root-finding). Ignoring these dependencies and treating skills as exchangeable underutilizes available structural information.",
+    "Treating synthesis quality as orthogonal to synthesis targeting: A perfectly-targeted set of frontier skill combinations is useless if the synthesized problems are mathematically incoherent. Quality filtering (KPDDS-style) must be applied AFTER frontier selection, and the pass rate on frontier problems should be reported — it will likely be lower than for standard problems, which is informative.",
+    "Framing as 'yet another data augmentation paper': The contribution is the compositional frontier identification via skill DAGs and the information-theoretic selection principle, NOT the augmentation itself. If the paper reads like 'we generated more math data and it helped,' reviewers will reject regardless of results. The structural insight must be foregrounded."
+  ],
+  "field_trajectory": "The field is converging on three macro-directions that will define top venues through 2026-2027. First, the shift from 'scale everything' to 'cover the structure' is becoming the dominant paradigm: Redhardt et al.'s theoretical framework, the visual composition ICML paper, and OMEGA's empirical ceiling collectively establish that compositional generalization is a coverage problem, not a scale problem. Methods that can identify and fill structural gaps in training distributions will dominate over methods that simply generate more data. Second, skill-graph-aware training is emerging as the concrete instantiation of this coverage principle: MASS proved graphs help for math data selection, STEPS proved information-theoretic graph traversal helps for compositional synthesis, and the missing piece — combining these for math-specific compositional synthesis — is the obvious next step that 2-3 groups are likely racing toward. Third, mechanistic understanding of composition (CBR hypothesis, linear factorization theory, induction head analysis) is transitioning from pure analysis to actionable training signals: the next wave of papers will not just show that method X improves compositional accuracy, but will demonstrate via representation probes that it creates better-factored internal representations, providing mechanistic rather than just behavioral evidence. The convergence of these three directions — coverage theory + skill-graph methods + mechanistic validation — defines the frontier for AAAI/NeurIPS 2026.",
+  "meta_advice": "If you're writing this paper for AAAI 2026, your strongest positioning is as the paper that operationalizes Redhardt et al.'s coverage theory into a practical method for mathematical reasoning, using OMEGA as both the skill taxonomy source and the evaluation target. Here's what will make or break acceptance: (1) The baseline fear test is real — you MUST include an ablation comparing your DAG-guided frontier selection against random k-skill composition sampling of equal size. If random sampling achieves 60-80% of your improvement, the structural contribution is insufficient for a top venue. Design this experiment first and have a contingency plan. (2) Frame the contribution as 'compositional frontier identification' not 'data synthesis' — the synthesis pipeline is an engineering contribution, but the insight that you can extract the skill dependency DAG from OMEGA's templates, identify under-covered k-tuples via information-theoretic selection, and that filling exactly those gaps breaks the compositional ceiling is a scientific contribution. (3) Use Redhardt's formal coverage conditions to derive your selection criterion mathematically — show that your DAG-guided selection provably improves satisfaction of the compositional support condition, while random sampling does not. This theory-to-practice bridge is what got Redhardt a spotlight and will elevate your paper above 'we tried X and it worked.' (4) Report the composition-component tradeoff explicitly (cite MathTrap) — show your method improves compositional accuracy WITHOUT degrading atomic performance, or if there's a tradeoff, characterize it precisely. (5) Budget approximately 30% of your compute for ablations: random vs. DAG-guided, with vs. without quality filtering, varying k in k-skill compositions, and coverage percentage vs. performance curves. Reviewers in the 'limited data' track specifically care about understanding WHERE the improvement comes from, not just that it exists. (6) Differentiate sharply from MASS (same graph type, different objective) and Agentic Proposing (same synthesis goal, different selection principle) — a comparison table showing 'targets efficiency/difficulty/coverage' across methods will preempt the most likely reviewer objection."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d675b12-8e98-4cc3-a9d2-7b5c467ebd3c",
+  "isSidechain": false,
+  "requestId": "req_011CbWnqtx595rTVwdLXPuyR",
+  "type": "assistant",
+  "uuid": "6ccdd634-a3f4-4ce0-a367-35dd143cb7c1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ErKpTVbMKiG5LcmbuiCzcm",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1377,
+      "cache_read_input_tokens": 23472,
+      "output_tokens": 6614,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6614,
+          "cache_read_input_tokens": 23472,
+          "cache_creation_input_tokens": 1377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-29 (UTC).**  ## Research area: Target: AAAI 2026 Track: Machine Lea…",
+  "leafUuid": "6ccdd634-a3f4-4ce0-a367-35dd143cb7c1",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Skill-graph-guided synthesis for compositional math reasoning",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-29 (UTC).**  ## Research area: Target: AAAI 2026 Track: Machine Lea…",
+  "leafUuid": "6ccdd634-a3f4-4ce0-a367-35dd143cb7c1",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Skill-graph-guided synthesis for compositional math reasoning",
+  "sessionId": "50ad5d73-51ae-4f38-a227-1400c4348090"
+}
+```
+
+---

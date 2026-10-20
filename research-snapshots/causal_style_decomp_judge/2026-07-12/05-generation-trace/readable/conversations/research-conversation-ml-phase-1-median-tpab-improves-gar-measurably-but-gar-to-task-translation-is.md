@@ -1,0 +1,2052 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义： 含义：TPAB improves GAR measurably but GAR-to-task translation is inconsistent —
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-2/29fdc2f4-0fc4-43c5-b68a-0b96e771912b.jsonl`
+- **Structured JSON:** [`50ae56c1682559b6b7ab.json`](../../sessions/50/50ae56c1682559b6b7ab.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-18T10:26:29.872Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T10:26:29.872Z",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：\n\n含义：TPAB improves GAR measurably but GAR-to-task translation is inconsistent — works for some task types (extraction, instruction following) but not others (reasoning, summarization). Cross-model analysis replicates but TPAB training benefit is model-dependent.\n核心假设：['A1 PARTIALLY HOLDS: TPAB improves GAR but effect concentrates on extraction-type tasks where goal tokens are explicitly retrievable; reasoning tasks show weaker coupling', 'A2 PARTIALLY HOLDS: GAR→task translation significant for 3-4 of 6 task types; remaining tasks show GAR improvement without task accuracy gain, suggesting GAR is necessary but not sufficient', 'A3 HOLDS: Dual-mechanism stratification replicates cross-model (this is an observation, less fragile than intervention)', 'A4 MARGINAL: TPAB beats LoRA-only on GAR but task-level margin is within noise for some tasks; not clearly better than behavioral training on task metrics', 'A5 HOLDS: No meaningful MMLU regression']\n关键指标范围：{'tpab_gar_improvement_d15_pp': [2.0, 5.0], 'tpab_gar_improvement_d25_pp': [2.5, 6.0], 'tpab_shallow_layer_gar_lift_pp': [1.5, 4.0], 'task_accuracy_improvement_abs_pct': [0.5, 2.5], 'task_types_with_sig_improvement': [3, 4], 'tpab_vs_lora_only_gar_margin_pp': [0.5, 2.0], 'cross_model_dual_mechanism_replication': [2, 2], 'cross_model_tpab_benefit_replication': [1, 2], 'mmlu_regression_pct': [0.0, 1.0], 'hf_real_conv_gar_improvement_pp': [1.0, 3.0]}\n叙事方向：Reweight paper toward analysis-led framing. Claims 1-2 (dual-mechanism + TB-RoPE negative) become primary contributions. Claim 3 (TPAB) softened from 'fix' to 'mechanism-aware mitigation that validates the analysis' — emphasize GAR improvement as proof that the mechanistic diagnosis is actionable, rather than claiming a complete solution. Claim 4 narrowed to task types where translation holds. Title shifts toward 'Understanding and Mitigating Multi-Turn Goal Accessibility Decline'. Still viable for NAACL — analysis novelty carries the paper, TPAB is supporting evidence rather than headline result.\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: goal_accessibility_preservation\nvenue: ARR October 2026\nfocus: Key tension: pivot from TB-RoPE (falsified) to TPAB. Paper combines mechanism analysis (dual-mechanism GAR decline) with mechanism-aware intervention (turn-position bias). Strongest risk: GAR improvement may not translate to task performance. Second risk: TPAB novelty vs ALiBi/GOAT/relative bias. Third risk: only validated on Qwen3-8B so far.\n\n## paper_framing.md\n\n# Paper Framing — Goal Accessibility Preservation\n\n## Target Venue\nARR October 2026 → NAACL 2027 (PRIMARY)\n\n## Title (Working)\nTurn-Position Attention Bias: A Mechanism-Aware Fix for Multi-Turn Goal Accessibility Decline\n\n## Core Insight\nMulti-turn GAR (Goal Accessibility Ratio) decline operates through two distinct mechanisms at different transformer layers:\n- **Shallow layers (L0-5)**: softmax competition — as conversation grows, more tokens compete for attention mass, diluting goal-token attention regardless of Q-K alignment quality\n- **Deep layers (L10+)**: Q-K geometric misalignment — query-key cosine similarity genuinely degrades with positional distance\n\nRoPE positional distance is NOT the driver of shallow-layer GAR decline (TB-RoPE compression yields +0.00pp, definitively falsified). The dominant mechanism is softmax dilution, which is orthogonal to positional encoding geometry.\n\n## Core Claims\n\n### Claim 1 (Analysis): Dual-Mechanism GAR Decline\nMulti-turn GAR decline is driven by two distinct mechanisms stratified by layer depth. Shallow layers (L0-5) exhibit softmax-competition-driven decline where QKA barely changes (12%) while GAR drops 48-56%. Deep layers (L10+) show genuine Q-K geometric misalignment (QKA-GAR ρ > 0.8). This mechanistic stratification has not been reported in prior work.\n\n**Evidence needed**: Per-layer GAR + QKA analysis across multiple models (Qwen3-8B confirmed; need Llama-3-8B, Mistral-7B for generality). Fallback proxy analysis (4 Q/K metrics all fail at shallow layers).\n\n### Claim 2 (Negative Result): Position Distance is Not the Bottleneck\nCompressing inter-turn RoPE positional distances (TB-RoPE) has zero measurable effect on GAR (+0.00pp with γ=0.7 compression). This falsifies the hypothesis that RoPE distance drives multi-turn attention decay, contradicting implications from \"When Attention Closes\" and \"Lost in the Middle at Birth\".\n\n**Evidence needed**: TB-RoPE-only (no training) showing +0.00pp across all layers and depths. TB-RoPE+LoRA showing no improvement. Multiple γ values if reviewers demand (but mechanism argument is stronger).\n\n### Claim 3 (Method): Turn-Position Attention Bias (TPAB)\nA lightweight learnable bias in attention logits, indexed by turn position rather than token distance, directly counteracts softmax dilution at shallow layers. TPAB adds ~35K parameters (per-layer, per-head, per-turn-position bias), is FlashAttention-compatible, and improves both GAR and downstream task performance without single-turn regression.\n\n**Evidence needed**: GAR improvement > 5pp at depth 15+, task-level accuracy improvement, MMLU preservation, ablation (TPAB-only vs TPAB+LoRA vs LoRA-only).\n\n### Claim 4 (Generalization): Mechanism-Aware > Mechanism-Agnostic\nTPAB (mechanism-aware, targeting softmax competition) outperforms mechanism-agnostic approaches: behavioral training (TurnWise, RLAAR), position modification (TB-RoPE), and general attention priors (temperature scaling). The advantage is because TPAB directly addresses the identified bottleneck.\n\n**Evidence needed**: Head-to-head comparison with baselines on both GAR and task metrics.\n\n## Anticipated Reviewer Concerns\n\n### C1: \"GAR improvement doesn't mean task performance improvement\"\n**Response**: We include task-level evaluation (instruction following accuracy, extraction accuracy) alongside GAR. If GAR improves but tasks don't, we honestly report and discuss.\n**Experiments**: Task accuracy evaluation on sharded simulation benchmark (6 task types).\n\n### C2: \"Only tested on one model (Qwen3-8B)\"\n**Response**: Cross-model validation on Llama-3-8B and Mistral-7B for analysis claims. TPAB training on at least 2 model families.\n**Experiments**: Multi-model GAR analysis + TPAB training.\n\n### C3: \"TPAB is just ALiBi/relative position bias with different indexing\"\n**Response**: ALiBi is fixed linear decay by token distance; TPAB is learnable bias by turn structure. The motivation is fundamentally different (softmax competition at turn boundaries vs general recency bias). TPAB is mechanism-aware — designed from the dual-mechanism analysis, not a generic position bias.\n**Experiments**: Ablation comparing TPAB vs ALiBi-style bias vs uniform bias.\n\n### C4: \"Training data is synthetic\"\n**Response**: MVP uses synthetic data for controlled validation. Full experiments include real multi-turn data (ShareGPT, WildChat). HF benchmark (627 real conversations) used for evaluation.\n**Experiments**: Train on real data, eval on both synthetic and real.\n\n### C5: \"How does this interact with longer context windows / different architectures?\"\n**Response**: TPAB is architecture-agnostic (works on any transformer with softmax attention). Context length doesn't change the softmax competition mechanism — more tokens always dilute regardless of window size.\n**Experiments**: Test at different context lengths if feasible.\n\n### C6: \"Why not just use attention-guided loss instead of bias?\"\n**Response**: Attention-guided loss requires goal token labels and attention materialization (expensive, not FlashAttention-compatible). TPAB is label-free and kernel-compatible. We include attention-guided loss as an ablation to compare approaches.\n\n## Paper Structure Outline\n1. Introduction: Multi-turn degradation problem → existing fixes treat symptoms → we identify root mechanism → propose mechanism-aware fix\n2. Background: GAR definition, multi-turn attention decay, RoPE and softmax\n3. Mechanism Analysis: Dual-mechanism discovery (shallow softmax competition + deep Q-K decay) + TB-RoPE negative result\n4. Method: TPAB design motivated by mechanism analysis\n5. Experiments: GAR evaluation + task-level evaluation + baselines + ablations\n6. Analysis: Per-layer GAR visualization, bias parameter analysis, cross-model validation\n7. Discussion & Limitations: Goal-stable scope, synthetic data, architecture specificity\n\n\n## registry (completed experiments)\n\n- exp_id: mvp_a_gar_qka\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    extraction_gar_d5: 0.0499\n    extraction_gar_d15: 0.0353\n    extraction_gar_d25: 0.0257\n    extraction_gar_decline_pct: 48.5\n    reasoning_gar_d5: 0.0374\n    reasoning_gar_d15: 0.0174\n    reasoning_gar_d25: 0.0163\n    reasoning_gar_decline_pct: 56.4\n    extraction_goal_critical_rho_d5: 0.2379\n    reasoning_goal_critical_rho_d5: 0.2944\n    extraction_max_layer_rho: 0.91\n    extraction_max_layer_rho_layer: L10_d25\n    reasoning_max_layer_rho: 0.92\n    reasoning_max_layer_rho_layer: L14_d5\n    layers_with_rho_gt_0.8:\n    - L10\n    - L14\n    - L23\n    - L28\n    - L30\n    - L31\n    - L32\n    - L34\n    pass_gar_decline: true\n    pass_goal_critical_rho: false\n- exp_id: fallback_proxy_test\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    qka_shallow_rho: 0.321\n    raw_dot_shallow_rho: 0.271\n    topk_align_shallow_rho: 0.431\n    norm_ratio_shallow_rho: -0.09\n    qka_deep_rho: 0.664\n    topk_align_deep_rho: 0.669\n    best_proxy: topk_align\n    best_shallow_rho: 0.431\n- exp_id: mvp_b_tbrope_g0.7\n  name: ''\n  status: QUEUED\n  conclusion: ''\n  metrics: {}\n- exp_id: mvp_b_tbrope_g07\n  name: ''\n  status: ANALYZING\n  conclusion: negative\n  metrics:\n    train_loss: 0.442\n    final_loss: 0.2\n    epochs: 3\n    total_steps: 1875\n    wall_clock_seconds: 6796\n    trainable_params: 30.67M (0.37%)\n    samples_per_sec: 2.207\n    synthetic_extraction_d5_baseline: 0.0439\n    synthetic_extraction_d5_tbrope_lora: 0.0397\n    synthetic_extraction_d15_baseline: 0.0367\n    synthetic_extraction_d15_tbrope_lora: 0.0345\n    synthetic_extraction_d25_baseline: 0.0218\n    synthetic_extraction_d25_tbrope_lora: 0.0181\n    synthetic_reasoning_d15_baseline: 0.0245\n    synthetic_reasoning_d15_tbrope_lora: 0.0249\n    hf_baseline_gar: 0.0454\n    hf_tbrope_lora_gar: 0.0437\n    tbrope_only_effect_pp: 0\n    lora_contribution_pp: -0.25\n    synthetic_shallow_improvement_pp: 0.61\n    synthetic_deep_degradation_pp: -0.48\n    pass_gar_improvement_5pp: false\n    hf_samples_evaluated: 417\n    hf_samples_skipped: 92\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: median\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-18T10:26:29.875Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T10:26:29.875Z",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b"
+}
+```
+
+---
+
+## Round 1
+
+21 recorded events
+
+### User
+
+_source line 3 · 2026-05-18T10:26:29.896Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：
+
+含义：TPAB improves GAR measurably but GAR-to-task translation is inconsistent — works for some task types (extraction, instruction following) but not others (reasoning, summarization). Cross-model analysis replicates but TPAB training benefit is model-dependent.
+核心假设：['A1 PARTIALLY HOLDS: TPAB improves GAR but effect concentrates on extraction-type tasks where goal tokens are explicitly retrievable; reasoning tasks show weaker coupling', 'A2 PARTIALLY HOLDS: GAR→task translation significant for 3-4 of 6 task types; remaining tasks show GAR improvement without task accuracy gain, suggesting GAR is necessary but not sufficient', 'A3 HOLDS: Dual-mechanism stratification replicates cross-model (this is an observation, less fragile than intervention)', 'A4 MARGINAL: TPAB beats LoRA-only on GAR but task-level margin is within noise for some tasks; not clearly better than behavioral training on task metrics', 'A5 HOLDS: No meaningful MMLU regression']
+关键指标范围：{'tpab_gar_improvement_d15_pp': [2.0, 5.0], 'tpab_gar_improvement_d25_pp': [2.5, 6.0], 'tpab_shallow_layer_gar_lift_pp': [1.5, 4.0], 'task_accuracy_improvement_abs_pct': [0.5, 2.5], 'task_types_with_sig_improvement': [3, 4], 'tpab_vs_lora_only_gar_margin_pp': [0.5, 2.0], 'cross_model_dual_mechanism_replication': [2, 2], 'cross_model_tpab_benefit_replication': [1, 2], 'mmlu_regression_pct': [0.0, 1.0], 'hf_real_conv_gar_improvement_pp': [1.0, 3.0]}
+叙事方向：Reweight paper toward analysis-led framing. Claims 1-2 (dual-mechanism + TB-RoPE negative) become primary contributions. Claim 3 (TPAB) softened from 'fix' to 'mechanism-aware mitigation that validates the analysis' — emphasize GAR improvement as proof that the mechanistic diagnosis is actionable, rather than claiming a complete solution. Claim 4 narrowed to task types where translation holds. Title shifts toward 'Understanding and Mitigating Multi-Turn Goal Accessibility Decline'. Still viable for NAACL — analysis novelty carries the paper, TPAB is supporting evidence rather than headline result.
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: goal_accessibility_preservation
+venue: ARR October 2026
+focus: Key tension: pivot from TB-RoPE (falsified) to TPAB. Paper combines mechanism analysis (dual-mechanism GAR decline) with mechanism-aware intervention (turn-position bias). Strongest risk: GAR improvement may not translate to task performance. Second risk: TPAB novelty vs ALiBi/GOAT/relative bias. Third risk: only validated on Qwen3-8B so far.
+
+## paper_framing.md
+
+# Paper Framing — Goal Accessibility Preservation
+
+## Target Venue
+ARR October 2026 → NAACL 2027 (PRIMARY)
+
+## Title (Working)
+Turn-Position Attention Bias: A Mechanism-Aware Fix for Multi-Turn Goal Accessibility Decline
+
+## Core Insight
+Multi-turn GAR (Goal Accessibility Ratio) decline operates through two distinct mechanisms at different transformer layers:
+- **Shallow layers (L0-5)**: softmax competition — as conversation grows, more tokens compete for attention mass, diluting goal-token attention regardless of Q-K alignment quality
+- **Deep layers (L10+)**: Q-K geometric misalignment — query-key cosine similarity genuinely degrades with positional distance
+
+RoPE positional distance is NOT the driver of shallow-layer GAR decline (TB-RoPE compression yields +0.00pp, definitively falsified). The dominant mechanism is softmax dilution, which is orthogonal to positional encoding geometry.
+
+## Core Claims
+
+### Claim 1 (Analysis): Dual-Mechanism GAR Decline
+Multi-turn GAR decline is driven by two distinct mechanisms stratified by layer depth. Shallow layers (L0-5) exhibit softmax-competition-driven decline where QKA barely changes (12%) while GAR drops 48-56%. Deep layers (L10+) show genuine Q-K geometric misalignment (QKA-GAR ρ > 0.8). This mechanistic stratification has not been reported in prior work.
+
+**Evidence needed**: Per-layer GAR + QKA analysis across multiple models (Qwen3-8B confirmed; need Llama-3-8B, Mistral-7B for generality). Fallback proxy analysis (4 Q/K metrics all fail at shallow layers).
+
+### Claim 2 (Negative Result): Position Distance is Not the Bottleneck
+Compressing inter-turn RoPE positional distances (TB-RoPE) has zero measurable effect on GAR (+0.00pp with γ=0.7 compression). This falsifies the hypothesis that RoPE distance drives multi-turn attention decay, contradicting implications from "When Attention Closes" and "Lost in the Middle at Birth".
+
+**Evidence needed**: TB-RoPE-only (no training) showing +0.00pp across all layers and depths. TB-RoPE+LoRA showing no improvement. Multiple γ values if reviewers demand (but mechanism argument is stronger).
+
+### Claim 3 (Method): Turn-Position Attention Bias (TPAB)
+A lightweight learnable bias in attention logits, indexed by turn position rather than token distance, directly counteracts softmax dilution at shallow layers. TPAB adds ~35K parameters (per-layer, per-head, per-turn-position bias), is FlashAttention-compatible, and improves both GAR and downstream task performance without single-turn regression.
+
+**Evidence needed**: GAR improvement > 5pp at depth 15+, task-level accuracy improvement, MMLU preservation, ablation (TPAB-only vs TPAB+LoRA vs LoRA-only).
+
+### Claim 4 (Generalization): Mechanism-Aware > Mechanism-Agnostic
+TPAB (mechanism-aware, targeting softmax competition) outperforms mechanism-agnostic approaches: behavioral training (TurnWise, RLAAR), position modification (TB-RoPE), and general attention priors (temperature scaling). The advantage is because TPAB directly addresses the identified bottleneck.
+
+**Evidence needed**: Head-to-head comparison with baselines on both GAR and task metrics.
+
+## Anticipated Reviewer Concerns
+
+### C1: "GAR improvement doesn't mean task performance improvement"
+**Response**: We include task-level evaluation (instruction following accuracy, extraction accuracy) alongside GAR. If GAR improves but tasks don't, we honestly report and discuss.
+**Experiments**: Task accuracy evaluation on sharded simulation benchmark (6 task types).
+
+### C2: "Only tested on one model (Qwen3-8B)"
+**Response**: Cross-model validation on Llama-3-8B and Mistral-7B for analysis claims. TPAB training on at least 2 model families.
+**Experiments**: Multi-model GAR analysis + TPAB training.
+
+### C3: "TPAB is just ALiBi/relative position bias with different indexing"
+**Response**: ALiBi is fixed linear decay by token distance; TPAB is learnable bias by turn structure. The motivation is fundamentally different (softmax competition at turn boundaries vs general recency bias). TPAB is mechanism-aware — designed from the dual-mechanism analysis, not a generic position bias.
+**Experiments**: Ablation comparing TPAB vs ALiBi-style bias vs uniform bias.
+
+### C4: "Training data is synthetic"
+**Response**: MVP uses synthetic data for controlled validation. Full experiments include real multi-turn data (ShareGPT, WildChat). HF benchmark (627 real conversations) used for evaluation.
+**Experiments**: Train on real data, eval on both synthetic and real.
+
+### C5: "How does this interact with longer context windows / different architectures?"
+**Response**: TPAB is architecture-agnostic (works on any transformer with softmax attention). Context length doesn't change the softmax competition mechanism — more tokens always dilute regardless of window size.
+**Experiments**: Test at different context lengths if feasible.
+
+### C6: "Why not just use attention-guided loss instead of bias?"
+**Response**: Attention-guided loss requires goal token labels and attention materialization (expensive, not FlashAttention-compatible). TPAB is label-free and kernel-compatible. We include attention-guided loss as an ablation to compare approaches.
+
+## Paper Structure Outline
+1. Introduction: Multi-turn degradation problem → existing fixes treat symptoms → we identify root mechanism → propose mechanism-aware fix
+2. Background: GAR definition, multi-turn attention decay, RoPE and softmax
+3. Mechanism Analysis: Dual-mechanism discovery (shallow softmax competition + deep Q-K decay) + TB-RoPE negative result
+4. Method: TPAB design motivated by mechanism analysis
+5. Experiments: GAR evaluation + task-level evaluation + baselines + ablations
+6. Analysis: Per-layer GAR visualization, bias parameter analysis, cross-model validation
+7. Discussion & Limitations: Goal-stable scope, synthetic data, architecture specificity
+
+
+## registry (completed experiments)
+
+- exp_id: mvp_a_gar_qka
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    extraction_gar_d5: 0.0499
+    extraction_gar_d15: 0.0353
+    extraction_gar_d25: 0.0257
+    extraction_gar_decline_pct: 48.5
+    reasoning_gar_d5: 0.0374
+    reasoning_gar_d15: 0.0174
+    reasoning_gar_d25: 0.0163
+    reasoning_gar_decline_pct: 56.4
+    extraction_goal_critical_rho_d5: 0.2379
+    reasoning_goal_critical_rho_d5: 0.2944
+    extraction_max_layer_rho: 0.91
+    extraction_max_layer_rho_layer: L10_d25
+    reasoning_max_layer_rho: 0.92
+    reasoning_max_layer_rho_layer: L14_d5
+    layers_with_rho_gt_0.8:
+    - L10
+    - L14
+    - L23
+    - L28
+    - L30
+    - L31
+    - L32
+    - L34
+    pass_gar_decline: true
+    pass_goal_critical_rho: false
+- exp_id: fallback_proxy_test
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    qka_shallow_rho: 0.321
+    raw_dot_shallow_rho: 0.271
+    topk_align_shallow_rho: 0.431
+    norm_ratio_shallow_rho: -0.09
+    qka_deep_rho: 0.664
+    topk_align_deep_rho: 0.669
+    best_proxy: topk_align
+    best_shallow_rho: 0.431
+- exp_id: mvp_b_tbrope_g0.7
+  name: ''
+  status: QUEUED
+  conclusion: ''
+  metrics: {}
+- exp_id: mvp_b_tbrope_g07
+  name: ''
+  status: ANALYZING
+  conclusion: negative
+  metrics:
+    train_loss: 0.442
+    final_loss: 0.2
+    epochs: 3
+    total_steps: 1875
+    wall_clock_seconds: 6796
+    trainable_params: 30.67M (0.37%)
+    samples_per_sec: 2.207
+    synthetic_extraction_d5_baseline: 0.0439
+    synthetic_extraction_d5_tbrope_lora: 0.0397
+    synthetic_extraction_d15_baseline: 0.0367
+    synthetic_extraction_d15_tbrope_lora: 0.0345
+    synthetic_extraction_d25_baseline: 0.0218
+    synthetic_extraction_d25_tbrope_lora: 0.0181
+    synthetic_reasoning_d15_baseline: 0.0245
+    synthetic_reasoning_d15_tbrope_lora: 0.0249
+    hf_baseline_gar: 0.0454
+    hf_tbrope_lora_gar: 0.0437
+    tbrope_only_effect_pp: 0
+    lora_contribution_pp: -0.25
+    synthetic_shallow_improvement_pp: 0.61
+    synthetic_deep_degradation_pp: -0.48
+    pass_gar_improvement_5pp: false
+    hf_samples_evaluated: 417
+    hf_samples_skipped: 92
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: median
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "214f5769-f892-4251-a885-eefe1e8f6568",
+  "type": "user",
+  "uuid": "2dafbf69-2988-42f1-ab93-916e582c8000",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-18T10:26:29.894Z_
+
+```json
+{
+  "parentUuid": "2dafbf69-2988-42f1-ab93-916e582c8000",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "48579374-18d3-406d-864b-8e5190f33ff6",
+  "timestamp": "2026-05-18T10:26:29.894Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-18T10:26:29.895Z_
+
+```json
+{
+  "parentUuid": "48579374-18d3-406d-864b-8e5190f33ff6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3456080f-124f-4357-a3c7-3ad8b36ae6ff",
+  "timestamp": "2026-05-18T10:26:29.895Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanism-aware mitigation for multi-turn goal accessibility",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-18T10:26:33.260Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to generate detailed imagined experiment data for each "planned" experiment in their experiment plan, based on the "median" tier definition they've provided. Let me first find and read the experiment_plan file to understand what experiments are planned.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3456080f-124f-4357-a3c7-3ad8b36ae6ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb9seWuTc4mzWMTJxTYi5",
+  "type": "assistant",
+  "uuid": "594eb004-16a5-4d4d-ba66-f102b1f12730",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UhTShhW3XkhK2KnHXbvvH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8789,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8789,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 8789,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8789
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-18T10:26:33.775Z_
+
+Let我先读取 experiment_plan 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "594eb004-16a5-4d4d-ba66-f102b1f12730",
+  "isSidechain": false,
+  "requestId": "req_011Cb9seWuTc4mzWMTJxTYi5",
+  "type": "assistant",
+  "uuid": "0bde8c84-6cc6-4e71-b940-a03f76478ad0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UhTShhW3XkhK2KnHXbvvH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8789,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8789,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 8789,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8789
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T10:26:34.263Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01L27Z2u8vtq8yEEeZKhbuho`</summary>
+
+```json
+{
+  "pattern": "**/*experiment_plan*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bde8c84-6cc6-4e71-b940-a03f76478ad0",
+  "isSidechain": false,
+  "requestId": "req_011Cb9seWuTc4mzWMTJxTYi5",
+  "type": "assistant",
+  "uuid": "01d9e938-40f4-4419-b84c-2258b0612d30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UhTShhW3XkhK2KnHXbvvH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8789,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8789,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 8789,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8789
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T10:26:34.293Z_
+
+<details><summary>↩ Tool result · `toolu_01L27Z2u8vtq8yEEeZKhbuho`</summary>
+
+```text
+projects/collapse_severity_monitor/experiment_plan.lock
+projects/collapse_severity_monitor/experiment_plan.yaml
+projects/streamprobe_adversarial_robustness/experiment_plan.yaml
+projects/goal_accessibility_preservation/experiment_plan.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01d9e938-40f4-4419-b84c-2258b0612d30",
+  "isSidechain": false,
+  "promptId": "214f5769-f892-4251-a885-eefe1e8f6568",
+  "type": "user",
+  "uuid": "f8a5ee23-991d-4431-b9cb-645642e8d68b",
+  "toolUseResult": {
+    "filenames": [
+      "projects/collapse_severity_monitor/experiment_plan.lock",
+      "projects/collapse_severity_monitor/experiment_plan.yaml",
+      "projects/streamprobe_adversarial_robustness/experiment_plan.yaml",
+      "projects/goal_accessibility_preservation/experiment_plan.yaml"
+    ],
+    "durationMs": 17,
+    "numFiles": 4,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "01d9e938-40f4-4419-b84c-2258b0612d30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T10:26:34.368Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01A5tov1GmBxdsiZ9NPdwuCJ`</summary>
+
+```json
+{
+  "pattern": "**/*experiment*plan*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8a5ee23-991d-4431-b9cb-645642e8d68b",
+  "isSidechain": false,
+  "requestId": "req_011Cb9seWuTc4mzWMTJxTYi5",
+  "type": "assistant",
+  "uuid": "ef60e73d-ff03-42f2-9cd0-a81ef07e87ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UhTShhW3XkhK2KnHXbvvH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8789,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8789,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 8789,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8789
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T10:26:34.428Z_
+
+<details><summary>↩ Tool result · `toolu_01A5tov1GmBxdsiZ9NPdwuCJ`</summary>
+
+```text
+projects/collapse_severity_monitor/experiment_plan.lock
+projects/collapse_severity_monitor/experiment_plan.yaml
+projects/streamprobe_adversarial_robustness/experiment_plan.yaml
+projects/goal_accessibility_preservation/experiment_plan.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef60e73d-ff03-42f2-9cd0-a81ef07e87ec",
+  "isSidechain": false,
+  "promptId": "214f5769-f892-4251-a885-eefe1e8f6568",
+  "type": "user",
+  "uuid": "b01f27bb-61d8-460d-b4d7-d4aeb8456f7b",
+  "toolUseResult": {
+    "filenames": [
+      "projects/collapse_severity_monitor/experiment_plan.lock",
+      "projects/collapse_severity_monitor/experiment_plan.yaml",
+      "projects/streamprobe_adversarial_robustness/experiment_plan.yaml",
+      "projects/goal_accessibility_preservation/experiment_plan.yaml"
+    ],
+    "durationMs": 28,
+    "numFiles": 4,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "ef60e73d-ff03-42f2-9cd0-a81ef07e87ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：  含义：TPAB improves GAR measurably but GAR-to-task translation is inconsistent — works for some task types (extraction, instruction following) but not others (…",
+  "leafUuid": "b01f27bb-61d8-460d-b4d7-d4aeb8456f7b",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanism-aware mitigation for multi-turn goal accessibility",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T10:26:37.188Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011J65RBgHLTxCmVvZKpfqvK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/goal_accessibility_preservation/experiment_plan.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b01f27bb-61d8-460d-b4d7-d4aeb8456f7b",
+  "isSidechain": false,
+  "requestId": "req_011Cb9serBKypJKrhTEHnS1T",
+  "type": "assistant",
+  "uuid": "13469a44-c723-48a6-97f8-913ba198e8e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYuJi1fZv2VzGoMRQzi4gN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 362,
+      "cache_read_input_tokens": 20630,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 362,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 20630,
+          "cache_creation_input_tokens": 362,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 362
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T10:26:37.198Z_
+
+<details><summary>↩ Tool result · `toolu_011J65RBgHLTxCmVvZKpfqvK`</summary>
+
+```text
+1	## Experiment Plan — goal_accessibility_preservation
+2	## Auto-merged with registry status via read_experiment_plan_with_status
+3	
+4	experiments:
+5	  # ── Analysis Experiments (Claim 1 + 2) ──
+6	
+7	  - plan_id: analysis_gar_qwen3
+8	    name: "GAR + QKA dual-mechanism analysis on Qwen3-8B"
+9	    claim: "Claim 1 (dual-mechanism)"
+10	    hypothesis: "Shallow layers show softmax-competition-driven GAR decline (low QKA-GAR ρ), deep layers show Q-K misalignment (high ρ)"
+11	    priority: P0
+12	    status: done
+13	    registry_id: mvp_a_gar_qka
+14	    gpu_hours: 0.1
+15	    notes: "GAR decline 48-56%, shallow ρ=0.22-0.30, deep ρ>0.8. Confirmed."
+16	
+17	  - plan_id: analysis_proxy_comparison
+18	    name: "4-proxy systematic comparison"
+19	    claim: "Claim 1 (dual-mechanism)"
+20	    hypothesis: "All Q/K-based proxies fail at shallow layers due to softmax competition mechanism"
+21	    priority: P0
+22	    status: done
+23	    registry_id: fallback_proxy_test
+24	    gpu_hours: 0.1
+25	    notes: "All 4 proxies shallow ρ<0.5. Confirmed."
+26	
+27	  - plan_id: analysis_tbrope_falsification
+28	    name: "TB-RoPE position compression falsification"
+29	    claim: "Claim 2 (negative result)"
+30	    hypothesis: "RoPE distance compression improves GAR"
+31	    priority: P0
+32	    status: done
+33	    registry_id: mvp_b_tbrope_g07
+34	    gpu_hours: 2.0
+35	    notes: "TB-RoPE-only +0.00pp. Falsified."
+36	
+37	  - plan_id: analysis_cross_model_llama
+38	    name: "Dual-mechanism analysis on Llama-3-8B"
+39	    claim: "Claim 1 (generality)"
+40	    hypothesis: "Same dual-mechanism pattern (shallow softmax, deep Q-K) holds on Llama-3-8B"
+41	    priority: P1
+42	    status: planned
+43	    depends_on: []
+44	    gpu_hours: 2.0
+45	
+46	  - plan_id: analysis_cross_model_mistral
+47	    name: "Dual-mechanism analysis on Mistral-7B"
+48	    claim: "Claim 1 (generality)"
+49	    hypothesis: "Same dual-mechanism pattern holds on Mistral-7B"
+50	    priority: P2
+51	    status: planned
+52	    depends_on: []
+53	    gpu_hours: 2.0
+54	
+55	  # ── TPAB Method Experiments (Claim 3) ──
+56	
+57	  - plan_id: tpab_mvp
+58	    name: "TPAB concept validation on Qwen3-8B"
+59	    claim: "Claim 3 (method)"
+60	    hypothesis: "Turn-position attention bias improves GAR > 5pp at depth 15+ and improves task accuracy"
+61	    priority: P0
+62	    status: planned
+63	    depends_on: []
+64	    gpu_hours: 15.0
+65	    notes: "LoRA rank 32 + TPAB ~35K params, 5K synthetic data, next-token loss"
+66	
+67	  - plan_id: tpab_real_data
+68	    name: "TPAB training on real multi-turn data"
+69	    claim: "Claim 3 (method)"
+70	    hypothesis: "TPAB trained on real data (ShareGPT/WildChat) matches or exceeds synthetic-trained performance"
+71	    priority: P1
+72	    status: planned
+73	    depends_on: [tpab_mvp]
+74	    gpu_hours: 20.0
+75	
+76	  - plan_id: tpab_ablation_components
+77	    name: "TPAB ablation: TPAB-only vs TPAB+LoRA vs LoRA-only"
+78	    claim: "Claim 3 (method)"
+79	    hypothesis: "TPAB provides independent GAR benefit beyond LoRA training"
+80	    priority: P1
+81	    status: planned
+82	    depends_on: [tpab_mvp]
+83	    gpu_hours: 30.0
+84	
+85	  - plan_id: tpab_ablation_bias_design
+86	    name: "Bias design ablation: learned vs fixed vs ALiBi-style vs uniform"
+87	    claim: "Claim 3 + C3 (reviewer concern)"
+88	    hypothesis: "Learned turn-position bias outperforms fixed/ALiBi-style/uniform alternatives"
+89	    priority: P1
+90	    status: planned
+91	    depends_on: [tpab_mvp]
+92	    gpu_hours: 20.0
+93	
+94	  # ── Baseline Comparisons (Claim 4) ──
+95	
+96	  - plan_id: baseline_turnwise
+97	    name: "TurnWise-50K baseline reproduction"
+98	    claim: "Claim 4 (mechanism-aware > agnostic)"
+99	    hypothesis: "TurnWise (mechanism-agnostic augmentation) underperforms TPAB (mechanism-aware)"
+100	    priority: P1
+101	    status: planned
+102	    depends_on: [tpab_mvp]
+103	    gpu_hours: 20.0
+104	
+105	  - plan_id: baseline_temperature
+106	    name: "Softmax temperature scaling ablation"
+107	    claim: "Claim 1 (mechanism validation) + Claim 4"
+108	    hypothesis: "Layer-specific temperature scaling validates softmax competition but causes regression"
+109	    priority: P2
+110	    status: planned
+111	    depends_on: [tpab_mvp]
+112	    gpu_hours: 15.0
+113	
+114	  # ── Evaluation (Cross-cutting) ──
+115	
+116	  - plan_id: eval_task_level
+117	    name: "Task-level accuracy evaluation (beyond GAR)"
+118	    claim: "C1 (reviewer concern: GAR→task)"
+119	    hypothesis: "TPAB GAR improvement correlates with task accuracy improvement"
+120	    priority: P0
+121	    status: planned
+122	    depends_on: [tpab_mvp]
+123	    gpu_hours: 5.0
+124	
+125	  - plan_id: eval_mmlu_preservation
+126	    name: "MMLU single-turn preservation check"
+127	    claim: "Claim 3 (no regression)"
+128	    hypothesis: "TPAB+LoRA MMLU within 2pp of baseline"
+129	    priority: P0
+130	    status: planned
+131	    depends_on: [tpab_mvp]
+132	    gpu_hours: 4.0
+133	    notes: "MMLU baseline currently running"
+134	
+135	  - plan_id: eval_cross_model_tpab
+136	    name: "TPAB on Llama-3-8B"
+137	    claim: "Claim 3 + C2 (cross-model)"
+138	    hypothesis: "TPAB generalizes to non-Qwen architectures"
+139	    priority: P2
+140	    status: planned
+141	    depends_on: [tpab_mvp, analysis_cross_model_llama]
+142	    gpu_hours: 20.0
+143	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13469a44-c723-48a6-97f8-913ba198e8e5",
+  "isSidechain": false,
+  "promptId": "214f5769-f892-4251-a885-eefe1e8f6568",
+  "type": "user",
+  "uuid": "3b18e5d6-f93a-4bee-8c01-189c370391f0",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/goal_accessibility_preservation/experiment_plan.yaml",
+      "content": "## Experiment Plan — goal_accessibility_preservation\n## Auto-merged with registry status via read_experiment_plan_with_status\n\nexperiments:\n  # ── Analysis Experiments (Claim 1 + 2) ──\n\n  - plan_id: analysis_gar_qwen3\n    name: \"GAR + QKA dual-mechanism analysis on Qwen3-8B\"\n    claim: \"Claim 1 (dual-mechanism)\"\n    hypothesis: \"Shallow layers show softmax-competition-driven GAR decline (low QKA-GAR ρ), deep layers show Q-K misalignment (high ρ)\"\n    priority: P0\n    status: done\n    registry_id: mvp_a_gar_qka\n    gpu_hours: 0.1\n    notes: \"GAR decline 48-56%, shallow ρ=0.22-0.30, deep ρ>0.8. Confirmed.\"\n\n  - plan_id: analysis_proxy_comparison\n    name: \"4-proxy systematic comparison\"\n    claim: \"Claim 1 (dual-mechanism)\"\n    hypothesis: \"All Q/K-based proxies fail at shallow layers due to softmax competition mechanism\"\n    priority: P0\n    status: done\n    registry_id: fallback_proxy_test\n    gpu_hours: 0.1\n    notes: \"All 4 proxies shallow ρ<0.5. Confirmed.\"\n\n  - plan_id: analysis_tbrope_falsification\n    name: \"TB-RoPE position compression falsification\"\n    claim: \"Claim 2 (negative result)\"\n    hypothesis: \"RoPE distance compression improves GAR\"\n    priority: P0\n    status: done\n    registry_id: mvp_b_tbrope_g07\n    gpu_hours: 2.0\n    notes: \"TB-RoPE-only +0.00pp. Falsified.\"\n\n  - plan_id: analysis_cross_model_llama\n    name: \"Dual-mechanism analysis on Llama-3-8B\"\n    claim: \"Claim 1 (generality)\"\n    hypothesis: \"Same dual-mechanism pattern (shallow softmax, deep Q-K) holds on Llama-3-8B\"\n    priority: P1\n    status: planned\n    depends_on: []\n    gpu_hours: 2.0\n\n  - plan_id: analysis_cross_model_mistral\n    name: \"Dual-mechanism analysis on Mistral-7B\"\n    claim: \"Claim 1 (generality)\"\n    hypothesis: \"Same dual-mechanism pattern holds on Mistral-7B\"\n    priority: P2\n    status: planned\n    depends_on: []\n    gpu_hours: 2.0\n\n  # ── TPAB Method Experiments (Claim 3) ──\n\n  - plan_id: tpab_mvp\n    name: \"TPAB concept validation on Qwen3-8B\"\n    claim: \"Claim 3 (method)\"\n    hypothesis: \"Turn-position attention bias improves GAR > 5pp at depth 15+ and improves task accuracy\"\n    priority: P0\n    status: planned\n    depends_on: []\n    gpu_hours: 15.0\n    notes: \"LoRA rank 32 + TPAB ~35K params, 5K synthetic data, next-token loss\"\n\n  - plan_id: tpab_real_data\n    name: \"TPAB training on real multi-turn data\"\n    claim: \"Claim 3 (method)\"\n    hypothesis: \"TPAB trained on real data (ShareGPT/WildChat) matches or exceeds synthetic-trained performance\"\n    priority: P1\n    status: planned\n    depends_on: [tpab_mvp]\n    gpu_hours: 20.0\n\n  - plan_id: tpab_ablation_components\n    name: \"TPAB ablation: TPAB-only vs TPAB+LoRA vs LoRA-only\"\n    claim: \"Claim 3 (method)\"\n    hypothesis: \"TPAB provides independent GAR benefit beyond LoRA training\"\n    priority: P1\n    status: planned\n    depends_on: [tpab_mvp]\n    gpu_hours: 30.0\n\n  - plan_id: tpab_ablation_bias_design\n    name: \"Bias design ablation: learned vs fixed vs ALiBi-style vs uniform\"\n    claim: \"Claim 3 + C3 (reviewer concern)\"\n    hypothesis: \"Learned turn-position bias outperforms fixed/ALiBi-style/uniform alternatives\"\n    priority: P1\n    status: planned\n    depends_on: [tpab_mvp]\n    gpu_hours: 20.0\n\n  # ── Baseline Comparisons (Claim 4) ──\n\n  - plan_id: baseline_turnwise\n    name: \"TurnWise-50K baseline reproduction\"\n    claim: \"Claim 4 (mechanism-aware > agnostic)\"\n    hypothesis: \"TurnWise (mechanism-agnostic augmentation) underperforms TPAB (mechanism-aware)\"\n    priority: P1\n    status: planned\n    depends_on: [tpab_mvp]\n    gpu_hours: 20.0\n\n  - plan_id: baseline_temperature\n    name: \"Softmax temperature scaling ablation\"\n    claim: \"Claim 1 (mechanism validation) + Claim 4\"\n    hypothesis: \"Layer-specific temperature scaling validates softmax competition but causes regression\"\n    priority: P2\n    status: planned\n    depends_on: [tpab_mvp]\n    gpu_hours: 15.0\n\n  # ── Evaluation (Cross-cutting) ──\n\n  - plan_id: eval_task_level\n    name: \"Task-level accuracy evaluation (beyond GAR)\"\n    claim: \"C1 (reviewer concern: GAR→task)\"\n    hypothesis: \"TPAB GAR improvement correlates with task accuracy improvement\"\n    priority: P0\n    status: planned\n    depends_on: [tpab_mvp]\n    gpu_hours: 5.0\n\n  - plan_id: eval_mmlu_preservation\n    name: \"MMLU single-turn preservation check\"\n    claim: \"Claim 3 (no regression)\"\n    hypothesis: \"TPAB+LoRA MMLU within 2pp of baseline\"\n    priority: P0\n    status: planned\n    depends_on: [tpab_mvp]\n    gpu_hours: 4.0\n    notes: \"MMLU baseline currently running\"\n\n  - plan_id: eval_cross_model_tpab\n    name: \"TPAB on Llama-3-8B\"\n    claim: \"Claim 3 + C2 (cross-model)\"\n    hypothesis: \"TPAB generalizes to non-Qwen architectures\"\n    priority: P2\n    status: planned\n    depends_on: [tpab_mvp, analysis_cross_model_llama]\n    gpu_hours: 20.0\n",
+      "numLines": 143,
+      "startLine": 1,
+      "totalLines": 143
+    }
+  },
+  "sourceToolAssistantUUID": "13469a44-c723-48a6-97f8-913ba198e8e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17 · 2026-05-18T10:26:37.284Z_
+
+````json
+{
+  "parentUuid": "3b18e5d6-f93a-4bee-8c01-189c370391f0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "nested_memory",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/goal_accessibility_preservation/.claude/CLAUDE.md",
+    "content": {
+      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/goal_accessibility_preservation/.claude/CLAUDE.md",
+      "type": "Project",
+      "content": "## 当前项目\n当前绑定项目：**goal_accessibility_preservation**\n\n## 按需查阅\n- 项目配置：`load_project_config(\"goal_accessibility_preservation\")` 或 `load_project_config(\"goal_accessibility_preservation\", section=\"execution\")`\n- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n- 路线图：`read_roadmap()` 读取研究方向和短期任务\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/goal_accessibility_preservation/artifacts/`（写文件后用 `register_artifact` 注册）\n\n## Worker 操作规范\n\n### paper-writing-norms\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n\n## 更多 Skills（按需加载）\n\n执行相关任务前，先 Read 对应 skill 获取环境配置和最佳实践。\n\n- **ssh-env-setup** — 远程服务器 Python/CUDA 环境搭建规范——discovery-first 流程、PEP 668 处理、PyTorch 版本选择。当需要在远程服务器搭建训练环境时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/ssh-env-setup.skill.md`\n- **check-training-status** — 当用户问训练进度/实验状态/查状态时使用。用专用工具查看训练状态，禁止 ssh_execute。  →  `/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md`\n- **rebuttal** — 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。  →  `/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md`\n- **review-reviewer-session-start** — Review Reviewer session 启动初始化——检查论文格式、编译状态、材料清单。Review Reviewer 角色 session 启动时自动使用。  →  `/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md`\n- **reference-audit** — 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。  →  `/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md`\n- **accelerate-distributed** — HuggingFace Accelerate 分布式训练指南——4行代码实现多GPU/DeepSpeed/FSDP/混合精度。多GPU训练时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md`\n- **draw-paper-figure** — 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG  →  `/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md`\n- **experiment-analysis** — 实验结果分析框架——统计显著性检验、消融分析、baseline 对比、可视化建议。分析实验结果或撰写论文 Results 部分时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md`\n- **hf-hub** — HuggingFace Hub CLI (hf) — 下载/上传模型和数据集、管理缓存、搜索论文和模型。涉及 HuggingFace 资源操作时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md`\n- **latex-paper** — ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md`\n- **lm-eval-harness** — lm-evaluation-harness 模型评估指南——MMLU/GSM8K/HumanEval 等 60+ 学术基准测试。评估模型质量、对比实验时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md`\n- **ml-experiment-guide** — 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md`\n- **paper-banana** — 用 PaperBanana 生成发表级学术统计图——LLM 写 matplotlib 代码 + Critic 迭代 3 轮，输入 CSV/JSON 数据 + 意图描述即可。需要 GOOGLE_API_KEY。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md`\n- **paper-image-extractor** — 从论文 PDF 或 arXiv 源码包提取图表——优先 arXiv 原始图片，回退 PDF 解析。用户说\"提取图\"/\"抽图\"/\"extract figures\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md`\n- **peft-lora** — PEFT/LoRA/QLoRA 参数高效微调指南——LoRA 配置选择、QLoRA 量化训练、Adapter 管理与合并。微调大模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/peft-lora.skill.md`\n- **research-news** — 每日论文推荐——搜索 arXiv 最新论文，按相关性/新颖性/影响力评分，生成推荐列表。Director 说\"有什么新论文\"/\"最近进展\"/\"research news\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/research-news.skill.md`\n- **trl-training** — TRL (Transformer Reinforcement Learning) 训练指南——SFT/DPO/GRPO/KTO 配置与最佳实践。训练或对齐语言模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/trl-training.skill.md`\n- **wandb-guide** — W&B 查询最佳实践——如何高效使用 fetch_wandb_metrics / compare_wandb_runs / get_best_wandb_run 分析实验结果。分析实验指标时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/wandb-guide.skill.md`\n",
+      "contentDiffersFromDisk": false
+    },
+    "displayPath": "projects/goal_accessibility_preservation/.claude/CLAUDE.md"
+  },
+  "type": "attachment",
+  "uuid": "c88e85f1-105f-494b-9272-7153063718ee",
+  "timestamp": "2026-05-18T10:26:37.284Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-18T10:27:25.584Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the experiment plan. Let me identify all experiments with status "planned":
+
+1. `analysis_cross_model_llama` - Dual-mechanism analysis on Llama-3-8B
+2. `analysis_cross_model_mistral` - Dual-mechanism analysis on Mistral-7B
+3. `tpab_mvp` - TPAB concept validation on Qwen3-8B
+4. `tpab_real_data` - TPAB training on real multi-turn data
+5. `tpab_ablation_components` - TPAB ablation: TPAB-only vs TPAB+LoRA vs LoRA-only
+
+
+6. `tpab_ablation_bias_design` - Bias design ablation: learned vs fixed vs ALiBi-style vs uniform
+7. `baseline_turnwise` - TurnWise-50K baseline reproduction
+8. `baseline_temperature` - Softmax temperature scaling ablation
+9. `eval_task_level` - Task-level accuracy evaluation beyond GAR
+10. `eval_mmlu_preservation` - MMLU single-turn preservation check
+11. `eval_cross_model_tpab` - TPAB on Llama-3-8B
+
+Now I'm working on generating detailed imagery for these experiments.
+
+I need to construct realistic data for each one based on the median tier profile. The key pattern here is that TPAB shows measurable GAR improvements but the translation to actual task performance is spotty—it helps with extraction and instruction-following tasks but struggles with reasoning and summarization. The cross-model results hold up, though the training benefit varies by model. Most of my assertions partially hold or hold with caveats: GAR improves but concentrates on certain task types, the GAR-to-task connection works for about half the tasks, the dual-mechanism stratification replicates, and TPAB edges out LoRA on GAR though the task-level gains blur into noise sometimes.
+
+Now I'm laying out the specific experiments and what I expect to see. The cross-model analyses on Llama and Mistral should replicate the same dual-mechanism pattern—shallow layers showing softmax competition, deep layers showing Q-K misalignment—though the exact numbers will shift. For the TPAB MVP on Qwen, I'm predicting GAR improvements in the 2-6 percentage point range depending on depth, which aligns with the partial hold on A1.
+
+The real data experiments should show more modest gains around 1-3 percentage points, and the ablation studies will help isolate whether the learned bias design outperforms fixed alternatives. The baseline comparisons against TurnWise and temperature scaling should confirm that TPAB's advantage holds up, though the task-level margins might be tight enough to fall within noise.
+
+Now I'm compiling the evaluation results across different dimensions—task-level accuracy improvements where about half the task types show meaningful gains, MMLU preservation to ensure no regression, and cross-model validation on Llama to see if the benefits generalize. I'm organizing these findings with specific ranges to support the claims.
+
+Constructing detailed YAML output now with concrete metric values and justifications for each assertion.
+
+For Llama, I'm replicating the GAR decline pattern with shallow ρ around 0.25 and deep ρ around 0.82, accounting for its GQA architecture and 32-layer structure, with a GAR decline in the 45-52% range. Mistral follows a similar pattern but with slightly lower deep ρ values around 0.78 due to sliding window attention, and GAR decline between 42-50%.
+
+For the TPAB experiments, I'm using mid-range improvement values: d15 at 3.5pp and d25 at 4.2pp GAR improvement, with shallow layer lift at 2.8pp and roughly 35K TPAB parameters plus 30.67M LoRA parameters. Real data performance drops to 2.0pp improvement on HF conversations since real data is messier, while TPAB-only without LoRA shows minimal gains around 1.5pp.
+
+Looking at the ablation results, TPAB+LoRA achieves the full 3.5pp benefit, LoRA-only gets 2.0pp, and the 1.5pp margin between them demonstrates TPAB's independent contribution, though this advantage narrows on task metrics. The bias design ablation shows learned TPAB at 3.5pp, ALiBi-style fixed decay at 1.8pp, uniform bias at 0.5pp, and fixed per-turn at 2.2pp. TurnWise baseline achieves lower GAR improvements than TPAB but can match it on certain task types, while temperature scaling validates the underlying mechanism with shallow layer temperature reduction.
+
+Now examining the task-level breakdown, I see significant improvements in extraction tasks (+2.1%), instruction following (+1.8%), and multi-step extraction (+1.2%), but reasoning, summarization, and creative tasks show minimal gains. The MMLU regression of 0.4% is negligible, and testing TPAB on Llama-3-8B reveals a 2.0pp GAR improvement compared to Qwen3's 3.5pp, indicating the approach generalizes across models but with varying effectiveness.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c88e85f1-105f-494b-9272-7153063718ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb9sf4PYb9sPKwPnBp2hS",
+  "type": "assistant",
+  "uuid": "beee5666-9788-43df-b2cf-af0c00cc488c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqPCW9Pxm6U5gbhpX5yXus",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29341,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 16296,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29341,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 16296,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 29341,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29341
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-18T10:31:49.848Z_
+
+```yaml
+tier: median
+narrative_guidance: >
+  Reweight paper toward analysis-led framing. Claims 1-2 (dual-mechanism + TB-RoPE negative) become primary contributions.
+  Claim 3 (TPAB) softened from 'fix' to 'mechanism-aware mitigation that validates the analysis' — emphasize GAR improvement
+  as proof that the mechanistic diagnosis is actionable, rather than claiming a complete solution. Claim 4 narrowed to task
+  types where translation holds. Title shifts toward 'Understanding and Mitigating Multi-Turn Goal Accessibility Decline'.
+  Still viable for NAACL — analysis novelty carries the paper, TPAB is supporting evidence rather than headline result.
+
+imagined_experiments:
+
+  # ═══════════════════════════════════════════════════════════
+  # Analysis Experiments (Claim 1 generality)
+  # ═══════════════════════════════════════════════════════════
+
+  - name: "Dual-mechanism analysis on Llama-3-8B"
+    plan_id: "analysis_cross_model_llama"
+    description: >
+      Replicate per-layer GAR + QKA correlation analysis on Llama-3-8B (32 layers, GQA).
+      Compute per-layer QKA-GAR Spearman ρ at depths 5/15/25 for extraction and reasoning tasks.
+      Verify whether shallow-layer softmax-competition vs deep-layer Q-K misalignment stratification
+      generalizes beyond Qwen3-8B.
+    expected_results:
+      # GAR decline magnitudes
+      extraction_gar_d5: 0.0512
+      extraction_gar_d15: 0.0341
+      extraction_gar_d25: 0.0268
+      extraction_gar_decline_pct: 47.7
+      reasoning_gar_d5: 0.0389
+      reasoning_gar_d15: 0.0198
+      reasoning_gar_d25: 0.0171
+      reasoning_gar_decline_pct: 56.0
+      # Shallow layers: low ρ confirms softmax competition
+      shallow_qka_gar_rho_L0_L5_mean: 0.26
+      shallow_qka_gar_rho_range: [0.18, 0.34]
+      # Deep layers: high ρ confirms Q-K misalignment
+      deep_qka_gar_rho_L10_plus_max: 0.85
+      deep_qka_gar_rho_L10_plus_mean: 0.72
+      layers_with_rho_gt_0_8: ["L12", "L18", "L24", "L28", "L30"]
+      # Boundary layer
+      mechanism_transition_layer: "L7-L9"
+      dual_mechanism_replication: true
+    result_rationale: >
+      Llama-3-8B uses GQA (8 KV heads vs 32 Q heads) and a different pre-training distribution than Qwen3-8B,
+      but the fundamental transformer softmax attention mechanism is identical. Shallow-layer softmax competition
+      is an architectural invariant — when sequence length grows, attention mass dilutes regardless of model family.
+      Deep-layer Q-K misalignment depends on RoPE frequency allocation, which differs between Llama and Qwen but
+      produces the same qualitative effect (cosine similarity degrades with positional distance). GQA slightly
+      reduces the effective Q-K diversity, so deep-layer ρ peaks may be marginally lower (0.85 vs Qwen3's 0.91),
+      and the transition layer may shift slightly earlier due to Llama's different head-count ratio. Overall GAR
+      decline percentages remain in the same 45-57% range because the underlying softmax normalization is
+      architecture-independent.
+    tables:
+      - table_id: "T_llama_layerwise"
+        caption: "Per-layer QKA-GAR Spearman ρ on Llama-3-8B (extraction, depth 25)"
+        columns: ["Layer Group", "Mean ρ", "Max ρ", "GAR Decline (%)"]
+        rows:
+          - ["L0-L5 (shallow)", "0.26", "0.34", "22.1"]
+          - ["L6-L9 (transition)", "0.52", "0.61", "31.4"]
+          - ["L10-L15 (mid-deep)", "0.71", "0.82", "38.6"]
+          - ["L16-L31 (deep)", "0.78", "0.85", "47.7"]
+    figures_description:
+      - "Heatmap: per-layer (y-axis, L0-L31) × depth (x-axis, d5/d10/d15/d20/d25) QKA-GAR ρ for Llama-3-8B.
+         Clear visual split: top rows (shallow) are cool colors (ρ<0.4), bottom rows (deep) are warm colors (ρ>0.7).
+         Side-by-side with Qwen3-8B heatmap for cross-model comparison."
+    analysis: >
+      Dual-mechanism stratification replicates cleanly on Llama-3-8B. The shallow-deep boundary shifts
+      from L5-L7 (Qwen3) to L7-L9 (Llama-3), consistent with GQA compressing key representations into
+      fewer heads and delaying the onset of geometry-dependent behavior. The critical observation — that
+      shallow layers show GAR decline without proportional QKA decline — holds with comparable effect size
+      (shallow ρ=0.26 vs Qwen3's 0.24). This confirms the analysis claim is not an artifact of one model's
+      pre-training or architecture, but a structural property of softmax attention over growing sequences.
+
+  - name: "Dual-mechanism analysis on Mistral-7B"
+    plan_id: "analysis_cross_model_mistral"
+    description: >
+      Replicate per-layer GAR + QKA analysis on Mistral-7B-v0.3 (32 layers, GQA, sliding window attention
+      in lower layers). Test whether the dual-mechanism pattern holds even in models with local attention
+      at shallow layers.
+    expected_results:
+      extraction_gar_d5: 0.0478
+      extraction_gar_d15: 0.0329
+      extraction_gar_d25: 0.0251
+      extraction_gar_decline_pct: 47.5
+      reasoning_gar_d5: 0.0362
+      reasoning_gar_d15: 0.0186
+      reasoning_gar_d25: 0.0159
+      reasoning_gar_decline_pct: 56.1
+      shallow_qka_gar_rho_L0_L5_mean: 0.29
+      deep_qka_gar_rho_L10_plus_max: 0.82
+      deep_qka_gar_rho_L10_plus_mean: 0.69
+      layers_with_rho_gt_0_8: ["L14", "L22", "L27", "L30"]
+      mechanism_transition_layer: "L8-L10"
+      dual_mechanism_replication: true
+      sliding_window_effect_on_shallow_gar: "minimal — goal tokens typically within window at d5-d15"
+    result_rationale: >
+      Mistral-7B uses sliding window attention (window=4096) at lower layers, which in principle could
+      alter the softmax competition picture if goal tokens fall outside the window. However, at depth 5-15
+      (typical conversation lengths 2K-8K tokens), goal tokens from turn 1 usually remain within the sliding
+      window for most shallow layers, so the competition mechanism still dominates. At depth 25 (longer
+      conversations), some goal tokens may be truncated from the window, which paradoxically makes GAR decline
+      *steeper* at shallow layers (tokens simply invisible rather than diluted). Deep layers in Mistral use
+      full attention and show the standard Q-K misalignment pattern. The transition layer shifts to L8-L10
+      because Mistral's sliding window layers (L0-L7) behave differently from full-attention shallow layers.
+      Overall, the dual-mechanism pattern holds with the caveat that Mistral's shallow mechanism is
+      "sliding-window truncation + softmax competition" rather than pure softmax competition. This actually
+      strengthens the paper's argument that position-based interventions (TB-RoPE) miss the point.
+    tables:
+      - table_id: "T_mistral_layerwise"
+        caption: "Per-layer QKA-GAR Spearman ρ on Mistral-7B-v0.3 (extraction, depth 25)"
+        columns: ["Layer Group", "Attention Type", "Mean ρ", "Max ρ"]
+        rows:
+          - ["L0-L7 (shallow)", "Sliding window", "0.29", "0.38"]
+          - ["L8-L10 (transition)", "Full", "0.55", "0.63"]
+          - ["L11-L20 (mid-deep)", "Full", "0.68", "0.79"]
+          - ["L21-L31 (deep)", "Full", "0.75", "0.82"]
+    figures_description:
+      - "Three-panel figure: Qwen3-8B / Llama-3-8B / Mistral-7B heatmaps of per-layer QKA-GAR ρ.
+         Annotated with architecture differences (GQA ratio, sliding window boundary). Visual consistency
+         of the shallow-cold/deep-warm pattern across all three models is the key takeaway."
+    analysis: >
+      Cross-model replication on 2/2 additional architectures (Llama-3 + Mistral) establishes that
+      dual-mechanism GAR decline is a general property of transformer softmax attention. Mistral's sliding
+      window adds an interesting wrinkle at shallow layers but does not disrupt the overall stratification.
+      This is sufficient for Claim 1 generality — the paper can state "replicated across 3 model families
+      with distinct architectural choices (standard attention, GQA, sliding window)."
+
+  # ═══════════════════════════════════════════════════════════
+  # TPAB Method Experiments (Claim 3)
+  # ═══════════════════════════════════════════════════════════
+
+  - name: "TPAB concept validation on Qwen3-8B"
+    plan_id: "tpab_mvp"
+    description: >
+      Train TPAB (learnable per-layer per-head per-turn-position bias, ~35K params) jointly with LoRA
+      (rank 32, ~30.67M params) on 5K synthetic multi-turn conversations. Evaluate GAR improvement at
+      depths 5/15/25, per-layer GAR lift, and downstream task accuracy on 6 task types.
+    expected_results:
+      # Training
+      train_loss_final: 0.185
+      epochs: 3
+      total_steps: 1875
+      wall_clock_hours: 2.1
+      tpab_params: 35840
+      lora_params: 30670000
+      # GAR improvements (synthetic eval)
+      synthetic_extraction_d5_baseline: 0.0499
+      synthetic_extraction_d5_tpab_lora: 0.0528
+      synthetic_extraction_d15_baseline: 0.0353
+      synthetic_extraction_d15_tpab_lora: 0.0388
+      synthetic_extraction_d25_baseline: 0.0257
+      synthetic_extraction_d25_tpab_lora: 0.0299
+      tpab_gar_improvement_d15_pp: 3.5
+      tpab_gar_improvement_d25_pp: 4.2
+      # Per-layer analysis
+      tpab_shallow_layer_gar_lift_pp: 2.8
+      tpab_deep_layer_gar_lift_pp: 1.4
+      shallow_layer_improvement_ratio: 0.67
+      # HF real conversation eval
+      hf_baseline_gar: 0.0454
+      hf_tpab_lora_gar: 0.0478
+      hf_real_conv_gar_improvement_pp: 2.4
+      hf_samples_evaluated: 420
+    result_rationale: >
+      TPAB adds a learnable additive bias to attention logits indexed by turn position. At shallow layers
+      where softmax competition is the dominant GAR decline mechanism, this bias directly counteracts dilution
+      by boosting logits for goal-turn tokens before softmax normalization. The effect is strongest at shallow
+      layers (2.8pp lift) because that is where the softmax competition mechanism operates — TPAB is designed
+      to address exactly this bottleneck. Deep layers benefit less (1.4pp) because their decline is driven by
+      Q-K geometric misalignment, which a logit bias cannot fully compensate (it shifts the scale but doesn't
+      fix the underlying cosine similarity degradation). The overall d15 improvement of 3.5pp and d25
+      improvement of 4.2pp fall in the median range because: (1) the ~35K TPAB parameters provide meaningful
+      but limited capacity — enough to learn a useful per-turn bias pattern but not enough to fully solve
+      softmax competition across all heads and layers; (2) LoRA contributes behavioral adaptation that
+      partially overlaps with TPAB's effect, so the combined improvement is less than the sum of parts.
+      The d25 improvement exceeds d15 because softmax competition is more severe at greater depths (more
+      tokens competing), giving TPAB more room to help. HF real conversation improvement is lower (2.4pp
+      vs 4.2pp synthetic at d25) because real conversations have variable goal token distributions, implicit
+      goals, and noisy turn boundaries that the synthetic-trained TPAB handles less precisely.
+    tables:
+      - table_id: "T_tpab_mvp_gar"
+        caption: "GAR improvement with TPAB+LoRA on Qwen3-8B (synthetic eval)"
+        columns: ["Depth", "Baseline GAR", "TPAB+LoRA GAR", "Δ (pp)", "p-value"]
+        rows:
+          - ["d5", "0.0499", "0.0528", "+2.9", "<0.01"]
+          - ["d10", "0.0421", "0.0453", "+3.2", "<0.01"]
+          - ["d15", "0.0353", "0.0388", "+3.5", "<0.005"]
+          - ["d20", "0.0298", "0.0336", "+3.8", "<0.005"]
+          - ["d25", "0.0257", "0.0299", "+4.2", "<0.005"]
+      - table_id: "T_tpab_mvp_layer"
+        caption: "TPAB GAR lift by layer group (depth 25, extraction)"
+        columns: ["Layer Group", "Baseline GAR", "TPAB+LoRA GAR", "Δ (pp)"]
+        rows:
+          - ["L0-L5 (shallow)", "0.0312", "0.0340", "+2.8"]
+          - ["L6-L9 (transition)", "0.0271", "0.0293", "+2.2"]
+          - ["L10-L19 (mid-deep)", "0.0238", "0.0256", "+1.8"]
+          - ["L20+ (deep)", "0.0207", "0.0221", "+1.4"]
+    figures_description:
+      - "Line plot: GAR vs depth (d5-d25), two lines (baseline, TPAB+LoRA). Gap widens with depth,
+         visually showing TPAB's increasing benefit at harder depths. Error bars from 5 seeds."
+      - "Bar chart: per-layer-group GAR lift (pp). Bars decrease from shallow to deep, visually confirming
+         that TPAB's mechanism-aware design targets the correct layer group."
+    analysis: >
+      TPAB delivers measurable GAR improvement (3.5-4.2pp) that concentrates at shallow layers, validating
+      the mechanistic hypothesis that softmax competition at shallow layers is the actionable bottleneck.
+      The improvement is genuine but moderate — it does not fully close the GAR gap between d5 and d25
+      (gap narrows from 24.2pp to 22.9pp baseline→TPAB, a 5.4% relative reduction). This is consistent
+      with the median tier interpretation: TPAB is a valid mechanism-aware mitigation, not a complete solution.
+      The shallow-layer concentration of improvement (67% of total lift in L0-L5) is the strongest evidence
+      that the dual-mechanism analysis led to a correctly-targeted intervention.
+
+  - name: "TPAB training on real multi-turn data"
+    plan_id: "tpab_real_data"
+    description: >
+      Train TPAB+LoRA on real multi-turn data (5K samples from ShareGPT + WildChat, filtered for
+      depth ≥ 10 turns). Evaluate on both synthetic benchmark and HF real conversation benchmark.
+      Compare against synthetic-trained TPAB to assess distribution gap.
+    expected_results:
+      # Training
+      train_loss_final: 0.210
+      epochs: 3
+      wall_clock_hours: 3.2
+      # Synthetic eval (domain gap: trained on real, eval on synthetic)
+      synthetic_extraction_d15_real_trained: 0.0371
+      synthetic_extraction_d25_real_trained: 0.0281
+      synthetic_gar_improvement_d15_pp: 1.8
+      synthetic_gar_improvement_d25_pp: 2.4
+      # HF real eval (in-domain for real-trained model)
+      hf_real_trained_gar: 0.0487
+      hf_real_conv_gar_improvement_pp: 3.3
+      hf_real_vs_synthetic_trained_gap_pp: 0.9
+      # Per task type breakdown on real data
+      real_data_extraction_lift_pp: 3.8
+      real_data_instruction_following_lift_pp: 2.9
+      real_data_reasoning_lift_pp: 0.6
+    result_rationale: >
+      Real-data-trained TPAB performs better on HF real conversations (+3.3pp vs synthetic-trained's +2.4pp)
+      because the bias parameters learn turn-position patterns that match real conversation structure
+      (variable turn lengths, mixed initiative, implicit goals). Conversely, real-trained TPAB performs
+      worse on the synthetic benchmark (+1.8pp vs synthetic-trained's +3.5pp at d15) due to domain gap —
+      synthetic conversations have cleaner, more explicit goal structures that the real-trained model
+      hasn't optimized for. The higher training loss (0.210 vs 0.185) reflects greater variance in real
+      conversation structure. The key finding for the paper is that TPAB transfers: both training sources
+      produce GAR improvement, confirming that the learned bias captures a genuine structural pattern
+      (turn-position-dependent softmax competition) rather than overfitting to synthetic data artifacts.
+      The 0.9pp gap between real-trained and synthetic-trained on HF eval suggests that real data training
+      is preferable for deployment but synthetic validation remains useful for controlled ablation.
+    tables:
+      - table_id: "T_real_data_comparison"
+        caption: "TPAB training data source comparison"
+        columns: ["Training Data", "Eval Set", "GAR Δ (pp)", "Best Task Type", "Worst Task Type"]
+        rows:
+          - ["Synthetic 5K", "Synthetic", "+3.5 (d15)", "extraction (+4.1)", "reasoning (+0.8)"]
+          - ["Synthetic 5K", "HF Real", "+2.4", "extraction (+3.2)", "reasoning (+0.4)"]
+          - ["Real 5K (ShareGPT+WC)", "Synthetic", "+1.8 (d15)", "extraction (+2.3)", "reasoning (+0.5)"]
+          - ["Real 5K (ShareGPT+WC)", "HF Real", "+3.3", "extraction (+3.8)", "reasoning (+0.6)"]
+    figures_description:
+      - "Scatter plot: per-conversation GAR improvement (real-trained) vs baseline GAR, colored by task type.
+         Shows extraction conversations cluster higher, reasoning conversations near zero improvement."
+    analysis: >
+      Real data training confirms TPAB's mechanism is not synthetic-data-dependent. The task-type disparity
+      (extraction 3.8pp vs reasoning 0.6pp) persists regardless of training distribution, reinforcing the
+      median-tier interpretation that TPAB's GAR improvement translates well for extraction-type tasks where
+      goal tokens are explicitly retrievable, but poorly for reasoning tasks where 'goal accessibility' is
+      a necessary-but-not-sufficient condition for correct answers.
+
+  - name: "TPAB ablation: TPAB-only vs TPAB+LoRA vs LoRA-only"
+    plan_id: "tpab_ablation_components"
+    description: >
+      Disentangle TPAB's independent contribution from LoRA's behavioral fine-tuning. Three conditions:
+      (1) TPAB-only (35K params, frozen base model), (2) LoRA-only (30.67M params), (3) TPAB+LoRA
+      (30.7M params). All trained on same 5K synthetic data with identical hyperparameters except
+      condition-specific parameters.
+    expected_results:
+      # GAR at depth 25 (synthetic eval, extraction)
+      tpab_only_gar_d25: 0.0275
+      lora_only_gar_d25: 0.0280
+      tpab_lora_gar_d25: 0.0299
+      baseline_gar_d25: 0.0257
+      # GAR improvements
+      tpab_only_improvement_d25_pp: 1.8
+      lora_only_improvement_d25_pp: 2.3
+      tpab_lora_improvement_d25_pp: 4.2
+      tpab_vs_lora_only_gar_margin_pp: 1.9
+      # Interaction effect
+      tpab_lora_interaction_pp: 0.1
+      synergy_or_additive: "approximately additive"
+      # Shallow layer specificity
+      tpab_only_shallow_lift_pp: 1.6
+      tpab_only_deep_lift_pp: 0.2
+      lora_only_shallow_lift_pp: 1.0
+      lora_only_deep_lift_pp: 1.3
+      # Task-level
+      tpab_only_task_accuracy_delta_pct: 0.3
+      lora_only_task_accuracy_delta_pct: 1.4
+      tpab_lora_task_accuracy_delta_pct: 1.6
+      tpab_vs_lora_only_task_margin_pct: 0.2
+    result_rationale: >
+      TPAB-only (35K params) provides measurable but limited GAR improvement (+1.8pp at d25) because it
+      operates only through attention logit bias without any weight update to the base model. The improvement
+      concentrates at shallow layers (+1.6pp shallow vs +0.2pp deep) because the bias directly counteracts
+      softmax competition — at deep layers where Q-K geometry is the issue, a logit bias has minimal effect.
+      LoRA-only provides broader improvement (+2.3pp) distributed more evenly across layers because LoRA
+      modifies the actual Q/K/V projections, affecting both softmax distribution and Q-K alignment. The
+      combined TPAB+LoRA achieves +4.2pp, approximately equal to the sum of individual effects (1.8+2.3=4.1
+      vs observed 4.2), indicating the two mechanisms are largely complementary — TPAB fixes shallow-layer
+      competition while LoRA improves deep-layer geometry. On task-level metrics, however, the margin narrows:
+      TPAB+LoRA (+1.6%) vs LoRA-only (+1.4%) shows only +0.2% task-level margin. This is because LoRA's
+      behavioral adaptation already captures most of the task-relevant signal, and TPAB's additional GAR
+      improvement at shallow layers translates weakly to final-layer task predictions. This is a key median-tier
+      result: TPAB clearly improves GAR (the mechanism works) but the task-level marginal benefit over LoRA
+      is within noise for most task types.
+    tables:
+      - table_id: "T_ablation_components"
+        caption: "Component ablation: GAR and task accuracy at depth 25"
+        columns: ["Configuration", "Params", "GAR (d25)", "Δ GAR (pp)", "Task Acc (%)", "Δ Task (%)"]
+        rows:
+          - ["Baseline", "0", "0.0257", "—", "62.4", "—"]
+          - ["TPAB-only", "35K", "0.0275", "+1.8", "62.7", "+0.3"]
+          - ["LoRA-only", "30.67M", "0.0280", "+2.3", "63.8", "+1.4"]
+          - ["TPAB+LoRA", "30.70M", "0.0299", "+4.2", "64.0", "+1.6"]
+      - table_id: "T_ablation_layer_specificity"
+        caption: "GAR lift by layer group for each configuration (depth 25)"
+        columns: ["Configuration", "Shallow (L0-5) Δpp", "Deep (L10+) Δpp", "Shallow/Total Ratio"]
+        rows:
+          - ["TPAB-only", "+1.6", "+0.2", "0.89"]
+          - ["LoRA-only", "+1.0", "+1.3", "0.43"]
+          - ["TPAB+LoRA", "+2.8", "+1.4", "0.67"]
+    figures_description:
+      - "Stacked bar chart: GAR improvement decomposition by layer group for each configuration.
+         TPAB-only shows a tall shallow bar and tiny deep bar; LoRA-only shows balanced bars;
+         TPAB+LoRA shows additive stacking. Visually demonstrates mechanism complementarity."
+    analysis: >
+      The ablation confirms that TPAB provides an independent, mechanism-specific GAR improvement targeting
+      shallow-layer softmax competition, complementary to LoRA's broader behavioral adaptation. The near-additive
+      interaction (4.2 ≈ 1.8+2.3) supports the paper's mechanistic story — two distinct interventions for two
+      distinct mechanisms. However, the task-level margin (TPAB+LoRA vs LoRA-only = +0.2%) is uncomfortably
+      small. In the median-tier framing, this is reported honestly: "TPAB improves the mechanistic target (GAR)
+      significantly, but the incremental task-level benefit over behavioral fine-tuning alone is modest,
+      suggesting that GAR improvement at shallow layers is necessary but not sufficient for downstream
+      task performance."
+
+  - name: "Bias design ablation: learned vs fixed vs ALiBi-style vs uniform"
+    plan_id: "tpab_ablation_bias_design"
+    description: >
+      Compare 4 bias designs to address reviewer concern C3 (TPAB vs ALiBi): (1) Learned TPAB (per-layer,
+      per-head, per-turn-position, ~35K params), (2) ALiBi-style (fixed linear decay by token distance,
+      per-head slope only), (3) Fixed per-turn (uniform positive bias for turn-1 tokens, no learning),
+      (4) Uniform scalar (single learnable scalar per layer). All combined with same LoRA configuration.
+    expected_results:
+      learned_tpab_gar_d25_pp: 4.2
+      alibi_style_gar_d25_pp: 1.9
+      fixed_per_turn_gar_d25_pp: 2.6
+      uniform_scalar_gar_d25_pp: 0.8
+      # Shallow layer specificity
+      learned_tpab_shallow_lift_pp: 2.8
+      alibi_style_shallow_lift_pp: 1.4
+      fixed_per_turn_shallow_lift_pp: 2.1
+      uniform_scalar_shallow_lift_pp: 0.5
+      # Task accuracy
+      learned_tpab_task_delta_pct: 1.6
+      alibi_style_task_delta_pct: 0.9
+      fixed_per_turn_task_delta_pct: 1.1
+      uniform_scalar_task_delta_pct: 0.3
+    result_rationale: >
+      ALiBi-style bias (fixed linear decay by token distance) partially helps because it indirectly boosts
+      nearby tokens including recent-turn tokens, but it is not turn-aware — it cannot distinguish goal tokens
+      in turn 1 from filler tokens at the same position, and its linear decay penalizes all distant tokens
+      equally regardless of their turn-structural role. This yields +1.9pp (vs TPAB's +4.2pp). Fixed per-turn
+      bias (+2.6pp) performs better than ALiBi because it captures the key insight (turn-position matters) but
+      lacks per-layer and per-head adaptation — different heads at different layers may need different bias
+      magnitudes, which a fixed scheme cannot provide. Uniform scalar (+0.8pp) is weakest because it cannot
+      differentially boost goal-turn tokens. The learned TPAB's advantage comes from its capacity to learn
+      layer-specific and head-specific bias patterns that adapt to each layer's role in the attention stack.
+      This ablation answers C3: TPAB is not "ALiBi with different indexing" — the turn-position indexing
+      provides 2.3pp additional GAR improvement over token-distance indexing, and the learned parameters
+      provide another 1.6pp over fixed turn-position bias.
+    tables:
+      - table_id: "T_bias_design"
+        caption: "Bias design comparison (all with LoRA, depth 25, extraction)"
+        columns: ["Bias Design", "Indexing", "Learnable", "GAR Δ (pp)", "Task Δ (%)"]
+        rows:
+          - ["Learned TPAB", "Turn position", "Per-layer, per-head", "+4.2", "+1.6"]
+          - ["Fixed per-turn", "Turn position", "No", "+2.6", "+1.1"]
+          - ["ALiBi-style", "Token distance", "Slope only", "+1.9", "+0.9"]
+          - ["Uniform scalar", "None", "Per-layer scalar", "+0.8", "+0.3"]
+          - ["LoRA-only (no bias)", "—", "—", "+2.3", "+1.4"]
+    figures_description:
+      - "Grouped bar chart: GAR improvement (pp) for each bias design, grouped by layer (shallow/transition/deep).
+         Learned TPAB dominates at shallow layers; ALiBi-style shows flatter profile across layers."
+    analysis: >
+      This ablation cleanly separates three contributions: (1) turn-position indexing vs token-distance indexing
+      (+2.3pp advantage), (2) learnable vs fixed bias (+1.6pp advantage), (3) per-head granularity vs uniform
+      (+1.8pp advantage). The ablation provides the strongest defense against C3 reviewers. In the median-tier
+      paper, this supports the "mechanism-aware" framing — TPAB works better not because it is a better bias,
+      but because it targets the right structural unit (turns, not tokens).
+
+  # ═══════════════════════════════════════════════════════════
+  # Baseline Comparisons (Claim 4)
+  # ═══════════════════════════════════════════════════════════
+
+  - name: "TurnWise-50K baseline reproduction"
+    plan_id: "baseline_turnwise"
+    description: >
+      Reproduce TurnWise (mechanism-agnostic multi-turn augmentation, 50K samples) as a baseline.
+      Train with same LoRA configuration on TurnWise-augmented data. Compare GAR and task accuracy
+      against TPAB+LoRA to test Claim 4 (mechanism-aware > agnostic).
+    expected_results:
+      turnwise_train_samples: 50000
+      turnwise_gar_d15_pp_improvement: 2.1
+      turnwise_gar_d25_pp_improvement: 2.8
+      turnwise_task_accuracy_delta_pct: 1.8
+      # Head-to-head vs TPAB+LoRA
+      tpab_vs_turnwise_gar_d25_margin_pp: 1.4
+      tpab_vs_turnwise_task_margin_pct: -0.2
+      # Per task type
+      turnwise_extraction_task_delta_pct: 1.5
+      turnwise_instruction_following_delta_pct: 2.4
+      turnwise_reasoning_delta_pct: 1.1
+      turnwise_summarization_delta_pct: 0.8
+      turnwise_creative_delta_pct: 0.4
+      turnwise_multi_step_delta_pct: 1.2
+    result_rationale: >
+      TurnWise is a behavioral training approach that exposes the model to many multi-turn examples,
+      implicitly teaching it to maintain goal relevance through next-token prediction on goal-relevant
+      completions. It uses 10x more training data (50K vs 5K) than TPAB+LoRA, which compensates for
+      its mechanism-agnostic design. On GAR, TurnWise achieves +2.8pp at d25 (vs TPAB's +4.2pp) — the
+      GAR margin favors TPAB because TPAB directly targets the attention mechanism while TurnWise must
+      learn the same effect indirectly through behavioral examples. However, on task accuracy, TurnWise
+      achieves +1.8% (vs TPAB's +1.6%), marginally outperforming TPAB. This is the critical median-tier
+      tension: TurnWise trains more task-relevant behavior (instruction following +2.4%, reasoning +1.1%)
+      because its 50K examples cover diverse task formats, while TPAB's 5K synthetic data and attention
+      bias cannot learn task-specific strategies. The -0.2% task margin (TPAB worse than TurnWise) is
+      within noise but undermines Claim 4 at the task level. In the median framing, this is reported as:
+      "TPAB outperforms TurnWise on the mechanistic target (GAR) using 10x less data, but the two
+      approaches achieve comparable task-level performance, suggesting that mechanism-aware design
+      provides data efficiency advantages rather than absolute performance gains."
+    tables:
+      - table_id: "T_baseline_turnwise"
+        caption: "TPAB+LoRA vs TurnWise comparison (depth 25)"
+        columns: ["Method", "Train Data", "GAR Δ (pp)", "Task Acc Δ (%)", "GAR Rank", "Task Rank"]
+        rows:
+          - ["Baseline", "—", "—", "—", "—", "—"]
+          - ["LoRA-only (5K)", "5K synthetic", "+2.3", "+1.4", "3", "3"]
+          - ["TurnWise (50K)", "50K augmented", "+2.8", "+1.8", "2", "1"]
+          - ["TPAB+LoRA (5K)", "5K synthetic", "+4.2", "+1.6", "1", "2"]
+    figures_description:
+      - "Dual-axis bar chart: GAR improvement (left axis, blue) and task accuracy improvement (right axis,
+         orange) for each method. TPAB leads on GAR; TurnWise slightly leads on task accuracy.
+         Visual tension between the two metrics is the key message."
+    analysis: >
+      The TPAB vs TurnWise comparison is the most nuanced result in the paper. TPAB wins on GAR (the
+      mechanistic metric it was designed to optimize) but effectively ties on task accuracy (the metric
+      reviewers care about most). In the median-tier narrative, this motivates the reframing: TPAB is
+      presented as "mechanism-aware mitigation that validates the analysis" rather than "superior method."
+      The data efficiency angle (5K vs 50K, 10x advantage) is an honest secondary claim. Claim 4 is
+      narrowed from "mechanism-aware > agnostic" to "mechanism-aware achieves comparable task performance
+      with 10x less data and provides stronger mechanistic interpretability."
+
+  - name: "Softmax temperature scaling ablation"
+    plan_id: "baseline_temperature"
+    description: >
+      Apply layer-specific softmax temperature scaling (T<1 for shallow layers to sharpen attention,
+      T=1 for deep layers) as a mechanism-validation baseline. No training — inference-time only.
+      Tests whether directly manipulating softmax sharpness at shallow layers improves GAR, validating
+      the softmax competition hypothesis.
+    expected_results:
+      # Temperature configurations tested
+      temp_shallow_values_tested: [0.7, 0.8, 0.9]
+      best_temp_shallow: 0.8
+      # GAR results (best config, T=0.8 for L0-L5, T=1.0 for L6+)
+      temp_scaling_gar_d15_pp: 1.4
+      temp_scaling_gar_d25_pp: 1.9
+      temp_scaling_shallow_gar_lift_pp: 1.8
+      temp_scaling_deep_gar_lift_pp: -0.1
+      # Side effects
+      temp_scaling_perplexity_increase_pct: 3.2
+      temp_scaling_task_accuracy_delta_pct: -0.6
+      temp_scaling_mmlu_regression_pct: 1.8
+      # Mechanism validation
+      gar_improvement_correlates_with_sharpening: true
+      confirms_softmax_competition_hypothesis: true
+    result_rationale: >
+      Reducing temperature at shallow layers (T=0.8) sharpens the softmax distribution, concentrating
+      more attention mass on high-affinity tokens including goal tokens. This directly counteracts the
+      softmax competition mechanism: fewer tokens receive significant attention weight, so goal tokens
+      retain more mass. The +1.9pp GAR improvement at d25 confirms that softmax competition is indeed
+      the mechanism — if Q-K misalignment were the cause, sharpening softmax would not help (it would
+      amplify whatever Q-K similarities exist, whether correct or not). However, temperature scaling
+      causes regression on task metrics (-0.6%) and MMLU (-1.8%) because sharpening attention at shallow
+      layers disrupts the model's calibrated information flow — shallow layers perform broad feature
+      extraction that benefits from distributed attention, and forcing sharp attention patterns damages
+      this functionality. This result validates the softmax competition diagnosis while demonstrating
+      why a naive fix (just sharpen attention) fails — TPAB is superior because it selectively boosts
+      goal-turn tokens rather than indiscriminately sharpening all attention, preserving the model's
+      ability to perform broad feature extraction at shallow layers.
+    tables:
+      - table_id: "T_temp_scaling"
+        caption: "Softmax temperature scaling results (inference-only, no training)"
+        columns: ["T (L0-5)", "T (L6+)", "GAR Δ d25 (pp)", "Task Δ (%)", "MMLU Δ (%)"]
+        rows:
+          - ["0.7", "1.0", "+2.3", "-1.4", "-3.1"]
+          - ["0.8", "1.0", "+1.9", "-0.6", "-1.8"]
+          - ["0.9", "1.0", "+0.8", "-0.1", "-0.4"]
+          - ["1.0", "1.0", "0.0", "0.0", "0.0"]
+    figures_description:
+      - "Trade-off curve: GAR improvement (x-axis) vs MMLU regression (y-axis) for different temperature values.
+         Shows that temperature scaling lives on a Pareto frontier where more GAR improvement always costs more
+         regression. TPAB plotted as a separate point off the frontier (better GAR, no MMLU regression)."
+    analysis: >
+      Temperature scaling serves dual purpose in the paper: (1) it causally validates the softmax competition
+      mechanism (sharpening softmax at shallow layers improves GAR, confirming the diagnosis), and (2) it
+      demonstrates why mechanism-aware intervention (TPAB) is superior to mechanism-naive intervention
+      (uniform sharpening). The Pareto frontier visualization is particularly effective for the analysis-led
+      framing — it shows that understanding the mechanism enables interventions that break the GAR-regression
+      trade-off.
+
+  # ═══════════════════════════════════════════════════════════
+  # Evaluation Experiments
+  # ═══════════════════════════════════════════════════════════
+
+  - name: "Task-level accuracy evaluation (beyond GAR)"
+    plan_id: "eval_task_level"
+    description: >
+      Evaluate TPAB+LoRA on 6 task types from the sharded simulation benchmark at depths 10/15/20/25.
+      Task types: extraction, instruction following, multi-step extraction, reasoning, summarization,
+      creative/open-ended. Report per-task accuracy improvement and statistical significance.
+    expected_results:
+      # Per task type accuracy improvement (absolute %, depth 20-25 average)
+      extraction_accuracy_delta_pct: 2.1
+      extraction_p_value: 0.003
+      extraction_significant: true
+      instruction_following_delta_pct: 1.8
+      instruction_following_p_value: 0.008
+      instruction_following_significant: true
+      multi_step_extraction_delta_pct: 1.2
+      multi_step_extraction_p_value: 0.031
+      multi_step_extraction_significant: true
+      reasoning_delta_pct: 0.4
+      reasoning_p_value: 0.287
+      reasoning_significant: false
+      summarization_delta_pct: 0.3
+      summarization_p_value: 0.412
+      summarization_significant: false
+      creative_delta_pct: 0.1
+      creative_p_value: 0.681
+      creative_significant: false
+      # Aggregate
+      task_accuracy_improvement_abs_pct: 1.0
+      task_types_with_sig_improvement: 3
+      total_task_types: 6
+      # Depth interaction
+      extraction_d10_delta_pct: 0.9
+      extraction_d25_delta_pct: 2.8
+      improvement_increases_with_depth: true
+    result_rationale: >
+      GAR-to-task translation depends on whether the task's success criterion directly requires attending to
+      goal tokens from early turns. Extraction tasks (retrieve specific information stated in turn 1) map
+      almost perfectly to GAR — if the model can attend to the goal token, it can extract the answer.
+      Instruction following (follow a format/constraint specified early) similarly benefits because the
+      constraint tokens need to remain accessible. Multi-step extraction (retrieve and combine multiple
+      pieces) benefits but less strongly because later steps require reasoning beyond pure attention.
+      Reasoning tasks show weak translation (+0.4%, p=0.287) because correct reasoning requires compositional
+      inference over the retrieved information — even if goal tokens are perfectly accessible, the model may
+      fail at the inference step. Summarization and creative tasks show near-zero improvement because their
+      quality depends on generation capabilities (coherence, fluency, coverage) that are orthogonal to
+      goal-token attention. The 3/6 significant task types is the median-tier expectation: TPAB fixes the
+      attention bottleneck, but attention is necessary-not-sufficient for half the task types. Improvement
+      increasing with depth (extraction d10: +0.9% → d25: +2.8%) confirms that TPAB's value grows where
+      softmax competition is most severe.
+    tables:
+      - table_id: "T_task_level"
+        caption: "Per-task accuracy improvement with TPAB+LoRA (depth 20-25 average)"
+        columns: ["Task Type", "Baseline Acc (%)", "TPAB+LoRA Acc (%)", "Δ (%)", "p-value", "Sig."]
+        rows:
+          - ["Extraction", "61.2", "63.3", "+2.1", "0.003", "✓"]
+          - ["Instruction following", "58.7", "60.5", "+1.8", "0.008", "✓"]
+          - ["Multi-step extraction", "54.3", "55.5", "+1.2", "0.031", "✓"]
+          - ["Reasoning", "49.1", "49.5", "+0.4", "0.287", "✗"]
+          - ["Summarization", "66.8", "67.1", "+0.3", "0.412", "✗"]
+          - ["Creative/open-ended", "71.4", "71.5", "+0.1", "0.681", "✗"]
+      - table_id: "T_task_depth_interaction"
+        caption: "Extraction accuracy improvement by depth"
+        columns: ["Depth", "Baseline (%)", "TPAB+LoRA (%)", "Δ (%)"]
+        rows:
+          - ["d10", "68.1", "69.0", "+0.9"]
+          - ["d15", "63.5", "65.0", "+1.5"]
+          - ["d20", "59.8", "61.9", "+2.1"]
+          - ["d25", "54.6", "57.4", "+2.8"]
+    figures_description:
+      - "Radar chart: 6 task types as axes, overlaid polygons for baseline and TPAB+LoRA. Extraction and
+         instruction following axes show visible expansion; reasoning and summarization axes are nearly
+         unchanged. Visually communicates the selective improvement pattern."
+      - "Line plot: extraction accuracy vs depth for baseline and TPAB+LoRA. Diverging lines show TPAB
+         benefit increasing with depth, directly mirroring the GAR improvement pattern."
+    analysis: >
+      The 3/6 significant improvement pattern is the central median-tier finding. It reveals that GAR is a
+      necessary but not sufficient condition for task performance: tasks where success maps directly to
+      goal-token retrieval (extraction, instruction following) benefit from TPAB's attention improvement,
+      while tasks requiring additional inference beyond retrieval (reasoning) or different capabilities
+      entirely (summarization, creative) do not. This is reported honestly in the paper and used to
+      motivate the analysis-led framing: "Our mechanism analysis correctly identifies and fixes the
+      attention bottleneck; the remaining performance gap for reasoning and generation tasks points to
+      additional bottlenecks beyond attention that represent open problems for future work."
+
+  - name: "MMLU single-turn preservation check"
+    plan_id: "eval_mmlu_preservation"
+    description: >
+      Run MMLU (5-shot) on baseline Qwen3-8B and TPAB+LoRA-trained Qwen3-8B to verify no single-turn
+      capability regression. Report overall accuracy and per-category breakdown.
+    expected_results:
+      mmlu_baseline_overall: 0.684
+      mmlu_tpab_lora_overall: 0.681
+      mmlu_regression_pct: 0.3
+      mmlu_regression_within_2pp: true
+      # Per category
+      mmlu_stem_baseline: 0.621
+      mmlu_stem_tpab_lora: 0.618
+      mmlu_humanities_baseline: 0.712
+      mmlu_humanities_tpab_lora: 0.711
+      mmlu_social_sciences_baseline: 0.738
+      mmlu_social_sciences_tpab_lora: 0.734
+      mmlu_other_baseline: 0.665
+      mmlu_other_tpab_lora: 0.661
+      max_category_regression_pct: 0.4
+    result_rationale: >
+      TPAB adds per-turn-position bias to attention logits, which is inactive for single-turn inputs
+      (only turn-position 0 exists, receiving a near-zero learned bias). LoRA rank 32 on 5K samples is a
+      lightweight fine-tuning that modifies less than 0.4% of parameters, and the training data is
+      multi-turn conversations rather than factual QA, so there is minimal interference with MMLU-relevant
+      knowledge. The observed 0.3% regression is within the noise of MMLU evaluation (standard deviation
+      across random seeds is typically 0.3-0.5%). No category shows more than 0.4% regression, confirming
+      that TPAB+LoRA does not selectively damage any knowledge domain. This is an expected "A5 HOLDS"
+      result — TPAB is architecturally incapable of harming single-turn performance because its bias is
+      turn-position-indexed and single-turn inputs trigger only the turn-0 bias.
+    tables:
+      - table_id: "T_mmlu"
+        caption: "MMLU 5-shot accuracy: baseline vs TPAB+LoRA"
+        columns: ["Category", "Baseline", "TPAB+LoRA", "Δ (%)"]
+        rows:
+          - ["STEM", "62.1", "61.8", "-0.3"]
+          - ["Humanities", "71.2", "71.1", "-0.1"]
+          - ["Social Sciences", "73.8", "73.4", "-0.4"]
+          - ["Other", "66.5", "66.1", "-0.4"]
+          - ["**Overall**", "**68.4**", "**68.1**", "**-0.3**"]
+    figures_description: []
+    analysis: >
+      MMLU preservation is a clean pass. The 0.3% regression is well within noise and within the
+      median-tier range of [0.0, 1.0]. This table is a one-row "safety check" in the paper — it confirms
+      that TPAB does not trade single-turn capability for multi-turn improvement. Brief mention in
+      Section 5 with full table in appendix.
+
+  - name: "TPAB on Llama-3-8B"
+    plan_id: "eval_cross_model_tpab"
+    description: >
+      Train TPAB+LoRA on Llama-3-8B using the same configuration as Qwen3-8B (LoRA rank 32, 5K synthetic
+      data). Evaluate GAR improvement and task accuracy. Tests whether TPAB generalizes across model
+      families (C2 reviewer concern).
+    expected_results:
+      # GAR improvements
+      llama_tpab_gar_d15_pp: 2.2
+      llama_tpab_gar_d25_pp: 2.8
+      llama_tpab_shallow_lift_pp: 1.8
+      # Task accuracy
+      llama_task_accuracy_delta_pct: 0.7
+      llama_task_types_with_sig_improvement: 2
+      llama_extraction_delta_pct: 1.4
+      llama_instruction_following_delta_pct: 0.9
+      llama_reasoning_delta_pct: 0.1
+      # Cross-model comparison
+      qwen_vs_llama_gar_gap_pp: 1.4
+      cross_model_tpab_benefit_replication: 1
+      tpab_benefit_is_model_dependent: true
+      # MMLU preservation
+      llama_mmlu_regression_pct: 0.5
+    result_rationale: >
+      TPAB on Llama-3-8B shows positive but weaker improvement (+2.8pp at d25 vs Qwen3's +4.2pp). The
+      reduced effect has three contributing factors: (1) Llama-3-8B uses GQA with 8 KV heads (vs Qwen3's
+      8 KV heads for 32 Q heads), meaning fewer independent key representations for the bias to target —
+      the same bias value is applied to queries attending to the same KV head, reducing per-head
+      specificity; (2) Llama's pre-training distribution may produce different attention patterns at
+      shallow layers, requiring the bias to learn a different correction that the Qwen3-optimized
+      hyperparameters (turn-position bucketing, learning rate) may not be ideal for; (3) the synthetic
+      training data was generated with Qwen3 response patterns, creating a distribution mismatch for
+      Llama-3. Task accuracy improvement is weaker (+0.7% vs +1.6%) and only 2/6 task types reach
+      significance. This is the "model-dependent" median-tier result: TPAB generalizes in direction
+      (positive GAR improvement on Llama-3) but not in magnitude, and the already-thin task-level margin
+      on Qwen3 becomes even thinner on Llama-3. Cross-model TPAB benefit replication is 1 out of 2
+      (works on Llama-3 for GAR but not convincingly for task accuracy), placing it at the low end of
+      the [1, 2] range.
+    tables:
+      - table_id: "T_cross_model_tpab"
+        caption: "TPAB+LoRA cross-model comparison (depth 25)"
+        columns: ["Model", "GAR Δ (pp)", "Task Acc Δ (%)", "Sig. Task Types", "MMLU Δ (%)"]
+        rows:
+          - ["Qwen3-8B", "+4.2", "+1.6", "3/6", "-0.3"]
+          - ["Llama-3-8B", "+2.8", "+0.7", "2/6", "-0.5"]
+      - table_id: "T_llama_per_task"
+        caption: "Per-task accuracy on Llama-3-8B with TPAB+LoRA"
+        columns: ["Task Type", "Baseline (%)", "TPAB+LoRA (%)", "Δ (%)", "p-value"]
+        rows:
+          - ["Extraction", "59.3", "60.7", "+1.4", "0.018"]
+          - ["Instruction following", "56.1", "57.0", "+0.9", "0.064"]
+          - ["Multi-step extraction", "51.8", "52.4", "+0.6", "0.142"]
+          - ["Reasoning", "47.6", "47.7", "+0.1", "0.831"]
+          - ["Summarization", "64.2", "64.4", "+0.2", "0.573"]
+          - ["Creative", "69.1", "69.2", "+0.1", "0.744"]
+    figures_description:
+      - "Side-by-side bar charts: Qwen3-8B vs Llama-3-8B per-task improvement. Qwen3 bars are
+         consistently taller, with the gap largest for instruction following and multi-step extraction.
+         Visually communicates model-dependent benefit."
+    analysis: >
+      Cross-model TPAB results are the honest limitation that the median-tier paper must address directly.
+      The GAR improvement replicates (positive on both models), supporting the mechanistic claim that
+      turn-position bias counteracts softmax competition universally. But the magnitude is model-dependent,
+      and task-level translation weakens further on Llama-3. The paper frames this as: "The analysis
+      contribution (dual-mechanism discovery) replicates robustly across 3 model families. The intervention
+      (TPAB) shows consistent GAR improvement direction but model-dependent magnitude, suggesting that
+      optimal TPAB configuration (bucketing, learning rate, layer selection) may need per-model tuning.
+      This is consistent with TPAB's role as mechanism-aware mitigation rather than universal fix."
+      For NAACL viability, the analysis claims remain strong; TPAB is positioned as "proof that the
+      diagnosis is actionable" rather than "a complete solution."
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "beee5666-9788-43df-b2cf-af0c00cc488c",
+  "isSidechain": false,
+  "requestId": "req_011Cb9sf4PYb9sPKwPnBp2hS",
+  "type": "assistant",
+  "uuid": "010e56d2-025f-4782-a0f3-1d582eda7b86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqPCW9Pxm6U5gbhpX5yXus",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29341,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 16296,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29341,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 16296,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 29341,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29341
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：  含义：TPAB improves GAR measurably but GAR-to-task translation is inconsistent — works for some task types (extraction, instruction following) but not others (…",
+  "leafUuid": "010e56d2-025f-4782-a0f3-1d582eda7b86",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanism-aware mitigation for multi-turn goal accessibility",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 median 档的含义：  含义：TPAB improves GAR measurably but GAR-to-task translation is inconsistent — works for some task types (extraction, instruction following) but not others (…",
+  "leafUuid": "010e56d2-025f-4782-a0f3-1d582eda7b86",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Mechanism-aware mitigation for multi-turn goal accessibility",
+  "sessionId": "29fdc2f4-0fc4-43c5-b68a-0b96e771912b"
+}
+```
+
+---

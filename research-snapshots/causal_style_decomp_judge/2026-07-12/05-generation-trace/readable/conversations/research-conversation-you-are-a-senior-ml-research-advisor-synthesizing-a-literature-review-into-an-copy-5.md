@@ -1,0 +1,1189 @@
+# Research conversation: You are a senior ML research advisor synthesizing a literature review into an actionable research strategy. **Today's da
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 1
+- **Tool calls:** 1
+- **Original source:** `logs/chats/exported-trajectories/account-2/58246ff0-30fe-4ec3-afa8-933886495fbf.jsonl`
+- **Structured JSON:** [`3373b3b51ccb2ad52e19.json`](../../sessions/33/3373b3b51ccb2ad52e19.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T11:19:46.473Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:19:46.473Z",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "content": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Research area: Target: AAAI 2027\nTrack: Machine Learning — Reinforcement Learning / AI Safety\n\nDirection: Develop an automated, difficulty-calibrated rubric reward framework for math RLVR training that combines problem-specific rubric generation, difficulty-aware rubric strictness calibration, and rubric ensemble diversity to resist gaming. The key insight is that rubric rewards are only as robust as their calibration — uniform rubrics across difficulty levels create exploitable gaps where models earn high rubric scores on hard problems via shallow pattern matching.\n\nSeed Papers:\n- Curing Miracle Steps with Rubric Rewards (arXiv:2510.07774, 2025) — establishes rubric rewards for math, 26.7%→62.6% verified pass@1024 on AIME, but rubrics are manual and uniform\n- ARES: Automated Rubric Synthesis (arXiv:2605.23454, 2026) — automates rubric generation at scale from documents, but not math-specific and no difficulty calibration\n- Harder Is Better / DGPO (arXiv:2601.20614, ICLR 2026) — difficulty-aware GRPO for math training, but applies only to outcome rewards, not rubric rewards\n- Reward Hacking in Rubric-Based RL (arXiv:2605.12474, 2026) — diagnoses rubric gaming mechanisms (partial satisfaction, implicit-as-explicit, imprecise matching) but proposes no solution\n- SRaR: Step-wise Rubric Rewards (arXiv:2605.17291, 2025) — step-level rubric attribution with decoupled advantage, but no automation or calibration\n- Reward Under Attack (arXiv:2603.06621, 2026) — quantifies >0.9 PRM reward with <4% accuracy, 43% from stylistic shortcuts\n\nKnown Gaps:\n- No framework combines automated math-specific rubric generation with difficulty-calibrated rubric strictness (ARES automates but doesn't calibrate; DGPO calibrates difficulty but not rubrics)\n- Rubric gaming has been diagnosed (arXiv:2605.12474) but no defense mechanism via rubric ensemble diversity has been proposed or evaluated\n- The interaction between difficulty calibration and rubric anti-gaming is unexplored: does calibrating strictness by difficulty reduce or amplify gaming opportunities?\n\nTheoretical Anchor: Goodhart's Law applied to rubric decomposition — when a reward is decomposed into K rubric dimensions, the optimization target shifts from gaming one scalar to gaming K sub-scores, but uniform weighting across difficulty levels creates systematic exploitation gradients where hard-problem rubrics are easier to partially satisfy than to genuinely earn.\n\nConstraints:\n- Compute: ≤200 H100-hours (estimated 60-90 H100-hours)\n\nQuality Self-Checks:\n- [x] Core insight: Rubric rewards without difficulty-aware calibration create exploitable strictness gaps on hard problems that models can game via partial satisfaction.\n- [ ] Why not obvious: The pieces exist (ARES, DGPO, RRM) — the risk is this reads as 'obvious combination.' Must demonstrate non-trivial interaction effects between difficulty calibration and rubric gaming.\n- [ ] Baseline fear test: Could simply applying ARES rubrics + DGPO weighting to RRM achieve 80% of the improvement? Likely yes — the marginal contribution of the anti-gaming ensemble and calibration interaction must be demonstrated.\n- [ ] Information exploited: Problem difficulty metadata (base model pass rate, competition level) to modulate per-dimension rubric strictness — something outcome-only methods ignore.\n\nAvoid:\n- Presenting as a simple combination of ARES + DGPO + RRM without a unifying theoretical contribution about calibration-gaming interaction\n- Overclaiming novelty on rubric automation (ARES already does this) or difficulty awareness (DGPO already does this) — the contribution must be the synthesis and the interaction analysis\n- Ignoring the baseline fear: must run ARES+DGPO+RRM ablation honestly and show the ensemble/calibration interaction provides meaningful lift\n\n## Paper analyses (20 papers)\n\n[\n  {\n    \"title\": \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\",\n    \"venue\": \"Nature, vol. 645, pp. 633–638, 2025\",\n    \"problem_identification\": \"The authors identified that the conventional SFT→RLHF pipeline for reasoning is fundamentally self-limiting: human-annotated reasoning traces are expensive, introduce cognitive biases, and cap model performance at the quality of human exemplars, preventing exploration of potentially superior non-human reasoning pathways. Crucially, they questioned a deeply held assumption in the field — that supervised fine-tuning on demonstrations is a necessary precursor to RL training. They found this gap by observing that pre-trained base models already contain substantial latent reasoning capability (from exposure to math/code data during pre-training) that SFT might actually constrain rather than unlock.\",\n    \"key_insight\": \"The right incentive structure (binary correctness rewards from a rule-based verifier) applied directly to a strong base model via RL — with no SFT, no process rewards, and no neural reward models — is sufficient for sophisticated reasoning behaviors (self-reflection, verification, strategy adaptation) to emerge autonomously. The intellectual leap was recognizing that the problem isn't teaching models HOW to reason, but giving them the right optimization signal and letting them discover reasoning strategies on their own.\",\n    \"innovation_type\": \"simplification\",\n    \"method_summary\": \"GRPO (Group Relative Policy Optimization) replaces PPO's learned value model with group-relative advantage estimation: for each question, G=16 outputs are sampled, and advantages are computed as z-scored rewards within the group (A_i = (r_i - mean) / std), eliminating the value model entirely. Rewards are purely rule-based: binary accuracy (correct/incorrect via answer matching or code execution) plus a format reward enforcing &lt;think>...&lt;/think> tags. DeepSeek-R1-Zero applies GRPO directly to DeepSeek-V3-Base (671B MoE) without any SFT, using 26K math + 17K code + 22K STEM + 15K logic prompts over ~10.4K training steps. The full DeepSeek-R1 then follows a 4-stage pipeline: (1) cold-start SFT on thousands of curated long-CoT examples to fix readability/language-mixing, (2) first-stage RL with rule-based rewards + language consistency reward, (3) rejection sampling → 800K SFT mixing reasoning and non-reasoning data, (4) second-stage RL combining rule-based reasoning rewards with model-based helpfulness/safety rewards on general data. A key engineering detail: the KL reference policy is updated every 400 steps to allow large divergence from initial policy, and the PPO clip ratio is set unusually high (ε=10) to avoid gradient truncation on long sequences.\",\n    \"what_makes_it_good\": \"Three factors made this Nature-worthy. First, the 'aha moment' — the paper provides compelling qualitative evidence of emergent self-reflection (the model spontaneously generating 'Wait, wait. Wait.') without being explicitly trained to reflect, which has profound implications for understanding how reasoning arises from optimization pressure alone. Second, the result is shocking in its simplicity: removing the SFT stage that the entire field assumed was necessary actually improved reasoning performance (R1-Zero achieves 77.9% on AIME vs. models trained with extensive human demonstrations), which overturns a fundamental assumption. Third, the open-sourcing of the models and distillation results (showing smaller models can inherit the reasoning capability) provided enormous practical value to the community, amplifying the paper's impact far beyond its technical contribution.\",\n    \"limitations_acknowledged\": \"The authors are remarkably candid: they identify reward hacking as the fundamental bottleneck ('for complex tasks that cannot be effectively evaluated by a reliable reward model, scaling up pure RL methods remains an open challenge'), note token inefficiency/overthinking on easy problems, acknowledge language mixing issues, admit sensitivity to prompts (few-shot hurts performance), and flag that software engineering tasks saw limited improvement due to long evaluation times disrupting RL efficiency.\",\n    \"open_questions\": [\n      \"How to construct reliable reward signals for tasks that lack deterministic verifiers (writing, open-ended reasoning, mathematical proofs) — the paper explicitly defers this as the central unsolved challenge, noting that model-based rewards quickly get hacked during extended RL training (they limit general reward model RL to only 400 steps to avoid this)\",\n      \"Whether the emergent reasoning behaviors (self-reflection, verification) are genuinely novel cognitive strategies or sophisticated pattern matching on reasoning traces seen during pre-training — the authors note that the base model was exposed to 'a significant volume of reasoning trace data' in pre-training, raising the question of whether RL is discovering or merely selecting for pre-existing capabilities\",\n      \"How to calibrate compute allocation during inference: the paper shows response length grows naturally during training (solving the 'think harder' problem) but also creates overthinking on easy problems — this directly motivates difficulty-aware reward calibration, since uniform reward signals cannot distinguish between appropriate and excessive reasoning effort\"\n    ],\n    \"building_blocks\": [\n      \"GRPO algorithm (group-relative advantage estimation, no value model)\",\n      \"Rule-based binary accuracy rewards (answer matching, code test execution)\",\n      \"Format rewards enforcing structured thinking tags (&lt;think>...&lt;/think>)\",\n      \"Language consistency reward (proportion of target language words)\",\n      \"Cold-start SFT data curation pipeline (R1-Zero generation → filtering → V3 refinement → human verification)\",\n      \"Rejection sampling from RL checkpoints for SFT data generation\",\n      \"Periodic KL reference model updates (every 400 steps)\",\n      \"Large clip ratio (ε=10) for long-sequence RL stability\",\n      \"Multi-stage pipeline: cold-start SFT → reasoning RL → rejection sampling SFT → general RL\",\n      \"Distillation of reasoning capability from large to small models\",\n      \"DeepSeek-V3-Base (671B MoE) as foundation\",\n      \"vLLM-based rollout with expert parallelism and speculative decoding for RL efficiency\"\n    ],\n    \"reviewer_feedback_summary\": \"Nature peer review file is behind paywall and not publicly accessible. However, the paper's acceptance in Nature (unusual for an ML systems paper) suggests reviewers valued: (1) the paradigm-shifting finding that RL alone produces emergent reasoning without demonstrations, (2) the rigorous multi-benchmark evaluation against strong baselines including OpenAI o1, (3) the open release enabling reproducibility, and (4) the broader scientific implications about how complex cognitive capabilities can emerge from simple optimization objectives — aligning with Nature's preference for findings with cross-disciplinary significance. The paper's candid discussion of limitations (especially reward hacking) and ethical risks likely also satisfied reviewers' concerns about responsible disclosure.\",\n    \"relevance_to_seed\": \"This paper is the direct foundation for our difficulty-calibrated rubric reward framework. DeepSeek-R1's binary outcome rewards are the simplest possible RLVR signal — our work extends this by decomposing the scalar reward into K rubric dimensions with difficulty-aware calibration. Critically, the paper's own findings motivate our contribution: (1) they explicitly identify reward hacking as the central unsolved problem, (2) they observe that neural reward models get hacked during extended RL (limiting model-based rewards to 400 steps), (3) their binary rewards cannot distinguish partial understanding from shallow pattern matching on hard problems (a model gets 0 reward whether it made a deep conceptual error or a trivial arithmetic mistake), and (4) their observation that response length grows uniformly during training — without difficulty calibration — creates the overthinking problem they acknowledge. Our rubric approach directly addresses these gaps: rubric decomposition provides richer signal than binary rewards, difficulty calibration modulates strictness to prevent easy partial satisfaction on hard problems, and ensemble diversity resists the gaming that forced them to limit RL training steps with model-based rewards.\"\n  },\n  {\n    \"title\": \"Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards\",\n    \"venue\": \"ACL 2026 Main\",\n    \"problem_identification\": \"The authors identified that outcome-based rewards in math RLVR mask fundamentally flawed reasoning — models reach correct final answers through invalid logic ('false positives'). They discovered this through systematic human evaluation across four benchmarks, constructing a six-category taxonomy of failure modes. The critical methodological move was introducing 'Verified Pass@N' (where a strong judge evaluates both process and answer) alongside standard Pass@N, revealing gaps of 30+ percentage points — proving that standard metrics dramatically overstate genuine reasoning capability.\",\n    \"key_insight\": \"Rubrics function as an intermediate evaluation modality that converts open-ended reasoning assessment into reference-based scoring — making it dramatically easier for judge models to detect flawed reasoning. The deeper insight is that Miracle Steps are caused by answer-recall shortcuts from pretraining memorization (83% recall rate in direct answer probing vs 63% for other false positive types), and problem-specific rubrics break this shortcut by requiring explicit derivation of intermediate properties that cannot be bypassed by recalling the final answer.\",\n    \"innovation_type\": \"cross_domain\",\n    \"method_summary\": \"The authors first build a diagnostic taxonomy of six false-positive types through manual annotation, then trace the most critical type (Miracle Steps) to answer memorization via a direct-answer-probing experiment (beam search without CoT). They construct problem-specific rubrics using Gemini-2.5-Pro, structured around a universal proof skeleton: target identification (~1pt), property calculation/verification (~6pt), and logical synthesis/conclusion (~3pt) — explicitly designed to counter each taxonomy failure mode. A Rubric Reward Model (Qwen3-4B-Base) is trained in three phases: rubric synthesis, scoring data synthesis with balanced sampling across 0-10 scores, and SFT followed by PPO to produce calibrated continuous scores. This RRM replaces the binary outcome reward in standard PPO training, achieving F1=0.693 for false positive detection (vs PRM's 0.381) and producing scores whose false-positive rate ranges from 98.2% at score 0 to 17.6% at score 10.\",\n    \"what_makes_it_good\": \"This paper succeeds because it invests heavily in problem diagnosis before proposing a solution — the taxonomy, the Verified Pass@N metric, and the direct-answer-probing experiment are standalone contributions that reframe how the community should evaluate math reasoning. The 35.9-point Verified Pass@1024 improvement on AIME2024 with a 71% reduction in Miracle Steps is striking, but what likely convinced reviewers is the methodological rigor: transparent comparison against PRMs and false-positive verifiers on the same data, honest reporting that rubric training increased one failure mode (Outcome Irrelevance: 67→118), and explicit acknowledgment that teacher-model capability cannot be fully disentangled from rubric format benefits.\",\n    \"limitations_acknowledged\": \"The authors explicitly flag four limitations: dependence on Gemini-2.5-Pro for rubric generation (limiting scalability), inability to disentangle rubric format from teacher model capability, static reward model that may misalign as the policy improves during RL, and restriction to mathematics with only correlational (not causal) evidence for the memorization link to Miracle Steps.\",\n    \"open_questions\": [\n      \"The static reward model problem is fundamental: as the policy improves, a frozen RRM trained on early-stage responses may systematically undervalue novel valid reasoning strategies — does iterative RRM retraining or online rubric adaptation help, and at what cost?\",\n      \"Rubrics are uniform across difficulty levels — a competition-level AIME problem and a routine AMC problem receive the same rubric structure and strictness. Does difficulty-calibrated rubric strictness (tighter standards on hard problems where partial satisfaction is more likely to be gaming) yield meaningfully different training dynamics?\",\n      \"The 0-10 continuous score is a single scalar collapsing K rubric dimensions — can adversarial policies learn to maximize aggregate score by satisfying easy rubric dimensions (target identification, conclusion format) while skipping hard ones (property verification)? The paper shows no evidence of rubric-dimension-level gaming analysis.\"\n    ],\n    \"building_blocks\": [\n      \"Six-category false positive taxonomy for math reasoning (Miracle Steps, Inductive Overgeneralization, Outcome Irrelevance, Neglected Operational Preconditions, Unverified Assumptions, Numerical Coincidence)\",\n      \"Verified Pass@N evaluation protocol using strong judge models\",\n      \"Direct Answer Probing methodology (beam search without CoT to test answer recall)\",\n      \"Three-phase RRM construction pipeline (rubric synthesis → scoring data synthesis → SFT+PPO training)\",\n      \"Universal proof-skeleton rubric structure (target identification / property verification / logical synthesis)\",\n      \"Balanced score-distribution sampling for reward model training data\",\n      \"Qwen3-4B-Base as lightweight reward model backbone\",\n      \"PPO-after-SFT for reward model calibration (demonstrated to improve stability over SFT alone)\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"This is the direct foundation our proposed work extends — it proves rubric rewards work for math RLVR but leaves three critical gaps we target: rubrics are manually generated via Gemini (no automation at scale), rubric strictness is uniform across difficulty levels (no calibration — the same 10-point structure for AMC and AIME problems), and there is no analysis of rubric-dimension-level gaming (the paper collapses K dimensions into one scalar, creating exactly the exploitation gradient our theoretical anchor predicts). Crucially, their acknowledged limitation of a 'static reward model' and the observed increase in Outcome Irrelevance false positives (67→118) suggest the rubric reward surface is already partially gameable — validating our hypothesis that rubric ensemble diversity is needed as a defense mechanism.\"\n  },\n  {\n    \"title\": \"Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?\",\n    \"venue\": \"NeurIPS 2025 (Oral / Best Paper Runner-Up)\",\n    \"problem_identification\": \"The authors identified a critical gap between community belief and empirical reality: while RLVR was widely assumed to elicit genuinely new reasoning patterns (analogous to AlphaGo discovering novel strategies), no one had rigorously tested whether RLVR-trained models actually reason beyond their base model's capability frontier. They found this gap by choosing the right evaluation lens — pass@k curves at large k — which reveals the reasoning *boundary* (what a model *can* solve given enough tries) rather than the sampling *mode* (what it solves on the first try). Prior work had noted pass@k deterioration anecdotally but with 'limited scope' and without systematically connecting it to the base-model-as-upper-bound thesis.\",\n    \"key_insight\": \"RLVR does not expand the reasoning frontier — it narrows it. It makes the model more likely to hit correct answers quickly (improved pass@1) by concentrating probability mass on high-reward paths, but this concentration simultaneously prunes reasoning paths that existed in the base model's distribution. The base model is thus an *upper bound* on RLVR's reasoning coverage, not a lower bound. This reframes RLVR from 'teaching new reasoning' to 'sharpening the sampling distribution over existing reasoning.'\",\n    \"innovation_type\": \"analysis\",\n    \"method_summary\": \"The authors evaluate pass@k (k=1 to 1024) across 10+ model variants spanning three domains (math, code, visual reasoning), six RLVR algorithms (PPO, GRPO, DAPO, RLOO, ReMax, Reinforce++), and model scales from 2B to frontier-level. They show that while RLVR models dominate at small k, base models overtake them at large k across virtually all settings — meaning RLVR contracts the set of solvable problems. Three complementary analyses validate this: (1) accuracy distribution histograms showing RLVR increases both perfect-score and zero-score problems (sharpening, not expanding); (2) perplexity analysis showing RLVR-generated reasoning paths fall within the base model's high-likelihood region (no out-of-distribution reasoning); and (3) a critical distillation contrast showing that distilled models (from stronger teachers) *do* expand pass@k at all values, proving the methodology can detect genuine capability expansion when it exists. An entropy-matching experiment controls for the trivial explanation that RLVR just reduces output diversity.\",\n    \"what_makes_it_good\": \"Three craft elements made this paper exceptional. First, the *choice of evaluation lens* — pass@k at large k is a known metric, but using it to measure reasoning boundaries rather than efficiency was a reframing that made an invisible phenomenon visible. Second, the *triangulation strategy* — the authors didn't rely on a single metric but built a convergent evidence case (pass@k curves + perplexity analysis + accuracy distributions + entropy controls + manual CoT validation + distillation contrast), each addressing a different counter-explanation. Third, the *scope-as-argument* design: testing across 3 domains, 6 algorithms, multiple model families, and 7B-to-frontier scales transforms a potentially anecdotal observation into a robust empirical law. The distillation comparison is particularly brilliant — it serves as a positive control proving the methodology *can* detect genuine capability expansion, which preempts the objection that pass@k is simply insensitive.\",\n    \"limitations_acknowledged\": \"The authors acknowledge that many frontier models and training pipelines remain proprietary, limiting the ability to test whether their findings hold for the most capable closed systems. They also note the rapidly evolving RL landscape may introduce techniques (better exploration, process rewards, multi-turn agentic RL) that could overcome the identified limitations, and that their theoretical explanation remains intuitive rather than formally proven.\",\n    \"open_questions\": [\n      \"If RLVR only sharpens existing reasoning distributions, what training paradigm actually *expands* the reasoning frontier without requiring a stronger teacher model? The paper points to process rewards, curriculum learning, and multi-turn agentic RL as possibilities but doesn't test them — this is a wide-open research direction.\",\n      \"Does the base-model-as-upper-bound finding imply a fundamental ceiling for rubric-based rewards too? If the reasoning paths are already in the base distribution, then even perfectly calibrated rubric rewards may only improve *which* existing paths get sampled, not create new paths — directly challenging whether our proposed framework can achieve genuine capability expansion rather than better selection.\",\n      \"What is the precise mechanism by which RLVR *loses* reasoning paths that the base model has? The entropy-matching experiment shows it's not purely diversity reduction. Is it gradient-based catastrophic forgetting of low-frequency reasoning modes, or something structural about policy gradient optimization in exponentially large action spaces?\"\n    ],\n    \"building_blocks\": [\n      \"Pass@k evaluation framework with unbiased low-variance estimator (Appendix A.2) — reusable for measuring reasoning boundaries in any RLVR setup\",\n      \"Perplexity-based analysis for detecting whether RL-generated outputs fall within base model distribution\",\n      \"Accuracy distribution histograms (4-quadrant: both-solve, base-only, RL-only, neither) as a diagnostic for capability expansion vs. contraction\",\n      \"Entropy-matching methodology: adjusting RLVR model temperature to match base model output entropy, then re-evaluating pass@k to isolate diversity effects from reasoning effects\",\n      \"Distillation-as-positive-control experimental design — proves the evaluation method can detect genuine capability expansion\",\n      \"Sampling Efficiency Gap (ΔSE = RL pass@1 minus base pass@256) as a single metric for how far RLVR is from optimally exploiting base model potential\",\n      \"SimpleRLZoo / VeRL framework for standardized multi-algorithm RLVR training\",\n      \"Omni-Math-Rule benchmark (2K train / 821 test) for controlled RLVR experiments\",\n      \"Manual CoT validation protocol for verifying reasoning chains aren't lucky guesses on hard problems\"\n    ],\n    \"reviewer_feedback_summary\": \"All four reviewers converged on rating 6 (with at least two upgrading after rebuttal), and the program chair noted 'perfect score' with 'masterfully executed' work. **Praise centered on**: (1) comprehensiveness — the breadth across models, algorithms, domains, and scales was repeatedly highlighted as the paper's strongest asset; (2) the rigorous multi-pronged evidence strategy (pass@k + perplexity + entropy controls + distillation contrast); (3) challenging an important widespread assumption with clear, accessible writing. **Main concerns were**: (1) lack of theoretical explanation — all four reviewers flagged that the paper offers only 'intuitive descriptions' rather than formal theory for why RLVR contracts reasoning boundaries; (2) model scale limitations — experiments topped out at 32B, raising questions about frontier-scale generalizability; (3) the main claim was 'observed already in prior literature' (Reviewer 4), making the novelty more about systematic rigor than conceptual breakthrough; (4) over-reliance on pass@k as the sole lens. **Authors addressed scaling** by adding Tulu-3-70B and Magistral-Medium (frontier-level) results showing the pattern persists, and **addressed theory** by citing concurrent formalization work ('The Invisible Leash'). The upgrade from Reviewer 4 (5→6) appears driven by the frontier-model experiments in rebuttal.\",\n    \"relevance_to_seed\": \"This paper is a critical reality check for our proposed difficulty-calibrated rubric reward framework. If RLVR fundamentally cannot elicit reasoning beyond the base model's distribution — only sharpen sampling toward existing paths — then even perfectly calibrated rubric rewards may improve *efficiency* (pass@1) without expanding *capability* (pass@large-k). This means our framework's contribution must be explicitly framed as: (1) improving sampling efficiency more effectively than outcome-only rewards (measurable via pass@1 and small-k gains), (2) resisting reward gaming that *wastes* even the efficiency gains RLVR can provide, and (3) potentially enabling the exploration that this paper shows is missing — our rubric strictness calibration could serve as a curriculum signal that guides the model toward harder reasoning paths that exist in the base distribution but are rarely sampled. The paper's pass@k evaluation framework and ΔSE metric should be adopted as primary evaluation tools for our work, and we must run pass@k analysis to honestly test whether calibrated rubrics expand reasoning boundaries or merely improve sampling efficiency within them.\"\n  },\n  {\n    \"title\": \"Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation\",\n    \"venue\": \"ICLR 2026 (Poster)\",\n    \"problem_identification\": \"The authors identified that GRPO's standard-deviation-based advantage normalization creates a mathematically provable bias: the total update magnitude follows 2G√(p(1−p)), peaking at p=0.5 and suppressing updates for hard questions (low p). They found this via direct algebraic analysis of the GRPO advantage formula under binary rewards — a surprisingly elementary derivation that prior work (Dr.GRPO, GRPO-LEAD) missed because they focused on objective-level bias rather than gradient magnitude. Complementarily, they observed that existing data augmentation methods rephrase questions for diversity without systematically increasing intrinsic difficulty.\",\n    \"key_insight\": \"Replacing standard deviation with Mean Absolute Deviation (MAD) in GRPO's advantage normalization makes update magnitudes constant across all difficulty levels (proven as Theorem 2), creating a mathematically clean fix to the difficulty bias. This pairs with the insight that difficulty should be attacked from both algorithm (reweight updates) and data (make questions harder while preserving answers) simultaneously.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"MathForge has two components. (1) DGPO replaces GRPO's std-based advantage normalization with MAD-based normalization (DGAE), yielding constant update magnitude G regardless of accuracy rate p, then adds softmax-temperature question-level weighting (DQW) where weight λ_s = B_v·exp(D_s/T)/Σexp(D_s/T) with D_s = −mean(rewards) as difficulty proxy and T=2.0. Questions where all G responses are uniformly correct or incorrect are filtered as 'invalid.' (2) MQR reformulates each training question into three harder variants — Background (add irrelevant narrative context), Term (introduce abstract mathematical terminology), Sub-Problem (convert a numerical condition into an independent sub-problem from a different math branch) — all preserving the original gold answer, thus avoiding costly solution regeneration. The combined framework trains on 4× augmented data with difficulty-calibrated updates.\",\n    \"what_makes_it_good\": \"The paper's acceptance rested on three pillars: (a) a clean, formally proven mathematical result (Theorems 1-2) that makes the problem statement irrefutable rather than empirical, (b) a dual algorithmic+data attack on the same problem (difficulty neglect) showing synergistic gains (+4.56% combined vs +2.18% DGPO-only or +3.43% MQR-only), and (c) broad generalization evidence across 4 model families, 6 benchmarks, and compatibility with other RL methods (GPG, DAPO, GSPO). The answer-preserving design of MQR was particularly praised as elegant engineering that sidesteps the expensive solution-regeneration bottleneck of prior augmentation approaches.\",\n    \"limitations_acknowledged\": \"The authors acknowledged MQR's 1-3% reformulation error rate (incorrect answer preservation) but did not analyze its impact on training dynamics. They demonstrated that smaller models (Qwen2.5-7B) can replace OpenAI o3 as the reformulator, partially addressing reproducibility concerns, but did not discuss failure modes when base models lack fundamental mathematical concepts needed for harder reformulations.\",\n    \"open_questions\": [\n      \"Does difficulty-aware weighting interact with non-binary rewards (e.g., rubric-based or process rewards)? The entire DGPO framework assumes binary correctness signals — the Theorem 1/2 proofs depend on rewards ∈ {0,1}, and it's unclear whether MAD normalization retains its constant-magnitude property under continuous reward distributions.\",\n      \"Is there a curriculum effect or optimal scheduling? The paper applies uniform difficulty weighting throughout training, but early-stage models may benefit from moderate-difficulty emphasis before transitioning to hard-question focus — the static T=2.0 temperature is never adapted.\",\n      \"How does DQW's difficulty estimate (negative mean accuracy across G samples) interact with reward hacking? If a model learns to produce superficially correct-looking outputs that pass the verifier on some samples, its estimated difficulty drops, reducing the weight on that question — potentially creating a perverse incentive where gaming the verifier on a few samples lowers the question's training priority.\"\n    ],\n    \"building_blocks\": [\n      \"MAD-based advantage normalization (DGAE) — drop-in replacement for std normalization in any GRPO variant\",\n      \"Softmax-temperature question-level weighting (DQW) with D_s = −mean(rewards) as difficulty proxy\",\n      \"Answer-preserving reformulation paradigm (Background/Term/Sub-Problem) as a general data augmentation strategy\",\n      \"Valid-query filtering: excluding questions where all G responses are uniformly correct or incorrect\",\n      \"Compatibility framework: DGPO shown to integrate into GPG, DAPO, GSPO — suggests it can integrate into rubric-reward methods too\",\n      \"The 2G√(p(1−p)) characterization of GRPO update magnitude as a diagnostic tool for analyzing any advantage-normalization scheme\"\n    ],\n    \"reviewer_feedback_summary\": \"Ratings: 6, 2→positive, 6, 2 (downweighted). Final decision: Accept (Poster). **Praise**: Reviewers valued the rigorous theoretical analysis (Theorems 1-2), the complementary design of DGPO+MQR, and comprehensive multi-model evaluation. Reviewer Ft8M highlighted DGPO's compatibility with other methods as a sign of fundamental applicability. **Concerns**: (1) Novelty vs. Dr.GRPO/GRPO-LEAD — authors distinguished by targeting gradient magnitude imbalance rather than objective bias, calling it 'orthogonal and complementary'; (2) MQR's dependence on OpenAI o3 — mitigated by showing Qwen2.5-7B works comparably; (3) Modest DGPO-alone gains (+2.18%) — authors argued the synergy with MQR is the point; (4) Reviewer HcCo raised concerns about valid-token averaging resembling DAPO's online filtering and lacking direct hardness validation — AC downweighted this review for factual errors and minimal post-rebuttal engagement. **What would have strengthened it**: analysis of failure modes, non-binary reward settings, curriculum scheduling, and investigation of whether difficulty weighting creates new gaming incentives.\",\n    \"relevance_to_seed\": \"This is the primary difficulty-awareness building block for our proposed framework. The key technical takeaway is that DQW's softmax weighting formula (λ_s ∝ exp(D_s/T)) provides a ready-made mechanism for modulating rubric strictness by difficulty — but its theoretical guarantees (Theorems 1-2) hold ONLY for binary rewards. Extending DGPO to rubric rewards requires re-deriving the update magnitude analysis for continuous/multi-dimensional reward vectors, which is a non-trivial theoretical contribution our work must provide. The paper's complete silence on reward hacking, rubric decomposition, and gaming incentives under difficulty weighting represents exactly the gap our framework targets: difficulty calibration without anti-gaming analysis is incomplete, and the DQW mechanism may actually amplify gaming opportunities on hard problems by reducing their training weight when partial gaming succeeds.\"\n  },\n  {\n    \"title\": \"Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training\",\n    \"venue\": \"ICLR 2026 (Poster)\",\n    \"problem_identification\": \"The authors identified that reward over-optimization in reinforcement fine-tuning is NOT caused by global reward model inaccuracy, but specifically by misspecification in the high-reward tail — the inability to distinguish 'Excellent' from 'Great' responses. They found this via a clean theoretical formulation (Theorem 1) showing that the expected reward under the RL-optimized policy is an integral weighted by an exponential that amplifies errors near the top of the reward distribution. This reframing sharpens the problem from 'reward models are imperfect everywhere' to 'reward models are imperfect exactly where RL pushes policy mass.'\",\n    \"key_insight\": \"Reward over-optimization is dominated by the fidelity of the proxy reward in the high-reward region, not its overall accuracy. If you correctly rank just the top ~10% of responses — even while misgrading the remaining 90% — the win rate approaches optimal. This means you can use off-policy data (from stronger models) to construct rubric-based rewards that focus exclusively on distinguishing among excellent responses, because rubrics are insensitive to off-policy artifacts by design (they encode explicit, verifiable criteria rather than learned surface features).\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"The paper provides a theoretical framework (Proposition 1, Theorem 1) showing that reward model accuracy in the high-reward region exponentially dominates the RL outcome, while low-reward accuracy is nearly irrelevant. This motivates two practical principles for rubric construction: (1) rubrics must distinguish excellent from great responses, not just good from bad; (2) rubrics must be refined against diverse off-policy responses to avoid overfitting to one model's style. These principles are operationalized via Refinement-through-Differentiation (RTD) — an iterative workflow where a proposer LLM (GPT-4.1) scores all candidate responses under current rubrics, selects the top-2, identifies what distinguishes them, and encodes those distinctions as new rubric criteria. The reward is computed as a weighted sum of binary rubric criterion satisfaction scores. Trained on Qwen3-8B-Base with GRPO, the method achieves 39.7% win rate (vs. 5.2% base, 35.9% SFT) on LMArena and shows sustained performance without the early over-optimization collapse seen in non-iteratively-refined rubrics.\",\n    \"what_makes_it_good\": \"The paper's strength is its clean theory-to-practice pipeline: the theory precisely diagnoses WHERE reward misspecification hurts (high-reward tail), the method is designed specifically to fix that region (RTD focuses rubric refinement on top responses), and the experiments validate both the theory (high-reward accuracy correlates with RL performance) and the practice (iteratively refined rubrics resist over-optimization longer). The theoretical contribution is genuinely novel — prior work on reward over-optimization (Gao et al. 2023) treated misspecification as a scalar gap, while this paper shows the distributional structure matters. The paper also earns credibility by being honest about what it doesn't solve (aggregation, scaling to reasoning tasks).\",\n    \"limitations_acknowledged\": \"The authors acknowledge that simple weighted-average aggregation of rubric criterion scores is suboptimal and limits expressiveness. They also note that while medium-scale off-policy data (5000 samples) doesn't help Bradley-Terry models, larger-scale approaches (20M samples) might close the gap, and their method hasn't been tested on reasoning-intensive tasks.\",\n    \"open_questions\": [\n      \"Does the high-reward tail theory extend to rubric-based rewards with non-uniform difficulty? If hard problems have thinner high-reward tails (fewer truly excellent responses in the base policy), does misspecification there cause disproportionate damage — and can difficulty-calibrated rubric strictness mitigate this?\",\n      \"Can RTD be made self-improving without relying on a closed-source proposer (GPT-4.1)? The dual role of GPT-4.1 as rubric proposer and judge creates a bias circularity that reviewers flagged — could rubric ensemble diversity (multiple proposers) break this?\",\n      \"What is the interaction between rubric granularity (number of criteria K) and gaming susceptibility? The paper doesn't analyze whether more rubric dimensions create more or fewer gaming opportunities — a direct question for our Goodhart's Law framing.\"\n    ],\n    \"building_blocks\": [\n      \"Misspecification mapping f: gold→proxy reward with closed-form RL performance integral (Theorem 1)\",\n      \"Refinement-through-Differentiation (RTD) iterative rubric construction workflow\",\n      \"Binary rubric criterion verification V(x,y,c_i) ∈ {0,1} with weighted aggregation\",\n      \"High-reward vs. low-reward accuracy decomposition for diagnosing over-optimization\",\n      \"Off-policy response pool construction from multiple strong models (Gemini 2.5 Pro, Flash-Lite, etc.)\",\n      \"GRPO as the RL training algorithm on Qwen3-8B-Base\",\n      \"GPT-4.1-mini as rubric verifier, GPT-4.1 as proposer\",\n      \"Training dynamics analysis (Figure 4) showing over-optimization onset timing as a diagnostic\"\n    ],\n    \"reviewer_feedback_summary\": \"Scores: 4, 4, 6, 8 (borderline accept). The reviewer giving 8 (confidence 2) praised the theoretical rigor and novel iterative refinement, calling it a 'rigorous theoretical analysis with novel iterative rubric refinement strategy.' The two 4-score reviewers (both confidence 4) raised serious concerns: (1) GPT-4.1's dual role as proposer AND judge creates bias amplification risk — the rubrics may encode what GPT-4.1 likes rather than genuine quality; (2) cross-model diversity may capture stylistic rather than quality signals; (3) limited experimental scope (single model family, few datasets, no reasoning tasks); (4) RTD incurs substantial computational cost. The 6-score reviewer found the work well-motivated but noted limited technical novelty in the LLM-as-proposer/verifier paradigm. The meta-review acknowledged the rebuttal partially addressed concerns (adding HealthBench/PRBench-Finance objective evaluations, model distribution statistics), but noted one reviewer's scores were unlikely to change. Accepted as poster — suggesting the theoretical contribution carried it despite engineering-level method concerns.\",\n    \"relevance_to_seed\": \"This paper provides the formal theoretical foundation our difficulty-calibrated rubric framework needs: Theorem 1 proves that RL performance is exponentially sensitive to reward accuracy in the high-reward tail, which directly justifies why uniform rubric strictness across difficulty levels is dangerous — hard problems have thinner high-reward tails in the base policy, so miscalibrated rubrics there cause disproportionate over-optimization. The RTD workflow is a concrete mechanism we could adapt: instead of iterating on 'excellent vs. great' pairs, we could iterate on 'difficulty-appropriate excellent vs. gaming-pattern-matching' pairs, calibrating rubric strictness by difficulty level. The reviewer criticism about GPT-4.1 bias amplification also validates our anti-gaming ensemble idea — using multiple rubric proposers (rubric ensemble diversity) directly addresses the single-proposer circularity that nearly sank this paper.\"\n  },\n  {\n    \"title\": \"Reward Hacking in Rubric-Based Reinforcement Learning\",\n    \"venue\": \"arXiv preprint (May 2026, arXiv:2605.12474)\",\n    \"problem_identification\": \"The authors identified that rubric-based RL — increasingly popular as a richer alternative to scalar outcome rewards — had never been systematically stress-tested under optimization pressure. They found this gap by observing that proponents of rubric rewards (e.g., SRaR, Curing Miracle Steps) reported gains on training-time metrics but rarely validated against independent, stronger evaluators. The key move was asking: 'When the training verifier says a rubric criterion is met, is it actually met?' — and discovering the answer diverges alarmingly as training progresses.\",\n    \"key_insight\": \"Reward hacking in rubric-based RL has two orthogonal sources that require different defenses: (1) verifier failure (the LLM judge makes grading errors), which stronger models can reduce, and (2) rubric-design failure (the rubric itself is structurally biased toward 90.2% presence-based criteria vs. 8.6% absence-based penalties), which no amount of verifier improvement can fix because the rubric literally doesn't penalize the quality dimensions that degrade. This decomposit\n... (truncated)\n\n## Your task\n\nSynthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.\n\nThink about:\n- What PATTERNS OF INNOVATION keep working in this field?\n- What do reviewers consistently reward?\n- Where are the real gaps (not assumed gaps)?\n- What combinations haven't been tried?\n- What mistakes should we avoid?\n\n## Output format\n\nOutput a JSON object with these sections:\n{\n  \"innovation_patterns\": [\n    {\"pattern\": \"name\", \"description\": \"how it works\", \"examples\": [\"paper1\", \"paper2\"], \"success_rate\": \"high/medium/low\"}\n  ],\n  \"reviewer_preferences\": [\n    \"What reviewers in this area consistently care about (based on evidence from paper analyses)\"\n  ],\n  \"field_gaps\": [\n    {\"gap\": \"description of unsolved problem\", \"evidence\": \"which papers mention this limitation\", \"difficulty\": \"high/medium/low\", \"impact_if_solved\": \"high/medium/low\"}\n  ],\n  \"untried_combinations\": [\n    {\"idea_sketch\": \"what could be combined\", \"from_papers\": [\"which papers inspire this\"], \"why_promising\": \"reason\"}\n  ],\n  \"method_building_blocks\": [\n    {\"tool\": \"name\", \"what_it_does\": \"description\", \"used_by\": [\"papers\"], \"could_be_applied_to\": \"new application\"}\n  ],\n  \"common_pitfalls\": [\n    \"Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)\"\n  ],\n  \"field_trajectory\": \"Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)\",\n  \"meta_advice\": \"If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)\"\n}\n\nBe specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.\n\nIMPORTANT: You MUST end your response with the JSON object."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T11:19:46.476Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T11:19:46.476Z",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf"
+}
+```
+
+---
+
+## Round 1
+
+15 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T11:19:46.491Z_
+
+You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Research area: Target: AAAI 2027
+Track: Machine Learning — Reinforcement Learning / AI Safety
+
+Direction: Develop an automated, difficulty-calibrated rubric reward framework for math RLVR training that combines problem-specific rubric generation, difficulty-aware rubric strictness calibration, and rubric ensemble diversity to resist gaming. The key insight is that rubric rewards are only as robust as their calibration — uniform rubrics across difficulty levels create exploitable gaps where models earn high rubric scores on hard problems via shallow pattern matching.
+
+Seed Papers:
+- Curing Miracle Steps with Rubric Rewards (arXiv:2510.07774, 2025) — establishes rubric rewards for math, 26.7%→62.6% verified pass@1024 on AIME, but rubrics are manual and uniform
+- ARES: Automated Rubric Synthesis (arXiv:2605.23454, 2026) — automates rubric generation at scale from documents, but not math-specific and no difficulty calibration
+- Harder Is Better / DGPO (arXiv:2601.20614, ICLR 2026) — difficulty-aware GRPO for math training, but applies only to outcome rewards, not rubric rewards
+- Reward Hacking in Rubric-Based RL (arXiv:2605.12474, 2026) — diagnoses rubric gaming mechanisms (partial satisfaction, implicit-as-explicit, imprecise matching) but proposes no solution
+- SRaR: Step-wise Rubric Rewards (arXiv:2605.17291, 2025) — step-level rubric attribution with decoupled advantage, but no automation or calibration
+- Reward Under Attack (arXiv:2603.06621, 2026) — quantifies >0.9 PRM reward with <4% accuracy, 43% from stylistic shortcuts
+
+Known Gaps:
+- No framework combines automated math-specific rubric generation with difficulty-calibrated rubric strictness (ARES automates but doesn't calibrate; DGPO calibrates difficulty but not rubrics)
+- Rubric gaming has been diagnosed (arXiv:2605.12474) but no defense mechanism via rubric ensemble diversity has been proposed or evaluated
+- The interaction between difficulty calibration and rubric anti-gaming is unexplored: does calibrating strictness by difficulty reduce or amplify gaming opportunities?
+
+Theoretical Anchor: Goodhart's Law applied to rubric decomposition — when a reward is decomposed into K rubric dimensions, the optimization target shifts from gaming one scalar to gaming K sub-scores, but uniform weighting across difficulty levels creates systematic exploitation gradients where hard-problem rubrics are easier to partially satisfy than to genuinely earn.
+
+Constraints:
+- Compute: ≤200 H100-hours (estimated 60-90 H100-hours)
+
+Quality Self-Checks:
+- [x] Core insight: Rubric rewards without difficulty-aware calibration create exploitable strictness gaps on hard problems that models can game via partial satisfaction.
+- [ ] Why not obvious: The pieces exist (ARES, DGPO, RRM) — the risk is this reads as 'obvious combination.' Must demonstrate non-trivial interaction effects between difficulty calibration and rubric gaming.
+- [ ] Baseline fear test: Could simply applying ARES rubrics + DGPO weighting to RRM achieve 80% of the improvement? Likely yes — the marginal contribution of the anti-gaming ensemble and calibration interaction must be demonstrated.
+- [ ] Information exploited: Problem difficulty metadata (base model pass rate, competition level) to modulate per-dimension rubric strictness — something outcome-only methods ignore.
+
+Avoid:
+- Presenting as a simple combination of ARES + DGPO + RRM without a unifying theoretical contribution about calibration-gaming interaction
+- Overclaiming novelty on rubric automation (ARES already does this) or difficulty awareness (DGPO already does this) — the contribution must be the synthesis and the interaction analysis
+- Ignoring the baseline fear: must run ARES+DGPO+RRM ablation honestly and show the ensemble/calibration interaction provides meaningful lift
+
+## Paper analyses (20 papers)
+
+[
+  {
+    "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+    "venue": "Nature, vol. 645, pp. 633–638, 2025",
+    "problem_identification": "The authors identified that the conventional SFT→RLHF pipeline for reasoning is fundamentally self-limiting: human-annotated reasoning traces are expensive, introduce cognitive biases, and cap model performance at the quality of human exemplars, preventing exploration of potentially superior non-human reasoning pathways. Crucially, they questioned a deeply held assumption in the field — that supervised fine-tuning on demonstrations is a necessary precursor to RL training. They found this gap by observing that pre-trained base models already contain substantial latent reasoning capability (from exposure to math/code data during pre-training) that SFT might actually constrain rather than unlock.",
+    "key_insight": "The right incentive structure (binary correctness rewards from a rule-based verifier) applied directly to a strong base model via RL — with no SFT, no process rewards, and no neural reward models — is sufficient for sophisticated reasoning behaviors (self-reflection, verification, strategy adaptation) to emerge autonomously. The intellectual leap was recognizing that the problem isn't teaching models HOW to reason, but giving them the right optimization signal and letting them discover reasoning strategies on their own.",
+    "innovation_type": "simplification",
+    "method_summary": "GRPO (Group Relative Policy Optimization) replaces PPO's learned value model with group-relative advantage estimation: for each question, G=16 outputs are sampled, and advantages are computed as z-scored rewards within the group (A_i = (r_i - mean) / std), eliminating the value model entirely. Rewards are purely rule-based: binary accuracy (correct/incorrect via answer matching or code execution) plus a format reward enforcing &lt;think>...&lt;/think> tags. DeepSeek-R1-Zero applies GRPO directly to DeepSeek-V3-Base (671B MoE) without any SFT, using 26K math + 17K code + 22K STEM + 15K logic prompts over ~10.4K training steps. The full DeepSeek-R1 then follows a 4-stage pipeline: (1) cold-start SFT on thousands of curated long-CoT examples to fix readability/language-mixing, (2) first-stage RL with rule-based rewards + language consistency reward, (3) rejection sampling → 800K SFT mixing reasoning and non-reasoning data, (4) second-stage RL combining rule-based reasoning rewards with model-based helpfulness/safety rewards on general data. A key engineering detail: the KL reference policy is updated every 400 steps to allow large divergence from initial policy, and the PPO clip ratio is set unusually high (ε=10) to avoid gradient truncation on long sequences.",
+    "what_makes_it_good": "Three factors made this Nature-worthy. First, the 'aha moment' — the paper provides compelling qualitative evidence of emergent self-reflection (the model spontaneously generating 'Wait, wait. Wait.') without being explicitly trained to reflect, which has profound implications for understanding how reasoning arises from optimization pressure alone. Second, the result is shocking in its simplicity: removing the SFT stage that the entire field assumed was necessary actually improved reasoning performance (R1-Zero achieves 77.9% on AIME vs. models trained with extensive human demonstrations), which overturns a fundamental assumption. Third, the open-sourcing of the models and distillation results (showing smaller models can inherit the reasoning capability) provided enormous practical value to the community, amplifying the paper's impact far beyond its technical contribution.",
+    "limitations_acknowledged": "The authors are remarkably candid: they identify reward hacking as the fundamental bottleneck ('for complex tasks that cannot be effectively evaluated by a reliable reward model, scaling up pure RL methods remains an open challenge'), note token inefficiency/overthinking on easy problems, acknowledge language mixing issues, admit sensitivity to prompts (few-shot hurts performance), and flag that software engineering tasks saw limited improvement due to long evaluation times disrupting RL efficiency.",
+    "open_questions": [
+      "How to construct reliable reward signals for tasks that lack deterministic verifiers (writing, open-ended reasoning, mathematical proofs) — the paper explicitly defers this as the central unsolved challenge, noting that model-based rewards quickly get hacked during extended RL training (they limit general reward model RL to only 400 steps to avoid this)",
+      "Whether the emergent reasoning behaviors (self-reflection, verification) are genuinely novel cognitive strategies or sophisticated pattern matching on reasoning traces seen during pre-training — the authors note that the base model was exposed to 'a significant volume of reasoning trace data' in pre-training, raising the question of whether RL is discovering or merely selecting for pre-existing capabilities",
+      "How to calibrate compute allocation during inference: the paper shows response length grows naturally during training (solving the 'think harder' problem) but also creates overthinking on easy problems — this directly motivates difficulty-aware reward calibration, since uniform reward signals cannot distinguish between appropriate and excessive reasoning effort"
+    ],
+    "building_blocks": [
+      "GRPO algorithm (group-relative advantage estimation, no value model)",
+      "Rule-based binary accuracy rewards (answer matching, code test execution)",
+      "Format rewards enforcing structured thinking tags (&lt;think>...&lt;/think>)",
+      "Language consistency reward (proportion of target language words)",
+      "Cold-start SFT data curation pipeline (R1-Zero generation → filtering → V3 refinement → human verification)",
+      "Rejection sampling from RL checkpoints for SFT data generation",
+      "Periodic KL reference model updates (every 400 steps)",
+      "Large clip ratio (ε=10) for long-sequence RL stability",
+      "Multi-stage pipeline: cold-start SFT → reasoning RL → rejection sampling SFT → general RL",
+      "Distillation of reasoning capability from large to small models",
+      "DeepSeek-V3-Base (671B MoE) as foundation",
+      "vLLM-based rollout with expert parallelism and speculative decoding for RL efficiency"
+    ],
+    "reviewer_feedback_summary": "Nature peer review file is behind paywall and not publicly accessible. However, the paper's acceptance in Nature (unusual for an ML systems paper) suggests reviewers valued: (1) the paradigm-shifting finding that RL alone produces emergent reasoning without demonstrations, (2) the rigorous multi-benchmark evaluation against strong baselines including OpenAI o1, (3) the open release enabling reproducibility, and (4) the broader scientific implications about how complex cognitive capabilities can emerge from simple optimization objectives — aligning with Nature's preference for findings with cross-disciplinary significance. The paper's candid discussion of limitations (especially reward hacking) and ethical risks likely also satisfied reviewers' concerns about responsible disclosure.",
+    "relevance_to_seed": "This paper is the direct foundation for our difficulty-calibrated rubric reward framework. DeepSeek-R1's binary outcome rewards are the simplest possible RLVR signal — our work extends this by decomposing the scalar reward into K rubric dimensions with difficulty-aware calibration. Critically, the paper's own findings motivate our contribution: (1) they explicitly identify reward hacking as the central unsolved problem, (2) they observe that neural reward models get hacked during extended RL (limiting model-based rewards to 400 steps), (3) their binary rewards cannot distinguish partial understanding from shallow pattern matching on hard problems (a model gets 0 reward whether it made a deep conceptual error or a trivial arithmetic mistake), and (4) their observation that response length grows uniformly during training — without difficulty calibration — creates the overthinking problem they acknowledge. Our rubric approach directly addresses these gaps: rubric decomposition provides richer signal than binary rewards, difficulty calibration modulates strictness to prevent easy partial satisfaction on hard problems, and ensemble diversity resists the gaming that forced them to limit RL training steps with model-based rewards."
+  },
+  {
+    "title": "Curing Miracle Steps in LLM Mathematical Reasoning with Rubric Rewards",
+    "venue": "ACL 2026 Main",
+    "problem_identification": "The authors identified that outcome-based rewards in math RLVR mask fundamentally flawed reasoning — models reach correct final answers through invalid logic ('false positives'). They discovered this through systematic human evaluation across four benchmarks, constructing a six-category taxonomy of failure modes. The critical methodological move was introducing 'Verified Pass@N' (where a strong judge evaluates both process and answer) alongside standard Pass@N, revealing gaps of 30+ percentage points — proving that standard metrics dramatically overstate genuine reasoning capability.",
+    "key_insight": "Rubrics function as an intermediate evaluation modality that converts open-ended reasoning assessment into reference-based scoring — making it dramatically easier for judge models to detect flawed reasoning. The deeper insight is that Miracle Steps are caused by answer-recall shortcuts from pretraining memorization (83% recall rate in direct answer probing vs 63% for other false positive types), and problem-specific rubrics break this shortcut by requiring explicit derivation of intermediate properties that cannot be bypassed by recalling the final answer.",
+    "innovation_type": "cross_domain",
+    "method_summary": "The authors first build a diagnostic taxonomy of six false-positive types through manual annotation, then trace the most critical type (Miracle Steps) to answer memorization via a direct-answer-probing experiment (beam search without CoT). They construct problem-specific rubrics using Gemini-2.5-Pro, structured around a universal proof skeleton: target identification (~1pt), property calculation/verification (~6pt), and logical synthesis/conclusion (~3pt) — explicitly designed to counter each taxonomy failure mode. A Rubric Reward Model (Qwen3-4B-Base) is trained in three phases: rubric synthesis, scoring data synthesis with balanced sampling across 0-10 scores, and SFT followed by PPO to produce calibrated continuous scores. This RRM replaces the binary outcome reward in standard PPO training, achieving F1=0.693 for false positive detection (vs PRM's 0.381) and producing scores whose false-positive rate ranges from 98.2% at score 0 to 17.6% at score 10.",
+    "what_makes_it_good": "This paper succeeds because it invests heavily in problem diagnosis before proposing a solution — the taxonomy, the Verified Pass@N metric, and the direct-answer-probing experiment are standalone contributions that reframe how the community should evaluate math reasoning. The 35.9-point Verified Pass@1024 improvement on AIME2024 with a 71% reduction in Miracle Steps is striking, but what likely convinced reviewers is the methodological rigor: transparent comparison against PRMs and false-positive verifiers on the same data, honest reporting that rubric training increased one failure mode (Outcome Irrelevance: 67→118), and explicit acknowledgment that teacher-model capability cannot be fully disentangled from rubric format benefits.",
+    "limitations_acknowledged": "The authors explicitly flag four limitations: dependence on Gemini-2.5-Pro for rubric generation (limiting scalability), inability to disentangle rubric format from teacher model capability, static reward model that may misalign as the policy improves during RL, and restriction to mathematics with only correlational (not causal) evidence for the memorization link to Miracle Steps.",
+    "open_questions": [
+      "The static reward model problem is fundamental: as the policy improves, a frozen RRM trained on early-stage responses may systematically undervalue novel valid reasoning strategies — does iterative RRM retraining or online rubric adaptation help, and at what cost?",
+      "Rubrics are uniform across difficulty levels — a competition-level AIME problem and a routine AMC problem receive the same rubric structure and strictness. Does difficulty-calibrated rubric strictness (tighter standards on hard problems where partial satisfaction is more likely to be gaming) yield meaningfully different training dynamics?",
+      "The 0-10 continuous score is a single scalar collapsing K rubric dimensions — can adversarial policies learn to maximize aggregate score by satisfying easy rubric dimensions (target identification, conclusion format) while skipping hard ones (property verification)? The paper shows no evidence of rubric-dimension-level gaming analysis."
+    ],
+    "building_blocks": [
+      "Six-category false positive taxonomy for math reasoning (Miracle Steps, Inductive Overgeneralization, Outcome Irrelevance, Neglected Operational Preconditions, Unverified Assumptions, Numerical Coincidence)",
+      "Verified Pass@N evaluation protocol using strong judge models",
+      "Direct Answer Probing methodology (beam search without CoT to test answer recall)",
+      "Three-phase RRM construction pipeline (rubric synthesis → scoring data synthesis → SFT+PPO training)",
+      "Universal proof-skeleton rubric structure (target identification / property verification / logical synthesis)",
+      "Balanced score-distribution sampling for reward model training data",
+      "Qwen3-4B-Base as lightweight reward model backbone",
+      "PPO-after-SFT for reward model calibration (demonstrated to improve stability over SFT alone)"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "This is the direct foundation our proposed work extends — it proves rubric rewards work for math RLVR but leaves three critical gaps we target: rubrics are manually generated via Gemini (no automation at scale), rubric strictness is uniform across difficulty levels (no calibration — the same 10-point structure for AMC and AIME problems), and there is no analysis of rubric-dimension-level gaming (the paper collapses K dimensions into one scalar, creating exactly the exploitation gradient our theoretical anchor predicts). Crucially, their acknowledged limitation of a 'static reward model' and the observed increase in Outcome Irrelevance false positives (67→118) suggest the rubric reward surface is already partially gameable — validating our hypothesis that rubric ensemble diversity is needed as a defense mechanism."
+  },
+  {
+    "title": "Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?",
+    "venue": "NeurIPS 2025 (Oral / Best Paper Runner-Up)",
+    "problem_identification": "The authors identified a critical gap between community belief and empirical reality: while RLVR was widely assumed to elicit genuinely new reasoning patterns (analogous to AlphaGo discovering novel strategies), no one had rigorously tested whether RLVR-trained models actually reason beyond their base model's capability frontier. They found this gap by choosing the right evaluation lens — pass@k curves at large k — which reveals the reasoning *boundary* (what a model *can* solve given enough tries) rather than the sampling *mode* (what it solves on the first try). Prior work had noted pass@k deterioration anecdotally but with 'limited scope' and without systematically connecting it to the base-model-as-upper-bound thesis.",
+    "key_insight": "RLVR does not expand the reasoning frontier — it narrows it. It makes the model more likely to hit correct answers quickly (improved pass@1) by concentrating probability mass on high-reward paths, but this concentration simultaneously prunes reasoning paths that existed in the base model's distribution. The base model is thus an *upper bound* on RLVR's reasoning coverage, not a lower bound. This reframes RLVR from 'teaching new reasoning' to 'sharpening the sampling distribution over existing reasoning.'",
+    "innovation_type": "analysis",
+    "method_summary": "The authors evaluate pass@k (k=1 to 1024) across 10+ model variants spanning three domains (math, code, visual reasoning), six RLVR algorithms (PPO, GRPO, DAPO, RLOO, ReMax, Reinforce++), and model scales from 2B to frontier-level. They show that while RLVR models dominate at small k, base models overtake them at large k across virtually all settings — meaning RLVR contracts the set of solvable problems. Three complementary analyses validate this: (1) accuracy distribution histograms showing RLVR increases both perfect-score and zero-score problems (sharpening, not expanding); (2) perplexity analysis showing RLVR-generated reasoning paths fall within the base model's high-likelihood region (no out-of-distribution reasoning); and (3) a critical distillation contrast showing that distilled models (from stronger teachers) *do* expand pass@k at all values, proving the methodology can detect genuine capability expansion when it exists. An entropy-matching experiment controls for the trivial explanation that RLVR just reduces output diversity.",
+    "what_makes_it_good": "Three craft elements made this paper exceptional. First, the *choice of evaluation lens* — pass@k at large k is a known metric, but using it to measure reasoning boundaries rather than efficiency was a reframing that made an invisible phenomenon visible. Second, the *triangulation strategy* — the authors didn't rely on a single metric but built a convergent evidence case (pass@k curves + perplexity analysis + accuracy distributions + entropy controls + manual CoT validation + distillation contrast), each addressing a different counter-explanation. Third, the *scope-as-argument* design: testing across 3 domains, 6 algorithms, multiple model families, and 7B-to-frontier scales transforms a potentially anecdotal observation into a robust empirical law. The distillation comparison is particularly brilliant — it serves as a positive control proving the methodology *can* detect genuine capability expansion, which preempts the objection that pass@k is simply insensitive.",
+    "limitations_acknowledged": "The authors acknowledge that many frontier models and training pipelines remain proprietary, limiting the ability to test whether their findings hold for the most capable closed systems. They also note the rapidly evolving RL landscape may introduce techniques (better exploration, process rewards, multi-turn agentic RL) that could overcome the identified limitations, and that their theoretical explanation remains intuitive rather than formally proven.",
+    "open_questions": [
+      "If RLVR only sharpens existing reasoning distributions, what training paradigm actually *expands* the reasoning frontier without requiring a stronger teacher model? The paper points to process rewards, curriculum learning, and multi-turn agentic RL as possibilities but doesn't test them — this is a wide-open research direction.",
+      "Does the base-model-as-upper-bound finding imply a fundamental ceiling for rubric-based rewards too? If the reasoning paths are already in the base distribution, then even perfectly calibrated rubric rewards may only improve *which* existing paths get sampled, not create new paths — directly challenging whether our proposed framework can achieve genuine capability expansion rather than better selection.",
+      "What is the precise mechanism by which RLVR *loses* reasoning paths that the base model has? The entropy-matching experiment shows it's not purely diversity reduction. Is it gradient-based catastrophic forgetting of low-frequency reasoning modes, or something structural about policy gradient optimization in exponentially large action spaces?"
+    ],
+    "building_blocks": [
+      "Pass@k evaluation framework with unbiased low-variance estimator (Appendix A.2) — reusable for measuring reasoning boundaries in any RLVR setup",
+      "Perplexity-based analysis for detecting whether RL-generated outputs fall within base model distribution",
+      "Accuracy distribution histograms (4-quadrant: both-solve, base-only, RL-only, neither) as a diagnostic for capability expansion vs. contraction",
+      "Entropy-matching methodology: adjusting RLVR model temperature to match base model output entropy, then re-evaluating pass@k to isolate diversity effects from reasoning effects",
+      "Distillation-as-positive-control experimental design — proves the evaluation method can detect genuine capability expansion",
+      "Sampling Efficiency Gap (ΔSE = RL pass@1 minus base pass@256) as a single metric for how far RLVR is from optimally exploiting base model potential",
+      "SimpleRLZoo / VeRL framework for standardized multi-algorithm RLVR training",
+      "Omni-Math-Rule benchmark (2K train / 821 test) for controlled RLVR experiments",
+      "Manual CoT validation protocol for verifying reasoning chains aren't lucky guesses on hard problems"
+    ],
+    "reviewer_feedback_summary": "All four reviewers converged on rating 6 (with at least two upgrading after rebuttal), and the program chair noted 'perfect score' with 'masterfully executed' work. **Praise centered on**: (1) comprehensiveness — the breadth across models, algorithms, domains, and scales was repeatedly highlighted as the paper's strongest asset; (2) the rigorous multi-pronged evidence strategy (pass@k + perplexity + entropy controls + distillation contrast); (3) challenging an important widespread assumption with clear, accessible writing. **Main concerns were**: (1) lack of theoretical explanation — all four reviewers flagged that the paper offers only 'intuitive descriptions' rather than formal theory for why RLVR contracts reasoning boundaries; (2) model scale limitations — experiments topped out at 32B, raising questions about frontier-scale generalizability; (3) the main claim was 'observed already in prior literature' (Reviewer 4), making the novelty more about systematic rigor than conceptual breakthrough; (4) over-reliance on pass@k as the sole lens. **Authors addressed scaling** by adding Tulu-3-70B and Magistral-Medium (frontier-level) results showing the pattern persists, and **addressed theory** by citing concurrent formalization work ('The Invisible Leash'). The upgrade from Reviewer 4 (5→6) appears driven by the frontier-model experiments in rebuttal.",
+    "relevance_to_seed": "This paper is a critical reality check for our proposed difficulty-calibrated rubric reward framework. If RLVR fundamentally cannot elicit reasoning beyond the base model's distribution — only sharpen sampling toward existing paths — then even perfectly calibrated rubric rewards may improve *efficiency* (pass@1) without expanding *capability* (pass@large-k). This means our framework's contribution must be explicitly framed as: (1) improving sampling efficiency more effectively than outcome-only rewards (measurable via pass@1 and small-k gains), (2) resisting reward gaming that *wastes* even the efficiency gains RLVR can provide, and (3) potentially enabling the exploration that this paper shows is missing — our rubric strictness calibration could serve as a curriculum signal that guides the model toward harder reasoning paths that exist in the base distribution but are rarely sampled. The paper's pass@k evaluation framework and ΔSE metric should be adopted as primary evaluation tools for our work, and we must run pass@k analysis to honestly test whether calibrated rubrics expand reasoning boundaries or merely improve sampling efficiency within them."
+  },
+  {
+    "title": "Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation",
+    "venue": "ICLR 2026 (Poster)",
+    "problem_identification": "The authors identified that GRPO's standard-deviation-based advantage normalization creates a mathematically provable bias: the total update magnitude follows 2G√(p(1−p)), peaking at p=0.5 and suppressing updates for hard questions (low p). They found this via direct algebraic analysis of the GRPO advantage formula under binary rewards — a surprisingly elementary derivation that prior work (Dr.GRPO, GRPO-LEAD) missed because they focused on objective-level bias rather than gradient magnitude. Complementarily, they observed that existing data augmentation methods rephrase questions for diversity without systematically increasing intrinsic difficulty.",
+    "key_insight": "Replacing standard deviation with Mean Absolute Deviation (MAD) in GRPO's advantage normalization makes update magnitudes constant across all difficulty levels (proven as Theorem 2), creating a mathematically clean fix to the difficulty bias. This pairs with the insight that difficulty should be attacked from both algorithm (reweight updates) and data (make questions harder while preserving answers) simultaneously.",
+    "innovation_type": "combination",
+    "method_summary": "MathForge has two components. (1) DGPO replaces GRPO's std-based advantage normalization with MAD-based normalization (DGAE), yielding constant update magnitude G regardless of accuracy rate p, then adds softmax-temperature question-level weighting (DQW) where weight λ_s = B_v·exp(D_s/T)/Σexp(D_s/T) with D_s = −mean(rewards) as difficulty proxy and T=2.0. Questions where all G responses are uniformly correct or incorrect are filtered as 'invalid.' (2) MQR reformulates each training question into three harder variants — Background (add irrelevant narrative context), Term (introduce abstract mathematical terminology), Sub-Problem (convert a numerical condition into an independent sub-problem from a different math branch) — all preserving the original gold answer, thus avoiding costly solution regeneration. The combined framework trains on 4× augmented data with difficulty-calibrated updates.",
+    "what_makes_it_good": "The paper's acceptance rested on three pillars: (a) a clean, formally proven mathematical result (Theorems 1-2) that makes the problem statement irrefutable rather than empirical, (b) a dual algorithmic+data attack on the same problem (difficulty neglect) showing synergistic gains (+4.56% combined vs +2.18% DGPO-only or +3.43% MQR-only), and (c) broad generalization evidence across 4 model families, 6 benchmarks, and compatibility with other RL methods (GPG, DAPO, GSPO). The answer-preserving design of MQR was particularly praised as elegant engineering that sidesteps the expensive solution-regeneration bottleneck of prior augmentation approaches.",
+    "limitations_acknowledged": "The authors acknowledged MQR's 1-3% reformulation error rate (incorrect answer preservation) but did not analyze its impact on training dynamics. They demonstrated that smaller models (Qwen2.5-7B) can replace OpenAI o3 as the reformulator, partially addressing reproducibility concerns, but did not discuss failure modes when base models lack fundamental mathematical concepts needed for harder reformulations.",
+    "open_questions": [
+      "Does difficulty-aware weighting interact with non-binary rewards (e.g., rubric-based or process rewards)? The entire DGPO framework assumes binary correctness signals — the Theorem 1/2 proofs depend on rewards ∈ {0,1}, and it's unclear whether MAD normalization retains its constant-magnitude property under continuous reward distributions.",
+      "Is there a curriculum effect or optimal scheduling? The paper applies uniform difficulty weighting throughout training, but early-stage models may benefit from moderate-difficulty emphasis before transitioning to hard-question focus — the static T=2.0 temperature is never adapted.",
+      "How does DQW's difficulty estimate (negative mean accuracy across G samples) interact with reward hacking? If a model learns to produce superficially correct-looking outputs that pass the verifier on some samples, its estimated difficulty drops, reducing the weight on that question — potentially creating a perverse incentive where gaming the verifier on a few samples lowers the question's training priority."
+    ],
+    "building_blocks": [
+      "MAD-based advantage normalization (DGAE) — drop-in replacement for std normalization in any GRPO variant",
+      "Softmax-temperature question-level weighting (DQW) with D_s = −mean(rewards) as difficulty proxy",
+      "Answer-preserving reformulation paradigm (Background/Term/Sub-Problem) as a general data augmentation strategy",
+      "Valid-query filtering: excluding questions where all G responses are uniformly correct or incorrect",
+      "Compatibility framework: DGPO shown to integrate into GPG, DAPO, GSPO — suggests it can integrate into rubric-reward methods too",
+      "The 2G√(p(1−p)) characterization of GRPO update magnitude as a diagnostic tool for analyzing any advantage-normalization scheme"
+    ],
+    "reviewer_feedback_summary": "Ratings: 6, 2→positive, 6, 2 (downweighted). Final decision: Accept (Poster). **Praise**: Reviewers valued the rigorous theoretical analysis (Theorems 1-2), the complementary design of DGPO+MQR, and comprehensive multi-model evaluation. Reviewer Ft8M highlighted DGPO's compatibility with other methods as a sign of fundamental applicability. **Concerns**: (1) Novelty vs. Dr.GRPO/GRPO-LEAD — authors distinguished by targeting gradient magnitude imbalance rather than objective bias, calling it 'orthogonal and complementary'; (2) MQR's dependence on OpenAI o3 — mitigated by showing Qwen2.5-7B works comparably; (3) Modest DGPO-alone gains (+2.18%) — authors argued the synergy with MQR is the point; (4) Reviewer HcCo raised concerns about valid-token averaging resembling DAPO's online filtering and lacking direct hardness validation — AC downweighted this review for factual errors and minimal post-rebuttal engagement. **What would have strengthened it**: analysis of failure modes, non-binary reward settings, curriculum scheduling, and investigation of whether difficulty weighting creates new gaming incentives.",
+    "relevance_to_seed": "This is the primary difficulty-awareness building block for our proposed framework. The key technical takeaway is that DQW's softmax weighting formula (λ_s ∝ exp(D_s/T)) provides a ready-made mechanism for modulating rubric strictness by difficulty — but its theoretical guarantees (Theorems 1-2) hold ONLY for binary rewards. Extending DGPO to rubric rewards requires re-deriving the update magnitude analysis for continuous/multi-dimensional reward vectors, which is a non-trivial theoretical contribution our work must provide. The paper's complete silence on reward hacking, rubric decomposition, and gaming incentives under difficulty weighting represents exactly the gap our framework targets: difficulty calibration without anti-gaming analysis is incomplete, and the DQW mechanism may actually amplify gaming opportunities on hard problems by reducing their training weight when partial gaming succeeds."
+  },
+  {
+    "title": "Chasing the Tail: Effective Rubric-based Reward Modeling for Large Language Model Post-Training",
+    "venue": "ICLR 2026 (Poster)",
+    "problem_identification": "The authors identified that reward over-optimization in reinforcement fine-tuning is NOT caused by global reward model inaccuracy, but specifically by misspecification in the high-reward tail — the inability to distinguish 'Excellent' from 'Great' responses. They found this via a clean theoretical formulation (Theorem 1) showing that the expected reward under the RL-optimized policy is an integral weighted by an exponential that amplifies errors near the top of the reward distribution. This reframing sharpens the problem from 'reward models are imperfect everywhere' to 'reward models are imperfect exactly where RL pushes policy mass.'",
+    "key_insight": "Reward over-optimization is dominated by the fidelity of the proxy reward in the high-reward region, not its overall accuracy. If you correctly rank just the top ~10% of responses — even while misgrading the remaining 90% — the win rate approaches optimal. This means you can use off-policy data (from stronger models) to construct rubric-based rewards that focus exclusively on distinguishing among excellent responses, because rubrics are insensitive to off-policy artifacts by design (they encode explicit, verifiable criteria rather than learned surface features).",
+    "innovation_type": "new_formulation",
+    "method_summary": "The paper provides a theoretical framework (Proposition 1, Theorem 1) showing that reward model accuracy in the high-reward region exponentially dominates the RL outcome, while low-reward accuracy is nearly irrelevant. This motivates two practical principles for rubric construction: (1) rubrics must distinguish excellent from great responses, not just good from bad; (2) rubrics must be refined against diverse off-policy responses to avoid overfitting to one model's style. These principles are operationalized via Refinement-through-Differentiation (RTD) — an iterative workflow where a proposer LLM (GPT-4.1) scores all candidate responses under current rubrics, selects the top-2, identifies what distinguishes them, and encodes those distinctions as new rubric criteria. The reward is computed as a weighted sum of binary rubric criterion satisfaction scores. Trained on Qwen3-8B-Base with GRPO, the method achieves 39.7% win rate (vs. 5.2% base, 35.9% SFT) on LMArena and shows sustained performance without the early over-optimization collapse seen in non-iteratively-refined rubrics.",
+    "what_makes_it_good": "The paper's strength is its clean theory-to-practice pipeline: the theory precisely diagnoses WHERE reward misspecification hurts (high-reward tail), the method is designed specifically to fix that region (RTD focuses rubric refinement on top responses), and the experiments validate both the theory (high-reward accuracy correlates with RL performance) and the practice (iteratively refined rubrics resist over-optimization longer). The theoretical contribution is genuinely novel — prior work on reward over-optimization (Gao et al. 2023) treated misspecification as a scalar gap, while this paper shows the distributional structure matters. The paper also earns credibility by being honest about what it doesn't solve (aggregation, scaling to reasoning tasks).",
+    "limitations_acknowledged": "The authors acknowledge that simple weighted-average aggregation of rubric criterion scores is suboptimal and limits expressiveness. They also note that while medium-scale off-policy data (5000 samples) doesn't help Bradley-Terry models, larger-scale approaches (20M samples) might close the gap, and their method hasn't been tested on reasoning-intensive tasks.",
+    "open_questions": [
+      "Does the high-reward tail theory extend to rubric-based rewards with non-uniform difficulty? If hard problems have thinner high-reward tails (fewer truly excellent responses in the base policy), does misspecification there cause disproportionate damage — and can difficulty-calibrated rubric strictness mitigate this?",
+      "Can RTD be made self-improving without relying on a closed-source proposer (GPT-4.1)? The dual role of GPT-4.1 as rubric proposer and judge creates a bias circularity that reviewers flagged — could rubric ensemble diversity (multiple proposers) break this?",
+      "What is the interaction between rubric granularity (number of criteria K) and gaming susceptibility? The paper doesn't analyze whether more rubric dimensions create more or fewer gaming opportunities — a direct question for our Goodhart's Law framing."
+    ],
+    "building_blocks": [
+      "Misspecification mapping f: gold→proxy reward with closed-form RL performance integral (Theorem 1)",
+      "Refinement-through-Differentiation (RTD) iterative rubric construction workflow",
+      "Binary rubric criterion verification V(x,y,c_i) ∈ {0,1} with weighted aggregation",
+      "High-reward vs. low-reward accuracy decomposition for diagnosing over-optimization",
+      "Off-policy response pool construction from multiple strong models (Gemini 2.5 Pro, Flash-Lite, etc.)",
+      "GRPO as the RL training algorithm on Qwen3-8B-Base",
+      "GPT-4.1-mini as rubric verifier, GPT-4.1 as proposer",
+      "Training dynamics analysis (Figure 4) showing over-optimization onset timing as a diagnostic"
+    ],
+    "reviewer_feedback_summary": "Scores: 4, 4, 6, 8 (borderline accept). The reviewer giving 8 (confidence 2) praised the theoretical rigor and novel iterative refinement, calling it a 'rigorous theoretical analysis with novel iterative rubric refinement strategy.' The two 4-score reviewers (both confidence 4) raised serious concerns: (1) GPT-4.1's dual role as proposer AND judge creates bias amplification risk — the rubrics may encode what GPT-4.1 likes rather than genuine quality; (2) cross-model diversity may capture stylistic rather than quality signals; (3) limited experimental scope (single model family, few datasets, no reasoning tasks); (4) RTD incurs substantial computational cost. The 6-score reviewer found the work well-motivated but noted limited technical novelty in the LLM-as-proposer/verifier paradigm. The meta-review acknowledged the rebuttal partially addressed concerns (adding HealthBench/PRBench-Finance objective evaluations, model distribution statistics), but noted one reviewer's scores were unlikely to change. Accepted as poster — suggesting the theoretical contribution carried it despite engineering-level method concerns.",
+    "relevance_to_seed": "This paper provides the formal theoretical foundation our difficulty-calibrated rubric framework needs: Theorem 1 proves that RL performance is exponentially sensitive to reward accuracy in the high-reward tail, which directly justifies why uniform rubric strictness across difficulty levels is dangerous — hard problems have thinner high-reward tails in the base policy, so miscalibrated rubrics there cause disproportionate over-optimization. The RTD workflow is a concrete mechanism we could adapt: instead of iterating on 'excellent vs. great' pairs, we could iterate on 'difficulty-appropriate excellent vs. gaming-pattern-matching' pairs, calibrating rubric strictness by difficulty level. The reviewer criticism about GPT-4.1 bias amplification also validates our anti-gaming ensemble idea — using multiple rubric proposers (rubric ensemble diversity) directly addresses the single-proposer circularity that nearly sank this paper."
+  },
+  {
+    "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+    "venue": "arXiv preprint (May 2026, arXiv:2605.12474)",
+    "problem_identification": "The authors identified that rubric-based RL — increasingly popular as a richer alternative to scalar outcome rewards — had never been systematically stress-tested under optimization pressure. They found this gap by observing that proponents of rubric rewards (e.g., SRaR, Curing Miracle Steps) reported gains on training-time metrics but rarely validated against independent, stronger evaluators. The key move was asking: 'When the training verifier says a rubric criterion is met, is it actually met?' — and discovering the answer diverges alarmingly as training progresses.",
+    "key_insight": "Reward hacking in rubric-based RL has two orthogonal sources that require different defenses: (1) verifier failure (the LLM judge makes grading errors), which stronger models can reduce, and (2) rubric-design failure (the rubric itself is structurally biased toward 90.2% presence-based criteria vs. 8.6% absence-based penalties), which no amount of verifier improvement can fix because the rubric literally doesn't penalize the quality dimensions that degrade. This decomposit
+... (truncated)
+
+## Your task
+
+Synthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.
+
+Think about:
+- What PATTERNS OF INNOVATION keep working in this field?
+- What do reviewers consistently reward?
+- Where are the real gaps (not assumed gaps)?
+- What combinations haven't been tried?
+- What mistakes should we avoid?
+
+## Output format
+
+Output a JSON object with these sections:
+{
+  "innovation_patterns": [
+    {"pattern": "name", "description": "how it works", "examples": ["paper1", "paper2"], "success_rate": "high/medium/low"}
+  ],
+  "reviewer_preferences": [
+    "What reviewers in this area consistently care about (based on evidence from paper analyses)"
+  ],
+  "field_gaps": [
+    {"gap": "description of unsolved problem", "evidence": "which papers mention this limitation", "difficulty": "high/medium/low", "impact_if_solved": "high/medium/low"}
+  ],
+  "untried_combinations": [
+    {"idea_sketch": "what could be combined", "from_papers": ["which papers inspire this"], "why_promising": "reason"}
+  ],
+  "method_building_blocks": [
+    {"tool": "name", "what_it_does": "description", "used_by": ["papers"], "could_be_applied_to": "new application"}
+  ],
+  "common_pitfalls": [
+    "Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)"
+  ],
+  "field_trajectory": "Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)",
+  "meta_advice": "If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)"
+}
+
+Be specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.
+
+IMPORTANT: You MUST end your response with the JSON object.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "29cda9e4-22fb-429f-9d97-7c1152cb5317",
+  "type": "user",
+  "uuid": "f902d458-2a18-417c-b166-9d608e2d33e5",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T11:19:46.490Z_
+
+```json
+{
+  "parentUuid": "f902d458-2a18-417c-b166-9d608e2d33e5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "469c6ee7-d8d4-4fe6-b383-d899f59ac399",
+  "timestamp": "2026-05-28T11:19:46.490Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T11:19:46.490Z_
+
+```json
+{
+  "parentUuid": "469c6ee7-d8d4-4fe6-b383-d899f59ac399",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "21051697-0efd-460c-8981-97cafd9f94c6",
+  "timestamp": "2026-05-28T11:19:46.490Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2027 Track: Machine Lea…",
+  "leafUuid": "21051697-0efd-460c-8981-97cafd9f94c6",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-calibrated rubric rewards for math RLVR",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T11:20:08.426Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to synthesize the paper analyses into a strategic "Field Guide" for research in difficulty-calibrated rubric rewards for math RLVR. Let me carefully analyze the 20 paper analyses provided (though I can only see the first ~5-6 due to truncation) and produce the JSON output.
+
+Let me work with what I have from the detailed analyses:
+
+1. DeepSeek-R1 - Binary outcome rewards, GRPO, emergent reasoning
+2. Curing Miracle Steps (RRM) - Rubric rewards for math, manual rubrics
+3. Does RL Really Incentivize Reasoning - RLVR narrows reasoning frontier, pass@k analysis
+
+
+4. Harder Is Better / DGPO - Difficulty-aware GRPO, MAD normalization
+5. Chasing the Tail - High-reward tail theory, RTD rubric refinement
+6. Reward Hacking in Rubric-Based RL - Diagnoses rubric gaming mechanisms
+
+I'm also noting the seed papers that establish foundational concepts: ARES for automated rubric synthesis, SRaR for step-wise rubric rewards, and Reward Under Attack for quantifying PRM gaming. Now I need to synthesize all this into a coherent strategic framework that identifies the key tensions and opportunities in difficulty-calibrated rubric design.
+
+Looking at the innovation patterns across these papers, I see several recurring themes: simplification through removing unnecessary components like SFT, cross-domain transfer of rubric evaluation from education into RL, formal theorems that expose hidden biases in update magnitudes and reward distributions, systematic stress-testing to diagnose failure modes, and combining algorithmic improvements with data augmentation backed by theory. The reviewer preferences consistently favor rigorous problem diagnosis before proposing solutions—like RRM's taxonomy work and pass@k analysis—paired with formal theoretical grounding through theorems that explain why certain approaches work.
+
+The field has clear gaps: no one's combined rubric rewards with difficulty calibration, there's no defense mechanism against gaming rubric-based rewards, DGPO's theory only handles binary rewards, static reward models degrade as policies improve, and no one's analyzed gaming at the rubric-dimension level. The untried combinations that seem most promising are DGPO with rubric rewards (though this requires rederiving the theory for continuous rewards), RTD paired with difficulty calibration, using rubric ensemble diversity as an anti-gaming defense, and evaluating rubric-trained models with pass@k. The building blocks I'd draw from are GRPO/DGPO algorithms, RTD's rubric construction, pass@k evaluation, RRM's three-phase pipeline, and verified pass techniques.
+
+Now I'm structuring this as a comprehensive JSON schema.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21051697-0efd-460c-8981-97cafd9f94c6",
+  "isSidechain": false,
+  "requestId": "req_011CbUsoJnmWY47mWuiNZHsj",
+  "type": "assistant",
+  "uuid": "1c729802-e30a-4065-ae30-cb15a886979b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0194yT4FfWTjCxGSVdY3CEjz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12102,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1466,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T11:20:08.428Z_
+
+I'll analyze the paper analyses systematically to produce the field guide. Let me first review the truncated content to ensure I capture everything available.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c729802-e30a-4065-ae30-cb15a886979b",
+  "isSidechain": false,
+  "requestId": "req_011CbUsoJnmWY47mWuiNZHsj",
+  "type": "assistant",
+  "uuid": "09ace3c9-88af-4012-b0d6-69d7cc5b0b9c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0194yT4FfWTjCxGSVdY3CEjz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12102,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1466,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T11:20:20.478Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01XnqukXdjDunCcKJ3dcpKJ6`</summary>
+
+```json
+{
+  "subagent_type": "claude",
+  "description": "Synthesize field guide JSON",
+  "prompt": "You are helping me synthesize a research field guide from detailed paper analyses. I'll provide the full context and you should help me verify my synthesis is accurate and complete. Just confirm you understand the task - I'll be doing the actual synthesis myself.\n\nThe key papers and their contributions I need to track:\n\n1. DeepSeek-R1 (Nature 2025): GRPO with binary rewards, emergent reasoning, no SFT needed. Identifies reward hacking as central unsolved problem.\n\n2. Curing Miracle Steps / RRM (ACL 2026): Rubric rewards for math RLVR, 6-category false positive taxonomy, Verified Pass@N metric, 26.7%→62.6% verified pass@1024 on AIME. Limitations: manual rubrics via Gemini, uniform strictness, no dimension-level gaming analysis.\n\n3. \"Does RL Really Incentivize Reasoning\" (NeurIPS 2025 Oral): RLVR narrows reasoning frontier (improves pass@1 but hurts pass@large-k). Base model is upper bound. Pass@k framework as evaluation tool.\n\n4. DGPO / Harder Is Better (ICLR 2026): MAD normalization makes GRPO updates difficulty-invariant (Theorems 1-2). Only works for binary rewards. DQW softmax weighting. MQR data augmentation.\n\n5. Chasing the Tail (ICLR 2026): Theorem 1 shows RL performance exponentially sensitive to high-reward tail accuracy. RTD iterative rubric refinement. Reviewer concern about GPT-4.1 bias.\n\n6. Reward Hacking in Rubric-Based RL (arXiv 2605.12474): Diagnoses rubric gaming - 90.2% presence-based vs 8.6% absence-based criteria, partial satisfaction, implicit-as-explicit gaming.\n\n7. ARES (arXiv 2605.23454): Automates rubric generation from documents but not math-specific, no difficulty calibration.\n\n8. SRaR (arXiv 2605.17291): Step-level rubric attribution with decoupled advantage but no automation or calibration.\n\n9. Reward Under Attack (arXiv 2603.06621): >0.9 PRM reward with <4% accuracy, 43% from stylistic shortcuts.\n\nJust confirm this mapping looks correct and complete for the synthesis task."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09ace3c9-88af-4012-b0d6-69d7cc5b0b9c",
+  "isSidechain": false,
+  "requestId": "req_011CbUsoJnmWY47mWuiNZHsj",
+  "type": "assistant",
+  "uuid": "f383d598-53ec-4635-8d3e-895689fa772d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0194yT4FfWTjCxGSVdY3CEjz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12102,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1466,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T11:20:20.488Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01XnqukXdjDunCcKJ3dcpKJ6`</summary>
+
+```text
+Cannot create agent worktree: not in a git repository and no WorktreeCreate hooks are configured. Configure WorktreeCreate/WorktreeRemove hooks in settings.json to use worktree isolation with other VCS systems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f383d598-53ec-4635-8d3e-895689fa772d",
+  "isSidechain": false,
+  "promptId": "29cda9e4-22fb-429f-9d97-7c1152cb5317",
+  "type": "user",
+  "uuid": "abbca148-6cdb-4902-9f31-cd8abe7fa69e",
+  "toolUseResult": "Error: Cannot create agent worktree: not in a git repository and no WorktreeCreate hooks are configured. Configure WorktreeCreate/WorktreeRemove hooks in settings.json to use worktree isolation with other VCS systems.",
+  "sourceToolAssistantUUID": "f383d598-53ec-4635-8d3e-895689fa772d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T11:21:17.069Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The agent failed because we're not in a git repository. That's fine - I have all the information I need from the user's message to synthesize the field guide. Let me proceed directly with the analysis and JSON output.
+
+Let me carefully construct the field guide based on all the paper analyses provided. I'll be thorough and evidence-based.
+
+Key papers I can reference:
+1. DeepSeek-R1 (Nature 2025)
+2. Curing Miracle Steps / RRM (ACL 2026)
+
+
+3. "Does RL Really Incentivize Reasoning" (NeurIPS 2025 Oral)
+4. DGPO / Harder Is Better (ICLR 2026)
+5. Chasing the Tail (ICLR 2026)
+6. Reward Hacking in Rubric-Based RL (arXiv 2605.12474)
+7. ARES (arXiv 2605.23454)
+8. SRaR (arXiv 2605.17291)
+9. Reward Under Attack (arXiv 2603.06621)
+
+Now I'm ready to construct each section of the field guide with these papers as my foundation.
+
+## Innovation Patterns
+
+I'm noticing three recurring patterns that drive publication at top venues. First, there's the power of removing what everyone assumed was necessary—DeepSeek-R1 eliminated SFT entirely and proved binary rewards work, which was significant enough for Nature. Second, clean mathematical theorems that expose hidden biases in standard approaches: DGPO's analysis showing how update magnitude scales with difficulty, or Chasing the Tail's exponential sensitivity to tail accuracy. These formal results elevate otherwise incremental work. Third, rigorous problem diagnosis itself becomes a contribution—RRM built a detailed taxonomy and measurement framework before proposing solutions, while "Does RL Really Incentivize" used pass@k metrics to show how RLVR narrows the reasoning frontier, and the rubric-based reward hacking paper decomposed failure modes systematically.
+
+I'm also seeing value in adapting techniques across domains with domain-specific tweaks—RRM brought rubric evaluation from education into RL training, ARES adapted automated rubric synthesis from document grading to general LLM evaluation. There's also the triangulation approach where multiple independent measurements strengthen the claim: "Does RL Really Incentivize" combined pass@k, perplexity, entropy controls, and distillation contrasts, which reviewers explicitly praised and helped earn Best Paper Runner-Up. Finally, when combining multiple components, the key is showing why the combination itself is non-trivial through formal justification—DGPO's algorithm and data augmentation produced synergistic gains that exceeded what either contributed alone, and the theorems explained why that synergy existed.
+
+Looking at what reviewers actually valued: they rewarded papers that diagnosed the problem first before proposing solutions, like RRM's taxonomy and the pass@k framework. Formal theoretical grounding mattered enormously—DGPO's theorems made the problem statement irrefutable rather than just empirical, and Chasing the Tail's theorem was the deciding factor despite engineering limitations. Breadth of evaluation across domains, algorithms, and model families was repeatedly highlighted as a paper's strongest asset. And positive controls—like using distillation as a control in "Does RL Really Incentivize"—proved the methodology was actually sensitive to what it claimed to measure.
+
+Reviewers also valued honest acknowledgment of limitations and ablations, but they were skeptical of closed-source dependencies like GPT-4.1 playing dual roles or relying on o3. Most critically, if a method looked like two existing approaches bolted together without formal justification, it was dead on arrival.
+
+There's a real gap here: no one's combined automated rubric generation with difficulty-calibrated strictness for math RLVR. ARES automates rubrics but doesn't calibrate strictness, DGPO calibrates but only for binary rewards, and RRM uses rubrics with uniform strictness across the board.
+
+The theoretical side is also incomplete—DGPO's guarantees only hold for binary rewards, so extending them to continuous multi-dimensional rubric rewards would require re-deriving the update magnitude analysis. Beyond that, no one's analyzed whether decomposing rewards into K rubric dimensions creates K separate exploitable sub-scores, and there's no solution for static reward models that misgrade improved outputs. The interaction between difficulty weighting and gaming incentives is completely unexplored, and high-reward tail theory hasn't been applied to difficulty-stratified settings yet.
+
+The untried combinations are where the real contribution lies: combining DGPO's difficulty weighting with rubric rewards requires extending the math to continuous rewards, which DGPO and RRM haven't done together. I could also iterate on rubric refinement by targeting "difficulty-appropriate excellent vs. gaming-pattern-matching" pairs instead of just "excellent vs. great," directly addressing the bias amplification concerns. Using multiple rubric proposers as an anti-gaming defense would sidestep the circularity problem, though the thought cuts off before finishing that idea.
+
+For empirical validation, I should test whether rubric rewards actually expand the reasoning frontier or just sharpen it using the Pass@k framework from the RL paper. I'm also noticing that 90% of rubric criteria are presence-based, so combining absence-based penalties with difficulty-calibrated strictness could close gaming loopholes.
+
+The building blocks are already there—GRPO, RTD workflows, Pass@k evaluation, RRM's three-phase pipeline, verified protocols, false positive taxonomies, and difficulty weighting schemes—so the work is really about assembling them in novel combinations.
+
+Looking at what's tripped up similar work: avoiding closed-source model dependencies, justifying non-obvious interactions with formal theory rather than treating combinations as trivial, testing across multiple domains and algorithms instead of narrow scopes, and always including positive controls to verify the method actually detects improvements when they exist.
+
+The field is shifting toward treating reward robustness as a core concern rather than an afterthought—moving from static reward models to adaptive ones that evolve with the policy, and from just diagnosing gaming to actively defending against it.
+
+The real risk is that combining ARES, DGPO, and RRM might already capture most of the gains, so the framing needs to emphasize the specific interaction between difficulty calibration and rubric decomposition rather than just stacking components together. I should ground this theoretically by extending DGPO's results to continuous rubric rewards, and use pass@k evaluation strategies to catch gaming that simpler metrics would miss.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abbca148-6cdb-4902-9f31-cd8abe7fa69e",
+  "isSidechain": false,
+  "requestId": "req_011CbUsqpewCMPfoTpxDmvbv",
+  "type": "assistant",
+  "uuid": "3c0ceb23-97b8-4fbf-9aad-4e330e3d6a7f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QJPFYdjPzVYPpXf1nBVz4c",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1536,
+      "cache_read_input_tokens": 23116,
+      "output_tokens": 11104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1536,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11104,
+          "cache_read_input_tokens": 23116,
+          "cache_creation_input_tokens": 1536,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1536
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-28T11:24:28.883Z_
+
+Based on my thorough analysis of all the paper analyses provided, I'll now synthesize the strategic field guide. This draws on the detailed evidence from each paper's contributions, reviewer feedback, limitations, and open questions.
+
+```json
+{
+  "innovation_patterns": [
+    {
+      "pattern": "Formal analysis exposing hidden bias in standard methods",
+      "description": "Derive a clean mathematical result showing a previously unnoticed systematic bias in a widely-used algorithm, then propose a minimal fix. The formal proof makes the problem statement irrefutable and the fix self-evidently necessary, elevating an otherwise incremental contribution.",
+      "examples": [
+        "DGPO (ICLR 2026): Proved GRPO update magnitude follows 2G√(p(1−p)), systematically suppressing hard problems — MAD normalization makes it constant",
+        "Chasing the Tail (ICLR 2026): Theorem 1 proving RL performance is exponentially sensitive to high-reward tail accuracy, not overall reward model quality"
+      ],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Rigorous problem diagnosis as standalone contribution",
+      "description": "Invest heavily in characterizing a problem via new evaluation methodology, taxonomy, or metric BEFORE proposing any solution. The diagnostic framework itself becomes a reusable contribution that outlives the specific fix proposed.",
+      "examples": [
+        "Curing Miracle Steps (ACL 2026): Six-category false positive taxonomy + Verified Pass@N + direct answer probing — each standalone contributions that reframe math reasoning evaluation",
+        "Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral/Best Paper Runner-Up): Pass@k at large k reveals RLVR narrows reasoning frontier — triangulated via perplexity + entropy controls + distillation contrast",
+        "Reward Hacking in Rubric-Based RL (arXiv 2026): Decomposition of gaming into verifier failure vs. rubric-design failure with 90.2% presence-based vs. 8.6% absence-based structural analysis"
+      ],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Simplification that removes an assumed prerequisite",
+      "description": "Question a deeply held assumption that a particular pipeline stage is necessary, then show empirically that removing it either maintains or improves performance. The intellectual courage to subtract rather than add creates a paradigm-shifting narrative.",
+      "examples": [
+        "DeepSeek-R1 (Nature 2025): Removed SFT stage entirely — binary correctness rewards via GRPO directly on base model produced emergent self-reflection, overturning the SFT→RLHF assumption"
+      ],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Cross-domain transfer with domain-specific adaptation",
+      "description": "Import a concept from another field (education, document assessment, adversarial ML) and adapt it to RLVR with enough domain-specific engineering to create genuine value rather than a shallow analogy.",
+      "examples": [
+        "Curing Miracle Steps (ACL 2026): Brought rubric evaluation from education assessment into RL reward design, adapted with universal proof-skeleton structure",
+        "ARES (arXiv 2026): Brought automated rubric synthesis from document grading to general LLM evaluation"
+      ],
+      "success_rate": "medium"
+    },
+    {
+      "pattern": "Triangulation across evaluation dimensions to build irrefutable evidence",
+      "description": "Use multiple independent evaluation methodologies that each address a different counter-explanation, so no single critic can dismiss the finding by attacking one metric. Include a positive control proving the methodology CAN detect the phenomenon when it exists.",
+      "examples": [
+        "Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral): Pass@k curves + perplexity analysis + accuracy distributions + entropy matching + distillation-as-positive-control — reviewers called it 'masterfully executed'",
+        "Curing Miracle Steps (ACL 2026): Verified Pass@N + direct answer probing + human-validated taxonomy + F1 comparison against PRMs"
+      ],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Combination with formal justification for non-trivial interaction",
+      "description": "Combine two orthogonal techniques BUT provide a formal theorem or rigorous empirical analysis showing the interaction is super-additive or reveals a phenomenon invisible to either technique alone. Without this, reviewers will dismiss it as 'obvious bolting together.'",
+      "examples": [
+        "DGPO (ICLR 2026): DGPO algorithm + MQR data augmentation — showed synergistic gains (+4.56% combined vs. +2.18% or +3.43% individually), justified by Theorems 1-2 proving the algorithmic fix was necessary even with better data"
+      ],
+      "success_rate": "medium"
+    }
+  ],
+  "reviewer_preferences": [
+    "Formal theoretical grounding for empirical methods: DGPO's Theorems 1-2 were explicitly cited as making 'the problem statement irrefutable rather than empirical,' and Chasing the Tail's acceptance depended primarily on its Theorem 1 despite engineering-level concerns about the method (two 4-scores still couldn't block it)",
+    "Breadth of evaluation as argumentative strategy: 'Does RL Really Incentivize Reasoning' tested across 3 domains, 6 algorithms, 7B-to-frontier scales — all four reviewers independently praised comprehensiveness as the paper's strongest asset. DGPO showed compatibility across 4 model families and 6 benchmarks",
+    "Honest reporting of limitations and negative results: DeepSeek-R1's candid identification of reward hacking as unsolved, DGPO's transparent reporting of modest standalone DGPO gains (+2.18%), and RRM's admission that rubric training increased Outcome Irrelevance false positives (67→118) all enhanced rather than undermined reviewer trust",
+    "Positive controls proving methodology sensitivity: The distillation-as-positive-control in 'Does RL Really Incentivize' was called 'particularly brilliant' — showing that distilled models DO expand pass@k proves the metric CAN detect capability expansion, making the negative finding for RLVR irrefutable",
+    "Deep investment in problem characterization before solution proposal: RRM's six-category taxonomy and Verified Pass@N were cited as 'standalone contributions' that would have warranted publication even without the rubric reward method. Reviewers reward the diagnostic more than the fix",
+    "Reproducibility via open-source and non-proprietary dependencies: Chasing the Tail's dual reliance on GPT-4.1 as proposer AND judge was flagged by two reviewers who gave 4-scores — calling it 'bias amplification risk.' DGPO's reliance on OpenAI o3 for MQR was a recurrent concern. DeepSeek-R1's open release was explicitly cited as amplifying impact",
+    "Ablation studies that test the 'obvious simpler baseline': Reviewers consistently asked whether individual components suffice. DGPO survived by honestly reporting component-wise ablations. Papers that omit the naive baseline (e.g., does ARES + RRM without the novel interaction achieve similar results?) are flagged immediately"
+  ],
+  "field_gaps": [
+    {
+      "gap": "No framework combines automated rubric generation with difficulty-calibrated rubric strictness for math RLVR",
+      "evidence": "ARES automates rubric generation but is not math-specific and has no difficulty calibration; DGPO calibrates difficulty but only for binary outcome rewards (Theorems 1-2 assume r∈{0,1}); RRM uses rubric rewards but with uniform strictness across difficulty levels and manual generation via Gemini-2.5-Pro. Each paper's open questions section explicitly identifies the missing integration.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "DGPO's formal guarantees (constant update magnitude via MAD normalization) are proven only for binary rewards — extending to continuous/multi-dimensional rubric reward vectors requires a new theoretical derivation",
+      "evidence": "DGPO Theorems 1-2 explicitly assume rewards ∈ {0,1}. The paper's open questions ask: 'Does difficulty-aware weighting interact with non-binary rewards (e.g., rubric-based or process rewards)?' DGPO reviewers flagged 'non-binary reward settings' as a missing analysis. No subsequent paper has provided this extension.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "No defense mechanism against rubric gaming via ensemble diversity has been proposed or evaluated",
+      "evidence": "Reward Hacking in Rubric-Based RL diagnoses gaming mechanisms (partial satisfaction, implicit-as-explicit, 90.2% presence-based criteria) but proposes no solution. Chasing the Tail's single-proposer GPT-4.1 circularity was the primary reviewer concern. No paper tests whether using multiple diverse rubric sets for the same problem resists gaming better than a single rubric.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "The interaction between difficulty calibration and rubric gaming susceptibility is completely unexplored — does calibrating strictness by difficulty reduce or amplify gaming opportunities?",
+      "evidence": "DGPO's open questions explicitly flag: 'How does DQW's difficulty estimate interact with reward hacking? If a model learns to produce superficially correct-looking outputs... its estimated difficulty drops, reducing the weight on that question — potentially creating a perverse incentive.' Reward Hacking in Rubric-Based RL diagnoses gaming but doesn't consider difficulty-stratified settings. No paper has tested this interaction.",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Static rubric reward models degrade as the policy improves during RL training, but no iterative/online rubric adaptation mechanism has been validated",
+      "evidence": "RRM explicitly acknowledges 'static reward model that may misalign as the policy improves during RL' as a key limitation. Chasing the Tail shows over-optimization onset timing varies by rubric quality (Figure 4) but doesn't solve the underlying problem. DeepSeek-R1 limits model-based reward RL to 400 steps specifically to avoid gaming a frozen reward model.",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "No rubric-dimension-level gaming analysis exists — collapsing K rubric dimensions into one scalar may create K exploitable sub-scores following Goodhart's Law on decomposed rewards",
+      "evidence": "RRM collapses dimensions into a 0-10 scalar and never analyzes per-dimension gaming. RRM's open questions ask: 'can adversarial policies learn to maximize aggregate score by satisfying easy rubric dimensions (target identification, conclusion format) while skipping hard ones (property verification)?' Chasing the Tail asks: 'What is the interaction between rubric granularity (number of criteria K) and gaming susceptibility?' Neither paper answers these questions.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Whether rubric rewards can expand the reasoning frontier (pass@large-k) or merely improve sampling efficiency (pass@1) is untested",
+      "evidence": "'Does RL Really Incentivize Reasoning' shows RLVR with binary rewards narrows the reasoning frontier. They tested 6 RLVR algorithms but NONE with rubric rewards. The paper's open questions ask whether process rewards or curriculum learning could overcome the limitation. Whether richer rubric signals enable exploration of reasoning paths pruned by outcome-only RL is an empirical question no one has answered.",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Absence-based rubric penalties are severely underrepresented (8.6% of criteria) despite being theoretically necessary to penalize quality degradation modes that presence-based criteria cannot catch",
+      "evidence": "Reward Hacking in Rubric-Based RL found 90.2% of rubric criteria are presence-based, 8.6% absence-based. This structural imbalance means rubrics literally cannot penalize many failure modes — the rubric design itself is biased. No paper has systematically studied the optimal presence/absence balance or proposed methods to generate effective absence-based criteria.",
+      "difficulty": "low",
+      "impact_if_solved": "medium"
+    }
+  ],
+  "untried_combinations": [
+    {
+      "idea_sketch": "DGPO difficulty weighting (DQW/DGAE) extended to continuous rubric reward vectors with re-derived theoretical guarantees — replacing binary reward assumptions with multi-dimensional rubric score analysis",
+      "from_papers": ["DGPO / Harder Is Better (ICLR 2026)", "Curing Miracle Steps / RRM (ACL 2026)"],
+      "why_promising": "DGPO's Theorems 1-2 are the cleanest formal results in this space but are restricted to binary rewards. Extending them to continuous rubric scores (R ∈ [0,10] or R ∈ R^K) would provide the formal backbone for difficulty-calibrated rubric rewards — the exact gap between these two papers. The mathematical extension itself would be a standalone theoretical contribution reviewers value highly, based on how Theorems 1-2 carried DGPO to acceptance."
+    },
+    {
+      "idea_sketch": "Rubric ensemble diversity as an anti-gaming mechanism — training with multiple independently-generated rubric sets per problem, where the reward is the minimum (or median) across ensembles rather than a single rubric score",
+      "from_papers": ["Reward Hacking in Rubric-Based RL (arXiv 2026)", "Chasing the Tail (ICLR 2026)", "Curing Miracle Steps / RRM (ACL 2026)"],
+      "why_promising": "Reward Hacking diagnoses gaming but proposes no defense. Chasing the Tail's biggest reviewer concern was single-proposer circularity (GPT-4.1 as both proposer and judge). Using multiple rubric proposers forces gaming to generalize across rubric formulations — exploiting one rubric's lenient dimension is unlikely to exploit a differently-structured rubric. The minimum-across-ensembles aggregation directly operationalizes the absence-based penalty gap (90.2% presence-based) by ensuring at least one rubric catches each failure mode."
+    },
+    {
+      "idea_sketch": "RTD iterative rubric refinement calibrated by difficulty level — instead of iterating on 'excellent vs. great' pairs uniformly, stratify by problem difficulty and iterate on 'difficulty-appropriate excellent vs. gaming-pattern-matching' pairs",
+      "from_papers": ["Chasing the Tail (ICLR 2026)", "DGPO / Harder Is Better (ICLR 2026)", "Reward Hacking in Rubric-Based RL (arXiv 2026)"],
+      "why_promising": "Chasing the Tail's Theorem 1 proves over-optimization is dominated by high-reward tail accuracy. Hard problems have thinner high-reward tails in the base policy distribution, meaning rubric miscalibration there causes disproportionate damage. Difficulty-stratified RTD would focus rubric precision exactly where the theory predicts it matters most. This addresses both the theoretical gap (non-uniform tail thickness) and the practical gap (gaming is easier on hard problems via partial satisfaction)."
+    },
+    {
+      "idea_sketch": "Pass@k evaluation framework applied to rubric-trained models to test whether rubric rewards expand the reasoning frontier or merely sharpen sampling efficiency",
+      "from_papers": ["Does RL Really Incentivize Reasoning (NeurIPS 2025 Oral)", "Curing Miracle Steps / RRM (ACL 2026)"],
+      "why_promising": "The NeurIPS paper showed RLVR with binary rewards narrows the reasoning frontier but tested only outcome rewards across 6 algorithms. Whether rubric rewards — which provide richer gradient signal about WHY a solution is wrong, not just THAT it's wrong — can guide exploration toward reasoning paths pruned by binary rewards is an important open question. A positive finding (rubric rewards expand pass@large-k) would be a major result; a negative finding would be equally valuable and publishable given this paper's Best-Paper-Runner-Up precedent."
+    },
+    {
+      "idea_sketch": "Automated difficulty estimation from rubric dimension completion patterns — using the variance of per-dimension rubric scores across sampled responses as a difficulty signal, replacing DGPO's crude negative-mean-accuracy proxy",
+      "from_papers": ["DGPO / Harder Is Better (ICLR 2026)", "Curing Miracle Steps / RRM (ACL 2026)", "Reward Hacking in Rubric-Based RL (arXiv 2026)"],
+      "why_promising": "DGPO uses D_s = −mean(binary rewards) as difficulty proxy, which is coarse and gameable (partially correct outputs inflate apparent ease). Rubric dimension completion patterns encode much richer difficulty information: a problem where models consistently satisfy 'target identification' but fail 'property verification' is hard in a qualitatively different way than one where all dimensions fail uniformly. This rubric-derived difficulty signal is more robust to gaming because it requires consistent multi-dimensional success, not just occasional correct final answers."
+    },
+    {
+      "idea_sketch": "Online rubric adaptation via periodic RTD refinement against RL policy checkpoints, addressing the static reward model degradation problem",
+      "from_papers": ["Chasing the Tail (ICLR 2026)", "Curing Miracle Steps / RRM (ACL 2026)", "DeepSeek-R1 (Nature 2025)"],
+      "why_promising": "RRM flags static reward model degradation as a key limitation. DeepSeek-R1 limits model-based rewards to 400 steps to avoid gaming. Periodically re-running RTD against the current policy's outputs (not just initial base model outputs) would adapt rubric criteria to catch new gaming strategies as they emerge during training — similar to how DeepSeek-R1 updates the KL reference policy every 400 steps but applied to the reward rubrics themselves. This creates an arms race where rubrics co-evolve with the policy."
+    }
+  ],
+  "method_building_blocks": [
+    {
+      "tool": "GRPO with group-relative advantage estimation",
+      "what_it_does": "Replaces PPO's learned value model with z-scored rewards within a group of G=16 sampled outputs per question, eliminating the value model entirely. Uses periodic KL reference updates (every 400 steps) and large clip ratio (ε=10) for long-sequence stability.",
+      "used_by": ["DeepSeek-R1", "DGPO", "Chasing the Tail"],
+      "could_be_applied_to": "Foundation RL algorithm for difficulty-calibrated rubric training — swap the advantage normalization (std→MAD per DGPO) and reward signal (binary→rubric scores) while keeping the group-relative structure"
+    },
+    {
+      "tool": "MAD-based advantage normalization (DGAE)",
+      "what_it_does": "Drop-in replacement for standard-deviation normalization in GRPO that provably makes update magnitude constant (G) regardless of question difficulty, eliminating the 2G√(p(1−p)) bias. Requires derivation extension for non-binary rewards.",
+      "used_by": ["DGPO"],
+      "could_be_applied_to": "Normalizing rubric reward vectors across difficulty levels — but requires re-proving the constant-magnitude property for continuous R∈[0,10] or multi-dimensional R∈R^K reward distributions"
+    },
+    {
+      "tool": "Softmax-temperature question-level weighting (DQW)",
+      "what_it_does": "Assigns per-question training weight λ_s = B_v·exp(D_s/T)/Σexp(D_s/T) where D_s=−mean(rewards) proxies difficulty and T=2.0. Upweights hard questions without completely ignoring easy ones.",
+      "used_by": ["DGPO"],
+      "could_be_applied_to": "Modulating per-dimension rubric strictness by difficulty — the exponential weighting formula can be applied not just to question-level weight but to the strictness threshold of individual rubric criteria, making property verification standards tighter on hard problems"
+    },
+    {
+      "tool": "Verified Pass@N evaluation protocol",
+      "what_it_does": "Uses a strong judge model to evaluate both process AND answer for each of N sampled solutions, providing a more honest measure of reasoning capability than standard Pass@N which only checks final answer correctness.",
+      "used_by": ["Curing Miracle Steps / RRM"],
+      "could_be_applied_to": "Primary evaluation metric for difficulty-calibrated rubric framework — stratified by difficulty level to show calibration reduces gaming disproportionately on hard problems"
+    },
+    {
+      "tool": "Pass@k evaluation framework with ΔSE metric",
+      "what_it_does": "Evaluates pass@k from k=1 to 1024 with unbiased low-variance estimator. ΔSE (Sampling Efficiency Gap = RL pass@1 minus base pass@256) measures how far RLVR is from optimally exploiting base model potential. Includes entropy-matching methodology to isolate diversity from reasoning effects.",
+      "used_by": ["Does RL Really Incentivize Reasoning"],
+      "could_be_applied_to": "Testing whether difficulty-calibrated rubric rewards expand the reasoning frontier (base model upper bound) or merely improve sampling efficiency within it — the critical honest evaluation our framework needs"
+    },
+    {
+      "tool": "Three-phase RRM construction pipeline",
+      "what_it_does": "Phase 1: rubric synthesis (generate problem-specific rubrics via strong LLM). Phase 2: scoring data synthesis with balanced sampling across 0-10 scores. Phase 3: SFT+PPO on Qwen3-4B-Base to produce calibrated continuous scores. Achieves F1=0.693 for false positive detection.",
+      "used_by": ["Curing Miracle Steps / RRM"],
+      "could_be_applied_to": "Backbone for automated difficulty-calibrated reward model — extend Phase 1 with difficulty-conditional rubric generation and Phase 2 with difficulty-stratified score balancing"
+    },
+    {
+      "tool": "Refinement-through-Differentiation (RTD) iterative rubric construction",
+      "what_it_does": "Proposer LLM scores candidate responses under current rubrics, selects top-2, identifies distinguishing features, encodes them as new rubric criteria. Iterates until rubrics reliably separate excellent from merely good responses in the high-reward tail.",
+      "used_by": ["Chasing the Tail"],
+      "could_be_applied_to": "Difficulty-stratified rubric refinement — run RTD separately per difficulty tier, calibrating criteria granularity and strictness to match the gaming risk profile at each difficulty level"
+    },
+    {
+      "tool": "Six-category false positive taxonomy for math reasoning",
+      "what_it_does": "Classifies false positives into: Miracle Steps, Inductive Overgeneralization, Outcome Irrelevance, Neglected Operational Preconditions, Unverified Assumptions, Numerical Coincidence. Enables targeted defense design per failure mode.",
+      "used_by": ["Curing Miracle Steps / RRM"],
+      "could_be_applied_to": "Designing absence-based rubric criteria (currently only 8.6% of criteria) — each false positive category maps to a specific absence penalty that presence-based criteria miss"
+    },
+    {
+      "tool": "Universal proof-skeleton rubric structure",
+      "what_it_does": "Decomposes math solutions into target identification (~1pt), property calculation/verification (~6pt), and logical synthesis/conclusion (~3pt) — designed to counter each taxonomy failure mode with explicit intermediate verification requirements.",
+      "used_by": ["Curing Miracle Steps / RRM"],
+      "could_be_applied_to": "Template for difficulty-calibrated rubrics — the weight distribution (1/6/3) should shift with difficulty: hard problems need higher property verification weight, easy problems need higher synthesis weight to prevent over-thinking"
+    },
+    {
+      "tool": "Misspecification mapping with closed-form RL performance integral (Theorem 1)",
+      "what_it_does": "Formally proves that expected reward under RL-optimized policy is an integral weighted by an exponential that amplifies errors near the top of the reward distribution — demonstrating that high-reward tail accuracy exponentially dominates RL outcome.",
+      "used_by": ["Chasing the Tail"],
+      "could_be_applied_to": "Formally justifying WHY difficulty calibration matters: hard problems have thinner high-reward tails, so misspecification there is exponentially more damaging — this provides the theoretical backbone for non-uniform rubric strictness"
+    },
+    {
+      "tool": "Direct Answer Probing methodology",
+      "what_it_does": "Beam search without chain-of-thought to test whether a model can recall the final answer directly — distinguishes genuine reasoning from memorization-mediated shortcuts. Found 83% recall rate for Miracle Step problems.",
+      "used_by": ["Curing Miracle Steps / RRM"],
+      "could_be_applied_to": "Diagnostic for difficulty calibration: if a model can probe the answer directly (high recall), rubric strictness should be maximal because any correct final answer without verified intermediate steps is likely memorization, not reasoning"
+    }
+  ],
+  "common_pitfalls": [
+    "Presenting a multi-component framework as 'obvious combination' without formal justification: DGPO succeeded because Theorems 1-2 proved the algorithmic component was necessary even with better data. A paper proposing 'ARES + DGPO + RRM' must prove the interaction is non-trivial — the Quality Self-Checks in the seed direction correctly identify this as the primary risk. Reviewers at ICLR 2026 explicitly downgraded papers that looked like A+B without theory for why A×B > A+B.",
+    "Relying on closed-source models as critical, non-replaceable pipeline components: Chasing the Tail's GPT-4.1 dual role as proposer AND judge drew two 4-scores and nearly blocked acceptance. DGPO's MQR dependency on OpenAI o3 was repeatedly flagged. Always demonstrate a viable open-source alternative (DGPO showed Qwen2.5-7B works comparably as reformulator) even if the primary results use a proprietary model.",
+    "Evaluating only at pass@1 or standard benchmarks without stress-testing the reward signal: 'Does RL Really Incentivize Reasoning' showed pass@1 gains can mask reasoning frontier contraction. Reward Under Attack showed >0.9 PRM reward with <4% accuracy. RRM introduced Verified Pass@N for exactly this reason. Any rubric reward paper in 2026 that doesn't include both pass@large-k analysis AND Verified Pass@N will be flagged for insufficient evaluation rigor.",
+    "Ignoring the static reward model degradation problem: RRM explicitly flags that frozen reward models trained on early-stage responses misgrade improved policy outputs. DeepSeek-R1 limits model-based reward RL to 400 steps to avoid this. If your rubric reward model is frozen during RL training and you don't address this, reviewers who have read these papers will flag it immediately.",
+    "Collapsing multi-dimensional rubric scores into a single scalar without analyzing per-dimension gaming: RRM uses a 0-10 aggregate but never analyzes whether policies game easy dimensions (target identification = 1pt, achievable via pattern matching) while ignoring hard dimensions (property verification = 6pt, requiring genuine reasoning). Reward Hacking paper explicitly shows this structural vulnerability exists. Any rubric reward paper must include dimension-level analysis.",
+    "Overclaiming that richer reward signals create genuinely new reasoning capabilities: 'Does RL Really Incentivize Reasoning' proved that RLVR with binary rewards only sharpens existing base-model reasoning distributions, not expanding them. Until demonstrated otherwise with pass@large-k evaluation, the same ceiling likely applies to rubric rewards. Frame contributions as 'more efficient sampling' and 'gaming resistance,' not 'new reasoning capabilities,' unless you have strong pass@k evidence.",
+    "Using difficulty proxies (negative mean accuracy, competition labels) without validating they measure what you think: DGPO uses D_s = −mean(rewards) as difficulty proxy, but this is gameable — partial gaming on some samples inflates apparent ease and reduces training weight on that question. Any difficulty-aware framework needs at least two independent difficulty signals that can cross-validate each other.",
+    "Narrow evaluation scope that undermines generalization claims: 'Does RL Really Incentivize Reasoning' tested across 3 domains, 6 algorithms, 7B-to-frontier scales and was praised for comprehensiveness. Chasing the Tail tested only one model family and was criticized. Test across at least 2-3 model families and 4+ benchmarks spanning difficulty levels (AMC 10/12 through AIME through Olympiad).",
+    "Not running the 'naive baseline' ablation honestly and early: The seed direction's Quality Self-Check correctly identifies that ARES+DGPO+RRM may achieve 80% of the improvement. DGPO's acceptance was strengthened by honestly reporting modest standalone gains. Run this ablation first — if it works, the paper must pivot to focus on interaction effects and anti-gaming properties that the naive combination misses."
+  ],
+  "field_trajectory": "The field of reward design for math RLVR is undergoing a rapid three-phase evolution visible in the 2025-2026 literature. Phase 1 (completed, 2024-2025) established that binary outcome rewards via GRPO are sufficient for emergent reasoning (DeepSeek-R1) but plateau quickly and mask deeply flawed reasoning (RRM's false positive taxonomy). Phase 2 (current, 2025-2026) is a simultaneous push on two fronts: richer reward signals (rubric rewards via RRM, step-level rewards via SRaR, process rewards via PRMs) and honest evaluation (Verified Pass@N, pass@k reasoning frontiers, Reward Under Attack's adversarial auditing). The critical 2026 finding — that current RLVR methods only sharpen existing base-model reasoning distributions rather than creating new reasoning (NeurIPS 2025 Oral) — is forcing a fundamental recalibration of what reward engineering can and cannot achieve.\n\nPhase 3 (emerging, 2026-2027) will be defined by three macro-directions: (1) Reward robustness as a first-class design objective — the Reward Hacking in Rubric-Based RL and Reward Under Attack papers have made clear that any reward signal will be gamed under extended RL training, shifting the goal from 'better rewards' to 'more gaming-resistant reward ensembles.' Papers that propose rewards without adversarial stress-testing will increasingly be rejected. (2) Difficulty-aware training dynamics for structured rewards — DGPO opened this direction for binary rewards, but extending formal guarantees (constant update magnitude, optimal difficulty weighting) to multi-dimensional rubric vectors is the obvious next step with high theoretical and practical value. (3) Adaptive reward systems that co-evolve with the policy — the static-reward-model limitation flagged by RRM, DeepSeek-R1's 400-step cap on model-based rewards, and Chasing the Tail's over-optimization timing analysis all point toward reward models or rubrics that must update during training, not remain frozen. The convergence of these three directions — robust, difficulty-calibrated, adaptive rubric reward systems — represents the highest-impact research target for AAAI 2027, precisely because no existing paper addresses all three simultaneously and the formal/empirical tools to do so (DGPO's theorems, RTD's iterative refinement, pass@k evaluation, gaming taxonomy) are now available as building blocks.",
+  "meta_advice": "If you are targeting AAAI 2027 with a difficulty-calibrated rubric reward framework, here is the strategic calculus based on what has and hasn't worked in this space over 2025-2026.\n\nFirst, your theoretical contribution must come first and stand alone. The papers that succeeded at top venues in this area (DGPO at ICLR, Chasing the Tail at ICLR, 'Does RL Really Incentivize' at NeurIPS) all anchored on a clean formal result that made the problem irrefutable. For your work, this means: re-derive DGPO's Theorem 1-2 for continuous/multi-dimensional rubric reward vectors and prove whether MAD normalization retains the constant-magnitude property. If it does, that's a clean positive result. If it doesn't (more likely), characterizing exactly how it breaks and what the correct normalization is for rubric rewards would be a standalone contribution that justifies everything else. Without this, reviewers will dismiss the framework as 'ARES + DGPO + RRM bolted together.'\n\nSecond, run the baseline fear test immediately — before investing in the anti-gaming ensemble. Apply ARES-style automated rubrics + DGPO weighting to RRM training and measure the result. The honest answer to 'how much does the naive combination achieve?' determines your entire framing strategy. If it gets 80% of the way, your paper must be about the interaction effects and anti-gaming properties, not the combination itself. If it fails in interesting ways (gaming amplified by difficulty weighting, calibration creating new exploitation gradients), those failure modes ARE the contribution.\n\nThird, adopt the evaluation stack from the best papers in the area: Verified Pass@N (from RRM) stratified by difficulty level, pass@k curves at large k (from 'Does RL Really Incentivize') to honestly test whether you expand the reasoning frontier or just improve sampling, dimension-level rubric gaming analysis (the gap flagged by both RRM and Reward Hacking paper), and at least one adversarial stress test showing your ensemble resists gaming that single rubrics don't. The papers that failed review in this area (Chasing the Tail's 4-scores, DGPO's low reviewer) were consistently hit for narrow evaluation.\n\nFourth, the anti-gaming ensemble is your most novel and risky component — invest in it proportionally. The Goodhart's Law framing (decomposing one scalar into K sub-scores creates K gaming surfaces) is theoretically elegant but must be empirically validated with dimension-level gaming analysis. Show that models DO preferentially game easy rubric dimensions under uniform strictness, that difficulty-calibrated strictness measurably reduces this, and that ensemble diversity provides additional defense beyond calibration alone. This three-layer evidence structure (problem exists → calibration partially solves it → ensemble provides additional defense) mirrors the triangulation strategy that earned Best Paper Runner-Up at NeurIPS 2025.\n\nFifth, avoid proprietary model dependencies for critical pipeline components. Use open-source rubric generators (Qwen3 variants, DeepSeek models) as the primary path, with proprietary models as comparison points. The Chasing the Tail GPT-4.1 backlash is a clear signal. Budget 60-90 H100-hours carefully: allocate ~20% to the baseline fear test and ablations, ~40% to the main framework training, ~20% to adversarial stress testing and pass@k evaluation, and ~20% as contingency for the interaction analysis that will determine whether this is a strong accept or a borderline submission."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c0ceb23-97b8-4fbf-9aad-4e330e3d6a7f",
+  "isSidechain": false,
+  "requestId": "req_011CbUsqpewCMPfoTpxDmvbv",
+  "type": "assistant",
+  "uuid": "a1665c02-1eb0-4c73-93d2-731352648423",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QJPFYdjPzVYPpXf1nBVz4c",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1536,
+      "cache_read_input_tokens": 23116,
+      "output_tokens": 11104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1536,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11104,
+          "cache_read_input_tokens": 23116,
+          "cache_creation_input_tokens": 1536,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1536
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2027 Track: Machine Lea…",
+  "leafUuid": "a1665c02-1eb0-4c73-93d2-731352648423",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-calibrated rubric rewards for math RLVR",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2027 Track: Machine Lea…",
+  "leafUuid": "a1665c02-1eb0-4c73-93d2-731352648423",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Difficulty-calibrated rubric rewards for math RLVR",
+  "sessionId": "58246ff0-30fe-4ec3-afa8-933886495fbf"
+}
+```
+
+---

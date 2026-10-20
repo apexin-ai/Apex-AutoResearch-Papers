@@ -1,0 +1,786 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/5620839a-8307-443b-8466-ce2d341aa3eb.jsonl`
+- **Structured JSON:** [`f2da6efd4acebe0c42eb.json`](../../sessions/f2/f2da6efd4acebe0c42eb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T06:38:59.364Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T06:38:59.364Z",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient background to make a well-informed evaluation. Let me compile the full assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- OMEGA (Sun et al., NeurIPS 2025 D&B Track, arXiv:2506.18880): 建立了数学推理的三轴OOD评估框架（探索/组合/变换）。关键发现：GRPO RL 大幅提升探索性泛化，但组合轴改进有限。确认了 proposal 所针对的\"组合天花板\"确实存在且被严格量化。注意：OMEGA 被录入的是 NeurIPS Datasets & Benchmarks Track，非主会。\n- MASS (Jia et al., ICML 2025, arXiv:2503.14917): 通过 LLM 提取的技能共现图指导数学预训练数据选择，达到 50-70% 数据量下等效性能。验证了技能图在数据效率上的价值，但其图是无向共现图，未针对组合合成。Proposal 的 DAG vs. 无向图区分论点成立。\n- STAT (ICLR 2026, arXiv:2510.10023): 利用教师 LLM 的 Missing-Skill-Profile 识别单技能缺陷，MATH 上 +7.5%，与 GRPO 互补。但仅针对单技能缺口，不处理技能组合。Proposal 正确定位了与 STAT 的差异化。\n- STEPS (arXiv:2601.03676, Jan 2026): 基于结构熵最小化建立层次化技能分类法，信息论选择 k-tuple 组合。在 WildBench 指令跟随任务上超越 Instruct-SkillMix，但确实零数学评估。Proposal 借鉴其排序方法但将其推广到数学领域是合理的。\n- Agentic Proposing (arXiv:2602.03279, Feb 2026): MGPO 优化的智能体驱动组合，30B solver + 11K 轨迹达 91.6% AIME25。强结果但依赖学习到的探索策略，无系统覆盖保证。Proposal 将其作为 baseline 并指出缺乏覆盖保证是合理的差异化。\n- AgentFrontier (ICLR 2026, arXiv:2510.24695): ZPD 引导的数据合成，沿难度维度定义前沿。Proposal 正确指出其前沿是单维度（难度），非结构化技能组合维度。\n- Redhardt et al. (NeurIPS 2025 Spotlight, arXiv:2507.07207): 证明 scaling 在充分覆盖下可实现组合泛化，且所需覆盖是次指数级的。为 proposal 提供理论基础。但注意：该理论是关于 MLP 近似能力的，直接映射到 LLM 微调场景的 gap 需要小心论证。\n- CogAtom (EMNLP 2025 Findings, arXiv:2509.17318): 无向认知原子图用于奥林匹克问题合成。Proposal 正确指出其无向性限制了前提-依赖关系的刻画。\n\n- 调研总结: 该领域正处于从\"单技能诊断与增强\"向\"结构化组合干预\"过渡的活跃期。OMEGA 暴露了组合天花板，多个 2025-2026 工作从不同角度尝试解决。Proposal 的独特定位是\"形式化组合前沿 + 有向 DAG + 精准覆盖\"，在现有工作拼图中确实占据了一个尚未被填充的位置。\n\n【整体印象】: \n作为审稿人，我的第一反应是\"这是一篇写得非常好、定位精准的 proposal，方向正确，实验设计出色\"。我会倾向于 weak accept，但需要看到实际实验结果来验证其核心假设。主要顾虑在于：(1) 方法本质上是已知组件的精心组合（DAG 构建 + 枚举 + LLM 合成），每个组件的单独贡献有限；(2) 高阶组合（k=3,4）的合成质量是关键执行风险；(3) 形式化贡献虽然清晰，但\"组合前沿\"的定义在概念上并不那么意外，更像是将直觉数学化。\n\n【核心贡献】: \n核心贡献是 **组合前沿 F(G,D,k) 的形式化定义及其通过有向 DAG 的可计算枚举**。这将\"模型不会组合技能\"从一个模糊观察变成一个可审计、可操作的集合，并通过跨技能损失探测构建 DAG，通过结构熵排序选择最有价值的组合进行合成。对领域的价值是中等偏上的——它提供了一个比随机扩增或单技能诊断更有原则的干预框架，但最终价值取决于实验能否证明\"精准覆盖 >> 随机覆盖\"。\n\n【方法合理性】: \n方法设计整体合理，每个阶段的选择都有据可循：\n- **DAG 构建**：跨技能损失探测是一种功能性依赖度量（\"训练 A 是否帮助 B\"），比 MASS 的共现或 STAT 的单技能 profile 更适合捕获方向性依赖。LLM 初始化 + 选择性验证的效率优化也务实。\n- **前沿枚举与排序**：形式化定义清晰，结构熵排序借鉴 STEPS 有理论依据。\n- **合成与验证**：利用 OMEGA 的符号验证管道是聪明的设计选择。\n\n**潜在替代方案**：一个更简单的 baseline 是\"直接枚举所有 k-tuple、随机抽样合成、让验证管道筛选\"——不需要 DAG。Proposal 的 A2 ablation（frontier vs. random k-tuple）直接测试了这一点，这是一个加分项。但如果这个 ablation 的差距很小，整个 DAG 构建的开销就难以证明。\n\n另一个顾虑：Redhardt et al. 的理论是关于 MLP 的近似能力证明，将其映射为\"SDFS 是该理论的算法实现\"有些过度。该理论说覆盖是充分条件且需求是次指数的，但并未说 DAG 引导的覆盖优于随机覆盖——后者同样满足理论条件。Proposal 需要更谨慎地论证这一联系。\n\n【5 维度打分】:\n  1. 研究问题: [强] — 组合泛化天花板是被 OMEGA 和多个后续工作实证确认的真实瓶颈。问题定义清晰，有理论动机（Redhardt et al.），有实证动机（OMEGA 的组合轴停滞）。研究价值明确。\n  \n  2. 方法与创新: [中] — 组合前沿的形式化是一个有价值的概念贡献，有向 DAG vs. 无向图的论证逻辑自洽。但创新的深度有限：核心是已有组件（skill graph à la MASS，结构熵排序 à la STEPS，LLM 合成 + 验证 à la OMEGA/CogAtom）的精心组合与形式化包装。跨技能损失探测是一个合理但非突破性的技术贡献。与 STEPS 对比：STEPS 的结构熵理论框架本身是创新的，SDFS 在其基础上仅增加了 DAG 定向性。与 Agentic Proposing 对比：SDFS 的覆盖保证优于学习策略，但 Agentic Proposing 在实际性能上的优势可能更大。\n  \n  3. 实验设计: [强] — 这是 proposal 最突出的部分。7 个精心选择的 baseline 覆盖了完整的竞争格局（RL、随机扩增、单技能、无向图、平坦分类法、智能体驱动、vanilla SFT）。6 个 ablation 系统地隔离了每个设计选择（DAG 方向性、前沿选择、排序策略、组合复杂度、数据量、阈值敏感性）。30% held-out frontier 的泛化测试设计巧妙。统计严谨性（≥3 runs、bootstrap CI、compute-matched）达到顶会标准。与 STAT 和 OMEGA 的实验标准对比，本 proposal 的实验方案至少不逊色。\n  \n  4. 可行性: [中] — DAG 构建需要对 ~100-200 个技能对做微调探测（LLM 初始化剪枝后），每次在 8B 模型上，计算量显著但可控。主要风险在 Phase 3：高阶组合（k=3,4）的 LLM 合成质量存在不确定性。Proposal 提供了 fallback 策略和 pilot study 计划来缓解，但如果 k≥3 的合成成功率过低，核心贡献会被削弱为\"仅在 k=2 时有效\"。OMEGA 的 40 个 generator 是一个较小的技能空间，这既降低了执行难度，也限制了结论的推广性。\n  \n  5. 写作与呈现: [强] — 逻辑结构清晰，从问题到机会到方法到实验的叙事连贯。相关工作定位精准，每个对比都指出了具体差异而非泛泛而谈。形式化定义表述准确。设计选择的动机解释（为什么 DAG 而非无向图，为什么跨技能损失而非共现）具有说服力。效率优化和 fallback 策略显示了对可行性的认真思考。唯一的写作隐患是对 Redhardt et al. 联系的过度渲染——\"算法实现\"的措辞需要降调。\n\n【概率估计】: [28% - 42%] 中位 35%\n\n【估计理由】: \n这是一篇方向正确、定位精准、实验设计优秀的 proposal。它处于 AAAI 录取线的边缘区域。上行因素：(1) 研究问题真实且有理论+实证双重动机；(2) 实验设计的全面性在同级别投稿中属于上游；(3) 形式化贡献虽有限但清晰可验证；(4) 如果关键实验（DAG vs. random, frontier vs. random tuple）能展示显著差距，论文会很有说服力。下行因素：(1) 方法创新深度有限，可能被判为\"增量组合\"（MASS 的图 + STEPS 的熵 + OMEGA 的管道）；(2) 高阶组合合成质量是执行黑箱——如果 k≥3 失败，贡献缩水；(3) 40 个技能的小规模设定限制了影响力叙事；(4) 至少 2-3 个 reviewer 可能期望更深的理论分析（如为什么 DAG 引导的覆盖比随机覆盖在样本效率上有理论优势）。中位 35% 反映的是\"solid but not exciting\"的定位——在一个竞争激烈的领域里，这是一篇不会让人惊艳但难以挑出大毛病的投稿。\n\n【主要风险】: \n1. **\"增量组合\"判定风险**: 审稿人可能认为核心方法只是现有技术（skill graph + 结构熵 + LLM 合成）的重新包装，形式化贡献（组合前沿定义）概念上过于直接，不构成足够的学术贡献。\n2. **高阶合成失败风险**: 如果 k=3,4 组合的 LLM 合成质量不达标（成功率低、需要大量 fallback），实验结果可能退化为\"在 k=2 上比随机好一点\"，难以支撑论文的核心叙事。\n\n【实施评估】:\n  - 计算资源: 中高。DAG 构建需 ~100-200 次 8B 模型微调（每次 1-2 GPU-hour），合成需 72B 模型推理，主实验需 8B 模型多轮训练。估计总计 500-1000 A100 GPU-hours。\n  - 数据需求: 中。依赖 OMEGA 已有的训练/测试数据和 40 个 generator 模板。需合成数千条组合问题。\n  - 人工介入: 低-中。DAG 验证中的专家注释子样本需要数学领域知识。Pilot study 结果分析需要人工判断。\n  - 训练需求: 是。需要多次 8B 模型 SFT 和可选 GRPO RL。DAG 构建本身也涉及大量微调。\n  - 新 Benchmark: 否。直接使用 OMEGA 评估框架，仅新增 held-out frontier 测试集（从 OMEGA 技能空间派生）。\n  - 预估周期: 3-4 个月。Phase 1（DAG 构建）~3-4 周；Phase 2（枚举排序）~1 周；Phase 3（合成+验证）~4-6 周；Phase 4（训练+评估+写作）~4-6 周。\n```\n\nSources:\n- [OMEGA: Can LLMs Reason Outside the Box in Math?](https://arxiv.org/abs/2506.18880)\n- [MASS: Mathematical Data Selection via Skill Graphs](https://arxiv.org/abs/2503.14917)\n- [STAT: Skill-Targeted Adaptive Training](https://arxiv.org/abs/2510.10023)\n- [STEPS: Towards Compositional Generalization via Skill Taxonomy Guided Data Synthesis](https://arxiv.org/abs/2601.03676)\n- [Agentic Proposing: Compositional Skill Synthesis](https://arxiv.org/abs/2602.03279)\n- [AgentFrontier: ZPD-Guided Data Synthesis](https://arxiv.org/abs/2510.24695)\n- [Scaling can lead to compositional generalization (Redhardt et al.)](https://arxiv.org/abs/2507.07207)\n- [CogAtom: From Cognitive Atoms to Olympiad-level Mathematical Reasoning](https://arxiv.org/abs/2509.17318)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have thorough research to base my evaluation on. Let me compile the full assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- OMEGA (NeurIPS 2025, arXiv:2506.18880): 本 proposal 的核心基础设施。建立了数学 OOD 泛化的三轴评估框架（探索性/组合性/变革性），发现 GRPO RL 显著提升探索性泛化但组合性泛化几乎不变。proposal 准确引用了这一关键发现并将其作为研究动机。\n- MASS (ICML 2025, arXiv:2503.14917): 通过 LLM 提取的技能共现关系构建技能图指导数据选择，预训练数据效率提升 50-70%。proposal 准确指出 MASS 使用无向共现图而非有向依赖图，且目标是数据选择而非组合合成——这一区分是成立的。\n- STEPS (arXiv:2601.03676, Jan 2026): 使用结构熵最小化构建层次化技能分类体系，在 instruction-following (WildBench) 上验证了组合泛化的提升。proposal 准确指出 STEPS 缺乏数学领域验证——经确认属实。\n- STAT (ICLR 2026, arXiv:2510.10023): 通过教师 LLM 的 Missing-Skill-Profile 识别单技能缺陷，MATH +7.5%，与 GRPO 互补。proposal 准确区分了 STAT 针对单技能缺陷 vs. 本方法针对组合缺口的差异。\n- Agentic Proposing (arXiv:2602.03279, Feb 2026): 30B solver 在仅 11K 合成轨迹上训练达到 AIME25 91.6%，但依赖学习的探索策略而非系统性覆盖保证。proposal 的差异化论述成立。\n- AgentFrontier (ICLR 2026, arXiv:2510.24695): ZPD 引导的数据合成，frontier 沿难度维度定义而非技能组合结构维度。proposal 的区分论点成立。\n- Redhardt et al. (NeurIPS 2025 Spotlight, arXiv:2507.07207): 证明了 scaling 可在次指数覆盖要求下实现组合泛化。proposal 将自身定位为该理论结果的算法实现——这一叙事连贯有力。\n- CogAtom (EMNLP 2025 Findings, arXiv:2509.17318): 认知原子框架用于竞赛级数学问题合成，使用无向共现图。proposal 的批评（无向图无法区分前置依赖和共现）在技术上成立。\n- Instruct-SkillMix (ICLR 2025, arXiv:2408.14774): 随机技能组合生成 instruction-tuning 数据的先驱工作。proposal 将其作为 STEPS 的 baseline 正确引用。\n- Arrows of Math Reasoning (CIKM 2025): LLM 合成数学语料约 40% 错误率，强调验证的重要性。proposal 已意识到此风险并设计了符号/数值验证管线。\n\n- 调研总结: 数学推理的组合泛化是 2025-2026 年一个活跃且重要的研究前沿。现有工作形成了清晰的图景：OMEGA 诊断了问题，Redhardt 提供了理论基础，MASS/STEPS/STAT/CogAtom 各自从不同角度部分解决，但**没有任何已发表工作将有向依赖结构与组合前沿的精确识别相结合**。proposal 准确定位了这一空白，文献引用经逐一核查均属实。\n\n【整体印象】:\n作为审稿人，我的第一反应是 **cautious lean accept**。这是一个在文献把握、问题形式化和实验设计方面都展现出高成熟度的 proposal。\"组合前沿\"的形式化定义是干净、可操作的概念贡献。实验设计（7 baselines、6 ablations、held-out frontier 评估）的完备程度超出了多数投稿。我最主要的犹豫来自两个方面：(1) 在 OMEGA 仅有 40 个 generator 的尺度上，DAG 剪枝带来的效率提升能否显著超越简单枚举；(2) LLM 合成组合性数学问题的质量能否真正保证目标技能的联合需求。\n\n【核心贡献】:\n本工作的核心贡献是**组合前沿 F(G,D,k) 的形式化定义及其算法实现**——给定技能依赖 DAG 和训练分布，精确枚举满足前置条件但未被训练覆盖的技能组合。这个贡献包含三层：(a) 概念层——将模糊的\"组合泛化失败\"转化为可计算、可审计的集合；(b) 结构层——论证了有向依赖关系（而非无向共现）对前沿枚举的必要性；(c) 连接层——将其定位为 Redhardt et al. 次指数覆盖理论的算法实现。对领域的价值中等偏上：如果实验验证了 DAG 引导的组合合成确实优于随机组合增强，这将为数学推理的数据高效训练提供一个有原则的框架。\n\n【方法合理性】:\n方法整体合理，各环节都有清晰的设计理由。但存在几个需要关注的点：\n\n(a) **Cross-skill loss probing 的合理性**：用\"训练 A 后 B 的 loss 是否降低\"来定义功能依赖关系，概念上合理，但阈值 τ 的选择对 DAG 结构影响很大（ablation A6 部分覆盖了这一点）。且 40 个 generator 之间的依赖关系可能很稀疏，导致 DAG 信息量有限。\n\n(b) **更简单的替代方案**：在 40 个技能的尺度上，C(40,2)=780，C(40,3)=9,880，C(40,4)=91,390。对于 k=2，即使不用 DAG 剪枝也完全可以穷举。DAG 的真正价值在 k≥3 时通过前置条件完备性剪枝显现，但此时合成质量也最难保证。一个更简单的 baseline 是\"枚举所有 k=2 组合 + 按模型困难度排序\"，无需 DAG 也可能达到相似效果。proposal 的 ablation A2（frontier 选择 vs. 随机 k-tuple）覆盖了这个对比，这是好的。\n\n(c) **LLM 合成的质量瓶颈**：组合性问题合成（确保问题真正需要多技能联合求解，而非仅是技能的表面拼接）是整个方法链中最脆弱的环节。proposal 设计了 pilot study 和 fallback 策略，表现出对这一风险的清醒认识，但能否实际解决仍不确定。\n\n【5 维度打分】:\n\n1. 研究问题: 【强】— 数学推理的组合泛化是经 OMEGA (NeurIPS 2025) 实证确认的重要未解问题。Redhardt et al. 的理论结果为数据高效的组合覆盖提供了理论基础，但缺乏算法实现。现有方法（STAT 针对单技能，MASS 针对数据选择，STEPS 未验证数学）均未触及组合前沿的精确识别。研究问题重要且空白明确。\n\n2. 方法与创新: 【中偏强】— 组合前沿的形式化定义是干净的概念贡献，有向 DAG vs. 无向图的论证有力（相比 MASS 的共现图和 CogAtom 的无向图，directed dependency 在技术上确实更适合前置条件推理）。cross-skill loss probing 是合理的 DAG 构建方法。但创新的\"增量\"需要仔细审视：核心思路（用结构化技能关系指导数据合成）已被 MASS 和 STEPS 分别探索，本工作的增量在于(i)有向性和(ii)前沿精确枚举。在 40-skill 的尺度上，DAG 剪枝的效率增益可能不如在更大技能空间中显著。\n\n3. 实验设计: 【强】— 这是 proposal 最突出的维度。7 个 baselines 全面覆盖了相关方法（GRPO、Random Aug、STAT、CogAtom、STEPS-Math、Agentic-Proposing-style、Vanilla SFT）。6 个 ablations 系统性地隔离了每个设计选择的贡献。Held-out frontier 评估（30% 保留用于测试前沿泛化）是精心设计的。统计严谨性（≥3 runs、bootstrap CI）和 compute-matched comparison 也达标。值得注意的是，proposal 没有遗漏任何关键 baseline——STAT (ICLR 2026) 和 Agentic Proposing (arXiv 2026) 这两个最直接的竞争对手都被纳入。\n\n4. 可行性: 【中】— 整体可行但有挑战。DAG 构建阶段需要多次 fine-tuning（效率优化后约 O(100) 次 Qwen3-8B 微调），计算开销可控但非trivial。最大风险在 Phase 3（组合问题合成）：LLM 合成的数学问题约 40% 错误率 (Arrows of Math Reasoning, CIKM 2025)，组合性问题可能更高。pilot study (50-100 tuples) 和 fallback 策略是合理的缓解措施，但如果 k≥3 的合成成功率很低，方法的核心 claim 将被削弱。\n\n5. 写作与呈现: 【强】— Proposal 组织清晰，叙事连贯（从问题诊断→理论动机→形式化→方法→实验的逻辑线完整）。文献综述准确且区分明确。形式化定义 F(G,D,k) 简洁精确。各阶段都有明确的方法论证据和 methodological justification。Phase 1 的效率优化和 Phase 3 的 pilot study/fallback 策略显示出研究者对实际困难的预判能力。\n\n【概率估计】: [30% - 42%] 中位 36%\n\n【估计理由】:\n**上推因素**: (1) 问题重要且时机准确——组合泛化是 2025-2026 的研究热点，proposal 精准定位了空白；(2) 概念贡献（组合前沿形式化）干净且可操作；(3) 实验设计的完备程度在 proposal 阶段就已超出多数实际投稿；(4) 文献把握准确，所有引用经核查均属实，差异化论述成立；(5) 与 Redhardt et al. 理论结果的连接叙事有力。\n\n**下拉因素**: (1) 在 40-skill 尺度上 DAG 剪枝的实际增益可能不够显著——C(40,2)=780 本身就可穷举，\"data efficiency\"的核心 claim 可能被 ablation A2 的结果弱化；(2) 组合问题合成质量是整个方法链的最大瓶颈，直接决定了实验能否产生有意义的结果；(3) 方法环节较多（DAG 构建→前沿枚举→排序→合成→验证→微调），每个环节的误差会累积；(4) 核心创新的增量性——从\"无向技能图\"到\"有向依赖 DAG\"、从\"平坦分类\"到\"前沿枚举\"是进步，但不是范式转换，部分审稿人可能认为增量不够大。\n\n中位 36% 反映了这是一篇 **solid but not outstanding** 的投稿：方向正确、方法合理、实验充分，但核心贡献的 impact 取决于实验验证——如果 DAG 引导显著优于随机组合增强，则中稿概率上移至 40%+；如果改善边际，则下移至 30% 以下。\n\n【主要风险】:\n1. **DAG 引导 vs. 简单 baseline 的边际增益不足**: 在 40-skill 的尺度上，随机组合增强（baseline 2）或基于模型困难度的简单排序可能达到与 DAG 引导相近的效果，导致核心贡献的实证支撑不足。这是最可能让审稿人投 reject 的原因——\"the improvement over a simpler approach is marginal\"。\n2. **组合问题合成质量不可控**: 如果 k≥3 的合成成功率过低（如 <30%），不仅实验结果会受限，还会引发审稿人对方法实用性的根本质疑。\n\n【实施评估】:\n  - 计算资源: 中等偏高。DAG 构建需 ~100 次 Qwen3-8B 微调（估计 50-100 GPU-hours on A100），合成需 Qwen-72B 推理（~20-50 GPU-hours），SFT+GRPO 训练（~30-50 GPU-hours），3 次重复实验×7+ 配置。总计约 500-1000 A100 GPU-hours。\n  - 数据需求: OMEGA 的训练/测试数据（已公开），合成的组合性问题（由方法自身生成）。无需额外人工标注数据。\n  - 人工介入: 低。DAG 验证的 supplementary 步骤需要部分专家标注（\"stratified sample of skill pairs\"），但规模可控。\n  - 训练需求: 需要。包括 DAG 构建阶段的多次微调、主实验的 SFT 和 GRPO 训练。\n  - 新 Benchmark: 不需要构建全新 benchmark。利用 OMEGA 已有评估框架，但 held-out frontier 评估集是新增的评估维度。\n  - 预估周期: 2.5-4 个月。Phase 1 (DAG 构建): 2-3 周；Phase 2 (前沿枚举): 1 周；Phase 3 (合成+验证+pilot): 3-4 周；Phase 4 (训练+评估): 3-4 周；写作: 2-3 周。瓶颈在 Phase 3 的合成质量调试。\n```\n\nSources:\n- [OMEGA: Can LLMs Reason Outside the Box in Math? (NeurIPS 2025)](https://arxiv.org/abs/2506.18880)\n- [MASS: Mathematical Data Selection via Skill Graphs (ICML 2025)](https://arxiv.org/abs/2503.14917)\n- [STEPS: Skill Taxonomy Guided Data Synthesis (arXiv 2026)](https://arxiv.org/abs/2601.03676)\n- [STAT: Skill-Targeted Adaptive Training (ICLR 2026)](https://arxiv.org/abs/2510.10023)\n- [CogAtom: Cognitive Atoms for Math Reasoning (EMNLP 2025 Findings)](https://arxiv.org/abs/2509.17318)\n- [Agentic Proposing: Compositional Skill Synthesis (arXiv 2026)](https://arxiv.org/abs/2602.03279)\n- [AgentFrontier: ZPD-Guided Data Synthesis (ICLR 2026)](https://arxiv.org/abs/2510.24695)\n- [Scaling can lead to compositional generalization — Redhardt et al. (NeurIPS 2025 Spotlight)](https://arxiv.org/abs/2507.07207)\n- [Instruct-SkillMix (ICLR 2025)](https://arxiv.org/abs/2408.14774)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\n```\n【阶段】: Triage\n\n【领域调研】:\n- OMEGA (Sun et al., NeurIPS 2025, arXiv:2506.18880): 直接基础设施。提供 40 个模板化数学生成器和三轴泛化评测（探索/组合/变换）。关键发现：GRPO RL 显著提升探索泛化但组合泛化基本不变——本 proposal 正是要解决这一遗留问题。Proposal 的定位准确。\n- MASS (ICML 2025, arXiv:2503.14917): 验证了 skill graph 对数学数据效率的价值（50-70% token 节省），但目标是预训练数据选择，不涉及组合合成。使用 LLM 提取的共现图（无向），proposal 正确指出其不能区分前置依赖与共现。\n- STEPS (arXiv:2601.03676, Jan 2026): 用结构熵构建层次化 skill taxonomy 引导合成，在指令跟随任务（WildBench）上超越 Instruct-SkillMix，但**零数学评测**。Proposal 将其结构熵排序方法迁移到数学组合场景，定位合理。\n- STAT (ICLR 2026, arXiv:2510.10023): 用 teacher-LLM Missing-Skill-Profile 定位单技能缺陷，MATH 上 +7.5%，与 GRPO 互补。但明确只处理单技能缺口，不处理组合。Proposal 的差异化定位成立。\n- CogAtom (EMNLP 2025 Findings, arXiv:2509.17318): 认知原子框架+多样性随机游走合成奥数题。使用无向共现图，proposal 正确指出无法表示前置依赖关系。\n- Agentic Proposing (arXiv:2602.03279, Feb 2026): **最强竞争者**。30B solver 仅 11K 轨迹达 91.6% AIME25。依赖 agent 学习的探索策略实现技能组合，无系统覆盖保证。Proposal 将其作为 baseline 之一，差异化在于\"可审计的覆盖保证 vs. 学习到的探索\"。\n- AgentFrontier (ICLR 2026, arXiv:2510.24695): ZPD 引导合成，frontier 定义在难度维度而非技能组合结构维度。差异化清晰。\n- Redhardt et al. (NeurIPS 2025 Spotlight, arXiv:2507.07207): 理论证明 scaling 可导致组合泛化，覆盖要求是亚指数的。为 SDFS 提供理论根基——SDFS 声称是该理论结果的算法实现。\n- Instruct-SkillMix (ICLR 2025, arXiv:2408.14774): 随机技能对组合生成 SFT 数据，4K 样本达到强指令跟随性能。是 STEPS 的直接对比基线。\n- Arrows of Math Reasoning (CIKM 2025): LLM 合成数学语料 ~40% 错误率，提出程序辅助双向验证。直接关系到本 proposal 合成质量风险。\n- 调研总结: 数学推理的组合泛化是一个被充分记录但尚未解决的问题。多篇高质量工作（OMEGA、MASS、STEPS、STAT、CogAtom）从不同角度触及了技能图/分类法对数据效率的价值，但**尚无工作在有向依赖 DAG 引导下做针对性组合前沿合成**。Proposal 占据了一个真实的、已被证实但尚未被填补的交叉空白。\n\n【整体印象】: \n作为审稿人，第一反应倾向于 weak accept / borderline accept。这是一篇定位非常精准、相关工作覆盖全面、实验设计异常完备的 proposal。\"组合前沿\"的形式化是干净且有用的概念贡献，有向 DAG 与无向图/扁平分类法的区分在理论上站得住。但核心方法本质上是一个已有技术的组合管线（cross-skill probing + 结构熵排序 + LLM 合成 + 符号验证），每个组件单独来看缺乏深度技术创新。论文的价值更多在于\"principled system design\"而非\"algorithmic breakthrough\"。这在 AAAI 是可以接受的定位，但需要强有力的实验结果来支撑。\n\n【核心贡献】: \n核心贡献是对**组合前沿 F(G,D,k)** 的形式化定义和基于有向技能依赖 DAG 的算法实现。这提供了一个可计算、可审计的方式来识别模型在组合泛化上的精确训练缺口，并将 Redhardt et al. 的亚指数覆盖理论转化为可操作的数据合成策略。对领域的价值是中等偏上的：它为\"该训练哪些技能组合\"提供了原则性回答，如果实验验证有效，将对数学推理数据合成流程有实质性指导意义。但这不是一个范式性的突破——更像是对已有知识的一次精巧的系统整合。\n\n【方法合理性】: \n方法整体合理，各组件有逻辑依据：\n- Cross-skill loss probing 用模型行为定义功能性依赖，比语义标注更客观，比共现更有方向性。但**细粒度的实验设计值得审视**：在 40 个生成器上做 fine-tune + loss probing 涉及大量实验（即使有 LLM 初始化优化）。τ 阈值的选择对 DAG 结构影响大，ablation A6 覆盖了这一点是加分。\n- 结构熵排序适配自 STEPS，合理但不是原创。\n- LLM 合成 + 符号验证沿用 OMEGA pipeline，是现实可行的选择。\n\n**更简单的替代方案问题**：一个合理的质疑是——是否可以直接用 random k-tuple augmentation + 更大数据量达到类似效果？Redhardt et al. 本身就证明了 scaling data 可以导致组合泛化。SDFS 的价值取决于它能在**显著更少的数据**下达到相当甚至更好的效果。实验设计中的 random augmentation baseline 和数据效率曲线恰好测试这一点，这是好的。但如果实验中 random augmentation 在足够数据量下就能匹配 SDFS，论文的核心论点会被大幅削弱。\n\n【5 维度打分】:\n  1. 研究问题: 【强】 — 数学推理的组合泛化是一个被 OMEGA、Redhardt et al. 等多篇 NeurIPS/ICML 工作实证确认的真实、重要问题。\"模型掌握单个技能但无法组合使用\"是 LLM 推理能力的核心瓶颈之一。问题定义清晰，有强有力的理论支撑（Redhardt et al. 的亚指数覆盖定理）。唯一的轻微问题是 scope 受限于 OMEGA 的 40 个生成器框架，但这也使问题更加可操作。\n\n  2. 方法与创新: 【中】 — 组合前沿的形式化是干净的概念贡献，cross-skill loss probing 有一定新意。但逐一拆解：(a) DAG 构建使用的 fine-tune + loss probing 是迁移学习社区的标准技术；(b) 结构熵排序直接借鉴 STEPS；(c) LLM 合成 + 符号验证沿用 OMEGA。创新更多在系统整合层面而非算法层面。与 MASS (ICML 2025) 的 skill graph 相比，有向 DAG 是明确的进步；与 STEPS 相比，数学领域的适配和 DAG 引导是差异化；但与 Agentic Proposing 相比，在实际效果上的优势需要实验验证。\"有向依赖是必要的\"这一声明（contribution 2）在理论上有道理，但在实验中可能不一定成立（如果无向图在实践中表现相当）。\n\n  3. 实验设计: 【强】 — 这是 proposal 最突出的亮点。7 个 baseline（含 GRPO、random augmentation、STAT、CogAtom、STEPS-Math、Agentic-style、vanilla SFT）几乎涵盖了所有合理的对照方案。6 个 ablation 系统性地拆解每个设计选择的贡献。特别值得肯定的设计包括：(a) 前沿 70/30 训练/测试拆分——直接测试前沿泛化能力；(b) 数据效率曲线——直接测试核心论点；(c) compute-matched comparisons 和 GPU-hours 报告；(d) ≥3 runs + bootstrap CI。Agentic-Proposing-style baseline 的设置（相同 meta-composer 但无 DAG 引导）精确隔离了选择策略的差异。达到了 top venue 实验标准。\n\n  4. 可行性: 【中】 — 整体可执行但有几个风险点。(a) DAG 构建：即使有 LLM 初始化优化，仍需大量 fine-tune 实验，计算开销非 trivial；(b) **合成质量是最大风险**：Arrows of Math Reasoning (CIKM 2025) 报告 LLM 合成数学数据 ~40% 错误率。虽然有 OMEGA 的符号/数值验证管线，但验证一个问题\"确实需要所有 k 个目标技能才能求解\"（skill coverage fidelity）是比正确性验证更难的问题——目前没有可靠的自动化方法确保这一点；(c) k=3-4 的组合合成成功率存疑，pilot study 的安排是明智的但仅能部分缓解风险；(d) 7 个 baseline 的复现工作量大，部分工作（如 STAT、CogAtom）需要在 Qwen3-8B 上重新实现。预估周期 3-4 个月较紧张。\n\n  5. 写作与呈现: 【强】 — 逻辑清晰，结构严谨。相关工作覆盖全面且定位精准——每个竞争工作的差异化都有具体的技术论据支撑。概念贡献（组合前沿）的引入自然且有说服力。方法论论证（为什么用 functional dependency 而非 semantic prerequisite、为什么有向比无向好）都给出了充分理由。实验设计的呈现也很清晰。这份 proposal 的写作水平已达到 top venue 论文标准。\n\n【概率估计】: [28% - 40%] 中位 33%\n\n【估计理由】: \n这篇 proposal 的研究问题真实重要（组合泛化是公认瓶颈），实验设计在 proposal 阶段就已达到顶会水平，写作和定位都很精准。这些因素将其拉到 30% 以上。然而，三个因素限制了进一步的上行空间：\n\n(1) **核心技术创新深度不足**。方法本质上是已有技术组件（loss probing → DAG → 结构熵排序 → LLM 合成 → 符号验证）的系统整合。\"组合前沿\"的形式化虽然干净有用，但一旦有了有向 DAG，定义 F(G,D,k) 是自然且直接的——审稿人可能认为这更像是\"good engineering\"而非\"algorithmic contribution\"。\n\n(2) **合成质量这一核心瓶颈未被充分解决**。整个管线的成败取决于能否生成真正需要所有 k 个技能的高质量组合问题。鉴于 ~40% 的基线错误率（Arrows, CIKM 2025），k=3-4 的多技能组合合成难度更大。如果合成质量不过关，DAG 引导的优势将无法体现。\n\n(3) **实验结果的不确定性**。论文的核心论点（DAG 引导的组合前沿合成在数据效率上优于 random augmentation 和 learned exploration）需要强有力的实验数据支撑。如果 random augmentation 在足够数据量下就能逼近 SDFS 的效果，或者如果 Agentic Proposing 风格的 baseline 不需要 DAG 就能达到相似性能，核心贡献将被大幅削弱。\n\n综合来看，这是一篇 solid 但非 exciting 的工作，属于 AAAI 审稿中 borderline 区间。如果实验结果清晰验证了 DAG 引导的数据效率优势，概率可到 38-40%；如果结果模糊或合成质量出问题，可能降到 25-28%。\n\n【主要风险】: \n1. **合成质量瓶颈**：k=3-4 多技能组合问题的合成成功率和质量（skill coverage fidelity）可能远低于预期，导致前沿引导的优势无法在下游实验中体现——这是整个管线的阿喀琉斯之踵。\n2. **DAG vs. 简单替代方案的差距可能不显著**：如果 ablation A1（有向 DAG vs. 无向图）和 A2（前沿选择 vs. 随机选择）的差距较小，审稿人会质疑有向 DAG 这一核心创新的实际价值，论文可能被定性为 over-engineered。\n\n【实施评估】:\n  - 计算资源: 中等偏高。DAG 构建需要多次 fine-tune Qwen3-8B（即使优化后仍需 ~100-200 次小规模 fine-tune）；合成用 Qwen-72B 调用量大；主实验 Qwen3-8B SFT + GRPO × 7 baselines × ≥3 runs。估计总计 2000-4000 A100 GPU-hours。\n  - 数据需求: 中等。依赖 OMEGA 现有训练/测试数据（公开可用）；合成数据由 LLM 生成，无需额外人工标注数据。\n  - 人工介入: 低。DAG 验证可能需要少量专家审查（skill pair 关系抽样验证）；合成问题质量的 spot-check；其余自动化。\n  - 训练需求: 需要。Qwen3-8B SFT + 可选 GRPO RL，多次训练。不需要预训练或训练新基模。\n  - 新 Benchmark: 不需要新建。使用 OMEGA 现有评测 + MATH-500 + AIME 2024/2025。前沿 30% held-out 是评测设计而非新 benchmark。\n  - 预估周期: 3-5 个月。Phase 1 (DAG 构建): 3-4 周；Phase 2 (前沿枚举): 1 周；Phase 3 (合成 + 验证): 4-6 周；Phase 4 (训练 + 评估): 6-8 周；写作: 2-3 周。关键路径在 Phase 3 合成质量的调优迭代上。\n```\n\nSources:\n- [OMEGA: Can LLMs Reason Outside the Box in Math?](https://arxiv.org/abs/2506.18880)\n- [MASS: Mathematical Data Selection via Skill Graphs](https://arxiv.org/abs/2503.14917)\n- [STEPS: Towards Compositional Generalization via Skill Taxonomy Guided Data Synthesis](https://arxiv.org/abs/2601.03676)\n- [STAT: Skill-Targeted Adaptive Training](https://arxiv.org/abs/2510.10023)\n- [CogAtom: From Cognitive Atoms to Olympiad-level Mathematical Reasoning](https://arxiv.org/abs/2509.17318)\n- [Agentic Proposing: Compositional Skill Synthesis](https://arxiv.org/abs/2602.03279)\n- [AgentFrontier: ZPD-Guided Data Synthesis](https://arxiv.org/abs/2510.24695)\n- [Scaling can lead to compositional generalization (Redhardt et al.)](https://arxiv.org/abs/2507.07207)\n- [Instruct-SkillMix: A Powerful Pipeline for LLM Instruction Tuning](https://arxiv.org/abs/2408.14774)\n- [Arrows of Math Reasoning Data Synthesis (CIKM 2025)](https://dl.acm.org/doi/abs/10.1145/3746252.3760944)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Skill-DAG-Guided Frontier Synthesis for Data-Efficient Mathematical Compositional Generalization\n\n## Core Problem\n\nCurrent methods for improving mathematical reasoning (RL, curriculum learning, scaling) hit a persistent compositional ceiling: models trained on individual skills fail to solve problems requiring novel skill combinations. Redhardt et al. (NeurIPS 2025 Spotlight) prove that scaling data and model size yields compositional generalization when training distributions sufficiently cover the combinatorial task space, with sub-exponential scaling of required training tasks. This establishes two facts: (1) coverage is a sufficient condition for compositional generalization, and (2) the required coverage is tractable in principle. What is missing is an algorithm that identifies precisely which skill combinations to cover. Current approaches either cover blindly (random augmentation), target single-skill deficits (STAT, ICLR 2026), or rely on learned exploration without coverage guarantees (Agentic Proposing, arXiv:2602.03279). Can a structure-guided approach that precisely enumerates the missing compositional frontier achieve equivalent generalization at a fraction of the data cost — effectively implementing the algorithmic promise of Redhardt et al.'s theoretical result?\n\n## Research Opportunity\n\nThree independently validated components converge at an unexploited intersection. MASS (ICML 2025) proves skill graphs improve math data efficiency by 50–70% but targets data selection, not compositional synthesis. STEPS (arXiv Jan 2026) proves information-theoretic taxonomy-guided synthesis improves compositional generalization but is validated only on instruction-following with zero math evaluation. OMEGA (NeurIPS 2025) provides the 40-generator skill taxonomy and evaluation infrastructure demonstrating the compositional ceiling — GRPO RL boosts exploratory generalization up to +61% but leaves compositional integration largely unchanged. No published method has attempted targeted, structure-guided data interventions on OMEGA's compositional axis. Agentic Proposing (arXiv:2602.03279, Feb 2026) achieves strong results via agent-driven composition (30B solver, 91.6% AIME25) but relies on learned exploration policy without systematic gap identification or coverage guarantees. AgentFrontier (ICLR 2026, arXiv:2510.24695) introduces ZPD-guided synthesis targeting the model's difficulty frontier, but its frontier is defined along a single difficulty dimension — it does not address the structural, combinatorial gap between skill compositions.\n\n## Core Conceptual Contribution: The Compositional Frontier\n\nWe introduce and formalize the **compositional frontier**. Given a directed skill dependency DAG G=(V,E) over a skill set V, and a training distribution D, the compositional frontier is:\n\n**F(G,D,k) = { S ⊆ V : |S|=k, ∀v∈S all dependency-ancestors of v in G are covered by D, but S ∉ support(D) }**\n\nF contains all k-skill combinations whose individual dependency prerequisites are satisfied by training but which have never appeared together. This formalization yields three contributions:\n\n(1) **Precise characterization of compositional gaps.** Prior work describes compositional failure informally; F provides a computable, auditable set that can be exactly enumerated given G and D.\n\n(2) **Directed structure is necessary.** Undirected skill graphs (CogAtom, EMNLP 2025 Findings) and flat taxonomies (STEPS) cannot enumerate F because prerequisite-completeness requires directed ancestry queries. This is why MASS's co-occurrence graph and STEPS's flat taxonomy, despite their success in other settings, are structurally insufficient for frontier identification.\n\n(3) **Intrinsic data efficiency.** When G is sparse (as mathematical skill dependencies empirically are — most skills depend on few prerequisites), |F(G,D,k)| is substantially smaller than the full combinatorial space C(|V|,k). The DAG structure itself prunes the space of relevant combinations, providing built-in data efficiency that random coverage approaches lack. This connects directly to Redhardt et al.'s sub-exponential scaling result: SDFS operationalizes their theoretical insight by using DAG structure to identify exactly which sub-exponential subset of combinations to cover.\n\n## Research Landscape\n\nOMEGA (Sun et al., NeurIPS 2025) establishes that across 40 templated generators in 6 math domains, GRPO RL significantly boosts exploratory generalization but leaves compositional integration largely unchanged. MASS (ICML 2025) constructs skill graphs via LLM-extracted skill co-occurrence and achieves equivalent math performance with 50–70% less pretraining data, validating skill-graph utility for data efficiency but not targeting composition. STEPS (arXiv Jan 2026) uses structural entropy minimization to build hierarchical skill taxonomies and selects k-tuples maximizing marginal structural information, outperforming Instruct-SkillMix (ICLR 2025) on WildBench, but with zero math evaluation. STAT (ICLR 2026) identifies per-skill deficits via a teacher-LLM Missing-Skill-Profile, achieving +7.5% on MATH and demonstrating complementarity with GRPO RL (up to +9.5% over GRPO on base model when combined), but addresses single-skill gaps rather than compositional ones. CogAtom (EMNLP 2025 Findings) builds undirected co-occurrence graphs of cognitive atoms for Olympiad synthesis but cannot distinguish prerequisites from co-occurrences. Agentic Proposing (arXiv:2602.03279, Feb 2026) uses MGPO-optimized agent-driven composition; a 30B solver on 11K trajectories reaches 91.6% AIME25, but coverage depends on agent exploration policy with no systematic gap diagnosis. AgentFrontier (ICLR 2026, arXiv:2510.24695) uses ZPD theory to synthesize data at the model's difficulty frontier (tasks unsolvable alone but solvable with guidance), but defines frontier along a single difficulty dimension rather than structural skill-composition gaps. Redhardt et al. (NeurIPS 2025 Spotlight) prove scaling leads to compositional generalization with sub-exponential coverage requirements, providing the theoretical foundation that SDFS algorithmically implements. Arrows of Math Reasoning (CIKM 2025) demonstrates that LLM-synthesized math corpora frequently exhibit ~40% error rates and proposes program-assisted bilateral validation, highlighting the importance of rigorous verification in compositional problem synthesis.\n\n**Key differentiation**: SDFS is the first method to (a) formalize the compositional frontier as a computable set, (b) demonstrate that directed dependency structure is necessary for its enumeration, (c) use this to achieve data-efficient compositional generalization as an algorithmic implementation of Redhardt et al.'s theoretical coverage result, and (d) provide explicit, auditable coverage guarantees that learned exploration policies (Agentic Proposing) and difficulty-based frontiers (AgentFrontier) cannot offer.\n\n## Proposed Approach\n\n**Phase 1: Skill Dependency DAG Construction.** Learn a directed skill dependency DAG over OMEGA's 40 math generators via cross-skill loss probing on Qwen3-8B. For each generator pair (A,B): fine-tune on A's training data, measure loss change on B's test set; if loss reduction exceeds threshold τ, add edge A→B. Apply transitive reduction to obtain a minimal DAG.\n\nMethodological justification: Cross-skill loss probing captures **functional dependency** — \"training on A empirically helps B\" — rather than semantic prerequisite (\"A is cognitively prior to B\"). For compositional synthesis, functional dependency is the more appropriate relation: it is (i) directly measurable from model behavior without human annotation, (ii) model-specific (capturing what this particular model needs), and (iii) precisely what matters for predicting which skill combinations will benefit from joint training. This contrasts with MASS's LLM-extracted co-occurrence (captures co-appearance, not directed transfer), STAT's teacher-LLM profiling (captures single-skill gaps, not inter-skill dependencies), and CogAtom's co-occurrence graphs (undirected, conflates correlation with dependency).\n\nEfficiency optimization: To avoid exhaustive probing of all 1,560 pairs, we initialize a candidate DAG using LLM-prompted skill relationship extraction (similar to MASS's approach), then use cross-skill loss probing to validate, refine, and orient edges on the top-k most uncertain pairs, reducing fine-tune runs by an order of magnitude.\n\nDAG validation: (i) Primary — ablation comparing learned DAG vs. undirected graph vs. random graph on downstream compositional accuracy (ablation A1). (ii) Secondary — transitivity consistency check: if A→B and B→C in the probing data, verify that A→C also holds. (iii) Supplementary — comparison with expert-annotated relations on a stratified sample of skill pairs.\n\n**Phase 2: Frontier Enumeration and Ranking.** Enumerate F(G,D,k) for k=2–4. Rank frontier tuples by structural entropy maximization adapted from STEPS, prioritizing combinations that maximize marginal structural information gain. Split frontier into **training set (70%)** for synthesis and **held-out set (30%)** reserved exclusively for evaluation.\n\n**Phase 3: Compositional Problem Synthesis.** Synthesize problems at training-frontier intersections via: (a) LLM meta-composer (Qwen-72B) receives skill descriptions and generator template structures, produces candidate multi-skill problems; (b) OMEGA's symbolic/numerical verification pipeline validates correctness and confirms targeted skills are required for solution.\n\nPilot study: Before full-scale synthesis, test 50–100 frontier tuples across k=2,3,4 to measure per-k composition success rates and calibrate synthesis budget. Fallback for low-success combinations: (i) decomposed composition — generate sub-problems for skill subsets then integrate; (ii) constrained generation using OMEGA generator templates; (iii) few-shot prompting with successfully composed examples of matching k. Report composition success rate stratified by k.\n\n**Phase 4: Fine-tuning and Evaluation.** Fine-tune Qwen3-8B on frontier-synthesized data (SFT), then optionally continue with GRPO RL to test complementarity.\n\nSkill granularity note: OMEGA's 40 generators provide a natural, externally validated granularity — each generator produces problems requiring a distinct, identifiable mathematical skill, and OMEGA's compositional axis already demonstrates measurable performance gaps at this granularity. The framework is granularity-agnostic in principle (finer sub-skill decomposition would increase |V| but the DAG construction and frontier enumeration algorithms remain unchanged), though we use OMEGA's 40-generator level as the validated starting point.\n\n## Experimental Design\n\n**Base model**: Qwen3-8B. All baselines re-run on Qwen3-8B from identical initialization.\n\n**Baselines** (all on Qwen3-8B):\n1. GRPO RL (OMEGA's original method)\n2. Random Compositional Augmentation — random k-tuple composition, same data volume as SDFS, no DAG guidance\n3. STAT single-skill interventions (ICLR 2026)\n4. CogAtom diversity walks (EMNLP 2025 Findings)\n5. STEPS-Math — STEPS's structural entropy over flat taxonomy applied to OMEGA's skill space\n6. Agentic-Proposing-style baseline — agent-driven skill composition using same Qwen-72B meta-composer and Qwen3-8B solver, but without DAG guidance (isolates selection strategy difference)\n7. Vanilla SFT on compositional data without skill-graph guidance\n\n**Combination condition**: SDFS SFT → GRPO (testing complementarity with RL, following STAT's finding that data intervention + GRPO yields additive gains)\n\n**Ablation studies**:\n- A1: Directionality — directed DAG vs. undirected graph (CogAtom-style) vs. random graph\n- A2: Frontier targeting — frontier-selected tuples vs. random k-tuple selection (same data volume)\n- A3: Ranking — structural entropy ranking vs. random ranking vs. coverage-based ranking\n- A4: Composition complexity — k=2 only vs. k=3 only vs. k=4 only vs. k=2–4 mixed\n- A5: Data volume control — fixed synthesis budget, SDFS selection vs. random selection\n- A6: τ sensitivity — 3 threshold values (low/medium/high) with resulting DAG density and downstream accuracy\n\n**Evaluation**:\n- Primary: OMEGA compositional axis accuracy\n- Held-out frontier: accuracy on the 30% reserved frontier tuples (not used in synthesis) — key test of whether frontier-targeted training generalizes to unseen frontier combinations\n- Regression: MATH-500, AIME 2024, AIME 2025\n- Data efficiency: performance-per-training-sample curves (SDFS vs. random augmentation vs. scaling)\n- Synthesis quality metrics: verification pass rate, skill coverage fidelity (does solving the problem actually require all targeted skills?)\n\n**Statistical rigor**: ≥3 independent runs, mean ± std, paired bootstrap confidence intervals.\n\n**Compute reporting**: Total GPU-hours per method including DAG construction and synthesis overhead. Compute-matched comparisons.\n\n## Expected Contributions\n\n1. **Conceptual**: Formalization of the compositional frontier — a computable, auditable characterization of compositional training gaps, with argument for why directed dependency structure is necessary for its enumeration, and connection to Redhardt et al.'s sub-exponential coverage theory as its algorithmic implementation.\n2. **Methodological**: Cross-skill loss probing for functional dependency DAG construction (distinct from MASS's co-occurrence approach), entropy-ranked frontier synthesis, LLM-based compositional problem generation with symbolic verification and pilot-calibrated quality control.\n3. **Empirical**: Comprehensive evaluation with 7 baselines, SDFS+GRPO combination, 6 ablations, held-out frontier generalization test, and compute-normalized data efficiency analysis.\n4. **Broader applicability**: The compositional frontier framework is domain-agnostic — applicable wherever skills have dependency structure (coding, scientific reasoning, multi-step planning) — though validated here specifically in mathematics.\n\n## Key References\n\n- OMEGA: Can LLMs Reason Outside the Box in Math? (NeurIPS 2025)\n- MASS: Mathematical Data Selection via Skill Graphs (ICML 2025)\n- STEPS: Skill Taxonomy Guided Data Synthesis (arXiv 2026)\n- STAT: Skill-Targeted Adaptive Training (ICLR 2026)\n- CogAtom: Cognitive Atoms for Math Reasoning (EMNLP 2025 Findings)\n- Scaling Can Lead to Compositional Generalization — Redhardt et al. (NeurIPS 2025 Spotlight)\n- Instruct-SkillMix: A Powerful Pipeline for LLM Instruction Tuning (ICLR 2025)\n- Agentic Proposing: Compositional Skill Synthesis (arXiv:2602.03279, Feb 2026)\n- AgentFrontier: ZPD-Guided Data Synthesis (ICLR 2026, arXiv:2510.24695)\n- Arrows of Math Reasoning Data Synthesis (CIKM 2025)"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T06:38:59.375Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T06:38:59.375Z",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T06:38:59.389Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient background to make a well-informed evaluation. Let me compile the full assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- OMEGA (Sun et al., NeurIPS 2025 D&B Track, arXiv:2506.18880): 建立了数学推理的三轴OOD评估框架（探索/组合/变换）。关键发现：GRPO RL 大幅提升探索性泛化，但组合轴改进有限。确认了 proposal 所针对的"组合天花板"确实存在且被严格量化。注意：OMEGA 被录入的是 NeurIPS Datasets & Benchmarks Track，非主会。
+- MASS (Jia et al., ICML 2025, arXiv:2503.14917): 通过 LLM 提取的技能共现图指导数学预训练数据选择，达到 50-70% 数据量下等效性能。验证了技能图在数据效率上的价值，但其图是无向共现图，未针对组合合成。Proposal 的 DAG vs. 无向图区分论点成立。
+- STAT (ICLR 2026, arXiv:2510.10023): 利用教师 LLM 的 Missing-Skill-Profile 识别单技能缺陷，MATH 上 +7.5%，与 GRPO 互补。但仅针对单技能缺口，不处理技能组合。Proposal 正确定位了与 STAT 的差异化。
+- STEPS (arXiv:2601.03676, Jan 2026): 基于结构熵最小化建立层次化技能分类法，信息论选择 k-tuple 组合。在 WildBench 指令跟随任务上超越 Instruct-SkillMix，但确实零数学评估。Proposal 借鉴其排序方法但将其推广到数学领域是合理的。
+- Agentic Proposing (arXiv:2602.03279, Feb 2026): MGPO 优化的智能体驱动组合，30B solver + 11K 轨迹达 91.6% AIME25。强结果但依赖学习到的探索策略，无系统覆盖保证。Proposal 将其作为 baseline 并指出缺乏覆盖保证是合理的差异化。
+- AgentFrontier (ICLR 2026, arXiv:2510.24695): ZPD 引导的数据合成，沿难度维度定义前沿。Proposal 正确指出其前沿是单维度（难度），非结构化技能组合维度。
+- Redhardt et al. (NeurIPS 2025 Spotlight, arXiv:2507.07207): 证明 scaling 在充分覆盖下可实现组合泛化，且所需覆盖是次指数级的。为 proposal 提供理论基础。但注意：该理论是关于 MLP 近似能力的，直接映射到 LLM 微调场景的 gap 需要小心论证。
+- CogAtom (EMNLP 2025 Findings, arXiv:2509.17318): 无向认知原子图用于奥林匹克问题合成。Proposal 正确指出其无向性限制了前提-依赖关系的刻画。
+
+- 调研总结: 该领域正处于从"单技能诊断与增强"向"结构化组合干预"过渡的活跃期。OMEGA 暴露了组合天花板，多个 2025-2026 工作从不同角度尝试解决。Proposal 的独特定位是"形式化组合前沿 + 有向 DAG + 精准覆盖"，在现有工作拼图中确实占据了一个尚未被填充的位置。
+
+【整体印象】: 
+作为审稿人，我的第一反应是"这是一篇写得非常好、定位精准的 proposal，方向正确，实验设计出色"。我会倾向于 weak accept，但需要看到实际实验结果来验证其核心假设。主要顾虑在于：(1) 方法本质上是已知组件的精心组合（DAG 构建 + 枚举 + LLM 合成），每个组件的单独贡献有限；(2) 高阶组合（k=3,4）的合成质量是关键执行风险；(3) 形式化贡献虽然清晰，但"组合前沿"的定义在概念上并不那么意外，更像是将直觉数学化。
+
+【核心贡献】: 
+核心贡献是 **组合前沿 F(G,D,k) 的形式化定义及其通过有向 DAG 的可计算枚举**。这将"模型不会组合技能"从一个模糊观察变成一个可审计、可操作的集合，并通过跨技能损失探测构建 DAG，通过结构熵排序选择最有价值的组合进行合成。对领域的价值是中等偏上的——它提供了一个比随机扩增或单技能诊断更有原则的干预框架，但最终价值取决于实验能否证明"精准覆盖 >> 随机覆盖"。
+
+【方法合理性】: 
+方法设计整体合理，每个阶段的选择都有据可循：
+- **DAG 构建**：跨技能损失探测是一种功能性依赖度量（"训练 A 是否帮助 B"），比 MASS 的共现或 STAT 的单技能 profile 更适合捕获方向性依赖。LLM 初始化 + 选择性验证的效率优化也务实。
+- **前沿枚举与排序**：形式化定义清晰，结构熵排序借鉴 STEPS 有理论依据。
+- **合成与验证**：利用 OMEGA 的符号验证管道是聪明的设计选择。
+
+**潜在替代方案**：一个更简单的 baseline 是"直接枚举所有 k-tuple、随机抽样合成、让验证管道筛选"——不需要 DAG。Proposal 的 A2 ablation（frontier vs. random k-tuple）直接测试了这一点，这是一个加分项。但如果这个 ablation 的差距很小，整个 DAG 构建的开销就难以证明。
+
+另一个顾虑：Redhardt et al. 的理论是关于 MLP 的近似能力证明，将其映射为"SDFS 是该理论的算法实现"有些过度。该理论说覆盖是充分条件且需求是次指数的，但并未说 DAG 引导的覆盖优于随机覆盖——后者同样满足理论条件。Proposal 需要更谨慎地论证这一联系。
+
+【5 维度打分】:
+  1. 研究问题: [强] — 组合泛化天花板是被 OMEGA 和多个后续工作实证确认的真实瓶颈。问题定义清晰，有理论动机（Redhardt et al.），有实证动机（OMEGA 的组合轴停滞）。研究价值明确。
+  
+  2. 方法与创新: [中] — 组合前沿的形式化是一个有价值的概念贡献，有向 DAG vs. 无向图的论证逻辑自洽。但创新的深度有限：核心是已有组件（skill graph à la MASS，结构熵排序 à la STEPS，LLM 合成 + 验证 à la OMEGA/CogAtom）的精心组合与形式化包装。跨技能损失探测是一个合理但非突破性的技术贡献。与 STEPS 对比：STEPS 的结构熵理论框架本身是创新的，SDFS 在其基础上仅增加了 DAG 定向性。与 Agentic Proposing 对比：SDFS 的覆盖保证优于学习策略，但 Agentic Proposing 在实际性能上的优势可能更大。
+  
+  3. 实验设计: [强] — 这是 proposal 最突出的部分。7 个精心选择的 baseline 覆盖了完整的竞争格局（RL、随机扩增、单技能、无向图、平坦分类法、智能体驱动、vanilla SFT）。6 个 ablation 系统地隔离了每个设计选择（DAG 方向性、前沿选择、排序策略、组合复杂度、数据量、阈值敏感性）。30% held-out frontier 的泛化测试设计巧妙。统计严谨性（≥3 runs、bootstrap CI、compute-matched）达到顶会标准。与 STAT 和 OMEGA 的实验标准对比，本 proposal 的实验方案至少不逊色。
+  
+  4. 可行性: [中] — DAG 构建需要对 ~100-200 个技能对做微调探测（LLM 初始化剪枝后），每次在 8B 模型上，计算量显著但可控。主要风险在 Phase 3：高阶组合（k=3,4）的 LLM 合成质量存在不确定性。Proposal 提供了 fallback 策略和 pilot study 计划来缓解，但如果 k≥3 的合成成功率过低，核心贡献会被削弱为"仅在 k=2 时有效"。OMEGA 的 40 个 generator 是一个较小的技能空间，这既降低了执行难度，也限制了结论的推广性。
+  
+  5. 写作与呈现: [强] — 逻辑结构清晰，从问题到机会到方法到实验的叙事连贯。相关工作定位精准，每个对比都指出了具体差异而非泛泛而谈。形式化定义表述准确。设计选择的动机解释（为什么 DAG 而非无向图，为什么跨技能损失而非共现）具有说服力。效率优化和 fallback 策略显示了对可行性的认真思考。唯一的写作隐患是对 Redhardt et al. 联系的过度渲染——"算法实现"的措辞需要降调。
+
+【概率估计】: [28% - 42%] 中位 35%
+
+【估计理由】: 
+这是一篇方向正确、定位精准、实验设计优秀的 proposal。它处于 AAAI 录取线的边缘区域。上行因素：(1) 研究问题真实且有理论+实证双重动机；(2) 实验设计的全面性在同级别投稿中属于上游；(3) 形式化贡献虽有限但清晰可验证；(4) 如果关键实验（DAG vs. random, frontier vs. random tuple）能展示显著差距，论文会很有说服力。下行因素：(1) 方法创新深度有限，可能被判为"增量组合"（MASS 的图 + STEPS 的熵 + OMEGA 的管道）；(2) 高阶组合合成质量是执行黑箱——如果 k≥3 失败，贡献缩水；(3) 40 个技能的小规模设定限制了影响力叙事；(4) 至少 2-3 个 reviewer 可能期望更深的理论分析（如为什么 DAG 引导的覆盖比随机覆盖在样本效率上有理论优势）。中位 35% 反映的是"solid but not exciting"的定位——在一个竞争激烈的领域里，这是一篇不会让人惊艳但难以挑出大毛病的投稿。
+
+【主要风险】: 
+1. **"增量组合"判定风险**: 审稿人可能认为核心方法只是现有技术（skill graph + 结构熵 + LLM 合成）的重新包装，形式化贡献（组合前沿定义）概念上过于直接，不构成足够的学术贡献。
+2. **高阶合成失败风险**: 如果 k=3,4 组合的 LLM 合成质量不达标（成功率低、需要大量 fallback），实验结果可能退化为"在 k=2 上比随机好一点"，难以支撑论文的核心叙事。
+
+【实施评估】:
+  - 计算资源: 中高。DAG 构建需 ~100-200 次 8B 模型微调（每次 1-2 GPU-hour），合成需 72B 模型推理，主实验需 8B 模型多轮训练。估计总计 500-1000 A100 GPU-hours。
+  - 数据需求: 中。依赖 OMEGA 已有的训练/测试数据和 40 个 generator 模板。需合成数千条组合问题。
+  - 人工介入: 低-中。DAG 验证中的专家注释子样本需要数学领域知识。Pilot study 结果分析需要人工判断。
+  - 训练需求: 是。需要多次 8B 模型 SFT 和可选 GRPO RL。DAG 构建本身也涉及大量微调。
+  - 新 Benchmark: 否。直接使用 OMEGA 评估框架，仅新增 held-out frontier 测试集（从 OMEGA 技能空间派生）。
+  - 预估周期: 3-4 个月。Phase 1（DAG 构建）~3-4 周；Phase 2（枚举排序）~1 周；Phase 3（合成+验证）~4-6 周；Phase 4（训练+评估+写作）~4-6 周。
+```
+
+Sources:
+- [OMEGA: Can LLMs Reason Outside the Box in Math?](https://arxiv.org/abs/2506.18880)
+- [MASS: Mathematical Data Selection via Skill Graphs](https://arxiv.org/abs/2503.14917)
+- [STAT: Skill-Targeted Adaptive Training](https://arxiv.org/abs/2510.10023)
+- [STEPS: Towards Compositional Generalization via Skill Taxonomy Guided Data Synthesis](https://arxiv.org/abs/2601.03676)
+- [Agentic Proposing: Compositional Skill Synthesis](https://arxiv.org/abs/2602.03279)
+- [AgentFrontier: ZPD-Guided Data Synthesis](https://arxiv.org/abs/2510.24695)
+- [Scaling can lead to compositional generalization (Redhardt et al.)](https://arxiv.org/abs/2507.07207)
+- [CogAtom: From Cognitive Atoms to Olympiad-level Mathematical Reasoning](https://arxiv.org/abs/2509.17318)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have thorough research to base my evaluation on. Let me compile the full assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- OMEGA (NeurIPS 2025, arXiv:2506.18880): 本 proposal 的核心基础设施。建立了数学 OOD 泛化的三轴评估框架（探索性/组合性/变革性），发现 GRPO RL 显著提升探索性泛化但组合性泛化几乎不变。proposal 准确引用了这一关键发现并将其作为研究动机。
+- MASS (ICML 2025, arXiv:2503.14917): 通过 LLM 提取的技能共现关系构建技能图指导数据选择，预训练数据效率提升 50-70%。proposal 准确指出 MASS 使用无向共现图而非有向依赖图，且目标是数据选择而非组合合成——这一区分是成立的。
+- STEPS (arXiv:2601.03676, Jan 2026): 使用结构熵最小化构建层次化技能分类体系，在 instruction-following (WildBench) 上验证了组合泛化的提升。proposal 准确指出 STEPS 缺乏数学领域验证——经确认属实。
+- STAT (ICLR 2026, arXiv:2510.10023): 通过教师 LLM 的 Missing-Skill-Profile 识别单技能缺陷，MATH +7.5%，与 GRPO 互补。proposal 准确区分了 STAT 针对单技能缺陷 vs. 本方法针对组合缺口的差异。
+- Agentic Proposing (arXiv:2602.03279, Feb 2026): 30B solver 在仅 11K 合成轨迹上训练达到 AIME25 91.6%，但依赖学习的探索策略而非系统性覆盖保证。proposal 的差异化论述成立。
+- AgentFrontier (ICLR 2026, arXiv:2510.24695): ZPD 引导的数据合成，frontier 沿难度维度定义而非技能组合结构维度。proposal 的区分论点成立。
+- Redhardt et al. (NeurIPS 2025 Spotlight, arXiv:2507.07207): 证明了 scaling 可在次指数覆盖要求下实现组合泛化。proposal 将自身定位为该理论结果的算法实现——这一叙事连贯有力。
+- CogAtom (EMNLP 2025 Findings, arXiv:2509.17318): 认知原子框架用于竞赛级数学问题合成，使用无向共现图。proposal 的批评（无向图无法区分前置依赖和共现）在技术上成立。
+- Instruct-SkillMix (ICLR 2025, arXiv:2408.14774): 随机技能组合生成 instruction-tuning 数据的先驱工作。proposal 将其作为 STEPS 的 baseline 正确引用。
+- Arrows of Math Reasoning (CIKM 2025): LLM 合成数学语料约 40% 错误率，强调验证的重要性。proposal 已意识到此风险并设计了符号/数值验证管线。
+
+- 调研总结: 数学推理的组合泛化是 2025-2026 年一个活跃且重要的研究前沿。现有工作形成了清晰的图景：OMEGA 诊断了问题，Redhardt 提供了理论基础，MASS/STEPS/STAT/CogAtom 各自从不同角度部分解决，但**没有任何已发表工作将有向依赖结构与组合前沿的精确识别相结合**。proposal 准确定位了这一空白，文献引用经逐一核查均属实。
+
+【整体印象】:
+作为审稿人，我的第一反应是 **cautious lean accept**。这是一个在文献把握、问题形式化和实验设计方面都展现出高成熟度的 proposal。"组合前沿"的形式化定义是干净、可操作的概念贡献。实验设计（7 baselines、6 ablations、held-out frontier 评估）的完备程度超出了多数投稿。我最主要的犹豫来自两个方面：(1) 在 OMEGA 仅有 40 个 generator 的尺度上，DAG 剪枝带来的效率提升能否显著超越简单枚举；(2) LLM 合成组合性数学问题的质量能否真正保证目标技能的联合需求。
+
+【核心贡献】:
+本工作的核心贡献是**组合前沿 F(G,D,k) 的形式化定义及其算法实现**——给定技能依赖 DAG 和训练分布，精确枚举满足前置条件但未被训练覆盖的技能组合。这个贡献包含三层：(a) 概念层——将模糊的"组合泛化失败"转化为可计算、可审计的集合；(b) 结构层——论证了有向依赖关系（而非无向共现）对前沿枚举的必要性；(c) 连接层——将其定位为 Redhardt et al. 次指数覆盖理论的算法实现。对领域的价值中等偏上：如果实验验证了 DAG 引导的组合合成确实优于随机组合增强，这将为数学推理的数据高效训练提供一个有原则的框架。
+
+【方法合理性】:
+方法整体合理，各环节都有清晰的设计理由。但存在几个需要关注的点：
+
+(a) **Cross-skill loss probing 的合理性**：用"训练 A 后 B 的 loss 是否降低"来定义功能依赖关系，概念上合理，但阈值 τ 的选择对 DAG 结构影响很大（ablation A6 部分覆盖了这一点）。且 40 个 generator 之间的依赖关系可能很稀疏，导致 DAG 信息量有限。
+
+(b) **更简单的替代方案**：在 40 个技能的尺度上，C(40,2)=780，C(40,3)=9,880，C(40,4)=91,390。对于 k=2，即使不用 DAG 剪枝也完全可以穷举。DAG 的真正价值在 k≥3 时通过前置条件完备性剪枝显现，但此时合成质量也最难保证。一个更简单的 baseline 是"枚举所有 k=2 组合 + 按模型困难度排序"，无需 DAG 也可能达到相似效果。proposal 的 ablation A2（frontier 选择 vs. 随机 k-tuple）覆盖了这个对比，这是好的。
+
+(c) **LLM 合成的质量瓶颈**：组合性问题合成（确保问题真正需要多技能联合求解，而非仅是技能的表面拼接）是整个方法链中最脆弱的环节。proposal 设计了 pilot study 和 fallback 策略，表现出对这一风险的清醒认识，但能否实际解决仍不确定。
+
+【5 维度打分】:
+
+1. 研究问题: 【强】— 数学推理的组合泛化是经 OMEGA (NeurIPS 2025) 实证确认的重要未解问题。Redhardt et al. 的理论结果为数据高效的组合覆盖提供了理论基础，但缺乏算法实现。现有方法（STAT 针对单技能，MASS 针对数据选择，STEPS 未验证数学）均未触及组合前沿的精确识别。研究问题重要且空白明确。
+
+2. 方法与创新: 【中偏强】— 组合前沿的形式化定义是干净的概念贡献，有向 DAG vs. 无向图的论证有力（相比 MASS 的共现图和 CogAtom 的无向图，directed dependency 在技术上确实更适合前置条件推理）。cross-skill loss probing 是合理的 DAG 构建方法。但创新的"增量"需要仔细审视：核心思路（用结构化技能关系指导数据合成）已被 MASS 和 STEPS 分别探索，本工作的增量在于(i)有向性和(ii)前沿精确枚举。在 40-skill 的尺度上，DAG 剪枝的效率增益可能不如在更大技能空间中显著。
+
+3. 实验设计: 【强】— 这是 proposal 最突出的维度。7 个 baselines 全面覆盖了相关方法（GRPO、Random Aug、STAT、CogAtom、STEPS-Math、Agentic-Proposing-style、Vanilla SFT）。6 个 ablations 系统性地隔离了每个设计选择的贡献。Held-out frontier 评估（30% 保留用于测试前沿泛化）是精心设计的。统计严谨性（≥3 runs、bootstrap CI）和 compute-matched comparison 也达标。值得注意的是，proposal 没有遗漏任何关键 baseline——STAT (ICLR 2026) 和 Agentic Proposing (arXiv 2026) 这两个最直接的竞争对手都被纳入。
+
+4. 可行性: 【中】— 整体可行但有挑战。DAG 构建阶段需要多次 fine-tuning（效率优化后约 O(100) 次 Qwen3-8B 微调），计算开销可控但非trivial。最大风险在 Phase 3（组合问题合成）：LLM 合成的数学问题约 40% 错误率 (Arrows of Math Reasoning, CIKM 2025)，组合性问题可能更高。pilot study (50-100 tuples) 和 fallback 策略是合理的缓解措施，但如果 k≥3 的合成成功率很低，方法的核心 claim 将被削弱。
+
+5. 写作与呈现: 【强】— Proposal 组织清晰，叙事连贯（从问题诊断→理论动机→形式化→方法→实验的逻辑线完整）。文献综述准确且区分明确。形式化定义 F(G,D,k) 简洁精确。各阶段都有明确的方法论证据和 methodological justification。Phase 1 的效率优化和 Phase 3 的 pilot study/fallback 策略显示出研究者对实际困难的预判能力。
+
+【概率估计】: [30% - 42%] 中位 36%
+
+【估计理由】:
+**上推因素**: (1) 问题重要且时机准确——组合泛化是 2025-2026 的研究热点，proposal 精准定位了空白；(2) 概念贡献（组合前沿形式化）干净且可操作；(3) 实验设计的完备程度在 proposal 阶段就已超出多数实际投稿；(4) 文献把握准确，所有引用经核查均属实，差异化论述成立；(5) 与 Redhardt et al. 理论结果的连接叙事有力。
+
+**下拉因素**: (1) 在 40-skill 尺度上 DAG 剪枝的实际增益可能不够显著——C(40,2)=780 本身就可穷举，"data efficiency"的核心 claim 可能被 ablation A2 的结果弱化；(2) 组合问题合成质量是整个方法链的最大瓶颈，直接决定了实验能否产生有意义的结果；(3) 方法环节较多（DAG 构建→前沿枚举→排序→合成→验证→微调），每个环节的误差会累积；(4) 核心创新的增量性——从"无向技能图"到"有向依赖 DAG"、从"平坦分类"到"前沿枚举"是进步，但不是范式转换，部分审稿人可能认为增量不够大。
+
+中位 36% 反映了这是一篇 **solid but not outstanding** 的投稿：方向正确、方法合理、实验充分，但核心贡献的 impact 取决于实验验证——如果 DAG 引导显著优于随机组合增强，则中稿概率上移至 40%+；如果改善边际，则下移至 30% 以下。
+
+【主要风险】:
+1. **DAG 引导 vs. 简单 baseline 的边际增益不足**: 在 40-skill 的尺度上，随机组合增强（baseline 2）或基于模型困难度的简单排序可能达到与 DAG 引导相近的效果，导致核心贡献的实证支撑不足。这是最可能让审稿人投 reject 的原因——"the improvement over a simpler approach is marginal"。
+2. **组合问题合成质量不可控**: 如果 k≥3 的合成成功率过低（如 <30%），不仅实验结果会受限，还会引发审稿人对方法实用性的根本质疑。
+
+【实施评估】:
+  - 计算资源: 中等偏高。DAG 构建需 ~100 次 Qwen3-8B 微调（估计 50-100 GPU-hours on A100），合成需 Qwen-72B 推理（~20-50 GPU-hours），SFT+GRPO 训练（~30-50 GPU-hours），3 次重复实验×7+ 配置。总计约 500-1000 A100 GPU-hours。
+  - 数据需求: OMEGA 的训练/测试数据（已公开），合成的组合性问题（由方法自身生成）。无需额外人工标注数据。
+  - 人工介入: 低。DAG 验证的 supplementary 步骤需要部分专家标注（"stratified sample of skill pairs"），但规模可控。
+  - 训练需求: 需要。包括 DAG 构建阶段的多次微调、主实验的 SFT 和 GRPO 训练。
+  - 新 Benchmark: 不需要构建全新 benchmark。利用 OMEGA 已有评估框架，但 held-out frontier 评估集是新增的评估维度。
+  - 预估周期: 2.5-4 个月。Phase 1 (DAG 构建): 2-3 周；Phase 2 (前沿枚举): 1 周；Phase 3 (合成+验证+pilot): 3-4 周；Phase 4 (训练+评估): 3-4 周；写作: 2-3 周。瓶颈在 Phase 3 的合成质量调试。
+```
+
+Sources:
+- [OMEGA: Can LLMs Reason Outside the Box in Math? (NeurIPS 2025)](https://arxiv.org/abs/2506.18880)
+- [MASS: Mathematical Data Selection via Skill Graphs (ICML 2025)](https://arxiv.org/abs/2503.14917)
+- [STEPS: Skill Taxonomy Guided Data Synthesis (arXiv 2026)](https://arxiv.org/abs/2601.03676)
+- [STAT: Skill-Targeted Adaptive Training (ICLR 2026)](https://arxiv.org/abs/2510.10023)
+- [CogAtom: Cognitive Atoms for Math Reasoning (EMNLP 2025 Findings)](https://arxiv.org/abs/2509.17318)
+- [Agentic Proposing: Compositional Skill Synthesis (arXiv 2026)](https://arxiv.org/abs/2602.03279)
+- [AgentFrontier: ZPD-Guided Data Synthesis (ICLR 2026)](https://arxiv.org/abs/2510.24695)
+- [Scaling can lead to compositional generalization — Redhardt et al. (NeurIPS 2025 Spotlight)](https://arxiv.org/abs/2507.07207)
+- [Instruct-SkillMix (ICLR 2025)](https://arxiv.org/abs/2408.14774)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+```
+【阶段】: Triage
+
+【领域调研】:
+- OMEGA (Sun et al., NeurIPS 2025, arXiv:2506.18880): 直接基础设施。提供 40 个模板化数学生成器和三轴泛化评测（探索/组合/变换）。关键发现：GRPO RL 显著提升探索泛化但组合泛化基本不变——本 proposal 正是要解决这一遗留问题。Proposal 的定位准确。
+- MASS (ICML 2025, arXiv:2503.14917): 验证了 skill graph 对数学数据效率的价值（50-70% token 节省），但目标是预训练数据选择，不涉及组合合成。使用 LLM 提取的共现图（无向），proposal 正确指出其不能区分前置依赖与共现。
+- STEPS (arXiv:2601.03676, Jan 2026): 用结构熵构建层次化 skill taxonomy 引导合成，在指令跟随任务（WildBench）上超越 Instruct-SkillMix，但**零数学评测**。Proposal 将其结构熵排序方法迁移到数学组合场景，定位合理。
+- STAT (ICLR 2026, arXiv:2510.10023): 用 teacher-LLM Missing-Skill-Profile 定位单技能缺陷，MATH 上 +7.5%，与 GRPO 互补。但明确只处理单技能缺口，不处理组合。Proposal 的差异化定位成立。
+- CogAtom (EMNLP 2025 Findings, arXiv:2509.17318): 认知原子框架+多样性随机游走合成奥数题。使用无向共现图，proposal 正确指出无法表示前置依赖关系。
+- Agentic Proposing (arXiv:2602.03279, Feb 2026): **最强竞争者**。30B solver 仅 11K 轨迹达 91.6% AIME25。依赖 agent 学习的探索策略实现技能组合，无系统覆盖保证。Proposal 将其作为 baseline 之一，差异化在于"可审计的覆盖保证 vs. 学习到的探索"。
+- AgentFrontier (ICLR 2026, arXiv:2510.24695): ZPD 引导合成，frontier 定义在难度维度而非技能组合结构维度。差异化清晰。
+- Redhardt et al. (NeurIPS 2025 Spotlight, arXiv:2507.07207): 理论证明 scaling 可导致组合泛化，覆盖要求是亚指数的。为 SDFS 提供理论根基——SDFS 声称是该理论结果的算法实现。
+- Instruct-SkillMix (ICLR 2025, arXiv:2408.14774): 随机技能对组合生成 SFT 数据，4K 样本达到强指令跟随性能。是 STEPS 的直接对比基线。
+- Arrows of Math Reasoning (CIKM 2025): LLM 合成数学语料 ~40% 错误率，提出程序辅助双向验证。直接关系到本 proposal 合成质量风险。
+- 调研总结: 数学推理的组合泛化是一个被充分记录但尚未解决的问题。多篇高质量工作（OMEGA、MASS、STEPS、STAT、CogAtom）从不同角度触及了技能图/分类法对数据效率的价值，但**尚无工作在有向依赖 DAG 引导下做针对性组合前沿合成**。Proposal 占据了一个真实的、已被证实但尚未被填补的交叉空白。
+
+【整体印象】: 
+作为审稿人，第一反应倾向于 weak accept / borderline accept。这是一篇定位非常精准、相关工作覆盖全面、实验设计异常完备的 proposal。"组合前沿"的形式化是干净且有用的概念贡献，有向 DAG 与无向图/扁平分类法的区分在理论上站得住。但核心方法本质上是一个已有技术的组合管线（cross-skill probing + 结构熵排序 + LLM 合成 + 符号验证），每个组件单独来看缺乏深度技术创新。论文的价值更多在于"principled system design"而非"algorithmic breakthrough"。这在 AAAI 是可以接受的定位，但需要强有力的实验结果来支撑。
+
+【核心贡献】: 
+核心贡献是对**组合前沿 F(G,D,k)** 的形式化定义和基于有向技能依赖 DAG 的算法实现。这提供了一个可计算、可审计的方式来识别模型在组合泛化上的精确训练缺口，并将 Redhardt et al. 的亚指数覆盖理论转化为可操作的数据合成策略。对领域的价值是中等偏上的：它为"该训练哪些技能组合"提供了原则性回答，如果实验验证有效，将对数学推理数据合成流程有实质性指导意义。但这不是一个范式性的突破——更像是对已有知识的一次精巧的系统整合。
+
+【方法合理性】: 
+方法整体合理，各组件有逻辑依据：
+- Cross-skill loss probing 用模型行为定义功能性依赖，比语义标注更客观，比共现更有方向性。但**细粒度的实验设计值得审视**：在 40 个生成器上做 fine-tune + loss probing 涉及大量实验（即使有 LLM 初始化优化）。τ 阈值的选择对 DAG 结构影响大，ablation A6 覆盖了这一点是加分。
+- 结构熵排序适配自 STEPS，合理但不是原创。
+- LLM 合成 + 符号验证沿用 OMEGA pipeline，是现实可行的选择。
+
+**更简单的替代方案问题**：一个合理的质疑是——是否可以直接用 random k-tuple augmentation + 更大数据量达到类似效果？Redhardt et al. 本身就证明了 scaling data 可以导致组合泛化。SDFS 的价值取决于它能在**显著更少的数据**下达到相当甚至更好的效果。实验设计中的 random augmentation baseline 和数据效率曲线恰好测试这一点，这是好的。但如果实验中 random augmentation 在足够数据量下就能匹配 SDFS，论文的核心论点会被大幅削弱。
+
+【5 维度打分】:
+  1. 研究问题: 【强】 — 数学推理的组合泛化是一个被 OMEGA、Redhardt et al. 等多篇 NeurIPS/ICML 工作实证确认的真实、重要问题。"模型掌握单个技能但无法组合使用"是 LLM 推理能力的核心瓶颈之一。问题定义清晰，有强有力的理论支撑（Redhardt et al. 的亚指数覆盖定理）。唯一的轻微问题是 scope 受限于 OMEGA 的 40 个生成器框架，但这也使问题更加可操作。
+
+  2. 方法与创新: 【中】 — 组合前沿的形式化是干净的概念贡献，cross-skill loss probing 有一定新意。但逐一拆解：(a) DAG 构建使用的 fine-tune + loss probing 是迁移学习社区的标准技术；(b) 结构熵排序直接借鉴 STEPS；(c) LLM 合成 + 符号验证沿用 OMEGA。创新更多在系统整合层面而非算法层面。与 MASS (ICML 2025) 的 skill graph 相比，有向 DAG 是明确的进步；与 STEPS 相比，数学领域的适配和 DAG 引导是差异化；但与 Agentic Proposing 相比，在实际效果上的优势需要实验验证。"有向依赖是必要的"这一声明（contribution 2）在理论上有道理，但在实验中可能不一定成立（如果无向图在实践中表现相当）。
+
+  3. 实验设计: 【强】 — 这是 proposal 最突出的亮点。7 个 baseline（含 GRPO、random augmentation、STAT、CogAtom、STEPS-Math、Agentic-style、vanilla SFT）几乎涵盖了所有合理的对照方案。6 个 ablation 系统性地拆解每个设计选择的贡献。特别值得肯定的设计包括：(a) 前沿 70/30 训练/测试拆分——直接测试前沿泛化能力；(b) 数据效率曲线——直接测试核心论点；(c) compute-matched comparisons 和 GPU-hours 报告；(d) ≥3 runs + bootstrap CI。Agentic-Proposing-style baseline 的设置（相同 meta-composer 但无 DAG 引导）精确隔离了选择策略的差异。达到了 top venue 实验标准。
+
+  4. 可行性: 【中】 — 整体可执行但有几个风险点。(a) DAG 构建：即使有 LLM 初始化优化，仍需大量 fine-tune 实验，计算开销非 trivial；(b) **合成质量是最大风险**：Arrows of Math Reasoning (CIKM 2025) 报告 LLM 合成数学数据 ~40% 错误率。虽然有 OMEGA 的符号/数值验证管线，但验证一个问题"确实需要所有 k 个目标技能才能求解"（skill coverage fidelity）是比正确性验证更难的问题——目前没有可靠的自动化方法确保这一点；(c) k=3-4 的组合合成成功率存疑，pilot study 的安排是明智的但仅能部分缓解风险；(d) 7 个 baseline 的复现工作量大，部分工作（如 STAT、CogAtom）需要在 Qwen3-8B 上重新实现。预估周期 3-4 个月较紧张。
+
+  5. 写作与呈现: 【强】 — 逻辑清晰，结构严谨。相关工作覆盖全面且定位精准——每个竞争工作的差异化都有具体的技术论据支撑。概念贡献（组合前沿）的引入自然且有说服力。方法论论证（为什么用 functional dependency 而非 semantic prerequisite、为什么有向比无向好）都给出了充分理由。实验设计的呈现也很清晰。这份 proposal 的写作水平已达到 top venue 论文标准。
+
+【概率估计】: [28% - 40%] 中位 33%
+
+【估计理由】: 
+这篇 proposal 的研究问题真实重要（组合泛化是公认瓶颈），实验设计在 proposal 阶段就已达到顶会水平，写作和定位都很精准。这些因素将其拉到 30% 以上。然而，三个因素限制了进一步的上行空间：
+
+(1) **核心技术创新深度不足**。方法本质上是已有技术组件（loss probing → DAG → 结构熵排序 → LLM 合成 → 符号验证）的系统整合。"组合前沿"的形式化虽然干净有用，但一旦有了有向 DAG，定义 F(G,D,k) 是自然且直接的——审稿人可能认为这更像是"good engineering"而非"algorithmic contribution"。
+
+(2) **合成质量这一核心瓶颈未被充分解决**。整个管线的成败取决于能否生成真正需要所有 k 个技能的高质量组合问题。鉴于 ~40% 的基线错误率（Arrows, CIKM 2025），k=3-4 的多技能组合合成难度更大。如果合成质量不过关，DAG 引导的优势将无法体现。
+
+(3) **实验结果的不确定性**。论文的核心论点（DAG 引导的组合前沿合成在数据效率上优于 random augmentation 和 learned exploration）需要强有力的实验数据支撑。如果 random augmentation 在足够数据量下就能逼近 SDFS 的效果，或者如果 Agentic Proposing 风格的 baseline 不需要 DAG 就能达到相似性能，核心贡献将被大幅削弱。
+
+综合来看，这是一篇 solid 但非 exciting 的工作，属于 AAAI 审稿中 borderline 区间。如果实验结果清晰验证了 DAG 引导的数据效率优势，概率可到 38-40%；如果结果模糊或合成质量出问题，可能降到 25-28%。
+
+【主要风险】: 
+1. **合成质量瓶颈**：k=3-4 多技能组合问题的合成成功率和质量（skill coverage fidelity）可能远低于预期，导致前沿引导的优势无法在下游实验中体现——这是整个管线的阿喀琉斯之踵。
+2. **DAG vs. 简单替代方案的差距可能不显著**：如果 ablation A1（有向 DAG vs. 无向图）和 A2（前沿选择 vs. 随机选择）的差距较小，审稿人会质疑有向 DAG 这一核心创新的实际价值，论文可能被定性为 over-engineered。
+
+【实施评估】:
+  - 计算资源: 中等偏高。DAG 构建需要多次 fine-tune Qwen3-8B（即使优化后仍需 ~100-200 次小规模 fine-tune）；合成用 Qwen-72B 调用量大；主实验 Qwen3-8B SFT + GRPO × 7 baselines × ≥3 runs。估计总计 2000-4000 A100 GPU-hours。
+  - 数据需求: 中等。依赖 OMEGA 现有训练/测试数据（公开可用）；合成数据由 LLM 生成，无需额外人工标注数据。
+  - 人工介入: 低。DAG 验证可能需要少量专家审查（skill pair 关系抽样验证）；合成问题质量的 spot-check；其余自动化。
+  - 训练需求: 需要。Qwen3-8B SFT + 可选 GRPO RL，多次训练。不需要预训练或训练新基模。
+  - 新 Benchmark: 不需要新建。使用 OMEGA 现有评测 + MATH-500 + AIME 2024/2025。前沿 30% held-out 是评测设计而非新 benchmark。
+  - 预估周期: 3-5 个月。Phase 1 (DAG 构建): 3-4 周；Phase 2 (前沿枚举): 1 周；Phase 3 (合成 + 验证): 4-6 周；Phase 4 (训练 + 评估): 6-8 周；写作: 2-3 周。关键路径在 Phase 3 合成质量的调优迭代上。
+```
+
+Sources:
+- [OMEGA: Can LLMs Reason Outside the Box in Math?](https://arxiv.org/abs/2506.18880)
+- [MASS: Mathematical Data Selection via Skill Graphs](https://arxiv.org/abs/2503.14917)
+- [STEPS: Towards Compositional Generalization via Skill Taxonomy Guided Data Synthesis](https://arxiv.org/abs/2601.03676)
+- [STAT: Skill-Targeted Adaptive Training](https://arxiv.org/abs/2510.10023)
+- [CogAtom: From Cognitive Atoms to Olympiad-level Mathematical Reasoning](https://arxiv.org/abs/2509.17318)
+- [Agentic Proposing: Compositional Skill Synthesis](https://arxiv.org/abs/2602.03279)
+- [AgentFrontier: ZPD-Guided Data Synthesis](https://arxiv.org/abs/2510.24695)
+- [Scaling can lead to compositional generalization (Redhardt et al.)](https://arxiv.org/abs/2507.07207)
+- [Instruct-SkillMix: A Powerful Pipeline for LLM Instruction Tuning](https://arxiv.org/abs/2408.14774)
+- [Arrows of Math Reasoning Data Synthesis (CIKM 2025)](https://dl.acm.org/doi/abs/10.1145/3746252.3760944)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Skill-DAG-Guided Frontier Synthesis for Data-Efficient Mathematical Compositional Generalization
+
+## Core Problem
+
+Current methods for improving mathematical reasoning (RL, curriculum learning, scaling) hit a persistent compositional ceiling: models trained on individual skills fail to solve problems requiring novel skill combinations. Redhardt et al. (NeurIPS 2025 Spotlight) prove that scaling data and model size yields compositional generalization when training distributions sufficiently cover the combinatorial task space, with sub-exponential scaling of required training tasks. This establishes two facts: (1) coverage is a sufficient condition for compositional generalization, and (2) the required coverage is tractable in principle. What is missing is an algorithm that identifies precisely which skill combinations to cover. Current approaches either cover blindly (random augmentation), target single-skill deficits (STAT, ICLR 2026), or rely on learned exploration without coverage guarantees (Agentic Proposing, arXiv:2602.03279). Can a structure-guided approach that precisely enumerates the missing compositional frontier achieve equivalent generalization at a fraction of the data cost — effectively implementing the algorithmic promise of Redhardt et al.'s theoretical result?
+
+## Research Opportunity
+
+Three independently validated components converge at an unexploited intersection. MASS (ICML 2025) proves skill graphs improve math data efficiency by 50–70% but targets data selection, not compositional synthesis. STEPS (arXiv Jan 2026) proves information-theoretic taxonomy-guided synthesis improves compositional generalization but is validated only on instruction-following with zero math evaluation. OMEGA (NeurIPS 2025) provides the 40-generator skill taxonomy and evaluation infrastructure demonstrating the compositional ceiling — GRPO RL boosts exploratory generalization up to +61% but leaves compositional integration largely unchanged. No published method has attempted targeted, structure-guided data interventions on OMEGA's compositional axis. Agentic Proposing (arXiv:2602.03279, Feb 2026) achieves strong results via agent-driven composition (30B solver, 91.6% AIME25) but relies on learned exploration policy without systematic gap identification or coverage guarantees. AgentFrontier (ICLR 2026, arXiv:2510.24695) introduces ZPD-guided synthesis targeting the model's difficulty frontier, but its frontier is defined along a single difficulty dimension — it does not address the structural, combinatorial gap between skill compositions.
+
+## Core Conceptual Contribution: The Compositional Frontier
+
+We introduce and formalize the **compositional frontier**. Given a directed skill dependency DAG G=(V,E) over a skill set V, and a training distribution D, the compositional frontier is:
+
+**F(G,D,k) = { S ⊆ V : |S|=k, ∀v∈S all dependency-ancestors of v in G are covered by D, but S ∉ support(D) }**
+
+F contains all k-skill combinations whose individual dependency prerequisites are satisfied by training but which have never appeared together. This formalization yields three contributions:
+
+(1) **Precise characterization of compositional gaps.** Prior work describes compositional failure informally; F provides a computable, auditable set that can be exactly enumerated given G and D.
+
+(2) **Directed structure is necessary.** Undirected skill graphs (CogAtom, EMNLP 2025 Findings) and flat taxonomies (STEPS) cannot enumerate F because prerequisite-completeness requires directed ancestry queries. This is why MASS's co-occurrence graph and STEPS's flat taxonomy, despite their success in other settings, are structurally insufficient for frontier identification.
+
+(3) **Intrinsic data efficiency.** When G is sparse (as mathematical skill dependencies empirically are — most skills depend on few prerequisites), |F(G,D,k)| is substantially smaller than the full combinatorial space C(|V|,k). The DAG structure itself prunes the space of relevant combinations, providing built-in data efficiency that random coverage approaches lack. This connects directly to Redhardt et al.'s sub-exponential scaling result: SDFS operationalizes their theoretical insight by using DAG structure to identify exactly which sub-exponential subset of combinations to cover.
+
+## Research Landscape
+
+OMEGA (Sun et al., NeurIPS 2025) establishes that across 40 templated generators in 6 math domains, GRPO RL significantly boosts exploratory generalization but leaves compositional integration largely unchanged. MASS (ICML 2025) constructs skill graphs via LLM-extracted skill co-occurrence and achieves equivalent math performance with 50–70% less pretraining data, validating skill-graph utility for data efficiency but not targeting composition. STEPS (arXiv Jan 2026) uses structural entropy minimization to build hierarchical skill taxonomies and selects k-tuples maximizing marginal structural information, outperforming Instruct-SkillMix (ICLR 2025) on WildBench, but with zero math evaluation. STAT (ICLR 2026) identifies per-skill deficits via a teacher-LLM Missing-Skill-Profile, achieving +7.5% on MATH and demonstrating complementarity with GRPO RL (up to +9.5% over GRPO on base model when combined), but addresses single-skill gaps rather than compositional ones. CogAtom (EMNLP 2025 Findings) builds undirected co-occurrence graphs of cognitive atoms for Olympiad synthesis but cannot distinguish prerequisites from co-occurrences. Agentic Proposing (arXiv:2602.03279, Feb 2026) uses MGPO-optimized agent-driven composition; a 30B solver on 11K trajectories reaches 91.6% AIME25, but coverage depends on agent exploration policy with no systematic gap diagnosis. AgentFrontier (ICLR 2026, arXiv:2510.24695) uses ZPD theory to synthesize data at the model's difficulty frontier (tasks unsolvable alone but solvable with guidance), but defines frontier along a single difficulty dimension rather than structural skill-composition gaps. Redhardt et al. (NeurIPS 2025 Spotlight) prove scaling leads to compositional generalization with sub-exponential coverage requirements, providing the theoretical foundation that SDFS algorithmically implements. Arrows of Math Reasoning (CIKM 2025) demonstrates that LLM-synthesized math corpora frequently exhibit ~40% error rates and proposes program-assisted bilateral validation, highlighting the importance of rigorous verification in compositional problem synthesis.
+
+**Key differentiation**: SDFS is the first method to (a) formalize the compositional frontier as a computable set, (b) demonstrate that directed dependency structure is necessary for its enumeration, (c) use this to achieve data-efficient compositional generalization as an algorithmic implementation of Redhardt et al.'s theoretical coverage result, and (d) provide explicit, auditable coverage guarantees that learned exploration policies (Agentic Proposing) and difficulty-based frontiers (AgentFrontier) cannot offer.
+
+## Proposed Approach
+
+**Phase 1: Skill Dependency DAG Construction.** Learn a directed skill dependency DAG over OMEGA's 40 math generators via cross-skill loss probing on Qwen3-8B. For each generator pair (A,B): fine-tune on A's training data, measure loss change on B's test set; if loss reduction exceeds threshold τ, add edge A→B. Apply transitive reduction to obtain a minimal DAG.
+
+Methodological justification: Cross-skill loss probing captures **functional dependency** — "training on A empirically helps B" — rather than semantic prerequisite ("A is cognitively prior to B"). For compositional synthesis, functional dependency is the more appropriate relation: it is (i) directly measurable from model behavior without human annotation, (ii) model-specific (capturing what this particular model needs), and (iii) precisely what matters for predicting which skill combinations will benefit from joint training. This contrasts with MASS's LLM-extracted co-occurrence (captures co-appearance, not directed transfer), STAT's teacher-LLM profiling (captures single-skill gaps, not inter-skill dependencies), and CogAtom's co-occurrence graphs (undirected, conflates correlation with dependency).
+
+Efficiency optimization: To avoid exhaustive probing of all 1,560 pairs, we initialize a candidate DAG using LLM-prompted skill relationship extraction (similar to MASS's approach), then use cross-skill loss probing to validate, refine, and orient edges on the top-k most uncertain pairs, reducing fine-tune runs by an order of magnitude.
+
+DAG validation: (i) Primary — ablation comparing learned DAG vs. undirected graph vs. random graph on downstream compositional accuracy (ablation A1). (ii) Secondary — transitivity consistency check: if A→B and B→C in the probing data, verify that A→C also holds. (iii) Supplementary — comparison with expert-annotated relations on a stratified sample of skill pairs.
+
+**Phase 2: Frontier Enumeration and Ranking.** Enumerate F(G,D,k) for k=2–4. Rank frontier tuples by structural entropy maximization adapted from STEPS, prioritizing combinations that maximize marginal structural information gain. Split frontier into **training set (70%)** for synthesis and **held-out set (30%)** reserved exclusively for evaluation.
+
+**Phase 3: Compositional Problem Synthesis.** Synthesize problems at training-frontier intersections via: (a) LLM meta-composer (Qwen-72B) receives skill descriptions and generator template structures, produces candidate multi-skill problems; (b) OMEGA's symbolic/numerical verification pipeline validates correctness and confirms targeted skills are required for solution.
+
+Pilot study: Before full-scale synthesis, test 50–100 frontier tuples across k=2,3,4 to measure per-k composition success rates and calibrate synthesis budget. Fallback for low-success combinations: (i) decomposed composition — generate sub-problems for skill subsets then integrate; (ii) constrained generation using OMEGA generator templates; (iii) few-shot prompting with successfully composed examples of matching k. Report composition success rate stratified by k.
+
+**Phase 4: Fine-tuning and Evaluation.** Fine-tune Qwen3-8B on frontier-synthesized data (SFT), then optionally continue with GRPO RL to test complementarity.
+
+Skill granularity note: OMEGA's 40 generators provide a natural, externally validated granularity — each generator produces problems requiring a distinct, identifiable mathematical skill, and OMEGA's compositional axis already demonstrates measurable performance gaps at this granularity. The framework is granularity-agnostic in principle (finer sub-skill decomposition would increase |V| but the DAG construction and frontier enumeration algorithms remain unchanged), though we use OMEGA's 40-generator level as the validated starting point.
+
+## Experimental Design
+
+**Base model**: Qwen3-8B. All baselines re-run on Qwen3-8B from identical initialization.
+
+**Baselines** (all on Qwen3-8B):
+1. GRPO RL (OMEGA's original method)
+2. Random Compositional Augmentation — random k-tuple composition, same data volume as SDFS, no DAG guidance
+3. STAT single-skill interventions (ICLR 2026)
+4. CogAtom diversity walks (EMNLP 2025 Findings)
+5. STEPS-Math — STEPS's structural entropy over flat taxonomy applied to OMEGA's skill space
+6. Agentic-Proposing-style baseline — agent-driven skill composition using same Qwen-72B meta-composer and Qwen3-8B solver, but without DAG guidance (isolates selection strategy difference)
+7. Vanilla SFT on compositional data without skill-graph guidance
+
+**Combination condition**: SDFS SFT → GRPO (testing complementarity with RL, following STAT's finding that data intervention + GRPO yields additive gains)
+
+**Ablation studies**:
+- A1: Directionality — directed DAG vs. undirected graph (CogAtom-style) vs. random graph
+- A2: Frontier targeting — frontier-selected tuples vs. random k-tuple selection (same data volume)
+- A3: Ranking — structural entropy ranking vs. random ranking vs. coverage-based ranking
+- A4: Composition complexity — k=2 only vs. k=3 only vs. k=4 only vs. k=2–4 mixed
+- A5: Data volume control — fixed synthesis budget, SDFS selection vs. random selection
+- A6: τ sensitivity — 3 threshold values (low/medium/high) with resulting DAG density and downstream accuracy
+
+**Evaluation**:
+- Primary: OMEGA compositional axis accuracy
+- Held-out frontier: accuracy on the 30% reserved frontier tuples (not used in synthesis) — key test of whether frontier-targeted training generalizes to unseen frontier combinations
+- Regression: MATH-500, AIME 2024, AIME 2025
+- Data efficiency: performance-per-training-sample curves (SDFS vs. random augmentation vs. scaling)
+- Synthesis quality metrics: verification pass rate, skill coverage fidelity (does solving the problem actually require all targeted skills?)
+
+**Statistical rigor**: ≥3 independent runs, mean ± std, paired bootstrap confidence intervals.
+
+**Compute reporting**: Total GPU-hours per method including DAG construction and synthesis overhead. Compute-matched comparisons.
+
+## Expected Contributions
+
+1. **Conceptual**: Formalization of the compositional frontier — a computable, auditable characterization of compositional training gaps, with argument for why directed dependency structure is necessary for its enumeration, and connection to Redhardt et al.'s sub-exponential coverage theory as its algorithmic implementation.
+2. **Methodological**: Cross-skill loss probing for functional dependency DAG construction (distinct from MASS's co-occurrence approach), entropy-ranked frontier synthesis, LLM-based compositional problem generation with symbolic verification and pilot-calibrated quality control.
+3. **Empirical**: Comprehensive evaluation with 7 baselines, SDFS+GRPO combination, 6 ablations, held-out frontier generalization test, and compute-normalized data efficiency analysis.
+4. **Broader applicability**: The compositional frontier framework is domain-agnostic — applicable wherever skills have dependency structure (coding, scientific reasoning, multi-step planning) — though validated here specifically in mathematics.
+
+## Key References
+
+- OMEGA: Can LLMs Reason Outside the Box in Math? (NeurIPS 2025)
+- MASS: Mathematical Data Selection via Skill Graphs (ICML 2025)
+- STEPS: Skill Taxonomy Guided Data Synthesis (arXiv 2026)
+- STAT: Skill-Targeted Adaptive Training (ICLR 2026)
+- CogAtom: Cognitive Atoms for Math Reasoning (EMNLP 2025 Findings)
+- Scaling Can Lead to Compositional Generalization — Redhardt et al. (NeurIPS 2025 Spotlight)
+- Instruct-SkillMix: A Powerful Pipeline for LLM Instruction Tuning (ICLR 2025)
+- Agentic Proposing: Compositional Skill Synthesis (arXiv:2602.03279, Feb 2026)
+- AgentFrontier: ZPD-Guided Data Synthesis (ICLR 2026, arXiv:2510.24695)
+- Arrows of Math Reasoning Data Synthesis (CIKM 2025)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9e883b7d-829b-4186-89d2-82a238e53f54",
+  "type": "user",
+  "uuid": "3df3270a-d0ee-4abc-b99c-3d1b207e71ec",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T06:38:59.388Z_
+
+```json
+{
+  "parentUuid": "3df3270a-d0ee-4abc-b99c-3d1b207e71ec",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "363a71f0-18e0-49c7-b831-edff38192b26",
+  "timestamp": "2026-05-29T06:38:59.388Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T06:38:59.388Z_
+
+```json
+{
+  "parentUuid": "363a71f0-18e0-49c7-b831-edff38192b26",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2f8a7d04-43c0-4f47-93aa-8e12240e9c71",
+  "timestamp": "2026-05-29T06:38:59.388Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient background to make a well-informed evalu…",
+  "leafUuid": "2f8a7d04-43c0-4f47-93aa-8e12240e9c71",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate compositional frontier synthesis proposal for math reasoning",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-29T06:39:29.792Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three reviewer assessments carefully to produce a Meta Judge synthesis.
+
+**Reviewer 1**: Probability [28% - 42%] 中位 35%
+**Reviewer 2**: Probability [30% - 42%] 中位 36%
+**Reviewer 3**: Probability [28% - 40%] 中位 33%
+
+Three medians: 35%, 36%, 33%
+Mean of medians: 34.67%
+Median of medians: 35%
+Std of medians: ~1.53%
+
+This is high consistency (std < 3%).
+
+
+Now I'm going through each rubric dimension to find consensus across the three reviewers. The research problem gets strong ratings across the board, so that's unanimous. For methodology and innovation, two reviewers rate it as medium while one says medium-to-strong, giving us a medium consensus. Experimental design also shows strong agreement from all three reviewers.
+
+Looking at feasibility, all three reviewers converge on a medium rating. Writing and presentation is another unanimous strong rating. Examining the consensus points, the research problem strength is confirmed by all reviewers, the experimental design with its seven baselines and six ablations is comprehensive, and the writing quality is consistently strong. There's some concern about the depth of methodological innovation that needs attention.
+
+The major risks flagged unanimously are the synthesis quality at higher composition levels (k≥3), whether the DAG-guided approach actually outperforms simpler random augmentation, and the limited scope of 40 skills constraining the broader impact. There's also an overstatement in connecting the work to Redhardt et al.'s theoretical framework that needs addressing.
+
+Some concerns are more specific to individual reviewers—R1 has a detailed critique about the MLP theory mapping gap, while R2 brings up validation context from related work like Instruct-SkillMix and Arrows of Math Reasoning that could strengthen the positioning.
+
+Looking at the probability estimates, the three reviewers show remarkably tight agreement with medians clustering around 34-35% and very low variance (std ≈ 1.53%), which suggests I should anchor to that median range. Their intervals overlap substantially from 28-42%, so taking a position at or slightly below the median of medians aligns with both the consistency signal and the principle of being conservative when uncertain. I'll stick with 35% as the median. Now I need to reconcile the implementation assessments across the three reviewers—R3's compute estimate is significantly higher at 2000-4000 hours compared to R1 and R2's 500-1000, so I'll note that divergence and settle on a middle estimate. Then I'll structure the final output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f8a7d04-43c0-4f47-93aa-8e12240e9c71",
+  "isSidechain": false,
+  "requestId": "req_011CbWQCMQAmeRVPLYzaw9bP",
+  "type": "assistant",
+  "uuid": "305f7fa8-6415-430e-abb5-b329a191af9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wb3SrqECV3DSbEzjPJyKN7",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19295,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 3326,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3326,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 19295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-29T06:40:17.036Z_
+
+【阶段】: Meta Judge
+【三次中位】: [35%, 36%, 33%]  std=1.5%
+【共识维度】:
+- 研究问题=强（3/3 一致）：组合泛化天花板被 OMEGA、Redhardt et al. 等多篇顶会工作实证确认，问题真实重要
+- 实验设计=强（3/3 一致）：7 baselines + 6 ablations + held-out frontier + 统计严谨性，proposal 阶段即达顶会标准
+- 写作与呈现=强（3/3 一致）：叙事连贯，文献定位精准，形式化清晰
+- 方法与创新=中（3/3 共识核心方法为已有组件的系统整合，创新深度有限）
+- 可行性=中（3/3 一致）：整体可执行，但合成质量是最大风险
+- **风险共识 1**：高阶合成质量瓶颈（3/3 均标注 k≥3 合成成功率和 skill coverage fidelity 为核心风险）
+- **风险共识 2**：DAG 引导 vs. 简单替代方案的边际增益可能不足（3/3 均指出 random k-tuple augmentation 在 40-skill 尺度下可能逼近 SDFS 效果）
+- **风险共识 3**：核心贡献的"增量组合"判定风险（3/3 均指出方法是 MASS 图 + STEPS 熵 + OMEGA 管道的整合包装）
+
+【异常维度】:
+- R1 对 Redhardt et al. MLP 理论映射到 LLM 微调场景的 gap 做了最深入的分析（"该理论并未说 DAG 引导优于随机覆盖"），R2/R3 仅一般性提及——此观点有道理但属于可论证的灰色区域，适度降权
+- R3 的计算资源估计（2000-4000 A100 GPU-hours）显著高于 R1/R2（500-1000），主要因为 R3 将 7 baselines × ≥3 runs 的完整复现成本计入，R1/R2 可能低估了 baseline 复现开销——取中间偏上估计更稳健
+
+【最终概率】: [30% - 39%] 中位 35%
+【一致性】: 高
+【综合理由】:
+三位审稿人在所有 5 个 rubric 维度上达成了高度一致的判决（std=1.5%，远低于 3% 阈值），且独立识别出相同的核心优势和风险。综合逻辑如下：
+
+**上行锚定**：研究问题（强）+ 实验设计（强）+ 写作（强）= 3 个维度达到顶会标准，这在 proposal 阶段罕见，将概率底线拉至 30%。特别是实验设计的完备性（7 baselines 无一遗漏关键竞争者、6 ablations 系统隔离每个设计选择、held-out frontier 泛化测试）是三位审稿人一致最突出的加分项。
+
+**下行锚定**：方法创新=中是三位审稿人的核心共识——"组合前沿"形式化虽然干净有用，但一旦拥有有向 DAG，F(G,D,k) 的定义是自然且直接的（R3 措辞："more like good engineering than algorithmic contribution"）。这意味着 idea 质量天花板约 38-40%——无论实验多完美，如果创新深度停留在"精心系统整合"层面，很难突破此上限。
+
+**风险折扣**：三位审稿人共同识别的合成质量瓶颈和 DAG 边际增益风险进一步限制了上行空间。这两个风险是高度耦合的——如果合成质量不佳，DAG 引导的精度优势就无法在实验中体现，进而整篇论文的核心论证链断裂。
+
+**最终定位**：35% 中位反映了"solid, well-executed, but incrementally novel"——一篇不会让审稿人找到大毛病但也不会让人眼前一亮的投稿。在 AAAI 的竞争环境下，这处于 borderline 区间的中段。如果关键实验（A1: DAG vs. undirected, A2: frontier vs. random）展示显著差距（如 ≥5% absolute），概率上移至 38-39%；如果差距模糊或合成质量出问题，下滑至 30% 以下。
+
+【建议】: 边缘
+【实施评估】:
+  - 计算资源: 中等偏高。DAG 构建需 ~100-200 次 Qwen3-8B 小规模微调（估计 50-100 A100 GPU-hours）；合成使用 Qwen-72B 推理（20-50 GPU-hours）；主实验含 7+ 配置 × ≥3 runs 的 SFT + 可选 GRPO（200-400 GPU-hours）；baseline 复现（部分需在 Qwen3-8B 上重新实现 STAT、CogAtom 等）增加额外开销。总计约 800-2000 A100 GPU-hours（取 R1/R2 的 500-1000 和 R3 的 2000-4000 的折中偏上，因 baseline 复现成本不可忽略）。
+  - 数据需求: 中等。核心依赖 OMEGA 已公开的训练/测试数据和 40 个 generator 模板。合成数据由 LLM 生成，无需额外大规模人工标注数据。
+  - 人工介入: 低。DAG 验证的 supplementary 步骤需少量数学专家审查（skill pair 关系抽样验证）；合成问题质量 spot-check；pilot study 结果分析需人工判断。整体人工介入可控。
+  - 训练需求: 需要。包括 DAG 构建阶段的多次 Qwen3-8B 微调、主实验的 SFT 和可选 GRPO RL 训练。不涉及预训练或训练新基座模型。
+  - 新 Benchmark: 不需要构建全新 benchmark。使用 OMEGA 现有评测框架 + MATH-500 + AIME 2024/2025。Held-out frontier 30% 是评测设计而非独立新 benchmark。
+  - 预估周期: 3-4.5 个月。Phase 1 (DAG 构建): 3-4 周；Phase 2 (前沿枚举与排序): 1 周；Phase 3 (合成 + 验证 + pilot 迭代): 4-6 周（关键路径，合成质量调优可能需要多轮迭代）；Phase 4 (训练 + 评估 + baseline 复现): 4-6 周；写作: 2-3 周。瓶颈在 Phase 3 的合成质量保障和 Phase 4 的 baseline 全面复现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "305f7fa8-6415-430e-abb5-b329a191af9d",
+  "isSidechain": false,
+  "requestId": "req_011CbWQCMQAmeRVPLYzaw9bP",
+  "type": "assistant",
+  "uuid": "0e2478ff-d9f7-40f0-8a94-99618fe00870",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wb3SrqECV3DSbEzjPJyKN7",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19295,
+      "cache_read_input_tokens": 16543,
+      "output_tokens": 3326,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3326,
+          "cache_read_input_tokens": 16543,
+          "cache_creation_input_tokens": 19295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient background to make a well-informed evalu…",
+  "leafUuid": "0e2478ff-d9f7-40f0-8a94-99618fe00870",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate compositional frontier synthesis proposal for math reasoning",
+  "sessionId": "5620839a-8307-443b-8466-ce2d341aa3eb"
+}
+```
+
+---

@@ -1,0 +1,5254 @@
+# Research conversation: 【背景】: 以下 proposal 已通过外部入口筛选（triple-consensus triage），确认 GO。请记住这份 proposal 的完整内容，后续你将以「角色 B：迭代中」整合 worker 输出并更新它。 【原始 pro
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 86
+- **Recorded user turns:** 5
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-3/5c140d8b-e92f-4603-9890-72bdda707203.jsonl`
+- **Structured JSON:** [`b93a07c0782515b85c27.json`](../../sessions/b9/b93a07c0782515b85c27.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T06:51:51.826Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:51:51.826Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "content": "【背景】: 以下 proposal 已通过外部入口筛选（triple-consensus triage），确认 GO。请记住这份 proposal 的完整内容，后续你将以「角色 B：迭代中」整合 worker 输出并更新它。\n\n【原始 proposal】:\n# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval\n\n## Core Problem\n\nCurrent visual document retrieval models either operate at page granularity (losing sub-page precision) or require multi-model pipelines and external layout parsers to access element-level content. No single model jointly learns to retrieve at page, region, and element granularities while producing spatially grounded evidence bounding boxes — the 28.5pp page-vs-layout retrieval gap on MMDocIR and the 0.089 vs 0.602 model-vs-human grounding F1 on ViDoRe V3 quantify this deficiency.\n\n## Research Opportunity\n\nThree independently validated building blocks have never been combined for retrieval: (1) VLM patch embeddings implicitly encode spatial layout (proven by Snappy's 59.7% IoU@0.5 without any training and Localization Heads' discovery that ~3 attention heads suffice for grounding), (2) autoregressive query expansion can dynamically generate variable-count region proposals matching document complexity (HybriDLA, 83.5% mAP on DocLayNet), and (3) Matryoshka multi-vector training produces hierarchically nested embeddings with test-time granularity control (MetaEmbed, ICLR 2026 Oral). The cross-community gap between detection (CV) and retrieval (IR) has prevented their unification. The simultaneous availability of element-level benchmarks (MMDocIR with 1,685 expert + 173K bootstrapped layout anno...\n\n## Research Landscape\n\nPage-level VDR is led by Nemotron ColEmbed V2 at 63.42 nDCG@10 on ViDoRe V3 (Feb 2026), using bidirectional attention and hard negative mining on a Qwen3-VL-8B backbone. For sub-page retrieval, the Multi-Granularity Framework achieves 65.56 on MMDocIR but requires three separate large models (ColQwen2 + GME + Qwen2.5-VL) plus OCR, explicitly leaving end-to-end unification as an open question. RegionRAG (AAAI 2026) shifts to region-level retrieval but uses a BFS heuristic with manual threshold for patch grouping — not learned. ColParse (Mar 2026) achieves 95% storage reduction via layout-informed sub-images but depends on an external document parser that cannot be jointly optimized with retrieval. For spatial grounding, AGREE (SIGIR 2026) uses MLLM attention as proxy supervision but only improves page-level nDCG and produces no bounding boxes; Snappy reaches 59.7% IoU@0.5 but purely at inference time with no learned optimization. On ViDoRe V3's grounding evaluation, the best model achie...\n\n## Proposed Approach\n\nAttach an autoregressive localization head to Qwen3-VL-8B with bidirectional attention (LoRA r=64) that predicts region bounding boxes from patch embeddings, replacing external parsers. Train spatially-typed Matryoshka multi-vector embeddings at page/region/element granularities via joint contrastive retrieval + box regression loss on MMDocIR layout annotations and ViDoRe V3 grounding labels. Select grounding-capable layers using Localization Heads' probing protocol. Evaluate end-to-end on both benchmarks targeting the 0.089→0.3+ grounding F1 gap and competitive nDCG@10.\n\n## Detailed Description\n\nWe propose GroundVDR, a single vision-language model that jointly performs multi-granularity document retrieval and spatial grounding end-to-end. Built on Qwen3-VL-8B with bidirectional attention, the model adds an autoregressive localization head to VLM patch embeddings, generating learned region proposals that replace external layout parsers and heuristic patch grouping. Spatially-typed Matryoshka multi-vector embeddings enable retrieval at page, region, and element granularities with test-time control. A joint loss combines late-interaction contrastive retrieval with bounding-box regression, supervised by MMDocIR's 173K layout-annotated pairs and ViDoRe V3's 3,099 grounding-labeled queries. This unifies three validated but uncombined building blocks: implicit spatial encoding in VLM patches, autoregressive region proposals from document layout analysis, and hierarchically nested Matryoshka embeddings. The approach targets both the 28.5pp page-vs-layout retrieval gap and the massive 0.089-vs-0.602 grounding F1 gap. Concurrent methods (ColParse, MURE, ReAlign) each address subsets but none jointly learns retrieval and grounding in one model. Budget: ~180 H100-hours via LoRA, reproducible by academic labs.\n\n## Key References\n\n- Nemotron ColEmbed V2 (arXiv 2026)\n- ColPali: Efficient Document Retrieval with Vision Language Models (ECIR 2025)\n- MMDocIR: Multi-Modal Document Information Retrieval (arXiv 2025)\n- ViDoRe V3: Visual Document Retrieval Benchmark with Grounding (arXiv 2026)\n- MetaEmbed: Matryoshka Multi-Vector Retrieval (ICLR 2026)\n- HybriDLA: Hybrid Diffusion-Autoregressive Document Layout Analysis (AAAI 2026)\n- RegionRAG: Region-Level RAG for Visual Document Understanding (AAAI 2026)\n- AGREE: Attention-Grounded Retriever Enhancement (SIGIR 2026)\n- Snappy: Spatially-Grounded Document Retrieval (arXiv 2025)\n- Localization Heads in Vision-Language Models (CVPR 2025)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T06:51:51.830Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:51:51.830Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T06:51:51.843Z_
+
+【背景】: 以下 proposal 已通过外部入口筛选（triple-consensus triage），确认 GO。请记住这份 proposal 的完整内容，后续你将以「角色 B：迭代中」整合 worker 输出并更新它。
+
+【原始 proposal】:
+# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval
+
+## Core Problem
+
+Current visual document retrieval models either operate at page granularity (losing sub-page precision) or require multi-model pipelines and external layout parsers to access element-level content. No single model jointly learns to retrieve at page, region, and element granularities while producing spatially grounded evidence bounding boxes — the 28.5pp page-vs-layout retrieval gap on MMDocIR and the 0.089 vs 0.602 model-vs-human grounding F1 on ViDoRe V3 quantify this deficiency.
+
+## Research Opportunity
+
+Three independently validated building blocks have never been combined for retrieval: (1) VLM patch embeddings implicitly encode spatial layout (proven by Snappy's 59.7% IoU@0.5 without any training and Localization Heads' discovery that ~3 attention heads suffice for grounding), (2) autoregressive query expansion can dynamically generate variable-count region proposals matching document complexity (HybriDLA, 83.5% mAP on DocLayNet), and (3) Matryoshka multi-vector training produces hierarchically nested embeddings with test-time granularity control (MetaEmbed, ICLR 2026 Oral). The cross-community gap between detection (CV) and retrieval (IR) has prevented their unification. The simultaneous availability of element-level benchmarks (MMDocIR with 1,685 expert + 173K bootstrapped layout anno...
+
+## Research Landscape
+
+Page-level VDR is led by Nemotron ColEmbed V2 at 63.42 nDCG@10 on ViDoRe V3 (Feb 2026), using bidirectional attention and hard negative mining on a Qwen3-VL-8B backbone. For sub-page retrieval, the Multi-Granularity Framework achieves 65.56 on MMDocIR but requires three separate large models (ColQwen2 + GME + Qwen2.5-VL) plus OCR, explicitly leaving end-to-end unification as an open question. RegionRAG (AAAI 2026) shifts to region-level retrieval but uses a BFS heuristic with manual threshold for patch grouping — not learned. ColParse (Mar 2026) achieves 95% storage reduction via layout-informed sub-images but depends on an external document parser that cannot be jointly optimized with retrieval. For spatial grounding, AGREE (SIGIR 2026) uses MLLM attention as proxy supervision but only improves page-level nDCG and produces no bounding boxes; Snappy reaches 59.7% IoU@0.5 but purely at inference time with no learned optimization. On ViDoRe V3's grounding evaluation, the best model achie...
+
+## Proposed Approach
+
+Attach an autoregressive localization head to Qwen3-VL-8B with bidirectional attention (LoRA r=64) that predicts region bounding boxes from patch embeddings, replacing external parsers. Train spatially-typed Matryoshka multi-vector embeddings at page/region/element granularities via joint contrastive retrieval + box regression loss on MMDocIR layout annotations and ViDoRe V3 grounding labels. Select grounding-capable layers using Localization Heads' probing protocol. Evaluate end-to-end on both benchmarks targeting the 0.089→0.3+ grounding F1 gap and competitive nDCG@10.
+
+## Detailed Description
+
+We propose GroundVDR, a single vision-language model that jointly performs multi-granularity document retrieval and spatial grounding end-to-end. Built on Qwen3-VL-8B with bidirectional attention, the model adds an autoregressive localization head to VLM patch embeddings, generating learned region proposals that replace external layout parsers and heuristic patch grouping. Spatially-typed Matryoshka multi-vector embeddings enable retrieval at page, region, and element granularities with test-time control. A joint loss combines late-interaction contrastive retrieval with bounding-box regression, supervised by MMDocIR's 173K layout-annotated pairs and ViDoRe V3's 3,099 grounding-labeled queries. This unifies three validated but uncombined building blocks: implicit spatial encoding in VLM patches, autoregressive region proposals from document layout analysis, and hierarchically nested Matryoshka embeddings. The approach targets both the 28.5pp page-vs-layout retrieval gap and the massive 0.089-vs-0.602 grounding F1 gap. Concurrent methods (ColParse, MURE, ReAlign) each address subsets but none jointly learns retrieval and grounding in one model. Budget: ~180 H100-hours via LoRA, reproducible by academic labs.
+
+## Key References
+
+- Nemotron ColEmbed V2 (arXiv 2026)
+- ColPali: Efficient Document Retrieval with Vision Language Models (ECIR 2025)
+- MMDocIR: Multi-Modal Document Information Retrieval (arXiv 2025)
+- ViDoRe V3: Visual Document Retrieval Benchmark with Grounding (arXiv 2026)
+- MetaEmbed: Matryoshka Multi-Vector Retrieval (ICLR 2026)
+- HybriDLA: Hybrid Diffusion-Autoregressive Document Layout Analysis (AAAI 2026)
+- RegionRAG: Region-Level RAG for Visual Document Understanding (AAAI 2026)
+- AGREE: Attention-Grounded Retriever Enhancement (SIGIR 2026)
+- Snappy: Spatially-Grounded Document Retrieval (arXiv 2025)
+- Localization Heads in Vision-Language Models (CVPR 2025)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2d3f0917-a096-4d82-9c51-8901fae0c307",
+  "type": "user",
+  "uuid": "5cbf60e6-c988-48e5-bdb6-a2eafc7f6990",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T06:51:51.842Z_
+
+```json
+{
+  "parentUuid": "5cbf60e6-c988-48e5-bdb6-a2eafc7f6990",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "1576f884-1d1d-4220-9d15-c0de3af7a777",
+  "timestamp": "2026-05-30T06:51:51.842Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T06:51:51.842Z_
+
+```json
+{
+  "parentUuid": "1576f884-1d1d-4220-9d15-c0de3af7a777",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b0fa41a7-1296-4fd6-a8db-4361d7f158c6",
+  "timestamp": "2026-05-30T06:51:51.842Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T06:52:04.484Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to act as the 终审 agent (Meta Judge) and acknowledge receipt of the original proposal. They've told me this proposal has passed the triple-consensus triage and is confirmed GO. I need to remember this proposal and be ready for the iterative process with the 发掘 agent and 补救 agent.
+
+Let me carefully read and internalize this proposal about "Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval" (GroundVDR).
+
+Key elements:
+1. **Problem**: Current visual document retrieval models work at page granularity or need multi-model pipelines. 
+
+No single model can handle retrieval across page, region, and element levels with spatial grounding capabilities.
+
+2. **Approach**: GroundVDR uses a single VLM (Qwen3-VL-8B) enhanced with an autoregressive localization head, Matryoshka multi-vector embeddings, and joint contrastive plus box regression losses.
+
+3. **Building blocks**: VLM patch spatial encoding, autoregressive region proposals, and Matryoshka embeddings.
+
+4. **Benchmarks**: MMDocIR and ViDoRe V3.
+
+5. **Budget**: ~180 H100-hours via LoRA.
+
+Key references to track:
+- Nemotron Col Embed V2 (arXiv 2026)
+- ColPali (ECIR 2025)
+- MMDocIR (arXiv 2025)
+- ViDoRe V3 (arXiv 2026)
+- MetaEmbed (ICLR 2026)
+- HybriDLA (AAAI 2026)
+- RegionRAG (AAAI 2026)
+- AGREE (SIGIR 2026)
+- Snappy (arXiv 2025)
+- Localization Heads (CVPR 2025)
+
+I'm ready to receive the outputs from both the 发掘 and 补救 agents so I can process them.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0fa41a7-1296-4fd6-a8db-4361d7f158c6",
+  "isSidechain": false,
+  "requestId": "req_011CbYJzD5TGjE8Psxy8eRGB",
+  "type": "assistant",
+  "uuid": "cb12bbd6-7527-4727-9b9d-af910ffb7028",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tnws519kPTEQFghWcHRGqd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8377,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1048,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1048,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 8377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T06:52:11.252Z_
+
+已收到并完整记录原始 proposal：**"Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval" (GroundVDR)**。
+
+**核心要素确认：**
+- **问题**：当前 VDR 模型在 page/region/element 多粒度检索与空间定位之间存在断裂（28.5pp retrieval gap + 0.089 vs 0.602 grounding F1 gap）
+- **方法**：基于 Qwen3-VL-8B + LoRA，附加 autoregressive localization head + Matryoshka multi-vector embeddings，联合 contrastive retrieval + box regression loss
+- **三个 building blocks**：VLM patch 隐式空间编码 / 自回归区域提议 / Matryoshka 嵌套嵌入
+- **评测**：MMDocIR + ViDoRe V3
+- **预算**：~180 H100-hours
+
+**文献引用清单已锁定（10 篇）：**
+1. Nemotron ColEmbed V2 (arXiv 2026)
+2. ColPali (ECIR 2025)
+3. MMDocIR (arXiv 2025)
+4. ViDoRe V3 (arXiv 2026)
+5. MetaEmbed (ICLR 2026, ICLR 2026 Oral)
+6. HybriDLA (AAAI 2026, 83.5% mAP on DocLayNet)
+7. RegionRAG (AAAI 2026)
+8. AGREE (SIGIR 2026)
+9. Snappy (arXiv 2025, 59.7% IoU@0.5)
+10. Localization Heads (CVPR 2025)
+
+**Triage 状态**：已通过 triple-consensus，确认 GO。
+
+准备就绪，等待第一轮发掘 agent 和补救 agent 的输出进行整合。请发送 worker 输出。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb12bbd6-7527-4727-9b9d-af910ffb7028",
+  "isSidechain": false,
+  "requestId": "req_011CbYJzD5TGjE8Psxy8eRGB",
+  "type": "assistant",
+  "uuid": "49277231-9d68-49db-9af3-b446ef6ab882",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tnws519kPTEQFghWcHRGqd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 8377,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1048,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1048,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 8377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 9_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【背景】: 以下 proposal 已通过外部入口筛选（triple-consensus triage），确认 GO。请记住这份 proposal 的完整内容，后续你将以「角色 B：迭代中」整合 worker 输出并更新它。  【原始 proposal】: # Learned Spatial Grounding for Multi-Granularity Visual Document Retri…",
+  "leafUuid": "49277231-9d68-49db-9af3-b446ef6ab882",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12 · 2026-05-30T06:57:02.751Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:57:02.751Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "content": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have sufficient context to provide a thorough analysis. Let me synthesize everything.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992) (arXiv 2026): 当前 ViDoRe V3 SOTA (63.42 nDCG@10)，核心技术是双向注意力 + 硬负例挖掘 + 模型合并。与 GroundVDR 共享 Qwen3-VL-8B + 双向注意力基座，但不做任何 grounding 或 sub-page retrieval。\n- [ColParse](https://arxiv.org/abs/2603.01666) (arXiv 2026): 用外部 parser 切 sub-image + 全局向量融合，95% 存储压缩，但 parser 不可联合优化。GroundVDR 的核心差异化竞争对手之一。\n- [MURE](https://arxiv.org/html/2603.13349) (arXiv 2026): 多分辨率采样 + Resolution-level Matryoshka 表示学习 (RMRL)。**直接将 Matryoshka 思想应用于视觉文档检索**，且也使用 coarse-to-fine 结构。这是对 GroundVDR novelty 最大的威胁——proposal 未提及此工作。\n- [Hydra](https://arxiv.org/abs/2603.28554) (arXiv 2026): 单一 VLM 统一 ColBERT-style 检索 + 自回归生成，用 LoRA adapter 切换模式。虽然方向不同（retrieval+generation vs retrieval+grounding），但\"单模型统一多任务\"叙事高度重叠。\n- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457) (arXiv 2025): 无训练混合检索策略，在 MMDocIR 上达到 65.56。这是 GroundVDR 需要超越的核心 baseline。\n- [RegionRAG](https://arxiv.org/abs/2510.27261) (AAAI 2026): 学习 query-patch 对齐 + 动态 patch 分组。proposal 准确指出其使用 BFS 启发式，但 RegionRAG 的训练阶段已经是 learned alignment。\n- [PixSearch](https://arxiv.org/abs/2601.19060) (arXiv 2026): 端到端 segmenting LMM，自主触发检索 + region-level grounding。虽然面向 VQA 而非纯检索，但\"单模型统一检索+grounding\"的定位与 GroundVDR 有重叠。\n- [Snappy](https://arxiv.org/abs/2512.02660) (arXiv 2025): 59.7% IoU@0.5 纯推理时 grounding，无训练优化。GroundVDR 正确识别了这个 gap。\n- [AGREE](https://arxiv.org/abs/2511.13415) (SIGIR 2026): MLLM attention 做代理监督，提升页面级 nDCG 但不产生 bounding box。\n- [Localization Heads](https://arxiv.org/abs/2503.06287) (CVPR 2025 Highlight): 仅 ~3 个注意力头即可实现竞争力 grounding，无需微调。\n- [MetaEmbed](https://arxiv.org/abs/2509.18095) (ICLR 2026 Oral): Matryoshka 多向量检索，可学习 Meta Token 实现 coarse-to-fine 嵌套嵌入。\n- 调研总结: 当前领域正沿两条线快速推进——(1) 压缩/高效化多向量检索表示（ColParse, MURE, MetaEmbed）；(2) 将 grounding 能力注入检索模型但大多停留在 attention map 代理或推理时启发式（AGREE, Snappy）。**没有已发表工作在单一模型中联合训练 retrieval + spatial bounding box grounding + multi-granularity selection**，但 MURE 在 Matryoshka + multi-resolution 上的重叠需要认真处理。\n\n---\n\n【发掘点 1】\n- 维度: related work 差异化 / trivial alternative 威胁\n- 内容: **MURE 是当前对 GroundVDR novelty 的最大未识别威胁，proposal 必须纳入并差异化。** MURE (arXiv 2603.13349) 已经将 Matryoshka representation learning 应用于视觉文档检索的多分辨率场景，使用 Resolution-level Matryoshka Representation Learning (RMRL) 在 ViDoRe V1/V2 上击败强基线。GroundVDR 的 \"spatially-typed Matryoshka multi-vector embeddings\" 如果不和 MURE 明确拉开差距，审稿人会问：\"你和 MURE 的 Matryoshka 有什么本质区别？\" 核心差异在于：(1) MURE 的多分辨率是 input-side 的（多分辨率采样），GroundVDR 的多粒度是 output-side 的（page/region/element 的语义层级嵌套），这是根本不同的设计哲学；(2) MURE 不做 learned region proposal 和 bounding box regression，粒度层级是预定义的分辨率而非文档结构驱动的语义区域。Proposal 必须用 1-2 段明确说清这个区别，否则 novelty claim 会被严重削弱。\n- 价值: 直接保护 Novelty 和 Related Work 差异化两个维度。如果审稿人发现 MURE 未被讨论，会认为作者文献调研不够充分，这在顶会评审中是致命的。\n- 调研依据: MURE (arXiv 2603.13349) 使用 Resolution-level Matryoshka 表示学习；与 GroundVDR 的 Matryoshka multi-vector 在术语和技术路线上高度重叠。\n\n【发掘点 2】\n- 维度: related work 差异化\n- 内容: **Hydra (arXiv 2603.28554) 代表了\"单模型统一多任务\"叙事的直接竞争者，需要纳入 related work。** Hydra 用单一 VLM + LoRA 统一检索与生成，GroundVDR 用单一 VLM + LoRA 统一检索与 grounding。虽然统一的\"第二任务\"不同（generation vs. grounding），但审稿人可能会问：既然 Hydra 已经证明用 LoRA 可以在检索基座上附加第二任务，GroundVDR 将\"第二任务\"从 generation 换成 grounding 的增量 novelty 在哪里？Proposal 应当论证 grounding 和 retrieval 之间存在比 generation 和 retrieval 更强的互利关系（grounding 直接改善 region-level retrieval，而 generation 不影响 retrieval 质量），从而说明这不是简单的任务替换。\n- 价值: 提升 Novelty 的说服力。如果能论证 retrieval-grounding 的联合训练比 retrieval-generation 的 LoRA toggle 有结构性优势（例如共享 loss 而非独立 head 切换），novelty 会更加锐利。\n- 调研依据: Hydra (arXiv 2603.28554) 证明单一 VLM + LoRA 的多任务统一范式已经存在。\n\n【发掘点 3】\n- 维度: 核心 claim 强化 / significance 提升\n- 内容: **GroundVDR 的核心 claim 目前偏\"工程集成\"叙事（三个 building block 的首次组合），需要提升到更有力的科学发现层面。** 当前 framing 是\"三个已验证 building block 的首次组合\"，这虽然准确，但审稿人常见的反应是 \"combining known components is engineering, not research\"。更有力的 framing 应该是：**联合训练 retrieval 和 grounding 存在一个互利假说**——grounding loss 迫使嵌入空间保留空间位置信息，这反过来提升 sub-page retrieval 精度（因为 region-level 检索本质上需要空间感知的嵌入）。这个假说如果成立，它揭示的 insight 是：retrieval 和 grounding 不是独立任务的拼接，而是通过空间信息共享形成正反馈。这样 GroundVDR 的故事就从\"首次统一\"提升到\"揭示 retrieval-grounding synergy\"。\n- 价值: 直接提升 Significance 和 Novelty。从\"三个 building block 的组合\"到\"retrieval-grounding 互利效应的发现\"，是从工程贡献到科学贡献的质变。如果实验能验证这种 synergy（如 ablation 显示联合训练的 retrieval 优于单独训练），这个 claim 会非常有说服力。\n- 调研依据: 基于领域整体趋势判断。AGREE 已经显示 attention grounding 信号能提升页面级 nDCG（12.82%），间接证明 grounding 信号对 retrieval 有正向影响。GroundVDR 可以将这个信号从 proxy supervision 提升到 direct box regression supervision。\n\n【发掘点 4】\n- 维度: 前提假设质疑\n- 内容: **\"自回归 localization head 替代外部 parser\"的可行性假设需要更仔细的论证。** Proposal 的核心技术设计是用 autoregressive localization head 从 VLM patch embedding 中预测 region bounding box，从而替代外部 document parser。但这里有一个隐含假设：VLM 的 patch embedding 包含足够的空间和语义信息来支撑高质量的 region proposal。虽然 Localization Heads (CVPR 2025) 证明了 ~3 个注意力头可以做 object-level grounding，这是在自然图像上的发现——文档图像的 layout structure（密集文本、嵌套表格、公式）与自然图像有本质差异。HybriDLA 在 DocLayNet 上达到 83.5% mAP，但它使用的是专门为文档设计的多尺度特征融合编码器，而非 VLM 的通用 patch embedding。Proposal 应当论证为什么 VLM patch embedding（为通用视觉-语言理解训练）能在文档 layout analysis 这个专业任务上产出高质量 region proposal，或者至少承认这是需要实验验证的核心假设，而非已证成的事实。\n- 价值: 强化核心 claim 的逻辑严密性。如果这个假设不成立（VLM patch embedding 不足以支撑文档 layout 级别的 region proposal），整个 pipeline 的基础就动摇了。明确论证或承认这个风险，反而会提升论文的可信度。\n- 调研依据: Localization Heads (CVPR 2025) 的发现是在自然图像上；HybriDLA (AAAI 2026) 使用专用编码器达到 83.5% mAP，暗示文档 layout analysis 可能需要超出通用 VLM patch embedding 的能力。\n\n【发掘点 5】\n- 维度: novelty 锐化\n- 内容: **\"Spatially-typed\" Matryoshka embeddings 是一个有潜力的独特贡献，但当前 proposal 未充分 articulate 其创新之处。** 标准 Matryoshka embedding（包括 MetaEmbed）的嵌套是 dimension-wise 的（前 k 维嵌入 coarse 信息，前 2k 维嵌入 finer 信息）。GroundVDR 的 \"spatially-typed\" 修饰语暗示嵌入不仅在维度上嵌套，还在空间层级上嵌套（page → region → element），且每个层级的嵌入带有空间类型标签（如 \"table region\" vs \"figure region\"）。如果确实如此，这是对 Matryoshka 框架的非平凡扩展：将 Matryoshka 从\"精度-效率 tradeoff\"扩展到\"空间-语义粒度 tradeoff\"。Proposal 应当明确定义 \"spatially-typed\" 的具体含义——嵌入的类型标签如何编码？不同类型的嵌入在检索时如何进行异构 late interaction？这个技术细节如果说清楚，会是论文中最 novel 的单点贡献。\n- 价值: 锐化 Novelty。Matryoshka 本身不是新的（MetaEmbed, MURE 都在用），但 \"spatially-typed\" 的扩展如果有清晰定义，可以将 novelty 从\"应用 Matryoshka 到新场景\"提升到\"扩展 Matryoshka 框架本身\"。\n- 调研依据: MetaEmbed (ICLR 2026) 的 Matryoshka 是 token 数量维度的 coarse-to-fine；MURE 的 Matryoshka 是分辨率维度的嵌套。GroundVDR 如果是空间-语义维度的嵌套，这是 Matryoshka 框架的第三种嵌套维度，本身即为 novelty。\n\n---\n\nSources:\n- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)\n- [ColParse: Beyond the Grid](https://arxiv.org/abs/2603.01666)\n- [MURE: Hierarchical Multi-Resolution Encoding](https://arxiv.org/html/2603.13349)\n- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)\n- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457)\n- [RegionRAG](https://arxiv.org/abs/2510.27261)\n- [PixSearch: Pixel-Grounded Retrieval](https://arxiv.org/abs/2601.19060)\n- [Snappy: Spatially-Grounded Document Retrieval](https://arxiv.org/abs/2512.02660)\n- [AGREE: Attention Grounded Enhancement](https://arxiv.org/abs/2511.13415)\n- [Localization Heads in VLMs](https://arxiv.org/abs/2503.06287)\n- [MetaEmbed](https://arxiv.org/abs/2509.18095)\n- [HybriDLA](https://arxiv.org/abs/2511.19919)\n- [MMDocIR](https://arxiv.org/abs/2501.08828)\n- [ViDoRe V3](https://arxiv.org/abs/2601.08620)\n\n【补救 agent 本轮输出】:\nNow I have sufficient research material. Let me compile my assessment.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **Nemotron ColEmbed V2** (arXiv Feb 2026): SOTA on ViDoRe V3 at 63.42 nDCG@10. Uses bidirectional attention, cluster-based sampling, hard-negative mining on Qwen3-VL-8B. Ablation reports contributions of model merging (+0.8–1.5%), hard negatives (+0.7%). Evaluates storage vs. accuracy tradeoff with lower-dimension embeddings.\n- **Multi-Granularity Retrieval Framework** (arXiv May 2025): Achieves 65.56 on MMDocIR by fusing ColQwen2-7B full-page retrieval + GME-7B OCR-text retrieval + GME-7B region-image retrieval + reranking. Uses three separate large models plus OCR — explicitly leaves end-to-end unification as open problem.\n- **MURE** (arXiv Mar 2026): Hierarchical multi-resolution encoding with **resolution-level Matryoshka representation learning (RMRL)** and semantic-aware hierarchical clustering for visual token compression. Beats ColPali with 50% token budget. Directly competes with GroundVDR's Matryoshka component — this is a critical concurrent baseline the proposal does not mention.\n- **MetaEmbed** (ICLR 2026 Oral): Matryoshka Multi-Vector Retrieval with group sizes {(1,1), (2,4), (4,8), (8,16), (16,64)}. Ablation shows MMR critical for low-budget retrieval (9.0 point drop). Evaluates on both ViDoRe and MMEB. Storage-retrieval tradeoff is a key evaluation axis.\n- **ColParse** (arXiv Mar 2026): 95% storage reduction via layout-informed sub-images. Key evaluation includes storage efficiency (bytes per page) alongside retrieval accuracy. Depends on external parser.\n- **RegionRAG** (AAAI 2026): Region-level retrieval with BFS patch grouping. Reports R@1 improvement of 10.02% and 71.42% visual token reduction. Evaluates on 6 benchmarks.\n- **AGREE** (SIGIR 2026): Attention-grounded retrieval. Reports nDCG@1 and nDCG@5 on ViDoRe V2 (+12.82% nDCG@1, +5.03% nDCG@5). Uses cross-modal attention as proxy supervision but produces no bounding boxes.\n- **Snappy** (arXiv Dec 2025): Training-free grounding via patch-to-region relevance propagation. 59.7% hit rate at IoU@0.5 on BBox-DocVQA. Evaluates with IoU@{0.25, 0.5, 0.7} and mean IoU — these are standard grounding metrics.\n- **ViDoRe V3** (arXiv Jan 2026): 26,000 pages, 3,099 queries, 6 languages. Grounding evaluation uses **IoU and Dice/F1** between predicted and annotated bounding boxes. Reports model grounding F1 of 0.089 vs. human 0.602.\n- **MMDocIR** (EMNLP 2025): Dual-task benchmark — page-level AND layout-level retrieval. Uses nDCG@10 for both. 1,685 expert + 173K bootstrapped annotations. Reports both page-level and layout-level scores for all baselines.\n\n- **调研总结**: 这个领域当前的实验设计标准要求：(1) 在 ViDoRe V3 和 MMDocIR 双 benchmark 上同时报告 page-level 和 layout/sub-page-level 检索结果；(2) 使用 nDCG@{5,10}、IoU@{0.25,0.5,0.7}、F1 等多粒度指标；(3) 详细的存储效率和推理延迟对比（ColParse、MetaEmbed 都强调了 storage-accuracy tradeoff）；(4) 充分的 ablation 来隔离各组件贡献；(5) 与 training-free 方法（Snappy）和 pipeline 方法（Multi-Gran Framework）做 compute-normalized 对比。审稿人普遍期望看到在多个 benchmark 上的全面对比，以及存储/效率维度的分析。\n\n---\n\n【缺陷 1】\n- 类别: baseline 不足或过时\n- 问题: Proposal 提到的 concurrent methods 包括 \"ColParse, MURE, ReAlign\"，但未明确将它们列为实验 baseline。更关键的是，**MURE (arXiv Mar 2026)** 使用了 \"resolution-level Matryoshka representation learning\" 和多分辨率编码，与 GroundVDR 的 Matryoshka multi-vector 组件高度重叠，是最直接的竞争者，但 proposal 中仅一笔带过。此外，NanoVDR (arXiv Mar 2026) 通过蒸馏 2B VLM 到 70M text encoder，代表了轻量化方向的强 baseline，在效率对比中不可忽略。\n- 严重度: 可补救\n- 补救方案: 明确列出完整的 baseline 清单，至少包含以下分类：\n  - **Page-level retrieval**: Nemotron ColEmbed V2 (8B), ColPali/ColQwen2, BM25+OCR (text-only lower bound)\n  - **Sub-page/region-level retrieval**: MURE, ColParse, RegionRAG, Multi-Granularity Framework (pipeline upper bound)\n  - **Grounding**: Snappy (training-free lower bound), AGREE (attention-proxy baseline)\n  - 必须将 MURE 作为核心 baseline 进行详细对比，因为其 Matryoshka 机制与 GroundVDR 最接近\n- 调研依据: MURE (arXiv 2603.13349) 使用与本 proposal 相似的 Matryoshka representation learning，是目前最接近的已发表工作\n\n【缺陷 2】\n- 类别: 评估方案缺陷\n- 问题: Proposal 只提到 \"nDCG@10\" 和 \"grounding F1\" 两个指标，但根据调研：(1) ViDoRe V3 的 grounding 评估标准是 **IoU@{0.25, 0.5, 0.7} 和 Dice/F1**，proposal 遗漏了 IoU 系列指标；(2) MMDocIR 要求报告 **page-level 和 layout-level 两个子任务**的 nDCG@10，proposal 未区分这两个子任务的目标；(3) 缺少 **存储效率**指标（bytes per page / tokens per page），这在 ColParse (95% reduction)、MetaEmbed (storage-accuracy tradeoff)、MURE (50% token budget) 的评估中都是核心维度。一个生成多粒度嵌入的模型如果不报告存储开销，审稿人会质疑其实用性。\n- 严重度: 可补救\n- 补救方案: \n  - 补充 IoU@{0.25, 0.5, 0.7} 和 mean IoU 作为 grounding 指标（与 Snappy 对齐）\n  - 分别报告 MMDocIR page-level 和 layout-level nDCG@10\n  - 增加 Recall@k (k=1,5,10) 作为补充检索指标\n  - 必须报告 storage cost (embeddings per page × dimension) 和 query latency 与所有 baseline 的对比\n  - 可考虑添加 MetaEmbed 风格的 quality-latency curve（不同 Matryoshka 粒度下的 nDCG vs. FLOPs/latency）\n- 调研依据: Snappy 使用 IoU@{0.25,0.5,0.7}；ColParse 和 MetaEmbed 强调 storage-accuracy tradeoff；MMDocIR benchmark 定义了 page-level 和 layout-level 双任务\n\n【缺陷 3】\n- 类别: ablation 不完整\n- 问题: Proposal 完全没有描述 ablation 设计。GroundVDR 包含至少 4 个可分离的技术组件：(a) 自回归定位头 (autoregressive localization head)，(b) Matryoshka multi-vector embeddings，(c) joint retrieval + box regression loss，(d) spatially-typed embedding。不设计 ablation 来隔离各组件贡献，审稿人不可能接受——MetaEmbed 和 Nemotron ColEmbed V2 都有详尽的 ablation 来量化每个技术选择的贡献。\n- 严重度: 可补救\n- 补救方案: 至少设计以下 ablation：\n  1. **去掉自回归定位头** → 用外部 parser (如 HybriDLA) 或固定网格提供 region proposals → 量化 learned vs. external proposal 的差异\n  2. **去掉 Matryoshka 嵌套** → flat multi-vector → 量化分层嵌套对不同粒度检索的贡献\n  3. **去掉 joint loss** → 分别训练 retrieval-only 和 grounding-only 版本 → 量化联合训练的互利/冲突\n  4. **去掉 spatially-typed embeddings** → 统一类型 → 量化类型信息对区分 page/region/element 的贡献\n  5. **Layer selection ablation** → 使用不同层的 patch embedding 做 grounding → 验证 Localization Heads probing protocol 的必要性\n  6. **LoRA rank ablation** → r={16, 32, 64} → 量化 rank 与性能的 tradeoff\n- 调研依据: MetaEmbed 的 ablation 显示 MMR 对低 budget 检索至关重要（移除后下降 9.0 点）；Nemotron ColEmbed V2 ablation 量化了 model merging (+0.8-1.5%) 和 hard negatives (+0.7%) 的贡献\n\n【缺陷 4】\n- 类别: 可行性问题\n- 问题: Proposal 说 \"supervised by ... ViDoRe V3's 3,099 grounding-labeled queries\"，但存在两个问题：(1) **数据量不足风险**：3,099 个 grounding 标注样本训练一个从零开始的自回归定位头，数量可能严重不足。自回归 box 预测需要学习空间坐标映射，3K 样本可能难以覆盖文档的多样布局。(2) **训练/评估数据污染风险**：如果 ViDoRe V3 的 3,099 queries 同时用于训练和评估，存在 data leakage。proposal 没有说明如何划分训练集和测试集。\n- 严重度: 可补救\n- 补救方案: \n  - 对问题(1)：明确说明定位头是否完全依赖 ViDoRe V3 的 3K 样本，还是也利用 MMDocIR 的 173K layout annotations 做预训练/辅助训练。如果仅靠 3K 样本，建议增加 DocLayNet (约 80K layout annotations) 或 PubLayNet (360K annotations) 作为预训练数据源，先让定位头学习通用布局检测，再在 ViDoRe V3 上微调。\n  - 对问题(2)：明确采用 ViDoRe V3 的官方 train/test split（如果存在），或自行定义 k-fold cross-validation 策略。如果整个 3,099 都是 test set（无官方 train set），则不能用于训练——需要用其他数据源（MMDocIR layout + DocLayNet）训练 grounding 能力，仅在 ViDoRe V3 上 zero-shot 评测。\n- 调研依据: ViDoRe V3 论文描述 3,099 queries 为 \"human-verified queries\" 用于评估，强烈暗示这是评估集而非训练集；HybriDLA 在 DocLayNet (~80K) 上训练达到 83.5% mAP，说明 layout 学习需要相当的数据量\n\n【缺陷 5】\n- 类别: compute 公平性问题\n- 问题: Proposal 声称 \"~180 H100-hours via LoRA, reproducible by academic labs\"，但存在以下公平性问题：(1) LoRA r=64 只冻结 backbone 参数，但自回归定位头是全新模块，需要 full training（非 LoRA），这部分的额外显存和计算开销未被计入；(2) 与 baseline 的 compute-normalized 对比缺失——Nemotron ColEmbed V2 可能用了数千 H100-hours，Multi-Granularity Framework 用了 3 个大模型推理，ColParse 依赖外部 parser——不做 compute normalization，审稿人无法判断性能增益是来自方法创新还是算力差异；(3) 推理时 multi-granularity embedding 的索引和查询成本未分析。\n- 严重度: 可补救\n- 补救方案: \n  - 在实验中报告 training cost breakdown：backbone LoRA 的 GPU-hours + localization head full training 的 GPU-hours + 数据预处理时间\n  - 添加 compute-normalized comparison table：各方法的 training FLOPs (或 GPU-hours) vs. performance，这样审稿人可以看到 performance-per-compute 的效率\n  - 报告 inference cost：单页面 encoding latency、每页面嵌入数量 (tokens × dim)、multi-granularity 索引大小 vs. 单一粒度索引大小\n  - 如 180 H100-hours 预算不够（定位头 full training 显著增加 cost），需提前做 pilot experiment 验证实际开销并调整预算估计\n- 调研依据: MetaEmbed 在评估中强调了不同 quality-latency operating points；ColParse 以 95% storage reduction 为核心卖点，说明效率分析是审稿标准要求\n\n【缺陷 6】\n- 类别: 实验设计不足\n- 问题: Proposal 中存在一个架构层面的技术细节未交代清楚，这会影响实验设计的可信度：backbone 采用 **bidirectional attention**（用于检索），同时接一个 **autoregressive localization head**（需要 causal masking）。这两种注意力模式的交互方式未说明——是 backbone forward 一次出 bidirectional embeddings，然后 localization head 在这些 embeddings 上做 autoregressive decoding？还是共享某些层但用不同 mask？这直接影响训练效率和实验可重复性。另外，proposal 没有说明 region proposals 在检索流程中如何使用：是先生成 proposals 再编码 region embeddings？还是 proposals 和 embeddings 联合生成？这影响索引策略和查询效率的实验设计。\n- 严重度: 可补救\n- 补救方案:\n  - 明确描述 inference pipeline 的具体步骤：(1) 文档页面 → backbone bidirectional encoding → patch embeddings；(2) patch embeddings → localization head (autoregressive) → region bounding boxes；(3) region boxes → crop & pool patch embeddings → region-level Matryoshka embeddings；(4) indexing strategy (哪些粒度的 embeddings 被索引)\n  - 明确 training 中 bidirectional 和 autoregressive 的交互：是两阶段（先 bidirectional 再 autoregressive）还是端到端联合？gradient 是否回传到 backbone？\n  - 基于以上明确的 pipeline，设计 retrieval latency 实验来对比 end-to-end vs. pipeline 方法的推理效率\n- 调研依据: 基于领域实验规范判断——SeqTR 和 LocateAnything 等 autoregressive grounding 方法都明确描述了解码流程和注意力模式的交互\n\n【缺陷 7】\n- 类别: 评估方案缺陷\n- 问题: Proposal 设定 grounding 目标为 \"0.089→0.3+ F1\"，但未给出 0.3 这个目标值的依据。当前最佳模型是 0.089，人类是 0.602。0.3 意味着将 gap 缩小约 41%——这看起来是合理的 but ambitious 的目标。但问题在于：(1) 没有分析在什么条件下 0.3 是可实现的（比如在哪些类型的文档/查询上容易提升，哪些难以提升）；(2) 没有按文档类型/模态 (text/table/figure) 分别报告 grounding 性能的计划——ViDoRe V3 的数据分布 60.4% text / 18.8% image / 16.7% table，不同模态的 grounding 难度差异很大；(3) 没有 error analysis 计划来分析 grounding 失败的原因（区域过大/过小、跨区域答案、非文本元素等）。\n- 严重度: 可补救\n- 补救方案:\n  - 增加 per-modality breakdown 的 grounding 结果（text / table / figure / layout 分别报告）\n  - 增加 per-document-domain breakdown（ViDoRe V3 涵盖多个专业领域）\n  - 设计 error analysis：按 grounding 失败类型（IoU=0 complete miss / 0&lt;IoU<0.25 partial miss / IoU>0.5 但 F1 低）分析原因\n  - 可设置 milestone 目标：0.2 F1 为 minimum viable，0.3+ 为 target，配合 ablation 分析哪个组件对 grounding 贡献最大\n- 调研依据: ViDoRe V3 论文本身提供了 per-modality 和 per-domain 的评估框架；Snappy 在 BBox-DocVQA 上报告了多个 IoU 阈值的结果，显示 grounding 性能随阈值变化很大"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13 · 2026-05-30T06:57:02.752Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:57:02.752Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+## Round 2
+
+29 recorded events
+
+### User
+
+_source line 14 · 2026-05-30T06:57:02.782Z_
+
+【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。
+
+【发掘 agent 本轮输出】:
+Now I have sufficient context to provide a thorough analysis. Let me synthesize everything.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992) (arXiv 2026): 当前 ViDoRe V3 SOTA (63.42 nDCG@10)，核心技术是双向注意力 + 硬负例挖掘 + 模型合并。与 GroundVDR 共享 Qwen3-VL-8B + 双向注意力基座，但不做任何 grounding 或 sub-page retrieval。
+- [ColParse](https://arxiv.org/abs/2603.01666) (arXiv 2026): 用外部 parser 切 sub-image + 全局向量融合，95% 存储压缩，但 parser 不可联合优化。GroundVDR 的核心差异化竞争对手之一。
+- [MURE](https://arxiv.org/html/2603.13349) (arXiv 2026): 多分辨率采样 + Resolution-level Matryoshka 表示学习 (RMRL)。**直接将 Matryoshka 思想应用于视觉文档检索**，且也使用 coarse-to-fine 结构。这是对 GroundVDR novelty 最大的威胁——proposal 未提及此工作。
+- [Hydra](https://arxiv.org/abs/2603.28554) (arXiv 2026): 单一 VLM 统一 ColBERT-style 检索 + 自回归生成，用 LoRA adapter 切换模式。虽然方向不同（retrieval+generation vs retrieval+grounding），但"单模型统一多任务"叙事高度重叠。
+- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457) (arXiv 2025): 无训练混合检索策略，在 MMDocIR 上达到 65.56。这是 GroundVDR 需要超越的核心 baseline。
+- [RegionRAG](https://arxiv.org/abs/2510.27261) (AAAI 2026): 学习 query-patch 对齐 + 动态 patch 分组。proposal 准确指出其使用 BFS 启发式，但 RegionRAG 的训练阶段已经是 learned alignment。
+- [PixSearch](https://arxiv.org/abs/2601.19060) (arXiv 2026): 端到端 segmenting LMM，自主触发检索 + region-level grounding。虽然面向 VQA 而非纯检索，但"单模型统一检索+grounding"的定位与 GroundVDR 有重叠。
+- [Snappy](https://arxiv.org/abs/2512.02660) (arXiv 2025): 59.7% IoU@0.5 纯推理时 grounding，无训练优化。GroundVDR 正确识别了这个 gap。
+- [AGREE](https://arxiv.org/abs/2511.13415) (SIGIR 2026): MLLM attention 做代理监督，提升页面级 nDCG 但不产生 bounding box。
+- [Localization Heads](https://arxiv.org/abs/2503.06287) (CVPR 2025 Highlight): 仅 ~3 个注意力头即可实现竞争力 grounding，无需微调。
+- [MetaEmbed](https://arxiv.org/abs/2509.18095) (ICLR 2026 Oral): Matryoshka 多向量检索，可学习 Meta Token 实现 coarse-to-fine 嵌套嵌入。
+- 调研总结: 当前领域正沿两条线快速推进——(1) 压缩/高效化多向量检索表示（ColParse, MURE, MetaEmbed）；(2) 将 grounding 能力注入检索模型但大多停留在 attention map 代理或推理时启发式（AGREE, Snappy）。**没有已发表工作在单一模型中联合训练 retrieval + spatial bounding box grounding + multi-granularity selection**，但 MURE 在 Matryoshka + multi-resolution 上的重叠需要认真处理。
+
+---
+
+【发掘点 1】
+- 维度: related work 差异化 / trivial alternative 威胁
+- 内容: **MURE 是当前对 GroundVDR novelty 的最大未识别威胁，proposal 必须纳入并差异化。** MURE (arXiv 2603.13349) 已经将 Matryoshka representation learning 应用于视觉文档检索的多分辨率场景，使用 Resolution-level Matryoshka Representation Learning (RMRL) 在 ViDoRe V1/V2 上击败强基线。GroundVDR 的 "spatially-typed Matryoshka multi-vector embeddings" 如果不和 MURE 明确拉开差距，审稿人会问："你和 MURE 的 Matryoshka 有什么本质区别？" 核心差异在于：(1) MURE 的多分辨率是 input-side 的（多分辨率采样），GroundVDR 的多粒度是 output-side 的（page/region/element 的语义层级嵌套），这是根本不同的设计哲学；(2) MURE 不做 learned region proposal 和 bounding box regression，粒度层级是预定义的分辨率而非文档结构驱动的语义区域。Proposal 必须用 1-2 段明确说清这个区别，否则 novelty claim 会被严重削弱。
+- 价值: 直接保护 Novelty 和 Related Work 差异化两个维度。如果审稿人发现 MURE 未被讨论，会认为作者文献调研不够充分，这在顶会评审中是致命的。
+- 调研依据: MURE (arXiv 2603.13349) 使用 Resolution-level Matryoshka 表示学习；与 GroundVDR 的 Matryoshka multi-vector 在术语和技术路线上高度重叠。
+
+【发掘点 2】
+- 维度: related work 差异化
+- 内容: **Hydra (arXiv 2603.28554) 代表了"单模型统一多任务"叙事的直接竞争者，需要纳入 related work。** Hydra 用单一 VLM + LoRA 统一检索与生成，GroundVDR 用单一 VLM + LoRA 统一检索与 grounding。虽然统一的"第二任务"不同（generation vs. grounding），但审稿人可能会问：既然 Hydra 已经证明用 LoRA 可以在检索基座上附加第二任务，GroundVDR 将"第二任务"从 generation 换成 grounding 的增量 novelty 在哪里？Proposal 应当论证 grounding 和 retrieval 之间存在比 generation 和 retrieval 更强的互利关系（grounding 直接改善 region-level retrieval，而 generation 不影响 retrieval 质量），从而说明这不是简单的任务替换。
+- 价值: 提升 Novelty 的说服力。如果能论证 retrieval-grounding 的联合训练比 retrieval-generation 的 LoRA toggle 有结构性优势（例如共享 loss 而非独立 head 切换），novelty 会更加锐利。
+- 调研依据: Hydra (arXiv 2603.28554) 证明单一 VLM + LoRA 的多任务统一范式已经存在。
+
+【发掘点 3】
+- 维度: 核心 claim 强化 / significance 提升
+- 内容: **GroundVDR 的核心 claim 目前偏"工程集成"叙事（三个 building block 的首次组合），需要提升到更有力的科学发现层面。** 当前 framing 是"三个已验证 building block 的首次组合"，这虽然准确，但审稿人常见的反应是 "combining known components is engineering, not research"。更有力的 framing 应该是：**联合训练 retrieval 和 grounding 存在一个互利假说**——grounding loss 迫使嵌入空间保留空间位置信息，这反过来提升 sub-page retrieval 精度（因为 region-level 检索本质上需要空间感知的嵌入）。这个假说如果成立，它揭示的 insight 是：retrieval 和 grounding 不是独立任务的拼接，而是通过空间信息共享形成正反馈。这样 GroundVDR 的故事就从"首次统一"提升到"揭示 retrieval-grounding synergy"。
+- 价值: 直接提升 Significance 和 Novelty。从"三个 building block 的组合"到"retrieval-grounding 互利效应的发现"，是从工程贡献到科学贡献的质变。如果实验能验证这种 synergy（如 ablation 显示联合训练的 retrieval 优于单独训练），这个 claim 会非常有说服力。
+- 调研依据: 基于领域整体趋势判断。AGREE 已经显示 attention grounding 信号能提升页面级 nDCG（12.82%），间接证明 grounding 信号对 retrieval 有正向影响。GroundVDR 可以将这个信号从 proxy supervision 提升到 direct box regression supervision。
+
+【发掘点 4】
+- 维度: 前提假设质疑
+- 内容: **"自回归 localization head 替代外部 parser"的可行性假设需要更仔细的论证。** Proposal 的核心技术设计是用 autoregressive localization head 从 VLM patch embedding 中预测 region bounding box，从而替代外部 document parser。但这里有一个隐含假设：VLM 的 patch embedding 包含足够的空间和语义信息来支撑高质量的 region proposal。虽然 Localization Heads (CVPR 2025) 证明了 ~3 个注意力头可以做 object-level grounding，这是在自然图像上的发现——文档图像的 layout structure（密集文本、嵌套表格、公式）与自然图像有本质差异。HybriDLA 在 DocLayNet 上达到 83.5% mAP，但它使用的是专门为文档设计的多尺度特征融合编码器，而非 VLM 的通用 patch embedding。Proposal 应当论证为什么 VLM patch embedding（为通用视觉-语言理解训练）能在文档 layout analysis 这个专业任务上产出高质量 region proposal，或者至少承认这是需要实验验证的核心假设，而非已证成的事实。
+- 价值: 强化核心 claim 的逻辑严密性。如果这个假设不成立（VLM patch embedding 不足以支撑文档 layout 级别的 region proposal），整个 pipeline 的基础就动摇了。明确论证或承认这个风险，反而会提升论文的可信度。
+- 调研依据: Localization Heads (CVPR 2025) 的发现是在自然图像上；HybriDLA (AAAI 2026) 使用专用编码器达到 83.5% mAP，暗示文档 layout analysis 可能需要超出通用 VLM patch embedding 的能力。
+
+【发掘点 5】
+- 维度: novelty 锐化
+- 内容: **"Spatially-typed" Matryoshka embeddings 是一个有潜力的独特贡献，但当前 proposal 未充分 articulate 其创新之处。** 标准 Matryoshka embedding（包括 MetaEmbed）的嵌套是 dimension-wise 的（前 k 维嵌入 coarse 信息，前 2k 维嵌入 finer 信息）。GroundVDR 的 "spatially-typed" 修饰语暗示嵌入不仅在维度上嵌套，还在空间层级上嵌套（page → region → element），且每个层级的嵌入带有空间类型标签（如 "table region" vs "figure region"）。如果确实如此，这是对 Matryoshka 框架的非平凡扩展：将 Matryoshka 从"精度-效率 tradeoff"扩展到"空间-语义粒度 tradeoff"。Proposal 应当明确定义 "spatially-typed" 的具体含义——嵌入的类型标签如何编码？不同类型的嵌入在检索时如何进行异构 late interaction？这个技术细节如果说清楚，会是论文中最 novel 的单点贡献。
+- 价值: 锐化 Novelty。Matryoshka 本身不是新的（MetaEmbed, MURE 都在用），但 "spatially-typed" 的扩展如果有清晰定义，可以将 novelty 从"应用 Matryoshka 到新场景"提升到"扩展 Matryoshka 框架本身"。
+- 调研依据: MetaEmbed (ICLR 2026) 的 Matryoshka 是 token 数量维度的 coarse-to-fine；MURE 的 Matryoshka 是分辨率维度的嵌套。GroundVDR 如果是空间-语义维度的嵌套，这是 Matryoshka 框架的第三种嵌套维度，本身即为 novelty。
+
+---
+
+Sources:
+- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)
+- [ColParse: Beyond the Grid](https://arxiv.org/abs/2603.01666)
+- [MURE: Hierarchical Multi-Resolution Encoding](https://arxiv.org/html/2603.13349)
+- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)
+- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457)
+- [RegionRAG](https://arxiv.org/abs/2510.27261)
+- [PixSearch: Pixel-Grounded Retrieval](https://arxiv.org/abs/2601.19060)
+- [Snappy: Spatially-Grounded Document Retrieval](https://arxiv.org/abs/2512.02660)
+- [AGREE: Attention Grounded Enhancement](https://arxiv.org/abs/2511.13415)
+- [Localization Heads in VLMs](https://arxiv.org/abs/2503.06287)
+- [MetaEmbed](https://arxiv.org/abs/2509.18095)
+- [HybriDLA](https://arxiv.org/abs/2511.19919)
+- [MMDocIR](https://arxiv.org/abs/2501.08828)
+- [ViDoRe V3](https://arxiv.org/abs/2601.08620)
+
+【补救 agent 本轮输出】:
+Now I have sufficient research material. Let me compile my assessment.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **Nemotron ColEmbed V2** (arXiv Feb 2026): SOTA on ViDoRe V3 at 63.42 nDCG@10. Uses bidirectional attention, cluster-based sampling, hard-negative mining on Qwen3-VL-8B. Ablation reports contributions of model merging (+0.8–1.5%), hard negatives (+0.7%). Evaluates storage vs. accuracy tradeoff with lower-dimension embeddings.
+- **Multi-Granularity Retrieval Framework** (arXiv May 2025): Achieves 65.56 on MMDocIR by fusing ColQwen2-7B full-page retrieval + GME-7B OCR-text retrieval + GME-7B region-image retrieval + reranking. Uses three separate large models plus OCR — explicitly leaves end-to-end unification as open problem.
+- **MURE** (arXiv Mar 2026): Hierarchical multi-resolution encoding with **resolution-level Matryoshka representation learning (RMRL)** and semantic-aware hierarchical clustering for visual token compression. Beats ColPali with 50% token budget. Directly competes with GroundVDR's Matryoshka component — this is a critical concurrent baseline the proposal does not mention.
+- **MetaEmbed** (ICLR 2026 Oral): Matryoshka Multi-Vector Retrieval with group sizes {(1,1), (2,4), (4,8), (8,16), (16,64)}. Ablation shows MMR critical for low-budget retrieval (9.0 point drop). Evaluates on both ViDoRe and MMEB. Storage-retrieval tradeoff is a key evaluation axis.
+- **ColParse** (arXiv Mar 2026): 95% storage reduction via layout-informed sub-images. Key evaluation includes storage efficiency (bytes per page) alongside retrieval accuracy. Depends on external parser.
+- **RegionRAG** (AAAI 2026): Region-level retrieval with BFS patch grouping. Reports R@1 improvement of 10.02% and 71.42% visual token reduction. Evaluates on 6 benchmarks.
+- **AGREE** (SIGIR 2026): Attention-grounded retrieval. Reports nDCG@1 and nDCG@5 on ViDoRe V2 (+12.82% nDCG@1, +5.03% nDCG@5). Uses cross-modal attention as proxy supervision but produces no bounding boxes.
+- **Snappy** (arXiv Dec 2025): Training-free grounding via patch-to-region relevance propagation. 59.7% hit rate at IoU@0.5 on BBox-DocVQA. Evaluates with IoU@{0.25, 0.5, 0.7} and mean IoU — these are standard grounding metrics.
+- **ViDoRe V3** (arXiv Jan 2026): 26,000 pages, 3,099 queries, 6 languages. Grounding evaluation uses **IoU and Dice/F1** between predicted and annotated bounding boxes. Reports model grounding F1 of 0.089 vs. human 0.602.
+- **MMDocIR** (EMNLP 2025): Dual-task benchmark — page-level AND layout-level retrieval. Uses nDCG@10 for both. 1,685 expert + 173K bootstrapped annotations. Reports both page-level and layout-level scores for all baselines.
+
+- **调研总结**: 这个领域当前的实验设计标准要求：(1) 在 ViDoRe V3 和 MMDocIR 双 benchmark 上同时报告 page-level 和 layout/sub-page-level 检索结果；(2) 使用 nDCG@{5,10}、IoU@{0.25,0.5,0.7}、F1 等多粒度指标；(3) 详细的存储效率和推理延迟对比（ColParse、MetaEmbed 都强调了 storage-accuracy tradeoff）；(4) 充分的 ablation 来隔离各组件贡献；(5) 与 training-free 方法（Snappy）和 pipeline 方法（Multi-Gran Framework）做 compute-normalized 对比。审稿人普遍期望看到在多个 benchmark 上的全面对比，以及存储/效率维度的分析。
+
+---
+
+【缺陷 1】
+- 类别: baseline 不足或过时
+- 问题: Proposal 提到的 concurrent methods 包括 "ColParse, MURE, ReAlign"，但未明确将它们列为实验 baseline。更关键的是，**MURE (arXiv Mar 2026)** 使用了 "resolution-level Matryoshka representation learning" 和多分辨率编码，与 GroundVDR 的 Matryoshka multi-vector 组件高度重叠，是最直接的竞争者，但 proposal 中仅一笔带过。此外，NanoVDR (arXiv Mar 2026) 通过蒸馏 2B VLM 到 70M text encoder，代表了轻量化方向的强 baseline，在效率对比中不可忽略。
+- 严重度: 可补救
+- 补救方案: 明确列出完整的 baseline 清单，至少包含以下分类：
+  - **Page-level retrieval**: Nemotron ColEmbed V2 (8B), ColPali/ColQwen2, BM25+OCR (text-only lower bound)
+  - **Sub-page/region-level retrieval**: MURE, ColParse, RegionRAG, Multi-Granularity Framework (pipeline upper bound)
+  - **Grounding**: Snappy (training-free lower bound), AGREE (attention-proxy baseline)
+  - 必须将 MURE 作为核心 baseline 进行详细对比，因为其 Matryoshka 机制与 GroundVDR 最接近
+- 调研依据: MURE (arXiv 2603.13349) 使用与本 proposal 相似的 Matryoshka representation learning，是目前最接近的已发表工作
+
+【缺陷 2】
+- 类别: 评估方案缺陷
+- 问题: Proposal 只提到 "nDCG@10" 和 "grounding F1" 两个指标，但根据调研：(1) ViDoRe V3 的 grounding 评估标准是 **IoU@{0.25, 0.5, 0.7} 和 Dice/F1**，proposal 遗漏了 IoU 系列指标；(2) MMDocIR 要求报告 **page-level 和 layout-level 两个子任务**的 nDCG@10，proposal 未区分这两个子任务的目标；(3) 缺少 **存储效率**指标（bytes per page / tokens per page），这在 ColParse (95% reduction)、MetaEmbed (storage-accuracy tradeoff)、MURE (50% token budget) 的评估中都是核心维度。一个生成多粒度嵌入的模型如果不报告存储开销，审稿人会质疑其实用性。
+- 严重度: 可补救
+- 补救方案: 
+  - 补充 IoU@{0.25, 0.5, 0.7} 和 mean IoU 作为 grounding 指标（与 Snappy 对齐）
+  - 分别报告 MMDocIR page-level 和 layout-level nDCG@10
+  - 增加 Recall@k (k=1,5,10) 作为补充检索指标
+  - 必须报告 storage cost (embeddings per page × dimension) 和 query latency 与所有 baseline 的对比
+  - 可考虑添加 MetaEmbed 风格的 quality-latency curve（不同 Matryoshka 粒度下的 nDCG vs. FLOPs/latency）
+- 调研依据: Snappy 使用 IoU@{0.25,0.5,0.7}；ColParse 和 MetaEmbed 强调 storage-accuracy tradeoff；MMDocIR benchmark 定义了 page-level 和 layout-level 双任务
+
+【缺陷 3】
+- 类别: ablation 不完整
+- 问题: Proposal 完全没有描述 ablation 设计。GroundVDR 包含至少 4 个可分离的技术组件：(a) 自回归定位头 (autoregressive localization head)，(b) Matryoshka multi-vector embeddings，(c) joint retrieval + box regression loss，(d) spatially-typed embedding。不设计 ablation 来隔离各组件贡献，审稿人不可能接受——MetaEmbed 和 Nemotron ColEmbed V2 都有详尽的 ablation 来量化每个技术选择的贡献。
+- 严重度: 可补救
+- 补救方案: 至少设计以下 ablation：
+  1. **去掉自回归定位头** → 用外部 parser (如 HybriDLA) 或固定网格提供 region proposals → 量化 learned vs. external proposal 的差异
+  2. **去掉 Matryoshka 嵌套** → flat multi-vector → 量化分层嵌套对不同粒度检索的贡献
+  3. **去掉 joint loss** → 分别训练 retrieval-only 和 grounding-only 版本 → 量化联合训练的互利/冲突
+  4. **去掉 spatially-typed embeddings** → 统一类型 → 量化类型信息对区分 page/region/element 的贡献
+  5. **Layer selection ablation** → 使用不同层的 patch embedding 做 grounding → 验证 Localization Heads probing protocol 的必要性
+  6. **LoRA rank ablation** → r={16, 32, 64} → 量化 rank 与性能的 tradeoff
+- 调研依据: MetaEmbed 的 ablation 显示 MMR 对低 budget 检索至关重要（移除后下降 9.0 点）；Nemotron ColEmbed V2 ablation 量化了 model merging (+0.8-1.5%) 和 hard negatives (+0.7%) 的贡献
+
+【缺陷 4】
+- 类别: 可行性问题
+- 问题: Proposal 说 "supervised by ... ViDoRe V3's 3,099 grounding-labeled queries"，但存在两个问题：(1) **数据量不足风险**：3,099 个 grounding 标注样本训练一个从零开始的自回归定位头，数量可能严重不足。自回归 box 预测需要学习空间坐标映射，3K 样本可能难以覆盖文档的多样布局。(2) **训练/评估数据污染风险**：如果 ViDoRe V3 的 3,099 queries 同时用于训练和评估，存在 data leakage。proposal 没有说明如何划分训练集和测试集。
+- 严重度: 可补救
+- 补救方案: 
+  - 对问题(1)：明确说明定位头是否完全依赖 ViDoRe V3 的 3K 样本，还是也利用 MMDocIR 的 173K layout annotations 做预训练/辅助训练。如果仅靠 3K 样本，建议增加 DocLayNet (约 80K layout annotations) 或 PubLayNet (360K annotations) 作为预训练数据源，先让定位头学习通用布局检测，再在 ViDoRe V3 上微调。
+  - 对问题(2)：明确采用 ViDoRe V3 的官方 train/test split（如果存在），或自行定义 k-fold cross-validation 策略。如果整个 3,099 都是 test set（无官方 train set），则不能用于训练——需要用其他数据源（MMDocIR layout + DocLayNet）训练 grounding 能力，仅在 ViDoRe V3 上 zero-shot 评测。
+- 调研依据: ViDoRe V3 论文描述 3,099 queries 为 "human-verified queries" 用于评估，强烈暗示这是评估集而非训练集；HybriDLA 在 DocLayNet (~80K) 上训练达到 83.5% mAP，说明 layout 学习需要相当的数据量
+
+【缺陷 5】
+- 类别: compute 公平性问题
+- 问题: Proposal 声称 "~180 H100-hours via LoRA, reproducible by academic labs"，但存在以下公平性问题：(1) LoRA r=64 只冻结 backbone 参数，但自回归定位头是全新模块，需要 full training（非 LoRA），这部分的额外显存和计算开销未被计入；(2) 与 baseline 的 compute-normalized 对比缺失——Nemotron ColEmbed V2 可能用了数千 H100-hours，Multi-Granularity Framework 用了 3 个大模型推理，ColParse 依赖外部 parser——不做 compute normalization，审稿人无法判断性能增益是来自方法创新还是算力差异；(3) 推理时 multi-granularity embedding 的索引和查询成本未分析。
+- 严重度: 可补救
+- 补救方案: 
+  - 在实验中报告 training cost breakdown：backbone LoRA 的 GPU-hours + localization head full training 的 GPU-hours + 数据预处理时间
+  - 添加 compute-normalized comparison table：各方法的 training FLOPs (或 GPU-hours) vs. performance，这样审稿人可以看到 performance-per-compute 的效率
+  - 报告 inference cost：单页面 encoding latency、每页面嵌入数量 (tokens × dim)、multi-granularity 索引大小 vs. 单一粒度索引大小
+  - 如 180 H100-hours 预算不够（定位头 full training 显著增加 cost），需提前做 pilot experiment 验证实际开销并调整预算估计
+- 调研依据: MetaEmbed 在评估中强调了不同 quality-latency operating points；ColParse 以 95% storage reduction 为核心卖点，说明效率分析是审稿标准要求
+
+【缺陷 6】
+- 类别: 实验设计不足
+- 问题: Proposal 中存在一个架构层面的技术细节未交代清楚，这会影响实验设计的可信度：backbone 采用 **bidirectional attention**（用于检索），同时接一个 **autoregressive localization head**（需要 causal masking）。这两种注意力模式的交互方式未说明——是 backbone forward 一次出 bidirectional embeddings，然后 localization head 在这些 embeddings 上做 autoregressive decoding？还是共享某些层但用不同 mask？这直接影响训练效率和实验可重复性。另外，proposal 没有说明 region proposals 在检索流程中如何使用：是先生成 proposals 再编码 region embeddings？还是 proposals 和 embeddings 联合生成？这影响索引策略和查询效率的实验设计。
+- 严重度: 可补救
+- 补救方案:
+  - 明确描述 inference pipeline 的具体步骤：(1) 文档页面 → backbone bidirectional encoding → patch embeddings；(2) patch embeddings → localization head (autoregressive) → region bounding boxes；(3) region boxes → crop & pool patch embeddings → region-level Matryoshka embeddings；(4) indexing strategy (哪些粒度的 embeddings 被索引)
+  - 明确 training 中 bidirectional 和 autoregressive 的交互：是两阶段（先 bidirectional 再 autoregressive）还是端到端联合？gradient 是否回传到 backbone？
+  - 基于以上明确的 pipeline，设计 retrieval latency 实验来对比 end-to-end vs. pipeline 方法的推理效率
+- 调研依据: 基于领域实验规范判断——SeqTR 和 LocateAnything 等 autoregressive grounding 方法都明确描述了解码流程和注意力模式的交互
+
+【缺陷 7】
+- 类别: 评估方案缺陷
+- 问题: Proposal 设定 grounding 目标为 "0.089→0.3+ F1"，但未给出 0.3 这个目标值的依据。当前最佳模型是 0.089，人类是 0.602。0.3 意味着将 gap 缩小约 41%——这看起来是合理的 but ambitious 的目标。但问题在于：(1) 没有分析在什么条件下 0.3 是可实现的（比如在哪些类型的文档/查询上容易提升，哪些难以提升）；(2) 没有按文档类型/模态 (text/table/figure) 分别报告 grounding 性能的计划——ViDoRe V3 的数据分布 60.4% text / 18.8% image / 16.7% table，不同模态的 grounding 难度差异很大；(3) 没有 error analysis 计划来分析 grounding 失败的原因（区域过大/过小、跨区域答案、非文本元素等）。
+- 严重度: 可补救
+- 补救方案:
+  - 增加 per-modality breakdown 的 grounding 结果（text / table / figure / layout 分别报告）
+  - 增加 per-document-domain breakdown（ViDoRe V3 涵盖多个专业领域）
+  - 设计 error analysis：按 grounding 失败类型（IoU=0 complete miss / 0&lt;IoU<0.25 partial miss / IoU>0.5 但 F1 低）分析原因
+  - 可设置 milestone 目标：0.2 F1 为 minimum viable，0.3+ 为 target，配合 ablation 分析哪个组件对 grounding 贡献最大
+- 调研依据: ViDoRe V3 论文本身提供了 per-modality 和 per-domain 的评估框架；Snappy 在 BBox-DocVQA 上报告了多个 IoU 阈值的结果，显示 grounding 性能随阈值变化很大
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49277231-9d68-49db-9af3-b446ef6ab882",
+  "isSidechain": false,
+  "promptId": "6da98fc2-8a4c-46b6-bb17-628670de4b1d",
+  "type": "user",
+  "uuid": "79874b8a-47ba-4f34-85a3-dfcdd559a51c",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient context to provide a thorough analysis. Let me synthesize everything.  ---  【状态】: 有发掘…",
+  "leafUuid": "79874b8a-47ba-4f34-85a3-dfcdd559a51c",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-30T06:57:20.500Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze both worker outputs carefully and then do cross-validation research before producing my integrated assessment.
+
+**发掘 agent summary:**
+- Status: 有发掘空间 (has room for improvement)
+- 5 discovery points:
+  1. MURE is the biggest unidentified threat to novelty - must be included and differentiated
+  2. Hydra represents "single model multi-task" narrative competition
+  3. Core claim needs elevation from "engineering integration" to "scientific discovery" (retrieval-grounding synergy hypothesis)
+  4. Autoregressive localization head feasibility assumption needs more justification
+  5. The spatially-typed Matryoshka embeddings require more precise framing as a distinct contribution
+
+**补救 agent summary:**
+- Status: 有缺陷待补救 (has defects to fix)
+- 7 defects:
+  1. Baseline insufficiency - MURE missing as core baseline
+  2. Evaluation metrics incomplete - missing IoU series, storage efficiency, page vs layout distinction
+  3. No ablation design
+  4. Data sufficiency risk - 3,099 grounding samples may be insufficient; train/test split unclear
+  5. Compute fairness - localization head full training cost not counted
+  6. Architecture details unclear - bidirectional + autoregressive interaction not specified
+  7. Grounding target 0.3 F1 not justified; no per-modality/error analysis plan
+
+Now I need to validate the key suggestions through targeted searches to verify whether MURE and Hydra are real baselines, clarify the ViDoRe V3 train/test split situation, and check what grounding pre-training data is actually available from DocLayNet and PubLayNet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79874b8a-47ba-4f34-85a3-dfcdd559a51c",
+  "isSidechain": false,
+  "requestId": "req_011CbYKP8Maogs68oJXnTDbF",
+  "type": "assistant",
+  "uuid": "2099b26a-543d-4127-895d-08922e7375a4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pxBDnujx5kfxZDS4tBZad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10728,
+      "cache_read_input_tokens": 19391,
+      "output_tokens": 621,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 621,
+          "cache_read_input_tokens": 19391,
+          "cache_creation_input_tokens": 10728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-30T06:57:20.504Z_
+
+我需要对两位 worker 的关键建议进行交叉验证。让我先做几次针对性调研。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2099b26a-543d-4127-895d-08922e7375a4",
+  "isSidechain": false,
+  "requestId": "req_011CbYKP8Maogs68oJXnTDbF",
+  "type": "assistant",
+  "uuid": "b73f2abc-21e2-4db8-b720-7f4d68828f97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pxBDnujx5kfxZDS4tBZad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10728,
+      "cache_read_input_tokens": 19391,
+      "output_tokens": 621,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 621,
+          "cache_read_input_tokens": 19391,
+          "cache_creation_input_tokens": 10728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-30T06:57:20.619Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PLpMqHvqXpwo8jAXDVvcfX`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b73f2abc-21e2-4db8-b720-7f4d68828f97",
+  "isSidechain": false,
+  "requestId": "req_011CbYKP8Maogs68oJXnTDbF",
+  "type": "assistant",
+  "uuid": "efc55e49-9abc-4063-9203-cc61331d0c8f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pxBDnujx5kfxZDS4tBZad",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10728,
+      "cache_read_input_tokens": 19391,
+      "output_tokens": 621,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 621,
+          "cache_read_input_tokens": 19391,
+          "cache_creation_input_tokens": 10728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-30T06:57:20.627Z_
+
+<details><summary>↩ Tool result · `toolu_01PLpMqHvqXpwo8jAXDVvcfX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "efc55e49-9abc-4063-9203-cc61331d0c8f",
+  "isSidechain": false,
+  "promptId": "6da98fc2-8a4c-46b6-bb17-628670de4b1d",
+  "type": "user",
+  "uuid": "1a5198b6-a821-419f-90bc-a577d2e38a66",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "efc55e49-9abc-4063-9203-cc61331d0c8f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-30T06:57:25.381Z_
+
+好，现在进行交叉验证调研。我需要验证以下关键点：
+
+1. **MURE** 的实际内容和与 GroundVDR 的关系（两位 worker 都标记为最大威胁）
+2. **Hydra** 的实际内容（发掘 agent 标记为叙事竞争者）
+3. **ViDoRe V3 的数据划分**（补救 agent 质疑 3,099 queries 是否可用于训练）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a5198b6-a821-419f-90bc-a577d2e38a66",
+  "isSidechain": false,
+  "requestId": "req_011CbYKQSy3TSoALtkkdLiwk",
+  "type": "assistant",
+  "uuid": "70deaa05-76f8-469f-b748-5d439a5eab97",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ogyCMy12QkeaCR2JcRU4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 30119,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 30119,
+          "cache_creation_input_tokens": 1149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-30T06:57:26.389Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016hCJQA5V2Zt2ejMuZM5APx`</summary>
+
+```json
+{
+  "query": "MURE multi-resolution visual document retrieval Matryoshka arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70deaa05-76f8-469f-b748-5d439a5eab97",
+  "isSidechain": false,
+  "requestId": "req_011CbYKQSy3TSoALtkkdLiwk",
+  "type": "assistant",
+  "uuid": "90391a5a-f589-41ad-be5c-da3a564e7b90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ogyCMy12QkeaCR2JcRU4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 30119,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 30119,
+          "cache_creation_input_tokens": 1149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-30T06:57:26.835Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014xfTirSz4C9nHpiASwfeg1`</summary>
+
+```json
+{
+  "query": "Hydra unified document retrieval generation single VLM LoRA arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90391a5a-f589-41ad-be5c-da3a564e7b90",
+  "isSidechain": false,
+  "requestId": "req_011CbYKQSy3TSoALtkkdLiwk",
+  "type": "assistant",
+  "uuid": "a95ae303-f5f0-4bf7-a972-b04333295bf3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ogyCMy12QkeaCR2JcRU4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 30119,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 30119,
+          "cache_creation_input_tokens": 1149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-30T06:57:27.364Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BppvEgo9Q23djyc6CXKbon`</summary>
+
+```json
+{
+  "query": "ViDoRe V3 benchmark grounding evaluation train test split 3099 queries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a95ae303-f5f0-4bf7-a972-b04333295bf3",
+  "isSidechain": false,
+  "requestId": "req_011CbYKQSy3TSoALtkkdLiwk",
+  "type": "assistant",
+  "uuid": "0939d5b3-3fad-4f41-bb03-fb90658c96b8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ogyCMy12QkeaCR2JcRU4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1149,
+      "cache_read_input_tokens": 30119,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 30119,
+          "cache_creation_input_tokens": 1149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-30T06:57:32.707Z_
+
+<details><summary>↩ Tool result · `toolu_014xfTirSz4C9nHpiASwfeg1`</summary>
+
+```text
+Web search results for query: "Hydra unified document retrieval generation single VLM LoRA arXiv 2026"
+
+Links: [{"title":"Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/pdf/2603.28554"},{"title":"[2603.28554] Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/abs/2603.28554"},{"title":"Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/html/2603.28554"},{"title":"HYDRA: Unifying Multi-modal Generation and Understanding via Representation-Harmonized Tokenization","url":"https://arxiv.org/html/2603.15228"},{"title":"Hydra: Structured Cross-Source Enhanced Large Language Model Reasoning","url":"https://arxiv.org/html/2505.17464v3"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model** is a paper by Athos Georgiou submitted to arXiv in March 2026 that presents a dual-head approach providing both ColBERT-style late-interaction retrieval and autoregressive generation from a single vision-language model (VLM).
+
+A single LoRA adapter, trained only for retrieval, is toggled at inference: enabling it produces multi-vector embeddings; disabling it recovers the base model's generation quality with byte-identical outputs in 100% of 10,500 greedy and stochastic samples.
+
+The single-model design reduces peak GPU memory by 41% compared to separate retrieval and generation models.
+
+A proof-of-concept extension to Qwen2.5-Omni-3B demonstrates that the mechanism generalizes to audio retrieval and video embedding, with speech generation.
+
+The paper (arXiv:2603.28554) is available at https://arxiv.org/pdf/2603.28554 and was last revised on April 19, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a95ae303-f5f0-4bf7-a972-b04333295bf3",
+  "isSidechain": false,
+  "promptId": "6da98fc2-8a4c-46b6-bb17-628670de4b1d",
+  "type": "user",
+  "uuid": "61f9864b-c300-418d-9a6c-498aea9d5171",
+  "toolUseResult": {
+    "query": "Hydra unified document retrieval generation single VLM LoRA arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NSvft73hpzK2VsfKL7usGM",
+        "content": [
+          {
+            "title": "Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/pdf/2603.28554"
+          },
+          {
+            "title": "[2603.28554] Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/abs/2603.28554"
+          },
+          {
+            "title": "Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/html/2603.28554"
+          },
+          {
+            "title": "HYDRA: Unifying Multi-modal Generation and Understanding via Representation-Harmonized Tokenization",
+            "url": "https://arxiv.org/html/2603.15228"
+          },
+          {
+            "title": "Hydra: Structured Cross-Source Enhanced Large Language Model Reasoning",
+            "url": "https://arxiv.org/html/2505.17464v3"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model** is a paper by Athos Georgiou submitted to arXiv in March 2026 that presents a dual-head approach providing both ColBERT-style late-interaction retrieval and autoregressive generation from a single vision-language model (VLM).\n\nA single LoRA adapter, trained only for retrieval, is toggled at inference: enabling it produces multi-vector embeddings; disabling it recovers the base model's generation quality with byte-identical outputs in 100% of 10,500 greedy and stochastic samples.\n\nThe single-model design reduces peak GPU memory by 41% compared to separate retrieval and generation models.\n\nA proof-of-concept extension to Qwen2.5-Omni-3B demonstrates that the mechanism generalizes to audio retrieval and video embedding, with speech generation.\n\nThe paper (arXiv:2603.28554) is available at https://arxiv.org/pdf/2603.28554 and was last revised on April 19, 2026."
+    ],
+    "durationSeconds": 5.867282272000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a95ae303-f5f0-4bf7-a972-b04333295bf3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-30T06:57:33.206Z_
+
+<details><summary>↩ Tool result · `toolu_01BppvEgo9Q23djyc6CXKbon`</summary>
+
+```text
+Web search results for query: "ViDoRe V3 benchmark grounding evaluation train test split 3099 queries"
+
+Links: [{"title":"ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios","url":"https://arxiv.org/html/2601.08620v1"},{"title":"ViDoRe V3: The Benchmark That Exposes What Your RAG Pipeline Cannot See - AI Research Analysis | Tekta.ai | Tekta.ai","url":"https://www.tekta.ai/ai-research-papers/vidore-v3-multimodal-rag-benchmark-2026"},{"title":"ViDoRe V3: a comprehensive evaluation of retrieval for enterprise use-cases","url":"https://huggingface.co/blog/QuentinJG/introducing-vidore-v3"},{"title":"ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios","url":"https://arxiv.org/pdf/2601.08620"},{"title":"[2601.08620] ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios","url":"https://arxiv.org/abs/2601.08620"},{"title":"ViDoRe Benchmarks for Visual Retrieval","url":"https://www.emergentmind.com/topics/vidore-benchmarks"},{"title":"ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260108620L/abstract"},{"title":"GitHub - illuin-tech/vidore-benchmark: Vision Document Retrieval (ViDoRe): Benchmark. Evaluation code for the ColPali paper. · GitHub","url":"https://github.com/illuin-tech/vidore-benchmark"}]
+
+Based on the search results, here's the information about ViDoRe V3 benchmark regarding grounding evaluation and train/test split:
+
+## ViDoRe V3 Overview
+
+ViDoRe V3 is a multilingual RAG benchmark comprising 26,000 pages and 3,099 queries, each available in 6 languages.
+
+## Train/Test Split
+
+Two datasets are held out as a private test set to mitigate overfitting. While the search results confirm that some datasets are held out as private test sets, they don't specify the exact numerical split between training and testing datasets for the 3,099 queries.
+
+## Grounding Evaluation
+
+Each query is linked to retrieval ground truth data created and verified by human annotators: relevant pages, precise bounding box annotations for key elements, and a comprehensive reference answer. 
+
+Through 12,000 hours of human annotation effort, high-quality annotations are provided for retrieval relevance, bounding box localization, and verified reference answers. Visual Grounding evaluation uses IoU and Dice/F1 score between predicted and annotated bounding boxes on relevant pages.
+
+However, current models still struggle with non-textual elements, open-ended queries, and fine-grained visual grounding.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0939d5b3-3fad-4f41-bb03-fb90658c96b8",
+  "isSidechain": false,
+  "promptId": "6da98fc2-8a4c-46b6-bb17-628670de4b1d",
+  "type": "user",
+  "uuid": "831d9af0-d859-40e1-9c9f-34bbc3fb7818",
+  "toolUseResult": {
+    "query": "ViDoRe V3 benchmark grounding evaluation train test split 3099 queries",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018i5zSrvKSLi91ucQEEdi95",
+        "content": [
+          {
+            "title": "ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios",
+            "url": "https://arxiv.org/html/2601.08620v1"
+          },
+          {
+            "title": "ViDoRe V3: The Benchmark That Exposes What Your RAG Pipeline Cannot See - AI Research Analysis | Tekta.ai | Tekta.ai",
+            "url": "https://www.tekta.ai/ai-research-papers/vidore-v3-multimodal-rag-benchmark-2026"
+          },
+          {
+            "title": "ViDoRe V3: a comprehensive evaluation of retrieval for enterprise use-cases",
+            "url": "https://huggingface.co/blog/QuentinJG/introducing-vidore-v3"
+          },
+          {
+            "title": "ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios",
+            "url": "https://arxiv.org/pdf/2601.08620"
+          },
+          {
+            "title": "[2601.08620] ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios",
+            "url": "https://arxiv.org/abs/2601.08620"
+          },
+          {
+            "title": "ViDoRe Benchmarks for Visual Retrieval",
+            "url": "https://www.emergentmind.com/topics/vidore-benchmarks"
+          },
+          {
+            "title": "ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260108620L/abstract"
+          },
+          {
+            "title": "GitHub - illuin-tech/vidore-benchmark: Vision Document Retrieval (ViDoRe): Benchmark. Evaluation code for the ColPali paper. · GitHub",
+            "url": "https://github.com/illuin-tech/vidore-benchmark"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about ViDoRe V3 benchmark regarding grounding evaluation and train/test split:\n\n## ViDoRe V3 Overview\n\nViDoRe V3 is a multilingual RAG benchmark comprising 26,000 pages and 3,099 queries, each available in 6 languages.\n\n## Train/Test Split\n\nTwo datasets are held out as a private test set to mitigate overfitting. While the search results confirm that some datasets are held out as private test sets, they don't specify the exact numerical split between training and testing datasets for the 3,099 queries.\n\n## Grounding Evaluation\n\nEach query is linked to retrieval ground truth data created and verified by human annotators: relevant pages, precise bounding box annotations for key elements, and a comprehensive reference answer. \n\nThrough 12,000 hours of human annotation effort, high-quality annotations are provided for retrieval relevance, bounding box localization, and verified reference answers. Visual Grounding evaluation uses IoU and Dice/F1 score between predicted and annotated bounding boxes on relevant pages.\n\nHowever, current models still struggle with non-textual elements, open-ended queries, and fine-grained visual grounding."
+    ],
+    "durationSeconds": 5.839405899000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0939d5b3-3fad-4f41-bb03-fb90658c96b8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-30T06:57:33.761Z_
+
+<details><summary>↩ Tool result · `toolu_016hCJQA5V2Zt2ejMuZM5APx`</summary>
+
+```text
+Web search results for query: "MURE multi-resolution visual document retrieval Matryoshka arXiv 2026"
+
+Links: [{"title":"[2603.13349] MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval","url":"https://arxiv.org/abs/2603.13349"},{"title":"MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval","url":"https://arxiv.org/pdf/2603.13349"},{"title":"MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval","url":"https://arxiv.org/html/2603.13349"},{"title":"Multimodal RAG in 2026: Retrieval Over Images, PDFs, and Text - BigData Boutique","url":"https://bigdataboutique.com/blog/multimodal-rag-retrieval-over-images-pdfs-and-text"},{"title":"Matryoshka Multi-Vector Retrieval","url":"https://www.emergentmind.com/topics/matryoshka-multi-vector-retrieval-mmr"}]
+
+I found the paper! Here's what I found about MURE:
+
+MURE is a novel framework that employs VLMs as a hierarchical multi-resolution encoder, integrates resolution-level Matryoshka representation learning (RMRL) for effective feature fusion, and applies a semantic-aware hierarchical clustering mechanism for visual token compression.
+
+Visual Document Retrieval (VDR) requires representations that capture both fine-grained visual details and global document structure to ensure retrieval efficacy while maintaining computational efficiency.
+
+MURE first employs a multi-resolution sampling strategy, analogous to an "optical zoom", to observe the document image at hierarchical scales from coarse to fine. These multi-scale inputs are subsequently encoded using a VLM. To facilitate the synergistic integration of features across different granularities, MURE develops a Resolution-level Matryoshka representation learning (RMRL) algorithm, which nests the embeddings at each resolution level to produce a unified, hybrid-grained document image representation.
+
+Experiments on two widely used VDR benchmarks show that MURE consistently beats strong baselines. Furthermore, it significantly outperforms ColPali with only 50% of its visual token budget.
+
+The paper was published on arXiv on March 7, 2026 (arxiv ID: 2603.13349).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90391a5a-f589-41ad-be5c-da3a564e7b90",
+  "isSidechain": false,
+  "promptId": "6da98fc2-8a4c-46b6-bb17-628670de4b1d",
+  "type": "user",
+  "uuid": "a2b15104-fc78-4347-9d54-cdf17b89336a",
+  "toolUseResult": {
+    "query": "MURE multi-resolution visual document retrieval Matryoshka arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HnnhnS5gwA5N14k33KUsrL",
+        "content": [
+          {
+            "title": "[2603.13349] MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval",
+            "url": "https://arxiv.org/abs/2603.13349"
+          },
+          {
+            "title": "MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval",
+            "url": "https://arxiv.org/pdf/2603.13349"
+          },
+          {
+            "title": "MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval",
+            "url": "https://arxiv.org/html/2603.13349"
+          },
+          {
+            "title": "Multimodal RAG in 2026: Retrieval Over Images, PDFs, and Text - BigData Boutique",
+            "url": "https://bigdataboutique.com/blog/multimodal-rag-retrieval-over-images-pdfs-and-text"
+          },
+          {
+            "title": "Matryoshka Multi-Vector Retrieval",
+            "url": "https://www.emergentmind.com/topics/matryoshka-multi-vector-retrieval-mmr"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about MURE:\n\nMURE is a novel framework that employs VLMs as a hierarchical multi-resolution encoder, integrates resolution-level Matryoshka representation learning (RMRL) for effective feature fusion, and applies a semantic-aware hierarchical clustering mechanism for visual token compression.\n\nVisual Document Retrieval (VDR) requires representations that capture both fine-grained visual details and global document structure to ensure retrieval efficacy while maintaining computational efficiency.\n\nMURE first employs a multi-resolution sampling strategy, analogous to an \"optical zoom\", to observe the document image at hierarchical scales from coarse to fine. These multi-scale inputs are subsequently encoded using a VLM. To facilitate the synergistic integration of features across different granularities, MURE develops a Resolution-level Matryoshka representation learning (RMRL) algorithm, which nests the embeddings at each resolution level to produce a unified, hybrid-grained document image representation.\n\nExperiments on two widely used VDR benchmarks show that MURE consistently beats strong baselines. Furthermore, it significantly outperforms ColPali with only 50% of its visual token budget.\n\nThe paper was published on arXiv on March 7, 2026 (arxiv ID: 2603.13349)."
+    ],
+    "durationSeconds": 7.367497593,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "90391a5a-f589-41ad-be5c-da3a564e7b90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-30T06:57:51.283Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now analyze the findings:
+
+1. **MURE** - Confirmed. It uses Resolution-level Matryoshka representation learning (RMRL) for multi-resolution encoding of documents. The key difference from GroundVDR:
+   - MURE's Matryoshka is on the **resolution/input side** - it encodes the document at different zoom levels and nests those embeddings
+   - GroundVDR's Matryoshka is on the **output/semantic granularity side** - page/region/element level embeddings
+   - MURE lacks learned bounding box prediction and spatial grounding capabilities, which both reviewers correctly identified as a critical distinction.
+
+2. **Hydra** - Confirmed. Single VLM with LoRA for both retrieval and generation tasks. The divergence from GroundVDR lies in the second objective—Hydra targets generation while GroundVDR focuses on grounding—and their architectural choices: Hydra toggles LoRA on and off between modes, whereas GroundVDR jointly trains both tasks for synergistic benefits.
+
+3. **ViDoRe V3 benchmark** - The 3,099 queries with human-annotated bounding boxes are primarily for evaluation rather than training, which validates the concern about where grounding training data actually comes from. I need to verify DocLayNet's availability for pre-training the localization head and whether the spatially-typed Matryoshka concept has prior work supporting it. Both reviewers agree MURE is essential to include, so I'm confident on the core related work requirements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2b15104-fc78-4347-9d54-cdf17b89336a",
+  "isSidechain": false,
+  "requestId": "req_011CbYKRQk8GA1Y33JjsFcdE",
+  "type": "assistant",
+  "uuid": "995ddf81-ab81-490f-950d-13ceeadfe7e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi18iN63MYH5LvGbQNP6Kt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1371,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 31268,
+      "output_tokens": 680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1371,
+          "output_tokens": 680,
+          "cache_read_input_tokens": 31268,
+          "cache_creation_input_tokens": 962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-30T06:57:51.290Z_
+
+再验证一个关键的补救路径——DocLayNet 作为 localization head 预训练数据源的可行性：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "995ddf81-ab81-490f-950d-13ceeadfe7e7",
+  "isSidechain": false,
+  "requestId": "req_011CbYKRQk8GA1Y33JjsFcdE",
+  "type": "assistant",
+  "uuid": "284ee256-b281-40a2-aa43-9dcc7c761b13",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi18iN63MYH5LvGbQNP6Kt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1371,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 31268,
+      "output_tokens": 680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1371,
+          "output_tokens": 680,
+          "cache_read_input_tokens": 31268,
+          "cache_creation_input_tokens": 962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-30T06:57:51.625Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jzu2FbZnzDmd9Q3PY3SYwB`</summary>
+
+```json
+{
+  "query": "DocLayNet document layout analysis dataset annotations size availability 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "284ee256-b281-40a2-aa43-9dcc7c761b13",
+  "isSidechain": false,
+  "requestId": "req_011CbYKRQk8GA1Y33JjsFcdE",
+  "type": "assistant",
+  "uuid": "40e9de6d-e4a5-4d9e-b3df-25a980c08e8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bi18iN63MYH5LvGbQNP6Kt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1371,
+      "cache_creation_input_tokens": 962,
+      "cache_read_input_tokens": 31268,
+      "output_tokens": 680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1371,
+          "output_tokens": 680,
+          "cache_read_input_tokens": 31268,
+          "cache_creation_input_tokens": 962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient context to provide a thorough analysis. Let me synthesize everything.  ---  【状态】: 有发掘…",
+  "leafUuid": "40e9de6d-e4a5-4d9e-b3df-25a980c08e8e",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-30T06:57:59.758Z_
+
+<details><summary>↩ Tool result · `toolu_01Jzu2FbZnzDmd9Q3PY3SYwB`</summary>
+
+```text
+Web search results for query: "DocLayNet document layout analysis dataset annotations size availability 2025 2026"
+
+Links: [{"title":"DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis","url":"https://arxiv.org/pdf/2206.01062"},{"title":"[2206.01062] DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis","url":"https://ar5iv.labs.arxiv.org/html/2206.01062"},{"title":"DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis","url":"https://dl.acm.org/doi/pdf/10.1145/3534678.3539043"},{"title":"(PDF) DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis","url":"https://www.researchgate.net/publication/361051040_DocLayNet_A_Large_Human-Annotated_Dataset_for_Document-Layout_Analysis"},{"title":"[PDF] DocLayNet: A Large Human-Annotated Dataset for Document-Layout Segmentation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DocLayNet:-A-Large-Human-Annotated-Dataset-for-Pfitzmann-Auer/454eebf9a5dc1fd9b1673bc60f5ea69521547b1a"},{"title":"[2206.01062] DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis","url":"https://arxiv.org/abs/2206.01062"},{"title":"DocLayNet: A Large Human-Annotated Dataset for Document-Layout Segmentation | Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining","url":"https://dl.acm.org/doi/10.1145/3534678.3539043"},{"title":"GitHub - DS4SD/DocLayNet: DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis · GitHub","url":"https://github.com/DS4SD/DocLayNet"},{"title":"DocLayNet/README.md at main · DS4SD/DocLayNet","url":"https://github.com/DS4SD/DocLayNet/blob/main/README.md"}]
+
+Based on the web search results, here's what I found about the DocLayNet dataset:
+
+## Dataset Size and Annotations
+
+DocLayNet contains 80,863 manually annotated pages from diverse data sources to represent a wide variability in layouts. For each PDF page, the layout annotations provide labelled bounding-boxes with a choice of 11 distinct classes. DocLayNet also provides a subset of double- and triple-annotated pages to determine the inter-annotator agreement.
+
+## Availability
+
+DocLayNet is a new, publicly available, document-layout annotation dataset in COCO format. The DocLayNet dataset is available on Hugging Face at ds4sd/DocLayNet.
+
+## Distinguishing Features
+
+The dataset addresses limitations in prior work: While earlier datasets like PubLayNet and DocBank are of adequate size to train models, they severely lack in layout variability since they are sourced from scientific article repositories such as PubMed and arXiv only. Consequently, the accuracy of the layout segmentation drops significantly when these models are applied on more challenging and diverse layouts.
+
+The original research paper was published in 2022, and the dataset has been available on Hugging Face since January 2023.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40e9de6d-e4a5-4d9e-b3df-25a980c08e8e",
+  "isSidechain": false,
+  "promptId": "6da98fc2-8a4c-46b6-bb17-628670de4b1d",
+  "type": "user",
+  "uuid": "0a54e08e-6007-4ee8-9154-a5c6b7c2c098",
+  "toolUseResult": {
+    "query": "DocLayNet document layout analysis dataset annotations size availability 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016TDdtppUkQBrUaXhjDyQXS",
+        "content": [
+          {
+            "title": "DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis",
+            "url": "https://arxiv.org/pdf/2206.01062"
+          },
+          {
+            "title": "[2206.01062] DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis",
+            "url": "https://ar5iv.labs.arxiv.org/html/2206.01062"
+          },
+          {
+            "title": "DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3534678.3539043"
+          },
+          {
+            "title": "(PDF) DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis",
+            "url": "https://www.researchgate.net/publication/361051040_DocLayNet_A_Large_Human-Annotated_Dataset_for_Document-Layout_Analysis"
+          },
+          {
+            "title": "[PDF] DocLayNet: A Large Human-Annotated Dataset for Document-Layout Segmentation | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DocLayNet:-A-Large-Human-Annotated-Dataset-for-Pfitzmann-Auer/454eebf9a5dc1fd9b1673bc60f5ea69521547b1a"
+          },
+          {
+            "title": "[2206.01062] DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis",
+            "url": "https://arxiv.org/abs/2206.01062"
+          },
+          {
+            "title": "DocLayNet: A Large Human-Annotated Dataset for Document-Layout Segmentation | Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+            "url": "https://dl.acm.org/doi/10.1145/3534678.3539043"
+          },
+          {
+            "title": "GitHub - DS4SD/DocLayNet: DocLayNet: A Large Human-Annotated Dataset for Document-Layout Analysis · GitHub",
+            "url": "https://github.com/DS4SD/DocLayNet"
+          },
+          {
+            "title": "DocLayNet/README.md at main · DS4SD/DocLayNet",
+            "url": "https://github.com/DS4SD/DocLayNet/blob/main/README.md"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about the DocLayNet dataset:\n\n## Dataset Size and Annotations\n\nDocLayNet contains 80,863 manually annotated pages from diverse data sources to represent a wide variability in layouts. For each PDF page, the layout annotations provide labelled bounding-boxes with a choice of 11 distinct classes. DocLayNet also provides a subset of double- and triple-annotated pages to determine the inter-annotator agreement.\n\n## Availability\n\nDocLayNet is a new, publicly available, document-layout annotation dataset in COCO format. The DocLayNet dataset is available on Hugging Face at ds4sd/DocLayNet.\n\n## Distinguishing Features\n\nThe dataset addresses limitations in prior work: While earlier datasets like PubLayNet and DocBank are of adequate size to train models, they severely lack in layout variability since they are sourced from scientific article repositories such as PubMed and arXiv only. Consequently, the accuracy of the layout segmentation drops significantly when these models are applied on more challenging and diverse layouts.\n\nThe original research paper was published in 2022, and the dataset has been available on Hugging Face since January 2023."
+    ],
+    "durationSeconds": 8.127473570999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "40e9de6d-e4a5-4d9e-b3df-25a980c08e8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-30T06:59:07.082Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. DocLayNet has ~80K annotated pages with bounding boxes in COCO format, publicly available. This confirms the 补救 agent's suggestion is viable - using DocLayNet for pre-training the localization head.
+
+Now let me synthesize everything and produce the round 1 output.
+
+**Cross-validation summary:**
+
+1. **MURE (发掘点1 + 缺陷1)**: ✅ Verified. Real paper, real threat. Both agents correctly flagged it. MURE uses Resolution-level Matryoshka on the input side (multi-resolution sampling), while GroundVDR's Matryoshka is on the output side (page/region/element semantic hierarchy). 
+
+The differentiation is real and important - I need to include MURE in related work and explicitly contrast these two approaches.
+
+2. **Hydra (发掘点2)**: ✅ Verified. Real paper, relevant but less direct threat. Hydra uses LoRA toggle (separate modes), GroundVDR uses joint training (shared loss). Different paradigms. I'll include it in related work briefly.
+
+3. **Retrieval-grounding synergy framing (发掘点3)**: This is based on the agent's domain analysis rather than a specific paper, but AGREE (SIGIR 2026) showing +12.82% nDCG@1 improvement validates the concept.
+
+4. **VLM patch embedding for document layout (发掘点4)**: The concern is valid but mitigated - localization heads showed ~3 heads suffice for grounding in natural images, and document images have even more structured layouts. Since I'm adding a learned head rather than relying on zero-shot, I should acknowledge this as a key hypothesis to validate while framing it positively: structured document layouts may actually be easier than natural images for spatial grounding.
+
+5. **"Spatially-typed" Matryoshka articulation (发掘点5)**: Strong suggestion, but I need to clearly define what this means first.
+
+If I can articulate how embedding type tags for different semantic region types enables heterogeneous late interaction, this becomes the most novel single contribution. I should elaborate this mechanism clearly.
+
+6. **ViDoRe V3 data split concern (缺陷4)**: I've verified that ViDoRe V3's 3,099 queries are evaluation data with private held-out test sets, so using them for training would be data leakage. DocLayNet with 80K+ public annotations is a viable pre-training source. I should clarify my training data strategy: use MMDocIR's 173K layout annotations plus DocLayNet's 80K for grounding pre-training, then evaluate zero-shot on ViDoRe V3.
+
+7. **Evaluation metrics (缺陷2)**: This is a valid point - I need to include IoU at multiple thresholds.
+
+8. **Ablation design (缺陷3)**: I need systematic ablation of 4+ components, focusing on the top 4-5.
+
+9. **Compute fairness (缺陷5)**: I should provide training cost breakdown and compute-normalized comparisons.
+
+10. **Architecture clarity (缺陷6)**: I need to specify the inference pipeline steps explicitly.
+
+11. **Grounding target justification (缺陷7)**: This is valid but lower priority - I'll add milestone targets partially.
+
+Now I'm assessing the probability of success. The core idea of jointly learning retrieval and spatial grounding in a single model is genuinely novel - no existing work combines these. MURE and Hydra are related but clearly different approaches. With proper methodology and clear presentation of the mechanism, this could be a strong contribution.
+
+The problem itself is well-motivated with concrete gaps: a 28.5 percentage point retrieval gap and significant grounding F1 differences. If I can validate the retrieval-grounding synergy hypothesis, that's a meaningful scientific contribution. Accounting for the improvements I'm planning - comprehensive baselines, ablations, metrics, and data strategy clarification - I'm estimating the probability at around 37%, with a range between 30-45%.
+
+There's real execution risk though: the localization head extraction from VLM patches is uncertain, the 180 H100-hour budget might be tight, and I need to verify the grounding data is sufficient. Both reviewers had substantive feedback suggesting there's room to improve, and since this is only round 1, I should keep iterating rather than converge. The core idea is viable with no kill signals, so I'm moving forward and will now compile the full output with the updated proposal, making sure to preserve all original references and add the new ones. I'm identifying which references need to be added to the Key References section—MURE, Hydra, ColParse, DocLayNet, and the Multi-Granularity Framework—while making sure ReAlign stays included since it's mentioned in the body. PixSearch doesn't fit since it's VQA-focused rather than document retrieval. Now I'll revise the proposal with these additions while keeping it concise and information-dense.
+
+The main conceptual shifts are reframing the core contribution around the retrieval-grounding synergy hypothesis rather than just combining three components, clarifying how MURE and Hydra differ from our approach, and spelling out the spatially-typed Matryoshka mechanism and VLM patch embedding assumptions. For experiments, I need to flesh out the full baseline comparisons across page-level, sub-page, and grounding methods, plus the complete metric suite with IoU and nDCG variants.
+
+I'm also thinking through the training data pipeline—using MMDocIR and DocLayNet for pre-training, then ViDoRe V3 for zero-shot evaluation—and making sure the ablation design is systematic with five clear ablations. I want to keep the proposal tight and focused, aiming for a similarly compressed version as the original rather than inflating it, so I need to be selective about what gets expanded and what stays concise.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a54e08e-6007-4ee8-9154-a5c6b7c2c098",
+  "isSidechain": false,
+  "requestId": "req_011CbYKTLMWUNeAWn8tSKZcC",
+  "type": "assistant",
+  "uuid": "fbe16c97-d894-42e9-8583-48abb6b5c34a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B2B2AaNECKostFTtfNBfGU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2889,
+      "cache_read_input_tokens": 32230,
+      "output_tokens": 8163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8163,
+          "cache_read_input_tokens": 32230,
+          "cache_creation_input_tokens": 2889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-30T07:01:11.786Z_
+
+现在我有足够的调研信息来做综合判断。让我整合两位 worker 的输出。
+
+【阶段】: 迭代第 1 轮
+
+【交叉验证调研】:
+1. **MURE (arXiv:2603.13349)** — 已验证存在。确认使用 Resolution-level Matryoshka Representation Learning (RMRL)，对文档图像做多分辨率采样（"光学变焦"类比），嵌套不同分辨率的 embedding。核心差异：MURE 的 Matryoshka 是 **input-side**（分辨率层级），GroundVDR 的是 **output-side**（page/region/element 语义层级）。MURE 不做任何 learned region proposal 或 bounding box regression。两位 worker 的判断正确——必须纳入并差异化。
+2. **Hydra (arXiv:2603.28554)** — 已验证存在。单一 VLM + LoRA toggle，启用 LoRA 产出 ColBERT-style 检索向量，禁用 LoRA 恢复生成能力。关键区别：Hydra 用 LoRA toggle 实现两个独立模式（retrieval vs generation），GroundVDR 用 joint loss 实现两个互利任务（retrieval + grounding）。发掘 agent 的"叙事竞争者"判断准确，但威胁度低于 MURE。
+3. **ViDoRe V3 数据划分** — 已验证。3,099 queries 是人工标注的评估数据（12,000 小时标注工作量），部分数据集作为 private test set 防止过拟合。补救 agent 的担忧成立：这些 queries 不应用于训练 grounding 能力。
+4. **DocLayNet** — 已验证可行。80,863 页人工标注（11 类 bounding box，COCO 格式），公开可得（Hugging Face: ds4sd/DocLayNet）。可作为 localization head 预训练的数据源，补救 agent 的建议有文献支撑。
+
+【发掘 agent 有效建议采纳】:
+1. **发掘点 1（MURE 差异化）**：✅ 已验证，采纳。MURE 是 input-side 分辨率 Matryoshka，GroundVDR 是 output-side 语义粒度 Matryoshka，差异真实且可清晰论证。
+2. **发掘点 2（Hydra 差异化）**：✅ 已验证，采纳。纳入 Related Work，论证 joint training synergy vs LoRA toggle 的结构性差异。
+3. **发掘点 3（retrieval-grounding synergy 重构）**：✅ 有间接证据支撑（AGREE +12.82% nDCG@1 证明 grounding 信号正向影响 retrieval），采纳。将核心叙事从"三 building block 首次组合"提升到"retrieval-grounding 互利效应假说"。
+4. **发掘点 4（VLM patch embedding 假设论证）**：✅ 合理关切，部分采纳。在 proposal 中承认这是需要验证的核心假设，但也指出文档的结构化布局可能比自然图像更适合 patch-level 空间推理。
+5. **发掘点 5（spatially-typed Matryoshka 阐释）**：✅ 逻辑成立（MetaEmbed = token 数量维度嵌套，MURE = 分辨率维度嵌套，GroundVDR = 空间-语义粒度维度嵌套），采纳。具体阐释机制：region type tag 编码 + 异构 late interaction。
+
+【补救 agent 有效建议采纳】:
+1. **缺陷 1（baseline 不足）**：✅ 采纳。补充完整 baseline 清单（MURE, Hydra 纳入对比）。
+2. **缺陷 2（评估指标）**：✅ 采纳。补充 IoU@{0.25,0.5,0.7}、page/layout 分别报告、存储效率指标。
+3. **缺陷 3（ablation 设计）**：✅ 采纳 top 5 ablation（去定位头、去 Matryoshka、去 joint loss、去 spatial typing、layer selection）。LoRA rank ablation 降优先级（属 hyperparameter tuning，非核心 ablation）。
+4. **缺陷 4（数据划分）**：✅ 已验证，采纳。明确训练数据策略：MMDocIR 173K + DocLayNet 80K 预训练 → ViDoRe V3 zero-shot 评测。
+5. **缺陷 5（compute 公平性）**：✅ 采纳。添加 training cost breakdown + compute-normalized comparison + inference cost 分析。
+6. **缺陷 6（架构流程）**：✅ 采纳。明确 4 步 inference pipeline。
+7. **缺陷 7（grounding 目标分析）**：部分采纳。添加 milestone 目标和 per-modality breakdown。error analysis 细节过多，简化为一句话承诺。
+
+【本轮 proposal 主要变更】:
+
+**Idea 层面：**
+- 核心叙事重构：从"三 building block 首次组合"→"retrieval-grounding synergy 假说"
+- 新增 MURE 和 Hydra 的差异化论证
+- 明确定义 "spatially-typed" Matryoshka 机制（第三种嵌套维度）
+- 承认 VLM patch → document layout 假设为待验证核心假设
+
+**实验层面：**
+- 完整 baseline 清单（3 类共 8+ baseline）
+- 完整指标套件（检索 + grounding + 效率）
+- 5 项系统性 ablation
+- 训练数据策略明确（MMDocIR + DocLayNet 训练，ViDoRe V3 zero-shot 评测）
+- 4 步 inference pipeline 明确
+- Compute breakdown + normalized comparison
+- Per-modality grounding analysis
+
+【idea 质量评估】: Novelty=中偏强（joint retrieval-grounding 在单模型中确无先例；spatially-typed Matryoshka 是框架扩展而非简单应用；但核心技术组件均已存在，组合创新的感知风险仍在） Significance=中偏强（问题动机有明确量化 gap 支撑；synergy 假说如成立则有科学发现意义；但影响范围局限在 VDR 子领域） → idea 天花板约 45%
+
+【实验完备性评估】: Technical Soundness=中（实验设计现在系统完备，但 3 个执行风险未消除：① localization head 从 VLM patch 学习文档 layout 的可行性、② 180 H100-hour 预算含 localization head full training 的充裕性、③ 3K grounding 评测样本的统计稳健性） → 地板约 28%
+
+【当前概率估计】: [28% - 45%] 中位 36%
+
+【决策】: 继续
+
+【决策理由】: 第 1 轮，两位 worker 均有实质性建议且均非"已收敛"状态。Idea 层面的 synergy 重构和 spatially-typed Matryoshka 阐释显著提升了 novelty 叙事的锐度，但还需要进一步验证是否有近期工作也在做 joint retrieval+grounding（特别是 PixSearch 方向）。实验层面虽然框架已搭好，但 training data pipeline 和 inference pipeline 的细节仍可能有 reviewer 追问的空间。继续一轮让 worker 审视更新版本。
+
+**引用清单核对**（确保纯净版包含所有引用）：
+- Nemotron ColEmbed V2 (arXiv 2026) ✓
+- ColPali (ECIR 2025) ✓
+- MMDocIR (arXiv 2025) ✓
+- ViDoRe V3 (arXiv 2026) ✓
+- MetaEmbed (ICLR 2026 Oral) ✓
+- HybriDLA (AAAI 2026, 83.5% mAP DocLayNet) ✓
+- RegionRAG (AAAI 2026) ✓
+- AGREE (SIGIR 2026) ✓
+- Snappy (arXiv 2025, 59.7% IoU@0.5) ✓
+- Localization Heads (CVPR 2025) ✓
+- 新增: MURE (arXiv 2026, arXiv:2603.13349) ✓
+- 新增: Hydra (arXiv 2026, arXiv:2603.28554) ✓
+- 新增: ColParse (arXiv 2026, arXiv:2603.01666) ✓
+- 新增: DocLayNet (KDD 2022) ✓
+- 新增: Multi-Granularity Framework (arXiv 2025, arXiv:2505.01457) ✓
+- 新增: PixSearch (arXiv 2026, arXiv:2601.19060) ✓
+- 保留 body mention: ReAlign ✓
+
+【下一轮 proposal（纯净版，将原样传给 worker）】:
+---
+# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval
+
+## Core Problem
+
+Current visual document retrieval (VDR) models operate at page granularity (losing sub-page precision) or require multi-model pipelines with external layout parsers to access element-level content. No single model jointly learns to retrieve at page, region, and element granularities while producing spatially grounded evidence bounding boxes. The 28.5pp page-vs-layout retrieval gap on MMDocIR (arXiv 2025) and the 0.089 vs. 0.602 model-vs-human grounding F1 on ViDoRe V3 (arXiv 2026) quantify this deficiency. We hypothesize that this gap persists because retrieval and spatial grounding have been treated as independent tasks, missing a potential synergy: grounding supervision forces embeddings to encode spatial structure, which in turn improves sub-page retrieval precision.
+
+## Research Hypothesis
+
+**Retrieval-Grounding Synergy**: Joint training of contrastive retrieval and bounding-box regression in a single VLM produces mutually reinforcing learning signals — grounding loss preserves spatial position information in the embedding space, which directly benefits region- and element-level retrieval (since sub-page retrieval inherently requires spatially aware embeddings), while retrieval loss provides semantic discriminability that improves grounding precision. This is not merely the first combination of known components, but a testable hypothesis about a positive feedback loop between two tasks that the field has kept separate. Indirect evidence: AGREE (SIGIR 2026) showed that attention-based grounding signals improve page-level nDCG by 12.82%, suggesting spatial awareness benefits retrieval even with proxy (non-box) supervision. GroundVDR elevates this from proxy attention supervision to direct box regression supervision, which should yield stronger spatial encoding.
+
+## Research Landscape
+
+**Page-level VDR.** Nemotron ColEmbed V2 (arXiv 2026) leads ViDoRe V3 at 63.42 nDCG@10 using bidirectional attention and hard negative mining on Qwen3-VL-8B. ColPali (ECIR 2025) established the vision-language late-interaction paradigm.
+
+**Sub-page / region-level retrieval.** The Multi-Granularity Framework (arXiv 2025, arXiv:2505.01457) achieves 65.56 on MMDocIR but requires three separate large models (ColQwen2 + GME + Qwen2.5-VL) plus OCR, explicitly leaving end-to-end unification as an open question. RegionRAG (AAAI 2026) uses learned query-patch alignment but relies on BFS heuristic with manual threshold for patch grouping. ColParse (arXiv 2026, arXiv:2603.01666) achieves 95% storage reduction via layout-informed sub-images but depends on an external document parser that cannot be jointly optimized. MURE (arXiv 2026, arXiv:2603.13349) introduces Resolution-level Matryoshka Representation Learning (RMRL), nesting embeddings across input resolutions (multi-resolution sampling as "optical zoom") to achieve strong performance with 50% token budget. **Critical distinction**: MURE's Matryoshka operates on the input side (resolution hierarchy), while GroundVDR's operates on the output side (semantic granularity hierarchy: page → region → element). MURE performs no learned region proposals or bounding-box prediction.
+
+**Unified multi-task VDR.** Hydra (arXiv 2026, arXiv:2603.28554) unifies retrieval and generation in a single VLM via LoRA toggle — enabling LoRA yields ColBERT-style embeddings, disabling it recovers generation. However, Hydra's two tasks are independent modes (no shared loss, no mutual reinforcement), whereas GroundVDR's retrieval and grounding are jointly trained with a shared loss, hypothesizing explicit synergy. PixSearch (arXiv 2026, arXiv:2601.19060) combines retrieval with region-level grounding for VQA but is not designed for multi-granularity retrieval benchmarks.
+
+**Spatial grounding in retrieval.** AGREE (SIGIR 2026) uses MLLM attention as proxy supervision, improving page-level nDCG but producing no bounding boxes. Snappy (arXiv 2025) achieves 59.7% IoU@0.5 purely at inference time with no learned optimization. On ViDoRe V3's grounding evaluation, the best model achieves only 0.089 F1 vs. 0.602 human F1 — a 6.8× gap. Localization Heads (CVPR 2025 Highlight) show that ~3 attention heads in VLMs suffice for competitive grounding on natural images without fine-tuning.
+
+**Key gap.** No existing work jointly learns retrieval and spatial grounding in a single model. The detection (CV) and retrieval (IR) communities have developed the necessary components independently but never unified them.
+
+## Proposed Approach
+
+We propose **GroundVDR**, a single vision-language model that jointly performs multi-granularity document retrieval and spatial grounding end-to-end.
+
+**Architecture.** Built on Qwen3-VL-8B with bidirectional attention (LoRA r=64 on backbone). An autoregressive localization head is attached to VLM patch embeddings to predict region bounding boxes, replacing external parsers. This head takes bidirectional patch embeddings as input and autoregressively decodes region boxes as coordinate token sequences.
+
+**Core assumption (to be validated):** VLM patch embeddings — trained for general vision-language understanding — contain sufficient spatial and semantic information to support high-quality document region proposals. While Localization Heads (CVPR 2025) demonstrated this for natural images, document layouts (dense text, nested tables, formulas) differ structurally. We hypothesize that document images' highly structured, grid-like layouts are actually more amenable to patch-level spatial reasoning than cluttered natural scenes, but this remains an empirical question central to the paper.
+
+**Spatially-Typed Matryoshka Multi-Vector Embeddings.** Standard Matryoshka embeddings (MetaEmbed, ICLR 2026 Oral) nest along the token-count dimension (coarse = fewer tokens, fine = more tokens). MURE nests along the input-resolution dimension. GroundVDR introduces a third nesting axis: **spatial-semantic granularity**. Each embedding vector carries a learned type tag (page / region-type / element-type) that encodes its position in the document's spatial hierarchy. During late interaction, these type tags enable heterogeneous matching — a region-level query can preferentially interact with region-typed embeddings, while a page-level query aggregates across all types. This extends the Matryoshka framework from a precision-efficiency tradeoff to a spatial-semantic granularity tradeoff with test-time control.
+
+**Inference Pipeline (4 steps):**
+1. Document page → backbone bidirectional encoding → patch embeddings
+2. Patch embeddings → localization head (autoregressive decoding) → region bounding boxes
+3. Region boxes → crop & pool patch embeddings → region-level and element-level spatially-typed Matryoshka embeddings; page-level embedding aggregated from all patches
+4. Multi-granularity index: page/region/element embeddings indexed separately; query-time granularity selection via type-tag routing
+
+**Joint Loss.** Late-interaction contrastive retrieval loss + bounding-box regression loss (L1 + GIoU), with gradient flowing from both losses through the shared backbone. The synergy hypothesis predicts that joint training outperforms separate training of either task.
+
+**Training Data Strategy.** Localization head pre-training: DocLayNet (KDD 2022, ~80K layout-annotated pages, 11 classes, COCO format) for general document layout detection. Joint fine-tuning: MMDocIR's 173K bootstrapped layout annotations + 1,685 expert annotations for retrieval + grounding alignment. Grounding evaluation: ViDoRe V3's 3,099 human-verified queries used exclusively for zero-shot evaluation (no training on ViDoRe V3 grounding labels to prevent data leakage). Grounding-capable layers selected using Localization Heads' probing protocol.
+
+## Experimental Design
+
+**Baselines (3 categories):**
+- Page-level retrieval: Nemotron ColEmbed V2 (8B), ColPali/ColQwen2, BM25+OCR (text-only lower bound)
+- Sub-page/region-level retrieval: MURE, ColParse, RegionRAG, Multi-Granularity Framework (pipeline upper bound)
+- Grounding: Snappy (training-free lower bound), AGREE (attention-proxy baseline)
+
+**Benchmarks and Metrics:**
+- MMDocIR: page-level nDCG@{5,10} and layout-level nDCG@{5,10} reported separately
+- ViDoRe V3: nDCG@{5,10} for retrieval; IoU@{0.25, 0.5, 0.7}, mean IoU, Dice/F1 for grounding
+- Efficiency: storage cost (embeddings per page × dimension, bytes per page), query latency (ms), training cost (GPU-hours breakdown)
+
+**Grounding targets:** 0.2 F1 as minimum viable (2.2× current SOTA 0.089), 0.3+ F1 as stretch target (3.4× current SOTA). Per-modality breakdown (text 60.4% / image 18.8% / table 16.7%) to identify where grounding gains concentrate.
+
+**Ablation Studies (5 experiments):**
+1. Replace learned localization head with external parser (HybriDLA) or fixed grid → quantify learned vs. external proposals
+2. Remove Matryoshka nesting → flat multi-vector → quantify hierarchical nesting contribution per granularity
+3. Remove joint loss → train retrieval-only and grounding-only variants separately → **directly test the synergy hypothesis**
+4. Remove spatial type tags → uniform embedding type → quantify type-aware heterogeneous interaction
+5. Layer selection: vary which backbone layers feed the localization head → validate Localization Heads probing protocol for documents
+
+**Compute Budget and Fairness:**
+- Training cost breakdown: backbone LoRA fine-tuning (~X H100-hours) + localization head full training (~Y H100-hours) + data preprocessing. Total estimated ~200 H100-hours (revised from 180 to account for localization head full training).
+- Compute-normalized comparison: report training FLOPs (or GPU-hours) vs. performance for all methods
+- Inference cost: per-page encoding latency, multi-granularity index size vs. single-granularity index size
+
+## Key References
+
+- Nemotron ColEmbed V2 (arXiv 2026)
+- ColPali: Efficient Document Retrieval with Vision Language Models (ECIR 2025)
+- MMDocIR: Multi-Modal Document Information Retrieval (arXiv 2025)
+- ViDoRe V3: Visual Document Retrieval Benchmark with Grounding (arXiv 2026)
+- MetaEmbed: Matryoshka Multi-Vector Retrieval (ICLR 2026 Oral)
+- HybriDLA: Hybrid Diffusion-Autoregressive Document Layout Analysis (AAAI 2026)
+- RegionRAG: Region-Level RAG for Visual Document Understanding (AAAI 2026)
+- AGREE: Attention-Grounded Retriever Enhancement (SIGIR 2026)
+- Snappy: Spatially-Grounded Document Retrieval (arXiv 2025)
+- Localization Heads in Vision-Language Models (CVPR 2025 Highlight)
+- MURE: Hierarchical Multi-Resolution Encoding for VDR (arXiv 2026, arXiv:2603.13349)
+- Hydra: Unifying Document Retrieval and Generation (arXiv 2026, arXiv:2603.28554)
+- ColParse: Layout-Informed Sub-Image Retrieval (arXiv 2026, arXiv:2603.01666)
+- Multi-Granularity Retrieval Framework (arXiv 2025, arXiv:2505.01457)
+- PixSearch: Pixel-Grounded Retrieval (arXiv 2026, arXiv:2601.19060)
+- DocLayNet: Document Layout Analysis Dataset (KDD 2022)
+- ReAlign (concurrent work, cited for completeness)
+---
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbe16c97-d894-42e9-8583-48abb6b5c34a",
+  "isSidechain": false,
+  "requestId": "req_011CbYKTLMWUNeAWn8tSKZcC",
+  "type": "assistant",
+  "uuid": "a1869785-809a-4079-ad5e-be3f31fc0438",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B2B2AaNECKostFTtfNBfGU",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2889,
+      "cache_read_input_tokens": 32230,
+      "output_tokens": 8163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8163,
+          "cache_read_input_tokens": 32230,
+          "cache_creation_input_tokens": 2889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient context to provide a thorough analysis. Let me synthesize everything.  ---  【状态】: 有发掘…",
+  "leafUuid": "a1869785-809a-4079-ad5e-be3f31fc0438",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient context to provide a thorough analysis. Let me synthesize everything.  ---  【状态】: 有发掘…",
+  "leafUuid": "a1869785-809a-4079-ad5e-be3f31fc0438",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41 · 2026-05-30T07:05:24.794Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:05:24.794Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "content": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have completed the necessary pre-research. Let me synthesize my findings and produce the analysis.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- [AGREE: Attention Grounded Enhancement for VDR](https://arxiv.org/abs/2511.13415) (SIGIR 2026): 用 MLLM 注意力作为 proxy spatial supervision，训练检索器学习\"哪些内容驱动相关性\"。仅用 attention map 而非 bounding box，改进 page-level nDCG@1 达 12.82%。是 GroundVDR \"从 proxy 升级到 direct box supervision\" claim 的关键踏板。\n- [Snappy: Spatially-Grounded Document Retrieval](https://arxiv.org/abs/2512.02660) (arXiv 2025): 基于 ColPali patch similarity 做 training-free 的 region relevance propagation，ColQwen3-4B 在 IoU@0.5 达 59.7% hit rate。无任何学习优化，纯推理时方法，是 grounding 的 lower bound baseline。\n- [PixSearch: Pixel-Grounded Retrieval](https://arxiv.org/abs/2601.19060) (arXiv 2026): 第一个端到端的 Segmenting LMM，统一了 region-level perception 和 retrieval-augmented reasoning，生成 pixel-level mask 作为 visual query。但其 retrieval 是 VQA 流程中动态触发的（generation-time retrieval），而非预索引的 standalone multi-granularity retrieval。\n- [ReAlign: Reasoning-Guided Fine-Grained Alignment](https://arxiv.org/abs/2604.07419) (arXiv 2026, April): 用 VLM reasoning 能力识别 query-related regions，生成 region-focused descriptions 作为训练信号来对齐 retriever。这是一个**并发工作**，proposal 目前未提及。关键区别：ReAlign 用 text description 作为 bridge（region → text → retrieval supervision），GroundVDR 直接通过 bounding box regression 学习空间结构。\n- [Localization Heads](https://arxiv.org/abs/2503.06287) (CVPR 2025 Highlight): 证明 VLM 中仅 ~3 个 attention heads 即可实现有竞争力的 grounding，但仅验证了自然图像。文档的 dense text、nested tables 等结构与自然场景差异大。\n- [MetaEmbed](https://arxiv.org/abs/2509.18095) (ICLR 2026 Oral): Matryoshka multi-vector retrieval，沿 token 数量维度嵌套。在 ViDoRe 上达到 SOTA。GroundVDR 提出的 spatial-semantic granularity 轴是一个新的嵌套维度。\n- [MURE](https://arxiv.org/abs/2603.13349) (arXiv 2026): 沿 input resolution 维度嵌套（multi-resolution sampling），50% token budget 下超越 ColPali。Matryoshka 在 input 端操作，GroundVDR 在 output 端操作，互不冲突。\n- [HybriDLA](https://arxiv.org/abs/2511.19919) (AAAI 2026): 混合扩散-自回归文档布局分析，DocLayNet 上 83.5% mAP。作为 GroundVDR 的 external parser baseline 是合理的。\n- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992) (arXiv 2026): Qwen3-VL-8B + bidirectional attention + hard negative mining，ViDoRe V3 nDCG@10 = 63.42，page-level SOTA。\n- 调研总结: 当前 VDR 领域的两条主线——(1) sub-page/region retrieval 正从 pipeline 方法（ColParse, Multi-Granularity Framework）向端到端方法演进，但尚无方法同时学习 retrieval + grounding；(2) grounding 在 VDR 中仍极弱（0.089 F1 vs 0.602 human），AGREE 和 Snappy 分别从 training supervision 和 inference-time heuristic 两端做了初步探索，但均未引入 learned bounding box regression。GroundVDR 的核心定位——joint learned retrieval + grounding——在调研范围内确认无直接先驱。\n\n---\n\n【发掘点 1】\n- 维度: related work 差异化\n- 内容: Proposal 遗漏了一篇重要的并发工作 **ReAlign** (arXiv 2604.07419, April 2026)。ReAlign 同样解决\"如何让检索器获得空间感知能力\"这一问题，但走了一条不同的路径：用 VLM 推理能力识别 query-relevant regions，生成 region-focused textual descriptions，然后通过 KL 散度让 retriever 的 ranking 分布对齐这些 description 的 ranking 分布。这是一种 **text-bridged indirect spatial supervision**，而 GroundVDR 是 **direct box regression spatial supervision**。Proposal 应明确讨论这个区别，并论证为什么直接的 box regression 比间接的 text-bridge 更有优势——可能的论点包括：(1) text description 是有损压缩，丢失了精确的空间坐标信息；(2) ReAlign 的 region 识别依赖外部 VLM 推理，不能端到端优化；(3) box regression 产出的 bounding box 可以直接用于下游 RAG 的 context cropping，而 text description 不行。这不仅补全了 related work，还能让 GroundVDR 的 novelty claim \"first joint learned retrieval + grounding\" 更 robust——因为 ReAlign 是最容易被审稿人拿来质疑 novelty 的并发工作。\n- 价值: 加固 Related Work 差异化，防止审稿人用 ReAlign 质疑 novelty claim。\n- 调研依据: 直接来自 ReAlign (arXiv 2604.07419) 的搜索结果。\n\n【发掘点 2】\n- 维度: 核心 claim 强化\n- 内容: Synergy hypothesis 的叙事可以更有说服力。当前 proposal 主要用 AGREE 的 12.82% 作为间接证据，但这仅仅是一个数据点。建议引入 **object detection 领域的历史类比**来强化 prior：从 R-CNN（分离的 feature extraction → proposal generation → classification）到 Faster R-CNN / YOLO（端到端联合训练 classification + localization），联合训练一致性地同时提升了分类和定位性能。GroundVDR 对 VDR 的主张本质上是相同的结构性论证——分离的 retrieval 和 grounding 管线应该被端到端统一以实现互利。这个类比在 CV 领域已被充分验证，能让审稿人更容易接受 synergy hypothesis 的合理性（提升 prior probability），而不是将其视为一个全新的、未经验证的 claim。注意：这不是让你添加实验，而是让 claim 的 narrative framing 更有说服力。\n- 价值: 提升 Novelty 维度——将 synergy hypothesis 从\"我们猜测两个 loss 互利\"升级为\"这种联合训练的互利在 detection 领域已被反复验证，GroundVDR 将同样的洞察首次引入 VDR\"。\n- 调研依据: 基于领域整体趋势判断。Object detection 从 multi-stage 到 end-to-end 的演进是 CV 领域最经典的 joint training synergy 案例，proposal 可以 leverage 这个已有的知识。\n\n【发掘点 3】\n- 维度: related work 差异化\n- 内容: 与 PixSearch 的差异化目前过于简短（仅一句\"not designed for multi-granularity retrieval benchmarks\"）。PixSearch 是调研范围内唯一一个在单模型中同时做 retrieval + spatial grounding 的工作，审稿人大概率会追问\"这和 PixSearch 有什么本质区别\"。建议从三个层面清晰区分：(1) **Retrieval 范式差异**——PixSearch 的 retrieval 是 generation-time 动态触发的（模型在 generation 过程中决定 when/what to retrieve），属于 retrieval-augmented generation 范式；GroundVDR 是 offline indexing + online query 的 standalone retrieval 范式，预先构建多粒度索引。这两种范式服务于不同的下游需求。(2) **Grounding 形式差异**——PixSearch 生成 pixel-level segmentation masks，GroundVDR 生成 bounding boxes；对于文档（矩形布局为主），bounding box 比 pixel mask 更自然、更高效。(3) **Multi-granularity 结构**——PixSearch 没有 page/region/element 的层次化嵌套结构，而 GroundVDR 的 Spatially-Typed Matryoshka 提供了 test-time 粒度控制，这是 PixSearch 不具备的。\n- 价值: 加固 Related Work 差异化和 Novelty——堵住审稿人最可能的攻击角度。\n- 调研依据: 直接来自 PixSearch (arXiv 2601.19060) 的搜索结果，确认其 retrieval 是 generation-time 动态触发 + pixel-level segmentation。\n\n【发掘点 4】\n- 维度: significance 提升\n- 内容: Proposal 当前的 significance framing 集中在两个数字（28.5pp retrieval gap 和 6.8× grounding gap），这些是有力的动机，但停留在 benchmark metric 层面。建议补充一个 **系统级 significance** 的论述：当前实现 multi-granularity document retrieval 的 SOTA（Multi-Granularity Framework, arXiv 2505.01457）需要 3 个大模型 + OCR，这在部署层面意味着什么？——3× 显存开销、pipeline latency、error cascading（OCR 错误 → 布局错误 → 检索错误）、维护复杂度。GroundVDR 将其压缩到单模型，即使 retrieval 指标持平，仅 **pipeline simplification** 本身就是对 production document RAG 的重大贡献。这把 significance 从\"提升了某个 benchmark 指标\"升级到\"改变了 multi-granularity VDR 的系统架构范式\"。审稿人对 practical impact 的关注度越来越高，这个角度能显著提升 significance 评分。\n- 价值: 提升 Significance 维度——从 benchmark improvement 到 architectural paradigm shift。\n- 调研依据: 直接来自 Multi-Granularity Framework (arXiv 2505.01457) 的信息——\"requires three separate large models (ColQwen2 + GME + Qwen2.5-VL) plus OCR, explicitly leaving end-to-end unification as an open question\"——以及 ColParse 依赖 external parser 无法联合优化的事实。\n\n【发掘点 5】\n- 维度: novelty 锐化\n- 内容: **Spatially-Typed Matryoshka** 是一个可以被更锐利地定位为独立贡献的设计。当前 proposal 将其作为 GroundVDR 系统的一个组件来介绍，但实际上它提出了一个比 GroundVDR 更通用的框架扩展：Matryoshka 嵌套从 token-count 维度（MetaEmbed）、input-resolution 维度（MURE）扩展到了 **spatial-semantic granularity 维度**，这三个维度可以正交组合。建议在 contribution list 中将 Spatially-Typed Matryoshka 显式定位为一个 **general-purpose extension to the Matryoshka retrieval framework**，并指出其不限于 VDR——任何具有层次化空间结构的检索场景（e.g., 地图检索、医学影像检索、视频帧检索）都可能受益于 granularity-typed embedding。这把一个 system component 升级为一个 conceptual contribution with broader applicability，提高了 novelty 的天花板。\n- 价值: 提升 Novelty 维度——将 Spatially-Typed Matryoshka 从\"我们系统的一个模块\"升级为\"Matryoshka 框架的新维度扩展，具有独立的方法论贡献\"。\n- 调研依据: 基于 MetaEmbed (ICLR 2026 Oral) 和 MURE (arXiv 2603.13349) 的对比——两者分别在 token-count 和 resolution 维度做 Matryoshka，GroundVDR 在 spatial-semantic granularity 维度做 Matryoshka，三者正交。\n\n---\n\nSources:\n- [AGREE: Attention Grounded Enhancement for Visual Document Retrieval](https://arxiv.org/abs/2511.13415)\n- [Snappy: Spatially-Grounded Document Retrieval](https://arxiv.org/abs/2512.02660)\n- [PixSearch: Pixel-Grounded Retrieval](https://arxiv.org/abs/2601.19060)\n- [ReAlign: Reasoning-Guided Fine-Grained Alignment](https://arxiv.org/abs/2604.07419)\n- [Localization Heads in VLMs](https://arxiv.org/abs/2503.06287)\n- [MetaEmbed: Matryoshka Multi-Vector Retrieval](https://arxiv.org/abs/2509.18095)\n- [MURE: Hierarchical Multi-Resolution Encoding](https://arxiv.org/abs/2603.13349)\n- [HybriDLA: Hybrid Document Layout Analysis](https://arxiv.org/abs/2511.19919)\n- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)\n- [ViDoRe V3 Benchmark](https://arxiv.org/abs/2601.08620)\n- [ColParse: Layout-Informed Multi-Vector Retrieval](https://arxiv.org/abs/2603.01666)\n- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)\n\n【补救 agent 本轮输出】:\nNow I have sufficient information to conduct a thorough evaluation. Let me compile my analysis.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **Nemotron ColEmbed V2** (arXiv 2026, arXiv:2602.03992): 在 ViDoRe V3 上 nDCG@10=63.42 领先。实验设计包含 3B/4B/8B 三个尺度对比、embedding 维度缩减 ablation（Table 6）、多种 seed + model merging ablation。报告了 ViDoRe V1/V2/V3 全系列结果。\n- **MURE** (arXiv 2026, arXiv:2603.13349): 在 ViDoRe 基准上做了 token budget vs. 性能的 Pareto 分析，用 50% token budget 实现强结果。与 ColPali、ColQwen2 等对比，报告了多个 ViDoRe 版本结果。\n- **ColParse** (arXiv 2026, arXiv:2603.01666): 在 10 个不同 single-vector 模型上测试，平均 nDCG@5 提升 10+，95% 存储缩减。实验横跨多个 benchmark，含存储-性能 tradeoff 分析。\n- **Multi-Granularity Framework** (arXiv 2025, arXiv:2505.01457): MMDocIR layout-level 65.56，使用 ColQwen2 + GME + Qwen2.5-VL + OCR 三模型管线。实验设计为 training-free，含 VLM-based candidate filtering ablation。\n- **AGREE** (SIGIR 2026, arXiv:2511.13415): 在 ViDoRe V2 上 nDCG@1 提升 12.82%，nDCG@5 提升 5.03%。实验含 attention 层选择 ablation、local/global loss 权重 ablation。无 bounding box 输出。\n- **Snappy** (arXiv 2025, arXiv:2512.02660): 主要在 **BBox-DocVQA** 上评估（IoU@0.5 hit rate 59.7%，mean IoU 0.569），非 ViDoRe V3。Training-free 方法，含 threshold 选择分析。\n- **MetaEmbed** (ICLR 2026 Oral, arXiv:2509.18095): 定义了 Matryoshka Multi-Vector Retrieval (MMR) 范式，G=5 group sizes，在 MMEB + ViDoRe 上评估。实验含 group size ablation、scaling 到 32B 参数。\n- **Hydra** (arXiv 2026, arXiv:2603.28554): 单模型同时支持 retrieval + generation，ViDoRe V1/V2/V3 全报告。LoRA toggle 设计，426 权重 byte-for-byte 一致验证。实验含 multi-seed 分析。\n- **Localization Heads** (CVPR 2025 Highlight): 仅用 3 个 attention head 实现 competitive grounding on **RefCOCO (自然图像)**，1000 样本 probing。未在文档图像上验证。\n- **RegionRAG** (AAAI 2026, arXiv:2510.27261): Region-level contrastive learning，R@1 提升 10.02%，VQA accuracy 提升 3.56%，用 71.42% visual tokens。含 6 个 benchmark 评估。\n\n- **调研总结**: 该领域当前实验设计标准要求：(1) 在 ViDoRe 全系列 (V1/V2/V3) + MMDocIR 上报告结果以保证可比性；(2) 提供存储-性能 tradeoff 和 token budget 分析；(3) 多 seed 实验或统计显著性；(4) 对最接近的同类方法做直接 head-to-head 对比。审稿人普遍期望 unified 模型与对应的 pipeline upper bound 和最强 single-task baseline 都做对比。\n\n---\n\n【缺陷 1】\n- 类别: baseline 不足或过时\n- 问题: **Hydra 未列入 baseline**。Proposal 的 Research Landscape 详细讨论了 Hydra（arXiv:2603.28554）是最接近的 \"unified single VLM\" 方法（单模型同时支持 retrieval 和 generation），但实验设计的 baseline 列表中完全遗漏了它。Hydra 与 GroundVDR 共享\"单模型统一多任务\"的核心定位，是审稿人最可能要求对比的 baseline。如果 GroundVDR claim \"no existing work jointly learns retrieval and spatial grounding in a single model\"，审稿人必然会问 \"vs. Hydra 这种已有的 unified model 区别在哪里，性能差多少\"。\n- 严重度: 可补救\n- 补救方案: 在 baseline 列表中增加 Hydra (4B) 作为 \"Unified single-model\" 类别的 baseline。在 ViDoRe V3 上做 head-to-head 对比（Hydra 已报告 V1/V2/V3 结果）。由于 Hydra 不做 grounding，可在 retrieval 维度对比，并在 grounding 维度标注 \"N/A\" 以凸显 GroundVDR 的额外能力。\n- 调研依据: Hydra (arXiv:2603.28554) 在 ViDoRe V1/V2/V3 上都有报告结果，是可直接获取的对比数据。\n\n【缺陷 2】\n- 类别: baseline 不足或过时\n- 问题: **MetaEmbed 未列入 baseline**。GroundVDR 的 Spatially-Typed Matryoshka Multi-Vector Embedding 直接构建在 MetaEmbed (ICLR 2026 Oral) 的 Matryoshka Multi-Vector Retrieval 范式之上，但实验设计未将 MetaEmbed 本身作为 baseline。审稿人会质疑：GroundVDR 的性能提升到底来自 Matryoshka 框架本身还是新增的 spatial type tags 和 grounding 组件？缺少 MetaEmbed baseline 将无法隔离这些贡献。\n- 严重度: 可补救\n- 补救方案: 将 MetaEmbed 加入 baseline（page-level retrieval 类别），在 ViDoRe V3 和 MMDocIR page-level 上对比。MetaEmbed 已在 ViDoRe 上有公开结果（MMEB + ViDoRe），可直接引用。若需要 MMDocIR 上的结果，可使用 MetaEmbed 开源代码（github.com/facebookresearch/MetaEmbed）复现。\n- 调研依据: MetaEmbed (ICLR 2026 Oral, arXiv:2509.18095) 在 ViDoRe 上有公开 benchmark 结果，且代码已开源。\n\n【缺陷 3】\n- 类别: 实验设计不足\n- 问题: **缺少 localization head 单独质量评估**。Proposal 明确指出 \"VLM patch embeddings 能否支持高质量 document region proposals\" 是 \"an empirical question central to the paper\"，但实验设计中没有安排对 localization head 在 DocLayNet test set 上做独立的 layout detection 评估（如 mAP@0.5, mAP@0.75）。Ablation #1 只对比了 \"learned vs. external parser\"对下游检索性能的影响，但没有单独报告 localization head 本身的 region proposal 质量。如果 localization head 的 mAP 很低但下游检索仍然不错，或者反过来，这两个信息对论文的 story 有完全不同的含义。\n- 严重度: 可补救\n- 补救方案: 增加一个独立实验：在 DocLayNet test set 上评估 localization head 的 layout detection 质量，报告标准 COCO metrics (mAP@[0.5:0.95], mAP@0.5, mAP@0.75)，并与 HybriDLA 等专用 layout detection 模型对比。这个实验计算成本极低（只需在 test set 上做 inference），但对论文 story 至关重要。\n- 调研依据: DocLayNet (KDD 2022) 的标准评估协议使用 COCO-style mAP metrics。Localization Heads (CVPR 2025) 在 RefCOCO 上评估了自然图像 grounding，但未涉及文档图像——GroundVDR 需要填补这个验证空白。\n\n【缺陷 4】\n- 类别: 实验设计不足\n- 问题: **未报告 ViDoRe V1/V2 结果，可比性受损**。调研发现几乎所有主流 baseline（Nemotron ColEmbed V2、MURE、ColParse、Hydra、MetaEmbed）都在 ViDoRe V1 和 V2 上报告了结果。Proposal 仅评估 ViDoRe V3 和 MMDocIR。由于 V3 是 2026 年新 benchmark，部分早期 baseline（如 ColPali、ColQwen2）的 V3 结果可能需要自行复现，而 V1/V2 上有大量已发表的可直接引用的结果，便于审稿人快速验证 GroundVDR 的 page-level retrieval 竞争力。\n- 严重度: 可补救\n- 补救方案: 补充 ViDoRe V1 和 V2 的 nDCG@5/10 结果。这几乎零额外成本——同一个模型只需在 V1/V2 query 集上做 inference。这也能展示 GroundVDR 在不同难度 benchmark 上的 robustness。\n- 调研依据: Nemotron ColEmbed V2、Hydra、MetaEmbed 等所有主要 baseline 均报告 ViDoRe V1/V2/V3 三版结果。\n\n【缺陷 5】\n- 类别: 可行性问题\n- 问题: **Compute budget 存在占位符，未给出具体估算**。Proposal 写 \"backbone LoRA fine-tuning (~X H100-hours) + localization head full training (~Y H100-hours)\"，X 和 Y 仍是占位符。总量 \"~200 H100-hours\" 虽然已给出，但缺乏 breakdown 的可信度评估。具体问题：(a) Qwen3-VL-8B + LoRA r=64 + bidirectional attention 的训练在 MMDocIR 173K 样本上的实际开销需要估算；(b) 自回归 localization head 的全参数训练（非 LoRA）在 DocLayNet 80K 样本上的开销；(c) joint fine-tuning 阶段两个 loss 同时训练的内存开销（8B 模型 + localization head + 两个 loss 的梯度）。\n- 严重度: 可补救\n- 补救方案: 基于以下参数做具体估算：(a) Nemotron ColEmbed V2 报告其 8B 模型训练规模可参考；(b) LoRA r=64 在 8B 模型上的可训练参数约 100-200M，单 epoch on 173K 样本约需 Y H100-hours（可用 MetaEmbed 的训练成本做锚定参考）；(c) 自回归 localization head 的参数量需明确（是 transformer decoder？几层？多少参数？）以便估算。建议在 proposal 中将占位符替换为基于 FLOPs 的 bottom-up 估算。\n- 调研依据: Nemotron ColEmbed V2 报告了其训练配置细节；MetaEmbed 报告了 contrastive training 设置可做参考。\n\n【缺陷 6】\n- 类别: 评估方案缺陷\n- 问题: **Snappy 对比的 benchmark 对齐问题**。Proposal 将 Snappy 列为 grounding baseline，计划在 ViDoRe V3 上对比。但调研发现 Snappy 的主要实验在 **BBox-DocVQA** 上报告（IoU@0.5 hit rate 59.7%，mean IoU 0.569），而非 ViDoRe V3。如果 Snappy 没有 ViDoRe V3 上的已发表结果，则需要自行复现。Snappy 是 training-free 方法，复现相对容易，但需要确认技术可行性和 benchmark 指标的对齐（Snappy 报告 \"hit rate at IoU@0.5\"，ViDoRe V3 用 \"IoU threshold-based F1\"——这两个指标不同）。\n- 严重度: 可补救\n- 补救方案: (a) 在 ViDoRe V3 上复现 Snappy（training-free，仅需在 ColQwen 模型上做 inference + patch relevance propagation，成本低）；(b) 如果 BBox-DocVQA 也是社区常用 grounding benchmark，可考虑也在 BBox-DocVQA 上报告 GroundVDR 的 grounding 结果，增加一个对比维度；(c) 确保 grounding 指标定义一致（统一用 ViDoRe V3 定义的 IoU/Dice/F1 评估所有方法）。\n- 调研依据: Snappy (arXiv:2512.02660) 的实验主要在 BBox-DocVQA 上进行，ViDoRe V3 结果需要确认是否已有。\n\n【缺陷 7】\n- 类别: 实验设计不足\n- 问题: **缺少 localization head 推理延迟分析**。Proposal 的推理管线是 4 步串行流程，其中步骤 2（patch embeddings → localization head autoregressive decoding → region bounding boxes）涉及自回归解码，可能成为延迟瓶颈。对于包含 20+ 个 region 的复杂文档页面，逐 token 解码 4 个坐标 × N 个 region 的延迟可能显著。Proposal 在 Efficiency 指标中提到了 \"query latency (ms)\"，但未单独分析 localization head 的解码延迟。\n- 严重度: 可补救\n- 补救方案: 在效率分析中增加 localization head 解码延迟的 breakdown：报告 (a) backbone encoding 时间 vs. (b) localization head 解码时间 vs. (c) embedding pooling/indexing 时间。并报告不同复杂度文档（简单布局 vs. 复杂多栏多表格布局）下的延迟差异。如果自回归解码确实是瓶颈，可讨论并行解码替代方案（如 LocateAnything 的 Parallel Box Decoding）作为 future work 或 ablation。\n- 调研依据: LocateAnything 提出了 Parallel Box Decoding 作为自回归坐标解码的替代方案；ColParse 报告了存储-性能 tradeoff 分析作为效率评估标准。\n\n【缺陷 8】\n- 类别: 实验设计不足\n- 问题: **缺少多 seed / 统计显著性报告**。调研发现 Nemotron ColEmbed V2 使用 4 个 seed 训练并做 model merging，Hydra 指出需要 multi-seed 实验确认结果。Proposal 未提及是否会进行多次训练以报告方差或统计显著性。对于 ~200 H100-hours 的训练规模，多 seed 训练成本不小（3 seeds = 600 H100-hours），但至少应在关键 ablation（如 ablation #3 joint vs. separate training）上报告 2-3 runs 的均值和标准差，否则审稿人可能质疑 synergy hypothesis 的验证是否可靠。\n- 严重度: 可补救\n- 补救方案: (a) 完整模型至少 2 seeds（total ~400 H100-hours），报告均值 ± 标准差；(b) 对于计算受限的情况，至少在 ablation #3（synergy hypothesis 的核心验证实验）上做 3 seeds，在 main results 上做 2 seeds；(c) 补充 paired significance test（如 bootstrap resampling on query-level nDCG scores）来验证 joint > separate 的显著性。\n- 调研依据: Nemotron ColEmbed V2 使用 4 seeds + model merging；Hydra 明确指出 multi-seed 验证的必要性。\n\n【缺陷 9】\n- 类别: ablation 不完整\n- 问题: **缺少 token budget / 存储-性能 tradeoff 的系统分析**。Proposal 提到了 \"storage cost (embeddings per page × dimension, bytes per page)\" 作为指标，但未设计专门的 ablation 来分析不同 Matryoshka group size 下的 retrieval 性能 vs. token budget tradeoff。MetaEmbed 用 G=5 个 group sizes 做了系统的 tradeoff 分析，MURE 展示了 50% token budget 下的性能，ColParse 展示了 95% 存储缩减。GroundVDR 的 Spatially-Typed Matryoshka 引入了新的 nesting 轴（spatial-semantic granularity），更应该展示在不同 nesting 配置下的 performance-storage Pareto 曲线。\n- 严重度: 可补救\n- 补救方案: 增加一个 ablation：在 Matryoshka 的不同 truncation 级别（如只用 page-level embeddings, page+region, page+region+element）报告 retrieval 性能和存储成本，绘制 Pareto 曲线。与 MetaEmbed 的 group-size tradeoff 和 MURE 的 resolution tradeoff 做对比。这个实验成本极低（同一模型不同 truncation 只需 inference）。\n- 调研依据: MetaEmbed (ICLR 2026 Oral) 用 G=5 group sizes 做了系统 tradeoff 分析；MURE 展示了 50% token budget 性能；ColParse 展示了 95% 存储缩减。这些是该领域的实验设计标准。\n\n---\n\n**总结**: 上述 9 个缺陷均为可补救问题，无方向性致命缺陷。Proposal 的 ablation 设计核心（尤其是 ablation #3 直接验证 synergy hypothesis）非常扎实，5 个 ablation 覆盖了主要组件。主要问题集中在：(1) 2 个关键 baseline 遗漏（Hydra、MetaEmbed）；(2) localization head 缺乏独立评估；(3) 效率/tradeoff 分析不够系统。所有补救方案的额外计算成本都相对较低（主要是额外 inference 和复现 training-free 方法），不会显著改变整体 200 H100-hours 的预算框架（除了缺陷 8 的多 seed 训练，可能将总预算推高到 400-600 H100-hours）。\n\nSources:\n- [MMDocIR: Benchmarking Multi-Modal Retrieval for Long Documents](https://arxiv.org/html/2501.08828v3)\n- [ViDoRe V3](https://arxiv.org/abs/2601.08620)\n- [MURE: Hierarchical Multi-Resolution Encoding](https://arxiv.org/abs/2603.13349)\n- [ColParse: Beyond the Grid](https://arxiv.org/abs/2603.01666)\n- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)\n- [AGREE: Attention Grounded Enhancement](https://arxiv.org/abs/2511.13415)\n- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)\n- [Snappy: Spatially-Grounded Document Retrieval](https://arxiv.org/abs/2512.02660)\n- [MetaEmbed (ICLR 2026 Oral)](https://arxiv.org/abs/2509.18095)\n- [Localization Heads (CVPR 2025 Highlight)](https://github.com/seilk/LocalizationHeads)\n- [RegionRAG (AAAI 2026)](https://arxiv.org/abs/2510.27261)\n- [DocLayNet](https://arxiv.org/abs/2206.01062)\n- [PixSearch: Pixel-Grounded Retrieval](https://arxiv.org/abs/2601.19060)\n- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42 · 2026-05-30T07:05:24.795Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:05:24.795Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+## Round 3
+
+21 recorded events
+
+### User
+
+_source line 43 · 2026-05-30T07:05:24.822Z_
+
+【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。
+
+【发掘 agent 本轮输出】:
+Now I have completed the necessary pre-research. Let me synthesize my findings and produce the analysis.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- [AGREE: Attention Grounded Enhancement for VDR](https://arxiv.org/abs/2511.13415) (SIGIR 2026): 用 MLLM 注意力作为 proxy spatial supervision，训练检索器学习"哪些内容驱动相关性"。仅用 attention map 而非 bounding box，改进 page-level nDCG@1 达 12.82%。是 GroundVDR "从 proxy 升级到 direct box supervision" claim 的关键踏板。
+- [Snappy: Spatially-Grounded Document Retrieval](https://arxiv.org/abs/2512.02660) (arXiv 2025): 基于 ColPali patch similarity 做 training-free 的 region relevance propagation，ColQwen3-4B 在 IoU@0.5 达 59.7% hit rate。无任何学习优化，纯推理时方法，是 grounding 的 lower bound baseline。
+- [PixSearch: Pixel-Grounded Retrieval](https://arxiv.org/abs/2601.19060) (arXiv 2026): 第一个端到端的 Segmenting LMM，统一了 region-level perception 和 retrieval-augmented reasoning，生成 pixel-level mask 作为 visual query。但其 retrieval 是 VQA 流程中动态触发的（generation-time retrieval），而非预索引的 standalone multi-granularity retrieval。
+- [ReAlign: Reasoning-Guided Fine-Grained Alignment](https://arxiv.org/abs/2604.07419) (arXiv 2026, April): 用 VLM reasoning 能力识别 query-related regions，生成 region-focused descriptions 作为训练信号来对齐 retriever。这是一个**并发工作**，proposal 目前未提及。关键区别：ReAlign 用 text description 作为 bridge（region → text → retrieval supervision），GroundVDR 直接通过 bounding box regression 学习空间结构。
+- [Localization Heads](https://arxiv.org/abs/2503.06287) (CVPR 2025 Highlight): 证明 VLM 中仅 ~3 个 attention heads 即可实现有竞争力的 grounding，但仅验证了自然图像。文档的 dense text、nested tables 等结构与自然场景差异大。
+- [MetaEmbed](https://arxiv.org/abs/2509.18095) (ICLR 2026 Oral): Matryoshka multi-vector retrieval，沿 token 数量维度嵌套。在 ViDoRe 上达到 SOTA。GroundVDR 提出的 spatial-semantic granularity 轴是一个新的嵌套维度。
+- [MURE](https://arxiv.org/abs/2603.13349) (arXiv 2026): 沿 input resolution 维度嵌套（multi-resolution sampling），50% token budget 下超越 ColPali。Matryoshka 在 input 端操作，GroundVDR 在 output 端操作，互不冲突。
+- [HybriDLA](https://arxiv.org/abs/2511.19919) (AAAI 2026): 混合扩散-自回归文档布局分析，DocLayNet 上 83.5% mAP。作为 GroundVDR 的 external parser baseline 是合理的。
+- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992) (arXiv 2026): Qwen3-VL-8B + bidirectional attention + hard negative mining，ViDoRe V3 nDCG@10 = 63.42，page-level SOTA。
+- 调研总结: 当前 VDR 领域的两条主线——(1) sub-page/region retrieval 正从 pipeline 方法（ColParse, Multi-Granularity Framework）向端到端方法演进，但尚无方法同时学习 retrieval + grounding；(2) grounding 在 VDR 中仍极弱（0.089 F1 vs 0.602 human），AGREE 和 Snappy 分别从 training supervision 和 inference-time heuristic 两端做了初步探索，但均未引入 learned bounding box regression。GroundVDR 的核心定位——joint learned retrieval + grounding——在调研范围内确认无直接先驱。
+
+---
+
+【发掘点 1】
+- 维度: related work 差异化
+- 内容: Proposal 遗漏了一篇重要的并发工作 **ReAlign** (arXiv 2604.07419, April 2026)。ReAlign 同样解决"如何让检索器获得空间感知能力"这一问题，但走了一条不同的路径：用 VLM 推理能力识别 query-relevant regions，生成 region-focused textual descriptions，然后通过 KL 散度让 retriever 的 ranking 分布对齐这些 description 的 ranking 分布。这是一种 **text-bridged indirect spatial supervision**，而 GroundVDR 是 **direct box regression spatial supervision**。Proposal 应明确讨论这个区别，并论证为什么直接的 box regression 比间接的 text-bridge 更有优势——可能的论点包括：(1) text description 是有损压缩，丢失了精确的空间坐标信息；(2) ReAlign 的 region 识别依赖外部 VLM 推理，不能端到端优化；(3) box regression 产出的 bounding box 可以直接用于下游 RAG 的 context cropping，而 text description 不行。这不仅补全了 related work，还能让 GroundVDR 的 novelty claim "first joint learned retrieval + grounding" 更 robust——因为 ReAlign 是最容易被审稿人拿来质疑 novelty 的并发工作。
+- 价值: 加固 Related Work 差异化，防止审稿人用 ReAlign 质疑 novelty claim。
+- 调研依据: 直接来自 ReAlign (arXiv 2604.07419) 的搜索结果。
+
+【发掘点 2】
+- 维度: 核心 claim 强化
+- 内容: Synergy hypothesis 的叙事可以更有说服力。当前 proposal 主要用 AGREE 的 12.82% 作为间接证据，但这仅仅是一个数据点。建议引入 **object detection 领域的历史类比**来强化 prior：从 R-CNN（分离的 feature extraction → proposal generation → classification）到 Faster R-CNN / YOLO（端到端联合训练 classification + localization），联合训练一致性地同时提升了分类和定位性能。GroundVDR 对 VDR 的主张本质上是相同的结构性论证——分离的 retrieval 和 grounding 管线应该被端到端统一以实现互利。这个类比在 CV 领域已被充分验证，能让审稿人更容易接受 synergy hypothesis 的合理性（提升 prior probability），而不是将其视为一个全新的、未经验证的 claim。注意：这不是让你添加实验，而是让 claim 的 narrative framing 更有说服力。
+- 价值: 提升 Novelty 维度——将 synergy hypothesis 从"我们猜测两个 loss 互利"升级为"这种联合训练的互利在 detection 领域已被反复验证，GroundVDR 将同样的洞察首次引入 VDR"。
+- 调研依据: 基于领域整体趋势判断。Object detection 从 multi-stage 到 end-to-end 的演进是 CV 领域最经典的 joint training synergy 案例，proposal 可以 leverage 这个已有的知识。
+
+【发掘点 3】
+- 维度: related work 差异化
+- 内容: 与 PixSearch 的差异化目前过于简短（仅一句"not designed for multi-granularity retrieval benchmarks"）。PixSearch 是调研范围内唯一一个在单模型中同时做 retrieval + spatial grounding 的工作，审稿人大概率会追问"这和 PixSearch 有什么本质区别"。建议从三个层面清晰区分：(1) **Retrieval 范式差异**——PixSearch 的 retrieval 是 generation-time 动态触发的（模型在 generation 过程中决定 when/what to retrieve），属于 retrieval-augmented generation 范式；GroundVDR 是 offline indexing + online query 的 standalone retrieval 范式，预先构建多粒度索引。这两种范式服务于不同的下游需求。(2) **Grounding 形式差异**——PixSearch 生成 pixel-level segmentation masks，GroundVDR 生成 bounding boxes；对于文档（矩形布局为主），bounding box 比 pixel mask 更自然、更高效。(3) **Multi-granularity 结构**——PixSearch 没有 page/region/element 的层次化嵌套结构，而 GroundVDR 的 Spatially-Typed Matryoshka 提供了 test-time 粒度控制，这是 PixSearch 不具备的。
+- 价值: 加固 Related Work 差异化和 Novelty——堵住审稿人最可能的攻击角度。
+- 调研依据: 直接来自 PixSearch (arXiv 2601.19060) 的搜索结果，确认其 retrieval 是 generation-time 动态触发 + pixel-level segmentation。
+
+【发掘点 4】
+- 维度: significance 提升
+- 内容: Proposal 当前的 significance framing 集中在两个数字（28.5pp retrieval gap 和 6.8× grounding gap），这些是有力的动机，但停留在 benchmark metric 层面。建议补充一个 **系统级 significance** 的论述：当前实现 multi-granularity document retrieval 的 SOTA（Multi-Granularity Framework, arXiv 2505.01457）需要 3 个大模型 + OCR，这在部署层面意味着什么？——3× 显存开销、pipeline latency、error cascading（OCR 错误 → 布局错误 → 检索错误）、维护复杂度。GroundVDR 将其压缩到单模型，即使 retrieval 指标持平，仅 **pipeline simplification** 本身就是对 production document RAG 的重大贡献。这把 significance 从"提升了某个 benchmark 指标"升级到"改变了 multi-granularity VDR 的系统架构范式"。审稿人对 practical impact 的关注度越来越高，这个角度能显著提升 significance 评分。
+- 价值: 提升 Significance 维度——从 benchmark improvement 到 architectural paradigm shift。
+- 调研依据: 直接来自 Multi-Granularity Framework (arXiv 2505.01457) 的信息——"requires three separate large models (ColQwen2 + GME + Qwen2.5-VL) plus OCR, explicitly leaving end-to-end unification as an open question"——以及 ColParse 依赖 external parser 无法联合优化的事实。
+
+【发掘点 5】
+- 维度: novelty 锐化
+- 内容: **Spatially-Typed Matryoshka** 是一个可以被更锐利地定位为独立贡献的设计。当前 proposal 将其作为 GroundVDR 系统的一个组件来介绍，但实际上它提出了一个比 GroundVDR 更通用的框架扩展：Matryoshka 嵌套从 token-count 维度（MetaEmbed）、input-resolution 维度（MURE）扩展到了 **spatial-semantic granularity 维度**，这三个维度可以正交组合。建议在 contribution list 中将 Spatially-Typed Matryoshka 显式定位为一个 **general-purpose extension to the Matryoshka retrieval framework**，并指出其不限于 VDR——任何具有层次化空间结构的检索场景（e.g., 地图检索、医学影像检索、视频帧检索）都可能受益于 granularity-typed embedding。这把一个 system component 升级为一个 conceptual contribution with broader applicability，提高了 novelty 的天花板。
+- 价值: 提升 Novelty 维度——将 Spatially-Typed Matryoshka 从"我们系统的一个模块"升级为"Matryoshka 框架的新维度扩展，具有独立的方法论贡献"。
+- 调研依据: 基于 MetaEmbed (ICLR 2026 Oral) 和 MURE (arXiv 2603.13349) 的对比——两者分别在 token-count 和 resolution 维度做 Matryoshka，GroundVDR 在 spatial-semantic granularity 维度做 Matryoshka，三者正交。
+
+---
+
+Sources:
+- [AGREE: Attention Grounded Enhancement for Visual Document Retrieval](https://arxiv.org/abs/2511.13415)
+- [Snappy: Spatially-Grounded Document Retrieval](https://arxiv.org/abs/2512.02660)
+- [PixSearch: Pixel-Grounded Retrieval](https://arxiv.org/abs/2601.19060)
+- [ReAlign: Reasoning-Guided Fine-Grained Alignment](https://arxiv.org/abs/2604.07419)
+- [Localization Heads in VLMs](https://arxiv.org/abs/2503.06287)
+- [MetaEmbed: Matryoshka Multi-Vector Retrieval](https://arxiv.org/abs/2509.18095)
+- [MURE: Hierarchical Multi-Resolution Encoding](https://arxiv.org/abs/2603.13349)
+- [HybriDLA: Hybrid Document Layout Analysis](https://arxiv.org/abs/2511.19919)
+- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)
+- [ViDoRe V3 Benchmark](https://arxiv.org/abs/2601.08620)
+- [ColParse: Layout-Informed Multi-Vector Retrieval](https://arxiv.org/abs/2603.01666)
+- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)
+
+【补救 agent 本轮输出】:
+Now I have sufficient information to conduct a thorough evaluation. Let me compile my analysis.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **Nemotron ColEmbed V2** (arXiv 2026, arXiv:2602.03992): 在 ViDoRe V3 上 nDCG@10=63.42 领先。实验设计包含 3B/4B/8B 三个尺度对比、embedding 维度缩减 ablation（Table 6）、多种 seed + model merging ablation。报告了 ViDoRe V1/V2/V3 全系列结果。
+- **MURE** (arXiv 2026, arXiv:2603.13349): 在 ViDoRe 基准上做了 token budget vs. 性能的 Pareto 分析，用 50% token budget 实现强结果。与 ColPali、ColQwen2 等对比，报告了多个 ViDoRe 版本结果。
+- **ColParse** (arXiv 2026, arXiv:2603.01666): 在 10 个不同 single-vector 模型上测试，平均 nDCG@5 提升 10+，95% 存储缩减。实验横跨多个 benchmark，含存储-性能 tradeoff 分析。
+- **Multi-Granularity Framework** (arXiv 2025, arXiv:2505.01457): MMDocIR layout-level 65.56，使用 ColQwen2 + GME + Qwen2.5-VL + OCR 三模型管线。实验设计为 training-free，含 VLM-based candidate filtering ablation。
+- **AGREE** (SIGIR 2026, arXiv:2511.13415): 在 ViDoRe V2 上 nDCG@1 提升 12.82%，nDCG@5 提升 5.03%。实验含 attention 层选择 ablation、local/global loss 权重 ablation。无 bounding box 输出。
+- **Snappy** (arXiv 2025, arXiv:2512.02660): 主要在 **BBox-DocVQA** 上评估（IoU@0.5 hit rate 59.7%，mean IoU 0.569），非 ViDoRe V3。Training-free 方法，含 threshold 选择分析。
+- **MetaEmbed** (ICLR 2026 Oral, arXiv:2509.18095): 定义了 Matryoshka Multi-Vector Retrieval (MMR) 范式，G=5 group sizes，在 MMEB + ViDoRe 上评估。实验含 group size ablation、scaling 到 32B 参数。
+- **Hydra** (arXiv 2026, arXiv:2603.28554): 单模型同时支持 retrieval + generation，ViDoRe V1/V2/V3 全报告。LoRA toggle 设计，426 权重 byte-for-byte 一致验证。实验含 multi-seed 分析。
+- **Localization Heads** (CVPR 2025 Highlight): 仅用 3 个 attention head 实现 competitive grounding on **RefCOCO (自然图像)**，1000 样本 probing。未在文档图像上验证。
+- **RegionRAG** (AAAI 2026, arXiv:2510.27261): Region-level contrastive learning，R@1 提升 10.02%，VQA accuracy 提升 3.56%，用 71.42% visual tokens。含 6 个 benchmark 评估。
+
+- **调研总结**: 该领域当前实验设计标准要求：(1) 在 ViDoRe 全系列 (V1/V2/V3) + MMDocIR 上报告结果以保证可比性；(2) 提供存储-性能 tradeoff 和 token budget 分析；(3) 多 seed 实验或统计显著性；(4) 对最接近的同类方法做直接 head-to-head 对比。审稿人普遍期望 unified 模型与对应的 pipeline upper bound 和最强 single-task baseline 都做对比。
+
+---
+
+【缺陷 1】
+- 类别: baseline 不足或过时
+- 问题: **Hydra 未列入 baseline**。Proposal 的 Research Landscape 详细讨论了 Hydra（arXiv:2603.28554）是最接近的 "unified single VLM" 方法（单模型同时支持 retrieval 和 generation），但实验设计的 baseline 列表中完全遗漏了它。Hydra 与 GroundVDR 共享"单模型统一多任务"的核心定位，是审稿人最可能要求对比的 baseline。如果 GroundVDR claim "no existing work jointly learns retrieval and spatial grounding in a single model"，审稿人必然会问 "vs. Hydra 这种已有的 unified model 区别在哪里，性能差多少"。
+- 严重度: 可补救
+- 补救方案: 在 baseline 列表中增加 Hydra (4B) 作为 "Unified single-model" 类别的 baseline。在 ViDoRe V3 上做 head-to-head 对比（Hydra 已报告 V1/V2/V3 结果）。由于 Hydra 不做 grounding，可在 retrieval 维度对比，并在 grounding 维度标注 "N/A" 以凸显 GroundVDR 的额外能力。
+- 调研依据: Hydra (arXiv:2603.28554) 在 ViDoRe V1/V2/V3 上都有报告结果，是可直接获取的对比数据。
+
+【缺陷 2】
+- 类别: baseline 不足或过时
+- 问题: **MetaEmbed 未列入 baseline**。GroundVDR 的 Spatially-Typed Matryoshka Multi-Vector Embedding 直接构建在 MetaEmbed (ICLR 2026 Oral) 的 Matryoshka Multi-Vector Retrieval 范式之上，但实验设计未将 MetaEmbed 本身作为 baseline。审稿人会质疑：GroundVDR 的性能提升到底来自 Matryoshka 框架本身还是新增的 spatial type tags 和 grounding 组件？缺少 MetaEmbed baseline 将无法隔离这些贡献。
+- 严重度: 可补救
+- 补救方案: 将 MetaEmbed 加入 baseline（page-level retrieval 类别），在 ViDoRe V3 和 MMDocIR page-level 上对比。MetaEmbed 已在 ViDoRe 上有公开结果（MMEB + ViDoRe），可直接引用。若需要 MMDocIR 上的结果，可使用 MetaEmbed 开源代码（github.com/facebookresearch/MetaEmbed）复现。
+- 调研依据: MetaEmbed (ICLR 2026 Oral, arXiv:2509.18095) 在 ViDoRe 上有公开 benchmark 结果，且代码已开源。
+
+【缺陷 3】
+- 类别: 实验设计不足
+- 问题: **缺少 localization head 单独质量评估**。Proposal 明确指出 "VLM patch embeddings 能否支持高质量 document region proposals" 是 "an empirical question central to the paper"，但实验设计中没有安排对 localization head 在 DocLayNet test set 上做独立的 layout detection 评估（如 mAP@0.5, mAP@0.75）。Ablation #1 只对比了 "learned vs. external parser"对下游检索性能的影响，但没有单独报告 localization head 本身的 region proposal 质量。如果 localization head 的 mAP 很低但下游检索仍然不错，或者反过来，这两个信息对论文的 story 有完全不同的含义。
+- 严重度: 可补救
+- 补救方案: 增加一个独立实验：在 DocLayNet test set 上评估 localization head 的 layout detection 质量，报告标准 COCO metrics (mAP@[0.5:0.95], mAP@0.5, mAP@0.75)，并与 HybriDLA 等专用 layout detection 模型对比。这个实验计算成本极低（只需在 test set 上做 inference），但对论文 story 至关重要。
+- 调研依据: DocLayNet (KDD 2022) 的标准评估协议使用 COCO-style mAP metrics。Localization Heads (CVPR 2025) 在 RefCOCO 上评估了自然图像 grounding，但未涉及文档图像——GroundVDR 需要填补这个验证空白。
+
+【缺陷 4】
+- 类别: 实验设计不足
+- 问题: **未报告 ViDoRe V1/V2 结果，可比性受损**。调研发现几乎所有主流 baseline（Nemotron ColEmbed V2、MURE、ColParse、Hydra、MetaEmbed）都在 ViDoRe V1 和 V2 上报告了结果。Proposal 仅评估 ViDoRe V3 和 MMDocIR。由于 V3 是 2026 年新 benchmark，部分早期 baseline（如 ColPali、ColQwen2）的 V3 结果可能需要自行复现，而 V1/V2 上有大量已发表的可直接引用的结果，便于审稿人快速验证 GroundVDR 的 page-level retrieval 竞争力。
+- 严重度: 可补救
+- 补救方案: 补充 ViDoRe V1 和 V2 的 nDCG@5/10 结果。这几乎零额外成本——同一个模型只需在 V1/V2 query 集上做 inference。这也能展示 GroundVDR 在不同难度 benchmark 上的 robustness。
+- 调研依据: Nemotron ColEmbed V2、Hydra、MetaEmbed 等所有主要 baseline 均报告 ViDoRe V1/V2/V3 三版结果。
+
+【缺陷 5】
+- 类别: 可行性问题
+- 问题: **Compute budget 存在占位符，未给出具体估算**。Proposal 写 "backbone LoRA fine-tuning (~X H100-hours) + localization head full training (~Y H100-hours)"，X 和 Y 仍是占位符。总量 "~200 H100-hours" 虽然已给出，但缺乏 breakdown 的可信度评估。具体问题：(a) Qwen3-VL-8B + LoRA r=64 + bidirectional attention 的训练在 MMDocIR 173K 样本上的实际开销需要估算；(b) 自回归 localization head 的全参数训练（非 LoRA）在 DocLayNet 80K 样本上的开销；(c) joint fine-tuning 阶段两个 loss 同时训练的内存开销（8B 模型 + localization head + 两个 loss 的梯度）。
+- 严重度: 可补救
+- 补救方案: 基于以下参数做具体估算：(a) Nemotron ColEmbed V2 报告其 8B 模型训练规模可参考；(b) LoRA r=64 在 8B 模型上的可训练参数约 100-200M，单 epoch on 173K 样本约需 Y H100-hours（可用 MetaEmbed 的训练成本做锚定参考）；(c) 自回归 localization head 的参数量需明确（是 transformer decoder？几层？多少参数？）以便估算。建议在 proposal 中将占位符替换为基于 FLOPs 的 bottom-up 估算。
+- 调研依据: Nemotron ColEmbed V2 报告了其训练配置细节；MetaEmbed 报告了 contrastive training 设置可做参考。
+
+【缺陷 6】
+- 类别: 评估方案缺陷
+- 问题: **Snappy 对比的 benchmark 对齐问题**。Proposal 将 Snappy 列为 grounding baseline，计划在 ViDoRe V3 上对比。但调研发现 Snappy 的主要实验在 **BBox-DocVQA** 上报告（IoU@0.5 hit rate 59.7%，mean IoU 0.569），而非 ViDoRe V3。如果 Snappy 没有 ViDoRe V3 上的已发表结果，则需要自行复现。Snappy 是 training-free 方法，复现相对容易，但需要确认技术可行性和 benchmark 指标的对齐（Snappy 报告 "hit rate at IoU@0.5"，ViDoRe V3 用 "IoU threshold-based F1"——这两个指标不同）。
+- 严重度: 可补救
+- 补救方案: (a) 在 ViDoRe V3 上复现 Snappy（training-free，仅需在 ColQwen 模型上做 inference + patch relevance propagation，成本低）；(b) 如果 BBox-DocVQA 也是社区常用 grounding benchmark，可考虑也在 BBox-DocVQA 上报告 GroundVDR 的 grounding 结果，增加一个对比维度；(c) 确保 grounding 指标定义一致（统一用 ViDoRe V3 定义的 IoU/Dice/F1 评估所有方法）。
+- 调研依据: Snappy (arXiv:2512.02660) 的实验主要在 BBox-DocVQA 上进行，ViDoRe V3 结果需要确认是否已有。
+
+【缺陷 7】
+- 类别: 实验设计不足
+- 问题: **缺少 localization head 推理延迟分析**。Proposal 的推理管线是 4 步串行流程，其中步骤 2（patch embeddings → localization head autoregressive decoding → region bounding boxes）涉及自回归解码，可能成为延迟瓶颈。对于包含 20+ 个 region 的复杂文档页面，逐 token 解码 4 个坐标 × N 个 region 的延迟可能显著。Proposal 在 Efficiency 指标中提到了 "query latency (ms)"，但未单独分析 localization head 的解码延迟。
+- 严重度: 可补救
+- 补救方案: 在效率分析中增加 localization head 解码延迟的 breakdown：报告 (a) backbone encoding 时间 vs. (b) localization head 解码时间 vs. (c) embedding pooling/indexing 时间。并报告不同复杂度文档（简单布局 vs. 复杂多栏多表格布局）下的延迟差异。如果自回归解码确实是瓶颈，可讨论并行解码替代方案（如 LocateAnything 的 Parallel Box Decoding）作为 future work 或 ablation。
+- 调研依据: LocateAnything 提出了 Parallel Box Decoding 作为自回归坐标解码的替代方案；ColParse 报告了存储-性能 tradeoff 分析作为效率评估标准。
+
+【缺陷 8】
+- 类别: 实验设计不足
+- 问题: **缺少多 seed / 统计显著性报告**。调研发现 Nemotron ColEmbed V2 使用 4 个 seed 训练并做 model merging，Hydra 指出需要 multi-seed 实验确认结果。Proposal 未提及是否会进行多次训练以报告方差或统计显著性。对于 ~200 H100-hours 的训练规模，多 seed 训练成本不小（3 seeds = 600 H100-hours），但至少应在关键 ablation（如 ablation #3 joint vs. separate training）上报告 2-3 runs 的均值和标准差，否则审稿人可能质疑 synergy hypothesis 的验证是否可靠。
+- 严重度: 可补救
+- 补救方案: (a) 完整模型至少 2 seeds（total ~400 H100-hours），报告均值 ± 标准差；(b) 对于计算受限的情况，至少在 ablation #3（synergy hypothesis 的核心验证实验）上做 3 seeds，在 main results 上做 2 seeds；(c) 补充 paired significance test（如 bootstrap resampling on query-level nDCG scores）来验证 joint > separate 的显著性。
+- 调研依据: Nemotron ColEmbed V2 使用 4 seeds + model merging；Hydra 明确指出 multi-seed 验证的必要性。
+
+【缺陷 9】
+- 类别: ablation 不完整
+- 问题: **缺少 token budget / 存储-性能 tradeoff 的系统分析**。Proposal 提到了 "storage cost (embeddings per page × dimension, bytes per page)" 作为指标，但未设计专门的 ablation 来分析不同 Matryoshka group size 下的 retrieval 性能 vs. token budget tradeoff。MetaEmbed 用 G=5 个 group sizes 做了系统的 tradeoff 分析，MURE 展示了 50% token budget 下的性能，ColParse 展示了 95% 存储缩减。GroundVDR 的 Spatially-Typed Matryoshka 引入了新的 nesting 轴（spatial-semantic granularity），更应该展示在不同 nesting 配置下的 performance-storage Pareto 曲线。
+- 严重度: 可补救
+- 补救方案: 增加一个 ablation：在 Matryoshka 的不同 truncation 级别（如只用 page-level embeddings, page+region, page+region+element）报告 retrieval 性能和存储成本，绘制 Pareto 曲线。与 MetaEmbed 的 group-size tradeoff 和 MURE 的 resolution tradeoff 做对比。这个实验成本极低（同一模型不同 truncation 只需 inference）。
+- 调研依据: MetaEmbed (ICLR 2026 Oral) 用 G=5 group sizes 做了系统 tradeoff 分析；MURE 展示了 50% token budget 性能；ColParse 展示了 95% 存储缩减。这些是该领域的实验设计标准。
+
+---
+
+**总结**: 上述 9 个缺陷均为可补救问题，无方向性致命缺陷。Proposal 的 ablation 设计核心（尤其是 ablation #3 直接验证 synergy hypothesis）非常扎实，5 个 ablation 覆盖了主要组件。主要问题集中在：(1) 2 个关键 baseline 遗漏（Hydra、MetaEmbed）；(2) localization head 缺乏独立评估；(3) 效率/tradeoff 分析不够系统。所有补救方案的额外计算成本都相对较低（主要是额外 inference 和复现 training-free 方法），不会显著改变整体 200 H100-hours 的预算框架（除了缺陷 8 的多 seed 训练，可能将总预算推高到 400-600 H100-hours）。
+
+Sources:
+- [MMDocIR: Benchmarking Multi-Modal Retrieval for Long Documents](https://arxiv.org/html/2501.08828v3)
+- [ViDoRe V3](https://arxiv.org/abs/2601.08620)
+- [MURE: Hierarchical Multi-Resolution Encoding](https://arxiv.org/abs/2603.13349)
+- [ColParse: Beyond the Grid](https://arxiv.org/abs/2603.01666)
+- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)
+- [AGREE: Attention Grounded Enhancement](https://arxiv.org/abs/2511.13415)
+- [Hydra: Unifying Document Retrieval and Generation](https://arxiv.org/abs/2603.28554)
+- [Snappy: Spatially-Grounded Document Retrieval](https://arxiv.org/abs/2512.02660)
+- [MetaEmbed (ICLR 2026 Oral)](https://arxiv.org/abs/2509.18095)
+- [Localization Heads (CVPR 2025 Highlight)](https://github.com/seilk/LocalizationHeads)
+- [RegionRAG (AAAI 2026)](https://arxiv.org/abs/2510.27261)
+- [DocLayNet](https://arxiv.org/abs/2206.01062)
+- [PixSearch: Pixel-Grounded Retrieval](https://arxiv.org/abs/2601.19060)
+- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1869785-809a-4079-ad5e-be3f31fc0438",
+  "isSidechain": false,
+  "promptId": "a47f3b09-208e-4d6b-b153-edd8913cb016",
+  "type": "user",
+  "uuid": "bfb21c79-789d-437f-8a19-dca181c0be3e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44 · 2026-05-30T07:05:24.821Z_
+
+```json
+{
+  "parentUuid": "bfb21c79-789d-437f-8a19-dca181c0be3e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "eee7dc06-c434-4f69-a374-889fbf74dd22",
+  "timestamp": "2026-05-30T07:05:24.821Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have completed the necessary pre-research. Let me synthesize my findings and produce the analysis.  -…",
+  "leafUuid": "eee7dc06-c434-4f69-a374-889fbf74dd22",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-30T07:05:43.440Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze both worker outputs for Round 2 carefully.
+
+**发掘 agent Round 2 summary:**
+- Status: 有发掘空间
+- 5 discovery points:
+  1. ReAlign (arXiv:2604.07419) is a concurrent work that should be discussed - it uses text-bridged indirect spatial supervision vs GroundVDR's direct box regression
+  2. Synergy hypothesis can be strengthened with object detection analogy (R-CNN → Faster R-CNN/YOLO)
+  3. PixSearch differentiation needs to be more detailed (3 dimensions: retrieval paradigm, grounding form, multi-granularity structure)
+  4. System-level significance: compressing a 3-model pipeline into a single model represents an architectural paradigm shift worth emphasizing
+  5. Spatially-Typed Matryoshka should be positioned as an independent general-purpose contribution
+
+**补救 agent Round 2 summary:**
+- Status: 有缺陷待补救
+- 9 defects identified: Hydra and MetaEmbed are missing from the baseline comparisons despite being discussed in the landscape and foundational to Matryoshka respectively, there's no standalone evaluation of the localization head on DocLayNet, and ViDoRe V1/V2 results are absent from the experiments.
+
+The remaining issues include placeholder values in the compute budget calculations, a mismatch between Snappy's reported benchmarks and the ViDoRe V3 setup, missing latency analysis for the localization head inference, lack of multi-seed runs for statistical validation, and no analysis of the token budget versus storage-performance tradeoffs.
+
+Now I'm cross-validating the key claims: checking whether ReAlign from arXiv:2604.07419 is a real paper that the agent discovered, verifying if Snappy truly only reports on BBox-DocVQA rather than ViDoRe V3, confirming the object detection analogy is an established narrative, and examining what else needs verification.
+
+I need to search for ReAlign and check Snappy's actual benchmark coverage to confirm these details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eee7dc06-c434-4f69-a374-889fbf74dd22",
+  "isSidechain": false,
+  "requestId": "req_011CbYL28r8iXv7nZvRLVToe",
+  "type": "assistant",
+  "uuid": "4cc7591a-7f31-4f7c-bb61-e168ec925701",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdUhEeDAEBGGaEdCgRAQoE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18575,
+      "cache_read_input_tokens": 35119,
+      "output_tokens": 786,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 786,
+          "cache_read_input_tokens": 35119,
+          "cache_creation_input_tokens": 18575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-30T07:05:43.468Z_
+
+我需要交叉验证第 2 轮 worker 的关键建议。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cc7591a-7f31-4f7c-bb61-e168ec925701",
+  "isSidechain": false,
+  "requestId": "req_011CbYL28r8iXv7nZvRLVToe",
+  "type": "assistant",
+  "uuid": "611ff0e9-7820-4190-804b-d005bdfc2a1f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdUhEeDAEBGGaEdCgRAQoE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18575,
+      "cache_read_input_tokens": 35119,
+      "output_tokens": 786,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 786,
+          "cache_read_input_tokens": 35119,
+          "cache_creation_input_tokens": 18575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-30T07:05:43.514Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S5VqBZghYqsosVi368C62M`</summary>
+
+```json
+{
+  "query": "ReAlign reasoning-guided fine-grained alignment visual document retrieval arXiv 2604.07419 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "611ff0e9-7820-4190-804b-d005bdfc2a1f",
+  "isSidechain": false,
+  "requestId": "req_011CbYL28r8iXv7nZvRLVToe",
+  "type": "assistant",
+  "uuid": "95f77783-1bf9-41d0-88f9-9a03ea8f5b16",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdUhEeDAEBGGaEdCgRAQoE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18575,
+      "cache_read_input_tokens": 35119,
+      "output_tokens": 786,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 786,
+          "cache_read_input_tokens": 35119,
+          "cache_creation_input_tokens": 18575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-30T07:05:43.640Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SYpzYD7LHWeUrWAw5ET9y3`</summary>
+
+```json
+{
+  "query": "Snappy spatially grounded document retrieval BBox-DocVQA ViDoRe evaluation benchmarks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95f77783-1bf9-41d0-88f9-9a03ea8f5b16",
+  "isSidechain": false,
+  "requestId": "req_011CbYL28r8iXv7nZvRLVToe",
+  "type": "assistant",
+  "uuid": "ff1d689e-9fa3-4bcf-a2db-fb386a5fb437",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdUhEeDAEBGGaEdCgRAQoE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18575,
+      "cache_read_input_tokens": 35119,
+      "output_tokens": 786,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 786,
+          "cache_read_input_tokens": 35119,
+          "cache_creation_input_tokens": 18575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-30T07:05:44.158Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TjXEwYAmmRKbFxE49ckAtk`</summary>
+
+```json
+{
+  "query": "MetaEmbed Matryoshka multi-vector retrieval ViDoRe benchmark results open source 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff1d689e-9fa3-4bcf-a2db-fb386a5fb437",
+  "isSidechain": false,
+  "requestId": "req_011CbYL28r8iXv7nZvRLVToe",
+  "type": "assistant",
+  "uuid": "9c765c18-19bf-4a0f-981b-34778e7e49e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdUhEeDAEBGGaEdCgRAQoE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18575,
+      "cache_read_input_tokens": 35119,
+      "output_tokens": 786,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 786,
+          "cache_read_input_tokens": 35119,
+          "cache_creation_input_tokens": 18575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-30T07:05:51.586Z_
+
+<details><summary>↩ Tool result · `toolu_01TjXEwYAmmRKbFxE49ckAtk`</summary>
+
+```text
+Web search results for query: "MetaEmbed Matryoshka multi-vector retrieval ViDoRe benchmark results open source 2026"
+
+Links: [{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction [Quick Review]","url":"https://liner.com/review/metaembed-scaling-multimodal-retrieval-at-testtime-with-flexible-late-interaction"},{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction - VisLang Lab","url":"https://vislang.ai/publications/xiao2026metaembed"},{"title":"[2509.18095] MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction","url":"https://arxiv.org/abs/2509.18095"},{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction","url":"https://arxiv.org/html/2509.18095v2"},{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time ...","url":"https://arxiv.org/pdf/2509.18095"},{"title":"GitHub - facebookresearch/MetaEmbed: [ICLR 2026 Oral] Official Implementation of the paper \"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interactions\" · GitHub","url":"https://github.com/facebookresearch/MetaEmbed"},{"title":"METAEMBED: SCALING MULTIMODAL RETRIEVAL AT ...","url":"https://openreview.net/pdf?id=yKDqg9HwZX"},{"title":"METAEMBED: SCALING MULTIMODAL RETRIEVAL AT TEST- ...","url":"https://openreview.net/pdf/463390b346704acb5a7223fe658dcad9cf1ccc9c.pdf"}]
+
+I found comprehensive information about MetaEmbed, Matryoshka Multi-Vector Retrieval, and ViDoRe benchmark results. Here's what the search revealed:
+
+## MetaEmbed Overview
+
+MetaEmbed is a framework for multimodal retrieval that uses learnable Meta Tokens appended to the input sequence, with their contextualized representations serving as compact multi-vector embeddings at test-time.
+
+## Matryoshka Multi-Vector Retrieval (MMR)
+
+Through Matryoshka Multi-Vector Retrieval training, MetaEmbed learns to organize information by granularity across multiple vectors. By performing contrastive learning across parallel nested groups of representations at training-time, the model learns coarse-to-fine multi-vector embeddings that can be selectively utilized for late interactions depending on the computation budget at test-time.
+
+## ViDoRe v2 Benchmark Results
+
+On the ViDoRe v2 benchmark, MetaEmbed-3B achieves an average NDCG@5 of 60.3%, outperforming ColPali (54.5%) and ColQwen2 (57.5%). Scaling to 7B further improves performance to 61.3%, with notable gains in multilingual and biomedical domains.
+
+## Open Source Availability
+
+MetaEmbed is available as an open-source implementation on GitHub with official code for training and evaluation, and was accepted as an ICLR 2026 Oral presentation.
+
+## Overall Performance
+
+MetaEmbed achieves state-of-the-art retrieval performance while scaling robustly to models with 32B parameters.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c765c18-19bf-4a0f-981b-34778e7e49e2",
+  "isSidechain": false,
+  "promptId": "a47f3b09-208e-4d6b-b153-edd8913cb016",
+  "type": "user",
+  "uuid": "eeb441ba-b69a-4474-857a-233361ae0a3d",
+  "toolUseResult": {
+    "query": "MetaEmbed Matryoshka multi-vector retrieval ViDoRe benchmark results open source 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Jypvp5hcX6dmdxQ4SwSGKz",
+        "content": [
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction [Quick Review]",
+            "url": "https://liner.com/review/metaembed-scaling-multimodal-retrieval-at-testtime-with-flexible-late-interaction"
+          },
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction - VisLang Lab",
+            "url": "https://vislang.ai/publications/xiao2026metaembed"
+          },
+          {
+            "title": "[2509.18095] MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction",
+            "url": "https://arxiv.org/abs/2509.18095"
+          },
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction",
+            "url": "https://arxiv.org/html/2509.18095v2"
+          },
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time ...",
+            "url": "https://arxiv.org/pdf/2509.18095"
+          },
+          {
+            "title": "GitHub - facebookresearch/MetaEmbed: [ICLR 2026 Oral] Official Implementation of the paper \"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interactions\" · GitHub",
+            "url": "https://github.com/facebookresearch/MetaEmbed"
+          },
+          {
+            "title": "METAEMBED: SCALING MULTIMODAL RETRIEVAL AT ...",
+            "url": "https://openreview.net/pdf?id=yKDqg9HwZX"
+          },
+          {
+            "title": "METAEMBED: SCALING MULTIMODAL RETRIEVAL AT TEST- ...",
+            "url": "https://openreview.net/pdf/463390b346704acb5a7223fe658dcad9cf1ccc9c.pdf"
+          }
+        ]
+      },
+      "I found comprehensive information about MetaEmbed, Matryoshka Multi-Vector Retrieval, and ViDoRe benchmark results. Here's what the search revealed:\n\n## MetaEmbed Overview\n\nMetaEmbed is a framework for multimodal retrieval that uses learnable Meta Tokens appended to the input sequence, with their contextualized representations serving as compact multi-vector embeddings at test-time.\n\n## Matryoshka Multi-Vector Retrieval (MMR)\n\nThrough Matryoshka Multi-Vector Retrieval training, MetaEmbed learns to organize information by granularity across multiple vectors. By performing contrastive learning across parallel nested groups of representations at training-time, the model learns coarse-to-fine multi-vector embeddings that can be selectively utilized for late interactions depending on the computation budget at test-time.\n\n## ViDoRe v2 Benchmark Results\n\nOn the ViDoRe v2 benchmark, MetaEmbed-3B achieves an average NDCG@5 of 60.3%, outperforming ColPali (54.5%) and ColQwen2 (57.5%). Scaling to 7B further improves performance to 61.3%, with notable gains in multilingual and biomedical domains.\n\n## Open Source Availability\n\nMetaEmbed is available as an open-source implementation on GitHub with official code for training and evaluation, and was accepted as an ICLR 2026 Oral presentation.\n\n## Overall Performance\n\nMetaEmbed achieves state-of-the-art retrieval performance while scaling robustly to models with 32B parameters."
+    ],
+    "durationSeconds": 7.424218528000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9c765c18-19bf-4a0f-981b-34778e7e49e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-30T07:05:53.517Z_
+
+<details><summary>↩ Tool result · `toolu_01S5VqBZghYqsosVi368C62M`</summary>
+
+```text
+Web search results for query: "ReAlign reasoning-guided fine-grained alignment visual document retrieval arXiv 2604.07419 2026"
+
+Links: [{"title":"ReAlign: Optimizing the Visual Document Retriever with Reasoning-Guided Fine-Grained Alignment","url":"https://arxiv.org/html/2604.07419"},{"title":"[2604.07419] ReAlign: Optimizing the Visual Document Retriever with Reasoning-Guided Fine-Grained Alignment","url":"https://arxiv.org/abs/2604.07419"},{"title":"GitHub - NEUIR/ReAlign: [SIGIR '26] This is the code repo for our SIGIR’26 paper \"ReAlign: Optimizing the Visual Document Retriever with Reasoning-Guided Fine-Grained Alignment\".","url":"https://github.com/NEUIR/ReAlign"},{"title":"Attention Grounded Enhancement for Visual Document Retrieval","url":"https://arxiv.org/pdf/2511.13415"},{"title":"Re-Align: Structured Reasoning-guided Alignment for In-Context Image Generation and Editing","url":"https://arxiv.org/html/2601.05124v1"},{"title":"REVEALER: Reinforcement-Guided Visual Reasoning for Element-Level Text-Image Alignment Evaluation","url":"https://arxiv.org/pdf/2512.23169"},{"title":"A New Fine-grained Alignment Method for Image-text Matching","url":"https://arxiv.org/pdf/2311.02183"}]
+
+Based on the search results, I found information about the ReAlign paper (arXiv 2604.07419):
+
+ReAlign is a method that enhances visual document retrieval by leveraging the reasoning capability of VLMs to provide fine-grained visual document descriptions as supervision signals for training.
+
+Visual document retrieval aims to retrieve a set of document pages relevant to a query from visually rich collections, with existing methods often employing Vision-Language Models (VLMs) to encode queries and visual pages into a shared embedding space, which is then optimized via contrastive training. However, localized evidence is usually scattered across complex document layouts, making it difficult for retrieval models to capture crucial cues for effective embedding learning.
+
+ReAlign employs a superior VLM to identify query-related regions on a page and then generates a query-aware description grounding the cropped visual regions.
+
+Additionally, the work was accepted by SIGIR 2026. The paper was published on arXiv on April 8, 2026, and a GitHub repository with code is available at https://github.com/NEUIR/ReAlign.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95f77783-1bf9-41d0-88f9-9a03ea8f5b16",
+  "isSidechain": false,
+  "promptId": "a47f3b09-208e-4d6b-b153-edd8913cb016",
+  "type": "user",
+  "uuid": "20fad014-9d3e-439d-b48f-caa8850d57ea",
+  "toolUseResult": {
+    "query": "ReAlign reasoning-guided fine-grained alignment visual document retrieval arXiv 2604.07419 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FtuRvwz9xYnXnwJFhX2TvQ",
+        "content": [
+          {
+            "title": "ReAlign: Optimizing the Visual Document Retriever with Reasoning-Guided Fine-Grained Alignment",
+            "url": "https://arxiv.org/html/2604.07419"
+          },
+          {
+            "title": "[2604.07419] ReAlign: Optimizing the Visual Document Retriever with Reasoning-Guided Fine-Grained Alignment",
+            "url": "https://arxiv.org/abs/2604.07419"
+          },
+          {
+            "title": "GitHub - NEUIR/ReAlign: [SIGIR '26] This is the code repo for our SIGIR’26 paper \"ReAlign: Optimizing the Visual Document Retriever with Reasoning-Guided Fine-Grained Alignment\".",
+            "url": "https://github.com/NEUIR/ReAlign"
+          },
+          {
+            "title": "Attention Grounded Enhancement for Visual Document Retrieval",
+            "url": "https://arxiv.org/pdf/2511.13415"
+          },
+          {
+            "title": "Re-Align: Structured Reasoning-guided Alignment for In-Context Image Generation and Editing",
+            "url": "https://arxiv.org/html/2601.05124v1"
+          },
+          {
+            "title": "REVEALER: Reinforcement-Guided Visual Reasoning for Element-Level Text-Image Alignment Evaluation",
+            "url": "https://arxiv.org/pdf/2512.23169"
+          },
+          {
+            "title": "A New Fine-grained Alignment Method for Image-text Matching",
+            "url": "https://arxiv.org/pdf/2311.02183"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the ReAlign paper (arXiv 2604.07419):\n\nReAlign is a method that enhances visual document retrieval by leveraging the reasoning capability of VLMs to provide fine-grained visual document descriptions as supervision signals for training.\n\nVisual document retrieval aims to retrieve a set of document pages relevant to a query from visually rich collections, with existing methods often employing Vision-Language Models (VLMs) to encode queries and visual pages into a shared embedding space, which is then optimized via contrastive training. However, localized evidence is usually scattered across complex document layouts, making it difficult for retrieval models to capture crucial cues for effective embedding learning.\n\nReAlign employs a superior VLM to identify query-related regions on a page and then generates a query-aware description grounding the cropped visual regions.\n\nAdditionally, the work was accepted by SIGIR 2026. The paper was published on arXiv on April 8, 2026, and a GitHub repository with code is available at https://github.com/NEUIR/ReAlign."
+    ],
+    "durationSeconds": 9.996641938,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "95f77783-1bf9-41d0-88f9-9a03ea8f5b16",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-30T07:05:53.787Z_
+
+<details><summary>↩ Tool result · `toolu_01SYpzYD7LHWeUrWAw5ET9y3`</summary>
+
+```text
+Web search results for query: "Snappy spatially grounded document retrieval BBox-DocVQA ViDoRe evaluation benchmarks"
+
+Links: [{"title":"Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation","url":"https://arxiv.org/html/2512.02660v2"},{"title":"Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation","url":"https://arxiv.org/pdf/2512.02660"},{"title":"Paper page - Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation","url":"https://huggingface.co/papers/2512.02660"},{"title":"[2512.02660] Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation","url":"https://arxiv.org/abs/2512.02660"},{"title":"Bounding Box DocVQA: Spatially Grounded Answers","url":"https://www.emergentmind.com/topics/bounding-box-docvqa"},{"title":"BBox-DocVQA: A Large-Scale Bounding-Box–Grounded Dataset for Enhancing Reasoning in Document Visual Question Answer","url":"https://arxiv.org/html/2511.15090v1"},{"title":"BBox DocVQA: Spatially Grounded DocVQA","url":"https://www.emergentmind.com/topics/bbox-docvqa"},{"title":"GitHub - yuwenhan07/BBox-DocVQA: BBox-DocVQA is a large-scale, bounding-box-grounded document VQA dataset and pipeline built on the Segment-Judge-Generate workflow. It provides fine-grained spatial supervision across text, tables, and figures, enabling stronger reasoning and localization for vision-language models, along with 30K+ auto-generated and 1.6K manually curated QA pairs.","url":"https://github.com/yuwenhan07/BBox-DocVQA"}]
+
+I found comprehensive information about your query. Here's what the search revealed:
+
+## Snappy System
+
+Snappy is a system with an indexing pipeline that processes documents through parallel OCR and embedding branches, and a query pipeline that retrieves candidates via ANN search, computes patch-level similarities, and filters OCR regions by relevance. The system uses ColPali's patch-level similarity scores as spatial relevance filters over OCR-extracted regions.
+
+## Evaluation on BBox-DocVQA
+
+The approach is evaluated on BBox-DocVQA, measuring spatial grounding accuracy and token efficiency. For within-page localization (given correct page retrieval), ColQwen3-4B with percentile-50 thresholding achieves 59.7% hit rate at IoU@0.5 (84.4% at IoU@0.25, 35.8% at IoU@0.7), with mean IoU of 0.569, compared to ~6.7% for random region selection.
+
+The approach reduces context tokens by 28.8% compared to returning all OCR regions and by 52.3% compared to full-page image tokens.
+
+## ViDoRe Benchmark
+
+ViDoRe is a page-level retrieval benchmark that measures whether the correct page is retrieved. ViDoRe is one of several benchmarks proposed to evaluate VLMs' understanding and reasoning capabilities in document-related tasks.
+
+## BBox-DocVQA Dataset
+
+BBox-DocVQA is a large-scale, bounding-box–grounded dataset for visual document question answering. The dataset spans 3.6K documents, 32K QA pairs and 44K images spanning multi-domain arXiv content; with 30,780 auto-generated training QA pairs + 1,623 manually curated benchmark items.
+
+Snappy is released as an open-source implementation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff1d689e-9fa3-4bcf-a2db-fb386a5fb437",
+  "isSidechain": false,
+  "promptId": "a47f3b09-208e-4d6b-b153-edd8913cb016",
+  "type": "user",
+  "uuid": "30a10ff4-1a01-4680-9453-6cedcc254627",
+  "toolUseResult": {
+    "query": "Snappy spatially grounded document retrieval BBox-DocVQA ViDoRe evaluation benchmarks",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EjDyRaWeMrcnvj7C2czvKh",
+        "content": [
+          {
+            "title": "Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation",
+            "url": "https://arxiv.org/html/2512.02660v2"
+          },
+          {
+            "title": "Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation",
+            "url": "https://arxiv.org/pdf/2512.02660"
+          },
+          {
+            "title": "Paper page - Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation",
+            "url": "https://huggingface.co/papers/2512.02660"
+          },
+          {
+            "title": "[2512.02660] Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation",
+            "url": "https://arxiv.org/abs/2512.02660"
+          },
+          {
+            "title": "Bounding Box DocVQA: Spatially Grounded Answers",
+            "url": "https://www.emergentmind.com/topics/bounding-box-docvqa"
+          },
+          {
+            "title": "BBox-DocVQA: A Large-Scale Bounding-Box–Grounded Dataset for Enhancing Reasoning in Document Visual Question Answer",
+            "url": "https://arxiv.org/html/2511.15090v1"
+          },
+          {
+            "title": "BBox DocVQA: Spatially Grounded DocVQA",
+            "url": "https://www.emergentmind.com/topics/bbox-docvqa"
+          },
+          {
+            "title": "GitHub - yuwenhan07/BBox-DocVQA: BBox-DocVQA is a large-scale, bounding-box-grounded document VQA dataset and pipeline built on the Segment-Judge-Generate workflow. It provides fine-grained spatial supervision across text, tables, and figures, enabling stronger reasoning and localization for vision-language models, along with 30K+ auto-generated and 1.6K manually curated QA pairs.",
+            "url": "https://github.com/yuwenhan07/BBox-DocVQA"
+          }
+        ]
+      },
+      "I found comprehensive information about your query. Here's what the search revealed:\n\n## Snappy System\n\nSnappy is a system with an indexing pipeline that processes documents through parallel OCR and embedding branches, and a query pipeline that retrieves candidates via ANN search, computes patch-level similarities, and filters OCR regions by relevance. The system uses ColPali's patch-level similarity scores as spatial relevance filters over OCR-extracted regions.\n\n## Evaluation on BBox-DocVQA\n\nThe approach is evaluated on BBox-DocVQA, measuring spatial grounding accuracy and token efficiency. For within-page localization (given correct page retrieval), ColQwen3-4B with percentile-50 thresholding achieves 59.7% hit rate at IoU@0.5 (84.4% at IoU@0.25, 35.8% at IoU@0.7), with mean IoU of 0.569, compared to ~6.7% for random region selection.\n\nThe approach reduces context tokens by 28.8% compared to returning all OCR regions and by 52.3% compared to full-page image tokens.\n\n## ViDoRe Benchmark\n\nViDoRe is a page-level retrieval benchmark that measures whether the correct page is retrieved. ViDoRe is one of several benchmarks proposed to evaluate VLMs' understanding and reasoning capabilities in document-related tasks.\n\n## BBox-DocVQA Dataset\n\nBBox-DocVQA is a large-scale, bounding-box–grounded dataset for visual document question answering. The dataset spans 3.6K documents, 32K QA pairs and 44K images spanning multi-domain arXiv content; with 30,780 auto-generated training QA pairs + 1,623 manually curated benchmark items.\n\nSnappy is released as an open-source implementation."
+    ],
+    "durationSeconds": 10.143924714,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ff1d689e-9fa3-4bcf-a2db-fb386a5fb437",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-30T07:07:13.437Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, all three searches confirm the workers' findings:
+
+1. **ReAlign** (arXiv:2604.07419) - Confirmed. **Also accepted at SIGIR 2026** (not just arXiv preprint). Uses VLM reasoning to identify query-related regions, generates query-aware descriptions from cropped regions as supervision signals. This is indeed text-bridged indirect spatial supervision. The发掘 agent correctly identified this as a critical concurrent work that needs differentiation. Code is open-sourced.
+
+2. **Snappy** - Confirmed. Evaluated primarily on BBox-DocVQA (IoU@0.5 = 59.7%), NOT on ViDoRe V3. 
+
+The benchmark alignment concern is valid since Snappy is open-source and could be reproduced on ViDoRe V3. For MetaEmbed, it's confirmed as an ICLR 2026 Oral with open-source code, reporting ViDoRe v2 results (nDCG@5: 3B=60.3%, 7B=61.3%), making it a strong foundational baseline to include given its Matryoshka method origins.
+
+Now evaluating the suggestions: ReAlign is a genuine concurrent work from SIGIR 2026 with meaningful differentiation through text-bridged indirect versus direct box regression—worth discussing. The object detection analogy from R-CNN to YOLO is standard computer vision knowledge that strengthens the synergy narrative, though I'll keep it brief. PixSearch's three differentiation dimensions are well-articulated and should be included concisely. Still assessing the remaining points. I should add the localization head evaluation on DocLayNet since it's straightforward and strengthens the narrative, incorporate ViDoRe V1/V2 results, replace the compute budget placeholders with actual numbers, reproduce Snappy on ViDoRe V3 to fix the benchmark alignment issue, and measure the inference latency for the autoregressive decoding component to address potential bottlenecks.
+
+For statistical rigor, I'll run 2 seeds on the main results and 3 seeds specifically for the synergy ablation to test the hypothesis without ballooning the compute budget too much. I should also add an ablation varying the token budget and truncation strategy since it's low-cost and uses the same model.
+
+Looking at the feedback patterns, both reviewers are converging on refinement-level suggestions rather than fundamental direction changes—the 发掘 agent is focused on related work framing while the 补救 agent is zeroing in on experimental completeness and rigor details.
+
+The key gaps that still matter are ReAlign as a concurrent competing work, MetaEmbed and Hydra as missing baselines, and the rest are polish. These are meaningful enough to warrant one more round of iteration before finalizing.
+
+Looking at the probability estimates, the novelty angle strengthens considerably with better differentiation from ReAlign, the object detection framing, and Spatially-Typed Matryoshka as an independent contribution—pushing closer to "强" territory. The system-level significance framing also boosts the overall impact assessment. With comprehensive baselines now in place, independent evaluation on DocLayNet, coverage across ViDoRe versions, and storage-performance analysis, the experimental completeness feels solid. This puts the ceiling around 48% for idea quality and floor around 32% for technical soundness, with a median estimate of 39%.
+
+But reconsidering the core synergy hypothesis—the object detection analogy, differentiation from MURE, Hydra, ReAlign, and PixSearch, plus Spatially-Typed Matryoshka as a framework extension—the novelty assessment actually looks stronger now.
+
+The main execution risks are whether the localization head generalizes well to documents, whether the synergy effect is convincing enough, and whether it's feasible within constraints. I think the [32%-48%] range with 39% median is reasonable.
+
+Now I need to draft the full proposal carefully, making sure to integrate the new references like ReAlign and BBox-DocVQA while keeping everything concise and high-density. The key changes are adding ReAlign to the related work differentiation and being precise about what makes this distinct from existing approaches.
+
+For the experiments, I'm planning to add Hydra and MetaEmbed as baselines, include an independent evaluation of the localization head on DocLayNet, expand the benchmark list to include ViDoRe V1/V2, and add concrete compute estimates. I'll also note the multi-seed strategy and the storage-performance tradeoff ablation to make the experimental design more rigorous.
+
+Now I'm working through the compute budget—estimating that LoRA fine-tuning on Qwen3-VL-8B with 173K samples across 3 epochs would take roughly 120 H100-hours accounting for the efficiency gains from LoRA's reduced parameter count, and I'm starting to calculate the cost for the localization head training on DocLayNet.
+
+The localization head is a smaller transformer decoder with around 100-200M parameters, so training on 80K samples should be relatively quick—maybe 30-40 H100-hours. Then I need to account for a joint fine-tuning pass on the full 173K dataset, which would add another 80-100 H100-hours. Putting this together, I'm looking at roughly 250 H100-hours per seed, so around 500 H100-hours for two seeds, plus additional budget for ablation variants if needed.
+
+Actually, let me break this down more carefully. The localization head pre-training on DocLayNet takes about 30 H100-hours, then backbone LoRA plus joint fine-tuning on MMDocIR runs for roughly 150 H100-hours. The ablation experiments—five variants at about 30% of the main training cost each—add another 80 H100-hours. With multi-seed runs (two for the main experiments and three for one of the ablations), I'm adding around 200 H100-hours more, bringing the total to about 460 H100-hours. That's higher than my initial 180-200 estimate, but still reasonable for an academic lab to reproduce over a few weeks on a modest cluster.
+
+Now I need to write up the proposal concisely and think through the reference list. Finishing up the reference list with ColParse, the Multi-Granularity Framework, PixSearch, DocLayNet, and ReAlign which I just confirmed is accepted to SIGIR 2026. I'm reconsidering whether to include BBox-DocVQA since it's a benchmark rather than a method, so I'll mention it in the experimental section instead. Now I'm ready to start drafting the proposal with a focus on density.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30a10ff4-1a01-4680-9453-6cedcc254627",
+  "isSidechain": false,
+  "requestId": "req_011CbYL4GdkYF9NPp1aA4rj1",
+  "type": "assistant",
+  "uuid": "85f090ed-8c0d-4ea5-9393-d0b45ac0b5e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuBjNBvAoE5BCVjiRPUijd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 911,
+      "cache_creation_input_tokens": 2436,
+      "cache_read_input_tokens": 53694,
+      "output_tokens": 9882,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2436,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 911,
+          "output_tokens": 9882,
+          "cache_read_input_tokens": 53694,
+          "cache_creation_input_tokens": 2436,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2436
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-30T07:09:35.540Z_
+
+现在我有足够信息做第 2 轮整合。
+
+【阶段】: 迭代第 2 轮
+
+【交叉验证调研】:
+1. **ReAlign (arXiv:2604.07419)** — ✅ 已验证存在且已被 **SIGIR 2026** 接收（不仅是 arXiv preprint）。代码已开源（github.com/NEUIR/ReAlign）。使用 VLM reasoning 识别 query-related regions → 生成 query-aware textual descriptions → KL 散度对齐 retriever ranking。确认是 text-bridged indirect spatial supervision 路线，与 GroundVDR 的 direct box regression 路线有清晰区别。发掘 agent 判断正确——这是审稿人最可能拿来质疑 novelty 的并发工作。
+2. **Snappy 评测 benchmark** — ✅ 已验证。Snappy 主实验在 BBox-DocVQA 上（IoU@0.5 hit rate 59.7%, mean IoU 0.569），**未在 ViDoRe V3 上报告**。Snappy 是 training-free 且已开源，在 ViDoRe V3 上复现可行且成本低。补救 agent 的 benchmark 对齐担忧成立。
+3. **MetaEmbed** — ✅ 已验证。ICLR 2026 Oral，代码开源（github.com/facebookresearch/MetaEmbed），ViDoRe v2 上 3B=60.3% nDCG@5, 7B=61.3%。作为 Matryoshka 基线方法有公开可比结果。补救 agent 建议成立。
+
+【发掘 agent 有效建议采纳】:
+1. **发掘点 1（ReAlign 差异化）**：✅ 已验证（SIGIR 2026 + 开源），采纳。ReAlign 是最直接的"空间感知 retrieval"并发工作，必须讨论并差异化：text-bridge（有损压缩、不可端到端）vs direct box regression（精确坐标、端到端可优化、产出可直接用于 RAG context cropping 的 bounding box）。
+2. **发掘点 2（object detection 类比）**：已验证（R-CNN → Faster R-CNN 是 CV 经典 joint training synergy 案例），采纳。用 1-2 句话引入类比，强化 synergy hypothesis 的 prior。不展开铺陈。
+3. **发掘点 3（PixSearch 差异化扩展）**：逻辑成立（3 维区分：retrieval 范式/grounding 形式/multi-granularity 结构），采纳。保持精炼。
+4. **发掘点 4（系统级 significance）**：✅ 有调研依据（Multi-Granularity Framework 明确需要 3 大模型+OCR），采纳。3-model pipeline → 1-model = pipeline simplification + 消除 error cascading。
+5. **发掘点 5（Spatially-Typed Matryoshka 独立贡献定位）**：逻辑成立但有风险——过度强调单一组件可能使论文失焦。**部分采纳**：在 contribution list 中提及更广泛适用性（1 句），但不改变论文整体叙事（核心仍是 synergy hypothesis）。
+
+【补救 agent 有效建议采纳】:
+1. **缺陷 1（Hydra 加入 baseline）**：✅ 成立，采纳。增设 "Unified single-model" 类别。
+2. **缺陷 2（MetaEmbed 加入 baseline）**：✅ 已验证（公开结果+开源），采纳。加入 page-level retrieval baseline。
+3. **缺陷 3（localization head 独立评估）**：✅ 成立且低成本，采纳。在 DocLayNet test set 上报告 COCO mAP，与 HybriDLA 对比。
+4. **缺陷 4（ViDoRe V1/V2）**：✅ 成立且零额外训练成本，采纳。
+5. **缺陷 5（compute 占位符）**：✅ 成立，采纳。替换为 bottom-up 具体估算。
+6. **缺陷 6（Snappy benchmark 对齐）**：✅ 已验证，采纳。在 ViDoRe V3 上复现 Snappy + 考虑增加 BBox-DocVQA 作为补充 grounding benchmark。
+7. **缺陷 7（localization head 延迟分析）**：✅ 成立，采纳。增加推理延迟 breakdown。
+8. **缺陷 8（multi-seed）**：部分采纳。2 seeds main results + 3 seeds ablation #3（synergy 核心验证）。预算相应调整。
+9. **缺陷 9（token budget tradeoff）**：✅ 低成本高价值，采纳。增加第 6 个 ablation：不同 Matryoshka 截断级别的 Pareto 曲线。
+
+【本轮 proposal 主要变更】:
+
+**Idea 层面：**
+- 新增 ReAlign (SIGIR 2026) 差异化论证（text-bridged indirect vs direct box regression）
+- 新增 object detection 类比强化 synergy hypothesis（R-CNN → Faster R-CNN 先例，1-2 句）
+- 扩展 PixSearch 差异化（3 维区分）
+- 新增系统级 significance framing（3-model pipeline → 1-model paradigm shift）
+- 简要提及 Spatially-Typed Matryoshka 的 broader applicability
+
+**实验层面：**
+- Baseline 增加 Hydra (unified single-model 类)、MetaEmbed (Matryoshka baseline 类)
+- 新增 localization head 独立评估（DocLayNet mAP）
+- 新增 ViDoRe V1/V2 结果
+- Compute 占位符替换为具体估算（~250 H100-hours/seed, ~500 total with multi-seed）
+- 新增 Snappy 在 ViDoRe V3 复现 + BBox-DocVQA 补充 benchmark
+- 新增推理延迟 breakdown
+- 新增 multi-seed 策略（2 seeds main, 3 seeds ablation #3）
+- 新增 ablation #6：Matryoshka 截断级别 Pareto 曲线
+
+【idea 质量评估】: Novelty=中偏强（joint retrieval-grounding 在单模型中确无直接先驱；ReAlign/AGREE/Snappy/PixSearch 均走不同路径且已清晰差异化；Spatially-Typed Matryoshka 是框架扩展而非应用；但组合创新感知风险仍存在） Significance=中偏强→强（系统级 significance + benchmark gap 量化 + synergy hypothesis 科学价值；从 benchmark improvement 上升到 architectural paradigm shift） → idea 天花板约 48%
+
+【实验完备性评估】: Technical Soundness=中偏强（baseline 全面、ablation 系统、独立验证 localization head、multi-seed、效率分析完备；主要残留风险：localization head 在文档上的实际性能、synergy 效果是否统计显著、预算是否充裕） → 地板约 32%
+
+【当前概率估计】: [32% - 48%] 中位 39%
+
+【决策】: 继续
+
+【决策理由】: 第 2 轮，两位 worker 仍有实质性新建议（ReAlign 差异化、MetaEmbed/Hydra baseline 补充、localization head 独立评估），概率从中位 36% 上升到 39%（+3pp），仍有优化空间。但建议从发掘 agent 开始趋向 framing polish 而非根本性 novelty 提升，补救 agent 的建议也从核心缺陷修补转向精细化实验设计。第 3 轮预期为最后一轮迭代——若 worker 输出以微调为主则收敛。
+
+**引用清单核对**（确保纯净版包含所有引用）：
+- Nemotron ColEmbed V2 (arXiv 2026) ✓
+- ColPali (ECIR 2025) ✓
+- MMDocIR (arXiv 2025) ✓
+- ViDoRe V3 (arXiv 2026) ✓
+- MetaEmbed (ICLR 2026 Oral, arXiv:2509.18095) ✓
+- HybriDLA (AAAI 2026, 83.5% mAP DocLayNet) ✓
+- RegionRAG (AAAI 2026) ✓
+- AGREE (SIGIR 2026, arXiv:2511.13415) ✓
+- Snappy (arXiv 2025, arXiv:2512.02660, 59.7% IoU@0.5) ✓
+- Localization Heads (CVPR 2025 Highlight, arXiv:2503.06287) ✓
+- MURE (arXiv 2026, arXiv:2603.13349) ✓
+- Hydra (arXiv 2026, arXiv:2603.28554) ✓
+- ColParse (arXiv 2026, arXiv:2603.01666) ✓
+- Multi-Granularity Framework (arXiv 2025, arXiv:2505.01457) ✓
+- PixSearch (arXiv 2026, arXiv:2601.19060) ✓
+- DocLayNet (KDD 2022) ✓
+- ReAlign (SIGIR 2026, arXiv:2604.07419) ✓ — 新增
+- BBox-DocVQA (arXiv 2025) ✓ — 新增 benchmark mention
+
+【下一轮 proposal（纯净版，将原样传给 worker）】:
+---
+# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval
+
+## Core Problem
+
+Current visual document retrieval (VDR) models operate at page granularity or require multi-model pipelines with external layout parsers to access element-level content. The SOTA multi-granularity pipeline (Multi-Granularity Framework, arXiv:2505.01457) requires three separate large models (ColQwen2 + GME + Qwen2.5-VL) plus OCR — incurring 3× memory, pipeline latency, and error cascading (OCR errors → layout errors → retrieval errors). No single model jointly learns to retrieve at page, region, and element granularities while producing spatially grounded evidence bounding boxes. The 28.5pp page-vs-layout retrieval gap on MMDocIR (arXiv 2025) and the 0.089 vs. 0.602 model-vs-human grounding F1 on ViDoRe V3 (arXiv 2026) quantify this deficiency.
+
+## Research Hypothesis
+
+**Retrieval-Grounding Synergy**: Joint training of contrastive retrieval and bounding-box regression in a single VLM produces mutually reinforcing learning signals — grounding loss preserves spatial position information in the embedding space, directly benefiting region- and element-level retrieval, while retrieval loss provides semantic discriminability that improves grounding precision. This mirrors the well-established synergy in object detection: the transition from multi-stage pipelines (R-CNN: separate feature extraction → proposal → classification) to end-to-end joint training (Faster R-CNN/YOLO) consistently improved both localization and classification, precisely because the two tasks share spatial-semantic representations. GroundVDR applies the same structural insight to VDR — jointly learning where (grounding) and what (retrieval) through shared spatial-semantic embeddings.
+
+Indirect evidence: AGREE (SIGIR 2026, arXiv:2511.13415) showed that even proxy attention-based spatial signals improve page-level nDCG by 12.82%. GroundVDR elevates this from proxy attention supervision to direct box regression supervision, which should yield stronger spatial encoding and produce actionable bounding boxes.
+
+## Research Landscape
+
+**Page-level VDR.** Nemotron ColEmbed V2 (arXiv 2026) leads ViDoRe V3 at 63.42 nDCG@10 using bidirectional attention and hard negative mining on Qwen3-VL-8B. ColPali (ECIR 2025) established the vision-language late-interaction retrieval paradigm. MetaEmbed (ICLR 2026 Oral, arXiv:2509.18095) introduced Matryoshka Multi-Vector Retrieval (MMR) with learnable Meta Tokens, nesting along the token-count dimension for coarse-to-fine retrieval; 3B achieves 60.3% nDCG@5 on ViDoRe V2.
+
+**Sub-page / region-level retrieval.** The Multi-Granularity Framework (arXiv:2505.01457) achieves 65.56 on MMDocIR but requires three separate large models plus OCR, explicitly leaving end-to-end unification as an open question. RegionRAG (AAAI 2026) learns query-patch alignment but relies on BFS heuristic with manual threshold for patch grouping. ColParse (arXiv 2026, arXiv:2603.01666) achieves 95% storage reduction via layout-informed sub-images but depends on an external parser that cannot be jointly optimized. MURE (arXiv 2026, arXiv:2603.13349) introduces Resolution-level Matryoshka Representation Learning (RMRL), nesting embeddings across input resolutions (multi-resolution sampling). **Critical distinction**: MURE's Matryoshka operates on the input side (resolution hierarchy), while GroundVDR's operates on the output side (spatial-semantic granularity hierarchy: page → region → element). MURE performs no learned region proposals or bounding-box prediction.
+
+**Unified multi-task VDR.** Hydra (arXiv 2026, arXiv:2603.28554) unifies retrieval and generation in a single VLM via LoRA toggle — enabling LoRA yields ColBERT-style embeddings, disabling it recovers generation with byte-identical outputs. However, Hydra's two tasks are independent modes (no shared loss, no mutual reinforcement), whereas GroundVDR's retrieval and grounding are jointly trained with a shared loss, hypothesizing explicit synergy.
+
+**Spatial grounding in retrieval.** AGREE (SIGIR 2026, arXiv:2511.13415) uses MLLM attention as proxy supervision, improving page-level nDCG but producing no bounding boxes. Snappy (arXiv 2025, arXiv:2512.02660) achieves 59.7% IoU@0.5 on BBox-DocVQA purely at inference time with no learned optimization. ReAlign (SIGIR 2026, arXiv:2604.07419) uses VLM reasoning to identify query-relevant regions, then generates textual descriptions as supervision to align retriever rankings via KL divergence — a text-bridged indirect spatial supervision approach. GroundVDR differs fundamentally: direct box regression preserves precise spatial coordinates (vs. ReAlign's lossy text compression), is end-to-end optimizable (vs. ReAlign's frozen VLM teacher), and produces bounding boxes directly usable for downstream RAG context cropping. PixSearch (arXiv 2026, arXiv:2601.19060) combines retrieval with region-level grounding but differs in three ways: (1) retrieval is generation-time dynamic triggering (retrieval-augmented generation paradigm) vs. GroundVDR's offline indexing + online query (standalone retrieval paradigm); (2) grounding produces pixel-level segmentation masks vs. bounding boxes (less natural for rectangular document layouts); (3) no hierarchical multi-granularity embedding structure with test-time granularity control. On ViDoRe V3's grounding evaluation, the best model achieves only 0.089 F1 vs. 0.602 human F1. Localization Heads (CVPR 2025 Highlight, arXiv:2503.06287) show that ~3 attention heads in VLMs suffice for competitive grounding on natural images without fine-tuning.
+
+**Key gap.** No existing work jointly learns retrieval and spatial grounding with direct bounding-box supervision in a single end-to-end model. The detection and retrieval communities have independently developed the necessary components but never unified them.
+
+## Proposed Approach
+
+We propose **GroundVDR**, a single vision-language model that jointly performs multi-granularity document retrieval and spatial grounding end-to-end, compressing the current 3-model pipeline into one model while adding grounding capabilities that no existing single model provides.
+
+**Architecture.** Built on Qwen3-VL-8B with bidirectional attention (LoRA r=64 on backbone). An autoregressive localization head (6-layer transformer decoder, ~150M parameters, fully trained) is attached to VLM patch embeddings to predict region bounding boxes as coordinate token sequences, replacing external parsers.
+
+**Core assumption (to be validated):** VLM patch embeddings contain sufficient spatial and semantic information for high-quality document region proposals. While Localization Heads (CVPR 2025) demonstrated this for natural images, document layouts differ structurally. We hypothesize that documents' highly structured, grid-like layouts are actually more amenable to patch-level spatial reasoning than cluttered natural scenes — but this is an empirical question central to the paper, addressed by independent evaluation of the localization head on DocLayNet.
+
+**Spatially-Typed Matryoshka Multi-Vector Embeddings.** MetaEmbed nests along the token-count dimension; MURE nests along the input-resolution dimension. GroundVDR introduces a third, orthogonal nesting axis: **spatial-semantic granularity**. Each embedding vector carries a learned type tag encoding its position in the document's spatial hierarchy (page / region-type / element-type). During late interaction, type tags enable heterogeneous matching — a region-level query preferentially interacts with region-typed embeddings, while a page-level query aggregates across all types. This extends the Matryoshka framework from a precision-efficiency tradeoff to a spatial-semantic granularity tradeoff with test-time control. The extension is not limited to VDR — any retrieval scenario with hierarchical spatial structure (e.g., map retrieval, medical imaging) could benefit, though this paper focuses on document retrieval.
+
+**Inference Pipeline (4 steps):**
+1. Document page → backbone bidirectional encoding → patch embeddings
+2. Patch embeddings → localization head (autoregressive decoding) → region bounding boxes
+3. Region boxes → crop & pool patch embeddings → region-level and element-level spatially-typed Matryoshka embeddings; page-level embedding aggregated from all patches
+4. Multi-granularity index: page/region/element embeddings indexed separately; query-time granularity selection via type-tag routing
+
+**Joint Loss.** Late-interaction contrastive retrieval loss + bounding-box regression loss (L1 + GIoU), with gradient flowing from both losses through the shared backbone. The synergy hypothesis predicts that joint training outperforms separate training of either task — tested directly in ablation #3.
+
+**Training Data Strategy.**
+- Phase 1: Localization head pre-training on DocLayNet (KDD 2022, ~80K layout-annotated pages, 11 classes, COCO format) for general document layout detection (~30 H100-hours).
+- Phase 2: Joint fine-tuning on MMDocIR's 173K bootstrapped layout annotations + 1,685 expert annotations for retrieval + grounding alignment (~150 H100-hours). Grounding-capable layers selected using Localization Heads' probing protocol.
+- Grounding evaluation: ViDoRe V3's 3,099 human-verified queries used exclusively for zero-shot evaluation (no training on ViDoRe V3 grounding labels to prevent data leakage).
+
+## Experimental Design
+
+**Baselines (4 categories):**
+- Page-level retrieval: Nemotron ColEmbed V2 (8B), MetaEmbed (3B/7B), ColPali/ColQwen2, BM25+OCR
+- Sub-page/region-level retrieval: MURE, ColParse, RegionRAG, Multi-Granularity Framework (pipeline upper bound)
+- Grounding: Snappy (training-free lower bound, reproduced on ViDoRe V3), AGREE (attention-proxy baseline)
+- Unified single-model: Hydra (retrieval+generation, no grounding → grounding column marked N/A)
+
+**Benchmarks and Metrics:**
+- ViDoRe V1/V2/V3: nDCG@{5,10} for retrieval; IoU@{0.25, 0.5, 0.7}, mean IoU, Dice/F1 for grounding (V3 only)
+- MMDocIR: page-level nDCG@{5,10} and layout-level nDCG@{5,10} reported separately
+- BBox-DocVQA: IoU@{0.25, 0.5, 0.7} for grounding (supplementary, aligns with Snappy's primary benchmark)
+- Efficiency: storage cost (embeddings per page × dimension, bytes per page), per-page encoding latency (ms) with breakdown (backbone / localization head / pooling+indexing), training cost (GPU-hours per phase)
+- Compute-normalized comparison: training FLOPs (or GPU-hours) vs. performance for all methods
+
+**Grounding targets:** 0.2 F1 as minimum viable (2.2× current SOTA 0.089), 0.3+ F1 as stretch target. Per-modality breakdown (text 60.4% / image 18.8% / table 16.7%) to analyze where grounding gains concentrate.
+
+**Ablation Studies (6 experiments):**
+1. Replace learned localization head with external parser (HybriDLA) or fixed grid → quantify learned vs. external proposals on retrieval quality
+2. Remove Matryoshka nesting → flat multi-vector → quantify hierarchical nesting contribution per granularity level
+3. Remove joint loss → train retrieval-only and grounding-only variants separately → **directly test the synergy hypothesis** (3 seeds, paired significance test)
+4. Remove spatial type tags → uniform embedding type → quantify type-aware heterogeneous interaction value
+5. Layer selection: vary which backbone layers feed the localization head → validate probing protocol for document images
+6. Matryoshka truncation tradeoff: performance at page-only / page+region / page+region+element embedding levels → Pareto curve (storage vs. nDCG), compared against MetaEmbed group-size tradeoff and MURE resolution tradeoff
+
+**Independent Localization Head Evaluation:** Report COCO-style mAP@{0.5, 0.5:0.95, 0.75} on DocLayNet test set, compared against HybriDLA (83.5% mAP, AAAI 2026) and other layout detection baselines. This directly validates the core assumption about VLM patch embeddings for document layout analysis.
+
+**Compute Budget:**
+- Phase 1 (localization head pre-training, DocLayNet 80K): ~30 H100-hours
+- Phase 2 (backbone LoRA + joint fine-tuning, MMDocIR 173K): ~150 H100-hours
+- Ablation experiments (6 ablations, ~30-50% of main training each): ~100 H100-hours
+- Multi-seed: 2 seeds for main results, 3 seeds for ablation #3 → additional ~200 H100-hours
+- **Total: ~480 H100-hours**, reproducible by academic labs with a small GPU cluster over 2-3 weeks
+
+## Key References
+
+- Nemotron ColEmbed V2 (arXiv 2026)
+- ColPali: Efficient Document Retrieval with Vision Language Models (ECIR 2025)
+- MMDocIR: Multi-Modal Document Information Retrieval (arXiv 2025)
+- ViDoRe V3: Visual Document Retrieval Benchmark with Grounding (arXiv 2026)
+- MetaEmbed: Matryoshka Multi-Vector Retrieval (ICLR 2026 Oral, arXiv:2509.18095)
+- HybriDLA: Hybrid Diffusion-Autoregressive Document Layout Analysis (AAAI 2026)
+- RegionRAG: Region-Level RAG for Visual Document Understanding (AAAI 2026)
+- AGREE: Attention-Grounded Retriever Enhancement (SIGIR 2026, arXiv:2511.13415)
+- Snappy: Spatially-Grounded Document Retrieval (arXiv 2025, arXiv:2512.02660)
+- Localization Heads in Vision-Language Models (CVPR 2025 Highlight, arXiv:2503.06287)
+- MURE: Hierarchical Multi-Resolution Encoding for VDR (arXiv 2026, arXiv:2603.13349)
+- Hydra: Unifying Document Retrieval and Generation (arXiv 2026, arXiv:2603.28554)
+- ColParse: Layout-Informed Sub-Image Retrieval (arXiv 2026, arXiv:2603.01666)
+- Multi-Granularity Retrieval Framework (arXiv 2025, arXiv:2505.01457)
+- PixSearch: Pixel-Grounded Retrieval (arXiv 2026, arXiv:2601.19060)
+- ReAlign: Reasoning-Guided Fine-Grained Alignment (SIGIR 2026, arXiv:2604.07419)
+- DocLayNet: Document Layout Analysis Dataset (KDD 2022)
+---
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85f090ed-8c0d-4ea5-9393-d0b45ac0b5e7",
+  "isSidechain": false,
+  "requestId": "req_011CbYL4GdkYF9NPp1aA4rj1",
+  "type": "assistant",
+  "uuid": "40c5a9ce-4330-4c25-aefc-d97e95bacba9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MuBjNBvAoE5BCVjiRPUijd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 911,
+      "cache_creation_input_tokens": 2436,
+      "cache_read_input_tokens": 53694,
+      "output_tokens": 9882,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2436,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 911,
+          "output_tokens": 9882,
+          "cache_read_input_tokens": 53694,
+          "cache_creation_input_tokens": 2436,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2436
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have completed the necessary pre-research. Let me synthesize my findings and produce the analysis.  -…",
+  "leafUuid": "40c5a9ce-4330-4c25-aefc-d97e95bacba9",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have completed the necessary pre-research. Let me synthesize my findings and produce the analysis.  -…",
+  "leafUuid": "40c5a9ce-4330-4c25-aefc-d97e95bacba9",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62 · 2026-05-30T07:16:42.058Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:16:42.058Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "content": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have comprehensive research coverage. Let me synthesize my analysis.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- [AGREE (arXiv:2511.13415)](https://arxiv.org/abs/2511.13415) (SIGIR 2026): Uses VLM cross-modal attention as *proxy* spatial supervision for retrieval training, improving page-level nDCG but producing no bounding boxes. Directly validates that spatial signals improve retrieval, but stops at attention-level proxies.\n- [MetaEmbed (arXiv:2509.18095)](https://arxiv.org/abs/2509.18095) (ICLR 2026 Oral): Matryoshka Multi-Vector Retrieval nesting along token-count dimension with learnable Meta Tokens. Defines the \"nesting axis\" concept that GroundVDR extends.\n- [MURE (arXiv:2603.13349)](https://arxiv.org/abs/2603.13349) (arXiv 2026): Resolution-level Matryoshka nesting (input-side), hierarchical multi-resolution encoding with semantic-aware clustering for token compression. Second nesting axis.\n- [Hydra (arXiv:2603.28554)](https://arxiv.org/abs/2603.28554) (arXiv 2026): Unifies retrieval + generation in a single VLM via LoRA toggle with byte-identical weight recovery, but the two tasks are independent modes with no shared loss or mutual reinforcement.\n- [ReAlign (arXiv:2604.07419)](https://arxiv.org/abs/2604.07419) (SIGIR 2026): Uses VLM reasoning to identify query-relevant regions → generates textual descriptions → KL divergence alignment. Text-bridged indirect spatial supervision; frozen VLM teacher.\n- [Snappy (arXiv:2512.02660)](https://arxiv.org/abs/2512.02660) (arXiv 2025): Training-free patch-to-region relevance propagation using ColPali's existing patch similarity scores + OCR bounding boxes. Achieves 59.7% IoU@0.5 without any learned optimization.\n- [Localization Heads (arXiv:2503.06287)](https://arxiv.org/abs/2503.06287) (CVPR 2025 Highlight): Only ~3 attention heads in frozen LVLMs are sufficient for competitive visual grounding on natural images, without fine-tuning.\n- [Entropy-Gradient Grounding (arXiv:2604.08456)](https://arxiv.org/abs/2604.08456) (arXiv 2026): Training-free grounding via entropy of next-token distribution backpropagated to visual tokens. Works across 4 VLM architectures. Strongest gains on detail-critical/high-res settings.\n- [PixSearch (arXiv:2601.19060)](https://arxiv.org/abs/2601.19060) (arXiv 2026): End-to-end segmentation + retrieval-augmented generation with pixel-level masks; retrieval is generation-time dynamic triggering, not offline indexing.\n- [GranuRAG (arXiv:2605.15019)](https://arxiv.org/abs/2605.15019) (arXiv 2026, May): Multi-granularity evidence retrieval treating visual elements as first-class retrieval units — detection → classification → multi-granularity alignment → attribution-constrained generation. On real-world visual scenes (landmarks), not documents, but shares the \"elements as retrieval units\" concept.\n- [ColParse (arXiv:2603.01666)](https://arxiv.org/abs/2603.01666) (arXiv 2026): Layout-informed sub-image embeddings via external parser; 95% storage reduction with 10+ nDCG@5 gains. Cannot be jointly optimized.\n- [RegionRAG (arXiv:2510.27261)](https://arxiv.org/abs/2510.27261) (AAAI 2026): Region-level RAG with BFS heuristic for patch grouping; improves retrieval accuracy by 10% R@1 with 71% visual tokens.\n- [Chain of Evidence (arXiv:2605.01284)](https://arxiv.org/abs/2605.01284) (arXiv 2026, May): Pixel-level visual attribution for iterative RAG using VLM reasoning over document screenshots. Addresses coarse-grained attribution problem.\n- 调研总结: 2026年VDR领域的研究者在两个轴上同时推进：一是**检索粒度的细化**（从page到region到element），但目前方案要么依赖外部parser/OCR（ColParse, Multi-Granularity Framework），要么用启发式方法（RegionRAG, Snappy），都无法端到端联合优化；二是**空间感知能力的增强**（AGREE用注意力代理、ReAlign用文本桥接、Entropy-Gradient用不确定性），但都停留在间接信号或training-free阶段。尚无工作将直接的bounding-box regression supervision与检索任务在单一模型中端到端联合训练。\n\n---\n\n【发掘点 1】\n- 维度: 核心 claim 强化\n- 内容: **将synergy假设从定性声明升级为可量化的梯度预测。** 当前proposal声称\"grounding loss和retrieval loss相互增强\"，但这个claim可以更尖锐。具体地：如果synergy假设成立，那么grounding loss对retrieval的增益应该随粒度细化而**单调递增**——即element-level retrieval从grounding supervision中获益最大，region-level次之，page-level最小（因为page-level检索对空间精度的需求最低）。这构成一个**granularity-dependent synergy gradient**的定量预测。同样反向地，retrieval loss对grounding的增益应该在语义歧义度高的区域（如相似表格/图表区分）比语义简单区域更大。建议在论文中将synergy假设从\"joint > separate\"的binary claim改为\"joint training的边际收益随任务对空间/语义精度的依赖程度单调递增\"的structured prediction，并在ablation #3中检验这一梯度是否存在。\n- 价值: 这直接提升Novelty和Significance——从\"我们发现joint training有效\"（审稿人反应：\"I would have guessed this\"）升级为\"我们发现并验证了synergy的结构化规律\"（审稿人反应：\"This is a non-trivial insight\"）。前者是engineering contribution，后者是scientific finding。这是将论文从borderline提升到solid accept的关键差异。\n- 调研依据: MetaEmbed和MURE分别沿token-count和resolution维度证明了nesting的有效性，但都没有分析nesting维度与downstream task gain之间的结构化关系。GroundVDR引入第三个nesting轴（spatial-semantic granularity）并提供结构化synergy分析，将使其在Matryoshka embedding家族中的contribution更加独特。\n\n【发掘点 2】\n- 维度: trivial alternative 威胁\n- 内容: **必须正面回应training-free grounding方法的挑战。** Localization Heads (CVPR 2025) 证明仅3个attention heads就能在自然图像上实现competitive grounding；Snappy在无任何训练的情况下达到59.7% IoU@0.5；Entropy-Gradient Grounding (arXiv 2026) 通过entropy backpropagation在4种VLM架构上consistently改进grounding。这三个结果共同构成一个强trivial alternative narrative：\"VLM的patch embeddings已经隐含了足够的空间信息，只需用更聪明的inference-time方法提取，不需要150M参数的localization head和额外训练。\" 当前proposal将Snappy列为training-free lower bound，但没有系统性地论证**为什么learned grounding比inference-time extraction有本质优势**。建议在论文的motivation部分加入以下论证：(1) training-free方法提取的是为**通用VLM任务**优化的空间信息，而learned grounding直接为**检索任务的spatial-semantic需求**优化空间表示——这是pre-trained features vs. task-specific fine-tuning的经典差异；(2) training-free方法无法实现grounding→retrieval的synergy（它们不修改embedding空间），因此只能做\"grounding on top of retrieval\"而非\"grounding integrated with retrieval\"；(3) 在ablation中用Entropy-Gradient Grounding或Localization Heads的probing作为第二个training-free baseline（除Snappy外），形成\"no training → probe → full learned\"的梯度对比。\n- 价值: 这是defensibility层面的关键强化。如果审稿人问\"why not just use Entropy-Gradient Grounding at inference time?\"，当前proposal没有系统性的回答。补充这个论证不只是防御，更是正面强化了\"learned joint optimization\"这个核心贡献的irreplaceability。命中Novelty维度。\n- 调研依据: 直接基于Localization Heads (CVPR 2025)、Snappy (arXiv 2025)和Entropy-Gradient Grounding (arXiv 2026)三篇工作的组合论证。\n\n【发掘点 3】\n- 维度: significance 提升\n- 内容: **将Spatially-Typed Matryoshka从\"技术组件\"提升为\"通用框架贡献\"。** 当前proposal中，Spatially-Typed Matryoshka Embedding被定位为GroundVDR的一个技术组件。但从调研来看，这实际上是Matryoshka embedding家族中一个新的、正交的nesting轴：MetaEmbed沿token-count维度nest（精度-效率tradeoff），MURE沿input-resolution维度nest（分辨率-效率tradeoff），GroundVDR沿spatial-semantic granularity维度nest（粒度-覆盖度tradeoff）。三者构成Matryoshka multi-vector embedding的三个正交维度。建议在论文中明确formalize这个\"三轴Matryoshka空间\"：{token-count × resolution × spatial-granularity}，指出当前工作沿其中一个轴独立推进，而**原则上三个轴可以组合**（虽然本文只实现spatial-granularity轴）。这将论文的contribution从\"GroundVDR: a model for VDR\"提升为\"Spatially-Typed Matryoshka: a general nesting framework + GroundVDR: its first instantiation for VDR\"。\n- 价值: 显著提升Significance。审稿人最看重的是idea的generalizability和lasting impact。一个VDR-specific的model贡献影响面有限；一个可推广到任何hierarchical spatial retrieval场景（地图检索、医学影像检索、卫星图像检索）的framework贡献影响面大得多。Proposal最后一段提到了这个推广可能性，但目前只是一句话带过——应该作为核心贡献之一正式 claim。\n- 调研依据: 直接基于MetaEmbed (ICLR 2026 Oral)和MURE (arXiv 2026)的nesting轴分析，以及领域趋势——Matryoshka representation learning正在成为embedding研究的重要方向，每篇新工作都在探索新的nesting维度。\n\n【发掘点 4】\n- 维度: related work 差异化\n- 内容: **补充两篇近期高度相关工作的定位。** (1) **GranuRAG** (arXiv:2605.15019, 2026年5月)：将visual elements作为first-class retrieval units，通过detection → multi-granularity alignment → attribution-constrained generation实现element-level检索。虽然GranuRAG针对自然场景（地标）而非文档，且采用独立的detection+retrieval pipeline而非端到端联合训练，但\"elements as retrieval units\"的理念与GroundVDR高度相关，审稿人可能要求说明差异。关键差异：GranuRAG依赖预训练的object detector（非jointly optimized），不产生spatial-typed embeddings，且不在同一embedding space中统一page/region/element三个粒度。(2) **Entropy-Gradient Grounding** (arXiv:2604.08456, 2026年4月)：training-free的entropy-backpropagation grounding方法，在7个benchmark上consistently改进VLM grounding。虽然目标不同（visual QA grounding vs. retrieval grounding），但方法论上构成GroundVDR learned approach的一个competitive training-free alternative。建议在related work中明确讨论这两篇。\n- 价值: 命中Related Work差异化维度。遗漏高度相关的近期工作是审稿人最容易提出的critical weakness。主动讨论并明确差异化，将防御转化为展示proposal定位精确性的机会。\n- 调研依据: 直接基于GranuRAG和Entropy-Gradient Grounding的搜索发现。\n\n【发掘点 5】\n- 维度: novelty 锐化\n- 内容: **更精确地articulate R-CNN→YOLO类比的适用性和局限性。** 当前proposal用R-CNN→Faster R-CNN/YOLO的evolution类比来motivate\"pipeline→end-to-end\"的transition。这个类比是compelling的，但审稿人可能指出：object detection的joint training成功主要源于architectural unification的computational benefits（shared feature computation, end-to-end gradient flow），而GroundVDR的核心claim是**task-level synergy**（grounding帮助retrieval，retrieval帮助grounding），这是multi-task learning的benefit而非仅仅是architectural unification的benefit。建议在论文中明确区分这两层benefit：(1) **Architectural unification benefit**: 从3-model pipeline压缩到1-model，减少内存、延迟、error cascading——这是和R-CNN→YOLO直接类比的部分；(2) **Task-level synergy benefit**: grounding和retrieval通过shared representations相互增强——这超越了R-CNN类比，更接近multi-task learning的classic findings（如Caruana 1997的inductive transfer）。Ablation #3（joint vs. separate training）直接检验的是第(2)层benefit。将这两层明确分开，可以让审稿人理解GroundVDR不仅仅是\"把几个模型合在一起\"（engineering），更是\"发现了task-level synergy\"（science）。\n- 价值: 锐化Novelty定位。防止审稿人将GroundVDR的贡献矮化为\"just pipeline consolidation\"（一个engineering contribution），确保\"task-level synergy\"作为科学发现被recognize。\n- 调研依据: 基于Hydra (arXiv 2026)的对比——Hydra也做了architectural unification（retrieval+generation in one model），但明确是independent modes（no shared loss）。GroundVDR的差异化在于synergy，而非仅unification。\n\nSources:\n- [AGREE: Attention Grounded Enhancement for Visual Document Retrieval](https://arxiv.org/abs/2511.13415)\n- [MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction](https://arxiv.org/abs/2509.18095)\n- [MURE: Hierarchical Multi-Resolution Encoding via VLMs for VDR](https://arxiv.org/abs/2603.13349)\n- [Hydra: Unifying Document Retrieval and Generation in a Single VLM](https://arxiv.org/abs/2603.28554)\n- [ReAlign: Optimizing Visual Document Retriever with Reasoning-Guided Alignment](https://arxiv.org/abs/2604.07419)\n- [Snappy: Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation](https://arxiv.org/abs/2512.02660)\n- [Localization Heads: Your Large VLM Only Needs A Few Attention Heads For Visual Grounding](https://arxiv.org/abs/2503.06287)\n- [Entropy-Gradient Grounding: Training-Free Evidence Retrieval in VLMs](https://arxiv.org/abs/2604.08456)\n- [PixSearch: Pixel-Grounded Retrieval for Knowledgeable Large Multimodal Models](https://arxiv.org/abs/2601.19060)\n- [GranuRAG: From Scenes to Elements: Multi-Granularity Evidence Retrieval](https://arxiv.org/abs/2605.15019)\n- [ColParse: Layout-Informed Multi-Vector Retrieval](https://arxiv.org/abs/2603.01666)\n- [RegionRAG: Region-level RAG for Visual Document Understanding](https://arxiv.org/abs/2510.27261)\n- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)\n- [ViDoRe V3](https://arxiv.org/abs/2601.08620)\n- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457)\n- [Chain of Evidence: Pixel-Level Visual Attribution for Iterative RAG](https://arxiv.org/abs/2605.01284)\n\n【补救 agent 本轮输出】:\nNow I have sufficient research to provide a thorough assessment. Let me compile my analysis.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **Nemotron ColEmbed V2 (arXiv 2602.03992, 2026)**: SOTA on ViDoRe V3, 63.42 nDCG@10; uses bidirectional attention + hard negative mining + cluster-based sampling on Qwen3-VL-8B. Baselines include ColPali, ColQwen2, DSE, and text-based BM25. Ablation covers attention type, training data, and model merging strategies.\n- **MetaEmbed (ICLR 2026 Oral, arXiv:2509.18095)**: Matryoshka Multi-Vector Retrieval with group sizes {(1,1),(2,4),(4,8),(8,16),(16,64)}, τ=0.03. Evaluated on MMEB + ViDoRe V2. Ablation covers group-size tradeoff, Meta Token count, nesting structure.\n- **Hydra (arXiv 2603.28554, 2026)**: Unified retrieval + generation via LoRA toggle (r=16). **Critical finding: ablation shows GritLM-style joint training provides no benefit within the LoRA-based training regime.** Evaluation: byte-identical generation output verification, VQA benchmarks, ViDoRe retrieval.\n- **Snappy (arXiv 2512.02660, 2025)**: Training-free grounding. ColQwen3-4B achieves 59.7% IoU@0.5, 84.4% IoU@0.25, mean IoU 0.569 on BBox-DocVQA. Context token reduction 28.8–52.3%. **Primary evaluation on BBox-DocVQA, not ViDoRe V3.**\n- **AGREE (SIGIR 2026, arXiv:2511.13415)**: Attention-proxy grounding for retrieval enhancement. Evaluated on ViDoRe V2 (not V3). Ablation on local vs. global supervision contribution.\n- **ReAlign (SIGIR 2026, arXiv:2604.07419)**: VLM reasoning → textual descriptions → KL divergence alignment. Evaluated on ViDoRe benchmarks with per-dataset breakdowns. Code + models released.\n- **ColParse (arXiv 2603.01666, 2026)**: Layout-informed sub-images, 95% storage reduction, +10 nDCG@5 average across 10 single-vector models. Depends on external parser.\n- **HybriDLA (AAAI 2026, arXiv:2511.19919)**: Hybrid diffusion-autoregressive layout analysis, 83.5% mAP on DocLayNet. DocLayNet SOTA ranges from ~78–83.5%.\n- **MURE (arXiv 2603.13349, 2026)**: Resolution-level Matryoshka, beats ColPali with 50% token budget. Evaluated on ViDoRe benchmarks.\n- **RegionRAG (AAAI 2026, arXiv:2510.27261)**: Region-level contrastive learning, +10.02% R@1, 71.42% visual token usage. Evaluated on 6 benchmarks. BFS-based region grouping with manual thresholds.\n- **LITTA (arXiv 2603.26683, 2026)**: Test-time query expansion for visually-grounded retrieval. Evaluated on ViDoRe V3 with multi-domain settings. Compatible with frozen retriever + existing indices.\n- **Localization Heads (CVPR 2025 Highlight, arXiv:2503.06287)**: ~3 attention heads sufficient for competitive grounding in frozen VLMs on natural images. Training-free. Evaluated on RefCOCO-series, **not document images**.\n\n- **调研总结**: 当前领域的实验设计标准要求：(1) 在 ViDoRe V1/V2/V3 和 MMDocIR 上全面评测，包括 page-level 和 layout/region-level 分开报告；(2) 与 Nemotron ColEmbed V2、MetaEmbed、ColPali/ColQwen2 等 SOTA 对比；(3) 审稿人普遍关注 compute-normalized comparison、ablation 的充分性（尤其是 joint training 的增益分离），以及 Hydra 已经发现 LoRA-based joint training 无增益这一反面证据必须被正面回应。\n\n---\n\n【缺陷 1】\n- 类别: 实验设计不足\n- 问题: **Hydra 的负面证据未在实验设计中正面回应。** Hydra (arXiv 2603.28554) 的 ablation 明确发现 \"GritLM-style joint training provides no benefit within the LoRA-based (r=16) training regime\"。GroundVDR 同样使用 LoRA (r=64) 进行 joint training，其核心 synergy hypothesis 直接面临这个反面证据。Proposal 在 related work 中仅说 \"Hydra's two tasks are independent modes (no shared loss, no mutual reinforcement)\"，但实验设计中没有设置任何 control 来实证区分 GroundVDR 的 joint training 为什么能成功而 Hydra 的不能。审稿人几乎必然会引用 Hydra 的这个 finding 来质疑 ablation #3 的结果。\n- 严重度: 可补救\n- 补救方案: 在 ablation 矩阵中增加一个对照实验——\"LoRA-only joint training without shared gradient flow\"（即 retrieval loss 和 grounding loss 分别更新各自的 LoRA adapter，不通过 shared backbone 产生梯度交互），直接验证 GroundVDR 的 synergy 是来自 shared gradient flow 而非仅来自 LoRA 参数共享。此外，建议在 ablation #3 中加入 LoRA rank 的对比 (r=16 vs r=64)，回应 Hydra 在 r=16 下的负面结果是否因为 capacity 不足。这两个 control 的 compute overhead 有限（每个约 30-40% main training cost），但能极大增强 synergy claim 的可信度。\n- 调研依据: Hydra (arXiv 2603.28554) ablation 中的 GritLM-style joint training 负面结果\n\n【缺陷 2】\n- 类别: baseline 不足或过时\n- 问题: **ReAlign (SIGIR 2026) 未列入 baselines。** Proposal 在 related work 中详细讨论了 ReAlign 并明确定位 \"GroundVDR differs fundamentally: direct box regression... vs. ReAlign's lossy text compression\"，但 baselines 表中没有包含 ReAlign。作为同期 SIGIR 2026 论文，ReAlign 在 \"spatial alignment for retrieval\" 这个维度上与 GroundVDR 有直接可比性——两者都通过引入空间信息来提升 retrieval quality，只是手段不同（direct bounding box regression vs. text-bridged KL divergence）。审稿人会期望在 page-level retrieval 结果表中看到 ReAlign 的对比数据。ReAlign 代码和模型已开源，可以复现。\n- 严重度: 可补救\n- 补救方案: 将 ReAlign 加入 baselines 的 \"Grounding\" 或 \"Sub-page/region-level retrieval\" 类别中。ReAlign 有开源代码 (GitHub: NEUIR/ReAlign)，可以在 ViDoRe 和 MMDocIR 上复现。如果时间紧张，至少引用其 paper 中已报告的 ViDoRe 结果进行对比。\n- 调研依据: ReAlign (arXiv:2604.07419) 已被 SIGIR 2026 接收并开源\n\n【缺陷 3】\n- 类别: 可行性问题\n- 问题: **多种子实验的 compute budget 可能低估。** Proposal 声称 \"Multi-seed: 2 seeds for main results, 3 seeds for ablation #3 → additional ~200 H100-hours\"。但实际计算：1 additional main seed 需重跑 Phase 2（~150 H100-hours，Phase 1 的 localization head pre-training可复用），2 additional ablation #3 seeds 需训练 retrieval-only 和 grounding-only 各 2 额外 seeds，每个 variant 约 50-75 H100-hours × 2 variants × 2 additional seeds = 200-300 H100-hours。合计 additional cost ≈ 350-450 H100-hours，超出预估的 200 H100-hours 约 75-125%。这使得总 compute budget 从 ~480 提升至 ~630-730 H100-hours。虽然仍在学术实验室可行范围内，但预算低估会影响时间线和可行性评估的可信度。\n- 严重度: 可补救\n- 补救方案: 修正 compute budget 估算。如果总预算必须控制在 ~500 H100-hours 以内，可以考虑：(a) 主实验仅报 1 seed 但 ablation #3 保持 3 seeds（核心 hypothesis 的统计显著性比主表的方差更重要）；(b) 或使用更小的 ablation training set（如 50% 数据）来降低每个 ablation run 的成本，同时补充 full-data main experiment 作为上界。明确的预算修正会增强审稿人对 feasibility 的信心。\n- 调研依据: 基于领域实验规范判断（8B 模型的 LoRA fine-tuning 在 H100 上的典型 cost）\n\n【缺陷 4】\n- 类别: 实验设计不足\n- 问题: **缺少定性 error analysis 和 failure case 分析计划。** 当前实验设计完全是定量的。AAAI 主会的审稿人通常期望看到：(1) 典型成功/失败案例的可视化分析；(2) 按文档类型/查询类型分层的 error breakdown；(3) grounding prediction 的可视化（预测 bounding box vs. ground truth）。Proposal 提到了 \"Per-modality breakdown (text 60.4% / image 18.8% / table 16.7%)\" 但这只是按内容类型分的定量分解，没有 failure mode 的定性分析。对于一个强调 \"retrieval-grounding synergy\" 的论文，审稿人会特别想看到 synergy 在什么情况下有效、什么情况下失效的 case study。\n- 严重度: 可补救\n- 补救方案: 在实验设计中增加一节 \"Qualitative Analysis\"，包括：(a) 3-5 个成功案例：展示 GroundVDR 正确检索并准确 grounding 的 case，配合预测 bounding box 的可视化叠加；(b) 3-5 个失败案例：分析 grounding 失败的 failure mode（如密集文本区域的边界模糊、跨多页证据的遗漏等）；(c) Synergy 分析案例：展示 joint training 版本 vs. retrieval-only 版本在同一查询上的 embedding 相似度热力图对比，直观展示 grounding loss 如何改变 attention pattern。这些分析 compute cost 几乎为零，但显著增强论文的 interpretability。\n- 调研依据: 基于领域实验规范判断；Nemotron ColEmbed V2、AGREE、ReAlign 等近期论文均包含 qualitative analysis 和 attention visualization\n\n【缺陷 5】\n- 类别: 评估方案缺陷\n- 问题: **Localization head 的独立评估缺少成功阈值定义。** Proposal 计划在 DocLayNet 上报告 COCO-style mAP 并与 HybriDLA (83.5% mAP) 对比，这是一个必要且合理的 sanity check。但 proposal 没有定义 \"localization head 需要达到多少 mAP 才能被认为对下游 retrieval 有用\"。HybriDLA 是专用 layout detection 模型（AAAI 2026 oral），GroundVDR 的 localization head 仅 150M 参数且附属于 retrieval backbone，合理预期 mAP 会显著低于 83.5%。如果 localization head 的 mAP 只有 60%，但下游 retrieval 仍然提升，这意味着什么？如果 mAP 是 40%，还能用吗？缺少这个阈值会导致审稿人无法判断 localization head 的表现是 \"够用\" 还是 \"不够好但侥幸可用\"。\n- 严重度: 可补救\n- 补救方案: 增加一个 \"localization quality → retrieval quality\" 的关联分析。具体做法：在 ablation #1（learned head vs. external parser vs. fixed grid）的基础上，报告每个方案的 localization mAP 与对应的 retrieval nDCG 之间的关系。这自然形成一个 scatter plot，审稿人可以从中判断 localization quality 和 retrieval quality 的关系是否单调。此外，可以设定一个 anchored threshold：\"when localization mAP exceeds the fixed-grid baseline (which by construction has 0% mAP on box detection), retrieval gains are observed\"，将 fixed grid 作为 localization 的 lower bound 参考。\n- 调研依据: 基于领域实验规范判断；Localization Heads (CVPR 2025) 论文中也通过 pointing accuracy 与 downstream task 的 correlation 来验证 localization 质量\n\n【缺陷 6】\n- 类别: 实验设计不足\n- 问题: **MMDocIR 的 173K bootstrapped layout annotations 的质量及其对训练的影响未被讨论。** Proposal 将 Phase 2 训练数据描述为 \"MMDocIR's 173K bootstrapped layout annotations + 1,685 expert annotations\"，但 \"bootstrapped\" 意味着这些标注是自动生成的，可能包含大量噪声（OCR 错误、layout parsing 错误等）。Proposal 没有讨论：(a) bootstrapped annotations 的质量如何？error rate 大约是多少？(b) 噪声标注对 grounding loss 的影响——如果 bounding box 标签本身有 10-20% 的 IoU 偏差，grounding loss 的优化方向可能偏移。(c) 是否需要 data cleaning 或 confidence-weighted loss。这对一个以 direct box regression 为核心的方法来说尤为重要——noisy supervision 直接损害 box prediction 质量。\n- 严重度: 可补救\n- 补救方案: (a) 在 Phase 2 训练前，对 bootstrapped annotations 进行质量审计——随机抽样 500-1000 个标注，人工评估 IoU 与 expert annotations 的一致性，报告 annotation noise level。(b) 实验中增加一个 data quality ablation：使用仅 1,685 expert annotations 训练（data quality 高但量少）vs. 全量 173K bootstrapped + 1,685 expert（量大但有噪声），对比 grounding quality 和 retrieval quality。(c) 考虑对 grounding loss 加入 confidence weight——用 bootstrapped annotation 的 layout parser confidence score 加权 L1+GIoU loss，降低低置信度标注的影响。\n- 调研依据: 基于领域实验规范判断；RegionRAG (AAAI 2026) 在弱监督标注上使用了 hybrid supervision strategy（强标注 + 弱标注联合）来缓解类似问题\n\n---\n\n**总体评估**: 这个 proposal 的实验设计在 baseline 覆盖、benchmark 选择、评估指标、ablation 设计方面已经相当完善，尤其是 ablation #3（直接测试 synergy hypothesis）和独立的 localization head 评估设计得非常扎实。以上 6 个缺陷均为可补救的，没有方向性致命问题。其中**缺陷 1（Hydra 反面证据的实验回应）**和**缺陷 6（bootstrapped annotation 质量）**的优先级最高——前者直接影响核心 hypothesis 的可信度，后者影响训练数据的可靠性。其余 4 个缺陷属于标准的实验完善工作，补救后可显著提升论文的 soundness 评分。\n\nSources:\n- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)\n- [MetaEmbed (ICLR 2026 Oral)](https://arxiv.org/abs/2509.18095)\n- [Hydra](https://arxiv.org/abs/2603.28554)\n- [Snappy](https://arxiv.org/abs/2512.02660)\n- [AGREE (SIGIR 2026)](https://arxiv.org/abs/2511.13415)\n- [ReAlign (SIGIR 2026)](https://arxiv.org/abs/2604.07419)\n- [ColParse](https://arxiv.org/abs/2603.01666)\n- [HybriDLA (AAAI 2026)](https://arxiv.org/abs/2511.19919)\n- [MURE](https://arxiv.org/abs/2603.13349)\n- [RegionRAG (AAAI 2026)](https://arxiv.org/abs/2510.27261)\n- [LITTA](https://arxiv.org/abs/2603.26683)\n- [ViDoRe V3](https://arxiv.org/abs/2601.08620)\n- [MMDocIR](https://arxiv.org/abs/2501.08828)\n- [Localization Heads (CVPR 2025)](https://arxiv.org/abs/2503.06287)\n- [PixSearch](https://arxiv.org/abs/2601.19060)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63 · 2026-05-30T07:16:42.058Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:16:42.058Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+## Round 4
+
+18 recorded events
+
+### User
+
+_source line 64 · 2026-05-30T07:16:42.085Z_
+
+【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。
+
+【发掘 agent 本轮输出】:
+Now I have comprehensive research coverage. Let me synthesize my analysis.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- [AGREE (arXiv:2511.13415)](https://arxiv.org/abs/2511.13415) (SIGIR 2026): Uses VLM cross-modal attention as *proxy* spatial supervision for retrieval training, improving page-level nDCG but producing no bounding boxes. Directly validates that spatial signals improve retrieval, but stops at attention-level proxies.
+- [MetaEmbed (arXiv:2509.18095)](https://arxiv.org/abs/2509.18095) (ICLR 2026 Oral): Matryoshka Multi-Vector Retrieval nesting along token-count dimension with learnable Meta Tokens. Defines the "nesting axis" concept that GroundVDR extends.
+- [MURE (arXiv:2603.13349)](https://arxiv.org/abs/2603.13349) (arXiv 2026): Resolution-level Matryoshka nesting (input-side), hierarchical multi-resolution encoding with semantic-aware clustering for token compression. Second nesting axis.
+- [Hydra (arXiv:2603.28554)](https://arxiv.org/abs/2603.28554) (arXiv 2026): Unifies retrieval + generation in a single VLM via LoRA toggle with byte-identical weight recovery, but the two tasks are independent modes with no shared loss or mutual reinforcement.
+- [ReAlign (arXiv:2604.07419)](https://arxiv.org/abs/2604.07419) (SIGIR 2026): Uses VLM reasoning to identify query-relevant regions → generates textual descriptions → KL divergence alignment. Text-bridged indirect spatial supervision; frozen VLM teacher.
+- [Snappy (arXiv:2512.02660)](https://arxiv.org/abs/2512.02660) (arXiv 2025): Training-free patch-to-region relevance propagation using ColPali's existing patch similarity scores + OCR bounding boxes. Achieves 59.7% IoU@0.5 without any learned optimization.
+- [Localization Heads (arXiv:2503.06287)](https://arxiv.org/abs/2503.06287) (CVPR 2025 Highlight): Only ~3 attention heads in frozen LVLMs are sufficient for competitive visual grounding on natural images, without fine-tuning.
+- [Entropy-Gradient Grounding (arXiv:2604.08456)](https://arxiv.org/abs/2604.08456) (arXiv 2026): Training-free grounding via entropy of next-token distribution backpropagated to visual tokens. Works across 4 VLM architectures. Strongest gains on detail-critical/high-res settings.
+- [PixSearch (arXiv:2601.19060)](https://arxiv.org/abs/2601.19060) (arXiv 2026): End-to-end segmentation + retrieval-augmented generation with pixel-level masks; retrieval is generation-time dynamic triggering, not offline indexing.
+- [GranuRAG (arXiv:2605.15019)](https://arxiv.org/abs/2605.15019) (arXiv 2026, May): Multi-granularity evidence retrieval treating visual elements as first-class retrieval units — detection → classification → multi-granularity alignment → attribution-constrained generation. On real-world visual scenes (landmarks), not documents, but shares the "elements as retrieval units" concept.
+- [ColParse (arXiv:2603.01666)](https://arxiv.org/abs/2603.01666) (arXiv 2026): Layout-informed sub-image embeddings via external parser; 95% storage reduction with 10+ nDCG@5 gains. Cannot be jointly optimized.
+- [RegionRAG (arXiv:2510.27261)](https://arxiv.org/abs/2510.27261) (AAAI 2026): Region-level RAG with BFS heuristic for patch grouping; improves retrieval accuracy by 10% R@1 with 71% visual tokens.
+- [Chain of Evidence (arXiv:2605.01284)](https://arxiv.org/abs/2605.01284) (arXiv 2026, May): Pixel-level visual attribution for iterative RAG using VLM reasoning over document screenshots. Addresses coarse-grained attribution problem.
+- 调研总结: 2026年VDR领域的研究者在两个轴上同时推进：一是**检索粒度的细化**（从page到region到element），但目前方案要么依赖外部parser/OCR（ColParse, Multi-Granularity Framework），要么用启发式方法（RegionRAG, Snappy），都无法端到端联合优化；二是**空间感知能力的增强**（AGREE用注意力代理、ReAlign用文本桥接、Entropy-Gradient用不确定性），但都停留在间接信号或training-free阶段。尚无工作将直接的bounding-box regression supervision与检索任务在单一模型中端到端联合训练。
+
+---
+
+【发掘点 1】
+- 维度: 核心 claim 强化
+- 内容: **将synergy假设从定性声明升级为可量化的梯度预测。** 当前proposal声称"grounding loss和retrieval loss相互增强"，但这个claim可以更尖锐。具体地：如果synergy假设成立，那么grounding loss对retrieval的增益应该随粒度细化而**单调递增**——即element-level retrieval从grounding supervision中获益最大，region-level次之，page-level最小（因为page-level检索对空间精度的需求最低）。这构成一个**granularity-dependent synergy gradient**的定量预测。同样反向地，retrieval loss对grounding的增益应该在语义歧义度高的区域（如相似表格/图表区分）比语义简单区域更大。建议在论文中将synergy假设从"joint > separate"的binary claim改为"joint training的边际收益随任务对空间/语义精度的依赖程度单调递增"的structured prediction，并在ablation #3中检验这一梯度是否存在。
+- 价值: 这直接提升Novelty和Significance——从"我们发现joint training有效"（审稿人反应："I would have guessed this"）升级为"我们发现并验证了synergy的结构化规律"（审稿人反应："This is a non-trivial insight"）。前者是engineering contribution，后者是scientific finding。这是将论文从borderline提升到solid accept的关键差异。
+- 调研依据: MetaEmbed和MURE分别沿token-count和resolution维度证明了nesting的有效性，但都没有分析nesting维度与downstream task gain之间的结构化关系。GroundVDR引入第三个nesting轴（spatial-semantic granularity）并提供结构化synergy分析，将使其在Matryoshka embedding家族中的contribution更加独特。
+
+【发掘点 2】
+- 维度: trivial alternative 威胁
+- 内容: **必须正面回应training-free grounding方法的挑战。** Localization Heads (CVPR 2025) 证明仅3个attention heads就能在自然图像上实现competitive grounding；Snappy在无任何训练的情况下达到59.7% IoU@0.5；Entropy-Gradient Grounding (arXiv 2026) 通过entropy backpropagation在4种VLM架构上consistently改进grounding。这三个结果共同构成一个强trivial alternative narrative："VLM的patch embeddings已经隐含了足够的空间信息，只需用更聪明的inference-time方法提取，不需要150M参数的localization head和额外训练。" 当前proposal将Snappy列为training-free lower bound，但没有系统性地论证**为什么learned grounding比inference-time extraction有本质优势**。建议在论文的motivation部分加入以下论证：(1) training-free方法提取的是为**通用VLM任务**优化的空间信息，而learned grounding直接为**检索任务的spatial-semantic需求**优化空间表示——这是pre-trained features vs. task-specific fine-tuning的经典差异；(2) training-free方法无法实现grounding→retrieval的synergy（它们不修改embedding空间），因此只能做"grounding on top of retrieval"而非"grounding integrated with retrieval"；(3) 在ablation中用Entropy-Gradient Grounding或Localization Heads的probing作为第二个training-free baseline（除Snappy外），形成"no training → probe → full learned"的梯度对比。
+- 价值: 这是defensibility层面的关键强化。如果审稿人问"why not just use Entropy-Gradient Grounding at inference time?"，当前proposal没有系统性的回答。补充这个论证不只是防御，更是正面强化了"learned joint optimization"这个核心贡献的irreplaceability。命中Novelty维度。
+- 调研依据: 直接基于Localization Heads (CVPR 2025)、Snappy (arXiv 2025)和Entropy-Gradient Grounding (arXiv 2026)三篇工作的组合论证。
+
+【发掘点 3】
+- 维度: significance 提升
+- 内容: **将Spatially-Typed Matryoshka从"技术组件"提升为"通用框架贡献"。** 当前proposal中，Spatially-Typed Matryoshka Embedding被定位为GroundVDR的一个技术组件。但从调研来看，这实际上是Matryoshka embedding家族中一个新的、正交的nesting轴：MetaEmbed沿token-count维度nest（精度-效率tradeoff），MURE沿input-resolution维度nest（分辨率-效率tradeoff），GroundVDR沿spatial-semantic granularity维度nest（粒度-覆盖度tradeoff）。三者构成Matryoshka multi-vector embedding的三个正交维度。建议在论文中明确formalize这个"三轴Matryoshka空间"：{token-count × resolution × spatial-granularity}，指出当前工作沿其中一个轴独立推进，而**原则上三个轴可以组合**（虽然本文只实现spatial-granularity轴）。这将论文的contribution从"GroundVDR: a model for VDR"提升为"Spatially-Typed Matryoshka: a general nesting framework + GroundVDR: its first instantiation for VDR"。
+- 价值: 显著提升Significance。审稿人最看重的是idea的generalizability和lasting impact。一个VDR-specific的model贡献影响面有限；一个可推广到任何hierarchical spatial retrieval场景（地图检索、医学影像检索、卫星图像检索）的framework贡献影响面大得多。Proposal最后一段提到了这个推广可能性，但目前只是一句话带过——应该作为核心贡献之一正式 claim。
+- 调研依据: 直接基于MetaEmbed (ICLR 2026 Oral)和MURE (arXiv 2026)的nesting轴分析，以及领域趋势——Matryoshka representation learning正在成为embedding研究的重要方向，每篇新工作都在探索新的nesting维度。
+
+【发掘点 4】
+- 维度: related work 差异化
+- 内容: **补充两篇近期高度相关工作的定位。** (1) **GranuRAG** (arXiv:2605.15019, 2026年5月)：将visual elements作为first-class retrieval units，通过detection → multi-granularity alignment → attribution-constrained generation实现element-level检索。虽然GranuRAG针对自然场景（地标）而非文档，且采用独立的detection+retrieval pipeline而非端到端联合训练，但"elements as retrieval units"的理念与GroundVDR高度相关，审稿人可能要求说明差异。关键差异：GranuRAG依赖预训练的object detector（非jointly optimized），不产生spatial-typed embeddings，且不在同一embedding space中统一page/region/element三个粒度。(2) **Entropy-Gradient Grounding** (arXiv:2604.08456, 2026年4月)：training-free的entropy-backpropagation grounding方法，在7个benchmark上consistently改进VLM grounding。虽然目标不同（visual QA grounding vs. retrieval grounding），但方法论上构成GroundVDR learned approach的一个competitive training-free alternative。建议在related work中明确讨论这两篇。
+- 价值: 命中Related Work差异化维度。遗漏高度相关的近期工作是审稿人最容易提出的critical weakness。主动讨论并明确差异化，将防御转化为展示proposal定位精确性的机会。
+- 调研依据: 直接基于GranuRAG和Entropy-Gradient Grounding的搜索发现。
+
+【发掘点 5】
+- 维度: novelty 锐化
+- 内容: **更精确地articulate R-CNN→YOLO类比的适用性和局限性。** 当前proposal用R-CNN→Faster R-CNN/YOLO的evolution类比来motivate"pipeline→end-to-end"的transition。这个类比是compelling的，但审稿人可能指出：object detection的joint training成功主要源于architectural unification的computational benefits（shared feature computation, end-to-end gradient flow），而GroundVDR的核心claim是**task-level synergy**（grounding帮助retrieval，retrieval帮助grounding），这是multi-task learning的benefit而非仅仅是architectural unification的benefit。建议在论文中明确区分这两层benefit：(1) **Architectural unification benefit**: 从3-model pipeline压缩到1-model，减少内存、延迟、error cascading——这是和R-CNN→YOLO直接类比的部分；(2) **Task-level synergy benefit**: grounding和retrieval通过shared representations相互增强——这超越了R-CNN类比，更接近multi-task learning的classic findings（如Caruana 1997的inductive transfer）。Ablation #3（joint vs. separate training）直接检验的是第(2)层benefit。将这两层明确分开，可以让审稿人理解GroundVDR不仅仅是"把几个模型合在一起"（engineering），更是"发现了task-level synergy"（science）。
+- 价值: 锐化Novelty定位。防止审稿人将GroundVDR的贡献矮化为"just pipeline consolidation"（一个engineering contribution），确保"task-level synergy"作为科学发现被recognize。
+- 调研依据: 基于Hydra (arXiv 2026)的对比——Hydra也做了architectural unification（retrieval+generation in one model），但明确是independent modes（no shared loss）。GroundVDR的差异化在于synergy，而非仅unification。
+
+Sources:
+- [AGREE: Attention Grounded Enhancement for Visual Document Retrieval](https://arxiv.org/abs/2511.13415)
+- [MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction](https://arxiv.org/abs/2509.18095)
+- [MURE: Hierarchical Multi-Resolution Encoding via VLMs for VDR](https://arxiv.org/abs/2603.13349)
+- [Hydra: Unifying Document Retrieval and Generation in a Single VLM](https://arxiv.org/abs/2603.28554)
+- [ReAlign: Optimizing Visual Document Retriever with Reasoning-Guided Alignment](https://arxiv.org/abs/2604.07419)
+- [Snappy: Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation](https://arxiv.org/abs/2512.02660)
+- [Localization Heads: Your Large VLM Only Needs A Few Attention Heads For Visual Grounding](https://arxiv.org/abs/2503.06287)
+- [Entropy-Gradient Grounding: Training-Free Evidence Retrieval in VLMs](https://arxiv.org/abs/2604.08456)
+- [PixSearch: Pixel-Grounded Retrieval for Knowledgeable Large Multimodal Models](https://arxiv.org/abs/2601.19060)
+- [GranuRAG: From Scenes to Elements: Multi-Granularity Evidence Retrieval](https://arxiv.org/abs/2605.15019)
+- [ColParse: Layout-Informed Multi-Vector Retrieval](https://arxiv.org/abs/2603.01666)
+- [RegionRAG: Region-level RAG for Visual Document Understanding](https://arxiv.org/abs/2510.27261)
+- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)
+- [ViDoRe V3](https://arxiv.org/abs/2601.08620)
+- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457)
+- [Chain of Evidence: Pixel-Level Visual Attribution for Iterative RAG](https://arxiv.org/abs/2605.01284)
+
+【补救 agent 本轮输出】:
+Now I have sufficient research to provide a thorough assessment. Let me compile my analysis.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **Nemotron ColEmbed V2 (arXiv 2602.03992, 2026)**: SOTA on ViDoRe V3, 63.42 nDCG@10; uses bidirectional attention + hard negative mining + cluster-based sampling on Qwen3-VL-8B. Baselines include ColPali, ColQwen2, DSE, and text-based BM25. Ablation covers attention type, training data, and model merging strategies.
+- **MetaEmbed (ICLR 2026 Oral, arXiv:2509.18095)**: Matryoshka Multi-Vector Retrieval with group sizes {(1,1),(2,4),(4,8),(8,16),(16,64)}, τ=0.03. Evaluated on MMEB + ViDoRe V2. Ablation covers group-size tradeoff, Meta Token count, nesting structure.
+- **Hydra (arXiv 2603.28554, 2026)**: Unified retrieval + generation via LoRA toggle (r=16). **Critical finding: ablation shows GritLM-style joint training provides no benefit within the LoRA-based training regime.** Evaluation: byte-identical generation output verification, VQA benchmarks, ViDoRe retrieval.
+- **Snappy (arXiv 2512.02660, 2025)**: Training-free grounding. ColQwen3-4B achieves 59.7% IoU@0.5, 84.4% IoU@0.25, mean IoU 0.569 on BBox-DocVQA. Context token reduction 28.8–52.3%. **Primary evaluation on BBox-DocVQA, not ViDoRe V3.**
+- **AGREE (SIGIR 2026, arXiv:2511.13415)**: Attention-proxy grounding for retrieval enhancement. Evaluated on ViDoRe V2 (not V3). Ablation on local vs. global supervision contribution.
+- **ReAlign (SIGIR 2026, arXiv:2604.07419)**: VLM reasoning → textual descriptions → KL divergence alignment. Evaluated on ViDoRe benchmarks with per-dataset breakdowns. Code + models released.
+- **ColParse (arXiv 2603.01666, 2026)**: Layout-informed sub-images, 95% storage reduction, +10 nDCG@5 average across 10 single-vector models. Depends on external parser.
+- **HybriDLA (AAAI 2026, arXiv:2511.19919)**: Hybrid diffusion-autoregressive layout analysis, 83.5% mAP on DocLayNet. DocLayNet SOTA ranges from ~78–83.5%.
+- **MURE (arXiv 2603.13349, 2026)**: Resolution-level Matryoshka, beats ColPali with 50% token budget. Evaluated on ViDoRe benchmarks.
+- **RegionRAG (AAAI 2026, arXiv:2510.27261)**: Region-level contrastive learning, +10.02% R@1, 71.42% visual token usage. Evaluated on 6 benchmarks. BFS-based region grouping with manual thresholds.
+- **LITTA (arXiv 2603.26683, 2026)**: Test-time query expansion for visually-grounded retrieval. Evaluated on ViDoRe V3 with multi-domain settings. Compatible with frozen retriever + existing indices.
+- **Localization Heads (CVPR 2025 Highlight, arXiv:2503.06287)**: ~3 attention heads sufficient for competitive grounding in frozen VLMs on natural images. Training-free. Evaluated on RefCOCO-series, **not document images**.
+
+- **调研总结**: 当前领域的实验设计标准要求：(1) 在 ViDoRe V1/V2/V3 和 MMDocIR 上全面评测，包括 page-level 和 layout/region-level 分开报告；(2) 与 Nemotron ColEmbed V2、MetaEmbed、ColPali/ColQwen2 等 SOTA 对比；(3) 审稿人普遍关注 compute-normalized comparison、ablation 的充分性（尤其是 joint training 的增益分离），以及 Hydra 已经发现 LoRA-based joint training 无增益这一反面证据必须被正面回应。
+
+---
+
+【缺陷 1】
+- 类别: 实验设计不足
+- 问题: **Hydra 的负面证据未在实验设计中正面回应。** Hydra (arXiv 2603.28554) 的 ablation 明确发现 "GritLM-style joint training provides no benefit within the LoRA-based (r=16) training regime"。GroundVDR 同样使用 LoRA (r=64) 进行 joint training，其核心 synergy hypothesis 直接面临这个反面证据。Proposal 在 related work 中仅说 "Hydra's two tasks are independent modes (no shared loss, no mutual reinforcement)"，但实验设计中没有设置任何 control 来实证区分 GroundVDR 的 joint training 为什么能成功而 Hydra 的不能。审稿人几乎必然会引用 Hydra 的这个 finding 来质疑 ablation #3 的结果。
+- 严重度: 可补救
+- 补救方案: 在 ablation 矩阵中增加一个对照实验——"LoRA-only joint training without shared gradient flow"（即 retrieval loss 和 grounding loss 分别更新各自的 LoRA adapter，不通过 shared backbone 产生梯度交互），直接验证 GroundVDR 的 synergy 是来自 shared gradient flow 而非仅来自 LoRA 参数共享。此外，建议在 ablation #3 中加入 LoRA rank 的对比 (r=16 vs r=64)，回应 Hydra 在 r=16 下的负面结果是否因为 capacity 不足。这两个 control 的 compute overhead 有限（每个约 30-40% main training cost），但能极大增强 synergy claim 的可信度。
+- 调研依据: Hydra (arXiv 2603.28554) ablation 中的 GritLM-style joint training 负面结果
+
+【缺陷 2】
+- 类别: baseline 不足或过时
+- 问题: **ReAlign (SIGIR 2026) 未列入 baselines。** Proposal 在 related work 中详细讨论了 ReAlign 并明确定位 "GroundVDR differs fundamentally: direct box regression... vs. ReAlign's lossy text compression"，但 baselines 表中没有包含 ReAlign。作为同期 SIGIR 2026 论文，ReAlign 在 "spatial alignment for retrieval" 这个维度上与 GroundVDR 有直接可比性——两者都通过引入空间信息来提升 retrieval quality，只是手段不同（direct bounding box regression vs. text-bridged KL divergence）。审稿人会期望在 page-level retrieval 结果表中看到 ReAlign 的对比数据。ReAlign 代码和模型已开源，可以复现。
+- 严重度: 可补救
+- 补救方案: 将 ReAlign 加入 baselines 的 "Grounding" 或 "Sub-page/region-level retrieval" 类别中。ReAlign 有开源代码 (GitHub: NEUIR/ReAlign)，可以在 ViDoRe 和 MMDocIR 上复现。如果时间紧张，至少引用其 paper 中已报告的 ViDoRe 结果进行对比。
+- 调研依据: ReAlign (arXiv:2604.07419) 已被 SIGIR 2026 接收并开源
+
+【缺陷 3】
+- 类别: 可行性问题
+- 问题: **多种子实验的 compute budget 可能低估。** Proposal 声称 "Multi-seed: 2 seeds for main results, 3 seeds for ablation #3 → additional ~200 H100-hours"。但实际计算：1 additional main seed 需重跑 Phase 2（~150 H100-hours，Phase 1 的 localization head pre-training可复用），2 additional ablation #3 seeds 需训练 retrieval-only 和 grounding-only 各 2 额外 seeds，每个 variant 约 50-75 H100-hours × 2 variants × 2 additional seeds = 200-300 H100-hours。合计 additional cost ≈ 350-450 H100-hours，超出预估的 200 H100-hours 约 75-125%。这使得总 compute budget 从 ~480 提升至 ~630-730 H100-hours。虽然仍在学术实验室可行范围内，但预算低估会影响时间线和可行性评估的可信度。
+- 严重度: 可补救
+- 补救方案: 修正 compute budget 估算。如果总预算必须控制在 ~500 H100-hours 以内，可以考虑：(a) 主实验仅报 1 seed 但 ablation #3 保持 3 seeds（核心 hypothesis 的统计显著性比主表的方差更重要）；(b) 或使用更小的 ablation training set（如 50% 数据）来降低每个 ablation run 的成本，同时补充 full-data main experiment 作为上界。明确的预算修正会增强审稿人对 feasibility 的信心。
+- 调研依据: 基于领域实验规范判断（8B 模型的 LoRA fine-tuning 在 H100 上的典型 cost）
+
+【缺陷 4】
+- 类别: 实验设计不足
+- 问题: **缺少定性 error analysis 和 failure case 分析计划。** 当前实验设计完全是定量的。AAAI 主会的审稿人通常期望看到：(1) 典型成功/失败案例的可视化分析；(2) 按文档类型/查询类型分层的 error breakdown；(3) grounding prediction 的可视化（预测 bounding box vs. ground truth）。Proposal 提到了 "Per-modality breakdown (text 60.4% / image 18.8% / table 16.7%)" 但这只是按内容类型分的定量分解，没有 failure mode 的定性分析。对于一个强调 "retrieval-grounding synergy" 的论文，审稿人会特别想看到 synergy 在什么情况下有效、什么情况下失效的 case study。
+- 严重度: 可补救
+- 补救方案: 在实验设计中增加一节 "Qualitative Analysis"，包括：(a) 3-5 个成功案例：展示 GroundVDR 正确检索并准确 grounding 的 case，配合预测 bounding box 的可视化叠加；(b) 3-5 个失败案例：分析 grounding 失败的 failure mode（如密集文本区域的边界模糊、跨多页证据的遗漏等）；(c) Synergy 分析案例：展示 joint training 版本 vs. retrieval-only 版本在同一查询上的 embedding 相似度热力图对比，直观展示 grounding loss 如何改变 attention pattern。这些分析 compute cost 几乎为零，但显著增强论文的 interpretability。
+- 调研依据: 基于领域实验规范判断；Nemotron ColEmbed V2、AGREE、ReAlign 等近期论文均包含 qualitative analysis 和 attention visualization
+
+【缺陷 5】
+- 类别: 评估方案缺陷
+- 问题: **Localization head 的独立评估缺少成功阈值定义。** Proposal 计划在 DocLayNet 上报告 COCO-style mAP 并与 HybriDLA (83.5% mAP) 对比，这是一个必要且合理的 sanity check。但 proposal 没有定义 "localization head 需要达到多少 mAP 才能被认为对下游 retrieval 有用"。HybriDLA 是专用 layout detection 模型（AAAI 2026 oral），GroundVDR 的 localization head 仅 150M 参数且附属于 retrieval backbone，合理预期 mAP 会显著低于 83.5%。如果 localization head 的 mAP 只有 60%，但下游 retrieval 仍然提升，这意味着什么？如果 mAP 是 40%，还能用吗？缺少这个阈值会导致审稿人无法判断 localization head 的表现是 "够用" 还是 "不够好但侥幸可用"。
+- 严重度: 可补救
+- 补救方案: 增加一个 "localization quality → retrieval quality" 的关联分析。具体做法：在 ablation #1（learned head vs. external parser vs. fixed grid）的基础上，报告每个方案的 localization mAP 与对应的 retrieval nDCG 之间的关系。这自然形成一个 scatter plot，审稿人可以从中判断 localization quality 和 retrieval quality 的关系是否单调。此外，可以设定一个 anchored threshold："when localization mAP exceeds the fixed-grid baseline (which by construction has 0% mAP on box detection), retrieval gains are observed"，将 fixed grid 作为 localization 的 lower bound 参考。
+- 调研依据: 基于领域实验规范判断；Localization Heads (CVPR 2025) 论文中也通过 pointing accuracy 与 downstream task 的 correlation 来验证 localization 质量
+
+【缺陷 6】
+- 类别: 实验设计不足
+- 问题: **MMDocIR 的 173K bootstrapped layout annotations 的质量及其对训练的影响未被讨论。** Proposal 将 Phase 2 训练数据描述为 "MMDocIR's 173K bootstrapped layout annotations + 1,685 expert annotations"，但 "bootstrapped" 意味着这些标注是自动生成的，可能包含大量噪声（OCR 错误、layout parsing 错误等）。Proposal 没有讨论：(a) bootstrapped annotations 的质量如何？error rate 大约是多少？(b) 噪声标注对 grounding loss 的影响——如果 bounding box 标签本身有 10-20% 的 IoU 偏差，grounding loss 的优化方向可能偏移。(c) 是否需要 data cleaning 或 confidence-weighted loss。这对一个以 direct box regression 为核心的方法来说尤为重要——noisy supervision 直接损害 box prediction 质量。
+- 严重度: 可补救
+- 补救方案: (a) 在 Phase 2 训练前，对 bootstrapped annotations 进行质量审计——随机抽样 500-1000 个标注，人工评估 IoU 与 expert annotations 的一致性，报告 annotation noise level。(b) 实验中增加一个 data quality ablation：使用仅 1,685 expert annotations 训练（data quality 高但量少）vs. 全量 173K bootstrapped + 1,685 expert（量大但有噪声），对比 grounding quality 和 retrieval quality。(c) 考虑对 grounding loss 加入 confidence weight——用 bootstrapped annotation 的 layout parser confidence score 加权 L1+GIoU loss，降低低置信度标注的影响。
+- 调研依据: 基于领域实验规范判断；RegionRAG (AAAI 2026) 在弱监督标注上使用了 hybrid supervision strategy（强标注 + 弱标注联合）来缓解类似问题
+
+---
+
+**总体评估**: 这个 proposal 的实验设计在 baseline 覆盖、benchmark 选择、评估指标、ablation 设计方面已经相当完善，尤其是 ablation #3（直接测试 synergy hypothesis）和独立的 localization head 评估设计得非常扎实。以上 6 个缺陷均为可补救的，没有方向性致命问题。其中**缺陷 1（Hydra 反面证据的实验回应）**和**缺陷 6（bootstrapped annotation 质量）**的优先级最高——前者直接影响核心 hypothesis 的可信度，后者影响训练数据的可靠性。其余 4 个缺陷属于标准的实验完善工作，补救后可显著提升论文的 soundness 评分。
+
+Sources:
+- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)
+- [MetaEmbed (ICLR 2026 Oral)](https://arxiv.org/abs/2509.18095)
+- [Hydra](https://arxiv.org/abs/2603.28554)
+- [Snappy](https://arxiv.org/abs/2512.02660)
+- [AGREE (SIGIR 2026)](https://arxiv.org/abs/2511.13415)
+- [ReAlign (SIGIR 2026)](https://arxiv.org/abs/2604.07419)
+- [ColParse](https://arxiv.org/abs/2603.01666)
+- [HybriDLA (AAAI 2026)](https://arxiv.org/abs/2511.19919)
+- [MURE](https://arxiv.org/abs/2603.13349)
+- [RegionRAG (AAAI 2026)](https://arxiv.org/abs/2510.27261)
+- [LITTA](https://arxiv.org/abs/2603.26683)
+- [ViDoRe V3](https://arxiv.org/abs/2601.08620)
+- [MMDocIR](https://arxiv.org/abs/2501.08828)
+- [Localization Heads (CVPR 2025)](https://arxiv.org/abs/2503.06287)
+- [PixSearch](https://arxiv.org/abs/2601.19060)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40c5a9ce-4330-4c25-aefc-d97e95bacba9",
+  "isSidechain": false,
+  "promptId": "c04d0292-327f-4a92-bcb0-1f133b8d3817",
+  "type": "user",
+  "uuid": "2b8bf305-24ad-4204-9123-752a60a38865",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have comprehensive research coverage. Let me synthesize my analysis.  ---  【状态】: 有发掘空间  【前置调研发现】 - [A…",
+  "leafUuid": "2b8bf305-24ad-4204-9123-752a60a38865",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-30T07:18:16.788Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully analyze both Round 3 worker outputs and decide on convergence.
+
+**发掘 agent Round 3 summary:**
+- Status: 有发掘空间
+- 5 discovery points:
+  1. Upgrade synergy hypothesis to quantifiable "granularity-dependent synergy gradient" prediction (element > region > page benefit from grounding)
+  2. Must systematically argue why learned grounding > training-free (Localization Heads + Snappy + Entropy-Gradient Grounding as trivial alternative threat)
+  3. Formalize "three-axis Matryoshka space" (token-count × resolution × spatial-granularity)
+  4. Add GranuRAG and Entropy-Gradient Grounding to related work
+  5. Distinguish two layers of benefit: architectural unification vs task-level synergy
+
+**补救 agent Round 3 summary:**
+- Status: 有缺陷待补救
+- 6 defects:
+  1. Hydra's negative evidence (GritLM-style joint training no benefit in LoRA regime) must be experimentally addressed
+  2. ReAlign not in baselines
+  3. Multi-seed compute budget underestimated (~630-730 vs ~480 H100-hours)
+  4. Missing ablation on spatial granularity choices and need to validate the three-axis framework empirically
+  5. Localization head success threshold undefined
+  6. MMDocIR bootstrapped annotation quality undiscussed
+
+Now I'm checking convergence signals across both agents. The 发掘 agent keeps suggesting refinements—sharpening the granularity-dependent gradient claim, formalizing the Matryoshka concept, adding more related work—but these feel like polish on an already solid hypothesis rather than fundamental gaps. The 补救 agent has identified real experimental gaps: Hydra's negative result needs addressing, ReAlign should be in baselines, and the compute budget discrepancy is significant, though some of these are more about rigor than core validity.
+
+Looking at the progression across rounds, Round 1 tackled foundational issues, Round 2 added major experimental components, and Round 3 is increasingly about granular improvements and standard paper practices. The most critical remaining point is handling Hydra's negative evidence.
+
+Both agents still flag room for improvement, but their suggestions have shifted from addressing fundamental gaps to adding polish. The marginal gains are diminishing—a fourth round would likely yield only minor tweaks. I should stop iterating here.
+
+Now I need to verify three key claims from Round 3: the Hydra negative evidence finding, the entropy-gradient grounding reference, and the GranuRAG paper. For the suggestions I'm considering adopting, the granularity-dependent synergy gradient is compelling because it makes the hypothesis more testable—element-level retrieval genuinely does need finer spatial precision, so it should benefit more from grounding loss. The training-free defense mechanism also seems important to incorporate.
+
+On the related work front, I should mention entropy-gradient grounding briefly as another training-free alternative in the broader landscape, but GranuRAG is too tangential since it focuses on natural scenes rather than document retrieval. I'll also add a clearer distinction between the architectural unification benefit and the task-level synergy benefit to strengthen the two-layer argument.
+
+Now for the critical issue: Hydra's negative result on joint training actually supports rather than challenges GroundVDR's approach, because Hydra combined retrieval and generation—tasks that don't share spatial representations—whereas GroundVDR pairs retrieval with grounding, which fundamentally rely on the same spatial-semantic information. The capacity difference matters too: Hydra used r=16 while GroundVDR uses r=64. I need to add a control experiment and explicit discussion making this distinction clear. I should also adopt ReAlign as a baseline and be honest about revising the compute budget upward.
+
+For the remaining points, I'll keep the qualitative analysis and localization head success threshold brief, and add a data quality ablation to address the bootstrapped annotation concern. Looking at the overall idea after these revisions, the novelty is strong—the synergy hypothesis is now a structured, testable prediction about granularity-dependent gradients with clear differentiation from concurrent work like MURE, Hydra, ReAlign, and others, plus the Spatially-Typed Matryoshka as a third nesting axis. The significance is also strong with system-level impact and scientific insight into the synergy gradient.
+
+On the experimental side, I've got comprehensive baselines across four categories, multiple benchmarks including ViDoRe variants and MMDocIR, solid metrics covering nDCG, IoU, and latency, plus seven or more ablations including the synergy gradient analysis. The localization head gets independent evaluation, there's data quality analysis, qualitative work, and a rebuttal to Hydra's negative evidence with multi-seed testing and significance checks. Technical soundness has improved from moderate-to-strong to strong overall.
+
+For the idea itself, the core contribution is genuinely novel—joint retrieval and grounding in a single VLM without prior work doing this—and the synergy hypothesis with structured prediction is a solid scientific claim. The Matryoshka framework and system-level practical impact are real strengths. But there's still some risk that reviewers see it as just combining known components, and the localization head on documents remains an unproven assumption. The synergy might not actually materialize in practice depending on what the ablations show. I think 48-50% for the idea ceiling is reasonable given these tradeoffs.
+
+With comprehensive experiments, I'm looking at a floor around 34%, so the range of 34-50% with a median of 41% feels right.
+
+I'm converging on this proposal. The third round of suggestions are mostly refinements—sharper hypothesis framing, more baselines, better qualitative analysis—nothing fundamentally new. Both agents are showing diminishing returns, and the probability has been climbing incrementally: 36% to 39% to 41%. The proposal is solid enough to move forward. Further iteration would just polish things without major gains.
+
+Since I'm converging, I need to shift to the final output format now rather than generate another round of proposals. I'm realizing that if I decide to converge, I shouldn't include a next-round proposal since the iteration stops there—instead, I just need to state the convergence decision with its rationale and provide the final optimized proposal for the system to pass to 角色 C. then the system will call me for 角色 C. But actually, I should include the final updated proposal in my 角色 B output even if it won't go to workers, since it serves as the basis for what 角色 C will use. Let me just produce both the 角色 B convergence output and the 角色 C final output together, since the instructions indicate the process ends after 角色 B makes the convergence decision. I'm deciding whether to continue iterating or converge on the current proposal. The format requires me to produce a clean proposal only if I'm continuing to the next round, but since I'm converging here, I'll skip that section and instead note the key improvements from Round 3 in my analysis. Then the system will move to 角色 C where I'll deliver the final output. Let me verify a few critical claims first before finalizing my decision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b8bf305-24ad-4204-9123-752a60a38865",
+  "isSidechain": false,
+  "requestId": "req_011CbYLt4QsxYMDUyvYN4iBa",
+  "type": "assistant",
+  "uuid": "a8ee22a5-26d1-4d01-aa1a-2a3c6c5bbdd1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fvoSQN7GHC5YwQ8PcWC8v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20717,
+      "cache_read_input_tokens": 56130,
+      "output_tokens": 3850,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20717,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3850,
+          "cache_read_input_tokens": 56130,
+          "cache_creation_input_tokens": 20717,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20717
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-30T07:18:16.790Z_
+
+我需要交叉验证第 3 轮 worker 的关键建议。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8ee22a5-26d1-4d01-aa1a-2a3c6c5bbdd1",
+  "isSidechain": false,
+  "requestId": "req_011CbYLt4QsxYMDUyvYN4iBa",
+  "type": "assistant",
+  "uuid": "fa5aa95e-5a81-4b32-8e45-2a4f1dcd0074",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fvoSQN7GHC5YwQ8PcWC8v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20717,
+      "cache_read_input_tokens": 56130,
+      "output_tokens": 3850,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20717,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3850,
+          "cache_read_input_tokens": 56130,
+          "cache_creation_input_tokens": 20717,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20717
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-30T07:18:16.791Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VLTvafVGAWSzMnuW6YSb9z`</summary>
+
+```json
+{
+  "query": "Hydra document retrieval generation GritLM joint training LoRA no benefit ablation arXiv 2603.28554"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa5aa95e-5a81-4b32-8e45-2a4f1dcd0074",
+  "isSidechain": false,
+  "requestId": "req_011CbYLt4QsxYMDUyvYN4iBa",
+  "type": "assistant",
+  "uuid": "033d6804-d218-42b9-8729-0c95c8408a19",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fvoSQN7GHC5YwQ8PcWC8v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20717,
+      "cache_read_input_tokens": 56130,
+      "output_tokens": 3850,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20717,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3850,
+          "cache_read_input_tokens": 56130,
+          "cache_creation_input_tokens": 20717,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20717
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-30T07:18:16.801Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GzCVLbxKZsv6zZzqjWhWDY`</summary>
+
+```json
+{
+  "query": "entropy gradient grounding training-free visual language model arXiv 2604.08456 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "033d6804-d218-42b9-8729-0c95c8408a19",
+  "isSidechain": false,
+  "requestId": "req_011CbYLt4QsxYMDUyvYN4iBa",
+  "type": "assistant",
+  "uuid": "c763bbfc-b2a4-4fd0-9444-bb2c9f9fa872",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fvoSQN7GHC5YwQ8PcWC8v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20717,
+      "cache_read_input_tokens": 56130,
+      "output_tokens": 3850,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20717,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3850,
+          "cache_read_input_tokens": 56130,
+          "cache_creation_input_tokens": 20717,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20717
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-30T07:18:22.457Z_
+
+<details><summary>↩ Tool result · `toolu_01VLTvafVGAWSzMnuW6YSb9z`</summary>
+
+```text
+Web search results for query: "Hydra document retrieval generation GritLM joint training LoRA no benefit ablation arXiv 2603.28554"
+
+Links: [{"title":"[2603.28554] Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/abs/2603.28554"},{"title":"Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/html/2603.28554v2"},{"title":"Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model","url":"https://arxiv.org/pdf/2603.28554"},{"title":"Hydra: Structured Cross-Source Enhanced Large Language Model Reasoning","url":"https://arxiv.org/html/2505.17464v3"},{"title":"Retrieval-Augmented Mixture of LoRA Experts for Uploadable Machine   Learning","url":"https://arxiv.org/pdf/2406.16989"}]
+
+Based on the search results, I found the paper you're looking for. Here's what the research shows:
+
+Hydra is a dual-head approach that provides both ColBERT-style late-interaction retrieval and autoregressive generation from a single vision-language model (VLM). A single LoRA adapter, trained only for retrieval, is toggled at inference: enabling it produces multi-vector embeddings; disabling it recovers the base model's generation quality.
+
+Regarding the ablation you specifically asked about: An ablation shows that GritLM-style joint training provides no benefit within the LoRA-based (r=16) training regime.
+
+The paper also identifies several important engineering requirements for making this approach work reliably. Three engineering requirements (attention-mode restoration, lm_head preservation, KV-cache-aware decoding) whose omission silently breaks generation despite correct weight recovery.
+
+The research demonstrates that this unified approach significantly reduces computational requirements, as the single-model design reduces peak GPU memory by 41%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "033d6804-d218-42b9-8729-0c95c8408a19",
+  "isSidechain": false,
+  "promptId": "c04d0292-327f-4a92-bcb0-1f133b8d3817",
+  "type": "user",
+  "uuid": "39adb38a-a4b0-4605-9fbe-79fa5380652f",
+  "toolUseResult": {
+    "query": "Hydra document retrieval generation GritLM joint training LoRA no benefit ablation arXiv 2603.28554",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QK4hJoCMjfRnPiSCdrXGqf",
+        "content": [
+          {
+            "title": "[2603.28554] Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/abs/2603.28554"
+          },
+          {
+            "title": "Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/html/2603.28554v2"
+          },
+          {
+            "title": "Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model",
+            "url": "https://arxiv.org/pdf/2603.28554"
+          },
+          {
+            "title": "Hydra: Structured Cross-Source Enhanced Large Language Model Reasoning",
+            "url": "https://arxiv.org/html/2505.17464v3"
+          },
+          {
+            "title": "Retrieval-Augmented Mixture of LoRA Experts for Uploadable Machine   Learning",
+            "url": "https://arxiv.org/pdf/2406.16989"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what the research shows:\n\nHydra is a dual-head approach that provides both ColBERT-style late-interaction retrieval and autoregressive generation from a single vision-language model (VLM). A single LoRA adapter, trained only for retrieval, is toggled at inference: enabling it produces multi-vector embeddings; disabling it recovers the base model's generation quality.\n\nRegarding the ablation you specifically asked about: An ablation shows that GritLM-style joint training provides no benefit within the LoRA-based (r=16) training regime.\n\nThe paper also identifies several important engineering requirements for making this approach work reliably. Three engineering requirements (attention-mode restoration, lm_head preservation, KV-cache-aware decoding) whose omission silently breaks generation despite correct weight recovery.\n\nThe research demonstrates that this unified approach significantly reduces computational requirements, as the single-model design reduces peak GPU memory by 41%."
+    ],
+    "durationSeconds": 5.657620723,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "033d6804-d218-42b9-8729-0c95c8408a19",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-30T07:18:22.542Z_
+
+<details><summary>↩ Tool result · `toolu_01GzCVLbxKZsv6zZzqjWhWDY`</summary>
+
+```text
+Web search results for query: "entropy gradient grounding training-free visual language model arXiv 2604.08456 2026"
+
+Links: [{"title":"[2604.08456] Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models","url":"https://arxiv.org/abs/2604.08456"},{"title":"Entropy-Gradient Grounding","url":"https://entropy-gradient-grounding.github.io/"},{"title":"Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models","url":"https://arxiv.org/html/2604.08456"},{"title":"Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models","url":"https://arxiv.org/pdf/2604.08456"},{"title":"The Role of Entropy in Visual Grounding: Analysis and Optimization","url":"https://arxiv.org/pdf/2512.06726"}]
+
+I found the paper you're looking for! Here's what I found:
+
+"Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models" is an arXiv paper (2604.08456) submitted on April 9, 2026, authored by Marcel Gröpl, Jaewoo Jung, Seungryong Kim, Marc Pollefeys, and Sunghwan Hong.
+
+The paper addresses a key challenge in vision-language models. Despite rapid progress, pretrained vision-language models still struggle when answers depend on tiny visual details or on combining clues spread across multiple regions, as in documents and compositional queries.
+
+The authors frame grounding as test-time evidence retrieval and propose a training-free, model-intrinsic grounding method that uses uncertainty as supervision by computing the entropy of the model's next-token distribution and backpropagating it to the visual token embeddings to obtain an entropy-gradient relevance map, without auxiliary detectors or attention-map heuristics.
+
+They also extract and rank multiple coherent regions to support multi-evidence queries, and introduce an iterative zoom-and-reground procedure with a spatial-entropy stopping rule to avoid over-refinement.
+
+You can access the full paper at https://arxiv.org/abs/2604.08456 or view the project website at https://entropy-gradient-grounding.github.io/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c763bbfc-b2a4-4fd0-9444-bb2c9f9fa872",
+  "isSidechain": false,
+  "promptId": "c04d0292-327f-4a92-bcb0-1f133b8d3817",
+  "type": "user",
+  "uuid": "f8ac4e1a-e443-4a3c-84fe-f147336e8998",
+  "toolUseResult": {
+    "query": "entropy gradient grounding training-free visual language model arXiv 2604.08456 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GZ2dhGFawaXLRqm1ZrUqcB",
+        "content": [
+          {
+            "title": "[2604.08456] Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models",
+            "url": "https://arxiv.org/abs/2604.08456"
+          },
+          {
+            "title": "Entropy-Gradient Grounding",
+            "url": "https://entropy-gradient-grounding.github.io/"
+          },
+          {
+            "title": "Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models",
+            "url": "https://arxiv.org/html/2604.08456"
+          },
+          {
+            "title": "Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2604.08456"
+          },
+          {
+            "title": "The Role of Entropy in Visual Grounding: Analysis and Optimization",
+            "url": "https://arxiv.org/pdf/2512.06726"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\n\"Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models\" is an arXiv paper (2604.08456) submitted on April 9, 2026, authored by Marcel Gröpl, Jaewoo Jung, Seungryong Kim, Marc Pollefeys, and Sunghwan Hong.\n\nThe paper addresses a key challenge in vision-language models. Despite rapid progress, pretrained vision-language models still struggle when answers depend on tiny visual details or on combining clues spread across multiple regions, as in documents and compositional queries.\n\nThe authors frame grounding as test-time evidence retrieval and propose a training-free, model-intrinsic grounding method that uses uncertainty as supervision by computing the entropy of the model's next-token distribution and backpropagating it to the visual token embeddings to obtain an entropy-gradient relevance map, without auxiliary detectors or attention-map heuristics.\n\nThey also extract and rank multiple coherent regions to support multi-evidence queries, and introduce an iterative zoom-and-reground procedure with a spatial-entropy stopping rule to avoid over-refinement.\n\nYou can access the full paper at https://arxiv.org/abs/2604.08456 or view the project website at https://entropy-gradient-grounding.github.io/"
+    ],
+    "durationSeconds": 5.73776002300001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c763bbfc-b2a4-4fd0-9444-bb2c9f9fa872",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have comprehensive research coverage. Let me synthesize my analysis.  ---  【状态】: 有发掘空间  【前置调研发现】 - [A…",
+  "leafUuid": "f8ac4e1a-e443-4a3c-84fe-f147336e8998",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-30T07:19:05.095Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Both verified:
+
+1. **Hydra's GritLM negative finding**: ✅ Confirmed. Ablation shows GritLM-style joint training provides no benefit within the LoRA-based (r=16) training regime. This is a genuine challenge to GroundVDR's synergy hypothesis that must be addressed.
+
+Key distinction for GroundVDR's response:
+- Hydra's "joint training" was retrieval + generation — two tasks that DON'T require shared spatial representations
+- GroundVDR's joint training is retrieval + grounding — two tasks that SHARE spatial-semantic representations by construction
+
+
+- The capacity difference matters too: Hydra's r=16 LoRA keeps tasks isolated, while GroundVDR's r=64 with shared backbone forces representation alignment
+
+2. **Entropy-Gradient Grounding**: ✅ Confirmed. Training-free, model-intrinsic grounding via entropy backpropagation. Competes as a training-free alternative to GroundVDR's learned approach.
+
+GranuRAG doesn't fit the comparison — it's focused on natural scene landmarks rather than document-based retrieval, so I'll exclude it from the analysis.
+
+Now I'm checking whether we've actually converged. The first two triggers don't apply — both agents are still active and Round 2 had substantial changes like ReAlign, MetaEmbed/Hydra baseline work, and localization head evaluation. Round 3 is more refinement-focused, which is borderline. There's no seesaw pattern, and the probability trend from 36% to 39% is still climbing, so convergence hasn't been triggered yet.
+
+But looking at the trajectory, improvements are clearly slowing down — 3 percentage points in Round 2, then 2 in Round 3, with Round 4 likely yielding less than 1. Most of Round 3's suggestions are about paper quality and standard practices rather than fundamental design changes. The Hydra negative evidence is the only genuinely critical new point, so I should make sure that gets incorporated into my final assessment when I converge. The proposal is solid enough to move forward, and continuing would just hit diminishing returns.
+
+Now I'm settling on my final probability estimate. The novelty is stronger than I initially thought with the granularity-dependent synergy gradient and three-axis formalization. Significance is clearly strong across system-level, scientific, and framework contributions. But the Hydra negative evidence is a real vulnerability — if GroundVDR's ablation also shows no synergy benefit, the core claim falls apart. That's pushing me toward being more conservative with my estimate.
+
+Still, the logic behind retrieval and grounding having stronger synergy than retrieval and generation holds up because they share spatial representations. The risk is genuine but I can manage it. I'm converging on 41% as my final estimate, sitting between the 34% floor and 50% ceiling.
+
+I'm going to finalize this assessment now and skip the clean proposal for the next round since I'm converging. I'm organizing the final convergence output to include comprehensive cross-validation results, a clear record of which suggestions were adopted versus rejected, the assessed probability of success, and the specific rationale for converging at this point. I'll also flag the key elements that need to carry forward into the final proposal once 角色 C takes over.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8ac4e1a-e443-4a3c-84fe-f147336e8998",
+  "isSidechain": false,
+  "requestId": "req_011CbYM1TriQ4sMpyQA4x9yP",
+  "type": "assistant",
+  "uuid": "4ec4ab25-9266-4802-b05c-72ab6cb79e23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VyBp4AjuaADc3mVtf1fEB2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4979,
+      "cache_read_input_tokens": 76847,
+      "output_tokens": 4020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4020,
+          "cache_read_input_tokens": 76847,
+          "cache_creation_input_tokens": 4979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-30T07:20:05.407Z_
+
+两项关键验证完成。让我整合第 3 轮输出。
+
+【阶段】: 迭代第 3 轮
+
+【交叉验证调研】:
+1. **Hydra GritLM 负面证据** — ✅ 已验证。Hydra (arXiv:2603.28554) ablation 确认："GritLM-style joint training provides no benefit within the LoRA-based (r=16) training regime"。这是对 GroundVDR synergy hypothesis 的直接挑战。但关键区分：Hydra 的 joint training 是 retrieval + generation（两个任务不共享空间表示需求），GroundVDR 是 retrieval + grounding（两个任务在空间-语义维度上有结构性共享需求）。此外 Hydra 使用 r=16（低容量），GroundVDR 使用 r=64。补救 agent 的建议成立——需要实验性地回应此反面证据。
+2. **Entropy-Gradient Grounding (arXiv:2604.08456)** — ✅ 已验证存在（April 2026）。Training-free 方法，通过 next-token 分布的 entropy 反向传播到 visual tokens 获得 relevance map，支持 multi-evidence 查询和迭代 zoom-and-reground。确认是 learned grounding 的又一 training-free alternative，强化了发掘 agent 指出的 trivial alternative 威胁。
+3. **GranuRAG (arXiv:2605.15019)** — 发掘 agent 自己已指出针对自然场景（地标）而非文档，与 GroundVDR 的文档检索场景关联度低。**不采纳**——纳入会稀释 related work 焦点。
+
+【发掘 agent 有效建议采纳】:
+1. **发掘点 1（granularity-dependent synergy gradient）**：逻辑成立（element-level 最依赖空间精度 → 受益最大），且可直接嵌入已有 ablation #3 的分析框架中（无额外实验成本，只需按粒度分解结果）。✅ 采纳——将 synergy hypothesis 从 binary "joint > separate" 升级为 structured prediction。
+2. **发掘点 2（training-free alternative 系统性回应）**：✅ 有调研依据（Localization Heads + Snappy + Entropy-Gradient 三方合力构成 trivial alternative 叙事），采纳核心论证（2-3 句：pre-trained vs task-specific、单向 grounding-on-retrieval vs 双向 synergy、无法改变 embedding 空间），但**不采纳**将 Entropy-Gradient Grounding 加为实验 baseline（它是 VQA grounding 方法，不直接适用于检索 benchmark；Snappy 已覆盖 training-free baseline）。
+3. **发掘点 3（三轴 Matryoshka 空间形式化）**：已在 Round 2 部分实现。✅ 采纳更清晰的形式化（一句话：{token-count × resolution × spatial-granularity} 三轴正交），但不改变论文核心叙事（synergy hypothesis 仍为主线）。
+4. **发掘点 4（GranuRAG + Entropy-Gradient Grounding 加入 related work）**：GranuRAG 不采纳（自然场景，太边缘）。Entropy-Gradient Grounding **部分采纳**——在 spatial grounding 段落中简提（1 句）作为 training-free 方法的最新代表，强化 training-free → learned 的梯度叙事。
+5. **发掘点 5（两层 benefit 区分）**：✅ 逻辑成立且有 Hydra 作对照（Hydra = architectural unification only，GroundVDR = unification + task synergy），采纳。2 句话区分。
+
+【补救 agent 有效建议采纳】:
+1. **缺陷 1（Hydra 负面证据实验回应）**：✅ 已验证，高优先级采纳。新增对照实验："separated LoRA" (retrieval LoRA + grounding LoRA 各自独立，无 shared gradient flow) 验证 synergy 来自 shared gradient 而非仅 LoRA 参数共享。同时在 ablation #3 中加入 r=16 vs r=64 对照回应 capacity 问题。这是本轮最重要的补救。
+2. **缺陷 2（ReAlign 加入 baseline）**：✅ 成立（SIGIR 2026 + 开源），采纳。加入 "Spatial alignment for retrieval" baseline 类别。
+3. **缺陷 3（compute 预算修正）**：✅ 成立，采纳。诚实修正为 ~550-600 H100-hours（含 multi-seed + 新增对照实验），并提供 budget-conscious fallback（主实验 1 seed + ablation #3 3 seeds）。
+4. **缺陷 4（qualitative analysis）**：✅ 标准最佳实践，采纳。增加定性分析节（成功/失败案例 + synergy 热力图对比），零额外 compute。
+5. **缺陷 5（localization head 成功阈值）**：✅ 好建议，采纳。在 ablation #1 中报告 localization mAP ↔ retrieval nDCG 关联分析。
+6. **缺陷 6（bootstrapped annotation 质量）**：✅ 成立，采纳。增加 data quality ablation（1,685 expert only vs 173K bootstrapped+expert），并建议 confidence-weighted grounding loss。
+
+【本轮 proposal 主要变更】:
+
+**Idea 层面：**
+- Synergy hypothesis 升级为 structured prediction：granularity-dependent synergy gradient（element > region > page 受益程度）
+- 明确区分两层 benefit：architectural unification（R-CNN→YOLO 类比）vs task-level synergy（超越类比的科学发现）
+- 系统性论证 learned grounding vs training-free alternatives 的优势（2-3 句）
+- 三轴 Matryoshka 更清晰的形式化
+- 简提 Entropy-Gradient Grounding 作为最新 training-free 代表
+
+**实验层面：**
+- 新增 Hydra 反面证据对照实验（separated LoRA + r=16 vs r=64）
+- ReAlign 加入 baseline
+- Compute 预算修正（~550-600 H100-hours）
+- 定性分析节
+- Localization mAP ↔ retrieval nDCG 关联分析
+- Data quality ablation（expert-only vs bootstrapped+expert）
+- Confidence-weighted grounding loss 建议
+
+【idea 质量评估】: Novelty=中偏强接近强（structured synergy prediction 将假说从 generic multi-task 提升到 domain-specific scientific finding；三轴 Matryoshka 形式化 = 框架级贡献；exhaustive 差异化覆盖所有并发工作；但组合创新的 perception 风险仍是天花板） Significance=强（系统级 paradigm shift + 科学发现 + 框架贡献三重 significance） → idea 天花板约 50%
+
+【实验完备性评估】: Technical Soundness=中偏强（实验设计现在非常全面——7+ ablation 含 Hydra 反面证据回应、5 类 baseline、4 benchmark、独立 localization 评估、数据质量分析、定性分析；主要残留风险：核心假设是否在实验中成立、compute 预算是否充裕） → 地板约 34%
+
+【当前概率估计】: [34% - 50%] 中位 41%
+
+【决策】: 收敛
+
+【决策理由】:
+1. **边际收益递减明显**：概率轨迹 36% → 39% → 41%，每轮增幅从 3pp 降至 2pp。第 4 轮预期 <1pp。
+2. **建议性质转变**：Round 1 是结构性重构（synergy 重构、MURE 差异化、训练数据策略），Round 2 是重大补充（ReAlign、MetaEmbed/Hydra baseline、localization 独立评估），Round 3 已转为精化打磨（更尖锐的假说预测、定性分析、标注质量审计）。Worker 建议从"修复核心缺陷"转向"提升论文品质"。
+3. **Idea 层面发掘趋于饱和**：所有重要并发工作（MURE、Hydra、ReAlign、PixSearch、AGREE、Snappy、Entropy-Gradient Grounding）已被覆盖和差异化。Synergy hypothesis 已从 binary claim 升级到 structured prediction。进一步发掘空间有限。
+4. **实验设计已覆盖审稿人主要攻击面**：Hydra 负面证据已有对照实验回应；training-free alternative 有系统性论证；数据质量有 ablation；localization head 有独立评估 + 关联分析。
+5. **Proposal 已具备实施条件**：所有核心设计决策已明确，可进入实验阶段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ec4ab25-9266-4802-b05c-72ab6cb79e23",
+  "isSidechain": false,
+  "requestId": "req_011CbYM1TriQ4sMpyQA4x9yP",
+  "type": "assistant",
+  "uuid": "b7c9760a-5e2d-4d39-a423-c74be0f3ad8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VyBp4AjuaADc3mVtf1fEB2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4979,
+      "cache_read_input_tokens": 76847,
+      "output_tokens": 4020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4020,
+          "cache_read_input_tokens": 76847,
+          "cache_creation_input_tokens": 4979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have comprehensive research coverage. Let me synthesize my analysis.  ---  【状态】: 有发掘空间  【前置调研发现】 - [A…",
+  "leafUuid": "b7c9760a-5e2d-4d39-a423-c74be0f3ad8e",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80 · 2026-05-30T07:20:06.804Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:20:06.804Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "content": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81 · 2026-05-30T07:20:06.805Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:20:06.805Z",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+## Round 5
+
+5 recorded events
+
+### User
+
+_source line 82 · 2026-05-30T07:20:06.829Z_
+
+【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7c9760a-5e2d-4d39-a423-c74be0f3ad8e",
+  "isSidechain": false,
+  "promptId": "559c4697-f7d0-443f-abcf-69ade4383180",
+  "type": "user",
+  "uuid": "73c8cfcf-0986-4409-bf9f-35dd613ea004",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-30T07:20:33.521Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to produce the 角色 C final output. The proposal has converged with a final probability of [34% - 50%] 中位 41%, which is ≥ 36%, so it passes.
+
+I need to produce:
+1. 优化方案 - a list of specific modifications compared to the **original proposal**
+2. 主要风险
+3. 实施评估
+
+Let me carefully compare the original proposal with the final evolved version and produce a detailed, actionable modification list.
+
+**Original proposal recap:**
+- Core Problem: page-vs-layout gap, grounding gap
+
+
+- Research Opportunity: three building blocks never combined
+- Research Landscape: basic coverage of Nemotron, Multi-Gran Framework, RegionRAG, ColParse, AGREE, Snappy, Localization Heads
+- Proposed Approach: autoregressive localization head + spatially-typed Matryoshka + joint loss
+- Simple evaluation: nDCG@10, grounding F1, ~180 H100-hours
+
+**Final evolved proposal key improvements (across 3 rounds):**
+
+Round 1:
+- MURE differentiation (input-side vs output-side Matryoshka)
+- Hydra differentiation (LoRA toggle)
+- Synergy hypothesis reframing (from "first combination" to "retrieval-grounding synergy")
+- Spatially-Typed Matryoshka mechanism elaboration
+- Core assumption acknowledgment (VLM patches for document layout)
+- Complete baseline list (4 categories)
+- Full metric suite (IoU, storage, per-modality)
+- 5 ablation studies
+- Training data strategy (DocLayNet pre-training, ViDoRe V3 zero-shot only)
+- 4-step inference pipeline
+- Compute budget framework
+
+Round 2:
+- ReAlign (SIGIR 2026) differentiation
+- Object detection analogy (R-CNN → Faster R-CNN)
+- PixSearch 3-dimensional differentiation
+- System-level significance (3-model → 1-model paradigm shift)
+- Refining the positioning against concurrent work and clarifying how the unified architecture represents a fundamental shift in the field
+
+Round 3:
+- Adding Hydra and MetaEmbed to the baseline comparisons, plus evaluating the localization head independently on DocLayNet
+- Expanding the experimental scope with ViDoRe V1/V2 and BBox-DocVQA, with concrete compute estimates around 550-600 H100-hours
+- Formalizing the Matryoshka mechanism across three axes and systematically defending against training-free alternatives, including a control experiment with Hydra and adding ReAlign to the baselines
+- Exploring granularity-dependent synergy gradients and distinguishing between architectural unification versus task-level synergy effects
+
+Now I'm organizing the modifications by their location in the paper and mapping each change to the review dimensions it addresses—starting with the title and framing, then moving through the core problem, hypothesis, related work, proposed approach, experimental design, and discussion sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73c8cfcf-0986-4409-bf9f-35dd613ea004",
+  "isSidechain": false,
+  "requestId": "req_011CbYM99pyqkArqCrAMnMaG",
+  "type": "assistant",
+  "uuid": "99b3efd3-6994-475b-b518-0e6bcd21c06c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015FjA2GdV2oJXVCg41QFz8A",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 81826,
+      "output_tokens": 7274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7274,
+          "cache_read_input_tokens": 81826,
+          "cache_creation_input_tokens": 4097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-30T07:23:02.556Z_
+
+【优化方案】
+
+以下所有修改建议均以**原始 proposal** 为基准，按论文结构顺序排列。
+
+## A. 核心立意重构（影响 Novelty + Significance 天花板）
+
+1. **[Core Problem / 第一段]** — 新增 system-level significance framing：当前 SOTA multi-granularity 方案（Multi-Granularity Framework, arXiv:2505.01457）需 3 个大模型 + OCR，带来 3× 显存、pipeline 延迟、error cascading（OCR 错误 → layout 错误 → 检索错误）。将 GroundVDR 的动机从"填补 benchmark gap"升级为"从 3-model pipeline 压缩到 1-model 的架构范式转换"。 — **命中 Significance（practical impact + system-level contribution）**
+
+2. **[Research Opportunity → Research Hypothesis / 整段重写]** — 将原文"三个 independently validated building blocks 的首次组合"叙事替换为 **Retrieval-Grounding Synergy Hypothesis**：联合训练 contrastive retrieval + bounding-box regression 产生互利学习信号——grounding loss 迫使 embedding 保留空间位置信息从而提升 sub-page retrieval，retrieval loss 提供语义区分度从而提升 grounding 精度。具体包括：
+   - 引入 object detection 历史类比（1-2 句）：R-CNN（分离 pipeline）→ Faster R-CNN/YOLO（端到端联合训练）一致性地同时提升了 localization 和 classification，GroundVDR 将同一结构性洞察首次引入 VDR
+   - 明确区分两层 benefit：(a) Architectural unification benefit = pipeline 简化 / 显存减少（与 R-CNN→YOLO 类比对应）；(b) Task-level synergy benefit = 通过 shared representations 实现任务间正反馈（超越类比，ablation #3 直接检验的部分）
+   - 升级为 **granularity-dependent synergy gradient** 的 structured prediction：grounding 对 retrieval 的增益随粒度细化单调递增（element-level > region-level > page-level），因为越细粒度的检索越依赖空间精度；在 ablation #3 中按粒度分解结果检验
+   - 引用 AGREE (SIGIR 2026) +12.82% nDCG@1 作为间接证据（proxy attention supervision 已有效，direct box regression supervision 应更强）
+   — **命中 Novelty（从 engineering 组合升级为 scientific hypothesis）+ Significance（可验证的科学发现）**
+
+3. **[Proposed Approach / Spatially-Typed Matryoshka 段落]** — 明确定义"spatially-typed"的具体技术含义和框架定位：
+   - MetaEmbed (ICLR 2026 Oral) 沿 token-count 维度嵌套（精度-效率 tradeoff）；MURE (arXiv:2603.13349) 沿 input-resolution 维度嵌套（分辨率-效率 tradeoff）；GroundVDR 沿 **spatial-semantic granularity 维度** 嵌套（粒度-覆盖度 tradeoff）。三者构成 Matryoshka multi-vector embedding 的三个**正交轴**：{token-count × resolution × spatial-granularity}
+   - 每个 embedding 向量携带 learned type tag（page / region-type / element-type），编码其在文档空间层级中的位置
+   - Late interaction 时 type tags 启用异构匹配——region-level query 优先与 region-typed embeddings 交互，page-level query 跨所有类型聚合
+   - 简要提及 broader applicability（任何具有层次化空间结构的检索场景均可受益，但本文聚焦文档检索）
+   — **命中 Novelty（从"应用 Matryoshka"升级为"扩展 Matryoshka 框架本身，新增第三个 nesting 维度"）**
+
+## B. Related Work 补全与差异化（影响 Related Work 评审维度）
+
+4. **[Research Landscape / 新增 MURE 差异化段落]** — 原 proposal 仅一笔带过"ColParse, MURE, ReAlign"。必须用 2-3 句专门论述 MURE (arXiv:2603.13349)：MURE 使用 Resolution-level Matryoshka Representation Learning (RMRL) 在 input side 做多分辨率嵌套采样。**Critical distinction**: MURE 的 Matryoshka 操作于 input side（分辨率层级），GroundVDR 操作于 output side（page/region/element 语义层级）；MURE 不做 learned region proposals 或 bounding-box prediction。 — **命中 Related Work（堵住审稿人最可能的 novelty 质疑）**
+
+5. **[Research Landscape / 新增 Hydra 差异化段落]** — Hydra (arXiv:2603.28554) 用单一 VLM + LoRA toggle 统一 retrieval 和 generation，byte-identical 输出恢复。**关键差异**: Hydra 的两个任务是独立模式（LoRA 开/关切换，无 shared loss），GroundVDR 的 retrieval 和 grounding 通过 joint loss 联合训练，假说显式 synergy。**必须正面回应 Hydra 的 GritLM negative finding**：Hydra ablation 发现 LoRA-based (r=16) joint training 无增益——但 Hydra 联合的是 retrieval + generation（不共享空间表示需求），GroundVDR 联合的是 retrieval + grounding（在空间-语义维度有结构性共享），且使用 r=64（更高容量）。 — **命中 Related Work + Novelty（主动回应反面证据，增强可信度）**
+
+6. **[Research Landscape / 新增 ReAlign 差异化段落]** — ReAlign (SIGIR 2026, arXiv:2604.07419) 用 VLM reasoning 识别 query-relevant regions → 生成 textual descriptions → KL 散度对齐 retriever rankings。属 text-bridged indirect spatial supervision。**GroundVDR 三重差异**：(a) direct box regression 保留精确空间坐标（vs. ReAlign 的有损文本压缩）；(b) 端到端可优化（vs. ReAlign 的 frozen VLM teacher）；(c) 产出的 bounding box 可直接用于下游 RAG context cropping。 — **命中 Related Work（防止审稿人用 SIGIR 2026 同期工作质疑 novelty）**
+
+7. **[Research Landscape / 扩展 PixSearch 差异化]** — 原 proposal 仅一句"not designed for multi-granularity retrieval benchmarks"。扩展为三维区分：(1) Retrieval 范式差异——PixSearch 是 generation-time 动态触发（retrieval-augmented generation），GroundVDR 是 offline indexing + online query（standalone retrieval）；(2) Grounding 形式差异——pixel-level segmentation masks vs. bounding boxes（文档矩形布局更适合 bbox）；(3) Multi-granularity 结构——PixSearch 无 page/region/element 层次化嵌套和 test-time 粒度控制。 — **命中 Related Work**
+
+8. **[Research Landscape / Spatial grounding 段落]** — 简提 Entropy-Gradient Grounding (arXiv 2026, arXiv:2604.08456) 作为最新 training-free grounding 代表（1 句），强化 training-free → learned 的梯度叙事。 — **命中 Related Work 完整性**
+
+9. **[Research Landscape 或 Motivation / 新增 training-free alternative 系统性回应]** — 2-3 句论证为什么 learned grounding 比 training-free extraction（Localization Heads, Snappy, Entropy-Gradient Grounding）有本质优势：(a) training-free 方法提取的是为通用 VLM 任务优化的空间信息，learned grounding 直接为检索任务的 spatial-semantic 需求优化表示（pre-trained features vs task-specific fine-tuning 的经典差异）；(b) training-free 方法无法实现 grounding→retrieval 的 synergy（不修改 embedding 空间），只能做"grounding on top of retrieval"而非"grounding integrated with retrieval"。 — **命中 Novelty（防御 trivial alternative 攻击）**
+
+## C. 技术细节澄清（影响 Technical Soundness）
+
+10. **[Proposed Approach / Architecture]** — 明确 localization head 规格：6-layer transformer decoder, ~150M 参数, fully trained（非 LoRA）。接收 backbone bidirectional patch embeddings 作为 input，以 coordinate token sequences 自回归解码 region bounding boxes。 — **命中 Technical Soundness（可复现性）**
+
+11. **[Proposed Approach / 新增 Core Assumption 段落]** — 明确承认"VLM patch embeddings 能否支撑高质量文档 region proposals"是论文的核心待验证假设。Localization Heads (CVPR 2025) 在自然图像上证明可行，但文档布局（密集文本、嵌套表格）与自然场景差异大。提出反向论证：文档的高度结构化、网格状布局可能比杂乱的自然场景更适合 patch-level 空间推理。通过 DocLayNet 独立评估直接检验此假设。 — **命中 Technical Soundness（逻辑严密性 + 诚实度）**
+
+12. **[Proposed Approach / 新增 4-step Inference Pipeline]** — 原 proposal 未描述推理流程，新增明确的 4 步 pipeline：(1) 文档页面 → backbone bidirectional encoding → patch embeddings；(2) patch embeddings → localization head (autoregressive) → region bounding boxes；(3) region boxes → crop & pool patch embeddings → spatially-typed Matryoshka embeddings（page/region/element 三级）；(4) 多粒度索引 + query-time type-tag routing 实现粒度选择。 — **命中 Technical Soundness（审稿人需要理解完整 pipeline 才能评估可行性）**
+
+13. **[Proposed Approach / Training Data Strategy]** — 原 proposal 写"supervised by ViDoRe V3's 3,099 grounding-labeled queries"存在 data leakage 风险。修正为分阶段策略：Phase 1 在 DocLayNet (KDD 2022, ~80K, COCO format) 上预训练 localization head；Phase 2 在 MMDocIR 173K + 1,685 expert annotations 上联合微调。**ViDoRe V3 的 3,099 queries 仅用于 zero-shot evaluation，不参与训练**。 — **命中 Technical Soundness（消除 data leakage 致命缺陷）**
+
+## D. 实验设计全面升级（影响 Technical Soundness 地板）
+
+14. **[Experimental Design / Baselines]** — 原 proposal 未明确列出 baseline。新增 4 类完整 baseline 清单：
+    - Page-level retrieval: Nemotron ColEmbed V2 (8B), MetaEmbed (3B/7B), ColPali/ColQwen2, BM25+OCR
+    - Sub-page/region-level retrieval: MURE, ColParse, RegionRAG, Multi-Granularity Framework (pipeline upper bound)
+    - Grounding / Spatial alignment: Snappy (training-free lower bound, reproduced on ViDoRe V3), AGREE (attention-proxy), ReAlign (text-bridged, SIGIR 2026)
+    - Unified single-model: Hydra (retrieval+generation, grounding=N/A)
+    — **命中 Technical Soundness（baseline 完整性是 soundness 的基线要求）**
+
+15. **[Experimental Design / Benchmarks and Metrics]** — 原 proposal 仅提"nDCG@10"和"grounding F1"。大幅扩展：
+    - ViDoRe V1/V2/V3（V1/V2 零额外训练成本，增加可比性和 robustness 展示）
+    - MMDocIR page-level 和 layout-level nDCG@{5,10} 分别报告
+    - Grounding: IoU@{0.25, 0.5, 0.7}, mean IoU, Dice/F1（与 Snappy/ViDoRe V3 评估协议对齐）
+    - BBox-DocVQA 作为补充 grounding benchmark（与 Snappy 主评测对齐）
+    - Efficiency: storage cost (embeddings/page × dim, bytes/page), per-page encoding latency breakdown (backbone / localization head / pooling+indexing), training GPU-hours per phase
+    - Compute-normalized comparison: training FLOPs vs. performance
+    - Per-modality grounding breakdown: text 60.4% / image 18.8% / table 16.7%
+    — **命中 Technical Soundness（评估完备性）**
+
+16. **[Experimental Design / 新增 Ablation Studies]** — 原 proposal 无任何 ablation。新增 7 项系统性 ablation + 2 项分析实验：
+    - Ablation #1: Learned localization head vs. external parser (HybriDLA) vs. fixed grid → 量化 learned proposals 价值；**附加**: 报告每个方案的 DocLayNet mAP ↔ 下游 retrieval nDCG 关联分析（scatter plot）
+    - Ablation #2: 去 Matryoshka 嵌套 → flat multi-vector → 量化层次化嵌套贡献
+    - Ablation #3: 去 joint loss → retrieval-only + grounding-only 分别训练 → **直接检验 synergy hypothesis**（3 seeds + paired significance test）；**按 page/region/element 粒度分解结果**检验 granularity-dependent synergy gradient 预测
+    - Ablation #3b（新增，回应 Hydra 反面证据）: Separated LoRA（retrieval LoRA + grounding LoRA 各自独立更新，无 shared gradient flow）→ 验证 synergy 来自 shared gradient 而非 LoRA 参数共享；+ r=16 vs r=64 对照
+    - Ablation #4: 去 spatial type tags → uniform embedding type → 量化异构 interaction 价值
+    - Ablation #5: Layer selection → 不同 backbone 层喂 localization head → 验证 probing protocol
+    - Ablation #6: Matryoshka truncation Pareto 曲线（page-only / page+region / page+region+element）→ storage vs. nDCG tradeoff，对比 MetaEmbed group-size 和 MURE resolution tradeoff
+    - Data quality ablation: 1,685 expert annotations only vs. 173K bootstrapped + 1,685 expert → 量化 bootstrapped annotation noise 影响；建议对 grounding loss 加入 confidence weight
+    — **命中 Technical Soundness（ablation 是顶会硬性要求）**
+
+17. **[Experimental Design / 新增 Independent Localization Head Evaluation]** — 在 DocLayNet test set 上单独评估 localization head 的 layout detection 质量，报告 COCO mAP@{0.5, 0.5:0.95, 0.75}，与 HybriDLA (83.5% mAP, AAAI 2026) 对比。直接验证"VLM patch embeddings 支撑文档 region proposals"的核心假设。 — **命中 Technical Soundness（核心假设验证）**
+
+18. **[Experimental Design / 新增 Qualitative Analysis]** — 3-5 个成功案例（预测 bounding box 可视化叠加），3-5 个失败案例（failure mode 分析：边界模糊、跨区域答案等），synergy 分析案例（joint vs. retrieval-only 的 embedding 相似度热力图对比）。零额外 compute。 — **命中 Technical Soundness（interpretability + 审稿人期望）**
+
+19. **[Experimental Design / Compute Budget]** — 原 proposal "~180 H100-hours via LoRA"严重低估。修正为分阶段 bottom-up 估算：
+    - Phase 1 (localization head pre-training, DocLayNet 80K): ~30 H100-hours
+    - Phase 2 (backbone LoRA + joint fine-tuning, MMDocIR 173K): ~150 H100-hours/seed
+    - Ablation experiments (7 ablations + data quality ablation): ~120 H100-hours
+    - Multi-seed: 2 seeds for main results, 3 seeds for ablation #3/3b → ~200 H100-hours additional
+    - **Total: ~550-600 H100-hours**（budget-conscious fallback: main 1 seed + ablation #3 3 seeds ≈ 400 H100-hours）
+    — **命中 Technical Soundness（可行性 + 诚实度）**
+
+## E. Key References 补全
+
+20. **[Key References]** — 原 proposal 10 篇引用。新增 7 篇必要引用：
+    - MURE (arXiv 2026, arXiv:2603.13349) — 最直接的 Matryoshka 竞争者
+    - Hydra (arXiv 2026, arXiv:2603.28554) — 最直接的 unified single-model 竞争者
+    - ReAlign (SIGIR 2026, arXiv:2604.07419) — 最直接的 spatial alignment 竞争者
+    - ColParse (arXiv 2026, arXiv:2603.01666) — 已在原文 body 提及但未列入 references
+    - Multi-Granularity Framework (arXiv 2025, arXiv:2505.01457) — pipeline upper bound baseline
+    - PixSearch (arXiv 2026, arXiv:2601.19060) — retrieval+grounding 差异化对象
+    - DocLayNet (KDD 2022) — localization head 预训练数据源
+    — **命中 Related Work（遗漏关键引用在顶会评审中是致命扣分项）**
+
+---
+
+【主要风险】
+
+1. **Synergy hypothesis 不成立（最大风险）**：ablation #3 可能显示 joint training 相比 separate training 无显著增益甚至有损。此时论文的核心科学 claim 崩塌，只剩 architectural unification（engineering contribution），概率会从 ~41% 骤降到 <25%。**缓解**：即使 synergy 效果不显著，architectural unification + spatially-typed Matryoshka 仍有独立贡献价值，但需要调整论文叙事重心。
+
+2. **Localization head 在文档上表现不佳**：VLM patch embeddings 可能确实不够支撑文档 layout 级别的 region proposals（DocLayNet mAP 远低于 HybriDLA 的 83.5%）。如果 mAP < 40% 且下游 retrieval 无增益，核心 pipeline 的基础动摇。**缓解**：DocLayNet 预训练 + MMDocIR 微调的两阶段策略已尽可能降低此风险；即使 mAP 不及专用模型，只要 retrieval 有增益就可论证"对检索而言够用"。
+
+---
+
+【实施评估】
+
+- **计算资源**: 约 550-600 H100-hours（含 multi-seed 和全部 ablation）。Budget-conscious fallback ~400 H100-hours。需至少 4×H100 节点（Qwen3-VL-8B + localization head + 双 loss gradient），推荐 8×H100 加速训练。可使用商业云（AWS p5、Lambda Labs）或学术集群。
+- **数据需求**: (1) DocLayNet ~80K pages（公开，Hugging Face: ds4sd/DocLayNet）；(2) MMDocIR 173K bootstrapped + 1,685 expert annotations（公开）；(3) ViDoRe V1/V2/V3 queries（公开）；(4) BBox-DocVQA（公开）。所有数据集均公开可得，无数据获取瓶颈。
+- **人工介入**: (1) Bootstrapped annotation 质量审计需人工抽样 500-1000 条评估 IoU 一致性，约 20-30 人时；(2) 定性分析的 failure case 选取和标注约 5-10 人时。总计 ~30-40 人时，可由 1 名研究生在 1-2 周内完成。
+- **训练需求**: 需要模型训练。(1) Localization head (6-layer transformer decoder, ~150M params) 全参数训练 on DocLayNet；(2) Qwen3-VL-8B backbone LoRA r=64 微调 on MMDocIR；(3) Joint fine-tuning 两个 loss 同时训练。主要工程挑战：bidirectional attention（用于检索）与 autoregressive decoding（localization head）的 forward pass 协调、双 loss 权重平衡。
+- **新 Benchmark**: 不需要构建新 benchmark。使用现有的 ViDoRe V1/V2/V3、MMDocIR、BBox-DocVQA。需在 ViDoRe V3 上复现 Snappy（training-free，~2-4 小时 inference）。
+- **预估周期**: 从启动到可投稿约 **10-14 周**：
+  - 第 1-2 周：数据准备 + DocLayNet 预训练 + annotation 质量审计
+  - 第 3-5 周：主模型训练（Phase 2 joint fine-tuning，2 seeds）
+  - 第 6-8 周：ablation 实验（7 ablations + data quality ablation，部分可并行）
+  - 第 9-10 周：evaluation on all benchmarks + baseline reproduction (Snappy) + efficiency analysis
+  - 第 11-12 周：定性分析 + 论文撰写
+  - 第 13-14 周：内部审稿 + 修改 + 投稿准备
+  - AAAI 2026 截稿日（假设 8 月中旬）前可完成，但时间线偏紧，建议尽快启动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99b3efd3-6994-475b-b518-0e6bcd21c06c",
+  "isSidechain": false,
+  "requestId": "req_011CbYM99pyqkArqCrAMnMaG",
+  "type": "assistant",
+  "uuid": "1aaae653-4993-4a1f-8404-73294f148456",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015FjA2GdV2oJXVCg41QFz8A",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4097,
+      "cache_read_input_tokens": 81826,
+      "output_tokens": 7274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4097,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 7274,
+          "cache_read_input_tokens": 81826,
+          "cache_creation_input_tokens": 4097,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4097
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。",
+  "leafUuid": "1aaae653-4993-4a1f-8404-73294f148456",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GroundVDR: Multi-granularity visual document retrieval",
+  "sessionId": "5c140d8b-e92f-4603-9890-72bdda707203"
+}
+```
+
+---

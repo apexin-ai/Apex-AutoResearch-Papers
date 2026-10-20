@@ -1,0 +1,3423 @@
+# Research conversation: Typed Modular Decomposition as the Missing Abstraction for Scalable Formal Process Rewards ## Core Problem RL training o
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-3/d39c9ec2-a0a1-40f5-917a-516d72101885.jsonl`
+- **Structured JSON:** [`d6695c8f38de42888451.json`](../../sessions/d6/d6695c8f38de42888451.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T08:41:38.151Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T08:41:38.151Z",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "content": "# Typed Modular Decomposition as the Missing Abstraction for Scalable Formal Process Rewards\n\n## Core Problem\n\nRL training of mathematical reasoning LLMs requires reliable step-level rewards, but faces a fundamental cost-reliability tradeoff: neural PRMs are cheap (~82% accuracy, Proof-RM, arXiv 2602.02377) but prone to approving flawed reasoning and suffer from high false negative rates (38.5% in Big-Math-RL-Verified per TinyV, arXiv 2505.14625, ICML 2025), while full formal verification in Lean 4 achieves high reliability but incurs 4-8× compute overhead (SAFE, arXiv 2506.04592), making it impractical for online RL. Can we achieve formal-grade reward reliability at near-neural cost?\n\n## Core Thesis\n\nWe argue that **typed modular decomposition** is the missing abstraction layer that makes scalable multi-backend formal verification feasible for online RL rewards. Prior work has independently demonstrated: (a) modular proof decomposition enables scalable verification (Pseudo-Formalization, arXiv 2605.20531), but uses LLM-as-judge rather than formal tools; (b) CAS/SMT tools can verify ~90% of math reasoning steps at millisecond cost (MATH-VF, arXiv 2505.20869), but only offline and without modular structure; (c) formal verification as RL reward dramatically boosts soundness (PRoSFI, arXiv 2603.29500), but only for first-order logic. The reason these capabilities have not been unified is the absence of a typed interface that maps reasoning steps to heterogeneous verification backends. We provide this interface and instantiate it as a concrete online RL reward pipeline.\n\n## Research Landscape\n\nThe field is split between expensive-but-reliable and cheap-but-noisy verification for math RL:\n\n- **PRoSFI** (arXiv 2603.29500, March 2026): Prover9 verification of structured FOL intermediaries as GRPO reward; soundness 22%→76%, but limited to ProverQA logic puzzles (FOL only).\n- **Interleaved Bonus** (arXiv 2601.22642, January 2026): Z3 verification interleaved during RL training; +10-14% on math benchmarks, but single backend, no modular decomposition, ~2× training cost.\n- **FoVer** (ACL 2026 Findings, arXiv 2505.15960): Z3+Isabelle for offline PRM data annotation (40K examples); effective but not usable as online reward.\n- **SAFE** (arXiv 2506.04592): 81.2% step formalization in Lean 4; explicitly notes 4-8× compute overhead makes it impractical for RL.\n- **MATH-VF** (arXiv 2505.20869): SymPy CAS + Z3 SMT via custom SimpleMath language; 95.7% step correctness detection but offline only. Crucially, MATH-VF's Formalizer operates sequentially on entire solutions without modular decomposition, meaning: (i) verification cannot be parallelized across steps, (ii) a single formalization failure cascades to subsequent steps, and (iii) there is no fallback mechanism for steps resisting formalization. These limitations make naive \"MATH-VF as online reward\" insufficient.\n- **Proof-RM** (arXiv 2602.02377): Purely neural PRM at 82.4% accuracy with no formal guarantees.\n- **VERIFY-RL** (arXiv 2602.07559, February 2026): Recursive decomposition with symbolic differentiation verification for RL, but limited to calculus domain only.\n- **HERMES** (ICML 2026, arXiv 2511.18760): Interleaves informal reasoning with Lean proof steps at inference time; up to 40% accuracy improvement on AIME with 80% FLOPs reduction, but operates only at inference time, not as RL training reward.\n- **TinyV** (ICML 2025, arXiv 2505.14625): Discovers that 38.5% of \"incorrect\" labels are false negatives, severely harming RL training. Proposes lightweight LLM verifier achieving +10% pass rate. Key insight: false negatives harm RL far more than false positives.\n- **RL with Noisy Rewards** (arXiv 2510.00915): Formalizes verifier noise as asymmetric noise channel (FP rate ρ₀, FN rate ρ₁); proves sharp phase transition at Youden's index J = TPR - FPR: J > 0 → learning, J < 0 → anti-learning. Proposes backward/forward correction algorithms.\n\nThe specific combination of typed modular decomposition → adaptive multi-backend routing → three-valued confidence-calibrated online RL reward has not been attempted. Our work bridges Pseudo-Formalization's modularity (but replacing its LLM-as-judge with formal tools), MATH-VF's CAS/SMT toolchain (but adding modular structure and online capability), and PRoSFI's formal-RL-reward paradigm (but extending from FOL to general mathematics).\n\n## Proposed Approach\n\nA three-stage pipeline computing online RL rewards during GRPO training:\n\n**Stage 1: Typed Modular Decomposition.** A decomposer (fine-tuned from the policy model's base) translates each chain-of-thought step into a typed, self-contained verification module specifying: explicit premises, conclusion, mathematical domain tag (algebraic, analytic, combinatorial, logical), and — critically — a **formal specification** (SymPy expression, Z3 assertion, or an explicit \"resists-formalization\" declaration with confidence score). This stage bridges the autoformalization gap between Pseudo-Formalization's natural-language modules and formal verification backends. Unlike PF's Block Verification (which uses LLM-as-judge), our modules carry machine-checkable formal specs. The decomposer's formalization success rate and spec accuracy are independently evaluated as a core contribution.\n\n**Stage 2: Adaptive Multi-Backend Routing.** A lightweight learned router dispatches each module to the cheapest sufficient verification backend based on domain tag and decomposer confidence: SymPy CAS for algebraic/arithmetic claims (<5ms per step), Z3 SMT for logical/inequality claims (<50ms per step), or a neural PRM fallback for claims that resist formalization. The actual routing distribution across difficulty levels is treated as an empirical variable to be measured (not assumed). Z3 queries use a 200ms timeout; any timeout or SymPy \"unknown\" result triggers automatic fallback rather than a negative verdict. This implements **three-valued verification logic**: each module receives one of {verified-correct, verified-incorrect, unable-to-verify}. The \"unable-to-verify\" category prevents routing errors from generating false negatives — addressing the core finding of TinyV (arXiv 2505.14625) that false negatives are far more damaging to RL training than false positives.\n\n**Stage 3: Calibrated Reward Aggregation.** Per-module three-valued outcomes are aggregated into a calibrated step-level reward via a sigmoid-weighted product that penalizes the earliest verified-incorrect step, with \"unable-to-verify\" modules receiving a discounted neutral score rather than a penalty. This reward signal is directly compatible with GRPO policy optimization. Optional integration of noise correction (backward correction from arXiv 2510.00915, noise-corrected GRPO from arXiv 2510.18924) is evaluated as an ablation.\n\n## Experimental Design\n\n**Policy model:** Qwen3-8B (main experiments + all ablations), Qwen3-32B (final scaling results).\n**Training data:** ~25K math problems from NuminaMath and MATH.\n\n**Baselines (5 groups covering the full verification spectrum):**\n1. Vanilla GRPO with outcome-only binary reward (no step-level signal)\n2. Neural PRM reward (Proof-RM / Qwen2.5-Math-PRM)\n3. FoVer-PRM (PRM trained on FoVer's 40K formally-annotated data, arXiv 2505.15960) — representing the offline-formal→PRM pipeline\n4. VERIFY-RL (arXiv 2602.07559) — online formal verification, single domain\n5. Interleaved Bonus (arXiv 2601.22642) — online formal verification, single backend\n\n**Evaluation benchmarks:**\n- Downstream accuracy: MATH-500, AMC 2023, AIME 2024 (easy→medium→hard gradient)\n- Step-level verification quality: ProcessBench, PRMBench (ACL 2025, arXiv 2501.03124) — directly measuring pipeline FP/FN rates on human-annotated step labels\n- Inference-time reference: HERMES (arXiv 2511.18760) results reported for context\n\n**Core experiments:**\n1. **Direct reward accuracy evaluation:** On ProcessBench and PRMBench annotated subsets, measure the pipeline's step-level precision, recall, F1, and FP/FN rates. Compare against Proof-RM and vanilla neural PRM. This directly substantiates the \"formal-grade reliability\" claim.\n2. **Compute-normalized comparison:** Report per-step verification latency distribution (SymPy / Z3 / neural, separately), actual routing proportions by difficulty level, training throughput (samples/hour), and wall-clock overhead vs. all baselines. Plot accuracy-vs-compute Pareto curve to demonstrate the pipeline's position on the efficiency frontier.\n3. **Downstream RL performance:** MATH-500, AMC 2023, AIME 2024 accuracy after GRPO training with each baseline reward, under matched compute budgets.\n\n**Ablation studies (all on Qwen3-8B):**\n1. **Router ablation:** Learned router vs. oracle routing (human-labeled optimal backend) vs. random routing vs. SymPy-only vs. Z3-only vs. neural-only.\n2. **Aggregation ablation:** Sigmoid-weighted product vs. simple product vs. min-score vs. weighted average.\n3. **Fallback ratio sensitivity:** Vary neural fallback confidence threshold to sweep fallback ratio from ~5% to ~50%; measure downstream accuracy and reward FP/FN rates at each point.\n4. **Three-valued vs. binary verification:** Compare three-valued logic (with \"unable-to-verify\" → discounted neutral) vs. binary logic (unable-to-verify → negative).\n5. **Noise correction ablation:** With vs. without backward/forward correction (arXiv 2510.00915).\n6. **Modular decomposition ablation:** Full typed decomposition vs. no decomposition (direct step→verification) vs. untyped decomposition (no domain tags).\n\n**Decomposer quality evaluation:**\n- On a 500-problem subset, evaluate decomposer output quality: premise extraction accuracy, conclusion faithfulness, domain tag accuracy, formalization success rate (% of steps successfully producing executable formal specs).\n- Analyze failure patterns by mathematical domain and difficulty level.\n\n**Pilot study (pre-training validation):**\n- On 1000 NuminaMath problems, run decomposer + router to measure: actual routing distribution per backend, response time distribution (including p99 tail latency), timeout/unknown rates, and effective neural fallback proportion. Results inform final pipeline configuration.\n\n**Training dynamics analysis:**\n- Training reward curve vs. steps.\n- Verification accuracy on held-out annotated subset, sampled every N training steps — detecting potential accuracy degradation as policy generates harder reasoning paths.\n- Formal verification coverage ratio (CAS+SMT covered steps / total steps) vs. training steps.\n\n**Scaling:** Final results on Qwen3-32B with the best configuration from 8B ablations.\n\n## Key References\n\n- Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries [PRoSFI] (arXiv 2603.29500, 2026)\n- Pseudo-Formalization for Automatic Proof Verification (arXiv 2605.20531, 2026)\n- Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2505.20869, 2025)\n- Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification (arXiv 2506.04592, 2025)\n- Proof-RM: A Scalable and Generalizable Reward Model for Math Proof (arXiv 2602.02377, 2026)\n- FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings, arXiv 2505.15960)\n- Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification (arXiv 2601.22642, 2026)\n- HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026, arXiv 2511.18760)\n- VERIFY-RL: Verifiable Recursive Decomposition for Reinforcement Learning in Mathematical Reasoning (arXiv 2602.07559, 2026)\n- DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (arXiv 2025)\n- TinyV: Reducing False Negatives in Verification Improves RL for LLM Reasoning (ICML 2025, arXiv 2505.14625)\n- Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers (arXiv 2510.00915)\n- Noise-corrected GRPO: From Noisy Rewards to Unbiased Gradients (arXiv 2510.18924)\n- PRMBench: A Fine-grained Benchmark for Process Reward Models (ACL 2025, arXiv 2501.03124)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 4000-5500 H100-hours (dev/pilot ~600h, main 8B experiments ~1000h, ablations ~800h, 32B scale-up ~2000h, decomposer eval ~100h), timeline: 14-16 weeks, estimated_gpu_cost: $10,000-$13,750\n- **human_in_loop**: gpu_hours: 4000-5500 H100-hours, timeline: 10-12 weeks, claude_api_cost: $300-500, estimated_gpu_cost: $10,000-$13,750\n- **auto_research**: gpu_hours: 4000-5500 H100-hours (GPU-bound), timeline: 7-9 weeks, claude_api_cost: $700-1000, estimated_gpu_cost: $10,000-$13,750, speed_bottleneck: RL training wall-clock time (8B GRPO ~15-27h on 8×H100; 32B ~48-72h on 16×H100)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T08:41:38.156Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T08:41:38.156Z",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T08:41:38.172Z_
+
+# Typed Modular Decomposition as the Missing Abstraction for Scalable Formal Process Rewards
+
+## Core Problem
+
+RL training of mathematical reasoning LLMs requires reliable step-level rewards, but faces a fundamental cost-reliability tradeoff: neural PRMs are cheap (~82% accuracy, Proof-RM, arXiv 2602.02377) but prone to approving flawed reasoning and suffer from high false negative rates (38.5% in Big-Math-RL-Verified per TinyV, arXiv 2505.14625, ICML 2025), while full formal verification in Lean 4 achieves high reliability but incurs 4-8× compute overhead (SAFE, arXiv 2506.04592), making it impractical for online RL. Can we achieve formal-grade reward reliability at near-neural cost?
+
+## Core Thesis
+
+We argue that **typed modular decomposition** is the missing abstraction layer that makes scalable multi-backend formal verification feasible for online RL rewards. Prior work has independently demonstrated: (a) modular proof decomposition enables scalable verification (Pseudo-Formalization, arXiv 2605.20531), but uses LLM-as-judge rather than formal tools; (b) CAS/SMT tools can verify ~90% of math reasoning steps at millisecond cost (MATH-VF, arXiv 2505.20869), but only offline and without modular structure; (c) formal verification as RL reward dramatically boosts soundness (PRoSFI, arXiv 2603.29500), but only for first-order logic. The reason these capabilities have not been unified is the absence of a typed interface that maps reasoning steps to heterogeneous verification backends. We provide this interface and instantiate it as a concrete online RL reward pipeline.
+
+## Research Landscape
+
+The field is split between expensive-but-reliable and cheap-but-noisy verification for math RL:
+
+- **PRoSFI** (arXiv 2603.29500, March 2026): Prover9 verification of structured FOL intermediaries as GRPO reward; soundness 22%→76%, but limited to ProverQA logic puzzles (FOL only).
+- **Interleaved Bonus** (arXiv 2601.22642, January 2026): Z3 verification interleaved during RL training; +10-14% on math benchmarks, but single backend, no modular decomposition, ~2× training cost.
+- **FoVer** (ACL 2026 Findings, arXiv 2505.15960): Z3+Isabelle for offline PRM data annotation (40K examples); effective but not usable as online reward.
+- **SAFE** (arXiv 2506.04592): 81.2% step formalization in Lean 4; explicitly notes 4-8× compute overhead makes it impractical for RL.
+- **MATH-VF** (arXiv 2505.20869): SymPy CAS + Z3 SMT via custom SimpleMath language; 95.7% step correctness detection but offline only. Crucially, MATH-VF's Formalizer operates sequentially on entire solutions without modular decomposition, meaning: (i) verification cannot be parallelized across steps, (ii) a single formalization failure cascades to subsequent steps, and (iii) there is no fallback mechanism for steps resisting formalization. These limitations make naive "MATH-VF as online reward" insufficient.
+- **Proof-RM** (arXiv 2602.02377): Purely neural PRM at 82.4% accuracy with no formal guarantees.
+- **VERIFY-RL** (arXiv 2602.07559, February 2026): Recursive decomposition with symbolic differentiation verification for RL, but limited to calculus domain only.
+- **HERMES** (ICML 2026, arXiv 2511.18760): Interleaves informal reasoning with Lean proof steps at inference time; up to 40% accuracy improvement on AIME with 80% FLOPs reduction, but operates only at inference time, not as RL training reward.
+- **TinyV** (ICML 2025, arXiv 2505.14625): Discovers that 38.5% of "incorrect" labels are false negatives, severely harming RL training. Proposes lightweight LLM verifier achieving +10% pass rate. Key insight: false negatives harm RL far more than false positives.
+- **RL with Noisy Rewards** (arXiv 2510.00915): Formalizes verifier noise as asymmetric noise channel (FP rate ρ₀, FN rate ρ₁); proves sharp phase transition at Youden's index J = TPR - FPR: J > 0 → learning, J < 0 → anti-learning. Proposes backward/forward correction algorithms.
+
+The specific combination of typed modular decomposition → adaptive multi-backend routing → three-valued confidence-calibrated online RL reward has not been attempted. Our work bridges Pseudo-Formalization's modularity (but replacing its LLM-as-judge with formal tools), MATH-VF's CAS/SMT toolchain (but adding modular structure and online capability), and PRoSFI's formal-RL-reward paradigm (but extending from FOL to general mathematics).
+
+## Proposed Approach
+
+A three-stage pipeline computing online RL rewards during GRPO training:
+
+**Stage 1: Typed Modular Decomposition.** A decomposer (fine-tuned from the policy model's base) translates each chain-of-thought step into a typed, self-contained verification module specifying: explicit premises, conclusion, mathematical domain tag (algebraic, analytic, combinatorial, logical), and — critically — a **formal specification** (SymPy expression, Z3 assertion, or an explicit "resists-formalization" declaration with confidence score). This stage bridges the autoformalization gap between Pseudo-Formalization's natural-language modules and formal verification backends. Unlike PF's Block Verification (which uses LLM-as-judge), our modules carry machine-checkable formal specs. The decomposer's formalization success rate and spec accuracy are independently evaluated as a core contribution.
+
+**Stage 2: Adaptive Multi-Backend Routing.** A lightweight learned router dispatches each module to the cheapest sufficient verification backend based on domain tag and decomposer confidence: SymPy CAS for algebraic/arithmetic claims (<5ms per step), Z3 SMT for logical/inequality claims (<50ms per step), or a neural PRM fallback for claims that resist formalization. The actual routing distribution across difficulty levels is treated as an empirical variable to be measured (not assumed). Z3 queries use a 200ms timeout; any timeout or SymPy "unknown" result triggers automatic fallback rather than a negative verdict. This implements **three-valued verification logic**: each module receives one of {verified-correct, verified-incorrect, unable-to-verify}. The "unable-to-verify" category prevents routing errors from generating false negatives — addressing the core finding of TinyV (arXiv 2505.14625) that false negatives are far more damaging to RL training than false positives.
+
+**Stage 3: Calibrated Reward Aggregation.** Per-module three-valued outcomes are aggregated into a calibrated step-level reward via a sigmoid-weighted product that penalizes the earliest verified-incorrect step, with "unable-to-verify" modules receiving a discounted neutral score rather than a penalty. This reward signal is directly compatible with GRPO policy optimization. Optional integration of noise correction (backward correction from arXiv 2510.00915, noise-corrected GRPO from arXiv 2510.18924) is evaluated as an ablation.
+
+## Experimental Design
+
+**Policy model:** Qwen3-8B (main experiments + all ablations), Qwen3-32B (final scaling results).
+**Training data:** ~25K math problems from NuminaMath and MATH.
+
+**Baselines (5 groups covering the full verification spectrum):**
+1. Vanilla GRPO with outcome-only binary reward (no step-level signal)
+2. Neural PRM reward (Proof-RM / Qwen2.5-Math-PRM)
+3. FoVer-PRM (PRM trained on FoVer's 40K formally-annotated data, arXiv 2505.15960) — representing the offline-formal→PRM pipeline
+4. VERIFY-RL (arXiv 2602.07559) — online formal verification, single domain
+5. Interleaved Bonus (arXiv 2601.22642) — online formal verification, single backend
+
+**Evaluation benchmarks:**
+- Downstream accuracy: MATH-500, AMC 2023, AIME 2024 (easy→medium→hard gradient)
+- Step-level verification quality: ProcessBench, PRMBench (ACL 2025, arXiv 2501.03124) — directly measuring pipeline FP/FN rates on human-annotated step labels
+- Inference-time reference: HERMES (arXiv 2511.18760) results reported for context
+
+**Core experiments:**
+1. **Direct reward accuracy evaluation:** On ProcessBench and PRMBench annotated subsets, measure the pipeline's step-level precision, recall, F1, and FP/FN rates. Compare against Proof-RM and vanilla neural PRM. This directly substantiates the "formal-grade reliability" claim.
+2. **Compute-normalized comparison:** Report per-step verification latency distribution (SymPy / Z3 / neural, separately), actual routing proportions by difficulty level, training throughput (samples/hour), and wall-clock overhead vs. all baselines. Plot accuracy-vs-compute Pareto curve to demonstrate the pipeline's position on the efficiency frontier.
+3. **Downstream RL performance:** MATH-500, AMC 2023, AIME 2024 accuracy after GRPO training with each baseline reward, under matched compute budgets.
+
+**Ablation studies (all on Qwen3-8B):**
+1. **Router ablation:** Learned router vs. oracle routing (human-labeled optimal backend) vs. random routing vs. SymPy-only vs. Z3-only vs. neural-only.
+2. **Aggregation ablation:** Sigmoid-weighted product vs. simple product vs. min-score vs. weighted average.
+3. **Fallback ratio sensitivity:** Vary neural fallback confidence threshold to sweep fallback ratio from ~5% to ~50%; measure downstream accuracy and reward FP/FN rates at each point.
+4. **Three-valued vs. binary verification:** Compare three-valued logic (with "unable-to-verify" → discounted neutral) vs. binary logic (unable-to-verify → negative).
+5. **Noise correction ablation:** With vs. without backward/forward correction (arXiv 2510.00915).
+6. **Modular decomposition ablation:** Full typed decomposition vs. no decomposition (direct step→verification) vs. untyped decomposition (no domain tags).
+
+**Decomposer quality evaluation:**
+- On a 500-problem subset, evaluate decomposer output quality: premise extraction accuracy, conclusion faithfulness, domain tag accuracy, formalization success rate (% of steps successfully producing executable formal specs).
+- Analyze failure patterns by mathematical domain and difficulty level.
+
+**Pilot study (pre-training validation):**
+- On 1000 NuminaMath problems, run decomposer + router to measure: actual routing distribution per backend, response time distribution (including p99 tail latency), timeout/unknown rates, and effective neural fallback proportion. Results inform final pipeline configuration.
+
+**Training dynamics analysis:**
+- Training reward curve vs. steps.
+- Verification accuracy on held-out annotated subset, sampled every N training steps — detecting potential accuracy degradation as policy generates harder reasoning paths.
+- Formal verification coverage ratio (CAS+SMT covered steps / total steps) vs. training steps.
+
+**Scaling:** Final results on Qwen3-32B with the best configuration from 8B ablations.
+
+## Key References
+
+- Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries [PRoSFI] (arXiv 2603.29500, 2026)
+- Pseudo-Formalization for Automatic Proof Verification (arXiv 2605.20531, 2026)
+- Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2505.20869, 2025)
+- Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification (arXiv 2506.04592, 2025)
+- Proof-RM: A Scalable and Generalizable Reward Model for Math Proof (arXiv 2602.02377, 2026)
+- FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings, arXiv 2505.15960)
+- Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification (arXiv 2601.22642, 2026)
+- HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026, arXiv 2511.18760)
+- VERIFY-RL: Verifiable Recursive Decomposition for Reinforcement Learning in Mathematical Reasoning (arXiv 2602.07559, 2026)
+- DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (arXiv 2025)
+- TinyV: Reducing False Negatives in Verification Improves RL for LLM Reasoning (ICML 2025, arXiv 2505.14625)
+- Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers (arXiv 2510.00915)
+- Noise-corrected GRPO: From Noisy Rewards to Unbiased Gradients (arXiv 2510.18924)
+- PRMBench: A Fine-grained Benchmark for Process Reward Models (ACL 2025, arXiv 2501.03124)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 4000-5500 H100-hours (dev/pilot ~600h, main 8B experiments ~1000h, ablations ~800h, 32B scale-up ~2000h, decomposer eval ~100h), timeline: 14-16 weeks, estimated_gpu_cost: $10,000-$13,750
+- **human_in_loop**: gpu_hours: 4000-5500 H100-hours, timeline: 10-12 weeks, claude_api_cost: $300-500, estimated_gpu_cost: $10,000-$13,750
+- **auto_research**: gpu_hours: 4000-5500 H100-hours (GPU-bound), timeline: 7-9 weeks, claude_api_cost: $700-1000, estimated_gpu_cost: $10,000-$13,750, speed_bottleneck: RL training wall-clock time (8B GRPO ~15-27h on 8×H100; 32B ~48-72h on 16×H100)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "8bf66392-fff4-4968-9340-9d14bc695565",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T08:41:38.169Z_
+
+```json
+{
+  "parentUuid": "8bf66392-fff4-4968-9340-9d14bc695565",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "c41737ba-d6af-4dfc-88ab-96eaef67e272",
+  "timestamp": "2026-05-27T08:41:38.169Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T08:41:38.169Z_
+
+```json
+{
+  "parentUuid": "c41737ba-d6af-4dfc-88ab-96eaef67e272",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d90ccc9f-4191-4292-afa2-b68a5b64c38b",
+  "timestamp": "2026-05-27T08:41:38.169Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Typed modular decomposition for formal RL rewards",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T08:41:43.008Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal carefully as the "发掘 agent" (Discovery Agent). I need to:
+
+1. First, do thorough literature research via WebSearch
+2. Assess the novelty, significance, and related work differentiation
+3. Identify potential areas where the idea's ceiling can be raised
+
+Let me start by searching for the most recent and relevant work in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d90ccc9f-4191-4292-afa2-b68a5b64c38b",
+  "isSidechain": false,
+  "requestId": "req_011CbSmvyApyycLHWM9wdzjG",
+  "type": "assistant",
+  "uuid": "2c0a8f61-e767-4706-8f9b-cbc6673e9eb6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMKtzP2j57qprGcTQSQrEE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5011,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 5011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T08:41:43.450Z_
+
+I'll start by conducting thorough literature research before making any assessments. Let me search for the most relevant recent work in this space.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c0a8f61-e767-4706-8f9b-cbc6673e9eb6",
+  "isSidechain": false,
+  "requestId": "req_011CbSmvyApyycLHWM9wdzjG",
+  "type": "assistant",
+  "uuid": "2c44c39a-814b-47e8-8b14-3971acc7b259",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMKtzP2j57qprGcTQSQrEE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5011,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 5011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T08:41:44.047Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LeWyJL2JgA1Yn8971Zz1E8`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c44c39a-814b-47e8-8b14-3971acc7b259",
+  "isSidechain": false,
+  "requestId": "req_011CbSmvyApyycLHWM9wdzjG",
+  "type": "assistant",
+  "uuid": "f96659ea-cadd-414f-979f-32f9f7579b00",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMKtzP2j57qprGcTQSQrEE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5011,
+      "cache_read_input_tokens": 14184,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 14184,
+          "cache_creation_input_tokens": 5011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T08:41:44.055Z_
+
+<details><summary>↩ Tool result · `toolu_01LeWyJL2JgA1Yn8971Zz1E8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f96659ea-cadd-414f-979f-32f9f7579b00",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "e6259cf8-8f1e-4dbe-92ae-40fe2269c616",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "f96659ea-cadd-414f-979f-32f9f7579b00",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Typed Modular Decomposition as the Missing Abstraction for Scalable Formal Process Rewards  ## Core Problem  RL training of mathematical reasoning LLMs requires reliable step-level rewards, but face…",
+  "leafUuid": "e6259cf8-8f1e-4dbe-92ae-40fe2269c616",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Typed modular decomposition for formal RL rewards",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-27T08:41:46.857Z_
+
+Now let me conduct the required pre-research. I'll run multiple searches in parallel to cover the key areas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6259cf8-8f1e-4dbe-92ae-40fe2269c616",
+  "isSidechain": false,
+  "requestId": "req_011CbSmwQRsEWvGuvvcXUT4q",
+  "type": "assistant",
+  "uuid": "82910ea9-9392-484b-b60b-c87e6a4e3077",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011YfH6MYkdfjv9Kw5nQfcV3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 19195,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 19195,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T08:41:47.219Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TCAeYp8yiLTL8oC4fvLNs3`</summary>
+
+```json
+{
+  "query": "typed modular decomposition formal verification RL reward math reasoning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82910ea9-9392-484b-b60b-c87e6a4e3077",
+  "isSidechain": false,
+  "requestId": "req_011CbSmwQRsEWvGuvvcXUT4q",
+  "type": "assistant",
+  "uuid": "cf15a84b-f600-4df2-8214-27975ee99054",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011YfH6MYkdfjv9Kw5nQfcV3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 19195,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 19195,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T08:41:54.451Z_
+
+<details><summary>↩ Tool result · `toolu_01TCAeYp8yiLTL8oC4fvLNs3`</summary>
+
+```text
+Web search results for query: "typed modular decomposition formal verification RL reward math reasoning 2025 2026"
+
+Links: [{"title":"VERIFY-RL: Verifiable Recursive Decomposition for Reinforcement Learning in Mathematical Reasoning","url":"https://arxiv.org/html/2602.07559"},{"title":"VERIFY-RL: Verifiable Recursive Decomposition for Reinforcement Learning in Mathematical Reasoning","url":"https://arxiv.org/pdf/2602.07559"},{"title":"Formal Theorem Proving by Rewarding LLMs to Decompose Proofs Hierarchically | OpenReview","url":"https://openreview.net/forum?id=D23JcXiUwf"},{"title":"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries","url":"https://arxiv.org/pdf/2603.29500"},{"title":"Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries","url":"https://arxiv.org/html/2603.29500"},{"title":"Proof-RM: A Scalable and Generalizable Reward Model for Math Proof","url":"https://arxiv.org/pdf/2602.02377"}]
+
+Based on the search results, I found several relevant papers from 2025-2026 combining formal verification, reinforcement learning, reward mechanisms, and mathematical reasoning:
+
+## Key Recent Work (2025-2026)
+
+**VERIFY-RL Framework:** Verify-RL is a framework where every parent-child decomposition satisfies three verifiable conditions: strictly decreasing structural complexity, solution containment, and formal rule derivation. Eliminating invalid decompositions yields sizable gains, with accuracy on the hardest problems more than doubling from 32% to 68%, achieving a 40% relative improvement overall.
+
+**Formal Verification in RL for Mathematical Reasoning:** Only fully validated reasoning chains receive high rewards, and the integration of formal verification guides the model towards generating step-by-step machine-checkable proofs.
+
+**Reward Modeling:** Reinforcement Learning with Verifiable Rewards (RLVR) addresses the challenge of providing verifiable reward signals, exemplified by Tulu-3 and DeepSeek-R1. RLVR leverages the asymmetry of verification—in domains such as math, solving a problem may be complex, but verifying an answer can be very simple.
+
+**Related Approaches:** An RL-based training algorithm encourages LLMs to write formal proofs by proposing and proving new lemmas, mimicking how mathematicians train themselves.
+
+These works represent recent advances in combining modular decomposition with formal verification and RL-based reward mechanisms for improving mathematical reasoning in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf15a84b-f600-4df2-8214-27975ee99054",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "7565cf42-4e90-48f7-bf27-7a8bd7fa8856",
+  "toolUseResult": {
+    "query": "typed modular decomposition formal verification RL reward math reasoning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GNF2qXrSH1oSbEMRanHMH2",
+        "content": [
+          {
+            "title": "VERIFY-RL: Verifiable Recursive Decomposition for Reinforcement Learning in Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2602.07559"
+          },
+          {
+            "title": "VERIFY-RL: Verifiable Recursive Decomposition for Reinforcement Learning in Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2602.07559"
+          },
+          {
+            "title": "Formal Theorem Proving by Rewarding LLMs to Decompose Proofs Hierarchically | OpenReview",
+            "url": "https://openreview.net/forum?id=D23JcXiUwf"
+          },
+          {
+            "title": "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries",
+            "url": "https://arxiv.org/pdf/2603.29500"
+          },
+          {
+            "title": "Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries",
+            "url": "https://arxiv.org/html/2603.29500"
+          },
+          {
+            "title": "Proof-RM: A Scalable and Generalizable Reward Model for Math Proof",
+            "url": "https://arxiv.org/pdf/2602.02377"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from 2025-2026 combining formal verification, reinforcement learning, reward mechanisms, and mathematical reasoning:\n\n## Key Recent Work (2025-2026)\n\n**VERIFY-RL Framework:** Verify-RL is a framework where every parent-child decomposition satisfies three verifiable conditions: strictly decreasing structural complexity, solution containment, and formal rule derivation. Eliminating invalid decompositions yields sizable gains, with accuracy on the hardest problems more than doubling from 32% to 68%, achieving a 40% relative improvement overall.\n\n**Formal Verification in RL for Mathematical Reasoning:** Only fully validated reasoning chains receive high rewards, and the integration of formal verification guides the model towards generating step-by-step machine-checkable proofs.\n\n**Reward Modeling:** Reinforcement Learning with Verifiable Rewards (RLVR) addresses the challenge of providing verifiable reward signals, exemplified by Tulu-3 and DeepSeek-R1. RLVR leverages the asymmetry of verification—in domains such as math, solving a problem may be complex, but verifying an answer can be very simple.\n\n**Related Approaches:** An RL-based training algorithm encourages LLMs to write formal proofs by proposing and proving new lemmas, mimicking how mathematicians train themselves.\n\nThese works represent recent advances in combining modular decomposition with formal verification and RL-based reward mechanisms for improving mathematical reasoning in language models."
+    ],
+    "durationSeconds": 7.2271840439999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cf15a84b-f600-4df2-8214-27975ee99054",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T08:41:56.921Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GQNHDwerF5qQzzPzjTdJgK`</summary>
+
+```json
+{
+  "query": "multi-backend verification routing CAS SMT neural PRM online RL training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7565cf42-4e90-48f7-bf27-7a8bd7fa8856",
+  "isSidechain": false,
+  "requestId": "req_011CbSmxAZxiZqmzEU9AW4PQ",
+  "type": "assistant",
+  "uuid": "36d24468-95ba-4fad-8a69-7bd5190aaa94",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015khc3a61SgJqVr8Z6bGowK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 773,
+      "cache_read_input_tokens": 19927,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 773,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 19927,
+          "cache_creation_input_tokens": 773,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 773
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T08:42:03.417Z_
+
+<details><summary>↩ Tool result · `toolu_01GQNHDwerF5qQzzPzjTdJgK`</summary>
+
+```text
+Web search results for query: "multi-backend verification routing CAS SMT neural PRM online RL training 2025 2026"
+
+Links: [{"title":"Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/pdf/2505.15960"},{"title":"An SMT-Based Approach for Verifying Binarized Neural Networks","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7984573/"},{"title":"Veri-R1: Toward Precise and Faithful Claim Verification via Online Reinforcement Learning","url":"https://arxiv.org/pdf/2510.01932"},{"title":"PRM-RL: Long-range Robotic Navigation Tasks by Combining Reinforcement   Learning and Sampling-based Planning","url":"https://arxiv.org/pdf/1710.03937"},{"title":"Academic Highlights from NeurIPS 2025, San Diego","url":"https://ufdatastudio.com/posts/2025-12-17-neurips25-highlights/"}]
+
+I found several relevant research papers and resources related to your search query. Here's what the results show:
+
+## Key Research Areas
+
+**PRM Training with Formal Verification (2025):** Research on PRM (Process Reward Model) training data creation addresses the challenge of costly and noisy training data, with approaches including human annotation, Monte Carlo roll-outs, and formal verification methods.
+
+**SMT-Based Neural Network Verification:** Formal verification approaches are being developed to formally certify that neural networks are correct.
+
+**Online Claim Verification with Reinforcement Learning (2025):** Veri-R1 is a novel training framework designed to enhance online claim verification capability of LLMs within a unified pipeline, representing work in reinforcement learning for verification tasks.
+
+**RL Training Environments (2025):** OpenEnv standardizes all stages of the RL environment training pipeline and integrates with existing APIs, with environments available through Hugging Face Hub.
+
+The search results show active research in 2025-2026 combining multiple verification approaches (SMT, neural networks, PRMs) with reinforcement learning training methods. These papers from arxiv.org and academic conferences indicate this is an active area of research in the latest versions of AI and formal verification techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36d24468-95ba-4fad-8a69-7bd5190aaa94",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "870f0a5c-0b45-4049-a1f1-435f09054a00",
+  "toolUseResult": {
+    "query": "multi-backend verification routing CAS SMT neural PRM online RL training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KG7mcLaRJfBafxh3wTQU6q",
+        "content": [
+          {
+            "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "An SMT-Based Approach for Verifying Binarized Neural Networks",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7984573/"
+          },
+          {
+            "title": "Veri-R1: Toward Precise and Faithful Claim Verification via Online Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2510.01932"
+          },
+          {
+            "title": "PRM-RL: Long-range Robotic Navigation Tasks by Combining Reinforcement   Learning and Sampling-based Planning",
+            "url": "https://arxiv.org/pdf/1710.03937"
+          },
+          {
+            "title": "Academic Highlights from NeurIPS 2025, San Diego",
+            "url": "https://ufdatastudio.com/posts/2025-12-17-neurips25-highlights/"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources related to your search query. Here's what the results show:\n\n## Key Research Areas\n\n**PRM Training with Formal Verification (2025):** Research on PRM (Process Reward Model) training data creation addresses the challenge of costly and noisy training data, with approaches including human annotation, Monte Carlo roll-outs, and formal verification methods.\n\n**SMT-Based Neural Network Verification:** Formal verification approaches are being developed to formally certify that neural networks are correct.\n\n**Online Claim Verification with Reinforcement Learning (2025):** Veri-R1 is a novel training framework designed to enhance online claim verification capability of LLMs within a unified pipeline, representing work in reinforcement learning for verification tasks.\n\n**RL Training Environments (2025):** OpenEnv standardizes all stages of the RL environment training pipeline and integrates with existing APIs, with environments available through Hugging Face Hub.\n\nThe search results show active research in 2025-2026 combining multiple verification approaches (SMT, neural networks, PRMs) with reinforcement learning training methods. These papers from arxiv.org and academic conferences indicate this is an active area of research in the latest versions of AI and formal verification techniques."
+    ],
+    "durationSeconds": 6.492324375,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "36d24468-95ba-4fad-8a69-7bd5190aaa94",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T08:42:06.002Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XUTf1JY8U8pMMMGBwRtnKw`</summary>
+
+```json
+{
+  "query": "MATH-VF SymPy Z3 step-wise formal verification SimpleMath language 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "870f0a5c-0b45-4049-a1f1-435f09054a00",
+  "isSidechain": false,
+  "requestId": "req_011CbSmxpy27gyYXa7Tyv8zn",
+  "type": "assistant",
+  "uuid": "63249a18-b2bc-4e2b-a0c5-97ff2cf3893b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFh44E2NJzod62oACH7Mn4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 20700,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 640,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 20700,
+          "cache_creation_input_tokens": 640,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 640
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T08:42:15.763Z_
+
+<details><summary>↩ Tool result · `toolu_01XUTf1JY8U8pMMMGBwRtnKw`</summary>
+
+```text
+Web search results for query: "MATH-VF SymPy Z3 step-wise formal verification SimpleMath language 2025"
+
+Links: [{"title":"Step-Wise Formal Verification for LLM-Based Mathematical ...","url":"https://arxiv.org/pdf/2505.20869"},{"title":"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://arxiv.org/html/2505.20869v1"},{"title":"[Literature Review] Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://www.themoonlight.io/en/review/step-wise-formal-verification-for-llm-based-mathematical-problem-solving"},{"title":"[2505.20869] Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://arxiv.org/abs/2505.20869"},{"title":"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250520869Z/abstract"},{"title":"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://www.researchgate.net/publication/392134530_Step-Wise_Formal_Verification_for_LLM-Based_Mathematical_Problem_Solving"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/pdf/2506.04592"}]
+
+Based on the search results, I found comprehensive information about MATH-VF and its components:
+
+## Overview
+
+MATH-VF is a framework that includes a Formalizer and a Critic, for formally verifying the correctness of the solutions generated by large language models.
+
+## Framework Components
+
+**Formalizer:** The Formalizer employs an LLM to translate a natural language solution into a formal context. The Formalizer utilizes an LLM to translate a natural language mathematical solution into a formal context expressed in SimpleMath, which is a formal language designed as an extension of classical first-order language.
+
+**Critic:** The Critic integrates various external tools such as a Computer Algebra System and an SMT solver to evaluate the correctness of each statement within the formal context, and when a statement is incorrect, provides corrective feedback.
+
+## Tools Integration
+
+The Critic integrates the Large Language Model with external tools, such as SymPy and Z3-Solver for determining the correctness of mathematical problem solving steps. More specifically:
+
+- SymPy is used for symbolic and numerical computations, equation solving, expression manipulation, etc.
+- Z3 is used to check the satisfiability of logical expressions and handle constraints, including nonlinear polynomial constraints.
+
+## Functionality
+
+MATH-VF is a training-free framework for step-by-step verification of mathematical reasoning that not only evaluates the correctness of solutions, but also provides constructive feedback for incorrect ones.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63249a18-b2bc-4e2b-a0c5-97ff2cf3893b",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "d8ab6587-5bf2-41dc-a06b-0a269a0505f8",
+  "toolUseResult": {
+    "query": "MATH-VF SymPy Z3 step-wise formal verification SimpleMath language 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01R6wde9touxKJV8AV5jp536",
+        "content": [
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical ...",
+            "url": "https://arxiv.org/pdf/2505.20869"
+          },
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://arxiv.org/html/2505.20869v1"
+          },
+          {
+            "title": "[Literature Review] Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://www.themoonlight.io/en/review/step-wise-formal-verification-for-llm-based-mathematical-problem-solving"
+          },
+          {
+            "title": "[2505.20869] Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://arxiv.org/abs/2505.20869"
+          },
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250520869Z/abstract"
+          },
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://www.researchgate.net/publication/392134530_Step-Wise_Formal_Verification_for_LLM-Based_Mathematical_Problem_Solving"
+          },
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/pdf/2506.04592"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about MATH-VF and its components:\n\n## Overview\n\nMATH-VF is a framework that includes a Formalizer and a Critic, for formally verifying the correctness of the solutions generated by large language models.\n\n## Framework Components\n\n**Formalizer:** The Formalizer employs an LLM to translate a natural language solution into a formal context. The Formalizer utilizes an LLM to translate a natural language mathematical solution into a formal context expressed in SimpleMath, which is a formal language designed as an extension of classical first-order language.\n\n**Critic:** The Critic integrates various external tools such as a Computer Algebra System and an SMT solver to evaluate the correctness of each statement within the formal context, and when a statement is incorrect, provides corrective feedback.\n\n## Tools Integration\n\nThe Critic integrates the Large Language Model with external tools, such as SymPy and Z3-Solver for determining the correctness of mathematical problem solving steps. More specifically:\n\n- SymPy is used for symbolic and numerical computations, equation solving, expression manipulation, etc.\n- Z3 is used to check the satisfiability of logical expressions and handle constraints, including nonlinear polynomial constraints.\n\n## Functionality\n\nMATH-VF is a training-free framework for step-by-step verification of mathematical reasoning that not only evaluates the correctness of solutions, but also provides constructive feedback for incorrect ones."
+    ],
+    "durationSeconds": 9.754131975,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "63249a18-b2bc-4e2b-a0c5-97ff2cf3893b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T08:42:18.882Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EJ58sg1mkXCPhyQ2JGuW8a`</summary>
+
+```json
+{
+  "query": "Pseudo-Formalization automatic proof verification modular decomposition 2026 arXiv 2605"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8ab6587-5bf2-41dc-a06b-0a269a0505f8",
+  "isSidechain": false,
+  "requestId": "req_011CbSmyjm22vg6S9kBeV31t",
+  "type": "assistant",
+  "uuid": "502fe25e-c4d4-4f27-bfa0-d1d485e33a03",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mmr17NLpHGefSzm3FKiQTa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 21340,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 21340,
+          "cache_creation_input_tokens": 824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T08:42:25.048Z_
+
+<details><summary>↩ Tool result · `toolu_01EJ58sg1mkXCPhyQ2JGuW8a`</summary>
+
+```text
+Web search results for query: "Pseudo-Formalization automatic proof verification modular decomposition 2026 arXiv 2605"
+
+Links: [{"title":"[2605.20531] Pseudo-Formalization for Automatic Proof Verification","url":"https://arxiv.org/abs/2605.20531"},{"title":"Pseudo-Formalization for Automatic Proof Verification","url":"https://arxiv.org/html/2605.20531"},{"title":"Automated Conjecture Resolution with Formal Verification","url":"https://arxiv.org/html/2604.03789v1"},{"title":"Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving","url":"https://arxiv.org/pdf/2603.24465"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.22819"},{"title":"Dissect-and-Restore: AI-based Code Verification with Transient Refactoring","url":"https://arxiv.org/pdf/2510.25406"},{"title":"2026-5-22 Advancing Mathematics Research with AI-Driven Formal Proof Search","url":"https://arxiv.org/pdf/2605.22763v1"}]
+
+Based on the search results, I found the relevant arXiv paper:
+
+## Pseudo-Formalization for Automatic Proof Verification (arXiv:2605.20531)
+
+Pseudo-Formalization (PF) is a proof format that captures the modularity and precision of formal proofs while retaining the flexibility of natural language.
+
+**Key Features:**
+
+A Pseudo-Formal proof is decomposed into self-contained modules, each stating its premises, conclusion, and proof in natural language.
+
+**Verification Method:**
+
+To verify the correctness of a regular natural language proof, an LLM translates it to Pseudo-Formal and then verifies each module independently, an algorithm called Block Verification (BV).
+
+**Results:**
+
+PF+BV was evaluated on two benchmarks spanning olympiad and research-level mathematics, where it pareto-dominates LLM-as-judge baselines on error-finding precision and recall. Additionally, the authors released a research-level proof verification benchmark called ArxivMathGradingBench.
+
+The paper was submitted on May 19, 2026, making it a very recent contribution to the field of automated mathematical proof verification.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "502fe25e-c4d4-4f27-bfa0-d1d485e33a03",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "21a2bba0-5ab3-4c97-b1cc-2072015917ef",
+  "toolUseResult": {
+    "query": "Pseudo-Formalization automatic proof verification modular decomposition 2026 arXiv 2605",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QaEBniZCTSwGTT2WZmTunj",
+        "content": [
+          {
+            "title": "[2605.20531] Pseudo-Formalization for Automatic Proof Verification",
+            "url": "https://arxiv.org/abs/2605.20531"
+          },
+          {
+            "title": "Pseudo-Formalization for Automatic Proof Verification",
+            "url": "https://arxiv.org/html/2605.20531"
+          },
+          {
+            "title": "Automated Conjecture Resolution with Formal Verification",
+            "url": "https://arxiv.org/html/2604.03789v1"
+          },
+          {
+            "title": "Mechanic: Sorrifier-Driven Formal Decomposition Workflow for Automated Theorem Proving",
+            "url": "https://arxiv.org/pdf/2603.24465"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.22819"
+          },
+          {
+            "title": "Dissect-and-Restore: AI-based Code Verification with Transient Refactoring",
+            "url": "https://arxiv.org/pdf/2510.25406"
+          },
+          {
+            "title": "2026-5-22 Advancing Mathematics Research with AI-Driven Formal Proof Search",
+            "url": "https://arxiv.org/pdf/2605.22763v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the relevant arXiv paper:\n\n## Pseudo-Formalization for Automatic Proof Verification (arXiv:2605.20531)\n\nPseudo-Formalization (PF) is a proof format that captures the modularity and precision of formal proofs while retaining the flexibility of natural language.\n\n**Key Features:**\n\nA Pseudo-Formal proof is decomposed into self-contained modules, each stating its premises, conclusion, and proof in natural language.\n\n**Verification Method:**\n\nTo verify the correctness of a regular natural language proof, an LLM translates it to Pseudo-Formal and then verifies each module independently, an algorithm called Block Verification (BV).\n\n**Results:**\n\nPF+BV was evaluated on two benchmarks spanning olympiad and research-level mathematics, where it pareto-dominates LLM-as-judge baselines on error-finding precision and recall. Additionally, the authors released a research-level proof verification benchmark called ArxivMathGradingBench.\n\nThe paper was submitted on May 19, 2026, making it a very recent contribution to the field of automated mathematical proof verification."
+    ],
+    "durationSeconds": 6.162422002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "502fe25e-c4d4-4f27-bfa0-d1d485e33a03",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-27T08:42:27.796Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GfHpuc4XNFLPxBaN4ydqRQ`</summary>
+
+```json
+{
+  "query": "three-valued verification logic RL reward false negative noisy reward math LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21a2bba0-5ab3-4c97-b1cc-2072015917ef",
+  "isSidechain": false,
+  "requestId": "req_011CbSmzRPVXvi5GLEdtY4Uj",
+  "type": "assistant",
+  "uuid": "183aac80-70b4-4729-a78e-de8f3337c0d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SD817WDb1HaTq1dXVxGF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 684,
+      "cache_read_input_tokens": 22164,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 684,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 22164,
+          "cache_creation_input_tokens": 684,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 684
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-27T08:42:35.947Z_
+
+<details><summary>↩ Tool result · `toolu_01GfHpuc4XNFLPxBaN4ydqRQ`</summary>
+
+```text
+Web search results for query: "three-valued verification logic RL reward false negative noisy reward math LLM 2025 2026"
+
+Links: [{"title":"TinyV: Reducing False Negatives in Verification Improves RL for LLM Reasoning","url":"https://arxiv.org/pdf/2505.14625"},{"title":"Reinforcement Learning with Verifiable yet Noisy Rewards ...","url":"https://www.arxiv.org/pdf/2510.00915"},{"title":"arXiv:2505.22653v1 [cs.CL] 28 May 2025","url":"https://arxiv.org/pdf/2505.22653"},{"title":"Rate or Fate? RLV$^\\varepsilon$R: Reinforcement Learning with Verifiable Noisy Rewards","url":"https://arxiv.org/pdf/2601.04411"},{"title":"[2510.00915] Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers","url":"https://arxiv.org/abs/2510.00915"},{"title":"Rate or Fate? RLVεR: Reinforcement Learning with Verifiable Noisy Rewards","url":"https://arxiv.org/html/2601.04411"},{"title":"The Surprising Effectiveness of Negative Reinforcement in LLM Reasoning","url":"https://arxiv.org/pdf/2506.01347"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf?id=gjaSjvmiqp"}]
+
+Based on the search results, I found several recent papers addressing three-valued verification logic, RL rewards, false negatives, and noisy rewards in the context of LLM reasoning. Here are the key findings:
+
+## Main Research Areas
+
+**1. TinyV: Reducing False Negatives in Verification**
+
+False negatives occur when verifiers wrongly reject correct model outputs, with over 38% of model-generated responses in the Big-Math-RL-Verified dataset suffering from this problem. TinyV is a lightweight LLM-based verifier that dynamically identifies potential false negatives and recovers valid responses to produce more accurate reward estimates.
+
+**2. Reinforcement Learning with Verifiable yet Noisy Rewards**
+
+Imperfect verifiers introduce false negatives (rejecting correct answers) and false positives (accepting incorrect ones), which are formalized as a stochastic reward channel with asymmetric noise rates ρ₀ (FP rate) and ρ₁ (FN rate). Researchers have derived two lightweight corrections: a backward correction yielding an unbiased surrogate reward and a forward correction that reweights score-function terms.
+
+**3. RLV^εR: Rate or Fate?**
+
+False Positives are incorrect solutions receiving positive reward, while False Negatives are correct solutions receiving zero or negative reward.
+
+**4. Robustness to Reward Noise**
+
+LLMs demonstrate strong robustness, with a Qwen-2.5-7B model achieving rapid convergence and 72% accuracy on math tasks even when 40% of reward function outputs were flipped.
+
+These papers represent cutting-edge research from 2025-2026 addressing the challenges of noisy verification signals in RL-based LLM training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "183aac80-70b4-4729-a78e-de8f3337c0d7",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "29b922b8-beb3-4c81-a0a8-3ba7e47105cd",
+  "toolUseResult": {
+    "query": "three-valued verification logic RL reward false negative noisy reward math LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WgwRSx6SAbMmQHZYTN6pwB",
+        "content": [
+          {
+            "title": "TinyV: Reducing False Negatives in Verification Improves RL for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2505.14625"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable yet Noisy Rewards ...",
+            "url": "https://www.arxiv.org/pdf/2510.00915"
+          },
+          {
+            "title": "arXiv:2505.22653v1 [cs.CL] 28 May 2025",
+            "url": "https://arxiv.org/pdf/2505.22653"
+          },
+          {
+            "title": "Rate or Fate? RLV$^\\varepsilon$R: Reinforcement Learning with Verifiable Noisy Rewards",
+            "url": "https://arxiv.org/pdf/2601.04411"
+          },
+          {
+            "title": "[2510.00915] Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers",
+            "url": "https://arxiv.org/abs/2510.00915"
+          },
+          {
+            "title": "Rate or Fate? RLVεR: Reinforcement Learning with Verifiable Noisy Rewards",
+            "url": "https://arxiv.org/html/2601.04411"
+          },
+          {
+            "title": "The Surprising Effectiveness of Negative Reinforcement in LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2506.01347"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf?id=gjaSjvmiqp"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers addressing three-valued verification logic, RL rewards, false negatives, and noisy rewards in the context of LLM reasoning. Here are the key findings:\n\n## Main Research Areas\n\n**1. TinyV: Reducing False Negatives in Verification**\n\nFalse negatives occur when verifiers wrongly reject correct model outputs, with over 38% of model-generated responses in the Big-Math-RL-Verified dataset suffering from this problem. TinyV is a lightweight LLM-based verifier that dynamically identifies potential false negatives and recovers valid responses to produce more accurate reward estimates.\n\n**2. Reinforcement Learning with Verifiable yet Noisy Rewards**\n\nImperfect verifiers introduce false negatives (rejecting correct answers) and false positives (accepting incorrect ones), which are formalized as a stochastic reward channel with asymmetric noise rates ρ₀ (FP rate) and ρ₁ (FN rate). Researchers have derived two lightweight corrections: a backward correction yielding an unbiased surrogate reward and a forward correction that reweights score-function terms.\n\n**3. RLV^εR: Rate or Fate?**\n\nFalse Positives are incorrect solutions receiving positive reward, while False Negatives are correct solutions receiving zero or negative reward.\n\n**4. Robustness to Reward Noise**\n\nLLMs demonstrate strong robustness, with a Qwen-2.5-7B model achieving rapid convergence and 72% accuracy on math tasks even when 40% of reward function outputs were flipped.\n\nThese papers represent cutting-edge research from 2025-2026 addressing the challenges of noisy verification signals in RL-based LLM training."
+    ],
+    "durationSeconds": 8.146391907000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "183aac80-70b4-4729-a78e-de8f3337c0d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Typed Modular Decomposition as the Missing Abstraction for Scalable Formal Process Rewards  ## Core Problem  RL training of mathematical reasoning LLMs requires reliable step-level rewards, but face…",
+  "leafUuid": "29b922b8-beb3-4c81-a0a8-3ba7e47105cd",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Typed modular decomposition for formal RL rewards",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-27T08:42:38.695Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R2V7GoTaNzwTPASocvyDwZ`</summary>
+
+```json
+{
+  "query": "autoformalization CAS symbolic verification online reward scalable RL training math 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29b922b8-beb3-4c81-a0a8-3ba7e47105cd",
+  "isSidechain": false,
+  "requestId": "req_011CbSn1E1uj23JUZrHKVF6j",
+  "type": "assistant",
+  "uuid": "07b322e5-37c4-4c5c-87dd-a479a1bb6e43",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WxzPVzwFhkRrwPGgL2Ephc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 922,
+      "cache_read_input_tokens": 22848,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 922,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 22848,
+          "cache_creation_input_tokens": 922,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 922
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T08:42:46.572Z_
+
+<details><summary>↩ Tool result · `toolu_01R2V7GoTaNzwTPASocvyDwZ`</summary>
+
+```text
+Web search results for query: "autoformalization CAS symbolic verification online reward scalable RL training math 2026"
+
+Links: [{"title":"Autoformalization of Mathematics","url":"https://www.emergentmind.com/topics/autoformalization-of-mathematics"},{"title":"(PDF) Online Reinforcement Learning for Autoformalization","url":"https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"},{"title":"Proof-RM: A Scalable and Generalizable Reward Model for Mathematics Proof Verification","url":"https://arxiv.org/html/2602.02377"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"Autoformalization: Bridging Informal and Formal Math","url":"https://www.emergentmind.com/topics/autoformalization"},{"title":"AutoOR: Scalably Post-training LLMs to Autoformalize Operations Research Problems","url":"https://arxiv.org/html/2604.16804"},{"title":"Proof-RM: A Scalable and Generalizable Reward Model for Math Proof","url":"https://arxiv.org/pdf/2602.02377"}]
+
+Based on the search results, here's what I found related to your query about autoformalization, symbolic verification, and scalable RL training in mathematics:
+
+## Recent Developments in Autoformalization with RL Training
+
+FormaRL is an RL-based training framework designed to enhance autoformalization abilities with far less training data. Recent approaches like FormaRL use verification-only RL with dual-check rewards, and ReForm uses Prospective Bounded Sequence Optimization (PBSO) with fine-grained reflection.
+
+## Online Reinforcement Learning for Autoformalization
+
+Research on online RL for autoformalization uses Group Relative Policy Optimization with KL-divergence penalties to avoid distributional collapse, with models achieving substantial improvements in type-check rates. Developers are creating reward functions that use both syntactic and semantic accuracy for autoformalization.
+
+## Scalable Approaches in Math
+
+AutoOR demonstrates that small open-source models can match frontier models on OR autoformalization when trained with online RL on synthetic data, using a scalable synthetic data generation and reinforcement learning pipeline. AutoOR generates verified training data from standard optimization forms and uses solver execution feedback as the reward signal for RL post-training.
+
+## Symbolic Verification and Evaluation
+
+Recent methods involve hybrid evaluators that fuse automated symbolic/semantic checks with interpretable LLM-based judgment for scalable assessment.
+
+These approaches collectively address the challenges of scaling autoformalization for mathematics through online RL training with verifiable rewards.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07b322e5-37c4-4c5c-87dd-a479a1bb6e43",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "909be672-30bd-435f-ad34-4207a2f95c62",
+  "toolUseResult": {
+    "query": "autoformalization CAS symbolic verification online reward scalable RL training math 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RTGX8zHrf1jXUWDsNrLA6x",
+        "content": [
+          {
+            "title": "Autoformalization of Mathematics",
+            "url": "https://www.emergentmind.com/topics/autoformalization-of-mathematics"
+          },
+          {
+            "title": "(PDF) Online Reinforcement Learning for Autoformalization",
+            "url": "https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"
+          },
+          {
+            "title": "Proof-RM: A Scalable and Generalizable Reward Model for Mathematics Proof Verification",
+            "url": "https://arxiv.org/html/2602.02377"
+          },
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/pdf/2508.18914"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "Autoformalization: Bridging Informal and Formal Math",
+            "url": "https://www.emergentmind.com/topics/autoformalization"
+          },
+          {
+            "title": "AutoOR: Scalably Post-training LLMs to Autoformalize Operations Research Problems",
+            "url": "https://arxiv.org/html/2604.16804"
+          },
+          {
+            "title": "Proof-RM: A Scalable and Generalizable Reward Model for Math Proof",
+            "url": "https://arxiv.org/pdf/2602.02377"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to your query about autoformalization, symbolic verification, and scalable RL training in mathematics:\n\n## Recent Developments in Autoformalization with RL Training\n\nFormaRL is an RL-based training framework designed to enhance autoformalization abilities with far less training data. Recent approaches like FormaRL use verification-only RL with dual-check rewards, and ReForm uses Prospective Bounded Sequence Optimization (PBSO) with fine-grained reflection.\n\n## Online Reinforcement Learning for Autoformalization\n\nResearch on online RL for autoformalization uses Group Relative Policy Optimization with KL-divergence penalties to avoid distributional collapse, with models achieving substantial improvements in type-check rates. Developers are creating reward functions that use both syntactic and semantic accuracy for autoformalization.\n\n## Scalable Approaches in Math\n\nAutoOR demonstrates that small open-source models can match frontier models on OR autoformalization when trained with online RL on synthetic data, using a scalable synthetic data generation and reinforcement learning pipeline. AutoOR generates verified training data from standard optimization forms and uses solver execution feedback as the reward signal for RL post-training.\n\n## Symbolic Verification and Evaluation\n\nRecent methods involve hybrid evaluators that fuse automated symbolic/semantic checks with interpretable LLM-based judgment for scalable assessment.\n\nThese approaches collectively address the challenges of scaling autoformalization for mathematics through online RL training with verifiable rewards."
+    ],
+    "durationSeconds": 7.873459020000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "07b322e5-37c4-4c5c-87dd-a479a1bb6e43",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T08:42:49.698Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X3n29up51k7E8rTeUVVZoj`</summary>
+
+```json
+{
+  "query": "HERMES Lean interleave informal reasoning formal proof ICML 2026 arXiv 2511.18760"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "909be672-30bd-435f-ad34-4207a2f95c62",
+  "isSidechain": false,
+  "requestId": "req_011CbSn21Steu5D4T74Qg6v4",
+  "type": "assistant",
+  "uuid": "d73a426b-5b7d-453a-977c-8044c2563e18",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXFNmNT1phvRPmbHT2rjT8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 800,
+      "cache_read_input_tokens": 23770,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 800,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 23770,
+          "cache_creation_input_tokens": 800,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 800
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T08:42:58.756Z_
+
+<details><summary>↩ Tool result · `toolu_01X3n29up51k7E8rTeUVVZoj`</summary>
+
+```text
+Web search results for query: "HERMES Lean interleave informal reasoning formal proof ICML 2026 arXiv 2511.18760"
+
+Links: [{"title":"[2511.18760] HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/abs/2511.18760"},{"title":"[2511.18760v1] HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/abs/2511.18760v1"},{"title":"ICML Poster HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://icml.cc/virtual/2026/poster/60844"},{"title":"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/pdf/2511.18760"},{"title":"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/html/2511.18760"},{"title":"Lean-STaR: Learning to Interleave Thinking and Proving","url":"https://arxiv.org/pdf/2407.10040"},{"title":"APOLLO: Automated LLM and Lean Collaboration for Advanced Formal Reasoning","url":"https://arxiv.org/html/2505.05758v5"},{"title":"Formal Mathematical Reasoning: A New Frontier in AI","url":"https://arxiv.org/pdf/2412.16075"}]
+
+Based on the search results, I found comprehensive information about HERMES:
+
+## HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs
+
+HERMES is the first tool-assisted agent that explicitly interleaves informal reasoning with formally verified proof steps in Lean. The paper is available on arXiv as 2511.18760 and was presented at ICML 2026.
+
+**Key Motivation:**
+Informal mathematics has been central to modern LLM reasoning, offering flexibility and efficient construction of arguments. However, purely informal reasoning is prone to logical gaps and subtle errors that are difficult to detect and correct. In contrast, formal theorem proving provides rigorous, verifiable mathematical reasoning where each inference step is checked by a trusted compiler in systems such as Lean, but lacks the exploratory freedom of informal problem solving.
+
+**Core Framework:**
+HERMES is a multi-modular scalable tool-augmented agent (abbreviated from "Hybrid AgEnt for Reasoning in Mathematics with NEuro-Symbolic Lean4 verification"), designed to integrate formal verification into the LLM reasoning process. The framework performs intermediate formal checking to prevent reasoning drift and employs a memory module that maintains proof continuity across long, multi-step reasoning chains, enabling both exploration and verification.
+
+**How It Works:**
+For each critical proof step, the agent translates the natural-language statement into a Lean goal, verifies translation consistency through back-translation, and invokes a prover module to attempt a proof or counter-proof. The resulting formal signal is then fed back into the LLM to inform its next reasoning step.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d73a426b-5b7d-453a-977c-8044c2563e18",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "b15073d5-259f-499e-b2ac-2b173020f7cb",
+  "toolUseResult": {
+    "query": "HERMES Lean interleave informal reasoning formal proof ICML 2026 arXiv 2511.18760",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AnqoAETwLT7GY7G9PwJ6RY",
+        "content": [
+          {
+            "title": "[2511.18760] HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/abs/2511.18760"
+          },
+          {
+            "title": "[2511.18760v1] HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/abs/2511.18760v1"
+          },
+          {
+            "title": "ICML Poster HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://icml.cc/virtual/2026/poster/60844"
+          },
+          {
+            "title": "HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/pdf/2511.18760"
+          },
+          {
+            "title": "HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/html/2511.18760"
+          },
+          {
+            "title": "Lean-STaR: Learning to Interleave Thinking and Proving",
+            "url": "https://arxiv.org/pdf/2407.10040"
+          },
+          {
+            "title": "APOLLO: Automated LLM and Lean Collaboration for Advanced Formal Reasoning",
+            "url": "https://arxiv.org/html/2505.05758v5"
+          },
+          {
+            "title": "Formal Mathematical Reasoning: A New Frontier in AI",
+            "url": "https://arxiv.org/pdf/2412.16075"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about HERMES:\n\n## HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs\n\nHERMES is the first tool-assisted agent that explicitly interleaves informal reasoning with formally verified proof steps in Lean. The paper is available on arXiv as 2511.18760 and was presented at ICML 2026.\n\n**Key Motivation:**\nInformal mathematics has been central to modern LLM reasoning, offering flexibility and efficient construction of arguments. However, purely informal reasoning is prone to logical gaps and subtle errors that are difficult to detect and correct. In contrast, formal theorem proving provides rigorous, verifiable mathematical reasoning where each inference step is checked by a trusted compiler in systems such as Lean, but lacks the exploratory freedom of informal problem solving.\n\n**Core Framework:**\nHERMES is a multi-modular scalable tool-augmented agent (abbreviated from \"Hybrid AgEnt for Reasoning in Mathematics with NEuro-Symbolic Lean4 verification\"), designed to integrate formal verification into the LLM reasoning process. The framework performs intermediate formal checking to prevent reasoning drift and employs a memory module that maintains proof continuity across long, multi-step reasoning chains, enabling both exploration and verification.\n\n**How It Works:**\nFor each critical proof step, the agent translates the natural-language statement into a Lean goal, verifies translation consistency through back-translation, and invokes a prover module to attempt a proof or counter-proof. The resulting formal signal is then fed back into the LLM to inform its next reasoning step."
+    ],
+    "durationSeconds": 9.052131595999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d73a426b-5b7d-453a-977c-8044c2563e18",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-27T08:42:58.764Z_
+
+```json
+{
+  "parentUuid": "b15073d5-259f-499e-b2ac-2b173020f7cb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0252c7dd-6595-4572-b612-865bd6966381",
+  "timestamp": "2026-05-27T08:42:58.764Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T08:43:01.465Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018k9frAn7EeWT2X62z1fZjM`</summary>
+
+```json
+{
+  "query": "adaptive verification routing heterogeneous backends formal math reasoning abstraction layer 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0252c7dd-6595-4572-b612-865bd6966381",
+  "isSidechain": false,
+  "requestId": "req_011CbSn2uZxEvUFBFn88a1aP",
+  "type": "assistant",
+  "uuid": "8ae1f458-c8c5-4f34-a578-09d99533dce2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KbgDiLRUCrNTu3MVX9Ch6M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 24570,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 24570,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T08:43:08.217Z_
+
+<details><summary>↩ Tool result · `toolu_018k9frAn7EeWT2X62z1fZjM`</summary>
+
+```text
+Web search results for query: "adaptive verification routing heterogeneous backends formal math reasoning abstraction layer 2025 2026"
+
+Links: [{"title":"Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://arxiv.org/pdf/2506.12509"},{"title":"[2503.05641] Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning","url":"https://arxiv.org/abs/2503.05641"},{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/pdf/2602.03975"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"VerifiAgent: a Unified Verification Agent in Language Model Reasoning","url":"https://arxiv.org/pdf/2504.00406"},{"title":"Automated Conjecture Resolution with Formal Verification","url":"https://arxiv.org/pdf/2604.03789"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/pdf/2506.04592"}]
+
+Based on the search results, I found several relevant papers addressing aspects of your query from 2025-2026:
+
+## Key Findings:
+
+**Adaptive Verification Routing:**
+Adaptive test-time compute allocation methods distribute verification where it is most informative, achieving higher accuracy on the MATH benchmark while using 44% fewer verifier calls.
+
+**Heterogeneous Backends & Reasoning:**
+Symbolic-MoE is a Mixture-of-Experts framework that enables adaptive instance-level mixing of pre-trained LLM experts, taking a fine-grained approach by emphasizing skills and using a skill-based recruiting strategy that dynamically selects the most relevant set of expert LLMs for diverse reasoning tasks.
+
+**Formal Math Reasoning Verification:**
+Recent approaches integrate formal language reasoning with natural language reasoning, decomposing complex mathematical reasoning trajectories into simpler steps and combining retrospective formal scores with prospective Process Reward Models.
+
+**Abstraction Layer Approaches:**
+Meta-verification layers ensure completeness and logical consistency of responses, while tool-based adaptive verification autonomously selects appropriate external tools to deal with different reasoning types, including mathematical, logical, commonsense, and hybrid reasoning tasks.
+
+The research shows active development in 2025-2026 on adaptive routing systems that dynamically allocate computational resources across heterogeneous verification backends for formal mathematical reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ae1f458-c8c5-4f34-a578-09d99533dce2",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "48f0d61a-65fc-4807-98b1-cda646b86408",
+  "toolUseResult": {
+    "query": "adaptive verification routing heterogeneous backends formal math reasoning abstraction layer 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E3XNm36aMnaSzUdEEqd7v5",
+        "content": [
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://arxiv.org/pdf/2506.12509"
+          },
+          {
+            "title": "[2503.05641] Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning",
+            "url": "https://arxiv.org/abs/2503.05641"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/pdf/2602.03975"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "VerifiAgent: a Unified Verification Agent in Language Model Reasoning",
+            "url": "https://arxiv.org/pdf/2504.00406"
+          },
+          {
+            "title": "Automated Conjecture Resolution with Formal Verification",
+            "url": "https://arxiv.org/pdf/2604.03789"
+          },
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/pdf/2506.04592"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers addressing aspects of your query from 2025-2026:\n\n## Key Findings:\n\n**Adaptive Verification Routing:**\nAdaptive test-time compute allocation methods distribute verification where it is most informative, achieving higher accuracy on the MATH benchmark while using 44% fewer verifier calls.\n\n**Heterogeneous Backends & Reasoning:**\nSymbolic-MoE is a Mixture-of-Experts framework that enables adaptive instance-level mixing of pre-trained LLM experts, taking a fine-grained approach by emphasizing skills and using a skill-based recruiting strategy that dynamically selects the most relevant set of expert LLMs for diverse reasoning tasks.\n\n**Formal Math Reasoning Verification:**\nRecent approaches integrate formal language reasoning with natural language reasoning, decomposing complex mathematical reasoning trajectories into simpler steps and combining retrospective formal scores with prospective Process Reward Models.\n\n**Abstraction Layer Approaches:**\nMeta-verification layers ensure completeness and logical consistency of responses, while tool-based adaptive verification autonomously selects appropriate external tools to deal with different reasoning types, including mathematical, logical, commonsense, and hybrid reasoning tasks.\n\nThe research shows active development in 2025-2026 on adaptive routing systems that dynamically allocate computational resources across heterogeneous verification backends for formal mathematical reasoning."
+    ],
+    "durationSeconds": 6.7479587650000035,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8ae1f458-c8c5-4f34-a578-09d99533dce2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T08:43:10.570Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014jZca4wpLh2bFyp3sFswaW`</summary>
+
+```json
+{
+  "query": "VerifiAgent unified verification agent language model reasoning tool selection 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48f0d61a-65fc-4807-98b1-cda646b86408",
+  "isSidechain": false,
+  "requestId": "req_011CbSn3by58hZ8XPti5MA9Q",
+  "type": "assistant",
+  "uuid": "1e14371b-663f-419c-9783-ffc7dceae6a5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AzTL4fDfF42ZLdXwpeiubL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 721,
+      "cache_read_input_tokens": 25513,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 721,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 25513,
+          "cache_creation_input_tokens": 721,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 721
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T08:43:16.608Z_
+
+<details><summary>↩ Tool result · `toolu_014jZca4wpLh2bFyp3sFswaW`</summary>
+
+```text
+Web search results for query: "VerifiAgent unified verification agent language model reasoning tool selection 2025"
+
+Links: [{"title":"Paper page - VerifiAgent: a Unified Verification Agent in Language Model Reasoning","url":"https://huggingface.co/papers/2504.00406"},{"title":"VerifiAgent Boosts AI Accuracy and Efficiency","url":"https://www.kukarella.com/news/verifiagent-boosts-ai-accuracy-and-efficiency-p1755992987"},{"title":"VerifiAgent: a Unified Verification Agent in Language Model Reasoning","url":"https://arxiv.org/pdf/2504.00406"},{"title":"Publications | Jiuzhou Han","url":"https://jiuzhouh.github.io/publications/"},{"title":"VerifiAgent: a Unified Verification Agent in Language Model Reasoning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/verifiagent-unified-verification-agent-language-model-reasoning"},{"title":"a Unified Verification Agent in Language Model Reasoning","url":"https://aclanthology.org/2025.findings-emnlp.891.pdf"},{"title":"(PDF) VerifiAgent: a Unified Verification Agent in Language Model Reasoning","url":"https://www.researchgate.net/publication/390405954_VerifiAgent_a_Unified_Verification_Agent_in_Language_Model_Reasoning"},{"title":"[2504.00406] VerifiAgent: a Unified Verification Agent in Language Model Reasoning","url":"https://arxiv.org/abs/2504.00406"},{"title":"[Literature Review] VerifiAgent: a Unified Verification Agent in Language Model Reasoning","url":"https://www.themoonlight.io/en/review/verifiagent-a-unified-verification-agent-in-language-model-reasoning"},{"title":"VerifiAgent: a Unified Verification Agent in Language Model Reasoning - haebom","url":"https://slashpage.com/haebom/daily_arxiv?lang=en&tl=en&post=n5w9812gw7x7z24kpgze"}]
+
+Based on the search results, here's what I found about VerifiAgent:
+
+## Overview
+
+VerifiAgent is a unified verification agent that integrates two levels of verification: meta-verification, which assesses completeness and consistency in model responses, and tool-based adaptive verification, where VerifiAgent autonomously selects appropriate verification tools based on the reasoning type, including mathematical, logical, or commonsense reasoning.
+
+## Key Components
+
+The system uses a two-level verification process: meta-verification and tool-based adaptive verification. VerifiAgent analyzes the reasoning type and selects from a toolbox of verification methods: For mathematical reasoning, it employs computational tools, including computer algebra systems and numerical calculators; For logical reasoning, it utilizes graph-based reasoning and symbolic verification techniques; For commonsense reasoning, it leverages knowledge bases and factual verification methods.
+
+## Performance
+
+Experimental results show that VerifiAgent outperforms baseline verification methods (e.g., deductive verifier, backward verifier) among all reasoning tasks. VerifiAgent was evaluated on mathematical reasoning (GSM8K, MATH), logical reasoning (FOLIO, ProverQA), and commonsense reasoning tasks (HotpotQA, StrategyQA), as well as hybrid reasoning.
+
+## Publication
+
+The paper was published in the Findings of the Association for Computational Linguistics: EMNLP 2025, with authors Jiuzhou Han, Wray Buntine, and Ehsan Shareghi.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e14371b-663f-419c-9783-ffc7dceae6a5",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "472a121d-2f7e-4642-a0d5-35006c3ddbac",
+  "toolUseResult": {
+    "query": "VerifiAgent unified verification agent language model reasoning tool selection 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VdHat9Jw9eVDxZQG8fCe8d",
+        "content": [
+          {
+            "title": "Paper page - VerifiAgent: a Unified Verification Agent in Language Model Reasoning",
+            "url": "https://huggingface.co/papers/2504.00406"
+          },
+          {
+            "title": "VerifiAgent Boosts AI Accuracy and Efficiency",
+            "url": "https://www.kukarella.com/news/verifiagent-boosts-ai-accuracy-and-efficiency-p1755992987"
+          },
+          {
+            "title": "VerifiAgent: a Unified Verification Agent in Language Model Reasoning",
+            "url": "https://arxiv.org/pdf/2504.00406"
+          },
+          {
+            "title": "Publications | Jiuzhou Han",
+            "url": "https://jiuzhouh.github.io/publications/"
+          },
+          {
+            "title": "VerifiAgent: a Unified Verification Agent in Language Model Reasoning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/verifiagent-unified-verification-agent-language-model-reasoning"
+          },
+          {
+            "title": "a Unified Verification Agent in Language Model Reasoning",
+            "url": "https://aclanthology.org/2025.findings-emnlp.891.pdf"
+          },
+          {
+            "title": "(PDF) VerifiAgent: a Unified Verification Agent in Language Model Reasoning",
+            "url": "https://www.researchgate.net/publication/390405954_VerifiAgent_a_Unified_Verification_Agent_in_Language_Model_Reasoning"
+          },
+          {
+            "title": "[2504.00406] VerifiAgent: a Unified Verification Agent in Language Model Reasoning",
+            "url": "https://arxiv.org/abs/2504.00406"
+          },
+          {
+            "title": "[Literature Review] VerifiAgent: a Unified Verification Agent in Language Model Reasoning",
+            "url": "https://www.themoonlight.io/en/review/verifiagent-a-unified-verification-agent-in-language-model-reasoning"
+          },
+          {
+            "title": "VerifiAgent: a Unified Verification Agent in Language Model Reasoning - haebom",
+            "url": "https://slashpage.com/haebom/daily_arxiv?lang=en&tl=en&post=n5w9812gw7x7z24kpgze"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about VerifiAgent:\n\n## Overview\n\nVerifiAgent is a unified verification agent that integrates two levels of verification: meta-verification, which assesses completeness and consistency in model responses, and tool-based adaptive verification, where VerifiAgent autonomously selects appropriate verification tools based on the reasoning type, including mathematical, logical, or commonsense reasoning.\n\n## Key Components\n\nThe system uses a two-level verification process: meta-verification and tool-based adaptive verification. VerifiAgent analyzes the reasoning type and selects from a toolbox of verification methods: For mathematical reasoning, it employs computational tools, including computer algebra systems and numerical calculators; For logical reasoning, it utilizes graph-based reasoning and symbolic verification techniques; For commonsense reasoning, it leverages knowledge bases and factual verification methods.\n\n## Performance\n\nExperimental results show that VerifiAgent outperforms baseline verification methods (e.g., deductive verifier, backward verifier) among all reasoning tasks. VerifiAgent was evaluated on mathematical reasoning (GSM8K, MATH), logical reasoning (FOLIO, ProverQA), and commonsense reasoning tasks (HotpotQA, StrategyQA), as well as hybrid reasoning.\n\n## Publication\n\nThe paper was published in the Findings of the Association for Computational Linguistics: EMNLP 2025, with authors Jiuzhou Han, Wray Buntine, and Ehsan Shareghi."
+    ],
+    "durationSeconds": 6.034990128999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1e14371b-663f-419c-9783-ffc7dceae6a5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-27T08:43:19.105Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013g9Ym4TWMUXseD99pKYp51`</summary>
+
+```json
+{
+  "query": "Graph of Verification structured verification LLM reasoning DAG directed acyclic 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "472a121d-2f7e-4642-a0d5-35006c3ddbac",
+  "isSidechain": false,
+  "requestId": "req_011CbSn4DtJsBazjqa1CeLEW",
+  "type": "assistant",
+  "uuid": "12f5fe80-96fa-4c6f-b7e0-c28256ac80b9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4K3dSgBZhTJ3CuNs8qKXv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 26234,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 963,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 26234,
+          "cache_creation_input_tokens": 963,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 963
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Typed Modular Decomposition as the Missing Abstraction for Scalable Formal Process Rewards  ## Core Problem  RL training of mathematical reasoning LLMs requires reliable step-level rewards, but face…",
+  "leafUuid": "12f5fe80-96fa-4c6f-b7e0-c28256ac80b9",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Typed modular decomposition for formal RL rewards",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-27T08:43:27.889Z_
+
+<details><summary>↩ Tool result · `toolu_013g9Ym4TWMUXseD99pKYp51`</summary>
+
+```text
+Web search results for query: "Graph of Verification structured verification LLM reasoning DAG directed acyclic 2025 2026"
+
+Links: [{"title":"Graph of Verification: Structured Verification of LLM Reasoning","url":"https://arxiv.org/pdf/2506.12509"},{"title":"[2506.12509] Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://arxiv.org/abs/2506.12509"},{"title":"GitHub - Frevor/Graph-of-Verification","url":"https://github.com/Frevor/Graph-of-Verification"},{"title":"Paper page - Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://huggingface.co/papers/2506.12509"},{"title":"Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://www.researchgate.net/publication/392735078_Graph_of_Verification_Structured_Verification_of_LLM_Reasoning_with_Directed_Acyclic_Graphs"},{"title":"Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs","url":"https://arxiv.org/html/2506.12509v3"},{"title":"Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs - haebom","url":"https://slashpage.com/haebom/daily_arxiv?tl=en&post=943zqpmqr3r3v2wnvy87"},{"title":"From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs","url":"https://arxiv.org/html/2601.17593"}]
+
+Based on the search results, I found comprehensive information about Graph of Verification (GoV):
+
+## Graph of Verification: Overview
+
+Graph of Verification (GoV) is a novel framework for adaptable and multi-granular verification of Large Language Model reasoning. It addresses the critical challenge of verifying complex and multi-step reasoning in LLMs, as holistic methods often overlook localized flaws.
+
+## Core Architecture
+
+GoV explicitly models the underlying deductive process as a directed acyclic graph (DAG), whether this structure is implicit or explicitly constructed. The acyclic property of the DAG guarantees well-founded reasoning by removing circular dependencies, thus preventing situations where the validity of a statement relies, whether directly or indirectly, on itself.
+
+## Four-Stage Verification Pipeline
+
+GoV operationalizes structured validation by first modeling reasoning as a Directed Acyclic Graph (DAG). A topological sort then enforces causal consistency, ensuring premises are verified before conclusions. Following this order, sequential verification is performed by an LLM which assesses each unit based on previously validated antecedents. The process terminates at the first detected error, enabling precise fault localization and guaranteeing the logical soundness of any fully verified reasoning chain.
+
+## Key Innovations
+
+GoV introduces the notion of customizable node blocks, which flexibly define the verification granularity, from atomic propositions to full paragraphs, while ensuring that all requisite premises derived from the graph are provided as contextual input for each verification unit.
+
+The paper was published in June 2025 and has been updated through November 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12f5fe80-96fa-4c6f-b7e0-c28256ac80b9",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "0c0acb45-949a-4fff-9c09-5d7d28a41ac8",
+  "toolUseResult": {
+    "query": "Graph of Verification structured verification LLM reasoning DAG directed acyclic 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016BZnE2yjiVKBaFamPA84Vz",
+        "content": [
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2506.12509"
+          },
+          {
+            "title": "[2506.12509] Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://arxiv.org/abs/2506.12509"
+          },
+          {
+            "title": "GitHub - Frevor/Graph-of-Verification",
+            "url": "https://github.com/Frevor/Graph-of-Verification"
+          },
+          {
+            "title": "Paper page - Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://huggingface.co/papers/2506.12509"
+          },
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://www.researchgate.net/publication/392735078_Graph_of_Verification_Structured_Verification_of_LLM_Reasoning_with_Directed_Acyclic_Graphs"
+          },
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs",
+            "url": "https://arxiv.org/html/2506.12509v3"
+          },
+          {
+            "title": "Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs - haebom",
+            "url": "https://slashpage.com/haebom/daily_arxiv?tl=en&post=943zqpmqr3r3v2wnvy87"
+          },
+          {
+            "title": "From Chains to DAGs: Probing the Graph Structure of Reasoning in LLMs",
+            "url": "https://arxiv.org/html/2601.17593"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about Graph of Verification (GoV):\n\n## Graph of Verification: Overview\n\nGraph of Verification (GoV) is a novel framework for adaptable and multi-granular verification of Large Language Model reasoning. It addresses the critical challenge of verifying complex and multi-step reasoning in LLMs, as holistic methods often overlook localized flaws.\n\n## Core Architecture\n\nGoV explicitly models the underlying deductive process as a directed acyclic graph (DAG), whether this structure is implicit or explicitly constructed. The acyclic property of the DAG guarantees well-founded reasoning by removing circular dependencies, thus preventing situations where the validity of a statement relies, whether directly or indirectly, on itself.\n\n## Four-Stage Verification Pipeline\n\nGoV operationalizes structured validation by first modeling reasoning as a Directed Acyclic Graph (DAG). A topological sort then enforces causal consistency, ensuring premises are verified before conclusions. Following this order, sequential verification is performed by an LLM which assesses each unit based on previously validated antecedents. The process terminates at the first detected error, enabling precise fault localization and guaranteeing the logical soundness of any fully verified reasoning chain.\n\n## Key Innovations\n\nGoV introduces the notion of customizable node blocks, which flexibly define the verification granularity, from atomic propositions to full paragraphs, while ensuring that all requisite premises derived from the graph are provided as contextual input for each verification unit.\n\nThe paper was published in June 2025 and has been updated through November 2025."
+    ],
+    "durationSeconds": 8.778659872999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "12f5fe80-96fa-4c6f-b7e0-c28256ac80b9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-27T08:43:31.125Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for a few more critical things before giving my analysis:
+
+1. FormaRL - the RL-based autoformalization approach
+2. Whether the specific combination proposed in this paper has already been done
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c0acb45-949a-4fff-9c09-5d7d28a41ac8",
+  "isSidechain": false,
+  "requestId": "req_011CbSn546xx5VAfbjBgGq8T",
+  "type": "assistant",
+  "uuid": "81009a05-7a29-4b1f-b623-3fd52297bb70",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018v5hJiWbw9SspTSnxq8AQW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 27197,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 27197,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-27T08:43:31.671Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011RgbpJvQGwEmqtNWR79LkT`</summary>
+
+```json
+{
+  "query": "FormaRL autoformalization reinforcement learning Lean formal verification dual check reward 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81009a05-7a29-4b1f-b623-3fd52297bb70",
+  "isSidechain": false,
+  "requestId": "req_011CbSn546xx5VAfbjBgGq8T",
+  "type": "assistant",
+  "uuid": "55262449-d35f-4e2a-8852-c5db8e20c260",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018v5hJiWbw9SspTSnxq8AQW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 907,
+      "cache_read_input_tokens": 27197,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 27197,
+          "cache_creation_input_tokens": 907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-27T08:43:45.565Z_
+
+<details><summary>↩ Tool result · `toolu_011RgbpJvQGwEmqtNWR79LkT`</summary>
+
+```text
+Web search results for query: "FormaRL autoformalization reinforcement learning Lean formal verification dual check reward 2025"
+
+Links: [{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data | OpenReview","url":"https://openreview.net/forum?id=Z2El1U94bq"},{"title":"FormaRL: RL-Driven Autoformalization for Lean 4","url":"https://www.emergentmind.com/topics/formarl"},{"title":"[2508.18914] FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/abs/2508.18914"},{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"},{"title":"(PDF) Online Reinforcement Learning for Autoformalization","url":"https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"},{"title":"Process-Driven Autoformalization in Lean 4","url":"https://arxiv.org/pdf/2406.01940"}]
+
+Based on the search results, here's what I found about FormaRL:
+
+## Overview
+
+FormaRL is a simple yet efficient reinforcement learning framework for autoformalization which only requires a small amount of unlabeled data. It focuses on advancing autoformalization—the translation of natural language mathematics into formal language constructs, with a focus on Lean 4.
+
+## Dual Check Reward Mechanism
+
+FormaRL integrates syntax check from Lean compiler and consistency check from large language model to calculate the reward, and adopts GRPO algorithm to update the formalizer. It employs a hybrid reward mechanism combining Lean compiler checks and large language model comparisons to ensure both syntactic correctness and semantic fidelity.
+
+## Key Results
+
+Empirical results show significant improvements in pass rates (pass@1 and pass@16), outperforming supervised approaches with only a few hundred unlabeled examples. Specifically, the method improved autoformalization accuracy on both pass@1 (6.2% → 9.6%) and pass@16 (24.4% → 33.6%).
+
+## Data Efficiency
+
+FormaRL aims to enhance the autoformalization capabilities of LLMs with exceptionally minimal data requirements, specifically utilizing only hundreds of unlabeled mathematical problems.
+
+The research appears to have been published in August 2025 and addresses the critical problem of data scarcity in formal verification through a novel reinforcement learning approach.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55262449-d35f-4e2a-8852-c5db8e20c260",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "aacf977f-b986-4f02-9623-099ddbd82b26",
+  "toolUseResult": {
+    "query": "FormaRL autoformalization reinforcement learning Lean formal verification dual check reward 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LAWXq1TJGXzKcFTWGcqgVU",
+        "content": [
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data | OpenReview",
+            "url": "https://openreview.net/forum?id=Z2El1U94bq"
+          },
+          {
+            "title": "FormaRL: RL-Driven Autoformalization for Lean 4",
+            "url": "https://www.emergentmind.com/topics/formarl"
+          },
+          {
+            "title": "[2508.18914] FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/abs/2508.18914"
+          },
+          {
+            "title": "Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics",
+            "url": "https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"
+          },
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/pdf/2508.18914"
+          },
+          {
+            "title": "(PDF) Online Reinforcement Learning for Autoformalization",
+            "url": "https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"
+          },
+          {
+            "title": "Process-Driven Autoformalization in Lean 4",
+            "url": "https://arxiv.org/pdf/2406.01940"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FormaRL:\n\n## Overview\n\nFormaRL is a simple yet efficient reinforcement learning framework for autoformalization which only requires a small amount of unlabeled data. It focuses on advancing autoformalization—the translation of natural language mathematics into formal language constructs, with a focus on Lean 4.\n\n## Dual Check Reward Mechanism\n\nFormaRL integrates syntax check from Lean compiler and consistency check from large language model to calculate the reward, and adopts GRPO algorithm to update the formalizer. It employs a hybrid reward mechanism combining Lean compiler checks and large language model comparisons to ensure both syntactic correctness and semantic fidelity.\n\n## Key Results\n\nEmpirical results show significant improvements in pass rates (pass@1 and pass@16), outperforming supervised approaches with only a few hundred unlabeled examples. Specifically, the method improved autoformalization accuracy on both pass@1 (6.2% → 9.6%) and pass@16 (24.4% → 33.6%).\n\n## Data Efficiency\n\nFormaRL aims to enhance the autoformalization capabilities of LLMs with exceptionally minimal data requirements, specifically utilizing only hundreds of unlabeled mathematical problems.\n\nThe research appears to have been published in August 2025 and addresses the critical problem of data scarcity in formal verification through a novel reinforcement learning approach."
+    ],
+    "durationSeconds": 13.889801877999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "55262449-d35f-4e2a-8852-c5db8e20c260",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-27T08:43:48.331Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GaWATPZ1ZiUrndZdYFCd8W`</summary>
+
+```json
+{
+  "query": "\"Interleaved Bonus\" formal logic verification Z3 reinforcement learning math reasoning arXiv 2601.22642"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aacf977f-b986-4f02-9623-099ddbd82b26",
+  "isSidechain": false,
+  "requestId": "req_011CbSn6MfgHC9NWtEeCWGaW",
+  "type": "assistant",
+  "uuid": "a2217277-2e37-4c6d-909c-1a1f258df1d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWWQ55dAfSkHLQ61M1ShUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 28104,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 848,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 28104,
+          "cache_creation_input_tokens": 848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 848
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-27T08:43:58.297Z_
+
+<details><summary>↩ Tool result · `toolu_01GaWATPZ1ZiUrndZdYFCd8W`</summary>
+
+```text
+Web search results for query: ""Interleaved Bonus" formal logic verification Z3 reinforcement learning math reasoning arXiv 2601.22642"
+
+Links: [{"title":"[2601.22642] Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification","url":"https://arxiv.org/abs/2601.22642"},{"title":"Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification in Language Models","url":"https://arxiv.org/html/2601.22642"},{"title":"Interleaved Reasoning for Large Language Models via Reinforcement Learning","url":"https://arxiv.org/html/2505.19640v2"},{"title":"Interleaved Reasoning for Large Language Models via Reinforcement Learning","url":"https://arxiv.org/pdf/2505.19640"},{"title":"Reinforcement Learning for Reasoning in Large Language Models with One Training Example","url":"https://arxiv.org/pdf/2504.20571"}]
+
+Based on the search results, here's what I found about the paper referenced by arXiv 2601.22642:
+
+The paper introduces a formal logic verification-guided framework that dynamically interleaves formal symbolic verification with the natural language generation process, providing real-time feedback to detect and rectify errors as they occur. Distinguished from previous neuro-symbolic methods limited by passive post-hoc validation, their approach actively penalizes intermediate fallacies during the reasoning chain.
+
+The framework is operationalized via a novel two-stage training pipeline that synergizes formal logic verification-guided supervised fine-tuning and policy optimization. Extensive evaluation on six benchmarks spanning mathematical, logical, and general reasoning demonstrates that their 7B and 14B models outperform state-of-the-art baselines by average margins of 10.4% and 14.2%.
+
+The paper uses Z3 solver for formal verification. The framework employs Z3-solver for computational verification and uses formal verification as post-hoc validation rather than a per-step constraint.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a2217277-2e37-4c6d-909c-1a1f258df1d5",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "fc4c909a-c363-40d7-9f7d-6551c04c507b",
+  "toolUseResult": {
+    "query": "\"Interleaved Bonus\" formal logic verification Z3 reinforcement learning math reasoning arXiv 2601.22642",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q8FSetHMGxskoe5Yb3dtfY",
+        "content": [
+          {
+            "title": "[2601.22642] Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification",
+            "url": "https://arxiv.org/abs/2601.22642"
+          },
+          {
+            "title": "Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification in Language Models",
+            "url": "https://arxiv.org/html/2601.22642"
+          },
+          {
+            "title": "Interleaved Reasoning for Large Language Models via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.19640v2"
+          },
+          {
+            "title": "Interleaved Reasoning for Large Language Models via Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2505.19640"
+          },
+          {
+            "title": "Reinforcement Learning for Reasoning in Large Language Models with One Training Example",
+            "url": "https://arxiv.org/pdf/2504.20571"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper referenced by arXiv 2601.22642:\n\nThe paper introduces a formal logic verification-guided framework that dynamically interleaves formal symbolic verification with the natural language generation process, providing real-time feedback to detect and rectify errors as they occur. Distinguished from previous neuro-symbolic methods limited by passive post-hoc validation, their approach actively penalizes intermediate fallacies during the reasoning chain.\n\nThe framework is operationalized via a novel two-stage training pipeline that synergizes formal logic verification-guided supervised fine-tuning and policy optimization. Extensive evaluation on six benchmarks spanning mathematical, logical, and general reasoning demonstrates that their 7B and 14B models outperform state-of-the-art baselines by average margins of 10.4% and 14.2%.\n\nThe paper uses Z3 solver for formal verification. The framework employs Z3-solver for computational verification and uses formal verification as post-hoc validation rather than a per-step constraint."
+    ],
+    "durationSeconds": 9.96208366199999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a2217277-2e37-4c6d-909c-1a1f258df1d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-27T08:44:00.921Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KinGgpGR4qVMc5VST467q3`</summary>
+
+```json
+{
+  "query": "Symbolic Mixture-of-Experts adaptive skill-based routing heterogeneous reasoning 2025 arXiv 2503.05641"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc4c909a-c363-40d7-9f7d-6551c04c507b",
+  "isSidechain": false,
+  "requestId": "req_011CbSn7J5QcmFX7X6FbdMNB",
+  "type": "assistant",
+  "uuid": "12067259-618a-4fd6-bf08-5a2818718e95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQZtwuHmzT1iZoKE5B1iXo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 588,
+      "cache_read_input_tokens": 28952,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 28952,
+          "cache_creation_input_tokens": 588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-27T08:44:11.207Z_
+
+<details><summary>↩ Tool result · `toolu_01KinGgpGR4qVMc5VST467q3`</summary>
+
+```text
+Web search results for query: "Symbolic Mixture-of-Experts adaptive skill-based routing heterogeneous reasoning 2025 arXiv 2503.05641"
+
+Links: [{"title":"[2503.05641v1] Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning","url":"https://arxiv.org/abs/2503.05641v1?amp=&amp="},{"title":"[2503.05641] Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning","url":"https://arxiv.org/abs/2503.05641"},{"title":"Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning","url":"https://arxiv.org/pdf/2503.05641"},{"title":"GitHub - dinobby/Symbolic-MoE: The code implementation of Symbolic-MoE · GitHub","url":"https://github.com/dinobby/Symbolic-MoE"},{"title":"Breaking Down and Building Up: Mixture of Skill-Based Vision-and-Language Navigation Agents","url":"https://arxiv.org/html/2508.07642v1"},{"title":"MEXA: Towards General Multimodal Reasoning with Dynamic Multi-Expert Aggregation","url":"https://arxiv.org/html/2506.17113v1"},{"title":"Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning | Request PDF","url":"https://www.researchgate.net/publication/389695191_Symbolic_Mixture-of-Experts_Adaptive_Skill-based_Routing_for_Heterogeneous_Reasoning"},{"title":"The Avengers: A Simple Recipe for Uniting Smaller Language Models to Challenge Proprietary Giants","url":"https://arxiv.org/html/2505.19797v1"}]
+
+Based on the search results, I found the paper you're looking for. Here's information about the paper **arXiv 2503.05641**:
+
+## Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning
+
+**Authors:** Justin Chih-Yao Chen, Sukwon Yun, Elias Stengel-Eskin, Tianlong Chen, and Mohit Bansal
+
+**Submission Date:** Submitted on March 7, 2025
+
+**Core Concept:**
+The paper proposes Symbolic-MoE, a symbolic, text-based, and gradient-free Mixture-of-Experts framework to enable adaptive instance-level mixing of pre-trained LLM experts.
+
+**Key Innovation:**
+Rather than selecting experts at the task level, which is often too coarse-grained, the framework recognizes that heterogeneous tasks may require different expertise for each instance. Symbolic-MoE takes a fine-grained approach to selection by emphasizing skills, e.g., algebra in math or molecular biology in biomedical reasoning.
+
+**How It Works:**
+The framework uses a skill-based recruiting strategy that dynamically selects the most relevant set of expert LLMs for diverse reasoning tasks based on their strengths, with each selected expert generating its own reasoning, which are then synthesized into a final high-quality response by an aggregator.
+
+The code implementation is available on [GitHub](https://github.com/dinobby/Symbolic-MoE).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12067259-618a-4fd6-bf08-5a2818718e95",
+  "isSidechain": false,
+  "promptId": "42257461-2413-445c-8660-4a2cbaf2444e",
+  "type": "user",
+  "uuid": "60df8408-0ac7-4b3a-b3ed-75eefd26fa47",
+  "toolUseResult": {
+    "query": "Symbolic Mixture-of-Experts adaptive skill-based routing heterogeneous reasoning 2025 arXiv 2503.05641",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XVFzdiVQWWcYmT1g3p7Pse",
+        "content": [
+          {
+            "title": "[2503.05641v1] Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning",
+            "url": "https://arxiv.org/abs/2503.05641v1?amp=&amp="
+          },
+          {
+            "title": "[2503.05641] Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning",
+            "url": "https://arxiv.org/abs/2503.05641"
+          },
+          {
+            "title": "Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning",
+            "url": "https://arxiv.org/pdf/2503.05641"
+          },
+          {
+            "title": "GitHub - dinobby/Symbolic-MoE: The code implementation of Symbolic-MoE · GitHub",
+            "url": "https://github.com/dinobby/Symbolic-MoE"
+          },
+          {
+            "title": "Breaking Down and Building Up: Mixture of Skill-Based Vision-and-Language Navigation Agents",
+            "url": "https://arxiv.org/html/2508.07642v1"
+          },
+          {
+            "title": "MEXA: Towards General Multimodal Reasoning with Dynamic Multi-Expert Aggregation",
+            "url": "https://arxiv.org/html/2506.17113v1"
+          },
+          {
+            "title": "Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning | Request PDF",
+            "url": "https://www.researchgate.net/publication/389695191_Symbolic_Mixture-of-Experts_Adaptive_Skill-based_Routing_for_Heterogeneous_Reasoning"
+          },
+          {
+            "title": "The Avengers: A Simple Recipe for Uniting Smaller Language Models to Challenge Proprietary Giants",
+            "url": "https://arxiv.org/html/2505.19797v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's information about the paper **arXiv 2503.05641**:\n\n## Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning\n\n**Authors:** Justin Chih-Yao Chen, Sukwon Yun, Elias Stengel-Eskin, Tianlong Chen, and Mohit Bansal\n\n**Submission Date:** Submitted on March 7, 2025\n\n**Core Concept:**\nThe paper proposes Symbolic-MoE, a symbolic, text-based, and gradient-free Mixture-of-Experts framework to enable adaptive instance-level mixing of pre-trained LLM experts.\n\n**Key Innovation:**\nRather than selecting experts at the task level, which is often too coarse-grained, the framework recognizes that heterogeneous tasks may require different expertise for each instance. Symbolic-MoE takes a fine-grained approach to selection by emphasizing skills, e.g., algebra in math or molecular biology in biomedical reasoning.\n\n**How It Works:**\nThe framework uses a skill-based recruiting strategy that dynamically selects the most relevant set of expert LLMs for diverse reasoning tasks based on their strengths, with each selected expert generating its own reasoning, which are then synthesized into a final high-quality response by an aggregator.\n\nThe code implementation is available on [GitHub](https://github.com/dinobby/Symbolic-MoE)."
+    ],
+    "durationSeconds": 10.27986136000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "12067259-618a-4fd6-bf08-5a2818718e95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-27T08:44:52.768Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough research to conduct my analysis. Let me synthesize what I've found and evaluate the proposal.
+
+Key findings from my research:
+
+1. **VerifiAgent (EMNLP 2025 Findings)**: This is a CRITICAL related work that the proposal doesn't cite. VerifiAgent already implements a unified verification agent that adaptively selects verification tools (CAS, symbolic, knowledge bases) based on reasoning type. This is conceptually very close to the "adaptive multi-backend routing" in Stage 2 of the proposal. The key difference is that VerifiAgent is used for inference-time verification, not as an online RL reward signal.
+
+
+2. **Graph of Verification (GoV, June 2025)** structures reasoning as a DAG for verification, which relates to the modular decomposition but uses a different structural approach. **Symbolic-MoE (March 2025)** implements skill-based routing to heterogeneous experts similarly to Stage 2's routing mechanism, though it targets LLM experts rather than formal verification tools. **FormaRL** uses RL-based autoformalization with dual-check rewards from Lean and LLM feedback, relevant to decomposer training but with a different objective. **Pseudo-Formalization (May 2026)** appears to be another related approach in this space.
+
+Looking at more recent work, **MATH-VF** has clear limitations the proposal addresses—it's sequential with no fallback or parallelization. **TinyV** suffers from significant false negatives at 38.5%, which the three-valued logic approach directly tackles. The noisy rewards theory from arXiv 2510.00915 identifies a phase transition at Youden's index that the proposal incorporates.
+
+Now I'm considering whether there's a trivial alternative that could undermine this approach—the most obvious one would be taking MATH-VF's existing CAS/SMT pipeline, adding a neural fallback for failed formalizations, and using that as a baseline.  That's essentially the proposal without the typed modular decomposition or learned router, though the sequential bottleneck and cascading failures argument does distinguish them. Another simpler baseline would just be training a better neural PRM on formally-annotated data like FoVer, which the proposal does include as a comparison point.
+
+The bigger question is whether the core assumption holds: can a fine-tuned decomposer reliably produce typed, self-contained verification modules with formal specifications? The autoformalization success rate is the critical bottleneck here—FormaRL only achieves 9.6% pass@1, while SAFE gets 81.2% step formalization in Lean 4, so the gap depends heavily on which formalism we're targeting.
+
+The other assumptions seem more reasonable but less tested: whether a lightweight learned router can effectively select the cheapest sufficient backend, and whether the decomposition and routing overhead actually pays off compared to just doing full formal verification. These need empirical validation.
+
+Looking at novelty, the core contribution is the typed modular decomposition as an abstraction layer. Each piece—modular decomposition (Pseudo-Formalization), CAS/SMT verification (MATH-VF), formal RL rewards (PRoSFI), adaptive tool selection (VerifiAgent)—exists elsewhere, but combining them with multi-backend routing and using it as an RL reward signal is where the incremental value lies.
+
+The real question is whether this combination feels like the obvious next engineering step or something genuinely surprising. A reviewer might reasonably argue that given these prior works, combining them through a typed interface is just the natural progression. The paper needs to make a stronger case for why the typed interface abstraction itself is the hard novel part, not just the engineering of combining existing ideas.
+
+VerifiAgent is a critical related work to address directly—it already does adaptive tool selection for verification, so the proposal needs to clearly distinguish that VerifiAgent operates at inference time for verification whereas this approach uses adaptive selection as an online RL reward mechanism, and that VerifiAgent doesn't employ typed modular decomposition.
+
+The problem itself is genuinely important and timely—the cost-reliability tradeoff in RL verification is something the field is actively grappling with.
+
+The real novelty should be reframed around compositionality of verification: by decomposing into typed modules, you can leverage the fact that different mathematical domains have different verification costs, and you don't need uniform formal verification coverage across an entire proof to achieve high reliability. That's a more principled theoretical insight than just saying "typed modular decomposition is the missing abstraction."
+
+The three-valued verification logic—distinguishing between verified-correct, verified-incorrect, and unable-to-verify—is actually a meaningful contribution when grounded in the noisy reward theory, particularly in how the unable-to-verify state connects to the reward signal.
+
+The decomposer is really the linchpin here: if it can successfully decompose problems, everything else follows naturally, but if it fails, the whole approach collapses. That needs to be front and center as the core technical challenge, not buried in the metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60df8408-0ac7-4b3a-b3ed-75eefd26fa47",
+  "isSidechain": false,
+  "requestId": "req_011CbSn8G29x2kAtGQcyGcNn",
+  "type": "assistant",
+  "uuid": "df7f6d4b-7b9c-4184-8083-9bee780d2fd4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fv1YswdEoyu6BiKv4VxtLT",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 29540,
+      "output_tokens": 5921,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5921,
+          "cache_read_input_tokens": 29540,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-27T08:46:17.946Z_
+
+Now I have sufficient research. Let me compile my analysis.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **VerifiAgent** (EMNLP 2025 Findings, arXiv 2504.00406): 与本 proposal **高度相关但未被引用**。VerifiAgent 已实现统一验证 agent，根据推理类型（数学、逻辑、常识）自适应选择验证工具（CAS、symbolic、知识库）。概念上与 Stage 2 的 "adaptive multi-backend routing" 非常接近，核心区别是 VerifiAgent 用于推理时验证而非 online RL reward。
+- **Graph of Verification (GoV)** (arXiv 2506.12509, 2025): 将推理建模为 DAG 进行结构化验证，拓扑排序保证前提先于结论被验证，首错即停。与本 proposal 的模块化分解思路有交集，但使用 DAG 结构而非 typed modules。
+- **Symbolic-MoE** (arXiv 2503.05641, March 2025): 基于 skill 的 routing 策略，动态选择最相关的 LLM expert 处理不同推理子问题。routing 思路与 Stage 2 的 learned router 概念上平行，但 route 到的是 LLM expert 而非 formal verification backend。
+- **FormaRL** (arXiv 2508.18914, August 2025): RL 驱动的 autoformalization，用 GRPO + Lean compiler syntax check + LLM consistency check 作为 reward。与本 proposal 的 decomposer 训练有交集，但 FormaRL 报告的 pass@1 仅 9.6%，凸显 autoformalization 的困难。
+- **RLVεR** (arXiv 2601.04411, January 2026): 另一篇处理 noisy verifiable reward 的工作，提出 noise-aware RL 训练策略，与本 proposal 引用的 arXiv 2510.00915 互补。
+- 调研总结: 该领域当前的核心张力是 **verification 的可靠性 vs. 可扩展性**。研究者主要在两个方向突破：(a) 让 formal verification 更轻量（CAS/SMT 替代 Lean/Isabelle），(b) 让 noisy reward 更可控（三值逻辑、noise correction）。但 **自适应 tool routing 用于 verification** 已有先例（VerifiAgent），**结构化分解** 也有先例（Pseudo-Formalization, GoV），真正未被做过的是 **将两者组合后作为 online RL reward signal**。
+
+---
+
+【发掘点 1】
+- 维度: related work 差异化 / 前提假设质疑
+- 内容: **VerifiAgent 是一个必须正面回应的 critical missing related work。** VerifiAgent (EMNLP 2025 Findings) 已经实现了「根据推理类型自适应选择验证工具」的核心机制——包括为数学推理选择 CAS、为逻辑推理选择 symbolic verification。这与本 proposal Stage 2 的 "adaptive multi-backend routing" 在概念层面高度重合。如果审稿人了解 VerifiAgent，会直接质疑："你的 routing 和 VerifiAgent 有什么本质区别？" Proposal 必须明确定位差异化：(1) VerifiAgent 是 inference-time verification，不是 RL reward pipeline；(2) VerifiAgent 没有 typed modular decomposition，它直接在完整推理链上选 tool；(3) 本 proposal 的 router 是 learned 的而非 rule-based。如果不主动回应，这个盲区在 review 中会被当作 novelty 漏洞攻击。
+- 价值: 直接加固 Related Work 差异化，防止审稿人认为核心 routing 机制是已有工作的简单复用（命中 Related Work 维度，间接保护 Novelty）。
+- 调研依据: VerifiAgent (arXiv 2504.00406, EMNLP 2025 Findings) 的 adaptive tool selection 机制。
+
+【发掘点 2】
+- 维度: novelty 锐化
+- 内容: **当前的 novelty claim 偏 "engineering combination"，应提升为更 principled 的理论 insight。** 目前的叙事是 "A 做了模块化、B 做了 CAS/SMT、C 做了 formal RL reward，我们把它们拼起来"——这种叙事很容易被审稿人归结为 "obvious next step"。建议将核心 novelty 从 "typed modular decomposition as missing abstraction" 重新锐化为一个关于 **verification compositionality** 的更深刻 insight：形式化验证的可靠性不需要在证明的每一步都达到 formal-grade——只要能够对每一步的 verifiability 进行可靠分类（typed），并对 unverifiable steps 采用 principled 的 uncertainty handling（三值逻辑），整体 reward 的 Youden's index J 就能保持在 learning phase（J > 0）。换言之，核心 insight 不是 "我们能统一多个 backend"（这是工程），而是 **"partial formal coverage + calibrated uncertainty 在理论上足以保证 RL learning signal 的有效性"**。这可以利用 arXiv 2510.00915 的 phase transition 框架做半形式化论证：只要 CAS/SMT 覆盖的 steps 提供足够高的 TPR，neural fallback 的 steps 即使 noisy 也不会把整体 J 拉到 0 以下。
+- 价值: 将 novelty 从 systems-level combination 提升为 principled theoretical claim，直接增强 Novelty 维度的说服力，让审稿人更难用 "incremental combination" 来 dismiss。
+- 调研依据: arXiv 2510.00915 的 Youden's index phase transition 框架 + TinyV (arXiv 2505.14625) 的 false negative 分析。本 proposal 已引用这两篇但未充分利用其理论含义来支撑 novelty claim。
+
+【发掘点 3】
+- 维度: 前提假设质疑 / trivial alternative 威胁
+- 内容: **Decomposer 的 autoformalization 成功率是整个 pipeline 的命脉，但当前 proposal 低估了这个瓶颈的严重性。** FormaRL 报告 Lean autoformalization 的 pass@1 仅 9.6%；SAFE 报告 Lean 4 step formalization 为 81.2% 但代价是 4-8× overhead。本 proposal 的 decomposer 需要将 CoT step 翻译为 SymPy expression 或 Z3 assertion——这本质上是 autoformalization，但目标语言更简单（SymPy/Z3 vs. Lean）。关键问题是：**如果 decomposer 的 formalization 成功率低于 ~60%，大量 steps 会 fallback 到 neural PRM，此时整个 pipeline 退化为 "带少量 formal checking 的 neural PRM"**，相比 FoVer-PRM baseline 的增量价值存疑。Proposal 需要更坦诚地分析这个 failure mode，并给出 decomposer 成功率的 lower bound 估计（基于 SymPy/Z3 相比 Lean 的 formalization 难度差异）。这不是说这个问题无解，而是说 proposal 应该把 "decomposer formalization success rate" 显式升级为 **core research question** 而非仅仅一个 evaluation metric。
+- 价值: 预先堵住审稿人最可能的致命攻击——"如果 autoformalization 不 work，你整个 pipeline 还剩什么？"——并且诚实面对这个风险反而能增强 proposal 的可信度（命中 Novelty + Significance 维度）。
+- 调研依据: FormaRL (arXiv 2508.18914) 报告的 9.6% pass@1，SAFE (arXiv 2506.04592) 报告的 81.2% 但 4-8× overhead，以及 MATH-VF (arXiv 2505.20869) 使用的 SimpleMath 作为中间 formalization language 的 precedent。
+
+【发掘点 4】
+- 维度: trivial alternative 威胁
+- 内容: **最直接的 trivial alternative 是 "MATH-VF + neural fallback"：直接把 MATH-VF 的 SymPy/Z3 pipeline 用作 online reward，formalization 失败的 step 用 neural PRM fallback，不需要 typed modular decomposition 或 learned router。** Proposal 已经部分意识到 MATH-VF 的局限性（sequential、cascading failure、no fallback），但论证不够锐利。"Sequential → 无法并行" 的论点在 online RL 场景下说服力有限——单条 solution 的验证时间本身可能不是瓶颈，瓶颈是 batch throughput。"Cascading failure" 的论点更有力但需要量化：MATH-VF 在某个 step formalization 失败后，后续所有 step 都无法验证，导致整条 solution 变成 "unable-to-verify"——而 typed modular decomposition 通过模块的 self-contained 性打破了这种依赖链。建议：(a) 在 experiment 设计中明确加入 "MATH-VF + neural fallback" 作为 baseline（当前 5 组 baseline 都不包含这个最直接的对比）；(b) 在 motivation 中用 MATH-VF 的 cascading failure 率（需要实测或估算）来量化 modular decomposition 的必要性。
+- 价值: 直接回应审稿人最可能提出的 "为什么不直接用 MATH-VF" 的质疑，同时补上 baseline 缺口（命中 Novelty 维度——因为如果 trivial alternative 效果差不多，novelty claim 就不成立）。
+- 调研依据: MATH-VF (arXiv 2505.20869) 的 Formalizer 架构分析——sequential formalization without module isolation。
+
+【发掘点 5】
+- 维度: significance 提升
+- 内容: **Proposal 的 significance framing 可以更进一步：不仅是解决 math RL 的 cost-reliability tradeoff，更重要的是为 "domain-heterogeneous formal verification" 建立了一个通用 abstraction pattern。** 当前 framing 聚焦在数学推理——但 typed modular decomposition + adaptive backend routing 的 pattern 天然适用于其他需要 heterogeneous verification 的场景（代码生成中的 type checking + runtime testing + formal verification；科学推理中的 unit analysis + dimensional verification + simulation）。如果 proposal 在 Discussion 中点明这个 generalization potential，可以将 impact narrative 从 "一个 math RL 的工程改进" 提升为 "一种 compositional verification paradigm 的实例化"。注意：这只需要 1-2 段 discussion，不需要实际做这些 extension——但能显著提升 significance 感知。
+- 价值: 扩大 impact narrative 的辐射范围，让审稿人认为这不仅是 math domain 的 incremental improvement（命中 Significance 维度）。
+- 调研依据: 基于领域整体趋势判断——VerifiAgent 和 Symbolic-MoE 都在做 heterogeneous tool/expert routing，说明 adaptive routing 是一个 cross-domain 的 emerging pattern。
+
+【发掘点 6】
+- 维度: 核心 claim 强化
+- 内容: **三值逻辑 (three-valued verification) 的贡献被 underplay 了，应该作为独立的 principled contribution 来 frame。** 当前 proposal 将三值逻辑作为 Stage 2 的一个设计细节（"unable-to-verify → discounted neutral"），但实际上这是一个可以独立论证的 insight：在 noisy verification 环境下，**承认 "不确定" 比强行给出 binary 判断更有利于 RL learning**。这直接连接到 TinyV 的核心发现（false negatives 比 false positives 更有害）——因为 binary verification 中，"unable-to-verify" 通常被默认为 "incorrect"（false negative），而三值逻辑通过 explicit uncertainty 避免了这种系统性偏差。建议将三值逻辑从 "pipeline 的一个组件设计" 提升为 **proposal 的第二个独立贡献**，并用 Youden's index 框架半形式化论证其优势。这样即使审稿人对 modular decomposition 的 novelty 存疑，三值逻辑的贡献仍然可以独立站住。
+- 价值: 增加 contribution 的"锚点"数量——如果一个 contribution 被质疑，另一个仍然成立，增强整体 robustness（命中 Novelty 维度）。
+- 调研依据: TinyV (arXiv 2505.14625) 的 false negative 分析 + arXiv 2510.00915 的 Youden's index phase transition + RLVεR (arXiv 2601.04411) 的 noise-aware RL 训练策略。
+
+Sources:
+- [VerifiAgent: a Unified Verification Agent in Language Model Reasoning](https://arxiv.org/abs/2504.00406)
+- [Graph of Verification: Structured Verification of LLM Reasoning with Directed Acyclic Graphs](https://arxiv.org/abs/2506.12509)
+- [Symbolic Mixture-of-Experts: Adaptive Skill-based Routing for Heterogeneous Reasoning](https://arxiv.org/abs/2503.05641)
+- [FormaRL: Enhancing Autoformalization with no Labeled Data](https://arxiv.org/abs/2508.18914)
+- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531)
+- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/abs/2505.20869)
+- [SAFE: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://arxiv.org/abs/2506.04592)
+- [TinyV: Reducing False Negatives in Verification Improves RL for LLM Reasoning](https://arxiv.org/abs/2505.14625)
+- [Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers](https://arxiv.org/abs/2510.00915)
+- [RLVεR: Reinforcement Learning with Verifiable Noisy Rewards](https://arxiv.org/abs/2601.04411)
+- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs](https://arxiv.org/abs/2511.18760)
+- [Interleaved Bonus from Formal-Logic Verification](https://arxiv.org/abs/2601.22642)
+- [VERIFY-RL: Verifiable Recursive Decomposition for RL in Mathematical Reasoning](https://arxiv.org/abs/2602.07559)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df7f6d4b-7b9c-4184-8083-9bee780d2fd4",
+  "isSidechain": false,
+  "requestId": "req_011CbSn8G29x2kAtGQcyGcNn",
+  "type": "assistant",
+  "uuid": "114f9f1b-5291-46cc-a4f4-b1c5d0a6a823",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fv1YswdEoyu6BiKv4VxtLT",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 29540,
+      "output_tokens": 5921,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5921,
+          "cache_read_input_tokens": 29540,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Typed Modular Decomposition as the Missing Abstraction for Scalable Formal Process Rewards  ## Core Problem  RL training of mathematical reasoning LLMs requires reliable step-level rewards, but face…",
+  "leafUuid": "114f9f1b-5291-46cc-a4f4-b1c5d0a6a823",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Typed modular decomposition for formal RL rewards",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Typed Modular Decomposition as the Missing Abstraction for Scalable Formal Process Rewards  ## Core Problem  RL training of mathematical reasoning LLMs requires reliable step-level rewards, but face…",
+  "leafUuid": "114f9f1b-5291-46cc-a4f4-b1c5d0a6a823",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Typed modular decomposition for formal RL rewards",
+  "sessionId": "d39c9ec2-a0a1-40f5-917a-516d72101885"
+}
+```
+
+---

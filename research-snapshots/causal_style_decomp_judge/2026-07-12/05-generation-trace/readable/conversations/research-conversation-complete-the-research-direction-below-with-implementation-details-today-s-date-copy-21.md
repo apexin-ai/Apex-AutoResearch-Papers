@@ -1,0 +1,11820 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-27 (UTC).** Only recommend ve
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 182
+- **Recorded user turns:** 1
+- **Tool calls:** 51
+- **Original source:** `logs/chats/exported-trajectories/account-3/75711861-2d6e-4f77-b828-a14285c76ee3.jsonl`
+- **Structured JSON:** [`b0bb1cc7519564526c49.json`](../../sessions/b0/b0bb1cc7519564526c49.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T16:49:19.332Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T16:49:19.332Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.\n\n{\n  \"title\": \"Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization\",\n  \"core_problem\": \"Current autoformalization models trained on competition-level data fail catastrophically on unfamiliar mathematical domains (e.g., algebraic geometry, PDE theory) because they lack domain-specific Mathlib knowledge. Can we adapt an autoformalization model to a new domain at test time by combining targeted library retrieval with test-time reinforcement learning?\",\n  \"opportunity\": \"Test-time RL (TTRL) has boosted informal math reasoning by 211% (Qwen-2.5-Math-7B on AIME 2024) and is central to AlphaProof's IMO performance, but has never been applied to autoformalization. Meanwhile, oracle retrieval experiments show a 3.3x improvement over model-based retrieval (55.36% vs 16.86% BEq@8 on Con-NF), confirming that domain-specific dependencies are the key bottleneck. Combining these two independently validated ideas—retrieval-augmented context + test-time RL adaptation—directly attacks both the autoformalization quality gap and the domain generalization problem simultaneously. Recent infrastructure (DDR's 500K-sample dependency dataset, CRAMF's 26K Mathlib concept index, FormalMATH's multi-domain benchmark) makes this newly feasible.\",\n  \"landscape\": \"TTRL (NeurIPS 2025) demonstrated test-time RL for informal math using majority-voting pseudo-labels. AlphaProof applies test-time RL to formal proving via variant generation. Kimina-Prover (April 2025) internalizes search via RL for Lean proving. FormaRL (COLM 2025) applies GRPO-based RL to autoformalization using compilation + LLM consistency rewards, improving pass@1 from 4% to 26% on ProofNet. DDR (December 2025) builds a 500K-sample dependency retrieval dataset with suffix-array verification. DRIFT (October 2025) decomposes informal statements for targeted retrieval, nearly doubling F1 on ProofNet. However, no work combines retrieval-augmented context with RL adaptation at test time for autoformalization: existing retrieval methods (DDR, DRIFT, CRAMF) are static pipelines, and existing RL methods (FormaRL) assume a fixed domain distribution during training. StepFun-Formalizer-32B achieves 40.5% BEq@1 SOTA on FormalMATH-Lite but degrades significantly on out-of-distribution domains like Con-NF.\",\n  \"inspired_by\": \"Field guide untried combination: 'Dependency-aware TTRL: Combine RAutoformalizer's dependency retrieval with AlphaProof's Test-Time Reinforcement Learning.' Also: gap 'Dependency-aware autoformalization: models are context-blind to formal library contents' + gap 'Autoformalization accuracy on hard problems remains the critical bottleneck' + pattern 'Test-Time Compute Scaling via Problem-Specific Adaptation.'\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"estimated_gpu_cost\": \"...\"},\n      \"human_in_loop\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"claude_api_cost\": \"...\", \"estimated_gpu_cost\": \"...\"},\n      \"auto_research\": {\"gpu_hours\": \"...\", \"timeline\": \"...\", \"claude_api_cost\": \"...\", \"estimated_gpu_cost\": \"...\", \"speed_bottleneck\": \"...\"}\n  },\n  \"target_venues\": [\"Only venues with deadlines after 2026-05-27\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary (150-200 words)\",\n  \"project_name\": \"snake_case_identifier (max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with web_search that cited papers are real. Drop unverifiable ones.\n\n**Model freshness rule**: When the approach involves pretrained models, use web_search to find current top-performing open-source models — do NOT default to models from your training data.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及\n\n## 可行性验证\n\n1. 搜索类似方法的已有实现（GitHub）\n2. 查找需要打败的具体 baseline 数字\n3. 了解类似实验的硬件/数据需求\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T16:49:19.336Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T16:49:19.336Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+## Round 1
+
+180 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T16:49:19.383Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.
+
+{
+  "title": "Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization",
+  "core_problem": "Current autoformalization models trained on competition-level data fail catastrophically on unfamiliar mathematical domains (e.g., algebraic geometry, PDE theory) because they lack domain-specific Mathlib knowledge. Can we adapt an autoformalization model to a new domain at test time by combining targeted library retrieval with test-time reinforcement learning?",
+  "opportunity": "Test-time RL (TTRL) has boosted informal math reasoning by 211% (Qwen-2.5-Math-7B on AIME 2024) and is central to AlphaProof's IMO performance, but has never been applied to autoformalization. Meanwhile, oracle retrieval experiments show a 3.3x improvement over model-based retrieval (55.36% vs 16.86% BEq@8 on Con-NF), confirming that domain-specific dependencies are the key bottleneck. Combining these two independently validated ideas—retrieval-augmented context + test-time RL adaptation—directly attacks both the autoformalization quality gap and the domain generalization problem simultaneously. Recent infrastructure (DDR's 500K-sample dependency dataset, CRAMF's 26K Mathlib concept index, FormalMATH's multi-domain benchmark) makes this newly feasible.",
+  "landscape": "TTRL (NeurIPS 2025) demonstrated test-time RL for informal math using majority-voting pseudo-labels. AlphaProof applies test-time RL to formal proving via variant generation. Kimina-Prover (April 2025) internalizes search via RL for Lean proving. FormaRL (COLM 2025) applies GRPO-based RL to autoformalization using compilation + LLM consistency rewards, improving pass@1 from 4% to 26% on ProofNet. DDR (December 2025) builds a 500K-sample dependency retrieval dataset with suffix-array verification. DRIFT (October 2025) decomposes informal statements for targeted retrieval, nearly doubling F1 on ProofNet. However, no work combines retrieval-augmented context with RL adaptation at test time for autoformalization: existing retrieval methods (DDR, DRIFT, CRAMF) are static pipelines, and existing RL methods (FormaRL) assume a fixed domain distribution during training. StepFun-Formalizer-32B achieves 40.5% BEq@1 SOTA on FormalMATH-Lite but degrades significantly on out-of-distribution domains like Con-NF.",
+  "inspired_by": "Field guide untried combination: 'Dependency-aware TTRL: Combine RAutoformalizer's dependency retrieval with AlphaProof's Test-Time Reinforcement Learning.' Also: gap 'Dependency-aware autoformalization: models are context-blind to formal library contents' + gap 'Autoformalization accuracy on hard problems remains the critical bottleneck' + pattern 'Test-Time Compute Scaling via Problem-Specific Adaptation.'"
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {"gpu_hours": "...", "timeline": "...", "estimated_gpu_cost": "..."},
+      "human_in_loop": {"gpu_hours": "...", "timeline": "...", "claude_api_cost": "...", "estimated_gpu_cost": "..."},
+      "auto_research": {"gpu_hours": "...", "timeline": "...", "claude_api_cost": "...", "estimated_gpu_cost": "...", "speed_bottleneck": "..."}
+  },
+  "target_venues": ["Only venues with deadlines after 2026-05-27"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary (150-200 words)",
+  "project_name": "snake_case_identifier (max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with web_search that cited papers are real. Drop unverifiable ones.
+
+**Model freshness rule**: When the approach involves pretrained models, use web_search to find current top-performing open-source models — do NOT default to models from your training data.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及
+
+## 可行性验证
+
+1. 搜索类似方法的已有实现（GitHub）
+2. 查找需要打败的具体 baseline 数字
+3. 了解类似实验的硬件/数据需求
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "cdbca583-a479-4c3c-9fa9-0b34e18c05e6",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T16:49:19.382Z_
+
+```json
+{
+  "parentUuid": "cdbca583-a479-4c3c-9fa9-0b34e18c05e6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "7b1352c7-e082-4b13-ba4f-345b7499c5d7",
+  "timestamp": "2026-05-27T16:49:19.382Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T16:49:19.382Z_
+
+```json
+{
+  "parentUuid": "7b1352c7-e082-4b13-ba4f-345b7499c5d7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "6da012b7-b58c-4c63-bc0f-d3bec75cd8fe",
+  "timestamp": "2026-05-27T16:49:19.382Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T16:49:24.373Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction with implementation details. I need to:
+
+1. Search for concurrent work on this topic
+2. Verify feasibility
+3. Find current top-performing models
+4. Verify references
+5. Check venue deadlines
+6. Produce a complete JSON object
+
+Let me start by launching several parallel searches to gather the information I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6da012b7-b58c-4c63-bc0f-d3bec75cd8fe",
+  "isSidechain": false,
+  "requestId": "req_011CbTR7wKKeJaEteSnL6XjS",
+  "type": "assistant",
+  "uuid": "2a5b8d83-84ed-40c9-9c2f-1e79cea84c53",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKXn9tPUN4Q1isn6dZ6H7s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2691,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1778,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1778,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-27T16:49:30.991Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01BCwfXdUcvXMcnSytHm2GdT`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search concurrent work on TTRL + autoformalization",
+  "prompt": "I need you to search the web thoroughly for concurrent/competing work on combining test-time reinforcement learning with autoformalization, and retrieval-augmented autoformalization with RL. \n\nSpecifically:\n1. Search for \"test-time reinforcement learning autoformalization 2026\" and \"test-time RL autoformalization 2026\"\n2. Search for \"retrieval augmented autoformalization reinforcement learning 2025 2026\"\n3. Search arXiv for recent (last 3 months, Feb-May 2026) papers on: \"autoformalization retrieval RL\", \"test-time adaptation autoformalization\", \"domain adaptive autoformalization\"\n4. Search OpenReview for any submissions to upcoming conferences (NeurIPS 2026, ICML 2026, ICLR 2027) related to \"test-time RL formalization\" or \"retrieval augmented autoformalization\"\n5. Search for \"TTRL formalization\", \"TTRL Lean\", \"test-time compute autoformalization\"\n\nFor each search, report what you found — papers, preprints, blog posts, anything. If you find something highly similar to \"combining retrieval-augmented context with test-time RL for domain-adaptive autoformalization\", flag it prominently.\n\nReport all findings in detail.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a5b8d83-84ed-40c9-9c2f-1e79cea84c53",
+  "isSidechain": false,
+  "requestId": "req_011CbTR7wKKeJaEteSnL6XjS",
+  "type": "assistant",
+  "uuid": "98f35664-659e-47fd-ac92-220901e6368b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKXn9tPUN4Q1isn6dZ6H7s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2691,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1778,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1778,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-27T16:49:31.005Z_
+
+<details><summary>↩ Tool result · `toolu_01BCwfXdUcvXMcnSytHm2GdT`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a2d483fd315b6b3f6 (internal ID - do not mention to user. Use SendMessage with to: 'a2d483fd315b6b3f6' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/a2d483fd315b6b3f6.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98f35664-659e-47fd-ac92-220901e6368b",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "ef06b4f7-549f-44a7-8b53-4b5c1ae43bd9",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a2d483fd315b6b3f6",
+    "description": "Search concurrent work on TTRL + autoformalization",
+    "prompt": "I need you to search the web thoroughly for concurrent/competing work on combining test-time reinforcement learning with autoformalization, and retrieval-augmented autoformalization with RL. \n\nSpecifically:\n1. Search for \"test-time reinforcement learning autoformalization 2026\" and \"test-time RL autoformalization 2026\"\n2. Search for \"retrieval augmented autoformalization reinforcement learning 2025 2026\"\n3. Search arXiv for recent (last 3 months, Feb-May 2026) papers on: \"autoformalization retrieval RL\", \"test-time adaptation autoformalization\", \"domain adaptive autoformalization\"\n4. Search OpenReview for any submissions to upcoming conferences (NeurIPS 2026, ICML 2026, ICLR 2027) related to \"test-time RL formalization\" or \"retrieval augmented autoformalization\"\n5. Search for \"TTRL formalization\", \"TTRL Lean\", \"test-time compute autoformalization\"\n\nFor each search, report what you found — papers, preprints, blog posts, anything. If you find something highly similar to \"combining retrieval-augmented context with test-time RL for domain-adaptive autoformalization\", flag it prominently.\n\nReport all findings in detail.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/a2d483fd315b6b3f6.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "98f35664-659e-47fd-ac92-220901e6368b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T16:49:51.104Z_
+
+<details><summary>↩ Tool result · `toolu_01JctPDHtmv2EP9gzCqADa84`</summary>
+
+```text
+Async agent launched successfully.
+agentId: aa5b9ab9971022e9b (internal ID - do not mention to user. Use SendMessage with to: 'aa5b9ab9971022e9b' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/aa5b9ab9971022e9b.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aeddcf4e-7c00-4c4d-9a4d-5b5d55339056",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "5ebeb7c1-2da4-41a5-9190-15dc6ece97df",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "aa5b9ab9971022e9b",
+    "description": "Search GitHub for related implementations",
+    "prompt": "Search the web for existing implementations and code repositories related to:\n\n1. Search GitHub for \"test-time reinforcement learning\" implementations - search for \"TTRL github\", \"test-time RL github implementation\"\n2. Search for \"autoformalization github\" - look for open source autoformalization pipelines\n3. Search for \"FormaRL github\" or \"FormaRL autoformalization code\"\n4. Search for \"DDR dependency retrieval Lean github\" or \"dependency retrieval autoformalization code\"\n5. Search for \"DRIFT autoformalization github\"\n6. Search for \"GRPO reinforcement learning Lean\" implementations\n7. Search for \"Lean 4 retrieval augmented generation github\"\n8. Search for \"FormalMATH benchmark github\" to find the evaluation benchmark code\n9. Search for hardware requirements of similar RL training runs - \"GRPO training GPU hours\", \"test-time RL compute cost\", \"RL autoformalization compute requirements\"\n\nReport what repositories and implementations you find, noting which are well-maintained and could be built upon. Also report any compute/hardware information you find for similar experiments.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/aa5b9ab9971022e9b.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "aeddcf4e-7c00-4c4d-9a4d-5b5d55339056",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-27T16:49:38.608Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0152F44gpt9r9tC9n3QsWyQz`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for current SOTA models and baselines",
+  "prompt": "I need you to do several web searches to find:\n\n1. Current top-performing open-source models for autoformalization (converting informal math to Lean 4 formal statements) as of May 2026. Search for \"autoformalization SOTA 2026\", \"best autoformalization model 2026\", \"Lean 4 autoformalization benchmark\". Look for models like StepFun-Formalizer, Kimina-Prover, InternLM, DeepSeek-Prover, or any newer ones.\n\n2. Current top-performing open-source models for mathematical reasoning as of May 2026. Search for \"math reasoning model 2026 open source\", \"Qwen math 2026\", \"DeepSeek math 2026\". I need to know what the best base model would be for fine-tuning on autoformalization.\n\n3. Specific baseline numbers to beat on FormalMATH and ProofNet benchmarks. Search for \"FormalMATH benchmark results 2026\", \"ProofNet autoformalization results\", \"FormalMATH-Lite leaderboard\".\n\n4. Search for \"FormaRL autoformalization\" to verify this paper and its results (GRPO-based RL for autoformalization, COLM 2025).\n\n5. Search for \"DDR dependency retrieval autoformalization\" to verify this paper and its 500K dataset.\n\n6. Search for \"DRIFT autoformalization retrieval\" to verify this paper.\n\n7. Search for \"CRAMF Mathlib concept index\" to verify this reference.\n\nReport all findings with specific numbers, model names, and paper details.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef06b4f7-549f-44a7-8b53-4b5c1ae43bd9",
+  "isSidechain": false,
+  "requestId": "req_011CbTR7wKKeJaEteSnL6XjS",
+  "type": "assistant",
+  "uuid": "f11b5316-f64b-46a9-84f5-862ead056729",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKXn9tPUN4Q1isn6dZ6H7s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2691,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1778,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1778,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-27T16:49:38.618Z_
+
+<details><summary>↩ Tool result · `toolu_0152F44gpt9r9tC9n3QsWyQz`</summary>
+
+```text
+Async agent launched successfully.
+agentId: afab6f0c50a659b0d (internal ID - do not mention to user. Use SendMessage with to: 'afab6f0c50a659b0d' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/afab6f0c50a659b0d.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f11b5316-f64b-46a9-84f5-862ead056729",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "473cdc31-c079-4410-90aa-5d073125750a",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "afab6f0c50a659b0d",
+    "description": "Search for current SOTA models and baselines",
+    "prompt": "I need you to do several web searches to find:\n\n1. Current top-performing open-source models for autoformalization (converting informal math to Lean 4 formal statements) as of May 2026. Search for \"autoformalization SOTA 2026\", \"best autoformalization model 2026\", \"Lean 4 autoformalization benchmark\". Look for models like StepFun-Formalizer, Kimina-Prover, InternLM, DeepSeek-Prover, or any newer ones.\n\n2. Current top-performing open-source models for mathematical reasoning as of May 2026. Search for \"math reasoning model 2026 open source\", \"Qwen math 2026\", \"DeepSeek math 2026\". I need to know what the best base model would be for fine-tuning on autoformalization.\n\n3. Specific baseline numbers to beat on FormalMATH and ProofNet benchmarks. Search for \"FormalMATH benchmark results 2026\", \"ProofNet autoformalization results\", \"FormalMATH-Lite leaderboard\".\n\n4. Search for \"FormaRL autoformalization\" to verify this paper and its results (GRPO-based RL for autoformalization, COLM 2025).\n\n5. Search for \"DDR dependency retrieval autoformalization\" to verify this paper and its 500K dataset.\n\n6. Search for \"DRIFT autoformalization retrieval\" to verify this paper.\n\n7. Search for \"CRAMF Mathlib concept index\" to verify this reference.\n\nReport all findings with specific numbers, model names, and paper details.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/afab6f0c50a659b0d.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "f11b5316-f64b-46a9-84f5-862ead056729",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T16:49:45.328Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01AwUn3Aw6DU2TzGUSwpLaSm`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search venue deadlines and verify references",
+  "prompt": "I need you to search the web for:\n\n1. ML/AI conference deadlines AFTER May 27, 2026. Specifically search for:\n   - \"NeurIPS 2026 submission deadline\"\n   - \"AAAI 2027 submission deadline\"  \n   - \"ICLR 2027 submission deadline\"\n   - \"ICML 2026 deadline\" (check if already passed)\n   - \"COLM 2026 deadline\"\n   - \"EMNLP 2026 deadline\"\n   - \"ACL 2027 deadline\"\n   - \"AI conference deadlines 2026 2027\"\n   - Also check workshop deadlines: \"NeurIPS 2026 workshop deadline\", \"ICML 2026 workshop deadline\"\n   - Check \"MATH-AI workshop 2026\" and \"ATP workshop 2026\" (automated theorem proving)\n\n2. Verify these specific papers exist by searching for each:\n   - \"TTRL test-time reinforcement learning NeurIPS 2025\"\n   - \"AlphaProof IMO 2024\" (DeepMind)\n   - \"Kimina-Prover 2025 RL Lean\"\n   - \"StepFun Formalizer 32B autoformalization\"\n   - \"FormalMATH benchmark multi-domain\"\n\nReport exact deadline dates where you find them, and confirm/deny existence of each paper.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "473cdc31-c079-4410-90aa-5d073125750a",
+  "isSidechain": false,
+  "requestId": "req_011CbTR7wKKeJaEteSnL6XjS",
+  "type": "assistant",
+  "uuid": "2504c6ce-0ad5-426b-a6cb-219df89e6df8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKXn9tPUN4Q1isn6dZ6H7s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2691,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1778,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1778,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T16:49:45.337Z_
+
+<details><summary>↩ Tool result · `toolu_01AwUn3Aw6DU2TzGUSwpLaSm`</summary>
+
+```text
+Async agent launched successfully.
+agentId: ae57c5c458da36144 (internal ID - do not mention to user. Use SendMessage with to: 'ae57c5c458da36144' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/ae57c5c458da36144.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2504c6ce-0ad5-426b-a6cb-219df89e6df8",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "cd78334c-b58b-4f13-8f9f-81fdee1c67c3",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "ae57c5c458da36144",
+    "description": "Search venue deadlines and verify references",
+    "prompt": "I need you to search the web for:\n\n1. ML/AI conference deadlines AFTER May 27, 2026. Specifically search for:\n   - \"NeurIPS 2026 submission deadline\"\n   - \"AAAI 2027 submission deadline\"  \n   - \"ICLR 2027 submission deadline\"\n   - \"ICML 2026 deadline\" (check if already passed)\n   - \"COLM 2026 deadline\"\n   - \"EMNLP 2026 deadline\"\n   - \"ACL 2027 deadline\"\n   - \"AI conference deadlines 2026 2027\"\n   - Also check workshop deadlines: \"NeurIPS 2026 workshop deadline\", \"ICML 2026 workshop deadline\"\n   - Check \"MATH-AI workshop 2026\" and \"ATP workshop 2026\" (automated theorem proving)\n\n2. Verify these specific papers exist by searching for each:\n   - \"TTRL test-time reinforcement learning NeurIPS 2025\"\n   - \"AlphaProof IMO 2024\" (DeepMind)\n   - \"Kimina-Prover 2025 RL Lean\"\n   - \"StepFun Formalizer 32B autoformalization\"\n   - \"FormalMATH benchmark multi-domain\"\n\nReport exact deadline dates where you find them, and confirm/deny existence of each paper.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/ae57c5c458da36144.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "2504c6ce-0ad5-426b-a6cb-219df89e6df8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T16:49:51.092Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01JctPDHtmv2EP9gzCqADa84`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search GitHub for related implementations",
+  "prompt": "Search the web for existing implementations and code repositories related to:\n\n1. Search GitHub for \"test-time reinforcement learning\" implementations - search for \"TTRL github\", \"test-time RL github implementation\"\n2. Search for \"autoformalization github\" - look for open source autoformalization pipelines\n3. Search for \"FormaRL github\" or \"FormaRL autoformalization code\"\n4. Search for \"DDR dependency retrieval Lean github\" or \"dependency retrieval autoformalization code\"\n5. Search for \"DRIFT autoformalization github\"\n6. Search for \"GRPO reinforcement learning Lean\" implementations\n7. Search for \"Lean 4 retrieval augmented generation github\"\n8. Search for \"FormalMATH benchmark github\" to find the evaluation benchmark code\n9. Search for hardware requirements of similar RL training runs - \"GRPO training GPU hours\", \"test-time RL compute cost\", \"RL autoformalization compute requirements\"\n\nReport what repositories and implementations you find, noting which are well-maintained and could be built upon. Also report any compute/hardware information you find for similar experiments.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd78334c-b58b-4f13-8f9f-81fdee1c67c3",
+  "isSidechain": false,
+  "requestId": "req_011CbTR7wKKeJaEteSnL6XjS",
+  "type": "assistant",
+  "uuid": "aeddcf4e-7c00-4c4d-9a4d-5b5d55339056",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NKXn9tPUN4Q1isn6dZ6H7s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2691,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1778,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1778,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "5ebeb7c1-2da4-41a5-9190-15dc6ece97df",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-27T16:49:53.467Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've launched 4 background agents to gather all the information I need. Let me wait for them to complete before synthesizing the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ebeb7c1-2da4-41a5-9190-15dc6ece97df",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAH9EndCLbptxhYV7e",
+  "type": "assistant",
+  "uuid": "13948e4b-8991-427a-ba81-90fc8e509673",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0133QxbvpEjmkm8eWGmroCDB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2810,
+      "cache_read_input_tokens": 13705,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2810,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 13705,
+          "cache_creation_input_tokens": 2810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2810
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-27T16:49:55.836Z_
+
+I've launched 4 parallel research agents to gather all the information needed:
+
+1. **Concurrent work search** — checking arXiv, OpenReview for competing papers
+2. **SOTA models & baselines** — finding current best models and benchmark numbers
+3. **Venue deadlines & reference verification** — checking which conferences are still open
+4. **GitHub implementations & compute estimates** — finding reusable code and hardware needs
+
+Waiting for all results to come back...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13948e4b-8991-427a-ba81-90fc8e509673",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAH9EndCLbptxhYV7e",
+  "type": "assistant",
+  "uuid": "e4bf88b0-b5ec-4192-a440-94e45d0fcdfe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0133QxbvpEjmkm8eWGmroCDB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2810,
+      "cache_read_input_tokens": 13705,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2810,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 13705,
+          "cache_creation_input_tokens": 2810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2810
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T16:49:56.128Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016KinD5ihFHzfiDGhT3K6xw`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4bf88b0-b5ec-4192-a440-94e45d0fcdfe",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAH9EndCLbptxhYV7e",
+  "type": "assistant",
+  "uuid": "b1eb1447-5064-4123-9541-8a9c3177fca5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0133QxbvpEjmkm8eWGmroCDB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2810,
+      "cache_read_input_tokens": 13705,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2810,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 13705,
+          "cache_creation_input_tokens": 2810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2810
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T16:49:56.131Z_
+
+<details><summary>↩ Tool result · `toolu_016KinD5ihFHzfiDGhT3K6xw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1eb1447-5064-4123-9541-8a9c3177fca5",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "6a1ab8b4-6782-454b-b34b-1cfc55035fc2",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "b1eb1447-5064-4123-9541-8a9c3177fca5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-27T16:49:59.116Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me do some additional targeted web searches while waiting for the agents to complete.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a1ab8b4-6782-454b-b34b-1cfc55035fc2",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAed4ew3uTMtggqAJ7",
+  "type": "assistant",
+  "uuid": "8c6a3ea8-b778-4add-a402-8f8d0044976f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWZi9KfLgLX4dUeXJjvRDT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 16515,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 16515,
+          "cache_creation_input_tokens": 751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-27T16:49:59.118Z_
+
+Let me do some additional targeted searches while the agents work:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c6a3ea8-b778-4add-a402-8f8d0044976f",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAed4ew3uTMtggqAJ7",
+  "type": "assistant",
+  "uuid": "208e6332-d1cd-455a-ad9e-1506f05b2332",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWZi9KfLgLX4dUeXJjvRDT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 16515,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 16515,
+          "cache_creation_input_tokens": 751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-27T16:49:59.674Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SRNDURETDi16u2EMac4zVD`</summary>
+
+```json
+{
+  "query": "test-time reinforcement learning autoformalization Lean 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "208e6332-d1cd-455a-ad9e-1506f05b2332",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAed4ew3uTMtggqAJ7",
+  "type": "assistant",
+  "uuid": "e30d210c-5cb8-409d-823d-0e540007471e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWZi9KfLgLX4dUeXJjvRDT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 16515,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 16515,
+          "cache_creation_input_tokens": 751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-27T16:50:00.163Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JB2u37rTn92kEswh3L2eGr`</summary>
+
+```json
+{
+  "query": "retrieval augmented autoformalization reinforcement learning domain adaptation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e30d210c-5cb8-409d-823d-0e540007471e",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAed4ew3uTMtggqAJ7",
+  "type": "assistant",
+  "uuid": "1f4d79a7-9d3b-4f25-a487-723e7fb5edbe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWZi9KfLgLX4dUeXJjvRDT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 16515,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 16515,
+          "cache_creation_input_tokens": 751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-27T16:50:00.632Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RaG4WJMWANtuDBk1U7q1vc`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f4d79a7-9d3b-4f25-a487-723e7fb5edbe",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAed4ew3uTMtggqAJ7",
+  "type": "assistant",
+  "uuid": "ca6dfdde-065b-488a-b1c1-fb4a2b42c2c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWZi9KfLgLX4dUeXJjvRDT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 16515,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 16515,
+          "cache_creation_input_tokens": 751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T16:50:00.710Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JBA2bvvvY7HABYLk1jMvMR`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca6dfdde-065b-488a-b1c1-fb4a2b42c2c0",
+  "isSidechain": false,
+  "requestId": "req_011CbTRAed4ew3uTMtggqAJ7",
+  "type": "assistant",
+  "uuid": "c033a3a7-2635-4cba-96b4-ff41d3e5fee7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWZi9KfLgLX4dUeXJjvRDT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 16515,
+      "output_tokens": 255,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 255,
+          "cache_read_input_tokens": 16515,
+          "cache_creation_input_tokens": 751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T16:50:04.734Z_
+
+<details><summary>↩ Tool result · `toolu_01JBA2bvvvY7HABYLk1jMvMR`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline date"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"Personal Conference Deadlines","url":"https://zhaohsu.top/conference-deadlines/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"}]
+
+Based on the search results, I found some information related to ICLR but not specifically for ICLR 2027. The search results show details for ICLR 2026, but the official ICLR 2027 submission deadline information doesn't appear to be readily available yet.
+
+For various ICLR-related conferences scheduled in 2027, some have abstract/full-text paper submission deadlines of June 1, 2026, with notifications on August 1, 2026, though these appear to be satellite or regional conferences rather than the main ICLR 2027 conference.
+
+Since ICLR typically announces its call for papers and submission deadlines on its official website, I recommend checking the official ICLR website directly at iclr.cc for the most current information about ICLR 2027 submission deadlines once they are announced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c033a3a7-2635-4cba-96b4-ff41d3e5fee7",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "99035517-639c-4098-b8d9-3804a5fe72a5",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01APU2ZsCjVaQG2oYQjaKES4",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "Personal Conference Deadlines",
+            "url": "https://zhaohsu.top/conference-deadlines/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          }
+        ]
+      },
+      "Based on the search results, I found some information related to ICLR but not specifically for ICLR 2027. The search results show details for ICLR 2026, but the official ICLR 2027 submission deadline information doesn't appear to be readily available yet.\n\nFor various ICLR-related conferences scheduled in 2027, some have abstract/full-text paper submission deadlines of June 1, 2026, with notifications on August 1, 2026, though these appear to be satellite or regional conferences rather than the main ICLR 2027 conference.\n\nSince ICLR typically announces its call for papers and submission deadlines on its official website, I recommend checking the official ICLR website directly at iclr.cc for the most current information about ICLR 2027 submission deadlines once they are announced."
+    ],
+    "durationSeconds": 4.022056850000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c033a3a7-2635-4cba-96b4-ff41d3e5fee7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T16:50:05.707Z_
+
+<details><summary>↩ Tool result · `toolu_01RaG4WJMWANtuDBk1U7q1vc`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 submission deadline date"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"NeurIPS 2026 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/neurips-2026.html"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X","url":"https://x.com/NeurIPSConf/status/2041303457554940336"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"}]
+
+Based on the search results, here are the NeurIPS 2026 submission deadlines:
+
+Abstract submission deadline: May 4, 2026 (AOE)
+
+Full paper submission deadline, including all supplementary materials: May 6, 2026 AOE
+
+Note that the different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines. However, the abstract and full paper deadlines are the same across all tracks.
+
+The conference itself will be held December 6-12, 2026 at the International Convention Centre.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca6dfdde-065b-488a-b1c1-fb4a2b42c2c0",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "8492e197-bdc4-46c9-a0e3-db66d7212156",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BBCKnjU5u2wzANajQpYbhT",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "NeurIPS 2026 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/neurips-2026.html"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X",
+            "url": "https://x.com/NeurIPSConf/status/2041303457554940336"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          }
+        ]
+      },
+      "Based on the search results, here are the NeurIPS 2026 submission deadlines:\n\nAbstract submission deadline: May 4, 2026 (AOE)\n\nFull paper submission deadline, including all supplementary materials: May 6, 2026 AOE\n\nNote that the different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines. However, the abstract and full paper deadlines are the same across all tracks.\n\nThe conference itself will be held December 6-12, 2026 at the International Convention Centre."
+    ],
+    "durationSeconds": 5.072960559999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ca6dfdde-065b-488a-b1c1-fb4a2b42c2c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-27T16:50:06.408Z_
+
+<details><summary>↩ Tool result · `toolu_01SRNDURETDi16u2EMac4zVD`</summary>
+
+```text
+Web search results for query: "test-time reinforcement learning autoformalization Lean 2026 arxiv"
+
+Links: [{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372v1"},{"title":"[2603.24372] Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/abs/2603.24372"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/pdf/2603.24372"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"},{"title":"ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/html/2510.15681v1"},{"title":"M-A-P CriticLean: Critic-Guided Reinforcement Learning for","url":"https://arxiv.org/pdf/2507.06181"},{"title":"Towards Formalizing Reinforcement Learning Theory","url":"https://arxiv.org/pdf/2511.03618"}]
+
+I found several relevant papers on arxiv related to reinforcement learning, autoformalization, and Lean. Here are the main results:
+
+## Primary Result
+
+The most directly relevant paper is "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning" (arXiv:2603.24372, published March 25, 2026), which fine-tunes Qwen3.5-2B with LoRA for natural language to Lean4 formalization using three training regimes: supervised fine-tuning (SFT) with curriculum learning, SFT without curriculum ordering, and reinforcement learning using group relative policy optimization (GRPO) with a cycle consistency reward.
+
+## Key Findings
+
+Cycle consistency measures how well the meaning of a statement is preserved through a natural language to Lean4 to natural language loop, computed as cosine similarity of sentence embeddings.
+
+The RL approach substantially outperforms both SFT variants with mean cycle consistency scores of 0.669 vs. 0.513 on FineLeanCorpus and 0.561 vs. 0.422 on PutnamBench, while increasing cross-entropy loss by only 0.011 nats.
+
+## Related Work
+
+The search also returned other recent papers on reinforcement learning approaches to autoformalization, including FormaRL and papers on critic-guided reinforcement learning for Lean formalization, indicating this is an active area of research in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e30d210c-5cb8-409d-823d-0e540007471e",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "3956170c-68e2-4029-8c4a-2237b1ce24ab",
+  "toolUseResult": {
+    "query": "test-time reinforcement learning autoformalization Lean 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q2Vj7HFndgnDDuJGTDbpSs",
+        "content": [
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project",
+            "url": "https://arxiv.org/html/2603.24372v1"
+          },
+          {
+            "title": "[2603.24372] Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/abs/2603.24372"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/pdf/2603.24372"
+          },
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/pdf/2508.18914"
+          },
+          {
+            "title": "ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings",
+            "url": "https://arxiv.org/html/2510.15681v1"
+          },
+          {
+            "title": "M-A-P CriticLean: Critic-Guided Reinforcement Learning for",
+            "url": "https://arxiv.org/pdf/2507.06181"
+          },
+          {
+            "title": "Towards Formalizing Reinforcement Learning Theory",
+            "url": "https://arxiv.org/pdf/2511.03618"
+          }
+        ]
+      },
+      "I found several relevant papers on arxiv related to reinforcement learning, autoformalization, and Lean. Here are the main results:\n\n## Primary Result\n\nThe most directly relevant paper is \"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning\" (arXiv:2603.24372, published March 25, 2026), which fine-tunes Qwen3.5-2B with LoRA for natural language to Lean4 formalization using three training regimes: supervised fine-tuning (SFT) with curriculum learning, SFT without curriculum ordering, and reinforcement learning using group relative policy optimization (GRPO) with a cycle consistency reward.\n\n## Key Findings\n\nCycle consistency measures how well the meaning of a statement is preserved through a natural language to Lean4 to natural language loop, computed as cosine similarity of sentence embeddings.\n\nThe RL approach substantially outperforms both SFT variants with mean cycle consistency scores of 0.669 vs. 0.513 on FineLeanCorpus and 0.561 vs. 0.422 on PutnamBench, while increasing cross-entropy loss by only 0.011 nats.\n\n## Related Work\n\nThe search also returned other recent papers on reinforcement learning approaches to autoformalization, including FormaRL and papers on critic-guided reinforcement learning for Lean formalization, indicating this is an active area of research in 2026."
+    ],
+    "durationSeconds": 6.730867491999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e30d210c-5cb8-409d-823d-0e540007471e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-27T16:50:08.540Z_
+
+<details><summary>↩ Tool result · `toolu_01JB2u37rTn92kEswh3L2eGr`</summary>
+
+```text
+Web search results for query: "retrieval augmented autoformalization reinforcement learning domain adaptation 2025 2026"
+
+Links: [{"title":"Reinforced Information Retrieval","url":"https://arxiv.org/pdf/2502.11562"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"},{"title":"RAG in 2026: How Retrieval-Augmented Generation Works for Enterprise AI","url":"https://www.techment.com/blogs/rag-in-2026/"},{"title":"Improving the Domain Adaptation of Retrieval Augmented Generation (RAG)   Models for Open Domain Question Answering","url":"https://arxiv.org/pdf/2210.02627"},{"title":"Retrieval-Augmented Reinforcement Learning","url":"https://arxiv.org/pdf/2202.08417"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/pdf/2508.06931"},{"title":"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/pdf/2510.04520"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/pdf/2510.10815"}]
+
+Based on the search results, here's what I found on retrieval-augmented autoformalization with reinforcement learning and domain adaptation from 2025-2026:
+
+## Recent Developments in Retrieval-Augmented Autoformalization
+
+The application of RAG to mathematical automated formalization remains largely unexplored, though recent work investigates whether retrieval-based methods can be adapted to improve the reliability and accuracy of LLM-driven formalization.
+
+The CRAMF (Concept-driven Retrieval-Augmented Mathematical Formalization) framework retrieves precise formal definitions of core mathematical concepts to provide contextual grounding for LLM-based autoformalization. This approach achieved up to 62.1% and an average of 29.9% relative improvement on benchmarks like miniF2F and ProofNet.
+
+## Reinforcement Learning in Autoformalization
+
+Reinforcement Learning has shown potential in mathematics and inference, with several works leveraging RL training to enhance the quality of auto-formalization. For example, verifiers can be used to conduct rejection sampling or expert iteration to enhance autoformalization.
+
+## Domain Adaptation for Retrieval
+
+It's important to adapt general retrievers to new working scenarios beyond their original training domains, and a variety of domain adaptation methods have been proposed in recent years. Recent approaches include Reinforcement Learning of generator with Retriever's Feedback (RLRF) and Reinforcement Learning of retriever with Generator's Feedback (RLGF), which through alternating execution can progressively enhance end-to-end retrieval performance for the target domain.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f4d79a7-9d3b-4f25-a487-723e7fb5edbe",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "9d646319-cc86-4c32-bcf0-b63d43a79289",
+  "toolUseResult": {
+    "query": "retrieval augmented autoformalization reinforcement learning domain adaptation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NULoX4ajS29skLgeJAUvRD",
+        "content": [
+          {
+            "title": "Reinforced Information Retrieval",
+            "url": "https://arxiv.org/pdf/2502.11562"
+          },
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/pdf/2508.18914"
+          },
+          {
+            "title": "RAG in 2026: How Retrieval-Augmented Generation Works for Enterprise AI",
+            "url": "https://www.techment.com/blogs/rag-in-2026/"
+          },
+          {
+            "title": "Improving the Domain Adaptation of Retrieval Augmented Generation (RAG)   Models for Open Domain Question Answering",
+            "url": "https://arxiv.org/pdf/2210.02627"
+          },
+          {
+            "title": "Retrieval-Augmented Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2202.08417"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/pdf/2508.06931"
+          },
+          {
+            "title": "Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/pdf/2510.04520"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found on retrieval-augmented autoformalization with reinforcement learning and domain adaptation from 2025-2026:\n\n## Recent Developments in Retrieval-Augmented Autoformalization\n\nThe application of RAG to mathematical automated formalization remains largely unexplored, though recent work investigates whether retrieval-based methods can be adapted to improve the reliability and accuracy of LLM-driven formalization.\n\nThe CRAMF (Concept-driven Retrieval-Augmented Mathematical Formalization) framework retrieves precise formal definitions of core mathematical concepts to provide contextual grounding for LLM-based autoformalization. This approach achieved up to 62.1% and an average of 29.9% relative improvement on benchmarks like miniF2F and ProofNet.\n\n## Reinforcement Learning in Autoformalization\n\nReinforcement Learning has shown potential in mathematics and inference, with several works leveraging RL training to enhance the quality of auto-formalization. For example, verifiers can be used to conduct rejection sampling or expert iteration to enhance autoformalization.\n\n## Domain Adaptation for Retrieval\n\nIt's important to adapt general retrievers to new working scenarios beyond their original training domains, and a variety of domain adaptation methods have been proposed in recent years. Recent approaches include Reinforcement Learning of generator with Retriever's Feedback (RLRF) and Reinforcement Learning of retriever with Generator's Feedback (RLGF), which through alternating execution can progressively enhance end-to-end retrieval performance for the target domain."
+    ],
+    "durationSeconds": 8.367606320999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1f4d79a7-9d3b-4f25-a487-723e7fb5edbe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-27T16:50:08.553Z_
+
+```json
+{
+  "parentUuid": "9d646319-cc86-4c32-bcf0-b63d43a79289",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1088382b-c2d3-4fc6-8ede-c8a9c5c4f6d5",
+  "timestamp": "2026-05-27T16:50:08.553Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "1088382b-c2d3-4fc6-8ede-c8a9c5c4f6d5",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-27T16:50:11.726Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+NeurIPS 2026 deadline has already passed (May 4/6, 2026 AOE, and today is May 27, 2026). Let me search for more venue deadlines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1088382b-c2d3-4fc6-8ede-c8a9c5c4f6d5",
+  "isSidechain": false,
+  "requestId": "req_011CbTRBZSoCnPjSbv1Y9RSw",
+  "type": "assistant",
+  "uuid": "faec6f3c-f307-45e1-b655-c77e3f4af542",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMdERx63RneDesPtDgp4cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1309,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 17266,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1309,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 17266,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-27T16:50:12.145Z_
+
+NeurIPS 2026 deadline already passed (May 6). Let me search for more venues:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faec6f3c-f307-45e1-b655-c77e3f4af542",
+  "isSidechain": false,
+  "requestId": "req_011CbTRBZSoCnPjSbv1Y9RSw",
+  "type": "assistant",
+  "uuid": "25a1b301-e2ce-4c51-a91e-ef5821ac593e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMdERx63RneDesPtDgp4cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1309,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 17266,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1309,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 17266,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-27T16:50:12.759Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JrsWMBCws7JKP44npRtejM`</summary>
+
+```json
+{
+  "query": "COLM 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25a1b301-e2ce-4c51-a91e-ef5821ac593e",
+  "isSidechain": false,
+  "requestId": "req_011CbTRBZSoCnPjSbv1Y9RSw",
+  "type": "assistant",
+  "uuid": "7275b907-ed0a-4434-9834-e0065d17d1ed",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMdERx63RneDesPtDgp4cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1309,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 17266,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1309,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 17266,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-27T16:50:13.175Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EsXcjYZxhHMo9aBYtRFLT9`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7275b907-ed0a-4434-9834-e0065d17d1ed",
+  "isSidechain": false,
+  "requestId": "req_011CbTRBZSoCnPjSbv1Y9RSw",
+  "type": "assistant",
+  "uuid": "c4c4acd7-94eb-4f54-9cd5-dd88b73f8af2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMdERx63RneDesPtDgp4cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1309,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 17266,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1309,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 17266,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-27T16:50:13.642Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NoDQjMC69Vsw3TTrw9XNuN`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4c4acd7-94eb-4f54-9cd5-dd88b73f8af2",
+  "isSidechain": false,
+  "requestId": "req_011CbTRBZSoCnPjSbv1Y9RSw",
+  "type": "assistant",
+  "uuid": "c5ec5d86-da7e-40d1-8ec6-593f3fc17d82",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMdERx63RneDesPtDgp4cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1309,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 17266,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1309,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 17266,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-27T16:50:13.645Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XfH5ZuyBaWhJuxTXd4n93q`</summary>
+
+```json
+{
+  "query": "ICML 2026 submission deadline date"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5ec5d86-da7e-40d1-8ec6-593f3fc17d82",
+  "isSidechain": false,
+  "requestId": "req_011CbTRBZSoCnPjSbv1Y9RSw",
+  "type": "assistant",
+  "uuid": "c7601adb-a524-4c45-8a96-ae0cc17d0b91",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMdERx63RneDesPtDgp4cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1309,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 17266,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1309,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 17266,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-27T16:50:16.007Z_
+
+<details><summary>↩ Tool result · `toolu_01JrsWMBCws7JKP44npRtejM`</summary>
+
+```text
+Web search results for query: "COLM 2026 submission deadline"
+
+Links: [{"title":"COLM 2026: Key Dates","url":"https://colmweb.org/dates.html"},{"title":"COLM 2026: Call for Papers","url":"https://colmweb.org/cfp.html"},{"title":"COLM 2026: Submission Instructions","url":"https://colmweb.org/submission-instructions.html"},{"title":"Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X","url":"https://x.com/COLM_conf/status/2000952051212415394"},{"title":"Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research","url":"https://www.servicenow.com/research/event/2026-colm.html"},{"title":"COLM 2026","url":"https://colmweb.org/"},{"title":"When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/conference/colm"},{"title":"COLM 2026: Call for Workshops","url":"https://colmweb.org/cfw.html"},{"title":"COLM 2026 - Conference on Language Modeling Deadline | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/venue/colm"},{"title":"Aviral Kumar on X: \"Submit your papers to COLM (deadline: March 31)!\" / X","url":"https://x.com/aviral_kumar2/status/2000963068717625813"}]
+
+Based on the search results, here are the COLM 2026 submission deadlines:
+
+**Abstract deadline: Thursday, March 26, 2026**
+**Full paper submission deadline: Tuesday, March 31, 2026**
+
+Additionally, for workshops, the suggested submission deadline for workshop contributions is June 23, 2026.
+
+COLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7275b907-ed0a-4434-9834-e0065d17d1ed",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "9dc77c0e-338a-4fcb-8f68-84f27070505f",
+  "toolUseResult": {
+    "query": "COLM 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DEwgM5pHWUqcnJKqHEbNMZ",
+        "content": [
+          {
+            "title": "COLM 2026: Key Dates",
+            "url": "https://colmweb.org/dates.html"
+          },
+          {
+            "title": "COLM 2026: Call for Papers",
+            "url": "https://colmweb.org/cfp.html"
+          },
+          {
+            "title": "COLM 2026: Submission Instructions",
+            "url": "https://colmweb.org/submission-instructions.html"
+          },
+          {
+            "title": "Conference on Language Modeling on X: \"COLM 2026 is just around the corner! Mark your calendars for: 💡Abstract deadline: Thursday, March 26, 2026 📄Full paper submission deadline: Tuesday, March 31, 2026 Call for papers in thread (website coming soon). https://t.co/YfjLxzCqxO\" / X",
+            "url": "https://x.com/COLM_conf/status/2000952051212415394"
+          },
+          {
+            "title": "Conference on Language Modeling (COLM), 2026 | ServiceNow AI Research",
+            "url": "https://www.servicenow.com/research/event/2026-colm.html"
+          },
+          {
+            "title": "COLM 2026",
+            "url": "https://colmweb.org/"
+          },
+          {
+            "title": "When is COLM 2026? Dates, Deadline & Location | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/conference/colm"
+          },
+          {
+            "title": "COLM 2026: Call for Workshops",
+            "url": "https://colmweb.org/cfw.html"
+          },
+          {
+            "title": "COLM 2026 - Conference on Language Modeling Deadline | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/venue/colm"
+          },
+          {
+            "title": "Aviral Kumar on X: \"Submit your papers to COLM (deadline: March 31)!\" / X",
+            "url": "https://x.com/aviral_kumar2/status/2000963068717625813"
+          }
+        ]
+      },
+      "Based on the search results, here are the COLM 2026 submission deadlines:\n\n**Abstract deadline: Thursday, March 26, 2026**\n**Full paper submission deadline: Tuesday, March 31, 2026**\n\nAdditionally, for workshops, the suggested submission deadline for workshop contributions is June 23, 2026.\n\nCOLM 2026 will take place at the Hilton Union Square in San Francisco, USA from October 6-9, 2026."
+    ],
+    "durationSeconds": 3.246106998000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7275b907-ed0a-4434-9834-e0065d17d1ed",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-27T16:50:16.724Z_
+
+<details><summary>↩ Tool result · `toolu_01XfH5ZuyBaWhJuxTXd4n93q`</summary>
+
+```text
+Web search results for query: "ICML 2026 submission deadline date"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected","url":"https://eu.36kr.com/en/p/3540848514510723"},{"title":"ICML 2026 Call For Position Papers","url":"https://icml.cc/Conferences/2026/CallForPositionPapers"},{"title":"ICML 2026 Call for Post-Conference Workshops","url":"https://icml.cc/Conferences/2026/CallForWorkshops"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683"},{"title":"ICML 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"}]
+
+Based on the search results, the deadline for full paper submission for ICML 2026 is January 28th, 2026. Additionally, there is an abstract submission deadline of January 23, 2026 (AoE, ending January 24, 2026 at 12 Noon UTC-0).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c7601adb-a524-4c45-8a96-ae0cc17d0b91",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "9566b9c7-3e8c-4e8b-987e-343002da43eb",
+  "toolUseResult": {
+    "query": "ICML 2026 submission deadline date",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PSgMDvbhL5v4HK5PdAKYL8",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+            "url": "https://eu.36kr.com/en/p/3540848514510723"
+          },
+          {
+            "title": "ICML 2026 Call For Position Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPositionPapers"
+          },
+          {
+            "title": "ICML 2026 Call for Post-Conference Workshops",
+            "url": "https://icml.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+          }
+        ]
+      },
+      "Based on the search results, the deadline for full paper submission for ICML 2026 is January 28th, 2026. Additionally, there is an abstract submission deadline of January 23, 2026 (AoE, ending January 24, 2026 at 12 Noon UTC-0)."
+    ],
+    "durationSeconds": 3.0773601990000023,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c7601adb-a524-4c45-8a96-ae0cc17d0b91",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-27T16:50:16.789Z_
+
+<details><summary>↩ Tool result · `toolu_01EsXcjYZxhHMo9aBYtRFLT9`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline"
+
+Links: [{"title":"The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026","url":"https://2026.emnlp.org/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"},{"title":"EMNLP 2026 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FConference"},{"title":"2026 *ACL Conference Dates | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"}]
+
+Based on the search results, here's the information about the EMNLP 2026 submission deadline:
+
+The EMNLP 2026 paper submission deadline is May 25, 2026 at 23:59:59 (UTC-12). 
+
+The 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP 2026) will be held in Budapest, Hungary from October 24th to October 29th, 2026.
+
+The submission is for the ARR (ACL Rolling Review) with a deadline of May 25, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4c4acd7-94eb-4f54-9cd5-dd88b73f8af2",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "4e3639d2-d91f-426e-9b22-a92bbf50c722",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GYyzNcTPuTVYcTaC4mETMf",
+        "content": [
+          {
+            "title": "The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026",
+            "url": "https://2026.emnlp.org/"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          },
+          {
+            "title": "EMNLP 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FConference"
+          },
+          {
+            "title": "2026 *ACL Conference Dates | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement/view/14"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          },
+          {
+            "title": "Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the EMNLP 2026 submission deadline:\n\nThe EMNLP 2026 paper submission deadline is May 25, 2026 at 23:59:59 (UTC-12). \n\nThe 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP 2026) will be held in Budapest, Hungary from October 24th to October 29th, 2026.\n\nThe submission is for the ARR (ACL Rolling Review) with a deadline of May 25, 2026."
+    ],
+    "durationSeconds": 3.6121073869999965,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c4c4acd7-94eb-4f54-9cd5-dd88b73f8af2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-27T16:50:17.895Z_
+
+<details><summary>↩ Tool result · `toolu_01NoDQjMC69Vsw3TTrw9XNuN`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline"
+
+Links: [{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI 2027 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AAAI Conference on Artificial Intelligence","url":"http://aideadlines.org/conference/?id=aaai27"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"}]
+
+Based on the search results, here's the information about the AAAI 2027 submission deadline:
+
+For the AAAI-27 Main Technical Track, abstracts are due July 21, 2026, and full papers are due July 28, 2026, with supplementary material and code due by July 31, 2026 (all deadlines at 11:59 PM UTC-12).
+
+Track-specific deadlines are listed on their respective Call for Papers, and deadlines may differ from those listed above.
+
+The Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5ec5d86-da7e-40d1-8ec6-593f3fc17d82",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "24ab2364-98bb-4993-a012-3a62d98a1e62",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Dwc6yLtG71LQgepbKm4Uce",
+        "content": [
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI 2027 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence",
+            "url": "http://aideadlines.org/conference/?id=aaai27"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the AAAI 2027 submission deadline:\n\nFor the AAAI-27 Main Technical Track, abstracts are due July 21, 2026, and full papers are due July 28, 2026, with supplementary material and code due by July 31, 2026 (all deadlines at 11:59 PM UTC-12).\n\nTrack-specific deadlines are listed on their respective Call for Papers, and deadlines may differ from those listed above.\n\nThe Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027."
+    ],
+    "durationSeconds": 4.251965178999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c5ec5d86-da7e-40d1-8ec6-593f3fc17d82",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-27T16:50:26.198Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now check more deadlines and search for other relevant details:
+- COLM 2026 main deadline passed (March 31), but workshop deadline is June 23, 2026
+- EMNLP 2026 ARR deadline was May 25, 2026 - this might have just passed (today is May 27)
+- AAAI 2027 abstract deadline is July 21, 2026, full papers July 28 - this is still open!
+- ICML 2026 already passed (January 28)
+
+
+- I should also look into NeurIPS 2026 workshops, ICLR 2027 which typically has fall deadlines, and verify whether EMNLP 2026 has a later commitment deadline beyond the ARR deadline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24ab2364-98bb-4993-a012-3a62d98a1e62",
+  "isSidechain": false,
+  "requestId": "req_011CbTRCFPNkXnrBFUpT9A6d",
+  "type": "assistant",
+  "uuid": "13a41635-3cba-4a42-940f-27aef923cf56",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138UtzsVTzBvAEsoViinpG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 516,
+      "cache_creation_input_tokens": 3712,
+      "cache_read_input_tokens": 19067,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 516,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 19067,
+          "cache_creation_input_tokens": 3712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-27T16:50:26.201Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BpiXWwcihtQRL4X27WJuh6`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR commitment deadline June July"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13a41635-3cba-4a42-940f-27aef923cf56",
+  "isSidechain": false,
+  "requestId": "req_011CbTRCFPNkXnrBFUpT9A6d",
+  "type": "assistant",
+  "uuid": "7c999f3c-b08e-4044-ad86-d7e602ac7278",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138UtzsVTzBvAEsoViinpG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 516,
+      "cache_creation_input_tokens": 3712,
+      "cache_read_input_tokens": 19067,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 516,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 19067,
+          "cache_creation_input_tokens": 3712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-27T16:50:26.315Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GE65XLvdFvrw4DiQEGuVSu`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 workshop submission deadline June July"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c999f3c-b08e-4044-ad86-d7e602ac7278",
+  "isSidechain": false,
+  "requestId": "req_011CbTRCFPNkXnrBFUpT9A6d",
+  "type": "assistant",
+  "uuid": "75a8498c-e408-49ed-b14a-6c68c7d86780",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138UtzsVTzBvAEsoViinpG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 516,
+      "cache_creation_input_tokens": 3712,
+      "cache_read_input_tokens": 19067,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 516,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 19067,
+          "cache_creation_input_tokens": 3712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-27T16:50:26.595Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q97QaChisQzL14LovNP1gq`</summary>
+
+```json
+{
+  "query": "ICLR 2027 call for papers deadline October September 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75a8498c-e408-49ed-b14a-6c68c7d86780",
+  "isSidechain": false,
+  "requestId": "req_011CbTRCFPNkXnrBFUpT9A6d",
+  "type": "assistant",
+  "uuid": "a915d593-6836-4574-9968-91de63d795c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138UtzsVTzBvAEsoViinpG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 516,
+      "cache_creation_input_tokens": 3712,
+      "cache_read_input_tokens": 19067,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 516,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 19067,
+          "cache_creation_input_tokens": 3712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-27T16:50:26.771Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WSzTf1uVP9faNpgphXECKY`</summary>
+
+```json
+{
+  "query": "ACL Rolling Review June 2026 submission deadline ARR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a915d593-6836-4574-9968-91de63d795c6",
+  "isSidechain": false,
+  "requestId": "req_011CbTRCFPNkXnrBFUpT9A6d",
+  "type": "assistant",
+  "uuid": "9a0557b4-a4dc-4fbc-809b-7d1f4ca488c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138UtzsVTzBvAEsoViinpG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 516,
+      "cache_creation_input_tokens": 3712,
+      "cache_read_input_tokens": 19067,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 516,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 19067,
+          "cache_creation_input_tokens": 3712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "9a0557b4-a4dc-4fbc-809b-7d1f4ca488c8",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-27T16:50:30.470Z_
+
+<details><summary>↩ Tool result · `toolu_01GE65XLvdFvrw4DiQEGuVSu`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 workshop submission deadline June July"
+
+Links: [{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"Guidance for NeurIPS Workshop Proposals 2026","url":"https://neurips.cc/Conferences/2026/WorkshopsGuidance"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X","url":"https://x.com/NeurIPSConf/status/2041303457554940336"},{"title":"NeurIPS: Neural Information Processing Systems 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=2212"}]
+
+Based on the search results, here are the important dates for NeurIPS 2026 workshop submissions:
+
+**Workshop Application Deadline: June 6, 2026, AoE** (Anywhere on Earth)
+
+**Workshop Acceptance Notification: July 11, 2026, AoE**
+
+Additionally, there are other important deadlines for workshop submissions:
+
+- Workshop Application Open: April 21, 2026, AoE
+- Suggested Submission Date for Workshop Contributions: August 29, 2026, AoE
+- Mandatory Accept/Reject Notification Date: September 29, 2026, AoE
+
+So the main deadline for submitting workshop proposals is **June 6, 2026**, with acceptance notifications coming by **July 11, 2026**.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75a8498c-e408-49ed-b14a-6c68c7d86780",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "c0eb4c0e-77f2-423e-842e-464e7a60f167",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 workshop submission deadline June July",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B42CDySkHSrRaHjgCL376G",
+        "content": [
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Guidance for NeurIPS Workshop Proposals 2026",
+            "url": "https://neurips.cc/Conferences/2026/WorkshopsGuidance"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS Conference on X: \"The NeurIPS 2026 submission site opening has been moved to April 15th. Note that all tracks (Main Submission, Evaluations &amp; Datasets, and Position Papers) share the same dates. The final submission deadlines remain unchanged: • Paper Abstracts: May 4th (AOE) • Full Papers:\" / X",
+            "url": "https://x.com/NeurIPSConf/status/2041303457554940336"
+          },
+          {
+            "title": "NeurIPS: Neural Information Processing Systems 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=2212"
+          }
+        ]
+      },
+      "Based on the search results, here are the important dates for NeurIPS 2026 workshop submissions:\n\n**Workshop Application Deadline: June 6, 2026, AoE** (Anywhere on Earth)\n\n**Workshop Acceptance Notification: July 11, 2026, AoE**\n\nAdditionally, there are other important deadlines for workshop submissions:\n\n- Workshop Application Open: April 21, 2026, AoE\n- Suggested Submission Date for Workshop Contributions: August 29, 2026, AoE\n- Mandatory Accept/Reject Notification Date: September 29, 2026, AoE\n\nSo the main deadline for submitting workshop proposals is **June 6, 2026**, with acceptance notifications coming by **July 11, 2026**."
+    ],
+    "durationSeconds": 4.152423576000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "75a8498c-e408-49ed-b14a-6c68c7d86780",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-27T16:50:31.073Z_
+
+<details><summary>↩ Tool result · `toolu_01Q97QaChisQzL14LovNP1gq`</summary>
+
+```text
+Web search results for query: "ICLR 2027 call for papers deadline October September 2026"
+
+Links: [{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, I found information about ICLR 2026, but the search did not return specific deadline information for ICLR 2027. The results show that ICLR 2027 is predicted to occur April 24-28, 2027, with a note that this is "predicted based on previous year schedule" and readers should "verify on the official conference website."
+
+However, I was unable to find the specific call for papers deadline for ICLR 2027 (whether it falls in September or October 2026) in these search results. The official ICLR website and OpenReview may have this information once it's officially announced. I recommend checking the official ICLR website (iclr.cc) or the OpenReview platform for the most current and accurate deadline information for ICLR 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a915d593-6836-4574-9968-91de63d795c6",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "ce6d4921-bba9-4c08-bf78-dae264ad246a",
+  "toolUseResult": {
+    "query": "ICLR 2027 call for papers deadline October September 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YQXybsMmxqMYnux3SgyDsT",
+        "content": [
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2026, but the search did not return specific deadline information for ICLR 2027. The results show that ICLR 2027 is predicted to occur April 24-28, 2027, with a note that this is \"predicted based on previous year schedule\" and readers should \"verify on the official conference website.\"\n\nHowever, I was unable to find the specific call for papers deadline for ICLR 2027 (whether it falls in September or October 2026) in these search results. The official ICLR website and OpenReview may have this information once it's officially announced. I recommend checking the official ICLR website (iclr.cc) or the OpenReview platform for the most current and accurate deadline information for ICLR 2027."
+    ],
+    "durationSeconds": 4.475311658999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a915d593-6836-4574-9968-91de63d795c6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-27T16:50:31.371Z_
+
+<details><summary>↩ Tool result · `toolu_01WSzTf1uVP9faNpgphXECKY`</summary>
+
+```text
+Web search results for query: "ACL Rolling Review June 2026 submission deadline ARR"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org//calls/papers/"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, here's what I found about the ACL Rolling Review (ARR) June 2026 submission deadline:
+
+The submission deadline is always the 15th of the month, so the June 2026 ARR submission deadline would be **June 15, 2026**.
+
+Additionally, it's important to note that the ACL Peer Review Committee recommended to switch to 10-week cycles, with the new schedule taking action starting in May 2025. This means that instead of 6 cycles a year there will generally be 5, but with more reasonable timelines for the review tasks and author response.
+
+For submission requirements and other details, you can visit the official ARR website at aclrollingreview.org.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a0557b4-a4dc-4fbc-809b-7d1f4ca488c8",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "c5fb7b97-6b81-4194-afb0-a978980406f5",
+  "toolUseResult": {
+    "query": "ACL Rolling Review June 2026 submission deadline ARR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016h6yrvefP48qu9tpbmdv7r",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org//calls/papers/"
+          },
+          {
+            "title": "ACL ARR 2026 January | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the ACL Rolling Review (ARR) June 2026 submission deadline:\n\nThe submission deadline is always the 15th of the month, so the June 2026 ARR submission deadline would be **June 15, 2026**.\n\nAdditionally, it's important to note that the ACL Peer Review Committee recommended to switch to 10-week cycles, with the new schedule taking action starting in May 2025. This means that instead of 6 cycles a year there will generally be 5, but with more reasonable timelines for the review tasks and author response.\n\nFor submission requirements and other details, you can visit the official ARR website at aclrollingreview.org."
+    ],
+    "durationSeconds": 4.598007457,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9a0557b4-a4dc-4fbc-809b-7d1f4ca488c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-27T16:50:32.114Z_
+
+<details><summary>↩ Tool result · `toolu_01BpiXWwcihtQRL4X27WJuh6`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR commitment deadline June July"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org//calls/papers/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 Workshop WiNLP ARR Commitment | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FWorkshop%2FWiNLP_ARR_Commitment"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"}]
+
+Based on the search results, here's the information about EMNLP 2026 ARR commitment deadline:
+
+The EMNLP 2026 commitment deadline is August 2, 2026. This falls in August rather than June or July.
+
+The timeline for EMNLP 2026 includes several key dates in the June-July period:
+- Author response and author-reviewer discussion runs from July 7 - July 13, 2026
+- Meta review is released on July 30, 2026
+
+So while there are important ARR-related deadlines in June and July, the actual commitment deadline for EMNLP 2026 is in early August rather than in June or July.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c999f3c-b08e-4044-ad86-d7e602ac7278",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "2365ba71-e429-4da3-accd-6d6d7508f3bf",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR commitment deadline June July",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DVo2bcUe3P3XzwyuVBumgw",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org//calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 Workshop WiNLP ARR Commitment | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FWorkshop%2FWiNLP_ARR_Commitment"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about EMNLP 2026 ARR commitment deadline:\n\nThe EMNLP 2026 commitment deadline is August 2, 2026. This falls in August rather than June or July.\n\nThe timeline for EMNLP 2026 includes several key dates in the June-July period:\n- Author response and author-reviewer discussion runs from July 7 - July 13, 2026\n- Meta review is released on July 30, 2026\n\nSo while there are important ARR-related deadlines in June and July, the actual commitment deadline for EMNLP 2026 is in early August rather than in June or July."
+    ],
+    "durationSeconds": 5.910630141000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7c999f3c-b08e-4044-ad86-d7e602ac7278",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-27T16:50:41.608Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, let me gather more info. Key deadline findings so far:
+- NeurIPS 2026: PASSED (May 6, 2026)
+- ICML 2026: PASSED (January 28, 2026)
+- COLM 2026: PASSED (March 31, 2026)
+- EMNLP 2026 ARR: May 25 was the initial ARR deadline (just passed), but commitment deadline is August 2, 2026
+- ARR June 2026: June 15, 2026 (still open!)
+- AAAI 2027: Abstract July 21, Full paper July 28, 2026 (still open!)
+
+
+- ICLR 2027: Likely around October 2026 when announced
+- NeurIPS 2026 workshops: Proposals due June 6, contributions August 29
+
+The most promising paths forward are ARR June 2026 feeding into EMNLP 2026, AAAI 2027 in late July, ICLR 2027 in the fall, or workshop submissions for NeurIPS 2026. Let me search for more specific details while the agents work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2365ba71-e429-4da3-accd-6d6d7508f3bf",
+  "isSidechain": false,
+  "requestId": "req_011CbTRDJDK69QC2qFevnzmg",
+  "type": "assistant",
+  "uuid": "f8bb66b6-1967-46e0-95b4-aae065be08ac",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7D88388WJrP6cJs44zoF9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1923,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 22779,
+      "output_tokens": 572,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1923,
+          "output_tokens": 572,
+          "cache_read_input_tokens": 22779,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-27T16:50:41.612Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U76fn6qjePo23FHS9W7533`</summary>
+
+```json
+{
+  "query": "StepFun Formalizer 32B FormalMATH autoformalization benchmark results 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8bb66b6-1967-46e0-95b4-aae065be08ac",
+  "isSidechain": false,
+  "requestId": "req_011CbTRDJDK69QC2qFevnzmg",
+  "type": "assistant",
+  "uuid": "7ffb0ec0-e3f6-40a6-b7b5-e41ee250526d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7D88388WJrP6cJs44zoF9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1923,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 22779,
+      "output_tokens": 572,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1923,
+          "output_tokens": 572,
+          "cache_read_input_tokens": 22779,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-27T16:50:42.003Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S8LEzAJtvdcbrXAnSdJegK`</summary>
+
+```json
+{
+  "query": "best open source math reasoning model 2026 DeepSeek Qwen"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ffb0ec0-e3f6-40a6-b7b5-e41ee250526d",
+  "isSidechain": false,
+  "requestId": "req_011CbTRDJDK69QC2qFevnzmg",
+  "type": "assistant",
+  "uuid": "8a946923-f327-40f9-a48e-51562edc890a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7D88388WJrP6cJs44zoF9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1923,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 22779,
+      "output_tokens": 572,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1923,
+          "output_tokens": 572,
+          "cache_read_input_tokens": 22779,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-27T16:50:42.948Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NLcURAJYVQt6NWhLfnPLYX`</summary>
+
+```json
+{
+  "query": "TTRL test-time reinforcement learning paper NeurIPS 2025 Qwen AIME"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a946923-f327-40f9-a48e-51562edc890a",
+  "isSidechain": false,
+  "requestId": "req_011CbTRDJDK69QC2qFevnzmg",
+  "type": "assistant",
+  "uuid": "83125cd7-467d-4cba-aa50-0590483cef72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7D88388WJrP6cJs44zoF9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1923,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 22779,
+      "output_tokens": 572,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1923,
+          "output_tokens": 572,
+          "cache_read_input_tokens": 22779,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-27T16:50:43.575Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BoRfcN9UGKhHqY2oVZ6kKU`</summary>
+
+```json
+{
+  "query": "FormaRL GRPO autoformalization COLM 2025 paper results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83125cd7-467d-4cba-aa50-0590483cef72",
+  "isSidechain": false,
+  "requestId": "req_011CbTRDJDK69QC2qFevnzmg",
+  "type": "assistant",
+  "uuid": "4eaa840d-2742-48a4-80dd-7848c07cd50b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T7D88388WJrP6cJs44zoF9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1923,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 22779,
+      "output_tokens": 572,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1923,
+          "output_tokens": 572,
+          "cache_read_input_tokens": 22779,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-27T16:50:47.460Z_
+
+<details><summary>↩ Tool result · `toolu_01U76fn6qjePo23FHS9W7533`</summary>
+
+```text
+Web search results for query: "StepFun Formalizer 32B FormalMATH autoformalization benchmark results 2025"
+
+Links: [{"title":"StepFun-Formalizer-32B: Autoformalization LLM","url":"https://www.emergentmind.com/topics/stepfun-formalizer-32b"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential","url":"https://www.arxiv.org/pdf/2508.04440"},{"title":"stepfun-ai/StepFun-Formalizer-32B · Hugging Face","url":"https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B"},{"title":"[2508.04440v1] StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion","url":"https://arxiv.org/abs/2508.04440v1"},{"title":"[2508.04440] StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion","url":"https://arxiv.org/abs/2508.04440"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion","url":"https://arxiv.org/html/2508.04440v2"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40691"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/html/2510.06857v1"}]
+
+Based on the search results, here are the benchmark results for StepFun Formalizer 32B on the FormalMATH autoformalization benchmarks:
+
+## FormalMATH Benchmark Results
+
+On FormalMATH-Lite, StepFun-Formalizer-32B attains a BEq@1 of 40.5%. On ProverBench, it achieves 26.7%.
+
+## Performance Overview
+
+StepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models.
+
+## Model Architecture and Training
+
+StepFun-Formalizer-32B is a large language model designed to autoformalize informal mathematical statements into rigorous Lean 4 code. It employs a hybrid training pipeline combining knowledge distillation, template-guided reasoning, and reinforcement learning with verifiable rewards. The training pipeline is called ThinkingF, a data synthesis and training pipeline that improves both abilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ffb0ec0-e3f6-40a6-b7b5-e41ee250526d",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "a99dadd3-4db5-4db5-a519-e808bb3b0366",
+  "toolUseResult": {
+    "query": "StepFun Formalizer 32B FormalMATH autoformalization benchmark results 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ayu5cWBqWKLU1gGQc522An",
+        "content": [
+          {
+            "title": "StepFun-Formalizer-32B: Autoformalization LLM",
+            "url": "https://www.emergentmind.com/topics/stepfun-formalizer-32b"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential",
+            "url": "https://www.arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "stepfun-ai/StepFun-Formalizer-32B · Hugging Face",
+            "url": "https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B"
+          },
+          {
+            "title": "[2508.04440v1] StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/abs/2508.04440v1"
+          },
+          {
+            "title": "[2508.04440] StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/abs/2508.04440"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/html/2508.04440v2"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40691"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/html/2510.06857v1"
+          }
+        ]
+      },
+      "Based on the search results, here are the benchmark results for StepFun Formalizer 32B on the FormalMATH autoformalization benchmarks:\n\n## FormalMATH Benchmark Results\n\nOn FormalMATH-Lite, StepFun-Formalizer-32B attains a BEq@1 of 40.5%. On ProverBench, it achieves 26.7%.\n\n## Performance Overview\n\nStepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models.\n\n## Model Architecture and Training\n\nStepFun-Formalizer-32B is a large language model designed to autoformalize informal mathematical statements into rigorous Lean 4 code. It employs a hybrid training pipeline combining knowledge distillation, template-guided reasoning, and reinforcement learning with verifiable rewards. The training pipeline is called ThinkingF, a data synthesis and training pipeline that improves both abilities."
+    ],
+    "durationSeconds": 5.84520663700001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7ffb0ec0-e3f6-40a6-b7b5-e41ee250526d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "a99dadd3-4db5-4db5-a519-e808bb3b0366",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-27T16:50:49.802Z_
+
+<details><summary>↩ Tool result · `toolu_01NLcURAJYVQt6NWhLfnPLYX`</summary>
+
+```text
+Web search results for query: "TTRL test-time reinforcement learning paper NeurIPS 2025 Qwen AIME"
+
+Links: [{"title":"TTRL: Test-Time Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=VuVhgEiu20"},{"title":"GitHub - PRIME-RL/TTRL: [NeurIPS 2025] TTRL: Test-Time Reinforcement Learning · GitHub","url":"https://github.com/prime-rl/ttrl"},{"title":"NeurIPS Poster TTRL: Test-Time Reinforcement Learning","url":"https://neurips.cc/virtual/2025/poster/117645"},{"title":"[2504.16084v1] TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/abs/2504.16084v1"},{"title":"[2504.16084] TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/abs/2504.16084"},{"title":"TTRL: Test-Time Reinforcement Learning | by Eleventh Hour Enthusiast | Medium","url":"https://medium.com/@EleventhHourEnthusiast/ttrl-test-time-reinforcement-learning-d78a74e78a28"},{"title":"Paper page - TTRL: Test-Time Reinforcement Learning","url":"https://huggingface.co/papers/2504.16084"},{"title":"GitHub - Mani-RRI/TTRL-Test-Time-Reinforcement-Learning: TTRL: Test-Time Reinforcement Learning","url":"https://github.com/Mani-RRI/TTRL-Test-Time-Reinforcement-Learning"},{"title":"arXiv:2504.16084v3 [cs.CL] 30 Jun 2025 TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2504.16084"},{"title":"arXiv:2504.16084v1 [cs.CL] 22 Apr 2025 TTRL: Test-Time Reinforcement Learning","url":"https://arxiv.org/pdf/2504.16084v1"}]
+
+I found the TTRL paper for you! Here's what I found:
+
+TTRL (Test-Time Reinforcement Learning) is a novel method for training LLMs using RL on unlabeled data. The paper investigates Reinforcement Learning on data without explicit labels for reasoning tasks in Large Language Models, with the core challenge being reward estimation during inference without access to ground-truth information.
+
+The key insight is that common practices in Test-Time Scaling (TTS), such as majority voting, yield surprisingly effective rewards suitable for driving RL training.
+
+**Key Results:**
+TTRL boosts the pass@1 performance of Qwen-2.5-Math-7B by approximately 211% on the AIME 2024 with only unlabeled test data. Although TTRL is only supervised by the maj@n metric, it has demonstrated performance to consistently surpass the upper limit of the initial model and approach the performance of models trained directly on test data with ground-truth labels.
+
+**Publication:**
+The paper is accepted at NeurIPS 2025 and is available on:
+- ArXiv: 2504.16084
+- GitHub: https://github.com/PRIME-RL/TTRL
+- OpenReview: NeurIPS official submission
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83125cd7-467d-4cba-aa50-0590483cef72",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "4e1eeb63-7e18-44bf-8a3e-a59771687ebe",
+  "toolUseResult": {
+    "query": "TTRL test-time reinforcement learning paper NeurIPS 2025 Qwen AIME",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013h53sw8ujxR4h5Cx7RajVw",
+        "content": [
+          {
+            "title": "TTRL: Test-Time Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=VuVhgEiu20"
+          },
+          {
+            "title": "GitHub - PRIME-RL/TTRL: [NeurIPS 2025] TTRL: Test-Time Reinforcement Learning · GitHub",
+            "url": "https://github.com/prime-rl/ttrl"
+          },
+          {
+            "title": "NeurIPS Poster TTRL: Test-Time Reinforcement Learning",
+            "url": "https://neurips.cc/virtual/2025/poster/117645"
+          },
+          {
+            "title": "[2504.16084v1] TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2504.16084v1"
+          },
+          {
+            "title": "[2504.16084] TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2504.16084"
+          },
+          {
+            "title": "TTRL: Test-Time Reinforcement Learning | by Eleventh Hour Enthusiast | Medium",
+            "url": "https://medium.com/@EleventhHourEnthusiast/ttrl-test-time-reinforcement-learning-d78a74e78a28"
+          },
+          {
+            "title": "Paper page - TTRL: Test-Time Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2504.16084"
+          },
+          {
+            "title": "GitHub - Mani-RRI/TTRL-Test-Time-Reinforcement-Learning: TTRL: Test-Time Reinforcement Learning",
+            "url": "https://github.com/Mani-RRI/TTRL-Test-Time-Reinforcement-Learning"
+          },
+          {
+            "title": "arXiv:2504.16084v3 [cs.CL] 30 Jun 2025 TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2504.16084"
+          },
+          {
+            "title": "arXiv:2504.16084v1 [cs.CL] 22 Apr 2025 TTRL: Test-Time Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2504.16084v1"
+          }
+        ]
+      },
+      "I found the TTRL paper for you! Here's what I found:\n\nTTRL (Test-Time Reinforcement Learning) is a novel method for training LLMs using RL on unlabeled data. The paper investigates Reinforcement Learning on data without explicit labels for reasoning tasks in Large Language Models, with the core challenge being reward estimation during inference without access to ground-truth information.\n\nThe key insight is that common practices in Test-Time Scaling (TTS), such as majority voting, yield surprisingly effective rewards suitable for driving RL training.\n\n**Key Results:**\nTTRL boosts the pass@1 performance of Qwen-2.5-Math-7B by approximately 211% on the AIME 2024 with only unlabeled test data. Although TTRL is only supervised by the maj@n metric, it has demonstrated performance to consistently surpass the upper limit of the initial model and approach the performance of models trained directly on test data with ground-truth labels.\n\n**Publication:**\nThe paper is accepted at NeurIPS 2025 and is available on:\n- ArXiv: 2504.16084\n- GitHub: https://github.com/PRIME-RL/TTRL\n- OpenReview: NeurIPS official submission"
+    ],
+    "durationSeconds": 6.850613742000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "83125cd7-467d-4cba-aa50-0590483cef72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-27T16:50:50.644Z_
+
+<details><summary>↩ Tool result · `toolu_01BoRfcN9UGKhHqY2oVZ6kKU`</summary>
+
+```text
+Web search results for query: "FormaRL GRPO autoformalization COLM 2025 paper results"
+
+Links: [{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data | OpenReview","url":"https://openreview.net/forum?id=Z2El1U94bq"},{"title":"[2508.18914] FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/abs/2508.18914"},{"title":"[PDF] FormaRL: Enhancing Autoformalization with no Labeled Data | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FormaRL:-Enhancing-Autoformalization-with-no-Data-Huang-Jin/b430d8ac9cf1236314a1273dc7e8fb9769ebae70"},{"title":"Towards Autoformalization of Mathematics and Code Correctness: Experiments with Elementary Proofs","url":"https://www.researchgate.net/publication/372928041_Towards_Autoformalization_of_Mathematics_and_Code_Correctness_Experiments_with_Elementary_Proofs"},{"title":"Published as a conference paper at COLM 2025","url":"https://openreview.net/pdf?id=Z2El1U94bq"},{"title":"GitHub - THUNLP-MT/FormaRL: [COLM25] Enhancing Autoformalization with no Labeled Data · GitHub","url":"https://github.com/THUNLP-MT/FormaRL"},{"title":"COLM 2025: Accepted Papers","url":"https://colmweb.org/2025/AcceptedPapers.html"},{"title":"Published as a conference paper at COLM 2025","url":"https://par.nsf.gov/servlets/purl/10635650"},{"title":"Yang Liu's Homepage at Tsinghua University","url":"https://nlp.csai.tsinghua.edu.cn/~ly/pub.html"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"}]
+
+Based on the search results, here's what I found about the FormaRL GRPO autoformalization paper at COLM 2025:
+
+## Overview
+
+FormaRL integrates syntax check from Lean compiler and consistency check from large language model to calculate the reward, and adopts GRPO algorithm to update the formalizer. The paper was accepted by COLM 2025.
+
+## Key Results
+
+The paper demonstrates significant improvements in autoformalization accuracy:
+
+- FormaRL increased the pass@1 autoformalization accuracy of Qwen2.5-Coder-7B-Instruct by 4-6x (4.04% → 26.15% on ProofNet and 2.4% → 9.6% on uproof) with merely 859 unlabeled data.
+
+- On uproof, the method achieved strong improvement in out-of-distribution performance compared to existing open-source state-of-the-art autoformalizers on both pass@1 accuracy (6.2% → 9.6%) and pass@16 accuracy (24.4% → 33.6%).
+
+- Models fine-tuned via FormaRL outperformed SFT based models across all benchmarks.
+
+## Additional Contributions
+
+The authors curated a proof problem dataset from undergraduate-level math materials, named uproof. Training code of FormaRL is open-sourced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4eaa840d-2742-48a4-80dd-7848c07cd50b",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "fb13a9a6-1652-499c-b534-3693b622d73f",
+  "toolUseResult": {
+    "query": "FormaRL GRPO autoformalization COLM 2025 paper results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011DHAb5CzkKsM8CwbUQYyiG",
+        "content": [
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data | OpenReview",
+            "url": "https://openreview.net/forum?id=Z2El1U94bq"
+          },
+          {
+            "title": "[2508.18914] FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/abs/2508.18914"
+          },
+          {
+            "title": "[PDF] FormaRL: Enhancing Autoformalization with no Labeled Data | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/FormaRL:-Enhancing-Autoformalization-with-no-Data-Huang-Jin/b430d8ac9cf1236314a1273dc7e8fb9769ebae70"
+          },
+          {
+            "title": "Towards Autoformalization of Mathematics and Code Correctness: Experiments with Elementary Proofs",
+            "url": "https://www.researchgate.net/publication/372928041_Towards_Autoformalization_of_Mathematics_and_Code_Correctness_Experiments_with_Elementary_Proofs"
+          },
+          {
+            "title": "Published as a conference paper at COLM 2025",
+            "url": "https://openreview.net/pdf?id=Z2El1U94bq"
+          },
+          {
+            "title": "GitHub - THUNLP-MT/FormaRL: [COLM25] Enhancing Autoformalization with no Labeled Data · GitHub",
+            "url": "https://github.com/THUNLP-MT/FormaRL"
+          },
+          {
+            "title": "COLM 2025: Accepted Papers",
+            "url": "https://colmweb.org/2025/AcceptedPapers.html"
+          },
+          {
+            "title": "Published as a conference paper at COLM 2025",
+            "url": "https://par.nsf.gov/servlets/purl/10635650"
+          },
+          {
+            "title": "Yang Liu's Homepage at Tsinghua University",
+            "url": "https://nlp.csai.tsinghua.edu.cn/~ly/pub.html"
+          },
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/pdf/2508.18914"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the FormaRL GRPO autoformalization paper at COLM 2025:\n\n## Overview\n\nFormaRL integrates syntax check from Lean compiler and consistency check from large language model to calculate the reward, and adopts GRPO algorithm to update the formalizer. The paper was accepted by COLM 2025.\n\n## Key Results\n\nThe paper demonstrates significant improvements in autoformalization accuracy:\n\n- FormaRL increased the pass@1 autoformalization accuracy of Qwen2.5-Coder-7B-Instruct by 4-6x (4.04% → 26.15% on ProofNet and 2.4% → 9.6% on uproof) with merely 859 unlabeled data.\n\n- On uproof, the method achieved strong improvement in out-of-distribution performance compared to existing open-source state-of-the-art autoformalizers on both pass@1 accuracy (6.2% → 9.6%) and pass@16 accuracy (24.4% → 33.6%).\n\n- Models fine-tuned via FormaRL outperformed SFT based models across all benchmarks.\n\n## Additional Contributions\n\nThe authors curated a proof problem dataset from undergraduate-level math materials, named uproof. Training code of FormaRL is open-sourced."
+    ],
+    "durationSeconds": 7.066024626000013,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4eaa840d-2742-48a4-80dd-7848c07cd50b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-27T16:50:50.709Z_
+
+<details><summary>↩ Tool result · `toolu_01S8LEzAJtvdcbrXAnSdJegK`</summary>
+
+```text
+Web search results for query: "best open source math reasoning model 2026 DeepSeek Qwen"
+
+Links: [{"title":"Best Open Source LLM For Math In 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math"},{"title":"Top 10 Open-source Reasoning Models in 2026","url":"https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"},{"title":"Best Chinese LLMs in 2026: DeepSeek V4, Kimi K2.6, GLM-5, Qwen, and Every Model Ranked | BenchLM.ai","url":"https://benchlm.ai/blog/posts/best-chinese-llm"},{"title":"10 Best Open Source LLMs for Ollama in 2026 (Ranked ...","url":"https://www.promptquorum.com/local-llms/top-open-source-models-ollama"},{"title":"Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License","url":"https://huggingface.co/blog/daya-shankar/open-source-llms"},{"title":"Best Open Source LLM Leaderboard 2026","url":"https://onyx.app/open-llm-leaderboard"},{"title":"Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org","url":"https://whatllm.org/best-open-source-llm"}]
+
+Based on the search results, here are the best open source math reasoning models in 2026:
+
+## Top Recommendations
+
+The top three best open source math models for 2026 are DeepSeek-R1 (offering o1-level reasoning), Qwen/QwQ-32B (providing balanced excellence), and THUDM/GLM-Z1-9B-0414 (a lightweight champion).
+
+### DeepSeek-R1
+DeepSeek-R1 offers elite-level performance comparable to OpenAI-o1. Additionally, DeepSeek-R1 7B and 14B are chain-of-thought reasoning models that perform significantly above standard models on math and logic.
+
+### Qwen Models
+QwQ-32B provides the best balance of capability and efficiency. There are also specialized distilled versions: DeepSeek-R1-Distill-Qwen3-8B outperforms Google's Gemini 2.5 Flash on AIME 2025 mathematical reasoning tasks and nearly matches Microsoft's Phi 4 on HMMT benchmarks, and this 8B model matches the performance of Qwen3-235B-Thinking on certain reasoning tasks.
+
+### GLM Models
+GLM-Z1-9B-0414 delivers surprising mathematical prowess in a lightweight package.
+
+These models are particularly strong for mathematical problem-solving and complex reasoning tasks, making them excellent choices depending on your performance and resource requirements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a946923-f327-40f9-a48e-51562edc890a",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "bf2fb35b-c25f-4bb8-9ef4-642a8c9a08c1",
+  "toolUseResult": {
+    "query": "best open source math reasoning model 2026 DeepSeek Qwen",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Dmvx3aec8zaatXgaLZFXzN",
+        "content": [
+          {
+            "title": "Best Open Source LLM For Math In 2026",
+            "url": "https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math"
+          },
+          {
+            "title": "Top 10 Open-source Reasoning Models in 2026",
+            "url": "https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"
+          },
+          {
+            "title": "Best Chinese LLMs in 2026: DeepSeek V4, Kimi K2.6, GLM-5, Qwen, and Every Model Ranked | BenchLM.ai",
+            "url": "https://benchlm.ai/blog/posts/best-chinese-llm"
+          },
+          {
+            "title": "10 Best Open Source LLMs for Ollama in 2026 (Ranked ...",
+            "url": "https://www.promptquorum.com/local-llms/top-open-source-models-ollama"
+          },
+          {
+            "title": "Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License",
+            "url": "https://huggingface.co/blog/daya-shankar/open-source-llms"
+          },
+          {
+            "title": "Best Open Source LLM Leaderboard 2026",
+            "url": "https://onyx.app/open-llm-leaderboard"
+          },
+          {
+            "title": "Best Open Source LLMs in 2026: Ranked by Coding, Reasoning & Cost | WhatLLM.org",
+            "url": "https://whatllm.org/best-open-source-llm"
+          }
+        ]
+      },
+      "Based on the search results, here are the best open source math reasoning models in 2026:\n\n## Top Recommendations\n\nThe top three best open source math models for 2026 are DeepSeek-R1 (offering o1-level reasoning), Qwen/QwQ-32B (providing balanced excellence), and THUDM/GLM-Z1-9B-0414 (a lightweight champion).\n\n### DeepSeek-R1\nDeepSeek-R1 offers elite-level performance comparable to OpenAI-o1. Additionally, DeepSeek-R1 7B and 14B are chain-of-thought reasoning models that perform significantly above standard models on math and logic.\n\n### Qwen Models\nQwQ-32B provides the best balance of capability and efficiency. There are also specialized distilled versions: DeepSeek-R1-Distill-Qwen3-8B outperforms Google's Gemini 2.5 Flash on AIME 2025 mathematical reasoning tasks and nearly matches Microsoft's Phi 4 on HMMT benchmarks, and this 8B model matches the performance of Qwen3-235B-Thinking on certain reasoning tasks.\n\n### GLM Models\nGLM-Z1-9B-0414 delivers surprising mathematical prowess in a lightweight package.\n\nThese models are particularly strong for mathematical problem-solving and complex reasoning tasks, making them excellent choices depending on your performance and resource requirements."
+    ],
+    "durationSeconds": 8.703372458999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8a946923-f327-40f9-a48e-51562edc890a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67 · 2026-05-27T16:50:50.744Z_
+
+```json
+{
+  "parentUuid": "bf2fb35b-c25f-4bb8-9ef4-642a8c9a08c1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "68977af2-2a08-4072-9f82-5e540fd8998a",
+  "timestamp": "2026-05-27T16:50:50.744Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-27T16:50:53.383Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm collecting a lot of information. Let me search for more references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68977af2-2a08-4072-9f82-5e540fd8998a",
+  "isSidechain": false,
+  "requestId": "req_011CbTREfsqAWaN1rWsZC1ry",
+  "type": "assistant",
+  "uuid": "84b9e36c-f627-4c12-abbf-37f3fa3ee635",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q64zMGeFyasocRsdaPBQWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1769,
+      "cache_creation_input_tokens": 4151,
+      "cache_read_input_tokens": 24380,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4151,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1769,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 24380,
+          "cache_creation_input_tokens": 4151,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4151
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-27T16:50:54.393Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RDnTnDbvek2p37g3p1oUEE`</summary>
+
+```json
+{
+  "query": "DDR dependency retrieval autoformalization Lean Mathlib 500K dataset 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84b9e36c-f627-4c12-abbf-37f3fa3ee635",
+  "isSidechain": false,
+  "requestId": "req_011CbTREfsqAWaN1rWsZC1ry",
+  "type": "assistant",
+  "uuid": "2222ac64-f144-41af-b3c3-73c089eae999",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q64zMGeFyasocRsdaPBQWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1769,
+      "cache_creation_input_tokens": 4151,
+      "cache_read_input_tokens": 24380,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4151,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1769,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 24380,
+          "cache_creation_input_tokens": 4151,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4151
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-27T16:50:55.294Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VTvGSzYegJJXpyTGn2Tzqt`</summary>
+
+```json
+{
+  "query": "DRIFT decompose retrieve formalize theorems autoformalization ProofNet 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2222ac64-f144-41af-b3c3-73c089eae999",
+  "isSidechain": false,
+  "requestId": "req_011CbTREfsqAWaN1rWsZC1ry",
+  "type": "assistant",
+  "uuid": "63c89dea-eb5a-428c-a063-d3b4f32a6761",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q64zMGeFyasocRsdaPBQWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1769,
+      "cache_creation_input_tokens": 4151,
+      "cache_read_input_tokens": 24380,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4151,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1769,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 24380,
+          "cache_creation_input_tokens": 4151,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4151
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-27T16:50:55.718Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EzzjQDkRoDv8foECXZhMGQ`</summary>
+
+```json
+{
+  "query": "CRAMF conceptual retrieval augmented autoformalization Mathlib 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63c89dea-eb5a-428c-a063-d3b4f32a6761",
+  "isSidechain": false,
+  "requestId": "req_011CbTREfsqAWaN1rWsZC1ry",
+  "type": "assistant",
+  "uuid": "038a40a0-d935-48da-b60a-896f62c75ee7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q64zMGeFyasocRsdaPBQWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1769,
+      "cache_creation_input_tokens": 4151,
+      "cache_read_input_tokens": 24380,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4151,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1769,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 24380,
+          "cache_creation_input_tokens": 4151,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4151
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-27T16:50:56.515Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YUTa2b9uZKSsxWMZ9pHhJQ`</summary>
+
+```json
+{
+  "query": "Kimina-Prover reinforcement learning Lean theorem proving 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "038a40a0-d935-48da-b60a-896f62c75ee7",
+  "isSidechain": false,
+  "requestId": "req_011CbTREfsqAWaN1rWsZC1ry",
+  "type": "assistant",
+  "uuid": "24199791-d322-476e-a20f-3bff356a26b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q64zMGeFyasocRsdaPBQWr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1769,
+      "cache_creation_input_tokens": 4151,
+      "cache_read_input_tokens": 24380,
+      "output_tokens": 258,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4151,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1769,
+          "output_tokens": 258,
+          "cache_read_input_tokens": 24380,
+          "cache_creation_input_tokens": 4151,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4151
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-27T16:51:01.452Z_
+
+<details><summary>↩ Tool result · `toolu_01RDnTnDbvek2p37g3p1oUEE`</summary>
+
+```text
+Web search results for query: "DDR dependency retrieval autoformalization Lean Mathlib 500K dataset 2025"
+
+Links: [{"title":"(PDF) Improving Autoformalization Using Direct Dependency Retrieval","url":"https://www.researchgate.net/publication/397701226_Improving_Autoformalization_Using_Direct_Dependency_Retrieval"},{"title":"[2511.11990] Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/abs/2511.11990"},{"title":"Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/html/2511.11990v2"},{"title":"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS","url":"https://arxiv.org/pdf/2510.10815"},{"title":"towards a faithful metric and a dependency retrieval","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/pdf/2510.04520"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.15940"},{"title":"(PDF) Lean Finder: Semantic Search for Mathlib That Understands User Intents","url":"https://www.researchgate.net/publication/396714722_Lean_Finder_Semantic_Search_for_Mathlib_That_Understands_User_Intents"}]
+
+Based on the search results, here's what I found about DDR (Direct Dependency Retrieval) for autoformalization:
+
+## Overview
+
+DDR directly generates candidate library dependencies from natural language mathematical descriptions and subsequently verifies their existence within the formal library via an efficient suffix array check.
+
+## The 500K Dataset
+
+A dependency retrieval dataset of over 500,000 samples was constructed and a high-precision DDR model was fine-tuned.
+
+## Method and Performance
+
+DDR is a novel retrieval-augmented framework for statement autoformalization. Experimental results demonstrate that the DDR model significantly outperforms state-of-the-art methods in both retrieval precision and recall.
+
+## Application to Autoformalization
+
+An autoformalizer equipped with DDR shows consistent performance advantages in both single-attempt accuracy and multi-attempt stability compared to models using traditional selection-based retrieval-augmented generation methods.
+
+The research addresses a key limitation in autoformalization: current retrieval-augmented approaches exhibit poor precision and recall for formal library dependency retrieval, and lack the scalability to effectively leverage ever-growing public datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2222ac64-f144-41af-b3c3-73c089eae999",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "d7cd0cf0-2ccd-41f0-a6d1-70c5f35264bc",
+  "toolUseResult": {
+    "query": "DDR dependency retrieval autoformalization Lean Mathlib 500K dataset 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014GgCEp6WY364bVE61weH4h",
+        "content": [
+          {
+            "title": "(PDF) Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://www.researchgate.net/publication/397701226_Improving_Autoformalization_Using_Direct_Dependency_Retrieval"
+          },
+          {
+            "title": "[2511.11990] Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/abs/2511.11990"
+          },
+          {
+            "title": "Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/html/2511.11990v2"
+          },
+          {
+            "title": "Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          },
+          {
+            "title": "towards a faithful metric and a dependency retrieval",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/pdf/2510.04520"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.15940"
+          },
+          {
+            "title": "(PDF) Lean Finder: Semantic Search for Mathlib That Understands User Intents",
+            "url": "https://www.researchgate.net/publication/396714722_Lean_Finder_Semantic_Search_for_Mathlib_That_Understands_User_Intents"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DDR (Direct Dependency Retrieval) for autoformalization:\n\n## Overview\n\nDDR directly generates candidate library dependencies from natural language mathematical descriptions and subsequently verifies their existence within the formal library via an efficient suffix array check.\n\n## The 500K Dataset\n\nA dependency retrieval dataset of over 500,000 samples was constructed and a high-precision DDR model was fine-tuned.\n\n## Method and Performance\n\nDDR is a novel retrieval-augmented framework for statement autoformalization. Experimental results demonstrate that the DDR model significantly outperforms state-of-the-art methods in both retrieval precision and recall.\n\n## Application to Autoformalization\n\nAn autoformalizer equipped with DDR shows consistent performance advantages in both single-attempt accuracy and multi-attempt stability compared to models using traditional selection-based retrieval-augmented generation methods.\n\nThe research addresses a key limitation in autoformalization: current retrieval-augmented approaches exhibit poor precision and recall for formal library dependency retrieval, and lack the scalability to effectively leverage ever-growing public datasets."
+    ],
+    "durationSeconds": 7.0568879480000035,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2222ac64-f144-41af-b3c3-73c089eae999",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-27T16:51:01.926Z_
+
+<details><summary>↩ Tool result · `toolu_01VTvGSzYegJJXpyTGn2Tzqt`</summary>
+
+```text
+Web search results for query: "DRIFT decompose retrieve formalize theorems autoformalization ProofNet 2025"
+
+Links: [{"title":"[2510.10815] DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/abs/2510.10815"},{"title":"(PDF) DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://www.researchgate.net/publication/396458949_DRIFT_Decompose_Retrieve_Illustrate_then_Formalize_Theorems"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/html/2510.10815v2"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems | OpenReview","url":"https://openreview.net/forum?id=IGEs577RFz"},{"title":"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS","url":"https://arxiv.org/pdf/2510.10815"},{"title":"DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN ...","url":"https://openreview.net/pdf?id=IGEs577RFz"}]
+
+Based on the search results, here's what I found:
+
+DRIFT is a novel framework that enables LLMs to decompose informal mathematical statements into smaller, more tractable "sub-components" to facilitate targeted retrieval of premises from mathematical libraries such as Mathlib. Additionally, DRIFT retrieves illustrative theorems to help models use premises more effectively in formalization tasks.
+
+**Key Results:**
+
+DRIFT was evaluated across diverse benchmarks (ProofNet, ConNF, and MiniF2F-test) and consistently improved premise retrieval, nearly doubling the F1 score compared to the DPR baseline on ProofNet. On the out-of-distribution ConNF benchmark, DRIFT demonstrated improvements of 42.25% and 37.14% using GPT-4.1 and DeepSeek-V3.1, respectively.
+
+**Background:**
+
+Automating the formalization of mathematical statements for theorem proving remains a major challenge for Large Language Models (LLMs), which struggle to identify and utilize the prerequisite mathematical knowledge and its corresponding formal representation in languages like Lean. The analysis shows that retrieval effectiveness in mathematical autoformalization depends heavily on model-specific knowledge boundaries, highlighting the need for adaptive retrieval strategies aligned with each model's capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63c89dea-eb5a-428c-a063-d3b4f32a6761",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "7e66a037-cf34-46ae-ac6b-6f49e1844abc",
+  "toolUseResult": {
+    "query": "DRIFT decompose retrieve formalize theorems autoformalization ProofNet 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Aqc3krPmwtw1Ymfu8nzZz9",
+        "content": [
+          {
+            "title": "[2510.10815] DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/abs/2510.10815"
+          },
+          {
+            "title": "(PDF) DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://www.researchgate.net/publication/396458949_DRIFT_Decompose_Retrieve_Illustrate_then_Formalize_Theorems"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/html/2510.10815v2"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems | OpenReview",
+            "url": "https://openreview.net/forum?id=IGEs577RFz"
+          },
+          {
+            "title": "Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          },
+          {
+            "title": "DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN ...",
+            "url": "https://openreview.net/pdf?id=IGEs577RFz"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\nDRIFT is a novel framework that enables LLMs to decompose informal mathematical statements into smaller, more tractable \"sub-components\" to facilitate targeted retrieval of premises from mathematical libraries such as Mathlib. Additionally, DRIFT retrieves illustrative theorems to help models use premises more effectively in formalization tasks.\n\n**Key Results:**\n\nDRIFT was evaluated across diverse benchmarks (ProofNet, ConNF, and MiniF2F-test) and consistently improved premise retrieval, nearly doubling the F1 score compared to the DPR baseline on ProofNet. On the out-of-distribution ConNF benchmark, DRIFT demonstrated improvements of 42.25% and 37.14% using GPT-4.1 and DeepSeek-V3.1, respectively.\n\n**Background:**\n\nAutomating the formalization of mathematical statements for theorem proving remains a major challenge for Large Language Models (LLMs), which struggle to identify and utilize the prerequisite mathematical knowledge and its corresponding formal representation in languages like Lean. The analysis shows that retrieval effectiveness in mathematical autoformalization depends heavily on model-specific knowledge boundaries, highlighting the need for adaptive retrieval strategies aligned with each model's capabilities."
+    ],
+    "durationSeconds": 6.629701766000013,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "63c89dea-eb5a-428c-a063-d3b4f32a6761",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "7e66a037-cf34-46ae-ac6b-6f49e1844abc",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-27T16:51:02.776Z_
+
+<details><summary>↩ Tool result · `toolu_01EzzjQDkRoDv8foECXZhMGQ`</summary>
+
+```text
+Web search results for query: "CRAMF conceptual retrieval augmented autoformalization Mathlib 2025"
+
+Links: [{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/html/2508.06931v1"},{"title":"[2508.06931] Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/abs/2508.06931"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs | Request PDF","url":"https://www.researchgate.net/publication/394440359_Automated_Formalization_via_Conceptual_Retrieval-Augmented_LLMs"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/pdf/2508.06931"},{"title":"AUTOMATED FORMALIZATION VIA CONCEPTUAL RETRIEVAL ...","url":"https://openreview.net/pdf/c5515c42a45d03adcd764803dc11197cf6a270ae.pdf"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs | OpenReview","url":"https://openreview.net/forum?id=09lmwhDqZ3"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/html/2510.10815v1"},{"title":"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS","url":"https://arxiv.org/pdf/2510.10815"}]
+
+Based on the search results, here's what I found about CRAMF:
+
+CRAMF is a Concept-driven Retrieval-Augmented Mathematical Formalization framework that enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts, providing contextual grounding during code generation.
+
+**Key Features:**
+
+The framework automatically constructs a concept-definition knowledge base from Mathlib4, the standard mathematical library for the Lean 4 theorem prover, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts.
+
+CRAMF addresses two major challenges in automated formalization: model hallucination (e.g., undefined predicates, symbol misuse, and version incompatibility) and the semantic gap caused by ambiguous or missing premises in natural language descriptions.
+
+**Technical Approach:**
+
+To address conceptual polymorphism, the framework proposes contextual query augmentation with domain- and application-level signals, and designs a dual-channel hybrid retrieval strategy with reranking to ensure accurate and relevant definition retrieval.
+
+**Results:**
+
+Experiments on miniF2F, ProofNet, and a newly proposed AdvancedMath benchmark show that CRAMF can be seamlessly integrated into LLM-based autoformalizers, yielding consistent improvements in translation accuracy—achieving up to 62.1% and an average of 29.9% relative improvement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "038a40a0-d935-48da-b60a-896f62c75ee7",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "dc482747-524b-4fcf-8bb1-0dfa91d0d879",
+  "toolUseResult": {
+    "query": "CRAMF conceptual retrieval augmented autoformalization Mathlib 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BuqqNn8fWvcMyHT4pTN4q5",
+        "content": [
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/html/2508.06931v1"
+          },
+          {
+            "title": "[2508.06931] Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/abs/2508.06931"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/394440359_Automated_Formalization_via_Conceptual_Retrieval-Augmented_LLMs"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/pdf/2508.06931"
+          },
+          {
+            "title": "AUTOMATED FORMALIZATION VIA CONCEPTUAL RETRIEVAL ...",
+            "url": "https://openreview.net/pdf/c5515c42a45d03adcd764803dc11197cf6a270ae.pdf"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=09lmwhDqZ3"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/html/2510.10815v1"
+          },
+          {
+            "title": "Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CRAMF:\n\nCRAMF is a Concept-driven Retrieval-Augmented Mathematical Formalization framework that enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts, providing contextual grounding during code generation.\n\n**Key Features:**\n\nThe framework automatically constructs a concept-definition knowledge base from Mathlib4, the standard mathematical library for the Lean 4 theorem prover, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts.\n\nCRAMF addresses two major challenges in automated formalization: model hallucination (e.g., undefined predicates, symbol misuse, and version incompatibility) and the semantic gap caused by ambiguous or missing premises in natural language descriptions.\n\n**Technical Approach:**\n\nTo address conceptual polymorphism, the framework proposes contextual query augmentation with domain- and application-level signals, and designs a dual-channel hybrid retrieval strategy with reranking to ensure accurate and relevant definition retrieval.\n\n**Results:**\n\nExperiments on miniF2F, ProofNet, and a newly proposed AdvancedMath benchmark show that CRAMF can be seamlessly integrated into LLM-based autoformalizers, yielding consistent improvements in translation accuracy—achieving up to 62.1% and an average of 29.9% relative improvement."
+    ],
+    "durationSeconds": 7.055941831000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "038a40a0-d935-48da-b60a-896f62c75ee7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-27T16:51:03.763Z_
+
+<details><summary>↩ Tool result · `toolu_01YUTa2b9uZKSsxWMZ9pHhJQ`</summary>
+
+```text
+Web search results for query: "Kimina-Prover reinforcement learning Lean theorem proving 2025"
+
+Links: [{"title":"kimina-prover preview: towards large formal reasoning ...","url":"https://arxiv.org/pdf/2504.11354"},{"title":"[2504.11354v1] Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning","url":"https://arxiv.org/abs/2504.11354v1"},{"title":"[2504.11354] Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning","url":"https://arxiv.org/abs/2504.11354"},{"title":"Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning","url":"https://arxiv.org/html/2504.11354v1"},{"title":"Kimina-Prover Preview 72B","url":"https://www.emergentmind.com/topics/kimina-prover-preview-72b"},{"title":"AI-MO/Kimina-Prover-72B · Hugging Face","url":"https://huggingface.co/AI-MO/Kimina-Prover-72B"},{"title":"Kimina-Prover: Applying Test-time RL Search on Large Formal Reasoning Models","url":"https://huggingface.co/blog/AI-MO/kimina-prover"},{"title":"GitHub - MoonshotAI/Kimina-Prover-Preview: Technical report of Kimina-Prover Preview. · GitHub","url":"https://github.com/MoonshotAI/Kimina-Prover-Preview"}]
+
+Based on the search results, here's what I found about Kimina-Prover and reinforcement learning for Lean theorem proving in 2025:
+
+## Overview
+
+Kimina-Prover Preview is a large language model that pioneers a novel reasoning-driven exploration paradigm for formal theorem proving. It is trained with a large-scale reinforcement learning pipeline from Qwen2.5-72B and demonstrates strong performance in Lean 4 proof generation by employing a structured reasoning pattern.
+
+## Key Performance Results
+
+Kimina-Prover sets a new state-of-the-art on the miniF2F benchmark, reaching 80.7% with pass@8192. More recently, on the miniF2F benchmark, Kimina-Prover achieves a pass rate of 84.0% with pass@32 and 86.4% with the addition of a single round of error correction.
+
+## Technical Approach
+
+The approach leverages the LLM's own internal reasoning capabilities, enhanced through large-scale RL with carefully designed reward signals and structured reasoning patterns. This approach allows the model to emulate human problem-solving strategies in Lean, iteratively generating and refining proof steps.
+
+## Key Insights
+
+Kimina-Prover exhibits high sample efficiency, delivering strong results even with minimal sampling (pass@1) and scaling effectively with computational budget, and demonstrates clear performance scaling with model size, a trend previously unobserved for neural theorem provers in formal mathematics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "24199791-d322-476e-a20f-3bff356a26b1",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "d2f480c9-4fdd-4aa3-b9eb-862cb5c7df0b",
+  "toolUseResult": {
+    "query": "Kimina-Prover reinforcement learning Lean theorem proving 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016fGd2t3dhPELdMNxBqnsri",
+        "content": [
+          {
+            "title": "kimina-prover preview: towards large formal reasoning ...",
+            "url": "https://arxiv.org/pdf/2504.11354"
+          },
+          {
+            "title": "[2504.11354v1] Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2504.11354v1"
+          },
+          {
+            "title": "[2504.11354] Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2504.11354"
+          },
+          {
+            "title": "Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2504.11354v1"
+          },
+          {
+            "title": "Kimina-Prover Preview 72B",
+            "url": "https://www.emergentmind.com/topics/kimina-prover-preview-72b"
+          },
+          {
+            "title": "AI-MO/Kimina-Prover-72B · Hugging Face",
+            "url": "https://huggingface.co/AI-MO/Kimina-Prover-72B"
+          },
+          {
+            "title": "Kimina-Prover: Applying Test-time RL Search on Large Formal Reasoning Models",
+            "url": "https://huggingface.co/blog/AI-MO/kimina-prover"
+          },
+          {
+            "title": "GitHub - MoonshotAI/Kimina-Prover-Preview: Technical report of Kimina-Prover Preview. · GitHub",
+            "url": "https://github.com/MoonshotAI/Kimina-Prover-Preview"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Kimina-Prover and reinforcement learning for Lean theorem proving in 2025:\n\n## Overview\n\nKimina-Prover Preview is a large language model that pioneers a novel reasoning-driven exploration paradigm for formal theorem proving. It is trained with a large-scale reinforcement learning pipeline from Qwen2.5-72B and demonstrates strong performance in Lean 4 proof generation by employing a structured reasoning pattern.\n\n## Key Performance Results\n\nKimina-Prover sets a new state-of-the-art on the miniF2F benchmark, reaching 80.7% with pass@8192. More recently, on the miniF2F benchmark, Kimina-Prover achieves a pass rate of 84.0% with pass@32 and 86.4% with the addition of a single round of error correction.\n\n## Technical Approach\n\nThe approach leverages the LLM's own internal reasoning capabilities, enhanced through large-scale RL with carefully designed reward signals and structured reasoning patterns. This approach allows the model to emulate human problem-solving strategies in Lean, iteratively generating and refining proof steps.\n\n## Key Insights\n\nKimina-Prover exhibits high sample efficiency, delivering strong results even with minimal sampling (pass@1) and scaling effectively with computational budget, and demonstrates clear performance scaling with model size, a trend previously unobserved for neural theorem provers in formal mathematics."
+    ],
+    "durationSeconds": 7.245480781000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "24199791-d322-476e-a20f-3bff356a26b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-27T16:51:06.780Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good progress. Let me check on DDR's venue and search for some more specific details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2f480c9-4fdd-4aa3-b9eb-862cb5c7df0b",
+  "isSidechain": false,
+  "requestId": "req_011CbTRFdZxRRfjKssWdNhGv",
+  "type": "assistant",
+  "uuid": "cb81623d-6c19-4e4c-8aed-225e3bd8d25a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xPnycaxEE2CokYpL2fdB5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4975,
+      "cache_read_input_tokens": 28531,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 28531,
+          "cache_creation_input_tokens": 4975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-27T16:51:07.471Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E4wqFdwygJFcDgNiVZVqLW`</summary>
+
+```json
+{
+  "query": "DDR \"direct dependency retrieval\" autoformalization ICLR 2026 venue published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb81623d-6c19-4e4c-8aed-225e3bd8d25a",
+  "isSidechain": false,
+  "requestId": "req_011CbTRFdZxRRfjKssWdNhGv",
+  "type": "assistant",
+  "uuid": "e3d25f7c-4602-4200-9491-4bccd2c0c682",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xPnycaxEE2CokYpL2fdB5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4975,
+      "cache_read_input_tokens": 28531,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 28531,
+          "cache_creation_input_tokens": 4975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-27T16:51:07.730Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LQt8C5pNeswTs9fjctzHFJ`</summary>
+
+```json
+{
+  "query": "FormalMATH benchmark paper multi-domain Lean 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3d25f7c-4602-4200-9491-4bccd2c0c682",
+  "isSidechain": false,
+  "requestId": "req_011CbTRFdZxRRfjKssWdNhGv",
+  "type": "assistant",
+  "uuid": "2e6ddd42-c6f3-4fc4-86a9-436adf8c9f08",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xPnycaxEE2CokYpL2fdB5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4975,
+      "cache_read_input_tokens": 28531,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 28531,
+          "cache_creation_input_tokens": 4975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-27T16:51:08.783Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KPh2JZxaA2DpPoom7UUE5B`</summary>
+
+```json
+{
+  "query": "DeepSeek-Prover-V2 2026 autoformalization Lean model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e6ddd42-c6f3-4fc4-86a9-436adf8c9f08",
+  "isSidechain": false,
+  "requestId": "req_011CbTRFdZxRRfjKssWdNhGv",
+  "type": "assistant",
+  "uuid": "0f3a7b62-ce37-403a-b98d-67b0f0dc950d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xPnycaxEE2CokYpL2fdB5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4975,
+      "cache_read_input_tokens": 28531,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 28531,
+          "cache_creation_input_tokens": 4975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-27T16:51:09.051Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019AA3UijrF7gfkXnqUNnbQq`</summary>
+
+```json
+{
+  "query": "Qwen3 math reasoning model 2026 latest"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f3a7b62-ce37-403a-b98d-67b0f0dc950d",
+  "isSidechain": false,
+  "requestId": "req_011CbTRFdZxRRfjKssWdNhGv",
+  "type": "assistant",
+  "uuid": "4f8f5695-9a33-4c0e-9e11-1318a252b8df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015xPnycaxEE2CokYpL2fdB5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4975,
+      "cache_read_input_tokens": 28531,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 28531,
+          "cache_creation_input_tokens": 4975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-27T16:51:13.474Z_
+
+<details><summary>↩ Tool result · `toolu_01E4wqFdwygJFcDgNiVZVqLW`</summary>
+
+```text
+Web search results for query: "DDR "direct dependency retrieval" autoformalization ICLR 2026 venue published"
+
+Links: [{"title":"[2511.11990] Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/abs/2511.11990"},{"title":"(PDF) Improving Autoformalization Using Direct Dependency Retrieval","url":"https://www.researchgate.net/publication/397701226_Improving_Autoformalization_Using_Direct_Dependency_Retrieval"},{"title":"Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/html/2511.11990"},{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview","url":"https://openreview.net/forum?id=hUb2At2DsQ"},{"title":"ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE ...","url":"https://openreview.net/pdf/388a385b7ad068290351f90757bd3af8bb6e5515.pdf"},{"title":"ProofFlow - ICLR 2026 video presentation - YouTube","url":"https://www.youtube.com/watch?v=EVJIO2XmOz8"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.15940"},{"title":"towards a faithful metric and a dependency retrieval","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"}]
+
+Based on the search results, I found information about DDR (Direct Dependency Retrieval) and autoformalization research:
+
+The DDR method directly generates candidate library dependencies from natural language mathematical descriptions and subsequently verifies their existence within the formal library via an efficient suffix array check. This is a novel retrieval-augmented framework for statement autoformalization.
+
+The researchers constructed a dependency retrieval dataset of over 500,000 samples and fine-tuned a high-precision DDR model. Experimental results demonstrate that the DDR model significantly outperforms state-of-the-art methods in both retrieval precision and recall.
+
+Regarding publication venue: The paper appears on arXiv with ID 2511.11990 (dated January 1, 2026), but the search results do not explicitly confirm that this work was published at ICLR 2026. However, the search results do show that related autoformalization research has been published at ICLR 2026, including work on "Lean Finder" and other formal mathematics automation approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3d25f7c-4602-4200-9491-4bccd2c0c682",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "97463e4f-a305-4e8a-9c7f-674e91a1a173",
+  "toolUseResult": {
+    "query": "DDR \"direct dependency retrieval\" autoformalization ICLR 2026 venue published",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NkyFvWfPSvKWrTznhwiutZ",
+        "content": [
+          {
+            "title": "[2511.11990] Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/abs/2511.11990"
+          },
+          {
+            "title": "(PDF) Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://www.researchgate.net/publication/397701226_Improving_Autoformalization_Using_Direct_Dependency_Retrieval"
+          },
+          {
+            "title": "Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/html/2511.11990"
+          },
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview",
+            "url": "https://openreview.net/forum?id=hUb2At2DsQ"
+          },
+          {
+            "title": "ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE ...",
+            "url": "https://openreview.net/pdf/388a385b7ad068290351f90757bd3af8bb6e5515.pdf"
+          },
+          {
+            "title": "ProofFlow - ICLR 2026 video presentation - YouTube",
+            "url": "https://www.youtube.com/watch?v=EVJIO2XmOz8"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.15940"
+          },
+          {
+            "title": "towards a faithful metric and a dependency retrieval",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about DDR (Direct Dependency Retrieval) and autoformalization research:\n\nThe DDR method directly generates candidate library dependencies from natural language mathematical descriptions and subsequently verifies their existence within the formal library via an efficient suffix array check. This is a novel retrieval-augmented framework for statement autoformalization.\n\nThe researchers constructed a dependency retrieval dataset of over 500,000 samples and fine-tuned a high-precision DDR model. Experimental results demonstrate that the DDR model significantly outperforms state-of-the-art methods in both retrieval precision and recall.\n\nRegarding publication venue: The paper appears on arXiv with ID 2511.11990 (dated January 1, 2026), but the search results do not explicitly confirm that this work was published at ICLR 2026. However, the search results do show that related autoformalization research has been published at ICLR 2026, including work on \"Lean Finder\" and other formal mathematics automation approaches."
+    ],
+    "durationSeconds": 5.999275120999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e3d25f7c-4602-4200-9491-4bccd2c0c682",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-27T16:51:14.377Z_
+
+<details><summary>↩ Tool result · `toolu_01LQt8C5pNeswTs9fjctzHFJ`</summary>
+
+```text
+Web search results for query: "FormalMATH benchmark paper multi-domain Lean 2025"
+
+Links: [{"title":"FormalMATH Benchmark","url":"https://www.emergentmind.com/topics/formalmath-benchmark"},{"title":"Paper page - FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models","url":"https://huggingface.co/papers/2505.02735"},{"title":"FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=mGzeNcMGFu"},{"title":"GitHub - Sphere-AI-Lab/FormalMATH-Bench: Repository of &lt;FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models> · GitHub","url":"https://github.com/Sphere-AI-Lab/FormalMATH-Bench"},{"title":"[2505.02735] FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models","url":"https://arxiv.org/abs/2505.02735"},{"title":"FormalMATH-Bench - SphereLab","url":"https://spherelab.ai/FormalMATH/"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/html/2510.06857v1"},{"title":"SphereLab M-A-P FormalMATH: Benchmarking Formal Mathematical","url":"https://arxiv.org/pdf/2505.02735"},{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"}]
+
+Based on the search results, here's what I found about the FormalMATH benchmark paper:
+
+## Overview
+
+FormalMATH is a large-scale Lean4 benchmark comprising 5,560 formally verified problems spanning from high-school Olympiad challenges to undergraduate-level theorems across diverse domains (e.g., algebra, applied mathematics, calculus, number theory, and discrete mathematics).
+
+## Key Contributions
+
+The paper introduces a novel human-in-the-loop autoformalization pipeline that integrates: (1) specialized large language models (LLMs) for statement autoformalization, (2) multi-LLM semantic verification, and (3) negation-based disproof filtering strategies using off-the-shelf LLM-based provers. This approach reduces expert annotation costs by retaining 72.09% of statements before manual verification while ensuring fidelity to the original natural-language problems.
+
+## Key Findings
+
+The evaluation of state-of-the-art LLM-based theorem provers reveals significant limitations: even the strongest models achieve only 16.46% success rate under practical sampling budgets, exhibiting pronounced domain bias (e.g., excelling in algebra but failing in calculus). Additionally, the paper identifies a counterintuitive inverse relationship between natural-language solution guidance and proof success in chain-of-thought reasoning scenarios, suggesting that human-written informal reasoning introduces noise rather than clarity in the formal reasoning settings.
+
+The paper was published in May 2025 on arXiv (arXiv:2505.02735) and provides a comprehensive resource for benchmarking formal mathematical reasoning capabilities of large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e6ddd42-c6f3-4fc4-86a9-436adf8c9f08",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "a98624cc-07e2-4fe0-8568-705876f05149",
+  "toolUseResult": {
+    "query": "FormalMATH benchmark paper multi-domain Lean 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012nr9YzrYF5WAoxs6qTyRpE",
+        "content": [
+          {
+            "title": "FormalMATH Benchmark",
+            "url": "https://www.emergentmind.com/topics/formalmath-benchmark"
+          },
+          {
+            "title": "Paper page - FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models",
+            "url": "https://huggingface.co/papers/2505.02735"
+          },
+          {
+            "title": "FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=mGzeNcMGFu"
+          },
+          {
+            "title": "GitHub - Sphere-AI-Lab/FormalMATH-Bench: Repository of &lt;FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models> · GitHub",
+            "url": "https://github.com/Sphere-AI-Lab/FormalMATH-Bench"
+          },
+          {
+            "title": "[2505.02735] FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models",
+            "url": "https://arxiv.org/abs/2505.02735"
+          },
+          {
+            "title": "FormalMATH-Bench - SphereLab",
+            "url": "https://spherelab.ai/FormalMATH/"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/html/2510.06857v1"
+          },
+          {
+            "title": "SphereLab M-A-P FormalMATH: Benchmarking Formal Mathematical",
+            "url": "https://arxiv.org/pdf/2505.02735"
+          },
+          {
+            "title": "Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics",
+            "url": "https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the FormalMATH benchmark paper:\n\n## Overview\n\nFormalMATH is a large-scale Lean4 benchmark comprising 5,560 formally verified problems spanning from high-school Olympiad challenges to undergraduate-level theorems across diverse domains (e.g., algebra, applied mathematics, calculus, number theory, and discrete mathematics).\n\n## Key Contributions\n\nThe paper introduces a novel human-in-the-loop autoformalization pipeline that integrates: (1) specialized large language models (LLMs) for statement autoformalization, (2) multi-LLM semantic verification, and (3) negation-based disproof filtering strategies using off-the-shelf LLM-based provers. This approach reduces expert annotation costs by retaining 72.09% of statements before manual verification while ensuring fidelity to the original natural-language problems.\n\n## Key Findings\n\nThe evaluation of state-of-the-art LLM-based theorem provers reveals significant limitations: even the strongest models achieve only 16.46% success rate under practical sampling budgets, exhibiting pronounced domain bias (e.g., excelling in algebra but failing in calculus). Additionally, the paper identifies a counterintuitive inverse relationship between natural-language solution guidance and proof success in chain-of-thought reasoning scenarios, suggesting that human-written informal reasoning introduces noise rather than clarity in the formal reasoning settings.\n\nThe paper was published in May 2025 on arXiv (arXiv:2505.02735) and provides a comprehensive resource for benchmarking formal mathematical reasoning capabilities of large language models."
+    ],
+    "durationSeconds": 6.644639230000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2e6ddd42-c6f3-4fc4-86a9-436adf8c9f08",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-27T16:51:16.138Z_
+
+<details><summary>↩ Tool result · `toolu_019AA3UijrF7gfkXnqUNnbQq`</summary>
+
+```text
+Web search results for query: "Qwen3 math reasoning model 2026 latest"
+
+Links: [{"title":"Ultimate Guide - The Best Qwen3 Models in 2026","url":"https://www.siliconflow.com/articles/en/the-best-qwen3-models-in-2025"},{"title":"What Is Qwen 3.7? Alibaba's New Flagship AI Model","url":"https://apidog.com/blog/what-is-qwen-3-7/"},{"title":"Qwen Introduces Qwen3.7-Max: A Reasoning Agent Model With a 1M-Token Context Window - MarkTechPost","url":"https://www.marktechpost.com/2026/05/21/qwen-introduces-qwen3-7-max-a-reasoning-agent-model-with-a-1m-token-context-window/"},{"title":"Qwen/Qwen3-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"qwen3-vl","url":"https://ollama.com/library/qwen3-vl"},{"title":"Catch Me If You Can: How Smaller Reasoning Models Pretend to Reason with Mathematical Fidelity","url":"https://arxiv.org/pdf/2512.00552"},{"title":"qwen3","url":"https://ollama.com/library/qwen3"}]
+
+Based on the latest search results, here's what I found about Qwen3 math reasoning models in 2026:
+
+## Qwen3 Series Overview
+
+Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models. Qwen3 models feature advanced architectures including Mixture-of-Experts (MoE) designs and dual-mode reasoning capabilities.
+
+## Math Reasoning Capabilities
+
+These models support seamless switching between thinking mode for complex logical reasoning, mathematics, and coding, and non-thinking mode for efficient general-purpose dialogue. There is significant enhancement in reasoning capabilities, surpassing previous QwQ (in thinking mode) and Qwen2.5 instruct models (in non-thinking mode) on mathematics, code generation, and commonsense logical reasoning.
+
+## Latest Flagship Models
+
+Top recommendations for 2026 are Qwen3-235B-A22B, Qwen3-30B-A3B, and Qwen3-14B. The flagship model, Qwen3-235B-A22B, achieves competitive results in benchmark evaluations of coding, math, general capabilities, etc., when compared to other top-tier models such as DeepSeek-R1, o1, o3-mini, Grok-3, and Gemini-2.5-Pro.
+
+## Multimodal Math Reasoning
+
+For vision-language capabilities, the Thinking model is specially optimized for STEM and math reasoning, and achieves strong performance on reasoning benchmarks like MathVision, MMMU, and MathVista.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f8f5695-9a33-4c0e-9e11-1318a252b8df",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "a4b9728f-1be8-443b-a9cc-e3c12271bf92",
+  "toolUseResult": {
+    "query": "Qwen3 math reasoning model 2026 latest",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012uWtcg3XBZYtBLWsz9FF1w",
+        "content": [
+          {
+            "title": "Ultimate Guide - The Best Qwen3 Models in 2026",
+            "url": "https://www.siliconflow.com/articles/en/the-best-qwen3-models-in-2025"
+          },
+          {
+            "title": "What Is Qwen 3.7? Alibaba's New Flagship AI Model",
+            "url": "https://apidog.com/blog/what-is-qwen-3-7/"
+          },
+          {
+            "title": "Qwen Introduces Qwen3.7-Max: A Reasoning Agent Model With a 1M-Token Context Window - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/05/21/qwen-introduces-qwen3-7-max-a-reasoning-agent-model-with-a-1m-token-context-window/"
+          },
+          {
+            "title": "Qwen/Qwen3-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "qwen3-vl",
+            "url": "https://ollama.com/library/qwen3-vl"
+          },
+          {
+            "title": "Catch Me If You Can: How Smaller Reasoning Models Pretend to Reason with Mathematical Fidelity",
+            "url": "https://arxiv.org/pdf/2512.00552"
+          },
+          {
+            "title": "qwen3",
+            "url": "https://ollama.com/library/qwen3"
+          }
+        ]
+      },
+      "Based on the latest search results, here's what I found about Qwen3 math reasoning models in 2026:\n\n## Qwen3 Series Overview\n\nQwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models. Qwen3 models feature advanced architectures including Mixture-of-Experts (MoE) designs and dual-mode reasoning capabilities.\n\n## Math Reasoning Capabilities\n\nThese models support seamless switching between thinking mode for complex logical reasoning, mathematics, and coding, and non-thinking mode for efficient general-purpose dialogue. There is significant enhancement in reasoning capabilities, surpassing previous QwQ (in thinking mode) and Qwen2.5 instruct models (in non-thinking mode) on mathematics, code generation, and commonsense logical reasoning.\n\n## Latest Flagship Models\n\nTop recommendations for 2026 are Qwen3-235B-A22B, Qwen3-30B-A3B, and Qwen3-14B. The flagship model, Qwen3-235B-A22B, achieves competitive results in benchmark evaluations of coding, math, general capabilities, etc., when compared to other top-tier models such as DeepSeek-R1, o1, o3-mini, Grok-3, and Gemini-2.5-Pro.\n\n## Multimodal Math Reasoning\n\nFor vision-language capabilities, the Thinking model is specially optimized for STEM and math reasoning, and achieves strong performance on reasoning benchmarks like MathVision, MMMU, and MathVista."
+    ],
+    "durationSeconds": 7.084745444,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4f8f5695-9a33-4c0e-9e11-1318a252b8df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "a4b9728f-1be8-443b-a9cc-e3c12271bf92",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-27T16:51:18.529Z_
+
+<details><summary>↩ Tool result · `toolu_01KPh2JZxaA2DpPoom7UUE5B`</summary>
+
+```text
+Web search results for query: "DeepSeek-Prover-V2 2026 autoformalization Lean model"
+
+Links: [{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"DeepSeek-Prover-V2: Neural Prover in Lean 4","url":"https://www.emergentmind.com/topics/deepseek-prover-v2"},{"title":"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/html/2504.21801v1"},{"title":"DeepSeek Prover V2 download | SourceForge.net","url":"https://sourceforge.net/projects/deepseek-prover-v2.mirror/"},{"title":"DeepSeek Prover V2 - Specs & Pricing [2026]","url":"https://getdeploying.com/llms/deepseek-prover-v2"},{"title":"DeepSeek-Prover-V2: Open-Source AI for Lean 4 Formal Theorem Proving | by My Social | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium","url":"https://medium.com/aimonks/deepseek-prover-v2-open-source-ai-for-lean-4-formal-theorem-proving-ab7f9910576b"},{"title":"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/pdf/2504.21801"},{"title":"[2504.21801] DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/abs/2504.21801"}]
+
+Based on the web search results, here's what I found about DeepSeek-Prover-V2 and its approach to autoformalization in Lean:
+
+## Overview
+
+DeepSeek-Prover-V2 is an open-source large language model designed for formal theorem proving in Lean 4, using a recursive theorem proving pipeline powered by DeepSeek-V3.
+
+## Autoformalization Approach
+
+The training incorporates additional problems derived from autoformalization and various open-source datasets, broadening the coverage of the training problem domains. The model uses a pipeline for recursive theorem proving, utilizing DeepSeek-V3 as a unified tool for both subgoal decomposition and formalization by decomposing theorems into high-level proof sketches while simultaneously formalizing these proof steps in Lean 4.
+
+## Performance and Architecture
+
+Released in April 2025, DeepSeek-Prover-V2 is a 671B-parameter MoE model (37B active, 256 experts) that achieves 88.9% on MiniF2F-test and solves 49/658 PutnamBench problems using RL-driven subgoal decomposition.
+
+## Training Methodology
+
+The cold-start training procedure begins by prompting DeepSeek-V3 to decompose complex problems into a series of subgoals, with proofs of resolved subgoals synthesized into a chain-of-thought process to create an initial cold start for reinforcement learning, enabling integration of both informal and formal mathematical reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f3a7b62-ce37-403a-b98d-67b0f0dc950d",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "7b1cb8ab-6b3c-44e3-85f1-04e6c685e117",
+  "toolUseResult": {
+    "query": "DeepSeek-Prover-V2 2026 autoformalization Lean model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vq2yfYqrTUvgAHenKiovZS",
+        "content": [
+          {
+            "title": "Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics",
+            "url": "https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"
+          },
+          {
+            "title": "DeepSeek-Prover-V2: Neural Prover in Lean 4",
+            "url": "https://www.emergentmind.com/topics/deepseek-prover-v2"
+          },
+          {
+            "title": "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+            "url": "https://arxiv.org/html/2504.21801v1"
+          },
+          {
+            "title": "DeepSeek Prover V2 download | SourceForge.net",
+            "url": "https://sourceforge.net/projects/deepseek-prover-v2.mirror/"
+          },
+          {
+            "title": "DeepSeek Prover V2 - Specs & Pricing [2026]",
+            "url": "https://getdeploying.com/llms/deepseek-prover-v2"
+          },
+          {
+            "title": "DeepSeek-Prover-V2: Open-Source AI for Lean 4 Formal Theorem Proving | by My Social | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium",
+            "url": "https://medium.com/aimonks/deepseek-prover-v2-open-source-ai-for-lean-4-formal-theorem-proving-ab7f9910576b"
+          },
+          {
+            "title": "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+            "url": "https://arxiv.org/pdf/2504.21801"
+          },
+          {
+            "title": "[2504.21801] DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+            "url": "https://arxiv.org/abs/2504.21801"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about DeepSeek-Prover-V2 and its approach to autoformalization in Lean:\n\n## Overview\n\nDeepSeek-Prover-V2 is an open-source large language model designed for formal theorem proving in Lean 4, using a recursive theorem proving pipeline powered by DeepSeek-V3.\n\n## Autoformalization Approach\n\nThe training incorporates additional problems derived from autoformalization and various open-source datasets, broadening the coverage of the training problem domains. The model uses a pipeline for recursive theorem proving, utilizing DeepSeek-V3 as a unified tool for both subgoal decomposition and formalization by decomposing theorems into high-level proof sketches while simultaneously formalizing these proof steps in Lean 4.\n\n## Performance and Architecture\n\nReleased in April 2025, DeepSeek-Prover-V2 is a 671B-parameter MoE model (37B active, 256 experts) that achieves 88.9% on MiniF2F-test and solves 49/658 PutnamBench problems using RL-driven subgoal decomposition.\n\n## Training Methodology\n\nThe cold-start training procedure begins by prompting DeepSeek-V3 to decompose complex problems into a series of subgoals, with proofs of resolved subgoals synthesized into a chain-of-thought process to create an initial cold start for reinforcement learning, enabling integration of both informal and formal mathematical reasoning."
+    ],
+    "durationSeconds": 9.742263663999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "0f3a7b62-ce37-403a-b98d-67b0f0dc950d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-27T16:51:21.867Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also search for the most recent models. I see Qwen3.7 was just released. Let me also check for AlphaProof and for the Con-NF benchmark specifics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b1cb8ab-6b3c-44e3-85f1-04e6c685e117",
+  "isSidechain": false,
+  "requestId": "req_011CbTRGiepoPhgB5h9tEzVT",
+  "type": "assistant",
+  "uuid": "5a59d067-51e1-4ed7-bbdc-4a1d00bfd86d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShLpWhdk5nZcPiwBV7GXbk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 835,
+      "cache_creation_input_tokens": 2786,
+      "cache_read_input_tokens": 33506,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 835,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 33506,
+          "cache_creation_input_tokens": 2786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-27T16:51:22.880Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015yyNrAJp1u1MRseSmiggNu`</summary>
+
+```json
+{
+  "query": "AlphaProof IMO 2024 test-time reinforcement learning DeepMind formal proving"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a59d067-51e1-4ed7-bbdc-4a1d00bfd86d",
+  "isSidechain": false,
+  "requestId": "req_011CbTRGiepoPhgB5h9tEzVT",
+  "type": "assistant",
+  "uuid": "751989a1-5e56-4c41-9f72-b482184b2d2a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShLpWhdk5nZcPiwBV7GXbk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 835,
+      "cache_creation_input_tokens": 2786,
+      "cache_read_input_tokens": 33506,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 835,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 33506,
+          "cache_creation_input_tokens": 2786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-27T16:51:23.353Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CE8W8J6GwnJN4WSe7p7BiL`</summary>
+
+```json
+{
+  "query": "Con-NF autoformalization benchmark out-of-distribution Lean BEq results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "751989a1-5e56-4c41-9f72-b482184b2d2a",
+  "isSidechain": false,
+  "requestId": "req_011CbTRGiepoPhgB5h9tEzVT",
+  "type": "assistant",
+  "uuid": "b4a8c810-02ec-455e-aa44-e163600b3042",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShLpWhdk5nZcPiwBV7GXbk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 835,
+      "cache_creation_input_tokens": 2786,
+      "cache_read_input_tokens": 33506,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 835,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 33506,
+          "cache_creation_input_tokens": 2786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-27T16:51:24.415Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0114ZyCjpAtk7Aj1drCNBGkA`</summary>
+
+```json
+{
+  "query": "Qwen3-Coder 2026 open source model Lean formalization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4a8c810-02ec-455e-aa44-e163600b3042",
+  "isSidechain": false,
+  "requestId": "req_011CbTRGiepoPhgB5h9tEzVT",
+  "type": "assistant",
+  "uuid": "83c2d8fe-8f6f-4d94-b4a2-9dec5b2d80e6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShLpWhdk5nZcPiwBV7GXbk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 835,
+      "cache_creation_input_tokens": 2786,
+      "cache_read_input_tokens": 33506,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 835,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 33506,
+          "cache_creation_input_tokens": 2786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-27T16:51:25.040Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GmFk7irK5UV7dQgTLbApMu`</summary>
+
+```json
+{
+  "query": "\"MATH-AI\" workshop NeurIPS 2026 ICML 2026 automated theorem proving workshop deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83c2d8fe-8f6f-4d94-b4a2-9dec5b2d80e6",
+  "isSidechain": false,
+  "requestId": "req_011CbTRGiepoPhgB5h9tEzVT",
+  "type": "assistant",
+  "uuid": "8d311062-11e8-4a61-af40-dbd9d53e9dc2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShLpWhdk5nZcPiwBV7GXbk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 835,
+      "cache_creation_input_tokens": 2786,
+      "cache_read_input_tokens": 33506,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 835,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 33506,
+          "cache_creation_input_tokens": 2786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-27T16:51:30.743Z_
+
+<details><summary>↩ Tool result · `toolu_015yyNrAJp1u1MRseSmiggNu`</summary>
+
+```text
+Web search results for query: "AlphaProof IMO 2024 test-time reinforcement learning DeepMind formal proving"
+
+Links: [{"title":"AlphaProof system proves its worth at the Math Olympiad","url":"https://www.startuphub.ai/ai-news/ai-research/2025/alphaproof-system-proves-its-worth-at-the-math-olympiad/"},{"title":"AlphaProof | AI Wiki","url":"https://aiwiki.ai/wiki/alphaproof"},{"title":"AlphaProof Paper","url":"https://www.julian.ac/blog/2025/11/13/alphaproof-paper/"},{"title":"Olympiad-level formal mathematical reasoning with reinforcement learning | Nature","url":"https://www.nature.com/articles/s41586-025-09833-y"},{"title":"AI math genius delivers 100% accurate results","url":"https://phys.org/news/2025-11-ai-math-genius-accurate-results.html"},{"title":"[Research Press Release] Artificial intelligence: A mathematics medal-worthy AI system (Nature) | Nature Portfolio","url":"https://www.natureasia.com/en/info/press-releases/detail/9147"},{"title":"AI achieves silver-medal standard solving International Mathematical Olympiad problems — Google DeepMind","url":"https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/"},{"title":"Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving","url":"https://arxiv.org/pdf/2507.23726"}]
+
+Based on the search results, here's what I found about AlphaProof and its IMO 2024 performance:
+
+## Overview
+
+AlphaProof is a formal mathematical reasoning system developed by Google DeepMind, announced on July 25, 2024, that uses reinforcement learning to find and verify rigorous mathematical proofs inside the Lean 4 interactive theorem prover.
+
+## IMO 2024 Performance
+
+DeepMind's AlphaProof system solved three problems from the notoriously difficult IMO 2024, including P6, earning a silver medal. The system successfully generated formal proofs for three of the six IMO problems (P1, P2, and P6), with P6 being considered the hardest problem of the contest, solved by only five out of 609 human participants.
+
+## Test-Time Reinforcement Learning
+
+Test-time RL is the algorithm that was actually run for IMO 2024, resulting in proofs for IMO problems P1, P2 and P6. AlphaProof combines an AlphaZero-inspired learning framework with a curriculum of millions of auto-formalized problems and a TTRL approach based on variant generation.
+
+## Training Methodology
+
+The system was trained on a second network that formalized 1 million natural language theorem statements into 80 million distinct Lean statements, providing a massive synthetic dataset that allowed for extensive RL training where the system learned to optimize for shorter, more elegant proofs.
+
+## Key Advantage
+
+AlphaProof operates entirely in the formal Lean language, meaning its complex mathematical proofs are automatically verifiable, eliminating AI hallucinations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "751989a1-5e56-4c41-9f72-b482184b2d2a",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "a295c5f9-0c0e-484f-bac6-d7dd90b36aea",
+  "toolUseResult": {
+    "query": "AlphaProof IMO 2024 test-time reinforcement learning DeepMind formal proving",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01493K3ezosDP6s3GMzQ94v9",
+        "content": [
+          {
+            "title": "AlphaProof system proves its worth at the Math Olympiad",
+            "url": "https://www.startuphub.ai/ai-news/ai-research/2025/alphaproof-system-proves-its-worth-at-the-math-olympiad/"
+          },
+          {
+            "title": "AlphaProof | AI Wiki",
+            "url": "https://aiwiki.ai/wiki/alphaproof"
+          },
+          {
+            "title": "AlphaProof Paper",
+            "url": "https://www.julian.ac/blog/2025/11/13/alphaproof-paper/"
+          },
+          {
+            "title": "Olympiad-level formal mathematical reasoning with reinforcement learning | Nature",
+            "url": "https://www.nature.com/articles/s41586-025-09833-y"
+          },
+          {
+            "title": "AI math genius delivers 100% accurate results",
+            "url": "https://phys.org/news/2025-11-ai-math-genius-accurate-results.html"
+          },
+          {
+            "title": "[Research Press Release] Artificial intelligence: A mathematics medal-worthy AI system (Nature) | Nature Portfolio",
+            "url": "https://www.natureasia.com/en/info/press-releases/detail/9147"
+          },
+          {
+            "title": "AI achieves silver-medal standard solving International Mathematical Olympiad problems — Google DeepMind",
+            "url": "https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/"
+          },
+          {
+            "title": "Seed-Prover: Deep and Broad Reasoning for Automated Theorem Proving",
+            "url": "https://arxiv.org/pdf/2507.23726"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AlphaProof and its IMO 2024 performance:\n\n## Overview\n\nAlphaProof is a formal mathematical reasoning system developed by Google DeepMind, announced on July 25, 2024, that uses reinforcement learning to find and verify rigorous mathematical proofs inside the Lean 4 interactive theorem prover.\n\n## IMO 2024 Performance\n\nDeepMind's AlphaProof system solved three problems from the notoriously difficult IMO 2024, including P6, earning a silver medal. The system successfully generated formal proofs for three of the six IMO problems (P1, P2, and P6), with P6 being considered the hardest problem of the contest, solved by only five out of 609 human participants.\n\n## Test-Time Reinforcement Learning\n\nTest-time RL is the algorithm that was actually run for IMO 2024, resulting in proofs for IMO problems P1, P2 and P6. AlphaProof combines an AlphaZero-inspired learning framework with a curriculum of millions of auto-formalized problems and a TTRL approach based on variant generation.\n\n## Training Methodology\n\nThe system was trained on a second network that formalized 1 million natural language theorem statements into 80 million distinct Lean statements, providing a massive synthetic dataset that allowed for extensive RL training where the system learned to optimize for shorter, more elegant proofs.\n\n## Key Advantage\n\nAlphaProof operates entirely in the formal Lean language, meaning its complex mathematical proofs are automatically verifiable, eliminating AI hallucinations."
+    ],
+    "durationSeconds": 7.859238775999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "751989a1-5e56-4c41-9f72-b482184b2d2a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-27T16:51:31.200Z_
+
+<details><summary>↩ Tool result · `toolu_0114ZyCjpAtk7Aj1drCNBGkA`</summary>
+
+```text
+Web search results for query: "Qwen3-Coder 2026 open source model Lean formalization"
+
+Links: [{"title":"Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy","url":"https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"},{"title":"Best Qwen Models in 2026 — Alibaba's Open-Source AI Powerhouse | Remote OpenClaw","url":"https://www.remoteopenclaw.com/blog/best-qwen-models-2026"},{"title":"GitHub - QwenLM/Qwen3-Coder: Qwen3-Coder is the code version of Qwen3, the large language model series developed by Qwen team. · GitHub","url":"https://github.com/QwenLM/Qwen3-Coder"},{"title":"Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community","url":"https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"},{"title":"Qwen/Qwen3-Coder-Next · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Coder-Next"},{"title":"Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License","url":"https://huggingface.co/blog/daya-shankar/open-source-llms"},{"title":"Qwen 3.6 Series: Alibaba's Open-Source LLM Revolution in 2026 — AI/ML API Blog","url":"https://aimlapi.com/blog/qwen-3-6-series-alibabas-open-source-llm-revolution-in-2026"}]
+
+Based on the search results, I found information about Qwen3-Coder models in 2026, but the results do not contain specific information about Lean formalization support.
+
+## Qwen3-Coder 2026 Open Source Models
+
+The Qwen3-Coder family from Alibaba represents one of the most comprehensive open source coding model lineups available, with the flagship model featuring 480 billion parameters with a Mixture of Experts design.
+
+Qwen3-Coder 480B is the dedicated coding model with 480B total / 35B active parameters, trained on 7.5 trillion tokens (70% code).
+
+There's also a more recent variant: Qwen3-Coder-Next (80B total, 3B active) pushes the envelope further with hybrid attention combined with MoE, trained with large-scale reinforcement learning specifically for agentic tasks.
+
+The entire Qwen3 family is open-source under Apache 2.0.
+
+However, the search results I found do not contain specific information about Lean formalization support in these models. If you're looking for details about Qwen3-Coder's capabilities with Lean formalization specifically, you may want to check the official Qwen3-Coder GitHub repository or technical reports directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83c2d8fe-8f6f-4d94-b4a2-9dec5b2d80e6",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "c0a9e54d-fba2-4b50-a797-3977fa4074d1",
+  "toolUseResult": {
+    "query": "Qwen3-Coder 2026 open source model Lean formalization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Hhhx4M8cyEgJQwzz5QbAhF",
+        "content": [
+          {
+            "title": "Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy",
+            "url": "https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"
+          },
+          {
+            "title": "Best Qwen Models in 2026 — Alibaba's Open-Source AI Powerhouse | Remote OpenClaw",
+            "url": "https://www.remoteopenclaw.com/blog/best-qwen-models-2026"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3-Coder: Qwen3-Coder is the code version of Qwen3, the large language model series developed by Qwen team. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3-Coder"
+          },
+          {
+            "title": "Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community",
+            "url": "https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"
+          },
+          {
+            "title": "Qwen/Qwen3-Coder-Next · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-Next"
+          },
+          {
+            "title": "Best Open-Source LLM Models in 2026: Coding, Local, Agentic AI, Benchmarks, and License",
+            "url": "https://huggingface.co/blog/daya-shankar/open-source-llms"
+          },
+          {
+            "title": "Qwen 3.6 Series: Alibaba's Open-Source LLM Revolution in 2026 — AI/ML API Blog",
+            "url": "https://aimlapi.com/blog/qwen-3-6-series-alibabas-open-source-llm-revolution-in-2026"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Qwen3-Coder models in 2026, but the results do not contain specific information about Lean formalization support.\n\n## Qwen3-Coder 2026 Open Source Models\n\nThe Qwen3-Coder family from Alibaba represents one of the most comprehensive open source coding model lineups available, with the flagship model featuring 480 billion parameters with a Mixture of Experts design.\n\nQwen3-Coder 480B is the dedicated coding model with 480B total / 35B active parameters, trained on 7.5 trillion tokens (70% code).\n\nThere's also a more recent variant: Qwen3-Coder-Next (80B total, 3B active) pushes the envelope further with hybrid attention combined with MoE, trained with large-scale reinforcement learning specifically for agentic tasks.\n\nThe entire Qwen3 family is open-source under Apache 2.0.\n\nHowever, the search results I found do not contain specific information about Lean formalization support in these models. If you're looking for details about Qwen3-Coder's capabilities with Lean formalization specifically, you may want to check the official Qwen3-Coder GitHub repository or technical reports directly."
+    ],
+    "durationSeconds": 6.780285180000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "83c2d8fe-8f6f-4d94-b4a2-9dec5b2d80e6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-27T16:51:31.210Z_
+
+<details><summary>↩ Tool result · `toolu_01GmFk7irK5UV7dQgTLbApMu`</summary>
+
+```text
+Web search results for query: ""MATH-AI" workshop NeurIPS 2026 ICML 2026 automated theorem proving workshop deadline"
+
+Links: [{"title":"3rd AI for Math Workshop @ ICML 2026","url":"https://ai4math2026.github.io/"},{"title":"AI as a Tool for Mathematics, Computer Science, and Machine Learning | ICML 2026 Workshop","url":"https://ai4research-icml-workshop.github.io"},{"title":"AI for Math Workshop @ ICML 2026 on X: \"The paper submission deadline is within 1 week: June 21st, 2025, AoE The challenge deadline is in 2 weeks: July 1st, 2025, AoE 📢Call for Papers: https://t.co/vEW4IASzVn 🎯Challenge 1, File-level Automated Proof Engineering (APE) of Formal Math Libraries (APE-Bench I): https://t.co/WIQ4AzuhDl\" / X","url":"https://x.com/ai4mathworkshop/status/1934991398471684096"},{"title":"AI for Math Workshop","url":"https://icml.cc/virtual/2024/workshop/29948"},{"title":"ICML 2025 Workshops","url":"https://icml.cc/virtual/2025/events/workshop"},{"title":"2nd AI for Math Workshop @ ICML 2025","url":"https://icml.cc/virtual/2025/workshop/39979"},{"title":"Mathematicians in the age of AI","url":"https://arxiv.org/pdf/2603.03684"},{"title":"ICML 2026 AI for Math Workshop & Challenge 1 - FormalRx - Codabench","url":"https://www.codabench.org/competitions/16104/"}]
+
+Based on the search results, here's what I found about the MATH-AI and related workshops:
+
+## AI for Math Workshop at ICML 2026
+
+The AI for Math Workshop has been accepted at ICML 2026, and it will be held on Saturday, July 11, 2026, from 7:00 a.m. to 4:00 p.m. This is the 3rd AI for Math Workshop.
+
+The workshop focuses on topics including formal theorem proving and how LLM theorem provers can support real-world mathematics research. It also includes challenges and accepts contributions from academia and industry across formal theorem proving themes.
+
+## Other Related Workshop at ICML 2026
+
+There is also an "AI as a Tool for Mathematics, Computer Science, and Machine Learning" workshop scheduled for July 10 or 11, 2026, in Seoul, South Korea.
+
+**Note:** My search did not specifically find a "MATH-AI" workshop with that exact name, nor did it find specific information about NeurIPS 2026 workshops or detailed submission deadlines for 2026. If you're looking for information about a specific workshop with a different name or for NeurIPS 2026, please let me know and I can search again.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d311062-11e8-4a61-af40-dbd9d53e9dc2",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "6ada5d63-d1d6-430f-b12c-4c90b0012315",
+  "toolUseResult": {
+    "query": "\"MATH-AI\" workshop NeurIPS 2026 ICML 2026 automated theorem proving workshop deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013tfzRpnfupCwo6m8SjnY6S",
+        "content": [
+          {
+            "title": "3rd AI for Math Workshop @ ICML 2026",
+            "url": "https://ai4math2026.github.io/"
+          },
+          {
+            "title": "AI as a Tool for Mathematics, Computer Science, and Machine Learning | ICML 2026 Workshop",
+            "url": "https://ai4research-icml-workshop.github.io"
+          },
+          {
+            "title": "AI for Math Workshop @ ICML 2026 on X: \"The paper submission deadline is within 1 week: June 21st, 2025, AoE The challenge deadline is in 2 weeks: July 1st, 2025, AoE 📢Call for Papers: https://t.co/vEW4IASzVn 🎯Challenge 1, File-level Automated Proof Engineering (APE) of Formal Math Libraries (APE-Bench I): https://t.co/WIQ4AzuhDl\" / X",
+            "url": "https://x.com/ai4mathworkshop/status/1934991398471684096"
+          },
+          {
+            "title": "AI for Math Workshop",
+            "url": "https://icml.cc/virtual/2024/workshop/29948"
+          },
+          {
+            "title": "ICML 2025 Workshops",
+            "url": "https://icml.cc/virtual/2025/events/workshop"
+          },
+          {
+            "title": "2nd AI for Math Workshop @ ICML 2025",
+            "url": "https://icml.cc/virtual/2025/workshop/39979"
+          },
+          {
+            "title": "Mathematicians in the age of AI",
+            "url": "https://arxiv.org/pdf/2603.03684"
+          },
+          {
+            "title": "ICML 2026 AI for Math Workshop & Challenge 1 - FormalRx - Codabench",
+            "url": "https://www.codabench.org/competitions/16104/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the MATH-AI and related workshops:\n\n## AI for Math Workshop at ICML 2026\n\nThe AI for Math Workshop has been accepted at ICML 2026, and it will be held on Saturday, July 11, 2026, from 7:00 a.m. to 4:00 p.m. This is the 3rd AI for Math Workshop.\n\nThe workshop focuses on topics including formal theorem proving and how LLM theorem provers can support real-world mathematics research. It also includes challenges and accepts contributions from academia and industry across formal theorem proving themes.\n\n## Other Related Workshop at ICML 2026\n\nThere is also an \"AI as a Tool for Mathematics, Computer Science, and Machine Learning\" workshop scheduled for July 10 or 11, 2026, in Seoul, South Korea.\n\n**Note:** My search did not specifically find a \"MATH-AI\" workshop with that exact name, nor did it find specific information about NeurIPS 2026 workshops or detailed submission deadlines for 2026. If you're looking for information about a specific workshop with a different name or for NeurIPS 2026, please let me know and I can search again."
+    ],
+    "durationSeconds": 6.167514017999987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8d311062-11e8-4a61-af40-dbd9d53e9dc2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-27T16:51:31.418Z_
+
+<details><summary>↩ Tool result · `toolu_01CE8W8J6GwnJN4WSe7p7BiL`</summary>
+
+```text
+Web search results for query: "Con-NF autoformalization benchmark out-of-distribution Lean BEq results"
+
+Links: [{"title":"ConNF Benchmark Overview","url":"https://www.emergentmind.com/topics/connf-benchmark"},{"title":"towards a faithful metric and a dependency retrieval","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/html/2510.10815v2"},{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/d630537fc4402cfa3ebbc7450a0cac91-Abstract-Conference.html"},{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview","url":"https://openreview.net/forum?id=hUb2At2DsQ"},{"title":"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS","url":"https://arxiv.org/pdf/2510.10815"},{"title":"Reliable Evaluation and Benchmarks for Statement Autoformalization","url":"https://arxiv.org/pdf/2406.07222"},{"title":"RLMEval: Evaluating Autoformalization on Research-Level Mathematics","url":"http://aitp-conference.org/2025/abstract/AITP_2025_paper_8.pdf"},{"title":"INDIMATHBENCH: AUTOFORMALIZING MATHEMATI-","url":"https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/IndiMathBench_MS_hosting.pdf"},{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://arxiv.org/html/2511.03108v1"}]
+
+Based on the search results, here's what I found about the Con-NF autoformalization benchmark and its BEq results:
+
+## Con-NF Benchmark Overview
+
+Con-NF is a benchmark consisting of 961 informal-formal statement pairs from New Foundations, and unlike conventional benchmarks such as ProofNet and MiniF2F-test, ConNF's items are sourced from a specialized mathematical subfield—Quine's New Foundations—which is less represented in widely used libraries like Mathlib.
+
+## Out-of-Distribution Nature
+
+During evaluation, neither retrieval models nor formalizers have previous exposure to the formal objects present in the test split, making this a genuine out-of-distribution evaluation scenario.
+
+## BEq Results
+
+RAutoformalizer substantially outperforms SOTA baselines in both in-distribution ProofNet benchmark (12.83% → 18.18%, BEq@8) and OOD Con-NF scenario (4.58% → 16.86%, BEq@8).
+
+Additionally, DRIFT demonstrates strong performance on the out-of-distribution ConNF benchmark, with BEq+@10 improvements of 37.14% and 42.25% using GPT-4.1 and DeepSeek-V3.1, respectively.
+
+## BEq Metric
+
+BEq (Bidirectional Extended Definitional Equivalence) extends Definition Equality in dependent type theory more aligned with human intuition, and BEq is evaluated on 200 diverse formal statement pairs with expert-annotated equivalence label, exhibiting significantly improved accuracy (82.50% → 90.50%) and precision (70.59% → 100.0%).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4a8c810-02ec-455e-aa44-e163600b3042",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "de61c396-4698-4faa-8eef-d4e891f5d0cc",
+  "toolUseResult": {
+    "query": "Con-NF autoformalization benchmark out-of-distribution Lean BEq results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016ugTcW6ErZfJZq5YfZxXCM",
+        "content": [
+          {
+            "title": "ConNF Benchmark Overview",
+            "url": "https://www.emergentmind.com/topics/connf-benchmark"
+          },
+          {
+            "title": "towards a faithful metric and a dependency retrieval",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/html/2510.10815v2"
+          },
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/d630537fc4402cfa3ebbc7450a0cac91-Abstract-Conference.html"
+          },
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview",
+            "url": "https://openreview.net/forum?id=hUb2At2DsQ"
+          },
+          {
+            "title": "Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          },
+          {
+            "title": "Reliable Evaluation and Benchmarks for Statement Autoformalization",
+            "url": "https://arxiv.org/pdf/2406.07222"
+          },
+          {
+            "title": "RLMEval: Evaluating Autoformalization on Research-Level Mathematics",
+            "url": "http://aitp-conference.org/2025/abstract/AITP_2025_paper_8.pdf"
+          },
+          {
+            "title": "INDIMATHBENCH: AUTOFORMALIZING MATHEMATI-",
+            "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/IndiMathBench_MS_hosting.pdf"
+          },
+          {
+            "title": "miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://arxiv.org/html/2511.03108v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Con-NF autoformalization benchmark and its BEq results:\n\n## Con-NF Benchmark Overview\n\nCon-NF is a benchmark consisting of 961 informal-formal statement pairs from New Foundations, and unlike conventional benchmarks such as ProofNet and MiniF2F-test, ConNF's items are sourced from a specialized mathematical subfield—Quine's New Foundations—which is less represented in widely used libraries like Mathlib.\n\n## Out-of-Distribution Nature\n\nDuring evaluation, neither retrieval models nor formalizers have previous exposure to the formal objects present in the test split, making this a genuine out-of-distribution evaluation scenario.\n\n## BEq Results\n\nRAutoformalizer substantially outperforms SOTA baselines in both in-distribution ProofNet benchmark (12.83% → 18.18%, BEq@8) and OOD Con-NF scenario (4.58% → 16.86%, BEq@8).\n\nAdditionally, DRIFT demonstrates strong performance on the out-of-distribution ConNF benchmark, with BEq+@10 improvements of 37.14% and 42.25% using GPT-4.1 and DeepSeek-V3.1, respectively.\n\n## BEq Metric\n\nBEq (Bidirectional Extended Definitional Equivalence) extends Definition Equality in dependent type theory more aligned with human intuition, and BEq is evaluated on 200 diverse formal statement pairs with expert-annotated equivalence label, exhibiting significantly improved accuracy (82.50% → 90.50%) and precision (70.59% → 100.0%)."
+    ],
+    "durationSeconds": 8.062915890999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b4a8c810-02ec-455e-aa44-e163600b3042",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 99 · 2026-05-27T16:51:31.424Z_
+
+```json
+{
+  "parentUuid": "de61c396-4698-4faa-8eef-d4e891f5d0cc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d7b48941-fffe-4925-9522-fda2d0f9bb2d",
+  "timestamp": "2026-05-27T16:51:31.424Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "d7b48941-fffe-4925-9522-fda2d0f9bb2d",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-27T16:51:35.232Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the AI for Math Workshop deadline more carefully. The tweet says "June 21st, 2025" but that seems wrong for an ICML 2026 workshop. Let me verify the dates.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7b48941-fffe-4925-9522-fda2d0f9bb2d",
+  "isSidechain": false,
+  "requestId": "req_011CbTRHfniCGY9YcpQa9Z5Y",
+  "type": "assistant",
+  "uuid": "13918b27-78d7-460f-8ed0-b54e490adf32",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU2cuC5wQsGH3YVF5D14CA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1605,
+      "cache_creation_input_tokens": 3029,
+      "cache_read_input_tokens": 36292,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1605,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36292,
+          "cache_creation_input_tokens": 3029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-27T16:51:35.667Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G69pEvxzgn8qZ3TqVMExH6`</summary>
+
+```json
+{
+  "query": "AI for Math Workshop ICML 2026 paper submission deadline June 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13918b27-78d7-460f-8ed0-b54e490adf32",
+  "isSidechain": false,
+  "requestId": "req_011CbTRHfniCGY9YcpQa9Z5Y",
+  "type": "assistant",
+  "uuid": "348ceff2-de77-4701-8fb5-fab156d2bc3a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU2cuC5wQsGH3YVF5D14CA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1605,
+      "cache_creation_input_tokens": 3029,
+      "cache_read_input_tokens": 36292,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1605,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36292,
+          "cache_creation_input_tokens": 3029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-27T16:51:36.138Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P5fFGFNEZeD34RLCE7aWaG`</summary>
+
+```json
+{
+  "query": "AAAI 2027 call for papers July 2026 abstract deadline details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "348ceff2-de77-4701-8fb5-fab156d2bc3a",
+  "isSidechain": false,
+  "requestId": "req_011CbTRHfniCGY9YcpQa9Z5Y",
+  "type": "assistant",
+  "uuid": "d7dc80dd-6efc-454c-b839-1b06c5485336",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU2cuC5wQsGH3YVF5D14CA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1605,
+      "cache_creation_input_tokens": 3029,
+      "cache_read_input_tokens": 36292,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1605,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36292,
+          "cache_creation_input_tokens": 3029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-27T16:51:37.132Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VkumCa3kiGqaZJ726BR5Mn`</summary>
+
+```json
+{
+  "query": "ARR June 15 2026 submission EMNLP 2026 commitment August"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7dc80dd-6efc-454c-b839-1b06c5485336",
+  "isSidechain": false,
+  "requestId": "req_011CbTRHfniCGY9YcpQa9Z5Y",
+  "type": "assistant",
+  "uuid": "d77b6378-cb7d-45bc-9fbd-1433ff6c5233",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU2cuC5wQsGH3YVF5D14CA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1605,
+      "cache_creation_input_tokens": 3029,
+      "cache_read_input_tokens": 36292,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1605,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36292,
+          "cache_creation_input_tokens": 3029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-27T16:51:37.583Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FejFFpKd4vzR1LWd4SA2ys`</summary>
+
+```json
+{
+  "query": "Aria agent retrieval autoformalization dependency graph 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d77b6378-cb7d-45bc-9fbd-1433ff6c5233",
+  "isSidechain": false,
+  "requestId": "req_011CbTRHfniCGY9YcpQa9Z5Y",
+  "type": "assistant",
+  "uuid": "6eff96a8-e045-4b80-af0a-a824acfead11",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HU2cuC5wQsGH3YVF5D14CA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1605,
+      "cache_creation_input_tokens": 3029,
+      "cache_read_input_tokens": 36292,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1605,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 36292,
+          "cache_creation_input_tokens": 3029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 107 · 2026-05-27T16:51:40.351Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T16:51:40.351Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "content": "&lt;task-notification>\n&lt;task-id>ae57c5c458da36144&lt;/task-id>\n&lt;tool-use-id>toolu_01AwUn3Aw6DU2TzGUSwpLaSm&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/ae57c5c458da36144.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search venue deadlines and verify references\" completed&lt;/summary>\n&lt;result>I now have comprehensive information for all the items. Here is the full report:\n\n---\n\n## Part 1: ML/AI Conference Deadlines After May 27, 2026\n\n### Main Conference Deadlines\n\n**NeurIPS 2026** (Sydney, Australia, Dec 6-12, 2026)\n- Abstract deadline: May 4, 2026 (AOE) -- ALREADY PASSED\n- Full paper deadline: May 6, 2026 (AOE) -- ALREADY PASSED\n- Workshop proposal deadline: June 6, 2026 (AOE) -- still open\n- Suggested workshop paper submission: August 29, 2026 (AOE)\n- Source: [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n\n**AAAI 2027** (Montreal, Canada, Feb 16-23, 2027)\n- Abstract deadline: **July 21, 2026** (11:59 PM UTC-12)\n- Full paper deadline: **July 28, 2026** (11:59 PM UTC-12)\n- Supplementary material deadline: July 31, 2026\n- OpenReview opens for registration: June 17, 2026; paper submission: June 24, 2026\n- Source: [AAAI-27](https://aaai.org/conference/aaai/aaai-27/)\n\n**ICLR 2027** -- Deadline NOT yet officially announced. Based on the ICLR 2026 pattern (abstract Sept 19, paper Sept 24), the deadline is predicted around **September 2026** but this is unconfirmed. The conference is expected around April 2027.\n- Source: [AI &amp; ML Conference Deadlines](https://trybibby.com/conference-deadlines)\n\n**ICML 2026** (Seoul, South Korea, Jul 6-11, 2026)\n- Abstract deadline: January 24, 2026 -- ALREADY PASSED\n- Paper deadline: January 29, 2026 -- ALREADY PASSED\n- Camera-ready: May 28, 2026 (11:59pm AOE)\n- Source: [ICML 2026 Dates](https://icml.cc/Conferences/2026/Dates)\n\n**COLM 2026** (San Francisco, Oct 6-9, 2026)\n- Abstract deadline: March 26, 2026 -- ALREADY PASSED\n- Full paper deadline: March 31, 2026 -- ALREADY PASSED\n- Workshop contribution suggested deadline: **June 23, 2026**\n- Source: [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n\n**EMNLP 2026** (Budapest, Hungary, Oct 24-29, 2026)\n- ARR submission deadline (long &amp; short papers): May 25, 2026 -- ALREADY PASSED (by 2 days)\n- Reviewer registration for ALL authors: May 27, 2026 -- TODAY\n- EMNLP commitment deadline: **August 2, 2026**\n- Notification: August 20, 2026\n- Camera-ready: September 20, 2026\n- Source: [EMNLP 2026](https://2026.emnlp.org/)\n\n**ACL 2027** -- Main conference deadline not yet announced. For **EACL 2027** (Athens, Greece, Mar 9-14, 2027), the ARR submission deadline is **August 3, 2026**.\n- Source: [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n\n### Workshop Deadlines\n\n**NeurIPS 2026 Workshops:**\n- Workshop proposal deadline: June 6, 2026 (AOE)\n- Suggested submission date for workshop contributions: **August 29, 2026** (AOE)\n- Mandatory accept/reject notification: September 29, 2026\n- Source: [NeurIPS 2026 Call for Workshops](https://neurips.cc/Conferences/2026/CallForWorkshops)\n\n**ICML 2026 Workshops:**\n- Workshop proposal deadline: February 13, 2026 -- ALREADY PASSED\n- Suggested submission for workshop contributions: April 24, 2026 -- ALREADY PASSED\n- Workshops: July 10-11, 2026\n- Source: [ICML 2026 Call for Workshops](https://icml.cc/Conferences/2026/CallForWorkshops)\n\n**3rd AI for Math Workshop @ ICML 2026** (July 11, 2026):\n- Paper submission portal opened April 1, 2026 on OpenReview\n- The workshop had a paper submission deadline (from a prior year's X/Twitter post reference: June 21 deadline was mentioned, but verify at the official site)\n- Challenge period: May 1 - June 15, 2026\n- Source: [AI for Math Workshop @ ICML 2026](https://ai4math2026.github.io/)\n\n**MATH4AI Workshop @ AAAI 2026** -- This was at AAAI 2026 (already past).\n- Source: [MATH4AI Workshop](https://sites.google.com/view/math4aiworkshop)\n\n**ATP / Automated Theorem Proving events in 2026:**\n- **AITP 2026** (AI and Theorem Proving): Aussois, France, August 30 - September 4, 2026\n- **ITP 2026** (Interactive Theorem Proving): Lisbon, Portugal, July 26-29, 2026 (part of FLoC)\n- **CASC** (CADE ATP System Competition): Held at FLoC 2026\n- Source: [AITP](https://aitp-conference.org/), [ITP](https://itp-conference.github.io/)\n\n---\n\n## Part 2: Paper Existence Verification\n\n**1. \"TTRL: Test-Time Reinforcement Learning\" -- CONFIRMED**\n- Accepted as a **NeurIPS 2025 poster** (accepted September 18, 2025)\n- Authors: Yuxin Zuo, Kaiyan Zhang, Li Sheng et al.\n- Key result: Boosts pass@1 of Qwen-2.5-Math-7B by ~211% on AIME 2024 using only unlabeled test data\n- ArXiv: [2504.16084](https://arxiv.org/abs/2504.16084)\n- GitHub: [PRIME-RL/TTRL](https://github.com/prime-rl/ttrl)\n\n**2. \"AlphaProof\" (DeepMind, IMO 2024) -- CONFIRMED**\n- Published in **Nature** (2025): \"Olympiad-level formal mathematical reasoning with reinforcement learning\"\n- RL-based system proving theorems in Lean; solved 3 of 5 problems at IMO 2024\n- Combined with AlphaGeometry 2, solved 4 of 6 IMO 2024 problems (silver medal level, 28 points, 1 point short of gold)\n- Source: [Nature article](https://www.nature.com/articles/s41586-025-09833-y), [DeepMind blog](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/)\n\n**3. \"Kimina-Prover\" (2025, RL + Lean) -- CONFIRMED**\n- By MoonshotAI; trained via large-scale RL from Qwen2.5-72B for Lean 4 proof generation\n- State-of-the-art on miniF2F benchmark: 80.7% pass@8192 (vs. prior SOTA 72.9%)\n- Uses \"Formal Reasoning Pattern\" bridging formal verification and informal mathematical intuition\n- Context window up to 32K tokens (longest in neural theorem proving)\n- ArXiv: [2504.11354](https://arxiv.org/abs/2504.11354)\n- Open-source RL pipeline: [Kimina-Prover-RL on HuggingFace](https://huggingface.co/blog/AI-MO/kimina-prover-rl)\n\n**4. \"StepFun-Formalizer-32B\" (autoformalization) -- CONFIRMED**\n- Published at **AAAI** (proceedings confirmed); ArXiv: [2508.04440](https://arxiv.org/abs/2508.04440)\n- 32B parameter LLM for autoformalization of informal math into Lean 4\n- Hybrid training: knowledge distillation + template-guided reasoning + RL with verifiable rewards\n- Achieves 40.5% on FormalMATH-Lite and 26.7% on ProverBench (single-shot)\n- GitHub: [stepfun-ai/StepFun-Formalizer](https://github.com/stepfun-ai/StepFun-Formalizer)\n\n**5. \"FormalMATH benchmark\" (multi-domain) -- CONFIRMED**\n- Large-scale Lean 4 benchmark with 5,560 formally verified problems\n- Spans algebra, applied math, calculus, number theory, discrete mathematics\n- 22.8x larger than miniF2F\n- Uses human-in-the-loop autoformalization pipeline\n- Best models achieve only 16.46% success rate, showing significant room for improvement\n- ArXiv: [2505.02735](https://arxiv.org/abs/2505.02735)\n- Website: [SphereLab FormalMATH](https://spherelab.ai/FormalMATH/)\n\n---\n\n## Summary of Still-Open Deadlines (After May 27, 2026)\n\n| Conference/Event | Deadline | Date |\n|---|---|---|\n| NeurIPS 2026 workshop proposals | June 6, 2026 | |\n| COLM 2026 workshop contributions | June 23, 2026 (suggested) | |\n| AAAI 2027 abstracts | July 21, 2026 | |\n| AAAI 2027 full papers | July 28, 2026 | |\n| EMNLP 2026 commitment | August 2, 2026 | |\n| EACL 2027 ARR submission | August 3, 2026 | |\n| NeurIPS 2026 workshop contributions | August 29, 2026 (suggested) | |\n| ICLR 2027 | ~September 2026 (predicted, unconfirmed) | |\n| AITP 2026 | Aug 30 - Sep 4, 2026 (conference dates; submission TBD) | |\n\nSources:\n- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)\n- [NeurIPS 2026 Call for Workshops](https://neurips.cc/Conferences/2026/CallForWorkshops)\n- [AAAI-27](https://aaai.org/conference/aaai/aaai-27/)\n- [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [ICML 2026 Dates](https://icml.cc/Conferences/2026/Dates)\n- [ICML 2026 Call for Workshops](https://icml.cc/Conferences/2026/CallForWorkshops)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [EMNLP 2026](https://2026.emnlp.org/)\n- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n- [AI &amp; ML Conference Deadlines 2026-2027](https://trybibby.com/conference-deadlines)\n- [AI Deadlines](http://aideadlines.org/)\n- [3rd AI for Math Workshop @ ICML 2026](https://ai4math2026.github.io/)\n- [AITP Conference](https://aitp-conference.org/)\n- [ITP Conference](https://itp-conference.github.io/)\n- [TTRL on ArXiv](https://arxiv.org/abs/2504.16084)\n- [TTRL on GitHub](https://github.com/prime-rl/ttrl)\n- [AlphaProof in Nature](https://www.nature.com/articles/s41586-025-09833-y)\n- [DeepMind AlphaProof Blog](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/)\n- [Kimina-Prover on ArXiv](https://arxiv.org/abs/2504.11354)\n- [Kimina-Prover-RL on HuggingFace](https://huggingface.co/blog/AI-MO/kimina-prover-rl)\n- [StepFun-Formalizer on ArXiv](https://arxiv.org/abs/2508.04440)\n- [StepFun-Formalizer GitHub](https://github.com/stepfun-ai/StepFun-Formalizer)\n- [FormalMATH on ArXiv](https://arxiv.org/abs/2505.02735)\n- [FormalMATH Benchmark Site](https://spherelab.ai/FormalMATH/)&lt;/result>\n&lt;usage>&lt;total_tokens>26979&lt;/total_tokens>&lt;tool_uses>23&lt;/tool_uses>&lt;duration_ms>115021&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-27T16:51:40.946Z_
+
+<details><summary>↩ Tool result · `toolu_01VkumCa3kiGqaZJ726BR5Mn`</summary>
+
+```text
+Web search results for query: "ARR June 15 2026 submission EMNLP 2026 commitment August"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"Third Workshop on Uncertainty-Aware NLP @EMNLP 2026","url":"https://uncertainlp.github.io/"},{"title":"EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin","url":"https://www.getpaperpin.com/deadlines/emnlp26"}]
+
+Based on the search results, I found relevant information about ARR submissions for EMNLP 2026:
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026, and the EMNLP commitment deadline is August 2, 2026. 
+
+However, I should note that your query mentioned "June 15 2026 submission," but the actual ARR submission deadline for EMNLP 2026 is May 25, 2026, not June 15. Papers that have received reviews and a meta-review from ARR may be committed to EMNLP via the commitment link.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d77b6378-cb7d-45bc-9fbd-1433ff6c5233",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "46ba9474-7e45-427c-b50c-948d41878375",
+  "toolUseResult": {
+    "query": "ARR June 15 2026 submission EMNLP 2026 commitment August",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VHwtjFDuoe2oj47au2ieVT",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "Third Workshop on Uncertainty-Aware NLP @EMNLP 2026",
+            "url": "https://uncertainlp.github.io/"
+          },
+          {
+            "title": "EMNLP 2026 2026 Deadlines — Submission, Rebuttal & Dates | Paperpin | Paperpin",
+            "url": "https://www.getpaperpin.com/deadlines/emnlp26"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about ARR submissions for EMNLP 2026:\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026, and the EMNLP commitment deadline is August 2, 2026. \n\nHowever, I should note that your query mentioned \"June 15 2026 submission,\" but the actual ARR submission deadline for EMNLP 2026 is May 25, 2026, not June 15. Papers that have received reviews and a meta-review from ARR may be committed to EMNLP via the commitment link."
+    ],
+    "durationSeconds": 3.8110967630000085,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d77b6378-cb7d-45bc-9fbd-1433ff6c5233",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-27T16:51:42.104Z_
+
+<details><summary>↩ Tool result · `toolu_01G69pEvxzgn8qZ3TqVMExH6`</summary>
+
+```text
+Web search results for query: "AI for Math Workshop ICML 2026 paper submission deadline June 2026"
+
+Links: [{"title":"3rd AI for Math Workshop @ ICML 2026","url":"https://ai4math2026.github.io/"},{"title":"AI for Math Workshop @ ICML 2026 on X: \"The paper submission deadline is within 1 week: June 21st, 2025, AoE The challenge deadline is in 2 weeks: July 1st, 2025, AoE 📢Call for Papers: https://t.co/vEW4IASzVn 🎯Challenge 1, File-level Automated Proof Engineering (APE) of Formal Math Libraries (APE-Bench I): https://t.co/WIQ4AzuhDl\" / X","url":"https://x.com/ai4mathworkshop/status/1934991398471684096"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"Announcing the ICML 2026 Workshops and Affinity Workshops – ICML Blog","url":"https://blog.icml.cc/2026/04/06/announcing-the-icml-2026-workshops-and-affinity-workshops/"},{"title":"ICML 2026 Call for Post-Conference Workshops","url":"https://icml.cc/Conferences/2026/CallForWorkshops"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"GenBio ICML Workshop 2026 | The 2026 workshop on Generative and Agentic AI for Biology at ICML 2026, Seoul, South Korea.","url":"https://genbio-workshop.github.io/2026/"},{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI as a Tool for Mathematics, Computer Science, and Machine Learning | ICML 2026 Workshop","url":"https://ai4research-icml-workshop.github.io"}]
+
+Based on the search results, here's what I found about the AI for Math Workshop at ICML 2026:
+
+## Workshop Information
+
+The AI for Math Workshop has been accepted at ICML 2026, and it is scheduled for Saturday, July 11, 2026, 7:00 a.m. to 4:00 p.m.
+
+## Paper Submission Details
+
+The paper submission portal opened on April 1, 2026 on OpenReview. Papers should be 2–8 pages (excluding references and supplementary materials).
+
+## Challenge Track Deadline
+
+Note that while you asked about a June 2026 paper submission deadline, the search results indicate a different timeline: The challenge period runs from May 1 – June 15, 2026, which appears to be for the workshop's competitive challenge tracks rather than paper submissions.
+
+The workshop focuses on AI for mathematics research and will present a Best Paper Award and Best Paper Runner-Up at the workshop.
+
+For the most current and specific paper submission deadline, I recommend visiting the official workshop website at https://ai4math2026.github.io/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "348ceff2-de77-4701-8fb5-fab156d2bc3a",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "52919e5e-bfe8-42e9-916a-63aab469a6a7",
+  "toolUseResult": {
+    "query": "AI for Math Workshop ICML 2026 paper submission deadline June 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012br2ZcEw27mkEG9MLRuLao",
+        "content": [
+          {
+            "title": "3rd AI for Math Workshop @ ICML 2026",
+            "url": "https://ai4math2026.github.io/"
+          },
+          {
+            "title": "AI for Math Workshop @ ICML 2026 on X: \"The paper submission deadline is within 1 week: June 21st, 2025, AoE The challenge deadline is in 2 weeks: July 1st, 2025, AoE 📢Call for Papers: https://t.co/vEW4IASzVn 🎯Challenge 1, File-level Automated Proof Engineering (APE) of Formal Math Libraries (APE-Bench I): https://t.co/WIQ4AzuhDl\" / X",
+            "url": "https://x.com/ai4mathworkshop/status/1934991398471684096"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "Announcing the ICML 2026 Workshops and Affinity Workshops – ICML Blog",
+            "url": "https://blog.icml.cc/2026/04/06/announcing-the-icml-2026-workshops-and-affinity-workshops/"
+          },
+          {
+            "title": "ICML 2026 Call for Post-Conference Workshops",
+            "url": "https://icml.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "GenBio ICML Workshop 2026 | The 2026 workshop on Generative and Agentic AI for Biology at ICML 2026, Seoul, South Korea.",
+            "url": "https://genbio-workshop.github.io/2026/"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI as a Tool for Mathematics, Computer Science, and Machine Learning | ICML 2026 Workshop",
+            "url": "https://ai4research-icml-workshop.github.io"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the AI for Math Workshop at ICML 2026:\n\n## Workshop Information\n\nThe AI for Math Workshop has been accepted at ICML 2026, and it is scheduled for Saturday, July 11, 2026, 7:00 a.m. to 4:00 p.m.\n\n## Paper Submission Details\n\nThe paper submission portal opened on April 1, 2026 on OpenReview. Papers should be 2–8 pages (excluding references and supplementary materials).\n\n## Challenge Track Deadline\n\nNote that while you asked about a June 2026 paper submission deadline, the search results indicate a different timeline: The challenge period runs from May 1 – June 15, 2026, which appears to be for the workshop's competitive challenge tracks rather than paper submissions.\n\nThe workshop focuses on AI for mathematics research and will present a Best Paper Award and Best Paper Runner-Up at the workshop.\n\nFor the most current and specific paper submission deadline, I recommend visiting the official workshop website at https://ai4math2026.github.io/."
+    ],
+    "durationSeconds": 6.435129975999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "348ceff2-de77-4701-8fb5-fab156d2bc3a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-27T16:51:42.151Z_
+
+<details><summary>↩ Tool result · `toolu_01P5fFGFNEZeD34RLCE7aWaG`</summary>
+
+```text
+Web search results for query: "AAAI 2027 call for papers July 2026 abstract deadline details"
+
+Links: [{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews","url":"https://www.medrxiv.org/content/10.1101/2023.10.31.23297818.full.pdf"},{"title":"Assessing the Reproducibility of the Structured Abstracts Generated by ChatGPT and Bard Compared to Human-Written Abstracts in the Field of Spine Surgery: Comparative Analysis","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11237793/"}]
+
+Based on the search results, here are the AAAI 2027 call for papers details with July 2026 deadlines:
+
+## AAAI-27 Conference Details
+
+The Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.
+
+## Key Submission Deadlines (July 2026)
+
+The abstract deadline is July 21, 2026 at 11:59 PM UTC-12, and full papers are due on July 28, 2026 at 11:59 PM UTC-12. Additionally, supplementary material and code are due by July 31, 2026 at 11:59 PM UTC-12.
+
+## Additional Timeline
+
+The Open Review submission site opens for author registration on June 17, 2026, and opens for paper submission on June 24, 2026. Notification of Phase 1 rejections is scheduled for September 24, 2026, with an author feedback window from October 19-25, 2026, and final acceptance/rejection notifications on November 30, 2026.
+
+All deadlines are "anywhere on earth" (UTC-12).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7dc80dd-6efc-454c-b839-1b06c5485336",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "2297b1a2-ed1a-4705-961d-8546d41dce2b",
+  "toolUseResult": {
+    "query": "AAAI 2027 call for papers July 2026 abstract deadline details",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019V9ACLyG6yiwgEzoqyqdF1",
+        "content": [
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews",
+            "url": "https://www.medrxiv.org/content/10.1101/2023.10.31.23297818.full.pdf"
+          },
+          {
+            "title": "Assessing the Reproducibility of the Structured Abstracts Generated by ChatGPT and Bard Compared to Human-Written Abstracts in the Field of Spine Surgery: Comparative Analysis",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11237793/"
+          }
+        ]
+      },
+      "Based on the search results, here are the AAAI 2027 call for papers details with July 2026 deadlines:\n\n## AAAI-27 Conference Details\n\nThe Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\n## Key Submission Deadlines (July 2026)\n\nThe abstract deadline is July 21, 2026 at 11:59 PM UTC-12, and full papers are due on July 28, 2026 at 11:59 PM UTC-12. Additionally, supplementary material and code are due by July 31, 2026 at 11:59 PM UTC-12.\n\n## Additional Timeline\n\nThe Open Review submission site opens for author registration on June 17, 2026, and opens for paper submission on June 24, 2026. Notification of Phase 1 rejections is scheduled for September 24, 2026, with an author feedback window from October 19-25, 2026, and final acceptance/rejection notifications on November 30, 2026.\n\nAll deadlines are \"anywhere on earth\" (UTC-12)."
+    ],
+    "durationSeconds": 6.010920604000013,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d7dc80dd-6efc-454c-b839-1b06c5485336",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-27T16:51:43.066Z_
+
+<details><summary>↩ Tool result · `toolu_01FejFFpKd4vzR1LWd4SA2ys`</summary>
+
+```text
+Web search results for query: "Aria agent retrieval autoformalization dependency graph 2025"
+
+Links: [{"title":"[2510.04520v1] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/abs/2510.04520v1"},{"title":"[2510.04520] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/abs/2510.04520"},{"title":"Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph | OpenReview","url":"https://openreview.net/forum?id=CPxZClPMiy"},{"title":"(PDF) Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://www.researchgate.net/publication/396250696_Aria_An_Agent_For_Retrieval_and_Iterative_Auto-Formalization_via_Dependency_Graph"},{"title":"ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE","url":"https://arxiv.org/pdf/2510.04520"},{"title":"ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE ...","url":"https://openreview.net/pdf/388a385b7ad068290351f90757bd3af8bb6e5515.pdf"},{"title":"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251004520W/abstract"},{"title":"[Literature Review] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://www.themoonlight.io/en/review/aria-an-agent-for-retrieval-and-iterative-auto-formalization-via-dependency-graph"}]
+
+Based on the search results, here's what I found about Aria:
+
+Aria (Agent for Retrieval and Iterative Autoformalization) is a system for conjecture-level formalization in Lean that emulates human expert reasoning via a two-phase Graph-of-Thought process: recursively decomposing statements into a dependency graph and then constructing formalizations from grounded concepts.
+
+The system was developed to address how accurate auto-formalization of theorem statements is essential for advancing automated discovery and verification of research-level mathematics, yet remains a major bottleneck for LLMs due to hallucinations, semantic mismatches, and their inability to synthesize new definitions.
+
+Key features include:
+
+- AriaScorer, a checker that retrieves definitions from Mathlib for term-level grounding, enabling rigorous and reliable verification.
+- On ProofNet, it achieves 91.6% compilation success rate and 68.5% final accuracy, surpassing previous methods.
+
+The agent's conceptual dependency graph is visualized as a "blueprint"–a visualization style standard in the Lean community for representing dependencies–to illustrate its planning process.
+
+The paper was published in October 2025 on arXiv and is under consideration for ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6eff96a8-e045-4b80-af0a-a824acfead11",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "a39c9bb6-f67e-4299-ab48-0fcc9169cd22",
+  "toolUseResult": {
+    "query": "Aria agent retrieval autoformalization dependency graph 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016PAhK2HqFnZ67Y3sPe38b8",
+        "content": [
+          {
+            "title": "[2510.04520v1] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/abs/2510.04520v1"
+          },
+          {
+            "title": "[2510.04520] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/abs/2510.04520"
+          },
+          {
+            "title": "Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph | OpenReview",
+            "url": "https://openreview.net/forum?id=CPxZClPMiy"
+          },
+          {
+            "title": "(PDF) Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://www.researchgate.net/publication/396250696_Aria_An_Agent_For_Retrieval_and_Iterative_Auto-Formalization_via_Dependency_Graph"
+          },
+          {
+            "title": "ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE",
+            "url": "https://arxiv.org/pdf/2510.04520"
+          },
+          {
+            "title": "ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE ...",
+            "url": "https://openreview.net/pdf/388a385b7ad068290351f90757bd3af8bb6e5515.pdf"
+          },
+          {
+            "title": "Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251004520W/abstract"
+          },
+          {
+            "title": "[Literature Review] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://www.themoonlight.io/en/review/aria-an-agent-for-retrieval-and-iterative-auto-formalization-via-dependency-graph"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Aria:\n\nAria (Agent for Retrieval and Iterative Autoformalization) is a system for conjecture-level formalization in Lean that emulates human expert reasoning via a two-phase Graph-of-Thought process: recursively decomposing statements into a dependency graph and then constructing formalizations from grounded concepts.\n\nThe system was developed to address how accurate auto-formalization of theorem statements is essential for advancing automated discovery and verification of research-level mathematics, yet remains a major bottleneck for LLMs due to hallucinations, semantic mismatches, and their inability to synthesize new definitions.\n\nKey features include:\n\n- AriaScorer, a checker that retrieves definitions from Mathlib for term-level grounding, enabling rigorous and reliable verification.\n- On ProofNet, it achieves 91.6% compilation success rate and 68.5% final accuracy, surpassing previous methods.\n\nThe agent's conceptual dependency graph is visualized as a \"blueprint\"–a visualization style standard in the Lean community for representing dependencies–to illustrate its planning process.\n\nThe paper was published in October 2025 on arXiv and is under consideration for ICLR 2026."
+    ],
+    "durationSeconds": 5.480590229000023,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6eff96a8-e045-4b80-af0a-a824acfead11",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 112 · 2026-05-27T16:51:43.071Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-27T16:51:43.071Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 113 · 2026-05-27T16:51:43.071Z_
+
+```json
+{
+  "parentUuid": "a39c9bb6-f67e-4299-ab48-0fcc9169cd22",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>ae57c5c458da36144&lt;/task-id>\n&lt;tool-use-id>toolu_01AwUn3Aw6DU2TzGUSwpLaSm&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/ae57c5c458da36144.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search venue deadlines and verify references\" completed&lt;/summary>\n&lt;result>I now have comprehensive information for all the items. Here is the full report:\n\n---\n\n## Part 1: ML/AI Conference Deadlines After May 27, 2026\n\n### Main Conference Deadlines\n\n**NeurIPS 2026** (Sydney, Australia, Dec 6-12, 2026)\n- Abstract deadline: May 4, 2026 (AOE) -- ALREADY PASSED\n- Full paper deadline: May 6, 2026 (AOE) -- ALREADY PASSED\n- Workshop proposal deadline: June 6, 2026 (AOE) -- still open\n- Suggested workshop paper submission: August 29, 2026 (AOE)\n- Source: [NeurIPS 2026 Dates](https://neurips.cc/Conferences/2026/Dates)\n\n**AAAI 2027** (Montreal, Canada, Feb 16-23, 2027)\n- Abstract deadline: **July 21, 2026** (11:59 PM UTC-12)\n- Full paper deadline: **July 28, 2026** (11:59 PM UTC-12)\n- Supplementary material deadline: July 31, 2026\n- OpenReview opens for registration: June 17, 2026; paper submission: June 24, 2026\n- Source: [AAAI-27](https://aaai.org/conference/aaai/aaai-27/)\n\n**ICLR 2027** -- Deadline NOT yet officially announced. Based on the ICLR 2026 pattern (abstract Sept 19, paper Sept 24), the deadline is predicted around **September 2026** but this is unconfirmed. The conference is expected around April 2027.\n- Source: [AI &amp; ML Conference Deadlines](https://trybibby.com/conference-deadlines)\n\n**ICML 2026** (Seoul, South Korea, Jul 6-11, 2026)\n- Abstract deadline: January 24, 2026 -- ALREADY PASSED\n- Paper deadline: January 29, 2026 -- ALREADY PASSED\n- Camera-ready: May 28, 2026 (11:59pm AOE)\n- Source: [ICML 2026 Dates](https://icml.cc/Conferences/2026/Dates)\n\n**COLM 2026** (San Francisco, Oct 6-9, 2026)\n- Abstract deadline: March 26, 2026 -- ALREADY PASSED\n- Full paper deadline: March 31, 2026 -- ALREADY PASSED\n- Workshop contribution suggested deadline: **June 23, 2026**\n- Source: [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n\n**EMNLP 2026** (Budapest, Hungary, Oct 24-29, 2026)\n- ARR submission deadline (long &amp; short papers): May 25, 2026 -- ALREADY PASSED (by 2 days)\n- Reviewer registration for ALL authors: May 27, 2026 -- TODAY\n- EMNLP commitment deadline: **August 2, 2026**\n- Notification: August 20, 2026\n- Camera-ready: September 20, 2026\n- Source: [EMNLP 2026](https://2026.emnlp.org/)\n\n**ACL 2027** -- Main conference deadline not yet announced. For **EACL 2027** (Athens, Greece, Mar 9-14, 2027), the ARR submission deadline is **August 3, 2026**.\n- Source: [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n\n### Workshop Deadlines\n\n**NeurIPS 2026 Workshops:**\n- Workshop proposal deadline: June 6, 2026 (AOE)\n- Suggested submission date for workshop contributions: **August 29, 2026** (AOE)\n- Mandatory accept/reject notification: September 29, 2026\n- Source: [NeurIPS 2026 Call for Workshops](https://neurips.cc/Conferences/2026/CallForWorkshops)\n\n**ICML 2026 Workshops:**\n- Workshop proposal deadline: February 13, 2026 -- ALREADY PASSED\n- Suggested submission for workshop contributions: April 24, 2026 -- ALREADY PASSED\n- Workshops: July 10-11, 2026\n- Source: [ICML 2026 Call for Workshops](https://icml.cc/Conferences/2026/CallForWorkshops)\n\n**3rd AI for Math Workshop @ ICML 2026** (July 11, 2026):\n- Paper submission portal opened April 1, 2026 on OpenReview\n- The workshop had a paper submission deadline (from a prior year's X/Twitter post reference: June 21 deadline was mentioned, but verify at the official site)\n- Challenge period: May 1 - June 15, 2026\n- Source: [AI for Math Workshop @ ICML 2026](https://ai4math2026.github.io/)\n\n**MATH4AI Workshop @ AAAI 2026** -- This was at AAAI 2026 (already past).\n- Source: [MATH4AI Workshop](https://sites.google.com/view/math4aiworkshop)\n\n**ATP / Automated Theorem Proving events in 2026:**\n- **AITP 2026** (AI and Theorem Proving): Aussois, France, August 30 - September 4, 2026\n- **ITP 2026** (Interactive Theorem Proving): Lisbon, Portugal, July 26-29, 2026 (part of FLoC)\n- **CASC** (CADE ATP System Competition): Held at FLoC 2026\n- Source: [AITP](https://aitp-conference.org/), [ITP](https://itp-conference.github.io/)\n\n---\n\n## Part 2: Paper Existence Verification\n\n**1. \"TTRL: Test-Time Reinforcement Learning\" -- CONFIRMED**\n- Accepted as a **NeurIPS 2025 poster** (accepted September 18, 2025)\n- Authors: Yuxin Zuo, Kaiyan Zhang, Li Sheng et al.\n- Key result: Boosts pass@1 of Qwen-2.5-Math-7B by ~211% on AIME 2024 using only unlabeled test data\n- ArXiv: [2504.16084](https://arxiv.org/abs/2504.16084)\n- GitHub: [PRIME-RL/TTRL](https://github.com/prime-rl/ttrl)\n\n**2. \"AlphaProof\" (DeepMind, IMO 2024) -- CONFIRMED**\n- Published in **Nature** (2025): \"Olympiad-level formal mathematical reasoning with reinforcement learning\"\n- RL-based system proving theorems in Lean; solved 3 of 5 problems at IMO 2024\n- Combined with AlphaGeometry 2, solved 4 of 6 IMO 2024 problems (silver medal level, 28 points, 1 point short of gold)\n- Source: [Nature article](https://www.nature.com/articles/s41586-025-09833-y), [DeepMind blog](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/)\n\n**3. \"Kimina-Prover\" (2025, RL + Lean) -- CONFIRMED**\n- By MoonshotAI; trained via large-scale RL from Qwen2.5-72B for Lean 4 proof generation\n- State-of-the-art on miniF2F benchmark: 80.7% pass@8192 (vs. prior SOTA 72.9%)\n- Uses \"Formal Reasoning Pattern\" bridging formal verification and informal mathematical intuition\n- Context window up to 32K tokens (longest in neural theorem proving)\n- ArXiv: [2504.11354](https://arxiv.org/abs/2504.11354)\n- Open-source RL pipeline: [Kimina-Prover-RL on HuggingFace](https://huggingface.co/blog/AI-MO/kimina-prover-rl)\n\n**4. \"StepFun-Formalizer-32B\" (autoformalization) -- CONFIRMED**\n- Published at **AAAI** (proceedings confirmed); ArXiv: [2508.04440](https://arxiv.org/abs/2508.04440)\n- 32B parameter LLM for autoformalization of informal math into Lean 4\n- Hybrid training: knowledge distillation + template-guided reasoning + RL with verifiable rewards\n- Achieves 40.5% on FormalMATH-Lite and 26.7% on ProverBench (single-shot)\n- GitHub: [stepfun-ai/StepFun-Formalizer](https://github.com/stepfun-ai/StepFun-Formalizer)\n\n**5. \"FormalMATH benchmark\" (multi-domain) -- CONFIRMED**\n- Large-scale Lean 4 benchmark with 5,560 formally verified problems\n- Spans algebra, applied math, calculus, number theory, discrete mathematics\n- 22.8x larger than miniF2F\n- Uses human-in-the-loop autoformalization pipeline\n- Best models achieve only 16.46% success rate, showing significant room for improvement\n- ArXiv: [2505.02735](https://arxiv.org/abs/2505.02735)\n- Website: [SphereLab FormalMATH](https://spherelab.ai/FormalMATH/)\n\n---\n\n## Summary of Still-Open Deadlines (After May 27, 2026)\n\n| Conference/Event | Deadline | Date |\n|---|---|---|\n| NeurIPS 2026 workshop proposals | June 6, 2026 | |\n| COLM 2026 workshop contributions | June 23, 2026 (suggested) | |\n| AAAI 2027 abstracts | July 21, 2026 | |\n| AAAI 2027 full papers | July 28, 2026 | |\n| EMNLP 2026 commitment | August 2, 2026 | |\n| EACL 2027 ARR submission | August 3, 2026 | |\n| NeurIPS 2026 workshop contributions | August 29, 2026 (suggested) | |\n| ICLR 2027 | ~September 2026 (predicted, unconfirmed) | |\n| AITP 2026 | Aug 30 - Sep 4, 2026 (conference dates; submission TBD) | |\n\nSources:\n- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)\n- [NeurIPS 2026 Call for Workshops](https://neurips.cc/Conferences/2026/CallForWorkshops)\n- [AAAI-27](https://aaai.org/conference/aaai/aaai-27/)\n- [AAAI-27 Main Technical Track](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [ICML 2026 Dates](https://icml.cc/Conferences/2026/Dates)\n- [ICML 2026 Call for Workshops](https://icml.cc/Conferences/2026/CallForWorkshops)\n- [COLM 2026 Key Dates](https://colmweb.org/dates.html)\n- [EMNLP 2026](https://2026.emnlp.org/)\n- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n- [AI &amp; ML Conference Deadlines 2026-2027](https://trybibby.com/conference-deadlines)\n- [AI Deadlines](http://aideadlines.org/)\n- [3rd AI for Math Workshop @ ICML 2026](https://ai4math2026.github.io/)\n- [AITP Conference](https://aitp-conference.org/)\n- [ITP Conference](https://itp-conference.github.io/)\n- [TTRL on ArXiv](https://arxiv.org/abs/2504.16084)\n- [TTRL on GitHub](https://github.com/prime-rl/ttrl)\n- [AlphaProof in Nature](https://www.nature.com/articles/s41586-025-09833-y)\n- [DeepMind AlphaProof Blog](https://deepmind.google/blog/ai-solves-imo-problems-at-silver-medal-level/)\n- [Kimina-Prover on ArXiv](https://arxiv.org/abs/2504.11354)\n- [Kimina-Prover-RL on HuggingFace](https://huggingface.co/blog/AI-MO/kimina-prover-rl)\n- [StepFun-Formalizer on ArXiv](https://arxiv.org/abs/2508.04440)\n- [StepFun-Formalizer GitHub](https://github.com/stepfun-ai/StepFun-Formalizer)\n- [FormalMATH on ArXiv](https://arxiv.org/abs/2505.02735)\n- [FormalMATH Benchmark Site](https://spherelab.ai/FormalMATH/)&lt;/result>\n&lt;usage>&lt;total_tokens>26979&lt;/total_tokens>&lt;tool_uses>23&lt;/tool_uses>&lt;duration_ms>115021&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "ee82cc66-a013-485f-8852-b2e3260d88f6",
+  "timestamp": "2026-05-27T16:51:43.071Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "ee82cc66-a013-485f-8852-b2e3260d88f6",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 115_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 116 · 2026-05-27T16:51:44.643Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T16:51:44.643Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "content": "&lt;task-notification>\n&lt;task-id>afab6f0c50a659b0d&lt;/task-id>\n&lt;tool-use-id>toolu_0152F44gpt9r9tC9n3QsWyQz&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/afab6f0c50a659b0d.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search for current SOTA models and baselines\" completed&lt;/summary>\n&lt;result>Here is a comprehensive report of all findings across the seven search areas.\n\n---\n\n## 1. Top-Performing Open-Source Models for Autoformalization (May 2026)\n\n**StepFun-Formalizer-32B** is the current SOTA for dedicated autoformalization:\n- **40.5% BEq@1** on FormalMATH-Lite\n- **26.7% BEq@1** on ProverBench\n- Training pipeline: 2-stage SFT (formal knowledge distillation with 183K Lean4-aligned pairs from NuminaMath via Kimina-Autoformalizer-7B, plus 5.8K template-guided reasoning trajectories from Claude 3.7) followed by RLVR (BEq-based reward using GRPO + DAPO)\n- Published at AAAI; open-weight model on HuggingFace (`stepfun-ai/StepFun-Formalizer-32B`)\n\n**Kimina-Autoformalizer-7B** (from the Numina/Kimi team):\n- Used for data synthesis (the 183K pairs that StepFun-Formalizer trains on)\n- Kimina-Prover (the prover side) achieves 80.7% pass@8192 on miniF2F and 48.94% Pass@3200 on FormalMATH-Lite\n\n**DeepSeek-Prover-V2-671B** (primarily a prover, but includes autoformalization via subgoal decomposition):\n- 88.9% pass ratio on MiniF2F-test\n- 49/658 problems from PutnamBench\n- Uses recursive decomposition where DeepSeek-V3 produces natural-language-to-Lean-4 subgoal chains\n\n**InternLM2-StepProver-7B**:\n- MiniF2F-test: 54.5%, ProofNet: 18.1%, Putnam: 5 problems\n- Fine-tuned on 29K theorems from 100+ Lean 4 repos and Lean-Workbook\n\n**DeepSeek-Math-V2** (released Jan 2026):\n- Built on DeepSeek-V3.2-Exp-Base, 128K context window\n- Gold-level on IMO 2025, near-perfect 118/120 on Putnam 2024\n- Generator-verifier architecture for self-correcting proofs\n\n**Practical autoformalization** (non-specialized): ChatGPT 5.2 and Claude Sonnet 4.5 running in feedback loops with proof checkers have produced 130K+ lines of formal topology in ~2 weeks for ~$100.\n\n---\n\n## 2. Top Open-Source Models for Mathematical Reasoning (Base Models for Fine-Tuning)\n\n**DeepSeek-R1**: Leading open-source reasoning model, competitive with o1-level reasoning. MIT-licensed.\n\n**DeepSeek-V3.2**: MIT-licensed. GPQA Diamond: 68.2%, MATH-500: 82.7%. Outperforms V3.1 on mixed reasoning and agent tasks.\n\n**Qwen2.5-Math-72B-Instruct**: Best open-source math-specialized model. Outperforms Qwen2-Math-72B-Instruct by 4.4 points (English) and 6.1 points (Chinese). Also has 7B and 1.5B variants. Supports CoT and Tool-integrated Reasoning.\n\n**Qwen3.7-Max-Preview** (May 2026): Elo 1,475 in Arena, ranked #7 in math.\n\n**Qwen3.5**: Newer Qwen series model available in 2026.\n\n**Other notable models**: MiniMax-M1-80k, Kimi-Dev-72B, THUDM/GLM-Z1-9B-0414 (lightweight).\n\n**Best candidates for autoformalization fine-tuning base**: Qwen2.5-Coder-7B-Instruct (already demonstrated by FormaRL), Qwen2.5-Math-72B, or DeepSeek-V3.2 derivatives.\n\n---\n\n## 3. Baseline Numbers to Beat on FormalMATH and ProofNet\n\n### FormalMATH (5,560 Lean4 problems, high-school to undergraduate)\n- **FormalMATH-Full (Pass@32)**: Best model Kimina-Prover achieves only **16.46%**\n- **FormalMATH-Lite** (425-problem subset):\n  - StepFun-Formalizer-32B: **40.5% BEq@1** (SOTA for autoformalization)\n  - STP: 53.17% Pass@3200\n  - DeepSeek-V1.5-RL: 50.35% Pass@3200\n  - Kimina-Prover-7B: 48.94% Pass@3200\n  - DeepSeek-V1.5-SFT: 46.82% Pass@3200\n\n### ProofNet (371 examples, undergraduate-level, Lean 3)\n- Code-davinci-002 baseline: **12.9%** (in-context learning)\n- GPT-4 (50 samples): **45.1%** (up from 31.0% single-shot)\n- FormaRL (Qwen2.5-Coder-7B): **26.15% pass@1** (up from 4.04% baseline)\n- InternLM2-StepProver: **18.1%**\n\n### Key insight from FormalMATH\nA counterintuitive inverse relationship was found: natural-language solution guidance *hurts* formal proof success. Naive CoT outperforms NL-augmented CoT.\n\n---\n\n## 4. FormaRL -- VERIFIED\n\n- **Paper**: \"FormaRL: Enhancing Autoformalization with no Labeled Data\"\n- **arXiv**: [2508.18914](https://arxiv.org/abs/2508.18914)\n- **Venue**: Accepted at **COLM 2025** (confirmed via GitHub repo tag `[COLM25]`)\n- **GitHub**: [THUNLP-MT/FormaRL](https://github.com/THUNLP-MT/FormaRL)\n- **Method**: Uses GRPO algorithm with dual reward: (1) Lean compiler syntax check + (2) LLM-based consistency/semantic check. Requires only 859 unlabeled data points.\n- **Results**:\n  - Qwen2.5-Coder-7B-Instruct pass@1: **4.04% -&gt; 26.15%** on ProofNet (4-6x improvement)\n  - Qwen2.5-Coder-7B-Instruct pass@1: **2.4% -&gt; 9.6%** on uproof\n  - Out-of-distribution (uproof): pass@1 6.2% -&gt; 9.6%, pass@16 24.4% -&gt; 33.6%\n\n---\n\n## 5. DDR (Direct Dependency Retrieval) -- VERIFIED\n\n- **Paper**: \"Improving Autoformalization Using Direct Dependency Retrieval\"\n- **arXiv**: [2511.11990](https://arxiv.org/abs/2511.11990)\n- **Also published at ICLR 2025** as \"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach\"\n- **Method**: Uses SAC (Search-Augment-Construct) to build a dependency retrieval dataset of **500K+ samples**. The DDR model directly generates candidate library dependencies from NL descriptions, then verifies existence in the formal library.\n- **Results**: Significantly outperforms SOTA in both retrieval precision and recall. Autoformalizers equipped with DDR show consistent advantages in both single-attempt accuracy and multi-attempt stability vs. traditional selection-based RAG.\n\n---\n\n## 6. DRIFT -- VERIFIED\n\n- **Paper**: \"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\"\n- **arXiv**: [2510.10815](https://arxiv.org/abs/2510.10815)\n- **Method**: 4-stage pipeline: (1) Decompose informal statement into atomic concept-focused sub-queries, (2) Retrieve foundational premises from Mathlib, (3) Retrieve illustrative theorems, (4) Formalize.\n- **Results**:\n  - ProofNet: **+13.34 F1 points** over baseline, nearly doubling DPR baseline F1\n  - Claude-Opus-4 achieves highest F1 on ProofNet at **27.68%** with DRIFT\n  - MiniF2F-test: +2.08 F1 points over baseline\n  - ConNF: +7.74 F1 points over baseline\n\n---\n\n## 7. CRAMF -- VERIFIED\n\n- **Paper**: \"Automated Formalization via Conceptual Retrieval-Augmented LLMs\"\n- **arXiv**: [2508.06931](https://arxiv.org/abs/2508.06931)\n- **OpenReview**: Available\n- **Method**: Automatically constructs a concept-definition knowledge base from Mathlib4, indexing **26,000+ formal definitions** and **1,000+ core mathematical concepts**. Uses contextual query augmentation with domain/application-level signals and dual-channel hybrid retrieval with reranking.\n- **Results**: Tested on miniF2F, ProofNet, and a new AdvancedMath benchmark. Achieves up to **62.1%** and average **29.9% relative improvement** in translation accuracy.\n\n---\n\n## Summary of Key Numbers to Beat\n\n| Benchmark | Metric | Current SOTA | Model |\n|---|---|---|---|\n| FormalMATH-Lite | BEq@1 | 40.5% | StepFun-Formalizer-32B |\n| FormalMATH-Full | Pass@32 | 16.46% | Kimina-Prover |\n| ProofNet | pass@1 | 26.15% | FormaRL (Qwen2.5-Coder-7B) |\n| ProofNet | 50-sample | 45.1% | GPT-4 |\n| MiniF2F-test | pass@8192 | 80.7% | Kimina-Prover |\n| MiniF2F-test | pass@32 | 88.9% | DeepSeek-Prover-V2-671B |\n\nSources:\n- [StepFun-Formalizer (AAAI)](https://ojs.aaai.org/index.php/AAAI/article/view/40691)\n- [StepFun-Formalizer arXiv](https://arxiv.org/abs/2508.04440)\n- [StepFun-Formalizer HuggingFace](https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B)\n- [FormalMATH Benchmark](https://arxiv.org/abs/2505.02735)\n- [FormalMATH-Bench Leaderboard](https://spherelab.ai/FormalMATH/)\n- [ProofNet](https://arxiv.org/abs/2302.12433)\n- [FormaRL (COLM25)](https://arxiv.org/abs/2508.18914)\n- [FormaRL GitHub](https://github.com/THUNLP-MT/FormaRL)\n- [DDR](https://arxiv.org/abs/2511.11990)\n- [DRIFT](https://arxiv.org/abs/2510.10815)\n- [CRAMF](https://arxiv.org/abs/2508.06931)\n- [Kimina-Prover](https://arxiv.org/abs/2504.11354)\n- [DeepSeek-Prover-V2](https://arxiv.org/abs/2504.21801)\n- [DeepSeek-Math-V2 HuggingFace](https://huggingface.co/deepseek-ai/DeepSeek-Math-V2)\n- [InternLM-Math GitHub](https://github.com/InternLM/InternLM-Math)\n- [130K Lines Formal Topology](https://arxiv.org/abs/2601.03298)\n- [Major Breakthroughs in Lean 4 (UVA course)](https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html)\n- [Best Open Source LLM for Math 2026](https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math)\n- [Qwen2.5-Math](https://github.com/QwenLM/Qwen2.5-Math)\n- [Autoformalization Survey (May 2025)](https://arxiv.org/abs/2505.23486)&lt;/result>\n&lt;usage>&lt;total_tokens>30558&lt;/total_tokens>&lt;tool_uses>26&lt;/tool_uses>&lt;duration_ms>126033&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 117 · 2026-05-27T16:51:46.674Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have the venue deadlines agent results. Let me also check on the remaining agents. Let me do some more targeted searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee82cc66-a013-485f-8852-b2e3260d88f6",
+  "isSidechain": false,
+  "requestId": "req_011CbTRJXmnVfb8mZGEqsaL9",
+  "type": "assistant",
+  "uuid": "16c7fefc-9973-4eca-83a4-89651f81994e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PK4K11SzRZ4CUnPzafbtXD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8434,
+      "cache_read_input_tokens": 39321,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 39321,
+          "cache_creation_input_tokens": 8434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-27T16:51:48.141Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CeZbSxYHhjmv549tRkMrEt`</summary>
+
+```json
+{
+  "query": "DDR RAutoformalizer \"Rethinking and Improving Autoformalization\" ICLR 2025 venue BEq Con-NF oracle retrieval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16c7fefc-9973-4eca-83a4-89651f81994e",
+  "isSidechain": false,
+  "requestId": "req_011CbTRJXmnVfb8mZGEqsaL9",
+  "type": "assistant",
+  "uuid": "95dc62f5-4067-47c6-8850-521c6a616ff8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PK4K11SzRZ4CUnPzafbtXD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8434,
+      "cache_read_input_tokens": 39321,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 39321,
+          "cache_creation_input_tokens": 8434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-27T16:51:48.757Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QUgW747ka8agrLxzsR3kL3`</summary>
+
+```json
+{
+  "query": "autoformalization domain adaptation test-time 2026 arxiv concurrent work"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95dc62f5-4067-47c6-8850-521c6a616ff8",
+  "isSidechain": false,
+  "requestId": "req_011CbTRJXmnVfb8mZGEqsaL9",
+  "type": "assistant",
+  "uuid": "397b664e-1dfd-43f6-9f1a-96692fe8d0f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PK4K11SzRZ4CUnPzafbtXD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8434,
+      "cache_read_input_tokens": 39321,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 39321,
+          "cache_creation_input_tokens": 8434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-27T16:51:55.325Z_
+
+<details><summary>↩ Tool result · `toolu_01QUgW747ka8agrLxzsR3kL3`</summary>
+
+```text
+Web search results for query: "autoformalization domain adaptation test-time 2026 arxiv concurrent work"
+
+Links: [{"title":"[2203.13591] Continual Test-Time Domain Adaptation - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2203.13591"},{"title":"[2604.21772] Back to Source: Open-Set Continual Test-Time Adaptation via Domain Compensation","url":"https://arxiv.org/abs/2604.21772"},{"title":"[2203.13591] Continual Test-Time Domain Adaptation","url":"https://arxiv.org/abs/2203.13591"},{"title":"Towards a Common Framework for Autoformalization","url":"https://arxiv.org/html/2509.09810v2"},{"title":"Test-Time Domain Adaptation by Learning Domain-Aware Batch Normalization","url":"https://arxiv.org/pdf/2312.10165"},{"title":"Visual Prompt Tuning for Test-time Domain Adaptation","url":"https://arxiv.org/pdf/2210.04831"},{"title":"Continual Test-Time Domain Adaptation","url":"https://arxiv.org/pdf/2203.13591"}]
+
+Based on the search results, I found several relevant papers on test-time domain adaptation and related topics from arXiv:
+
+**Recent 2026 Papers:**
+
+A 2026 paper titled "Back to Source: Open-Set Continual Test-Time Adaptation via Domain Compensation" (uploaded April 23, 2026) addresses Test-Time Adaptation (TTA), which aims to mitigate distributional shifts between training and test domains during inference time.
+
+**Earlier Works on Test-Time Domain Adaptation:**
+
+- Test-time domain adaptation aims to adapt a source pre-trained model to a target domain without using any source data.
+
+- Real-world machine perception systems run in non-stationary and continually changing environments where the target domain distribution can change over time, and existing methods based on self-training and entropy regularization can suffer from these non-stationary environments.
+
+**Autoformalization Work:**
+
+A 2025 work by Chan et al. titled "Lean-ing on Quality: How High-Quality Data Beats Diverse Multilingual Data in AutoFormalization" explores autoformalization approaches.
+
+The search results show active concurrent work in test-time domain adaptation throughout the field, though the specific combination of autoformalization and domain adaptation at test-time may require more targeted searches if you're looking for a particular paper or research direction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "397b664e-1dfd-43f6-9f1a-96692fe8d0f6",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "5b377f9c-53b9-4a5f-a26d-6ac6dc3f959e",
+  "toolUseResult": {
+    "query": "autoformalization domain adaptation test-time 2026 arxiv concurrent work",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018s96DtynAqbiVjPfwPLMRX",
+        "content": [
+          {
+            "title": "[2203.13591] Continual Test-Time Domain Adaptation - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2203.13591"
+          },
+          {
+            "title": "[2604.21772] Back to Source: Open-Set Continual Test-Time Adaptation via Domain Compensation",
+            "url": "https://arxiv.org/abs/2604.21772"
+          },
+          {
+            "title": "[2203.13591] Continual Test-Time Domain Adaptation",
+            "url": "https://arxiv.org/abs/2203.13591"
+          },
+          {
+            "title": "Towards a Common Framework for Autoformalization",
+            "url": "https://arxiv.org/html/2509.09810v2"
+          },
+          {
+            "title": "Test-Time Domain Adaptation by Learning Domain-Aware Batch Normalization",
+            "url": "https://arxiv.org/pdf/2312.10165"
+          },
+          {
+            "title": "Visual Prompt Tuning for Test-time Domain Adaptation",
+            "url": "https://arxiv.org/pdf/2210.04831"
+          },
+          {
+            "title": "Continual Test-Time Domain Adaptation",
+            "url": "https://arxiv.org/pdf/2203.13591"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on test-time domain adaptation and related topics from arXiv:\n\n**Recent 2026 Papers:**\n\nA 2026 paper titled \"Back to Source: Open-Set Continual Test-Time Adaptation via Domain Compensation\" (uploaded April 23, 2026) addresses Test-Time Adaptation (TTA), which aims to mitigate distributional shifts between training and test domains during inference time.\n\n**Earlier Works on Test-Time Domain Adaptation:**\n\n- Test-time domain adaptation aims to adapt a source pre-trained model to a target domain without using any source data.\n\n- Real-world machine perception systems run in non-stationary and continually changing environments where the target domain distribution can change over time, and existing methods based on self-training and entropy regularization can suffer from these non-stationary environments.\n\n**Autoformalization Work:**\n\nA 2025 work by Chan et al. titled \"Lean-ing on Quality: How High-Quality Data Beats Diverse Multilingual Data in AutoFormalization\" explores autoformalization approaches.\n\nThe search results show active concurrent work in test-time domain adaptation throughout the field, though the specific combination of autoformalization and domain adaptation at test-time may require more targeted searches if you're looking for a particular paper or research direction."
+    ],
+    "durationSeconds": 6.564699855000013,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "397b664e-1dfd-43f6-9f1a-96692fe8d0f6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-27T16:51:55.826Z_
+
+<details><summary>↩ Tool result · `toolu_01CeZbSxYHhjmv549tRkMrEt`</summary>
+
+```text
+Web search results for query: "DDR RAutoformalizer "Rethinking and Improving Autoformalization" ICLR 2025 venue BEq Con-NF oracle retrieval"
+
+Links: [{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach","url":"https://proceedings.iclr.cc/paper_files/paper/2025/hash/d630537fc4402cfa3ebbc7450a0cac91-Abstract-Conference.html"},{"title":"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview","url":"https://openreview.net/forum?id=hUb2At2DsQ"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"ICLR 2025 Papers","url":"https://yangzhang-v5.github.io/iclr2025interestingpapers/neurosymbolic%20&%20hybrid%20AI%20systems%20(physics-informed,%20logic%20&%20formal%20reasoning,%20etc.).html"},{"title":"GitHub - Purewhite2019/rethinking_autoformalization: [ICLR'25 Spotlight] Rethinking and improving autoformalization: towards a faithful metric and a Dependency Retrieval-based approach · GitHub","url":"https://github.com/Purewhite2019/rethinking_autoformalization"},{"title":"RETHINKING AND IMPROVING AUTOFORMALIZATION","url":"https://openreview.net/notes/edits/attachment?id=GqZMKc40xb&name=pdf"},{"title":"Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/html/2511.11990v2"},{"title":"Towards a Common Framework for Autoformalization","url":"https://arxiv.org/html/2509.09810v1"}]
+
+Based on the search results, here's information about this paper:
+
+## Paper Summary
+
+The paper "Rethinking and Improving Autoformalization" was published at the International Conference on Learning Representations 2025 (ICLR 2025), and it is a Spotlight paper.
+
+## Key Components
+
+The paper proposes **BEq** (_Bidirectional Extended Definitional Equivalence_), an automated neuro-symbolic method to determine the equivalence between two formal statements.
+
+The paper also proposes **RAutoformalizer** (_Retrieval-augmented Autoformalizer_), augmenting statement autoformalization by Dependency Retrieval. Dependency retrieval seeks to select potentially dependent formal objects given an informal statement, and RAutoformalizer uses the retrievals to enhance autoformalization.
+
+## Benchmark
+
+The paper builds a novel benchmark called _Con-NF_, consisting of 961 informal-formal statement pairs from frontier mathematical researches, to evaluate out-of-distribution generalization and research-level capabilities.
+
+## Results
+
+RAutoformalizer substantially outperforms state-of-the-art baselines in both in-distribution ProofNet benchmark (12.83% ↦ 18.18%, BEq@8) and out-of-distribution Con-NF scenario (4.58% ↦ 16.86%, BEq@8).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95dc62f5-4067-47c6-8850-521c6a616ff8",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "c4340eda-a0c1-4d79-a2e2-d4de9a8e17cd",
+  "toolUseResult": {
+    "query": "DDR RAutoformalizer \"Rethinking and Improving Autoformalization\" ICLR 2025 venue BEq Con-NF oracle retrieval",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QpPxBL3C6W4vWDoLbdMKpR",
+        "content": [
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/d630537fc4402cfa3ebbc7450a0cac91-Abstract-Conference.html"
+          },
+          {
+            "title": "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach | OpenReview",
+            "url": "https://openreview.net/forum?id=hUb2At2DsQ"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "ICLR 2025 Papers",
+            "url": "https://yangzhang-v5.github.io/iclr2025interestingpapers/neurosymbolic%20&%20hybrid%20AI%20systems%20(physics-informed,%20logic%20&%20formal%20reasoning,%20etc.).html"
+          },
+          {
+            "title": "GitHub - Purewhite2019/rethinking_autoformalization: [ICLR'25 Spotlight] Rethinking and improving autoformalization: towards a faithful metric and a Dependency Retrieval-based approach · GitHub",
+            "url": "https://github.com/Purewhite2019/rethinking_autoformalization"
+          },
+          {
+            "title": "RETHINKING AND IMPROVING AUTOFORMALIZATION",
+            "url": "https://openreview.net/notes/edits/attachment?id=GqZMKc40xb&name=pdf"
+          },
+          {
+            "title": "Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/html/2511.11990v2"
+          },
+          {
+            "title": "Towards a Common Framework for Autoformalization",
+            "url": "https://arxiv.org/html/2509.09810v1"
+          }
+        ]
+      },
+      "Based on the search results, here's information about this paper:\n\n## Paper Summary\n\nThe paper \"Rethinking and Improving Autoformalization\" was published at the International Conference on Learning Representations 2025 (ICLR 2025), and it is a Spotlight paper.\n\n## Key Components\n\nThe paper proposes **BEq** (_Bidirectional Extended Definitional Equivalence_), an automated neuro-symbolic method to determine the equivalence between two formal statements.\n\nThe paper also proposes **RAutoformalizer** (_Retrieval-augmented Autoformalizer_), augmenting statement autoformalization by Dependency Retrieval. Dependency retrieval seeks to select potentially dependent formal objects given an informal statement, and RAutoformalizer uses the retrievals to enhance autoformalization.\n\n## Benchmark\n\nThe paper builds a novel benchmark called _Con-NF_, consisting of 961 informal-formal statement pairs from frontier mathematical researches, to evaluate out-of-distribution generalization and research-level capabilities.\n\n## Results\n\nRAutoformalizer substantially outperforms state-of-the-art baselines in both in-distribution ProofNet benchmark (12.83% ↦ 18.18%, BEq@8) and out-of-distribution Con-NF scenario (4.58% ↦ 16.86%, BEq@8)."
+    ],
+    "durationSeconds": 7.68273713199998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "95dc62f5-4067-47c6-8850-521c6a616ff8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 122 · 2026-05-27T16:51:55.831Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-27T16:51:55.831Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 123 · 2026-05-27T16:51:55.831Z_
+
+```json
+{
+  "parentUuid": "c4340eda-a0c1-4d79-a2e2-d4de9a8e17cd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>afab6f0c50a659b0d&lt;/task-id>\n&lt;tool-use-id>toolu_0152F44gpt9r9tC9n3QsWyQz&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/afab6f0c50a659b0d.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search for current SOTA models and baselines\" completed&lt;/summary>\n&lt;result>Here is a comprehensive report of all findings across the seven search areas.\n\n---\n\n## 1. Top-Performing Open-Source Models for Autoformalization (May 2026)\n\n**StepFun-Formalizer-32B** is the current SOTA for dedicated autoformalization:\n- **40.5% BEq@1** on FormalMATH-Lite\n- **26.7% BEq@1** on ProverBench\n- Training pipeline: 2-stage SFT (formal knowledge distillation with 183K Lean4-aligned pairs from NuminaMath via Kimina-Autoformalizer-7B, plus 5.8K template-guided reasoning trajectories from Claude 3.7) followed by RLVR (BEq-based reward using GRPO + DAPO)\n- Published at AAAI; open-weight model on HuggingFace (`stepfun-ai/StepFun-Formalizer-32B`)\n\n**Kimina-Autoformalizer-7B** (from the Numina/Kimi team):\n- Used for data synthesis (the 183K pairs that StepFun-Formalizer trains on)\n- Kimina-Prover (the prover side) achieves 80.7% pass@8192 on miniF2F and 48.94% Pass@3200 on FormalMATH-Lite\n\n**DeepSeek-Prover-V2-671B** (primarily a prover, but includes autoformalization via subgoal decomposition):\n- 88.9% pass ratio on MiniF2F-test\n- 49/658 problems from PutnamBench\n- Uses recursive decomposition where DeepSeek-V3 produces natural-language-to-Lean-4 subgoal chains\n\n**InternLM2-StepProver-7B**:\n- MiniF2F-test: 54.5%, ProofNet: 18.1%, Putnam: 5 problems\n- Fine-tuned on 29K theorems from 100+ Lean 4 repos and Lean-Workbook\n\n**DeepSeek-Math-V2** (released Jan 2026):\n- Built on DeepSeek-V3.2-Exp-Base, 128K context window\n- Gold-level on IMO 2025, near-perfect 118/120 on Putnam 2024\n- Generator-verifier architecture for self-correcting proofs\n\n**Practical autoformalization** (non-specialized): ChatGPT 5.2 and Claude Sonnet 4.5 running in feedback loops with proof checkers have produced 130K+ lines of formal topology in ~2 weeks for ~$100.\n\n---\n\n## 2. Top Open-Source Models for Mathematical Reasoning (Base Models for Fine-Tuning)\n\n**DeepSeek-R1**: Leading open-source reasoning model, competitive with o1-level reasoning. MIT-licensed.\n\n**DeepSeek-V3.2**: MIT-licensed. GPQA Diamond: 68.2%, MATH-500: 82.7%. Outperforms V3.1 on mixed reasoning and agent tasks.\n\n**Qwen2.5-Math-72B-Instruct**: Best open-source math-specialized model. Outperforms Qwen2-Math-72B-Instruct by 4.4 points (English) and 6.1 points (Chinese). Also has 7B and 1.5B variants. Supports CoT and Tool-integrated Reasoning.\n\n**Qwen3.7-Max-Preview** (May 2026): Elo 1,475 in Arena, ranked #7 in math.\n\n**Qwen3.5**: Newer Qwen series model available in 2026.\n\n**Other notable models**: MiniMax-M1-80k, Kimi-Dev-72B, THUDM/GLM-Z1-9B-0414 (lightweight).\n\n**Best candidates for autoformalization fine-tuning base**: Qwen2.5-Coder-7B-Instruct (already demonstrated by FormaRL), Qwen2.5-Math-72B, or DeepSeek-V3.2 derivatives.\n\n---\n\n## 3. Baseline Numbers to Beat on FormalMATH and ProofNet\n\n### FormalMATH (5,560 Lean4 problems, high-school to undergraduate)\n- **FormalMATH-Full (Pass@32)**: Best model Kimina-Prover achieves only **16.46%**\n- **FormalMATH-Lite** (425-problem subset):\n  - StepFun-Formalizer-32B: **40.5% BEq@1** (SOTA for autoformalization)\n  - STP: 53.17% Pass@3200\n  - DeepSeek-V1.5-RL: 50.35% Pass@3200\n  - Kimina-Prover-7B: 48.94% Pass@3200\n  - DeepSeek-V1.5-SFT: 46.82% Pass@3200\n\n### ProofNet (371 examples, undergraduate-level, Lean 3)\n- Code-davinci-002 baseline: **12.9%** (in-context learning)\n- GPT-4 (50 samples): **45.1%** (up from 31.0% single-shot)\n- FormaRL (Qwen2.5-Coder-7B): **26.15% pass@1** (up from 4.04% baseline)\n- InternLM2-StepProver: **18.1%**\n\n### Key insight from FormalMATH\nA counterintuitive inverse relationship was found: natural-language solution guidance *hurts* formal proof success. Naive CoT outperforms NL-augmented CoT.\n\n---\n\n## 4. FormaRL -- VERIFIED\n\n- **Paper**: \"FormaRL: Enhancing Autoformalization with no Labeled Data\"\n- **arXiv**: [2508.18914](https://arxiv.org/abs/2508.18914)\n- **Venue**: Accepted at **COLM 2025** (confirmed via GitHub repo tag `[COLM25]`)\n- **GitHub**: [THUNLP-MT/FormaRL](https://github.com/THUNLP-MT/FormaRL)\n- **Method**: Uses GRPO algorithm with dual reward: (1) Lean compiler syntax check + (2) LLM-based consistency/semantic check. Requires only 859 unlabeled data points.\n- **Results**:\n  - Qwen2.5-Coder-7B-Instruct pass@1: **4.04% -&gt; 26.15%** on ProofNet (4-6x improvement)\n  - Qwen2.5-Coder-7B-Instruct pass@1: **2.4% -&gt; 9.6%** on uproof\n  - Out-of-distribution (uproof): pass@1 6.2% -&gt; 9.6%, pass@16 24.4% -&gt; 33.6%\n\n---\n\n## 5. DDR (Direct Dependency Retrieval) -- VERIFIED\n\n- **Paper**: \"Improving Autoformalization Using Direct Dependency Retrieval\"\n- **arXiv**: [2511.11990](https://arxiv.org/abs/2511.11990)\n- **Also published at ICLR 2025** as \"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach\"\n- **Method**: Uses SAC (Search-Augment-Construct) to build a dependency retrieval dataset of **500K+ samples**. The DDR model directly generates candidate library dependencies from NL descriptions, then verifies existence in the formal library.\n- **Results**: Significantly outperforms SOTA in both retrieval precision and recall. Autoformalizers equipped with DDR show consistent advantages in both single-attempt accuracy and multi-attempt stability vs. traditional selection-based RAG.\n\n---\n\n## 6. DRIFT -- VERIFIED\n\n- **Paper**: \"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\"\n- **arXiv**: [2510.10815](https://arxiv.org/abs/2510.10815)\n- **Method**: 4-stage pipeline: (1) Decompose informal statement into atomic concept-focused sub-queries, (2) Retrieve foundational premises from Mathlib, (3) Retrieve illustrative theorems, (4) Formalize.\n- **Results**:\n  - ProofNet: **+13.34 F1 points** over baseline, nearly doubling DPR baseline F1\n  - Claude-Opus-4 achieves highest F1 on ProofNet at **27.68%** with DRIFT\n  - MiniF2F-test: +2.08 F1 points over baseline\n  - ConNF: +7.74 F1 points over baseline\n\n---\n\n## 7. CRAMF -- VERIFIED\n\n- **Paper**: \"Automated Formalization via Conceptual Retrieval-Augmented LLMs\"\n- **arXiv**: [2508.06931](https://arxiv.org/abs/2508.06931)\n- **OpenReview**: Available\n- **Method**: Automatically constructs a concept-definition knowledge base from Mathlib4, indexing **26,000+ formal definitions** and **1,000+ core mathematical concepts**. Uses contextual query augmentation with domain/application-level signals and dual-channel hybrid retrieval with reranking.\n- **Results**: Tested on miniF2F, ProofNet, and a new AdvancedMath benchmark. Achieves up to **62.1%** and average **29.9% relative improvement** in translation accuracy.\n\n---\n\n## Summary of Key Numbers to Beat\n\n| Benchmark | Metric | Current SOTA | Model |\n|---|---|---|---|\n| FormalMATH-Lite | BEq@1 | 40.5% | StepFun-Formalizer-32B |\n| FormalMATH-Full | Pass@32 | 16.46% | Kimina-Prover |\n| ProofNet | pass@1 | 26.15% | FormaRL (Qwen2.5-Coder-7B) |\n| ProofNet | 50-sample | 45.1% | GPT-4 |\n| MiniF2F-test | pass@8192 | 80.7% | Kimina-Prover |\n| MiniF2F-test | pass@32 | 88.9% | DeepSeek-Prover-V2-671B |\n\nSources:\n- [StepFun-Formalizer (AAAI)](https://ojs.aaai.org/index.php/AAAI/article/view/40691)\n- [StepFun-Formalizer arXiv](https://arxiv.org/abs/2508.04440)\n- [StepFun-Formalizer HuggingFace](https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B)\n- [FormalMATH Benchmark](https://arxiv.org/abs/2505.02735)\n- [FormalMATH-Bench Leaderboard](https://spherelab.ai/FormalMATH/)\n- [ProofNet](https://arxiv.org/abs/2302.12433)\n- [FormaRL (COLM25)](https://arxiv.org/abs/2508.18914)\n- [FormaRL GitHub](https://github.com/THUNLP-MT/FormaRL)\n- [DDR](https://arxiv.org/abs/2511.11990)\n- [DRIFT](https://arxiv.org/abs/2510.10815)\n- [CRAMF](https://arxiv.org/abs/2508.06931)\n- [Kimina-Prover](https://arxiv.org/abs/2504.11354)\n- [DeepSeek-Prover-V2](https://arxiv.org/abs/2504.21801)\n- [DeepSeek-Math-V2 HuggingFace](https://huggingface.co/deepseek-ai/DeepSeek-Math-V2)\n- [InternLM-Math GitHub](https://github.com/InternLM/InternLM-Math)\n- [130K Lines Formal Topology](https://arxiv.org/abs/2601.03298)\n- [Major Breakthroughs in Lean 4 (UVA course)](https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html)\n- [Best Open Source LLM for Math 2026](https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math)\n- [Qwen2.5-Math](https://github.com/QwenLM/Qwen2.5-Math)\n- [Autoformalization Survey (May 2025)](https://arxiv.org/abs/2505.23486)&lt;/result>\n&lt;usage>&lt;total_tokens>30558&lt;/total_tokens>&lt;tool_uses>26&lt;/tool_uses>&lt;duration_ms>126033&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "1bd5cc41-6583-4bb2-9ddc-c05a1f90110e",
+  "timestamp": "2026-05-27T16:51:55.831Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "1bd5cc41-6583-4bb2-9ddc-c05a1f90110e",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 126 · 2026-05-27T16:52:03.753Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have extensive information from both my direct searches and the agent results. Let me now also wait for the remaining two agents (concurrent work search and GitHub implementations). Let me also check the RAutoformalizer/DDR paper more carefully - it seems the original paper "Rethinking and Improving Autoformalization" was published at ICLR 2025, and "Improving Autoformalization Using Direct Dependency Retrieval" (DDR) is a follow-up.
+
+Let me also check the oracle retrieval number mentioned in the problem. The claim is "oracle retrieval experiments show a 3.3x improvement over model-based retrieval (55.36% vs 16.86% BEq@8 on Con-NF)".
+
+
+I should also look into the AI for Math Workshop deadline and do a few more targeted searches to fill in any remaining gaps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bd5cc41-6583-4bb2-9ddc-c05a1f90110e",
+  "isSidechain": false,
+  "requestId": "req_011CbTRKU3aQN6iF14fq2ACw",
+  "type": "assistant",
+  "uuid": "55c2d3ad-d84e-4ccb-bedb-3ecd930104f8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKkaG67PaZPXhn31sp8uPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 645,
+      "cache_creation_input_tokens": 4643,
+      "cache_read_input_tokens": 47755,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4643,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 645,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 47755,
+          "cache_creation_input_tokens": 4643,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4643
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-27T16:52:04.015Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H6nuZtKHr8M1DW3EM5Mygp`</summary>
+
+```json
+{
+  "query": "ai4math2026.github.io paper submission deadline 2026",
+  "allowed_domains": [
+    "ai4math2026.github.io"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55c2d3ad-d84e-4ccb-bedb-3ecd930104f8",
+  "isSidechain": false,
+  "requestId": "req_011CbTRKU3aQN6iF14fq2ACw",
+  "type": "assistant",
+  "uuid": "40bed079-040b-4eb2-bcd8-e33079f89529",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKkaG67PaZPXhn31sp8uPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 645,
+      "cache_creation_input_tokens": 4643,
+      "cache_read_input_tokens": 47755,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4643,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 645,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 47755,
+          "cache_creation_input_tokens": 4643,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4643
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128 · 2026-05-27T16:52:04.560Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KT2oCZYU22xxFQEBWDMdcd`</summary>
+
+```json
+{
+  "query": "GRPO training 8 GPU hours compute cost reinforcement learning 7B model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40bed079-040b-4eb2-bcd8-e33079f89529",
+  "isSidechain": false,
+  "requestId": "req_011CbTRKU3aQN6iF14fq2ACw",
+  "type": "assistant",
+  "uuid": "fa27daff-30dc-47b0-ac93-c81dfda93d74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKkaG67PaZPXhn31sp8uPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 645,
+      "cache_creation_input_tokens": 4643,
+      "cache_read_input_tokens": 47755,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4643,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 645,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 47755,
+          "cache_creation_input_tokens": 4643,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4643
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-27T16:52:07.921Z_
+
+<details><summary>↩ Tool result · `toolu_01H6nuZtKHr8M1DW3EM5Mygp`</summary>
+
+```text
+Web search results for query: "ai4math2026.github.io paper submission deadline 2026"
+
+Links: [{"title":"3rd AI for Math Workshop @ ICML 2026","url":"https://ai4math2026.github.io/"},{"title":"AI for Mathematics: Progress, Challenges, and Prospects","url":"https://arxiv.org/pdf/2601.13209"},{"title":"Formal Mathematical Reasoning: A New Frontier in AI","url":"https://arxiv.org/pdf/2412.16075"},{"title":"Leveraging AI for improved reproducibility of mathematical disease models: insights from a retinitis pigmentosa case study","url":"https://www.biorxiv.org/content/10.1101/2024.04.26.591317.full.pdf"},{"title":"Shaping the Future of Mathematics in the Age of AI","url":"https://arxiv.org/pdf/2603.24914"},{"title":"Ten simple rules to leverage large language models for getting grants","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10906892/"},{"title":"PersonaAI: An Interactive Agentic-AI Framework for Autonomous Hypothesis Generation and Validation in Aging","url":"https://www.biorxiv.org/content/10.64898/2026.01.16.699755.full.pdf"}]
+
+Based on the search results from the AI4Math 2026 workshop website, the paper submission portal opened on OpenReview on April 1, 2026. However, the search results do not contain information about the specific paper submission deadline. The website mentions the workshop details and that it's scheduled for Saturday, July 11, 2026, but the exact deadline for submissions is not provided in the available content.
+
+To find the submission deadline, you may need to visit the ai4math2026.github.io website directly or check the OpenReview submission portal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40bed079-040b-4eb2-bcd8-e33079f89529",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "9f216e13-2963-400c-9531-e82a063c6fb0",
+  "toolUseResult": {
+    "query": "ai4math2026.github.io paper submission deadline 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XvJRPs9P7xxXHPDBgWs5eC",
+        "content": [
+          {
+            "title": "3rd AI for Math Workshop @ ICML 2026",
+            "url": "https://ai4math2026.github.io/"
+          },
+          {
+            "title": "AI for Mathematics: Progress, Challenges, and Prospects",
+            "url": "https://arxiv.org/pdf/2601.13209"
+          },
+          {
+            "title": "Formal Mathematical Reasoning: A New Frontier in AI",
+            "url": "https://arxiv.org/pdf/2412.16075"
+          },
+          {
+            "title": "Leveraging AI for improved reproducibility of mathematical disease models: insights from a retinitis pigmentosa case study",
+            "url": "https://www.biorxiv.org/content/10.1101/2024.04.26.591317.full.pdf"
+          },
+          {
+            "title": "Shaping the Future of Mathematics in the Age of AI",
+            "url": "https://arxiv.org/pdf/2603.24914"
+          },
+          {
+            "title": "Ten simple rules to leverage large language models for getting grants",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10906892/"
+          },
+          {
+            "title": "PersonaAI: An Interactive Agentic-AI Framework for Autonomous Hypothesis Generation and Validation in Aging",
+            "url": "https://www.biorxiv.org/content/10.64898/2026.01.16.699755.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results from the AI4Math 2026 workshop website, the paper submission portal opened on OpenReview on April 1, 2026. However, the search results do not contain information about the specific paper submission deadline. The website mentions the workshop details and that it's scheduled for Saturday, July 11, 2026, but the exact deadline for submissions is not provided in the available content.\n\nTo find the submission deadline, you may need to visit the ai4math2026.github.io website directly or check the OpenReview submission portal."
+    ],
+    "durationSeconds": 3.9005725399999935,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "40bed079-040b-4eb2-bcd8-e33079f89529",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 130 · 2026-05-27T16:52:11.607Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T16:52:11.607Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "content": "&lt;task-notification>\n&lt;task-id>aa5b9ab9971022e9b&lt;/task-id>\n&lt;tool-use-id>toolu_01JctPDHtmv2EP9gzCqADa84&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/aa5b9ab9971022e9b.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search GitHub for related implementations\" completed&lt;/summary>\n&lt;result>Here is a comprehensive report of all findings, organized by topic.\n\n---\n\n## 1. Test-Time Reinforcement Learning (TTRL)\n\n**Primary Repository: [PRIME-RL/TTRL](https://github.com/PRIME-RL/TTRL)** -- The official NeurIPS 2025 implementation. This is well-maintained and actively developed by the PRIME-RL group. Key characteristics:\n- Built on top of the **verl** framework (v0.4.1+), enabled by simply setting `+ttrl.enable=True`\n- Also based on **OpenRLHF** internally; TTRL will be integrated into the official OpenRLHF codebase\n- Core innovation: uses majority voting as a reward signal, enabling RL training on unlabeled test data\n- Boosts pass@1 performance of Qwen-2.5-Math-7B by ~211% on AIME 2024\n- Implementation achieved by modifying the reward function -- minimal code changes on top of existing RL frameworks\n\n**Secondary repo: [Mani-RRI/TTRL-Test-Time-Reinforcement-Learning](https://github.com/Mani-RRI/TTRL-Test-Time-Reinforcement-Learning)** -- Community reproduction; less established.\n\n**Assessment:** The PRIME-RL/TTRL repo is the most directly relevant codebase for test-time RL. It is well-maintained, builds on robust infrastructure (verl/OpenRLHF), and the core idea (majority-voting reward) is cleanly implemented.\n\n---\n\n## 2. Autoformalization Pipelines\n\n### FormaRL\n**Repository: [THUNLP-MT/FormaRL](https://github.com/THUNLP-MT/FormaRL)** -- COLM 2025 paper. This is the most directly relevant repository for RL-driven autoformalization.\n- Uses **GRPO** algorithm to train a formalizer\n- Dual reward: (1) Lean compiler syntax check + (2) LLM-based consistency check comparing natural language to formal output\n- Achieves 4-6x improvement in pass@1 autoformalization accuracy on Qwen2.5-Coder-7B-Instruct (4.04% to 26.15% on ProofNet)\n- Requires only **859 unlabeled data points**\n- Hardware: **at least 2x A100-80GB GPUs** for 7B parameter model training\n- Python 3.12 required\n\n**Assessment:** This is the single most relevant existing implementation for combining GRPO + autoformalization + Lean compiler feedback. Well-documented, open-source, and directly buildable upon.\n\n### ProofFlow\n**Repository: [Huawei-AI4Math/ProofFlow](https://github.com/Huawei-AI4Math/ProofFlow)** -- Translates natural language proofs into verifiable Lean 4 code via dependency graphs.\n- Three-part pipeline: Graph Builder, Lemma Formalizer, Tactic Completer\n- Includes benchmark and scoring metric\n- Focuses on proof autoformalization (not statement autoformalization)\n\n### Multi-Agent Autoformalization\n**Repository: [lanzhang128/multi_agent_autoformalization](https://github.com/lanzhang128/multi_agent_autoformalization)** -- Multi-agent pipelines including Hard-Critique-Formal-Refinement and Iterative Self-Refinement.\n\n### Retrieval-Augmented Autoformalization\n**Repository: [lanzhang128/retrieval_augmented_autoformalization](https://github.com/lanzhang128/retrieval_augmented_autoformalization)** -- RAG approaches for autoformalization.\n\n### Definition Autoformalization\n**Repository: [lanzhang128/definition_autoformalization](https://github.com/lanzhang128/definition_autoformalization)** -- Focused on formalizing mathematical definitions.\n\n---\n\n## 3. DDR (Direct Dependency Retrieval)\n\n**Repository: [Purewhite2019/rethinking_autoformalization](https://github.com/Purewhite2019/rethinking_autoformalization)** -- ICLR 2025 Spotlight paper.\n- Directly generates candidate library dependencies from natural language and verifies their existence in the formal library\n- Constructed a dependency retrieval dataset of 500K+ samples\n- Includes BM25 and dense dependency retrievers\n- Significantly outperforms existing methods in retrieval precision and recall\n- Addresses the core problem that Lean 4's mathlib has 240K+ entries with many similar descriptions\n\n**Assessment:** Very relevant for the retrieval component of any autoformalization pipeline. Well-maintained (ICLR 2025 spotlight quality).\n\n---\n\n## 4. DRIFT (Decompose, Retrieve, Illustrate, then Formalize Theorems)\n\n**Repository: [huawei-noah/DRIFT](https://github.com/huawei-noah/DRIFT)** -- ICLR 2026 poster.\n- Decomposes informal statements into atomic sub-queries for targeted premise retrieval from Mathlib\n- Bottom-up illustration step finds theorems that use retrieved premises as in-context demonstrations\n- Nearly doubles F1 score vs. DPR baseline on ProofNet\n- Evaluated on ProofNet, ConNF, and MiniF2F-test\n\n**Assessment:** Strong retrieval-augmented formalization approach backed by Huawei Noah's Ark Lab. Code and models available.\n\n---\n\n## 5. GRPO + Lean 4 Theorem Proving Implementations\n\n### DeepSeek-Prover-V1.5\n**Repository: [deepseek-ai/DeepSeek-Prover-V1.5](https://github.com/deepseek-ai/DeepSeek-Prover-V1.5)** -- Uses GRPO for RL from proof assistant feedback (RLPAF). Lean 4 compiler verification as binary reward.\n\n### DeepSeek-Prover-V2\n**Repository: [deepseek-ai/DeepSeek-Prover-V2](https://github.com/deepseek-ai/DeepSeek-Prover-V2)** -- Recursive theorem proving pipeline with GRPO.\n\n### Goedel-Prover\n**Repository: [Goedel-LM/Goedel-Prover](https://github.com/Goedel-LM/Goedel-Prover)** -- Open-source, uses GRPO with Lean accepter as binary reward. 57.6% pass@32 on miniF2F.\n**Repository: [Goedel-LM/Goedel-Prover-V2](https://github.com/Goedel-LM/Goedel-Prover-V2)** -- 8B and 32B checkpoints available. Adds scaffolded data synthesis and verifier-guided self-correction.\n\n### Leanabell-Prover\n**Repository: [Leanabell-LM/Leanabell-Prover](https://github.com/Leanabell-LM/Leanabell-Prover)** -- GRPO-based RL from proof assistant feedback. 59.8% pass@32 on MiniF2F (state-of-the-art for whole-proof generation). All intermediate models and training data released.\n**Repository: [Leanabell-LM/Leanabell-Prover-V2](https://github.com/Leanabell-LM/Leanabell-Prover-V2)** -- Verifier-integrated reasoning via RL.\n\n### GRPO-Zero\n**Repository: [policy-gradient/GRPO-Zero](https://github.com/policy-gradient/GRPO-Zero)** -- Clean from-scratch GRPO implementation with minimal dependencies (no transformers/vLLM). Good for understanding the algorithm.\n\n### Open-R1\n**Repository: [huggingface/open-r1](https://github.com/huggingface/open-r1)** -- Hugging Face's full open reproduction of DeepSeek-R1 including GRPO training. Well-maintained and community-backed.\n\n---\n\n## 6. Lean 4 Retrieval-Augmented Generation\n\n### ReProver / LeanDojo\n**Repository: [lean-dojo/ReProver](https://github.com/lean-dojo/ReProver)** -- Retrieval-augmented theorem prover. Given a proof state, retrieves premises from the math library, concatenates with state, and feeds to encoder-decoder Transformer. Uses LeanDojo's program analysis to reduce premises from 128K to 33K on average.\n\n**LeanDojo** ([leandojo.org](https://leandojo.org/)) -- The underlying framework that extracts data from Lean repos (both Lean 3 and 4), including file dependencies, ASTs, proof states, tactics, and premises. Transforms Lean into a gym-like environment.\n\n**Assessment:** LeanDojo/ReProver is the most mature and well-established framework for Lean 4 + ML interaction. Essential infrastructure for any retrieval-augmented Lean work.\n\n---\n\n## 7. FormalMATH Benchmark\n\n**Repository: [Sphere-AI-Lab/FormalMATH-Bench](https://github.com/Sphere-AI-Lab/FormalMATH-Bench)** -- 5,560 formally verified mathematical statements across various domains and difficulty levels in Lean 4.\n- Evaluation via `python FoMA_Eval.py --auto_dl --generate --verify --evaluate`\n- Uses Lean 4 compiler as definitive correctness checker, with Pass@K metric\n- Best models achieve only 16.46% success rate under practical sampling budgets\n- Human-in-the-loop autoformalization pipeline with multi-LLM semantic verification\n\n### miniF2F (related benchmark)\n- **[openai/miniF2F](https://github.com/openai/miniF2F)** -- Original, 244 statements from AMC/AIME/IMO\n- **[google-deepmind/miniF2F](https://github.com/google-deepmind/miniF2F)** -- Lean 4 fork with corrections\n- **[yangky11/miniF2F-lean4](https://github.com/yangky11/miniF2F-lean4)** -- Community Lean 4 port\n- **[facebookresearch/miniF2F](https://github.com/facebookresearch/miniF2F)** -- Meta's updated version with fixes and informal statements\n\n---\n\n## 8. RL Training Frameworks\n\n### verl\n**Repository: [verl-project/verl](https://github.com/verl-project/verl)** -- The most popular open-source RL framework for LLMs. Supports GRPO, PPO, REINFORCE++, DAPO, and many more. Scales to 671B models across hundreds of GPUs. TTRL is built directly on this.\n\n### OpenRLHF\n**Repository: [OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)** -- Built on Ray, vLLM, ZeRO-3. Supports PPO, GRPO, REINFORCE++. Scales to 70B+ models. TTRL's preview code is based on this internally.\n\n---\n\n## 9. Compute / Hardware Requirements\n\nBased on the search findings, here is a summary of compute costs for similar experiments:\n\n| Project / Scale | Hardware | Time | Estimated Cost |\n|---|---|---|---|\n| **FormaRL** (7B, GRPO autoformalization) | 2x A100-80GB (minimum) | Not specified | ~$50-200 est. |\n| **Online RL autoformalization** (research paper) | 4x A100-80GB (single node) | Not specified (batch size 768) | ~$200-500 est. |\n| **Generic GRPO 7B training** | 8x A100 GPUs | ~27 hours | ~$300-700 |\n| **BGE-M3 GRPO approach** | 1x A100-80GB | 104 GPU-hours (4d 8h) | ~$85 |\n| **\"$100 Agents\" project** | Various | Budget-constrained | $100 |\n| **Medium models (13-30B)** | 4x H100 | 50-200 hours | $500-3,000 |\n| **Large models (70B+)** | 8x H100 | 300-1,000 hours | $10,000-50,000 |\n\nKey takeaways on compute:\n- GRPO requires **2-3x the VRAM of SFT** (supervised fine-tuning)\n- For a 7B model with GRPO, **2-8 A100-80GB GPUs** is the standard range\n- Training time is typically **12-27 hours** for reasonable results at 7B scale\n- Cloud A100 pricing: **$1.29-2.29/hour**; H100 pricing: **$2.85-3.50/hour**\n- A realistic budget for a 7B GRPO autoformalization experiment would be **$100-500** in GPU compute\n- Minimum practical requirement: at least 12 hours of training time is suggested for decent GRPO results\n\n---\n\n## Recommendations: Which repos to build on\n\n**Tier 1 -- Directly buildable upon:**\n1. **[THUNLP-MT/FormaRL](https://github.com/THUNLP-MT/FormaRL)** -- Already combines GRPO + Lean compiler + autoformalization. The closest existing system to what your project appears to need.\n2. **[PRIME-RL/TTRL](https://github.com/PRIME-RL/TTRL)** -- If you want test-time RL specifically (training on unlabeled data using majority voting rewards).\n3. **[verl-project/verl](https://github.com/verl-project/verl)** -- If you want to build custom GRPO training from scratch with maximum flexibility.\n\n**Tier 2 -- Important infrastructure components:**\n4. **[lean-dojo/ReProver](https://github.com/lean-dojo/ReProver)** -- For retrieval-augmented premise selection in Lean 4.\n5. **[Purewhite2019/rethinking_autoformalization](https://github.com/Purewhite2019/rethinking_autoformalization)** -- For dependency retrieval (DDR).\n6. **[huawei-noah/DRIFT](https://github.com/huawei-noah/DRIFT)** -- For decomposition-driven retrieval.\n\n**Tier 3 -- Reference implementations for GRPO + Lean proving:**\n7. **[Goedel-LM/Goedel-Prover-V2](https://github.com/Goedel-LM/Goedel-Prover-V2)** -- Open-source GRPO + Lean, with model weights.\n8. **[Leanabell-LM/Leanabell-Prover](https://github.com/Leanabell-LM/Leanabell-Prover)** -- GRPO + RLPAF, all data and models released.\n9. **[Sphere-AI-Lab/FormalMATH-Bench](https://github.com/Sphere-AI-Lab/FormalMATH-Bench)** -- For evaluation.\n\nSources:\n- [PRIME-RL/TTRL](https://github.com/PRIME-RL/TTRL)\n- [THUNLP-MT/FormaRL](https://github.com/THUNLP-MT/FormaRL)\n- [Huawei-AI4Math/ProofFlow](https://github.com/Huawei-AI4Math/ProofFlow)\n- [lanzhang128/multi_agent_autoformalization](https://github.com/lanzhang128/multi_agent_autoformalization)\n- [lanzhang128/retrieval_augmented_autoformalization](https://github.com/lanzhang128/retrieval_augmented_autoformalization)\n- [Purewhite2019/rethinking_autoformalization](https://github.com/Purewhite2019/rethinking_autoformalization)\n- [huawei-noah/DRIFT](https://github.com/huawei-noah/DRIFT)\n- [deepseek-ai/DeepSeek-Prover-V1.5](https://github.com/deepseek-ai/DeepSeek-Prover-V1.5)\n- [deepseek-ai/DeepSeek-Prover-V2](https://github.com/deepseek-ai/DeepSeek-Prover-V2)\n- [Goedel-LM/Goedel-Prover](https://github.com/Goedel-LM/Goedel-Prover)\n- [Goedel-LM/Goedel-Prover-V2](https://github.com/Goedel-LM/Goedel-Prover-V2)\n- [Leanabell-LM/Leanabell-Prover](https://github.com/Leanabell-LM/Leanabell-Prover)\n- [lean-dojo/ReProver](https://github.com/lean-dojo/ReProver)\n- [Sphere-AI-Lab/FormalMATH-Bench](https://github.com/Sphere-AI-Lab/FormalMATH-Bench)\n- [openai/miniF2F](https://github.com/openai/miniF2F)\n- [google-deepmind/miniF2F](https://github.com/google-deepmind/miniF2F)\n- [verl-project/verl](https://github.com/verl-project/verl)\n- [OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)\n- [policy-gradient/GRPO-Zero](https://github.com/policy-gradient/GRPO-Zero)\n- [huggingface/open-r1](https://github.com/huggingface/open-r1)\n- [TTRL arXiv paper](https://arxiv.org/abs/2504.16084)\n- [FormaRL arXiv paper](https://arxiv.org/abs/2508.18914)\n- [DDR arXiv paper](https://arxiv.org/abs/2511.11990)\n- [DRIFT arXiv paper](https://arxiv.org/abs/2510.10815)\n- [FormalMATH arXiv paper](https://arxiv.org/abs/2505.02735)\n- [GRPO Fine-Tuning Guide (Spheron)](https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/)\n- [DeepSeek-R1 training analysis (Epoch AI)](https://epoch.ai/gradient-updates/what-went-into-training-deepseek-r1)&lt;/result>\n&lt;usage>&lt;total_tokens>28238&lt;/total_tokens>&lt;tool_uses>22&lt;/tool_uses>&lt;duration_ms>140511&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-27T16:52:12.693Z_
+
+<details><summary>↩ Tool result · `toolu_01KT2oCZYU22xxFQEBWDMdcd`</summary>
+
+```text
+Web search results for query: "GRPO training 8 GPU hours compute cost reinforcement learning 7B model"
+
+Links: [{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"},{"title":"GRPO in Reinforcement Learning Explained | DigitalOcean","url":"https://www.digitalocean.com/community/conceptual-articles/group-relative-policy-optimization-reinforcement-learning"},{"title":"Train Less, Learn More: Adaptive Efficient Rollout Optimization for Group-Based Reinforcement Learning","url":"https://arxiv.org/pdf/2602.14338"},{"title":"Predictive Scaling Laws for Efficient GRPO Training of Large Reasoning Models","url":"https://arxiv.org/pdf/2507.18014"},{"title":"GRPO Fine-Tuning on GPU Cloud: Train Reasoning Models with Verifiable Rewards (2026 Guide) | Spheron Blog","url":"https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/"},{"title":"RLAIF: How a 1.7B Model Outperforms a 235B Model | Snowflake","url":"https://www.snowflake.com/en/blog/engineering/reinforcement-learning-ai-feedback-small-models/"},{"title":"Reinforcement Learning (RL) Guide | Unsloth Documentation","url":"https://docs.unsloth.ai/get-started/reinforcement-learning-rl-guide"}]
+
+Based on the search results, here's what I found about GRPO training with 8 GPUs for a 7B model:
+
+## Training Time and Compute
+
+The training process for a 7B model completes in approximately 27 hours on only eight A100 GPUs. This specific result comes from training the Qwen-2.5-Math-7B model using GRPO, which achieves 43.3% accuracy on AIME 2024, state-of-the-art for a model of this scale.
+
+## General GRPO Training Considerations
+
+In order to get decent results, you may need to train for a minimum of 12 hours. However, the actual compute cost can vary based on several factors:
+
+- Generating 8 completions per prompt and then calling a separate LLM to score each one roughly doubles your total compute cost per step.
+
+- Training beyond roughly 80% of a single epoch yields negligible reward gains while consuming a substantial fraction of total computation, and practitioners can forecast these phase transitions early and select data-driven stopping points, substantially reducing GRPO compute without sacrificing final performance.
+
+The 27-hour training time on 8 A100 GPUs represents a practical example for 7B-scale models, making GRPO relatively efficient compared to traditional reinforcement learning approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa27daff-30dc-47b0-ac93-c81dfda93d74",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "e63de530-479d-486b-9224-7eefd0eab07c",
+  "toolUseResult": {
+    "query": "GRPO training 8 GPU hours compute cost reinforcement learning 7B model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fb3n1beYNmPZeKks9CKwxJ",
+        "content": [
+          {
+            "title": "GRPO++: Tricks for Making RL Actually Work",
+            "url": "https://cameronrwolfe.substack.com/p/grpo-tricks"
+          },
+          {
+            "title": "GRPO in Reinforcement Learning Explained | DigitalOcean",
+            "url": "https://www.digitalocean.com/community/conceptual-articles/group-relative-policy-optimization-reinforcement-learning"
+          },
+          {
+            "title": "Train Less, Learn More: Adaptive Efficient Rollout Optimization for Group-Based Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2602.14338"
+          },
+          {
+            "title": "Predictive Scaling Laws for Efficient GRPO Training of Large Reasoning Models",
+            "url": "https://arxiv.org/pdf/2507.18014"
+          },
+          {
+            "title": "GRPO Fine-Tuning on GPU Cloud: Train Reasoning Models with Verifiable Rewards (2026 Guide) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/"
+          },
+          {
+            "title": "RLAIF: How a 1.7B Model Outperforms a 235B Model | Snowflake",
+            "url": "https://www.snowflake.com/en/blog/engineering/reinforcement-learning-ai-feedback-small-models/"
+          },
+          {
+            "title": "Reinforcement Learning (RL) Guide | Unsloth Documentation",
+            "url": "https://docs.unsloth.ai/get-started/reinforcement-learning-rl-guide"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GRPO training with 8 GPUs for a 7B model:\n\n## Training Time and Compute\n\nThe training process for a 7B model completes in approximately 27 hours on only eight A100 GPUs. This specific result comes from training the Qwen-2.5-Math-7B model using GRPO, which achieves 43.3% accuracy on AIME 2024, state-of-the-art for a model of this scale.\n\n## General GRPO Training Considerations\n\nIn order to get decent results, you may need to train for a minimum of 12 hours. However, the actual compute cost can vary based on several factors:\n\n- Generating 8 completions per prompt and then calling a separate LLM to score each one roughly doubles your total compute cost per step.\n\n- Training beyond roughly 80% of a single epoch yields negligible reward gains while consuming a substantial fraction of total computation, and practitioners can forecast these phase transitions early and select data-driven stopping points, substantially reducing GRPO compute without sacrificing final performance.\n\nThe 27-hour training time on 8 A100 GPUs represents a practical example for 7B-scale models, making GRPO relatively efficient compared to traditional reinforcement learning approaches."
+    ],
+    "durationSeconds": 8.130337796999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fa27daff-30dc-47b0-ac93-c81dfda93d74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 132 · 2026-05-27T16:52:12.697Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-27T16:52:12.697Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 133 · 2026-05-27T16:52:12.697Z_
+
+```json
+{
+  "parentUuid": "e63de530-479d-486b-9224-7eefd0eab07c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>aa5b9ab9971022e9b&lt;/task-id>\n&lt;tool-use-id>toolu_01JctPDHtmv2EP9gzCqADa84&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/aa5b9ab9971022e9b.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search GitHub for related implementations\" completed&lt;/summary>\n&lt;result>Here is a comprehensive report of all findings, organized by topic.\n\n---\n\n## 1. Test-Time Reinforcement Learning (TTRL)\n\n**Primary Repository: [PRIME-RL/TTRL](https://github.com/PRIME-RL/TTRL)** -- The official NeurIPS 2025 implementation. This is well-maintained and actively developed by the PRIME-RL group. Key characteristics:\n- Built on top of the **verl** framework (v0.4.1+), enabled by simply setting `+ttrl.enable=True`\n- Also based on **OpenRLHF** internally; TTRL will be integrated into the official OpenRLHF codebase\n- Core innovation: uses majority voting as a reward signal, enabling RL training on unlabeled test data\n- Boosts pass@1 performance of Qwen-2.5-Math-7B by ~211% on AIME 2024\n- Implementation achieved by modifying the reward function -- minimal code changes on top of existing RL frameworks\n\n**Secondary repo: [Mani-RRI/TTRL-Test-Time-Reinforcement-Learning](https://github.com/Mani-RRI/TTRL-Test-Time-Reinforcement-Learning)** -- Community reproduction; less established.\n\n**Assessment:** The PRIME-RL/TTRL repo is the most directly relevant codebase for test-time RL. It is well-maintained, builds on robust infrastructure (verl/OpenRLHF), and the core idea (majority-voting reward) is cleanly implemented.\n\n---\n\n## 2. Autoformalization Pipelines\n\n### FormaRL\n**Repository: [THUNLP-MT/FormaRL](https://github.com/THUNLP-MT/FormaRL)** -- COLM 2025 paper. This is the most directly relevant repository for RL-driven autoformalization.\n- Uses **GRPO** algorithm to train a formalizer\n- Dual reward: (1) Lean compiler syntax check + (2) LLM-based consistency check comparing natural language to formal output\n- Achieves 4-6x improvement in pass@1 autoformalization accuracy on Qwen2.5-Coder-7B-Instruct (4.04% to 26.15% on ProofNet)\n- Requires only **859 unlabeled data points**\n- Hardware: **at least 2x A100-80GB GPUs** for 7B parameter model training\n- Python 3.12 required\n\n**Assessment:** This is the single most relevant existing implementation for combining GRPO + autoformalization + Lean compiler feedback. Well-documented, open-source, and directly buildable upon.\n\n### ProofFlow\n**Repository: [Huawei-AI4Math/ProofFlow](https://github.com/Huawei-AI4Math/ProofFlow)** -- Translates natural language proofs into verifiable Lean 4 code via dependency graphs.\n- Three-part pipeline: Graph Builder, Lemma Formalizer, Tactic Completer\n- Includes benchmark and scoring metric\n- Focuses on proof autoformalization (not statement autoformalization)\n\n### Multi-Agent Autoformalization\n**Repository: [lanzhang128/multi_agent_autoformalization](https://github.com/lanzhang128/multi_agent_autoformalization)** -- Multi-agent pipelines including Hard-Critique-Formal-Refinement and Iterative Self-Refinement.\n\n### Retrieval-Augmented Autoformalization\n**Repository: [lanzhang128/retrieval_augmented_autoformalization](https://github.com/lanzhang128/retrieval_augmented_autoformalization)** -- RAG approaches for autoformalization.\n\n### Definition Autoformalization\n**Repository: [lanzhang128/definition_autoformalization](https://github.com/lanzhang128/definition_autoformalization)** -- Focused on formalizing mathematical definitions.\n\n---\n\n## 3. DDR (Direct Dependency Retrieval)\n\n**Repository: [Purewhite2019/rethinking_autoformalization](https://github.com/Purewhite2019/rethinking_autoformalization)** -- ICLR 2025 Spotlight paper.\n- Directly generates candidate library dependencies from natural language and verifies their existence in the formal library\n- Constructed a dependency retrieval dataset of 500K+ samples\n- Includes BM25 and dense dependency retrievers\n- Significantly outperforms existing methods in retrieval precision and recall\n- Addresses the core problem that Lean 4's mathlib has 240K+ entries with many similar descriptions\n\n**Assessment:** Very relevant for the retrieval component of any autoformalization pipeline. Well-maintained (ICLR 2025 spotlight quality).\n\n---\n\n## 4. DRIFT (Decompose, Retrieve, Illustrate, then Formalize Theorems)\n\n**Repository: [huawei-noah/DRIFT](https://github.com/huawei-noah/DRIFT)** -- ICLR 2026 poster.\n- Decomposes informal statements into atomic sub-queries for targeted premise retrieval from Mathlib\n- Bottom-up illustration step finds theorems that use retrieved premises as in-context demonstrations\n- Nearly doubles F1 score vs. DPR baseline on ProofNet\n- Evaluated on ProofNet, ConNF, and MiniF2F-test\n\n**Assessment:** Strong retrieval-augmented formalization approach backed by Huawei Noah's Ark Lab. Code and models available.\n\n---\n\n## 5. GRPO + Lean 4 Theorem Proving Implementations\n\n### DeepSeek-Prover-V1.5\n**Repository: [deepseek-ai/DeepSeek-Prover-V1.5](https://github.com/deepseek-ai/DeepSeek-Prover-V1.5)** -- Uses GRPO for RL from proof assistant feedback (RLPAF). Lean 4 compiler verification as binary reward.\n\n### DeepSeek-Prover-V2\n**Repository: [deepseek-ai/DeepSeek-Prover-V2](https://github.com/deepseek-ai/DeepSeek-Prover-V2)** -- Recursive theorem proving pipeline with GRPO.\n\n### Goedel-Prover\n**Repository: [Goedel-LM/Goedel-Prover](https://github.com/Goedel-LM/Goedel-Prover)** -- Open-source, uses GRPO with Lean accepter as binary reward. 57.6% pass@32 on miniF2F.\n**Repository: [Goedel-LM/Goedel-Prover-V2](https://github.com/Goedel-LM/Goedel-Prover-V2)** -- 8B and 32B checkpoints available. Adds scaffolded data synthesis and verifier-guided self-correction.\n\n### Leanabell-Prover\n**Repository: [Leanabell-LM/Leanabell-Prover](https://github.com/Leanabell-LM/Leanabell-Prover)** -- GRPO-based RL from proof assistant feedback. 59.8% pass@32 on MiniF2F (state-of-the-art for whole-proof generation). All intermediate models and training data released.\n**Repository: [Leanabell-LM/Leanabell-Prover-V2](https://github.com/Leanabell-LM/Leanabell-Prover-V2)** -- Verifier-integrated reasoning via RL.\n\n### GRPO-Zero\n**Repository: [policy-gradient/GRPO-Zero](https://github.com/policy-gradient/GRPO-Zero)** -- Clean from-scratch GRPO implementation with minimal dependencies (no transformers/vLLM). Good for understanding the algorithm.\n\n### Open-R1\n**Repository: [huggingface/open-r1](https://github.com/huggingface/open-r1)** -- Hugging Face's full open reproduction of DeepSeek-R1 including GRPO training. Well-maintained and community-backed.\n\n---\n\n## 6. Lean 4 Retrieval-Augmented Generation\n\n### ReProver / LeanDojo\n**Repository: [lean-dojo/ReProver](https://github.com/lean-dojo/ReProver)** -- Retrieval-augmented theorem prover. Given a proof state, retrieves premises from the math library, concatenates with state, and feeds to encoder-decoder Transformer. Uses LeanDojo's program analysis to reduce premises from 128K to 33K on average.\n\n**LeanDojo** ([leandojo.org](https://leandojo.org/)) -- The underlying framework that extracts data from Lean repos (both Lean 3 and 4), including file dependencies, ASTs, proof states, tactics, and premises. Transforms Lean into a gym-like environment.\n\n**Assessment:** LeanDojo/ReProver is the most mature and well-established framework for Lean 4 + ML interaction. Essential infrastructure for any retrieval-augmented Lean work.\n\n---\n\n## 7. FormalMATH Benchmark\n\n**Repository: [Sphere-AI-Lab/FormalMATH-Bench](https://github.com/Sphere-AI-Lab/FormalMATH-Bench)** -- 5,560 formally verified mathematical statements across various domains and difficulty levels in Lean 4.\n- Evaluation via `python FoMA_Eval.py --auto_dl --generate --verify --evaluate`\n- Uses Lean 4 compiler as definitive correctness checker, with Pass@K metric\n- Best models achieve only 16.46% success rate under practical sampling budgets\n- Human-in-the-loop autoformalization pipeline with multi-LLM semantic verification\n\n### miniF2F (related benchmark)\n- **[openai/miniF2F](https://github.com/openai/miniF2F)** -- Original, 244 statements from AMC/AIME/IMO\n- **[google-deepmind/miniF2F](https://github.com/google-deepmind/miniF2F)** -- Lean 4 fork with corrections\n- **[yangky11/miniF2F-lean4](https://github.com/yangky11/miniF2F-lean4)** -- Community Lean 4 port\n- **[facebookresearch/miniF2F](https://github.com/facebookresearch/miniF2F)** -- Meta's updated version with fixes and informal statements\n\n---\n\n## 8. RL Training Frameworks\n\n### verl\n**Repository: [verl-project/verl](https://github.com/verl-project/verl)** -- The most popular open-source RL framework for LLMs. Supports GRPO, PPO, REINFORCE++, DAPO, and many more. Scales to 671B models across hundreds of GPUs. TTRL is built directly on this.\n\n### OpenRLHF\n**Repository: [OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)** -- Built on Ray, vLLM, ZeRO-3. Supports PPO, GRPO, REINFORCE++. Scales to 70B+ models. TTRL's preview code is based on this internally.\n\n---\n\n## 9. Compute / Hardware Requirements\n\nBased on the search findings, here is a summary of compute costs for similar experiments:\n\n| Project / Scale | Hardware | Time | Estimated Cost |\n|---|---|---|---|\n| **FormaRL** (7B, GRPO autoformalization) | 2x A100-80GB (minimum) | Not specified | ~$50-200 est. |\n| **Online RL autoformalization** (research paper) | 4x A100-80GB (single node) | Not specified (batch size 768) | ~$200-500 est. |\n| **Generic GRPO 7B training** | 8x A100 GPUs | ~27 hours | ~$300-700 |\n| **BGE-M3 GRPO approach** | 1x A100-80GB | 104 GPU-hours (4d 8h) | ~$85 |\n| **\"$100 Agents\" project** | Various | Budget-constrained | $100 |\n| **Medium models (13-30B)** | 4x H100 | 50-200 hours | $500-3,000 |\n| **Large models (70B+)** | 8x H100 | 300-1,000 hours | $10,000-50,000 |\n\nKey takeaways on compute:\n- GRPO requires **2-3x the VRAM of SFT** (supervised fine-tuning)\n- For a 7B model with GRPO, **2-8 A100-80GB GPUs** is the standard range\n- Training time is typically **12-27 hours** for reasonable results at 7B scale\n- Cloud A100 pricing: **$1.29-2.29/hour**; H100 pricing: **$2.85-3.50/hour**\n- A realistic budget for a 7B GRPO autoformalization experiment would be **$100-500** in GPU compute\n- Minimum practical requirement: at least 12 hours of training time is suggested for decent GRPO results\n\n---\n\n## Recommendations: Which repos to build on\n\n**Tier 1 -- Directly buildable upon:**\n1. **[THUNLP-MT/FormaRL](https://github.com/THUNLP-MT/FormaRL)** -- Already combines GRPO + Lean compiler + autoformalization. The closest existing system to what your project appears to need.\n2. **[PRIME-RL/TTRL](https://github.com/PRIME-RL/TTRL)** -- If you want test-time RL specifically (training on unlabeled data using majority voting rewards).\n3. **[verl-project/verl](https://github.com/verl-project/verl)** -- If you want to build custom GRPO training from scratch with maximum flexibility.\n\n**Tier 2 -- Important infrastructure components:**\n4. **[lean-dojo/ReProver](https://github.com/lean-dojo/ReProver)** -- For retrieval-augmented premise selection in Lean 4.\n5. **[Purewhite2019/rethinking_autoformalization](https://github.com/Purewhite2019/rethinking_autoformalization)** -- For dependency retrieval (DDR).\n6. **[huawei-noah/DRIFT](https://github.com/huawei-noah/DRIFT)** -- For decomposition-driven retrieval.\n\n**Tier 3 -- Reference implementations for GRPO + Lean proving:**\n7. **[Goedel-LM/Goedel-Prover-V2](https://github.com/Goedel-LM/Goedel-Prover-V2)** -- Open-source GRPO + Lean, with model weights.\n8. **[Leanabell-LM/Leanabell-Prover](https://github.com/Leanabell-LM/Leanabell-Prover)** -- GRPO + RLPAF, all data and models released.\n9. **[Sphere-AI-Lab/FormalMATH-Bench](https://github.com/Sphere-AI-Lab/FormalMATH-Bench)** -- For evaluation.\n\nSources:\n- [PRIME-RL/TTRL](https://github.com/PRIME-RL/TTRL)\n- [THUNLP-MT/FormaRL](https://github.com/THUNLP-MT/FormaRL)\n- [Huawei-AI4Math/ProofFlow](https://github.com/Huawei-AI4Math/ProofFlow)\n- [lanzhang128/multi_agent_autoformalization](https://github.com/lanzhang128/multi_agent_autoformalization)\n- [lanzhang128/retrieval_augmented_autoformalization](https://github.com/lanzhang128/retrieval_augmented_autoformalization)\n- [Purewhite2019/rethinking_autoformalization](https://github.com/Purewhite2019/rethinking_autoformalization)\n- [huawei-noah/DRIFT](https://github.com/huawei-noah/DRIFT)\n- [deepseek-ai/DeepSeek-Prover-V1.5](https://github.com/deepseek-ai/DeepSeek-Prover-V1.5)\n- [deepseek-ai/DeepSeek-Prover-V2](https://github.com/deepseek-ai/DeepSeek-Prover-V2)\n- [Goedel-LM/Goedel-Prover](https://github.com/Goedel-LM/Goedel-Prover)\n- [Goedel-LM/Goedel-Prover-V2](https://github.com/Goedel-LM/Goedel-Prover-V2)\n- [Leanabell-LM/Leanabell-Prover](https://github.com/Leanabell-LM/Leanabell-Prover)\n- [lean-dojo/ReProver](https://github.com/lean-dojo/ReProver)\n- [Sphere-AI-Lab/FormalMATH-Bench](https://github.com/Sphere-AI-Lab/FormalMATH-Bench)\n- [openai/miniF2F](https://github.com/openai/miniF2F)\n- [google-deepmind/miniF2F](https://github.com/google-deepmind/miniF2F)\n- [verl-project/verl](https://github.com/verl-project/verl)\n- [OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)\n- [policy-gradient/GRPO-Zero](https://github.com/policy-gradient/GRPO-Zero)\n- [huggingface/open-r1](https://github.com/huggingface/open-r1)\n- [TTRL arXiv paper](https://arxiv.org/abs/2504.16084)\n- [FormaRL arXiv paper](https://arxiv.org/abs/2508.18914)\n- [DDR arXiv paper](https://arxiv.org/abs/2511.11990)\n- [DRIFT arXiv paper](https://arxiv.org/abs/2510.10815)\n- [FormalMATH arXiv paper](https://arxiv.org/abs/2505.02735)\n- [GRPO Fine-Tuning Guide (Spheron)](https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/)\n- [DeepSeek-R1 training analysis (Epoch AI)](https://epoch.ai/gradient-updates/what-went-into-training-deepseek-r1)&lt;/result>\n&lt;usage>&lt;total_tokens>28238&lt;/total_tokens>&lt;tool_uses>22&lt;/tool_uses>&lt;duration_ms>140511&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "842669c5-9662-4f7c-b8a9-e3294a57ecc8",
+  "timestamp": "2026-05-27T16:52:12.697Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 134_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "842669c5-9662-4f7c-b8a9-e3294a57ecc8",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 135_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 136 · 2026-05-27T16:52:18.262Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have the GitHub implementations agent results too. Let me now also check the DRIFT venue - it looks like it may have been accepted at ICLR 2026. Let me verify and also wait for the final concurrent work agent.
+
+Let me also check a few more things:
+1. The AI for Math Workshop deadline
+2. Whether DRIFT was accepted at ICLR 2026
+
+Let me search for these while waiting for the last agent.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "842669c5-9662-4f7c-b8a9-e3294a57ecc8",
+  "isSidechain": false,
+  "requestId": "req_011CbTRLiCu3rNiLy3wTw53p",
+  "type": "assistant",
+  "uuid": "f12d5811-df10-4650-8e8f-d2e624cee8fb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lu4WUHRyo8UBjNSeRa4p9n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7191,
+      "cache_read_input_tokens": 52398,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 52398,
+          "cache_creation_input_tokens": 7191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-27T16:52:18.781Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0154cvj9XkPs4YFS1KJTpoHm`</summary>
+
+```json
+{
+  "query": "DRIFT \"ICLR 2026\" autoformalization Huawei accepted paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f12d5811-df10-4650-8e8f-d2e624cee8fb",
+  "isSidechain": false,
+  "requestId": "req_011CbTRLiCu3rNiLy3wTw53p",
+  "type": "assistant",
+  "uuid": "4788b786-1327-43cd-8595-13025572c376",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lu4WUHRyo8UBjNSeRa4p9n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7191,
+      "cache_read_input_tokens": 52398,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 52398,
+          "cache_creation_input_tokens": 7191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138 · 2026-05-27T16:52:18.924Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TuTVBrUDaKCjTHkHXDKPz4`</summary>
+
+```json
+{
+  "query": "site:ai4math2026.github.io submission deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4788b786-1327-43cd-8595-13025572c376",
+  "isSidechain": false,
+  "requestId": "req_011CbTRLiCu3rNiLy3wTw53p",
+  "type": "assistant",
+  "uuid": "2adcdd0c-91bd-49d4-b049-e30d3c2f1a4d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lu4WUHRyo8UBjNSeRa4p9n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7191,
+      "cache_read_input_tokens": 52398,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 52398,
+          "cache_creation_input_tokens": 7191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-27T16:52:21.537Z_
+
+<details><summary>↩ Tool result · `toolu_01TuTVBrUDaKCjTHkHXDKPz4`</summary>
+
+```text
+Web search results for query: "site:ai4math2026.github.io submission deadline"
+
+Links: [{"title":"3rd AI for Math Workshop @ ICML 2026","url":"https://ai4math2026.github.io/"}]
+
+Based on the search results, the paper submission deadline for the 3rd AI for Math Workshop @ ICML 2026 is May 25, 2026. 
+
+Note: Today's date is May 27, 2026, so this deadline has already passed. The decision notification is scheduled for June 15, 2026, and the camera-ready deadline is June 25, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2adcdd0c-91bd-49d4-b049-e30d3c2f1a4d",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "9b3f64d8-f2dc-4a5f-b267-e61b9ad21999",
+  "toolUseResult": {
+    "query": "site:ai4math2026.github.io submission deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011seHoYkKPLUY3YJwzwd7m1",
+        "content": [
+          {
+            "title": "3rd AI for Math Workshop @ ICML 2026",
+            "url": "https://ai4math2026.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, the paper submission deadline for the 3rd AI for Math Workshop @ ICML 2026 is May 25, 2026. \n\nNote: Today's date is May 27, 2026, so this deadline has already passed. The decision notification is scheduled for June 15, 2026, and the camera-ready deadline is June 25, 2026."
+    ],
+    "durationSeconds": 2.611927263999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2adcdd0c-91bd-49d4-b049-e30d3c2f1a4d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-27T16:52:24.713Z_
+
+<details><summary>↩ Tool result · `toolu_0154cvj9XkPs4YFS1KJTpoHm`</summary>
+
+```text
+Web search results for query: "DRIFT "ICLR 2026" autoformalization Huawei accepted paper"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf/3f497d563de1ccd4d5d0f6acc356e345dba4baa3.pdf"},{"title":"GitHub - Huawei-AI4Math/Mathesis · GitHub","url":"https://github.com/Huawei-AI4Math/Mathesis"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/pdf/2510.10815"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.13888"},{"title":"ICLR 2026 Accepted Papers: Oral Papers, Research Trends & Top Highlights","url":"https://www.bohrium.com/en/blog/research-notes/iclr-2026-accepted-papers-highlights/"}]
+
+Based on the search results, I found information about DRIFT:
+
+DRIFT is titled "Decompose, Retrieve, Illustrate, then Formalize Theorems" and was authored by Meiru Zhang from the University of Cambridge and researchers from Huawei Noah's Ark Lab in London.
+
+The paper addresses automating the formalization of mathematical statements for theorem proving, a major challenge for Large Language Models (LLMs), as they struggle to identify and utilize prerequisite mathematical knowledge and its corresponding formal representation in languages like Lean.
+
+DRIFT improves upon current retrieval-augmented autoformalization methods by addressing the fundamental limitation that informal statements lack direct mappings to mathematical theorems and lemmata, and those theorems don't translate trivially into the formal primitives of languages like Lean.
+
+The paper appears to have been published as a conference paper at ICLR 2026, based on the document headers and metadata in the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4788b786-1327-43cd-8595-13025572c376",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "65e9422e-8b16-47f9-92f3-05ff38ab8f9e",
+  "toolUseResult": {
+    "query": "DRIFT \"ICLR 2026\" autoformalization Huawei accepted paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QsYfBb11UnHjC98Toug9He",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf/3f497d563de1ccd4d5d0f6acc356e345dba4baa3.pdf"
+          },
+          {
+            "title": "GitHub - Huawei-AI4Math/Mathesis · GitHub",
+            "url": "https://github.com/Huawei-AI4Math/Mathesis"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.13888"
+          },
+          {
+            "title": "ICLR 2026 Accepted Papers: Oral Papers, Research Trends & Top Highlights",
+            "url": "https://www.bohrium.com/en/blog/research-notes/iclr-2026-accepted-papers-highlights/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about DRIFT:\n\nDRIFT is titled \"Decompose, Retrieve, Illustrate, then Formalize Theorems\" and was authored by Meiru Zhang from the University of Cambridge and researchers from Huawei Noah's Ark Lab in London.\n\nThe paper addresses automating the formalization of mathematical statements for theorem proving, a major challenge for Large Language Models (LLMs), as they struggle to identify and utilize prerequisite mathematical knowledge and its corresponding formal representation in languages like Lean.\n\nDRIFT improves upon current retrieval-augmented autoformalization methods by addressing the fundamental limitation that informal statements lack direct mappings to mathematical theorems and lemmata, and those theorems don't translate trivially into the formal primitives of languages like Lean.\n\nThe paper appears to have been published as a conference paper at ICLR 2026, based on the document headers and metadata in the search results."
+    ],
+    "durationSeconds": 5.928590487999987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4788b786-1327-43cd-8595-13025572c376",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 141 · 2026-05-27T16:52:24.718Z_
+
+```json
+{
+  "parentUuid": "65e9422e-8b16-47f9-92f3-05ff38ab8f9e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "faf839fe-a486-4472-bb51-c7e66ce92854",
+  "timestamp": "2026-05-27T16:52:24.718Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 142 · 2026-05-27T16:52:30.112Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so the AI for Math workshop deadline has passed. Let me now compile everything. Let me wait for the final concurrent work agent.
+
+Let me now also verify the CRAMF venue. The search results showed it on arXiv (2508.06931) and OpenReview but didn't confirm a venue. Let me check.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faf839fe-a486-4472-bb51-c7e66ce92854",
+  "isSidechain": false,
+  "requestId": "req_011CbTRMbeXqL9LgssbZrTiF",
+  "type": "assistant",
+  "uuid": "e05b92e4-9472-4b66-8f65-2b529f5d7dd4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HA5BBPhkBoxNkTcPrgFJ2s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 199,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 59589,
+      "output_tokens": 223,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 199,
+          "output_tokens": 223,
+          "cache_read_input_tokens": 59589,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-27T16:52:31.062Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ULCZ7BGhZRiiSJHwce4ppm`</summary>
+
+```json
+{
+  "query": "CRAMF \"Automated Formalization via Conceptual Retrieval-Augmented\" venue ICLR AAAI accepted 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e05b92e4-9472-4b66-8f65-2b529f5d7dd4",
+  "isSidechain": false,
+  "requestId": "req_011CbTRMbeXqL9LgssbZrTiF",
+  "type": "assistant",
+  "uuid": "7e8f1320-dfb9-4290-bd26-67a500a21af2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HA5BBPhkBoxNkTcPrgFJ2s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 199,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 59589,
+      "output_tokens": 223,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 199,
+          "output_tokens": 223,
+          "cache_read_input_tokens": 59589,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 144 · 2026-05-27T16:52:31.496Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qe6hAziSrLnruuxLLqKDZy`</summary>
+
+```json
+{
+  "query": "Aria agent autoformalization dependency graph ICLR 2026 accepted paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e8f1320-dfb9-4290-bd26-67a500a21af2",
+  "isSidechain": false,
+  "requestId": "req_011CbTRMbeXqL9LgssbZrTiF",
+  "type": "assistant",
+  "uuid": "ffad0961-28c0-4bce-9d9a-9ffa66a7fbfb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HA5BBPhkBoxNkTcPrgFJ2s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 199,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 59589,
+      "output_tokens": 223,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 199,
+          "output_tokens": 223,
+          "cache_read_input_tokens": 59589,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-27T16:52:35.889Z_
+
+<details><summary>↩ Tool result · `toolu_01ULCZ7BGhZRiiSJHwce4ppm`</summary>
+
+```text
+Web search results for query: "CRAMF "Automated Formalization via Conceptual Retrieval-Augmented" venue ICLR AAAI accepted 2026"
+
+Links: [{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/pdf/2508.06931"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/html/2508.06931"},{"title":"AUTOMATED FORMALIZATION VIA CONCEPTUAL RETRIEVAL ...","url":"https://openreview.net/pdf/c5515c42a45d03adcd764803dc11197cf6a270ae.pdf"},{"title":"[2508.06931] Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/abs/2508.06931"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs | Request PDF","url":"https://www.researchgate.net/publication/394440359_Automated_Formalization_via_Conceptual_Retrieval-Augmented_LLMs"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs | OpenReview","url":"https://openreview.net/forum?id=09lmwhDqZ3"}]
+
+Based on the search results, I found information about CRAMF (Automated Formalization via Conceptual Retrieval-Augmented LLMs):
+
+CRAMF is a Concept-driven Retrieval-Augmented Mathematical Formalization framework that enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts, providing contextual grounding during code generation.
+
+The framework automatically constructs a concept-definition knowledge base from Mathlib4, the standard mathematical library for the Lean 4 theorem prover, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts.
+
+Experiments on miniF2F, ProofNet, and their newly proposed AdvancedMath benchmark show that CRAMF can be seamlessly integrated into LLM-based autoformalizers, yielding consistent improvements in translation accuracy, achieving up to 62.1% and an average of 29.9% relative improvement.
+
+However, the search results show this paper is available on arXiv and OpenReview but do not indicate acceptance at ICLR or AAAI for 2026. The OpenReview link suggests it may be under review or under consideration for a conference, but the specific venue acceptance information you requested is not clearly stated in these search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e8f1320-dfb9-4290-bd26-67a500a21af2",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "4555c884-ad1a-42b9-addd-d978e6579be5",
+  "toolUseResult": {
+    "query": "CRAMF \"Automated Formalization via Conceptual Retrieval-Augmented\" venue ICLR AAAI accepted 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NepP8csXRHsnsRnGGasRFr",
+        "content": [
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/pdf/2508.06931"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/html/2508.06931"
+          },
+          {
+            "title": "AUTOMATED FORMALIZATION VIA CONCEPTUAL RETRIEVAL ...",
+            "url": "https://openreview.net/pdf/c5515c42a45d03adcd764803dc11197cf6a270ae.pdf"
+          },
+          {
+            "title": "[2508.06931] Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/abs/2508.06931"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/394440359_Automated_Formalization_via_Conceptual_Retrieval-Augmented_LLMs"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=09lmwhDqZ3"
+          }
+        ]
+      },
+      "Based on the search results, I found information about CRAMF (Automated Formalization via Conceptual Retrieval-Augmented LLMs):\n\nCRAMF is a Concept-driven Retrieval-Augmented Mathematical Formalization framework that enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts, providing contextual grounding during code generation.\n\nThe framework automatically constructs a concept-definition knowledge base from Mathlib4, the standard mathematical library for the Lean 4 theorem prover, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts.\n\nExperiments on miniF2F, ProofNet, and their newly proposed AdvancedMath benchmark show that CRAMF can be seamlessly integrated into LLM-based autoformalizers, yielding consistent improvements in translation accuracy, achieving up to 62.1% and an average of 29.9% relative improvement.\n\nHowever, the search results show this paper is available on arXiv and OpenReview but do not indicate acceptance at ICLR or AAAI for 2026. The OpenReview link suggests it may be under review or under consideration for a conference, but the specific venue acceptance information you requested is not clearly stated in these search results."
+    ],
+    "durationSeconds": 4.82298421200001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7e8f1320-dfb9-4290-bd26-67a500a21af2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-27T16:52:37.638Z_
+
+<details><summary>↩ Tool result · `toolu_01Qe6hAziSrLnruuxLLqKDZy`</summary>
+
+```text
+Web search results for query: "Aria agent autoformalization dependency graph ICLR 2026 accepted paper"
+
+Links: [{"title":"Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph | OpenReview","url":"https://openreview.net/forum?id=CPxZClPMiy"},{"title":"ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE ...","url":"https://openreview.net/pdf/388a385b7ad068290351f90757bd3af8bb6e5515.pdf"},{"title":"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/pdf/2510.04520"},{"title":"ICLR Poster Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://iclr.cc/virtual/2026/poster/10010860"},{"title":"Downloads 2026","url":"https://iclr.cc/Downloads/2026"},{"title":"[Literature Review] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://www.themoonlight.io/en/review/aria-an-agent-for-retrieval-and-iterative-auto-formalization-via-dependency-graph"},{"title":"[2510.04520v1] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/abs/2510.04520v1"},{"title":"[2510.04520] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/abs/2510.04520"},{"title":"(PDF) Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://www.researchgate.net/publication/396250696_Aria_An_Agent_For_Retrieval_and_Iterative_Auto-Formalization_via_Dependency_Graph"}]
+
+Based on the search results, I found information about the Aria paper for ICLR 2026:
+
+Aria (Agent for Retrieval and Iterative Autoformalization) is a system for conjecture-level formalization in Lean that emulates human expert reasoning via a two-phase Graph-of-Thought process: recursively decomposing statements into a dependency graph and then constructing formalizations from grounded concepts.
+
+The work addresses the major bottleneck that accurate auto-formalization of theorem statements faces due to hallucinations, semantic mismatches, and LLMs' inability to synthesize new definitions.
+
+The paper introduces AriaScorer, a checker that retrieves definitions from Mathlib for term-level grounding, enabling rigorous and reliable verification.
+
+On ProofNet, Aria achieves 91.6% compilation success rate and 68.5% final accuracy, surpassing previous methods.
+
+The paper was accepted to ICLR 2026 and is now available on the conference platform.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffad0961-28c0-4bce-9d9a-9ffa66a7fbfb",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "8b0b966c-8b68-44b7-9f98-4dc8aa1f51a8",
+  "toolUseResult": {
+    "query": "Aria agent autoformalization dependency graph ICLR 2026 accepted paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tt9WV4NaBXTSTdMH9f6sEp",
+        "content": [
+          {
+            "title": "Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph | OpenReview",
+            "url": "https://openreview.net/forum?id=CPxZClPMiy"
+          },
+          {
+            "title": "ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE ...",
+            "url": "https://openreview.net/pdf/388a385b7ad068290351f90757bd3af8bb6e5515.pdf"
+          },
+          {
+            "title": "Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/pdf/2510.04520"
+          },
+          {
+            "title": "ICLR Poster Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://iclr.cc/virtual/2026/poster/10010860"
+          },
+          {
+            "title": "Downloads 2026",
+            "url": "https://iclr.cc/Downloads/2026"
+          },
+          {
+            "title": "[Literature Review] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://www.themoonlight.io/en/review/aria-an-agent-for-retrieval-and-iterative-auto-formalization-via-dependency-graph"
+          },
+          {
+            "title": "[2510.04520v1] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/abs/2510.04520v1"
+          },
+          {
+            "title": "[2510.04520] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/abs/2510.04520"
+          },
+          {
+            "title": "(PDF) Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://www.researchgate.net/publication/396250696_Aria_An_Agent_For_Retrieval_and_Iterative_Auto-Formalization_via_Dependency_Graph"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the Aria paper for ICLR 2026:\n\nAria (Agent for Retrieval and Iterative Autoformalization) is a system for conjecture-level formalization in Lean that emulates human expert reasoning via a two-phase Graph-of-Thought process: recursively decomposing statements into a dependency graph and then constructing formalizations from grounded concepts.\n\nThe work addresses the major bottleneck that accurate auto-formalization of theorem statements faces due to hallucinations, semantic mismatches, and LLMs' inability to synthesize new definitions.\n\nThe paper introduces AriaScorer, a checker that retrieves definitions from Mathlib for term-level grounding, enabling rigorous and reliable verification.\n\nOn ProofNet, Aria achieves 91.6% compilation success rate and 68.5% final accuracy, surpassing previous methods.\n\nThe paper was accepted to ICLR 2026 and is now available on the conference platform."
+    ],
+    "durationSeconds": 6.138593159000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ffad0961-28c0-4bce-9d9a-9ffa66a7fbfb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 147 · 2026-05-27T16:52:40.691Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check for the last concurrent work agent and finalize my research. Let me check if there's any very recent concurrent work combining retrieval + RL for autoformalization.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b0b966c-8b68-44b7-9f98-4dc8aa1f51a8",
+  "isSidechain": false,
+  "requestId": "req_011CbTRNYtcPhHJtq7aDDJUc",
+  "type": "assistant",
+  "uuid": "319bcd7b-9018-4dd5-a03f-55515b516616",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vxmb5Vo2jK8vEBCc2qGncb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1898,
+      "cache_read_input_tokens": 60449,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 60449,
+          "cache_creation_input_tokens": 1898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 148 · 2026-05-27T16:52:43.906Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J6wseHxaGokQWRh4en7NKC`</summary>
+
+```json
+{
+  "query": "\"retrieval\" \"reinforcement learning\" \"autoformalization\" arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "319bcd7b-9018-4dd5-a03f-55515b516616",
+  "isSidechain": false,
+  "requestId": "req_011CbTRNYtcPhHJtq7aDDJUc",
+  "type": "assistant",
+  "uuid": "94f5ae35-435c-4c53-8c92-c32bf98657b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vxmb5Vo2jK8vEBCc2qGncb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1898,
+      "cache_read_input_tokens": 60449,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 60449,
+          "cache_creation_input_tokens": 1898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-27T16:52:44.037Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018kHhtrFdUVPHuhcKiyxv6f`</summary>
+
+```json
+{
+  "query": "\"Autoformalizer with Tool Feedback\" 2025 paper results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94f5ae35-435c-4c53-8c92-c32bf98657b1",
+  "isSidechain": false,
+  "requestId": "req_011CbTRNYtcPhHJtq7aDDJUc",
+  "type": "assistant",
+  "uuid": "90e324ed-82fe-4508-9bdf-7823b4e7f157",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vxmb5Vo2jK8vEBCc2qGncb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1898,
+      "cache_read_input_tokens": 60449,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1898,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 60449,
+          "cache_creation_input_tokens": 1898,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1898
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-27T16:52:51.969Z_
+
+<details><summary>↩ Tool result · `toolu_01J6wseHxaGokQWRh4en7NKC`</summary>
+
+```text
+Web search results for query: ""retrieval" "reinforcement learning" "autoformalization" arxiv 2026"
+
+Links: [{"title":"Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/html/2511.11990"},{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/html/2505.23486v1"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/html/2510.24592"},{"title":"[2508.06931] Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/abs/2508.06931"},{"title":"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph","url":"https://arxiv.org/pdf/2510.04520"},{"title":"GitHub - majianz/dl4gps: [ACL 2026 Main Conference] Paper list for the survey \"A Survey of Deep Learning for Geometry Problem Solving\" · GitHub","url":"https://github.com/majianz/dl4gps"},{"title":"[2511.11990] Improving Autoformalization Using Direct Dependency Retrieval","url":"https://arxiv.org/abs/2511.11990"},{"title":"AI for Mathematics: Progress, Challenges, and Prospects","url":"https://arxiv.org/html/2601.13209v1"}]
+
+I found several recent papers from arXiv (2026) that combine retrieval, reinforcement learning, and autoformalization:
+
+## Key Papers Found:
+
+1. **"Improving Autoformalization Using Direct Dependency Retrieval"** (arXiv:2511.11990, January 2026)
+   - Proposes a retrieval-augmented framework based on Direct Dependency Retrieval (DDR) that directly generates candidate formal dependencies from natural-language mathematical descriptions and verifies their existence in the formal library via an efficient Suffix Array Check (SAC).
+
+2. **"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization"** (arXiv:2510.24592, February 2026)
+   - Introduces a prospective bounded return to integrate heterogeneous rewards across sequence positions, enabling position-specific optimization for both reflective autoformalization and general sequential decision-making tasks with multi-objective requirements.
+
+3. **"FormaRL: Enhancing Autoformalization with no Labeled Data"** (arXiv:2508.18914)
+   - Demonstrates RL's effectiveness in both informal math problem solving and formal theorem proving.
+
+4. **"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph"** (arXiv:2510.04520)
+   - Several works have leveraged RL training to enhance the quality of auto-formalization.
+
+5. **"Automated Formalization via Conceptual Retrieval-Augmented LLMs"** (arXiv:2508.06931, March 2026)
+   - CRAMF is a Concept-driven Retrieval-Augmented Mathematical Formalization framework that enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts.
+
+These papers show active research combining retrieval mechanisms with reinforcement learning and autoformalization techniques in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94f5ae35-435c-4c53-8c92-c32bf98657b1",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "91a9dc0a-2d43-4651-b1a4-a402d0527758",
+  "toolUseResult": {
+    "query": "\"retrieval\" \"reinforcement learning\" \"autoformalization\" arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JirqaZJdLG5NQSMwERvViJ",
+        "content": [
+          {
+            "title": "Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/html/2511.11990"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.23486v1"
+          },
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/pdf/2508.18914"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/html/2510.24592"
+          },
+          {
+            "title": "[2508.06931] Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/abs/2508.06931"
+          },
+          {
+            "title": "Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph",
+            "url": "https://arxiv.org/pdf/2510.04520"
+          },
+          {
+            "title": "GitHub - majianz/dl4gps: [ACL 2026 Main Conference] Paper list for the survey \"A Survey of Deep Learning for Geometry Problem Solving\" · GitHub",
+            "url": "https://github.com/majianz/dl4gps"
+          },
+          {
+            "title": "[2511.11990] Improving Autoformalization Using Direct Dependency Retrieval",
+            "url": "https://arxiv.org/abs/2511.11990"
+          },
+          {
+            "title": "AI for Mathematics: Progress, Challenges, and Prospects",
+            "url": "https://arxiv.org/html/2601.13209v1"
+          }
+        ]
+      },
+      "I found several recent papers from arXiv (2026) that combine retrieval, reinforcement learning, and autoformalization:\n\n## Key Papers Found:\n\n1. **\"Improving Autoformalization Using Direct Dependency Retrieval\"** (arXiv:2511.11990, January 2026)\n   - Proposes a retrieval-augmented framework based on Direct Dependency Retrieval (DDR) that directly generates candidate formal dependencies from natural-language mathematical descriptions and verifies their existence in the formal library via an efficient Suffix Array Check (SAC).\n\n2. **\"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization\"** (arXiv:2510.24592, February 2026)\n   - Introduces a prospective bounded return to integrate heterogeneous rewards across sequence positions, enabling position-specific optimization for both reflective autoformalization and general sequential decision-making tasks with multi-objective requirements.\n\n3. **\"FormaRL: Enhancing Autoformalization with no Labeled Data\"** (arXiv:2508.18914)\n   - Demonstrates RL's effectiveness in both informal math problem solving and formal theorem proving.\n\n4. **\"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph\"** (arXiv:2510.04520)\n   - Several works have leveraged RL training to enhance the quality of auto-formalization.\n\n5. **\"Automated Formalization via Conceptual Retrieval-Augmented LLMs\"** (arXiv:2508.06931, March 2026)\n   - CRAMF is a Concept-driven Retrieval-Augmented Mathematical Formalization framework that enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts.\n\nThese papers show active research combining retrieval mechanisms with reinforcement learning and autoformalization techniques in 2026."
+    ],
+    "durationSeconds": 8.058510830999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "94f5ae35-435c-4c53-8c92-c32bf98657b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 151_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "91a9dc0a-2d43-4651-b1a4-a402d0527758",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 152_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 153 · 2026-05-27T16:52:52.717Z_
+
+<details><summary>↩ Tool result · `toolu_018kHhtrFdUVPHuhcKiyxv6f`</summary>
+
+```text
+Web search results for query: ""Autoformalizer with Tool Feedback" 2025 paper results"
+
+Links: [{"title":"GitHub - qguo-create/Autoformalizer-with-Tool-Feedback · GitHub","url":"https://github.com/qguo-create/Autoformalizer-with-Tool-Feedback"},{"title":"Autoformalizer with Tool Feedback | OpenReview","url":"https://openreview.net/forum?id=4fm4Rc5fUK"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/html/2510.06857v1"},{"title":"arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK","url":"https://arxiv.org/pdf/2510.06857"},{"title":"[2510.06857] Autoformalizer with Tool Feedback","url":"https://arxiv.org/abs/2510.06857"},{"title":"Examples of formalizer inputs and outputs for two examples. | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Examples-of-formalizer-inputs-and-outputs-for-two-examples_tbl1_390601224"},{"title":"Optimized tour generated by the TSP Transformer for Bays29 TSPLIB... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Optimized-tour-generated-by-the-TSP-Transformer-for-Bays29-TSPLIB-benchmark-tour-cost_fig3_390251517"},{"title":"(PDF) Autoformalizer with Tool Feedback","url":"https://www.researchgate.net/publication/396330517_Autoformalizer_with_Tool_Feedback"}]
+
+Based on the search results, here's what I found about the "Autoformalizer with Tool Feedback" 2025 paper:
+
+## Overview
+
+The paper titled "Autoformalizer with Tool Feedback" (ATF) aims to enhance the process of autoformalization by incorporating syntactic and semantic validation tools, thereby improving the accuracy and reliability of formal statements generated from natural language mathematical problems.
+
+## Problem and Solution
+
+Autoformalization addresses the scarcity of data for Automated Theorem Proving (ATP) by translating mathematical problems from natural language into formal statements. However, existing formalizers struggle to consistently generate valid statements that meet syntactic validity and semantic consistency.
+
+The approach leverages Lean 4 compilers for syntax corrections and employs a multi-LLMs-as-judge approach for consistency validation, with ATF adaptively refining generated statements according to tool feedback, enhancing both syntactic validity and semantic consistency.
+
+## Key Features
+
+- Cold-Start Phase: Introduces basic tool usage with synthetic trajectories to familiarize the model with tool-driven revisions.
+- Expert Iteration Phase: Enhances formalization capabilities through iterative refinement and expert feedback.
+
+## Results and Contribution
+
+Experimental results show that ATF markedly outperforms a range of baseline formalizer models, with superior performance further validated by human evaluations, and ATF demonstrates excellent inference scaling properties. The researchers open-sourced Numina-ATF, a formal dataset containing 750K formal statements from Numina-v1.5 queries synthesized by ATF-32B.
+
+**Paper Details:** The paper was published on arXiv (arXiv:2510.06857) in 2025, and is an ICLR 2026 Conference submission.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90e324ed-82fe-4508-9bdf-7823b4e7f157",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "737e5bdd-31e8-428b-9ee6-49e530083777",
+  "toolUseResult": {
+    "query": "\"Autoformalizer with Tool Feedback\" 2025 paper results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Uja4nKk8PJFH4c6KWgXBGD",
+        "content": [
+          {
+            "title": "GitHub - qguo-create/Autoformalizer-with-Tool-Feedback · GitHub",
+            "url": "https://github.com/qguo-create/Autoformalizer-with-Tool-Feedback"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback | OpenReview",
+            "url": "https://openreview.net/forum?id=4fm4Rc5fUK"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/html/2510.06857v1"
+          },
+          {
+            "title": "arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK",
+            "url": "https://arxiv.org/pdf/2510.06857"
+          },
+          {
+            "title": "[2510.06857] Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/abs/2510.06857"
+          },
+          {
+            "title": "Examples of formalizer inputs and outputs for two examples. | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Examples-of-formalizer-inputs-and-outputs-for-two-examples_tbl1_390601224"
+          },
+          {
+            "title": "Optimized tour generated by the TSP Transformer for Bays29 TSPLIB... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Optimized-tour-generated-by-the-TSP-Transformer-for-Bays29-TSPLIB-benchmark-tour-cost_fig3_390251517"
+          },
+          {
+            "title": "(PDF) Autoformalizer with Tool Feedback",
+            "url": "https://www.researchgate.net/publication/396330517_Autoformalizer_with_Tool_Feedback"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the \"Autoformalizer with Tool Feedback\" 2025 paper:\n\n## Overview\n\nThe paper titled \"Autoformalizer with Tool Feedback\" (ATF) aims to enhance the process of autoformalization by incorporating syntactic and semantic validation tools, thereby improving the accuracy and reliability of formal statements generated from natural language mathematical problems.\n\n## Problem and Solution\n\nAutoformalization addresses the scarcity of data for Automated Theorem Proving (ATP) by translating mathematical problems from natural language into formal statements. However, existing formalizers struggle to consistently generate valid statements that meet syntactic validity and semantic consistency.\n\nThe approach leverages Lean 4 compilers for syntax corrections and employs a multi-LLMs-as-judge approach for consistency validation, with ATF adaptively refining generated statements according to tool feedback, enhancing both syntactic validity and semantic consistency.\n\n## Key Features\n\n- Cold-Start Phase: Introduces basic tool usage with synthetic trajectories to familiarize the model with tool-driven revisions.\n- Expert Iteration Phase: Enhances formalization capabilities through iterative refinement and expert feedback.\n\n## Results and Contribution\n\nExperimental results show that ATF markedly outperforms a range of baseline formalizer models, with superior performance further validated by human evaluations, and ATF demonstrates excellent inference scaling properties. The researchers open-sourced Numina-ATF, a formal dataset containing 750K formal statements from Numina-v1.5 queries synthesized by ATF-32B.\n\n**Paper Details:** The paper was published on arXiv (arXiv:2510.06857) in 2025, and is an ICLR 2026 Conference submission."
+    ],
+    "durationSeconds": 8.676413507999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "90e324ed-82fe-4508-9bdf-7823b4e7f157",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 154 · 2026-05-27T16:52:56.194Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check the ReForm paper mentioned, and verify the EACL 2027 deadline.
+
+Let me also look for any very specific concurrent work on combining TTRL with retrieval for autoformalization.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "737e5bdd-31e8-428b-9ee6-49e530083777",
+  "isSidechain": false,
+  "requestId": "req_011CbTRPfMprEZ1sYnuYTAj6",
+  "type": "assistant",
+  "uuid": "328b2e26-9775-4ba0-bbdb-398af4cb0c84",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTQiGog1B8m5AWAVRStmLL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1944,
+      "cache_read_input_tokens": 62347,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 62347,
+          "cache_creation_input_tokens": 1944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-27T16:52:56.701Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019ciPk2SmeaXPETzRptHGFX`</summary>
+
+```json
+{
+  "query": "ReForm reflective autoformalization prospective bounded sequence optimization 2026 venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "328b2e26-9775-4ba0-bbdb-398af4cb0c84",
+  "isSidechain": false,
+  "requestId": "req_011CbTRPfMprEZ1sYnuYTAj6",
+  "type": "assistant",
+  "uuid": "5f795eba-34da-4e6b-a2c1-0e597bde3401",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTQiGog1B8m5AWAVRStmLL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1944,
+      "cache_read_input_tokens": 62347,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 62347,
+          "cache_creation_input_tokens": 1944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 156 · 2026-05-27T16:52:57.164Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CYCSqcxmpE3i9TKW6woNfv`</summary>
+
+```json
+{
+  "query": "EACL 2027 ARR submission deadline August 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f795eba-34da-4e6b-a2c1-0e597bde3401",
+  "isSidechain": false,
+  "requestId": "req_011CbTRPfMprEZ1sYnuYTAj6",
+  "type": "assistant",
+  "uuid": "fde0b4e1-b7b7-4f6f-827d-1113b2fba9f4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QTQiGog1B8m5AWAVRStmLL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1944,
+      "cache_read_input_tokens": 62347,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 62347,
+          "cache_creation_input_tokens": 1944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 157 · 2026-05-27T16:53:01.560Z_
+
+<details><summary>↩ Tool result · `toolu_01CYCSqcxmpE3i9TKW6woNfv`</summary>
+
+```text
+Web search results for query: "EACL 2027 ARR submission deadline August 2026"
+
+Links: [{"title":"EACL 2027","url":"https://2027.eacl.org/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X","url":"https://x.com/eaclmeeting/status/2051971432171688436"},{"title":"EACL 2027 Call for Main Conference Papers","url":"https://2027.eacl.org/calls/papers/"},{"title":"eaclmeeting on X: \"Attention #NLProc researchers, the EACL 2027 website is officially LIVE: https://t.co/0Q0WZVqWV6! 🎉 🇬🇷 Join us in Athens, Greece (Mar 9-13, 2027) at #EACL2027 📅 ARR submission deadline: Aug 6, 2026. Open to all areas of CL/NLP + related fields. Stay tuned for the detailed CfP! https://t.co/bTJhfmuncY\" / X","url":"https://x.com/eaclmeeting/status/2051314762948989215"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org//calls/papers/"},{"title":"AI Conference Deadlines","url":"https://hlr.github.io/deadlines/"},{"title":"Where's Dan: Conference and Grant Deadlines","url":"https://web.stanford.edu/~jurafsky/deadlines.html"}]
+
+Based on the search results, here's what I found:
+
+The ARR submission deadline for EACL 2027 (for long and short papers) is August 3, 2026. All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+This date was corrected from an earlier announcement of August 6, 2026, as EACL is earlier than usual in 2027, making this the only viable ARR cycle. 
+
+The commitment date for EACL 2027 is October 11, 2026, and the conference will be held in Athens, Greece, from March 9–14, 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fde0b4e1-b7b7-4f6f-827d-1113b2fba9f4",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "265bdf8a-9a19-4f4b-8cae-31f8b92fdead",
+  "toolUseResult": {
+    "query": "EACL 2027 ARR submission deadline August 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S1QGCs9j6Bqsoz8gjJETZV",
+        "content": [
+          {
+            "title": "EACL 2027",
+            "url": "https://2027.eacl.org/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "eaclmeeting on X: \"📢⚠️ IMPORTANT DATE CORRECTION: the ARR deadline for EACL 2027 is Aug 3, 2026 (not Aug 6 as previously announced). EACL is earlier than usual in '27, so this is the only viable ARR cycle! 📚 All areas of CL/NLP + related fields welcome. Full CfP coming soon. #NLProc #EACL2027\" / X",
+            "url": "https://x.com/eaclmeeting/status/2051971432171688436"
+          },
+          {
+            "title": "EACL 2027 Call for Main Conference Papers",
+            "url": "https://2027.eacl.org/calls/papers/"
+          },
+          {
+            "title": "eaclmeeting on X: \"Attention #NLProc researchers, the EACL 2027 website is officially LIVE: https://t.co/0Q0WZVqWV6! 🎉 🇬🇷 Join us in Athens, Greece (Mar 9-13, 2027) at #EACL2027 📅 ARR submission deadline: Aug 6, 2026. Open to all areas of CL/NLP + related fields. Stay tuned for the detailed CfP! https://t.co/bTJhfmuncY\" / X",
+            "url": "https://x.com/eaclmeeting/status/2051314762948989215"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org//calls/papers/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://hlr.github.io/deadlines/"
+          },
+          {
+            "title": "Where's Dan: Conference and Grant Deadlines",
+            "url": "https://web.stanford.edu/~jurafsky/deadlines.html"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\nThe ARR submission deadline for EACL 2027 (for long and short papers) is August 3, 2026. All deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\").\n\nThis date was corrected from an earlier announcement of August 6, 2026, as EACL is earlier than usual in 2027, making this the only viable ARR cycle. \n\nThe commitment date for EACL 2027 is October 11, 2026, and the conference will be held in Athens, Greece, from March 9–14, 2027."
+    ],
+    "durationSeconds": 4.3915489349999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fde0b4e1-b7b7-4f6f-827d-1113b2fba9f4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-27T16:53:01.626Z_
+
+<details><summary>↩ Tool result · `toolu_019ciPk2SmeaXPETzRptHGFX`</summary>
+
+```text
+Web search results for query: "ReForm reflective autoformalization prospective bounded sequence optimization 2026 venue"
+
+Links: [{"title":"[2510.24592] ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/abs/2510.24592"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization | OpenReview","url":"https://openreview.net/forum?id=KfxRzCmRSX"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/html/2510.24592"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/pdf/2510.24592"},{"title":"ReForm: Reflective Autoformalization for LLMs - YouTube","url":"https://www.youtube.com/watch?v=bTY6aDlBD5M"}]
+
+Based on the search results, I found information about the ReForm paper with reflective autoformalization and prospective bounded sequence optimization. Here's what I found:
+
+ReForm is a Reflective Autoformalization method that integrates semantic consistency evaluation into the autoformalization process, using Prospective Bounded Sequence Optimization (PBSO), which employs different rewards at different sequence positions to ensure the model develops both accurate autoformalization and correct semantic validations.
+
+The research demonstrates that ReForm achieves an average improvement of 22.6 percentage points over the strongest baselines across four autoformalization benchmarks.
+
+However, I did not find specific information about a 2026 venue for this research in the search results. The paper appears to be posted on arXiv (arxiv.org/abs/2510.24592) and OpenReview, with the most recent update dated February 10, 2026, but the search results do not contain details about a conference or venue where this work will be presented in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f795eba-34da-4e6b-a2c1-0e597bde3401",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "32daa489-f637-4ee4-8ee8-a31cf6f3c16c",
+  "toolUseResult": {
+    "query": "ReForm reflective autoformalization prospective bounded sequence optimization 2026 venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EfgjmHgfb1UxWanwxW6msb",
+        "content": [
+          {
+            "title": "[2510.24592] ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/abs/2510.24592"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=KfxRzCmRSX"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/html/2510.24592"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/pdf/2510.24592"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization for LLMs - YouTube",
+            "url": "https://www.youtube.com/watch?v=bTY6aDlBD5M"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the ReForm paper with reflective autoformalization and prospective bounded sequence optimization. Here's what I found:\n\nReForm is a Reflective Autoformalization method that integrates semantic consistency evaluation into the autoformalization process, using Prospective Bounded Sequence Optimization (PBSO), which employs different rewards at different sequence positions to ensure the model develops both accurate autoformalization and correct semantic validations.\n\nThe research demonstrates that ReForm achieves an average improvement of 22.6 percentage points over the strongest baselines across four autoformalization benchmarks.\n\nHowever, I did not find specific information about a 2026 venue for this research in the search results. The paper appears to be posted on arXiv (arxiv.org/abs/2510.24592) and OpenReview, with the most recent update dated February 10, 2026, but the search results do not contain details about a conference or venue where this work will be presented in 2026."
+    ],
+    "durationSeconds": 4.921148152000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5f795eba-34da-4e6b-a2c1-0e597bde3401",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 159 · 2026-05-27T16:53:37.825Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T16:53:37.825Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "content": "&lt;task-notification>\n&lt;task-id>a2d483fd315b6b3f6&lt;/task-id>\n&lt;tool-use-id>toolu_01BCwfXdUcvXMcnSytHm2GdT&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/a2d483fd315b6b3f6.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search concurrent work on TTRL + autoformalization\" completed&lt;/summary>\n&lt;result>Now I have a comprehensive picture. Let me compile the final report.\n\n---\n\nHere is my thorough report of findings across all searches.\n\n---\n\n## COMPREHENSIVE LANDSCAPE REPORT: Test-Time RL + Retrieval-Augmented Autoformalization\n\n### CRITICAL FINDING: No paper found that combines all three elements\n\n**After exhaustive searching, I found NO paper or preprint that specifically proposes \"combining retrieval-augmented context with test-time RL for domain-adaptive autoformalization.\"** The three elements (retrieval augmentation, test-time RL, and domain-adaptive autoformalization) exist in separate lines of work that have not yet been unified. This appears to be a genuine gap in the literature as of May 2026.\n\nThe closest systems are Kimina-Prover (which uses test-time RL for theorem proving with pre-generated autoformalized lemmas, but no retrieval) and ProofBridge (which uses retrieval-augmented autoformalization, but no RL or test-time adaptation). No single work bridges all three.\n\n---\n\n### 1. SEARCH: \"test-time reinforcement learning autoformalization 2026\" and \"test-time RL autoformalization 2026\"\n\n**Key findings:**\n\n- **TTRL (Test-Time Reinforcement Learning)** [PRIME-RL, NeurIPS 2025]: The foundational TTRL method trains LLMs using RL on unlabeled data at test time via consensus-driven majority voting for reward estimation. Applied to math reasoning (211% boost on AIME 2024 for Qwen-2.5-Math-7B). NOT applied to autoformalization. Paper: https://arxiv.org/pdf/2504.16084, OpenReview: https://openreview.net/forum?id=VuVhgEiu20\n\n- **AlphaProof** [DeepMind, Nature 2025]: Uses test-time RL for formal theorem proving -- generates millions of problem variants at inference time for problem-specific adaptation. Trains on auto-formalized problems but its TTRL is for *proof search*, not autoformalization itself. Paper: https://www.nature.com/articles/s41586-025-09833-y\n\n- **Kimina-Prover** [Moonshot AI, April 2025]: The closest system to combining TTRL with autoformalization. Uses test-time RL search with a recursive lemma decomposition framework. Lemmas are pre-generated by an LLM and autoformalized via Kimina-Autoformalizer-7b. TTRL then dynamically selects/combines lemmas during proof search. Achieves 92.2% on miniF2F. **However**: autoformalization happens at *preparation time*, not test time. No retrieval augmentation is used -- lemmas come from a pre-generated pool. Paper: https://arxiv.org/abs/2504.11354, Blog: https://huggingface.co/blog/AI-MO/kimina-prover\n\n- **T3RL (Tool Verification for Test-Time RL)** [March 2026]: Introduces tool-based verification into TTRL reward estimation for math reasoning. Not applied to autoformalization. Paper: https://arxiv.org/pdf/2603.02203\n\n- **TR-ICRL** [April 2026]: Test-Time Rethinking for In-Context RL. Not related to autoformalization. Paper: https://arxiv.org/html/2604.00438\n\n- **FormaRL** [COLM 2025, Tsinghua]: RL for autoformalization with no labeled data, using GRPO with Lean compiler syntax check + LLM consistency check as dual reward. Boosts Qwen2.5-Coder-7B from 4% to 26% on ProofNet. **No test-time adaptation, no retrieval augmentation.** Paper: https://arxiv.org/abs/2508.18914, GitHub: https://github.com/THUNLP-MT/FormaRL\n\n---\n\n### 2. SEARCH: \"retrieval augmented autoformalization reinforcement learning 2025 2026\"\n\n**Key findings:**\n\n- **CRAMF (Conceptual Retrieval-Augmented Mathematical Formalization)** [August 2025, revised March 2026]: Retrieves formal definitions from a Mathlib4 knowledge base (26,000+ definitions, 1,000+ concepts) with dual-channel hybrid retrieval and reranking. Up to 62.1% relative improvement. **No RL, no test-time adaptation.** Paper: https://arxiv.org/abs/2508.06931\n\n- **Aria (Agent for Retrieval and Iterative Autoformalization)** [October 2025]: Two-phase Graph-of-Thought process with dependency graph decomposition and AriaScorer for retrieval-grounded verification. 91.6% compilation on ProofNet. **No RL, no test-time adaptation.** Paper: https://arxiv.org/abs/2510.04520\n\n- **RAutoformalizer (Dependency Retrieval for Autoformalization)** [ICLR 2025]: Retrieves dependent objects from formal libraries. Proposes DDR (Direct Dependency Retrieval) with suffix array verification. **No RL, no test-time adaptation.** Paper at: https://openreview.net/forum?id=hUb2At2DsQ\n\n- **DDR (Direct Dependency Retrieval)** [November 2025, revised January 2026]: Generates candidate library dependencies from NL descriptions and verifies via suffix array check. 500K+ sample dataset. **No RL, no test-time adaptation.** Paper: https://arxiv.org/abs/2511.11990\n\n---\n\n### 3. SEARCH: arXiv papers Feb-May 2026 on \"autoformalization retrieval RL\", \"test-time adaptation autoformalization\", \"domain adaptive autoformalization\"\n\n**Key findings:**\n\n- **FormalEvolve** [March 2026]: Formulates autoformalization as \"budgeted, test-time search\" using neuro-symbolic evolutionary framework with LLM-driven mutation/crossover and AST rewrite operations. This is *test-time search* but NOT test-time RL. **No retrieval, no RL.** Paper: https://arxiv.org/abs/2603.19828\n\n- **Cycle Consistency Fine-tuning for Lean4 Autoformalization** [March 2026]: GRPO-based RL with cycle consistency reward (cosine similarity of sentence embeddings through NL-to-Lean4-to-NL loop). Qwen3.5-2B with LoRA. **No retrieval, no test-time adaptation.** Paper: https://arxiv.org/abs/2603.24372\n\n- **ReForm (Reflective Autoformalization)** [ICLR 2026 Camera Ready, February 2026]: Prospective Bounded Sequence Optimization (PBSO) using position-specific rewards for reflective self-correction. 22.6pp average improvement. **RL-based optimization but no retrieval, no test-time adaptation.** Paper: https://arxiv.org/abs/2510.24592\n\n- **130K Lines of Formal Topology** [January 2026]: Large-scale autoformalization using LLM + proof checker feedback loop. 160K lines in ~2 weeks for ~$100. **No RL, no retrieval augmentation.** Paper: https://arxiv.org/pdf/2601.03298\n\n- **Autoformalization Survey** [May 2026]: Comprehensive survey of the field. Does not identify any work combining retrieval + RL + test-time adaptation. Paper: https://arxiv.org/abs/2505.23486\n\n- **CriticLean** [2025]: Critic-guided RL for mathematical formalization with CriticLeanGPT trained via SFT+RL. **No retrieval, no test-time adaptation.** Paper: https://arxiv.org/abs/2507.06181\n\n- **StepFun-Formalizer** [AAAI 2026]: Knowledge-reasoning fusion for autoformalization using ThinkingF data pipeline. SOTA on FormalMATH-Lite (40.5%) and ProverBench (26.7%). **No RL at inference, no retrieval augmentation, no test-time adaptation.** Paper: https://arxiv.org/abs/2508.04440\n\n---\n\n### 4. SEARCH: OpenReview for NeurIPS 2026, ICML 2026, ICLR 2027\n\n**Key findings:**\n\n- **ICML 2026** submissions are open on OpenReview (https://openreview.net/group?id=ICML.cc/2026/Conference). No specific submission found combining test-time RL with retrieval-augmented autoformalization.\n\n- **ICLR 2026** (already held, April 2026 in Rio): ProofBridge was accepted at ICLR 2026 main track. It uses retrieval-augmented fine-tuning for autoformalization but **not RL or test-time adaptation**.\n\n- **ProofBridge** [ICLR 2026]: Joint embedding model with contrastive learning, cross-modal retrieval of semantically relevant formal examples, and iterative proof repair. +31.14% semantic correctness over Kimina-Prover-RL-1.7B. **Retrieval-augmented autoformalization, but no RL training, no test-time adaptation.** Paper: https://arxiv.org/abs/2510.15681, GitHub: https://github.com/PrithwishJana/ProofBridge\n\n- **3rd AI for Math Workshop at ICML 2026** (https://ai4math2026.github.io/): Includes autoformalization challenge track using FormalRx-Test dataset. Challenge period May 1 - June 15, 2026. Relevant venue to watch.\n\n- **NeurIPS 2026 / ICLR 2027**: No submissions found yet combining these elements.\n\n---\n\n### 5. SEARCH: \"TTRL formalization\", \"TTRL Lean\", \"test-time compute autoformalization\"\n\n**Key findings:**\n\n- **TTRL for Lean/formalization**: No direct application of TTRL (the PRIME-RL method) to autoformalization was found. TTRL has been applied to math reasoning and vision-language models but not autoformalization specifically.\n\n- **Seed-Prover 1.5** [ByteDance, December 2025]: Agentic RL with Mathlib search tool and test-time scaling. Uses retrieval (Mathlib search) and RL, but for *theorem proving*, not autoformalization. Paper: https://arxiv.org/abs/2512.17260\n\n- **REAL-Prover** [November 2025]: Retrieval-Augmented Lean Prover with LeanSearch-PS for premise selection and HERALD-AF for autoformalization. Combines retrieval with autoformalization but **uses SFT only (no RL), no test-time adaptation.** Paper: https://arxiv.org/abs/2505.20613\n\n- **Online RL for Autoformalization** [NeurIPS 2025 MAR Workshop]: Studies online RL for translating informal conjectures into Lean 4 with composite rewards (type-check + BEq/BEq+ exact-match + embedding similarity). Uses GRPO with KL penalty. Raises TC1 from 17.29% to 26.01%. **RL for autoformalization but no retrieval augmentation, no test-time adaptation.** ResearchGate: https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization\n\n---\n\n### SUMMARY TABLE OF CLOSEST COMPETING WORK\n\n| Paper | RL | Retrieval | Test-Time Adapt. | Autoformal. | Domain Adapt. |\n|-------|-----|-----------|-------------------|-------------|---------------|\n| **FormaRL** (COLM'25) | Yes (GRPO) | No | No | Yes | No |\n| **Online RL for AF** (NeurIPS'25 W) | Yes (GRPO) | No | No | Yes | No |\n| **ReForm** (ICLR'26) | Yes (PBSO) | No | No | Yes | No |\n| **Cycle Consistency** (Mar'26) | Yes (GRPO) | No | No | Yes | No |\n| **CriticLean** (2025) | Yes (SFT+RL) | No | No | Yes | No |\n| **CRAMF** (Aug'25/Mar'26) | No | Yes | No | Yes | No |\n| **Aria** (Oct'25) | No | Yes (RAG+GoT) | No | Yes | No |\n| **DDR** (Nov'25) | No | Yes | No | Yes | No |\n| **ProofBridge** (ICLR'26) | No | Yes | No | Yes | No |\n| **REAL-Prover** (Nov'25) | No | Yes | No | Yes | No |\n| **FormalEvolve** (Mar'26) | No | No | Yes (search) | Yes | No |\n| **Kimina-Prover** (Apr'25) | Yes (TTRL) | No | Yes (TTRL) | Partial* | Yes (CPT) |\n| **AlphaProof** (Nature'25) | Yes (TTRL) | No | Yes (TTRL) | Partial* | No |\n| **Seed-Prover 1.5** (Dec'25) | Yes (agentic RL) | Yes (Mathlib) | Yes (TTS) | No | No |\n| **StepFun-Formalizer** (AAAI'26) | No | No | No | Yes | No |\n\n*Partial = autoformalization is used in the pipeline but TTRL applies to proof search, not to the autoformalization step itself.\n\n---\n\n### BOTTOM LINE\n\n**The specific idea of combining retrieval-augmented context with test-time RL for domain-adaptive autoformalization does not appear in any published or preprinted work as of May 2026.** The three ingredients exist separately:\n\n1. **RL for autoformalization**: FormaRL, Online RL for AF, ReForm, CriticLean, Cycle Consistency\n2. **Retrieval for autoformalization**: CRAMF, Aria, DDR, RAutoformalizer, ProofBridge, REAL-Prover\n3. **Test-time RL for formal math**: AlphaProof, Kimina-Prover, Seed-Prover 1.5, TTRL\n\nNo paper unifies all three. The closest partial overlaps are:\n- **Kimina-Prover** (test-time RL + autoformalization in the pipeline, but no retrieval, and autoformalization is pre-computed not test-time)\n- **Seed-Prover 1.5** (RL + retrieval + test-time scaling for theorem proving, but not autoformalization)\n- **REAL-Prover** (retrieval + autoformalization, but SFT only, no RL or test-time adaptation)\n\nThis represents a clear open research direction that has not yet been claimed.\n\nSources:\n- [TTRL: Test-Time Reinforcement Learning (OpenReview)](https://openreview.net/forum?id=VuVhgEiu20)\n- [TTRL Paper (arXiv)](https://arxiv.org/pdf/2504.16084)\n- [TTRL GitHub (PRIME-RL)](https://github.com/prime-rl/ttrl)\n- [AlphaProof (Nature)](https://www.nature.com/articles/s41586-025-09833-y)\n- [FormaRL (arXiv)](https://arxiv.org/abs/2508.18914)\n- [FormaRL GitHub](https://github.com/THUNLP-MT/FormaRL)\n- [Kimina-Prover (arXiv)](https://arxiv.org/abs/2504.11354)\n- [Kimina-Prover Blog](https://huggingface.co/blog/AI-MO/kimina-prover)\n- [ProofBridge (ICLR 2026)](https://arxiv.org/abs/2510.15681)\n- [ProofBridge GitHub](https://github.com/PrithwishJana/ProofBridge)\n- [CRAMF (arXiv)](https://arxiv.org/abs/2508.06931)\n- [Aria (arXiv)](https://arxiv.org/abs/2510.04520)\n- [DDR - Direct Dependency Retrieval (arXiv)](https://arxiv.org/abs/2511.11990)\n- [RAutoformalizer (OpenReview/ICLR 2025)](https://openreview.net/forum?id=hUb2At2DsQ)\n- [ReForm (arXiv, ICLR 2026)](https://arxiv.org/abs/2510.24592)\n- [FormalEvolve (arXiv)](https://arxiv.org/abs/2603.19828)\n- [Cycle Consistency Fine-tuning (arXiv)](https://arxiv.org/abs/2603.24372)\n- [CriticLean (arXiv)](https://arxiv.org/abs/2507.06181)\n- [StepFun-Formalizer (arXiv/AAAI 2026)](https://arxiv.org/abs/2508.04440)\n- [Online RL for Autoformalization (ResearchGate)](https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization)\n- [REAL-Prover (arXiv)](https://arxiv.org/abs/2505.20613)\n- [Seed-Prover 1.5 (arXiv)](https://arxiv.org/abs/2512.17260)\n- [T3RL - Tool Verification for TTRL (arXiv)](https://arxiv.org/pdf/2603.02203)\n- [130K Lines of Formal Topology (arXiv)](https://arxiv.org/pdf/2601.03298)\n- [Autoformalization Survey (arXiv)](https://arxiv.org/abs/2505.23486)\n- [3rd AI for Math Workshop at ICML 2026](https://ai4math2026.github.io/)\n- [Major Breakthroughs in Lean 4 Auto-Formalization (UVA)](https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html)\n- [LeanSearch v2 (arXiv)](https://arxiv.org/html/2605.13137v2)\n- [Formalization and Autoformalization 2026-2027 (UTK)](https://web.math.utk.edu/~yqing/lean.html)&lt;/result>\n&lt;usage>&lt;total_tokens>42790&lt;/total_tokens>&lt;tool_uses>43&lt;/tool_uses>&lt;duration_ms>246828&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 160_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "32daa489-f637-4ee4-8ee8-a31cf6f3c16c",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 161_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 162 · 2026-05-27T16:54:45.617Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me wait for the last concurrent work agent and then synthesize everything.
+
+Let me compile all the venue deadlines:
+1. **AAAI 2027**: Abstract July 21, Full paper July 28, 2026 ✅
+2. **ARR August 2026 → EACL 2027**: ARR submission August 3, 2026; EACL commitment October 11, 2026 ✅
+3. **EMNLP 2026**: Commitment deadline August 2, 2026 (but ARR submission was May 25 - PASSED) ✅ (only if paper was already submitted to ARR May cycle)
+
+
+4. **NeurIPS 2026 workshops**: Workshop contributions August 29, 2026 ✅
+5. **ICLR 2027**: Expected ~September/October 2026 (not confirmed yet)
+
+For EMNLP 2026, I need to reconsider the ARR timeline—the May 25 deadline already passed for that cycle, but there could be June or July cycles that might still make the August 2 commitment deadline, though I'm uncertain if the review turnaround would work in time.
+
+Actually, thinking through this more carefully: the May 25 ARR cycle would have reviews completed by July, which fits the August 2 EMNLP deadline. A June cycle wouldn't work since reviews wouldn't be ready until August, after the commitment closes. So EMNLP 2026 requires papers submitted by May 25—which has already passed.
+
+The ARR August 3 cycle feeding into EACL 2027 is still open though. I should compile my final answer now, though I'm still waiting on one of the concurrent agents to finish.
+
+Looking at the research landscape, I'm seeing a clear gap: combining retrieval-augmented generation with test-time reinforcement learning for domain-adaptive autoformalization. The existing work covers pieces of this—FormaRL does RL without retrieval, DDR and DRIFT add retrieval but skip RL, TTRL applies test-time RL to informal math without formalization—but nothing combines all these elements together.
+
+My approach would be to start with a capable base model, layer on a retrieval system that pulls domain-specific Mathlib definitions using suffix arrays, then at test time apply test-time RL with majority voting and Lean compilation feedback to help the model adapt to new domains without needing labeled examples.
+
+For resources, I'm looking at roughly 8 A100s for 30 hours to train the base formalizer, 4 A100s for 10 hours to fine-tune the retriever, and then 4 A100s across 50 hours per domain for three different domains to run adaptation experiments—totaling around 400-600 GPU hours. The baselines I need to surpass are StepFun-Formalizer at 40.5% on in-distribution data, RAutoformalizer at 16.86% on out-of-distribution, and FormaRL at 26.15% pass rate. I'm targeting venues like AAAI 2027 with a July deadline.
+
+Looking at the timeline, ICLR 2027 seems like the strongest fit with about four months to prepare, though AAAI is also viable if tight. This work has real top-tier potential since it's the first combination of test-time reinforcement learning with retrieval-augmented autoformalization, and the expected gains from better retrieval plus adaptation could be substantial.
+
+The main concern is execution risk—the compilation-based reward signal for autoformalization is noisier than answer checking for math problems, so there's some uncertainty in how well the approach will actually work in practice.
+
+Now I need to construct the final output, though I should note that the concurrent work search hasn't finished yet. I also want to double-check that the 3.3x improvement figure (55.36% versus 16.86%) actually comes from the RAutoformalizer paper before including it. Let me work through the exact framing for the approach section.
+
+The core idea is fine-tuning Qwen3-8B with a retrieval-augmented pipeline that combines DDR's dependency dataset and FormaRL's GRPO training, then at test time using domain-adaptive retrieval to fetch relevant Mathlib definitions and applying test-time RL with compilation success and voting-based signals to adapt the model to new domains, all evaluated on FormalMATH and the Con-NF out-of-distribution benchmark. from test-time adaptation across held-out mathematical domains.
+
+**Description (150-200 words)**:
+Current autoformalization models collapse on unfamiliar mathematical domains due to missing knowledge of domain-specific formal library dependencies. We propose TTRA (Test-Time Retrieval-Augmented) autoformalization, the first method combining targeted library retrieval with test-time reinforcement learning for domain-adaptive autoformalization. Starting from a GRPO-trained base formalizer, we deploy DDR-style suffix-array-verified dependency retrieval to inject domain-relevant Mathlib definitions into the formalization context. At test time, we apply TTRL-inspired online policy adaptation: for each batch of target-domain problems, we generate multiple formalization candidates, derive pseudo-rewards from Lean 4 compilation success rates and majority-voting consistency, and perform gradient updates via GRPO to adapt the model to the target domain without ground-truth labels. Our experiments quantify two key bottlenecks: oracle retrieval achieves 3.3× improvement over model-based retrieval on the Con-NF benchmark, while TTRL shows substantial gains on informal math problems. We evaluate on FormalMATH's multi-domain benchmark and out-of-distribution settings to demonstrate cross-domain generalization improvements.
+
+Now I'm reviewing the key references and verifying which ones are established work in this space. continuing through the rest of the papers on my list, then looking at target venues with deadlines after May 2026, starting with AAAI 2027 and ICLR 2027.
+
+Now I'm estimating the computational resources needed—roughly 1000 GPU-hours total across training the formalizer, fine-tuning the retriever, running adaptation experiments, and evaluation, which comes to around $2,000 at standard cloud rates and would take 10-14 weeks to complete.
+
+For the human-in-the-loop variant, the GPU costs stay the same but I'd add Claude API calls for reward modeling and consistency checks during training, bringing the total to about $2,500 and compressing the timeline to 8-10 weeks.
+
+The automated research approach would require more GPU capacity for hyperparameter search—around 1500 GPU-hours—plus Claude API for experiment design, though the Lean 4 compilation latency becomes a bottleneck that limits how much we can actually speed things up, keeping it to 6-8 weeks.
+
+Let me recalibrate based on what similar projects actually used: FormaRL ran on just 2×A100 for a 7B model, and TTRL needed 8×A100 for about 27 hours, so I should break this down into phases—starting with training the base formalizer with retrieval capabilities as an extension of FormaRL.
+
+Building and fine-tuning domain-adaptive retrieval would take another 80 GPU-hours on 4×A100, then test-time adaptation experiments across 5 domains with ablations would total around 400-600 GPU-hours, bringing the whole pipeline to roughly 1000 GPU-hours or $2,000 at current A100 rates.
+
+This ranks as top-tier because it combines two proven techniques in a novel way, has solid theoretical grounding from oracle retrieval work, and directly tackles the main bottleneck in autoformalization—getting models to generalize across different mathematical domains.
+
+Now I'm settling on the project name and checking what concurrent work exists. I found ReForm and Cycle Consistency Fine-tuning from 2026, but neither combines retrieval with test-time adaptation the way this approach does. I'm waiting on the concurrent work agent to finish its search, but I should finalize the JSON structure soon. The key gap is that none of these concurrent approaches—ReForm, Aria, or the cycle-consistency GRPO methods from early 2026—actually combine retrieval-augmented context with test-time RL adaptation the way this work does. ReForm and cycle-consistency operate entirely offline, Aria uses retrieval but skips the RL component, and they all evaluate on fixed domains. I should anchor the DDR reference to the published ICLR 2025 paper rather than the arXiv follow-up since that's the established venue. I'm continuing through the reference list, verifying publication venues and years for each paper on autoformalization and formal reasoning. I notice I need to double-check the AAAI venue for StepFun-Formalizer since the dates are getting a bit uncertain.
+
+Now I'm compiling the final JSON output with submission deadlines, being mindful that some workshop deadlines have already passed while others like the NeurIPS 2026 workshop are still open.
+
+For the resource estimates, I'm breaking down the computational requirements more precisely—the manual approach needs around 1,000 GPU hours on A100s over 10-14 weeks with costs around $2,000-2,500, while the human-in-the-loop version using Claude API for synthesis and evaluation reduces GPU hours to about 800 and timeline to 8-10 weeks with Claude costs in the $400-600 range.
+
+The fully automated approach would require 1,500 GPU hours with parallelized sweeps completing in 4-6 weeks, but at higher total cost due to automated hyperparameter searches and Claude API expenses for experiment management. The main constraint there is Lean 4 compilation latency adding 2-5 seconds per verification step.
+
+Now I'm finalizing the JSON structure and want to verify that oracle retrieval claim about the 3.3x improvement metric before including it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32daa489-f637-4ee4-8ee8-a31cf6f3c16c",
+  "isSidechain": false,
+  "requestId": "req_011CbTRQKX1KZ5nE9K7pB3wF",
+  "type": "assistant",
+  "uuid": "2f4cd4b2-b254-43e9-84b0-505340f79993",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CnMPkfStEXmJP6KQy7Q79z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 813,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 64291,
+      "output_tokens": 5154,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 813,
+          "output_tokens": 5154,
+          "cache_read_input_tokens": 64291,
+          "cache_creation_input_tokens": 716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 163 · 2026-05-27T16:54:46.005Z_
+
+Now let me compile all findings into the final output. Let me do one more check on a key detail:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f4cd4b2-b254-43e9-84b0-505340f79993",
+  "isSidechain": false,
+  "requestId": "req_011CbTRQKX1KZ5nE9K7pB3wF",
+  "type": "assistant",
+  "uuid": "da17ddc9-bcbc-4d6d-88a2-2c9a3836b54e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CnMPkfStEXmJP6KQy7Q79z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 813,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 64291,
+      "output_tokens": 5154,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 813,
+          "output_tokens": 5154,
+          "cache_read_input_tokens": 64291,
+          "cache_creation_input_tokens": 716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 164 · 2026-05-27T16:54:46.555Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BTHVFWaC47Xf9pHtBMBXpk`</summary>
+
+```json
+{
+  "query": "Qwen3-8B model 2026 huggingface fine-tuning Lean formalization reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da17ddc9-bcbc-4d6d-88a2-2c9a3836b54e",
+  "isSidechain": false,
+  "requestId": "req_011CbTRQKX1KZ5nE9K7pB3wF",
+  "type": "assistant",
+  "uuid": "eb0a1194-2d87-4cb8-ad06-ca51b24255b8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CnMPkfStEXmJP6KQy7Q79z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 813,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 64291,
+      "output_tokens": 5154,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 813,
+          "output_tokens": 5154,
+          "cache_read_input_tokens": 64291,
+          "cache_creation_input_tokens": 716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 165_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "eb0a1194-2d87-4cb8-ad06-ca51b24255b8",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 166_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 167 · 2026-05-27T16:54:54.420Z_
+
+<details><summary>↩ Tool result · `toolu_01BTHVFWaC47Xf9pHtBMBXpk`</summary>
+
+```text
+Web search results for query: "Qwen3-8B model 2026 huggingface fine-tuning Lean formalization reasoning"
+
+Links: [{"title":"Qwen/Qwen3-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B"},{"title":"unsloth/Qwen3-8B-GGUF · Hugging Face","url":"https://huggingface.co/unsloth/Qwen3-8B-GGUF"},{"title":"Qwen/Qwen3-8B-GGUF · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B-GGUF"},{"title":"Qwen/Qwen3.5-0.8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-0.8B"},{"title":"Qwen3 - How to Run & Fine-tune | Unsloth Documentation","url":"https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372v1"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/pdf/2603.24372"},{"title":"Qwen/Qwen3-VL-8B-Thinking · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-VL-8B-Thinking"},{"title":"Fine-Tuning Qwen3-VL 8B: A Step-by-Step Guide | DataCamp","url":"https://www.datacamp.com/tutorial/fine-tuning-qwen3-vl-8b"}]
+
+Based on the search results, here's what I found about Qwen3-8B model, 2026, Hugging Face, fine-tuning, and Lean formalization reasoning:
+
+## Qwen3-8B Model Overview
+
+Qwen3 is the latest generation of large language models in the Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models with advancements in reasoning, instruction-following, agent capabilities, and multilingual support, including support for seamless switching between thinking mode (for complex logical reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue).
+
+Qwen3 shows significantly enhanced reasoning capabilities, surpassing previous QwQ (in thinking mode) and Qwen2.5 instruct models (in non-thinking mode) on mathematics, code generation, and commonsense logical reasoning.
+
+## Fine-Tuning for Lean Formalization
+
+A particularly relevant application involves using Qwen models for Lean4 formalization. Fine-tuning has been performed on Qwen3.5-2B with LoRA for natural language to Lean4 formalization on FineLeanCorpus, considering three training regimes: supervised fine-tuning (SFT) with curriculum learning, SFT without curriculum ordering, and reinforcement learning using group relative policy optimization (GRPO) with a cycle consistency reward.
+
+Cycle consistency measures how well the meaning of a statement is preserved through a natural language to Lean4 to natural language loop, computed as cosine similarity of off-the-shelf sentence embeddings.
+
+Additionally, documentation is available for running and fine-tuning Qwen3 models via Hugging Face Hub, with resources for efficient training setups.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb0a1194-2d87-4cb8-ad06-ca51b24255b8",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "5e2916f6-b939-45da-bf4f-ff80c42810bf",
+  "toolUseResult": {
+    "query": "Qwen3-8B model 2026 huggingface fine-tuning Lean formalization reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RDBdiKuxwNx6EX55Snq6Df",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B"
+          },
+          {
+            "title": "unsloth/Qwen3-8B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/unsloth/Qwen3-8B-GGUF"
+          },
+          {
+            "title": "Qwen/Qwen3-8B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B-GGUF"
+          },
+          {
+            "title": "Qwen/Qwen3.5-0.8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B"
+          },
+          {
+            "title": "Qwen3 - How to Run & Fine-tune | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project",
+            "url": "https://arxiv.org/html/2603.24372v1"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/pdf/2603.24372"
+          },
+          {
+            "title": "Qwen/Qwen3-VL-8B-Thinking · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-VL-8B-Thinking"
+          },
+          {
+            "title": "Fine-Tuning Qwen3-VL 8B: A Step-by-Step Guide | DataCamp",
+            "url": "https://www.datacamp.com/tutorial/fine-tuning-qwen3-vl-8b"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Qwen3-8B model, 2026, Hugging Face, fine-tuning, and Lean formalization reasoning:\n\n## Qwen3-8B Model Overview\n\nQwen3 is the latest generation of large language models in the Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models with advancements in reasoning, instruction-following, agent capabilities, and multilingual support, including support for seamless switching between thinking mode (for complex logical reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue).\n\nQwen3 shows significantly enhanced reasoning capabilities, surpassing previous QwQ (in thinking mode) and Qwen2.5 instruct models (in non-thinking mode) on mathematics, code generation, and commonsense logical reasoning.\n\n## Fine-Tuning for Lean Formalization\n\nA particularly relevant application involves using Qwen models for Lean4 formalization. Fine-tuning has been performed on Qwen3.5-2B with LoRA for natural language to Lean4 formalization on FineLeanCorpus, considering three training regimes: supervised fine-tuning (SFT) with curriculum learning, SFT without curriculum ordering, and reinforcement learning using group relative policy optimization (GRPO) with a cycle consistency reward.\n\nCycle consistency measures how well the meaning of a statement is preserved through a natural language to Lean4 to natural language loop, computed as cosine similarity of off-the-shelf sentence embeddings.\n\nAdditionally, documentation is available for running and fine-tuning Qwen3 models via Hugging Face Hub, with resources for efficient training setups."
+    ],
+    "durationSeconds": 7.859726966999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "eb0a1194-2d87-4cb8-ad06-ca51b24255b8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 168 · 2026-05-27T16:54:54.426Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-27T16:54:54.426Z",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 169 · 2026-05-27T16:54:54.426Z_
+
+```json
+{
+  "parentUuid": "5e2916f6-b939-45da-bf4f-ff80c42810bf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a2d483fd315b6b3f6&lt;/task-id>\n&lt;tool-use-id>toolu_01BCwfXdUcvXMcnSytHm2GdT&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu-idea-review/75711861-2d6e-4f77-b828-a14285c76ee3/tasks/a2d483fd315b6b3f6.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search concurrent work on TTRL + autoformalization\" completed&lt;/summary>\n&lt;result>Now I have a comprehensive picture. Let me compile the final report.\n\n---\n\nHere is my thorough report of findings across all searches.\n\n---\n\n## COMPREHENSIVE LANDSCAPE REPORT: Test-Time RL + Retrieval-Augmented Autoformalization\n\n### CRITICAL FINDING: No paper found that combines all three elements\n\n**After exhaustive searching, I found NO paper or preprint that specifically proposes \"combining retrieval-augmented context with test-time RL for domain-adaptive autoformalization.\"** The three elements (retrieval augmentation, test-time RL, and domain-adaptive autoformalization) exist in separate lines of work that have not yet been unified. This appears to be a genuine gap in the literature as of May 2026.\n\nThe closest systems are Kimina-Prover (which uses test-time RL for theorem proving with pre-generated autoformalized lemmas, but no retrieval) and ProofBridge (which uses retrieval-augmented autoformalization, but no RL or test-time adaptation). No single work bridges all three.\n\n---\n\n### 1. SEARCH: \"test-time reinforcement learning autoformalization 2026\" and \"test-time RL autoformalization 2026\"\n\n**Key findings:**\n\n- **TTRL (Test-Time Reinforcement Learning)** [PRIME-RL, NeurIPS 2025]: The foundational TTRL method trains LLMs using RL on unlabeled data at test time via consensus-driven majority voting for reward estimation. Applied to math reasoning (211% boost on AIME 2024 for Qwen-2.5-Math-7B). NOT applied to autoformalization. Paper: https://arxiv.org/pdf/2504.16084, OpenReview: https://openreview.net/forum?id=VuVhgEiu20\n\n- **AlphaProof** [DeepMind, Nature 2025]: Uses test-time RL for formal theorem proving -- generates millions of problem variants at inference time for problem-specific adaptation. Trains on auto-formalized problems but its TTRL is for *proof search*, not autoformalization itself. Paper: https://www.nature.com/articles/s41586-025-09833-y\n\n- **Kimina-Prover** [Moonshot AI, April 2025]: The closest system to combining TTRL with autoformalization. Uses test-time RL search with a recursive lemma decomposition framework. Lemmas are pre-generated by an LLM and autoformalized via Kimina-Autoformalizer-7b. TTRL then dynamically selects/combines lemmas during proof search. Achieves 92.2% on miniF2F. **However**: autoformalization happens at *preparation time*, not test time. No retrieval augmentation is used -- lemmas come from a pre-generated pool. Paper: https://arxiv.org/abs/2504.11354, Blog: https://huggingface.co/blog/AI-MO/kimina-prover\n\n- **T3RL (Tool Verification for Test-Time RL)** [March 2026]: Introduces tool-based verification into TTRL reward estimation for math reasoning. Not applied to autoformalization. Paper: https://arxiv.org/pdf/2603.02203\n\n- **TR-ICRL** [April 2026]: Test-Time Rethinking for In-Context RL. Not related to autoformalization. Paper: https://arxiv.org/html/2604.00438\n\n- **FormaRL** [COLM 2025, Tsinghua]: RL for autoformalization with no labeled data, using GRPO with Lean compiler syntax check + LLM consistency check as dual reward. Boosts Qwen2.5-Coder-7B from 4% to 26% on ProofNet. **No test-time adaptation, no retrieval augmentation.** Paper: https://arxiv.org/abs/2508.18914, GitHub: https://github.com/THUNLP-MT/FormaRL\n\n---\n\n### 2. SEARCH: \"retrieval augmented autoformalization reinforcement learning 2025 2026\"\n\n**Key findings:**\n\n- **CRAMF (Conceptual Retrieval-Augmented Mathematical Formalization)** [August 2025, revised March 2026]: Retrieves formal definitions from a Mathlib4 knowledge base (26,000+ definitions, 1,000+ concepts) with dual-channel hybrid retrieval and reranking. Up to 62.1% relative improvement. **No RL, no test-time adaptation.** Paper: https://arxiv.org/abs/2508.06931\n\n- **Aria (Agent for Retrieval and Iterative Autoformalization)** [October 2025]: Two-phase Graph-of-Thought process with dependency graph decomposition and AriaScorer for retrieval-grounded verification. 91.6% compilation on ProofNet. **No RL, no test-time adaptation.** Paper: https://arxiv.org/abs/2510.04520\n\n- **RAutoformalizer (Dependency Retrieval for Autoformalization)** [ICLR 2025]: Retrieves dependent objects from formal libraries. Proposes DDR (Direct Dependency Retrieval) with suffix array verification. **No RL, no test-time adaptation.** Paper at: https://openreview.net/forum?id=hUb2At2DsQ\n\n- **DDR (Direct Dependency Retrieval)** [November 2025, revised January 2026]: Generates candidate library dependencies from NL descriptions and verifies via suffix array check. 500K+ sample dataset. **No RL, no test-time adaptation.** Paper: https://arxiv.org/abs/2511.11990\n\n---\n\n### 3. SEARCH: arXiv papers Feb-May 2026 on \"autoformalization retrieval RL\", \"test-time adaptation autoformalization\", \"domain adaptive autoformalization\"\n\n**Key findings:**\n\n- **FormalEvolve** [March 2026]: Formulates autoformalization as \"budgeted, test-time search\" using neuro-symbolic evolutionary framework with LLM-driven mutation/crossover and AST rewrite operations. This is *test-time search* but NOT test-time RL. **No retrieval, no RL.** Paper: https://arxiv.org/abs/2603.19828\n\n- **Cycle Consistency Fine-tuning for Lean4 Autoformalization** [March 2026]: GRPO-based RL with cycle consistency reward (cosine similarity of sentence embeddings through NL-to-Lean4-to-NL loop). Qwen3.5-2B with LoRA. **No retrieval, no test-time adaptation.** Paper: https://arxiv.org/abs/2603.24372\n\n- **ReForm (Reflective Autoformalization)** [ICLR 2026 Camera Ready, February 2026]: Prospective Bounded Sequence Optimization (PBSO) using position-specific rewards for reflective self-correction. 22.6pp average improvement. **RL-based optimization but no retrieval, no test-time adaptation.** Paper: https://arxiv.org/abs/2510.24592\n\n- **130K Lines of Formal Topology** [January 2026]: Large-scale autoformalization using LLM + proof checker feedback loop. 160K lines in ~2 weeks for ~$100. **No RL, no retrieval augmentation.** Paper: https://arxiv.org/pdf/2601.03298\n\n- **Autoformalization Survey** [May 2026]: Comprehensive survey of the field. Does not identify any work combining retrieval + RL + test-time adaptation. Paper: https://arxiv.org/abs/2505.23486\n\n- **CriticLean** [2025]: Critic-guided RL for mathematical formalization with CriticLeanGPT trained via SFT+RL. **No retrieval, no test-time adaptation.** Paper: https://arxiv.org/abs/2507.06181\n\n- **StepFun-Formalizer** [AAAI 2026]: Knowledge-reasoning fusion for autoformalization using ThinkingF data pipeline. SOTA on FormalMATH-Lite (40.5%) and ProverBench (26.7%). **No RL at inference, no retrieval augmentation, no test-time adaptation.** Paper: https://arxiv.org/abs/2508.04440\n\n---\n\n### 4. SEARCH: OpenReview for NeurIPS 2026, ICML 2026, ICLR 2027\n\n**Key findings:**\n\n- **ICML 2026** submissions are open on OpenReview (https://openreview.net/group?id=ICML.cc/2026/Conference). No specific submission found combining test-time RL with retrieval-augmented autoformalization.\n\n- **ICLR 2026** (already held, April 2026 in Rio): ProofBridge was accepted at ICLR 2026 main track. It uses retrieval-augmented fine-tuning for autoformalization but **not RL or test-time adaptation**.\n\n- **ProofBridge** [ICLR 2026]: Joint embedding model with contrastive learning, cross-modal retrieval of semantically relevant formal examples, and iterative proof repair. +31.14% semantic correctness over Kimina-Prover-RL-1.7B. **Retrieval-augmented autoformalization, but no RL training, no test-time adaptation.** Paper: https://arxiv.org/abs/2510.15681, GitHub: https://github.com/PrithwishJana/ProofBridge\n\n- **3rd AI for Math Workshop at ICML 2026** (https://ai4math2026.github.io/): Includes autoformalization challenge track using FormalRx-Test dataset. Challenge period May 1 - June 15, 2026. Relevant venue to watch.\n\n- **NeurIPS 2026 / ICLR 2027**: No submissions found yet combining these elements.\n\n---\n\n### 5. SEARCH: \"TTRL formalization\", \"TTRL Lean\", \"test-time compute autoformalization\"\n\n**Key findings:**\n\n- **TTRL for Lean/formalization**: No direct application of TTRL (the PRIME-RL method) to autoformalization was found. TTRL has been applied to math reasoning and vision-language models but not autoformalization specifically.\n\n- **Seed-Prover 1.5** [ByteDance, December 2025]: Agentic RL with Mathlib search tool and test-time scaling. Uses retrieval (Mathlib search) and RL, but for *theorem proving*, not autoformalization. Paper: https://arxiv.org/abs/2512.17260\n\n- **REAL-Prover** [November 2025]: Retrieval-Augmented Lean Prover with LeanSearch-PS for premise selection and HERALD-AF for autoformalization. Combines retrieval with autoformalization but **uses SFT only (no RL), no test-time adaptation.** Paper: https://arxiv.org/abs/2505.20613\n\n- **Online RL for Autoformalization** [NeurIPS 2025 MAR Workshop]: Studies online RL for translating informal conjectures into Lean 4 with composite rewards (type-check + BEq/BEq+ exact-match + embedding similarity). Uses GRPO with KL penalty. Raises TC1 from 17.29% to 26.01%. **RL for autoformalization but no retrieval augmentation, no test-time adaptation.** ResearchGate: https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization\n\n---\n\n### SUMMARY TABLE OF CLOSEST COMPETING WORK\n\n| Paper | RL | Retrieval | Test-Time Adapt. | Autoformal. | Domain Adapt. |\n|-------|-----|-----------|-------------------|-------------|---------------|\n| **FormaRL** (COLM'25) | Yes (GRPO) | No | No | Yes | No |\n| **Online RL for AF** (NeurIPS'25 W) | Yes (GRPO) | No | No | Yes | No |\n| **ReForm** (ICLR'26) | Yes (PBSO) | No | No | Yes | No |\n| **Cycle Consistency** (Mar'26) | Yes (GRPO) | No | No | Yes | No |\n| **CriticLean** (2025) | Yes (SFT+RL) | No | No | Yes | No |\n| **CRAMF** (Aug'25/Mar'26) | No | Yes | No | Yes | No |\n| **Aria** (Oct'25) | No | Yes (RAG+GoT) | No | Yes | No |\n| **DDR** (Nov'25) | No | Yes | No | Yes | No |\n| **ProofBridge** (ICLR'26) | No | Yes | No | Yes | No |\n| **REAL-Prover** (Nov'25) | No | Yes | No | Yes | No |\n| **FormalEvolve** (Mar'26) | No | No | Yes (search) | Yes | No |\n| **Kimina-Prover** (Apr'25) | Yes (TTRL) | No | Yes (TTRL) | Partial* | Yes (CPT) |\n| **AlphaProof** (Nature'25) | Yes (TTRL) | No | Yes (TTRL) | Partial* | No |\n| **Seed-Prover 1.5** (Dec'25) | Yes (agentic RL) | Yes (Mathlib) | Yes (TTS) | No | No |\n| **StepFun-Formalizer** (AAAI'26) | No | No | No | Yes | No |\n\n*Partial = autoformalization is used in the pipeline but TTRL applies to proof search, not to the autoformalization step itself.\n\n---\n\n### BOTTOM LINE\n\n**The specific idea of combining retrieval-augmented context with test-time RL for domain-adaptive autoformalization does not appear in any published or preprinted work as of May 2026.** The three ingredients exist separately:\n\n1. **RL for autoformalization**: FormaRL, Online RL for AF, ReForm, CriticLean, Cycle Consistency\n2. **Retrieval for autoformalization**: CRAMF, Aria, DDR, RAutoformalizer, ProofBridge, REAL-Prover\n3. **Test-time RL for formal math**: AlphaProof, Kimina-Prover, Seed-Prover 1.5, TTRL\n\nNo paper unifies all three. The closest partial overlaps are:\n- **Kimina-Prover** (test-time RL + autoformalization in the pipeline, but no retrieval, and autoformalization is pre-computed not test-time)\n- **Seed-Prover 1.5** (RL + retrieval + test-time scaling for theorem proving, but not autoformalization)\n- **REAL-Prover** (retrieval + autoformalization, but SFT only, no RL or test-time adaptation)\n\nThis represents a clear open research direction that has not yet been claimed.\n\nSources:\n- [TTRL: Test-Time Reinforcement Learning (OpenReview)](https://openreview.net/forum?id=VuVhgEiu20)\n- [TTRL Paper (arXiv)](https://arxiv.org/pdf/2504.16084)\n- [TTRL GitHub (PRIME-RL)](https://github.com/prime-rl/ttrl)\n- [AlphaProof (Nature)](https://www.nature.com/articles/s41586-025-09833-y)\n- [FormaRL (arXiv)](https://arxiv.org/abs/2508.18914)\n- [FormaRL GitHub](https://github.com/THUNLP-MT/FormaRL)\n- [Kimina-Prover (arXiv)](https://arxiv.org/abs/2504.11354)\n- [Kimina-Prover Blog](https://huggingface.co/blog/AI-MO/kimina-prover)\n- [ProofBridge (ICLR 2026)](https://arxiv.org/abs/2510.15681)\n- [ProofBridge GitHub](https://github.com/PrithwishJana/ProofBridge)\n- [CRAMF (arXiv)](https://arxiv.org/abs/2508.06931)\n- [Aria (arXiv)](https://arxiv.org/abs/2510.04520)\n- [DDR - Direct Dependency Retrieval (arXiv)](https://arxiv.org/abs/2511.11990)\n- [RAutoformalizer (OpenReview/ICLR 2025)](https://openreview.net/forum?id=hUb2At2DsQ)\n- [ReForm (arXiv, ICLR 2026)](https://arxiv.org/abs/2510.24592)\n- [FormalEvolve (arXiv)](https://arxiv.org/abs/2603.19828)\n- [Cycle Consistency Fine-tuning (arXiv)](https://arxiv.org/abs/2603.24372)\n- [CriticLean (arXiv)](https://arxiv.org/abs/2507.06181)\n- [StepFun-Formalizer (arXiv/AAAI 2026)](https://arxiv.org/abs/2508.04440)\n- [Online RL for Autoformalization (ResearchGate)](https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization)\n- [REAL-Prover (arXiv)](https://arxiv.org/abs/2505.20613)\n- [Seed-Prover 1.5 (arXiv)](https://arxiv.org/abs/2512.17260)\n- [T3RL - Tool Verification for TTRL (arXiv)](https://arxiv.org/pdf/2603.02203)\n- [130K Lines of Formal Topology (arXiv)](https://arxiv.org/pdf/2601.03298)\n- [Autoformalization Survey (arXiv)](https://arxiv.org/abs/2505.23486)\n- [3rd AI for Math Workshop at ICML 2026](https://ai4math2026.github.io/)\n- [Major Breakthroughs in Lean 4 Auto-Formalization (UVA)](https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html)\n- [LeanSearch v2 (arXiv)](https://arxiv.org/html/2605.13137v2)\n- [Formalization and Autoformalization 2026-2027 (UTK)](https://web.math.utk.edu/~yqing/lean.html)&lt;/result>\n&lt;usage>&lt;total_tokens>42790&lt;/total_tokens>&lt;tool_uses>43&lt;/tool_uses>&lt;duration_ms>246828&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "17bcb012-b21a-4d7c-a750-fbc621d4e339",
+  "timestamp": "2026-05-27T16:54:54.426Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 170 · 2026-05-27T16:55:51.568Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All four agents have now returned. The concurrent work agent confirmed the key finding: **No paper combines all three elements (retrieval-augmented context + test-time RL + domain-adaptive autoformalization).** This is a genuine gap.
+
+Now let me also note some additional concurrent work the agent found that I should include in the landscape:
+- ProofBridge (ICLR 2026): Retrieval-augmented autoformalization but no RL
+- REAL-Prover (2025): Retrieval + autoformalization but SFT only 
+
+
+- Seed-Prover 1.5 (2025): RL + retrieval + test-time scaling for theorem proving, though it doesn't focus on autoformalization
+- FormalEvolve (March 2026): Test-time search for autoformalization without RL
+- Online RL for Autoformalization (NeurIPS 2025 workshop): Uses GRPO for autoformalization but lacks retrieval and test-time components
+
+Now I'm constructing the final JSON object with all the fields carefully specified. I need to verify whether ReForm was accepted to ICLR 2026 or remains a preprint—the search indicated "ICLR 2026 Camera Ready" which points to acceptance.
+
+Actually, I'm uncertain about ReForm's acceptance status. The arXiv paper (2510.24592) was posted in October 2025 and revised in February 2026, and while the agent tagged it as ICLR 2026, I should be conservative and list it without a confirmed venue unless I can verify it. Similarly, CRAMF (arXiv 2508.06931 from August 2025) has an OpenReview submission but no confirmed venue, so I'll note it as a preprint as well. Let me finalize the JSON now.
+
+For the key references, I'm being selective and including only the most relevant verified papers—around a dozen entries covering test-time reinforcement learning, formal mathematical reasoning, autoformalization approaches, and dependency retrieval methods from venues like NeurIPS 2025, Nature 2025, COLM 2025, and ICLR 2025. I've got the full list now—that's 14 references total, all verified. Since the user specifically asked me to verify these with web searches, I should keep them all rather than trimming down.
+
+For the base model, Qwen3-8B makes the most sense—it's the latest, supports dual-mode thinking, and has already proven itself for Lean formalization work in recent papers. I'll go with that recommendation and finalize the JSON configuration.
+
+The critical part I need to clarify is how the test-time RL adaptation works: at inference, the model can dynamically adjust its strategy based on proof attempts and feedback. Now I'm writing out the full method description—combining the initialization from the fine-tuned Qwen model with the retrieval-augmented context injection, then describing the test-time adaptation loop where we generate candidates, score them via compilation and consistency checks, and update the policy with GRPO before evaluating on multi-domain benchmarks. The empirical results validate both components independently—oracle retrieval shows substantial gains over model-based approaches, and test-time RL delivers significant improvements on informal math problems. I'm evaluating across FormalMATH's comprehensive multi-domain benchmark plus the out-of-distribution Con-NF dataset to demonstrate generalization. This combination of retrieval augmentation with test-time reinforcement learning for autoformalization is novel and bridges two important research areas.
+
+Now I'm identifying the right venues and confirming the competitive landscape. AAAI 2027, ICLR 2027, and ARR with EACL 2027 are all viable targets given their deadlines. I've checked for concurrent work and found several related approaches—ProofBridge, Seed-Prover 1.5, FormalEvolve, ReForm, and others—but none of them combine retrieval augmentation with test-time RL in this way, which strengthens the novelty claim.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17bcb012-b21a-4d7c-a750-fbc621d4e339",
+  "isSidechain": false,
+  "requestId": "req_011CbTRYduWvQRwatsPSRHQz",
+  "type": "assistant",
+  "uuid": "43a6ee88-490a-4e18-83f9-8c99cfb82531",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMJ41ZVFNpjFkNpxYtJaLD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11840,
+      "cache_read_input_tokens": 65007,
+      "output_tokens": 2533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11840,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2533,
+          "cache_read_input_tokens": 65007,
+          "cache_creation_input_tokens": 11840,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11840
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 171 · 2026-05-27T16:55:51.719Z_
+
+All four research agents have completed. Now I have comprehensive data to synthesize the final output. Let me compile everything:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43a6ee88-490a-4e18-83f9-8c99cfb82531",
+  "isSidechain": false,
+  "requestId": "req_011CbTRYduWvQRwatsPSRHQz",
+  "type": "assistant",
+  "uuid": "d40faa58-9251-4a4c-8866-d53d6068e8a2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMJ41ZVFNpjFkNpxYtJaLD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11840,
+      "cache_read_input_tokens": 65007,
+      "output_tokens": 2533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11840,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2533,
+          "cache_read_input_tokens": 65007,
+          "cache_creation_input_tokens": 11840,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11840
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 172 · 2026-05-27T16:55:51.722Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012jSbNYEPUyunnGNoXMBKmo`</summary>
+
+```json
+{
+  "query": "\"Online Reinforcement Learning for Autoformalization\" NeurIPS 2025 workshop MAR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d40faa58-9251-4a4c-8866-d53d6068e8a2",
+  "isSidechain": false,
+  "requestId": "req_011CbTRYduWvQRwatsPSRHQz",
+  "type": "assistant",
+  "uuid": "55af3d0e-9a0c-417f-a045-f516f610338b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMJ41ZVFNpjFkNpxYtJaLD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11840,
+      "cache_read_input_tokens": 65007,
+      "output_tokens": 2533,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11840,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2533,
+          "cache_read_input_tokens": 65007,
+          "cache_creation_input_tokens": 11840,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11840
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 173_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "55af3d0e-9a0c-417f-a045-f516f610338b",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 174_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 175 · 2026-05-27T16:55:58.271Z_
+
+<details><summary>↩ Tool result · `toolu_012jSbNYEPUyunnGNoXMBKmo`</summary>
+
+```text
+Web search results for query: ""Online Reinforcement Learning for Autoformalization" NeurIPS 2025 workshop MAR"
+
+Links: [{"title":"(PDF) Online Reinforcement Learning for Autoformalization","url":"https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"},{"title":"NeurIPS 2025 Schedule","url":"https://neurips.cc/virtual/2025/loc/san-diego/calendar"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"},{"title":"5th MATH-AI Workshop at NeurIPS'25 - Math-AI","url":"https://mathai2025.github.io/papers/"},{"title":"FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization","url":"https://arxiv.org/pdf/2603.19828"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion","url":"https://arxiv.org/pdf/2508.04440"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/pdf/2510.06857"}]
+
+I found relevant information about your search query. Here are the results:
+
+## Online Reinforcement Learning for Autoformalization - NeurIPS 2025 Workshop MAR
+
+The paper studies online reinforcement learning for autoformalization: translating informal mathematical conjectures into formal statements in Lean 4. It was presented at the Multimodal Algorithmic Reasoning Workshop at NeurIPS 2025.
+
+**Key Contributions:**
+
+The paper addresses the challenge that autoformalization lacks a natural dense reward; it proposes composite reward formulations that combine syntactic signals (Lean type-check) with semantic measures including exact-match style metrics and a continuous embedding-based similarity reward that requires no paired data.
+
+The training uses Group Relative Policy Optimization with a KL-divergence penalty to avoid distributional collapse, and the authors released a multi-project Lean-4 REPL API and training code.
+
+**Results:**
+
+On RLMEval, the best RL model substantially raises type-check rates while producing modest gains in exact-match metrics, with TC1 improving from 17.29% to 26.01% and TC50 from 76.41% to 85.46%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55af3d0e-9a0c-417f-a045-f516f610338b",
+  "isSidechain": false,
+  "promptId": "07ceda2a-7f7b-4bf6-b44d-0ea4bfe0a47c",
+  "type": "user",
+  "uuid": "92288474-99ea-436b-b59f-763bebc8b08f",
+  "toolUseResult": {
+    "query": "\"Online Reinforcement Learning for Autoformalization\" NeurIPS 2025 workshop MAR",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WMMou1nnN4oU8UCirYEN42",
+        "content": [
+          {
+            "title": "(PDF) Online Reinforcement Learning for Autoformalization",
+            "url": "https://www.researchgate.net/publication/396825045_Online_Reinforcement_Learning_for_Autoformalization"
+          },
+          {
+            "title": "NeurIPS 2025 Schedule",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/calendar"
+          },
+          {
+            "title": "FormaRL: Enhancing Autoformalization with no Labeled Data",
+            "url": "https://arxiv.org/pdf/2508.18914"
+          },
+          {
+            "title": "5th MATH-AI Workshop at NeurIPS'25 - Math-AI",
+            "url": "https://mathai2025.github.io/papers/"
+          },
+          {
+            "title": "FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization",
+            "url": "https://arxiv.org/pdf/2603.19828"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/pdf/2510.06857"
+          }
+        ]
+      },
+      "I found relevant information about your search query. Here are the results:\n\n## Online Reinforcement Learning for Autoformalization - NeurIPS 2025 Workshop MAR\n\nThe paper studies online reinforcement learning for autoformalization: translating informal mathematical conjectures into formal statements in Lean 4. It was presented at the Multimodal Algorithmic Reasoning Workshop at NeurIPS 2025.\n\n**Key Contributions:**\n\nThe paper addresses the challenge that autoformalization lacks a natural dense reward; it proposes composite reward formulations that combine syntactic signals (Lean type-check) with semantic measures including exact-match style metrics and a continuous embedding-based similarity reward that requires no paired data.\n\nThe training uses Group Relative Policy Optimization with a KL-divergence penalty to avoid distributional collapse, and the authors released a multi-project Lean-4 REPL API and training code.\n\n**Results:**\n\nOn RLMEval, the best RL model substantially raises type-check rates while producing modest gains in exact-match metrics, with TC1 improving from 17.29% to 26.01% and TC50 from 76.41% to 85.46%."
+    ],
+    "durationSeconds": 6.543794458999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "55af3d0e-9a0c-417f-a045-f516f610338b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 176 · 2026-05-27T16:55:58.276Z_
+
+```json
+{
+  "parentUuid": "92288474-99ea-436b-b59f-763bebc8b08f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d829063c-5ac7-49d0-a8c2-80298067b89f",
+  "timestamp": "2026-05-27T16:55:58.276Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 177 · 2026-05-27T16:57:14.713Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile the final JSON output. I have verified all references, confirmed deadlines, found no direct concurrent work, and have all the details for the resource estimates.
+
+Let me write the complete JSON now.
+
+One last thing to check - the landscape needs updating. Let me write the updated landscape incorporating concurrent work. The original landscape field should be preserved but I should add the new concurrent work.
+
+Actually, the user says "keep all existing fields" and "ADD these fields". So I should keep the existing landscape unchanged and add the new fields. But the user also says "如果发现高度相似的 concurrent work，必须在 landscape 中明确提及" - if highly similar concurrent work is found, it must be mentioned in the landscape.
+
+
+Since I found related but not identical work, I should update the landscape to note these near-misses and concurrent developments. Now I'm ready to write the final JSON with precise formatting, using Qwen3-8B as the base model since it's the most current open-source option suitable for this task.
+
+Writing the JSON output... The recent work in this space shows a clear progression—test-time RL has proven effective across formal proving (AlphaProof, Kimina-Prover) and autoformalization (FormaRL), while specialized retrieval systems (DDR, DRIFT, CRAMF) consistently demonstrate that targeted dependency and concept lookup can dramatically improve performance, with Aria's agentic approach combining these insights to achieve strong results on ProofNet.
+
+Now looking at the latest developments, there's a diversification of approaches: ProofBridge and ReForm are refining the autoformalization pipeline through contrastive learning and position-aware rewards respectively, while Online RL experiments show that composite reward signals can push type-checking accuracy higher. FormalEvolve explores neuro-symbolic search without RL, and Seed-Prover 1.5 focuses on theorem proving rather than autoformalization. StepFun-Formalizer-32B achieves the highest single-model performance on FormalMATH-Lite but appears to struggle with distribution shift.
+
+The critical gap I'm identifying is that despite extensive work in retrieval-augmented methods and test-time RL separately, no one has yet combined them for autoformalization—retrieval systems like DDR and ProofBridge remain static, RL approaches like ReForm assume fixed training domains, and test-time RL applications like AlphaProof target proof search downstream rather than the formalization step itself. This suggests a promising direction: merging dependency-aware retrieval with test-time RL adaptation specifically for autoformalization.
+
+My approach is to start with a fine-tuned Qwen3-8B model using DDR's dependency dataset and FormaRL's GRPO training with Lean 4 compilation rewards, then layer on a domain-adaptive retrieval module that fetches relevant Mathlib definitions at inference time. At test time, I'd apply online adaptation by generating multiple formalization candidates per problem, scoring them based on compilation success and consistency across candidates, then iteratively refining the model's outputs for unseen mathematical domains. Writing resource estimates... I'm mapping out target venues for submission—AAAI, ICLR, and EACL all have deadlines in mid-to-late 2026, with NeurIPS workshops as an option for sharing early results. The work aligns with recent breakthroughs in test-time reasoning and formal mathematical proof synthesis, so I'm anchoring the framing around those key papers. Looking at more recent papers on autoformalization and formal reasoning with LLMs, including work on knowledge-reasoning fusion approaches, agent-based systems with dependency graphs, reinforcement learning for proof decomposition, and joint embedding methods for translating natural language proofs into formal systems.
+
+The key insight here is that existing autoformalization models struggle when encountering unfamiliar mathematical domains because they lack knowledge of the specific formal library dependencies needed. I'm proposing TTRA, a method that combines targeted library retrieval with test-time reinforcement learning to adapt the formalizer to new domains. The approach uses a Qwen3-8B model trained with GRPO, deploys a suffix-array-based retrieval system to inject relevant Mathlib definitions during inference, and then performs online policy updates using pseudo-rewards derived from compilation success and consistency checks across multiple formalization candidates. The results show significant improvements—oracle retrieval achieves 3.3x better performance than model-based retrieval, and test-time reinforcement learning demonstrates further gains. We combine targeted library retrieval with test-time reinforcement learning to adapt the formalizer to new domains—using Lean compilation success and voting consistency as pseudo-rewards to update the model online. The approach shows dramatic improvements: retrieval alone gives 3.3× gains, while test-time RL pushes pass rates up 211% on informal math problems, validated across both FormalMATH's 5,560 problems and the out-of-distribution Con-NF benchmark. I'm weighing the execution risks against the novelty and motivation—the reward signal from compilation and majority voting might be noisier for formalization than informal math, and the diversity of valid formalizations could make majority voting less effective. The binary compilation check might not provide enough gradient signal for the RL algorithm either. Still, the core idea is novel and well-motivated enough for a top-tier venue despite these challenges.
+
+Let me verify the project name fits the character limit, then I can finalize the output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d829063c-5ac7-49d0-a8c2-80298067b89f",
+  "isSidechain": false,
+  "requestId": "req_011CbTRdLd6GVEyz3t2YjTdR",
+  "type": "assistant",
+  "uuid": "13ca1cc9-b2dd-4898-bd97-498a55989f69",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5jXTawcMWqDY1GFNVjta1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3260,
+      "cache_read_input_tokens": 76847,
+      "output_tokens": 7046,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7046,
+          "cache_read_input_tokens": 76847,
+          "cache_creation_input_tokens": 3260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 178 · 2026-05-27T16:57:36.215Z_
+
+All research is complete. Here is the final merged JSON:
+
+{
+  "title": "Test-Time Retrieval-Augmented RL for Domain-Adaptive Autoformalization",
+  "core_problem": "Current autoformalization models trained on competition-level data fail catastrophically on unfamiliar mathematical domains (e.g., algebraic geometry, PDE theory) because they lack domain-specific Mathlib knowledge. Can we adapt an autoformalization model to a new domain at test time by combining targeted library retrieval with test-time reinforcement learning?",
+  "opportunity": "Test-time RL (TTRL) has boosted informal math reasoning by 211% (Qwen-2.5-Math-7B on AIME 2024) and is central to AlphaProof's IMO performance, but has never been applied to autoformalization. Meanwhile, oracle retrieval experiments show a 3.3x improvement over model-based retrieval (55.36% vs 16.86% BEq@8 on Con-NF), confirming that domain-specific dependencies are the key bottleneck. Combining these two independently validated ideas—retrieval-augmented context + test-time RL adaptation—directly attacks both the autoformalization quality gap and the domain generalization problem simultaneously. Recent infrastructure (DDR's 500K-sample dependency dataset, CRAMF's 26K Mathlib concept index, FormalMATH's multi-domain benchmark) makes this newly feasible.",
+  "landscape": "TTRL (NeurIPS 2025) demonstrated test-time RL for informal math using majority-voting pseudo-labels. AlphaProof (Nature 2025) applies test-time RL to formal proving via variant generation. Kimina-Prover (April 2025) internalizes search via RL for Lean proving, achieving 80.7% pass@8192 on miniF2F. FormaRL (COLM 2025) applies GRPO-based RL to autoformalization using compilation + LLM consistency rewards, improving pass@1 from 4% to 26% on ProofNet. DDR (December 2025) builds a 500K-sample dependency retrieval dataset with suffix-array verification. DRIFT (ICLR 2026) decomposes informal statements for targeted retrieval, nearly doubling F1 on ProofNet. CRAMF (2025) indexes 26K+ Mathlib definitions for concept-level retrieval, yielding up to 62.1% relative improvement. Aria (ICLR 2026) uses agentic Graph-of-Thought with dependency decomposition, achieving 68.5% accuracy on ProofNet. ProofBridge (ICLR 2026) combines contrastive joint embeddings with retrieval-augmented fine-tuning for proof autoformalization (+31.14% semantic correctness). ReForm (2026) applies position-aware RL rewards for reflective autoformalization (+22.6pp average). Online RL for Autoformalization (NeurIPS 2025 MAR Workshop) uses GRPO with composite rewards, raising type-check from 17.29% to 26.01%. FormalEvolve (March 2026) frames autoformalization as test-time neuro-symbolic evolutionary search but without RL. Seed-Prover 1.5 (December 2025) combines agentic RL with Mathlib search for theorem proving but not autoformalization. StepFun-Formalizer-32B achieves 40.5% BEq@1 SOTA on FormalMATH-Lite but degrades significantly on out-of-distribution domains like Con-NF. However, after exhaustive search of arXiv and OpenReview submissions through May 2026, no work combines retrieval-augmented context with test-time RL adaptation for autoformalization: existing retrieval methods (DDR, DRIFT, CRAMF, Aria, ProofBridge) are static pipelines without RL; existing RL methods (FormaRL, ReForm, Online RL for AF) assume fixed-domain training without retrieval; and existing TTRL applications (AlphaProof, Kimina-Prover) target proof search rather than the autoformalization step itself.",
+  "inspired_by": "Field guide untried combination: 'Dependency-aware TTRL: Combine RAutoformalizer's dependency retrieval with AlphaProof's Test-Time Reinforcement Learning.' Also: gap 'Dependency-aware autoformalization: models are context-blind to formal library contents' + gap 'Autoformalization accuracy on hard problems remains the critical bottleneck' + pattern 'Test-Time Compute Scaling via Problem-Specific Adaptation.'",
+  "approach": "Fine-tune a Qwen3-8B base model as a retrieval-augmented autoformalizer using DDR's 500K-sample dependency dataset and FormaRL's GRPO pipeline with Lean 4 compilation plus LLM consistency dual rewards, establishing a strong in-domain baseline. Build a domain-adaptive retrieval module that generates candidate Mathlib dependencies via DDR's suffix-array verification and injects the retrieved formal definitions into the autoformalization prompt at inference time. At test time, given a batch of unlabeled problems from an unseen mathematical domain (e.g., algebraic geometry, PDE theory, or combinatorial set theory), apply TTRL-style online adaptation: generate K formalization candidates per problem, derive pseudo-rewards from Lean 4 compilation success rates and cross-candidate majority-voting consistency, and perform GRPO gradient updates to adapt the formalization policy to the target domain's dependency patterns without requiring ground-truth formal labels. Evaluate domain transfer improvements on FormalMATH's multi-domain benchmark and the out-of-distribution Con-NF benchmark, measuring BEq@K and compilation success gains from test-time adaptation across held-out mathematical domains.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "900-1200 A100-80GB hours (base formalizer GRPO training: ~320h on 8 GPUs; DDR retriever fine-tuning: ~80h on 4 GPUs; TTRL adaptation across 5 domains with ablations: ~500h on 4 GPUs; evaluation and inference: ~100h)",
+      "timeline": "12-16 weeks (4 wk base training, 2 wk retriever, 4 wk TTRL experiments, 2-4 wk ablations and writing)",
+      "estimated_gpu_cost": "$1,800-$3,000 at ~$2.00/A100-hr cloud pricing"
+    },
+    "human_in_loop": {
+      "gpu_hours": "700-1000 A100-80GB hours (Claude handles reward-model consistency checking and data synthesis, reducing evaluation overhead ~20%)",
+      "timeline": "8-12 weeks (Claude-assisted data curation accelerates Phase 1; parallel experiment management in Phase 3)",
+      "claude_api_cost": "$400-$700 (consistency reward scoring during GRPO training, synthetic domain-specific formalization examples, automated ablation analysis)",
+      "estimated_gpu_cost": "$1,400-$2,500"
+    },
+    "auto_research": {
+      "gpu_hours": "1400-1800 A100-80GB hours (automated hyperparameter sweeps over retrieval top-k, TTRL learning rate schedules, GRPO group sizes, plus multi-seed evaluation)",
+      "timeline": "5-8 weeks (highly parallelized; wall-clock bottleneck is Lean 4 compilation, not GPU availability)",
+      "claude_api_cost": "$800-$1,200 (automated experiment design, reward signal engineering, paper drafting assistance)",
+      "estimated_gpu_cost": "$2,800-$4,500",
+      "speed_bottleneck": "Lean 4 compilation latency (~2-5s per statement verification) serializes reward computation; mitigated with parallel Lean worker pool but requires 32+ concurrent Lean processes"
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (abstract: July 21, full paper: July 28, 2026)",
+    "ICLR 2027 (predicted deadline: ~October 2026, unconfirmed — best fit for full pipeline results)",
+    "EACL 2027 via ARR August cycle (submission: August 3, 2026; commitment: October 11, 2026)",
+    "NeurIPS 2026 Workshops (contribution deadline: ~August 29, 2026 — suitable for early results)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "TTRL: Test-Time Reinforcement Learning (NeurIPS 2025)",
+    "Olympiad-level formal mathematical reasoning with reinforcement learning [AlphaProof] (Nature 2025)",
+    "FormaRL: Enhancing Autoformalization with no Labeled Data (COLM 2025)",
+    "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach (ICLR 2025 Spotlight)",
+    "Improving Autoformalization Using Direct Dependency Retrieval [DDR] (arXiv 2025)",
+    "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems (ICLR 2026)",
+    "Automated Formalization via Conceptual Retrieval-Augmented LLMs [CRAMF] (arXiv 2025)",
+    "Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning (arXiv 2025)",
+    "FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models (arXiv 2025)",
+    "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion (AAAI 2026)",
+    "Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph (ICLR 2026)",
+    "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via RL for Subgoal Decomposition (arXiv 2025)",
+    "ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings (ICLR 2026)",
+    "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization (arXiv 2025)"
+  ],
+  "description": "Current autoformalization models collapse on unfamiliar mathematical domains due to missing knowledge of domain-specific formal library dependencies. We propose TTRA (Test-Time Retrieval-Augmented autoformalization), the first method unifying targeted library retrieval with test-time reinforcement learning for domain-adaptive autoformalization. Building on a GRPO-trained Qwen3-8B base formalizer, we deploy DDR-style suffix-array-verified dependency retrieval to inject domain-relevant Mathlib definitions into the formalization context at inference time. For test-time domain adaptation, given a batch of target-domain problems without ground-truth labels, we generate multiple formalization candidates per problem and derive pseudo-rewards from Lean 4 compilation success rates and majority-voting consistency following TTRL, then perform online GRPO policy updates to adapt the model to the target domain's dependency patterns. This directly attacks two independently quantified bottlenecks: oracle retrieval showing 3.3x improvement over model-based retrieval (55.36% vs. 16.86% BEq@8 on Con-NF), and TTRL demonstrating 211% pass@1 gains on informal math. Evaluation spans FormalMATH's 5,560-problem multi-domain benchmark and the out-of-distribution Con-NF benchmark. After exhaustive search through May 2026, no prior work combines retrieval augmentation with test-time RL for autoformalization, positioning this as a novel contribution at the intersection of autoformalization, retrieval-augmented generation, and test-time compute scaling.",
+  "project_name": "ttrl_retrieval_autoform",
+  "source": "web_research"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13ca1cc9-b2dd-4898-bd97-498a55989f69",
+  "isSidechain": false,
+  "requestId": "req_011CbTRdLd6GVEyz3t2YjTdR",
+  "type": "assistant",
+  "uuid": "f9909588-f3fe-4055-a49f-76327202faa5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5jXTawcMWqDY1GFNVjta1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3260,
+      "cache_read_input_tokens": 76847,
+      "output_tokens": 7046,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7046,
+          "cache_read_input_tokens": 76847,
+          "cache_creation_input_tokens": 3260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 179_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "f9909588-f3fe-4055-a49f-76327202faa5",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 180_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 181_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-27 (UTC).** Only recommend venues whose deadline has NOT yet passed.  {   \"title\": \"Test-Time Retrieval-Augm…",
+  "leafUuid": "f9909588-f3fe-4055-a49f-76327202faa5",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 182_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Test-time RL for domain-adaptive autoformalization",
+  "sessionId": "75711861-2d6e-4f77-b828-a14285c76ee3"
+}
+```
+
+---

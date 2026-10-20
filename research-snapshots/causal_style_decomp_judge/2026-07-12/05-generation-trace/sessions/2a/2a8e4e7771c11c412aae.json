@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0",
+  "id": "2a8e4e7771c11c412aae",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Director，这是 Loop #5。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单已扩展为 cuda:0/1/2/3（D013），但 autodl-50",
+  "task_key": "0e1abc97-43f5-4a4c-b274-c89b2a9af025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/0e1abc97-43f5-4a4c-b274-c89b2a9af025.jsonl",
+    "occurrence": 1,
+    "bytes": 737211,
+    "sha256": "5561c6637a943dc4bfb0928a313b2929b1b00a887a12f4ba884b7db65f50f703"
+  },
+  "statistics": {
+    "messages": 345,
+    "user_turns": 20,
+    "tool_calls": 76,
+    "roles": {
+      "record": 79,
+      "user": 20,
+      "assistant": 94,
+      "tool_call": 76,
+      "tool_result": 76
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0001.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0001.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "2a8e4e7771c11c412aae-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-director-loop-5-task-context-1-gpu-cuda-0-1-2-3-d013-autodl-50-copy-2.md"
+}

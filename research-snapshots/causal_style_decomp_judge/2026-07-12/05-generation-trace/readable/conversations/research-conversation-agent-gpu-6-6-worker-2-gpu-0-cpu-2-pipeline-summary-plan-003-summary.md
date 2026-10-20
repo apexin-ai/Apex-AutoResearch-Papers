@@ -1,0 +1,3164 @@
+# Research conversation: [Agent 回复]: [资源] GPU 分配 6 / 实际跑 6 | Worker 池 2 (GPU 0 / CPU 2: pipeline 修复 + summary 重建) ## plan_003 summary 空数据根因 + 修复进
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 6
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-2/b74aad16-5075-42ff-9aad-15e90e17742d.jsonl`
+- **Structured JSON:** [`49e3e2ee9dfdb8ce78a8.json`](../../sessions/49/49e3e2ee9dfdb8ce78a8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T16:24:45.460Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T16:24:45.460Z",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "content": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际跑 6 | Worker 池 2 (GPU 0 / CPU 2: pipeline 修复 + summary 重建)\n\n## plan_003 summary 空数据根因 + 修复进展\n\n### 根因确认 ✅\npipeline.py 的 **resume 逻辑 bug**——D016 checkpoint hotfix 导致 plan_003 重启（logs_plan003_restart.log 时间戳 22:35:14），重启后：\n\n1. **0pct**: gen0-4 全部 \"already complete, skipping\" → `all_summaries = []` → 覆写 `summary_0pct.json = []`\n2. **50pct**: gen0-2 skipped → 只有 gen3-4 实际运行 → summary 缺 gen0-2\n\n**核心 bug**：skip 分支不从 signals JSONL 重建 summary entry，`all_summaries` 只包含当前 session 实际运行的 gen 数据，最后覆写整个 summary 文件。\n\n### 与 D015 的关系\n**同根但不同因**。D015 是 checkpoint 从未保存（save_strategy=\"no\"），HellaSwag 数据永久丢失。这次是 summary 聚合被覆写，但 **signals JSONL 数据完好**——可以从 JSONL 重建。\n\n### 修复行动（已派 2 个 Worker）\n\n| Worker | 任务 | 状态 |\n|--------|------|------|\n| fix-pipeline-resume-summary | 修复 pipeline.py skip 分支：从 JSONL 重建 summary entry | 运行中 |\n| rebuild-plan003-summaries | 登录 cqa1 从 signals JSONL 重建 summary_0pct.json + 补全 summary_50pct.json | 运行中 |\n\n**修复策略**：skip 分支中读取 `signals_{frac}_gen{gen}.jsonl` 最后一条记录，重建 summary entry 并 append 到 `all_summaries`。这样无论重启多少次，summary 始终完整。\n\n### 影响范围\n- plan_003 frac=0pct 和 50pct 的 summary 需重建（Worker 在做）\n- plan_001/002 使用 shell loop（每个 frac/seed 独立进程），不受此 bug 影响\n- pipeline.py 修复后需 sync 到两台服务器，防止后续重启再触发"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T16:24:45.464Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T16:24:45.464Z",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+## Round 1
+
+37 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T16:24:45.510Z_
+
+[Agent 回复]:
+[资源] GPU 分配 6 / 实际跑 6 | Worker 池 2 (GPU 0 / CPU 2: pipeline 修复 + summary 重建)
+
+## plan_003 summary 空数据根因 + 修复进展
+
+### 根因确认 ✅
+pipeline.py 的 **resume 逻辑 bug**——D016 checkpoint hotfix 导致 plan_003 重启（logs_plan003_restart.log 时间戳 22:35:14），重启后：
+
+1. **0pct**: gen0-4 全部 "already complete, skipping" → `all_summaries = []` → 覆写 `summary_0pct.json = []`
+2. **50pct**: gen0-2 skipped → 只有 gen3-4 实际运行 → summary 缺 gen0-2
+
+**核心 bug**：skip 分支不从 signals JSONL 重建 summary entry，`all_summaries` 只包含当前 session 实际运行的 gen 数据，最后覆写整个 summary 文件。
+
+### 与 D015 的关系
+**同根但不同因**。D015 是 checkpoint 从未保存（save_strategy="no"），HellaSwag 数据永久丢失。这次是 summary 聚合被覆写，但 **signals JSONL 数据完好**——可以从 JSONL 重建。
+
+### 修复行动（已派 2 个 Worker）
+
+| Worker | 任务 | 状态 |
+|--------|------|------|
+| fix-pipeline-resume-summary | 修复 pipeline.py skip 分支：从 JSONL 重建 summary entry | 运行中 |
+| rebuild-plan003-summaries | 登录 cqa1 从 signals JSONL 重建 summary_0pct.json + 补全 summary_50pct.json | 运行中 |
+
+**修复策略**：skip 分支中读取 `signals_{frac}_gen{gen}.jsonl` 最后一条记录，重建 summary entry 并 append 到 `all_summaries`。这样无论重启多少次，summary 始终完整。
+
+### 影响范围
+- plan_003 frac=0pct 和 50pct 的 summary 需重建（Worker 在做）
+- plan_001/002 使用 shell loop（每个 frac/seed 独立进程），不受此 bug 影响
+- pipeline.py 修复后需 sync 到两台服务器，防止后续重启再触发
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "2cbffad7-8d70-4f3b-aa15-23ad464b579e",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T16:24:45.509Z_
+
+```json
+{
+  "parentUuid": "2cbffad7-8d70-4f3b-aa15-23ad464b579e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__add_constraint",
+      "mcp__agent-ml-research__approve_experiment",
+      "mcp__agent-ml-research__approve_secret_request",
+      "mcp__agent-ml-research__archive_project",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_agent_queue_item",
+      "mcp__agent-ml-research__cancel_pending_director_messages",
+      "mcp__agent-ml-research__check_credentials",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__complete_mvp",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__create_project",
+      "mcp__agent-ml-research__delete_secret",
+      "mcp__agent-ml-research__director_allocate_gpus",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_main_agent",
+      "mcp__agent-ml-research__director_post_to_manager",
+      "mcp__agent-ml-research__director_post_to_paper_agent",
+      "mcp__agent-ml-research__director_reply_to_user",
+      "mcp__agent-ml-research__dream_simulate",
+      "mcp__agent-ml-research__feishu_read_chat_history",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__feishu_upload_file",
+      "mcp__agent-ml-research__get_agent_queue_status",
+      "mcp__agent-ml-research__get_dream_status",
+      "mcp__agent-ml-research__get_dream_trend",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__get_resource_inventory",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__keepalive_respond",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_projects",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_secrets",
+      "mcp__agent-ml-research__list_ssh_hosts",
+      "mcp__agent-ml-research__list_workspace_projects",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__log_decision",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__post_to_reviewer",
+      "mcp__agent-ml-research__ralph_respond",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_server",
+      "mcp__agent-ml-research__reject_experiment",
+      "mcp__agent-ml-research__reject_secret_request",
+      "mcp__agent-ml-research__remove_constraint",
+      "mcp__agent-ml-research__remove_server",
+      "mcp__agent-ml-research__replace_agent_queue",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__research_director_post_to_study_director",
+      "mcp__agent-ml-research__should_skip_dream",
+      "mcp__agent-ml-research__store_secret",
+      "mcp__agent-ml-research__submit_paper_to_review",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_project_config",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__update_roadmap",
+      "mcp__agent-ml-research__update_skill",
+      "mcp__agent-ml-research__upgrade_to_dual_group",
+      "mcp__agent-ml-research__urgent_agent_message"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__add_constraint",
+      "mcp__agent-ml-research__approve_experiment",
+      "mcp__agent-ml-research__approve_secret_request",
+      "mcp__agent-ml-research__archive_project",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_agent_queue_item",
+      "mcp__agent-ml-research__cancel_pending_director_messages",
+      "mcp__agent-ml-research__check_credentials",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__complete_mvp",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__create_project",
+      "mcp__agent-ml-research__delete_secret",
+      "mcp__agent-ml-research__director_allocate_gpus",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_main_agent",
+      "mcp__agent-ml-research__director_post_to_manager",
+      "mcp__agent-ml-research__director_post_to_paper_agent",
+      "mcp__agent-ml-research__director_reply_to_user",
+      "mcp__agent-ml-research__dream_simulate",
+      "mcp__agent-ml-research__feishu_read_chat_history",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__feishu_upload_file",
+      "mcp__agent-ml-research__get_agent_queue_status",
+      "mcp__agent-ml-research__get_dream_status",
+      "mcp__agent-ml-research__get_dream_trend",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__get_resource_inventory",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__keepalive_respond",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_projects",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_secrets",
+      "mcp__agent-ml-research__list_ssh_hosts",
+      "mcp__agent-ml-research__list_workspace_projects",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__log_decision",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__post_to_reviewer",
+      "mcp__agent-ml-research__ralph_respond",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_server",
+      "mcp__agent-ml-research__reject_experiment",
+      "mcp__agent-ml-research__reject_secret_request",
+      "mcp__agent-ml-research__remove_constraint",
+      "mcp__agent-ml-research__remove_server",
+      "mcp__agent-ml-research__replace_agent_queue",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__research_director_post_to_study_director",
+      "mcp__agent-ml-research__should_skip_dream",
+      "mcp__agent-ml-research__store_secret",
+      "mcp__agent-ml-research__submit_paper_to_review",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_project_config",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__update_roadmap",
+      "mcp__agent-ml-research__update_skill",
+      "mcp__agent-ml-research__upgrade_to_dual_group",
+      "mcp__agent-ml-research__urgent_agent_message"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ff311856-be0d-4ea6-9c0f-e54885cb6a71",
+  "timestamp": "2026-05-15T16:24:45.509Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T16:24:45.509Z_
+
+```json
+{
+  "parentUuid": "ff311856-be0d-4ea6-9c0f-e54885cb6a71",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "120fc140-0f9f-4742-b066-6307054fbda3",
+  "timestamp": "2026-05-15T16:24:45.509Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T16:24:45.509Z_
+
+```json
+{
+  "parentUuid": "120fc140-0f9f-4742-b066-6307054fbda3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "52a9ccf1-7511-41b6-9d36-b6cef1d7dc49",
+  "timestamp": "2026-05-15T16:24:45.509Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix pipeline resume bug and rebuild plan_003 summaries",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T16:25:07.707Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Agent is reporting back on the root cause analysis and fix progress for the plan_003 summary empty data issue. Let me analyze what they've found:
+
+1. **Root cause**: Resume logic bug in pipeline.py - when D016 checkpoint hotfix caused plan_003 to restart, the skip branch didn't rebuild summary entries from signals JSONL files, so `all_summaries` only contained data from the current session's actually-run generations, then overwrote the entire summary file.
+
+2. **Two workers dispatched**: one fixing the pipeline code, one rebuilding the summaries from JSONL data on cqa1.
+
+
+3. The signals JSONL data is intact, which means we can recover the summaries - that's fortunate since D015 had permanent checkpoint loss. The fix strategy of rebuilding from the skip branch makes sense, but I need to ensure the pipeline code gets deployed to both servers once it's ready, and check whether any active experiments or upcoming plans could be affected by this issue. I'm realizing this is a significant enough issue that the user should be informed about the root cause and the fix strategy. I need to communicate the next steps to the Agent—specifically verifying the rebuilt summaries and ensuring the patched pipeline.py gets synced to both servers so we don't hit this bug again on restart. I should also consider whether this lesson about resume logic deserves a note in the ML experiment guide for future reference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52a9ccf1-7511-41b6-9d36-b6cef1d7dc49",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fYJcCZ9Y7kZKWD3s5F",
+  "type": "assistant",
+  "uuid": "ea19c872-4e49-47b1-808e-e32bd9a618e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GigGw4fypUTPADdJK8PwbH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27521,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 860,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27521,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 860,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27521,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27521
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T16:25:07.709Z_
+
+诊断清晰，修复策略正确。有几个跟进要求。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea19c872-4e49-47b1-808e-e32bd9a618e4",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fYJcCZ9Y7kZKWD3s5F",
+  "type": "assistant",
+  "uuid": "929504bb-cdc4-408e-9830-7007c253834b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GigGw4fypUTPADdJK8PwbH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27521,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 860,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27521,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 860,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27521,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27521
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T16:25:07.717Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RZi9yfMymwb4uRyCPeNaBn`</summary>
+
+```json
+{
+  "query": "select:director_post_to_main_agent,director_reply_to_user,get_agent_queue_status",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "929504bb-cdc4-408e-9830-7007c253834b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fYJcCZ9Y7kZKWD3s5F",
+  "type": "assistant",
+  "uuid": "6f9835f8-8213-4edb-8d61-d69834700cb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GigGw4fypUTPADdJK8PwbH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27521,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 860,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27521,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 860,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27521,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27521
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T16:25:07.726Z_
+
+<details><summary>↩ Tool result · `toolu_01RZi9yfMymwb4uRyCPeNaBn`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f9835f8-8213-4edb-8d61-d69834700cb9",
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "63e86088-d82a-48c8-905d-3f5f57831050",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:director_post_to_main_agent,director_reply_to_user,get_agent_queue_status",
+    "total_deferred_tools": 92
+  },
+  "sourceToolAssistantUUID": "6f9835f8-8213-4edb-8d61-d69834700cb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T16:25:10.960Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DmFuMRQusNXMMK4DQKoksu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__director_reply_to_user,mcp__agent-ml-research__get_agent_queue_status",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63e86088-d82a-48c8-905d-3f5f57831050",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fZwbDA6pAi5uoQNdS1",
+  "type": "assistant",
+  "uuid": "caf31319-468b-49e4-a4ec-070606bf4ca3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H45QrKTPPSnwFELuJEKk8n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 39362,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 39362,
+          "cache_creation_input_tokens": 878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T16:25:10.964Z_
+
+<details><summary>↩ Tool result · `toolu_01DmFuMRQusNXMMK4DQKoksu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_post_to_main_agent"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_reply_to_user"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_agent_queue_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "caf31319-468b-49e4-a4ec-070606bf4ca3",
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "d68889c4-00f4-472e-97dd-49181ed48f9a",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__director_post_to_main_agent",
+      "mcp__agent-ml-research__director_reply_to_user",
+      "mcp__agent-ml-research__get_agent_queue_status"
+    ],
+    "query": "select:mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__director_reply_to_user,mcp__agent-ml-research__get_agent_queue_status",
+    "total_deferred_tools": 92
+  },
+  "sourceToolAssistantUUID": "caf31319-468b-49e4-a4ec-070606bf4ca3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-15T16:25:14.707Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the Agent queue status before sending a message, and also send a brief update to the user about the root cause finding.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d68889c4-00f4-472e-97dd-49181ed48f9a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4faBZbN57rdcChw2hxa",
+  "type": "assistant",
+  "uuid": "823e14d5-5c10-4276-b858-82405ae859e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbeUtSxYjZTqJbmEB46jRp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 40240,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 40240,
+          "cache_creation_input_tokens": 795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T16:25:14.718Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_agent_queue_status · `toolu_013NMiv9G8gNBZqdXwY5JQBf`</summary>
+
+```json
+{
+  "project": "collapse_severity_monitor"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "823e14d5-5c10-4276-b858-82405ae859e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4faBZbN57rdcChw2hxa",
+  "type": "assistant",
+  "uuid": "8f561ed0-d48d-4bbc-a660-9f799433fc20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WbeUtSxYjZTqJbmEB46jRp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 40240,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 40240,
+          "cache_creation_input_tokens": 795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T16:25:14.761Z_
+
+<details><summary>↩ Tool result · `toolu_013NMiv9G8gNBZqdXwY5JQBf`</summary>
+
+```text
+{"result":"{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令] Reviewer 确认 plan_003 summary 损坏根因：pipeline 重启覆写，只记录重启后的 gen。JSONL 信号文件完整，需要重建。\\n\\n**立即执行**：写一个\"},\"pending\":[],\"idle_seconds\":37}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f561ed0-d48d-4bbc-a660-9f799433fc20",
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "30589f54-a5a6-4f27-9278-a25e46a1d14e",
+  "toolUseResult": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":0,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] [Director 指令] Reviewer 确认 plan_003 summary 损坏根因：pipeline 重启覆写，只记录重启后的 gen。JSONL 信号文件完整，需要重建。\\\\n\\\\n**立即执行**：写一个\\\"},\\\"pending\\\":[],\\\"idle_seconds\\\":37}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"found\":true,\"processing\":true,\"depth\":0,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] [Director 指令] Reviewer 确认 plan_003 summary 损坏根因：pipeline 重启覆写，只记录重启后的 gen。JSONL 信号文件完整，需要重建。\\n\\n**立即执行**：写一个\"},\"pending\":[],\"idle_seconds\":37}"
+    }
+  },
+  "sourceToolAssistantUUID": "8f561ed0-d48d-4bbc-a660-9f799433fc20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Agent 回复]: [资源] GPU 分配 6 / 实际跑 6 | Worker 池 2 (GPU 0 / CPU 2: pipeline 修复 + summary 重建)  ## plan_003 summary 空数据根因 + 修复进展  ### 根因确认 ✅ pipeline.py 的 **resume 逻辑 bug**——D016 checkpoint hotfix 导致 plan_0…",
+  "leafUuid": "30589f54-a5a6-4f27-9278-a25e46a1d14e",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix pipeline resume bug and rebuild plan_003 summaries",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-15T16:25:26.582Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Agent is currently processing my previous instruction about the plan_003 summary rebuild. Queue depth is 0 (no pending messages). The current task is about rebuilding the summaries. Good - my previous instruction is being executed.
+
+Now the Agent has reported back with the root cause and fix progress. The two workers are running. I need to:
+
+1. Queue follow-up instructions for after the fixes complete (verify + sync)
+2. Update the user briefly
+
+Since the Agent is busy processing and depth is 0, I can queue one message with the follow-up requirements. But actually, the Agent just reported back to me - the workers are running. 
+
+I should queue the follow-up instructions now so they're ready when the workers finish. The key steps are syncing the pipeline fix to both servers, verifying the rebuilt summaries have the correct generation count and data, and checking whether any running plan_003 experiments need to be restarted with the fixed code. I'm also noting the broader lesson here for the ML experiment guide: resume and restart logic needs to reconstruct aggregated state from raw data sources rather than just tracking new entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30589f54-a5a6-4f27-9278-a25e46a1d14e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4faTdES8VXqMiDmEhn7",
+  "type": "assistant",
+  "uuid": "d917ad5f-4b93-4709-9da0-af0d0319e05e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134KU73oT4KNhNZB9RpMBDE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 253,
+      "cache_read_input_tokens": 41035,
+      "output_tokens": 672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 253,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 672,
+          "cache_read_input_tokens": 41035,
+          "cache_creation_input_tokens": 253,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 253
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-15T16:25:26.586Z_
+
+Agent 正在处理中，queue 空。我发后续要求并通知用户。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d917ad5f-4b93-4709-9da0-af0d0319e05e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4faTdES8VXqMiDmEhn7",
+  "type": "assistant",
+  "uuid": "dc07d772-7736-4f3d-99b5-9047db275cdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134KU73oT4KNhNZB9RpMBDE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 253,
+      "cache_read_input_tokens": 41035,
+      "output_tokens": 672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 253,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 672,
+          "cache_read_input_tokens": 41035,
+          "cache_creation_input_tokens": 253,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 253
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T16:25:31.169Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_main_agent · `toolu_01GDThRAw4iUKGYNt3kvZmX2`</summary>
+
+```json
+{
+  "text": "plan_003 summary 根因确认，修复方向正确。两个 Worker 完成后按顺序做：\n\n1. **验证重建的 summary**：rebuilt summary_0pct.json 应有 gen0-4 共 5 条 entry，summary_50pct.json 应补齐 gen0-2。对比 signals JSONL 行数确认数据一致性。\n\n2. **pipeline.py 修复后 sync 到所有服务器**：cqa1 + 其他有 pipeline.py 的机器都要更新，避免下次重启再触发同一 bug。\n\n3. **回归检查**：修复后在 cqa1 上对一个已完成的 frac 做 dry-run resume（不实际训练），确认 skip 分支正确从 JSONL 重建 summary entry 而非生成空列表。\n\n完成后汇报验证结果。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc07d772-7736-4f3d-99b5-9047db275cdf",
+  "isSidechain": false,
+  "requestId": "req_011Cb4faTdES8VXqMiDmEhn7",
+  "type": "assistant",
+  "uuid": "14b248bb-8dec-461e-b78b-b55029316826",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0134KU73oT4KNhNZB9RpMBDE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 253,
+      "cache_read_input_tokens": 41035,
+      "output_tokens": 672,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 253,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 672,
+          "cache_read_input_tokens": 41035,
+          "cache_creation_input_tokens": 253,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 253
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T16:25:35.326Z_
+
+<details><summary>↩ Tool result · `toolu_01GDThRAw4iUKGYNt3kvZmX2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6f40c12518a0c21d8b4c783b85e\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 指令] Reviewer 确认 plan_003 summary 损坏根因：pipeline 重启覆写，只记录重启后的 gen。JSONL 信号文件完整，需要重建。\\n\\n**立即执行**：写一个 `rebuild_summaries.py` 后处理脚本，放 artifacts/：\\n\\n1. 扫描 cqa1 上 plan_003 输出目录下所有 `sign\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14b248bb-8dec-461e-b78b-b55029316826",
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "8f026c2e-0607-4875-8ee3-5dd6bf069f8a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f40c12518a0c21d8b4c783b85e\\\", \\\"queued\\\": true, \\\"agent_busy\\\": true, \\\"agent_queue_depth\\\": 0, \\\"note\\\": \\\"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\\\", \\\"agent_processing\\\": \\\"[Director 指令] [Director 指令] Reviewer 确认 plan_003 summary 损坏根因：pipeline 重启覆写，只记录重启后的 gen。JSONL 信号文件完整，需要重建。\\\\n\\\\n**立即执行**：写一个 `rebuild_summaries.py` 后处理脚本，放 artifacts/：\\\\n\\\\n1. 扫描 cqa1 上 plan_003 输出目录下所有 `sign\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"message_id\": \"om_x100b6f40c12518a0c21d8b4c783b85e\", \"queued\": true, \"agent_busy\": true, \"agent_queue_depth\": 0, \"note\": \"Agent 正在处理之前的指令，你的消息已排队。Agent 会按顺序处理，当前指令完成后才能看到这条新消息。如果这条消息与之前的指令矛盾，请注意 Agent 可能已经按之前的指令执行了。\", \"agent_processing\": \"[Director 指令] [Director 指令] Reviewer 确认 plan_003 summary 损坏根因：pipeline 重启覆写，只记录重启后的 gen。JSONL 信号文件完整，需要重建。\\n\\n**立即执行**：写一个 `rebuild_summaries.py` 后处理脚本，放 artifacts/：\\n\\n1. 扫描 cqa1 上 plan_003 输出目录下所有 `sign\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "14b248bb-8dec-461e-b78b-b55029316826",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T16:25:41.335Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_reply_to_user · `toolu_01C82cQEAETaVQ1aytUkgH3y`</summary>
+
+```json
+{
+  "text": "**plan_003 summary 空数据根因已定位并修复中**\n\n根因：pipeline.py 的 resume 逻辑 bug——D016 hotfix 触发 plan_003 重启后，skip 分支不从 signals JSONL 重建 summary entry，导致 `all_summaries` 只含重启后实际运行的 gen 数据，覆写了完整的 summary 文件。\n\n好消息：底层 signals JSONL 数据完好，可以重建。已派 2 个 Worker 并行：一个修复 pipeline.py 的 skip 分支逻辑，一个从 JSONL 重建 plan_003 的 summary 文件。修复后会做回归验证 + 同步到所有服务器。\n\n6 张 GPU 上的实验继续正常运行，不受影响。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f026c2e-0607-4875-8ee3-5dd6bf069f8a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fbycJqEz6RF1QL5pfq",
+  "type": "assistant",
+  "uuid": "1bd87150-40d9-4f2a-a00e-91e4278e5903",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0196a2wZCznpL1jvjUmhaWUS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 994,
+      "cache_read_input_tokens": 41288,
+      "output_tokens": 299,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 994,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 299,
+          "cache_read_input_tokens": 41288,
+          "cache_creation_input_tokens": 994,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 994
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T16:25:41.904Z_
+
+<details><summary>↩ Tool result · `toolu_01C82cQEAETaVQ1aytUkgH3y`</summary>
+
+```text
+{"result":"{\"success\": true}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1bd87150-40d9-4f2a-a00e-91e4278e5903",
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "0cc6b56b-a3c7-4d0b-a2d4-62ec1433f77a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true}"
+    }
+  },
+  "sourceToolAssistantUUID": "1bd87150-40d9-4f2a-a00e-91e4278e5903",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-15T16:25:45.465Z_
+
+现在考虑这个教训是否值得沉淀到 ML 实验避坑指南——resume/restart 逻辑覆写聚合数据是个通用 pitfall。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0cc6b56b-a3c7-4d0b-a2d4-62ec1433f77a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fcTboawhYkg3WkECeW",
+  "type": "assistant",
+  "uuid": "1ad079b9-5fe3-4ef7-814e-1fd1d1f3dcf6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017xM6sodLwWpHiaeLDWsdCX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 42282,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 321,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 42282,
+          "cache_creation_input_tokens": 321,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 321
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T16:25:46.072Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DhJBghzokikCMrXCxmJ1iV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ad079b9-5fe3-4ef7-814e-1fd1d1f3dcf6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fcTboawhYkg3WkECeW",
+  "type": "assistant",
+  "uuid": "4a5e646a-4dc5-42f1-95ac-1023559ed72d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017xM6sodLwWpHiaeLDWsdCX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 42282,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 321,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 42282,
+          "cache_creation_input_tokens": 321,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 321
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T16:25:46.090Z_
+
+<details><summary>↩ Tool result · `toolu_01DhJBghzokikCMrXCxmJ1iV`</summary>
+
+```text
+1	---
+2	description: 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。
+3	name: ml-experiment-guide
+4	roles:
+5	- worker
+6	- reviewer
+7	- director
+8	scope: global
+9	tags:
+10	- experiment
+11	- troubleshooting
+12	- best-practice
+13	version: 72
+14	---
+15	
+16	# ML 实验避坑指南
+17	
+18	本指南由各项目 Director 持续维护，记录跨项目通用的实验教训。每条只保留问题模式和规则，不含项目/实验特定信息。
+19	
+20	## Eval 规范
+21	### 必须全量全类别 eval，partial 数据严禁混用
+22	- **问题模式**: 只用部分类别/样本做 mid-eval，与全量 baseline 比较导致错误决策；或 partial eval 报告的指标与全量 eval 结果混用，误判趋势
+23	- **规则**: 所有 eval 必须覆盖完整测试集；partial eval 必须标注 `PARTIAL: X/Y samples`，禁止与全量结果直接比较；partial 和全量数据必须分开记录和比较，partial 数据禁止用于最终决策
+24	
+25	### 长训练必须有 mid-training eval + 持久化
+26	- **问题模式**: 训练 >3000 步无中间 eval，复现失败时无同步点对照，根因诊断退化为猜测
+27	- **规则**: 任何长训练（>3000 steps）必须每 1000 step 至少一次 val eval；eval 数据保留到 JSON/CSV（不仅是日志），确保复现实验时有逐 step 对照基线
+28	
+29	### 相关性评估必须用全量数据或 bootstrap CI
+30	- **问题模式**: 用少量随机采样（如 200 对）计算 Spearman/Pearson 相关系数，因采样方差导致 ρ 被严重高估（实测案例：200 对 ρ=0.57，全量 8840 对 ρ=0.31，高估近一倍），基于此做出错误的 PROCEED 决策
+31	- **规则**: 相关性评估必须用全量数据；若因计算成本必须采样，使用分层抽样 + bootstrap CI（≥1000 次重采样）报告置信区间，不能用点估计做 go/no-go 决策
+32	
+33	### Retrieval 评估：metric 定义 + sanity check
+34	- **问题模式**: (1) 引用 SOTA 数字时混淆 R@1/R@10/R_subset@K 或不同 candidate pool 规模，导致误判自己的结果异常；(2) eval 脚本的 candidate pool 构造错误（target 未排除、query 字段错用、split 泄漏）导致虚高指标
+35	- **规则**: 引用 SOTA 数字时必须带 metric 名 + candidate pool 规模 + 数据集名；评估前先用 5-10 条 case 比对论文公开数字（同一 metric 同一 pool），差距 >2x 才需要停下排查
+36	
+37	### Decoder-only 模型批量 eval 必须用 left-padding
+38	- **问题模式**: 批量推理/eval 时 tokenizer 使用默认 right-padding，decoder-only 架构下 PAD token 出现在输入末尾，破坏 causal attention mask，系统性降低生成质量。实测导致 eval 指标被低估 5-8pp，且 DDP multi-GPU eval 放大此效应（更大 batch = 更多 padding）
+39	- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略
+40	
+41	## Checkpoint 管理
+42	### save_total_limit + save_best_model
+43	- **问题模式**: save_total_limit 过小，训练继续运行后最优 checkpoint 被自动删除，增益全部丧失
+44	- **规则**: save_total_limit ≥ 50；必须配置 save_best_model 将最优 checkpoint 备份到独立目录（永不自动删除）；配置 early_stopping_patience
+45	
+46	## 进程管理
+47	### Kill 训练进程必须杀整个进程组
+48	- **问题模式**: (1) kill 主进程后，accelerate/DDP 的 worker 子进程继续运行，训练实际未停止；(2) tmux/nohup 启动的训练中，kill bash 包裹进程（tmux → bash PID）但 SIGKILL 未传递给 python 子进程，python 继续占 GPU 成为僵尸进程，而监控误报 GPU 空闲
+49	- **规则**: kill 时必须用 `kill -- -&lt;pgid>` 杀整个进程组，或 `kill $(pgrep -P $PID)` 先杀子进程再杀父进程。kill 后必须 `nvidia-smi` 确认目标 GPU 上无残留进程。绝不能只 kill tmux/bash 父 PID 就假设训练已停止
+50	
+51	### 标记实验 DONE 时必须同步 kill 进程
+52	- **问题模式**: Agent 在 registry 中标记实验 DONE（success/failed）但未实际 kill 训练进程，进程继续占用 GPU 跑废模型（如崩溃后 1% accuracy），report.md 误报"GPU 空闲"而实际被僵尸进程占满，排队实验无法启动
+53	- **规则**: 标记实验 DONE 的操作必须原子化：(1) kill 进程 (2) nvidia-smi 确认 GPU 释放 (3) 更新 registry。三步全做完才算 DONE。绝不接受"先标 DONE 再说"
+54	
+55	### 训练脚本必须有 collapse 早停机制
+56	- **问题模式**: 训练过程中 val_acc 崩溃（如从 50%+ 跌到 1%），但脚本无检测逻辑，继续运行数小时浪费 GPU，直到人工发现才 kill
+57	- **规则**: 训练脚本必须实现 collapse 检测：val_acc 相对历史最高值下降超过 30pp 且连续 3 个 eval 不恢复则自动终止训练，退出码设为非零以便监控系统识别
+58	
+59	### 实验状态检测禁止依赖 tmux session 状态，必须用 ps -p PID
+60	- **问题模式**: Agent 通过 tmux session 是否存在来判断训练进程是否仍在运行。tmux session 可因多种原因消失（server 崩溃、手动 kill-session、session 超时清理）而训练 python 进程仍在正常运行。反复导致正在跑的实验被误标为 failed/killed，registry 与实际状态严重不一致，report.md 误报 GPU 空闲
+61	- **规则**: 检测实验是否仍在运行时，必须用 `ps -p &lt;PID> -o pid=` 直接查进程存活状态，辅以 `nvidia-smi` 确认 GPU 占用。禁止以 tmux session 存在与否作为进程存活的判断依据。状态检测与操作前验证同等重要——错误的状态检测会级联导致错误的 registry 更新、错误的资源报告、错误的实验调度
+62	
+63	### 操作进程前必须 SSH 验证实际状态
+64	- **问题模式**: (1) 提交重跑时未验证旧进程是否已死、目标 GPU 是否被占用，导致新旧进程冲突；(2) registry/report 标记实验为 failed/orphan，Agent 未验证进程实际状态就直接 kill，误杀正常训练中的进程（进程实际在正常出指标）；(3) 实验因数据路径错误失败后未验证数据是否存在就盲目重试
+65	- **规则**: 对进程执行任何操作（kill、重提交、标记状态）前，必须 ssh_read_only 验证：(1) `ps -p &lt;PID>` 确认进程实际存活状态 (2) `nvidia-smi` 确认目标 GPU 占用情况 (3) 关键输入路径存在。**元数据（registry/report/cron 报告）不能替代实际状态验证**——registry 说 failed 不等于进程已死，report 说空闲不等于 GPU 真空闲。验证全通过才能操作
+66	
+67	### 训练提交必须走 job submission 系统，禁止手动绕过
+68	- **问题模式**: 通过手动 tmux/nohup 直接 `python train.py` 绕过 job submission 系统（如 `submit_training_job`），导致：(1) 环境未正确初始化（conda activate 未执行、工作目录错误），训练 silent failure 或提前退出但 exit_code=0；(2) 日志未对接监控 hook，完成事件无法正确触发或被旧残留日志误触发；(3) cron 监控无法追踪真实完成时间和状态
+69	- **规则**: 所有训练实验必须通过 job submission 系统提交（自动处理环境激活、目录切换、日志 tee、监控注册）。禁止手动 tmux/nohup 直接启动训练脚本。手动修复场景（如 kill 后重提交）也必须通过 submission 系统，不能为了"快"而绕过
+70	
+71	### 高频迭代库 API 启动前 smoke test
+72	- **问题模式**: vLLM/transformers/peft 等高频迭代库的 API 在脚本写好到执行之间漂移（如 vLLM 0.19 移除 `LLM(device=...)`、transformers Trainer 参数重命名、peft 接口签名变更），nohup 后才崩溃，浪费一次完整 launcher 流程 + GPU 占位 + cron 周期
+73	- **规则**: worker 在 nohup 启动前必须先跑 `python -c "import lib; print(lib.__version__); from lib import 关键类; import inspect; print(inspect.signature(关键类.__init__))"` 验签，把签名与脚本里的调用比对。不一致就先 patch 脚本再启动，签名输出和 patch diff 都写入 registry.notes。绝不接受"先启动看看"
+74	
+75	## 消融实验
+76	### 消融脚本必须与 baseline 逐项对齐 augmentation/regularization
+77	- **问题模式**: 消融实验（ablation）从模板或新建脚本创建时，augmentation 和 regularization 参数（mixup, cutmix, label_smoothing, drop_path, weight_decay 等）与 baseline 不一致。消融变量的效果被 augmentation 差异淹没，产生数个甚至十几个 pp 的虚假差异，且过拟合模式（train-val gap）完全吻合 augmentation 差异而非消融变量
+78	- **规则**: 创建消融脚本时，必须从 baseline 脚本复制并仅修改消融目标参数；提交前逐行 diff 确认只有消融变量不同；提交审批时附上 baseline 和消融脚本的 augmentation 参数对照表。Reviewer 审查消融实验时必须交叉核对 augmentation 设置
+79	
+80	## 资源与性能
+81	### OOM 处理优先级
+82	- **问题模式**: GPU 显存不足导致训练崩溃
+83	- **规则**: 优先降 batch_size + 调 gradient_accumulation_steps 保持等效 batch；其次降 max_length / 换更小模型
+84	
+85	### 训练脚本禁止硬编码 CUDA_VISIBLE_DEVICES
+86	- **问题模式**: 训练脚本内部硬编码 `os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"` 等语句，覆盖 job scheduler/launcher 通过环境变量设置的 GPU 隔离。导致进程实际跑到非预期 GPU 上，多实验在同一物理 GPU 上冲突，而 scheduler 层面无感知——监控报告 GPU 分配正确但实际已冲突
+87	- **规则**: GPU 分配由 job scheduler/launcher 统一管理（通过启动时设 CUDA_VISIBLE_DEVICES 环境变量）。训练脚本内部禁止覆盖 CUDA_VISIBLE_DEVICES。如需限制 GPU 范围，在 launcher 配置或提交命令中设置，不在 .py 文件中硬编码。Code review 时 `grep -r "CUDA_VISIBLE_DEVICES" *.py` 发现硬编码必须移除
+88	
+89	## 决策纪律
+90	### 数据/eval 错误优先于技术结论
+91	- **问题模式**: 因 eval 数据错误（坑 #eval）得出"方法无效"的技术结论（如误判为 reward hacking），导致过早放弃有效方向
+92	- **规则**: 诊断实验问题时，必须先排除 eval/数据层面的错误，确认数据可靠后再下技术结论
+93	
+94	### 门控/警戒线触发后必须执行，不依赖主观判断
+95	- **问题模式**: 设定了明确的数值门控（如"avg R@10 < 17% 则暂停"），但 eval 触发后因"涨了一点""趋势向好"等 confirmation bias 继续放行，忽视绝对值与门控的差距，浪费 GPU 时间
+96	- **规则**: 每次 eval 必须先与门控/警戒线比较，触发即执行预定动作（暂停/排查/kill），不允许"再等一个 eval 看看"；讨论趋势只在门控未触发时有意义
+97	
+98	### 复现实验必须确认纯净启动
+99	- **问题模式**: 复现失败诊断中遗漏启动命令含 --resume-from-checkpoint，所有分析假设从 step 0 开始，optimizer/scheduler/sampler 状态污染被忽视，导致根因定位偏离数小时
+100	- **规则**: 复现失败诊断的第一条必查项：启动命令是否含 --resume / --pretrained / --init-from 等非纯净启动参数；若有 resume，必须追溯 source checkpoint 的完整来源（何时生成、用什么配置、是否完整训练产物）
+101	
+102	### 重训/复现必须显式验证所有关键超参
+103	- **问题模式**: 重训实验声称"identical config"，但使用了不同脚本/不同默认值，关键超参（如 gradient_accumulation_steps）静默漂移，导致 effective batch size 差一倍，性能差距数个百分点，排查耗时数小时
+104	- **规则**: 重训/复现启动前必须 (1) 显式打印所有关键超参到日志首行（batch_size, grad_accum, lr, warmup, max_steps, LoRA config）(2) 与原实验日志逐项比对 (3) 不同脚本间不能假设默认值相同——必须显式传参覆盖
+105	
+106	## 持久化与解耦
+107	### generation 与 evaluation 必须解耦持久化
+108	
+109	- **问题模式**: ML 评估 pipeline 把 generation 与 evaluation 写在同一个 long-running 脚本里，eval 库崩溃导致数小时 GPU 生成丢失
+110	- **规则**: 任何 generation pipeline 必须在生成阶段结束前持久化 manifest + sample 文件到磁盘，evaluation 走独立可重入入口读盘，不允许 in-memory pass-through
+111	
+112	## 训练 log 卫生
+113	### 训练 log 文件追加共享导致历史抽取错乱
+114	
+115	**问题模式**：同一 log 文件被多次训练进程追加共享时，旧进程残留的 stdout 行会污染后续 grep 抽取。
+116	
+117	**规则**：
+118	1. 训练每次启动用新 log 文件（带 timestamp/PID 后缀）
+119	2. 任何 eval/best 指标读取必须从 callback 写的 JSON 文件读，禁止 grep 训练日志文本
+120	3. callback 写 JSON 若是 OVERWRITE 模式，resume 必须先 load 历史 history/best
+121	
+122	## 模型版本
+123	### 使用外部模型（API 或开源）前必须验证版本时效性
+124	- **问题模式**: 代码中使用过时的模型 ID（如 gpt-4o、claude-3-5-sonnet、gemini-1.5-pro、Llama-3.1），这些模型可能已退役、降级、或有性价比显著更优的替代。Agent 的训练数据天然滞后，凭记忆选模型大概率选到旧版
+125	- **规则**: 首次在项目中调用某厂商的 LLM API 或选用某系列开源模型时，必须 WebSearch 确认当前最新可用版本和推荐型号，将结果记入 memory.md（厂商 + 型号 + 确认日期）。后续同项目可参考 memory.md 中已验证的版本，但注意这只是历史验证记录、不是白名单——可能已过时或有误，有疑问时重新 WebSearch 确认。例外：用户或实验需求明确指定模型版本（复现、对比、演进分析等）
+126	
+127	## 论文写作
+128	### 论文数字必须从 eval 输出程序化提取
+129	- **问题模式**: 手动从 eval 输出抄写数字到 LaTeX，导致系统性偏差——所有不一致都朝"看起来更好"方向偏移（如 ratio 从 >1 写成 <1 跨越分界线，accuracy 多舍少入）。confirmation bias 使错误不易被发现
+130	- **规则**: 论文中的每个实验数字必须通过脚本从 eval JSON 输出文件直接提取并生成 LaTeX 宏/表格行。禁止手动抄写。修改数字后必须与源 JSON 逐一核对。Reviewer 审查论文数字时必须交叉比对 eval 输出文件
+131	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a5e646a-4dc5-42f1-95ac-1023559ed72d",
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "9ca859c9-33bf-44c8-90d1-a30130b66311",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md",
+      "content": "---\ndescription: 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。\nname: ml-experiment-guide\nroles:\n- worker\n- reviewer\n- director\nscope: global\ntags:\n- experiment\n- troubleshooting\n- best-practice\nversion: 72\n---\n\n# ML 实验避坑指南\n\n本指南由各项目 Director 持续维护，记录跨项目通用的实验教训。每条只保留问题模式和规则，不含项目/实验特定信息。\n\n## Eval 规范\n### 必须全量全类别 eval，partial 数据严禁混用\n- **问题模式**: 只用部分类别/样本做 mid-eval，与全量 baseline 比较导致错误决策；或 partial eval 报告的指标与全量 eval 结果混用，误判趋势\n- **规则**: 所有 eval 必须覆盖完整测试集；partial eval 必须标注 `PARTIAL: X/Y samples`，禁止与全量结果直接比较；partial 和全量数据必须分开记录和比较，partial 数据禁止用于最终决策\n\n### 长训练必须有 mid-training eval + 持久化\n- **问题模式**: 训练 >3000 步无中间 eval，复现失败时无同步点对照，根因诊断退化为猜测\n- **规则**: 任何长训练（>3000 steps）必须每 1000 step 至少一次 val eval；eval 数据保留到 JSON/CSV（不仅是日志），确保复现实验时有逐 step 对照基线\n\n### 相关性评估必须用全量数据或 bootstrap CI\n- **问题模式**: 用少量随机采样（如 200 对）计算 Spearman/Pearson 相关系数，因采样方差导致 ρ 被严重高估（实测案例：200 对 ρ=0.57，全量 8840 对 ρ=0.31，高估近一倍），基于此做出错误的 PROCEED 决策\n- **规则**: 相关性评估必须用全量数据；若因计算成本必须采样，使用分层抽样 + bootstrap CI（≥1000 次重采样）报告置信区间，不能用点估计做 go/no-go 决策\n\n### Retrieval 评估：metric 定义 + sanity check\n- **问题模式**: (1) 引用 SOTA 数字时混淆 R@1/R@10/R_subset@K 或不同 candidate pool 规模，导致误判自己的结果异常；(2) eval 脚本的 candidate pool 构造错误（target 未排除、query 字段错用、split 泄漏）导致虚高指标\n- **规则**: 引用 SOTA 数字时必须带 metric 名 + candidate pool 规模 + 数据集名；评估前先用 5-10 条 case 比对论文公开数字（同一 metric 同一 pool），差距 >2x 才需要停下排查\n\n### Decoder-only 模型批量 eval 必须用 left-padding\n- **问题模式**: 批量推理/eval 时 tokenizer 使用默认 right-padding，decoder-only 架构下 PAD token 出现在输入末尾，破坏 causal attention mask，系统性降低生成质量。实测导致 eval 指标被低估 5-8pp，且 DDP multi-GPU eval 放大此效应（更大 batch = 更多 padding）\n- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n\n## Checkpoint 管理\n### save_total_limit + save_best_model\n- **问题模式**: save_total_limit 过小，训练继续运行后最优 checkpoint 被自动删除，增益全部丧失\n- **规则**: save_total_limit ≥ 50；必须配置 save_best_model 将最优 checkpoint 备份到独立目录（永不自动删除）；配置 early_stopping_patience\n\n## 进程管理\n### Kill 训练进程必须杀整个进程组\n- **问题模式**: (1) kill 主进程后，accelerate/DDP 的 worker 子进程继续运行，训练实际未停止；(2) tmux/nohup 启动的训练中，kill bash 包裹进程（tmux → bash PID）但 SIGKILL 未传递给 python 子进程，python 继续占 GPU 成为僵尸进程，而监控误报 GPU 空闲\n- **规则**: kill 时必须用 `kill -- -&lt;pgid>` 杀整个进程组，或 `kill $(pgrep -P $PID)` 先杀子进程再杀父进程。kill 后必须 `nvidia-smi` 确认目标 GPU 上无残留进程。绝不能只 kill tmux/bash 父 PID 就假设训练已停止\n\n### 标记实验 DONE 时必须同步 kill 进程\n- **问题模式**: Agent 在 registry 中标记实验 DONE（success/failed）但未实际 kill 训练进程，进程继续占用 GPU 跑废模型（如崩溃后 1% accuracy），report.md 误报\"GPU 空闲\"而实际被僵尸进程占满，排队实验无法启动\n- **规则**: 标记实验 DONE 的操作必须原子化：(1) kill 进程 (2) nvidia-smi 确认 GPU 释放 (3) 更新 registry。三步全做完才算 DONE。绝不接受\"先标 DONE 再说\"\n\n### 训练脚本必须有 collapse 早停机制\n- **问题模式**: 训练过程中 val_acc 崩溃（如从 50%+ 跌到 1%），但脚本无检测逻辑，继续运行数小时浪费 GPU，直到人工发现才 kill\n- **规则**: 训练脚本必须实现 collapse 检测：val_acc 相对历史最高值下降超过 30pp 且连续 3 个 eval 不恢复则自动终止训练，退出码设为非零以便监控系统识别\n\n### 实验状态检测禁止依赖 tmux session 状态，必须用 ps -p PID\n- **问题模式**: Agent 通过 tmux session 是否存在来判断训练进程是否仍在运行。tmux session 可因多种原因消失（server 崩溃、手动 kill-session、session 超时清理）而训练 python 进程仍在正常运行。反复导致正在跑的实验被误标为 failed/killed，registry 与实际状态严重不一致，report.md 误报 GPU 空闲\n- **规则**: 检测实验是否仍在运行时，必须用 `ps -p &lt;PID> -o pid=` 直接查进程存活状态，辅以 `nvidia-smi` 确认 GPU 占用。禁止以 tmux session 存在与否作为进程存活的判断依据。状态检测与操作前验证同等重要——错误的状态检测会级联导致错误的 registry 更新、错误的资源报告、错误的实验调度\n\n### 操作进程前必须 SSH 验证实际状态\n- **问题模式**: (1) 提交重跑时未验证旧进程是否已死、目标 GPU 是否被占用，导致新旧进程冲突；(2) registry/report 标记实验为 failed/orphan，Agent 未验证进程实际状态就直接 kill，误杀正常训练中的进程（进程实际在正常出指标）；(3) 实验因数据路径错误失败后未验证数据是否存在就盲目重试\n- **规则**: 对进程执行任何操作（kill、重提交、标记状态）前，必须 ssh_read_only 验证：(1) `ps -p &lt;PID>` 确认进程实际存活状态 (2) `nvidia-smi` 确认目标 GPU 占用情况 (3) 关键输入路径存在。**元数据（registry/report/cron 报告）不能替代实际状态验证**——registry 说 failed 不等于进程已死，report 说空闲不等于 GPU 真空闲。验证全通过才能操作\n\n### 训练提交必须走 job submission 系统，禁止手动绕过\n- **问题模式**: 通过手动 tmux/nohup 直接 `python train.py` 绕过 job submission 系统（如 `submit_training_job`），导致：(1) 环境未正确初始化（conda activate 未执行、工作目录错误），训练 silent failure 或提前退出但 exit_code=0；(2) 日志未对接监控 hook，完成事件无法正确触发或被旧残留日志误触发；(3) cron 监控无法追踪真实完成时间和状态\n- **规则**: 所有训练实验必须通过 job submission 系统提交（自动处理环境激活、目录切换、日志 tee、监控注册）。禁止手动 tmux/nohup 直接启动训练脚本。手动修复场景（如 kill 后重提交）也必须通过 submission 系统，不能为了\"快\"而绕过\n\n### 高频迭代库 API 启动前 smoke test\n- **问题模式**: vLLM/transformers/peft 等高频迭代库的 API 在脚本写好到执行之间漂移（如 vLLM 0.19 移除 `LLM(device=...)`、transformers Trainer 参数重命名、peft 接口签名变更），nohup 后才崩溃，浪费一次完整 launcher 流程 + GPU 占位 + cron 周期\n- **规则**: worker 在 nohup 启动前必须先跑 `python -c \"import lib; print(lib.__version__); from lib import 关键类; import inspect; print(inspect.signature(关键类.__init__))\"` 验签，把签名与脚本里的调用比对。不一致就先 patch 脚本再启动，签名输出和 patch diff 都写入 registry.notes。绝不接受\"先启动看看\"\n\n## 消融实验\n### 消融脚本必须与 baseline 逐项对齐 augmentation/regularization\n- **问题模式**: 消融实验（ablation）从模板或新建脚本创建时，augmentation 和 regularization 参数（mixup, cutmix, label_smoothing, drop_path, weight_decay 等）与 baseline 不一致。消融变量的效果被 augmentation 差异淹没，产生数个甚至十几个 pp 的虚假差异，且过拟合模式（train-val gap）完全吻合 augmentation 差异而非消融变量\n- **规则**: 创建消融脚本时，必须从 baseline 脚本复制并仅修改消融目标参数；提交前逐行 diff 确认只有消融变量不同；提交审批时附上 baseline 和消融脚本的 augmentation 参数对照表。Reviewer 审查消融实验时必须交叉核对 augmentation 设置\n\n## 资源与性能\n### OOM 处理优先级\n- **问题模式**: GPU 显存不足导致训练崩溃\n- **规则**: 优先降 batch_size + 调 gradient_accumulation_steps 保持等效 batch；其次降 max_length / 换更小模型\n\n### 训练脚本禁止硬编码 CUDA_VISIBLE_DEVICES\n- **问题模式**: 训练脚本内部硬编码 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0,1\"` 等语句，覆盖 job scheduler/launcher 通过环境变量设置的 GPU 隔离。导致进程实际跑到非预期 GPU 上，多实验在同一物理 GPU 上冲突，而 scheduler 层面无感知——监控报告 GPU 分配正确但实际已冲突\n- **规则**: GPU 分配由 job scheduler/launcher 统一管理（通过启动时设 CUDA_VISIBLE_DEVICES 环境变量）。训练脚本内部禁止覆盖 CUDA_VISIBLE_DEVICES。如需限制 GPU 范围，在 launcher 配置或提交命令中设置，不在 .py 文件中硬编码。Code review 时 `grep -r \"CUDA_VISIBLE_DEVICES\" *.py` 发现硬编码必须移除\n\n## 决策纪律\n### 数据/eval 错误优先于技术结论\n- **问题模式**: 因 eval 数据错误（坑 #eval）得出\"方法无效\"的技术结论（如误判为 reward hacking），导致过早放弃有效方向\n- **规则**: 诊断实验问题时，必须先排除 eval/数据层面的错误，确认数据可靠后再下技术结论\n\n### 门控/警戒线触发后必须执行，不依赖主观判断\n- **问题模式**: 设定了明确的数值门控（如\"avg R@10 < 17% 则暂停\"），但 eval 触发后因\"涨了一点\"\"趋势向好\"等 confirmation bias 继续放行，忽视绝对值与门控的差距，浪费 GPU 时间\n- **规则**: 每次 eval 必须先与门控/警戒线比较，触发即执行预定动作（暂停/排查/kill），不允许\"再等一个 eval 看看\"；讨论趋势只在门控未触发时有意义\n\n### 复现实验必须确认纯净启动\n- **问题模式**: 复现失败诊断中遗漏启动命令含 --resume-from-checkpoint，所有分析假设从 step 0 开始，optimizer/scheduler/sampler 状态污染被忽视，导致根因定位偏离数小时\n- **规则**: 复现失败诊断的第一条必查项：启动命令是否含 --resume / --pretrained / --init-from 等非纯净启动参数；若有 resume，必须追溯 source checkpoint 的完整来源（何时生成、用什么配置、是否完整训练产物）\n\n### 重训/复现必须显式验证所有关键超参\n- **问题模式**: 重训实验声称\"identical config\"，但使用了不同脚本/不同默认值，关键超参（如 gradient_accumulation_steps）静默漂移，导致 effective batch size 差一倍，性能差距数个百分点，排查耗时数小时\n- **规则**: 重训/复现启动前必须 (1) 显式打印所有关键超参到日志首行（batch_size, grad_accum, lr, warmup, max_steps, LoRA config）(2) 与原实验日志逐项比对 (3) 不同脚本间不能假设默认值相同——必须显式传参覆盖\n\n## 持久化与解耦\n### generation 与 evaluation 必须解耦持久化\n\n- **问题模式**: ML 评估 pipeline 把 generation 与 evaluation 写在同一个 long-running 脚本里，eval 库崩溃导致数小时 GPU 生成丢失\n- **规则**: 任何 generation pipeline 必须在生成阶段结束前持久化 manifest + sample 文件到磁盘，evaluation 走独立可重入入口读盘，不允许 in-memory pass-through\n\n## 训练 log 卫生\n### 训练 log 文件追加共享导致历史抽取错乱\n\n**问题模式**：同一 log 文件被多次训练进程追加共享时，旧进程残留的 stdout 行会污染后续 grep 抽取。\n\n**规则**：\n1. 训练每次启动用新 log 文件（带 timestamp/PID 后缀）\n2. 任何 eval/best 指标读取必须从 callback 写的 JSON 文件读，禁止 grep 训练日志文本\n3. callback 写 JSON 若是 OVERWRITE 模式，resume 必须先 load 历史 history/best\n\n## 模型版本\n### 使用外部模型（API 或开源）前必须验证版本时效性\n- **问题模式**: 代码中使用过时的模型 ID（如 gpt-4o、claude-3-5-sonnet、gemini-1.5-pro、Llama-3.1），这些模型可能已退役、降级、或有性价比显著更优的替代。Agent 的训练数据天然滞后，凭记忆选模型大概率选到旧版\n- **规则**: 首次在项目中调用某厂商的 LLM API 或选用某系列开源模型时，必须 WebSearch 确认当前最新可用版本和推荐型号，将结果记入 memory.md（厂商 + 型号 + 确认日期）。后续同项目可参考 memory.md 中已验证的版本，但注意这只是历史验证记录、不是白名单——可能已过时或有误，有疑问时重新 WebSearch 确认。例外：用户或实验需求明确指定模型版本（复现、对比、演进分析等）\n\n## 论文写作\n### 论文数字必须从 eval 输出程序化提取\n- **问题模式**: 手动从 eval 输出抄写数字到 LaTeX，导致系统性偏差——所有不一致都朝\"看起来更好\"方向偏移（如 ratio 从 >1 写成 <1 跨越分界线，accuracy 多舍少入）。confirmation bias 使错误不易被发现\n- **规则**: 论文中的每个实验数字必须通过脚本从 eval JSON 输出文件直接提取并生成 LaTeX 宏/表格行。禁止手动抄写。修改数字后必须与源 JSON 逐一核对。Reviewer 审查论文数字时必须交叉比对 eval 输出文件\n",
+      "numLines": 131,
+      "startLine": 1,
+      "totalLines": 131
+    }
+  },
+  "sourceToolAssistantUUID": "4a5e646a-4dc5-42f1-95ac-1023559ed72d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Agent 回复]: [资源] GPU 分配 6 / 实际跑 6 | Worker 池 2 (GPU 0 / CPU 2: pipeline 修复 + summary 重建)  ## plan_003 summary 空数据根因 + 修复进展  ### 根因确认 ✅ pipeline.py 的 **resume 逻辑 bug**——D016 checkpoint hotfix 导致 plan_0…",
+  "leafUuid": "9ca859c9-33bf-44c8-90d1-a30130b66311",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix pipeline resume bug and rebuild plan_003 summaries",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-15T16:26:00.212Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The guide already has a "持久化与解耦" section and a "训练 log 卫生" section. The new lesson is about resume/restart logic destroying aggregated state. Let me check if there's something similar already...
+
+Looking through the guide:
+- "Checkpoint 管理" has save_total_limit + save_best_model
+- "训练 log 卫生" covers log file append sharing
+- "持久化与解耦" covers generation vs evaluation decoupling
+
+The new lesson is different: it's about **resume logic overwriting aggregated data** (summaries) instead of reconstructing from raw data (JSONL signals). This is a distinct pattern that's not covered.
+
+
+I think "持久化与解耦" is the right home for this since it's fundamentally about how resume logic interacts with persisted state. Looking at the current distribution, "持久化与解耦" only has one entry, so adding this would round out that section nicely.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ca859c9-33bf-44c8-90d1-a30130b66311",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fcmoRrwBFKg6X7rzZn",
+  "type": "assistant",
+  "uuid": "f4581b95-7f59-401a-aacf-7d53a7c09934",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc1g6qzxCmzr6EdfuHkmFY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5808,
+      "cache_read_input_tokens": 42603,
+      "output_tokens": 637,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 637,
+          "cache_read_input_tokens": 42603,
+          "cache_creation_input_tokens": 5808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-15T16:26:00.572Z_
+
+指南中没有覆盖 resume 逻辑覆写聚合数据这个 pattern。值得沉淀。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4581b95-7f59-401a-aacf-7d53a7c09934",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fcmoRrwBFKg6X7rzZn",
+  "type": "assistant",
+  "uuid": "1b3df62a-e298-4194-b508-e2dd69f462e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc1g6qzxCmzr6EdfuHkmFY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5808,
+      "cache_read_input_tokens": 42603,
+      "output_tokens": 637,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 637,
+          "cache_read_input_tokens": 42603,
+          "cache_creation_input_tokens": 5808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T16:26:00.969Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QH3QQnRUmHXJ7XqJqurT6S`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_skill",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b3df62a-e298-4194-b508-e2dd69f462e2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fcmoRrwBFKg6X7rzZn",
+  "type": "assistant",
+  "uuid": "8336f235-c826-4dc1-afd2-160aec30d177",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc1g6qzxCmzr6EdfuHkmFY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5808,
+      "cache_read_input_tokens": 42603,
+      "output_tokens": 637,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 637,
+          "cache_read_input_tokens": 42603,
+          "cache_creation_input_tokens": 5808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T16:26:00.973Z_
+
+<details><summary>↩ Tool result · `toolu_01QH3QQnRUmHXJ7XqJqurT6S`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_skill"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8336f235-c826-4dc1-afd2-160aec30d177",
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "cc2f87d9-dace-4899-b228-05fcf90a05e4",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__update_skill"
+    ],
+    "query": "select:mcp__agent-ml-research__update_skill",
+    "total_deferred_tools": 92
+  },
+  "sourceToolAssistantUUID": "8336f235-c826-4dc1-afd2-160aec30d177",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-15T16:26:01.027Z_
+
+```json
+{
+  "parentUuid": "cc2f87d9-dace-4899-b228-05fcf90a05e4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f6b52547-d16d-4033-85b6-bc22edfa1dba",
+  "timestamp": "2026-05-15T16:26:01.027Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T16:27:40.678Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_skill · `toolu_01C3dvAcngfNqZ6R9EQvQ4Gi`</summary>
+
+```json
+{
+  "name": "ml-experiment-guide",
+  "body": "# ML 实验避坑指南\n\n本指南由各项目 Director 持续维护，记录跨项目通用的实验教训。每条只保留问题模式和规则，不含项目/实验特定信息。\n\n## Eval 规范\n### 必须全量全类别 eval，partial 数据严禁混用\n- **问题模式**: 只用部分类别/样本做 mid-eval，与全量 baseline 比较导致错误决策；或 partial eval 报告的指标与全量 eval 结果混用，误判趋势\n- **规则**: 所有 eval 必须覆盖完整测试集；partial eval 必须标注 `PARTIAL: X/Y samples`，禁止与全量结果直接比较；partial 和全量数据必须分开记录和比较，partial 数据禁止用于最终决策\n\n### 长训练必须有 mid-training eval + 持久化\n- **问题模式**: 训练 >3000 步无中间 eval，复现失败时无同步点对照，根因诊断退化为猜测\n- **规则**: 任何长训练（>3000 steps）必须每 1000 step 至少一次 val eval；eval 数据保留到 JSON/CSV（不仅是日志），确保复现实验时有逐 step 对照基线\n\n### 相关性评估必须用全量数据或 bootstrap CI\n- **问题模式**: 用少量随机采样（如 200 对）计算 Spearman/Pearson 相关系数，因采样方差导致 ρ 被严重高估（实测案例：200 对 ρ=0.57，全量 8840 对 ρ=0.31，高估近一倍），基于此做出错误的 PROCEED 决策\n- **规则**: 相关性评估必须用全量数据；若因计算成本必须采样，使用分层抽样 + bootstrap CI（≥1000 次重采样）报告置信区间，不能用点估计做 go/no-go 决策\n\n### Retrieval 评估：metric 定义 + sanity check\n- **问题模式**: (1) 引用 SOTA 数字时混淆 R@1/R@10/R_subset@K 或不同 candidate pool 规模，导致误判自己的结果异常；(2) eval 脚本的 candidate pool 构造错误（target 未排除、query 字段错用、split 泄漏）导致虚高指标\n- **规则**: 引用 SOTA 数字时必须带 metric 名 + candidate pool 规模 + 数据集名；评估前先用 5-10 条 case 比对论文公开数字（同一 metric 同一 pool），差距 >2x 才需要停下排查\n\n### Decoder-only 模型批量 eval 必须用 left-padding\n- **问题模式**: 批量推理/eval 时 tokenizer 使用默认 right-padding，decoder-only 架构下 PAD token 出现在输入末尾，破坏 causal attention mask，系统性降低生成质量。实测导致 eval 指标被低估 5-8pp，且 DDP multi-GPU eval 放大此效应（更大 batch = 更多 padding）\n- **规则**: 任何 decoder-only 模型（GPT、LLaMA、Qwen 等）的批量生成/eval 前必须设置 `tokenizer.padding_side = 'left'`；运行时如果出现 `right-padding was detected` 警告必须立即修复，不能忽略\n\n## Checkpoint 管理\n### save_total_limit + save_best_model\n- **问题模式**: save_total_limit 过小，训练继续运行后最优 checkpoint 被自动删除，增益全部丧失\n- **规则**: save_total_limit ≥ 50；必须配置 save_best_model 将最优 checkpoint 备份到独立目录（永不自动删除）；配置 early_stopping_patience\n\n## 进程管理\n### Kill 训练进程必须杀整个进程组\n- **问题模式**: (1) kill 主进程后，accelerate/DDP 的 worker 子进程继续运行，训练实际未停止；(2) tmux/nohup 启动的训练中，kill bash 包裹进程（tmux → bash PID）但 SIGKILL 未传递给 python 子进程，python 继续占 GPU 成为僵尸进程，而监控误报 GPU 空闲\n- **规则**: kill 时必须用 `kill -- -&lt;pgid>` 杀整个进程组，或 `kill $(pgrep -P $PID)` 先杀子进程再杀父进程。kill 后必须 `nvidia-smi` 确认目标 GPU 上无残留进程。绝不能只 kill tmux/bash 父 PID 就假设训练已停止\n\n### 标记实验 DONE 时必须同步 kill 进程\n- **问题模式**: Agent 在 registry 中标记实验 DONE（success/failed）但未实际 kill 训练进程，进程继续占用 GPU 跑废模型（如崩溃后 1% accuracy），report.md 误报\"GPU 空闲\"而实际被僵尸进程占满，排队实验无法启动\n- **规则**: 标记实验 DONE 的操作必须原子化：(1) kill 进程 (2) nvidia-smi 确认 GPU 释放 (3) 更新 registry。三步全做完才算 DONE。绝不接受\"先标 DONE 再说\"\n\n### 训练脚本必须有 collapse 早停机制\n- **问题模式**: 训练过程中 val_acc 崩溃（如从 50%+ 跌到 1%），但脚本无检测逻辑，继续运行数小时浪费 GPU，直到人工发现才 kill\n- **规则**: 训练脚本必须实现 collapse 检测：val_acc 相对历史最高值下降超过 30pp 且连续 3 个 eval 不恢复则自动终止训练，退出码设为非零以便监控系统识别\n\n### 实验状态检测禁止依赖 tmux session 状态，必须用 ps -p PID\n- **问题模式**: Agent 通过 tmux session 是否存在来判断训练进程是否仍在运行。tmux session 可因多种原因消失（server 崩溃、手动 kill-session、session 超时清理）而训练 python 进程仍在正常运行。反复导致正在跑的实验被误标为 failed/killed，registry 与实际状态严重不一致，report.md 误报 GPU 空闲\n- **规则**: 检测实验是否仍在运行时，必须用 `ps -p &lt;PID> -o pid=` 直接查进程存活状态，辅以 `nvidia-smi` 确认 GPU 占用。禁止以 tmux session 存在与否作为进程存活的判断依据。状态检测与操作前验证同等重要——错误的状态检测会级联导致错误的 registry 更新、错误的资源报告、错误的实验调度\n\n### 操作进程前必须 SSH 验证实际状态\n- **问题模式**: (1) 提交重跑时未验证旧进程是否已死、目标 GPU 是否被占用，导致新旧进程冲突；(2) registry/report 标记实验为 failed/orphan，Agent 未验证进程实际状态就直接 kill，误杀正常训练中的进程（进程实际在正常出指标）；(3) 实验因数据路径错误失败后未验证数据是否存在就盲目重试\n- **规则**: 对进程执行任何操作（kill、重提交、标记状态）前，必须 ssh_read_only 验证：(1) `ps -p &lt;PID>` 确认进程实际存活状态 (2) `nvidia-smi` 确认目标 GPU 占用情况 (3) 关键输入路径存在。**元数据（registry/report/cron 报告）不能替代实际状态验证**——registry 说 failed 不等于进程已死，report 说空闲不等于 GPU 真空闲。验证全通过才能操作\n\n### 训练提交必须走 job submission 系统，禁止手动绕过\n- **问题模式**: 通过手动 tmux/nohup 直接 `python train.py` 绕过 job submission 系统（如 `submit_training_job`），导致：(1) 环境未正确初始化（conda activate 未执行、工作目录错误），训练 silent failure 或提前退出但 exit_code=0；(2) 日志未对接监控 hook，完成事件无法正确触发或被旧残留日志误触发；(3) cron 监控无法追踪真实完成时间和状态\n- **规则**: 所有训练实验必须通过 job submission 系统提交（自动处理环境激活、目录切换、日志 tee、监控注册）。禁止手动 tmux/nohup 直接启动训练脚本。手动修复场景（如 kill 后重提交）也必须通过 submission 系统，不能为了\"快\"而绕过\n\n### 高频迭代库 API 启动前 smoke test\n- **问题模式**: vLLM/transformers/peft 等高频迭代库的 API 在脚本写好到执行之间漂移（如 vLLM 0.19 移除 `LLM(device=...)`、transformers Trainer 参数重命名、peft 接口签名变更），nohup 后才崩溃，浪费一次完整 launcher 流程 + GPU 占位 + cron 周期\n- **规则**: worker 在 nohup 启动前必须先跑 `python -c \"import lib; print(lib.__version__); from lib import 关键类; import inspect; print(inspect.signature(关键类.__init__))\"` 验签，把签名与脚本里的调用比对。不一致就先 patch 脚本再启动，签名输出和 patch diff 都写入 registry.notes。绝不接受\"先启动看看\"\n\n## 消融实验\n### 消融脚本必须与 baseline 逐项对齐 augmentation/regularization\n- **问题模式**: 消融实验（ablation）从模板或新建脚本创建时，augmentation 和 regularization 参数（mixup, cutmix, label_smoothing, drop_path, weight_decay 等）与 baseline 不一致。消融变量的效果被 augmentation 差异淹没，产生数个甚至十几个 pp 的虚假差异，且过拟合模式（train-val gap）完全吻合 augmentation 差异而非消融变量\n- **规则**: 创建消融脚本时，必须从 baseline 脚本复制并仅修改消融目标参数；提交前逐行 diff 确认只有消融变量不同；提交审批时附上 baseline 和消融脚本的 augmentation 参数对照表。Reviewer 审查消融实验时必须交叉核对 augmentation 设置\n\n## 资源与性能\n### OOM 处理优先级\n- **问题模式**: GPU 显存不足导致训练崩溃\n- **规则**: 优先降 batch_size + 调 gradient_accumulation_steps 保持等效 batch；其次降 max_length / 换更小模型\n\n### 训练脚本禁止硬编码 CUDA_VISIBLE_DEVICES\n- **问题模式**: 训练脚本内部硬编码 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0,1\"` 等语句，覆盖 job scheduler/launcher 通过环境变量设置的 GPU 隔离。导致进程实际跑到非预期 GPU 上，多实验在同一物理 GPU 上冲突，而 scheduler 层面无感知——监控报告 GPU 分配正确但实际已冲突\n- **规则**: GPU 分配由 job scheduler/launcher 统一管理（通过启动时设 CUDA_VISIBLE_DEVICES 环境变量）。训练脚本内部禁止覆盖 CUDA_VISIBLE_DEVICES。如需限制 GPU 范围，在 launcher 配置或提交命令中设置，不在 .py 文件中硬编码。Code review 时 `grep -r \"CUDA_VISIBLE_DEVICES\" *.py` 发现硬编码必须移除\n\n## 决策纪律\n### 数据/eval 错误优先于技术结论\n- **问题模式**: 因 eval 数据错误（坑 #eval）得出\"方法无效\"的技术结论（如误判为 reward hacking），导致过早放弃有效方向\n- **规则**: 诊断实验问题时，必须先排除 eval/数据层面的错误，确认数据可靠后再下技术结论\n\n### 门控/警戒线触发后必须执行，不依赖主观判断\n- **问题模式**: 设定了明确的数值门控（如\"avg R@10 < 17% 则暂停\"），但 eval 触发后因\"涨了一点\"\"趋势向好\"等 confirmation bias 继续放行，忽视绝对值与门控的差距，浪费 GPU 时间\n- **规则**: 每次 eval 必须先与门控/警戒线比较，触发即执行预定动作（暂停/排查/kill），不允许\"再等一个 eval 看看\"；讨论趋势只在门控未触发时有意义\n\n### 复现实验必须确认纯净启动\n- **问题模式**: 复现失败诊断中遗漏启动命令含 --resume-from-checkpoint，所有分析假设从 step 0 开始，optimizer/scheduler/sampler 状态污染被忽视，导致根因定位偏离数小时\n- **规则**: 复现失败诊断的第一条必查项：启动命令是否含 --resume / --pretrained / --init-from 等非纯净启动参数；若有 resume，必须追溯 source checkpoint 的完整来源（何时生成、用什么配置、是否完整训练产物）\n\n### 重训/复现必须显式验证所有关键超参\n- **问题模式**: 重训实验声称\"identical config\"，但使用了不同脚本/不同默认值，关键超参（如 gradient_accumulation_steps）静默漂移，导致 effective batch size 差一倍，性能差距数个百分点，排查耗时数小时\n- **规则**: 重训/复现启动前必须 (1) 显式打印所有关键超参到日志首行（batch_size, grad_accum, lr, warmup, max_steps, LoRA config）(2) 与原实验日志逐项比对 (3) 不同脚本间不能假设默认值相同——必须显式传参覆盖\n\n## 持久化与解耦\n### generation 与 evaluation 必须解耦持久化\n- **问题模式**: ML 评估 pipeline 把 generation 与 evaluation 写在同一个 long-running 脚本里，eval 库崩溃导致数小时 GPU 生成丢失\n- **规则**: 任何 generation pipeline 必须在生成阶段结束前持久化 manifest + sample 文件到磁盘，evaluation 走独立可重入入口读盘，不允许 in-memory pass-through\n\n### Resume 逻辑必须从原始数据重建聚合状态\n- **问题模式**: 多阶段 pipeline（如多 generation/多 fraction 训练）的 resume 分支跳过已完成阶段时，聚合文件（summary JSON、metric CSV）只包含当前 session 实际运行的阶段数据，最终覆写完整文件导致历史数据丢失。表面看 pipeline \"成功完成\"，实际聚合结果缺失大量条目\n- **规则**: resume skip 分支必须从原始持久化数据（JSONL、per-step logs、checkpoint metrics）重建该阶段的聚合 entry 并 append 到聚合列表；聚合文件写入前断言 entry 数 == 预期总阶段数；pipeline 必须有集成测试覆盖\"中途重启后聚合完整性\"场景\n\n## 训练 log 卫生\n### 训练 log 文件追加共享导致历史抽取错乱\n\n**问题模式**：同一 log 文件被多次训练进程追加共享时，旧进程残留的 stdout 行会污染后续 grep 抽取。\n\n**规则**：\n1. 训练每次启动用新 log 文件（带 timestamp/PID 后缀）\n2. 任何 eval/best 指标读取必须从 callback 写的 JSON 文件读，禁止 grep 训练日志文本\n3. callback 写 JSON 若是 OVERWRITE 模式，resume 必须先 load 历史 history/best\n\n## 模型版本\n### 使用外部模型（API 或开源）前必须验证版本时效性\n- **问题模式**: 代码中使用过时的模型 ID（如 gpt-4o、claude-3-5-sonnet、gemini-1.5-pro、Llama-3.1），这些模型可能已退役、降级、或有性价比显著更优的替代。Agent 的训练数据天然滞后，凭记忆选模型大概率选到旧版\n- **规则**: 首次在项目中调用某厂商的 LLM API 或选用某系列开源模型时，必须 WebSearch 确认当前最新可用版本和推荐型号，将结果记入 memory.md（厂商 + 型号 + 确认日期）。后续同项目可参考 memory.md 中已验证的版本，但注意这只是历史验证记录、不是白名单——可能已过时或有误，有疑问时重新 WebSearch 确认。例外：用户或实验需求明确指定模型版本（复现、对比、演进分析等）\n\n## 论文写作\n### 论文数字必须从 eval 输出程序化提取\n- **问题模式**: 手动从 eval 输出抄写数字到 LaTeX，导致系统性偏差——所有不一致都朝\"看起来更好\"方向偏移（如 ratio 从 >1 写成 <1 跨越分界线，accuracy 多舍少入）。confirmation bias 使错误不易被发现\n- **规则**: 论文中的每个实验数字必须通过脚本从 eval JSON 输出文件直接提取并生成 LaTeX 宏/表格行。禁止手动抄写。修改数字后必须与源 JSON 逐一核对。Reviewer 审查论文数字时必须交叉比对 eval 输出文件"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6b52547-d16d-4033-85b6-bc22edfa1dba",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fdsKr5r1rP4idbWwXd",
+  "type": "assistant",
+  "uuid": "8c215895-552c-4d9c-9ef0-e3bdc64593ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LuoCoTF6RujEjAkGRi8Dsw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1055,
+      "cache_read_input_tokens": 48411,
+      "output_tokens": 5594,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1055,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5594,
+          "cache_read_input_tokens": 48411,
+          "cache_creation_input_tokens": 1055,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1055
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T16:27:40.883Z_
+
+<details><summary>↩ Tool result · `toolu_01C3dvAcngfNqZ6R9EQvQ4Gi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": \"Updated skill 'ml-experiment-guide' at /home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c215895-552c-4d9c-9ef0-e3bdc64593ac",
+  "isSidechain": false,
+  "promptId": "2d603bec-7327-420a-b28b-64a8a3500f19",
+  "type": "user",
+  "uuid": "6bd758cc-830a-4708-9700-0a5dd54e4d98",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": \\\"Updated skill 'ml-experiment-guide' at /home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": \"Updated skill 'ml-experiment-guide' at /home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "8c215895-552c-4d9c-9ef0-e3bdc64593ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix pipeline resume bug and rebuild plan_003 summaries",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-15T16:27:53.072Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T16:27:53.072Z",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "content": "[RESET REQUEST] Research Reviewer 达到硬限\n  触发原因：运行时长 4h55m\n  本轮累计 41 条消息 / 4h 55min\n\n⚠️ 你自己的 context 状态：已 48 条消息 / 3h 4min\n\n请回复：\n  [RESET AGENT]     只重置 Research Reviewer，你继续\n  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）\n  [DEFER Xm]        Xm 后再说\n  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39 · 2026-05-15T16:27:53.073Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T16:27:53.073Z",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 40 · 2026-05-15T16:27:53.052Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6bd758cc-830a-4708-9700-0a5dd54e4d98",
+  "isSidechain": false,
+  "promptId": "df2293aa-e414-44f8-a9d7-7220b6d34b4b",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "9f6e13b7-d689-498e-a28a-9f1ec9c783ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-15T16:27:53.052Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f6e13b7-d689-498e-a28a-9f1ec9c783ad",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "4d6c8e16-d873-49b0-852d-db8e19458195",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "cc7dbb82-c9da-4c64-b2c9-d8912ac632b4",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+10 recorded events
+
+### User
+
+_source line 42 · 2026-05-15T16:27:53.240Z_
+
+[RESET REQUEST] Research Reviewer 达到硬限
+  触发原因：运行时长 4h55m
+  本轮累计 41 条消息 / 4h 55min
+
+⚠️ 你自己的 context 状态：已 48 条消息 / 3h 4min
+
+请回复：
+  [RESET AGENT]     只重置 Research Reviewer，你继续
+  [RESET BOTH]      顺便也重置你自己（推荐，如果本轮讨论已收敛）
+  [DEFER Xm]        Xm 后再说
+  [DENY <原因>]     不重置，让 Research Reviewer 继续带着上下文工作
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d6c8e16-d873-49b0-852d-db8e19458195",
+  "isSidechain": false,
+  "promptId": "df2293aa-e414-44f8-a9d7-7220b6d34b4b",
+  "type": "user",
+  "uuid": "482efef7-9885-456c-8e59-86e48f7a2e62",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-15T16:28:07.266Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to respond to a RESET REQUEST for the Research Reviewer. Let me assess:
+
+1. Reviewer has been running 4h55m with 41 messages - hitting hard limit
+2. My own context: 48 messages / 3h 4min - getting substantial but not critical yet
+
+I should evaluate:
+- Is the current discussion converged? We're in the middle of fixing the plan_003 summary bug. Workers are running fixes. I just sent follow-up instructions to Agent and updated the ML experiment guide. The immediate work is delegated and in progress.
+- Do I need my current context to continue? The key state is: 2 workers fixing pipeline.py and rebuilding summaries, 6 GPU experiments running, waiting for worker completion reports. This is all tracked in registry/report.md, not just in my context.
+
+
+- Since all critical state is persisted in the registry and documentation, and the current work is delegated with instructions sent, resetting both would give us a clean slate while keeping everything we need in the persistent files.
+
+Now I need to invoke the `ralph_respond` tool to execute the reset.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "482efef7-9885-456c-8e59-86e48f7a2e62",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fn97qbDMavgsJg9DFT",
+  "type": "assistant",
+  "uuid": "56947dba-0fcd-4a41-9cd9-55d2398afb43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AqBhMCNtpjKgb7XQ3wfWHZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 211,
+      "cache_read_input_tokens": 55126,
+      "output_tokens": 473,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 473,
+          "cache_read_input_tokens": 55126,
+          "cache_creation_input_tokens": 211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T16:28:07.276Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SRnYnn8YjGKxkztvCgMXYJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ralph_respond",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56947dba-0fcd-4a41-9cd9-55d2398afb43",
+  "isSidechain": false,
+  "requestId": "req_011Cb4fn97qbDMavgsJg9DFT",
+  "type": "assistant",
+  "uuid": "40687d18-ccc8-49a7-b2f3-be4b34896145",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AqBhMCNtpjKgb7XQ3wfWHZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 211,
+      "cache_read_input_tokens": 55126,
+      "output_tokens": 473,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 211,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 473,
+          "cache_read_input_tokens": 55126,
+          "cache_creation_input_tokens": 211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 211
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-15T16:28:07.286Z_
+
+<details><summary>↩ Tool result · `toolu_01SRnYnn8YjGKxkztvCgMXYJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ralph_respond"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40687d18-ccc8-49a7-b2f3-be4b34896145",
+  "isSidechain": false,
+  "promptId": "df2293aa-e414-44f8-a9d7-7220b6d34b4b",
+  "type": "user",
+  "uuid": "b0a53b93-43b4-47e5-9e9c-815a2c9cdeb2",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ralph_respond"
+    ],
+    "query": "select:mcp__agent-ml-research__ralph_respond",
+    "total_deferred_tools": 92
+  },
+  "sourceToolAssistantUUID": "40687d18-ccc8-49a7-b2f3-be4b34896145",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-15T16:28:12.168Z_
+
+当前轮次已收敛：plan_003 根因定位完毕、修复 + 验证指令已队列、ML 实验指南已更新、6 GPU 实验正常运行。关键状态全部持久化在 registry/ROADMAP/report.md 中，新 session 可以无缝接手。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0a53b93-43b4-47e5-9e9c-815a2c9cdeb2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4foBPHwEESJxZ4QEKqz",
+  "type": "assistant",
+  "uuid": "ddea35e6-6a2d-4f97-84a3-8e7ce7b5e12b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CC4xznNmet81dFw7javqd8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1200,
+      "cache_read_input_tokens": 55337,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 55337,
+          "cache_creation_input_tokens": 1200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T16:28:12.190Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ralph_respond · `toolu_013pxVtVAV43663MzmaziH2b`</summary>
+
+```json
+{
+  "decision": "RESET_BOTH"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddea35e6-6a2d-4f97-84a3-8e7ce7b5e12b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4foBPHwEESJxZ4QEKqz",
+  "type": "assistant",
+  "uuid": "8f8c339a-d0cd-4a89-b016-2dca2836f694",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CC4xznNmet81dFw7javqd8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1200,
+      "cache_read_input_tokens": 55337,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 55337,
+          "cache_creation_input_tokens": 1200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T16:28:12.224Z_
+
+<details><summary>↩ Tool result · `toolu_013pxVtVAV43663MzmaziH2b`</summary>
+
+```text
+{"result":"{\"success\": true, \"decision\": \"RESET_BOTH\", \"minutes\": 0, \"reason\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f8c339a-d0cd-4a89-b016-2dca2836f694",
+  "isSidechain": false,
+  "promptId": "df2293aa-e414-44f8-a9d7-7220b6d34b4b",
+  "type": "user",
+  "uuid": "4de46969-1daf-4b40-a9dc-3df89f75fae0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"decision\\\": \\\"RESET_BOTH\\\", \\\"minutes\\\": 0, \\\"reason\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"decision\": \"RESET_BOTH\", \"minutes\": 0, \"reason\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "8f8c339a-d0cd-4a89-b016-2dca2836f694",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix pipeline resume bug and rebuild plan_003 summaries",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50 · 2026-05-15T16:28:17.241Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T16:28:17.241Z",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-15T16:28:17.243Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T16:28:17.243Z",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+## Round 4
+
+2 recorded events
+
+### User
+
+_source line 52 · 2026-05-15T16:28:17.231Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4de46969-1daf-4b40-a9dc-3df89f75fae0",
+  "isSidechain": false,
+  "promptId": "45e6633a-f5cf-4745-a967-359bf9773b9a",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "5bef7f02-fbd5-40b1-8584-339d89a6d398",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-15T16:28:17.231Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bef7f02-fbd5-40b1-8584-339d89a6d398",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "0f320d2a-eebe-4df0-954f-4e56e2931261",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "1c8ef8c3-9b29-4d45-9ad0-995647333e7d",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+5 recorded events
+
+### User
+
+_source line 54 · 2026-05-15T16:28:17.472Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f320d2a-eebe-4df0-954f-4e56e2931261",
+  "isSidechain": false,
+  "promptId": "45e6633a-f5cf-4745-a967-359bf9773b9a",
+  "type": "user",
+  "uuid": "146d7799-bf96-4cbe-a564-70a1eddb7534",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Fix pipeline resume bug and rebuild plan_003 summaries",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-15T16:28:41.750Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T16:28:41.750Z",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "content": "[Agent 回复]:\n[资源] GPU 分配 6 / 实际跑 6 | Worker 池 4 (GPU 0 / CPU 4)\n\n## plan002 metrics 错误修正 ✅ + 核查中\n\nRegistry 已修正为 Reviewer 核实的真实值：\n- GPU0: seed42/frac=0.0/gen4 (96%)\n- GPU1: seed42/frac=0.5/gen4 (82%)\n- 总进度 ~11% (4.9/45 gens per GPU), ETA ~48-50h\n\n已派 Worker 到 cqa1 做 ground-truth 核查（ls + wc -l），回调后用实际文件证据更新 registry。今后所有状态检查严格基于服务器文件内容，禁止推断。\n\n**经验教训记入 memory**：之前从 Worker 的日志解读中错误推断 seed 进度。Worker 报告的 log tail 内容可能被误读——必须用 `ls` 确认目录存在 + `wc -l` 确认 JSONL 行数。\n\n## D018 三个任务执行状态\n\n| 任务 | 状态 | Worker |\n|------|------|--------|\n| A: pipeline resume fix | Worker 运行中 | fix-pipeline-resume-summary |\n| B: autodl-5090 checkpoint 排查 | Worker 运行中 | autodl-5090-checkpoint-debug |\n| C: 评估指标补跑规划 | 等 A+B 完成后执行 | — |\n| plan002 ground-truth | Worker 刚派出 | cqa1-plan002-ground-truth |"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57 · 2026-05-15T16:28:41.751Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T16:28:41.751Z",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-15T16:28:41.741Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "146d7799-bf96-4cbe-a564-70a1eddb7534",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "3d5ede70-e479-40d7-b5c8-c90f16268c10",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "775f7e10-ed4e-45cb-8d01-529852e838e7",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 6
+
+1 recorded events
+
+### User
+
+_source line 59 · 2026-05-15T16:28:41.915Z_
+
+[Agent 回复]:
+[资源] GPU 分配 6 / 实际跑 6 | Worker 池 4 (GPU 0 / CPU 4)
+
+## plan002 metrics 错误修正 ✅ + 核查中
+
+Registry 已修正为 Reviewer 核实的真实值：
+- GPU0: seed42/frac=0.0/gen4 (96%)
+- GPU1: seed42/frac=0.5/gen4 (82%)
+- 总进度 ~11% (4.9/45 gens per GPU), ETA ~48-50h
+
+已派 Worker 到 cqa1 做 ground-truth 核查（ls + wc -l），回调后用实际文件证据更新 registry。今后所有状态检查严格基于服务器文件内容，禁止推断。
+
+**经验教训记入 memory**：之前从 Worker 的日志解读中错误推断 seed 进度。Worker 报告的 log tail 内容可能被误读——必须用 `ls` 确认目录存在 + `wc -l` 确认 JSONL 行数。
+
+## D018 三个任务执行状态
+
+| 任务 | 状态 | Worker |
+|------|------|--------|
+| A: pipeline resume fix | Worker 运行中 | fix-pipeline-resume-summary |
+| B: autodl-5090 checkpoint 排查 | Worker 运行中 | autodl-5090-checkpoint-debug |
+| C: 评估指标补跑规划 | 等 A+B 完成后执行 | — |
+| plan002 ground-truth | Worker 刚派出 | cqa1-plan002-ground-truth |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d5ede70-e479-40d7-b5c8-c90f16268c10",
+  "isSidechain": false,
+  "promptId": "43516741-8f73-407c-82c2-53d34e1301f0",
+  "type": "user",
+  "uuid": "86f87814-f887-448d-8e0a-7cec7b5ced74",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_4/projects/collapse_severity_monitor/.claude/sessions/director_b036ca7d",
+  "sessionId": "b74aad16-5075-42ff-9aad-15e90e17742d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0697351da1f41e5fd398",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: goal_accessibility_preservation ## 运行环境 - 服务器名: westb-40047 - SSH 账户: root（调用 ssh_execute / subm",
+  "task_key": "451239d8-42e9-4de8-8af1-c7c6206a9116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/451239d8-42e9-4de8-8af1-c7c6206a9116.jsonl",
+    "occurrence": 1,
+    "bytes": 701968,
+    "sha256": "b996b5beac4c775227f43683beac36f8e51c1ca52e2a31ed4b4c8c5240b3cf15"
+  },
+  "statistics": {
+    "messages": 346,
+    "user_turns": 1,
+    "tool_calls": 97,
+    "roles": {
+      "record": 61,
+      "user": 1,
+      "assistant": 90,
+      "tool_call": 97,
+      "tool_result": 97
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0697351da1f41e5fd398-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 344,
+      "chunks": [
+        {
+          "path": "0697351da1f41e5fd398-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "0697351da1f41e5fd398-part-0002.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-goal-accessibility-preservation-westb-40047-ssh-root-ssh-execu-copy-19.md"
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "id": "2ddea82b60be7ad2d6a6",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: goal_accessibility_preservation ## 运行环境 - 服务器名: westb-40047 - SSH 账户: root（调用 ssh_execute / subm",
+  "task_key": "635b3a93-6362-4e8d-ba43-439f55660d52",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/635b3a93-6362-4e8d-ba43-439f55660d52.jsonl",
+    "occurrence": 1,
+    "bytes": 1810713,
+    "sha256": "173d0977f014924bccca4d28c49ce1414d089bbba31854f5ccdd22768d1d5230"
+  },
+  "statistics": {
+    "messages": 1117,
+    "user_turns": 3,
+    "tool_calls": 441,
+    "roles": {
+      "record": 155,
+      "user": 3,
+      "assistant": 76,
+      "tool_call": 441,
+      "tool_result": 441,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1049,
+      "chunks": [
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0006.json",
+          "message_count": 151
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0006.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 37,
+      "chunks": [
+        {
+          "path": "2ddea82b60be7ad2d6a6-part-0007.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-goal-accessibility-preservation-westb-40047-ssh-root-ssh-execu-copy-9.md"
+}

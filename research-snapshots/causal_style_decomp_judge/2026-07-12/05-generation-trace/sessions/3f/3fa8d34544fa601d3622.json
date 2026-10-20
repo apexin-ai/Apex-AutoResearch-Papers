@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3fa8d34544fa601d3622",
+  "project": "causal_style_decomp_judge--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: causal_style_decomp_judge ## 运行环境 - 服务器名: westb-29275 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "c3de4250-0581-40ec-83b3-0fcfa9269cab",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/c3de4250-0581-40ec-83b3-0fcfa9269cab.jsonl",
+    "occurrence": 1,
+    "bytes": 801216,
+    "sha256": "dfa3390c244df86c33c90e9f065a13a75f0cfecccdd4a9f4d2f59fb9b39eeb41"
+  },
+  "statistics": {
+    "messages": 186,
+    "user_turns": 1,
+    "tool_calls": 57,
+    "roles": {
+      "record": 44,
+      "user": 1,
+      "assistant": 27,
+      "tool_call": 57,
+      "tool_result": 57
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3fa8d34544fa601d3622-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "3fa8d34544fa601d3622-part-0001.json",
+          "message_count": 115
+        },
+        {
+          "path": "3fa8d34544fa601d3622-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-causal-style-decomp-judge-westb-29275-ssh-root-ssh-execute-sub-copy-3.md"
+}

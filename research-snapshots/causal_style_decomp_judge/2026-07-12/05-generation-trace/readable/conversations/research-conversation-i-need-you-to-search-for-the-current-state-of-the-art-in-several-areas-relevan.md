@@ -1,0 +1,3488 @@
+# Research conversation: I need you to search for the current state-of-the-art in several areas relevant to a research project on selective forma
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 1
+- **Tool calls:** 23
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-a8ad2fc8d499fe316.jsonl`
+- **Structured JSON:** [`868015a0fa0b97708892.json`](../../sessions/86/868015a0fa0b97708892.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+56 recorded events
+
+### User
+
+_source line 1 · 2026-05-27T12:18:09.411Z_
+
+I need you to search for the current state-of-the-art in several areas relevant to a research project on selective formal verification of mathematical proofs. Use WebSearch for each query.
+
+1. CURRENT TOP OPEN-SOURCE MODELS FOR AUTOFORMALIZATION (NL math to Lean 4):
+   - Search "best open source model autoformalization Lean 4 2026"
+   - Search "autoformalization language model 2026 state of the art"
+   - Search "natural language to Lean 4 translation model 2026"
+   - What are the top-performing open-source models as of May 2026?
+
+2. CURRENT TOP OPEN-SOURCE MODELS FOR MATHEMATICAL REASONING:
+   - Search "best open source math reasoning model 2026"
+   - Search "top math LLM open source 2026 benchmark"
+   - What models would be best for LLM-based proof block verification?
+
+3. EXISTING IMPLEMENTATIONS ON GITHUB:
+   - Search GitHub for "pseudo-formalization proof verification"
+   - Search GitHub for "autoformalization Lean 4"
+   - Search GitHub for "selective formal verification"
+   - Search GitHub for "Safe ACL 2025 formal verification"
+   - What codebases exist that could be built upon?
+
+4. HARDWARE/DATA REQUIREMENTS:
+   - Search "autoformalization compute cost GPU hours"
+   - Search "Lean 4 theorem proving compute requirements"
+   - What are typical GPU requirements for autoformalization experiments?
+
+5. LEAN 4 THEOREM PROVERS:
+   - Search "Lean 4 automated theorem prover 2026 state of the art"
+   - Search "LeanDojo ReProver 2026"
+   - What are the best current Lean 4 proof search tools?
+
+Report all findings with specifics (model names, sizes, benchmark scores, URLs).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "29eba9f9-43c1-4314-a622-ce67c2e9b171",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T12:18:09.417Z_
+
+```json
+{
+  "parentUuid": "29eba9f9-43c1-4314-a622-ce67c2e9b171",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "bf17ec35-0da3-4439-90e2-6e645896479e",
+  "timestamp": "2026-05-27T12:18:09.417Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-27T12:18:09.419Z_
+
+```json
+{
+  "parentUuid": "bf17ec35-0da3-4439-90e2-6e645896479e",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "6f311ce1-2955-484b-803d-a85d12176aac",
+  "timestamp": "2026-05-27T12:18:09.419Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-27T12:18:12.084Z_
+
+
+
+I'll conduct all these searches systematically. Let me start by loading the WebSearch tool, then run the searches in parallel batches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f311ce1-2955-484b-803d-a85d12176aac",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4ScAUwfK2GwpM7v6tN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "75ccfe11-e016-498e-86ff-1c8bc8106554",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Le3fYMkw7xBFgJoKzkSSm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1741,
+      "cache_read_input_tokens": 7411,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1741,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-27T12:18:12.329Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BcgGh47cDGjRK9jCcWEqN2`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75ccfe11-e016-498e-86ff-1c8bc8106554",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4ScAUwfK2GwpM7v6tN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dfd007a9-6a54-47c7-9211-514d3a1c659e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Le3fYMkw7xBFgJoKzkSSm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1741,
+      "cache_read_input_tokens": 7411,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1741
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 7411,
+          "cache_creation_input_tokens": 1741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1741,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-27T12:18:12.333Z_
+
+<details><summary>↩ Tool result · `toolu_01BcgGh47cDGjRK9jCcWEqN2`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dfd007a9-6a54-47c7-9211-514d3a1c659e",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "0bc77761-66b8-49d7-8005-ea9682f4ab82",
+  "sourceToolAssistantUUID": "dfd007a9-6a54-47c7-9211-514d3a1c659e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T12:18:15.232Z_
+
+
+
+Now let me run the first batch of searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0bc77761-66b8-49d7-8005-ea9682f4ab82",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4Spz9yMm5BTvxwxYK5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "56592e4b-8695-42e3-bb6f-8fd099929a62",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFcuRjmx7G42SgmpD3QVQe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 9152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-27T12:18:15.675Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PD4sxey2VjnwKJRer1Ld2y`</summary>
+
+```json
+{
+  "query": "best open source model autoformalization Lean 4 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56592e4b-8695-42e3-bb6f-8fd099929a62",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4Spz9yMm5BTvxwxYK5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d97f74e2-1837-4041-9729-68fb3ac44eae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFcuRjmx7G42SgmpD3QVQe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 9152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T12:18:16.273Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013yNZbVRTo5Z3Vkovz4Kv7X`</summary>
+
+```json
+{
+  "query": "autoformalization language model 2026 state of the art"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d97f74e2-1837-4041-9729-68fb3ac44eae",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4Spz9yMm5BTvxwxYK5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3799d38b-4992-49c3-ae26-56d2e0ccc1f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFcuRjmx7G42SgmpD3QVQe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 9152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T12:18:16.324Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QAKSN91ZpsQENjbTMKGARR`</summary>
+
+```json
+{
+  "query": "natural language to Lean 4 translation model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3799d38b-4992-49c3-ae26-56d2e0ccc1f2",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4Spz9yMm5BTvxwxYK5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2ad9875c-34a9-42e6-84a9-c0b32fdbfd47",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFcuRjmx7G42SgmpD3QVQe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 9152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-27T12:18:16.635Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XYQEJorDXAajBKks489hXM`</summary>
+
+```json
+{
+  "query": "best open source math reasoning model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ad9875c-34a9-42e6-84a9-c0b32fdbfd47",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4Spz9yMm5BTvxwxYK5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d5109f1f-461e-4ab5-a409-884092ec5583",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFcuRjmx7G42SgmpD3QVQe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 9152,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-27T12:18:16.758Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RyVceT6Hzu7uL7rpqQR84v`</summary>
+
+```json
+{
+  "query": "top math LLM open source 2026 benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5109f1f-461e-4ab5-a409-884092ec5583",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4Spz9yMm5BTvxwxYK5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "cfe5c4cd-9d87-446d-b915-02efe79e3433",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XFcuRjmx7G42SgmpD3QVQe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 9152,
+      "output_tokens": 262,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 635
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 262,
+          "cache_read_input_tokens": 9152,
+          "cache_creation_input_tokens": 635,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 635,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-27T12:18:23.223Z_
+
+<details><summary>↩ Tool result · `toolu_01XYQEJorDXAajBKks489hXM`</summary>
+
+```text
+Web search results for query: "best open source math reasoning model 2026"
+
+Links: [{"title":"Best Open Source LLM For Math In 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math"},{"title":"Ultimate Guide - The Best Open Source LLMs for Reasoning in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLMs-for-reasoning"},{"title":"Best Open Source Reasoning Model in 2026 - Ertas AI","url":"https://www.ertas.ai/best/best-open-source-reasoning-model"},{"title":"Top 10 Open-source Reasoning Models in 2026","url":"https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026"},{"title":"5 Best AI Reasoning Models of 2026: Ranked!","url":"https://www.labellerr.com/blog/compare-reasoning-models/"},{"title":"Best Open Source LLM for Scientific Research & Academia in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-llm-for-scientific-research-academia"}]
+
+Based on the search results, here are the best open source math reasoning models for 2026:
+
+## Top Recommendations
+
+The top three recommendations for 2026 are DeepSeek-R1, Qwen/QwQ-32B, and THUDM/GLM-Z1-9B-0414. Each has distinct strengths:
+
+- **DeepSeek-R1**: Offers elite-level performance comparable to OpenAI-o1
+- **Qwen/QwQ-32B**: Provides the best balance of capability and efficiency
+- **THUDM/GLM-Z1-9B-0414**: Delivers surprising mathematical prowess in a lightweight package
+
+## Alternative Architectures
+
+Dedicated reasoning models like DeepSeek-R1 and QwQ-32B train specifically on extended chain-of-thought, generating detailed reasoning traces before final answers. For production deployments, unified thinking-mode models like Qwen 3+ and DeepSeek V3.2/V4 integrate reasoning capability into a standard chat checkpoint, and are better for most operational needs.
+
+The choice depends on your specific needs, whether you prioritize elite performance, balance of capability and efficiency, or lightweight deployment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5109f1f-461e-4ab5-a409-884092ec5583",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "f58de100-497e-4487-893d-0ee7b84c0dbe",
+  "sourceToolAssistantUUID": "d5109f1f-461e-4ab5-a409-884092ec5583",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T12:18:23.620Z_
+
+<details><summary>↩ Tool result · `toolu_01QAKSN91ZpsQENjbTMKGARR`</summary>
+
+```text
+Web search results for query: "natural language to Lean 4 translation model 2026"
+
+Links: [{"title":"Translating Natural Language into Lean 4 through Multi- ...","url":"https://aclanthology.org/2025.emnlp-main.1586.pdf"},{"title":"Best LLM for Translation in 2026 (Tested & Ranked)","url":"https://www.noviai.ai/models-prompts/best-llm-for-translation/"},{"title":"Best LLM for Translation (2026): Evaluation Criteria, Risks, and Deployment Options","url":"https://lingvanex.com/blog/what-is-the-best-llm-for-translation-in-2026/"},{"title":"Herald: A Natural Language Annotated Lean 4 Dataset","url":"https://arxiv.org/pdf/2410.10878"},{"title":"ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/pdf/2510.15681"},{"title":"NeurIPS Poster Lean Workbook: A large-scale Lean problem set formalized from natural language math problems","url":"https://neurips.cc/virtual/2024/poster/97664"}]
+
+Based on the search results, here's what I found about natural language to Lean 4 translation models in 2026:
+
+## Recent Models and Approaches
+
+NL2Lean is a model for translating natural language into Lean 4 presented in November 2025, which uses curriculum learning strategy and a multi-reward model that evaluates Lean 4 outputs and provides feedback to the Lean 4 generator.
+
+ProofBridge is a unified framework for automatically translating entire natural language theorems and proofs into Lean 4, featuring a joint embedding model that aligns natural language and formal language theorem+proof pairs in a shared semantic space. Experiments show substantial improvements in proof auto-formalization over strong baselines including GPT-5 and Gemini-2.5.
+
+Additionally, Herald (Hierarchy and Retrieval-based Translated Lean Dataset) is a dataset with an associated Herald Translator model that achieves 93.2% accuracy on formalizing statements in the miniF2F-test benchmark.
+
+## Key Challenges
+
+A significant challenge in training LLMs for formal languages is the lack of parallel datasets that align natural language with formal language proofs, which these recent models are working to address through various dataset creation and retrieval-augmented approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ad9875c-34a9-42e6-84a9-c0b32fdbfd47",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "3e8161d6-52aa-4a14-b53c-dcfa57642f77",
+  "sourceToolAssistantUUID": "2ad9875c-34a9-42e6-84a9-c0b32fdbfd47",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T12:18:24.452Z_
+
+<details><summary>↩ Tool result · `toolu_01PD4sxey2VjnwKJRer1Ld2y`</summary>
+
+```text
+Web search results for query: "best open source model autoformalization Lean 4 2026"
+
+Links: [{"title":"Process-Driven Autoformalization in Lean 4 | OpenReview","url":"https://openreview.net/forum?id=k8KsI84Ds7"},{"title":"Mistral AI Launches Leanstral Open-Source Proof Agent for Lean 4 | MEXC News","url":"https://www.mexc.com/news/941903"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372v1"},{"title":"Goedel-Prover: Open-Source ATP in Lean 4","url":"https://www.emergentmind.com/topics/goedel-prover"},{"title":"Work in progress PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4","url":"https://arxiv.org/pdf/2406.01940"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/pdf/2406.06555"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/pdf/2510.06857"}]
+
+Based on the search results, here are the key open-source models and approaches for autoformalization in Lean 4 as of 2026:
+
+## Leading Open-Source Solutions
+
+**Leanstral (Most Recent - March 2026)**
+
+Mistral AI released Leanstral on March 16, 2026—the first open-source AI agent built specifically for Lean 4 formal verification. The 120B parameter model runs on just 6B active parameters and ships under Apache 2.0 licensing, making production-grade theorem proving accessible without enterprise budgets. The model integrates with Lean's language server protocol through MCP (Model Context Protocol), specifically trained for maximal performance with lean-lsp-mcp tooling.
+
+**Goedel-Prover**
+
+This approach provides the first place Open Source ATP leaderboard performance on PutnamBench and miniF2F, and nearly doubles the count of Lean Workbook problems with discovered formal proofs (from 15.7K to 29.7K).
+
+**Other Notable Approaches**
+
+Process-Driven Autoformalization (PDA) framework leverages the precise feedback from Lean 4 compilers to enhance autoformalization. Additionally, Numina-ATF is an open-source dataset containing 750K synthetic formal statements to facilitate advancements in autoformalization and ATP research.
+
+Leanstral appears to be the most recent and specifically purpose-built open-source model for Lean 4 autoformalization as of March 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d97f74e2-1837-4041-9729-68fb3ac44eae",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "693c4649-1ef2-436a-812c-a714008c8a89",
+  "sourceToolAssistantUUID": "d97f74e2-1837-4041-9729-68fb3ac44eae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T12:18:24.646Z_
+
+<details><summary>↩ Tool result · `toolu_013yNZbVRTo5Z3Vkovz4Kv7X`</summary>
+
+```text
+Web search results for query: "autoformalization language model 2026 state of the art"
+
+Links: [{"title":"Autoformalization with Large Language Models | OpenReview","url":"https://openreview.net/forum?id=IUikebJ1Bf0"},{"title":"Autoformalization with Large Language Models","url":"https://www.emergentmind.com/topics/autoformalization-with-large-language-models"},{"title":"Autoformalization with Large Language Models","url":"https://research.google/pubs/autoformalization-with-large-language-models/"},{"title":"[2205.12615] Autoformalization with Large Language Models","url":"https://arxiv.org/abs/2205.12615"},{"title":"Autoformalization with Large Language Models","url":"https://arxiv.org/pdf/2205.12615"},{"title":"ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data","url":"https://arxiv.org/pdf/2502.05567"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion","url":"https://arxiv.org/pdf/2508.04440"},{"title":"Autoformalization with Large Language Models | alphaXiv","url":"https://www.alphaxiv.org/abs/2205.12615"}]
+
+Based on the search results, here's what the current state of the art in autoformalization with language models looks like in 2026:
+
+## Recent Advances
+
+State-of-the-art autoformalization leverages both neural and symbolic components. The process involves preprocessing and parsing to extract variables and structures, LLM-based translation from natural language to formal syntax, verification using type-checkers and automated theorem provers, and iterative correction through error traces and compilation failures.
+
+## Current Performance Benchmarks
+
+Recent models have achieved impressive results on benchmark datasets:
+
+- The ATLAS translator achieves accuracies of 91.60% on miniF2F, 80.59% on ProofNet, and 65.47% on MathQual under the pass@8 metric. When evaluated with the pass@128 metric, it achieves 96.93%, 92.99%, and 84.72% on these datasets respectively, establishing state-of-the-art performance.
+
+- StepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models.
+
+## Current Approaches
+
+Current mainstream approaches involve either directly distilling or prompting general-purpose LLMs like GPT-4 or DeepSeek-R1 for autoformalization, or training specialized models from scratch using manually annotated informal-formal pairs with human expert supervision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3799d38b-4992-49c3-ae26-56d2e0ccc1f2",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "5c91ca35-5ddf-4834-9361-533f09c504f1",
+  "sourceToolAssistantUUID": "3799d38b-4992-49c3-ae26-56d2e0ccc1f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T12:18:24.740Z_
+
+<details><summary>↩ Tool result · `toolu_01RyVceT6Hzu7uL7rpqQR84v`</summary>
+
+```text
+Web search results for query: "top math LLM open source 2026 benchmark"
+
+Links: [{"title":"Best Open Source LLM For Math In 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math"},{"title":"Best Open Source LLM in 2026: Rankings, Benchmarks, and the Models Worth Running | BenchLM.ai","url":"https://benchlm.ai/blog/posts/best-open-source-llm"},{"title":"Best Open-Source LLM 2026: 8 Tested, 3 Beat GPT-4 | TECHSY","url":"https://techsy.io/en/blog/best-open-source-llms-2026"},{"title":"Best Open Source LLM Leaderboard 2026","url":"https://onyx.app/open-llm-leaderboard"},{"title":"Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now &#045; VERTU® Official Site","url":"https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"},{"title":"Best LLM for Math 2026 - AI Model Benchmark Comparison","url":"https://pricepertoken.com/leaderboards/math"},{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"},{"title":"Open Source LLM Leaderboard 2026 — Compare Open-Weight Models","url":"https://www.vellum.ai/open-llm-leaderboard"},{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"}]
+
+Based on the search results, here are the top open source math LLMs and their 2026 benchmarks:
+
+## Top Math-Focused Open Source LLMs (2026)
+
+The top three recommendations for 2026 are DeepSeek-R1, Qwen/QwQ-32B, and THUDM/GLM-Z1-9B-0414.
+
+### Key Models and Performance:
+
+**GLM-5** - It scores 94.2 on HumanEval and 95.7 on AIME 2025 (the hardest math benchmark tracked), plus 85.7 on GPQA Diamond.
+
+**GLM-4.7** - With a 200K context window and strong instruction-following (IFEval: 88.0), it is arguably the most well-rounded open-source model available as of early 2026.
+
+**Qwen 3 235B** - Currently leads on the broadest range of benchmarks, combining top-tier reasoning, coding, and multilingual capabilities under an Apache 2.0 license.
+
+### Benchmarks Used:
+
+Benchmarks include MMLU, MMLU-Pro, HumanEval, SWE-bench Verified, LiveCodeBench, AIME 2025, GPQA Diamond, MATH-500, Chatbot Arena, and IFEval. AIME (American Invitational Mathematics Examination) tests olympiad-level mathematical reasoning and is one of the hardest math benchmarks for LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cfe5c4cd-9d87-446d-b915-02efe79e3433",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "b3c81a4b-d7a4-4805-9690-69ccb36e349f",
+  "sourceToolAssistantUUID": "cfe5c4cd-9d87-446d-b915-02efe79e3433",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-27T12:18:28.593Z_
+
+Good, first batch complete. Now let me run the GitHub searches and other queries.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3c81a4b-d7a4-4805-9690-69ccb36e349f",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4TjdigNxHVVD89vksP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "765f22ea-204c-4e51-8f0c-549805adf0f7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJqLtQn8WiicTox7QVhs4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 9787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3843,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-27T12:18:29.245Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sgp2GYqFKpYzQDf7AYP37E`</summary>
+
+```json
+{
+  "query": "site:github.com pseudo-formalization proof verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "765f22ea-204c-4e51-8f0c-549805adf0f7",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4TjdigNxHVVD89vksP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "358fd4b9-1eae-445a-862f-673f1b8bab46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJqLtQn8WiicTox7QVhs4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 9787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3843,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T12:18:29.667Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T9v3mGhuHrANfX4LJG8Fka`</summary>
+
+```json
+{
+  "query": "site:github.com autoformalization Lean 4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "358fd4b9-1eae-445a-862f-673f1b8bab46",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4TjdigNxHVVD89vksP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ef7dfac4-2ed1-46b6-bfe0-3bc0c5fa76ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJqLtQn8WiicTox7QVhs4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 9787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3843,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-27T12:18:30.090Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DytoMRVEJHqXd8S1LCbJYQ`</summary>
+
+```json
+{
+  "query": "site:github.com selective formal verification mathematical proof"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef7dfac4-2ed1-46b6-bfe0-3bc0c5fa76ba",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4TjdigNxHVVD89vksP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "336b5cb2-1cf1-4fa6-9724-48e61b384dfa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJqLtQn8WiicTox7QVhs4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 9787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3843,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-27T12:18:30.620Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QkYfDSfTVuhaFeNCJuCVS3`</summary>
+
+```json
+{
+  "query": "Safe ACL 2025 formal verification autoformalization paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "336b5cb2-1cf1-4fa6-9724-48e61b384dfa",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4TjdigNxHVVD89vksP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8908fe99-b6ea-4ada-941f-f6f6ae3718b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJqLtQn8WiicTox7QVhs4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 9787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3843,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-27T12:18:31.242Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013PwsVVE74Aog4FtLQQLH4J`</summary>
+
+```json
+{
+  "query": "autoformalization compute cost GPU hours training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8908fe99-b6ea-4ada-941f-f6f6ae3718b1",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4TjdigNxHVVD89vksP",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "79a28e85-eb72-423f-9ccd-dbfe518904a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJqLtQn8WiicTox7QVhs4E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3843,
+      "cache_read_input_tokens": 9787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3843,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T12:18:36.432Z_
+
+<details><summary>↩ Tool result · `toolu_01Sgp2GYqFKpYzQDf7AYP37E`</summary>
+
+```text
+Web search results for query: "site:github.com pseudo-formalization proof verification"
+
+Links: [{"title":"PROMISE: Proof Automation as Structural Imitation of Human Reasoning","url":"https://arxiv.org/pdf/2604.05399"},{"title":"Towards Autoformalization of Mathematics and Code Correctness:   Experiments with Elementary Proofs","url":"https://arxiv.org/pdf/2301.02195"},{"title":"yamafaktory/formal: Formal verification for AI-generated code","url":"https://github.com/yamafaktory/formal"},{"title":"GitHub - awesomo4000/awesome-provable: A curated set of links to formal methods involving provable code. · GitHub","url":"https://github.com/awesomo4000/awesome-provable"},{"title":"Draft, Sketch, and Prove: Guiding Formal Theorem Provers with Informal   Proofs","url":"https://arxiv.org/pdf/2210.12283"},{"title":"Practical Machine-Checked Formalization of Change Impact Analysis","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7480691/"},{"title":"GitHub - flyspeck/flyspeck: The formal proof of the Kepler conjecture · GitHub","url":"https://github.com/flyspeck/flyspeck"}]
+
+Based on the web search results for "site:github.com pseudo-formalization proof verification," here are the relevant findings:
+
+The search returned several GitHub repositories and papers related to formal proof verification:
+
+1. **Autoformalization Project**: Code and data are made available at https://github.com/gc974517/autoformalization, which focuses on converting mathematical statements from LaTeX to formal proofs in Coq.
+
+2. **Formal Verification for AI-Generated Code**: A GitHub repository (yamafaktory/formal) provides formal verification where Lean accepts proofs of theorems derived from code, which is a meaningful signal since LLMs make logical errors and Lean catches them, but it is not equivalent to a certified compiler or formal proof that source code is correct.
+
+3. **Awesome Provable**: A curated collection of formal methods involving provable code, noting that you don't need to trust the verification framework is bug-free; rather, you need to trust the Coq proof-checker and the formalization of machine language semantics.
+
+4. **Flyspeck Project**: A formal proof of the Kepler conjecture in the HOL Light proof assistant, demonstrating a large-scale formalization effort.
+
+These resources show various approaches to pseudo-formalization and proof verification, ranging from automated conversion of informal proofs to formal ones, to verification of AI-generated code through theorem provers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "358fd4b9-1eae-445a-862f-673f1b8bab46",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "a0e1e5a0-08f9-4305-90d8-4d0c03a74912",
+  "sourceToolAssistantUUID": "358fd4b9-1eae-445a-862f-673f1b8bab46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T12:18:37.221Z_
+
+<details><summary>↩ Tool result · `toolu_01DytoMRVEJHqXd8S1LCbJYQ`</summary>
+
+```text
+Web search results for query: "site:github.com selective formal verification mathematical proof"
+
+Links: [{"title":"GitHub - jazir555/Math-Proofs","url":"https://github.com/jazir555/Math-Proofs"},{"title":"GitHub - vjoy1/formal_proofs","url":"https://github.com/vjoy1/formal_proofs"},{"title":"GitHub - mlabs-haskell/GRANDPA-formal-verification: Formal verification with the proof approach of the GRANDPA algorithm, a key algorithm of Polkadot","url":"https://github.com/mlabs-haskell/GRANDPA-formal-verification"},{"title":"GitHub - ElNiak/awesome-formal-verification: Welcome to the ultimate list of resources for formal verification techniques and tools. This repository aims to provide an organized collection of high-quality resources to help professionals, researchers, and enthusiasts stay updated and advance their knowledge in the field. · GitHub","url":"https://github.com/ElNiak/awesome-formal-verification"},{"title":"GitHub - harryjwang/Formal-Verification-Practice: A collection of formal proofs and logic exercises written in Lean. Covers propositional logic, induction, sets, and functions, focusing on rigorous proof construction and formal reasoning. · GitHub","url":"https://github.com/harryjwang/Formal-Verification-Practice"},{"title":"GitHub - awesomo4000/awesome-provable: A curated set of links to formal methods involving provable code. · GitHub","url":"https://github.com/awesomo4000/awesome-provable"}]
+
+I've performed the web search for "site:github.com selective formal verification mathematical proof". Here are the results:
+
+The search returned several GitHub repositories related to formal verification and mathematical proofs:
+
+1. **Math-Proofs** (jazir555/Math-Proofs): This repository uses proof assistants like Lean 4 with mathematical libraries, where definitions, theorems, and proofs are encoded in formal language for mechanical correctness checking.
+
+2. **Formal Proofs** (vjoy1/formal_proofs): This project explores formal verification of mathematical theorems using the LEAN 4 proof assistant, translating foundational results from linear algebra and measure theory into machine-checkable format.
+
+3. **GRANDPA Formal Verification** (mlabs-haskell/GRANDPA-formal-verification): This approach combines human procedure and machine verification by writing both traditional pen-and-paper proofs and proofs in proof assistants, refining them iteratively until the proof assistant accepts them.
+
+4. **Awesome Formal Verification** (ElNiak/awesome-formal-verification): This is a curated collection of high-quality resources for formal verification techniques and tools.
+
+5. **Formal Verification Practice** (harryjwang/Formal-Verification-Practice): A collection of Lean theorem prover exercises covering propositional logic, quantified statements, induction, and sets/functions, with each proof formally verified by the system.
+
+6. **Awesome Provable** (awesomo4000/awesome-provable): A curated set of links to formal methods involving new languages, compilers and tools for developing, checking, and automating specs and proofs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "336b5cb2-1cf1-4fa6-9724-48e61b384dfa",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "f89da07f-4537-45dc-af38-a9499ecefeca",
+  "sourceToolAssistantUUID": "336b5cb2-1cf1-4fa6-9724-48e61b384dfa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-27T12:18:37.585Z_
+
+<details><summary>↩ Tool result · `toolu_013PwsVVE74Aog4FtLQQLH4J`</summary>
+
+```text
+Web search results for query: "autoformalization compute cost GPU hours training"
+
+Links: [{"title":"Stop measuring AI training costs in GPU hours • The Register","url":"https://www.theregister.com/2026/04/23/stop_measuring_ai_training/"},{"title":"How Much Does LLM Training Cost? | Galileo","url":"https://galileo.ai/blog/llm-model-training-cost"},{"title":"How Long Does It Take to Train the LLM From Scratch? | Towards Data Science","url":"https://towardsdatascience.com/how-long-does-it-take-to-train-the-llm-from-scratch-a1adb194c624/"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/pdf/2603.24372"},{"title":"$100K or 100 Days: Trade-offs when Pre-Training with Academic Resources","url":"https://arxiv.org/pdf/2410.23261"},{"title":"How Much Do GPU Cloud Platforms Cost for AI Startups in 2026?","url":"https://www.gmicloud.ai/en/blog/how-much-do-gpu-cloud-platforms-cost-for-ai-startups-in-2026"}]
+
+Based on the search results, here's what I found regarding autoformalization compute costs and GPU training:
+
+## Autoformalization Training Details
+
+For autoformalization work, parameter-efficient fine-tuning using LoRA is employed to restrict updates to feed-forward sublayers of the transformer, which keeps memory and compute costs manageable on a single GPU.
+
+## GPU Training Costs Generally
+
+The search results provide broader context on GPU training costs that may be relevant:
+
+Training 70B-parameter-class models on modern clusters (on the order of hundreds of H100/H200-class GPUs for several weeks) typically incurs compute-only cloud costs in the low- to mid-seven-figure range.
+
+Specialized GPU providers typically offer NVIDIA H100 GPUs starting at $2.00 per hour.
+
+The search results contained one research paper on Lean4 autoformalization that mentions using LoRA for efficient fine-tuning on single GPUs, but didn't provide specific GPU hour counts or total compute costs for autoformalization tasks. For more detailed autoformalization-specific compute metrics, you might need to review the research papers directly or search for more specialized autoformalization benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79a28e85-eb72-423f-9ccd-dbfe518904a8",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "535715c0-2508-4b0a-a6de-278f001a164c",
+  "sourceToolAssistantUUID": "79a28e85-eb72-423f-9ccd-dbfe518904a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T12:18:37.841Z_
+
+<details><summary>↩ Tool result · `toolu_01T9v3mGhuHrANfX4LJG8Fka`</summary>
+
+```text
+Web search results for query: "site:github.com autoformalization Lean 4"
+
+Links: [{"title":"Process-Driven Autoformalization in Lean 4","url":"https://arxiv.org/pdf/2406.01940"},{"title":"Process-Driven Autoformalization in Lean 4","url":"https://github.com/rookie-joe/PDA"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/pdf/2406.06555"},{"title":"GitHub - siddhartha-gadgil/LeanAide: Tools based on AI for helping with Lean 4 · GitHub","url":"https://github.com/siddhartha-gadgil/LeanAide"},{"title":"GitHub - lanzhang128/multi_agent_autoformalization","url":"https://github.com/lanzhang128/multi_agent_autoformalization"},{"title":"GitHub - zhaoyu-li/DL4TP: [COLM 2024] A Survey on Deep Learning for Theorem Proving · GitHub","url":"https://github.com/zhaoyu-li/DL4TP"},{"title":"GitHub - stepfun-ai/StepFun-Formalizer: StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion · GitHub","url":"https://github.com/stepfun-ai/StepFun-Formalizer"},{"title":"GitHub - augustepoiroux/LeanInteract: LeanInteract: A Python Interface for Lean 4 · GitHub","url":"https://github.com/augustepoiroux/LeanInteract"}]
+
+Based on the web search results for "site:github.com autoformalization Lean 4", here are the key findings:
+
+## Main GitHub Repositories
+
+1. **Process-Driven Autoformalization (PDA)** - The official repository for implementing the paper "Process-Driven Autoformalization in Lean 4" with the autoformalization dataset Formalization for Lean 4 (forml4). The FORML4 dataset is constructed by prompting Gemini-1.5-Pro to informalize theorems extracted from Mathlib 4, with an autoformalizer model trained on FORML4 and output sent to the Lean 4 Compiler for automated feedback.
+
+2. **LeanAide** - A project using autoformalization—the process of translating informal mathematical statements to formal statements in a proof assistant—as the core technique for tools based on AI for helping with Lean 4.
+
+3. **MASA (Multi-Agent Autoformalization)** - A system providing support for designing and implementing components typically involved in establishing a multi-agent autoformalization system, including Agent, Large Language Model (LLM), Knowledge Base (KB), Retriever and Theorem Prover (TP).
+
+4. **StepFun-Formalizer** - A family of large language models designed to translate natural-language mathematical problems into formal statements in Lean 4 through the fusion of formal knowledge and informal-to-formal reasoning capability.
+
+5. **LeanInteract** - A Python interface for Lean 4 with examples for using models on autoformalization benchmarks like MiniF2F and ProofNet, and for running the autoformalization BEq+ metric.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef7dfac4-2ed1-46b6-bfe0-3bc0c5fa76ba",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "4f068bf0-5ee6-4420-81e0-5f2bb6073636",
+  "sourceToolAssistantUUID": "ef7dfac4-2ed1-46b6-bfe0-3bc0c5fa76ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T12:18:39.389Z_
+
+<details><summary>↩ Tool result · `toolu_01QkYfDSfTVuhaFeNCJuCVS3`</summary>
+
+```text
+Web search results for query: "Safe ACL 2025 formal verification autoformalization paper"
+
+Links: [{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.594/"},{"title":"GitHub - liuchengwucn/Safe: (ACL 2025 Main) Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - Official Implementation & Dataset","url":"https://github.com/liuchengwucn/Safe"},{"title":"[2508.18914] FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/abs/2508.18914"},{"title":"Reliable Evaluation and Benchmarks for Statement Autoformalization - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.907/"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"},{"title":"FormaRL: Enhancing Autoformalization with no Labeled Data","url":"https://arxiv.org/pdf/2508.18914"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification** was published at ACL 2025 (Volume 1: Long Papers), pages 12171–12186 in Vienna, Austria.
+
+The paper was authored by Chengwu Liu, Ye Yuan, Yichun Yin, Yan Xu, Xin Xu, Zaoyu Chen, Yasheng Wang, Lifeng Shang, Qun Liu, and Ming Zhang.
+
+The paper's approach articulates mathematical claims in formal mathematical language Lean 4 at each reasoning step and provides formal proofs to identify hallucinations.
+
+The official implementation and associated FormalStep dataset are available on GitHub. You can access the paper at the ACL Anthology (https://aclanthology.org/2025.acl-long.594/).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8908fe99-b6ea-4ada-941f-f6f6ae3718b1",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "1bb212ca-87c3-4a5b-97e0-cc14af6b2389",
+  "sourceToolAssistantUUID": "8908fe99-b6ea-4ada-941f-f6f6ae3718b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-27T12:18:41.599Z_
+
+Good progress. Let me run the remaining searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bb212ca-87c3-4a5b-97e0-cc14af6b2389",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4UpGJUM3iL9ZeizV5D",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c0c48d22-43ef-40e5-92df-2d0228a212c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKb2wbqGR1ZPN6JfUhRuA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 624,
+      "cache_creation_input_tokens": 3145,
+      "cache_read_input_tokens": 13630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3145,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-27T12:18:42.052Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0181u7cD38iCfSMNPoFJtC71`</summary>
+
+```json
+{
+  "query": "Lean 4 theorem proving compute requirements GPU 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0c48d22-43ef-40e5-92df-2d0228a212c3",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4UpGJUM3iL9ZeizV5D",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8023c36e-a0a0-43d4-b05a-4432d576625c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKb2wbqGR1ZPN6JfUhRuA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 624,
+      "cache_creation_input_tokens": 3145,
+      "cache_read_input_tokens": 13630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3145,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T12:18:42.989Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014zAY775BejoUSHeV3ywYFX`</summary>
+
+```json
+{
+  "query": "Lean 4 automated theorem prover 2026 state of the art"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8023c36e-a0a0-43d4-b05a-4432d576625c",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4UpGJUM3iL9ZeizV5D",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b115ab02-3797-4366-b32d-0f5959c24817",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKb2wbqGR1ZPN6JfUhRuA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 624,
+      "cache_creation_input_tokens": 3145,
+      "cache_read_input_tokens": 13630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3145,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-27T12:18:43.519Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PGFsQCvXtbkQPBZWretWXH`</summary>
+
+```json
+{
+  "query": "LeanDojo ReProver 2026 update"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b115ab02-3797-4366-b32d-0f5959c24817",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4UpGJUM3iL9ZeizV5D",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "63e4d89a-8a46-494e-ab0c-6361e9f58bc7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKb2wbqGR1ZPN6JfUhRuA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 624,
+      "cache_creation_input_tokens": 3145,
+      "cache_read_input_tokens": 13630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3145,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T12:18:43.926Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T54V5at59MuD9Fm5gfadBv`</summary>
+
+```json
+{
+  "query": "Goedel-Prover Lean 4 benchmark results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63e4d89a-8a46-494e-ab0c-6361e9f58bc7",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4UpGJUM3iL9ZeizV5D",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "93620f3f-9afd-47df-99ea-8ef740f6ba84",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKb2wbqGR1ZPN6JfUhRuA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 624,
+      "cache_creation_input_tokens": 3145,
+      "cache_read_input_tokens": 13630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3145,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-27T12:18:44.498Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y8ir2GWNjoaxHWucBBvr8i`</summary>
+
+```json
+{
+  "query": "Safe ACL 2025 liuchengwucn FormalStep dataset selective verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93620f3f-9afd-47df-99ea-8ef740f6ba84",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4UpGJUM3iL9ZeizV5D",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7c89f611-b729-4df5-b63a-c411ea4b7369",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKb2wbqGR1ZPN6JfUhRuA3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 624,
+      "cache_creation_input_tokens": 3145,
+      "cache_read_input_tokens": 13630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3145,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-27T12:18:49.728Z_
+
+<details><summary>↩ Tool result · `toolu_01PGFsQCvXtbkQPBZWretWXH`</summary>
+
+```text
+Web search results for query: "LeanDojo ReProver 2026 update"
+
+Links: [{"title":"AI-Driven Formal Theorem Proving in the Lean Ecosystem","url":"https://leandojo.org/"},{"title":"LeanDojo · GitHub","url":"https://github.com/lean-dojo"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models | OpenReview","url":"https://openreview.net/forum?id=g7OX2sOJtn&noteId=EJxdCMebal"},{"title":"GitHub - lean-dojo/ReProver: Retrieval-Augmented Theorem Provers for Lean · GitHub","url":"https://github.com/lean-dojo/ReProver"},{"title":"LeanDojo: AI-Assisted Theorem Proving in Lean","url":"https://leandojo.org/leandojo.html"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://openreview.net/pdf?id=g7OX2sOJtn"},{"title":"LeanDojo: Major Update for Math Reasoning with LLM","url":"https://www.linkedin.com/posts/anima-anandkumar_formalmathematics-theoremproving-leanprover-activity-7360641891542974464-Yi2a"},{"title":"LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction","url":"https://leandojo.org/leanprogress.html"},{"title":"lean-dojo/ReProver Announcements · Discussions","url":"https://github.com/lean-dojo/ReProver/discussions/categories/announcements"},{"title":"LeanDojo: Machine Learning for Theorem Proving in Lean — LeanDojo 4.20.0 documentation","url":"https://leandojo.readthedocs.io/en/latest/index.html"}]
+
+Based on the search results, here's what I found about LeanDojo ReProver 2026 updates:
+
+## Recent Developments
+
+LeanDojo-v2 was presented as "A Comprehensive Library for AI-Assisted Theorem Proving in Lean" at the NeurIPS Mathematical Reasoning and AI workshop in 2025. LeanDojo-v2 is described as "an end-to-end framework for training, evaluating, and deploying AI-assisted theorem provers for Lean 4."
+
+## LeanProgress and ReProver Integration
+
+LeanProgress, which guides search for neural theorem proving via proof progress prediction, was published in Transactions on Machine Learning Research (TMLR) in 2025. This represents advancement in the ReProver ecosystem, as LeanProgress collected about 80,000 proof trajectories from Lean Workbook Plus and Mathlib4 using best-first search with Reprover.
+
+## Additional Research
+
+LeanAgent, a lifelong learning framework for formal theorem proving, has also been developed as part of the LeanDojo ecosystem, extending the capabilities of the original ReProver system.
+
+The LeanDojo project continues to advance with multiple complementary systems being developed to improve AI-assisted theorem proving in the Lean environment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63e4d89a-8a46-494e-ab0c-6361e9f58bc7",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "3439fb23-b057-4dd3-8e3b-a6d5727bb035",
+  "sourceToolAssistantUUID": "63e4d89a-8a46-494e-ab0c-6361e9f58bc7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-27T12:18:50.535Z_
+
+<details><summary>↩ Tool result · `toolu_014zAY775BejoUSHeV3ywYFX`</summary>
+
+```text
+Web search results for query: "Lean 4 automated theorem prover 2026 state of the art"
+
+Links: [{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"The Lean 4 Theorem Prover and Programming Language | Automated Deduction – CADE 28","url":"https://dl.acm.org/doi/10.1007/978-3-030-79876-5_37"},{"title":"Lean 4 Theorem Prover: Survey & Advances","url":"https://www.emergentmind.com/papers/2501.18639"},{"title":"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving","url":"https://arxiv.org/html/2605.13137"},{"title":"A Comprehensive Survey of the Lean 4 Theorem Prover: Architecture,   Applications, and Advances","url":"https://arxiv.org/pdf/2501.18639"},{"title":"Goedel-Prover: Open-Source ATP in Lean 4","url":"https://www.emergentmind.com/topics/goedel-prover"},{"title":"[2501.18639] A Comprehensive Survey of the Lean 4 Theorem Prover: Architecture, Applications, and Advances","url":"https://arxiv.org/abs/2501.18639"},{"title":"Theorem Proving in Lean 4","url":"https://lean-lang.org/theorem_proving_in_lean4/Introduction/"},{"title":"Lean4: How the theorem prover works and why it's the new competitive edge in AI | VentureBeat","url":"https://venturebeat.com/ai/lean4-how-the-theorem-prover-works-and-why-its-the-new-competitive-edge-in"}]
+
+Based on the search results, here's the state of the art in Lean 4 automated theorem proving as of 2026:
+
+## Key Developments
+
+**Advanced Language Models:**
+
+Goedel-Prover-V2 is an open-source language model series from Princeton University that set new state-of-the-art in automated theorem proving for Lean 4, achieving remarkable results with models 80× smaller than competing systems.
+
+DeepSeek-Prover-V2 is an open-source large language model designed for formal theorem proving in Lean 4, using a recursive theorem proving pipeline powered by DeepSeek-V3.
+
+**Learning-Based Approaches:**
+
+AlphaProof is an AlphaZero-inspired agent that learns to find formal proofs through reinforcement learning by training on millions of auto-formalized problems, using Test-Time RL to generate and learn from millions of related problem variants at inference time for deep, problem-specific adaptation.
+
+**Real-World Achievements:**
+
+Using Gauss, Math Inc. completed a challenge set by Fields Medallist Terence Tao and Alex Kontorovich to formalize the strong Prime Number Theorem in Lean, which had stalled after 18+ months of human expert effort, in just three weeks.
+
+**Infrastructure:**
+
+Strong agent systems have shown capable agents can compensate for weaker retrievers through repeated query reformulations or bypass retrieval entirely by proving needed lemmas locally.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b115ab02-3797-4366-b32d-0f5959c24817",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "de49040f-0ddf-4955-a6a9-f222c6fda2aa",
+  "sourceToolAssistantUUID": "b115ab02-3797-4366-b32d-0f5959c24817",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-27T12:18:52.652Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8ir2GWNjoaxHWucBBvr8i`</summary>
+
+```text
+Web search results for query: "Safe ACL 2025 liuchengwucn FormalStep dataset selective verification"
+
+Links: [{"title":"GitHub - liuchengwucn/Safe: (ACL 2025 Main) Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - Official Implementation & Dataset","url":"https://github.com/liuchengwucn/Safe"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.594/"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/html/2506.04592v1"},{"title":"[2506.04592] Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/abs/2506.04592"},{"title":"Accepted Main Conference Papers - ACL 2025","url":"https://2025.aclweb.org/program/main_papers/"},{"title":"arXiv:2506.04592v1 [cs.CL] 5 Jun 2025","url":"https://arxiv.org/pdf/2506.04592"},{"title":"VSCBench: Bridging the Gap in Vision-Language Model ...","url":"https://aclanthology.org/2025.findings-acl.158.pdf"}]
+
+Based on the search results, here's what I found about the "Safe" project with ACL 2025:
+
+## Overview
+
+Safe is a retrospective, step-aware formal verification framework designed to address hallucinations in Chain-of-Thought reasoning. The project is authored by Chengwu Liu, Ye Yuan, Yichun Yin, Yan Xu, Xin Xu, Zaoyu Chen, Yasheng Wang, Lifeng Shang, Qun Liu, and Ming Zhang and was accepted to ACL 2025 Main Conference.
+
+## Key Components
+
+**The Safe Framework:**
+Rather than assigning arbitrary scores, the framework articulates mathematical claims in formal mathematical language Lean 4 at each reasoning step and provides formal proofs to identify hallucinations.
+
+**The FormalStep Dataset:**
+FormalStep is proposed as a benchmark for step correctness theorem proving with 30,809 formal statements. It involves a novel auto-formalization task which aims to generate formal statements that validate the correctness of one specific step instead of simply translating the problem.
+
+**Results:**
+The framework was evaluated across multiple language models and various mathematical datasets, demonstrating significant performance improvement while offering interpretable and verifiable evidence.
+
+The official implementation and dataset are available on GitHub at the liuchengwucn/Safe repository.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c89f611-b729-4df5-b63a-c411ea4b7369",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "efab65cb-064b-4eeb-919e-decdc836164a",
+  "sourceToolAssistantUUID": "7c89f611-b729-4df5-b63a-c411ea4b7369",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-27T12:18:52.907Z_
+
+<details><summary>↩ Tool result · `toolu_0181u7cD38iCfSMNPoFJtC71`</summary>
+
+```text
+Web search results for query: "Lean 4 theorem proving compute requirements GPU 2026"
+
+Links: [{"title":"lean4-jax | Reservoir","url":"https://reservoir.lean-lang.org/@brettkoonce/lean4-jax"},{"title":"Theorem Proving in Lean 4","url":"https://lean-lang.org/theorem_proving_in_lean4/Introduction/"},{"title":"cLean: A Verified Domain-Specific Language for GPU Kernel Programming in Lean 4","url":"https://riyazahuja.com/assets/clean_writeup.pdf"},{"title":"Getting Started with Lean 4: Proofs as Code for Real Developers | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/getting-started-with-lean-4-proofs-as-code-for-real-developers-475affcf3f30"},{"title":"GitHub - lean-dojo/LeanCopilot: LLMs as Copilots for Theorem Proving in Lean · GitHub","url":"https://github.com/lean-dojo/LeanCopilot"},{"title":"LeanDojo: Theorem Proving with Retrieval-Augmented Language Models","url":"https://arxiv.org/pdf/2306.15626"},{"title":"Lean Copilot: Large Language Models as Copilots for Theorem Proving in Lean","url":"https://arxiv.org/pdf/2404.12534"},{"title":"LeanTree: Accelerating White-Box Proof Search with Factorized States in Lean 4","url":"https://arxiv.org/pdf/2507.14722"}]
+
+Based on the search results, here's what I found regarding Lean 4 theorem proving and GPU compute requirements:
+
+## GPU Support for Lean 4
+
+CUDA and cuDNN are optional but recommended if you have a CUDA-enabled GPU for running Lean Copilot, which integrates large language models with Lean for proof automation.
+
+## Compute Requirements for LLM-Based Theorem Proving
+
+For machine learning approaches to Lean 4 theorem proving, ReProver (a retrieval-augmented prover) is inexpensive and needs only one GPU week of training. However, this contrasts with earlier approaches: some LLM-based provers use private pretraining data, and the compute requirements can reach thousands of GPU days.
+
+## Recent Applications (2026)
+
+The search results include recent work on combining Lean 4 with neural approaches for theorem proving. Lean Copilot allows large language models (LLMs) to be used natively in Lean for proof automation, and you can use built-in models or bring your own models that run either locally (with or without GPUs) or on the cloud.
+
+The research suggests that GPU requirements have become significantly more manageable in recent years, with newer approaches requiring substantially less compute than earlier methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8023c36e-a0a0-43d4-b05a-4432d576625c",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "95ae18f2-ee01-4bfc-a952-3893b60bb8e4",
+  "sourceToolAssistantUUID": "8023c36e-a0a0-43d4-b05a-4432d576625c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-27T12:18:53.724Z_
+
+<details><summary>↩ Tool result · `toolu_01T54V5at59MuD9Fm5gfadBv`</summary>
+
+```text
+Web search results for query: "Goedel-Prover Lean 4 benchmark results 2026"
+
+Links: [{"title":"Goedel-Prover: Open-Source ATP in Lean 4","url":"https://www.emergentmind.com/topics/goedel-prover"},{"title":"Goedel-Prover: the self improving super human AI mathematician | by Anatol Wegner | Apr, 2026 | Medium","url":"https://medium.com/@AIchats/goedel-prover-the-self-improving-super-human-ai-mathematician-fb03a004dc8b"},{"title":"Goedel-Prover-V2: Advances in Formal Theorem Proving","url":"https://www.emergentmind.com/topics/goedel-prover-v2"},{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"GitHub - Goedel-LM/Goedel-Prover · GitHub","url":"https://github.com/Goedel-LM/Goedel-Prover"},{"title":"Goedel-Prover: A Frontier Model for Open-Source Automated Theorem   Proving","url":"https://arxiv.org/pdf/2502.07640"},{"title":"Goedel-Prover","url":"https://goedel-lm.github.io/"},{"title":"Goedel-Prover-V2-32B Free Chat Online - skywork.ai, Click to Use! - Skywork ai","url":"https://skywork.ai/blog/models/goedel-prover-v2-32b-free-chat-online-skywork-ai/"},{"title":"Goedel-Code-Prover: Hierarchical Proof Search for Open State-of-the-Art Code Verification","url":"https://arxiv.org/pdf/2603.19329"}]
+
+Based on the search results, here are the key Goedel-Prover Lean 4 benchmark results from 2026:
+
+## Goedel-Prover-V2 Performance (2026)
+
+Goedel-Prover-V2-32B achieves 88.1% pass@32 on the MiniF2F benchmark in standard mode and 90.4% with self-correction, setting a new state-of-the-art among open-source models.
+
+The 32B Goedel-Prover-V2 outperforms DeepSeek-Prover-V2-671B with only 1/20th of the parameter count and a greatly reduced compute budget.
+
+The smaller 8B variant achieves 84.6% pass@32 on MiniF2F, outperforming DeepSeek-Prover-V2-671B despite being approximately 80× smaller.
+
+On the PutnamBench benchmark, Goedel-Prover-V2-32B solves 86 problems at pass@184; the closest competitor, DeepSeek-Prover-V2-671B, solves 47 at pass@1024.
+
+## Technical Innovations
+
+Goedel-Prover-V2 is a series of LLMs and an open-source infrastructure that advance the state-of-the-art in automated formal theorem proving through scalable data synthesis, verifier-guided self-correction, and model averaging schemes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93620f3f-9afd-47df-99ea-8ef740f6ba84",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "6cf95a8c-f0c5-4ce2-a4b2-d492403c6e66",
+  "sourceToolAssistantUUID": "93620f3f-9afd-47df-99ea-8ef740f6ba84",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-27T12:18:56.536Z_
+
+Let me get a few more targeted searches to round out the findings.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cf95a8c-f0c5-4ce2-a4b2-d492403c6e66",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4VsZGZovMECgPQyfbv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6404a21e-7eab-486f-921a-4b2186cb7505",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKwhmfzNms4RTSr9aco1Bs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 726,
+      "cache_creation_input_tokens": 4262,
+      "cache_read_input_tokens": 16775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4262,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-27T12:18:57.054Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UvVnEknUCzzu9vksQ8VWuR`</summary>
+
+```json
+{
+  "query": "DeepSeek-Prover-V2 Lean 4 benchmark 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6404a21e-7eab-486f-921a-4b2186cb7505",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4VsZGZovMECgPQyfbv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ddb53220-2f23-41c4-934a-bad5edd60fee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKwhmfzNms4RTSr9aco1Bs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 726,
+      "cache_creation_input_tokens": 4262,
+      "cache_read_input_tokens": 16775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4262,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-27T12:18:58.111Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UNzpGvgvbHBAn2Wgfo4wow`</summary>
+
+```json
+{
+  "query": "Leanstral Mistral AI Lean 4 proof agent benchmark performance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddb53220-2f23-41c4-934a-bad5edd60fee",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4VsZGZovMECgPQyfbv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8b04ebbd-e198-49df-b426-7bac5c10c507",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKwhmfzNms4RTSr9aco1Bs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 726,
+      "cache_creation_input_tokens": 4262,
+      "cache_read_input_tokens": 16775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4262,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-27T12:18:59.109Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UYmPzQw87FuFviBTAM5GSp`</summary>
+
+```json
+{
+  "query": "autoformalization fine-tuning LoRA GPU single machine requirements 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b04ebbd-e198-49df-b426-7bac5c10c507",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4VsZGZovMECgPQyfbv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e2fb6e0a-7766-48ec-a442-73d09f0c7371",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKwhmfzNms4RTSr9aco1Bs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 726,
+      "cache_creation_input_tokens": 4262,
+      "cache_read_input_tokens": 16775,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4262,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-27T12:18:59.371Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XdrCrRZ2S95ihLDdNJrcvK`</summary>
+
+```json
+{
+  "query": "ATLAS autoformalization Lean 4 miniF2F ProofNet 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2fb6e0a-7766-48ec-a442-73d09f0c7371",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4VsZGZovMECgPQyfbv",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a85578c9-cb0b-489d-a58e-6ad214a969e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKwhmfzNms4RTSr9aco1Bs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 726,
+      "cache_creation_input_tokens": 4262,
+      "cache_read_input_tokens": 16775,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4262
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 726,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 16775,
+          "cache_creation_input_tokens": 4262,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4262,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-27T12:19:04.321Z_
+
+<details><summary>↩ Tool result · `toolu_01UvVnEknUCzzu9vksQ8VWuR`</summary>
+
+```text
+Web search results for query: "DeepSeek-Prover-V2 Lean 4 benchmark 2026"
+
+Links: [{"title":"DeepSeek Prover V2 - Specs & Pricing [2026]","url":"https://getdeploying.com/llms/deepseek-prover-v2"},{"title":"DeepSeek-Prover-V2: Neural Prover in Lean 4","url":"https://www.emergentmind.com/topics/deepseek-prover-v2"},{"title":"DeepSeek-Prover-V2: Open-Source AI for Lean 4 Formal Theorem Proving | by My Social | 𝐀𝐈 𝐦𝐨𝐧𝐤𝐬.𝐢𝐨 | Medium","url":"https://medium.com/aimonks/deepseek-prover-v2-open-source-ai-for-lean-4-formal-theorem-proving-ab7f9910576b"},{"title":"Run DeepSeek-Prover-V2 7B on Linux: Complete Setup Guide","url":"https://codersera.com/blog/running-deepseek-prover-v2-7b-on-linux-a-complete-guide/"},{"title":"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/pdf/2504.21801"},{"title":"[2504.21801] DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/abs/2504.21801"},{"title":"DeepSeek-Prover: Advancing Theorem Proving in LLMs through Large-Scale   Synthetic Data","url":"https://arxiv.org/pdf/2405.14333"},{"title":"DeepSeek V4 Pro Benchmarks 2026: Scores, Rankings & Performance | BenchLM.ai","url":"https://benchlm.ai/models/deepseek-v4-pro"}]
+
+Based on the search results, here's what I found about DeepSeek-Prover-V2 and its Lean 4 benchmark performance:
+
+## Overview
+
+DeepSeek-Prover-V2 was released in April 2025 as a 671B-parameter MoE model (37B active, 256 experts) specialized in formal theorem proving in Lean 4.
+
+## Key Benchmark Results
+
+The DeepSeek-Prover-V2-671B achieves state-of-the-art performance in neural theorem proving, reaching 88.9% pass ratio on the MiniF2F-test and solving 49 out of 658 problems from PutnamBench.
+
+A newly released challenging benchmark suite called ProverBench contains 325 problems, including 15 hard AIME 2024–2025 instances, with DeepSeek-Prover-V2 solving 6 of them versus 8 by DeepSeek-V3 in informal mode.
+
+## Model Variants
+
+The family includes different model sizes: a robust 671B parameter model and an entry-level 7B parameter model. The 7B model scores lower (community-reported ~76–78% at high sample budgets) compared to the 671B variant on MiniF2F.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddb53220-2f23-41c4-934a-bad5edd60fee",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "7e7e5979-7fcb-4897-bd7b-6f4f6cfe4492",
+  "sourceToolAssistantUUID": "ddb53220-2f23-41c4-934a-bad5edd60fee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-27T12:19:06.135Z_
+
+<details><summary>↩ Tool result · `toolu_01XdrCrRZ2S95ihLDdNJrcvK`</summary>
+
+```text
+Web search results for query: "ATLAS autoformalization Lean 4 miniF2F ProofNet 2025 2026"
+
+Links: [{"title":"(PDF) ATLAS: Autoformalizing Theorems through Lifting ...","url":"https://arxiv.org/pdf/2502.05567v1"},{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"Lean Atlas: An Integrated Proof Environment for Scalable Human-AI Collaborative Formalization","url":"https://arxiv.org/html/2604.16347"},{"title":"Evaluating Autoformalization Robustness via Semantically Similar Paraphrasing","url":"https://arxiv.org/pdf/2511.12784"},{"title":"Construction–Verification: A Benchmark for Formalizing Applied Mathematics in Lean 4","url":"https://arxiv.org/html/2602.01291v1"},{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://arxiv.org/pdf/2511.03108"},{"title":"Process-Driven Autoformalization in Lean 4 | OpenReview","url":"https://openreview.net/forum?id=k8KsI84Ds7"},{"title":"ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data","url":"https://arxiv.org/pdf/2502.05567"},{"title":"[2604.16347] Lean Atlas: An Integrated Proof Environment for Scalable Human-AI Collaborative Formalization","url":"https://arxiv.org/abs/2604.16347"},{"title":"[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/abs/2510.15681"}]
+
+Based on the search results, here's what I found about ATLAS, autoformalization, Lean 4, miniF2F, and ProofNet:
+
+## ATLAS
+
+ATLAS is an iterative data generation framework that starts with a concept repository constructed through Data Lifting, and in Data Synthesis, combines the Lean compiler with teacher models to produce high-quality parallel statements.
+
+The ATLAS translator achieves state-of-the-art performance across multiple benchmarks, including miniF2F, ProofNet, and the newly introduced MathQual dataset. More specifically, the ATLAS translator achieves accuracies of 91.60%, 80.59%, and 65.47% on miniF2F, ProofNet, and MathQual, respectively, under the pass@8 metric. When evaluated with the pass@128 metric, it achieves accuracies of 96.93%, 92.99%, and 84.72% on these datasets.
+
+## Benchmarks and Recent Advances (2025-2026)
+
+In 2025, multiple independent systems achieved gold-medal equivalent performance with formally verified Lean 4 proofs. One system achieved 80.7% on MiniF2F with pass@8192 (April 2025 release).
+
+Lean Atlas is a Lean 4 tool that visualizes the dependency graph of a Lean 4 project as an interactive web viewer, enabling human scientists to grasp the overall structure of a formalization efficiently.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a85578c9-cb0b-489d-a58e-6ad214a969e5",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "642e7d45-ca95-42e8-995f-3d3ea0a636f9",
+  "sourceToolAssistantUUID": "a85578c9-cb0b-489d-a58e-6ad214a969e5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-27T12:19:08.097Z_
+
+<details><summary>↩ Tool result · `toolu_01UYmPzQw87FuFviBTAM5GSp`</summary>
+
+```text
+Web search results for query: "autoformalization fine-tuning LoRA GPU single machine requirements 2026"
+
+Links: [{"title":"Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide — Effloow","url":"https://effloow.com/articles/llm-fine-tuning-lora-qlora-guide-2026"},{"title":"Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community","url":"https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"},{"title":"QLoRA Fine-Tuning: Train 70B Models on a 24GB GPU (2026) | Local AI Master","url":"https://localaimaster.com/blog/qlora-fine-tuning-guide"},{"title":"LoRA & QLoRA Fine-Tuning: Build Custom LLMs on a Single GPU [2026 Guide] | Meta Intelligence","url":"https://www.meta-intelligence.tech/en/insight-lora-finetuning"},{"title":"LoRA Fine-Tuning: 7 Steps to Adapt Any LLM on One GPU","url":"https://decodethefuture.org/en/lora-fine-tuning-llm-guide/"},{"title":"Fine-Tuning Open Source LLMs with LoRA and QLoRA · Technical news about AI, coding and all","url":"https://dasroot.net/posts/2026/04/fine-tuning-open-source-llms-lora-qlora/"},{"title":"Best GPU Workstation for Fine-Tuning LLaMA 3 and Mistral in 2026 - VRLA Tech","url":"https://vrlatech.com/best-gpu-workstation-fine-tuning-llama-mistral-2026/"},{"title":"How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog","url":"https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"}]
+
+Based on the search results, here's what I found about LoRA fine-tuning GPU requirements for single machine setups in 2026:
+
+## Hardware Requirements
+
+**For 7B Models:**
+A 7B model with QLoRA fits in 8 GB VRAM, and a single RTX 4070 Ti is enough to specialize a 7B model on your domain data in an afternoon. For even more modest hardware, a 4–6 GB VRAM card (RTX 3050 Mobile, RTX 4050) can handle QLoRA training on 3B–7B models if you use 4-bit quantisation, keep the batch size at 1, limit the LoRA rank to 8–16, and cap sequence length at 512–1024 tokens.
+
+**For Larger Models:**
+70B fits in 46 GB on a single A100 with QLoRA, and you can fine-tune LLaMA 3.1 70B with QLoRA on a single GPU with 48GB+ VRAM.
+
+## Key Techniques
+
+LoRA reduces trainable parameters to 0.1–1% of the total by learning low-rank weight updates and recovers 90–95% of full fine-tuning quality. QLoRA adds 4-bit quantization of the base model, reducing VRAM requirements by ~75%.
+
+## Recommended Configuration (2026)
+
+Default hyperparameters: r=16, α=16, all-linear target modules, DoRA enabled. Start here and adjust if needed.
+
+**Note:** The search results do not contain specific information about "autoformalization" fine-tuning requirements. The results cover general LoRA/QLoRA fine-tuning approaches applicable to various LLM domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2fb6e0a-7766-48ec-a442-73d09f0c7371",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "ddbe7267-baea-4b6d-ad46-659e7503e4bb",
+  "sourceToolAssistantUUID": "e2fb6e0a-7766-48ec-a442-73d09f0c7371",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-27T12:19:09.293Z_
+
+<details><summary>↩ Tool result · `toolu_01UNzpGvgvbHBAn2Wgfo4wow`</summary>
+
+```text
+Web search results for query: "Leanstral Mistral AI Lean 4 proof agent benchmark performance"
+
+Links: [{"title":"Leanstral: Mistral’s Open-Source Proof Agent for Lean 4","url":"https://rits.shanghai.nyu.edu/ai/leanstral-mistrals-open-source-proof-agent-for-lean-4/"},{"title":"Mistral AI Releases Leanstral: First Lean 4 Open Source Code Agent Capable of Automatically Outputting Formal Proofs | Gate News","url":"https://www.gate.com/news/detail/mistral-ai-releases-leanstral-first-lean-4-open-source-code-agent-capable-19540961"},{"title":"Leanstral: Mistral's Open-Source AI for Trustworthy Coding - Webkul Blog","url":"https://webkul.com/blog/mistrals-leanstral/"},{"title":"Mistral Leanstral: AI That Proves Its Own Code | AI Automation Global","url":"https://aiautomationglobal.com/blog/mistral-leanstral-formal-code-verification-2026"},{"title":"Leanstral Review: Mistral Just Shipped the AI That Proves Your Code Is Correct | SaaS Pilot — AI & SaaS Tool Reviews","url":"https://saaspilot.org/ai-coding-assistants/2026-03-20-radar-2-leanstral-review/"},{"title":"Pulse24","url":"https://pulse24.ai/news/2026/3/17/1/mistral-ai-ships-leanstral-prover"},{"title":"Leanstral Outperforms Claude Sonnet at Formal Code Proofs | Awesome Agents","url":"https://awesomeagents.ai/news/leanstral-mistral-lean4-proof-agent/"},{"title":"Mistral's new agent proofs your code on the cheap","url":"https://www.theregister.com/2026/03/17/mistral_leanstral_ai_code_verification_tool/"},{"title":"Mistral Releases Leanstral, First Open-Source Lean 4 Code Agent - NervNow™","url":"https://nervnow.com/mistral-releases-leanstral-first-open-source-lean-4-code-agent/"}]
+
+Based on the search results, here's what I found about Leanstral, Mistral AI's Lean 4 proof agent:
+
+## Overview
+
+Mistral AI released Leanstral on March 16, 2026, the first open-source code agent built for Lean 4. Mistral trained a specialized model to operate natively in realistic formal repositories, understanding Lean's type system, tactic language, and proof obligations from the ground up.
+
+## Architecture and Efficiency
+
+Leanstral uses a highly sparse Mixture-of-Experts architecture — 120B total parameters with only 6B active per token. It is open-sourced under the Apache 2.0 license and has been specially trained and optimized for lean-lsp-mcp.
+
+## Benchmark Performance (FLTEval)
+
+Mistral released a new evaluation benchmark, FLTEval, using the formalization of Fermat's Last Theorem in the Lean 4 community as the test scenario.
+
+The benchmark results show strong performance with cost efficiency:
+
+- Leanstral pass@2 scores 26.3 at a cost of $36, surpassing Claude Sonnet 4.6, which costs $549 and scores 23.7.
+- For pass@16, it scores 31.9 at a cost of $290, leading Sonnet by 8 points, while Claude Opus 4.6 requires $1,650 to reach 39.6.
+- It also surpassed larger open-source models in efficiency, scaling to 29.3 at pass@4 for $72.
+
+## Availability
+
+Users can launch it with zero configuration via the /leanstall command in Mistral Vibe or access it through the free API endpoint labs-leanstral-2603, and it also supports downloading weights for self-deployment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b04ebbd-e198-49df-b426-7bac5c10c507",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "987875e3-fdb7-4307-9ec8-d0f2462d4639",
+  "sourceToolAssistantUUID": "8b04ebbd-e198-49df-b426-7bac5c10c507",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-27T12:19:12.219Z_
+
+Now let me get a couple more targeted searches to fill remaining gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "987875e3-fdb7-4307-9ec8-d0f2462d4639",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4X2BiLE58rasD85EWd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9b610fa0-e303-4dfd-b161-b54c5db6a630",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RPHbG77Z7tnaqW1euvHCvu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1892,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 21037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2927,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-27T12:19:13.197Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014D3hL9CvcLvycfkLfFX3rP`</summary>
+
+```json
+{
+  "query": "Herald translator autoformalization miniF2F Lean 4 model size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b610fa0-e303-4dfd-b161-b54c5db6a630",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4X2BiLE58rasD85EWd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c765712d-0935-4212-9cb7-3d01acc3b2a7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RPHbG77Z7tnaqW1euvHCvu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1892,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 21037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2927,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-27T12:19:14.216Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NmqP94bhX9Wpp7Q7BUj26Q`</summary>
+
+```json
+{
+  "query": "StepFun-Formalizer-32B model details open source weights"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c765712d-0935-4212-9cb7-3d01acc3b2a7",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4X2BiLE58rasD85EWd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "85a65637-4d8b-478f-ac9f-64631442131a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RPHbG77Z7tnaqW1euvHCvu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1892,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 21037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2927,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T12:19:14.565Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VkDyDZxa2c4HJA4fwrYAus`</summary>
+
+```json
+{
+  "query": "LeanCopilot 2026 Lean 4 tactic suggestion model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85a65637-4d8b-478f-ac9f-64631442131a",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4X2BiLE58rasD85EWd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5ec257af-2bce-4b92-a5c7-caacf1c8f511",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RPHbG77Z7tnaqW1euvHCvu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1892,
+      "cache_creation_input_tokens": 2927,
+      "cache_read_input_tokens": 21037,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2927,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-27T12:19:21.084Z_
+
+<details><summary>↩ Tool result · `toolu_014D3hL9CvcLvycfkLfFX3rP`</summary>
+
+```text
+Web search results for query: "Herald translator autoformalization miniF2F Lean 4 model size"
+
+Links: [{"title":"Herald: A Natural Language Annotated Lean 4 Dataset","url":"https://arxiv.org/html/2410.10878v1"},{"title":"(PDF) Herald: A Natural Language Annotated Lean 4 Dataset","url":"https://www.researchgate.net/publication/384938685_Herald_A_Natural_Language_Annotated_Lean_4_Dataset"},{"title":"[Literature Review] Herald: A Natural Language Annotated Lean 4 Dataset","url":"https://www.themoonlight.io/en/review/herald-a-natural-language-annotated-lean-4-dataset"},{"title":"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/pdf/2511.18760"},{"title":"Herald: A Natural Language Annotated Lean 4 Dataset","url":"https://arxiv.org/pdf/2410.10878"},{"title":"GitHub - frenzymath/herald_translator","url":"https://github.com/frenzymath/herald_translator"},{"title":"HERALD:ANATURAL LANGUAGE ANNOTATED LEAN 4 ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8c2bb821410066459be64d03a4dc5719-Paper-Conference.pdf"},{"title":"[2410.10878] Herald: A Natural Language Annotated Lean 4 Dataset","url":"https://arxiv.org/abs/2410.10878"},{"title":"Herald: A Natural Language Annotated Lean 4 Dataset | OpenReview","url":"https://openreview.net/forum?id=Se6MgCtRhz"},{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://openreview.net/pdf?id=KtaHv0YUyh"}]
+
+Based on the search results, here's information about Herald Translator, autoformalization, miniF2F, and Lean 4:
+
+## Herald Dataset and Translator
+
+Herald includes 580k valid statements and 44k NL-FL theorem pairs, representing a substantial resource for formalization research. Herald (Hierarchy and Retrieval-based Translated Lean Dataset) is the result of a novel framework for translating the Mathlib4 corpus into natural language.
+
+## Performance on miniF2F
+
+The fine-tuned statement formalizer achieves state-of-the-art accuracy—96.7% on the miniF2F-test. The Herald translator achieves a success rate of 96.3% on MiniF2F-Valid, 96.7% on MiniF2F-Test, 23.5% on Extract Theorem, and 16.0% on College COT, significantly outperforming baselines like InternLM2-Math-Plus-7B and TheoremLlama.
+
+## Model Size
+
+Unfortunately, the search results do not contain specific information about the model size of the Herald Translator. The results focus on the dataset size and performance metrics rather than the parameter count or size specifications of the model itself. You may need to consult the full paper or the GitHub repository for technical details about the model architecture and size.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c765712d-0935-4212-9cb7-3d01acc3b2a7",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "1fe2c197-87dc-47d6-b9fb-0f73a8f00f51",
+  "sourceToolAssistantUUID": "c765712d-0935-4212-9cb7-3d01acc3b2a7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-27T12:19:21.239Z_
+
+<details><summary>↩ Tool result · `toolu_01NmqP94bhX9Wpp7Q7BUj26Q`</summary>
+
+```text
+Web search results for query: "StepFun-Formalizer-32B model details open source weights"
+
+Links: [{"title":"stepfun-ai/StepFun-Formalizer-32B · Hugging Face","url":"https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential","url":"https://www.arxiv.org/pdf/2508.04440"},{"title":"GitHub - stepfun-ai/StepFun-Formalizer: StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion · GitHub","url":"https://github.com/stepfun-ai/StepFun-Formalizer"},{"title":"StepFun-Formalizer - a stepfun-ai Collection","url":"https://huggingface.co/collections/stepfun-ai/stepfun-formalizer"},{"title":"mradermacher/StepFun-Formalizer-7B-GGUF · Hugging Face","url":"https://huggingface.co/mradermacher/StepFun-Formalizer-7B-GGUF"},{"title":"README.md · stepfun-ai/StepFun-Formalizer-Training at main","url":"https://huggingface.co/datasets/stepfun-ai/StepFun-Formalizer-Training/blob/main/README.md"},{"title":"stepfun-ai/StepFun-Formalizer-7B · Hugging Face","url":"https://huggingface.co/stepfun-ai/StepFun-Formalizer-7B"},{"title":"README.md · stepfun-ai/StepFun-Formalizer-7B at main","url":"https://huggingface.co/stepfun-ai/StepFun-Formalizer-7B/blame/main/README.md"},{"title":"stepfun-ai/StepFun-Formalizer-Training · Datasets at Hugging Face","url":"https://huggingface.co/datasets/stepfun-ai/StepFun-Formalizer-Training"},{"title":"Update README. · stepfun-ai/StepFun-Formalizer-Training at 298c1ea","url":"https://huggingface.co/datasets/stepfun-ai/StepFun-Formalizer-Training/commit/298c1ea067ee6d6695615f70041abf584b743a86"}]
+
+Based on the search results, here are the key details about the StepFun-Formalizer-32B model:
+
+## Model Purpose and Capabilities
+
+StepFun-Formalizer is a family of large language models designed to translate natural-language mathematical problems into formal statements in Lean 4. Through the fusion of formal knowledge and informal-to-formal reasoning capability, StepFun-Formalizer achieves strong performance on autoformalization tasks.
+
+## Performance
+
+Evaluated with BEq verification on mainstream benchmarks including FormalMATH-Lite, ProverBench, and CombiBench, StepFun-Formalizer matches or exceeds all prior general-purpose and specialized autoformalization models of comparable scale.
+
+## Open Source and Licensing
+
+Both the code repository and the model weights are released under the Apache License (Version 2.0). The models are available on Hugging Face, with the 32B variant accessible at `stepfun-ai/StepFun-Formalizer-32B`.
+
+## Model Size Variations
+
+The StepFun-Formalizer family comes in multiple sizes (7B and 32B variants). The 7B model performs comparably to or slightly better than the 32B model, which may be due to the limited size of the data. The 32B model requires more data for further improvement.
+
+## Training Details
+
+The training of 7B and 32B takes 45.38 hours and 55.85 hours respectively, and the context lengths are 16384.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85a65637-4d8b-478f-ac9f-64631442131a",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "4671468b-8383-4345-87d9-124956e80057",
+  "sourceToolAssistantUUID": "85a65637-4d8b-478f-ac9f-64631442131a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-27T12:19:21.791Z_
+
+<details><summary>↩ Tool result · `toolu_01VkDyDZxa2c4HJA4fwrYAus`</summary>
+
+```text
+Web search results for query: "LeanCopilot 2026 Lean 4 tactic suggestion model"
+
+Links: [{"title":"GitHub - lean-dojo/LeanCopilot: LLMs as Copilots for Theorem Proving in Lean · GitHub","url":"https://github.com/lean-dojo/LeanCopilot"},{"title":"lean‑dojo/LeanCopilot - Reservoir","url":"https://reservoir.lean-lang.org/@lean-dojo/LeanCopilot"},{"title":"LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction","url":"https://leandojo.org/leanprogress.html"},{"title":"Lean Copilot: Large Language Models as Copilots for Theorem Proving in Lean","url":"https://leandojo.org/leancopilot.html"},{"title":"LeanCopilot/README.md at main · lean-dojo/LeanCopilot","url":"https://github.com/lean-dojo/LeanCopilot/blob/main/README.md"},{"title":"LeanProgress: Guiding Search for Neural Theorem Proving via Proof Progress Prediction","url":"https://arxiv.org/html/2502.17925v3"},{"title":"Lean Copilot: Large Language Models as Copilots for Theorem Proving in Lean","url":"https://arxiv.org/html/2404.12534v2"},{"title":"GitHub - wellecks/llmstep: llmstep: [L]LM proofstep suggestions in Lean 4.","url":"https://github.com/wellecks/llmstep"},{"title":"Proceedings of Machine Learning Research vol 288:1–26, 2025","url":"https://arxiv.org/pdf/2404.12534"},{"title":"GitHub - 34j/best-of-lean4: A list of awesome lean4 projects. Feel free to add your project. · GitHub","url":"https://github.com/34j/best-of-lean4"}]
+
+Based on the search results, here's what I found about LeanCopilot and Lean 4 tactic suggestion:
+
+## LeanCopilot Overview
+
+Lean Copilot allows large language models (LLMs) to be used natively in Lean for proof automation, e.g., suggesting tactics/premises and searching for proofs.
+
+## Tactic Suggestion Model
+
+After import LeanCopilot, you can use the tactic suggest_tactics to generate tactic suggestions. You can click on any of the suggested tactics to use it in the proof.
+
+## Key Features
+
+LLM-based tools automate three important tasks in theorem proving: tactic suggestion, proof search, and premise selection. You can use built-in models from LeanDojo or bring your own models that run either locally (w/ or w/o GPUs) or on the cloud.
+
+## Advanced Functionality
+
+More recently, LeanCopilot provides a general framework of developing LLM-based tools natively in Lean, and supports a suggest_tactic functionality that offers tactic suggestions. Additionally, a new enhancement called LeanProgress integrates with LeanCopilot to provide a predict_steps_with_suggestion tactic for LeanCopilot that shows both tactic suggestions and progress estimates.
+
+The tool is actively maintained and available as an open-source project on GitHub, with support for Lean 4 version 4.3.0-rc2 and later.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ec257af-2bce-4b92-a5c7-caacf1c8f511",
+  "isSidechain": true,
+  "promptId": "b20dcf5f-0e10-41c2-b184-a16c9743162a",
+  "agentId": "a8ad2fc8d499fe316",
+  "type": "user",
+  "uuid": "fe01ced3-8a9b-40ff-bdb1-2b1b49d44cdf",
+  "sourceToolAssistantUUID": "5ec257af-2bce-4b92-a5c7-caacf1c8f511",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-27T12:20:51.206Z_
+
+I now have comprehensive findings across all five areas. Here is the full report.
+
+---
+
+# Research Landscape: Selective Formal Verification of Mathematical Proofs (May 2026)
+
+## 1. TOP OPEN-SOURCE MODELS FOR AUTOFORMALIZATION (NL Math to Lean 4)
+
+### Tier 1: Purpose-Built Autoformalization Models
+
+- **Leanstral (Mistral AI, March 2026)** -- The first open-source AI agent built specifically for Lean 4. 120B total parameters, only 6B active per token (sparse MoE). Apache 2.0 license. On the FLTEval benchmark (Fermat's Last Theorem formalization), it scores 26.3 pass@2 at $36 cost, beating Claude Sonnet 4.6 (23.7 at $549). Integrates with Lean LSP via MCP. Weights available for self-deployment.
+  - GitHub/API: Free endpoint `labs-leanstral-2603`
+
+- **StepFun-Formalizer (StepFun AI)** -- Available in 7B and 32B variants, Apache 2.0. Specifically designed for NL-to-Lean-4 translation. StepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench. Training takes ~56 hours for the 32B model. Weights on HuggingFace (`stepfun-ai/StepFun-Formalizer-32B`).
+  - GitHub: [github.com/stepfun-ai/StepFun-Formalizer](https://github.com/stepfun-ai/StepFun-Formalizer)
+
+- **Herald Translator** -- Fine-tuned on the Herald dataset (580K valid statements, 44K NL-FL theorem pairs from Mathlib4). Achieves 96.7% accuracy on miniF2F-test for statement formalization. Model size not explicitly documented.
+  - GitHub: [github.com/frenzymath/herald_translator](https://github.com/frenzymath/herald_translator)
+
+- **ATLAS Translator** -- Iterative data generation framework. Achieves 91.60% on miniF2F, 80.59% on ProofNet, 65.47% on MathQual (pass@8). At pass@128: 96.93%, 92.99%, 84.72% respectively.
+
+### Tier 2: General Autoformalization Approaches
+
+- **ProofBridge** -- Joint embedding model for translating entire NL theorems+proofs into Lean 4. Reported to outperform GPT-5 and Gemini-2.5 baselines.
+- **NL2Lean** -- Uses curriculum learning + multi-reward model for NL-to-Lean-4 translation (EMNLP 2025).
+- **MASA (Multi-Agent Autoformalization)** -- Multi-agent system with LLM, knowledge base, retriever, and theorem prover components.
+  - GitHub: [github.com/lanzhang128/multi_agent_autoformalization](https://github.com/lanzhang128/multi_agent_autoformalization)
+- **Process-Driven Autoformalization (PDA)** -- Uses Lean 4 compiler feedback to refine autoformalization iteratively. Published with the FORML4 dataset.
+  - GitHub: [github.com/rookie-joe/PDA](https://github.com/rookie-joe/PDA)
+
+## 2. TOP OPEN-SOURCE MODELS FOR MATHEMATICAL REASONING
+
+### Best for LLM-Based Proof Block Verification
+
+- **DeepSeek-R1** -- Elite-level reasoning, comparable to OpenAI o1. Strong chain-of-thought with extended reasoning traces. Best raw reasoning performance among open-source models.
+- **Qwen/QwQ-32B** -- Best balance of capability and efficiency. Strong math reasoning in a 32B package.
+- **Qwen 3 235B** -- Leads broadest range of benchmarks (Apache 2.0). Top-tier reasoning, coding, multilingual.
+- **GLM-5 (THUDM)** -- Scores 94.2 HumanEval, 95.7 AIME 2025, 85.7 GPQA Diamond.
+- **GLM-Z1-9B-0414** -- Surprisingly strong math in a lightweight 9B package, good for resource-constrained deployments.
+- **DeepSeek V3.2/V4** -- Unified thinking-mode models that integrate reasoning into standard chat, better for production deployments.
+
+**Recommendation for proof block verification:** DeepSeek-R1 or QwQ-32B for reasoning quality; GLM-Z1-9B for efficiency. For a selective verification pipeline, QwQ-32B offers the best quality-to-cost tradeoff.
+
+## 3. EXISTING IMPLEMENTATIONS ON GITHUB
+
+### Directly Relevant Codebases
+
+- **Safe (ACL 2025 Main)** -- **Most directly relevant to your project.** Retrospective step-aware formal verification of LLM mathematical reasoning. Translates each reasoning step to Lean 4, then proves correctness. Includes the FormalStep dataset (30,809 formal statements). Authors: Chengwu Liu et al.
+  - GitHub: [github.com/liuchengwucn/Safe](https://github.com/liuchengwucn/Safe)
+  - Paper: [aclanthology.org/2025.acl-long.594](https://aclanthology.org/2025.acl-long.594/)
+
+- **Goedel-Prover / Goedel-Prover-V2** -- Open-source ATP for Lean 4. V2-32B: 88.1% pass@32 on MiniF2F (90.4% with self-correction). Outperforms DeepSeek-Prover-V2-671B with 1/20th the parameters. The 8B variant hits 84.6% pass@32.
+  - GitHub: [github.com/Goedel-LM/Goedel-Prover](https://github.com/Goedel-LM/Goedel-Prover)
+
+- **LeanAide** -- AI tools for Lean 4 using autoformalization as core technique.
+  - GitHub: [github.com/siddhartha-gadgil/LeanAide](https://github.com/siddhartha-gadgil/LeanAide)
+
+- **LeanDojo / ReProver / LeanCopilot** -- Comprehensive ecosystem for AI-assisted theorem proving in Lean 4. ReProver is retrieval-augmented. LeanCopilot provides in-editor tactic suggestion, proof search, and premise selection. LeanDojo-v2 presented at NeurIPS 2025.
+  - GitHub: [github.com/lean-dojo/LeanCopilot](https://github.com/lean-dojo/LeanCopilot)
+  - GitHub: [github.com/lean-dojo/ReProver](https://github.com/lean-dojo/ReProver)
+  - Docs: [leandojo.readthedocs.io](https://leandojo.readthedocs.io/en/latest/index.html)
+
+- **LeanInteract** -- Python interface for Lean 4, useful for running autoformalization benchmarks (MiniF2F, ProofNet) programmatically.
+  - GitHub: [github.com/augustepoiroux/LeanInteract](https://github.com/augustepoiroux/LeanInteract)
+
+- **DL4TP** -- Comprehensive survey repo on deep learning for theorem proving (COLM 2024).
+  - GitHub: [github.com/zhaoyu-li/DL4TP](https://github.com/zhaoyu-li/DL4TP)
+
+### Datasets
+
+- **FormalStep** (from Safe): 30,809 formal statements for step-correctness verification
+- **FORML4** (from PDA): Autoformalization dataset built by informalizing Mathlib 4 theorems
+- **Herald**: 580K statements, 44K NL-FL pairs from Mathlib4
+- **Numina-ATF**: 750K synthetic formal statements for ATP research
+- **StepFun-Formalizer-Training**: Training data on HuggingFace
+
+## 4. HARDWARE / DATA REQUIREMENTS
+
+### Fine-Tuning Autoformalization Models (LoRA/QLoRA)
+
+| Model Size | Technique | VRAM Required | Hardware | Time Estimate |
+|-----------|-----------|--------------|----------|--------------|
+| 7B | QLoRA (4-bit) | ~8 GB | Single RTX 4070 Ti | Hours (afternoon) |
+| 7B | LoRA | ~16 GB | Single RTX 4090 / A5000 | Hours |
+| 32B | QLoRA (4-bit) | ~24 GB | Single RTX 4090 / A6000 | ~46-56 hours |
+| 70B | QLoRA (4-bit) | ~46 GB | Single A100-80GB | Days |
+
+**Specific autoformalization training times reported:**
+- StepFun-Formalizer-7B: 45.38 hours training time
+- StepFun-Formalizer-32B: 55.85 hours training time
+- Context length: 16,384 tokens
+
+### Theorem Proving / Proof Search
+
+- **ReProver**: Only ~1 GPU-week of training (very affordable)
+- **Goedel-Prover-V2**: Reduced compute budget vs. DeepSeek-Prover-V2-671B while outperforming it
+- **Lean 4 compilation/verification**: CPU-bound, does not require GPU. The Lean kernel itself runs on CPU.
+- **LLM inference for proof search**: 1 GPU sufficient for 7B-8B models; multiple GPUs for 32B+ models
+
+### Recommended Practical Setup
+
+For a research project: 1-2 A100-80GB GPUs (or equivalent) would cover fine-tuning a 7B-32B autoformalization model and running proof search. A single RTX 4090 (24GB) is viable for 7B models with QLoRA.
+
+## 5. LEAN 4 THEOREM PROVERS (Proof Search Tools)
+
+### State of the Art (Ranked by MiniF2F Performance)
+
+| System | Size | MiniF2F (pass@N) | PutnamBench | Open Source |
+|--------|------|------------------|-------------|------------|
+| Goedel-Prover-V2-32B | 32B | 88.1% (pass@32), 90.4% w/ self-correction | 86/658 (pass@184) | Yes |
+| DeepSeek-Prover-V2 | 671B (37B active) | 88.9% (pass@N) | 49/658 (pass@1024) | Yes |
+| Goedel-Prover-V2-8B | 8B | 84.6% (pass@32) | -- | Yes |
+| Leanstral | 120B (6B active) | -- (FLTEval focused) | -- | Yes (Apache 2.0) |
+| AlphaProof (Google) | Undisclosed | IMO gold-level | -- | **No** |
+
+### Key Tools and Frameworks
+
+- **Goedel-Prover-V2** -- Current open-source SOTA. Uses scalable data synthesis, verifier-guided self-correction, model averaging. The 32B model beats 671B competitors.
+- **DeepSeek-Prover-V2** -- 671B MoE (37B active, 256 experts). Recursive theorem proving pipeline. Also available in a 7B variant (~76-78% on MiniF2F).
+- **LeanCopilot** -- In-editor LLM-based tactic suggestion, proof search, and premise selection for Lean 4. Supports local or cloud models. Actively maintained.
+- **ReProver (LeanDojo)** -- Retrieval-augmented prover. Only 1 GPU-week to train. LeanDojo-v2 released.
+- **LeanProgress** -- Guides proof search via progress prediction. Collected ~80K proof trajectories from Lean Workbook Plus and Mathlib4. Published in TMLR 2025.
+- **Leanstral** -- Agent-based approach that interacts with Lean LSP. Cost-efficient for proof generation.
+- **Gauss (Math Inc.)** -- Formalized the strong Prime Number Theorem in 3 weeks (vs. 18+ months of human expert effort). Likely proprietary.
+
+---
+
+## Summary Recommendations for Your Project
+
+1. **For autoformalization (NL to Lean 4):** Start with StepFun-Formalizer-7B/32B (open weights, Apache 2.0, well-documented training) or Leanstral (if using as an agent). The Safe framework's step-level formalization approach is the closest match to "selective formal verification."
+
+2. **For proof block verification via LLM:** QwQ-32B or DeepSeek-R1 for reasoning; pair with Goedel-Prover-V2-8B/32B for formal proof search.
+
+3. **Primary codebase to build upon:** The **Safe** repository ([github.com/liuchengwucn/Safe](https://github.com/liuchengwucn/Safe)) is the most directly aligned with selective formal verification of mathematical proofs -- it already does step-aware formalization and verification in Lean 4.
+
+4. **Hardware:** A single A100-80GB or 2x RTX 4090 is sufficient for fine-tuning 7B-32B models and running proof search. ReProver needs only 1 GPU-week.
+
+5. **Lean 4 proof search:** Goedel-Prover-V2-32B is the clear open-source leader (88.1% MiniF2F, beats 671B models).
+
+---
+
+Sources:
+- [Leanstral - Mistral's Open-Source Proof Agent](https://rits.shanghai.nyu.edu/ai/leanstral-mistrals-open-source-proof-agent-for-lean-4/)
+- [StepFun-Formalizer on HuggingFace](https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B)
+- [StepFun-Formalizer GitHub](https://github.com/stepfun-ai/StepFun-Formalizer)
+- [Safe: Step-aware Formal Verification (ACL 2025)](https://aclanthology.org/2025.acl-long.594/)
+- [Safe GitHub Repository](https://github.com/liuchengwucn/Safe)
+- [Goedel-Prover GitHub](https://github.com/Goedel-LM/Goedel-Prover)
+- [Goedel-Prover-V2 Overview](https://www.emergentmind.com/topics/goedel-prover-v2)
+- [DeepSeek-Prover-V2 Paper](https://arxiv.org/abs/2504.21801)
+- [LeanDojo / ReProver GitHub](https://github.com/lean-dojo/ReProver)
+- [LeanCopilot GitHub](https://github.com/lean-dojo/LeanCopilot)
+- [LeanDojo Documentation](https://leandojo.readthedocs.io/en/latest/index.html)
+- [Herald Translator GitHub](https://github.com/frenzymath/herald_translator)
+- [Herald Dataset Paper](https://arxiv.org/abs/2410.10878)
+- [ATLAS Autoformalization Paper](https://arxiv.org/pdf/2502.05567)
+- [Process-Driven Autoformalization (PDA) GitHub](https://github.com/rookie-joe/PDA)
+- [ProofBridge Paper](https://arxiv.org/abs/2510.15681)
+- [Multi-Agent Autoformalization GitHub](https://github.com/lanzhang128/multi_agent_autoformalization)
+- [LeanInteract GitHub](https://github.com/augustepoiroux/LeanInteract)
+- [LeanProgress](https://leandojo.org/leanprogress.html)
+- [NL2Lean (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.1586.pdf)
+- [Lean 4 Survey Paper](https://arxiv.org/abs/2501.18639)
+- [Best Open Source LLM for Math 2026](https://www.siliconflow.com/articles/en/best-open-source-LLM-for-math)
+- [Top Open-Source Reasoning Models 2026](https://www.clarifai.com/blog/top-10-open-source-reasoning-models-in-2026)
+- [DL4TP Survey GitHub](https://github.com/zhaoyu-li/DL4TP)
+- [LeanAide GitHub](https://github.com/siddhartha-gadgil/LeanAide)
+- [LoRA/QLoRA Fine-Tuning Guide 2026](https://effloow.com/articles/llm-fine-tuning-lora-qlora-guide-2026)
+- [Leanstral on The Register](https://www.theregister.com/2026/03/17/mistral_leanstral_ai_code_verification_tool/)
+- [Major Breakthroughs in Lean 4 Auto-Formalized Mathematics](https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html)
+- [Lean Atlas Paper](https://arxiv.org/abs/2604.16347)
+- [LeanSearch v2](https://arxiv.org/html/2605.13137)
+- [FormaRL Paper](https://arxiv.org/abs/2508.18914)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe01ced3-8a9b-40ff-bdb1-2b1b49d44cdf",
+  "isSidechain": true,
+  "agentId": "a8ad2fc8d499fe316",
+  "requestId": "req_011CbT4XwcA64hEE8KyF68UY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "437424ff-a997-4c61-ad89-588d226d9dc7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d50cf128-39c2-46f2-abb0-ee1a4faf1620",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011YNjZEVnSWZ2vKnAAtQ7sr",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4858,
+      "cache_read_input_tokens": 23964,
+      "output_tokens": 4556,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4858
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4556,
+          "cache_read_input_tokens": 23964,
+          "cache_creation_input_tokens": 4858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4858,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

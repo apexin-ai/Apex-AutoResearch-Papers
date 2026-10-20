@@ -1,0 +1,1363 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-2/ce86b001-7b72-4e4d-89c9-34678ce6e006.jsonl`
+- **Structured JSON:** [`266c3e8ac95126e896ed.json`](../../sessions/26/266c3e8ac95126e896ed.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T08:33:36.068Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T08:33:36.068Z",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have enough research to provide a thorough evaluation. Let me compile my findings.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531) (arXiv, May 2026): 最直接的前序工作之一。提出将证明分解为自包含的 pseudo-formal modules（显式前提/结论），用 LLM 共识做 block verification。在 Hard2Verify 和 ArxivMathGradingBench 上 Pareto-dominate LLM-as-judge。proposal 的 Stage 1 直接复用此方法，Stage 2-3 在此基础上加 multi-engine routing。\n- [Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://aclanthology.org/2025.acl-long.594/) (ACL 2025): 另一个核心前序工作。逐步将 CoT 步骤形式化为 Lean 4 并验证。提出 FormalStep benchmark (30,809 formal statements)。关键局限：无法形式化的步骤直接跳过（无 fallback），且有 4-8x LLM query overhead。proposal 声称要解决的\"跳过无法形式化步骤\"问题确实存在。\n- [MATH-VF: Step-Wise Formal Verification](https://arxiv.org/abs/2505.20869) (arXiv, May 2025): 使用自定义 SimpleMath 语言 + SymPy + Z3 做步骤级验证，MATH-500 上 93.2% discriminative accuracy。**关键竞争者**：已经在用 SymPy+Z3 做 multi-tool 验证，虽然只有单一形式化语言而非 multi-engine routing，但概念上与 FormRoute 的 SymPy/Z3 路径高度重叠。\n- [VERGE: Formal Refinement and Guidance Engine](https://arxiv.org/abs/2601.20055) (arXiv, Jan 2026): **最直接的概念竞争者**。已经实现了 semantic routing——将 atomic claims 动态分类后分别送 Z3（可形式化的）或 LLM consensus（不可形式化的）。虽然面向 general reasoning 而非 math proof，但 routing 的核心思想已经被实现。FormRoute 本质上是 \"VERGE for math proofs + more engines + modular decomposition\"。\n- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960) (ACL 2026 Findings): 证明 formally verified step-level labels 可跨任务泛化训练 PRM。与 proposal 的关联是间接的——FormRoute 的 classifier 训练数据（银标签）采用类似的 retrospective labeling 策略。\n- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning](https://arxiv.org/abs/2511.18760) (ICML 2026 Poster): 在推理过程中交错 informal reasoning 与 Lean 4 verification。67% accuracy improvement on AIME'25，80% fewer FLOPs。只用单一验证引擎（Lean），但已证明 interleaved verification 的有效性。\n- [ProofSketcher: Hybrid LLM + Lightweight Proof Checker](https://arxiv.org/abs/2604.06401) (arXiv, April 2026): LLM 生成 typed proof sketch，轻量 kernel 展开验证。使用单一自定义 DSL 而非多引擎，但 \"结构化分解 + 分步验证 + 失败反馈\" 的整体思路与 FormRoute 有相似性。\n- [Hilbert: Recursively Building Formal Proofs with Informal Reasoning](https://arxiv.org/abs/2509.22819) (NeurIPS 2025 MATH-AI Workshop): 递归分解 + formal verification，MiniF2F 99.2%。侧重 theorem proving 而非 verification，但 recursive decomposition 策略相关。\n- [PRoSFI](https://arxiv.org/abs/2603.29500) (arXiv, March 2026): 结构化形式中介 + step-level formal verification 作为 RL process rewards。限于一阶逻辑。\n\n- **调研总结**: 2025-2026 年，数学证明验证领域极度活跃。\"分步验证\"和\"形式化工具辅助\"已是共识方向。**关键发现**：VERGE 已经实现了 semantic routing（Z3 vs LLM），MATH-VF 已经在用 SymPy+Z3 做 multi-tool 验证。FormRoute 的核心差异化在于：(a) 将 routing 从 2 个 backend 扩展到 4 个（SymPy/Z3/Lean/LLM），(b) 用 learned classifier 替代 rule-based routing，(c) 在 pseudo-formal modular decomposition 之上做 routing 而非 flat claim lists。但这些差异更多是工程集成层面的扩展，而非概念层面的突破。\n\n【Trivial Alternative 检验】: \n**存在明显的 trivial alternative 威胁。**\n1. **\"Brute-force all engines\"**：proposal 自己描述的训练数据生成过程就是\"对每个 block 尝试所有 4 个引擎，记录成功/失败\"。如果在推理时也这样做（全部尝试，取最佳结果），验证质量应当等同甚至优于 classifier routing（因为 classifier 有预测误差）。classifier 的唯一价值是节省计算开销。但 proposal 并未论证这个开销节省的幅度——如果 SymPy/Z3 验证耗时可忽略（通常毫秒级），主要开销在 Lean formalization（秒级），那么只需决定\"是否值得尝试 Lean\"，这是一个远比 4-way routing 简单的二分类问题。\n2. **\"VERGE + PF decomposition\"**：将 VERGE 的 semantic routing 直接应用于 PF 的 modular blocks，用 rule-based heuristics（而非 learned classifier）决定 routing，可能达到 FormRoute 80-90% 的效果。proposal 的增量价值需要靠实验证明 learned routing 显著优于 rule-based routing。\n\n**增量价值分析**：FormRoute 的真正增量价值取决于：(a) learned classifier 相比 rule-based routing 的提升幅度，(b) 4 engines 相比 2 engines 的覆盖提升，(c) aggregation scheme 的质量。这些都是实验性的问题，idea 层面无法确认增量价值是否足够显著。\n\n【前提假设检验】:\n1. **\"可形式化性可被可靠预测\"（核心假设）**：假设一个 8B 模型在 ~15K 银标签上 fine-tune 后能准确预测哪个引擎最适合某个证明步骤。但 formalizability 不是步骤的固有属性——它高度依赖于形式化的尝试方式、prompt 工程、甚至随机种子。同一步骤在不同尝试下可能在 Lean 中成功或失败。**银标签的噪声和不稳定性**可能严重影响 classifier 质量，但 proposal 未讨论这一点。\n2. **\"四个引擎覆盖互补\"（架构假设）**：假设 SymPy、Z3、Lean、LLM 在不同类型的证明步骤上各有优势，形成互补覆盖。但实际上，SymPy 能处理的大部分代数步骤 Z3 也能处理（反之亦然），Lean（通过 lean-smt tactic，见 CAV 2025）也能调用 SMT。引擎之间的重叠度可能远高于预期，使得 routing 的边际收益有限。\n3. **\"LLM 共识作为 fallback 提供有意义的验证\"（可靠性假设）**：对于\"无法形式化\"的步骤（几何、组合、概念性论证），fallback 到 calibrated LLM 共识。但这正是 PF+BV 已经在做的事情——proposal 声称要解决 PF+BV 的 LLM-only 弱点，但对于这些步骤类型，FormRoute 并没有提供任何改进，只是承认\"这些步骤我们也只能用 LLM\"。\n4. **\"learned weighting scheme 能有效聚合\"**：假设可以学到一个跨引擎、跨域的可靠加权方案。但验证是二值的（正确/错误），将多个二值判断加权聚合为证明级判断的理论基础不清晰——如果一个 block 被判错误，整个证明就应该是错误的，权重方案的意义何在？\n\n【3 维度打分】:\n\n1. **Novelty: 弱-中** — \n   核心贡献是\"learned formalizability classifier + multi-engine routing for proof verification\"。但：\n   - VERGE (Jan 2026) 已实现 semantic routing（Z3 vs LLM consensus），概念框架高度相似，FormRoute 是在此基础上增加引擎数量和使用 learned classifier 替代 rule-based routing；\n   - MATH-VF (May 2025) 已在用 SymPy+Z3 multi-tool 验证数学步骤；\n   - PF+BV (May 2026) 的 modular decomposition 被直接复用；\n   - \"对不同类型的任务使用不同工具\"是 tool-use/agent 文献中的常见范式（如 Toolformer, Gorilla 等），将其应用于 proof verification 是合理的迁移但非概念创新。\n   \n   **剥离 surface differences 后的真实 novelty delta**：将 routing 从 2-backend（VERGE）扩展到 4-backend，将 routing 策略从 rule-based 升级为 learned，并嫁接在 PF 的 modular decomposition 之上。这是一个合理的系统集成贡献，但如果核心实验结果是\"multi-engine 比 single-engine 好\"，审稿人很可能会说 **\"I would have guessed this\"**。formalizability classifier 本身如果作为独立贡献有分析价值（泛化性、failure mode 分析等），novelty 会更强，但 proposal 将其主要定位为 routing 的内部组件。\n\n2. **Significance: 中** — \n   数学证明验证是 2025-2026 年的热点问题，具有实际应用价值（LLM 数学推理的可靠性保障、automated research verification）。问题本身重要。但：\n   - FormRoute 如果成功，解决的核心问题是\"提高验证覆盖率\"——这是一个工程优化目标，而非带来新的 insight；\n   - formalizability classifier 作为可复用 artifact 有一定价值（可用于 autoformalization 研究、PRM 训练等），但 proposal 对此着墨不多；\n   - 对领域的影响更多是\"提供一个更好的工具\"而非\"改变研究者理解问题的方式\"。\n\n3. **Related Work: 强** — \n   这是 proposal 最强的维度。覆盖了该领域几乎所有 2025-2026 年的重要工作（PF+BV、Safe、MATH-VF、VERGE、FoVer、HERMES、ProofSketcher、Hilbert、PRoSFI），每篇都有具体的差异化定位。所有被引论文经验证均真实存在且描述准确。Lean-SMT (CAV 2025) 的引用也表明作者对形式化工具生态有深入了解。唯一可改进的点是未充分讨论与 VERGE 在 routing 概念上的重叠度——这是审稿人最可能追问的 related work gap。\n\n【概率估计】: [22% - 32%] 中位 27%\n\n【估计理由】: \nRelated Work 维度是强的，表明作者对领域有深入理解，positioning 清晰。但 Novelty 是限制上界的关键维度：(1) VERGE 已经实现了 routing 的核心概念，FormRoute 是量变（更多引擎、learned routing）而非质变；(2) \"multi-engine 比 single-engine 好\"的核心结论如果为正，审稿人会认为 expected 而非 surprising；(3) \"brute-force all engines\" 的 trivial alternative 构成真实威胁，需要实验证明 learned routing 在效率-质量 tradeoff 上的实质优势。Significance 为中——问题热门但贡献偏工程优化。综合来看，这是一篇执行良好的系统集成论文，有清晰的实用价值，但 idea 内核的 novelty 不足以支撑 top-tier venue 的高接收概率。中位估 27%，如果 formalizability classifier 的独立分析非常深入（failure modes、跨 domain 泛化、与 autoformalization 研究的连接）且实验充分证明 learned routing >> rule-based routing，有可能达到上界 32%。\n\n【主要风险】:\n1. **Novelty 不足被拒**：审稿人指出 VERGE 已做 semantic routing、MATH-VF 已做 SymPy+Z3 multi-tool 验证，FormRoute 的贡献被定性为\"incremental system combination\"而非独立的研究贡献——这是最可能的拒稿理由。\n2. **Trivial alternative 未被有效排除**：\"为什么不直接尝试所有引擎取最优结果？\"——如果 proposal 不能在 idea 层面论证 learned routing 的必要性（而非仅靠实验表明效率更高），这会成为审稿人的核心质疑。\n```\n\nSources:\n- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531)\n- [Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://aclanthology.org/2025.acl-long.594/)\n- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/abs/2505.20869)\n- [VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning](https://arxiv.org/abs/2601.20055)\n- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)\n- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs](https://arxiv.org/abs/2511.18760)\n- [ProofSketcher: Hybrid LLM + Lightweight Proof Checker](https://arxiv.org/abs/2604.06401)\n- [Hilbert: Recursively Building Formal Proofs with Informal Reasoning](https://arxiv.org/abs/2509.22819)\n- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning](https://arxiv.org/abs/2603.29500)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have comprehensive research findings. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Pseudo-Formalization + Block Verification (PF+BV)** (arXiv 2605.20531, May 2026):\n   将证明分解为自包含模块，各模块含前提/结论，用 LLM 共识验证每个模块。在 Hard2Verify 和 ArxivMathGradingBench 上 pareto-dominant LLM-as-judge。与本 proposal 关系：FormRoute 的 Stage 1 直接继承 PF 的分解策略，是最核心的上游依赖。\n\n2. **Safe** (ACL 2025, arXiv 2506.04592):\n   逐步将 CoT 步骤形式化为 Lean 4，发现不可形式化的步骤直接跳过（无 fallback）。MATH-500 上 BoN@5 准确率 60.0%。与本 proposal 关系：FormRoute 明确要解决 Safe 的\"跳过不可形式化步骤\"问题，是关键的 motivation 来源。\n\n3. **VERGE** (arXiv 2601.20055, Jan 2026):\n   核心创新即 **Semantic Routing**——将原子声明动态分类，可形式化的送 Z3，模糊的送 LLM 共识。+18.7% 提升。与本 proposal 关系：**这是最直接的竞争者之一**。VERGE 的 semantic routing 概念与 FormRoute 的 engine routing 高度相似；proposal 以\"VERGE 操作在 flat claim lists 而非 modular proof blocks\"来区分，但这个区分偏表面。\n\n4. **VerifiAgent** (EMNLP 2025 Findings, arXiv 2504.00406):\n   统一验证 agent，集成 meta-verification 和 **tool-based adaptive verification**，自主选择合适的验证工具（Python interpreter, symbolic solver, search engine）处理不同推理类型。在 GSM8K, MATH, FOLIO, ProverQA 等上超越 baseline。与本 proposal 关系：**proposal 未引用此工作，但 VerifiAgent 的核心思路（自适应选择验证工具）与 FormRoute 的 multi-engine routing 高度重叠。** 这是一个显著的 related work 缺失。\n\n5. **MATH-VF** (arXiv 2505.20869, May 2025):\n   用 SimpleMath 形式化 + SymPy/Z3 验证，MATH-500 discriminative accuracy 93.2%。与本 proposal 关系：FormRoute 的 CAS+SMT 引擎组合部分与 MATH-VF 重叠，但 MATH-VF 限于单一形式化语言。\n\n6. **HERMES** (ICML 2026, arXiv 2511.18760):\n   交错非形式推理与 Lean 4 验证，AIME'25 上 67% 准确率提升，FLOPs 减少 80%。与本 proposal 关系：HERMES 代表\"单引擎但深度集成\"路线，FormRoute 代表\"多引擎浅集成+路由\"路线。\n\n7. **ProofSketcher** (arXiv 2604.06401, April 2026):\n   LLM 生成 typed proof sketch，轻量 kernel 展开为 proof obligations。与本 proposal 关系：不同路线（单一 DSL vs. 多引擎路由）。\n\n8. **Hilbert** (NeurIPS 2025 Workshop):\n   递归分解 + informal/formal 桥接，MiniF2F 99.2%。但侧重定理证明（生成证明）而非验证。\n\n9. **FoVer** (ACL 2026 Findings, arXiv 2505.15960):\n   用形式验证工具（Z3, Isabelle）合成 PRM 训练数据，跨任务泛化。与本 proposal 关系：FormRoute 声称 formalizability classifier 可服务于 PRM 训练，但 FoVer 已经有了一条从形式验证到 PRM 的成熟路径。\n\n- **调研总结**：数学证明验证领域在 2025-2026 年极度活跃，多条路线并行：单引擎深度形式化（Safe, HERMES）、轻量自定义 DSL（MATH-VF, ProofSketcher）、模块化 LLM 验证（PF+BV）、以及已经出现的自适应工具选择/路由（VERGE 的 semantic routing, VerifiAgent 的 tool-based adaptive verification）。FormRoute 位于\"多引擎路由\"赛道，但该赛道已有 VERGE 和 VerifiAgent 两个先行者；其增量贡献在于将路由从\"规则/提示驱动\"升级为\"学习型 formalizability classifier\"，并结合 PF 的模块化分解。\n\n【Trivial Alternative 检验】:\n\n存在多个成本更低的替代方案：\n\n1. **规则型路由（Rule-based routing）**：简单的关键词/模式匹配——含等式/算术表达式 → CAS，含逻辑连接词/量词 → SMT，含高阶概念 → Lean，其余 → LLM。数学证明步骤的 domain 通常从表面特征就可较准确判断（代数步骤 vs. 组合论证 vs. 逻辑推导的语言模式差异明显）。Proposal 没有论证为什么需要一个 learned classifier 而非 rule-based heuristic，也没有提供 rule-based baseline 的 expected 性能上界。\n\n2. **全引擎并行（Brute-force all engines）**：对每个步骤同时运行所有四个引擎，取第一个成功的结果。Proposal 自己在训练数据生成阶段就使用了这个策略（\"attempt all four engines on each block\"），说明在离线场景下这是可行的。在线推理的计算开销是否真的不可接受？如果大部分步骤只有一个引擎能成功且速度较快，并行的额外开销可能有限。\n\n3. **VerifiAgent 式的 LLM-prompt 路由**：直接让 LLM 根据步骤内容判断应该用哪个工具，无需训练专门 classifier。VerifiAgent 已证明这种方法在多种推理任务上有效。\n\n**增量价值**：如果 learned classifier 相对于 rule-based 或 prompt-based routing 只有微小提升，整个工作的贡献将大幅缩水。这个 trivial alternative 威胁是真实的，proposal 需要在实验中明确证明 learned routing 的必要性。\n\n【前提假设检验】:\n\n核心逻辑链中有以下未验证假设：\n\n1. **\"四类路由目标是互斥且充分的\"假设**：将证明步骤分为 CAS-solvable / SMT-decidable / ITP-formalizable / LLM-only 四类，暗含假设每个步骤有一个\"最佳引擎\"且这四类覆盖了所有情况。实际上：(a) 很多步骤可能需要多引擎组合（如先用 CAS 化简再用 SMT 验证）；(b) 四类之间的边界模糊——一个不等式步骤可能对 CAS 和 SMT 都适用；(c) 某些步骤可能四个引擎都无法有效处理。\n\n2. **\"retrospective engine-success 提供干净训练信号\"假设**：用\"尝试所有引擎，记录成功/失败\"作为 ground-truth 路由标签。但引擎失败的原因多种多样——timeout vs. 不支持的特性 vs. 翻译错误 vs. 步骤本身有误——proposal 将所有失败统一为\"不适合该引擎\"，这会引入大量噪声。特别是，formalization 失败可能是翻译质量问题而非 formalizability 本身的问题。\n\n3. **\"per-block 路由足够\"假设**：每个 block 独立路由，不考虑跨 block 上下文。但证明验证中，前一步的验证结果可能影响后续步骤的验证策略选择（如前一步用 Lean 验证成功，后续步骤可以复用 Lean 环境中的已证引理）。\n\n4. **\"reliability-weighted aggregation 可以恢复 proof-level correctness\"假设**：用学习型加权方案聚合 per-block 判断。但证明的正确性是逻辑链式的——任一步骤错误即全证明错误——这种结构与加权聚合的概率性质存在张力。\n\n【3 维度打分】:\n\n1. **Novelty: 中偏弱** — FormRoute 的核心贡献是\"learned formalizability classifier + multi-engine routing\"，但这个概念空间已被 VERGE（semantic routing，Z3 vs. LLM，Jan 2026）和 VerifiAgent（tool-based adaptive verification，EMNLP 2025 Findings）部分占据。VERGE 的 semantic routing 已经在做\"判断哪些 claim 送形式化工具、哪些送 LLM\"的决策；VerifiAgent 已经做了跨 domain 的自适应工具选择。FormRoute 的增量 novelty 在于：(a) 将路由从二元（formal/informal）扩展到四元（CAS/SMT/ITP/LLM），(b) 用专门训练的 classifier 替代 prompt-based 选择，(c) 结合 PF 的模块化分解。这些是有价值的工程改进，但核心 intellectual insight——\"不同类型的数学步骤适合不同的验证工具\"——既不新颖也不反直觉。Proposal 未引用最直接竞争者 VerifiAgent，进一步削弱 novelty positioning。\n\n2. **Significance: 中** — 数学证明验证的 coverage-rigor tradeoff 是一个被广泛认可的真实问题，2025-2026 年多篇顶会论文都在解决它（Safe, HERMES, MATH-VF, PF+BV）。如果 FormRoute 能显著提升 coverage 而不牺牲 rigor，这对领域有实际价值。Formalizability classifier 作为可复用 artifact 也有一定价值（可服务于 autoformalization 研究和 PRM 训练）。但核心发现如果 positive，审稿人更可能说 \"makes sense, this is what I'd expect\" 而非 \"surprising\"——因为\"专用工具在其擅长领域表现更好\"是直觉上显然的。影响面受限于证明验证这一相对小众的子领域。\n\n3. **Related Work: 中偏弱** — Proposal 覆盖了大量相关工作（13 篇引用），landscape 描述相当详尽，但有一个关键遗漏：**VerifiAgent**（EMNLP 2025 Findings），它是最直接的概念竞争者——做跨 domain 的 adaptive 工具选择用于推理验证。此外，对 VERGE 的差异化定位偏表面（\"flat claim lists vs. modular proof blocks\"这个区分说服力有限，因为 VERGE 的 semantic routing 机制本身可以直接应用于模块化结构）。Proposal 也未提及 StepProof（arXiv 2506.10558, 2025）等 step-level 验证工作。差异化叙事需要更深入地解释为什么\"learned classifier\"比 VERGE 的 routing 和 VerifiAgent 的 adaptive selection 有本质优势。\n\n【概率估计】: [20% - 32%] 中位 25%\n\n【估计理由】:\n- Novelty 维度是主要限制因素。核心概念（自适应工具路由用于验证）已被 VERGE 和 VerifiAgent 从不同角度实现；FormRoute 的增量是工程层面的扩展（四引擎 + learned classifier + PF 分解），而非概念层面的突破。\n- Significance 维度提供了一定支撑——问题是真实且重要的，但预期发现缺乏 surprise factor。\n- Related Work 的 VerifiAgent 缺失会在审稿中被直接指出，可能被视为 incomplete positioning。\n- 综合来看，这是一个\"方向正确、执行方案合理、但核心 insight 不够深\"的 proposal。在 AAAI 的竞争中，它需要在实验中展示 learned routing 相对于 trivial alternatives 的巨大优势才能弥补 idea 层面的不足，但实验设计不在入口评估范围内。\n\n【主要风险】:\n1. **Trivial alternative 威胁**：规则型路由或 prompt-based 路由（VerifiAgent 式）可能达到接近的效果，如果 learned classifier 的增量优势不显著，整个工作的核心贡献将被质疑。\n2. **Novelty 被 VERGE + VerifiAgent 挤压**：审稿人很可能指出 semantic routing（VERGE）和 adaptive tool selection（VerifiAgent）已经覆盖了核心概念，FormRoute 的差异化不足以支撑顶会论文。\n```\n\nSources:\n- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531)\n- [Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://arxiv.org/abs/2506.04592)\n- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs](https://arxiv.org/abs/2511.18760)\n- [VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning](https://arxiv.org/abs/2601.20055)\n- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/abs/2505.20869)\n- [VerifiAgent: a Unified Verification Agent in Language Model Reasoning](https://arxiv.org/abs/2504.00406)\n- [ProofSketcher: Hybrid LLM + Lightweight Proof Checker](https://arxiv.org/abs/2604.06401)\n- [Hilbert: Recursively Building Formal Proofs with Informal Reasoning](https://arxiv.org/abs/2509.22819)\n- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)\n- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning](https://arxiv.org/abs/2603.29500)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient information to conduct a thorough evaluation. Let me compile the assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Pseudo-Formalization (PF+BV)** (arXiv 2605.20531, May 2026): 与 proposal 直接相关——提供了模块化 proof decomposition 的基础方法。PF 将证明分解为 self-contained modules（含 premises/conclusions），每个 module 独立由 LLM consensus 验证。关键局限：所有 block 统一使用 LLM 验证，无 formal guarantees。FormRoute 的 Stage 1 直接继承此方法。\n\n2. **Safe** (ACL 2025, arXiv 2506.04592): Step-level Lean 4 formalization 验证框架。MATH-500 上 60.0% BoN@5（vs. 49.1% zero-shot CoT）。核心局限：无法 formalize 的步骤直接跳过（zero fallback），且 4-8x LLM query overhead。Proposal 准确描述了此工作。\n\n3. **MATH-VF** (arXiv 2505.20869, May 2025): 使用自定义 SimpleMath 语言 + SymPy + Z3 进行 step-wise formal verification，MATH-500 上 93.2% discriminative accuracy。**关键：已经在单框架内组合了 CAS (SymPy) + SMT (Z3)**，但不支持 higher-order reasoning (Lean)。这削弱了 FormRoute \"首次组合多引擎\" 的 novelty claim。\n\n4. **VERGE** (arXiv 2601.20055, Jan 2026): **最具威胁的竞争工作**。VERGE 已经实现了 \"semantic routing that directs different claim types to appropriate verification strategies\"，组合 Z3 + LLM judges，+18.7% uplift。Proposal 称 VERGE \"operates on flat claim lists rather than modular proof blocks\"——这是一个 surface-level 差异，核心的 routing idea 高度重叠。\n\n5. **HERMES** (ICML 2026, arXiv 2511.18760): 在 inference 过程中交织 informal reasoning 与 Lean 4 verification。AIME'25 上 67% accuracy improvement，80% fewer FLOPs。单引擎 (Lean only)，但展示了 informal+formal hybrid 的强效果。\n\n6. **ProofSketcher** (arXiv 2604.06401, April 2026): Hybrid LLM + lightweight proof checker，使用 typed proof sketches + trusted kernel 展开。使用单一 custom DSL，但 hybrid verification 理念类似。\n\n7. **FoVer** (ACL 2026 Findings, arXiv 2505.15960): 使用 Z3 + Isabelle formal verification 合成 PRM training data。展示 formally verified data 的 cross-task generalization 能力。\n\n8. **PRoSFI** (arXiv 2603.29500, March 2026): Structured formal intermediaries + step-level formal verification 作为 RL process rewards。限于 first-order logic。\n\n9. **Lean-SMT** (CAV 2025): cvc5 与 Lean 4 的 proof-producing 集成，在 Lean 内部已经实现了 SMT+ITP 的工具组合。\n\n10. **Hilbert** (NeurIPS 2025 Workshop): 递归分解 + 四组件 orchestration (reasoning LLM, prover LLM, verifier, theorem retriever)，MiniF2F 上 70.0%（462/660）。注重 theorem proving 而非 verification。\n\n- **调研总结**: 数学证明验证领域在 2025-2026 年经历了快速演进，已形成 LLM-based (PF)、formal-only (Safe, MATH-VF)、hybrid (HERMES, ProofSketcher) 三条路线。**多工具 routing 的核心理念已被 VERGE 部分实现**（semantic routing to Z3/LLM），**CAS+SMT 组合已被 MATH-VF 实现**。FormRoute 的增量贡献是：(a) 将 PF 模块化分解与多引擎路由结合，(b) 训练专门的 formalizability classifier，(c) 将引擎扩展到四类。但 \"route to the best tool\" 的核心 idea 并非全新。\n\n【Trivial Alternative 检验】:\n\n存在两个严重的 trivial alternative 威胁：\n\n1. **\"Try-all\" baseline**: Proposal 自己描述了 classifier 的训练信号来源——\"attempt all four engines on each block, record success/failure\"。如果训练时已经跑遍所有引擎，**为什么不直接在推理时并行跑所有引擎、取第一个成功的？** 这个 \"try-all-then-vote\" baseline 完全消除了 classifier 的必要性。Proposal 未论证 classifier routing 相对于暴力并行的增量价值——如果理由是节省 inference compute，这个论点需要量化（四引擎并行的开销是否真的不可接受），但 proposal 没有给出。\n\n2. **Rule-based routing baseline**: 数学证明步骤的类型（代数计算、逻辑推理、高阶证明、概念论证）在很多情况下可以通过简单的 keyword/pattern heuristics 判断。一个基于关键词匹配 + domain tag 的规则路由器可能达到 learned classifier 80-90% 的路由准确率。Proposal 的核心 novelty 依赖于 learned classifier 显著优于 rule-based routing，但这一点尚未被论证。\n\n**增量价值**：如果 classifier 的路由准确率显著高于 rule-based，且推理开销显著低于 try-all，则增量成立——但这需要实验验证，而非 idea 层面可以保证。\n\n【前提假设检验】:\n\n核心 claim 的逻辑链中有以下未经验证的假设：\n\n1. **\"Proof steps are cleanly categorizable\" 假设**: Proposal 假设每个 proof block 可以被清晰归类为 CAS-solvable / SMT-decidable / ITP-formalizable / LLM-only 四类。现实中，大量步骤处于交界地带（如含有代数操作的逻辑推理），分类边界模糊。四类划分的互斥性和完备性均未得到论证。\n\n2. **\"Retrospective labels are reliable\" 假设**: 训练 classifier 的 silver labels 来自\"尝试所有引擎、记录成功/失败\"。但引擎失败≠步骤不适合该引擎——formalization 失败可能源于翻译错误而非 inherent intractability。这意味着 training signal 可能有大量噪声，classifier 可能学到的是\"哪个引擎的 autoformalization 更容易\"而非\"哪个引擎的 verification 更可靠\"。\n\n3. **\"Modular decomposition preserves logical structure\" 假设**: PF-style decomposition 的质量直接决定了整个 pipeline 的上限。如果分解过程引入了语义漂移或遗漏了隐含前提，后续所有引擎的验证都建立在有问题的基础上。这个前提的可靠性完全依赖于 LLM (Qwen3-235B) 的 decomposition 能力，而这正是当前系统的已知瓶颈。\n\n4. **\"Aggregation can compensate for per-block errors\" 假设**: learned reliability-weighted aggregation 假设各 block 的 verdict 是大致独立的、可组合的。但证明的逻辑是链式依赖的——一个 block 的 false positive 会使依赖它的所有后续 block 的 verdicts 都失去意义。简单的加权聚合可能无法捕获这种依赖结构。\n\n【3 维度打分】:\n\n1. **Novelty: 弱-中 (偏弱)** — FormRoute 的核心 idea 是\"学习一个 classifier 来路由 proof steps 到不同验证引擎\"。但：\n   - VERGE (Jan 2026) **已经实现了 semantic routing**（将不同类型的 claims 路由到 Z3 或 LLM judges），这与 FormRoute 的核心 routing 理念高度重叠，差异仅在于 VERGE 用 flat claim lists vs. FormRoute 用 modular proof blocks——这是 input representation 的差异，不是 routing paradigm 的差异。\n   - MATH-VF (May 2025) **已经在单框架内组合了 CAS (SymPy) + SMT (Z3)**，FormRoute 扩展到四类引擎，但从 2 到 4 是 engineering scale-up 而非 conceptual leap。\n   - HERMES (ICML 2026) 已展示 informal+formal hybrid verification 的有效性。\n   - 真正新的部分是 learned formalizability classifier 和 PF decomposition + multi-engine 的组合。但 classifier 本身是一个标准的 multi-class classification 问题（用 noisy labels 微调小模型），methodological novelty 有限。\n   - 整体来看，这是一个 **well-motivated integration paper**——把已有的好 ideas 组合在一起——而非提出新的核心 insight。审稿人可能会评价为 \"engineering contribution\" 而非 \"research contribution\"。\n\n2. **Significance: 中** — 问题本身重要且及时：mathematical proof verification 是 LLM 可靠性的关键瓶颈，coverage-rigor tradeoff 是真实存在的痛点。如果 FormRoute 的 pipeline 在实验中表现优秀，它有实际应用价值。formalizability classifier 作为可复用 artifact 也有一定附加价值（可用于 autoformalization 研究和 PRM training，如 proposal 所述）。但核心发现如果 positive（\"multi-engine routing 比 single-engine 好\"），审稿人的反应更可能是 **\"I would have guessed this\"** 而非 \"surprising\"。组合更多工具比单一工具效果好——这是一个直觉上显然的结论，核心 question 是 \"好多少\"、\"值不值得额外复杂度\"，这些是 empirical questions，不是 conceptual contributions。\n\n3. **Related Work: 强** — Proposal 对相关工作的覆盖非常全面，几乎涵盖了 2025-2026 年该领域所有重要工作（PF, Safe, MATH-VF, VERGE, PRoSFI, HERMES, ProofSketcher, Hilbert, FoVer, Lean-SMT, Hard2Verify）。每个工作的定位描述基本准确，差异化分析也大体清晰。唯一不足是**对 VERGE 的差异化论述偏弱**——\"flat claim lists vs. modular proof blocks\" 这一差异不足以说服审稿人这是根本性的不同。此外，proposal 的 differentiation 主要集中在\"别人没有四引擎路由\"，但没有深入论证为什么四引擎路由在 method 层面（而非 engineering 层面）是有意义的。\n\n【概率估计】: [18% - 28%] 中位 22%\n\n【估计理由】:\n- **Novelty 是主要限制因素**。核心 routing idea 被 VERGE 部分覆盖，multi-tool combination 被 MATH-VF 部分覆盖，hybrid informal+formal 被 HERMES 展示。FormRoute 的增量 novelty 是将这些元素整合在一起 + learned classifier，但这更像 systems engineering 而非 conceptual breakthrough。\n- Significance 中等：问题重要但预期结果不 surprising（\"更多引擎 > 单一引擎\"）。\n- Related work 覆盖强，这是加分项但不能弥补 novelty 不足。\n- Trivial alternative 威胁严重：try-all baseline 和 rule-based routing baseline 需要在实验中被有力击败，否则整个 classifier 的价值被质疑。\n- AAAI 作为综合 AI 会议，对 systems integration paper 的接受度取决于 empirical contribution 的幅度——如果实验结果非常强（e.g., 大幅超越所有 baseline），概率可能上移到 28%；如果结果 marginal，可能下滑到 18%。\n- 概率上界被 novelty 限制在 ~28%：即使实验做得非常好，\"core idea = 把别人的东西组合起来\" 这一点很难在 review 中翻盘。\n\n【主要风险】:\n1. **\"Integration, not innovation\" 质疑**: 审稿人可能认为 FormRoute 是一个 well-engineered combination of existing ideas（PF decomposition + VERGE-style routing + MATH-VF-style multi-tool），而非提出新的核心 insight。这是 AAAI/顶会最常见的拒稿理由之一——\"limited novelty, essentially combining existing approaches。\"\n2. **Trivial alternative 未被排除**: 如果 try-all parallel baseline 或 rule-based routing 能达到 learned classifier 的 90%+ 效果，则 formalizability classifier 这一核心贡献的价值将被严重质疑。Proposal 目前对此没有任何预防性论证。\n```\n\nSources:\n- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531)\n- [Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://arxiv.org/abs/2506.04592)\n- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/abs/2505.20869)\n- [VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning](https://arxiv.org/abs/2601.20055)\n- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs](https://arxiv.org/abs/2511.18760)\n- [ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning](https://arxiv.org/abs/2604.06401)\n- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)\n- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning](https://arxiv.org/abs/2603.29500)\n- [Hilbert: Recursively Building Formal Proofs with Informal Reasoning](https://arxiv.org/abs/2509.22819)\n- [Lean-SMT: An SMT Tactic for Discharging Proof Goals in Lean](https://link.springer.com/chapter/10.1007/978-3-031-98682-6_11)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Formalizability-Guided Multi-Engine Mathematical Proof Verification\n\n## Core Problem\n\nCurrent proof verification systems commit to a single verification strategy—either full formal verification (Lean/Isabelle, high rigor but low translation success ~5-30%) or LLM-based checking (flexible but unreliable). How can we adaptively route individual proof steps to the most suitable verification engine to maximize both coverage and reliability?\n\n## Research Opportunity\n\nThree concurrent advances (all from 2025-2026) create a unique convergence window: (1) Pseudo-Formalization (PF+BV, May 2026) demonstrated that modular proof decomposition with explicit premises/conclusions improves verification quality over monolithic LLM-as-judge, but uses only LLM-based block verification with no formal guarantees; (2) Safe (ACL 2025) showed step-level Lean formalization catches hallucinations but admits it skips unformalizable steps (geometry, combinatorics) with zero fallback and incurs 4-8x computational overhead; (3) FoVer (May 2025) proved that formally verified step-level data enables cross-task generalization in process reward models. Nobody has combined pseudo-formal modular decomposition with multi-tool verification routing—matching each proof step to CAS (algebra), SMT (logic), Lean (higher-order), or calibrated LLM (conceptual steps)—based on a learned formalizability classifier. This hybrid inherits PF's coverage, Safe's rigor where achievable, and avoids both systems' failure modes.\n\n## Research Landscape\n\nProof verification exists on a fragmented spectrum with no adaptive system bridging the levels. PF+BV (arXiv 2605.20531, May 2026) decomposes proofs into self-contained modules and verifies each with LLM consensus, achieving pareto-dominance over LLM-as-judge on Hard2Verify and ArxivMathGradingBench, but all blocks receive the same unreliable LLM checking. Safe (ACL 2025) formalizes each CoT step into Lean 4 and achieves 60.0% BoN@5 accuracy on MATH-500 (vs. 49.1% zero-shot CoT), but steps that fail formalization receive no verification at all, and incurs 4-8x LLM query overhead per step. MATH-VF (May 2025) uses a custom SimpleMath language verified by SymPy+Z3, achieving 93.2% discriminative accuracy on MATH-500, but forces all steps into one formalism and cannot handle higher-order reasoning. VERGE (Jan 2026) routes atomic claims to Z3 or LLM judges for general reasoning (+18.7% uplift) but is not designed for mathematical proof structure and operates on flat claim lists rather than modular proof blocks. PRoSFI (March 2026) demonstrated that structured formal intermediaries with step-level formal verification can serve as RL process rewards, but is restricted to first-order logic (ProverQA). HERMES (ICML 2026) interleaves informal reasoning with Lean 4 verification during inference, achieving 67% accuracy improvement on AIME'25 with 80% fewer FLOPs, but uses a single verification engine (Lean only) with no multi-tool routing. ProofSketcher (arXiv, April 2026) proposes a hybrid LLM + lightweight proof checker with typed proof sketches expanded by a trusted kernel, but uses a single custom DSL rather than routing to domain-specialized engines. Hilbert (NeurIPS 2025 Workshop) achieves 99.2% on MiniF2F via recursive decomposition bridging informal and formal reasoning, but focuses on theorem proving (generating proofs) rather than verification of existing proofs. The critical missing piece: a formalizability classifier that predicts which verification engine best suits each proof step, enabling a hybrid pipeline that uses formal tools (CAS, SMT, Lean tactics) where they succeed and falls back to calibrated LLM judgment elsewhere.\n\n## Proposed Approach\n\nWe propose FormRoute, a three-stage proof verification pipeline with learned engine routing. Stage 1 (Modular Decomposition): Adapt PF-style pseudo-formalization to decompose natural-language proofs into self-contained blocks with explicit premises, conclusions, and domain tags, using Qwen3-235B as the decomposition backbone. Stage 2 (Formalizability Classification): Train a lightweight classifier (fine-tuned Qwen3-8B on ~15K proof steps annotated by verification tractability—CAS-solvable, SMT-decidable, ITP-formalizable, or LLM-only—harvested from MATH, ProcessBench, and Lean Workbook with silver labels from attempted formalization outcomes) that predicts per-block routing decisions and confidence-calibrated engine scores. Stage 3 (Multi-Engine Dispatch & Aggregation): Route each block to its predicted-best engine—SymPy/SageMath for algebraic/arithmetic steps, Z3/cvc5 for first-order logic and inequality chains, DeepSeek-Prover-V2 for higher-order Lean 4 formalization, or a calibrated LLM ensemble for geometric/combinatorial/conceptual steps—then aggregate per-block verdicts into a proof-level correctness judgment using a learned weighting scheme that accounts for engine reliability per domain. The classifier's training signal comes from retrospective analysis: attempt all four engines on each block, record success/failure, and use these outcomes as ground-truth routing labels, creating a self-supervised data flywheel.\n\n## Detailed Description\n\nWe introduce FormRoute, a proof verification system that adaptively routes individual proof steps to the most suitable verification engine based on a learned formalizability classifier. Current systems face a coverage-rigor tradeoff: LLM-based verifiers (PF+BV) cover all step types but lack formal guarantees, while formal verifiers (Safe, MATH-VF) provide rigor but skip or mishandle steps outside their formalism. FormRoute resolves this by first decomposing proofs into modular blocks with explicit premises and conclusions via pseudo-formalization, then classifying each block's formalizability level using a fine-tuned model trained on retrospective engine-success labels. Blocks are dispatched to four specialized engines: SymPy/SageMath for algebraic computation, Z3/cvc5 for first-order logic, DeepSeek-Prover-V2 for higher-order Lean 4 formalization, and calibrated LLM consensus for inherently informal steps (geometry, combinatorics, conceptual arguments). Per-block verdicts are aggregated via a learned reliability-weighted scheme into proof-level judgments. We evaluate on MATH-500, ProcessBench, Hard2Verify, and ArxivMathGradingBench, targeting improvements in both verification precision and coverage over single-engine baselines. The formalizability classifier itself is a reusable artifact that can inform autoformalization research and process reward model training.\n\n## Key References\n\n- Pseudo-Formalization for Automatic Proof Verification (arXiv 2026)\n- Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification (ACL 2025)\n- FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)\n- VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2026)\n- MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving (arXiv 2025)\n- PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2026)\n- HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026)\n- ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning (arXiv 2026)\n- Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math (arXiv 2025)\n- Autoformalization in the Era of Large Language Models: A Survey (arXiv 2025)\n- DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition (arXiv 2025)\n- Lean-SMT: An SMT Tactic for Discharging Proof Goals in Lean (CAV 2025)\n- Hilbert: Recursively Building Formal Proofs with Informal Reasoning (NeurIPS 2025 Workshop)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 2000-2500 H100-hours (classifier fine-tuning ~100h, DeepSeek-Prover-V2 inference for Lean verification ~800h, Qwen3-235B autoformalization runs ~400h, routing-label generation across engines ~400h, benchmark evaluation and ablations ~500h), timeline: 4-5 months (month 1: data pipeline + routing-label collection; months 2-3: classifier training + multi-engine pipeline; month 3-4: benchmark experiments + ablations; month 4-5: paper writing + revision), estimated_gpu_cost: $4,000-5,000 at ~$2/hr spot H100\n- **human_in_loop**: gpu_hours: 1500-2000 H100-hours (Claude handles boilerplate code, experiment scripting, and analysis templates, reducing iteration overhead), timeline: 3-4 months, claude_api_cost: $500-800 (Sonnet 4.6 for code generation, experiment orchestration, and paper drafting assistance), estimated_gpu_cost: $3,000-4,000\n- **auto_research**: gpu_hours: 2500-3500 H100-hours (more aggressive hyperparameter sweeps, larger-scale silver labeling, ensembled classifier variants), timeline: 6-8 weeks (heavily parallelized: concurrent engine evaluation, automated ablation scheduling), claude_api_cost: $2,000-3,500 (extensive usage for silver-label generation via autoformalization attempts, automated experiment management, iterative paper drafting, and benchmark analysis), estimated_gpu_cost: $5,000-7,000, speed_bottleneck: Lean 4 compilation and theorem-proving latency (10-60s per step, serialized within each proof chain); DeepSeek-Prover-V2-671B inference throughput on single-node deployments\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T08:33:36.072Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T08:33:36.072Z",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006"
+}
+```
+
+---
+
+## Round 1
+
+18 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T08:33:36.140Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have enough research to provide a thorough evaluation. Let me compile my findings.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531) (arXiv, May 2026): 最直接的前序工作之一。提出将证明分解为自包含的 pseudo-formal modules（显式前提/结论），用 LLM 共识做 block verification。在 Hard2Verify 和 ArxivMathGradingBench 上 Pareto-dominate LLM-as-judge。proposal 的 Stage 1 直接复用此方法，Stage 2-3 在此基础上加 multi-engine routing。
+- [Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://aclanthology.org/2025.acl-long.594/) (ACL 2025): 另一个核心前序工作。逐步将 CoT 步骤形式化为 Lean 4 并验证。提出 FormalStep benchmark (30,809 formal statements)。关键局限：无法形式化的步骤直接跳过（无 fallback），且有 4-8x LLM query overhead。proposal 声称要解决的"跳过无法形式化步骤"问题确实存在。
+- [MATH-VF: Step-Wise Formal Verification](https://arxiv.org/abs/2505.20869) (arXiv, May 2025): 使用自定义 SimpleMath 语言 + SymPy + Z3 做步骤级验证，MATH-500 上 93.2% discriminative accuracy。**关键竞争者**：已经在用 SymPy+Z3 做 multi-tool 验证，虽然只有单一形式化语言而非 multi-engine routing，但概念上与 FormRoute 的 SymPy/Z3 路径高度重叠。
+- [VERGE: Formal Refinement and Guidance Engine](https://arxiv.org/abs/2601.20055) (arXiv, Jan 2026): **最直接的概念竞争者**。已经实现了 semantic routing——将 atomic claims 动态分类后分别送 Z3（可形式化的）或 LLM consensus（不可形式化的）。虽然面向 general reasoning 而非 math proof，但 routing 的核心思想已经被实现。FormRoute 本质上是 "VERGE for math proofs + more engines + modular decomposition"。
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960) (ACL 2026 Findings): 证明 formally verified step-level labels 可跨任务泛化训练 PRM。与 proposal 的关联是间接的——FormRoute 的 classifier 训练数据（银标签）采用类似的 retrospective labeling 策略。
+- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning](https://arxiv.org/abs/2511.18760) (ICML 2026 Poster): 在推理过程中交错 informal reasoning 与 Lean 4 verification。67% accuracy improvement on AIME'25，80% fewer FLOPs。只用单一验证引擎（Lean），但已证明 interleaved verification 的有效性。
+- [ProofSketcher: Hybrid LLM + Lightweight Proof Checker](https://arxiv.org/abs/2604.06401) (arXiv, April 2026): LLM 生成 typed proof sketch，轻量 kernel 展开验证。使用单一自定义 DSL 而非多引擎，但 "结构化分解 + 分步验证 + 失败反馈" 的整体思路与 FormRoute 有相似性。
+- [Hilbert: Recursively Building Formal Proofs with Informal Reasoning](https://arxiv.org/abs/2509.22819) (NeurIPS 2025 MATH-AI Workshop): 递归分解 + formal verification，MiniF2F 99.2%。侧重 theorem proving 而非 verification，但 recursive decomposition 策略相关。
+- [PRoSFI](https://arxiv.org/abs/2603.29500) (arXiv, March 2026): 结构化形式中介 + step-level formal verification 作为 RL process rewards。限于一阶逻辑。
+
+- **调研总结**: 2025-2026 年，数学证明验证领域极度活跃。"分步验证"和"形式化工具辅助"已是共识方向。**关键发现**：VERGE 已经实现了 semantic routing（Z3 vs LLM），MATH-VF 已经在用 SymPy+Z3 做 multi-tool 验证。FormRoute 的核心差异化在于：(a) 将 routing 从 2 个 backend 扩展到 4 个（SymPy/Z3/Lean/LLM），(b) 用 learned classifier 替代 rule-based routing，(c) 在 pseudo-formal modular decomposition 之上做 routing 而非 flat claim lists。但这些差异更多是工程集成层面的扩展，而非概念层面的突破。
+
+【Trivial Alternative 检验】: 
+**存在明显的 trivial alternative 威胁。**
+1. **"Brute-force all engines"**：proposal 自己描述的训练数据生成过程就是"对每个 block 尝试所有 4 个引擎，记录成功/失败"。如果在推理时也这样做（全部尝试，取最佳结果），验证质量应当等同甚至优于 classifier routing（因为 classifier 有预测误差）。classifier 的唯一价值是节省计算开销。但 proposal 并未论证这个开销节省的幅度——如果 SymPy/Z3 验证耗时可忽略（通常毫秒级），主要开销在 Lean formalization（秒级），那么只需决定"是否值得尝试 Lean"，这是一个远比 4-way routing 简单的二分类问题。
+2. **"VERGE + PF decomposition"**：将 VERGE 的 semantic routing 直接应用于 PF 的 modular blocks，用 rule-based heuristics（而非 learned classifier）决定 routing，可能达到 FormRoute 80-90% 的效果。proposal 的增量价值需要靠实验证明 learned routing 显著优于 rule-based routing。
+
+**增量价值分析**：FormRoute 的真正增量价值取决于：(a) learned classifier 相比 rule-based routing 的提升幅度，(b) 4 engines 相比 2 engines 的覆盖提升，(c) aggregation scheme 的质量。这些都是实验性的问题，idea 层面无法确认增量价值是否足够显著。
+
+【前提假设检验】:
+1. **"可形式化性可被可靠预测"（核心假设）**：假设一个 8B 模型在 ~15K 银标签上 fine-tune 后能准确预测哪个引擎最适合某个证明步骤。但 formalizability 不是步骤的固有属性——它高度依赖于形式化的尝试方式、prompt 工程、甚至随机种子。同一步骤在不同尝试下可能在 Lean 中成功或失败。**银标签的噪声和不稳定性**可能严重影响 classifier 质量，但 proposal 未讨论这一点。
+2. **"四个引擎覆盖互补"（架构假设）**：假设 SymPy、Z3、Lean、LLM 在不同类型的证明步骤上各有优势，形成互补覆盖。但实际上，SymPy 能处理的大部分代数步骤 Z3 也能处理（反之亦然），Lean（通过 lean-smt tactic，见 CAV 2025）也能调用 SMT。引擎之间的重叠度可能远高于预期，使得 routing 的边际收益有限。
+3. **"LLM 共识作为 fallback 提供有意义的验证"（可靠性假设）**：对于"无法形式化"的步骤（几何、组合、概念性论证），fallback 到 calibrated LLM 共识。但这正是 PF+BV 已经在做的事情——proposal 声称要解决 PF+BV 的 LLM-only 弱点，但对于这些步骤类型，FormRoute 并没有提供任何改进，只是承认"这些步骤我们也只能用 LLM"。
+4. **"learned weighting scheme 能有效聚合"**：假设可以学到一个跨引擎、跨域的可靠加权方案。但验证是二值的（正确/错误），将多个二值判断加权聚合为证明级判断的理论基础不清晰——如果一个 block 被判错误，整个证明就应该是错误的，权重方案的意义何在？
+
+【3 维度打分】:
+
+1. **Novelty: 弱-中** — 
+   核心贡献是"learned formalizability classifier + multi-engine routing for proof verification"。但：
+   - VERGE (Jan 2026) 已实现 semantic routing（Z3 vs LLM consensus），概念框架高度相似，FormRoute 是在此基础上增加引擎数量和使用 learned classifier 替代 rule-based routing；
+   - MATH-VF (May 2025) 已在用 SymPy+Z3 multi-tool 验证数学步骤；
+   - PF+BV (May 2026) 的 modular decomposition 被直接复用；
+   - "对不同类型的任务使用不同工具"是 tool-use/agent 文献中的常见范式（如 Toolformer, Gorilla 等），将其应用于 proof verification 是合理的迁移但非概念创新。
+   
+   **剥离 surface differences 后的真实 novelty delta**：将 routing 从 2-backend（VERGE）扩展到 4-backend，将 routing 策略从 rule-based 升级为 learned，并嫁接在 PF 的 modular decomposition 之上。这是一个合理的系统集成贡献，但如果核心实验结果是"multi-engine 比 single-engine 好"，审稿人很可能会说 **"I would have guessed this"**。formalizability classifier 本身如果作为独立贡献有分析价值（泛化性、failure mode 分析等），novelty 会更强，但 proposal 将其主要定位为 routing 的内部组件。
+
+2. **Significance: 中** — 
+   数学证明验证是 2025-2026 年的热点问题，具有实际应用价值（LLM 数学推理的可靠性保障、automated research verification）。问题本身重要。但：
+   - FormRoute 如果成功，解决的核心问题是"提高验证覆盖率"——这是一个工程优化目标，而非带来新的 insight；
+   - formalizability classifier 作为可复用 artifact 有一定价值（可用于 autoformalization 研究、PRM 训练等），但 proposal 对此着墨不多；
+   - 对领域的影响更多是"提供一个更好的工具"而非"改变研究者理解问题的方式"。
+
+3. **Related Work: 强** — 
+   这是 proposal 最强的维度。覆盖了该领域几乎所有 2025-2026 年的重要工作（PF+BV、Safe、MATH-VF、VERGE、FoVer、HERMES、ProofSketcher、Hilbert、PRoSFI），每篇都有具体的差异化定位。所有被引论文经验证均真实存在且描述准确。Lean-SMT (CAV 2025) 的引用也表明作者对形式化工具生态有深入了解。唯一可改进的点是未充分讨论与 VERGE 在 routing 概念上的重叠度——这是审稿人最可能追问的 related work gap。
+
+【概率估计】: [22% - 32%] 中位 27%
+
+【估计理由】: 
+Related Work 维度是强的，表明作者对领域有深入理解，positioning 清晰。但 Novelty 是限制上界的关键维度：(1) VERGE 已经实现了 routing 的核心概念，FormRoute 是量变（更多引擎、learned routing）而非质变；(2) "multi-engine 比 single-engine 好"的核心结论如果为正，审稿人会认为 expected 而非 surprising；(3) "brute-force all engines" 的 trivial alternative 构成真实威胁，需要实验证明 learned routing 在效率-质量 tradeoff 上的实质优势。Significance 为中——问题热门但贡献偏工程优化。综合来看，这是一篇执行良好的系统集成论文，有清晰的实用价值，但 idea 内核的 novelty 不足以支撑 top-tier venue 的高接收概率。中位估 27%，如果 formalizability classifier 的独立分析非常深入（failure modes、跨 domain 泛化、与 autoformalization 研究的连接）且实验充分证明 learned routing >> rule-based routing，有可能达到上界 32%。
+
+【主要风险】:
+1. **Novelty 不足被拒**：审稿人指出 VERGE 已做 semantic routing、MATH-VF 已做 SymPy+Z3 multi-tool 验证，FormRoute 的贡献被定性为"incremental system combination"而非独立的研究贡献——这是最可能的拒稿理由。
+2. **Trivial alternative 未被有效排除**："为什么不直接尝试所有引擎取最优结果？"——如果 proposal 不能在 idea 层面论证 learned routing 的必要性（而非仅靠实验表明效率更高），这会成为审稿人的核心质疑。
+```
+
+Sources:
+- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531)
+- [Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://aclanthology.org/2025.acl-long.594/)
+- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/abs/2505.20869)
+- [VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning](https://arxiv.org/abs/2601.20055)
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)
+- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs](https://arxiv.org/abs/2511.18760)
+- [ProofSketcher: Hybrid LLM + Lightweight Proof Checker](https://arxiv.org/abs/2604.06401)
+- [Hilbert: Recursively Building Formal Proofs with Informal Reasoning](https://arxiv.org/abs/2509.22819)
+- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning](https://arxiv.org/abs/2603.29500)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have comprehensive research findings. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **Pseudo-Formalization + Block Verification (PF+BV)** (arXiv 2605.20531, May 2026):
+   将证明分解为自包含模块，各模块含前提/结论，用 LLM 共识验证每个模块。在 Hard2Verify 和 ArxivMathGradingBench 上 pareto-dominant LLM-as-judge。与本 proposal 关系：FormRoute 的 Stage 1 直接继承 PF 的分解策略，是最核心的上游依赖。
+
+2. **Safe** (ACL 2025, arXiv 2506.04592):
+   逐步将 CoT 步骤形式化为 Lean 4，发现不可形式化的步骤直接跳过（无 fallback）。MATH-500 上 BoN@5 准确率 60.0%。与本 proposal 关系：FormRoute 明确要解决 Safe 的"跳过不可形式化步骤"问题，是关键的 motivation 来源。
+
+3. **VERGE** (arXiv 2601.20055, Jan 2026):
+   核心创新即 **Semantic Routing**——将原子声明动态分类，可形式化的送 Z3，模糊的送 LLM 共识。+18.7% 提升。与本 proposal 关系：**这是最直接的竞争者之一**。VERGE 的 semantic routing 概念与 FormRoute 的 engine routing 高度相似；proposal 以"VERGE 操作在 flat claim lists 而非 modular proof blocks"来区分，但这个区分偏表面。
+
+4. **VerifiAgent** (EMNLP 2025 Findings, arXiv 2504.00406):
+   统一验证 agent，集成 meta-verification 和 **tool-based adaptive verification**，自主选择合适的验证工具（Python interpreter, symbolic solver, search engine）处理不同推理类型。在 GSM8K, MATH, FOLIO, ProverQA 等上超越 baseline。与本 proposal 关系：**proposal 未引用此工作，但 VerifiAgent 的核心思路（自适应选择验证工具）与 FormRoute 的 multi-engine routing 高度重叠。** 这是一个显著的 related work 缺失。
+
+5. **MATH-VF** (arXiv 2505.20869, May 2025):
+   用 SimpleMath 形式化 + SymPy/Z3 验证，MATH-500 discriminative accuracy 93.2%。与本 proposal 关系：FormRoute 的 CAS+SMT 引擎组合部分与 MATH-VF 重叠，但 MATH-VF 限于单一形式化语言。
+
+6. **HERMES** (ICML 2026, arXiv 2511.18760):
+   交错非形式推理与 Lean 4 验证，AIME'25 上 67% 准确率提升，FLOPs 减少 80%。与本 proposal 关系：HERMES 代表"单引擎但深度集成"路线，FormRoute 代表"多引擎浅集成+路由"路线。
+
+7. **ProofSketcher** (arXiv 2604.06401, April 2026):
+   LLM 生成 typed proof sketch，轻量 kernel 展开为 proof obligations。与本 proposal 关系：不同路线（单一 DSL vs. 多引擎路由）。
+
+8. **Hilbert** (NeurIPS 2025 Workshop):
+   递归分解 + informal/formal 桥接，MiniF2F 99.2%。但侧重定理证明（生成证明）而非验证。
+
+9. **FoVer** (ACL 2026 Findings, arXiv 2505.15960):
+   用形式验证工具（Z3, Isabelle）合成 PRM 训练数据，跨任务泛化。与本 proposal 关系：FormRoute 声称 formalizability classifier 可服务于 PRM 训练，但 FoVer 已经有了一条从形式验证到 PRM 的成熟路径。
+
+- **调研总结**：数学证明验证领域在 2025-2026 年极度活跃，多条路线并行：单引擎深度形式化（Safe, HERMES）、轻量自定义 DSL（MATH-VF, ProofSketcher）、模块化 LLM 验证（PF+BV）、以及已经出现的自适应工具选择/路由（VERGE 的 semantic routing, VerifiAgent 的 tool-based adaptive verification）。FormRoute 位于"多引擎路由"赛道，但该赛道已有 VERGE 和 VerifiAgent 两个先行者；其增量贡献在于将路由从"规则/提示驱动"升级为"学习型 formalizability classifier"，并结合 PF 的模块化分解。
+
+【Trivial Alternative 检验】:
+
+存在多个成本更低的替代方案：
+
+1. **规则型路由（Rule-based routing）**：简单的关键词/模式匹配——含等式/算术表达式 → CAS，含逻辑连接词/量词 → SMT，含高阶概念 → Lean，其余 → LLM。数学证明步骤的 domain 通常从表面特征就可较准确判断（代数步骤 vs. 组合论证 vs. 逻辑推导的语言模式差异明显）。Proposal 没有论证为什么需要一个 learned classifier 而非 rule-based heuristic，也没有提供 rule-based baseline 的 expected 性能上界。
+
+2. **全引擎并行（Brute-force all engines）**：对每个步骤同时运行所有四个引擎，取第一个成功的结果。Proposal 自己在训练数据生成阶段就使用了这个策略（"attempt all four engines on each block"），说明在离线场景下这是可行的。在线推理的计算开销是否真的不可接受？如果大部分步骤只有一个引擎能成功且速度较快，并行的额外开销可能有限。
+
+3. **VerifiAgent 式的 LLM-prompt 路由**：直接让 LLM 根据步骤内容判断应该用哪个工具，无需训练专门 classifier。VerifiAgent 已证明这种方法在多种推理任务上有效。
+
+**增量价值**：如果 learned classifier 相对于 rule-based 或 prompt-based routing 只有微小提升，整个工作的贡献将大幅缩水。这个 trivial alternative 威胁是真实的，proposal 需要在实验中明确证明 learned routing 的必要性。
+
+【前提假设检验】:
+
+核心逻辑链中有以下未验证假设：
+
+1. **"四类路由目标是互斥且充分的"假设**：将证明步骤分为 CAS-solvable / SMT-decidable / ITP-formalizable / LLM-only 四类，暗含假设每个步骤有一个"最佳引擎"且这四类覆盖了所有情况。实际上：(a) 很多步骤可能需要多引擎组合（如先用 CAS 化简再用 SMT 验证）；(b) 四类之间的边界模糊——一个不等式步骤可能对 CAS 和 SMT 都适用；(c) 某些步骤可能四个引擎都无法有效处理。
+
+2. **"retrospective engine-success 提供干净训练信号"假设**：用"尝试所有引擎，记录成功/失败"作为 ground-truth 路由标签。但引擎失败的原因多种多样——timeout vs. 不支持的特性 vs. 翻译错误 vs. 步骤本身有误——proposal 将所有失败统一为"不适合该引擎"，这会引入大量噪声。特别是，formalization 失败可能是翻译质量问题而非 formalizability 本身的问题。
+
+3. **"per-block 路由足够"假设**：每个 block 独立路由，不考虑跨 block 上下文。但证明验证中，前一步的验证结果可能影响后续步骤的验证策略选择（如前一步用 Lean 验证成功，后续步骤可以复用 Lean 环境中的已证引理）。
+
+4. **"reliability-weighted aggregation 可以恢复 proof-level correctness"假设**：用学习型加权方案聚合 per-block 判断。但证明的正确性是逻辑链式的——任一步骤错误即全证明错误——这种结构与加权聚合的概率性质存在张力。
+
+【3 维度打分】:
+
+1. **Novelty: 中偏弱** — FormRoute 的核心贡献是"learned formalizability classifier + multi-engine routing"，但这个概念空间已被 VERGE（semantic routing，Z3 vs. LLM，Jan 2026）和 VerifiAgent（tool-based adaptive verification，EMNLP 2025 Findings）部分占据。VERGE 的 semantic routing 已经在做"判断哪些 claim 送形式化工具、哪些送 LLM"的决策；VerifiAgent 已经做了跨 domain 的自适应工具选择。FormRoute 的增量 novelty 在于：(a) 将路由从二元（formal/informal）扩展到四元（CAS/SMT/ITP/LLM），(b) 用专门训练的 classifier 替代 prompt-based 选择，(c) 结合 PF 的模块化分解。这些是有价值的工程改进，但核心 intellectual insight——"不同类型的数学步骤适合不同的验证工具"——既不新颖也不反直觉。Proposal 未引用最直接竞争者 VerifiAgent，进一步削弱 novelty positioning。
+
+2. **Significance: 中** — 数学证明验证的 coverage-rigor tradeoff 是一个被广泛认可的真实问题，2025-2026 年多篇顶会论文都在解决它（Safe, HERMES, MATH-VF, PF+BV）。如果 FormRoute 能显著提升 coverage 而不牺牲 rigor，这对领域有实际价值。Formalizability classifier 作为可复用 artifact 也有一定价值（可服务于 autoformalization 研究和 PRM 训练）。但核心发现如果 positive，审稿人更可能说 "makes sense, this is what I'd expect" 而非 "surprising"——因为"专用工具在其擅长领域表现更好"是直觉上显然的。影响面受限于证明验证这一相对小众的子领域。
+
+3. **Related Work: 中偏弱** — Proposal 覆盖了大量相关工作（13 篇引用），landscape 描述相当详尽，但有一个关键遗漏：**VerifiAgent**（EMNLP 2025 Findings），它是最直接的概念竞争者——做跨 domain 的 adaptive 工具选择用于推理验证。此外，对 VERGE 的差异化定位偏表面（"flat claim lists vs. modular proof blocks"这个区分说服力有限，因为 VERGE 的 semantic routing 机制本身可以直接应用于模块化结构）。Proposal 也未提及 StepProof（arXiv 2506.10558, 2025）等 step-level 验证工作。差异化叙事需要更深入地解释为什么"learned classifier"比 VERGE 的 routing 和 VerifiAgent 的 adaptive selection 有本质优势。
+
+【概率估计】: [20% - 32%] 中位 25%
+
+【估计理由】:
+- Novelty 维度是主要限制因素。核心概念（自适应工具路由用于验证）已被 VERGE 和 VerifiAgent 从不同角度实现；FormRoute 的增量是工程层面的扩展（四引擎 + learned classifier + PF 分解），而非概念层面的突破。
+- Significance 维度提供了一定支撑——问题是真实且重要的，但预期发现缺乏 surprise factor。
+- Related Work 的 VerifiAgent 缺失会在审稿中被直接指出，可能被视为 incomplete positioning。
+- 综合来看，这是一个"方向正确、执行方案合理、但核心 insight 不够深"的 proposal。在 AAAI 的竞争中，它需要在实验中展示 learned routing 相对于 trivial alternatives 的巨大优势才能弥补 idea 层面的不足，但实验设计不在入口评估范围内。
+
+【主要风险】:
+1. **Trivial alternative 威胁**：规则型路由或 prompt-based 路由（VerifiAgent 式）可能达到接近的效果，如果 learned classifier 的增量优势不显著，整个工作的核心贡献将被质疑。
+2. **Novelty 被 VERGE + VerifiAgent 挤压**：审稿人很可能指出 semantic routing（VERGE）和 adaptive tool selection（VerifiAgent）已经覆盖了核心概念，FormRoute 的差异化不足以支撑顶会论文。
+```
+
+Sources:
+- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531)
+- [Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://arxiv.org/abs/2506.04592)
+- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs](https://arxiv.org/abs/2511.18760)
+- [VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning](https://arxiv.org/abs/2601.20055)
+- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/abs/2505.20869)
+- [VerifiAgent: a Unified Verification Agent in Language Model Reasoning](https://arxiv.org/abs/2504.00406)
+- [ProofSketcher: Hybrid LLM + Lightweight Proof Checker](https://arxiv.org/abs/2604.06401)
+- [Hilbert: Recursively Building Formal Proofs with Informal Reasoning](https://arxiv.org/abs/2509.22819)
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)
+- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning](https://arxiv.org/abs/2603.29500)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient information to conduct a thorough evaluation. Let me compile the assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **Pseudo-Formalization (PF+BV)** (arXiv 2605.20531, May 2026): 与 proposal 直接相关——提供了模块化 proof decomposition 的基础方法。PF 将证明分解为 self-contained modules（含 premises/conclusions），每个 module 独立由 LLM consensus 验证。关键局限：所有 block 统一使用 LLM 验证，无 formal guarantees。FormRoute 的 Stage 1 直接继承此方法。
+
+2. **Safe** (ACL 2025, arXiv 2506.04592): Step-level Lean 4 formalization 验证框架。MATH-500 上 60.0% BoN@5（vs. 49.1% zero-shot CoT）。核心局限：无法 formalize 的步骤直接跳过（zero fallback），且 4-8x LLM query overhead。Proposal 准确描述了此工作。
+
+3. **MATH-VF** (arXiv 2505.20869, May 2025): 使用自定义 SimpleMath 语言 + SymPy + Z3 进行 step-wise formal verification，MATH-500 上 93.2% discriminative accuracy。**关键：已经在单框架内组合了 CAS (SymPy) + SMT (Z3)**，但不支持 higher-order reasoning (Lean)。这削弱了 FormRoute "首次组合多引擎" 的 novelty claim。
+
+4. **VERGE** (arXiv 2601.20055, Jan 2026): **最具威胁的竞争工作**。VERGE 已经实现了 "semantic routing that directs different claim types to appropriate verification strategies"，组合 Z3 + LLM judges，+18.7% uplift。Proposal 称 VERGE "operates on flat claim lists rather than modular proof blocks"——这是一个 surface-level 差异，核心的 routing idea 高度重叠。
+
+5. **HERMES** (ICML 2026, arXiv 2511.18760): 在 inference 过程中交织 informal reasoning 与 Lean 4 verification。AIME'25 上 67% accuracy improvement，80% fewer FLOPs。单引擎 (Lean only)，但展示了 informal+formal hybrid 的强效果。
+
+6. **ProofSketcher** (arXiv 2604.06401, April 2026): Hybrid LLM + lightweight proof checker，使用 typed proof sketches + trusted kernel 展开。使用单一 custom DSL，但 hybrid verification 理念类似。
+
+7. **FoVer** (ACL 2026 Findings, arXiv 2505.15960): 使用 Z3 + Isabelle formal verification 合成 PRM training data。展示 formally verified data 的 cross-task generalization 能力。
+
+8. **PRoSFI** (arXiv 2603.29500, March 2026): Structured formal intermediaries + step-level formal verification 作为 RL process rewards。限于 first-order logic。
+
+9. **Lean-SMT** (CAV 2025): cvc5 与 Lean 4 的 proof-producing 集成，在 Lean 内部已经实现了 SMT+ITP 的工具组合。
+
+10. **Hilbert** (NeurIPS 2025 Workshop): 递归分解 + 四组件 orchestration (reasoning LLM, prover LLM, verifier, theorem retriever)，MiniF2F 上 70.0%（462/660）。注重 theorem proving 而非 verification。
+
+- **调研总结**: 数学证明验证领域在 2025-2026 年经历了快速演进，已形成 LLM-based (PF)、formal-only (Safe, MATH-VF)、hybrid (HERMES, ProofSketcher) 三条路线。**多工具 routing 的核心理念已被 VERGE 部分实现**（semantic routing to Z3/LLM），**CAS+SMT 组合已被 MATH-VF 实现**。FormRoute 的增量贡献是：(a) 将 PF 模块化分解与多引擎路由结合，(b) 训练专门的 formalizability classifier，(c) 将引擎扩展到四类。但 "route to the best tool" 的核心 idea 并非全新。
+
+【Trivial Alternative 检验】:
+
+存在两个严重的 trivial alternative 威胁：
+
+1. **"Try-all" baseline**: Proposal 自己描述了 classifier 的训练信号来源——"attempt all four engines on each block, record success/failure"。如果训练时已经跑遍所有引擎，**为什么不直接在推理时并行跑所有引擎、取第一个成功的？** 这个 "try-all-then-vote" baseline 完全消除了 classifier 的必要性。Proposal 未论证 classifier routing 相对于暴力并行的增量价值——如果理由是节省 inference compute，这个论点需要量化（四引擎并行的开销是否真的不可接受），但 proposal 没有给出。
+
+2. **Rule-based routing baseline**: 数学证明步骤的类型（代数计算、逻辑推理、高阶证明、概念论证）在很多情况下可以通过简单的 keyword/pattern heuristics 判断。一个基于关键词匹配 + domain tag 的规则路由器可能达到 learned classifier 80-90% 的路由准确率。Proposal 的核心 novelty 依赖于 learned classifier 显著优于 rule-based routing，但这一点尚未被论证。
+
+**增量价值**：如果 classifier 的路由准确率显著高于 rule-based，且推理开销显著低于 try-all，则增量成立——但这需要实验验证，而非 idea 层面可以保证。
+
+【前提假设检验】:
+
+核心 claim 的逻辑链中有以下未经验证的假设：
+
+1. **"Proof steps are cleanly categorizable" 假设**: Proposal 假设每个 proof block 可以被清晰归类为 CAS-solvable / SMT-decidable / ITP-formalizable / LLM-only 四类。现实中，大量步骤处于交界地带（如含有代数操作的逻辑推理），分类边界模糊。四类划分的互斥性和完备性均未得到论证。
+
+2. **"Retrospective labels are reliable" 假设**: 训练 classifier 的 silver labels 来自"尝试所有引擎、记录成功/失败"。但引擎失败≠步骤不适合该引擎——formalization 失败可能源于翻译错误而非 inherent intractability。这意味着 training signal 可能有大量噪声，classifier 可能学到的是"哪个引擎的 autoformalization 更容易"而非"哪个引擎的 verification 更可靠"。
+
+3. **"Modular decomposition preserves logical structure" 假设**: PF-style decomposition 的质量直接决定了整个 pipeline 的上限。如果分解过程引入了语义漂移或遗漏了隐含前提，后续所有引擎的验证都建立在有问题的基础上。这个前提的可靠性完全依赖于 LLM (Qwen3-235B) 的 decomposition 能力，而这正是当前系统的已知瓶颈。
+
+4. **"Aggregation can compensate for per-block errors" 假设**: learned reliability-weighted aggregation 假设各 block 的 verdict 是大致独立的、可组合的。但证明的逻辑是链式依赖的——一个 block 的 false positive 会使依赖它的所有后续 block 的 verdicts 都失去意义。简单的加权聚合可能无法捕获这种依赖结构。
+
+【3 维度打分】:
+
+1. **Novelty: 弱-中 (偏弱)** — FormRoute 的核心 idea 是"学习一个 classifier 来路由 proof steps 到不同验证引擎"。但：
+   - VERGE (Jan 2026) **已经实现了 semantic routing**（将不同类型的 claims 路由到 Z3 或 LLM judges），这与 FormRoute 的核心 routing 理念高度重叠，差异仅在于 VERGE 用 flat claim lists vs. FormRoute 用 modular proof blocks——这是 input representation 的差异，不是 routing paradigm 的差异。
+   - MATH-VF (May 2025) **已经在单框架内组合了 CAS (SymPy) + SMT (Z3)**，FormRoute 扩展到四类引擎，但从 2 到 4 是 engineering scale-up 而非 conceptual leap。
+   - HERMES (ICML 2026) 已展示 informal+formal hybrid verification 的有效性。
+   - 真正新的部分是 learned formalizability classifier 和 PF decomposition + multi-engine 的组合。但 classifier 本身是一个标准的 multi-class classification 问题（用 noisy labels 微调小模型），methodological novelty 有限。
+   - 整体来看，这是一个 **well-motivated integration paper**——把已有的好 ideas 组合在一起——而非提出新的核心 insight。审稿人可能会评价为 "engineering contribution" 而非 "research contribution"。
+
+2. **Significance: 中** — 问题本身重要且及时：mathematical proof verification 是 LLM 可靠性的关键瓶颈，coverage-rigor tradeoff 是真实存在的痛点。如果 FormRoute 的 pipeline 在实验中表现优秀，它有实际应用价值。formalizability classifier 作为可复用 artifact 也有一定附加价值（可用于 autoformalization 研究和 PRM training，如 proposal 所述）。但核心发现如果 positive（"multi-engine routing 比 single-engine 好"），审稿人的反应更可能是 **"I would have guessed this"** 而非 "surprising"。组合更多工具比单一工具效果好——这是一个直觉上显然的结论，核心 question 是 "好多少"、"值不值得额外复杂度"，这些是 empirical questions，不是 conceptual contributions。
+
+3. **Related Work: 强** — Proposal 对相关工作的覆盖非常全面，几乎涵盖了 2025-2026 年该领域所有重要工作（PF, Safe, MATH-VF, VERGE, PRoSFI, HERMES, ProofSketcher, Hilbert, FoVer, Lean-SMT, Hard2Verify）。每个工作的定位描述基本准确，差异化分析也大体清晰。唯一不足是**对 VERGE 的差异化论述偏弱**——"flat claim lists vs. modular proof blocks" 这一差异不足以说服审稿人这是根本性的不同。此外，proposal 的 differentiation 主要集中在"别人没有四引擎路由"，但没有深入论证为什么四引擎路由在 method 层面（而非 engineering 层面）是有意义的。
+
+【概率估计】: [18% - 28%] 中位 22%
+
+【估计理由】:
+- **Novelty 是主要限制因素**。核心 routing idea 被 VERGE 部分覆盖，multi-tool combination 被 MATH-VF 部分覆盖，hybrid informal+formal 被 HERMES 展示。FormRoute 的增量 novelty 是将这些元素整合在一起 + learned classifier，但这更像 systems engineering 而非 conceptual breakthrough。
+- Significance 中等：问题重要但预期结果不 surprising（"更多引擎 > 单一引擎"）。
+- Related work 覆盖强，这是加分项但不能弥补 novelty 不足。
+- Trivial alternative 威胁严重：try-all baseline 和 rule-based routing baseline 需要在实验中被有力击败，否则整个 classifier 的价值被质疑。
+- AAAI 作为综合 AI 会议，对 systems integration paper 的接受度取决于 empirical contribution 的幅度——如果实验结果非常强（e.g., 大幅超越所有 baseline），概率可能上移到 28%；如果结果 marginal，可能下滑到 18%。
+- 概率上界被 novelty 限制在 ~28%：即使实验做得非常好，"core idea = 把别人的东西组合起来" 这一点很难在 review 中翻盘。
+
+【主要风险】:
+1. **"Integration, not innovation" 质疑**: 审稿人可能认为 FormRoute 是一个 well-engineered combination of existing ideas（PF decomposition + VERGE-style routing + MATH-VF-style multi-tool），而非提出新的核心 insight。这是 AAAI/顶会最常见的拒稿理由之一——"limited novelty, essentially combining existing approaches。"
+2. **Trivial alternative 未被排除**: 如果 try-all parallel baseline 或 rule-based routing 能达到 learned classifier 的 90%+ 效果，则 formalizability classifier 这一核心贡献的价值将被严重质疑。Proposal 目前对此没有任何预防性论证。
+```
+
+Sources:
+- [Pseudo-Formalization for Automatic Proof Verification](https://arxiv.org/abs/2605.20531)
+- [Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification](https://arxiv.org/abs/2506.04592)
+- [MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving](https://arxiv.org/abs/2505.20869)
+- [VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning](https://arxiv.org/abs/2601.20055)
+- [HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs](https://arxiv.org/abs/2511.18760)
+- [ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning](https://arxiv.org/abs/2604.06401)
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)
+- [PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning](https://arxiv.org/abs/2603.29500)
+- [Hilbert: Recursively Building Formal Proofs with Informal Reasoning](https://arxiv.org/abs/2509.22819)
+- [Lean-SMT: An SMT Tactic for Discharging Proof Goals in Lean](https://link.springer.com/chapter/10.1007/978-3-031-98682-6_11)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Formalizability-Guided Multi-Engine Mathematical Proof Verification
+
+## Core Problem
+
+Current proof verification systems commit to a single verification strategy—either full formal verification (Lean/Isabelle, high rigor but low translation success ~5-30%) or LLM-based checking (flexible but unreliable). How can we adaptively route individual proof steps to the most suitable verification engine to maximize both coverage and reliability?
+
+## Research Opportunity
+
+Three concurrent advances (all from 2025-2026) create a unique convergence window: (1) Pseudo-Formalization (PF+BV, May 2026) demonstrated that modular proof decomposition with explicit premises/conclusions improves verification quality over monolithic LLM-as-judge, but uses only LLM-based block verification with no formal guarantees; (2) Safe (ACL 2025) showed step-level Lean formalization catches hallucinations but admits it skips unformalizable steps (geometry, combinatorics) with zero fallback and incurs 4-8x computational overhead; (3) FoVer (May 2025) proved that formally verified step-level data enables cross-task generalization in process reward models. Nobody has combined pseudo-formal modular decomposition with multi-tool verification routing—matching each proof step to CAS (algebra), SMT (logic), Lean (higher-order), or calibrated LLM (conceptual steps)—based on a learned formalizability classifier. This hybrid inherits PF's coverage, Safe's rigor where achievable, and avoids both systems' failure modes.
+
+## Research Landscape
+
+Proof verification exists on a fragmented spectrum with no adaptive system bridging the levels. PF+BV (arXiv 2605.20531, May 2026) decomposes proofs into self-contained modules and verifies each with LLM consensus, achieving pareto-dominance over LLM-as-judge on Hard2Verify and ArxivMathGradingBench, but all blocks receive the same unreliable LLM checking. Safe (ACL 2025) formalizes each CoT step into Lean 4 and achieves 60.0% BoN@5 accuracy on MATH-500 (vs. 49.1% zero-shot CoT), but steps that fail formalization receive no verification at all, and incurs 4-8x LLM query overhead per step. MATH-VF (May 2025) uses a custom SimpleMath language verified by SymPy+Z3, achieving 93.2% discriminative accuracy on MATH-500, but forces all steps into one formalism and cannot handle higher-order reasoning. VERGE (Jan 2026) routes atomic claims to Z3 or LLM judges for general reasoning (+18.7% uplift) but is not designed for mathematical proof structure and operates on flat claim lists rather than modular proof blocks. PRoSFI (March 2026) demonstrated that structured formal intermediaries with step-level formal verification can serve as RL process rewards, but is restricted to first-order logic (ProverQA). HERMES (ICML 2026) interleaves informal reasoning with Lean 4 verification during inference, achieving 67% accuracy improvement on AIME'25 with 80% fewer FLOPs, but uses a single verification engine (Lean only) with no multi-tool routing. ProofSketcher (arXiv, April 2026) proposes a hybrid LLM + lightweight proof checker with typed proof sketches expanded by a trusted kernel, but uses a single custom DSL rather than routing to domain-specialized engines. Hilbert (NeurIPS 2025 Workshop) achieves 99.2% on MiniF2F via recursive decomposition bridging informal and formal reasoning, but focuses on theorem proving (generating proofs) rather than verification of existing proofs. The critical missing piece: a formalizability classifier that predicts which verification engine best suits each proof step, enabling a hybrid pipeline that uses formal tools (CAS, SMT, Lean tactics) where they succeed and falls back to calibrated LLM judgment elsewhere.
+
+## Proposed Approach
+
+We propose FormRoute, a three-stage proof verification pipeline with learned engine routing. Stage 1 (Modular Decomposition): Adapt PF-style pseudo-formalization to decompose natural-language proofs into self-contained blocks with explicit premises, conclusions, and domain tags, using Qwen3-235B as the decomposition backbone. Stage 2 (Formalizability Classification): Train a lightweight classifier (fine-tuned Qwen3-8B on ~15K proof steps annotated by verification tractability—CAS-solvable, SMT-decidable, ITP-formalizable, or LLM-only—harvested from MATH, ProcessBench, and Lean Workbook with silver labels from attempted formalization outcomes) that predicts per-block routing decisions and confidence-calibrated engine scores. Stage 3 (Multi-Engine Dispatch & Aggregation): Route each block to its predicted-best engine—SymPy/SageMath for algebraic/arithmetic steps, Z3/cvc5 for first-order logic and inequality chains, DeepSeek-Prover-V2 for higher-order Lean 4 formalization, or a calibrated LLM ensemble for geometric/combinatorial/conceptual steps—then aggregate per-block verdicts into a proof-level correctness judgment using a learned weighting scheme that accounts for engine reliability per domain. The classifier's training signal comes from retrospective analysis: attempt all four engines on each block, record success/failure, and use these outcomes as ground-truth routing labels, creating a self-supervised data flywheel.
+
+## Detailed Description
+
+We introduce FormRoute, a proof verification system that adaptively routes individual proof steps to the most suitable verification engine based on a learned formalizability classifier. Current systems face a coverage-rigor tradeoff: LLM-based verifiers (PF+BV) cover all step types but lack formal guarantees, while formal verifiers (Safe, MATH-VF) provide rigor but skip or mishandle steps outside their formalism. FormRoute resolves this by first decomposing proofs into modular blocks with explicit premises and conclusions via pseudo-formalization, then classifying each block's formalizability level using a fine-tuned model trained on retrospective engine-success labels. Blocks are dispatched to four specialized engines: SymPy/SageMath for algebraic computation, Z3/cvc5 for first-order logic, DeepSeek-Prover-V2 for higher-order Lean 4 formalization, and calibrated LLM consensus for inherently informal steps (geometry, combinatorics, conceptual arguments). Per-block verdicts are aggregated via a learned reliability-weighted scheme into proof-level judgments. We evaluate on MATH-500, ProcessBench, Hard2Verify, and ArxivMathGradingBench, targeting improvements in both verification precision and coverage over single-engine baselines. The formalizability classifier itself is a reusable artifact that can inform autoformalization research and process reward model training.
+
+## Key References
+
+- Pseudo-Formalization for Automatic Proof Verification (arXiv 2026)
+- Safe: Enhancing Mathematical Reasoning in LLMs via Retrospective Step-aware Formal Verification (ACL 2025)
+- FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL 2026 Findings)
+- VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2026)
+- MATH-VF: Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving (arXiv 2025)
+- PRoSFI: Learning to Generate Formally Verifiable Step-by-Step Logic Reasoning via Structured Formal Intermediaries (arXiv 2026)
+- HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs (ICML 2026)
+- ProofSketcher: Hybrid LLM + Lightweight Proof Checker for Reliable Math/Logic Reasoning (arXiv 2026)
+- Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math (arXiv 2025)
+- Autoformalization in the Era of Large Language Models: A Survey (arXiv 2025)
+- DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition (arXiv 2025)
+- Lean-SMT: An SMT Tactic for Discharging Proof Goals in Lean (CAV 2025)
+- Hilbert: Recursively Building Formal Proofs with Informal Reasoning (NeurIPS 2025 Workshop)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 2000-2500 H100-hours (classifier fine-tuning ~100h, DeepSeek-Prover-V2 inference for Lean verification ~800h, Qwen3-235B autoformalization runs ~400h, routing-label generation across engines ~400h, benchmark evaluation and ablations ~500h), timeline: 4-5 months (month 1: data pipeline + routing-label collection; months 2-3: classifier training + multi-engine pipeline; month 3-4: benchmark experiments + ablations; month 4-5: paper writing + revision), estimated_gpu_cost: $4,000-5,000 at ~$2/hr spot H100
+- **human_in_loop**: gpu_hours: 1500-2000 H100-hours (Claude handles boilerplate code, experiment scripting, and analysis templates, reducing iteration overhead), timeline: 3-4 months, claude_api_cost: $500-800 (Sonnet 4.6 for code generation, experiment orchestration, and paper drafting assistance), estimated_gpu_cost: $3,000-4,000
+- **auto_research**: gpu_hours: 2500-3500 H100-hours (more aggressive hyperparameter sweeps, larger-scale silver labeling, ensembled classifier variants), timeline: 6-8 weeks (heavily parallelized: concurrent engine evaluation, automated ablation scheduling), claude_api_cost: $2,000-3,500 (extensive usage for silver-label generation via autoformalization attempts, automated experiment management, iterative paper drafting, and benchmark analysis), estimated_gpu_cost: $5,000-7,000, speed_bottleneck: Lean 4 compilation and theorem-proving latency (10-60s per step, serialized within each proof chain); DeepSeek-Prover-V2-671B inference throughput on single-node deployments
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "05141f5f-1e6a-4d48-a1c3-fc52b25dae04",
+  "type": "user",
+  "uuid": "70e4911a-ad5a-4775-aab8-2b389170248d",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T08:33:36.138Z_
+
+```json
+{
+  "parentUuid": "70e4911a-ad5a-4775-aab8-2b389170248d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "a1c770f8-b6e5-4ac8-8b2c-f64bb7eaff07",
+  "timestamp": "2026-05-27T08:33:36.138Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T08:33:36.138Z_
+
+```json
+{
+  "parentUuid": "a1c770f8-b6e5-4ac8-8b2c-f64bb7eaff07",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "4893fa65-fa6e-4b76-9af8-7bff5a06ec3d",
+  "timestamp": "2026-05-27T08:33:36.138Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have enough research to provide a thorough evaluation. L…",
+  "leafUuid": "4893fa65-fa6e-4b76-9af8-7bff5a06ec3d",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate FormRoute proof verification proposal",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T08:34:05.567Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews and synthesize them as Meta Judge.
+
+**Review 1 (R1):**
+- Novelty: 弱-中
+- Significance: 中
+- Related Work: 强
+- Probability: [22% - 32%] 中位 27%
+- Key concerns: VERGE already did semantic routing, trivial alternative (brute-force all engines), incremental system combination
+
+**Review 2 (R2):**
+- Novelty: 中偏弱
+- Significance: 中
+- Related Work: 中偏弱 (VerifiAgent missing)
+
+
+- Probability: [20% - 32%] 中位 25%
+- Key concerns: VERGE + VerifiAgent already cover the concept space, trivial alternatives, VerifiAgent not cited
+
+**Review 3 (R3):**
+- Novelty: 弱-中 (偏弱)
+- Significance: 中
+- Related Work: 强
+- Probability: [18% - 28%] 中位 22%
+- Key concerns: "Integration, not innovation", trivial alternatives, VERGE overlap
+
+Now I'm computing the aggregate statistics across all three reviews. The median probabilities are 27%, 25%, and 22%, giving me a mean of medians around 24.67% and a median of medians at 25%. I'm also calculating the standard deviation to understand the spread of reviewer assessments.
+
+The standard deviation comes out to approximately 2.1%, which is well below the 3% threshold, indicating strong consistency across reviewers. Looking at the consensus patterns, novelty ratings cluster around weak-to-medium across all three reviewers, significance is uniformly rated as medium, and all three independently flagged the VERGE overlap as a major concern.
+
+On the critical issues, there's unanimous agreement that both brute-force and rule-based routing represent serious trivial alternatives, and all three reviewers converge on the core problem that this feels more like integration than innovation. The training label noise from retrospective silver labels troubles both R1 and R3, with R2 also touching on it, and there's consensus that the weighted aggregation approach for chain-structured proofs is problematic.
+
+The one notable outlier is R2's identification of VerifiAgent as a critical missing related work—neither R1 nor R3 brought this up, though R2's point appears to carry weight.
+
+I should verify the VerifiAgent claim since it's the only reviewer raising it. Looking at the ratings, R1 and R3 both rate Related Work as strong, but R2 rates it as medium-to-weak, primarily due to this omission. The consistency across the three reviews is quite tight with a standard deviation around 2.1%, so the median estimate of 25% holds across all three reviewers.
+
+However, I need to search for VerifiAgent to confirm whether R2's concern about this missing related work is valid, as it could meaningfully impact the novelty assessment if the paper truly overlooks a relevant prior work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4893fa65-fa6e-4b76-9af8-7bff5a06ec3d",
+  "isSidechain": false,
+  "requestId": "req_011CbSmKSKy7HBuDwHyC5cXr",
+  "type": "assistant",
+  "uuid": "43ce30b2-cac3-41a9-80fa-6386da9f85cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QoEoCy7p1yoJCuxyjA6NEn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 22536,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22536,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1274,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 22536,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22536
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T08:34:05.570Z_
+
+Let me verify the key outlier claim from Reviewer 2 about VerifiAgent before synthesizing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43ce30b2-cac3-41a9-80fa-6386da9f85cd",
+  "isSidechain": false,
+  "requestId": "req_011CbSmKSKy7HBuDwHyC5cXr",
+  "type": "assistant",
+  "uuid": "e2966ac1-d0b6-4de1-a319-af32d0648637",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QoEoCy7p1yoJCuxyjA6NEn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 22536,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22536,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1274,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 22536,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22536
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T08:34:05.646Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TSRFcUW5cpCu4kDZpr9jAF`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2966ac1-d0b6-4de1-a319-af32d0648637",
+  "isSidechain": false,
+  "requestId": "req_011CbSmKSKy7HBuDwHyC5cXr",
+  "type": "assistant",
+  "uuid": "c8b68cb5-6534-409b-852d-9a2ced5abed7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QoEoCy7p1yoJCuxyjA6NEn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 22536,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22536,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 1274,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 22536,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22536
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T08:34:05.656Z_
+
+<details><summary>↩ Tool result · `toolu_01TSRFcUW5cpCu4kDZpr9jAF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c8b68cb5-6534-409b-852d-9a2ced5abed7",
+  "isSidechain": false,
+  "promptId": "05141f5f-1e6a-4d48-a1c3-fc52b25dae04",
+  "type": "user",
+  "uuid": "e1e68edc-ae4e-43d8-8f29-214582f69bc4",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "c8b68cb5-6534-409b-852d-9a2ced5abed7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T08:34:08.259Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for VerifiAgent to verify R2's claim about this being a critical missing related work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1e68edc-ae4e-43d8-8f29-214582f69bc4",
+  "isSidechain": false,
+  "requestId": "req_011CbSmMcRje9fXru4ZFArgR",
+  "type": "assistant",
+  "uuid": "40221749-d510-47fd-8549-3aca38a810f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScxaN29eHzMQ3JjsiVk6Gb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 33550,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 33550,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T08:34:08.732Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QxhJK5WEdgmVrWqgrWy3hH`</summary>
+
+```json
+{
+  "query": "VerifiAgent unified verification agent language model reasoning arXiv 2504.00406"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40221749-d510-47fd-8549-3aca38a810f2",
+  "isSidechain": false,
+  "requestId": "req_011CbSmMcRje9fXru4ZFArgR",
+  "type": "assistant",
+  "uuid": "19f2a133-5bb4-4461-a811-be5ca4c0f637",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScxaN29eHzMQ3JjsiVk6Gb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 33550,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 33550,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T08:34:08.735Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01QxhJK5WEdgmVrWqgrWy3hH`</summary>
+
+```text
+Claude requested permissions to use WebSearch, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19f2a133-5bb4-4461-a811-be5ca4c0f637",
+  "isSidechain": false,
+  "promptId": "05141f5f-1e6a-4d48-a1c3-fc52b25dae04",
+  "type": "user",
+  "uuid": "7bb4d233-90e8-4412-b93d-0407e9db6523",
+  "toolUseResult": "Error: Claude requested permissions to use WebSearch, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "19f2a133-5bb4-4461-a811-be5ca4c0f637",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T08:34:09.455Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_019sq8qPzWfVHVkmChjuNBb9`</summary>
+
+```text
+Claude requested permissions to use WebSearch, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81a199d7-5514-41d3-a7d8-48aa979d62a6",
+  "isSidechain": false,
+  "promptId": "05141f5f-1e6a-4d48-a1c3-fc52b25dae04",
+  "type": "user",
+  "uuid": "b49cbd9d-9953-454d-94a2-42bba5c83ad2",
+  "toolUseResult": "Error: Claude requested permissions to use WebSearch, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "81a199d7-5514-41d3-a7d8-48aa979d62a6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T08:34:09.454Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019sq8qPzWfVHVkmChjuNBb9`</summary>
+
+```json
+{
+  "query": "VERGE formal refinement guidance engine verifiable LLM reasoning semantic routing arXiv 2601.20055"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bb4d233-90e8-4412-b93d-0407e9db6523",
+  "isSidechain": false,
+  "requestId": "req_011CbSmMcRje9fXru4ZFArgR",
+  "type": "assistant",
+  "uuid": "81a199d7-5514-41d3-a7d8-48aa979d62a6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScxaN29eHzMQ3JjsiVk6Gb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1801,
+      "cache_read_input_tokens": 33550,
+      "output_tokens": 168,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1801,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 168,
+          "cache_read_input_tokens": 33550,
+          "cache_creation_input_tokens": 1801,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1801
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-27T08:34:26.411Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The WebSearch tool requires permission. Let me proceed with the synthesis based on the information available in the three reviews. I can note that VerifiAgent's existence should be verified but I'll treat R2's claim with appropriate weight given it's an outlier.
+
+Let me now do the full Meta Judge synthesis.
+
+**Three medians:** 27%, 25%, 22%
+- Mean: 24.67%
+- Std: sqrt(((27-24.67)^2 + (25-24.67)^2 + (22-24.67)^2)/3) = sqrt((5.43 + 0.11 + 7.13)/3) = sqrt(4.22) ≈ 2.05%
+
+
+- Standard deviation of about 2.1% is well below the 3% threshold, indicating strong agreement across the reviewers.
+
+All three reviewers converge on several key points: the work shows weak-to-moderate novelty, moderate significance, with VERGE emerging as the most direct conceptual competitor. They consistently identify brute-force and rule-based approaches as trivial alternatives, and all flag the "integration not innovation" concern. There's also universal mention of silver label noise as a methodological issue.
+
+Where reviewers diverge is on the chain-of-thought versus weighted aggregation tension, which appears in R1 and R3's feedback, and on whether MATH-VF's existing CAS+SMT capabilities represent sufficient prior work—a point all three raise.
+
+For Related Work specifically, R2 stands alone in criticizing the section for missing VerifiAgent, rating it as weak-to-moderate while R1 and R3 both rate it as strong. This is a potential gap worth noting, though since only one reviewer raised it, I'm treating it as a secondary concern rather than a consensus issue. The majority view leans toward the Related Work being adequate, but VerifiAgent's omission could be a legitimate oversight if it's truly relevant to the paper's scope.
+
+Given the high consistency across reviews (standard deviation around 2.1%), I'm settling on a narrow confidence interval centered on the median. The median of the three medians is 25%, and I want to stay conservative while respecting that R1's upper bound is 32%. So I'm setting the final range at 20-29% with a median of 25%.
+
+Now I'll compile the full Meta Judge assessment, drawing on both the proposal's own resource estimates and the three reviews' evaluations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b49cbd9d-9953-454d-94a2-42bba5c83ad2",
+  "isSidechain": false,
+  "requestId": "req_011CbSmMtqDTTCuQZh98RJyK",
+  "type": "assistant",
+  "uuid": "5dfbfe38-76c9-4529-94fb-fc269ea42cd5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9eJhJbod61a8SMhyJJLFB",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 260,
+      "cache_read_input_tokens": 35351,
+      "output_tokens": 2918,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2918,
+          "cache_read_input_tokens": 35351,
+          "cache_creation_input_tokens": 260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-27T08:35:16.793Z_
+
+Now let me synthesize all three reviews. I attempted to WebSearch-verify the VerifiAgent claim (R2's key outlier point) but permission was not granted; I'll handle this appropriately in the synthesis by noting the verification gap.
+
+**Computation of key statistics:**
+- Three medians: 27%, 25%, 22%
+- Mean of medians: 24.67%
+- Std: √[((27−24.67)² + (25−24.67)² + (22−24.67)²) / 3] ≈ 2.1%
+- Std < 3% → **高一致**
+
+---
+
+【阶段】: Meta Judge
+【三次中位】: [27%, 25%, 22%]  std=2.1%
+【共识维度】:
+- **Novelty: 弱-中**（3/3 一致）— 核心 routing idea 被 VERGE (Jan 2026) 的 semantic routing 部分覆盖；CAS+SMT 组合被 MATH-VF (May 2025) 部分覆盖；从 2→4 引擎是工程 scale-up 而非概念突破；learned classifier 本身是标准 multi-class classification，方法论 novelty 有限。整体定性为"well-motivated integration paper"而非提出新 insight。
+- **Significance: 中**（3/3 一致）— 问题重要且及时，但核心发现如果为正（"multi-engine > single-engine"），审稿人反应更可能是"I would have guessed this"而非"surprising"。贡献偏工程优化。
+- **Trivial alternative 威胁严重**（3/3 一致）— 两个 trivial alternative 被全部三位审稿人独立识别：(a) brute-force all engines（proposal 自己的训练过程就是这样做的，推理时为何不直接并行？）；(b) rule-based routing（keyword/pattern heuristic 可能达到 learned classifier 80-90% 效果）。Proposal 均未提供预防性论证。
+- **VERGE 是最直接概念竞争者**（3/3 一致）— 差异化论述（"flat claim lists vs. modular proof blocks"）被一致认为偏表面，不足以构成根本性区分。
+- **Silver label 噪声问题**（3/3 均提及）— 引擎失败原因多样（timeout / 翻译错误 / 不支持特性 / 步骤本身有误），统一标注为"不适合该引擎"会引入大量噪声。
+- **加权聚合与链式证明结构的张力**（2/3: R1, R3）— 证明正确性是链式逻辑（一步错则全错），与概率性加权聚合存在理论张力。
+- **Related Work 整体覆盖较全**（2/3: R1=强, R3=强）— 对 2025-2026 年领域主要工作覆盖到位，引用均真实存在。
+
+【异常维度】:
+- **VerifiAgent 缺失**（仅 R2 提出）— R2 指出 VerifiAgent (EMNLP 2025 Findings, arXiv 2504.00406) 做跨域 adaptive tool selection 用于推理验证，与 FormRoute 概念高度重叠，且 proposal 未引用。R2 因此将 Related Work 降至中偏弱。R1 和 R3 均未提及此工作。由于未能通过 WebSearch 独立验证 VerifiAgent 的确切内容和相关性，**对此降权处理**：承认可能是一个值得补充的 related work，但不以此作为 Related Work 评分的主要依据。Related Work 维度采用 R1/R3 的共识判断（强），附注 VerifiAgent 应在后续验证后酌情补充。
+- **StepProof 缺失**（仅 R2 一句带过）— 影响微小，不改变整体判断。
+
+【最终概率】: [20% - 29%] 中位 24%
+【一致性】: 高（std=2.1% < 3%）
+【综合理由】:
+三位审稿人在所有核心维度上高度一致：Novelty 弱-中是主要瓶颈，Significance 中等提供有限支撑，trivial alternative 威胁严重且未被预防。高一致性允许缩窄区间并取中位附近值。
+
+中位定在 24%（略低于三者算术均值 24.67%，因宁缺毋滥原则微调偏严）。理由：
+1. **Novelty 天花板锁定**：三位审稿人一致认为核心 routing idea 已被 VERGE 部分覆盖，增量贡献为工程层面整合。即使实验做到极致，这个天花板也难以突破 ~30%。
+2. **Trivial alternative 是 deal-breaker 级风险**：如果 learned classifier 相对 brute-force 或 rule-based routing 的增量不显著，核心贡献将被直接否定。这在 idea 阶段无法排除，必须靠实验。
+3. **"I would have guessed this" 效应**：核心发现如果为正，缺乏 surprise factor，这在顶会评审中通常被视为 significance 不足。
+4. **Related Work 是唯一真正的强项**，但它无法弥补 novelty 不足——审稿人不会因为 related work 写得好就接收一篇 novelty 不够的论文。
+
+上界 29% 对应场景：实验非常强（大幅超越所有 baseline + 有力击败 trivial alternatives），且 formalizability classifier 有深入的独立分析（泛化性、failure modes、与 autoformalization 的连接）。下界 20% 对应场景：实验结果 marginal 或 trivial alternative 表现接近。
+
+【建议】: 不推荐
+【实施评估】:
+  - 计算资源: 2000-3500 H100-hours（含 classifier fine-tuning ~100h, DeepSeek-Prover-V2 推理 ~800h, Qwen3-235B autoformalization ~400h, routing label 生成 ~400h, benchmark 评估与消融 ~500h），预估 GPU 成本 $4,000-7,000（H100 spot ~$2/hr）
+  - 数据需求: MATH、ProcessBench、Lean Workbook（均公开可得）；Hard2Verify、ArxivMathGradingBench 用于评测（需确认可得性）。需自建 ~15K silver-labeled proof steps 用于 classifier 训练
+  - 人工介入: 中低。Silver labeling 流程自动化（retrospective engine-success），但需人工审核 label 质量、调试多引擎 pipeline 集成、以及可能的 error analysis。无需大规模人工标注
+  - 训练需求: 需要训练——Qwen3-8B fine-tune 作为 formalizability classifier（~15K 样本，~100 H100-hours）；learned aggregation weights 训练（较轻量）。不涉及大模型预训练
+  - 新 Benchmark: 不需要构建全新 benchmark。使用已有 benchmark（MATH-500, ProcessBench, Hard2Verify, ArxivMathGradingBench）。但 formalizability classifier 的评估可能需要构建专门的路由准确率测试集
+  - 预估周期: 3-5 个月（取决于自动化程度）。主要瓶颈：Lean 4 编译和定理证明延迟（10-60s/step，串行），以及 DeepSeek-Prover-V2-671B 推理吞吐量
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dfbfe38-76c9-4529-94fb-fc269ea42cd5",
+  "isSidechain": false,
+  "requestId": "req_011CbSmMtqDTTCuQZh98RJyK",
+  "type": "assistant",
+  "uuid": "dae67e98-47c5-4708-bd72-a9609e98f421",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9eJhJbod61a8SMhyJJLFB",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 260,
+      "cache_read_input_tokens": 35351,
+      "output_tokens": 2918,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 260,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2918,
+          "cache_read_input_tokens": 35351,
+          "cache_creation_input_tokens": 260,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 260
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have enough research to provide a thorough evaluation. L…",
+  "leafUuid": "dae67e98-47c5-4708-bd72-a9609e98f421",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate FormRoute proof verification proposal",
+  "sessionId": "ce86b001-7b72-4e4d-89c9-34678ce6e006"
+}
+```
+
+---

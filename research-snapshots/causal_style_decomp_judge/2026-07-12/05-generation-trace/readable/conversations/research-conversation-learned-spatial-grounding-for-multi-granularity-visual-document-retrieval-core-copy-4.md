@@ -1,0 +1,3424 @@
+# Research conversation: Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval ## Core Problem Current visual document retrie
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-3/aa134aac-13b4-4361-baff-4bd947afdab7.jsonl`
+- **Structured JSON:** [`97bdc0e7bcaa11eb22a4.json`](../../sessions/97/97bdc0e7bcaa11eb22a4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T06:52:13.058Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:52:13.058Z",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "content": "# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval\n\n## Core Problem\n\nCurrent visual document retrieval models either operate at page granularity (losing sub-page precision) or require multi-model pipelines and external layout parsers to access element-level content. No single model jointly learns to retrieve at page, region, and element granularities while producing spatially grounded evidence bounding boxes — the 28.5pp page-vs-layout retrieval gap on MMDocIR and the 0.089 vs 0.602 model-vs-human grounding F1 on ViDoRe V3 quantify this deficiency.\n\n## Research Opportunity\n\nThree independently validated building blocks have never been combined for retrieval: (1) VLM patch embeddings implicitly encode spatial layout (proven by Snappy's 59.7% IoU@0.5 without any training and Localization Heads' discovery that ~3 attention heads suffice for grounding), (2) autoregressive query expansion can dynamically generate variable-count region proposals matching document complexity (HybriDLA, 83.5% mAP on DocLayNet), and (3) Matryoshka multi-vector training produces hierarchically nested embeddings with test-time granularity control (MetaEmbed, ICLR 2026 Oral). The cross-community gap between detection (CV) and retrieval (IR) has prevented their unification. The simultaneous availability of element-level benchmarks (MMDocIR with 1,685 expert + 173K bootstrapped layout anno...\n\n## Research Landscape\n\nPage-level VDR is led by Nemotron ColEmbed V2 at 63.42 nDCG@10 on ViDoRe V3 (Feb 2026), using bidirectional attention and hard negative mining on a Qwen3-VL-8B backbone. For sub-page retrieval, the Multi-Granularity Framework achieves 65.56 on MMDocIR but requires three separate large models (ColQwen2 + GME + Qwen2.5-VL) plus OCR, explicitly leaving end-to-end unification as an open question. RegionRAG (AAAI 2026) shifts to region-level retrieval but uses a BFS heuristic with manual threshold for patch grouping — not learned. ColParse (Mar 2026) achieves 95% storage reduction via layout-informed sub-images but depends on an external document parser that cannot be jointly optimized with retrieval. For spatial grounding, AGREE (SIGIR 2026) uses MLLM attention as proxy supervision but only improves page-level nDCG and produces no bounding boxes; Snappy reaches 59.7% IoU@0.5 but purely at inference time with no learned optimization. On ViDoRe V3's grounding evaluation, the best model achie...\n\n## Proposed Approach\n\nAttach an autoregressive localization head to Qwen3-VL-8B with bidirectional attention (LoRA r=64) that predicts region bounding boxes from patch embeddings, replacing external parsers. Train spatially-typed Matryoshka multi-vector embeddings at page/region/element granularities via joint contrastive retrieval + box regression loss on MMDocIR layout annotations and ViDoRe V3 grounding labels. Select grounding-capable layers using Localization Heads' probing protocol. Evaluate end-to-end on both benchmarks targeting the 0.089→0.3+ grounding F1 gap and competitive nDCG@10.\n\n## Detailed Description\n\nWe propose GroundVDR, a single vision-language model that jointly performs multi-granularity document retrieval and spatial grounding end-to-end. Built on Qwen3-VL-8B with bidirectional attention, the model adds an autoregressive localization head to VLM patch embeddings, generating learned region proposals that replace external layout parsers and heuristic patch grouping. Spatially-typed Matryoshka multi-vector embeddings enable retrieval at page, region, and element granularities with test-time control. A joint loss combines late-interaction contrastive retrieval with bounding-box regression, supervised by MMDocIR's 173K layout-annotated pairs and ViDoRe V3's 3,099 grounding-labeled queries. This unifies three validated but uncombined building blocks: implicit spatial encoding in VLM patches, autoregressive region proposals from document layout analysis, and hierarchically nested Matryoshka embeddings. The approach targets both the 28.5pp page-vs-layout retrieval gap and the massive 0.089-vs-0.602 grounding F1 gap. Concurrent methods (ColParse, MURE, ReAlign) each address subsets but none jointly learns retrieval and grounding in one model. Budget: ~180 H100-hours via LoRA, reproducible by academic labs.\n\n## Key References\n\n- Nemotron ColEmbed V2 (arXiv 2026)\n- ColPali: Efficient Document Retrieval with Vision Language Models (ECIR 2025)\n- MMDocIR: Multi-Modal Document Information Retrieval (arXiv 2025)\n- ViDoRe V3: Visual Document Retrieval Benchmark with Grounding (arXiv 2026)\n- MetaEmbed: Matryoshka Multi-Vector Retrieval (ICLR 2026)\n- HybriDLA: Hybrid Diffusion-Autoregressive Document Layout Analysis (AAAI 2026)\n- RegionRAG: Region-Level RAG for Visual Document Understanding (AAAI 2026)\n- AGREE: Attention-Grounded Retriever Enhancement (SIGIR 2026)\n- Snappy: Spatially-Grounded Document Retrieval (arXiv 2025)\n- Localization Heads in Vision-Language Models (CVPR 2025)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T06:52:13.063Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:52:13.063Z",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T06:52:13.076Z_
+
+# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval
+
+## Core Problem
+
+Current visual document retrieval models either operate at page granularity (losing sub-page precision) or require multi-model pipelines and external layout parsers to access element-level content. No single model jointly learns to retrieve at page, region, and element granularities while producing spatially grounded evidence bounding boxes — the 28.5pp page-vs-layout retrieval gap on MMDocIR and the 0.089 vs 0.602 model-vs-human grounding F1 on ViDoRe V3 quantify this deficiency.
+
+## Research Opportunity
+
+Three independently validated building blocks have never been combined for retrieval: (1) VLM patch embeddings implicitly encode spatial layout (proven by Snappy's 59.7% IoU@0.5 without any training and Localization Heads' discovery that ~3 attention heads suffice for grounding), (2) autoregressive query expansion can dynamically generate variable-count region proposals matching document complexity (HybriDLA, 83.5% mAP on DocLayNet), and (3) Matryoshka multi-vector training produces hierarchically nested embeddings with test-time granularity control (MetaEmbed, ICLR 2026 Oral). The cross-community gap between detection (CV) and retrieval (IR) has prevented their unification. The simultaneous availability of element-level benchmarks (MMDocIR with 1,685 expert + 173K bootstrapped layout anno...
+
+## Research Landscape
+
+Page-level VDR is led by Nemotron ColEmbed V2 at 63.42 nDCG@10 on ViDoRe V3 (Feb 2026), using bidirectional attention and hard negative mining on a Qwen3-VL-8B backbone. For sub-page retrieval, the Multi-Granularity Framework achieves 65.56 on MMDocIR but requires three separate large models (ColQwen2 + GME + Qwen2.5-VL) plus OCR, explicitly leaving end-to-end unification as an open question. RegionRAG (AAAI 2026) shifts to region-level retrieval but uses a BFS heuristic with manual threshold for patch grouping — not learned. ColParse (Mar 2026) achieves 95% storage reduction via layout-informed sub-images but depends on an external document parser that cannot be jointly optimized with retrieval. For spatial grounding, AGREE (SIGIR 2026) uses MLLM attention as proxy supervision but only improves page-level nDCG and produces no bounding boxes; Snappy reaches 59.7% IoU@0.5 but purely at inference time with no learned optimization. On ViDoRe V3's grounding evaluation, the best model achie...
+
+## Proposed Approach
+
+Attach an autoregressive localization head to Qwen3-VL-8B with bidirectional attention (LoRA r=64) that predicts region bounding boxes from patch embeddings, replacing external parsers. Train spatially-typed Matryoshka multi-vector embeddings at page/region/element granularities via joint contrastive retrieval + box regression loss on MMDocIR layout annotations and ViDoRe V3 grounding labels. Select grounding-capable layers using Localization Heads' probing protocol. Evaluate end-to-end on both benchmarks targeting the 0.089→0.3+ grounding F1 gap and competitive nDCG@10.
+
+## Detailed Description
+
+We propose GroundVDR, a single vision-language model that jointly performs multi-granularity document retrieval and spatial grounding end-to-end. Built on Qwen3-VL-8B with bidirectional attention, the model adds an autoregressive localization head to VLM patch embeddings, generating learned region proposals that replace external layout parsers and heuristic patch grouping. Spatially-typed Matryoshka multi-vector embeddings enable retrieval at page, region, and element granularities with test-time control. A joint loss combines late-interaction contrastive retrieval with bounding-box regression, supervised by MMDocIR's 173K layout-annotated pairs and ViDoRe V3's 3,099 grounding-labeled queries. This unifies three validated but uncombined building blocks: implicit spatial encoding in VLM patches, autoregressive region proposals from document layout analysis, and hierarchically nested Matryoshka embeddings. The approach targets both the 28.5pp page-vs-layout retrieval gap and the massive 0.089-vs-0.602 grounding F1 gap. Concurrent methods (ColParse, MURE, ReAlign) each address subsets but none jointly learns retrieval and grounding in one model. Budget: ~180 H100-hours via LoRA, reproducible by academic labs.
+
+## Key References
+
+- Nemotron ColEmbed V2 (arXiv 2026)
+- ColPali: Efficient Document Retrieval with Vision Language Models (ECIR 2025)
+- MMDocIR: Multi-Modal Document Information Retrieval (arXiv 2025)
+- ViDoRe V3: Visual Document Retrieval Benchmark with Grounding (arXiv 2026)
+- MetaEmbed: Matryoshka Multi-Vector Retrieval (ICLR 2026)
+- HybriDLA: Hybrid Diffusion-Autoregressive Document Layout Analysis (AAAI 2026)
+- RegionRAG: Region-Level RAG for Visual Document Understanding (AAAI 2026)
+- AGREE: Attention-Grounded Retriever Enhancement (SIGIR 2026)
+- Snappy: Spatially-Grounded Document Retrieval (arXiv 2025)
+- Localization Heads in Vision-Language Models (CVPR 2025)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "3f3bfb60-2c90-4222-aa22-9e5fa3e054e6",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T06:52:13.075Z_
+
+```json
+{
+  "parentUuid": "3f3bfb60-2c90-4222-aa22-9e5fa3e054e6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "98f1908f-5f43-45b5-96e8-97b8a605aae2",
+  "timestamp": "2026-05-30T06:52:13.075Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T06:52:13.075Z_
+
+```json
+{
+  "parentUuid": "98f1908f-5f43-45b5-96e8-97b8a605aae2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2f22d0ef-a676-47a2-8a9f-853994e8b8b4",
+  "timestamp": "2026-05-30T06:52:13.075Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Implement GroundVDR for spatial document retrieval",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T06:52:17.051Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal as the 补救 agent (remediation agent), focusing exclusively on experimental design and technical execution. I need to first do thorough literature research to understand the current experimental standards in this field before giving any suggestions.
+
+Let me search for the key papers mentioned and understand the experimental landscape.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f22d0ef-a676-47a2-8a9f-853994e8b8b4",
+  "isSidechain": false,
+  "requestId": "req_011CbYK1mz9HgsEC91Lzqm97",
+  "type": "assistant",
+  "uuid": "8889f04f-5c79-47ba-bf3e-e2cfd3fa890b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oC5vRkDjDbjYfK6pQjUyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5830,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T06:52:18.702Z_
+
+I need to do thorough pre-research before evaluating the experimental design. Let me search for the key papers and understand the current experimental standards in visual document retrieval.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8889f04f-5c79-47ba-bf3e-e2cfd3fa890b",
+  "isSidechain": false,
+  "requestId": "req_011CbYK1mz9HgsEC91Lzqm97",
+  "type": "assistant",
+  "uuid": "71a2112a-a377-49b2-bfda-a17701f2e5c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oC5vRkDjDbjYfK6pQjUyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5830,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-30T06:52:18.895Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UeEPw4GZQATt2yUJaB3G8s`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71a2112a-a377-49b2-bfda-a17701f2e5c8",
+  "isSidechain": false,
+  "requestId": "req_011CbYK1mz9HgsEC91Lzqm97",
+  "type": "assistant",
+  "uuid": "01976aeb-2c12-4f51-8fe2-c43d91cd828e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oC5vRkDjDbjYfK6pQjUyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5830,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5830,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5830,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5830
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-30T06:52:18.902Z_
+
+<details><summary>↩ Tool result · `toolu_01UeEPw4GZQATt2yUJaB3G8s`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01976aeb-2c12-4f51-8fe2-c43d91cd828e",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "70408d01-87c0-4d6b-985d-bd10f4ffa65e",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "01976aeb-2c12-4f51-8fe2-c43d91cd828e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-30T06:52:21.144Z_
+
+Now let me conduct my pre-research with multiple targeted searches to understand the experimental design standards in this field.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70408d01-87c0-4d6b-985d-bd10f4ffa65e",
+  "isSidechain": false,
+  "requestId": "req_011CbYK2CsMoMYzfu7FwYY1H",
+  "type": "assistant",
+  "uuid": "650b0389-b587-4b54-a872-e7e00c7c43dc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr4daByJheK4GK7PrjbyQ6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 16844,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16844,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-30T06:52:22.147Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PS9uiVA2yrD6vmADD8JSa9`</summary>
+
+```json
+{
+  "query": "MMDocIR benchmark evaluation metrics baselines 2025 2026 multi-granularity document retrieval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "650b0389-b587-4b54-a872-e7e00c7c43dc",
+  "isSidechain": false,
+  "requestId": "req_011CbYK2CsMoMYzfu7FwYY1H",
+  "type": "assistant",
+  "uuid": "087ab421-f6dc-42d3-891e-eeef4bb6ff9a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr4daByJheK4GK7PrjbyQ6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 16844,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16844,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-30T06:52:22.621Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RbfHqLrrkyhUkycgJp4PUX`</summary>
+
+```json
+{
+  "query": "ViDoRe V3 grounding evaluation benchmark visual document retrieval 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "087ab421-f6dc-42d3-891e-eeef4bb6ff9a",
+  "isSidechain": false,
+  "requestId": "req_011CbYK2CsMoMYzfu7FwYY1H",
+  "type": "assistant",
+  "uuid": "806a7017-9b10-4c95-91d8-bba3cc9a7286",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr4daByJheK4GK7PrjbyQ6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 16844,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16844,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-30T06:52:23.562Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D5bx71ivhLTZUXHRucB9xm`</summary>
+
+```json
+{
+  "query": "ColParse ColPali visual document retrieval experimental setup baselines ablation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "806a7017-9b10-4c95-91d8-bba3cc9a7286",
+  "isSidechain": false,
+  "requestId": "req_011CbYK2CsMoMYzfu7FwYY1H",
+  "type": "assistant",
+  "uuid": "a89e4d2c-af3f-4ca4-83d8-4b1403fe5c5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr4daByJheK4GK7PrjbyQ6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 16844,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16844,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-30T06:52:24.019Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NiDnZCNbgtwTS27c82W74x`</summary>
+
+```json
+{
+  "query": "Matryoshka multi-vector retrieval MetaEmbed experimental design ablation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a89e4d2c-af3f-4ca4-83d8-4b1403fe5c5b",
+  "isSidechain": false,
+  "requestId": "req_011CbYK2CsMoMYzfu7FwYY1H",
+  "type": "assistant",
+  "uuid": "f5bf5f3a-fa46-426c-9eec-884502f39fb2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr4daByJheK4GK7PrjbyQ6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 16844,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16844,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-30T06:52:28.923Z_
+
+<details><summary>↩ Tool result · `toolu_01RbfHqLrrkyhUkycgJp4PUX`</summary>
+
+```text
+Web search results for query: "ViDoRe V3 grounding evaluation benchmark visual document retrieval 2026"
+
+Links: [{"title":"ViDoRe Benchmarks for Visual Retrieval","url":"https://www.emergentmind.com/topics/vidore-benchmarks"},{"title":"ViDoRe V3: The Benchmark That Exposes What Your RAG Pipeline Cannot See - AI Research Analysis | Tekta.ai | Tekta.ai","url":"https://www.tekta.ai/ai-research-papers/vidore-v3-multimodal-rag-benchmark-2026"},{"title":"[2601.08620] ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios","url":"https://arxiv.org/abs/2601.08620"},{"title":"GitHub - illuin-tech/vidore-benchmark: Vision Document Retrieval (ViDoRe): Benchmark. Evaluation code for the ColPali paper. · GitHub","url":"https://github.com/illuin-tech/vidore-benchmark"},{"title":"ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios","url":"https://arxiv.org/pdf/2601.08620"},{"title":"ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios","url":"https://arxiv.org/html/2601.08620v1"},{"title":"Paper page - ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios","url":"https://huggingface.co/papers/2601.08620"},{"title":"(PDF) ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios","url":"https://www.researchgate.net/publication/399754833_ViDoRe_V3_A_Comprehensive_Evaluation_of_Retrieval_Augmented_Generation_in_Complex_Real-World_Scenarios"},{"title":"vidore (Vidore)","url":"https://huggingface.co/vidore"}]
+
+Based on the search results, here's what I found about ViDoRe V3:
+
+## ViDoRe V3 Overview
+
+ViDoRe V3 is a comprehensive multimodal RAG benchmark that evaluates retrieval, generation, and visual grounding on visually rich documents.
+
+## Scope and Scale
+
+The benchmark covers 10 datasets across diverse professional domains, comprising 26,000 document pages paired with 3,099 human-verified queries, each available in 6 languages. Through 12,000 hours of human annotation effort, high-quality annotations are provided for retrieval relevance, bounding box localization, and verified reference answers.
+
+## Grounding Evaluation
+
+Visual Grounding uses IoU and Dice/F1 score between predicted and annotated bounding boxes on relevant pages (in V3). Each query is annotated with the relevant pages, a document-grounded answer, bounding boxes localizing supporting evidence and modality labels for each bounding box.
+
+## Key Findings
+
+Evaluation of state-of-the-art RAG pipelines reveals that visual retrievers outperform textual ones, late-interaction models and textual reranking substantially improve performance, hybrid or purely visual contexts enhance answer generation quality. However, current models still struggle with non-textual elements, open-ended queries, and fine-grained visual grounding.
+
+## Release Information
+
+The benchmark was developed by ILLUIN Technology and with contributions from NVIDIA.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "806a7017-9b10-4c95-91d8-bba3cc9a7286",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "7c89d444-3b29-423a-88d6-1783ce53987a",
+  "toolUseResult": {
+    "query": "ViDoRe V3 grounding evaluation benchmark visual document retrieval 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TKnNmPqBpCsM3SHcQMK4fc",
+        "content": [
+          {
+            "title": "ViDoRe Benchmarks for Visual Retrieval",
+            "url": "https://www.emergentmind.com/topics/vidore-benchmarks"
+          },
+          {
+            "title": "ViDoRe V3: The Benchmark That Exposes What Your RAG Pipeline Cannot See - AI Research Analysis | Tekta.ai | Tekta.ai",
+            "url": "https://www.tekta.ai/ai-research-papers/vidore-v3-multimodal-rag-benchmark-2026"
+          },
+          {
+            "title": "[2601.08620] ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios",
+            "url": "https://arxiv.org/abs/2601.08620"
+          },
+          {
+            "title": "GitHub - illuin-tech/vidore-benchmark: Vision Document Retrieval (ViDoRe): Benchmark. Evaluation code for the ColPali paper. · GitHub",
+            "url": "https://github.com/illuin-tech/vidore-benchmark"
+          },
+          {
+            "title": "ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios",
+            "url": "https://arxiv.org/pdf/2601.08620"
+          },
+          {
+            "title": "ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios",
+            "url": "https://arxiv.org/html/2601.08620v1"
+          },
+          {
+            "title": "Paper page - ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios",
+            "url": "https://huggingface.co/papers/2601.08620"
+          },
+          {
+            "title": "(PDF) ViDoRe V3: A Comprehensive Evaluation of Retrieval Augmented Generation in Complex Real-World Scenarios",
+            "url": "https://www.researchgate.net/publication/399754833_ViDoRe_V3_A_Comprehensive_Evaluation_of_Retrieval_Augmented_Generation_in_Complex_Real-World_Scenarios"
+          },
+          {
+            "title": "vidore (Vidore)",
+            "url": "https://huggingface.co/vidore"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ViDoRe V3:\n\n## ViDoRe V3 Overview\n\nViDoRe V3 is a comprehensive multimodal RAG benchmark that evaluates retrieval, generation, and visual grounding on visually rich documents.\n\n## Scope and Scale\n\nThe benchmark covers 10 datasets across diverse professional domains, comprising 26,000 document pages paired with 3,099 human-verified queries, each available in 6 languages. Through 12,000 hours of human annotation effort, high-quality annotations are provided for retrieval relevance, bounding box localization, and verified reference answers.\n\n## Grounding Evaluation\n\nVisual Grounding uses IoU and Dice/F1 score between predicted and annotated bounding boxes on relevant pages (in V3). Each query is annotated with the relevant pages, a document-grounded answer, bounding boxes localizing supporting evidence and modality labels for each bounding box.\n\n## Key Findings\n\nEvaluation of state-of-the-art RAG pipelines reveals that visual retrievers outperform textual ones, late-interaction models and textual reranking substantially improve performance, hybrid or purely visual contexts enhance answer generation quality. However, current models still struggle with non-textual elements, open-ended queries, and fine-grained visual grounding.\n\n## Release Information\n\nThe benchmark was developed by ILLUIN Technology and with contributions from NVIDIA."
+    ],
+    "durationSeconds": 6.298069954999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "806a7017-9b10-4c95-91d8-bba3cc9a7286",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-30T06:52:29.012Z_
+
+<details><summary>↩ Tool result · `toolu_01PS9uiVA2yrD6vmADD8JSa9`</summary>
+
+```text
+Web search results for query: "MMDocIR benchmark evaluation metrics baselines 2025 2026 multi-granularity document retrieval"
+
+Links: [{"title":"MMDocIR: Benchmarking Multimodal Retrieval for Long Documents","url":"https://arxiv.org/html/2501.08828v3"},{"title":"Benchmarking Multi-Modal Retrieval for Long Documents","url":"https://arxiv.org/html/2501.08828v1"},{"title":"MMDocIR (MMDocRAG)","url":"https://huggingface.co/MMDocIR"},{"title":"Paper page - MMDocIR: Benchmarking Multi-Modal Retrieval for Long Documents","url":"https://huggingface.co/papers/2501.08828"},{"title":"(PDF) MMDocIR: Benchmarking Multimodal Retrieval for Long Documents","url":"https://www.researchgate.net/publication/388067575_MMDocIR_Benchmarking_Multi-Modal_Retrieval_for_Long_Documents"},{"title":"MMDocIR: Benchmarking Multi-Modal Retrieval for Long ...","url":"https://mmdocrag.github.io/MMDocIR/"},{"title":"[2501.08828] MMDocIR: Benchmarking Multimodal Retrieval for Long Documents","url":"https://arxiv.org/abs/2501.08828"},{"title":"MMDOCIR: Benchmarking Multimodal Retrieval for Long ...","url":"https://aclanthology.org/2025.emnlp-main.1576.pdf"}]
+
+Based on the search results, here's comprehensive information about the MMDocIR benchmark:
+
+## Overview
+
+MMDocIR is a benchmark featuring innovative dual-task retrieval capabilities targeting page-level and layout-level document granularity. The benchmark encompasses two distinct tasks: page-level and layout-level retrieval, where page-level retrieval evaluates identifying the most relevant pages within a long document, while layout-level retrieval assesses the ability to detect specific layouts, providing more fine-grained analysis than whole-page evaluation.
+
+## Dataset and Evaluation
+
+The MMDocIR benchmark comprises expertly annotated labels for 1,685 questions and bootstrapped labels for 173,843 questions, making it a pivotal resource for advancing multi-modal document retrieval for both training and evaluation. 
+
+The evaluation set contains 313 long documents with an average length of 65.1 pages, spanning ten distinct domains such as research reports, tutorials, legal documents, and financial statements. The documents offer a rich diversity of modalities, with 60.4% text, 18.8% images, 16.7% tables, and 4.1% layout or meta content.
+
+## Key Baseline Findings
+
+Visual retrievers significantly outperform their text counterparts, and text retrievers leveraging VLM-text perform much better than those using OCR-text.
+
+## Availability
+
+The benchmark includes 6 text and 4 vision retrievers as checkpoints, and MMDocIR is available at https://huggingface.co/MMDocIR.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "087ab421-f6dc-42d3-891e-eeef4bb6ff9a",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "b8061e1b-6337-4cfb-97e0-d237376835bb",
+  "toolUseResult": {
+    "query": "MMDocIR benchmark evaluation metrics baselines 2025 2026 multi-granularity document retrieval",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AjZ8a6GvWWX8FtiQsZCp3v",
+        "content": [
+          {
+            "title": "MMDocIR: Benchmarking Multimodal Retrieval for Long Documents",
+            "url": "https://arxiv.org/html/2501.08828v3"
+          },
+          {
+            "title": "Benchmarking Multi-Modal Retrieval for Long Documents",
+            "url": "https://arxiv.org/html/2501.08828v1"
+          },
+          {
+            "title": "MMDocIR (MMDocRAG)",
+            "url": "https://huggingface.co/MMDocIR"
+          },
+          {
+            "title": "Paper page - MMDocIR: Benchmarking Multi-Modal Retrieval for Long Documents",
+            "url": "https://huggingface.co/papers/2501.08828"
+          },
+          {
+            "title": "(PDF) MMDocIR: Benchmarking Multimodal Retrieval for Long Documents",
+            "url": "https://www.researchgate.net/publication/388067575_MMDocIR_Benchmarking_Multi-Modal_Retrieval_for_Long_Documents"
+          },
+          {
+            "title": "MMDocIR: Benchmarking Multi-Modal Retrieval for Long ...",
+            "url": "https://mmdocrag.github.io/MMDocIR/"
+          },
+          {
+            "title": "[2501.08828] MMDocIR: Benchmarking Multimodal Retrieval for Long Documents",
+            "url": "https://arxiv.org/abs/2501.08828"
+          },
+          {
+            "title": "MMDOCIR: Benchmarking Multimodal Retrieval for Long ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1576.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about the MMDocIR benchmark:\n\n## Overview\n\nMMDocIR is a benchmark featuring innovative dual-task retrieval capabilities targeting page-level and layout-level document granularity. The benchmark encompasses two distinct tasks: page-level and layout-level retrieval, where page-level retrieval evaluates identifying the most relevant pages within a long document, while layout-level retrieval assesses the ability to detect specific layouts, providing more fine-grained analysis than whole-page evaluation.\n\n## Dataset and Evaluation\n\nThe MMDocIR benchmark comprises expertly annotated labels for 1,685 questions and bootstrapped labels for 173,843 questions, making it a pivotal resource for advancing multi-modal document retrieval for both training and evaluation. \n\nThe evaluation set contains 313 long documents with an average length of 65.1 pages, spanning ten distinct domains such as research reports, tutorials, legal documents, and financial statements. The documents offer a rich diversity of modalities, with 60.4% text, 18.8% images, 16.7% tables, and 4.1% layout or meta content.\n\n## Key Baseline Findings\n\nVisual retrievers significantly outperform their text counterparts, and text retrievers leveraging VLM-text perform much better than those using OCR-text.\n\n## Availability\n\nThe benchmark includes 6 text and 4 vision retrievers as checkpoints, and MMDocIR is available at https://huggingface.co/MMDocIR."
+    ],
+    "durationSeconds": 6.8611757529999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "087ab421-f6dc-42d3-891e-eeef4bb6ff9a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval  ## Core Problem  Current visual document retrieval models either operate at page granularity (losing sub-page precision) or…",
+  "leafUuid": "b8061e1b-6337-4cfb-97e0-d237376835bb",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Implement GroundVDR for spatial document retrieval",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-30T06:52:31.122Z_
+
+<details><summary>↩ Tool result · `toolu_01NiDnZCNbgtwTS27c82W74x`</summary>
+
+```text
+Web search results for query: "Matryoshka multi-vector retrieval MetaEmbed experimental design ablation 2026"
+
+Links: [{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction - VisLang Lab","url":"https://vislang.ai/publications/xiao2026metaembed"},{"title":"[2509.18095] MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction","url":"https://arxiv.org/abs/2509.18095"},{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction [Quick Review]","url":"https://liner.com/review/metaembed-scaling-multimodal-retrieval-at-testtime-with-flexible-late-interaction"},{"title":"GitHub - facebookresearch/MetaEmbed: [ICLR 2026 Oral] Official Implementation of the paper \"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interactions\" · GitHub","url":"https://github.com/facebookresearch/MetaEmbed"},{"title":"METAEMBED: SCALING MULTIMODAL RETRIEVAL AT ...","url":"https://openreview.net/pdf?id=yKDqg9HwZX"},{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction","url":"https://arxiv.org/html/2509.18095v2"},{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time ...","url":"https://arxiv.org/pdf/2509.18095"},{"title":"METAEMBED: SCALING MULTIMODAL RETRIEVAL AT TEST- ...","url":"https://openreview.net/pdf/463390b346704acb5a7223fe658dcad9cf1ccc9c.pdf"},{"title":"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interactions | Research - AI at Meta","url":"https://ai.meta.com/research/publications/metaembed-scaling-multimodal-retrieval-at-test-time-with-flexible-late-interactions/"}]
+
+The search results show comprehensive information about MetaEmbed and its Matryoshka Multi-Vector Retrieval approach. Here are the key findings:
+
+## Overview
+
+MetaEmbed is a framework for multimodal retrieval that rethinks how multimodal embeddings are constructed and interacted with at scale.
+
+## Matryoshka Multi-Vector Retrieval Design
+
+Matryoshka Multi-Vector Retrieval trains coarse-to-fine nested embedding groups, enabling a single model and index design to support multiple quality-latency operating points. By performing contrastive learning across parallel nested groups of representations at training-time, the model learns coarse-to-fine multi-vector embeddings that can be selectively utilized for late interactions depending on the computation budget at test-time.
+
+## Experimental Results
+
+MetaEmbed achieves state-of-the-art results on MMEB and strong results on ViDoRe while scaling to 32B vision-language model backbones. 
+
+## Ablation Study Findings
+
+The ablations show that multi-vector retrieval benefits grow with model scale and that MMR is important for preserving low-budget retrieval quality. More specifically, ablation studies show that disabling MMR leads to a significant performance drop, particularly at low retrieval budgets (e.g., 9.0 points for (1,1) budget on ViDoRe v1).
+
+## Experimental Configuration
+
+For models with Matryoshka Multi-Vector Retrieval, group sizes of (rq, rc) are {(1, 1), (2, 4), (4, 8), (8, 16), (16, 64)}.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5bf5f3a-fa46-426c-9eec-884502f39fb2",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "4395478f-c35b-471a-8f39-5aa27d6bae89",
+  "toolUseResult": {
+    "query": "Matryoshka multi-vector retrieval MetaEmbed experimental design ablation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PJ9WGbGpRx2PFMtLiWFAek",
+        "content": [
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction - VisLang Lab",
+            "url": "https://vislang.ai/publications/xiao2026metaembed"
+          },
+          {
+            "title": "[2509.18095] MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction",
+            "url": "https://arxiv.org/abs/2509.18095"
+          },
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction [Quick Review]",
+            "url": "https://liner.com/review/metaembed-scaling-multimodal-retrieval-at-testtime-with-flexible-late-interaction"
+          },
+          {
+            "title": "GitHub - facebookresearch/MetaEmbed: [ICLR 2026 Oral] Official Implementation of the paper \"MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interactions\" · GitHub",
+            "url": "https://github.com/facebookresearch/MetaEmbed"
+          },
+          {
+            "title": "METAEMBED: SCALING MULTIMODAL RETRIEVAL AT ...",
+            "url": "https://openreview.net/pdf?id=yKDqg9HwZX"
+          },
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction",
+            "url": "https://arxiv.org/html/2509.18095v2"
+          },
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time ...",
+            "url": "https://arxiv.org/pdf/2509.18095"
+          },
+          {
+            "title": "METAEMBED: SCALING MULTIMODAL RETRIEVAL AT TEST- ...",
+            "url": "https://openreview.net/pdf/463390b346704acb5a7223fe658dcad9cf1ccc9c.pdf"
+          },
+          {
+            "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interactions | Research - AI at Meta",
+            "url": "https://ai.meta.com/research/publications/metaembed-scaling-multimodal-retrieval-at-test-time-with-flexible-late-interactions/"
+          }
+        ]
+      },
+      "The search results show comprehensive information about MetaEmbed and its Matryoshka Multi-Vector Retrieval approach. Here are the key findings:\n\n## Overview\n\nMetaEmbed is a framework for multimodal retrieval that rethinks how multimodal embeddings are constructed and interacted with at scale.\n\n## Matryoshka Multi-Vector Retrieval Design\n\nMatryoshka Multi-Vector Retrieval trains coarse-to-fine nested embedding groups, enabling a single model and index design to support multiple quality-latency operating points. By performing contrastive learning across parallel nested groups of representations at training-time, the model learns coarse-to-fine multi-vector embeddings that can be selectively utilized for late interactions depending on the computation budget at test-time.\n\n## Experimental Results\n\nMetaEmbed achieves state-of-the-art results on MMEB and strong results on ViDoRe while scaling to 32B vision-language model backbones. \n\n## Ablation Study Findings\n\nThe ablations show that multi-vector retrieval benefits grow with model scale and that MMR is important for preserving low-budget retrieval quality. More specifically, ablation studies show that disabling MMR leads to a significant performance drop, particularly at low retrieval budgets (e.g., 9.0 points for (1,1) budget on ViDoRe v1).\n\n## Experimental Configuration\n\nFor models with Matryoshka Multi-Vector Retrieval, group sizes of (rq, rc) are {(1, 1), (2, 4), (4, 8), (8, 16), (16, 64)}."
+    ],
+    "durationSeconds": 7.100070464999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f5bf5f3a-fa46-426c-9eec-884502f39fb2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-30T06:52:31.451Z_
+
+<details><summary>↩ Tool result · `toolu_01D5bx71ivhLTZUXHRucB9xm`</summary>
+
+```text
+Web search results for query: "ColParse ColPali visual document retrieval experimental setup baselines ablation 2025 2026"
+
+Links: [{"title":"ColPali: Efficient Document Retrieval with Vision Language Models","url":"https://arxiv.org/html/2407.01449v5"},{"title":"ColPali: EFFICIENT DOCUMENT RETRIEVAL WITH ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/99e9e141aafc314f76b0ca3dd66898b3-Paper-Conference.pdf"},{"title":"We release ColPali - Efficient Document Retrieval with Vision Language Models 👀 ! | Manuel Faysse","url":"https://manuelfay.github.io/news/colpali_release/"},{"title":"Beyond the Grid: Layout-Informed Multi-Vector Retrieval with Parsed Visual Document Representations","url":"https://arxiv.org/pdf/2603.01666"},{"title":"Reproducibility, Replicability, and Insights into Visual Document Retrieval with Late Interaction","url":"https://arxiv.org/pdf/2505.07730"},{"title":"(PDF) ColPali: Efficient Document Retrieval with Vision Language Models","url":"https://www.researchgate.net/publication/381911011_ColPali_Efficient_Document_Retrieval_with_Vision_Language_Models"},{"title":"[2407.01449] ColPali: Efficient Document Retrieval with Vision Language Models","url":"https://arxiv.org/abs/2407.01449"},{"title":"Hierarchical Patch Compression for ColPali: Efficient Multi-Vector Document Retrieval with Dynamic Pruning and Quantization","url":"https://arxiv.org/html/2506.21601v1"}]
+
+I found relevant information about ColParse and ColPali. Here are the key findings:
+
+## ColParse Overview
+
+ColParse is a novel paradigm that leverages a document parsing model to generate a small set of layout-informed sub-image embeddings, which are then fused with a global page-level vector to create a compact and structurally-aware multi-vector representation.
+
+## Performance and Results
+
+Extensive experiments demonstrate that ColParse reduces storage requirements by over 95% while simultaneously yielding significant performance gains across numerous benchmarks and base models. ColParse thus bridges the critical gap between the fine-grained accuracy of multi-vector retrieval and the practical demands of large-scale deployment, offering a new path towards efficient and interpretable multimodal information systems.
+
+## ColPali Context
+
+ColParse builds on the foundation of ColPali, which was an earlier advancement in visual document retrieval. ColPali largely outperforms strong baselines based on unstructured and captioning approaches, as well as all evaluated text-image embedding models, with particularly stark differences on visually complex benchmark tasks such as InfographicVQA, ArxivQA, and TabFQuAD, while also better retrieving text-centric documents across all evaluated domains and languages.
+
+The search results show that ColPali introduced the Visual Document Retrieval Benchmark (ViDoRe), which evaluates document retrieval systems in realistic settings involving visually complex documents. Both models use evaluation metrics like nDCG@5 for assessing performance across multiple benchmark tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a89e4d2c-af3f-4ca4-83d8-4b1403fe5c5b",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "a9e96688-82e3-48bb-9f9c-57938f10a0f7",
+  "toolUseResult": {
+    "query": "ColParse ColPali visual document retrieval experimental setup baselines ablation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UHApLkAne8pu7DSYBs6qvr",
+        "content": [
+          {
+            "title": "ColPali: Efficient Document Retrieval with Vision Language Models",
+            "url": "https://arxiv.org/html/2407.01449v5"
+          },
+          {
+            "title": "ColPali: EFFICIENT DOCUMENT RETRIEVAL WITH ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/99e9e141aafc314f76b0ca3dd66898b3-Paper-Conference.pdf"
+          },
+          {
+            "title": "We release ColPali - Efficient Document Retrieval with Vision Language Models 👀 ! | Manuel Faysse",
+            "url": "https://manuelfay.github.io/news/colpali_release/"
+          },
+          {
+            "title": "Beyond the Grid: Layout-Informed Multi-Vector Retrieval with Parsed Visual Document Representations",
+            "url": "https://arxiv.org/pdf/2603.01666"
+          },
+          {
+            "title": "Reproducibility, Replicability, and Insights into Visual Document Retrieval with Late Interaction",
+            "url": "https://arxiv.org/pdf/2505.07730"
+          },
+          {
+            "title": "(PDF) ColPali: Efficient Document Retrieval with Vision Language Models",
+            "url": "https://www.researchgate.net/publication/381911011_ColPali_Efficient_Document_Retrieval_with_Vision_Language_Models"
+          },
+          {
+            "title": "[2407.01449] ColPali: Efficient Document Retrieval with Vision Language Models",
+            "url": "https://arxiv.org/abs/2407.01449"
+          },
+          {
+            "title": "Hierarchical Patch Compression for ColPali: Efficient Multi-Vector Document Retrieval with Dynamic Pruning and Quantization",
+            "url": "https://arxiv.org/html/2506.21601v1"
+          }
+        ]
+      },
+      "I found relevant information about ColParse and ColPali. Here are the key findings:\n\n## ColParse Overview\n\nColParse is a novel paradigm that leverages a document parsing model to generate a small set of layout-informed sub-image embeddings, which are then fused with a global page-level vector to create a compact and structurally-aware multi-vector representation.\n\n## Performance and Results\n\nExtensive experiments demonstrate that ColParse reduces storage requirements by over 95% while simultaneously yielding significant performance gains across numerous benchmarks and base models. ColParse thus bridges the critical gap between the fine-grained accuracy of multi-vector retrieval and the practical demands of large-scale deployment, offering a new path towards efficient and interpretable multimodal information systems.\n\n## ColPali Context\n\nColParse builds on the foundation of ColPali, which was an earlier advancement in visual document retrieval. ColPali largely outperforms strong baselines based on unstructured and captioning approaches, as well as all evaluated text-image embedding models, with particularly stark differences on visually complex benchmark tasks such as InfographicVQA, ArxivQA, and TabFQuAD, while also better retrieving text-centric documents across all evaluated domains and languages.\n\nThe search results show that ColPali introduced the Visual Document Retrieval Benchmark (ViDoRe), which evaluates document retrieval systems in realistic settings involving visually complex documents. Both models use evaluation metrics like nDCG@5 for assessing performance across multiple benchmark tasks."
+    ],
+    "durationSeconds": 7.886330167999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a89e4d2c-af3f-4ca4-83d8-4b1403fe5c5b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-30T06:52:34.204Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013Xdhtvs2xgVurBV4PJ45sK`</summary>
+
+```json
+{
+  "query": "Nemotron ColEmbed V2 visual document retrieval baselines experimental results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9e96688-82e3-48bb-9f9c-57938f10a0f7",
+  "isSidechain": false,
+  "requestId": "req_011CbYK38HZc9LbK6cPxkkW8",
+  "type": "assistant",
+  "uuid": "058fe2dc-e575-4603-a47e-09f6f55c2864",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tnQcaHhXTkUHqhKpfaeG6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 2780,
+      "cache_read_input_tokens": 17562,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 988,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 17562,
+          "cache_creation_input_tokens": 2780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-30T06:52:35.136Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019xa8hcHTJNkRsbxkY5Q6mb`</summary>
+
+```json
+{
+  "query": "RegionRAG AAAI 2026 region-level document retrieval experimental design ablation baselines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "058fe2dc-e575-4603-a47e-09f6f55c2864",
+  "isSidechain": false,
+  "requestId": "req_011CbYK38HZc9LbK6cPxkkW8",
+  "type": "assistant",
+  "uuid": "73e50666-8519-43f0-9cde-d5c920412b33",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tnQcaHhXTkUHqhKpfaeG6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 2780,
+      "cache_read_input_tokens": 17562,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 988,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 17562,
+          "cache_creation_input_tokens": 2780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-30T06:52:36.080Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NAkAZGGqSXwNNAcMhTjuPZ`</summary>
+
+```json
+{
+  "query": "AGREE attention grounded retrieval SIGIR 2026 experimental setup evaluation grounding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73e50666-8519-43f0-9cde-d5c920412b33",
+  "isSidechain": false,
+  "requestId": "req_011CbYK38HZc9LbK6cPxkkW8",
+  "type": "assistant",
+  "uuid": "da938cda-30b0-4253-accd-7cce7516af51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tnQcaHhXTkUHqhKpfaeG6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 2780,
+      "cache_read_input_tokens": 17562,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 988,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 17562,
+          "cache_creation_input_tokens": 2780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-30T06:52:36.739Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BoYLNcmmsSHizLSm1TZCwU`</summary>
+
+```json
+{
+  "query": "joint retrieval grounding visual document autoregressive localization head bounding box regression 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da938cda-30b0-4253-accd-7cce7516af51",
+  "isSidechain": false,
+  "requestId": "req_011CbYK38HZc9LbK6cPxkkW8",
+  "type": "assistant",
+  "uuid": "476d07b2-eb89-46ed-ac2e-597a5dd92fca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tnQcaHhXTkUHqhKpfaeG6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 988,
+      "cache_creation_input_tokens": 2780,
+      "cache_read_input_tokens": 17562,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 988,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 17562,
+          "cache_creation_input_tokens": 2780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-30T06:52:41.968Z_
+
+<details><summary>↩ Tool result · `toolu_019xa8hcHTJNkRsbxkY5Q6mb`</summary>
+
+```text
+Web search results for query: "RegionRAG AAAI 2026 region-level document retrieval experimental design ablation baselines"
+
+Links: [{"title":"GitHub - Aeryn666/RegionRAG: [AAAI2026] Source code for RegionRAG","url":"https://github.com/Aeryn666/RegionRAG"},{"title":"RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding","url":"https://arxiv.org/html/2510.27261"},{"title":"RegionRAG: Region-level Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2510.27261"},{"title":"RegionRAG: Region-level Retrieval-Augumented Generation for Visually-Rich Documents","url":"https://arxiv.org/html/2510.27261v1"},{"title":"[2510.27261] RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding","url":"https://arxiv.org/abs/2510.27261"},{"title":"Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation","url":"https://arxiv.org/pdf/2512.02660"}]
+
+Based on the search results, I found relevant information about RegionRAG and its experimental design:
+
+## RegionRAG Overview
+
+RegionRAG is a novel framework that shifts the retrieval paradigm from the document level to the region level. Instead of retrieving entire images, RegionRAG retrieves fine-grained, semantically meaningful visual regions that are highly relevant to the query.
+
+## Experimental Design
+
+During training, RegionRAG designs a hybrid supervision strategy from both labeled data and unlabeled data to pinpoint relevant patches. During inference, it proposes a dynamic pipeline that intelligently groups salient patches into complete semantic regions.
+
+## Results and Baselines
+
+Experiments on six benchmarks demonstrate that RegionRAG achieves state-of-the-art performance, improving retrieval accuracy by 10.02% in R@1 on average and increasing question answering accuracy by 3.56% while using only 71.42% visual tokens compared to prior methods.
+
+The source code is available on GitHub at https://github.com/Aeryn666/RegionRAG, and the paper has been accepted to AAAI 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73e50666-8519-43f0-9cde-d5c920412b33",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "1e1a5efa-9011-4c03-a4bf-8710a3e99889",
+  "toolUseResult": {
+    "query": "RegionRAG AAAI 2026 region-level document retrieval experimental design ablation baselines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PrZyEKJoxFQNSFX8Gzt8UX",
+        "content": [
+          {
+            "title": "GitHub - Aeryn666/RegionRAG: [AAAI2026] Source code for RegionRAG",
+            "url": "https://github.com/Aeryn666/RegionRAG"
+          },
+          {
+            "title": "RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding",
+            "url": "https://arxiv.org/html/2510.27261"
+          },
+          {
+            "title": "RegionRAG: Region-level Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2510.27261"
+          },
+          {
+            "title": "RegionRAG: Region-level Retrieval-Augumented Generation for Visually-Rich Documents",
+            "url": "https://arxiv.org/html/2510.27261v1"
+          },
+          {
+            "title": "[2510.27261] RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding",
+            "url": "https://arxiv.org/abs/2510.27261"
+          },
+          {
+            "title": "Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation",
+            "url": "https://arxiv.org/pdf/2512.02660"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about RegionRAG and its experimental design:\n\n## RegionRAG Overview\n\nRegionRAG is a novel framework that shifts the retrieval paradigm from the document level to the region level. Instead of retrieving entire images, RegionRAG retrieves fine-grained, semantically meaningful visual regions that are highly relevant to the query.\n\n## Experimental Design\n\nDuring training, RegionRAG designs a hybrid supervision strategy from both labeled data and unlabeled data to pinpoint relevant patches. During inference, it proposes a dynamic pipeline that intelligently groups salient patches into complete semantic regions.\n\n## Results and Baselines\n\nExperiments on six benchmarks demonstrate that RegionRAG achieves state-of-the-art performance, improving retrieval accuracy by 10.02% in R@1 on average and increasing question answering accuracy by 3.56% while using only 71.42% visual tokens compared to prior methods.\n\nThe source code is available on GitHub at https://github.com/Aeryn666/RegionRAG, and the paper has been accepted to AAAI 2026."
+    ],
+    "durationSeconds": 6.827436376999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "73e50666-8519-43f0-9cde-d5c920412b33",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-30T06:52:42.593Z_
+
+<details><summary>↩ Tool result · `toolu_01NAkAZGGqSXwNNAcMhTjuPZ`</summary>
+
+```text
+Web search results for query: "AGREE attention grounded retrieval SIGIR 2026 experimental setup evaluation grounding"
+
+Links: [{"title":"Attention Grounded Enhancement for Visual Document Retrieval","url":"https://arxiv.org/html/2511.13415v2"},{"title":"[2511.13415] Attention Grounded Enhancement for Visual Document Retrieval","url":"https://arxiv.org/abs/2511.13415"},{"title":"Attention Grounded Enhancement for Visual Document Retrieval","url":"https://arxiv.org/pdf/2511.13415"},{"title":"The Second Workshop on Evaluation for Multimodal Generation | EvalMG26 @ SIGIR 2026","url":"https://evalmg.github.io/"},{"title":"Groundedness in Retrieval-augmented Long-form Generation: An Empirical Study","url":"https://arxiv.org/html/2404.07060v1"}]
+
+Based on the search results, I found information about AGREE (Attention-Grounded REtriever Enhancement), which was presented at SIGIR 2026. Here are the key details about its experimental setup and evaluation:
+
+## Overview
+AGREE is an Attention-Grounded REtriever Enhancement framework that leverages cross-modal attention from multimodal large language models as proxy local supervision to guide the identification of relevant document regions.
+
+## Experimental Setup
+During training, AGREE combines local signals with global signals to jointly optimize the retriever, enabling it to learn not only whether documents match, but also which content drives relevance.
+
+## Evaluation Results
+Experiments on the challenging visual document retrieval benchmark, ViDoRe V2, show that AGREE significantly outperforms the global-supervision-only baseline by 12.82% and 5.03% in terms of average nDCG@1 and nDCG@5.
+
+## Grounding Evaluation
+Quantitative and qualitative analyses demonstrate that AGREE promotes deeper alignment between query terms and document regions, moving beyond surface-level matching toward more accurate and interpretable retrieval.
+
+The paper was presented at the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval in Melbourne, Australia in July 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da938cda-30b0-4253-accd-7cce7516af51",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "07ca491f-d386-4ba7-83a3-3c46c7647848",
+  "toolUseResult": {
+    "query": "AGREE attention grounded retrieval SIGIR 2026 experimental setup evaluation grounding",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RKBs4QrMGxjqz8sia5pyAR",
+        "content": [
+          {
+            "title": "Attention Grounded Enhancement for Visual Document Retrieval",
+            "url": "https://arxiv.org/html/2511.13415v2"
+          },
+          {
+            "title": "[2511.13415] Attention Grounded Enhancement for Visual Document Retrieval",
+            "url": "https://arxiv.org/abs/2511.13415"
+          },
+          {
+            "title": "Attention Grounded Enhancement for Visual Document Retrieval",
+            "url": "https://arxiv.org/pdf/2511.13415"
+          },
+          {
+            "title": "The Second Workshop on Evaluation for Multimodal Generation | EvalMG26 @ SIGIR 2026",
+            "url": "https://evalmg.github.io/"
+          },
+          {
+            "title": "Groundedness in Retrieval-augmented Long-form Generation: An Empirical Study",
+            "url": "https://arxiv.org/html/2404.07060v1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about AGREE (Attention-Grounded REtriever Enhancement), which was presented at SIGIR 2026. Here are the key details about its experimental setup and evaluation:\n\n## Overview\nAGREE is an Attention-Grounded REtriever Enhancement framework that leverages cross-modal attention from multimodal large language models as proxy local supervision to guide the identification of relevant document regions.\n\n## Experimental Setup\nDuring training, AGREE combines local signals with global signals to jointly optimize the retriever, enabling it to learn not only whether documents match, but also which content drives relevance.\n\n## Evaluation Results\nExperiments on the challenging visual document retrieval benchmark, ViDoRe V2, show that AGREE significantly outperforms the global-supervision-only baseline by 12.82% and 5.03% in terms of average nDCG@1 and nDCG@5.\n\n## Grounding Evaluation\nQuantitative and qualitative analyses demonstrate that AGREE promotes deeper alignment between query terms and document regions, moving beyond surface-level matching toward more accurate and interpretable retrieval.\n\nThe paper was presented at the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval in Melbourne, Australia in July 2026."
+    ],
+    "durationSeconds": 6.508999056,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "da938cda-30b0-4253-accd-7cce7516af51",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-30T06:52:43.301Z_
+
+<details><summary>↩ Tool result · `toolu_01BoYLNcmmsSHizLSm1TZCwU`</summary>
+
+```text
+Web search results for query: "joint retrieval grounding visual document autoregressive localization head bounding box regression 2025 2026"
+
+Links: [{"title":"[2105.04281] Visual Grounding with Transformers","url":"https://ar5iv.labs.arxiv.org/html/2105.04281"},{"title":"YORO - Lightweight End to End Visual Grounding","url":"http://www.svcl.ucsd.edu/people/johnho/publication/eccvw22/eccvw22_yoro.pdf"},{"title":"VISUAL GROUNDING WITH TRANSFORMERS Ye Du, Zehua Fu, Qingjie Liu∗, Yunhong Wang","url":"https://arxiv.org/pdf/2105.04281"},{"title":"Referring Transformer: A One-step Approach to Multi-task Visual   Grounding","url":"https://arxiv.org/pdf/2106.03089"},{"title":"SeqTR: A Simple yet Universal Network for Visual Grounding","url":"https://arxiv.org/pdf/2203.16265"},{"title":"A Better Loss for Visual-Textual Grounding","url":"https://arxiv.org/pdf/2108.05308"},{"title":"LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding","url":"https://research.nvidia.com/labs/lpr/locate-anything/"},{"title":"GroundSight: Augmenting Vision-Language Models with Grounding Information and De-hallucination","url":"https://arxiv.org/pdf/2509.25669"}]
+
+Based on the search results, I found several relevant papers and approaches related to visual grounding, bounding box regression, and localization. Here are the key findings:
+
+## Recent Approaches (2025-2026)
+
+LocateAnything is a recent model that uses parallel box decoding to predict full bounding boxes, with an autoregressive mode that "decodes coordinate tokens autoregressively for maximum stability, appropriate for high-precision labeling."
+
+GroundSight improves Visual Question Answering with retrieval-augmented generation by introducing text-grounded object localization, enabling models to "generate a bounding box around the object most relevant to the question, allowing for targeted image cropping and focused retrieval."
+
+## Core Approaches in Visual Grounding
+
+VGTR reformulates visual grounding as bounding box coordinate regression conditioned on query sentences, using a two-stream grounding encoder for joint reasoning and cross-modal interactions, along with a prediction head for bounding box regression.
+
+SeqTR reformulates visual grounding as a point prediction problem where bounding boxes are serialized into discrete coordinate tokens, with the decoder predicting these tokens in an autoregressive manner.
+
+These approaches combine joint visual-language reasoning with direct bounding box prediction through various decoding strategies, from traditional regression heads to modern autoregressive token prediction methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "476d07b2-eb89-46ed-ac2e-597a5dd92fca",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "44b5ec6f-94f7-4b36-9a16-7397ae5015d8",
+  "toolUseResult": {
+    "query": "joint retrieval grounding visual document autoregressive localization head bounding box regression 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MJAgU5dBGa5DyPQqM78yr4",
+        "content": [
+          {
+            "title": "[2105.04281] Visual Grounding with Transformers",
+            "url": "https://ar5iv.labs.arxiv.org/html/2105.04281"
+          },
+          {
+            "title": "YORO - Lightweight End to End Visual Grounding",
+            "url": "http://www.svcl.ucsd.edu/people/johnho/publication/eccvw22/eccvw22_yoro.pdf"
+          },
+          {
+            "title": "VISUAL GROUNDING WITH TRANSFORMERS Ye Du, Zehua Fu, Qingjie Liu∗, Yunhong Wang",
+            "url": "https://arxiv.org/pdf/2105.04281"
+          },
+          {
+            "title": "Referring Transformer: A One-step Approach to Multi-task Visual   Grounding",
+            "url": "https://arxiv.org/pdf/2106.03089"
+          },
+          {
+            "title": "SeqTR: A Simple yet Universal Network for Visual Grounding",
+            "url": "https://arxiv.org/pdf/2203.16265"
+          },
+          {
+            "title": "A Better Loss for Visual-Textual Grounding",
+            "url": "https://arxiv.org/pdf/2108.05308"
+          },
+          {
+            "title": "LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding",
+            "url": "https://research.nvidia.com/labs/lpr/locate-anything/"
+          },
+          {
+            "title": "GroundSight: Augmenting Vision-Language Models with Grounding Information and De-hallucination",
+            "url": "https://arxiv.org/pdf/2509.25669"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and approaches related to visual grounding, bounding box regression, and localization. Here are the key findings:\n\n## Recent Approaches (2025-2026)\n\nLocateAnything is a recent model that uses parallel box decoding to predict full bounding boxes, with an autoregressive mode that \"decodes coordinate tokens autoregressively for maximum stability, appropriate for high-precision labeling.\"\n\nGroundSight improves Visual Question Answering with retrieval-augmented generation by introducing text-grounded object localization, enabling models to \"generate a bounding box around the object most relevant to the question, allowing for targeted image cropping and focused retrieval.\"\n\n## Core Approaches in Visual Grounding\n\nVGTR reformulates visual grounding as bounding box coordinate regression conditioned on query sentences, using a two-stream grounding encoder for joint reasoning and cross-modal interactions, along with a prediction head for bounding box regression.\n\nSeqTR reformulates visual grounding as a point prediction problem where bounding boxes are serialized into discrete coordinate tokens, with the decoder predicting these tokens in an autoregressive manner.\n\nThese approaches combine joint visual-language reasoning with direct bounding box prediction through various decoding strategies, from traditional regression heads to modern autoregressive token prediction methods."
+    ],
+    "durationSeconds": 6.558902112,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "476d07b2-eb89-46ed-ac2e-597a5dd92fca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-30T06:52:43.336Z_
+
+<details><summary>↩ Tool result · `toolu_013Xdhtvs2xgVurBV4PJ45sK`</summary>
+
+```text
+Web search results for query: "Nemotron ColEmbed V2 visual document retrieval baselines experimental results 2026"
+
+Links: [{"title":"Nemotron ColEmbed V2: Top-Performing Late Interaction embedding models for Visual Document Retrieval","url":"https://arxiv.org/html/2602.03992v1"},{"title":"[2602.03992] Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval","url":"https://arxiv.org/abs/2602.03992"},{"title":"Nemotron ColEmbed V2: Late Interaction Retrieval","url":"https://www.emergentmind.com/topics/nemotron-colembed-v2"},{"title":"Paper page - Nemotron ColEmbed V2: Top-Performing Late Interaction embedding models for Visual Document Retrieval","url":"https://huggingface.co/papers/2602.03992"},{"title":"Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval","url":"https://arxiv.org/pdf/2602.03992"},{"title":"NanoVDR: Distilling 2B VLM into 70M Text Encoder","url":"https://www.emergentmind.com/papers/2603.12824"},{"title":"Nemotron ColEmbed V2: Raising the Bar for Multimodal Retrieval with ViDoRe V3’s Top Model","url":"https://huggingface.co/blog/nvidia/nemotron-colembed-v2"},{"title":"nvidia/nemotron-colembed-vl-4b-v2 · Hugging Face","url":"https://huggingface.co/nvidia/nemotron-colembed-vl-4b-v2"},{"title":"nvidia/nemotron-colembed-vl-8b-v2 · Hugging Face","url":"https://huggingface.co/nvidia/nemotron-colembed-vl-8b-v2"},{"title":"Nemotron ColEmbed V2: Top-Performing Late Interaction ...","url":"https://openreview.net/pdf/c7a5d2b9cd0e0f50225b1decd0f3da73e0e76b47.pdf"}]
+
+Based on the search results, here are the key findings about Nemotron ColEmbed V2's experimental results:
+
+## Overview
+
+Nemotron ColEmbed V2 is a family of models that achieve state-of-the-art performance on the ViDoRe benchmarks. The models are released in three variants—with 3B, 4B, and 8B parameters—based on pre-trained VLMs: NVIDIA Eagle 2 with Llama 3.2 3B backbone, Qwen3-VL-4B-Instruct and Qwen3-VL-8B-Instruct, respectively.
+
+## Key Experimental Results
+
+**ViDoRe V3 Benchmark (Latest):**
+The best-performing model nemotron-colembed-vl-8b-v2 achieves an NDCG@10 of 63.42 on the Vidore V3 benchmark (+3% to the second place), ranking first on that benchmark as of Feb. 03, 2026.
+
+**Model-Specific Performance:**
+The models rank 1st, 3rd and 6th—the highest ranked models in each weight class, as of Feb 3, 2026, on the ViDoRe V3 benchmark.
+
+**Technique Contributions:**
+The main techniques include cluster-based sampling, hard-negative mining, bidirectional attention, late interaction, and model merging. Model merging contributes +0.8–1.5% NDCG@10 (largest for 8B), and hard negatives contribute +0.7% NDCG@10.
+
+## Engineering Insights
+
+The paper discusses compute and storage engineering challenges posed by the late interaction mechanism and presents experiments on how to balance accuracy and storage with lower dimension embeddings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "058fe2dc-e575-4603-a47e-09f6f55c2864",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "2410d603-2879-47e6-b263-079c798a2f2d",
+  "toolUseResult": {
+    "query": "Nemotron ColEmbed V2 visual document retrieval baselines experimental results 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CZcmVf4As8bB8MJaEciLDC",
+        "content": [
+          {
+            "title": "Nemotron ColEmbed V2: Top-Performing Late Interaction embedding models for Visual Document Retrieval",
+            "url": "https://arxiv.org/html/2602.03992v1"
+          },
+          {
+            "title": "[2602.03992] Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval",
+            "url": "https://arxiv.org/abs/2602.03992"
+          },
+          {
+            "title": "Nemotron ColEmbed V2: Late Interaction Retrieval",
+            "url": "https://www.emergentmind.com/topics/nemotron-colembed-v2"
+          },
+          {
+            "title": "Paper page - Nemotron ColEmbed V2: Top-Performing Late Interaction embedding models for Visual Document Retrieval",
+            "url": "https://huggingface.co/papers/2602.03992"
+          },
+          {
+            "title": "Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval",
+            "url": "https://arxiv.org/pdf/2602.03992"
+          },
+          {
+            "title": "NanoVDR: Distilling 2B VLM into 70M Text Encoder",
+            "url": "https://www.emergentmind.com/papers/2603.12824"
+          },
+          {
+            "title": "Nemotron ColEmbed V2: Raising the Bar for Multimodal Retrieval with ViDoRe V3’s Top Model",
+            "url": "https://huggingface.co/blog/nvidia/nemotron-colembed-v2"
+          },
+          {
+            "title": "nvidia/nemotron-colembed-vl-4b-v2 · Hugging Face",
+            "url": "https://huggingface.co/nvidia/nemotron-colembed-vl-4b-v2"
+          },
+          {
+            "title": "nvidia/nemotron-colembed-vl-8b-v2 · Hugging Face",
+            "url": "https://huggingface.co/nvidia/nemotron-colembed-vl-8b-v2"
+          },
+          {
+            "title": "Nemotron ColEmbed V2: Top-Performing Late Interaction ...",
+            "url": "https://openreview.net/pdf/c7a5d2b9cd0e0f50225b1decd0f3da73e0e76b47.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings about Nemotron ColEmbed V2's experimental results:\n\n## Overview\n\nNemotron ColEmbed V2 is a family of models that achieve state-of-the-art performance on the ViDoRe benchmarks. The models are released in three variants—with 3B, 4B, and 8B parameters—based on pre-trained VLMs: NVIDIA Eagle 2 with Llama 3.2 3B backbone, Qwen3-VL-4B-Instruct and Qwen3-VL-8B-Instruct, respectively.\n\n## Key Experimental Results\n\n**ViDoRe V3 Benchmark (Latest):**\nThe best-performing model nemotron-colembed-vl-8b-v2 achieves an NDCG@10 of 63.42 on the Vidore V3 benchmark (+3% to the second place), ranking first on that benchmark as of Feb. 03, 2026.\n\n**Model-Specific Performance:**\nThe models rank 1st, 3rd and 6th—the highest ranked models in each weight class, as of Feb 3, 2026, on the ViDoRe V3 benchmark.\n\n**Technique Contributions:**\nThe main techniques include cluster-based sampling, hard-negative mining, bidirectional attention, late interaction, and model merging. Model merging contributes +0.8–1.5% NDCG@10 (largest for 8B), and hard negatives contribute +0.7% NDCG@10.\n\n## Engineering Insights\n\nThe paper discusses compute and storage engineering challenges posed by the late interaction mechanism and presents experiments on how to balance accuracy and storage with lower dimension embeddings."
+    ],
+    "durationSeconds": 9.128278325,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "058fe2dc-e575-4603-a47e-09f6f55c2864",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-30T06:52:43.341Z_
+
+```json
+{
+  "parentUuid": "2410d603-2879-47e6-b263-079c798a2f2d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "af5aa277-26ac-4184-87f0-8914dd86a554",
+  "timestamp": "2026-05-30T06:52:43.341Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval  ## Core Problem  Current visual document retrieval models either operate at page granularity (losing sub-page precision) or…",
+  "leafUuid": "af5aa277-26ac-4184-87f0-8914dd86a554",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Implement GroundVDR for spatial document retrieval",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-30T06:52:46.678Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FdeFDqdPQnkdo2GojnsVoy`</summary>
+
+```json
+{
+  "query": "Snappy spatially grounded document retrieval patch region relevance propagation experimental results 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af5aa277-26ac-4184-87f0-8914dd86a554",
+  "isSidechain": false,
+  "requestId": "req_011CbYK416FC6xBR4sGc1fJe",
+  "type": "assistant",
+  "uuid": "8f93c852-3eda-4e7b-83ed-ce3d412a80e9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lybe1jZbdJ76Hk86rXKURE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1895,
+      "cache_creation_input_tokens": 2364,
+      "cache_read_input_tokens": 20342,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2364,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1895,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 20342,
+          "cache_creation_input_tokens": 2364,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2364
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-30T06:52:47.674Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XgHRCE3u6DWDmNDq6KeoVu`</summary>
+
+```json
+{
+  "query": "MURE ReAlign multi-granularity visual document retrieval 2026 baselines evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f93c852-3eda-4e7b-83ed-ce3d412a80e9",
+  "isSidechain": false,
+  "requestId": "req_011CbYK416FC6xBR4sGc1fJe",
+  "type": "assistant",
+  "uuid": "b6599cec-bd8a-463b-8050-c8db7fe4cc25",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lybe1jZbdJ76Hk86rXKURE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1895,
+      "cache_creation_input_tokens": 2364,
+      "cache_read_input_tokens": 20342,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2364,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1895,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 20342,
+          "cache_creation_input_tokens": 2364,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2364
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-30T06:52:48.536Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N4ZzMpGaFqTNiuJ8c9AYsu`</summary>
+
+```json
+{
+  "query": "LoRA Qwen3-VL-8B training compute cost hours visual retrieval fine-tuning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6599cec-bd8a-463b-8050-c8db7fe4cc25",
+  "isSidechain": false,
+  "requestId": "req_011CbYK416FC6xBR4sGc1fJe",
+  "type": "assistant",
+  "uuid": "5e0ca29e-661b-465b-ac9b-445910e8e2a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lybe1jZbdJ76Hk86rXKURE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1895,
+      "cache_creation_input_tokens": 2364,
+      "cache_read_input_tokens": 20342,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2364,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1895,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 20342,
+          "cache_creation_input_tokens": 2364,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2364
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-30T06:52:55.024Z_
+
+<details><summary>↩ Tool result · `toolu_01XgHRCE3u6DWDmNDq6KeoVu`</summary>
+
+```text
+Web search results for query: "MURE ReAlign multi-granularity visual document retrieval 2026 baselines evaluation"
+
+Links: [{"title":"[2603.13349] MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval","url":"https://arxiv.org/abs/2603.13349"},{"title":"MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval","url":"https://arxiv.org/pdf/2603.13349"},{"title":"MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval","url":"https://arxiv.org/html/2603.13349"},{"title":"A Multi-Granularity Retrieval Framework for Visually-Rich Documents","url":"https://arxiv.org/pdf/2505.01457"},{"title":"Beyond the Grid: Layout-Informed Multi-Vector Retrieval with Parsed Visual Document Representations","url":"https://arxiv.org/pdf/2603.01666"}]
+
+I found relevant information about MURE and visual document retrieval research. Here are the key findings:
+
+## MURE Framework
+
+MURE is a novel framework that employs Vision-Language Models (VLMs) as a hierarchical multi-resolution encoder, integrates resolution-level Matryoshka representation learning (RMRL) for effective feature fusion, and applies a semantic-aware hierarchical clustering mechanism for visual token compression.
+
+## Key Technical Approach
+
+MURE first employs a multi-resolution sampling strategy, analogous to an "optical zoom", to observe the document image at hierarchical scales from coarse to fine, with these multi-scale inputs subsequently encoded using a VLM.
+
+## Evaluation Results
+
+Experiments on two widely used VDR benchmarks show that the MURE framework consistently beats strong baselines. Additionally, it significantly outperforms ColPali with only 50% of its visual token budget.
+
+## Problem Statement
+
+Existing VDR models struggle to balance effectiveness and efficiency when processing high-resolution documents: they often either lose fine-grained information or generate an excessive number of visual tokens, resulting in significant indexing overhead and high retrieval latency.
+
+The paper was published on arXiv on March 7, 2026, and addresses the challenge of effective visual document retrieval while maintaining computational efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6599cec-bd8a-463b-8050-c8db7fe4cc25",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "88efc494-9745-4573-9657-aee9fa23ba9b",
+  "toolUseResult": {
+    "query": "MURE ReAlign multi-granularity visual document retrieval 2026 baselines evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015Q7BFdEVU2tLJ8DQfDQrKm",
+        "content": [
+          {
+            "title": "[2603.13349] MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval",
+            "url": "https://arxiv.org/abs/2603.13349"
+          },
+          {
+            "title": "MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval",
+            "url": "https://arxiv.org/pdf/2603.13349"
+          },
+          {
+            "title": "MURE: Hierarchical Multi-Resolution Encoding via Vision-Language Models for Visual Document Retrieval",
+            "url": "https://arxiv.org/html/2603.13349"
+          },
+          {
+            "title": "A Multi-Granularity Retrieval Framework for Visually-Rich Documents",
+            "url": "https://arxiv.org/pdf/2505.01457"
+          },
+          {
+            "title": "Beyond the Grid: Layout-Informed Multi-Vector Retrieval with Parsed Visual Document Representations",
+            "url": "https://arxiv.org/pdf/2603.01666"
+          }
+        ]
+      },
+      "I found relevant information about MURE and visual document retrieval research. Here are the key findings:\n\n## MURE Framework\n\nMURE is a novel framework that employs Vision-Language Models (VLMs) as a hierarchical multi-resolution encoder, integrates resolution-level Matryoshka representation learning (RMRL) for effective feature fusion, and applies a semantic-aware hierarchical clustering mechanism for visual token compression.\n\n## Key Technical Approach\n\nMURE first employs a multi-resolution sampling strategy, analogous to an \"optical zoom\", to observe the document image at hierarchical scales from coarse to fine, with these multi-scale inputs subsequently encoded using a VLM.\n\n## Evaluation Results\n\nExperiments on two widely used VDR benchmarks show that the MURE framework consistently beats strong baselines. Additionally, it significantly outperforms ColPali with only 50% of its visual token budget.\n\n## Problem Statement\n\nExisting VDR models struggle to balance effectiveness and efficiency when processing high-resolution documents: they often either lose fine-grained information or generate an excessive number of visual tokens, resulting in significant indexing overhead and high retrieval latency.\n\nThe paper was published on arXiv on March 7, 2026, and addresses the challenge of effective visual document retrieval while maintaining computational efficiency."
+    ],
+    "durationSeconds": 7.3168752370000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b6599cec-bd8a-463b-8050-c8db7fe4cc25",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-30T06:52:58.431Z_
+
+<details><summary>↩ Tool result · `toolu_01FdeFDqdPQnkdo2GojnsVoy`</summary>
+
+```text
+Web search results for query: "Snappy spatially grounded document retrieval patch region relevance propagation experimental results 2025"
+
+Links: [{"title":"[2512.02660] Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation","url":"https://arxiv.org/abs/2512.02660"},{"title":"Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation","url":"https://arxiv.org/pdf/2512.02660"},{"title":"Paper page - Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation","url":"https://huggingface.co/papers/2512.02660"},{"title":"Athos G - NCA | LinkedIn","url":"https://www.linkedin.com/in/athosg/"},{"title":"RegionRAG: Region-level Retrieval-Augumented Generation for Visually-Rich Documents","url":"https://arxiv.org/html/2510.27261v1"},{"title":"Attention Grounded Enhancement for Visual Document Retrieval","url":"https://arxiv.org/html/2511.13415v2"},{"title":"RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding","url":"https://arxiv.org/pdf/2510.27261"}]
+
+I found the research paper you're looking for! Here are the key experimental results:
+
+## Snappy: Spatially-Grounded Document Retrieval
+
+Snappy is an open-source implementation of the Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation approach.
+
+### Key Approach
+The method uses ColPali's patch-level similarity scores as spatial relevance filters over OCR-extracted regions, and formalizes the coordinate mapping between vision transformer patch grids and OCR bounding boxes, introduces intersection metrics for relevance propagation.
+
+### Experimental Results
+For within-page localization on BBox-DocVQA, ColQwen3-4B with percentile-50 thresholding achieves 59.7% hit rate at IoU@0.5 (84.4% at IoU@0.25, 35.8% at IoU@0.7), with mean IoU of 0.569, compared to ~6.7% for random region selection.
+
+### Efficiency Gains
+The approach reduces context tokens by 28.8% compared to returning all OCR regions and by 52.3% compared to full-page image tokens.
+
+### Key Advantage
+The approach operates at inference time without additional training.
+
+The paper was published in December 2025 on arXiv and represents a hybrid architecture combining vision-language models with OCR-based document analysis for more precise document retrieval.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f93c852-3eda-4e7b-83ed-ce3d412a80e9",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "317fe786-c4a0-420e-a472-beb244c65ca5",
+  "toolUseResult": {
+    "query": "Snappy spatially grounded document retrieval patch region relevance propagation experimental results 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019NwFUgaZDAaD2EgSw7PAmo",
+        "content": [
+          {
+            "title": "[2512.02660] Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation",
+            "url": "https://arxiv.org/abs/2512.02660"
+          },
+          {
+            "title": "Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation",
+            "url": "https://arxiv.org/pdf/2512.02660"
+          },
+          {
+            "title": "Paper page - Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation",
+            "url": "https://huggingface.co/papers/2512.02660"
+          },
+          {
+            "title": "Athos G - NCA | LinkedIn",
+            "url": "https://www.linkedin.com/in/athosg/"
+          },
+          {
+            "title": "RegionRAG: Region-level Retrieval-Augumented Generation for Visually-Rich Documents",
+            "url": "https://arxiv.org/html/2510.27261v1"
+          },
+          {
+            "title": "Attention Grounded Enhancement for Visual Document Retrieval",
+            "url": "https://arxiv.org/html/2511.13415v2"
+          },
+          {
+            "title": "RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding",
+            "url": "https://arxiv.org/pdf/2510.27261"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here are the key experimental results:\n\n## Snappy: Spatially-Grounded Document Retrieval\n\nSnappy is an open-source implementation of the Spatially-Grounded Document Retrieval via Patch-to-Region Relevance Propagation approach.\n\n### Key Approach\nThe method uses ColPali's patch-level similarity scores as spatial relevance filters over OCR-extracted regions, and formalizes the coordinate mapping between vision transformer patch grids and OCR bounding boxes, introduces intersection metrics for relevance propagation.\n\n### Experimental Results\nFor within-page localization on BBox-DocVQA, ColQwen3-4B with percentile-50 thresholding achieves 59.7% hit rate at IoU@0.5 (84.4% at IoU@0.25, 35.8% at IoU@0.7), with mean IoU of 0.569, compared to ~6.7% for random region selection.\n\n### Efficiency Gains\nThe approach reduces context tokens by 28.8% compared to returning all OCR regions and by 52.3% compared to full-page image tokens.\n\n### Key Advantage\nThe approach operates at inference time without additional training.\n\nThe paper was published in December 2025 on arXiv and represents a hybrid architecture combining vision-language models with OCR-based document analysis for more precise document retrieval."
+    ],
+    "durationSeconds": 11.747980340000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "8f93c852-3eda-4e7b-83ed-ce3d412a80e9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-30T06:52:58.811Z_
+
+<details><summary>↩ Tool result · `toolu_01N4ZzMpGaFqTNiuJ8c9AYsu`</summary>
+
+```text
+Web search results for query: "LoRA Qwen3-VL-8B training compute cost hours visual retrieval fine-tuning 2026"
+
+Links: [{"title":"How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog","url":"https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"},{"title":"Qwen3.5 Fine-tuning Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3.5/fine-tune"},{"title":"How to Fine-Tune Qwen3.5 0.8B Locally?","url":"https://sonusahani.com/blogs/fine-tune-qwen3-5-8b-locally"},{"title":"🚀 Fine-Tune Qwen3 8B with LoRA · Hugging Face","url":"https://huggingface.co/docs/optimum-neuron/training_tutorials/finetune_qwen3"},{"title":"Fine-Tuning Qwen3-VL 8B: A Step-by-Step Guide | DataCamp","url":"https://www.datacamp.com/tutorial/fine-tuning-qwen3-vl-8b"},{"title":"Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community","url":"https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"},{"title":"Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide — Effloow","url":"https://effloow.com/articles/llm-fine-tuning-lora-qlora-guide-2026"},{"title":"Fine-Tuning Qwen3.5 Small With QLoRA For News Classification | DataCamp","url":"https://www.datacamp.com/tutorial/fine-tuning-qwen3-5-small"},{"title":"Fine-Tuning Qwen3-VL: A Practical Guide for Vision-Language Model Adaptation | by Amin Fadaeinejad | May, 2026 | Medium","url":"https://medium.com/@aminfadaeinejad.edu/fine-tuning-qwen3-vl-a-practical-guide-for-vision-language-model-adaptation-d66d3f61e888"},{"title":"GitHub - 2U1/Qwen-VL-Series-Finetune: An open-source implementaion for fine-tuning Qwen-VL series by Alibaba Cloud. · GitHub","url":"https://github.com/2U1/Qwen-VL-Series-Finetune"}]
+
+Based on the search results, here's what I found regarding LoRA Qwen3-VL-8B training compute costs and hours for visual retrieval fine-tuning in 2026:
+
+## Training Time and Compute Costs
+
+Vision-language models like Qwen VL support LoRA fine-tuning in 2026. While the search results don't provide specific cost figures exclusively for Qwen3-VL-8B with visual retrieval fine-tuning, they do offer guidance on comparable vision-language model training:
+
+**Hardware Requirements:**
+A RunPod A100 (80GB) instance is recommended for Qwen3-VL-8B training, providing sufficient VRAM headroom for training and avoiding unnecessary memory bottlenecks during fine-tuning.
+
+**General Fine-tuning Costs for 8B Models:**
+Fine-tuning a 7B model with QLoRA takes 2-4 hours on a single A100 (~$1.50-$3 on Spheron at $0.76/hr).
+
+**Optimization Results:**
+Using only the relevant LoRA target layers, optimizing for the A100 GPU, enabling Flash Attention, and using bfloat16 allowed training to remain stable while significantly reducing runtime, with these optimizations cutting training time nearly in half without sacrificing quality.
+
+The specific training time for your use case (visual retrieval fine-tuning) would depend on dataset size, image resolution, and specific configuration choices, but comparable 8B model fine-tuning typically ranges from 2-4 hours on an A100 GPU.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e0ca29e-661b-465b-ac9b-445910e8e2a8",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "db054b05-3705-4202-af84-f12066cf4076",
+  "toolUseResult": {
+    "query": "LoRA Qwen3-VL-8B training compute cost hours visual retrieval fine-tuning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AETYgVTLMVtURWmD2v496k",
+        "content": [
+          {
+            "title": "How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog",
+            "url": "https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"
+          },
+          {
+            "title": "Qwen3.5 Fine-tuning Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3.5/fine-tune"
+          },
+          {
+            "title": "How to Fine-Tune Qwen3.5 0.8B Locally?",
+            "url": "https://sonusahani.com/blogs/fine-tune-qwen3-5-8b-locally"
+          },
+          {
+            "title": "🚀 Fine-Tune Qwen3 8B with LoRA · Hugging Face",
+            "url": "https://huggingface.co/docs/optimum-neuron/training_tutorials/finetune_qwen3"
+          },
+          {
+            "title": "Fine-Tuning Qwen3-VL 8B: A Step-by-Step Guide | DataCamp",
+            "url": "https://www.datacamp.com/tutorial/fine-tuning-qwen3-vl-8b"
+          },
+          {
+            "title": "Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community",
+            "url": "https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"
+          },
+          {
+            "title": "Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide — Effloow",
+            "url": "https://effloow.com/articles/llm-fine-tuning-lora-qlora-guide-2026"
+          },
+          {
+            "title": "Fine-Tuning Qwen3.5 Small With QLoRA For News Classification | DataCamp",
+            "url": "https://www.datacamp.com/tutorial/fine-tuning-qwen3-5-small"
+          },
+          {
+            "title": "Fine-Tuning Qwen3-VL: A Practical Guide for Vision-Language Model Adaptation | by Amin Fadaeinejad | May, 2026 | Medium",
+            "url": "https://medium.com/@aminfadaeinejad.edu/fine-tuning-qwen3-vl-a-practical-guide-for-vision-language-model-adaptation-d66d3f61e888"
+          },
+          {
+            "title": "GitHub - 2U1/Qwen-VL-Series-Finetune: An open-source implementaion for fine-tuning Qwen-VL series by Alibaba Cloud. · GitHub",
+            "url": "https://github.com/2U1/Qwen-VL-Series-Finetune"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding LoRA Qwen3-VL-8B training compute costs and hours for visual retrieval fine-tuning in 2026:\n\n## Training Time and Compute Costs\n\nVision-language models like Qwen VL support LoRA fine-tuning in 2026. While the search results don't provide specific cost figures exclusively for Qwen3-VL-8B with visual retrieval fine-tuning, they do offer guidance on comparable vision-language model training:\n\n**Hardware Requirements:**\nA RunPod A100 (80GB) instance is recommended for Qwen3-VL-8B training, providing sufficient VRAM headroom for training and avoiding unnecessary memory bottlenecks during fine-tuning.\n\n**General Fine-tuning Costs for 8B Models:**\nFine-tuning a 7B model with QLoRA takes 2-4 hours on a single A100 (~$1.50-$3 on Spheron at $0.76/hr).\n\n**Optimization Results:**\nUsing only the relevant LoRA target layers, optimizing for the A100 GPU, enabling Flash Attention, and using bfloat16 allowed training to remain stable while significantly reducing runtime, with these optimizations cutting training time nearly in half without sacrificing quality.\n\nThe specific training time for your use case (visual retrieval fine-tuning) would depend on dataset size, image resolution, and specific configuration choices, but comparable 8B model fine-tuning typically ranges from 2-4 hours on an A100 GPU."
+    ],
+    "durationSeconds": 10.271975875999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5e0ca29e-661b-465b-ac9b-445910e8e2a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-30T06:53:02.441Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me do one more round of research specifically focused on the Multi-Granularity Framework mentioned in the proposal (the one achieving 65.56 on MMDocIR) and also search for any papers on joint retrieval+grounding loss training to understand compute feasibility better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db054b05-3705-4202-af84-f12066cf4076",
+  "isSidechain": false,
+  "requestId": "req_011CbYK59GA15ym8CvQXxRpH",
+  "type": "assistant",
+  "uuid": "245bcd8b-90dc-441e-9c75-d1842748539f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5gLLMKyRpiq6NFrr4h8F4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4490,
+      "cache_read_input_tokens": 22706,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 22706,
+          "cache_creation_input_tokens": 4490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-30T06:53:03.398Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MpuCbJZYDRmHxY15ji3Qde`</summary>
+
+```json
+{
+  "query": "\"multi-granularity framework\" MMDocIR 65.56 ColQwen2 GME visual document retrieval 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "245bcd8b-90dc-441e-9c75-d1842748539f",
+  "isSidechain": false,
+  "requestId": "req_011CbYK59GA15ym8CvQXxRpH",
+  "type": "assistant",
+  "uuid": "f22cbf3f-7456-4526-a092-b8b1c85ab88d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5gLLMKyRpiq6NFrr4h8F4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4490,
+      "cache_read_input_tokens": 22706,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 22706,
+          "cache_creation_input_tokens": 4490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-30T06:53:04.425Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VMiBMJHpy5LRm1MLWEwrbt`</summary>
+
+```json
+{
+  "query": "HybriDLA hybrid diffusion autoregressive document layout analysis DocLayNet experimental results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f22cbf3f-7456-4526-a092-b8b1c85ab88d",
+  "isSidechain": false,
+  "requestId": "req_011CbYK59GA15ym8CvQXxRpH",
+  "type": "assistant",
+  "uuid": "65d547b1-f5cd-469a-9f55-d2d6ba748642",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5gLLMKyRpiq6NFrr4h8F4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4490,
+      "cache_read_input_tokens": 22706,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 22706,
+          "cache_creation_input_tokens": 4490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-30T06:53:09.918Z_
+
+<details><summary>↩ Tool result · `toolu_01VMiBMJHpy5LRm1MLWEwrbt`</summary>
+
+```text
+Web search results for query: "HybriDLA hybrid diffusion autoregressive document layout analysis DocLayNet experimental results 2026"
+
+Links: [{"title":"HybriDLA: Hybrid Generation for Document Layout Analysis","url":"https://arxiv.org/pdf/2511.19919"},{"title":"HybriDLA: Hybrid Generation for Document Layout Analysis","url":"https://arxiv.org/html/2511.19919v1"},{"title":"[2511.19919] HybriDLA: Hybrid Generation for Document Layout Analysis","url":"https://arxiv.org/abs/2511.19919"},{"title":"HybriDLA: Hybrid Generation for Document Layout Analysis | Underline","url":"https://underline.io/lecture/140200-hybridla-hybrid-generation-for-document-layout-analysis"},{"title":"HybriDLA: Hybrid Generation for Document Layout Analysis | Request PDF","url":"https://www.researchgate.net/publication/397983041_HybriDLA_Hybrid_Generation_for_Document_Layout_Analysis"},{"title":"HybriDLA: Hybrid Generation for Document Layout Analysis | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/37308"},{"title":"DocLayNet: A Large Human-Annotated Dataset for Document-Layout Segmentation | Request PDF","url":"https://www.researchgate.net/publication/362690321_DocLayNet_A_Large_Human-Annotated_Dataset_for_Document-Layout_Segmentation"},{"title":"Document Layout Analysis Model","url":"https://www.emergentmind.com/topics/document-layout-analysis-model"}]
+
+Based on the search results, here are the experimental results for HybriDLA on the DocLayNet benchmark:
+
+## HybriDLA Overview
+
+HybriDLA is a novel generative framework that unifies diffusion and autoregressive decoding within a single layer, where the diffusion component iteratively refines bounding-box hypotheses, whereas the autoregressive component injects semantic and contextual awareness, enabling precise region prediction even in highly varied layouts.
+
+## Experimental Results on DocLayNet
+
+The architecture achieves 83.5% mean Average Precision (mAP). Extensive experiments on the DocLayNet and M⁶Doc benchmarks demonstrate that HybriDLA sets a state-of-the-art performance, outperforming previous approaches.
+
+The research was recently published (the preprint is dated November 2025, with a publication in the AAAI Conference on Artificial Intelligence in March 2026), and the authors indicate that all data and models will be made publicly available.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65d547b1-f5cd-469a-9f55-d2d6ba748642",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "7ce96197-d346-4ea5-b14a-04c848426b17",
+  "toolUseResult": {
+    "query": "HybriDLA hybrid diffusion autoregressive document layout analysis DocLayNet experimental results 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01869tSAv2Q4n31Tf3rf5Btq",
+        "content": [
+          {
+            "title": "HybriDLA: Hybrid Generation for Document Layout Analysis",
+            "url": "https://arxiv.org/pdf/2511.19919"
+          },
+          {
+            "title": "HybriDLA: Hybrid Generation for Document Layout Analysis",
+            "url": "https://arxiv.org/html/2511.19919v1"
+          },
+          {
+            "title": "[2511.19919] HybriDLA: Hybrid Generation for Document Layout Analysis",
+            "url": "https://arxiv.org/abs/2511.19919"
+          },
+          {
+            "title": "HybriDLA: Hybrid Generation for Document Layout Analysis | Underline",
+            "url": "https://underline.io/lecture/140200-hybridla-hybrid-generation-for-document-layout-analysis"
+          },
+          {
+            "title": "HybriDLA: Hybrid Generation for Document Layout Analysis | Request PDF",
+            "url": "https://www.researchgate.net/publication/397983041_HybriDLA_Hybrid_Generation_for_Document_Layout_Analysis"
+          },
+          {
+            "title": "HybriDLA: Hybrid Generation for Document Layout Analysis | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/37308"
+          },
+          {
+            "title": "DocLayNet: A Large Human-Annotated Dataset for Document-Layout Segmentation | Request PDF",
+            "url": "https://www.researchgate.net/publication/362690321_DocLayNet_A_Large_Human-Annotated_Dataset_for_Document-Layout_Segmentation"
+          },
+          {
+            "title": "Document Layout Analysis Model",
+            "url": "https://www.emergentmind.com/topics/document-layout-analysis-model"
+          }
+        ]
+      },
+      "Based on the search results, here are the experimental results for HybriDLA on the DocLayNet benchmark:\n\n## HybriDLA Overview\n\nHybriDLA is a novel generative framework that unifies diffusion and autoregressive decoding within a single layer, where the diffusion component iteratively refines bounding-box hypotheses, whereas the autoregressive component injects semantic and contextual awareness, enabling precise region prediction even in highly varied layouts.\n\n## Experimental Results on DocLayNet\n\nThe architecture achieves 83.5% mean Average Precision (mAP). Extensive experiments on the DocLayNet and M⁶Doc benchmarks demonstrate that HybriDLA sets a state-of-the-art performance, outperforming previous approaches.\n\nThe research was recently published (the preprint is dated November 2025, with a publication in the AAAI Conference on Artificial Intelligence in March 2026), and the authors indicate that all data and models will be made publicly available."
+    ],
+    "durationSeconds": 5.490014648999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "65d547b1-f5cd-469a-9f55-d2d6ba748642",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-30T06:53:11.559Z_
+
+<details><summary>↩ Tool result · `toolu_01MpuCbJZYDRmHxY15ji3Qde`</summary>
+
+```text
+Web search results for query: ""multi-granularity framework" MMDocIR 65.56 ColQwen2 GME visual document retrieval 2025"
+
+Links: [{"title":"A Multi-Granularity Retrieval Framework for Visually-Rich Documents","url":"https://arxiv.org/pdf/2505.01457"},{"title":"A Multi-Granularity Multimodal Retrieval Framework for Multimodal Document Tasks","url":"https://arxiv.org/html/2505.01457v1"},{"title":"Visual Document Retrieval: Concepts & Advances","url":"https://www.emergentmind.com/topics/visual-document-retrieval-vdr"},{"title":"[2505.01457] A Multi-Granularity Retrieval Framework for Visually-Rich Documents","url":"https://arxiv.org/abs/2505.01457"},{"title":"A Framework for Document Multi-modal Information Retrieval","url":"https://aclanthology.org/2025.findings-emnlp.705.pdf"},{"title":"MMDocIR: Benchmarking Multimodal Retrieval for Long Documents","url":"https://arxiv.org/html/2501.08828v3"},{"title":"Benchmarking Multi-Modal Retrieval for Long Documents","url":"https://arxiv.org/html/2501.08828v1"}]
+
+Based on the search results, I found relevant information about the multi-granularity framework for visual document retrieval:
+
+## Multi-Granularity Framework for Visual Document Retrieval
+
+A unified multi-granularity multimodal retrieval framework has been proposed and applied to two document-level tasks: M2KR and MMDocIR. The approach integrates hierarchical encoding strategies, modality-aware retrieval mechanisms, and vision-language model (VLM)-based candidate filtering to effectively capture and utilize the complex interdependencies between textual and visual modalities.
+
+## Performance Achievement
+
+The final configuration, which integrates reranking for both tasks, achieves the highest retrieval score of 65.56.
+
+## Retrieval Components
+
+The framework uses multiple retrieval paths:
+
+ColQwen2-7B is used to encode the user query and full-page image candidates to perform initial full-page retrieval, while GME-7B conducts two additional retrieval stages: (1) text-to-OCR-text retrieval and (2) text-to-region-image retrieval. The relevance scores obtained from full-page retrieval, OCR-text retrieval, and regional-image retrieval are then fused to combine global, textual, and regional information.
+
+## MMDocIR Benchmark
+
+The MMDocIR benchmark features dual-task retrieval capabilities targeting page-level and layout-level document granularity, with a dataset featuring expertly annotated labels for 1,685 questions and bootstrapped labels for 73,843 questions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f22cbf3f-7456-4526-a092-b8b1c85ab88d",
+  "isSidechain": false,
+  "promptId": "d8bb6a48-30c4-4f69-a097-79a03d90ded3",
+  "type": "user",
+  "uuid": "54ad72ed-4246-46f8-b5a5-bef370951cf0",
+  "toolUseResult": {
+    "query": "\"multi-granularity framework\" MMDocIR 65.56 ColQwen2 GME visual document retrieval 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016hNqMFpugZJJHGPjN7qx8p",
+        "content": [
+          {
+            "title": "A Multi-Granularity Retrieval Framework for Visually-Rich Documents",
+            "url": "https://arxiv.org/pdf/2505.01457"
+          },
+          {
+            "title": "A Multi-Granularity Multimodal Retrieval Framework for Multimodal Document Tasks",
+            "url": "https://arxiv.org/html/2505.01457v1"
+          },
+          {
+            "title": "Visual Document Retrieval: Concepts & Advances",
+            "url": "https://www.emergentmind.com/topics/visual-document-retrieval-vdr"
+          },
+          {
+            "title": "[2505.01457] A Multi-Granularity Retrieval Framework for Visually-Rich Documents",
+            "url": "https://arxiv.org/abs/2505.01457"
+          },
+          {
+            "title": "A Framework for Document Multi-modal Information Retrieval",
+            "url": "https://aclanthology.org/2025.findings-emnlp.705.pdf"
+          },
+          {
+            "title": "MMDocIR: Benchmarking Multimodal Retrieval for Long Documents",
+            "url": "https://arxiv.org/html/2501.08828v3"
+          },
+          {
+            "title": "Benchmarking Multi-Modal Retrieval for Long Documents",
+            "url": "https://arxiv.org/html/2501.08828v1"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the multi-granularity framework for visual document retrieval:\n\n## Multi-Granularity Framework for Visual Document Retrieval\n\nA unified multi-granularity multimodal retrieval framework has been proposed and applied to two document-level tasks: M2KR and MMDocIR. The approach integrates hierarchical encoding strategies, modality-aware retrieval mechanisms, and vision-language model (VLM)-based candidate filtering to effectively capture and utilize the complex interdependencies between textual and visual modalities.\n\n## Performance Achievement\n\nThe final configuration, which integrates reranking for both tasks, achieves the highest retrieval score of 65.56.\n\n## Retrieval Components\n\nThe framework uses multiple retrieval paths:\n\nColQwen2-7B is used to encode the user query and full-page image candidates to perform initial full-page retrieval, while GME-7B conducts two additional retrieval stages: (1) text-to-OCR-text retrieval and (2) text-to-region-image retrieval. The relevance scores obtained from full-page retrieval, OCR-text retrieval, and regional-image retrieval are then fused to combine global, textual, and regional information.\n\n## MMDocIR Benchmark\n\nThe MMDocIR benchmark features dual-task retrieval capabilities targeting page-level and layout-level document granularity, with a dataset featuring expertly annotated labels for 1,685 questions and bootstrapped labels for 73,843 questions."
+    ],
+    "durationSeconds": 8.154877582000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f22cbf3f-7456-4526-a092-b8b1c85ab88d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval  ## Core Problem  Current visual document retrieval models either operate at page granularity (losing sub-page precision) or…",
+  "leafUuid": "54ad72ed-4246-46f8-b5a5-bef370951cf0",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Implement GroundVDR for spatial document retrieval",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-30T06:54:27.816Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of the experimental landscape. Let me synthesize my findings and evaluate the proposal's experimental design.
+
+Key things I need to assess:
+
+1. **Baseline coverage**: 
+   - Page-level: Nemotron ColEmbed V2 (SOTA), ColPali, ColQwen2 — are these sufficient?
+   - Sub-page/region: RegionRAG, ColParse, Multi-Granularity Framework, MURE — are these covered?
+   - Grounding: AGREE, Snappy — covered?
+   - Missing: What about text-based retrievers (BM25, BGE, etc.)? What about other VDR models?
+   
+2. **Evaluation metrics**: I need to check whether they're using standard retrieval metrics like nDCG@10 from ViDoRe, plus IoU and F1 for grounding tasks, and whether they should also include recall@k or MRR depending on what MMDocIR uses.
+
+3. **Ablation design**: The proposal mentions the autoregressive localization head, Matryoshka multi-vector embeddings, joint loss, and spatially-typed embeddings as key components, but I need to see how they're actually isolating each one's contribution.
+
+4. **Compute fairness**: I'm checking the computational budget allocation across experiments, starting with the 180 H100-hours mentioned.
+
+5. **Feasibility**: I need to verify whether the 173K layout annotations from MMDocIR and the 3,099 grounding-labeled queries from ViDoRe V3 are publicly accessible, and whether the training data is sufficient for the proposed approach.
+
+Now I'm looking at the baseline coverage to see what's actually being compared against. The proposal mentions Nemotron ColEmbed V2 as the current state-of-the-art for page-level retrieval and ColPali from ECIR 2025, but I need to check if these are all explicitly included as baselines. For sub-page retrieval, I'm seeing references to Multi-Granularity Framework and other systems, but the list seems incomplete.
+
+The critical issue is MURE from March 2026 — it uses multi-resolution encoding with Matryoshka representation learning, which is essentially the same core technique as what's being proposed here, making it a direct competitor that needs to be included as a baseline. For grounding tasks, AGREE and Snappy are mentioned, though Snappy is training-free so it's more of a lower bound, and AGREE doesn't actually produce bounding boxes. I should also note that text-based baselines like BM25+OCR should be included to match MMDocIR's standard evaluation setup.
+
+On the evaluation side, the proposal claims "competitive nDCG@10" for retrieval and "0.089→0.3+" for grounding F1, but I'm noticing the evaluation protocol isn't fully specified — MMDocIR uses nDCG@10 for both page-level and layout retrieval, so I need to verify the proposal is using the same metrics consistently.
+
+The grounding target of 0.3+ F1 seems vague without context — human performance sits at 0.602, so targeting 0.3+ is less than half of human performance, which raises questions about whether this is ambitious enough or too conservative. Also missing are standard retrieval metrics like Recall@k, and there's no mention of IoU for grounding even though ViDoRe V3 uses both IoU and F1. Storage and efficiency metrics are completely absent, which is problematic since ColParse's main contribution is 95% storage reduction — if GroundVDR generates more embeddings per page due to multi-granularity, that storage overhead comparison becomes essential.
+
+The proposal also doesn't describe any ablation studies, which is a significant gap for a system with this many components.  I'd expect ablations removing the autoregressive localization head, the Matryoshka nesting structure, the joint loss function, the spatially-typed embeddings, varying the LoRA rank, and testing different layer selections for grounding. On the compute side, the claimed 180 H100-hours needs scrutiny — using LoRA rank 64 on an 8B model is quite high compared to standard practice of r=16 or r=32, and I need to verify whether the training data volume justifies this compute budget.
+
+Looking at the actual training setup: 173K document image pairs from MMDocIR with 3,099 additional grounding examples from ViDoRe V3, processed through Qwen3-VL-8B which generates many visual tokens per image. Even with LoRA reducing gradient computation, the forward pass remains expensive. The 180 H100-hours translates to roughly 22.5 GPU-days, which is tight but feasible for LoRA training at this scale. However, there's a critical issue — the autoregressive localization head is a new module that requires full training rather than LoRA, which could push the actual compute requirements higher than reported.
+
+When comparing to baselines, I need to account for the fact that Nemotron ColEmbed V2 likely used significantly more compute with full fine-tuning, while ColParse splits its compute between a parser and retriever, and the Multi-Granularity Framework uses three separate models entirely. A fair comparison would need to factor in inference costs for these approaches too.
+
+The training data itself appears feasible — the 173K layout annotations come directly from MMDocIR, and the 3,099 grounding labels with their 12,000 hours of annotation are available from ViDoRe V3.
+
+But there's a real concern with scale: 3,099 grounding examples is quite small for training a bounding box regression head from scratch. The 173K annotations are for retrieval, not localization, so I'm essentially learning to predict boxes from only ~3K examples. There's also the question of how to balance the contrastive loss for retrieval with the regression loss for grounding — the proposal doesn't discuss loss weighting strategies, which is typically a tricky part of multi-task learning. And there's a fundamental architectural tension: the backbone uses bidirectional attention for retrieval, but the localization head is autoregressive and needs causal masking. How these two interact isn't addressed.
+
+The experimental setup also has gaps — no clarity on how multi-granularity embeddings affect indexing or retrieval time, no explanation of how region proposals are actually used during retrieval, and no mention of train/val/test splits or significance testing across runs.
+
+Though I should reconsider: a jump from 0.089 to 0.3+ is actually a 3.4x improvement, which would be substantial given that no current model performs well on grounding. The 3,099 labels are specifically for evaluation on ViDoRe V3, not training, so I may have misunderstood the data allocation.
+
+Actually, rereading the proposal, they're training on both MMDocIR layout annotations and ViDoRe V3 grounding labels. If those 3,099 queries are the evaluation benchmark, that's a serious train/test contamination problem — they need a proper split between what's used for training versus evaluation.
+
+Now I'm pulling together my final assessment. There are several experimental design gaps that need addressing, though none are unfixable. The main issues are missing MURE as a baseline since it's directly comparable with the multi-resolution and Matryoshka approach, no ablation strategy outlined, incomplete evaluation metrics like IoU and inference latency, the potential data contamination with ViDoRe V3, whether 3K grounding labels are enough for training the box regression head, no discussion of loss weighting, and missing storage and efficiency comparisons. The compute requirements also look tight given the autoregressive head needs full training.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54ad72ed-4246-46f8-b5a5-bef370951cf0",
+  "isSidechain": false,
+  "requestId": "req_011CbYK65k6SXZzDC4xSStXp",
+  "type": "assistant",
+  "uuid": "66db9dc0-412d-4ce0-82f6-03e1d546a7cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgcMmizBjPAygoMAXiveRs",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 689,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 27196,
+      "output_tokens": 7670,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 689,
+          "output_tokens": 7670,
+          "cache_read_input_tokens": 27196,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-30T06:56:17.470Z_
+
+Now I have sufficient research material. Let me compile my assessment.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **Nemotron ColEmbed V2** (arXiv Feb 2026): SOTA on ViDoRe V3 at 63.42 nDCG@10. Uses bidirectional attention, cluster-based sampling, hard-negative mining on Qwen3-VL-8B. Ablation reports contributions of model merging (+0.8–1.5%), hard negatives (+0.7%). Evaluates storage vs. accuracy tradeoff with lower-dimension embeddings.
+- **Multi-Granularity Retrieval Framework** (arXiv May 2025): Achieves 65.56 on MMDocIR by fusing ColQwen2-7B full-page retrieval + GME-7B OCR-text retrieval + GME-7B region-image retrieval + reranking. Uses three separate large models plus OCR — explicitly leaves end-to-end unification as open problem.
+- **MURE** (arXiv Mar 2026): Hierarchical multi-resolution encoding with **resolution-level Matryoshka representation learning (RMRL)** and semantic-aware hierarchical clustering for visual token compression. Beats ColPali with 50% token budget. Directly competes with GroundVDR's Matryoshka component — this is a critical concurrent baseline the proposal does not mention.
+- **MetaEmbed** (ICLR 2026 Oral): Matryoshka Multi-Vector Retrieval with group sizes {(1,1), (2,4), (4,8), (8,16), (16,64)}. Ablation shows MMR critical for low-budget retrieval (9.0 point drop). Evaluates on both ViDoRe and MMEB. Storage-retrieval tradeoff is a key evaluation axis.
+- **ColParse** (arXiv Mar 2026): 95% storage reduction via layout-informed sub-images. Key evaluation includes storage efficiency (bytes per page) alongside retrieval accuracy. Depends on external parser.
+- **RegionRAG** (AAAI 2026): Region-level retrieval with BFS patch grouping. Reports R@1 improvement of 10.02% and 71.42% visual token reduction. Evaluates on 6 benchmarks.
+- **AGREE** (SIGIR 2026): Attention-grounded retrieval. Reports nDCG@1 and nDCG@5 on ViDoRe V2 (+12.82% nDCG@1, +5.03% nDCG@5). Uses cross-modal attention as proxy supervision but produces no bounding boxes.
+- **Snappy** (arXiv Dec 2025): Training-free grounding via patch-to-region relevance propagation. 59.7% hit rate at IoU@0.5 on BBox-DocVQA. Evaluates with IoU@{0.25, 0.5, 0.7} and mean IoU — these are standard grounding metrics.
+- **ViDoRe V3** (arXiv Jan 2026): 26,000 pages, 3,099 queries, 6 languages. Grounding evaluation uses **IoU and Dice/F1** between predicted and annotated bounding boxes. Reports model grounding F1 of 0.089 vs. human 0.602.
+- **MMDocIR** (EMNLP 2025): Dual-task benchmark — page-level AND layout-level retrieval. Uses nDCG@10 for both. 1,685 expert + 173K bootstrapped annotations. Reports both page-level and layout-level scores for all baselines.
+
+- **调研总结**: 这个领域当前的实验设计标准要求：(1) 在 ViDoRe V3 和 MMDocIR 双 benchmark 上同时报告 page-level 和 layout/sub-page-level 检索结果；(2) 使用 nDCG@{5,10}、IoU@{0.25,0.5,0.7}、F1 等多粒度指标；(3) 详细的存储效率和推理延迟对比（ColParse、MetaEmbed 都强调了 storage-accuracy tradeoff）；(4) 充分的 ablation 来隔离各组件贡献；(5) 与 training-free 方法（Snappy）和 pipeline 方法（Multi-Gran Framework）做 compute-normalized 对比。审稿人普遍期望看到在多个 benchmark 上的全面对比，以及存储/效率维度的分析。
+
+---
+
+【缺陷 1】
+- 类别: baseline 不足或过时
+- 问题: Proposal 提到的 concurrent methods 包括 "ColParse, MURE, ReAlign"，但未明确将它们列为实验 baseline。更关键的是，**MURE (arXiv Mar 2026)** 使用了 "resolution-level Matryoshka representation learning" 和多分辨率编码，与 GroundVDR 的 Matryoshka multi-vector 组件高度重叠，是最直接的竞争者，但 proposal 中仅一笔带过。此外，NanoVDR (arXiv Mar 2026) 通过蒸馏 2B VLM 到 70M text encoder，代表了轻量化方向的强 baseline，在效率对比中不可忽略。
+- 严重度: 可补救
+- 补救方案: 明确列出完整的 baseline 清单，至少包含以下分类：
+  - **Page-level retrieval**: Nemotron ColEmbed V2 (8B), ColPali/ColQwen2, BM25+OCR (text-only lower bound)
+  - **Sub-page/region-level retrieval**: MURE, ColParse, RegionRAG, Multi-Granularity Framework (pipeline upper bound)
+  - **Grounding**: Snappy (training-free lower bound), AGREE (attention-proxy baseline)
+  - 必须将 MURE 作为核心 baseline 进行详细对比，因为其 Matryoshka 机制与 GroundVDR 最接近
+- 调研依据: MURE (arXiv 2603.13349) 使用与本 proposal 相似的 Matryoshka representation learning，是目前最接近的已发表工作
+
+【缺陷 2】
+- 类别: 评估方案缺陷
+- 问题: Proposal 只提到 "nDCG@10" 和 "grounding F1" 两个指标，但根据调研：(1) ViDoRe V3 的 grounding 评估标准是 **IoU@{0.25, 0.5, 0.7} 和 Dice/F1**，proposal 遗漏了 IoU 系列指标；(2) MMDocIR 要求报告 **page-level 和 layout-level 两个子任务**的 nDCG@10，proposal 未区分这两个子任务的目标；(3) 缺少 **存储效率**指标（bytes per page / tokens per page），这在 ColParse (95% reduction)、MetaEmbed (storage-accuracy tradeoff)、MURE (50% token budget) 的评估中都是核心维度。一个生成多粒度嵌入的模型如果不报告存储开销，审稿人会质疑其实用性。
+- 严重度: 可补救
+- 补救方案: 
+  - 补充 IoU@{0.25, 0.5, 0.7} 和 mean IoU 作为 grounding 指标（与 Snappy 对齐）
+  - 分别报告 MMDocIR page-level 和 layout-level nDCG@10
+  - 增加 Recall@k (k=1,5,10) 作为补充检索指标
+  - 必须报告 storage cost (embeddings per page × dimension) 和 query latency 与所有 baseline 的对比
+  - 可考虑添加 MetaEmbed 风格的 quality-latency curve（不同 Matryoshka 粒度下的 nDCG vs. FLOPs/latency）
+- 调研依据: Snappy 使用 IoU@{0.25,0.5,0.7}；ColParse 和 MetaEmbed 强调 storage-accuracy tradeoff；MMDocIR benchmark 定义了 page-level 和 layout-level 双任务
+
+【缺陷 3】
+- 类别: ablation 不完整
+- 问题: Proposal 完全没有描述 ablation 设计。GroundVDR 包含至少 4 个可分离的技术组件：(a) 自回归定位头 (autoregressive localization head)，(b) Matryoshka multi-vector embeddings，(c) joint retrieval + box regression loss，(d) spatially-typed embedding。不设计 ablation 来隔离各组件贡献，审稿人不可能接受——MetaEmbed 和 Nemotron ColEmbed V2 都有详尽的 ablation 来量化每个技术选择的贡献。
+- 严重度: 可补救
+- 补救方案: 至少设计以下 ablation：
+  1. **去掉自回归定位头** → 用外部 parser (如 HybriDLA) 或固定网格提供 region proposals → 量化 learned vs. external proposal 的差异
+  2. **去掉 Matryoshka 嵌套** → flat multi-vector → 量化分层嵌套对不同粒度检索的贡献
+  3. **去掉 joint loss** → 分别训练 retrieval-only 和 grounding-only 版本 → 量化联合训练的互利/冲突
+  4. **去掉 spatially-typed embeddings** → 统一类型 → 量化类型信息对区分 page/region/element 的贡献
+  5. **Layer selection ablation** → 使用不同层的 patch embedding 做 grounding → 验证 Localization Heads probing protocol 的必要性
+  6. **LoRA rank ablation** → r={16, 32, 64} → 量化 rank 与性能的 tradeoff
+- 调研依据: MetaEmbed 的 ablation 显示 MMR 对低 budget 检索至关重要（移除后下降 9.0 点）；Nemotron ColEmbed V2 ablation 量化了 model merging (+0.8-1.5%) 和 hard negatives (+0.7%) 的贡献
+
+【缺陷 4】
+- 类别: 可行性问题
+- 问题: Proposal 说 "supervised by ... ViDoRe V3's 3,099 grounding-labeled queries"，但存在两个问题：(1) **数据量不足风险**：3,099 个 grounding 标注样本训练一个从零开始的自回归定位头，数量可能严重不足。自回归 box 预测需要学习空间坐标映射，3K 样本可能难以覆盖文档的多样布局。(2) **训练/评估数据污染风险**：如果 ViDoRe V3 的 3,099 queries 同时用于训练和评估，存在 data leakage。proposal 没有说明如何划分训练集和测试集。
+- 严重度: 可补救
+- 补救方案: 
+  - 对问题(1)：明确说明定位头是否完全依赖 ViDoRe V3 的 3K 样本，还是也利用 MMDocIR 的 173K layout annotations 做预训练/辅助训练。如果仅靠 3K 样本，建议增加 DocLayNet (约 80K layout annotations) 或 PubLayNet (360K annotations) 作为预训练数据源，先让定位头学习通用布局检测，再在 ViDoRe V3 上微调。
+  - 对问题(2)：明确采用 ViDoRe V3 的官方 train/test split（如果存在），或自行定义 k-fold cross-validation 策略。如果整个 3,099 都是 test set（无官方 train set），则不能用于训练——需要用其他数据源（MMDocIR layout + DocLayNet）训练 grounding 能力，仅在 ViDoRe V3 上 zero-shot 评测。
+- 调研依据: ViDoRe V3 论文描述 3,099 queries 为 "human-verified queries" 用于评估，强烈暗示这是评估集而非训练集；HybriDLA 在 DocLayNet (~80K) 上训练达到 83.5% mAP，说明 layout 学习需要相当的数据量
+
+【缺陷 5】
+- 类别: compute 公平性问题
+- 问题: Proposal 声称 "~180 H100-hours via LoRA, reproducible by academic labs"，但存在以下公平性问题：(1) LoRA r=64 只冻结 backbone 参数，但自回归定位头是全新模块，需要 full training（非 LoRA），这部分的额外显存和计算开销未被计入；(2) 与 baseline 的 compute-normalized 对比缺失——Nemotron ColEmbed V2 可能用了数千 H100-hours，Multi-Granularity Framework 用了 3 个大模型推理，ColParse 依赖外部 parser——不做 compute normalization，审稿人无法判断性能增益是来自方法创新还是算力差异；(3) 推理时 multi-granularity embedding 的索引和查询成本未分析。
+- 严重度: 可补救
+- 补救方案: 
+  - 在实验中报告 training cost breakdown：backbone LoRA 的 GPU-hours + localization head full training 的 GPU-hours + 数据预处理时间
+  - 添加 compute-normalized comparison table：各方法的 training FLOPs (或 GPU-hours) vs. performance，这样审稿人可以看到 performance-per-compute 的效率
+  - 报告 inference cost：单页面 encoding latency、每页面嵌入数量 (tokens × dim)、multi-granularity 索引大小 vs. 单一粒度索引大小
+  - 如 180 H100-hours 预算不够（定位头 full training 显著增加 cost），需提前做 pilot experiment 验证实际开销并调整预算估计
+- 调研依据: MetaEmbed 在评估中强调了不同 quality-latency operating points；ColParse 以 95% storage reduction 为核心卖点，说明效率分析是审稿标准要求
+
+【缺陷 6】
+- 类别: 实验设计不足
+- 问题: Proposal 中存在一个架构层面的技术细节未交代清楚，这会影响实验设计的可信度：backbone 采用 **bidirectional attention**（用于检索），同时接一个 **autoregressive localization head**（需要 causal masking）。这两种注意力模式的交互方式未说明——是 backbone forward 一次出 bidirectional embeddings，然后 localization head 在这些 embeddings 上做 autoregressive decoding？还是共享某些层但用不同 mask？这直接影响训练效率和实验可重复性。另外，proposal 没有说明 region proposals 在检索流程中如何使用：是先生成 proposals 再编码 region embeddings？还是 proposals 和 embeddings 联合生成？这影响索引策略和查询效率的实验设计。
+- 严重度: 可补救
+- 补救方案:
+  - 明确描述 inference pipeline 的具体步骤：(1) 文档页面 → backbone bidirectional encoding → patch embeddings；(2) patch embeddings → localization head (autoregressive) → region bounding boxes；(3) region boxes → crop & pool patch embeddings → region-level Matryoshka embeddings；(4) indexing strategy (哪些粒度的 embeddings 被索引)
+  - 明确 training 中 bidirectional 和 autoregressive 的交互：是两阶段（先 bidirectional 再 autoregressive）还是端到端联合？gradient 是否回传到 backbone？
+  - 基于以上明确的 pipeline，设计 retrieval latency 实验来对比 end-to-end vs. pipeline 方法的推理效率
+- 调研依据: 基于领域实验规范判断——SeqTR 和 LocateAnything 等 autoregressive grounding 方法都明确描述了解码流程和注意力模式的交互
+
+【缺陷 7】
+- 类别: 评估方案缺陷
+- 问题: Proposal 设定 grounding 目标为 "0.089→0.3+ F1"，但未给出 0.3 这个目标值的依据。当前最佳模型是 0.089，人类是 0.602。0.3 意味着将 gap 缩小约 41%——这看起来是合理的 but ambitious 的目标。但问题在于：(1) 没有分析在什么条件下 0.3 是可实现的（比如在哪些类型的文档/查询上容易提升，哪些难以提升）；(2) 没有按文档类型/模态 (text/table/figure) 分别报告 grounding 性能的计划——ViDoRe V3 的数据分布 60.4% text / 18.8% image / 16.7% table，不同模态的 grounding 难度差异很大；(3) 没有 error analysis 计划来分析 grounding 失败的原因（区域过大/过小、跨区域答案、非文本元素等）。
+- 严重度: 可补救
+- 补救方案:
+  - 增加 per-modality breakdown 的 grounding 结果（text / table / figure / layout 分别报告）
+  - 增加 per-document-domain breakdown（ViDoRe V3 涵盖多个专业领域）
+  - 设计 error analysis：按 grounding 失败类型（IoU=0 complete miss / 0&lt;IoU<0.25 partial miss / IoU>0.5 但 F1 低）分析原因
+  - 可设置 milestone 目标：0.2 F1 为 minimum viable，0.3+ 为 target，配合 ablation 分析哪个组件对 grounding 贡献最大
+- 调研依据: ViDoRe V3 论文本身提供了 per-modality 和 per-domain 的评估框架；Snappy 在 BBox-DocVQA 上报告了多个 IoU 阈值的结果，显示 grounding 性能随阈值变化很大
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66db9dc0-412d-4ce0-82f6-03e1d546a7cf",
+  "isSidechain": false,
+  "requestId": "req_011CbYK65k6SXZzDC4xSStXp",
+  "type": "assistant",
+  "uuid": "af01dd84-4a61-4228-a3fa-e20c5125f5a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgcMmizBjPAygoMAXiveRs",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 689,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 27196,
+      "output_tokens": 7670,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 689,
+          "output_tokens": 7670,
+          "cache_read_input_tokens": 27196,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval  ## Core Problem  Current visual document retrieval models either operate at page granularity (losing sub-page precision) or…",
+  "leafUuid": "af01dd84-4a61-4228-a3fa-e20c5125f5a1",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Implement GroundVDR for spatial document retrieval",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Learned Spatial Grounding for Multi-Granularity Visual Document Retrieval  ## Core Problem  Current visual document retrieval models either operate at page granularity (losing sub-page precision) or…",
+  "leafUuid": "af01dd84-4a61-4228-a3fa-e20c5125f5a1",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Implement GroundVDR for spatial document retrieval",
+  "sessionId": "aa134aac-13b4-4361-baff-4bd947afdab7"
+}
+```
+
+---

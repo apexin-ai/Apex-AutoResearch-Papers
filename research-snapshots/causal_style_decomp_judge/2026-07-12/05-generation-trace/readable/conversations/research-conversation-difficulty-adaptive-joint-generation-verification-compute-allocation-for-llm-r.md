@@ -1,0 +1,2957 @@
+# Research conversation: Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning ## Core Problem Given a fixed inf
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-2/7993b42a-c5e9-4a5e-b3c4-f38ae4099e72.jsonl`
+- **Structured JSON:** [`9587cbd65779dda55db6.json`](../../sessions/95/9587cbd65779dda55db6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-29T05:59:45.102Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-29T05:59:45.102Z",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "content": "# Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning\n\n## Core Problem\n\nGiven a fixed inference compute budget, how should a system jointly select the number of candidate solutions K and the verification depth d (from a hierarchy of none/ORM/PRM/GenRM) per-instance to maximize accuracy — when increasing d improves selection precision but reduces K under the shared budget?\n\n## Research Opportunity\n\nAll existing work optimizes only one of the two coupled variables: bandit-based methods (Zuo et al., arXiv 2506.12721) optimize K with a fixed verifier; VG-Search (Chen et al., arXiv 2505.11730) optimizes verification granularity but not type; DiffAdapt (ICLR 2026) adapts reasoning length but ignores verification selection; and Budget-aware Verification (Montgomery et al., arXiv 2510.14913) compares discriminative vs. generative verifiers but applies a uniform strategy. Meanwhile, the building blocks are now mature: DTR (arXiv 2602.13517) provides a difficulty signal with r=0.828 accuracy correlation from short prefixes; lightweight latent verifiers (LiLaVe, arXiv 2504.16760) enable near-free hidden-state-based verification; and 'Rethinking Reward Models' (arXiv 2510.00492) has characteriz...\n\n## Research Landscape\n\nSinghi et al. (COLM 2025, arXiv 2504.01005) established aggregate scaling laws for the generation-verification tradeoff, showing SC beats GenRM under most practical budgets, but their analysis is static across all problems and only compares two strategies. The Strategic Scaling bandit approach (arXiv 2506.12721) achieves up to 11.10% improvement on MATH-500 by adaptively allocating K per query, but assumes a fixed reward oracle and ignores verification cost entirely. VG-Search (arXiv 2505.11730) introduces a continuous granularity parameter unifying beam search and BoN but does not select between verification types. FlexiVe/SDV (arXiv 2505.11966) introduces fast/slow binary verification gated by consensus but does not extend to a multi-depth hierarchy. 'Variation in Verification' (ICLR 2026, arXiv 2509.17995) empirically demonstrates that verification effectiveness (TPR/TNR) varies dramatically by problem difficulty across 12 benchmarks and 14 models, but proposes no adaptive algorithm...\n\n## Proposed Approach\n\nTrain DTR-based difficulty router on hidden states from short generation prefixes. Per instance, solve bilinear C(K,d)=K·(c_g+c_v(d)) over discrete (K,d) menu: easy→high-K+latent-ORM, medium→mid-K+disc-PRM, hard→low-K+GenRM. UCB bandit refines (K,d) online via correctness feedback. Eval on MATH-500, AIME25, GPQA with DeepSeek-R1/Qwen3 generators across 4 verifier types.\n\n## Detailed Description\n\nWe propose JOVA, jointly selecting candidate count K and verification depth d per-instance under a shared compute budget. Existing methods decouple these: bandits adapt K with fixed verifiers; VG-Search adapts granularity not type; DiffAdapt adapts length ignoring verification. We exploit the bilinear cost C(K,d)=K·(c_g+c_v(d)), where c_v spans 2% (latent ORM) to 76× (GenRM) of c_g, to derive iso-compute frontiers over a discrete (K,d) menu. A DTR-based router trained on hidden states from short prefixes estimates difficulty and initializes allocation; a UCB bandit refines selections online via correctness signals. Evaluated on MATH-500, AIME25, GPQA with DeepSeek-R1 and Qwen3 across four verifier tiers (latent-ORM, disc-ORM, PRM, GenRM). No concurrent work jointly optimizes both variables — closest are AVA (agent cascades, no (K,d) formalization) and AdaBoN (adaptive K for alignment, not verification selection). Primary target: AAAI 2027 (Jul 28). Expected 8-15% accuracy gain over static best-of-N at matched compute, directly addressing the open problem identified in Variation in Verification (ICLR 2026).\n\n## Key References\n\n- When To Solve, When To Verify (COLM 2025)\n- Strategic Scaling of Test-Time Compute: A Bandit Approach (arXiv 2025)\n- Think Deep, Not Just Long: DTR via Deep-Thinking Tokens (arXiv 2026)\n- Lightweight Latent Verifiers for Meta-Generation (arXiv 2025)\n- Rethinking Reward Models for Multi-Domain Scaling (arXiv 2025)\n- Variation in Verification (ICLR 2026)\n- Budget-aware Test-time Scaling via Discriminative Verification (arXiv 2025)\n- DiffAdapt: Difficulty-Adaptive Reasoning (ICLR 2026)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-29T05:59:45.108Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-29T05:59:45.108Z",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+## Round 1
+
+43 recorded events
+
+### User
+
+_source line 3 · 2026-05-29T05:59:45.123Z_
+
+# Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning
+
+## Core Problem
+
+Given a fixed inference compute budget, how should a system jointly select the number of candidate solutions K and the verification depth d (from a hierarchy of none/ORM/PRM/GenRM) per-instance to maximize accuracy — when increasing d improves selection precision but reduces K under the shared budget?
+
+## Research Opportunity
+
+All existing work optimizes only one of the two coupled variables: bandit-based methods (Zuo et al., arXiv 2506.12721) optimize K with a fixed verifier; VG-Search (Chen et al., arXiv 2505.11730) optimizes verification granularity but not type; DiffAdapt (ICLR 2026) adapts reasoning length but ignores verification selection; and Budget-aware Verification (Montgomery et al., arXiv 2510.14913) compares discriminative vs. generative verifiers but applies a uniform strategy. Meanwhile, the building blocks are now mature: DTR (arXiv 2602.13517) provides a difficulty signal with r=0.828 accuracy correlation from short prefixes; lightweight latent verifiers (LiLaVe, arXiv 2504.16760) enable near-free hidden-state-based verification; and 'Rethinking Reward Models' (arXiv 2510.00492) has characteriz...
+
+## Research Landscape
+
+Singhi et al. (COLM 2025, arXiv 2504.01005) established aggregate scaling laws for the generation-verification tradeoff, showing SC beats GenRM under most practical budgets, but their analysis is static across all problems and only compares two strategies. The Strategic Scaling bandit approach (arXiv 2506.12721) achieves up to 11.10% improvement on MATH-500 by adaptively allocating K per query, but assumes a fixed reward oracle and ignores verification cost entirely. VG-Search (arXiv 2505.11730) introduces a continuous granularity parameter unifying beam search and BoN but does not select between verification types. FlexiVe/SDV (arXiv 2505.11966) introduces fast/slow binary verification gated by consensus but does not extend to a multi-depth hierarchy. 'Variation in Verification' (ICLR 2026, arXiv 2509.17995) empirically demonstrates that verification effectiveness (TPR/TNR) varies dramatically by problem difficulty across 12 benchmarks and 14 models, but proposes no adaptive algorithm...
+
+## Proposed Approach
+
+Train DTR-based difficulty router on hidden states from short generation prefixes. Per instance, solve bilinear C(K,d)=K·(c_g+c_v(d)) over discrete (K,d) menu: easy→high-K+latent-ORM, medium→mid-K+disc-PRM, hard→low-K+GenRM. UCB bandit refines (K,d) online via correctness feedback. Eval on MATH-500, AIME25, GPQA with DeepSeek-R1/Qwen3 generators across 4 verifier types.
+
+## Detailed Description
+
+We propose JOVA, jointly selecting candidate count K and verification depth d per-instance under a shared compute budget. Existing methods decouple these: bandits adapt K with fixed verifiers; VG-Search adapts granularity not type; DiffAdapt adapts length ignoring verification. We exploit the bilinear cost C(K,d)=K·(c_g+c_v(d)), where c_v spans 2% (latent ORM) to 76× (GenRM) of c_g, to derive iso-compute frontiers over a discrete (K,d) menu. A DTR-based router trained on hidden states from short prefixes estimates difficulty and initializes allocation; a UCB bandit refines selections online via correctness signals. Evaluated on MATH-500, AIME25, GPQA with DeepSeek-R1 and Qwen3 across four verifier tiers (latent-ORM, disc-ORM, PRM, GenRM). No concurrent work jointly optimizes both variables — closest are AVA (agent cascades, no (K,d) formalization) and AdaBoN (adaptive K for alignment, not verification selection). Primary target: AAAI 2027 (Jul 28). Expected 8-15% accuracy gain over static best-of-N at matched compute, directly addressing the open problem identified in Variation in Verification (ICLR 2026).
+
+## Key References
+
+- When To Solve, When To Verify (COLM 2025)
+- Strategic Scaling of Test-Time Compute: A Bandit Approach (arXiv 2025)
+- Think Deep, Not Just Long: DTR via Deep-Thinking Tokens (arXiv 2026)
+- Lightweight Latent Verifiers for Meta-Generation (arXiv 2025)
+- Rethinking Reward Models for Multi-Domain Scaling (arXiv 2025)
+- Variation in Verification (ICLR 2026)
+- Budget-aware Test-time Scaling via Discriminative Verification (arXiv 2025)
+- DiffAdapt: Difficulty-Adaptive Reasoning (ICLR 2026)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "decba73f-7b6f-400a-8f34-043f96fae05c",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-29T05:59:45.121Z_
+
+```json
+{
+  "parentUuid": "decba73f-7b6f-400a-8f34-043f96fae05c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "3e7f34a3-a6a2-4715-9a51-6a1277b71ea1",
+  "timestamp": "2026-05-29T05:59:45.121Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-29T05:59:45.121Z_
+
+```json
+{
+  "parentUuid": "3e7f34a3-a6a2-4715-9a51-6a1277b71ea1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "18c16945-13c3-4a42-b56d-2a75aabc89bc",
+  "timestamp": "2026-05-29T05:59:45.121Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive compute allocation for generation and verification",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-29T05:59:53.789Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal carefully. It's about jointly optimizing the number of candidate solutions (K) and verification depth (d) for LLM reasoning under a fixed compute budget. Let me first do thorough literature research to understand the landscape before giving any recommendations.
+
+Let me search for the key papers mentioned and related recent work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18c16945-13c3-4a42-b56d-2a75aabc89bc",
+  "isSidechain": false,
+  "requestId": "req_011CbWMCoyz9ikaTt5mJWpof",
+  "type": "assistant",
+  "uuid": "4911a7f5-c2b5-42dd-ba69-54737da0eb95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PyVGQYYGkGmFc2EW3H6k1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5782,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 160,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 160,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-29T05:59:54.054Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014CdmwkVRPRFJxcxkWYxKch`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4911a7f5-c2b5-42dd-ba69-54737da0eb95",
+  "isSidechain": false,
+  "requestId": "req_011CbWMCoyz9ikaTt5mJWpof",
+  "type": "assistant",
+  "uuid": "99d06a27-b327-4a34-8d7f-0b49b52a64a0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PyVGQYYGkGmFc2EW3H6k1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5782,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 160,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 160,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-29T05:59:54.066Z_
+
+<details><summary>↩ Tool result · `toolu_014CdmwkVRPRFJxcxkWYxKch`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99d06a27-b327-4a34-8d7f-0b49b52a64a0",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "3ee96627-0066-480e-97ac-a58dd5cf97d3",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "99d06a27-b327-4a34-8d7f-0b49b52a64a0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-29T05:59:57.118Z_
+
+Now let me conduct thorough literature research before making any assessments. I'll run multiple searches in parallel to cover the key areas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ee96627-0066-480e-97ac-a58dd5cf97d3",
+  "isSidechain": false,
+  "requestId": "req_011CbWMDUCskiARRZLKrJfE2",
+  "type": "assistant",
+  "uuid": "13ab11be-80b7-4f69-8d34-1498c93c6478",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHW6Z7wMdhdk1Qoh49sWF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 16796,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16796,
+          "cache_creation_input_tokens": 687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-29T05:59:57.602Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012kXKqjAYZRdcb1JbRMr1r3`</summary>
+
+```json
+{
+  "query": "joint generation verification compute allocation LLM reasoning test-time compute 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13ab11be-80b7-4f69-8d34-1498c93c6478",
+  "isSidechain": false,
+  "requestId": "req_011CbWMDUCskiARRZLKrJfE2",
+  "type": "assistant",
+  "uuid": "dcc8b05c-22a0-475a-933d-785b7fadaa2c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHW6Z7wMdhdk1Qoh49sWF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 16796,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16796,
+          "cache_creation_input_tokens": 687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-29T05:59:58.546Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Az6efBZLyqtbbLqjZ4E6Ry`</summary>
+
+```json
+{
+  "query": "adaptive verification selection difficulty LLM reasoning best-of-N scaling 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcc8b05c-22a0-475a-933d-785b7fadaa2c",
+  "isSidechain": false,
+  "requestId": "req_011CbWMDUCskiARRZLKrJfE2",
+  "type": "assistant",
+  "uuid": "5e6594d8-81ac-4377-b04b-02f5bca8c378",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHW6Z7wMdhdk1Qoh49sWF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 16796,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16796,
+          "cache_creation_input_tokens": 687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-29T05:59:59.018Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014B6Q11CT3QMu9JiQCRZ8PV`</summary>
+
+```json
+{
+  "query": "test-time compute optimal allocation verifier generator tradeoff 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e6594d8-81ac-4377-b04b-02f5bca8c378",
+  "isSidechain": false,
+  "requestId": "req_011CbWMDUCskiARRZLKrJfE2",
+  "type": "assistant",
+  "uuid": "065a2d50-4614-4d42-8ba0-9edfa7075d22",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHW6Z7wMdhdk1Qoh49sWF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 16796,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16796,
+          "cache_creation_input_tokens": 687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-29T05:59:59.635Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013jFB1bFccui2L63P8eXaP4`</summary>
+
+```json
+{
+  "query": "\"Variation in Verification\" ICLR 2026 difficulty-dependent verification effectiveness"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "065a2d50-4614-4d42-8ba0-9edfa7075d22",
+  "isSidechain": false,
+  "requestId": "req_011CbWMDUCskiARRZLKrJfE2",
+  "type": "assistant",
+  "uuid": "9ee2e15f-8f9c-4dd8-9d90-a9891ec63bdf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHW6Z7wMdhdk1Qoh49sWF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 687,
+      "cache_read_input_tokens": 16796,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 16796,
+          "cache_creation_input_tokens": 687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-29T06:00:05.801Z_
+
+<details><summary>↩ Tool result · `toolu_012kXKqjAYZRdcb1JbRMr1r3`</summary>
+
+```text
+Web search results for query: "joint generation verification compute allocation LLM reasoning test-time compute 2025 2026"
+
+Links: [{"title":"Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM Reasoners With Verifiers","url":"https://arxiv.org/html/2505.04842v2"},{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/html/2602.03975v1"},{"title":"Adaptive Test-Time Compute Allocation for Reasoning LLMs via...","url":"https://arxiv.org/abs/2604.14853"},{"title":"[2504.01005] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/abs/2504.01005"},{"title":"Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM   Reasoners With Verifiers","url":"https://arxiv.org/pdf/2505.04842"},{"title":"What If We Allocate Test-Time Compute Adaptively?","url":"https://arxiv.org/pdf/2602.01070"}]
+
+Based on the search results, I found several recent papers on this topic from 2025-2026:
+
+## Key Research Areas
+
+**Joint Generation and Verification for Test-Time Compute Allocation:**
+
+By iteratively increasing generation length until a chosen confidence threshold is met, models can obtain maximum accuracy at a given sequential compute budget, allowing dynamic allocation of more sequential compute to difficult problems.
+
+**Compute Allocation Strategies:**
+
+Under limited inference budgets, there's a fundamental trade-off between spending budget on scaling solutions versus verification, with research showing that compute-optimal inference favors scaling solution generation more aggressively than scaling verification.
+
+Recent approaches allocate verification according to state-local uncertainty rather than uniform rules, using hybrid pre-verification scores and local uncertainty proxies so ambiguous branching points receive more verification.
+
+**Recent Progress (2025-2026):**
+
+Methods tested on MATH and GSM8K with models like DeepSeek-V3, GPT-4o-mini, and Qwen2.5-7B show up to 12.8% relative accuracy improvement under matched budget constraints.
+
+A recent approach augments reasoning methods with generative verifiers, utilizing data generated during training to simultaneously train language models as both reasoners and verifiers.
+
+Process reward model-guided approaches consistently outperform direct test-time scaling, yielding large gains on MATH-500 and several-fold improvements on harder benchmarks like AIME24.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dcc8b05c-22a0-475a-933d-785b7fadaa2c",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "cfc51f4c-7e77-4b4e-a4cf-a2a674e32b40",
+  "toolUseResult": {
+    "query": "joint generation verification compute allocation LLM reasoning test-time compute 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013ssppEVGu1J45VAD52QToN",
+        "content": [
+          {
+            "title": "Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM Reasoners With Verifiers",
+            "url": "https://arxiv.org/html/2505.04842v2"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/html/2602.03975v1"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation for Reasoning LLMs via...",
+            "url": "https://arxiv.org/abs/2604.14853"
+          },
+          {
+            "title": "[2504.01005] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2504.01005"
+          },
+          {
+            "title": "Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM   Reasoners With Verifiers",
+            "url": "https://arxiv.org/pdf/2505.04842"
+          },
+          {
+            "title": "What If We Allocate Test-Time Compute Adaptively?",
+            "url": "https://arxiv.org/pdf/2602.01070"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers on this topic from 2025-2026:\n\n## Key Research Areas\n\n**Joint Generation and Verification for Test-Time Compute Allocation:**\n\nBy iteratively increasing generation length until a chosen confidence threshold is met, models can obtain maximum accuracy at a given sequential compute budget, allowing dynamic allocation of more sequential compute to difficult problems.\n\n**Compute Allocation Strategies:**\n\nUnder limited inference budgets, there's a fundamental trade-off between spending budget on scaling solutions versus verification, with research showing that compute-optimal inference favors scaling solution generation more aggressively than scaling verification.\n\nRecent approaches allocate verification according to state-local uncertainty rather than uniform rules, using hybrid pre-verification scores and local uncertainty proxies so ambiguous branching points receive more verification.\n\n**Recent Progress (2025-2026):**\n\nMethods tested on MATH and GSM8K with models like DeepSeek-V3, GPT-4o-mini, and Qwen2.5-7B show up to 12.8% relative accuracy improvement under matched budget constraints.\n\nA recent approach augments reasoning methods with generative verifiers, utilizing data generated during training to simultaneously train language models as both reasoners and verifiers.\n\nProcess reward model-guided approaches consistently outperform direct test-time scaling, yielding large gains on MATH-500 and several-fold improvements on harder benchmarks like AIME24."
+    ],
+    "durationSeconds": 8.190939380000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dcc8b05c-22a0-475a-933d-785b7fadaa2c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-29T06:00:05.871Z_
+
+<details><summary>↩ Tool result · `toolu_01Az6efBZLyqtbbLqjZ4E6Ry`</summary>
+
+```text
+Web search results for query: "adaptive verification selection difficulty LLM reasoning best-of-N scaling 2025 2026"
+
+Links: [{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/pdf/2602.03975"},{"title":"Improving LLM Reasoning through Scaling Inference Computation with   Collaborative Verification","url":"https://arxiv.org/pdf/2410.05318"},{"title":"Scaling Generative Verifiers For Natural Language Mathematical Proof Verification And Selection","url":"https://arxiv.org/html/2511.13027v1"},{"title":"TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-N in Large Reasoning Model","url":"https://arxiv.org/pdf/2510.16449"},{"title":"DiffAdapt: Difficulty-Adaptive Reasoning for Token-Efficient LLM Inference","url":"https://arxiv.org/pdf/2510.19669"}]
+
+Based on the search results, here's what I found about adaptive verification selection, difficulty-aware reasoning, and best-of-N scaling in 2025-2026:
+
+## Key Research Areas
+
+**Adaptive Test-Time Compute Allocation:**
+A recent approach distributes verification where it is most informative, achieving higher accuracy than best-of-N, majority voting, and beam search while using 44% fewer verifier calls on the MATH benchmark.
+
+**Difficulty-Adaptive Inference:**
+Research has discovered a U-shaped entropy pattern: high entropy on easy problems despite high accuracy, low entropy on problems with medium difficulty, and high entropy on hard problems reflecting uncertainty. One framework (DiffAdapt) achieves up to 62% token reduction and 18% performance improvement across mathematical benchmarks.
+
+**Best-of-N Selection Methods:**
+Test-time scaling can be categorized as internal TTS (extending the model's reasoning with longer chain-of-thoughts) or external TTS (exploring multiple reasoning solutions in parallel). Recent selector methods surpass majority voting by 4.61% accuracy and outperform existing process reward models by 4.31% to 12.21% in Best-of-32 settings.
+
+**Verification Challenges:**
+Even state-of-the-art LLMs achieving over 90% accuracy in proof judgment may lack high reliability when scaling test-time compute or judging hard problems.
+
+These developments represent active research directions for efficiently scaling LLM reasoning through adaptive allocation of computational resources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e6594d8-81ac-4377-b04b-02f5bca8c378",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "1f5eaac5-cd77-412d-9800-c3daf4fbfd4d",
+  "toolUseResult": {
+    "query": "adaptive verification selection difficulty LLM reasoning best-of-N scaling 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U5Q7ZKyaBEQsCReC2FUkdf",
+        "content": [
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/pdf/2602.03975"
+          },
+          {
+            "title": "Improving LLM Reasoning through Scaling Inference Computation with   Collaborative Verification",
+            "url": "https://arxiv.org/pdf/2410.05318"
+          },
+          {
+            "title": "Scaling Generative Verifiers For Natural Language Mathematical Proof Verification And Selection",
+            "url": "https://arxiv.org/html/2511.13027v1"
+          },
+          {
+            "title": "TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-N in Large Reasoning Model",
+            "url": "https://arxiv.org/pdf/2510.16449"
+          },
+          {
+            "title": "DiffAdapt: Difficulty-Adaptive Reasoning for Token-Efficient LLM Inference",
+            "url": "https://arxiv.org/pdf/2510.19669"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about adaptive verification selection, difficulty-aware reasoning, and best-of-N scaling in 2025-2026:\n\n## Key Research Areas\n\n**Adaptive Test-Time Compute Allocation:**\nA recent approach distributes verification where it is most informative, achieving higher accuracy than best-of-N, majority voting, and beam search while using 44% fewer verifier calls on the MATH benchmark.\n\n**Difficulty-Adaptive Inference:**\nResearch has discovered a U-shaped entropy pattern: high entropy on easy problems despite high accuracy, low entropy on problems with medium difficulty, and high entropy on hard problems reflecting uncertainty. One framework (DiffAdapt) achieves up to 62% token reduction and 18% performance improvement across mathematical benchmarks.\n\n**Best-of-N Selection Methods:**\nTest-time scaling can be categorized as internal TTS (extending the model's reasoning with longer chain-of-thoughts) or external TTS (exploring multiple reasoning solutions in parallel). Recent selector methods surpass majority voting by 4.61% accuracy and outperform existing process reward models by 4.31% to 12.21% in Best-of-32 settings.\n\n**Verification Challenges:**\nEven state-of-the-art LLMs achieving over 90% accuracy in proof judgment may lack high reliability when scaling test-time compute or judging hard problems.\n\nThese developments represent active research directions for efficiently scaling LLM reasoning through adaptive allocation of computational resources."
+    ],
+    "durationSeconds": 7.316752446000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5e6594d8-81ac-4377-b04b-02f5bca8c378",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning  ## Core Problem  Given a fixed inference compute budget, how should a system jointly select the number of cand…",
+  "leafUuid": "1f5eaac5-cd77-412d-9800-c3daf4fbfd4d",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive compute allocation for generation and verification",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-29T06:00:06.716Z_
+
+<details><summary>↩ Tool result · `toolu_014B6Q11CT3QMu9JiQCRZ8PV`</summary>
+
+```text
+Web search results for query: "test-time compute optimal allocation verifier generator tradeoff 2025 2026 arXiv"
+
+Links: [{"title":"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization","url":"https://arxiv.org/html/2604.14853v1"},{"title":"Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling","url":"https://arxiv.org/html/2505.11730v2"},{"title":"LATTS: Locally Adaptive Test-Time Scaling","url":"https://arxiv.org/pdf/2509.20368"},{"title":"[2408.03314] Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters","url":"https://arxiv.org/abs/2408.03314"},{"title":"[2505.11730] Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling","url":"https://arxiv.org/abs/2505.11730"},{"title":"Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling","url":"https://arxiv.org/pdf/2505.11730"},{"title":"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters","url":"https://arxiv.org/html/2408.03314v1"},{"title":"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure","url":"https://arxiv.org/html/2602.03975v1"}]
+
+I found several highly relevant papers on arXiv from 2025-2026 related to test-time compute allocation, verifier-generator tradeoffs, and optimal resource allocation:
+
+## Key Papers Found:
+
+1. **"Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling"** (2025)
+   - Optimizing the allocation of computational resources between proposers and verifiers is crucial for maximizing overall system performance.
+   - Introduces Variable Granularity Search (VG-Search), a unified algorithm that generalizes beam search and Best-of-N sampling via a tunable granularity parameter.
+
+2. **"LATTS: Locally Adaptive Test-Time Scaling"** (2025)
+   - Proposes an approach that allocates variable compute across generation steps by employing a verifier-based acceptance criterion to decide whether to resample, backtrack, restart, or stop the generation process.
+   - Achieves significantly superior accuracy–compute tradeoffs compared to standard verifier-based methods.
+
+3. **"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization"** (2026)
+   - Covers adaptive allocation strategies for test-time compute in reasoning models.
+
+4. **"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters"** (2024)
+   - Analyzes two primary mechanisms to scale test-time computation: searching against dense, process-based verifier reward models and updating the model's distribution over a response adaptively.
+
+5. **"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure"** (2026)
+   - Allocates verification according to state-local uncertainty rather than a uniform or purely problem-level rule.
+
+These papers directly address the verifier-generator resource allocation tradeoff and optimal compute distribution during inference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "065a2d50-4614-4d42-8ba0-9edfa7075d22",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "72a11c5b-ad8a-4a1a-bead-2135e1ac45da",
+  "toolUseResult": {
+    "query": "test-time compute optimal allocation verifier generator tradeoff 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0191LqxFVHoH4KgeKFKjLddy",
+        "content": [
+          {
+            "title": "Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization",
+            "url": "https://arxiv.org/html/2604.14853v1"
+          },
+          {
+            "title": "Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling",
+            "url": "https://arxiv.org/html/2505.11730v2"
+          },
+          {
+            "title": "LATTS: Locally Adaptive Test-Time Scaling",
+            "url": "https://arxiv.org/pdf/2509.20368"
+          },
+          {
+            "title": "[2408.03314] Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+            "url": "https://arxiv.org/abs/2408.03314"
+          },
+          {
+            "title": "[2505.11730] Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling",
+            "url": "https://arxiv.org/abs/2505.11730"
+          },
+          {
+            "title": "Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling",
+            "url": "https://arxiv.org/pdf/2505.11730"
+          },
+          {
+            "title": "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters",
+            "url": "https://arxiv.org/html/2408.03314v1"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure",
+            "url": "https://arxiv.org/html/2602.03975v1"
+          }
+        ]
+      },
+      "I found several highly relevant papers on arXiv from 2025-2026 related to test-time compute allocation, verifier-generator tradeoffs, and optimal resource allocation:\n\n## Key Papers Found:\n\n1. **\"Rethinking Optimal Verification Granularity for Compute-Efficient Test-Time Scaling\"** (2025)\n   - Optimizing the allocation of computational resources between proposers and verifiers is crucial for maximizing overall system performance.\n   - Introduces Variable Granularity Search (VG-Search), a unified algorithm that generalizes beam search and Best-of-N sampling via a tunable granularity parameter.\n\n2. **\"LATTS: Locally Adaptive Test-Time Scaling\"** (2025)\n   - Proposes an approach that allocates variable compute across generation steps by employing a verifier-based acceptance criterion to decide whether to resample, backtrack, restart, or stop the generation process.\n   - Achieves significantly superior accuracy–compute tradeoffs compared to standard verifier-based methods.\n\n3. **\"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization\"** (2026)\n   - Covers adaptive allocation strategies for test-time compute in reasoning models.\n\n4. **\"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters\"** (2024)\n   - Analyzes two primary mechanisms to scale test-time computation: searching against dense, process-based verifier reward models and updating the model's distribution over a response adaptively.\n\n5. **\"Adaptive Test-Time Compute Allocation via Learned Heuristics over Categorical Structure\"** (2026)\n   - Allocates verification according to state-local uncertainty rather than a uniform or purely problem-level rule.\n\nThese papers directly address the verifier-generator resource allocation tradeoff and optimal compute distribution during inference."
+    ],
+    "durationSeconds": 7.694858141999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "065a2d50-4614-4d42-8ba0-9edfa7075d22",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-29T06:00:07.758Z_
+
+<details><summary>↩ Tool result · `toolu_013jFB1bFccui2L63P8eXaP4`</summary>
+
+```text
+Web search results for query: ""Variation in Verification" ICLR 2026 difficulty-dependent verification effectiveness"
+
+Links: [{"title":"VARIATION IN VERIFICATION: UNDERSTANDING VERI","url":"https://openreview.net/pdf/cff1b0ef70f8395c3a23945f20625585c9fbcd09.pdf"},{"title":"ICLR 2026 Oral Papers in AI Safety: A 35-Paper Deep Dive | by Doehyeon | May, 2026 | Medium","url":"https://medium.com/@multimodal_bench/iclr-2026-oral-papers-in-ai-safety-a-35-paper-deep-dive-b5f8a250a0d1"},{"title":"Variation in Verification: Understanding Verification Dynamics in Large Language Models","url":"https://arxiv.org/pdf/2509.17995"},{"title":"ICLR.2026 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ICLR.2026"},{"title":"The VerifAI Workshop @ ICLR'26 - VerifAI","url":"https://verifai-workshop.github.io/"},{"title":"VerifAI: AI Verification in the Wild - ICLR 2026","url":"https://iclr.cc/virtual/2025/workshop/23973"},{"title":"VerifAI-2: The Second Workshop on AI Verification in the Wild","url":"https://iclr.cc/virtual/2026/workshop/10000774"},{"title":"ICLR Poster Certifying the Full YOLO Pipeline: A Probabilistic Verification Approach","url":"https://iclr.cc/virtual/2026/poster/10011044"}]
+
+Based on the search results, I found the paper you're looking for. Here's what I found about "Variation in Verification" at ICLR 2026:
+
+## Paper Overview
+
+"Variation in Verification: Understanding Verification Dynamics in Large Language Models" was published as a conference paper at ICLR 2026. The paper studies how scaling test-time computation enables large language models (LLMs) to solve increasingly complex problems across diverse domains.
+
+## Key Focus
+
+The paper examines test-time scaling through LLM generators producing multiple solution candidates with LLM verifiers assessing correctness without reference answers, specifically studying generative verifiers that perform verification by generating chain-of-thought (CoT) reasoning followed by a binary verdict.
+
+## Main Findings on Difficulty-Dependent Effectiveness
+
+The paper identifies important variations in verification effectiveness based on problem difficulty:
+
+1. **Weak vs. Strong Generators**: With the same verifier, some weak generators can nearly match stronger ones in post-verification test-time scaling performance (e.g., the Gemma2-9B to Gemma2-27B performance gap shrinks by 75.5%).
+
+2. **Limited Verifier Scaling Benefits**: The paper identifies cases where strong verifiers offer limited advantage over weak ones, as both fail to provide meaningful verification gains, suggesting that verifier scaling alone cannot overcome fundamental verification challenges.
+
+The authors are from Salesforce AI Research, Dartmouth College, and University of Illinois Urbana-Champaign. You can find more information at their project page: https://yefanzhou.github.io/llm-verify-dynamic/
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9ee2e15f-8f9c-4dd8-9d90-a9891ec63bdf",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "4159b034-a866-4a90-a426-e5fdf28f6250",
+  "toolUseResult": {
+    "query": "\"Variation in Verification\" ICLR 2026 difficulty-dependent verification effectiveness",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EDt9wYP58cCqosFxfZSSc8",
+        "content": [
+          {
+            "title": "VARIATION IN VERIFICATION: UNDERSTANDING VERI",
+            "url": "https://openreview.net/pdf/cff1b0ef70f8395c3a23945f20625585c9fbcd09.pdf"
+          },
+          {
+            "title": "ICLR 2026 Oral Papers in AI Safety: A 35-Paper Deep Dive | by Doehyeon | May, 2026 | Medium",
+            "url": "https://medium.com/@multimodal_bench/iclr-2026-oral-papers-in-ai-safety-a-35-paper-deep-dive-b5f8a250a0d1"
+          },
+          {
+            "title": "Variation in Verification: Understanding Verification Dynamics in Large Language Models",
+            "url": "https://arxiv.org/pdf/2509.17995"
+          },
+          {
+            "title": "ICLR.2026 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/ICLR.2026"
+          },
+          {
+            "title": "The VerifAI Workshop @ ICLR'26 - VerifAI",
+            "url": "https://verifai-workshop.github.io/"
+          },
+          {
+            "title": "VerifAI: AI Verification in the Wild - ICLR 2026",
+            "url": "https://iclr.cc/virtual/2025/workshop/23973"
+          },
+          {
+            "title": "VerifAI-2: The Second Workshop on AI Verification in the Wild",
+            "url": "https://iclr.cc/virtual/2026/workshop/10000774"
+          },
+          {
+            "title": "ICLR Poster Certifying the Full YOLO Pipeline: A Probabilistic Verification Approach",
+            "url": "https://iclr.cc/virtual/2026/poster/10011044"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what I found about \"Variation in Verification\" at ICLR 2026:\n\n## Paper Overview\n\n\"Variation in Verification: Understanding Verification Dynamics in Large Language Models\" was published as a conference paper at ICLR 2026. The paper studies how scaling test-time computation enables large language models (LLMs) to solve increasingly complex problems across diverse domains.\n\n## Key Focus\n\nThe paper examines test-time scaling through LLM generators producing multiple solution candidates with LLM verifiers assessing correctness without reference answers, specifically studying generative verifiers that perform verification by generating chain-of-thought (CoT) reasoning followed by a binary verdict.\n\n## Main Findings on Difficulty-Dependent Effectiveness\n\nThe paper identifies important variations in verification effectiveness based on problem difficulty:\n\n1. **Weak vs. Strong Generators**: With the same verifier, some weak generators can nearly match stronger ones in post-verification test-time scaling performance (e.g., the Gemma2-9B to Gemma2-27B performance gap shrinks by 75.5%).\n\n2. **Limited Verifier Scaling Benefits**: The paper identifies cases where strong verifiers offer limited advantage over weak ones, as both fail to provide meaningful verification gains, suggesting that verifier scaling alone cannot overcome fundamental verification challenges.\n\nThe authors are from Salesforce AI Research, Dartmouth College, and University of Illinois Urbana-Champaign. You can find more information at their project page: https://yefanzhou.github.io/llm-verify-dynamic/"
+    ],
+    "durationSeconds": 8.120500217,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9ee2e15f-8f9c-4dd8-9d90-a9891ec63bdf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-29T06:00:13.538Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BiWHMCoKV5YDo4f6rGpSMS`</summary>
+
+```json
+{
+  "query": "LATTS locally adaptive test-time scaling verifier acceptance criterion 2025 arXiv 2509.20368"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4159b034-a866-4a90-a426-e5fdf28f6250",
+  "isSidechain": false,
+  "requestId": "req_011CbWMEUZVKgk7HyQL7i4oK",
+  "type": "assistant",
+  "uuid": "37dc7607-c915-4854-b44e-d8d70281fd39",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ub3kgfoTgCJdFaphGbEwh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3293,
+      "cache_read_input_tokens": 17483,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3293,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 17483,
+          "cache_creation_input_tokens": 3293,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3293
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-29T06:00:14.476Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RHaX9s22Zwwf9Z6y3YBHtX`</summary>
+
+```json
+{
+  "query": "DTR deep thinking tokens difficulty routing hidden states arXiv 2602.13517 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "37dc7607-c915-4854-b44e-d8d70281fd39",
+  "isSidechain": false,
+  "requestId": "req_011CbWMEUZVKgk7HyQL7i4oK",
+  "type": "assistant",
+  "uuid": "7dd8f8b8-9652-489d-80b0-4e5c1b123c74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ub3kgfoTgCJdFaphGbEwh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3293,
+      "cache_read_input_tokens": 17483,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3293,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 17483,
+          "cache_creation_input_tokens": 3293,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3293
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-29T06:00:15.620Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016Spj4tzrRKdArGVxMNHuVq`</summary>
+
+```json
+{
+  "query": "FlexiVe SDV fast slow verification consensus LLM arXiv 2505.11966 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dd8f8b8-9652-489d-80b0-4e5c1b123c74",
+  "isSidechain": false,
+  "requestId": "req_011CbWMEUZVKgk7HyQL7i4oK",
+  "type": "assistant",
+  "uuid": "d52e8dba-f929-43f4-8cde-48f683580413",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ub3kgfoTgCJdFaphGbEwh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3293,
+      "cache_read_input_tokens": 17483,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3293,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 17483,
+          "cache_creation_input_tokens": 3293,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3293
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-29T06:00:23.551Z_
+
+<details><summary>↩ Tool result · `toolu_016Spj4tzrRKdArGVxMNHuVq`</summary>
+
+```text
+Web search results for query: "FlexiVe SDV fast slow verification consensus LLM arXiv 2505.11966 2025"
+
+Links: [{"title":"[2505.11966] Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier","url":"https://arxiv.org/abs/2505.11966"},{"title":"Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier | OpenReview","url":"https://openreview.net/forum?id=iPn5Ejloxm"},{"title":"Paper page - Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier","url":"https://huggingface.co/papers/2505.11966"},{"title":"arXiv:2505.11966v1 [cs.AI] 17 May 2025","url":"https://arxiv.org/pdf/2505.11966"},{"title":"(PDF) Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier","url":"https://www.researchgate.net/publication/391878031_Solve-Detect-Verify_Inference-Time_Scaling_with_Flexible_Generative_Verifier"},{"title":"Dyve: Thinking Fast and Slow for Dynamic Process Verification","url":"https://arxiv.org/pdf/2502.11157"}]
+
+I've found the paper you're looking for. Here's what I found:
+
+## Summary of FlexiVe (arXiv 2505.11966)
+
+FlexiVe is a novel generative verifier that flexibly balances computational resources between rapid, reliable fast thinking and meticulous slow thinking using a Flexible Allocation of Verification Budget strategy.
+
+The researchers propose the solve-detect-verify (SDV) pipeline, which moves beyond static Best-of-N ranking, employing an efficient iterative refinement process that detects solution completion to curtail "overthinking" and uses FlexiVe's feedback for targeted correction.
+
+### Key Innovations
+
+FlexiVe dynamically allocates compute between rapid "fast thinking" and deliberative "slow thinking," using Reinforcement Learning (GRPO) to specifically enhance the reliability of the fast mode, which remarkably generalizes and elevates the slow mode to state-of-the-art performance.
+
+### Performance Results
+
+FlexiVe establishes a new open-source state-of-the-art on ProcessBench, outperforming the much larger GenPRM-32B while requiring ~2.3x fewer TFLOPS with 15x less training data. On challenging mathematical reasoning benchmarks (AIME 2024, AIME 2025, and CNMO), the full approach outperforms baselines like self-consistency in reasoning accuracy and inference efficiency.
+
+The paper was published on May 17, 2025, by researchers from The Chinese University of Hong Kong.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d52e8dba-f929-43f4-8cde-48f683580413",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "bdfe6d1a-c257-4efe-927c-a2e00713b03d",
+  "toolUseResult": {
+    "query": "FlexiVe SDV fast slow verification consensus LLM arXiv 2505.11966 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MxDsM4DbdDELXAKiEL4gMB",
+        "content": [
+          {
+            "title": "[2505.11966] Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier",
+            "url": "https://arxiv.org/abs/2505.11966"
+          },
+          {
+            "title": "Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier | OpenReview",
+            "url": "https://openreview.net/forum?id=iPn5Ejloxm"
+          },
+          {
+            "title": "Paper page - Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier",
+            "url": "https://huggingface.co/papers/2505.11966"
+          },
+          {
+            "title": "arXiv:2505.11966v1 [cs.AI] 17 May 2025",
+            "url": "https://arxiv.org/pdf/2505.11966"
+          },
+          {
+            "title": "(PDF) Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier",
+            "url": "https://www.researchgate.net/publication/391878031_Solve-Detect-Verify_Inference-Time_Scaling_with_Flexible_Generative_Verifier"
+          },
+          {
+            "title": "Dyve: Thinking Fast and Slow for Dynamic Process Verification",
+            "url": "https://arxiv.org/pdf/2502.11157"
+          }
+        ]
+      },
+      "I've found the paper you're looking for. Here's what I found:\n\n## Summary of FlexiVe (arXiv 2505.11966)\n\nFlexiVe is a novel generative verifier that flexibly balances computational resources between rapid, reliable fast thinking and meticulous slow thinking using a Flexible Allocation of Verification Budget strategy.\n\nThe researchers propose the solve-detect-verify (SDV) pipeline, which moves beyond static Best-of-N ranking, employing an efficient iterative refinement process that detects solution completion to curtail \"overthinking\" and uses FlexiVe's feedback for targeted correction.\n\n### Key Innovations\n\nFlexiVe dynamically allocates compute between rapid \"fast thinking\" and deliberative \"slow thinking,\" using Reinforcement Learning (GRPO) to specifically enhance the reliability of the fast mode, which remarkably generalizes and elevates the slow mode to state-of-the-art performance.\n\n### Performance Results\n\nFlexiVe establishes a new open-source state-of-the-art on ProcessBench, outperforming the much larger GenPRM-32B while requiring ~2.3x fewer TFLOPS with 15x less training data. On challenging mathematical reasoning benchmarks (AIME 2024, AIME 2025, and CNMO), the full approach outperforms baselines like self-consistency in reasoning accuracy and inference efficiency.\n\nThe paper was published on May 17, 2025, by researchers from The Chinese University of Hong Kong."
+    ],
+    "durationSeconds": 7.926376357000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d52e8dba-f929-43f4-8cde-48f683580413",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-29T06:00:23.706Z_
+
+<details><summary>↩ Tool result · `toolu_01BiWHMCoKV5YDo4f6rGpSMS`</summary>
+
+```text
+Web search results for query: "LATTS locally adaptive test-time scaling verifier acceptance criterion 2025 arXiv 2509.20368"
+
+Links: [{"title":"[2509.20368] LATTS: Locally Adaptive Test-Time Scaling","url":"https://arxiv.org/abs/2509.20368"},{"title":"Paper page - LATTS: Locally Adaptive Test-Time Scaling","url":"https://huggingface.co/papers/2509.20368"},{"title":"LATTS: Locally Adaptive Test-Time Scaling","url":"https://arxiv.org/html/2509.20368v1"},{"title":"LATTS: Locally Adaptive Test-Time Scaling","url":"https://arxiv.org/pdf/2509.20368"},{"title":"What If We Allocate Test-Time Compute Adaptively?","url":"https://arxiv.org/html/2602.01070"}]
+
+I found the paper you're looking for! Here's the information about LATTS:
+
+**LATTS: Locally Adaptive Test-Time Scaling** (arXiv 2509.20368)
+
+**Authors:** Theo Uscidda, Matthew Trager, Michael Kleinman, Aditya Chattopadhyay, Wei Xia, and Stefano Soatto
+
+**Published:** September 16, 2025
+
+**Overview:**
+LATTS is an approach that allocates variable compute across generation steps. Specifically, at each generation step, LATTS employs a verifier-based acceptance criterion to decide whether to resample, backtrack, restart, or stop the generation process.
+
+**Key Innovation:**
+This criterion effectively adjusts the per-step computational effort based on a precise notion of local difficulty derived from the verifier model. This addresses a limitation of existing test-time scaling methods, which increase computation uniformly across all samples and generation steps, without considering the complexity of individual instances, leading to inefficient resource use.
+
+**Results:**
+Empirical results show that LATTS achieves significantly superior accuracy--compute tradeoffs compared to standard verifier-based methods.
+
+The paper is available on arXiv at https://arxiv.org/abs/2509.20368
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37dc7607-c915-4854-b44e-d8d70281fd39",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "408a101b-04ce-43bd-9007-577bdcc91276",
+  "toolUseResult": {
+    "query": "LATTS locally adaptive test-time scaling verifier acceptance criterion 2025 arXiv 2509.20368",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019dHUE6nimbfjskL8QAdG8F",
+        "content": [
+          {
+            "title": "[2509.20368] LATTS: Locally Adaptive Test-Time Scaling",
+            "url": "https://arxiv.org/abs/2509.20368"
+          },
+          {
+            "title": "Paper page - LATTS: Locally Adaptive Test-Time Scaling",
+            "url": "https://huggingface.co/papers/2509.20368"
+          },
+          {
+            "title": "LATTS: Locally Adaptive Test-Time Scaling",
+            "url": "https://arxiv.org/html/2509.20368v1"
+          },
+          {
+            "title": "LATTS: Locally Adaptive Test-Time Scaling",
+            "url": "https://arxiv.org/pdf/2509.20368"
+          },
+          {
+            "title": "What If We Allocate Test-Time Compute Adaptively?",
+            "url": "https://arxiv.org/html/2602.01070"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the information about LATTS:\n\n**LATTS: Locally Adaptive Test-Time Scaling** (arXiv 2509.20368)\n\n**Authors:** Theo Uscidda, Matthew Trager, Michael Kleinman, Aditya Chattopadhyay, Wei Xia, and Stefano Soatto\n\n**Published:** September 16, 2025\n\n**Overview:**\nLATTS is an approach that allocates variable compute across generation steps. Specifically, at each generation step, LATTS employs a verifier-based acceptance criterion to decide whether to resample, backtrack, restart, or stop the generation process.\n\n**Key Innovation:**\nThis criterion effectively adjusts the per-step computational effort based on a precise notion of local difficulty derived from the verifier model. This addresses a limitation of existing test-time scaling methods, which increase computation uniformly across all samples and generation steps, without considering the complexity of individual instances, leading to inefficient resource use.\n\n**Results:**\nEmpirical results show that LATTS achieves significantly superior accuracy--compute tradeoffs compared to standard verifier-based methods.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2509.20368"
+    ],
+    "durationSeconds": 10.161719940999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "37dc7607-c915-4854-b44e-d8d70281fd39",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-29T06:00:25.743Z_
+
+<details><summary>↩ Tool result · `toolu_01RHaX9s22Zwwf9Z6y3YBHtX`</summary>
+
+```text
+Web search results for query: "DTR deep thinking tokens difficulty routing hidden states arXiv 2602.13517 2026"
+
+Links: [{"title":"Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiviq.substack.com/p/think-deep-not-just-long-measuring"},{"title":"Google Introduces Deep Thinking Ratio to Boost LLM Accuracy and Cut Inference Costs - UBOS","url":"https://ubos.tech/news/google-introduces-deep-thinking-ratio-to-boost-llm-accuracy-and-cut-inference-costs/"},{"title":"Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiv.org/pdf/2602.13517"},{"title":"Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiv.org/html/2602.13517v1"},{"title":"A New Google AI Research Proposes Deep-Thinking Ratio to Improve LLM Accuracy While Cutting Total Inference Costs by Half - MarkTechPost","url":"https://www.marktechpost.com/2026/02/21/a-new-google-ai-research-proposes-deep-thinking-ratio-to-improve-llm-accuracy-while-cutting-total-inference-costs-by-half/"},{"title":"Deep-Thinking Tokens in LLM Reasoning","url":"https://www.emergentmind.com/papers/2602.13517"},{"title":"[Feature]: · Issue #37073 · vllm-project/vllm","url":"https://github.com/vllm-project/vllm/issues/37073"},{"title":"[2602.13517v1] Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiv.org/abs/2602.13517v1"},{"title":"[2602.13517] Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens","url":"https://arxiv.org/abs/2602.13517"}]
+
+I found the paper you're looking for! Here's a summary of the research:
+
+## Overview
+
+The paper "Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens" was authored by Wei-Lin Chen, Liqian Peng, Tian Tan, Chao Zhao, Blake JianHang Chen, Ziqian Lin, Alec Go, and Yu Meng from the University of Virginia and Google (arXiv:2602.13517).
+
+## Key Concepts
+
+The authors introduce the Deep-Thinking Ratio (DTR), a mechanistically grounded metric to quantify inference-time reasoning effort. DTR isolates "deep-thinking tokens"—tokens whose probability distributions undergo sustained, depth-wise revisions before stabilizing in the latest transformer layers.
+
+## Methodology
+
+The approach projects intermediate-layer hidden states into the vocabulary space and compares each layer's prediction distribution to the final-layer distribution. Tokens whose distributions do not converge until deeper layers are identified as deep-thinking tokens. The paper employs Jensen–Shannon divergence to assess token stabilization across layers.
+
+## Key Findings
+
+Raw token count has an average correlation of r= -0.59 with accuracy, meaning that as the model generates more text, it is more likely to be wrong. This happens because of 'overthinking,' where the model gets stuck in loops, repeats redundant steps, or amplifies its own mistakes. In contrast, DTR showed a strong average positive correlation of r = 0.683 with accuracy across models like DeepSeek-R1-70B, Qwen3-30B-Thinking, and GPT-OSS-120B.
+
+## Practical Application
+
+The authors also propose Think@n, a test-time scaling strategy that routes compute based on the DTR of short generation prefixes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7dd8f8b8-9652-489d-80b0-4e5c1b123c74",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "dc8aa881-4449-4c75-b925-d35d4eb61464",
+  "toolUseResult": {
+    "query": "DTR deep thinking tokens difficulty routing hidden states arXiv 2602.13517 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GMMhYN6ZXnez7zJCxprvpe",
+        "content": [
+          {
+            "title": "Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiviq.substack.com/p/think-deep-not-just-long-measuring"
+          },
+          {
+            "title": "Google Introduces Deep Thinking Ratio to Boost LLM Accuracy and Cut Inference Costs - UBOS",
+            "url": "https://ubos.tech/news/google-introduces-deep-thinking-ratio-to-boost-llm-accuracy-and-cut-inference-costs/"
+          },
+          {
+            "title": "Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiv.org/pdf/2602.13517"
+          },
+          {
+            "title": "Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiv.org/html/2602.13517v1"
+          },
+          {
+            "title": "A New Google AI Research Proposes Deep-Thinking Ratio to Improve LLM Accuracy While Cutting Total Inference Costs by Half - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/02/21/a-new-google-ai-research-proposes-deep-thinking-ratio-to-improve-llm-accuracy-while-cutting-total-inference-costs-by-half/"
+          },
+          {
+            "title": "Deep-Thinking Tokens in LLM Reasoning",
+            "url": "https://www.emergentmind.com/papers/2602.13517"
+          },
+          {
+            "title": "[Feature]: · Issue #37073 · vllm-project/vllm",
+            "url": "https://github.com/vllm-project/vllm/issues/37073"
+          },
+          {
+            "title": "[2602.13517v1] Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiv.org/abs/2602.13517v1"
+          },
+          {
+            "title": "[2602.13517] Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+            "url": "https://arxiv.org/abs/2602.13517"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's a summary of the research:\n\n## Overview\n\nThe paper \"Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens\" was authored by Wei-Lin Chen, Liqian Peng, Tian Tan, Chao Zhao, Blake JianHang Chen, Ziqian Lin, Alec Go, and Yu Meng from the University of Virginia and Google (arXiv:2602.13517).\n\n## Key Concepts\n\nThe authors introduce the Deep-Thinking Ratio (DTR), a mechanistically grounded metric to quantify inference-time reasoning effort. DTR isolates \"deep-thinking tokens\"—tokens whose probability distributions undergo sustained, depth-wise revisions before stabilizing in the latest transformer layers.\n\n## Methodology\n\nThe approach projects intermediate-layer hidden states into the vocabulary space and compares each layer's prediction distribution to the final-layer distribution. Tokens whose distributions do not converge until deeper layers are identified as deep-thinking tokens. The paper employs Jensen–Shannon divergence to assess token stabilization across layers.\n\n## Key Findings\n\nRaw token count has an average correlation of r= -0.59 with accuracy, meaning that as the model generates more text, it is more likely to be wrong. This happens because of 'overthinking,' where the model gets stuck in loops, repeats redundant steps, or amplifies its own mistakes. In contrast, DTR showed a strong average positive correlation of r = 0.683 with accuracy across models like DeepSeek-R1-70B, Qwen3-30B-Thinking, and GPT-OSS-120B.\n\n## Practical Application\n\nThe authors also propose Think@n, a test-time scaling strategy that routes compute based on the DTR of short generation prefixes."
+    ],
+    "durationSeconds": 11.263504859000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7dd8f8b8-9652-489d-80b0-4e5c1b123c74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning  ## Core Problem  Given a fixed inference compute budget, how should a system jointly select the number of cand…",
+  "leafUuid": "dc8aa881-4449-4c75-b925-d35d4eb61464",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive compute allocation for generation and verification",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-29T06:00:29.949Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HYNrvPeuVhozYERcSYRFzd`</summary>
+
+```json
+{
+  "query": "adaptive compute allocation per-instance difficulty routing inference budget LLM 2026 jointly optimize generation verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc8aa881-4449-4c75-b925-d35d4eb61464",
+  "isSidechain": false,
+  "requestId": "req_011CbWMFpjxKBfXxF2WXoHPH",
+  "type": "assistant",
+  "uuid": "d05bea11-42c7-4779-9b3a-32962f7326a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcac8nJDdsPe9nVb65wyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 751,
+      "cache_creation_input_tokens": 1751,
+      "cache_read_input_tokens": 20776,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 751,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 20776,
+          "cache_creation_input_tokens": 1751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-29T06:00:31.347Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HfuBtFWoMGvfKjFkdw6CqZ`</summary>
+
+```json
+{
+  "query": "TrajSelector latent representations best-of-N large reasoning model arXiv 2510.16449"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d05bea11-42c7-4779-9b3a-32962f7326a3",
+  "isSidechain": false,
+  "requestId": "req_011CbWMFpjxKBfXxF2WXoHPH",
+  "type": "assistant",
+  "uuid": "792d6bfb-8aa5-486e-9774-8db94399b160",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcac8nJDdsPe9nVb65wyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 751,
+      "cache_creation_input_tokens": 1751,
+      "cache_read_input_tokens": 20776,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 751,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 20776,
+          "cache_creation_input_tokens": 1751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-29T06:00:31.986Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015VDWgH9zRjE6CGiBu7Upyy`</summary>
+
+```json
+{
+  "query": "\"adaptive test-time compute\" \"constrained policy optimization\" reasoning LLM arXiv 2604.14853 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "792d6bfb-8aa5-486e-9774-8db94399b160",
+  "isSidechain": false,
+  "requestId": "req_011CbWMFpjxKBfXxF2WXoHPH",
+  "type": "assistant",
+  "uuid": "08758e54-5bd1-4f45-a215-84d8830ee2be",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcac8nJDdsPe9nVb65wyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 751,
+      "cache_creation_input_tokens": 1751,
+      "cache_read_input_tokens": 20776,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 751,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 20776,
+          "cache_creation_input_tokens": 1751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-29T06:00:37.857Z_
+
+<details><summary>↩ Tool result · `toolu_01HfuBtFWoMGvfKjFkdw6CqZ`</summary>
+
+```text
+Web search results for query: "TrajSelector latent representations best-of-N large reasoning model arXiv 2510.16449"
+
+Links: [{"title":"[2510.16449] TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-N in Large Reasoning Model","url":"https://arxiv.org/abs/2510.16449"},{"title":"TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-𝑁 in Large Reasoning Model","url":"https://arxiv.org/html/2510.16449v1"},{"title":"[PDF] TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-N in Large Reasoning Model | Semantic Scholar","url":"https://www.semanticscholar.org/paper/TrajSelector:-Harnessing-Latent-Representations-for-Yu-Wang/d1a14976fcbe415a14148351112cdc3e988ad322"},{"title":"TrajSelector: Harnessing Latent Representations","url":"https://arxiv.org/pdf/2510.16449"},{"title":"Efficient Post-Training Refinement of Latent Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2506.08552"},{"title":"LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals","url":"https://arxiv.org/pdf/2604.05655"}]
+
+Based on the search results, I found detailed information about the paper you're asking about:
+
+TrajSelector is an efficient and effective Best-of-N framework that exploits the hidden states in the sampler LLM for process-level scoring. It uses a lightweight verifier with only 0.6B parameters to evaluate the quality of step-wise trajectories and then aggregates these scores to identify the optimal reasoning trajectory.
+
+**Key Features:**
+
+The framework addresses key limitations of existing approaches: the high computational overhead of deploying process reward models and the underutilization of the LLM's intrinsic latent representations. It employs a fully data-driven, end-to-end training recipe that eliminates reliance on massive step-level annotations.
+
+**Performance Results:**
+
+In Best-of-32 settings, TrajSelector surpasses majority voting by 4.61% accuracy and outperforms existing process reward models by 4.31% to 12.21%, all while maintaining lower inference costs.
+
+The paper was published on October 18, 2025, and was authored by Bin Yu and colleagues from Harbin Institute of Technology and Zhongguancun Academy, among other institutions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "792d6bfb-8aa5-486e-9774-8db94399b160",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "025a0e93-84e1-4345-981f-3b7ceda6b480",
+  "toolUseResult": {
+    "query": "TrajSelector latent representations best-of-N large reasoning model arXiv 2510.16449",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019PNaGifxPjyNULfUWEvnjw",
+        "content": [
+          {
+            "title": "[2510.16449] TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-N in Large Reasoning Model",
+            "url": "https://arxiv.org/abs/2510.16449"
+          },
+          {
+            "title": "TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-𝑁 in Large Reasoning Model",
+            "url": "https://arxiv.org/html/2510.16449v1"
+          },
+          {
+            "title": "[PDF] TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-N in Large Reasoning Model | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/TrajSelector:-Harnessing-Latent-Representations-for-Yu-Wang/d1a14976fcbe415a14148351112cdc3e988ad322"
+          },
+          {
+            "title": "TrajSelector: Harnessing Latent Representations",
+            "url": "https://arxiv.org/pdf/2510.16449"
+          },
+          {
+            "title": "Efficient Post-Training Refinement of Latent Reasoning in Large Language Models",
+            "url": "https://arxiv.org/pdf/2506.08552"
+          },
+          {
+            "title": "LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals",
+            "url": "https://arxiv.org/pdf/2604.05655"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper you're asking about:\n\nTrajSelector is an efficient and effective Best-of-N framework that exploits the hidden states in the sampler LLM for process-level scoring. It uses a lightweight verifier with only 0.6B parameters to evaluate the quality of step-wise trajectories and then aggregates these scores to identify the optimal reasoning trajectory.\n\n**Key Features:**\n\nThe framework addresses key limitations of existing approaches: the high computational overhead of deploying process reward models and the underutilization of the LLM's intrinsic latent representations. It employs a fully data-driven, end-to-end training recipe that eliminates reliance on massive step-level annotations.\n\n**Performance Results:**\n\nIn Best-of-32 settings, TrajSelector surpasses majority voting by 4.61% accuracy and outperforms existing process reward models by 4.31% to 12.21%, all while maintaining lower inference costs.\n\nThe paper was published on October 18, 2025, and was authored by Bin Yu and colleagues from Harbin Institute of Technology and Zhongguancun Academy, among other institutions."
+    ],
+    "durationSeconds": 6.505571222999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "792d6bfb-8aa5-486e-9774-8db94399b160",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-29T06:00:39.089Z_
+
+<details><summary>↩ Tool result · `toolu_01HYNrvPeuVhozYERcSYRFzd`</summary>
+
+```text
+Web search results for query: "adaptive compute allocation per-instance difficulty routing inference budget LLM 2026 jointly optimize generation verification"
+
+Links: [{"title":"Adaptive Test-Time Compute Allocation","url":"https://www.emergentmind.com/topics/adaptive-test-time-compute-allocation"},{"title":"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization","url":"https://arxiv.org/html/2604.14853"},{"title":"Adaptive Model and Strategy Routing for Cost-Efficient LLM Services | Proceedings of the ACM Web Conference 2026","url":"https://dl.acm.org/doi/abs/10.1145/3774904.3792556"},{"title":"Don't Overthink It: Inter-Rollout Action Agreement as a Free Adaptive-Compute Signal for LLM Agents","url":"https://arxiv.org/pdf/2604.08369"},{"title":"CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning","url":"https://arxiv.org/pdf/2603.08659"},{"title":"Scaling LLM Inference with Optimized Sample Compute Allocation","url":"https://arxiv.org/pdf/2410.22480"},{"title":"ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference","url":"https://arxiv.org/pdf/2602.23681"}]
+
+Based on the search results, here's what I found about adaptive compute allocation with difficulty-aware routing for LLM inference in 2026:
+
+## Key Recent Developments
+
+Adaptive test-time compute allocation optimizes inference-time resource deployment on a per-input basis by modulating allocation based on observed or predicted difficulty signals, output uncertainty, or convergence behavior.
+
+### Per-Instance Difficulty Routing
+
+Research on adaptive compute allocation from an optimality perspective views generation length as a controllable budget, where the optimal policy should spend tokens until the marginal accuracy gain falls below its cost—a balance point that depends on difficulty, suggesting adaptive reasoning should allocate compute by instance difficulty rather than uniformly.
+
+The marginal value of additional compute is highly query-dependent; easy inputs rarely require expensive reasoning, while genuinely difficult inputs benefit disproportionately from deeper search and explicit verification.
+
+### Budget-Constrained Optimization
+
+A lightweight classifier is trained to predict oracle actions from cheap input features, with task-level regret bounded by imitation error times the worst-case per-instance gap, yielding a clean reduction from constrained inference to supervised classification. Recent experiments show methods consistently outperforming uniform allocation baselines, achieving up to 12.8% relative accuracy improvement under matched budget constraints.
+
+### Joint Generation-Verification Optimization
+
+Frameworks like Route-To-Reason (RTR) simultaneously select suitable LLMs and reasoning strategies according to query complexity and user budget, with routing tables that estimate cost and performance of different model-strategy pairs. Verification-cost-limited reasoning uses selective intermediate verification via hybrid learned/deterministic gating.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d05bea11-42c7-4779-9b3a-32962f7326a3",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "30acc92a-f77f-45b6-bf47-24cf11892216",
+  "toolUseResult": {
+    "query": "adaptive compute allocation per-instance difficulty routing inference budget LLM 2026 jointly optimize generation verification",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MJdn1ZdrSzyzrhGBZdrp6S",
+        "content": [
+          {
+            "title": "Adaptive Test-Time Compute Allocation",
+            "url": "https://www.emergentmind.com/topics/adaptive-test-time-compute-allocation"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization",
+            "url": "https://arxiv.org/html/2604.14853"
+          },
+          {
+            "title": "Adaptive Model and Strategy Routing for Cost-Efficient LLM Services | Proceedings of the ACM Web Conference 2026",
+            "url": "https://dl.acm.org/doi/abs/10.1145/3774904.3792556"
+          },
+          {
+            "title": "Don't Overthink It: Inter-Rollout Action Agreement as a Free Adaptive-Compute Signal for LLM Agents",
+            "url": "https://arxiv.org/pdf/2604.08369"
+          },
+          {
+            "title": "CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning",
+            "url": "https://arxiv.org/pdf/2603.08659"
+          },
+          {
+            "title": "Scaling LLM Inference with Optimized Sample Compute Allocation",
+            "url": "https://arxiv.org/pdf/2410.22480"
+          },
+          {
+            "title": "ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference",
+            "url": "https://arxiv.org/pdf/2602.23681"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about adaptive compute allocation with difficulty-aware routing for LLM inference in 2026:\n\n## Key Recent Developments\n\nAdaptive test-time compute allocation optimizes inference-time resource deployment on a per-input basis by modulating allocation based on observed or predicted difficulty signals, output uncertainty, or convergence behavior.\n\n### Per-Instance Difficulty Routing\n\nResearch on adaptive compute allocation from an optimality perspective views generation length as a controllable budget, where the optimal policy should spend tokens until the marginal accuracy gain falls below its cost—a balance point that depends on difficulty, suggesting adaptive reasoning should allocate compute by instance difficulty rather than uniformly.\n\nThe marginal value of additional compute is highly query-dependent; easy inputs rarely require expensive reasoning, while genuinely difficult inputs benefit disproportionately from deeper search and explicit verification.\n\n### Budget-Constrained Optimization\n\nA lightweight classifier is trained to predict oracle actions from cheap input features, with task-level regret bounded by imitation error times the worst-case per-instance gap, yielding a clean reduction from constrained inference to supervised classification. Recent experiments show methods consistently outperforming uniform allocation baselines, achieving up to 12.8% relative accuracy improvement under matched budget constraints.\n\n### Joint Generation-Verification Optimization\n\nFrameworks like Route-To-Reason (RTR) simultaneously select suitable LLMs and reasoning strategies according to query complexity and user budget, with routing tables that estimate cost and performance of different model-strategy pairs. Verification-cost-limited reasoning uses selective intermediate verification via hybrid learned/deterministic gating."
+    ],
+    "durationSeconds": 9.134255373,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d05bea11-42c7-4779-9b3a-32962f7326a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-29T06:00:41.265Z_
+
+<details><summary>↩ Tool result · `toolu_015VDWgH9zRjE6CGiBu7Upyy`</summary>
+
+```text
+Web search results for query: ""adaptive test-time compute" "constrained policy optimization" reasoning LLM arXiv 2604.14853 2026"
+
+Links: [{"title":"[2604.14853] Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization","url":"https://arxiv.org/abs/2604.14853"},{"title":"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization","url":"https://arxiv.org/html/2604.14853"},{"title":"Adaptive Test-Time Compute Allocation for Reasoning ...","url":"https://arxiv.org/pdf/2604.14853"},{"title":"Thinking on the Fly: Test-Time Reasoning Enhancement via Latent Thought Policy Optimization","url":"https://arxiv.org/pdf/2510.04182"},{"title":"Optimizing Anytime Reasoning via Budget Relative Policy Optimization","url":"https://arxiv.org/pdf/2505.13438"},{"title":"OptPO: Optimal Rollout Allocation for Test-time Policy Optimization","url":"https://arxiv.org/pdf/2512.02882"},{"title":"From Efficiency to Adaptivity: A Deeper Look at Adaptive Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2511.10788"}]
+
+I found the paper! Here's what I discovered:
+
+The paper "Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization" (arXiv:2604.14853) was published on April 16, 2026.
+
+**Overview:**
+
+The paper formalizes the problem as a constrained optimization problem (maximize expected accuracy subject to an average compute budget) and solves it with a two-stage Solve-then-Learn pipeline.
+
+**Key Contributions:**
+
+- The cost is proven to be monotone in the dual variable, enabling exact budget targeting via binary search
+- In the learn stage, a lightweight classifier is trained to predict oracle actions from cheap input features, amortizing the allocation rule for real-time deployment
+- The task-level regret of the learned policy is bounded by its imitation error times the worst-case per-instance gap, yielding a clean reduction from constrained inference to supervised classification
+
+**Results:**
+
+Experiments on MATH and GSM8K with three LLMs (DeepSeek-V3, GPT-4o-mini, Qwen2.5-7B) show the method consistently outperforms uniform and heuristic allocation baselines, achieving up to 12.8% relative accuracy improvement on MATH under matched budget constraints, while closely tracking the Lagrangian oracle upper bound with over 91% imitation accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08758e54-5bd1-4f45-a215-84d8830ee2be",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "0a73021f-9fca-4015-aaf2-3f7bfbdb140f",
+  "toolUseResult": {
+    "query": "\"adaptive test-time compute\" \"constrained policy optimization\" reasoning LLM arXiv 2604.14853 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Jhx5NBCzDanwsgLNoXYGVV",
+        "content": [
+          {
+            "title": "[2604.14853] Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization",
+            "url": "https://arxiv.org/abs/2604.14853"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization",
+            "url": "https://arxiv.org/html/2604.14853"
+          },
+          {
+            "title": "Adaptive Test-Time Compute Allocation for Reasoning ...",
+            "url": "https://arxiv.org/pdf/2604.14853"
+          },
+          {
+            "title": "Thinking on the Fly: Test-Time Reasoning Enhancement via Latent Thought Policy Optimization",
+            "url": "https://arxiv.org/pdf/2510.04182"
+          },
+          {
+            "title": "Optimizing Anytime Reasoning via Budget Relative Policy Optimization",
+            "url": "https://arxiv.org/pdf/2505.13438"
+          },
+          {
+            "title": "OptPO: Optimal Rollout Allocation for Test-time Policy Optimization",
+            "url": "https://arxiv.org/pdf/2512.02882"
+          },
+          {
+            "title": "From Efficiency to Adaptivity: A Deeper Look at Adaptive Reasoning in Large Language Models",
+            "url": "https://arxiv.org/pdf/2511.10788"
+          }
+        ]
+      },
+      "I found the paper! Here's what I discovered:\n\nThe paper \"Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization\" (arXiv:2604.14853) was published on April 16, 2026.\n\n**Overview:**\n\nThe paper formalizes the problem as a constrained optimization problem (maximize expected accuracy subject to an average compute budget) and solves it with a two-stage Solve-then-Learn pipeline.\n\n**Key Contributions:**\n\n- The cost is proven to be monotone in the dual variable, enabling exact budget targeting via binary search\n- In the learn stage, a lightweight classifier is trained to predict oracle actions from cheap input features, amortizing the allocation rule for real-time deployment\n- The task-level regret of the learned policy is bounded by its imitation error times the worst-case per-instance gap, yielding a clean reduction from constrained inference to supervised classification\n\n**Results:**\n\nExperiments on MATH and GSM8K with three LLMs (DeepSeek-V3, GPT-4o-mini, Qwen2.5-7B) show the method consistently outperforms uniform and heuristic allocation baselines, achieving up to 12.8% relative accuracy improvement on MATH under matched budget constraints, while closely tracking the Lagrangian oracle upper bound with over 91% imitation accuracy."
+    ],
+    "durationSeconds": 9.276101447999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "08758e54-5bd1-4f45-a215-84d8830ee2be",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-29T06:00:41.270Z_
+
+```json
+{
+  "parentUuid": "0a73021f-9fca-4015-aaf2-3f7bfbdb140f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2a356b38-a65a-449c-a47d-ec5585255cde",
+  "timestamp": "2026-05-29T06:00:41.270Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-29T06:00:44.693Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H4ekMs3a2Su8XJkVDUF1Gn`</summary>
+
+```json
+{
+  "query": "CODA difficulty-aware compute allocation adaptive reasoning arXiv 2603.08659 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a356b38-a65a-449c-a47d-ec5585255cde",
+  "isSidechain": false,
+  "requestId": "req_011CbWMGwpt7SZJ8yv619Eq1",
+  "type": "assistant",
+  "uuid": "89bf25cf-fb4e-4b09-9e18-b296877993bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DE4UX6rzLkRKuGJbezS53d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3147,
+      "cache_read_input_tokens": 22527,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 22527,
+          "cache_creation_input_tokens": 3147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-29T06:00:45.437Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LpGQcnUcdQYKWKKeSN3EWY`</summary>
+
+```json
+{
+  "query": "ODAR principled adaptive routing LLM reasoning active inference arXiv 2602.23681 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89bf25cf-fb4e-4b09-9e18-b296877993bc",
+  "isSidechain": false,
+  "requestId": "req_011CbWMGwpt7SZJ8yv619Eq1",
+  "type": "assistant",
+  "uuid": "74d19208-8d24-4f66-81d5-58aa56b707a7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DE4UX6rzLkRKuGJbezS53d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3147,
+      "cache_read_input_tokens": 22527,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 22527,
+          "cache_creation_input_tokens": 3147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-29T06:00:52.738Z_
+
+<details><summary>↩ Tool result · `toolu_01H4ekMs3a2Su8XJkVDUF1Gn`</summary>
+
+```text
+Web search results for query: "CODA difficulty-aware compute allocation adaptive reasoning arXiv 2603.08659 2026"
+
+Links: [{"title":"[2603.08659] CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning","url":"https://arxiv.org/abs/2603.08659"},{"title":"CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning","url":"https://arxiv.org/pdf/2603.08659"},{"title":"Coda: Difficulty-Aware Compute Allocation for Adaptive Reasoning","url":"https://arxiv.org/html/2603.08659v1"},{"title":"Learning to Ponder: Adaptive Reasoning in Latent Space","url":"https://arxiv.org/pdf/2509.24238"},{"title":"What If We Allocate Test-Time Compute Adaptively?","url":"https://arxiv.org/pdf/2602.01070"}]
+
+I found the research paper you're looking for. Here's what the search returned:
+
+**CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning**
+
+CODA (Compute Allocation by Difficulty Awareness) is a method that operationalizes the principle of allocating tokens via a policy-internal difficulty signal.
+
+**Main Motivation:**
+Large reasoning models benefit from scaling inference-time compute on complex tasks, but often fall into the trap of overthinking simple problems, where repetitive rationales yield minimal accuracy gains at a disproportionately high cost. This motivates adaptive reasoning: dynamically aligning reasoning depth with instance difficulty.
+
+**Technical Approach:**
+The paper studies adaptive reasoning from an optimality perspective, formalizing it as a utility maximization problem where tokens are allocated until the marginal accuracy gain falls below the incremental cost. CODA estimates difficulty via group-based rollouts and maps it to two non-negative gates that modulate a length-dependent shaping term on top of the binary base reward.
+
+**Results:**
+CODA achieves adaptive reasoning without external annotations or user-provided budgets: on easy tasks, CODA reduces token costs by over 60% while maintaining strong accuracy, whereas on hard tasks it incentivizes more deliberative rollouts to maximize performance.
+
+The paper was submitted to arXiv on March 9, 2026, with authors from Fudan University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89bf25cf-fb4e-4b09-9e18-b296877993bc",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "9f84c83f-45af-45b0-bf1d-dbe3693384b1",
+  "toolUseResult": {
+    "query": "CODA difficulty-aware compute allocation adaptive reasoning arXiv 2603.08659 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SkeaZZ3W2cPzjFxVgTTUUZ",
+        "content": [
+          {
+            "title": "[2603.08659] CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning",
+            "url": "https://arxiv.org/abs/2603.08659"
+          },
+          {
+            "title": "CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning",
+            "url": "https://arxiv.org/pdf/2603.08659"
+          },
+          {
+            "title": "Coda: Difficulty-Aware Compute Allocation for Adaptive Reasoning",
+            "url": "https://arxiv.org/html/2603.08659v1"
+          },
+          {
+            "title": "Learning to Ponder: Adaptive Reasoning in Latent Space",
+            "url": "https://arxiv.org/pdf/2509.24238"
+          },
+          {
+            "title": "What If We Allocate Test-Time Compute Adaptively?",
+            "url": "https://arxiv.org/pdf/2602.01070"
+          }
+        ]
+      },
+      "I found the research paper you're looking for. Here's what the search returned:\n\n**CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning**\n\nCODA (Compute Allocation by Difficulty Awareness) is a method that operationalizes the principle of allocating tokens via a policy-internal difficulty signal.\n\n**Main Motivation:**\nLarge reasoning models benefit from scaling inference-time compute on complex tasks, but often fall into the trap of overthinking simple problems, where repetitive rationales yield minimal accuracy gains at a disproportionately high cost. This motivates adaptive reasoning: dynamically aligning reasoning depth with instance difficulty.\n\n**Technical Approach:**\nThe paper studies adaptive reasoning from an optimality perspective, formalizing it as a utility maximization problem where tokens are allocated until the marginal accuracy gain falls below the incremental cost. CODA estimates difficulty via group-based rollouts and maps it to two non-negative gates that modulate a length-dependent shaping term on top of the binary base reward.\n\n**Results:**\nCODA achieves adaptive reasoning without external annotations or user-provided budgets: on easy tasks, CODA reduces token costs by over 60% while maintaining strong accuracy, whereas on hard tasks it incentivizes more deliberative rollouts to maximize performance.\n\nThe paper was submitted to arXiv on March 9, 2026, with authors from Fudan University."
+    ],
+    "durationSeconds": 8.039398569999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "89bf25cf-fb4e-4b09-9e18-b296877993bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-29T06:00:54.151Z_
+
+<details><summary>↩ Tool result · `toolu_01LpGQcnUcdQYKWKKeSN3EWY`</summary>
+
+```text
+Web search results for query: "ODAR principled adaptive routing LLM reasoning active inference arXiv 2602.23681 2026"
+
+Links: [{"title":"[2602.23681] ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference","url":"https://arxiv.org/abs/2602.23681"},{"title":"ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference","url":"https://www.catalyzex.com/paper/odar-principled-adaptive-routing-for-llm"},{"title":"ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference","url":"https://arxiv.org/pdf/2602.23681"},{"title":"ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference","url":"https://arxiv.org/html/2602.23681"},{"title":"(PDF) ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference","url":"https://www.researchgate.net/publication/401418234_ODAR_Principled_Adaptive_Routing_for_LLM_Reasoning_via_Active_Inference"}]
+
+I found the paper you're searching for! Here's what I discovered:
+
+The paper describes how LLM reasoning is shifting from parameter scaling to test-time compute scaling, with most existing approaches relying on uniform, brute-force sampling that is costly and can trigger "overthinking" with diminishing returns.
+
+ODAR-Expert is an adaptive routing framework that optimizes the accuracy-efficiency trade-off via principled resource allocation, using a Difficulty Estimator grounded in amortized active inference to dynamically route queries between a heuristic Fast Agent and a deliberative Slow Agent.
+
+A key innovation is a Free-Energy-Principled and risk-sensitive fusion mechanism that selects answers by minimizing a variational free energy objective, balancing log-likelihood with epistemic uncertainty (varentropy) as a principled alternative to ad-hoc voting.
+
+Extensive evaluation across 23 benchmarks shows that ODAR achieves strong results, including 98.2% accuracy on MATH and 54.8% on Humanity's Last Exam, while improving the compute–accuracy frontier under compute-matched settings. Further validation on a fully open-source stack (Llama 4 + DeepSeek) shows ODAR surpasses homogeneous sampling strategies while reducing computational costs by 82%.
+
+The paper was posted to arXiv on February 27, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74d19208-8d24-4f66-81d5-58aa56b707a7",
+  "isSidechain": false,
+  "promptId": "e64abb66-e74f-4941-9b37-6094989dfed5",
+  "type": "user",
+  "uuid": "22179a78-c170-4ac7-b5bd-901c41595f21",
+  "toolUseResult": {
+    "query": "ODAR principled adaptive routing LLM reasoning active inference arXiv 2602.23681 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013dw7271ZLRAaKoCeiNyFeR",
+        "content": [
+          {
+            "title": "[2602.23681] ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference",
+            "url": "https://arxiv.org/abs/2602.23681"
+          },
+          {
+            "title": "ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference",
+            "url": "https://www.catalyzex.com/paper/odar-principled-adaptive-routing-for-llm"
+          },
+          {
+            "title": "ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference",
+            "url": "https://arxiv.org/pdf/2602.23681"
+          },
+          {
+            "title": "ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference",
+            "url": "https://arxiv.org/html/2602.23681"
+          },
+          {
+            "title": "(PDF) ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference",
+            "url": "https://www.researchgate.net/publication/401418234_ODAR_Principled_Adaptive_Routing_for_LLM_Reasoning_via_Active_Inference"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here's what I discovered:\n\nThe paper describes how LLM reasoning is shifting from parameter scaling to test-time compute scaling, with most existing approaches relying on uniform, brute-force sampling that is costly and can trigger \"overthinking\" with diminishing returns.\n\nODAR-Expert is an adaptive routing framework that optimizes the accuracy-efficiency trade-off via principled resource allocation, using a Difficulty Estimator grounded in amortized active inference to dynamically route queries between a heuristic Fast Agent and a deliberative Slow Agent.\n\nA key innovation is a Free-Energy-Principled and risk-sensitive fusion mechanism that selects answers by minimizing a variational free energy objective, balancing log-likelihood with epistemic uncertainty (varentropy) as a principled alternative to ad-hoc voting.\n\nExtensive evaluation across 23 benchmarks shows that ODAR achieves strong results, including 98.2% accuracy on MATH and 54.8% on Humanity's Last Exam, while improving the compute–accuracy frontier under compute-matched settings. Further validation on a fully open-source stack (Llama 4 + DeepSeek) shows ODAR surpasses homogeneous sampling strategies while reducing computational costs by 82%.\n\nThe paper was posted to arXiv on February 27, 2026."
+    ],
+    "durationSeconds": 8.711127536,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "74d19208-8d24-4f66-81d5-58aa56b707a7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning  ## Core Problem  Given a fixed inference compute budget, how should a system jointly select the number of cand…",
+  "leafUuid": "22179a78-c170-4ac7-b5bd-901c41595f21",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive compute allocation for generation and verification",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-29T06:01:26.483Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture of the research landscape. Let me analyze the key findings and their implications for this proposal:
+
+**Critical papers I found that are highly relevant:**
+
+1. **CODA (arXiv 2603.08659, March 2026)**: Difficulty-aware compute allocation for adaptive reasoning. This is very close to the proposal's idea — it uses difficulty signals to allocate compute adaptively. However, CODA focuses on token-level allocation (reasoning length), not on the generation-verification tradeoff specifically.
+
+2. **ODAR (arXiv 2602.23681, Feb 2026)**: Adaptive routing via active inference, using a difficulty estimator to route between fast/slow agents. 
+
+3. **LATTS (arXiv 2509.20368)**: Locally adaptive test-time scaling via verifier-based acceptance criterion at each step. This is step-level allocation, different from JOVA's instance-level allocation of K and d.
+
+4. **Adaptive Test-Time Compute via Constrained Policy Optimization (arXiv 2604.14853, April 2026)**: Very recent! This formalizes the budget-constrained compute allocation as a constrained optimization problem. The "Solve-then-Learn" pipeline shares conceptual similarities with JOVA's approach, though it operates at a different level of granularity.
+
+ODAR's routing mechanism overlaps significantly with JOVA's verification type selection, but targets model routing instead. These papers collectively show that adaptive compute allocation is an active research area, with different approaches focusing on different granularities and mechanisms.
+
+Now looking at the proposal itself, the core strength is that jointly optimizing both K and d is genuinely novel—most existing work tackles only one variable. The bilinear cost formulation provides a clean mathematical framework, and the difficulty-adaptive routing using DTR is well-motivated. The proposal correctly identifies a real gap in the literature where no existing work jointly optimizes both generation count and verification depth.
+
+However, there are some novelty concerns. CODA already handles difficulty-aware compute allocation, ODAR routes between fast and slow agents in a conceptually similar way, and the April 2026 work on adaptive test-time compute formalizes budget-constrained allocation as constrained optimization—which overlaps with JOVA's formulation. This raises three critical questions: whether the joint optimization is truly novel or just a straightforward combination of existing ideas, whether the bilinear cost formulation is a significant contribution or an obvious observation, and whether the DTR-based router meaningfully advances beyond current difficulty estimation methods.
+
+The joint optimization of K and d does appear to be a genuine gap in the literature, but the field is moving fast and the risk is that this feels incremental—just adding another dimension to existing optimization approaches. To strengthen the work, I should develop stronger theoretical insights about the K×d optimization landscape itself, make a clearer case for why joint optimization is qualitatively different from sequential approaches, and directly address why a simple grid search over (K,d) pairs for each difficulty bucket wouldn't suffice. The grid search alternative is particularly worth thinking through carefully—the straightforward approach would be to estimate difficulty, then look up the optimal (K,d) pair from a precomputed table.
+
+The real novelty hinges on the interaction effect between K and d: the optimal K depends on d and vice versa, which is what makes joint optimization non-trivial rather than just combining two separate adaptations. I should emphasize this interaction structure more prominently. The wide range of verifier costs in the proposal—spanning from 2% to 76× the generation cost—is actually the key insight driving why this matters, since the choice of verification type has such a dramatic impact on the optimization landscape.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22179a78-c170-4ac7-b5bd-901c41595f21",
+  "isSidechain": false,
+  "requestId": "req_011CbWMHtrKEPL5tX7Zn4kED",
+  "type": "assistant",
+  "uuid": "55b57e98-4faa-4bcd-8f51-fed2f27fe19a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqM5cBtFc6LbKBEoyzU3FK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1384,
+      "cache_read_input_tokens": 25674,
+      "output_tokens": 5305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5305,
+          "cache_read_input_tokens": 25674,
+          "cache_creation_input_tokens": 1384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-29T06:02:58.868Z_
+
+Now I have a comprehensive picture of the research landscape. Let me synthesize my findings and produce the evaluation.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **CODA (arXiv 2603.08659, March 2026)**: 难度感知计算分配，将自适应推理形式化为效用最大化问题，通过 group-based rollouts 估计难度并映射到长度调节信号。与本 proposal 在"difficulty-adaptive allocation"维度高度重叠，但 CODA 优化的是 token-level reasoning length，不涉及 verification type 选择。
+- **ODAR (arXiv 2602.23681, Feb 2026)**: 基于 active inference 的自适应路由框架，使用 Difficulty Estimator 在 Fast/Slow Agent 之间路由，free-energy-principled fusion 进行答案选择。82% 计算成本节省。与本 proposal 的 routing 思路相似，但路由目标是 model 而非 verification depth。
+- **Adaptive Test-Time Compute via CPO (arXiv 2604.14853, April 2026)**: 将预算约束下的计算分配形式化为 constrained optimization + Lagrangian dual，学习 lightweight classifier 预测 oracle action，达到 12.8% 相对精度提升。与 JOVA 在 formulation 层面有重叠（budget-constrained optimization → classifier routing）。
+- **LATTS (arXiv 2509.20368, Sep 2025)**: Step-level 的自适应 scaling，在每个生成步通过 verifier acceptance criterion 决定 resample/backtrack/restart/stop。粒度更细（step-level vs instance-level），但思路互补。
+- **TrajSelector (arXiv 2510.16449, Oct 2025)**: 利用 LLM 内部 hidden states 做 process-level scoring 的 lightweight verifier (0.6B)，在 BoN-32 下超过 majority voting 4.61%。与 JOVA 的 "latent ORM" 概念高度相关。
+- **FlexiVe/SDV (arXiv 2505.11966, May 2025)**: Fast/slow 二元 verification + GRPO 强化学习。仅有 binary 选择，非 multi-depth hierarchy。
+- **DTR (arXiv 2602.13517, Feb 2026)**: Deep-Thinking Ratio 通过中间层 hidden states 投影到 vocabulary space 衡量推理深度，与准确率相关 r=0.683。Proposal 引用的 r=0.828 似乎来自特定模型/设置。
+- 调研总结：2026 年初，"difficulty-adaptive compute allocation"已成为拥挤赛道（CODA、ODAR、CPO 均在 2-4 月发表）。主流思路是 difficulty estimation → routing/gating → budget-constrained optimization。**但所有现有工作优化的维度都是单一的**（reasoning length、model choice、K 值）。本 proposal 声称的"联合优化 K 和 verification depth d"的定位在调研范围内确实未被覆盖，但需要更有力地论证 joint optimization 的不可约性（即为什么不能分别优化再组合）。
+
+---
+
+【发掘点 1】
+- 维度: 核心 claim 强化
+- 内容: Proposal 当前的核心 claim 是"no concurrent work jointly optimizes both variables"，这是一个 **gap-filling claim**（填补空白），但 gap-filling 本身不够有力——审稿人会问"maybe no one did it because it's not necessary?"。需要将 claim 从"我们是第一个做 joint optimization"升级为"**joint optimization 的收益不可分解为独立优化的简单组合**"。具体来说，proposal 应强调 K 和 d 之间存在 **non-trivial interaction effect**：对于相同难度的问题，最优 K 随 d 变化呈非单调关系（例如，中等难度问题在 PRM 下最优 K=8，但在 GenRM 下最优 K=2，因为 GenRM 的高精度补偿了低 K）。如果能在 preliminary analysis 中展示这种 interaction structure（哪怕是 pilot data），核心 claim 从"我们填了一个坑"变成"这两个变量确实耦合且不可拆分"——后者是 AAAI 审稿人会觉得 surprising 的。
+- 价值: 命中 Novelty + Significance。如果 K 和 d 的交互效应确实存在且显著，这不仅证明了 joint optimization 的必要性，也为后续研究提供了新的理论视角（compute allocation 不是线性可分的）。如果交互效应不显著，反而说明分别优化即可，idea 的增量价值大幅缩水。
+- 调研依据: CODA (2603.08659) 和 CPO (2604.14853) 分别优化单一维度已获得 10-12% 的提升。如果 JOVA 的 joint optimization 仅获得类似幅度的提升，审稿人会质疑额外复杂度是否值得。需要论证 joint optimization 能达到 super-additive gain（超过两个独立优化的简单叠加）。
+
+【发掘点 2】
+- 维度: trivial alternative 威胁
+- 内容: 存在一个明显的 trivial baseline 威胁 proposal 的增量价值：**Grid Search over (K,d) per Difficulty Bucket**。即将问题分为 easy/medium/hard 三档（用任意难度信号），对每档在验证集上穷举所有 (K,d) 组合，选最优。这个方法不需要 DTR router，不需要 UCB bandit，不需要 bilinear cost formulation，只需要一张静态查找表。如果 JOVA 最终的主要操作就是"easy→high-K+latent-ORM, medium→mid-K+disc-PRM, hard→low-K+GenRM"（proposal 原文），这和 grid search 的输出可能高度一致。**Proposal 必须明确回答：JOVA 相对于这个 trivial grid-search baseline 的增量优势在哪里？** 可能的答案包括：(a) 难度是连续的而非离散的三档，细粒度分配有显著收益；(b) UCB bandit 的 online refinement 在 distribution shift 下优于 static table；(c) DTR router 的 hidden-state 信号比外部难度标注更准确。但这些必须被显式论证，否则审稿人会直接要求加 grid-search baseline 并可能发现差距不大。
+- 价值: 命中 Novelty。如果不能说清与 trivial alternative 的差距，整个方法的增量贡献会被严重质疑。提前堵住这个口，反而能让 contribution 更清晰。
+- 调研依据: CPO (2604.14853) 的方法本质上也是"学一个 classifier 来预测 oracle action"，但它的关键贡献在于提供了 regret bound（将 constrained inference 约化为 supervised classification）。JOVA 如果没有类似的理论保证，仅靠 empirical improvement 与 grid-search 区分，说服力不足。
+
+【发掘点 3】
+- 维度: significance 提升
+- 内容: Proposal 当前将问题 framing 为"如何在固定 budget 下最大化 accuracy"，这是一个标准的 efficiency 问题。但调研发现了一个更深层、更有影响力的 framing：**verification 的有效性（TPR/TNR）本身随 difficulty 剧烈变化（Variation in Verification, ICLR 2026 已实证），而且这种变化对不同 verification type 是异构的**。如果能将 JOVA 重新 frame 为 "**difficulty-aware verification type selection as a response to heterogeneous verification reliability**"——即，不仅仅是为了省 compute，更是因为在不同难度区间，不同 verifier 类型的 TPR/TNR profile 根本不同（easy 问题上 lightweight verifier 的 TNR 可能更高因为避免了 over-reasoning 的 false negative，hard 问题上 GenRM 的 TPR 明显更高），那么 JOVA 的 motivation 就从 "compute efficiency" 升级为 "**fundamental mismatch between verification reliability and problem difficulty requires type-adaptive verification**"。后者的 significance 显著更高，因为它揭示了一个关于 verification 本身的 structural insight，而不仅仅是一个工程优化。
+- 价值: 命中 Significance。将 motivation 从"省计算"升级为"verification reliability 的结构性失配需要 type-adaptive 响应"，使得即使不考虑 compute constraint，JOVA 的 verification type routing 也有独立价值。这大幅提升了 idea 的影响力和持久性。
+- 调研依据: 直接基于 Variation in Verification (ICLR 2026, arXiv 2509.17995) 的核心发现——verification effectiveness 随 difficulty 剧烈变化，但该论文"proposes no adaptive algorithm"（proposal 原文）。JOVA 可以定位为该论文发现的直接算法回应。
+
+【发掘点 4】
+- 维度: related work 差异化
+- 内容: Proposal 的 related work 分析遗漏了三篇高度相关的 2026 年新工作，这些遗漏可能导致审稿人质疑对领域现状的把握：
+  - **(a) CODA (arXiv 2603.08659, March 2026)**：difficulty-aware compute allocation，与 JOVA 共享"difficulty → allocation"的 pipeline 结构，必须明确区分（CODA 优化 reasoning length，JOVA 优化 (K,d) pair）；
+  - **(b) ODAR (arXiv 2602.23681, Feb 2026)**：active-inference-based routing between fast/slow agents，与 JOVA 的 routing 思路有表面相似性，必须解释差异（ODAR 路由 model，JOVA 路由 verification type）；
+  - **(c) Adaptive TTC via CPO (arXiv 2604.14853, April 2026)**：budget-constrained formulation + learned classifier，与 JOVA 在 problem formulation 层面最相似，必须论证 JOVA 的 bilinear cost structure 带来了 CPO 没有的 insight。
+  如果提交时不引用并区分这三篇，审稿人几乎必然会在 review 中提出。
+- 价值: 命中 Related Work 差异化。遗漏高度相关的同期工作是 AAAI 审稿中的常见扣分点。主动纳入并清晰区分，反而能强化 JOVA 的独特定位。
+- 调研依据: 直接基于 WebSearch 调研发现的三篇论文。
+
+【发掘点 5】
+- 维度: 前提假设质疑
+- 内容: Proposal 的核心逻辑链依赖一个隐含假设：**DTR 信号（基于短 prefix 的 hidden states）能准确预测最优 (K,d) 分配**。但 DTR 原论文度量的是"推理深度/努力程度"，其与"最优 verification type"之间的映射关系是否存在，是一个 **未经验证的跳跃**。具体来说：DTR 高（深度思考多）→ 问题难 → 应该用 GenRM，这个推理链暗含了"difficulty 是决定最优 verification type 的唯一/主要因素"。但 Variation in Verification 的数据显示，verification effectiveness 的变化不仅取决于 difficulty，还取决于问题的 domain、reasoning type（代数 vs. 几何 vs. 组合）等因素。如果 DTR 只捕捉了 difficulty 的一个维度而忽略了 domain-specific 因素，router 的性能可能受限。Proposal 应该显式承认这个假设的脆弱性，并讨论 fallback 策略（例如，DTR + domain feature 的组合信号）或至少在 limitation 中提及。
+- 价值: 命中 Novelty（通过诚实标注假设边界来增强 claim 的可信度）。审稿人如果自己发现这个逻辑跳跃会扣分；作者主动指出并讨论反而体现 rigor。
+- 调研依据: DTR (2602.13517) 原文报告的 r=0.683 相关性（proposal 中写的 r=0.828 可能是特定模型上的数字）说明 DTR 并非完美的 difficulty proxy。Variation in Verification (2509.17995) 的跨 domain 分析进一步说明了单一 difficulty 信号的局限性。
+
+Sources:
+- [CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning](https://arxiv.org/abs/2603.08659)
+- [ODAR: Principled Adaptive Routing for LLM Reasoning via Active Inference](https://arxiv.org/abs/2602.23681)
+- [Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization](https://arxiv.org/abs/2604.14853)
+- [LATTS: Locally Adaptive Test-Time Scaling](https://arxiv.org/abs/2509.20368)
+- [TrajSelector: Harnessing Latent Representations for Efficient and Effective Best-of-N](https://arxiv.org/abs/2510.16449)
+- [Solve-Detect-Verify: Inference-Time Scaling with Flexible Generative Verifier (FlexiVe)](https://arxiv.org/abs/2505.11966)
+- [Think Deep, Not Just Long: DTR via Deep-Thinking Tokens](https://arxiv.org/abs/2602.13517)
+- [Variation in Verification: Understanding Verification Dynamics in LLMs](https://arxiv.org/abs/2509.17995)
+- [When To Solve, When To Verify (Singhi et al.)](https://arxiv.org/abs/2504.01005)
+- [Putting the Value Back in RL: Unifying LLM Reasoners With Verifiers](https://arxiv.org/abs/2505.04842)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55b57e98-4faa-4bcd-8f51-fed2f27fe19a",
+  "isSidechain": false,
+  "requestId": "req_011CbWMHtrKEPL5tX7Zn4kED",
+  "type": "assistant",
+  "uuid": "5c444d6f-69a4-4145-b7ed-abd6947c266f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CqM5cBtFc6LbKBEoyzU3FK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1384,
+      "cache_read_input_tokens": 25674,
+      "output_tokens": 5305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5305,
+          "cache_read_input_tokens": 25674,
+          "cache_creation_input_tokens": 1384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Difficulty-Adaptive Joint Generation-Verification Compute Allocation for LLM Reasoning  ## Core Problem  Given a fixed inference compute budget, how should a system jointly select the number of cand…",
+  "leafUuid": "5c444d6f-69a4-4145-b7ed-abd6947c266f",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adaptive compute allocation for generation and verification",
+  "sessionId": "7993b42a-c5e9-4a5e-b3c4-f38ae4099e72"
+}
+```
+
+---

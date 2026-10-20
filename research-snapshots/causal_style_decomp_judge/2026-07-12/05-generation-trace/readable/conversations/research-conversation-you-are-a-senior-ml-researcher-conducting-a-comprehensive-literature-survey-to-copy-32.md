@@ -1,0 +1,5277 @@
+# Research conversation: You are a senior ML researcher conducting a comprehensive literature survey. **Today's date: 2026-05-30 (UTC).** ## Task
+
+**The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 69
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/exported-trajectories/account-3/4afdc2a4-1d8d-48cb-ae88-216f86fdb790.jsonl`
+- **Structured JSON:** [`4afc3a4cadf5b3a45188.json`](../../sessions/4a/4afc3a4cadf5b3a45188.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T06:13:16.967Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:13:16.967Z",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "content": "You are a senior ML researcher conducting a comprehensive literature survey.\n\n**Today's date: 2026-05-30 (UTC).**\n\n## Task\nFind the **15 most important recent papers** (published 2024–2026) in or closely related to the following research area:\n\n**Target: AAAI 2027\nTrack: Information Retrieval and Text Mining\n\nDirection: Train an end-to-end visual document retrieval model that produces embeddings at three granularities (page, region, element) with explicit spatial grounding, using differentiable region proposals from intermediate VLM layers and multi-task training on page-level contrastive, element-level alignment, and spatial grounding losses. The model should close the 28.5pp page-vs-layout retrieval gap (MMDocIR) while producing bounding boxes for evidence localization (targeting >70% IoU@0.5 on ViDoRe V3, up from 59.7% baseline).\n\nSeed Papers:\n- ColPali (Faysse et al., ICLR 2025) — Established the late-interaction multi-vector paradigm for visual document retrieval; architecture base\n- MMDocIR (Dong et al., EMNLP 2025) — Benchmark revealing 28.5pp gap between page-level and layout-level retrieval; provides layout annotations for training\n- Spatially-Grounded Retrieval / Snappy (arXiv Dec 2025) — Inference-time patch-to-region propagation achieving 59.7% IoU@0.5; proves patch features contain spatial information but lacks learned optimization\n- AGREE (Cui et al., arXiv Nov 2025) — Attention-grounded enhancement using cross-modal attention as region supervision; closest existing work but targets page-level nDCG, not element retrieval\n- ColParse (Yan et al., arXiv Mar 2026) — Layout-informed sub-image embeddings achieving compression + accuracy gains; shows layout awareness helps but depends on external parser\n- MURE (Zhu et al., arXiv Mar 2026) — Multi-resolution hierarchical encoding; demonstrates multi-scale helps but doesn't do element retrieval\n- ViDoRe V3 (arXiv Jan 2026) — Benchmark with spatial grounding evaluation via bounding box IoU; evaluation target\n- RegionGPT (Guo et al., CVPR 2024) — Region-level understanding in VLMs via differentiable region proposals; architectural inspiration for learned region extraction\n\nKnown Gaps:\n- No end-to-end model performs sub-page element retrieval from raw page images without external layout detectors (ColParse needs parsers, Multi-Granularity Framework needs VLM filtering)\n- Spatial grounding in visual document retrieval is limited to inference-time heuristics (59.7% IoU@0.5); no model learns to ground during training\n- The 28.5pp page-vs-layout gap (MMDocIR) has no solution that doesn't introduce pipeline components\n\nTheoretical Anchor: Vision transformer patch embeddings implicitly encode spatial layout information (evidenced by Snappy's inference-time grounding and AGREE's attention-based region discovery), but this information is never explicitly optimized during retrieval training. By introducing differentiable ROI pooling over ViT feature maps with element-level alignment supervision, we can convert implicit spatial encoding into explicit hierarchical retrieval capability — analogous to how Faster R-CNN made object detection end-to-end by replacing external proposals with learned region proposal networks.\n\nConstraints:\n- Compute: ≤200 H100-hours (LoRA fine-tuning on ColQwen2 architecture, ~100-150 hours estimated)\n- Training data: MMDocIR (1,685 expert + 173K bootstrapped queries with layout annotations), DocLayNet, PubLayNet\n- Evaluation: MMDocIR layout-level, ViDoRe V3 grounding (IoU@0.5), ViDoRe V2 page-level (no regression)\n\nQuality Self-Checks:\n- [x] Core insight: Patch embeddings already encode layout — training with element-level supervision makes this explicit and learnable.\n- [x] Why not obvious: Requires combining differentiable region proposals (from detection literature) with late-interaction retrieval (from IR literature) — cross-community gap.\n- [x] Baseline fear test: A simple baseline of \"run layout detector then embed crops\" exists (ColParse), but it can't jointly optimize detection and retrieval, and adds inference latency. The end-to-end model should beat it by 3-5pp on layout-level retrieval through joint optimization.\n- [x] Information exploited: Intermediate VLM layer features for region proposals + element-level bounding box annotations from MMDocIR/DocLayNet — neither used by any current retrieval model during training.\n\nAvoid:\n- Relying on external document parsers or layout detectors at inference time (the whole point is end-to-end)\n- Evaluating only on ViDoRe V1 (saturated; reviewers will flag this)\n- Proposing yet another compression method (crowded; 6+ papers in 12 months)\n- Bigger backbone scaling without architectural innovation (engineering contribution, not research)\n- OCR-vs-VLM comparisons (settled question since ColPali)**\n\n## What counts as 'important'\n\nPrioritize (in order):\n1. **Best paper awards** at top venues (ACL, EMNLP, NAACL, NeurIPS, ICML, ICLR, AAAI, etc.)\n2. **Oral / spotlight presentations** at these venues\n3. **Highly cited papers** (>50 citations in 1-2 years)\n4. **Papers that introduced widely-adopted methods** (e.g., new training paradigm, new benchmark)\n5. **Recent survey papers** that provide comprehensive field overviews\n6. **Strong recent work** from top labs (Google, Meta, DeepMind, OpenAI, CMU, Stanford, etc.)\n\n## Search strategy\n\nExecute AT LEAST 15 targeted searches:\n\n1. `best paper award ACL EMNLP NeurIPS ICML ICLR 2026 Target: AAAI 2027\nTrack: Information Retrieval and Text Mining\n\nDirection: Train an end-to-end visual document retrieval model that produces embeddings at three granularities (page, region, element) with explicit spatial grounding, using differentiable region proposals from intermediate VLM layers and multi-task training on page-level contrastive, element-level alignment, and spatial grounding losses. The model should close the 28.5pp page-vs-layout retrieval gap (MMDocIR) while producing bounding boxes for evidence localization (targeting >70% IoU@0.5 on ViDoRe V3, up from 59.7% baseline).\n\nSeed Papers:\n- ColPali (Faysse et al., ICLR 2025) — Established the late-interaction multi-vector paradigm for visual document retrieval; architecture base\n- MMDocIR (Dong et al., EMNLP 2025) — Benchmark revealing 28.5pp gap between page-level and layout-level retrieval; provides layout annotations for training\n- Spatially-Grounded Retrieval / Snappy (arXiv Dec 2025) — Inference-time patch-to-region propagation achieving 59.7% IoU@0.5; proves patch features contain spatial information but lacks learned optimization\n- AGREE (Cui et al., arXiv Nov 2025) — Attention-grounded enhancement using cross-modal attention as region supervision; closest existing work but targets page-level nDCG, not element retrieval\n- ColParse (Yan et al., arXiv Mar 2026) — Layout-informed sub-image embeddings achieving compression + accuracy gains; shows layout awareness helps but depends on external parser\n- MURE (Zhu et al., arXiv Mar 2026) — Multi-resolution hierarchical encoding; demonstrates multi-scale helps but doesn't do element retrieval\n- ViDoRe V3 (arXiv Jan 2026) — Benchmark with spatial grounding evaluation via bounding box IoU; evaluation target\n- RegionGPT (Guo et al., CVPR 2024) — Region-level understanding in VLMs via differentiable region proposals; architectural inspiration for learned region extraction\n\nKnown Gaps:\n- No end-to-end model performs sub-page element retrieval from raw page images without external layout detectors (ColParse needs parsers, Multi-Granularity Framework needs VLM filtering)\n- Spatial grounding in visual document retrieval is limited to inference-time heuristics (59.7% IoU@0.5); no model learns to ground during training\n- The 28.5pp page-vs-layout gap (MMDocIR) has no solution that doesn't introduce pipeline components\n\nTheoretical Anchor: Vision transformer patch embeddings implicitly encode spatial layout information (evidenced by Snappy's inference-time grounding and AGREE's attention-based region discovery), but this information is never explicitly optimized during retrieval training. By introducing differentiable ROI pooling over ViT feature maps with element-level alignment supervision, we can convert implicit spatial encoding into explicit hierarchical retrieval capability — analogous to how Faster R-CNN made object detection end-to-end by replacing external proposals with learned region proposal networks.\n\nConstraints:\n- Compute: ≤200 H100-hours (LoRA fine-tuning on ColQwen2 architecture, ~100-150 hours estimated)\n- Training data: MMDocIR (1,685 expert + 173K bootstrapped queries with layout annotations), DocLayNet, PubLayNet\n- Evaluation: MMDocIR layout-level, ViDoRe V3 grounding (IoU@0.5), ViDoRe V2 page-level (no regression)\n\nQuality Self-Checks:\n- [x] Core insight: Patch embeddings already encode layout — training with element-level supervision makes this explicit and learnable.\n- [x] Why not obvious: Requires combining differentiable region proposals (from detection literature) with late-interaction retrieval (from IR literature) — cross-community gap.\n- [x] Baseline fear test: A simple baseline of \"run layout detector then embed crops\" exists (ColParse), but it can't jointly optimize detection and retrieval, and adds inference latency. The end-to-end model should beat it by 3-5pp on layout-level retrieval through joint optimization.\n- [x] Information exploited: Intermediate VLM layer features for region proposals + element-level bounding box annotations from MMDocIR/DocLayNet — neither used by any current retrieval model during training.\n\nAvoid:\n- Relying on external document parsers or layout detectors at inference time (the whole point is end-to-end)\n- Evaluating only on ViDoRe V1 (saturated; reviewers will flag this)\n- Proposing yet another compression method (crowded; 6+ papers in 12 months)\n- Bigger backbone scaling without architectural innovation (engineering contribution, not research)\n- OCR-vs-VLM comparisons (settled question since ColPali)`\n2. `oral spotlight {venue} 2026 {topic}` — for each major venue\n3. `site:openreview.net {topic} 2026 outstanding` — OpenReview 高分论文\n4. `{topic} survey 2026` 或 `{topic} survey 2025` — 综述论文\n5. `site:arxiv.org {topic} 2026` — arXiv 最新高引\n6. `most cited {topic} 2025 2026` — Google Scholar\n7. `site:paperswithcode.com {task} SOTA` — SOTA 排行榜上的论文\n8. `{topic} benchmark {year}` — 定义领域的 benchmark 论文\n9. 对每个找到的重要论文，搜索其 cited-by 发现后续工作\n\nFor EVERY paper you find, use WebFetch to read its abstract and introduction on arXiv or OpenReview. Do NOT rely on search snippets alone — you need to understand what each paper actually does.\n\n## Output format\n\nOutput a JSON array. Each element:\n{\n  \"title\": \"Full paper title\",\n  \"authors\": \"First author et al.\",\n  \"venue\": \"EMNLP 2025 / NeurIPS 2024 / arXiv 2025 / ...\",\n  \"url\": \"https://arxiv.org/abs/... or openreview URL\",\n  \"why_important\": \"Best paper / Oral / High-cited / Introduced X / ...\",\n  \"one_line_summary\": \"What this paper does in one sentence\"\n}\n\nFind at least 15 papers. More is better if they are genuinely relevant.\nIMPORTANT: You MUST end your response with the JSON array."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T06:13:16.972Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:13:16.972Z",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+## Round 1
+
+67 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T06:13:17.064Z_
+
+You are a senior ML researcher conducting a comprehensive literature survey.
+
+**Today's date: 2026-05-30 (UTC).**
+
+## Task
+Find the **15 most important recent papers** (published 2024–2026) in or closely related to the following research area:
+
+**Target: AAAI 2027
+Track: Information Retrieval and Text Mining
+
+Direction: Train an end-to-end visual document retrieval model that produces embeddings at three granularities (page, region, element) with explicit spatial grounding, using differentiable region proposals from intermediate VLM layers and multi-task training on page-level contrastive, element-level alignment, and spatial grounding losses. The model should close the 28.5pp page-vs-layout retrieval gap (MMDocIR) while producing bounding boxes for evidence localization (targeting >70% IoU@0.5 on ViDoRe V3, up from 59.7% baseline).
+
+Seed Papers:
+- ColPali (Faysse et al., ICLR 2025) — Established the late-interaction multi-vector paradigm for visual document retrieval; architecture base
+- MMDocIR (Dong et al., EMNLP 2025) — Benchmark revealing 28.5pp gap between page-level and layout-level retrieval; provides layout annotations for training
+- Spatially-Grounded Retrieval / Snappy (arXiv Dec 2025) — Inference-time patch-to-region propagation achieving 59.7% IoU@0.5; proves patch features contain spatial information but lacks learned optimization
+- AGREE (Cui et al., arXiv Nov 2025) — Attention-grounded enhancement using cross-modal attention as region supervision; closest existing work but targets page-level nDCG, not element retrieval
+- ColParse (Yan et al., arXiv Mar 2026) — Layout-informed sub-image embeddings achieving compression + accuracy gains; shows layout awareness helps but depends on external parser
+- MURE (Zhu et al., arXiv Mar 2026) — Multi-resolution hierarchical encoding; demonstrates multi-scale helps but doesn't do element retrieval
+- ViDoRe V3 (arXiv Jan 2026) — Benchmark with spatial grounding evaluation via bounding box IoU; evaluation target
+- RegionGPT (Guo et al., CVPR 2024) — Region-level understanding in VLMs via differentiable region proposals; architectural inspiration for learned region extraction
+
+Known Gaps:
+- No end-to-end model performs sub-page element retrieval from raw page images without external layout detectors (ColParse needs parsers, Multi-Granularity Framework needs VLM filtering)
+- Spatial grounding in visual document retrieval is limited to inference-time heuristics (59.7% IoU@0.5); no model learns to ground during training
+- The 28.5pp page-vs-layout gap (MMDocIR) has no solution that doesn't introduce pipeline components
+
+Theoretical Anchor: Vision transformer patch embeddings implicitly encode spatial layout information (evidenced by Snappy's inference-time grounding and AGREE's attention-based region discovery), but this information is never explicitly optimized during retrieval training. By introducing differentiable ROI pooling over ViT feature maps with element-level alignment supervision, we can convert implicit spatial encoding into explicit hierarchical retrieval capability — analogous to how Faster R-CNN made object detection end-to-end by replacing external proposals with learned region proposal networks.
+
+Constraints:
+- Compute: ≤200 H100-hours (LoRA fine-tuning on ColQwen2 architecture, ~100-150 hours estimated)
+- Training data: MMDocIR (1,685 expert + 173K bootstrapped queries with layout annotations), DocLayNet, PubLayNet
+- Evaluation: MMDocIR layout-level, ViDoRe V3 grounding (IoU@0.5), ViDoRe V2 page-level (no regression)
+
+Quality Self-Checks:
+- [x] Core insight: Patch embeddings already encode layout — training with element-level supervision makes this explicit and learnable.
+- [x] Why not obvious: Requires combining differentiable region proposals (from detection literature) with late-interaction retrieval (from IR literature) — cross-community gap.
+- [x] Baseline fear test: A simple baseline of "run layout detector then embed crops" exists (ColParse), but it can't jointly optimize detection and retrieval, and adds inference latency. The end-to-end model should beat it by 3-5pp on layout-level retrieval through joint optimization.
+- [x] Information exploited: Intermediate VLM layer features for region proposals + element-level bounding box annotations from MMDocIR/DocLayNet — neither used by any current retrieval model during training.
+
+Avoid:
+- Relying on external document parsers or layout detectors at inference time (the whole point is end-to-end)
+- Evaluating only on ViDoRe V1 (saturated; reviewers will flag this)
+- Proposing yet another compression method (crowded; 6+ papers in 12 months)
+- Bigger backbone scaling without architectural innovation (engineering contribution, not research)
+- OCR-vs-VLM comparisons (settled question since ColPali)**
+
+## What counts as 'important'
+
+Prioritize (in order):
+1. **Best paper awards** at top venues (ACL, EMNLP, NAACL, NeurIPS, ICML, ICLR, AAAI, etc.)
+2. **Oral / spotlight presentations** at these venues
+3. **Highly cited papers** (>50 citations in 1-2 years)
+4. **Papers that introduced widely-adopted methods** (e.g., new training paradigm, new benchmark)
+5. **Recent survey papers** that provide comprehensive field overviews
+6. **Strong recent work** from top labs (Google, Meta, DeepMind, OpenAI, CMU, Stanford, etc.)
+
+## Search strategy
+
+Execute AT LEAST 15 targeted searches:
+
+1. `best paper award ACL EMNLP NeurIPS ICML ICLR 2026 Target: AAAI 2027
+Track: Information Retrieval and Text Mining
+
+Direction: Train an end-to-end visual document retrieval model that produces embeddings at three granularities (page, region, element) with explicit spatial grounding, using differentiable region proposals from intermediate VLM layers and multi-task training on page-level contrastive, element-level alignment, and spatial grounding losses. The model should close the 28.5pp page-vs-layout retrieval gap (MMDocIR) while producing bounding boxes for evidence localization (targeting >70% IoU@0.5 on ViDoRe V3, up from 59.7% baseline).
+
+Seed Papers:
+- ColPali (Faysse et al., ICLR 2025) — Established the late-interaction multi-vector paradigm for visual document retrieval; architecture base
+- MMDocIR (Dong et al., EMNLP 2025) — Benchmark revealing 28.5pp gap between page-level and layout-level retrieval; provides layout annotations for training
+- Spatially-Grounded Retrieval / Snappy (arXiv Dec 2025) — Inference-time patch-to-region propagation achieving 59.7% IoU@0.5; proves patch features contain spatial information but lacks learned optimization
+- AGREE (Cui et al., arXiv Nov 2025) — Attention-grounded enhancement using cross-modal attention as region supervision; closest existing work but targets page-level nDCG, not element retrieval
+- ColParse (Yan et al., arXiv Mar 2026) — Layout-informed sub-image embeddings achieving compression + accuracy gains; shows layout awareness helps but depends on external parser
+- MURE (Zhu et al., arXiv Mar 2026) — Multi-resolution hierarchical encoding; demonstrates multi-scale helps but doesn't do element retrieval
+- ViDoRe V3 (arXiv Jan 2026) — Benchmark with spatial grounding evaluation via bounding box IoU; evaluation target
+- RegionGPT (Guo et al., CVPR 2024) — Region-level understanding in VLMs via differentiable region proposals; architectural inspiration for learned region extraction
+
+Known Gaps:
+- No end-to-end model performs sub-page element retrieval from raw page images without external layout detectors (ColParse needs parsers, Multi-Granularity Framework needs VLM filtering)
+- Spatial grounding in visual document retrieval is limited to inference-time heuristics (59.7% IoU@0.5); no model learns to ground during training
+- The 28.5pp page-vs-layout gap (MMDocIR) has no solution that doesn't introduce pipeline components
+
+Theoretical Anchor: Vision transformer patch embeddings implicitly encode spatial layout information (evidenced by Snappy's inference-time grounding and AGREE's attention-based region discovery), but this information is never explicitly optimized during retrieval training. By introducing differentiable ROI pooling over ViT feature maps with element-level alignment supervision, we can convert implicit spatial encoding into explicit hierarchical retrieval capability — analogous to how Faster R-CNN made object detection end-to-end by replacing external proposals with learned region proposal networks.
+
+Constraints:
+- Compute: ≤200 H100-hours (LoRA fine-tuning on ColQwen2 architecture, ~100-150 hours estimated)
+- Training data: MMDocIR (1,685 expert + 173K bootstrapped queries with layout annotations), DocLayNet, PubLayNet
+- Evaluation: MMDocIR layout-level, ViDoRe V3 grounding (IoU@0.5), ViDoRe V2 page-level (no regression)
+
+Quality Self-Checks:
+- [x] Core insight: Patch embeddings already encode layout — training with element-level supervision makes this explicit and learnable.
+- [x] Why not obvious: Requires combining differentiable region proposals (from detection literature) with late-interaction retrieval (from IR literature) — cross-community gap.
+- [x] Baseline fear test: A simple baseline of "run layout detector then embed crops" exists (ColParse), but it can't jointly optimize detection and retrieval, and adds inference latency. The end-to-end model should beat it by 3-5pp on layout-level retrieval through joint optimization.
+- [x] Information exploited: Intermediate VLM layer features for region proposals + element-level bounding box annotations from MMDocIR/DocLayNet — neither used by any current retrieval model during training.
+
+Avoid:
+- Relying on external document parsers or layout detectors at inference time (the whole point is end-to-end)
+- Evaluating only on ViDoRe V1 (saturated; reviewers will flag this)
+- Proposing yet another compression method (crowded; 6+ papers in 12 months)
+- Bigger backbone scaling without architectural innovation (engineering contribution, not research)
+- OCR-vs-VLM comparisons (settled question since ColPali)`
+2. `oral spotlight {venue} 2026 {topic}` — for each major venue
+3. `site:openreview.net {topic} 2026 outstanding` — OpenReview 高分论文
+4. `{topic} survey 2026` 或 `{topic} survey 2025` — 综述论文
+5. `site:arxiv.org {topic} 2026` — arXiv 最新高引
+6. `most cited {topic} 2025 2026` — Google Scholar
+7. `site:paperswithcode.com {task} SOTA` — SOTA 排行榜上的论文
+8. `{topic} benchmark {year}` — 定义领域的 benchmark 论文
+9. 对每个找到的重要论文，搜索其 cited-by 发现后续工作
+
+For EVERY paper you find, use WebFetch to read its abstract and introduction on arXiv or OpenReview. Do NOT rely on search snippets alone — you need to understand what each paper actually does.
+
+## Output format
+
+Output a JSON array. Each element:
+{
+  "title": "Full paper title",
+  "authors": "First author et al.",
+  "venue": "EMNLP 2025 / NeurIPS 2024 / arXiv 2025 / ...",
+  "url": "https://arxiv.org/abs/... or openreview URL",
+  "why_important": "Best paper / Oral / High-cited / Introduced X / ...",
+  "one_line_summary": "What this paper does in one sentence"
+}
+
+Find at least 15 papers. More is better if they are genuinely relevant.
+IMPORTANT: You MUST end your response with the JSON array.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "fd509cba-f1fa-419d-ba8d-167e5b2ae6bd",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T06:13:17.060Z_
+
+```json
+{
+  "parentUuid": "fd509cba-f1fa-419d-ba8d-167e5b2ae6bd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "3a90565e-6aa8-48ff-8cc4-39b0719a76cd",
+  "timestamp": "2026-05-30T06:13:17.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T06:13:17.060Z_
+
+```json
+{
+  "parentUuid": "3a90565e-6aa8-48ff-8cc4-39b0719a76cd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c56f2456-36b2-4124-8085-f3b1eb46771a",
+  "timestamp": "2026-05-30T06:13:17.060Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T06:13:23.502Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to conduct a comprehensive literature survey to find the 15 most important recent papers (2024-2026) related to visual document retrieval with spatial grounding. Let me break this down into parallel search tasks to be efficient.
+
+I need to search for papers related to:
+1. Visual document retrieval (ColPali-style)
+2. Spatial grounding in document understanding
+3. Multi-granularity document embeddings
+4. Differentiable region proposals for VLMs
+5. Document layout analysis + retrieval
+6. Late-interaction retrieval models
+7. Vision-language models for document understanding
+
+
+8. 
+Now I'll set up parallel searches across these different research areas to gather the most relevant papers efficiently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c56f2456-36b2-4124-8085-f3b1eb46771a",
+  "isSidechain": false,
+  "requestId": "req_011CbYG3ax5e9F6zFzPUtaDG",
+  "type": "assistant",
+  "uuid": "3caa8dac-e01e-440b-b721-45972a395bf4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TSfnncuXd8gPexZbDauY4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15453,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15453,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 15453,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15453
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T06:13:23.505Z_
+
+I'll conduct this comprehensive literature survey by launching multiple parallel search agents covering different angles of the research area.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3caa8dac-e01e-440b-b721-45972a395bf4",
+  "isSidechain": false,
+  "requestId": "req_011CbYG3ax5e9F6zFzPUtaDG",
+  "type": "assistant",
+  "uuid": "d2d19f2d-7fd0-4bc5-b119-94fe91917acb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TSfnncuXd8gPexZbDauY4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15453,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15453,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 15453,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15453
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-30T06:13:23.793Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NZGMRbHaehrfMbVzzAgoyc`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2d19f2d-7fd0-4bc5-b119-94fe91917acb",
+  "isSidechain": false,
+  "requestId": "req_011CbYG3ax5e9F6zFzPUtaDG",
+  "type": "assistant",
+  "uuid": "41607510-4943-4bbe-9561-a6bc3a392c72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TSfnncuXd8gPexZbDauY4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15453,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 268,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15453,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 15453,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15453
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-30T06:13:23.800Z_
+
+<details><summary>↩ Tool result · `toolu_01NZGMRbHaehrfMbVzzAgoyc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41607510-4943-4bbe-9561-a6bc3a392c72",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "74773137-79b1-451f-80a1-4391b66166b9",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "41607510-4943-4bbe-9561-a6bc3a392c72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "74773137-79b1-451f-80a1-4391b66166b9",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-30T06:13:31.278Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have WebSearch and WebFetch available. Let me launch multiple parallel search agents to cover different aspects of this literature survey. I'll divide the searches into logical groups:
+
+1. Visual document retrieval (ColPali family, late-interaction models)
+2. Spatial grounding in VLMs / document understanding
+3. Multi-granularity retrieval / hierarchical document embeddings
+4. Differentiable region proposals / region-level VLM understanding
+5. Document layout analysis benchmarks and methods
+6. Best paper awards at top venues 2024-2026 in relevant areas
+7. Survey papers on visual document retrieval/understanding
+
+
+I'll start spinning up these search agents in parallel to gather comprehensive coverage across all these areas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74773137-79b1-451f-80a1-4391b66166b9",
+  "isSidechain": false,
+  "requestId": "req_011CbYG45djxq2h2D4kant8F",
+  "type": "assistant",
+  "uuid": "8d57ef5f-d4cd-437b-b075-e1fe63e20f04",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDmybzGB6wDoPGZkfZNy3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1288,
+      "cache_read_input_tokens": 15453,
+      "output_tokens": 2488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2488,
+          "cache_read_input_tokens": 15453,
+          "cache_creation_input_tokens": 1288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-30T06:13:31.279Z_
+
+Now let me launch multiple parallel search agents to cover the full breadth of this survey efficiently.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d57ef5f-d4cd-437b-b075-e1fe63e20f04",
+  "isSidechain": false,
+  "requestId": "req_011CbYG45djxq2h2D4kant8F",
+  "type": "assistant",
+  "uuid": "ad3ff660-a161-49cd-842e-09c84dc8ed1f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDmybzGB6wDoPGZkfZNy3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1288,
+      "cache_read_input_tokens": 15453,
+      "output_tokens": 2488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2488,
+          "cache_read_input_tokens": 15453,
+          "cache_creation_input_tokens": 1288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-30T06:13:40.117Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01UhymC4VQJEFi14LLDxzLQ3`</summary>
+
+```json
+{
+  "description": "Search: ColPali family & visual doc retrieval",
+  "prompt": "You are helping with a literature survey on visual document retrieval. Search for the most important recent papers (2024-2026) that build on or relate to ColPali (late-interaction visual document retrieval).\n\nExecute these searches and for each promising paper, fetch its arxiv abstract:\n\n1. Search: \"ColPali visual document retrieval 2025 2026\"\n2. Search: \"late interaction document retrieval visual 2025 2026\"\n3. Search: \"ColQwen document retrieval embedding 2025 2026\"\n4. Search: \"visual document retrieval without OCR 2025 2026\"\n5. Search: \"site:arxiv.org ColPali document retrieval 2025 2026\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract and understand what it does. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue (if published) or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important (citations, awards, impact)\n\nFocus on papers that are NOT in this seed list: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible (aim for 8-10).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad3ff660-a161-49cd-842e-09c84dc8ed1f",
+  "isSidechain": false,
+  "requestId": "req_011CbYG45djxq2h2D4kant8F",
+  "type": "assistant",
+  "uuid": "62ed3702-be1f-4554-b306-82b689a44612",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDmybzGB6wDoPGZkfZNy3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1288,
+      "cache_read_input_tokens": 15453,
+      "output_tokens": 2488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2488,
+          "cache_read_input_tokens": 15453,
+          "cache_creation_input_tokens": 1288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-30T06:13:44.143Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01JmCNHcBCaa7zSVZFntTtmj`</summary>
+
+```json
+{
+  "description": "Search: spatial grounding in VLMs",
+  "prompt": "You are helping with a literature survey on spatial grounding in vision-language models, specifically for document understanding and retrieval.\n\nExecute these searches and for each promising paper, fetch its arxiv abstract:\n\n1. Search: \"spatial grounding vision language model document 2024 2025 2026\"\n2. Search: \"visual grounding document understanding bounding box 2025 2026\"\n3. Search: \"grounded document retrieval spatial localization 2025 2026\"\n4. Search: \"differentiable region proposal vision transformer 2024 2025\"\n5. Search: \"ROI pooling vision language model region features 2024 2025\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important\n\nExclude these seed papers: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible (aim for 6-8).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62ed3702-be1f-4554-b306-82b689a44612",
+  "isSidechain": false,
+  "requestId": "req_011CbYG45djxq2h2D4kant8F",
+  "type": "assistant",
+  "uuid": "d1b1fe31-5c43-4df2-b885-87066a750762",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDmybzGB6wDoPGZkfZNy3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1288,
+      "cache_read_input_tokens": 15453,
+      "output_tokens": 2488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2488,
+          "cache_read_input_tokens": 15453,
+          "cache_creation_input_tokens": 1288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-30T06:13:47.967Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01LZjGoNy2MxnJPZCyisQbZE`</summary>
+
+```json
+{
+  "description": "Search: multi-granularity & hierarchical retrieval",
+  "prompt": "You are helping with a literature survey on multi-granularity and hierarchical document retrieval/understanding.\n\nExecute these searches and for each promising paper, fetch its arxiv abstract:\n\n1. Search: \"multi-granularity document retrieval embedding 2024 2025 2026\"\n2. Search: \"hierarchical document embedding retrieval page region 2025 2026\"\n3. Search: \"element-level document retrieval sub-page 2025 2026\"\n4. Search: \"multi-scale document understanding vision 2024 2025 2026\"\n5. Search: \"document layout retrieval region matching 2025 2026\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important\n\nExclude these seed papers: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible (aim for 6-8).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1b1fe31-5c43-4df2-b885-87066a750762",
+  "isSidechain": false,
+  "requestId": "req_011CbYG45djxq2h2D4kant8F",
+  "type": "assistant",
+  "uuid": "db266357-35ab-4467-be85-de4c6087b3d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDmybzGB6wDoPGZkfZNy3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1288,
+      "cache_read_input_tokens": 15453,
+      "output_tokens": 2488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2488,
+          "cache_read_input_tokens": 15453,
+          "cache_creation_input_tokens": 1288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-30T06:13:54.124Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015H6NyTZdYbib9uZajviAtu`</summary>
+
+```json
+{
+  "description": "Search: best papers & awards 2024-2026",
+  "prompt": "You are helping with a literature survey. Search for best paper awards and outstanding/oral papers at top venues in 2024-2026 that relate to: document understanding, visual retrieval, vision-language models, spatial grounding, or information retrieval.\n\nExecute these searches:\n\n1. Search: \"best paper award ICLR 2025 2026 vision language\"\n2. Search: \"best paper award NeurIPS 2024 2025 retrieval vision\"\n3. Search: \"best paper award ACL EMNLP 2025 document retrieval\"\n4. Search: \"best paper award CVPR ECCV 2024 2025 document understanding\"\n5. Search: \"outstanding paper ICML NeurIPS 2025 multimodal retrieval\"\n6. Search: \"oral spotlight ICLR 2026 document retrieval visual\"\n7. Search: \"site:openreview.net document retrieval visual 2025 2026 outstanding\"\n\nFor each relevant paper you find, use WebFetch on its arxiv/openreview page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue and award type\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important (award, citation count, impact)\n\nFind as many relevant papers as possible.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db266357-35ab-4467-be85-de4c6087b3d7",
+  "isSidechain": false,
+  "requestId": "req_011CbYG45djxq2h2D4kant8F",
+  "type": "assistant",
+  "uuid": "43afab1d-6b0f-4c31-9b71-91b0d6c42a3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDmybzGB6wDoPGZkfZNy3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1288,
+      "cache_read_input_tokens": 15453,
+      "output_tokens": 2488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2488,
+          "cache_read_input_tokens": 15453,
+          "cache_creation_input_tokens": 1288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-30T06:13:58.442Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01VLvsAuYV4C47Duh67dvs8s`</summary>
+
+```json
+{
+  "description": "Search: document layout & detection models",
+  "prompt": "You are helping with a literature survey on document layout analysis, detection, and end-to-end document understanding models.\n\nExecute these searches and for each promising paper, fetch its arxiv abstract:\n\n1. Search: \"end-to-end document layout detection vision transformer 2024 2025 2026\"\n2. Search: \"DocLayNet PubLayNet document layout analysis 2024 2025\"\n3. Search: \"document region detection differentiable proposal 2025 2026\"\n4. Search: \"learned region proposal network vision language 2024 2025\"\n5. Search: \"multi-task document understanding layout grounding 2025 2026\"\n6. Search: \"contrastive learning document layout region 2024 2025\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important\n\nExclude these seed papers: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible (aim for 6-8).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43afab1d-6b0f-4c31-9b71-91b0d6c42a3d",
+  "isSidechain": false,
+  "requestId": "req_011CbYG45djxq2h2D4kant8F",
+  "type": "assistant",
+  "uuid": "a4b662c3-6cb1-4c14-a143-8f9477a1eb15",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDmybzGB6wDoPGZkfZNy3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1288,
+      "cache_read_input_tokens": 15453,
+      "output_tokens": 2488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2488,
+          "cache_read_input_tokens": 15453,
+          "cache_creation_input_tokens": 1288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-30T06:14:02.180Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Wfhmms9V49tgTFp3khLbRL`</summary>
+
+```json
+{
+  "description": "Search: surveys & benchmarks doc retrieval",
+  "prompt": "You are helping with a literature survey. Search for survey papers and important benchmarks related to visual document retrieval, document understanding with VLMs, and multimodal information retrieval.\n\nExecute these searches:\n\n1. Search: \"visual document retrieval survey 2025 2026\"\n2. Search: \"document understanding vision language model survey 2025\"\n3. Search: \"multimodal information retrieval survey 2024 2025\"\n4. Search: \"ViDoRe benchmark visual document retrieval 2025 2026\"\n5. Search: \"document retrieval benchmark evaluation 2025 2026\"\n6. Search: \"site:paperswithcode.com visual document retrieval SOTA\"\n7. Search: \"most cited visual document retrieval 2024 2025\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important\n\nExclude these seed papers: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4b662c3-6cb1-4c14-a143-8f9477a1eb15",
+  "isSidechain": false,
+  "requestId": "req_011CbYG45djxq2h2D4kant8F",
+  "type": "assistant",
+  "uuid": "0ff61195-548e-4be3-9cbf-51a988acf89b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UDmybzGB6wDoPGZkfZNy3t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1288,
+      "cache_read_input_tokens": 15453,
+      "output_tokens": 2488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1288,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2488,
+          "cache_read_input_tokens": 15453,
+          "cache_creation_input_tokens": 1288,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1288
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-30T06:15:39.083Z_
+
+<details><summary>↩ Tool result · `toolu_01LZjGoNy2MxnJPZCyisQbZE`</summary>
+
+```text
+Now I have a comprehensive set of papers. Let me compile the final report, excluding the seed papers (ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT). Note that paper 2512.02660 is actually Snappy, so I'll exclude it.
+
+Here is the literature survey on multi-granularity and hierarchical document retrieval/understanding:
+
+---
+
+## Paper 1: M3-Embedding
+
+- **Title:** M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation
+- **Authors:** Jianlv Chen et al.
+- **Venue:** ACL 2024 Findings (arXiv: Feb 2024, revised Dec 2025)
+- **URL:** https://arxiv.org/abs/2402.03216
+- **What it does:** Presents a text embedding model that unifies three retrieval paradigms (dense, multi-vector/ColBERT, and sparse/lexical) in a single model, supporting 100+ languages and inputs up to 8,192 tokens. It uses a self-knowledge distillation method where relevance scores from different retrieval functionalities serve as mutual training signals, achieving SOTA on multilingual, cross-lingual, and long-document retrieval benchmarks.
+- **Why it's important:** Establishes the multi-granularity embedding paradigm for text -- handling sentence-level to document-level inputs in one model with multiple retrieval modes. This is a foundational reference for understanding how granularity flexibility can be baked into the embedding itself.
+
+---
+
+## Paper 2: A Multi-Granularity Retrieval Framework for Visually-Rich Documents
+
+- **Title:** A Multi-Granularity Retrieval Framework for Visually-Rich Documents
+- **Authors:** Mingjun Xu et al.
+- **Venue:** arXiv, May 2025
+- **URL:** https://arxiv.org/abs/2505.01457
+- **What it does:** Proposes a training-free multi-granularity multimodal retrieval framework for documents with text, images, tables, and charts. It combines hierarchical encoding with modality-aware mechanisms and VLM-based candidate verification, using ColQwen2-7B for page-level retrieval and GME-7B for text-to-OCR and text-to-region retrieval. Achieves top performance (65.56) on MMDocIR and M2KR benchmarks.
+- **Why it's important:** Directly addresses the core research question of combining page-level and region-level retrieval in a unified framework, demonstrating that layout-aware search at multiple granularities outperforms single-granularity approaches for visually rich documents.
+
+---
+
+## Paper 3: MetaEmbed
+
+- **Title:** MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction
+- **Authors:** Zilin Xiao et al.
+- **Venue:** arXiv, Sep 2025 (revised Apr 2026)
+- **URL:** https://arxiv.org/abs/2509.18095
+- **What it does:** Introduces learnable "Meta Tokens" appended to input sequences during training; at test time, their contextualized representations serve as compact multi-vector embeddings. Uses "Matryoshka Multi-Vector Retrieval" training to organize information hierarchically across vectors, enabling users to select the number of tokens used for indexing and retrieval to balance quality vs. efficiency. Achieves SOTA on MMEB and ViDoRe benchmarks, scaling to 32B-parameter models.
+- **Why it's important:** Provides a principled mechanism for test-time granularity control in multi-vector retrieval -- the user can trade off between a small number of vectors (coarse, fast) and many vectors (fine-grained, accurate). This Matryoshka-style approach to multi-vector embeddings is highly relevant for adaptive hierarchical retrieval.
+
+---
+
+## Paper 4: SEAL
+
+- **Title:** SEAL: Structure and Element Aware Learning to Improve Long Structured Document Retrieval
+- **Authors:** Xinhao Huang et al.
+- **Venue:** EMNLP 2025 (arXiv: Aug 2025)
+- **URL:** https://arxiv.org/abs/2508.20778
+- **What it does:** Addresses long structured document retrieval by leveraging document structure (sections, headings, sub-elements). Uses structure-aware learning to preserve semantic hierarchies and masked element alignment for fine-grained element-level discrimination. Introduces StructDocRetrieval, a dataset with rich structural annotations. Boosts NDCG@10 from 73.96% to 77.84% on BGE-M3.
+- **Why it's important:** One of the few papers that explicitly models document element hierarchy (sections, subsections, elements) for retrieval. The masked element alignment technique is a novel way to make embeddings sensitive to sub-document structure, directly relevant to hierarchical document retrieval.
+
+---
+
+## Paper 5: SCAN
+
+- **Title:** SCAN: Semantic Document Layout Analysis for Textual and Visual Retrieval-Augmented Generation
+- **Authors:** Nobuhiro Ueda et al.
+- **Venue:** arXiv, May 2025 (revised Feb 2026)
+- **URL:** https://arxiv.org/abs/2505.14381
+- **What it does:** Proposes a method that divides document pages into semantically coherent regions at the right granularity using fine-tuned object detection models, then uses these regions as retrieval units for both textual and visual RAG pipelines. Evaluated on English and Japanese datasets, improving textual RAG by up to 9.4 points and visual RAG by up to 10.4 points over conventional approaches.
+- **Why it's important:** Directly tackles the question of what the right sub-page retrieval unit should be. Instead of using fixed patches or full pages, it uses layout-aware semantic segmentation to define retrieval regions, bridging the gap between document layout analysis and retrieval.
+
+---
+
+## Paper 6: Beyond Bag-of-Patches
+
+- **Title:** Beyond Bag-of-Patches: Learning Global Layout via Textual Supervision for Late-Interaction Visual Document Retrieval
+- **Authors:** Pascal Tilli, Mohsen Mesgar
+- **Venue:** arXiv, May 2026
+- **URL:** https://arxiv.org/abs/2605.08421
+- **What it does:** Identifies a key limitation of ColPali-style late-interaction models: they treat document pages as unordered bags of patches, ignoring global layout structure. Proposes a multimodal encoder that augments local patch representations with a global layout embedding, trained via textual descriptions encoding document layout information. Achieves +2.4 nDCG@5 and +2.3 MAP@5 over ColPali/ColQwen baselines on ViDoRe-v2.
+- **Why it's important:** Directly addresses the tension between local patch-level and global layout-level understanding in visual document retrieval. Shows that adding layout-aware global context to patch embeddings consistently improves retrieval, which is a key insight for multi-granularity approaches.
+
+---
+
+## Paper 7: Hierarchical Visual Feature Aggregation for OCR-Free Document Understanding
+
+- **Title:** Hierarchical Visual Feature Aggregation for OCR-Free Document Understanding
+- **Authors:** Jaeyoo Park et al.
+- **Venue:** arXiv, Nov 2024
+- **URL:** https://arxiv.org/abs/2411.05254
+- **What it does:** Presents an OCR-free document understanding framework that uses multi-scale visual features to handle varying font sizes. Introduces a Hierarchical Visual Feature Aggregation (HVFA) module that constructs a feature pyramid with cross-attentive pooling to balance information preservation and computational efficiency. Also proposes a relative position prediction training task to improve text-reading capability.
+- **Why it's important:** Demonstrates how hierarchical multi-scale visual representations can capture document content at different granularities (from fine text to coarse layout) without OCR. The feature pyramid approach is conceptually relevant to multi-granularity retrieval -- showing that different scales capture different document elements.
+
+---
+
+## Paper 8: Evidence Units
+
+- **Title:** Evidence Units: Ontology-Grounded Document Organization for Parser-Independent Retrieval
+- **Authors:** Yeonjee Han
+- **Venue:** arXiv, Apr 2026
+- **URL:** https://arxiv.org/abs/2604.00500
+- **What it does:** Addresses the problem of semantic fragmentation during document indexing, where related content (tables with captions, figures with explanations) gets scattered across chunks. Proposes "Evidence Units" (EUs) -- semantically complete document chunks that group visual content with its contextual information using ontology-based role normalization and a semantic assignment algorithm. Validates consistency across different document parsers and achieves 3.4x improvement in Recall@1 on OmniDocBench.
+- **Why it's important:** Provides a principled approach to defining what constitutes a coherent sub-page retrieval unit. Rather than arbitrary chunking or fixed-size windows, Evidence Units are semantically motivated groupings that preserve cross-element relationships. This is directly relevant to the question of optimal retrieval granularity.
+
+---
+
+## Paper 9: Entropy-Gradient Grounding
+
+- **Title:** Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models
+- **Authors:** Marcel Gropl et al.
+- **Venue:** arXiv, Apr 2026
+- **URL:** https://arxiv.org/abs/2604.08456
+- **What it does:** Proposes a training-free method for identifying query-relevant visual regions in VLMs by computing entropy from the model's output distribution and backpropagating uncertainty to visual embeddings to create spatial relevance maps. Includes an iterative refinement procedure. Demonstrates improvements on seven benchmarks across four VLM architectures, with especially strong results on detail-sensitive and high-resolution tasks.
+- **Why it's important:** Offers a complementary approach to explicit multi-granularity retrieval: instead of pre-defining retrieval units at different granularities, it dynamically identifies relevant sub-regions at inference time using gradient-based attention. This is a useful technique for post-retrieval evidence localization within retrieved pages.
+
+---
+
+## Summary
+
+The 9 papers above cover the multi-granularity/hierarchical document retrieval space along several axes:
+
+| Axis | Papers |
+|------|--------|
+| Multi-granularity embeddings | M3-Embedding, MetaEmbed |
+| Page-to-region retrieval frameworks | Multi-Granularity Framework (Xu et al.), SCAN |
+| Structure-aware retrieval | SEAL, Evidence Units |
+| Layout-aware visual retrieval | Beyond Bag-of-Patches |
+| Multi-scale visual features | HVFA (Park et al.) |
+| Dynamic region localization | Entropy-Gradient Grounding |
+
+agentId: aa8558a33143c00e1 (use SendMessage with to: 'aa8558a33143c00e1' to continue this agent)
+&lt;usage>total_tokens: 23713
+tool_uses: 22
+duration_ms: 111112&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db266357-35ab-4467-be85-de4c6087b3d7",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "5677d6ac-f22e-4c67-b91c-dfee059b8f62",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping with a literature survey on multi-granularity and hierarchical document retrieval/understanding.\n\nExecute these searches and for each promising paper, fetch its arxiv abstract:\n\n1. Search: \"multi-granularity document retrieval embedding 2024 2025 2026\"\n2. Search: \"hierarchical document embedding retrieval page region 2025 2026\"\n3. Search: \"element-level document retrieval sub-page 2025 2026\"\n4. Search: \"multi-scale document understanding vision 2024 2025 2026\"\n5. Search: \"document layout retrieval region matching 2025 2026\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important\n\nExclude these seed papers: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible (aim for 6-8).",
+    "agentId": "aa8558a33143c00e1",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have a comprehensive set of papers. Let me compile the final report, excluding the seed papers (ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT). Note that paper 2512.02660 is actually Snappy, so I'll exclude it.\n\nHere is the literature survey on multi-granularity and hierarchical document retrieval/understanding:\n\n---\n\n## Paper 1: M3-Embedding\n\n- **Title:** M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation\n- **Authors:** Jianlv Chen et al.\n- **Venue:** ACL 2024 Findings (arXiv: Feb 2024, revised Dec 2025)\n- **URL:** https://arxiv.org/abs/2402.03216\n- **What it does:** Presents a text embedding model that unifies three retrieval paradigms (dense, multi-vector/ColBERT, and sparse/lexical) in a single model, supporting 100+ languages and inputs up to 8,192 tokens. It uses a self-knowledge distillation method where relevance scores from different retrieval functionalities serve as mutual training signals, achieving SOTA on multilingual, cross-lingual, and long-document retrieval benchmarks.\n- **Why it's important:** Establishes the multi-granularity embedding paradigm for text -- handling sentence-level to document-level inputs in one model with multiple retrieval modes. This is a foundational reference for understanding how granularity flexibility can be baked into the embedding itself.\n\n---\n\n## Paper 2: A Multi-Granularity Retrieval Framework for Visually-Rich Documents\n\n- **Title:** A Multi-Granularity Retrieval Framework for Visually-Rich Documents\n- **Authors:** Mingjun Xu et al.\n- **Venue:** arXiv, May 2025\n- **URL:** https://arxiv.org/abs/2505.01457\n- **What it does:** Proposes a training-free multi-granularity multimodal retrieval framework for documents with text, images, tables, and charts. It combines hierarchical encoding with modality-aware mechanisms and VLM-based candidate verification, using ColQwen2-7B for page-level retrieval and GME-7B for text-to-OCR and text-to-region retrieval. Achieves top performance (65.56) on MMDocIR and M2KR benchmarks.\n- **Why it's important:** Directly addresses the core research question of combining page-level and region-level retrieval in a unified framework, demonstrating that layout-aware search at multiple granularities outperforms single-granularity approaches for visually rich documents.\n\n---\n\n## Paper 3: MetaEmbed\n\n- **Title:** MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction\n- **Authors:** Zilin Xiao et al.\n- **Venue:** arXiv, Sep 2025 (revised Apr 2026)\n- **URL:** https://arxiv.org/abs/2509.18095\n- **What it does:** Introduces learnable \"Meta Tokens\" appended to input sequences during training; at test time, their contextualized representations serve as compact multi-vector embeddings. Uses \"Matryoshka Multi-Vector Retrieval\" training to organize information hierarchically across vectors, enabling users to select the number of tokens used for indexing and retrieval to balance quality vs. efficiency. Achieves SOTA on MMEB and ViDoRe benchmarks, scaling to 32B-parameter models.\n- **Why it's important:** Provides a principled mechanism for test-time granularity control in multi-vector retrieval -- the user can trade off between a small number of vectors (coarse, fast) and many vectors (fine-grained, accurate). This Matryoshka-style approach to multi-vector embeddings is highly relevant for adaptive hierarchical retrieval.\n\n---\n\n## Paper 4: SEAL\n\n- **Title:** SEAL: Structure and Element Aware Learning to Improve Long Structured Document Retrieval\n- **Authors:** Xinhao Huang et al.\n- **Venue:** EMNLP 2025 (arXiv: Aug 2025)\n- **URL:** https://arxiv.org/abs/2508.20778\n- **What it does:** Addresses long structured document retrieval by leveraging document structure (sections, headings, sub-elements). Uses structure-aware learning to preserve semantic hierarchies and masked element alignment for fine-grained element-level discrimination. Introduces StructDocRetrieval, a dataset with rich structural annotations. Boosts NDCG@10 from 73.96% to 77.84% on BGE-M3.\n- **Why it's important:** One of the few papers that explicitly models document element hierarchy (sections, subsections, elements) for retrieval. The masked element alignment technique is a novel way to make embeddings sensitive to sub-document structure, directly relevant to hierarchical document retrieval.\n\n---\n\n## Paper 5: SCAN\n\n- **Title:** SCAN: Semantic Document Layout Analysis for Textual and Visual Retrieval-Augmented Generation\n- **Authors:** Nobuhiro Ueda et al.\n- **Venue:** arXiv, May 2025 (revised Feb 2026)\n- **URL:** https://arxiv.org/abs/2505.14381\n- **What it does:** Proposes a method that divides document pages into semantically coherent regions at the right granularity using fine-tuned object detection models, then uses these regions as retrieval units for both textual and visual RAG pipelines. Evaluated on English and Japanese datasets, improving textual RAG by up to 9.4 points and visual RAG by up to 10.4 points over conventional approaches.\n- **Why it's important:** Directly tackles the question of what the right sub-page retrieval unit should be. Instead of using fixed patches or full pages, it uses layout-aware semantic segmentation to define retrieval regions, bridging the gap between document layout analysis and retrieval.\n\n---\n\n## Paper 6: Beyond Bag-of-Patches\n\n- **Title:** Beyond Bag-of-Patches: Learning Global Layout via Textual Supervision for Late-Interaction Visual Document Retrieval\n- **Authors:** Pascal Tilli, Mohsen Mesgar\n- **Venue:** arXiv, May 2026\n- **URL:** https://arxiv.org/abs/2605.08421\n- **What it does:** Identifies a key limitation of ColPali-style late-interaction models: they treat document pages as unordered bags of patches, ignoring global layout structure. Proposes a multimodal encoder that augments local patch representations with a global layout embedding, trained via textual descriptions encoding document layout information. Achieves +2.4 nDCG@5 and +2.3 MAP@5 over ColPali/ColQwen baselines on ViDoRe-v2.\n- **Why it's important:** Directly addresses the tension between local patch-level and global layout-level understanding in visual document retrieval. Shows that adding layout-aware global context to patch embeddings consistently improves retrieval, which is a key insight for multi-granularity approaches.\n\n---\n\n## Paper 7: Hierarchical Visual Feature Aggregation for OCR-Free Document Understanding\n\n- **Title:** Hierarchical Visual Feature Aggregation for OCR-Free Document Understanding\n- **Authors:** Jaeyoo Park et al.\n- **Venue:** arXiv, Nov 2024\n- **URL:** https://arxiv.org/abs/2411.05254\n- **What it does:** Presents an OCR-free document understanding framework that uses multi-scale visual features to handle varying font sizes. Introduces a Hierarchical Visual Feature Aggregation (HVFA) module that constructs a feature pyramid with cross-attentive pooling to balance information preservation and computational efficiency. Also proposes a relative position prediction training task to improve text-reading capability.\n- **Why it's important:** Demonstrates how hierarchical multi-scale visual representations can capture document content at different granularities (from fine text to coarse layout) without OCR. The feature pyramid approach is conceptually relevant to multi-granularity retrieval -- showing that different scales capture different document elements.\n\n---\n\n## Paper 8: Evidence Units\n\n- **Title:** Evidence Units: Ontology-Grounded Document Organization for Parser-Independent Retrieval\n- **Authors:** Yeonjee Han\n- **Venue:** arXiv, Apr 2026\n- **URL:** https://arxiv.org/abs/2604.00500\n- **What it does:** Addresses the problem of semantic fragmentation during document indexing, where related content (tables with captions, figures with explanations) gets scattered across chunks. Proposes \"Evidence Units\" (EUs) -- semantically complete document chunks that group visual content with its contextual information using ontology-based role normalization and a semantic assignment algorithm. Validates consistency across different document parsers and achieves 3.4x improvement in Recall@1 on OmniDocBench.\n- **Why it's important:** Provides a principled approach to defining what constitutes a coherent sub-page retrieval unit. Rather than arbitrary chunking or fixed-size windows, Evidence Units are semantically motivated groupings that preserve cross-element relationships. This is directly relevant to the question of optimal retrieval granularity.\n\n---\n\n## Paper 9: Entropy-Gradient Grounding\n\n- **Title:** Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models\n- **Authors:** Marcel Gropl et al.\n- **Venue:** arXiv, Apr 2026\n- **URL:** https://arxiv.org/abs/2604.08456\n- **What it does:** Proposes a training-free method for identifying query-relevant visual regions in VLMs by computing entropy from the model's output distribution and backpropagating uncertainty to visual embeddings to create spatial relevance maps. Includes an iterative refinement procedure. Demonstrates improvements on seven benchmarks across four VLM architectures, with especially strong results on detail-sensitive and high-resolution tasks.\n- **Why it's important:** Offers a complementary approach to explicit multi-granularity retrieval: instead of pre-defining retrieval units at different granularities, it dynamically identifies relevant sub-regions at inference time using gradient-based attention. This is a useful technique for post-retrieval evidence localization within retrieved pages.\n\n---\n\n## Summary\n\nThe 9 papers above cover the multi-granularity/hierarchical document retrieval space along several axes:\n\n| Axis | Papers |\n|------|--------|\n| Multi-granularity embeddings | M3-Embedding, MetaEmbed |\n| Page-to-region retrieval frameworks | Multi-Granularity Framework (Xu et al.), SCAN |\n| Structure-aware retrieval | SEAL, Evidence Units |\n| Layout-aware visual retrieval | Beyond Bag-of-Patches |\n| Multi-scale visual features | HVFA (Park et al.) |\n| Dynamic region localization | Entropy-Gradient Grounding |"
+      }
+    ],
+    "totalDurationMs": 111112,
+    "totalTokens": 23713,
+    "totalToolUseCount": 22,
+    "usage": {
+      "input_tokens": 250,
+      "cache_creation_input_tokens": 1609,
+      "cache_read_input_tokens": 19223,
+      "output_tokens": 2631,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1609
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 250,
+          "output_tokens": 2631,
+          "cache_read_input_tokens": 19223,
+          "cache_creation_input_tokens": 1609,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1609,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 22
+    }
+  },
+  "sourceToolAssistantUUID": "db266357-35ab-4467-be85-de4c6087b3d7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "5677d6ac-f22e-4c67-b91c-dfee059b8f62",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-30T06:16:15.597Z_
+
+<details><summary>↩ Tool result · `toolu_01JmCNHcBCaa7zSVZFntTtmj`</summary>
+
+```text
+Good -- so the v1 HTML page confirms BBox-DocVQA. The abstract fetcher may have pulled from a different version. Now I have all the information I need. Let me compile the final report.
+
+Here is the literature survey. I have excluded all seed papers (ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT).
+
+---
+
+## Literature Survey: Spatial Grounding in Vision-Language Models for Document Understanding and Retrieval
+
+### Paper 1: EaGERS -- Spatially Grounded Explanations in VLMs for Document VQA
+
+- **Full title:** Spatially Grounded Explanations in Vision-Language Models for Document Visual Question Answering
+- **Authors:** Hormazabal Lagos et al.
+- **Date:** arXiv, July 15, 2025
+- **URL:** https://arxiv.org/abs/2507.12490
+- **What it does:** Introduces EaGERS, a training-free, model-agnostic system that generates natural language rationales via a VLM, anchors them to spatial regions by computing embedding similarities across a grid with majority voting, and constrains answer generation to only use relevant masked regions. Tested on DocVQA, it improves accuracy while enhancing transparency without fine-tuning.
+- **Why it's important:** Demonstrates that spatial grounding in document VQA can be achieved post-hoc without retraining, offering an interpretability layer that any VLM can use. Directly relevant to understanding how spatial evidence localization improves document understanding.
+
+---
+
+### Paper 2: BBox-DocVQA
+
+- **Full title:** BBox-DocVQA: A Large-Scale Bounding-Box-Grounded Dataset for Enhancing Reasoning in Document Visual Question Answer
+- **Authors:** Yu et al.
+- **Date:** arXiv, November 19, 2025
+- **URL:** https://arxiv.org/abs/2511.15090
+- **What it does:** Introduces a large-scale dataset of 3.6K PDF documents and 32K QA pairs where every answer is grounded with explicit bounding boxes. Uses a Segment-Judge-and-Generate pipeline combining SAM and a VLM, followed by human verification. Benchmarks GPT-5, Qwen2.5-VL, and InternVL, revealing persistent challenges in spatial grounding accuracy.
+- **Why it's important:** Provides the first large-scale benchmark that operationalizes fine-grained spatial grounding in DocVQA with bounding-box supervision. Essential for evaluating any spatial grounding approach to document understanding.
+
+---
+
+### Paper 3: Doc-CoB -- Visual Chain-of-Boxes Reasoning
+
+- **Full title:** Doc-CoB: Enhancing Document Understanding with Visual Chain-of-Boxes Reasoning
+- **Authors:** Mo et al.
+- **Date:** arXiv, May 24, 2025 (revised May 26, 2026)
+- **URL:** https://arxiv.org/abs/2505.18603
+- **What it does:** Introduces a coarse-to-fine layout-aware visual reasoning framework for multimodal LLMs. The model represents document layouts as boxes and progressively narrows focus from the full document to relevant regions through box recognition and box reasoning tasks. An automated pipeline generates ~249K training samples with intermediate visual supervision. Evaluated across 7 benchmarks with 4 models.
+- **Why it's important:** Proposes an explicit spatial reasoning chain ("chain-of-boxes") that makes the model's spatial localization process interpretable and trainable. Bridges the gap between layout understanding and region-level document comprehension.
+
+---
+
+### Paper 4: CoExVQA -- Self-Explainable Document VQA with Chain-of-Explanation
+
+- **Full title:** Towards Self-Explainable Document Visual Question Answering with Chain-of-Explanation Predictions
+- **Authors:** Indrehus et al.
+- **Date:** arXiv, May 7, 2026
+- **URL:** https://arxiv.org/abs/2605.06058
+- **What it does:** Proposes CoExVQA, which decomposes document VQA into explicit steps: identifying relevant evidence, localizing the answer region spatially, and extracting the answer from that grounded area. Achieves state-of-the-art explainable DocVQA performance on PFL-DocVQA, improving ANLS by 12% over explainable baselines while providing transparent, verifiable predictions.
+- **Why it's important:** Directly tackles the spatial localization step as a first-class component of document QA rather than an afterthought. The separation of evidence identification from answer extraction is a clean architectural insight for grounded document understanding.
+
+---
+
+### Paper 5: RegionRAG -- Region-level Retrieval-Augmented Generation
+
+- **Full title:** RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding
+- **Authors:** Li et al.
+- **Date:** arXiv, October 31, 2025 (revised December 21, 2025)
+- **URL:** https://arxiv.org/abs/2510.27261
+- **What it does:** Shifts multi-modal retrieval from document-level to region-level granularity. Uses hybrid supervision during training to identify relevant patches from both labeled and unlabeled data, then dynamically groups salient patches into coherent semantic regions at inference. Achieves 10.02% improvement in retrieval accuracy (R@1) and 3.56% in QA accuracy while using only 71.42% of the visual tokens compared to prior methods.
+- **Why it's important:** Directly addresses the core problem of spatial grounding in document retrieval -- retrieving regions rather than full pages. The token efficiency gains are particularly relevant for scaling grounded retrieval to large document collections.
+
+---
+
+### Paper 6: GutenOCR -- A Grounded Vision-Language Front-End for Documents
+
+- **Full title:** GutenOCR: A Grounded Vision-Language Front-End for Documents
+- **Authors:** Heidenreich et al.
+- **Date:** arXiv, January 20, 2026
+- **URL:** https://arxiv.org/abs/2601.14490
+- **What it does:** Fine-tunes Qwen VLMs (3B and 7B) into grounded OCR interfaces that unify reading, detection, and spatial grounding through a single prompt-based framework. Trained on business documents, scientific articles, and synthetic grounding data, enabling full-page and localized reading with line/paragraph-level bounding boxes plus conditional spatial queries. The 7B model doubles its backbone's grounded OCR score (0.40 to 0.82).
+- **Why it's important:** Provides a practical grounded document front-end that can produce spatially localized OCR output. This is foundational infrastructure for any downstream spatial grounding task in document retrieval or understanding, since it generates the region-text pairs that later stages rely on.
+
+---
+
+### Paper 7: Localization Heads -- Few Attention Heads for Visual Grounding
+
+- **Full title:** Your Large Vision-Language Model Only Needs A Few Attention Heads For Visual Grounding
+- **Authors:** Kang et al.
+- **Date:** arXiv, March 8, 2025
+- **URL:** https://arxiv.org/abs/2503.06287
+- **What it does:** Discovers that frozen LVLMs contain specific "localization heads" -- attention heads that naturally capture object locations related to text semantics. Shows that only 3 out of thousands of attention heads are sufficient to achieve competitive localization performance compared to fine-tuned LVLM-based visual grounding methods, enabling a training-free grounding framework.
+- **Why it's important:** Provides mechanistic insight into how VLMs perform spatial grounding internally. The finding that grounding is concentrated in very few attention heads has implications for efficient region extraction in document retrieval pipelines without requiring additional training.
+
+---
+
+### Paper 8: DART -- Differentiable Adaptive Region Tokenizer
+
+- **Full title:** DART: Differentiable Dynamic Adaptive Region Tokenizer for Vision Foundation Models
+- **Authors:** Yin et al.
+- **Date:** arXiv, June 12, 2025 (revised September 29, 2025)
+- **URL:** https://arxiv.org/abs/2506.10390
+- **What it does:** Introduces a fully differentiable tokenizer that replaces fixed-grid patch tokenization with content-aware, variable-size patches using learnable region scores and quantile-based partitioning. A DART-equipped DeiT-Small (22M params) matches DeiT-Base (86M params) at nearly 2x inference speed. Validated on image classification, dense prediction, and video tasks.
+- **Why it's important:** Addresses the fundamental tokenization bottleneck in vision transformers. For document understanding, adaptive tokenization could allocate more tokens to information-dense regions (text, tables) and fewer to whitespace, directly improving the quality of region features used in spatial grounding.
+
+---
+
+### Paper 9 (Bonus): SpatialRGPT -- Grounded Spatial Reasoning
+
+- **Full title:** SpatialRGPT: Grounded Spatial Reasoning in Vision Language Models
+- **Authors:** Cheng et al.
+- **Date:** NeurIPS 2024 (arXiv June 3, 2024)
+- **URL:** https://arxiv.org/abs/2406.01584
+- **What it does:** Enhances VLMs' spatial perception through a data curation pipeline that learns regional representations from 3D scene graphs and a plug-in depth module for existing visual encoders. Introduces SpatialRGBT-Bench with ground-truth 3D annotations for evaluating spatial cognition. Demonstrates strong generalization to novel spatial reasoning scenarios and robotic tasks.
+- **Why it's important:** While focused on 3D/natural images rather than documents, it establishes core techniques for region-aware spatial reasoning in VLMs (depth-enhanced region features, spatial benchmarking methodology) that are transferable to document grounding settings.
+
+---
+
+### Summary of Coverage
+
+The 9 papers span the full pipeline of spatial grounding for document understanding and retrieval:
+
+| Stage | Papers |
+|-------|--------|
+| **Tokenization/encoding** | DART, GutenOCR |
+| **Spatial grounding mechanism** | Localization Heads, SpatialRGPT, EaGERS |
+| **Document VQA with grounding** | BBox-DocVQA, Doc-CoB, CoExVQA |
+| **Grounded retrieval** | RegionRAG |
+
+agentId: ae32780fe8f985df2 (use SendMessage with to: 'ae32780fe8f985df2' to continue this agent)
+&lt;usage>total_tokens: 27123
+tool_uses: 27
+duration_ms: 151450&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1b1fe31-5c43-4df2-b885-87066a750762",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "41f1a09e-3b7a-4ad9-9171-b8a59d01eeb1",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping with a literature survey on spatial grounding in vision-language models, specifically for document understanding and retrieval.\n\nExecute these searches and for each promising paper, fetch its arxiv abstract:\n\n1. Search: \"spatial grounding vision language model document 2024 2025 2026\"\n2. Search: \"visual grounding document understanding bounding box 2025 2026\"\n3. Search: \"grounded document retrieval spatial localization 2025 2026\"\n4. Search: \"differentiable region proposal vision transformer 2024 2025\"\n5. Search: \"ROI pooling vision language model region features 2024 2025\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important\n\nExclude these seed papers: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible (aim for 6-8).",
+    "agentId": "ae32780fe8f985df2",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Good -- so the v1 HTML page confirms BBox-DocVQA. The abstract fetcher may have pulled from a different version. Now I have all the information I need. Let me compile the final report.\n\nHere is the literature survey. I have excluded all seed papers (ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT).\n\n---\n\n## Literature Survey: Spatial Grounding in Vision-Language Models for Document Understanding and Retrieval\n\n### Paper 1: EaGERS -- Spatially Grounded Explanations in VLMs for Document VQA\n\n- **Full title:** Spatially Grounded Explanations in Vision-Language Models for Document Visual Question Answering\n- **Authors:** Hormazabal Lagos et al.\n- **Date:** arXiv, July 15, 2025\n- **URL:** https://arxiv.org/abs/2507.12490\n- **What it does:** Introduces EaGERS, a training-free, model-agnostic system that generates natural language rationales via a VLM, anchors them to spatial regions by computing embedding similarities across a grid with majority voting, and constrains answer generation to only use relevant masked regions. Tested on DocVQA, it improves accuracy while enhancing transparency without fine-tuning.\n- **Why it's important:** Demonstrates that spatial grounding in document VQA can be achieved post-hoc without retraining, offering an interpretability layer that any VLM can use. Directly relevant to understanding how spatial evidence localization improves document understanding.\n\n---\n\n### Paper 2: BBox-DocVQA\n\n- **Full title:** BBox-DocVQA: A Large-Scale Bounding-Box-Grounded Dataset for Enhancing Reasoning in Document Visual Question Answer\n- **Authors:** Yu et al.\n- **Date:** arXiv, November 19, 2025\n- **URL:** https://arxiv.org/abs/2511.15090\n- **What it does:** Introduces a large-scale dataset of 3.6K PDF documents and 32K QA pairs where every answer is grounded with explicit bounding boxes. Uses a Segment-Judge-and-Generate pipeline combining SAM and a VLM, followed by human verification. Benchmarks GPT-5, Qwen2.5-VL, and InternVL, revealing persistent challenges in spatial grounding accuracy.\n- **Why it's important:** Provides the first large-scale benchmark that operationalizes fine-grained spatial grounding in DocVQA with bounding-box supervision. Essential for evaluating any spatial grounding approach to document understanding.\n\n---\n\n### Paper 3: Doc-CoB -- Visual Chain-of-Boxes Reasoning\n\n- **Full title:** Doc-CoB: Enhancing Document Understanding with Visual Chain-of-Boxes Reasoning\n- **Authors:** Mo et al.\n- **Date:** arXiv, May 24, 2025 (revised May 26, 2026)\n- **URL:** https://arxiv.org/abs/2505.18603\n- **What it does:** Introduces a coarse-to-fine layout-aware visual reasoning framework for multimodal LLMs. The model represents document layouts as boxes and progressively narrows focus from the full document to relevant regions through box recognition and box reasoning tasks. An automated pipeline generates ~249K training samples with intermediate visual supervision. Evaluated across 7 benchmarks with 4 models.\n- **Why it's important:** Proposes an explicit spatial reasoning chain (\"chain-of-boxes\") that makes the model's spatial localization process interpretable and trainable. Bridges the gap between layout understanding and region-level document comprehension.\n\n---\n\n### Paper 4: CoExVQA -- Self-Explainable Document VQA with Chain-of-Explanation\n\n- **Full title:** Towards Self-Explainable Document Visual Question Answering with Chain-of-Explanation Predictions\n- **Authors:** Indrehus et al.\n- **Date:** arXiv, May 7, 2026\n- **URL:** https://arxiv.org/abs/2605.06058\n- **What it does:** Proposes CoExVQA, which decomposes document VQA into explicit steps: identifying relevant evidence, localizing the answer region spatially, and extracting the answer from that grounded area. Achieves state-of-the-art explainable DocVQA performance on PFL-DocVQA, improving ANLS by 12% over explainable baselines while providing transparent, verifiable predictions.\n- **Why it's important:** Directly tackles the spatial localization step as a first-class component of document QA rather than an afterthought. The separation of evidence identification from answer extraction is a clean architectural insight for grounded document understanding.\n\n---\n\n### Paper 5: RegionRAG -- Region-level Retrieval-Augmented Generation\n\n- **Full title:** RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding\n- **Authors:** Li et al.\n- **Date:** arXiv, October 31, 2025 (revised December 21, 2025)\n- **URL:** https://arxiv.org/abs/2510.27261\n- **What it does:** Shifts multi-modal retrieval from document-level to region-level granularity. Uses hybrid supervision during training to identify relevant patches from both labeled and unlabeled data, then dynamically groups salient patches into coherent semantic regions at inference. Achieves 10.02% improvement in retrieval accuracy (R@1) and 3.56% in QA accuracy while using only 71.42% of the visual tokens compared to prior methods.\n- **Why it's important:** Directly addresses the core problem of spatial grounding in document retrieval -- retrieving regions rather than full pages. The token efficiency gains are particularly relevant for scaling grounded retrieval to large document collections.\n\n---\n\n### Paper 6: GutenOCR -- A Grounded Vision-Language Front-End for Documents\n\n- **Full title:** GutenOCR: A Grounded Vision-Language Front-End for Documents\n- **Authors:** Heidenreich et al.\n- **Date:** arXiv, January 20, 2026\n- **URL:** https://arxiv.org/abs/2601.14490\n- **What it does:** Fine-tunes Qwen VLMs (3B and 7B) into grounded OCR interfaces that unify reading, detection, and spatial grounding through a single prompt-based framework. Trained on business documents, scientific articles, and synthetic grounding data, enabling full-page and localized reading with line/paragraph-level bounding boxes plus conditional spatial queries. The 7B model doubles its backbone's grounded OCR score (0.40 to 0.82).\n- **Why it's important:** Provides a practical grounded document front-end that can produce spatially localized OCR output. This is foundational infrastructure for any downstream spatial grounding task in document retrieval or understanding, since it generates the region-text pairs that later stages rely on.\n\n---\n\n### Paper 7: Localization Heads -- Few Attention Heads for Visual Grounding\n\n- **Full title:** Your Large Vision-Language Model Only Needs A Few Attention Heads For Visual Grounding\n- **Authors:** Kang et al.\n- **Date:** arXiv, March 8, 2025\n- **URL:** https://arxiv.org/abs/2503.06287\n- **What it does:** Discovers that frozen LVLMs contain specific \"localization heads\" -- attention heads that naturally capture object locations related to text semantics. Shows that only 3 out of thousands of attention heads are sufficient to achieve competitive localization performance compared to fine-tuned LVLM-based visual grounding methods, enabling a training-free grounding framework.\n- **Why it's important:** Provides mechanistic insight into how VLMs perform spatial grounding internally. The finding that grounding is concentrated in very few attention heads has implications for efficient region extraction in document retrieval pipelines without requiring additional training.\n\n---\n\n### Paper 8: DART -- Differentiable Adaptive Region Tokenizer\n\n- **Full title:** DART: Differentiable Dynamic Adaptive Region Tokenizer for Vision Foundation Models\n- **Authors:** Yin et al.\n- **Date:** arXiv, June 12, 2025 (revised September 29, 2025)\n- **URL:** https://arxiv.org/abs/2506.10390\n- **What it does:** Introduces a fully differentiable tokenizer that replaces fixed-grid patch tokenization with content-aware, variable-size patches using learnable region scores and quantile-based partitioning. A DART-equipped DeiT-Small (22M params) matches DeiT-Base (86M params) at nearly 2x inference speed. Validated on image classification, dense prediction, and video tasks.\n- **Why it's important:** Addresses the fundamental tokenization bottleneck in vision transformers. For document understanding, adaptive tokenization could allocate more tokens to information-dense regions (text, tables) and fewer to whitespace, directly improving the quality of region features used in spatial grounding.\n\n---\n\n### Paper 9 (Bonus): SpatialRGPT -- Grounded Spatial Reasoning\n\n- **Full title:** SpatialRGPT: Grounded Spatial Reasoning in Vision Language Models\n- **Authors:** Cheng et al.\n- **Date:** NeurIPS 2024 (arXiv June 3, 2024)\n- **URL:** https://arxiv.org/abs/2406.01584\n- **What it does:** Enhances VLMs' spatial perception through a data curation pipeline that learns regional representations from 3D scene graphs and a plug-in depth module for existing visual encoders. Introduces SpatialRGBT-Bench with ground-truth 3D annotations for evaluating spatial cognition. Demonstrates strong generalization to novel spatial reasoning scenarios and robotic tasks.\n- **Why it's important:** While focused on 3D/natural images rather than documents, it establishes core techniques for region-aware spatial reasoning in VLMs (depth-enhanced region features, spatial benchmarking methodology) that are transferable to document grounding settings.\n\n---\n\n### Summary of Coverage\n\nThe 9 papers span the full pipeline of spatial grounding for document understanding and retrieval:\n\n| Stage | Papers |\n|-------|--------|\n| **Tokenization/encoding** | DART, GutenOCR |\n| **Spatial grounding mechanism** | Localization Heads, SpatialRGPT, EaGERS |\n| **Document VQA with grounding** | BBox-DocVQA, Doc-CoB, CoExVQA |\n| **Grounded retrieval** | RegionRAG |"
+      }
+    ],
+    "totalDurationMs": 151450,
+    "totalTokens": 27123,
+    "totalToolUseCount": 27,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 416,
+      "cache_read_input_tokens": 24168,
+      "output_tokens": 2538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 416
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2538,
+          "cache_read_input_tokens": 24168,
+          "cache_creation_input_tokens": 416,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 416,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 27
+    }
+  },
+  "sourceToolAssistantUUID": "d1b1fe31-5c43-4df2-b885-87066a750762",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-30T06:16:42.540Z_
+
+<details><summary>↩ Tool result · `toolu_01UhymC4VQJEFi14LLDxzLQ3`</summary>
+
+```text
+Now I have a comprehensive set of papers. Let me compile the final report, filtering out the seed list papers (ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT).
+
+Here is the literature survey of recent papers (2024-2026) that build on or relate to ColPali's late-interaction visual document retrieval paradigm. All papers below are **not** in the seed list.
+
+---
+
+## 1. Nemotron ColEmbed V2
+
+- **Title:** Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval
+- **Authors:** Gabriel de Souza P. Moreira et al. (NVIDIA)
+- **Venue/Date:** arXiv, February 3, 2026 (revised April 1, 2026)
+- **URL:** https://arxiv.org/abs/2602.03992
+- **What it does:** Presents a family of open-weights late-interaction embedding models (3B, 4B, 8B parameters) built on NVIDIA Eagle 2 and Qwen3-VL backbones for visual document retrieval. Uses cluster-based sampling, hard-negative mining, bidirectional attention, and model merging. The 8B model ranked #1 on the ViDoRe V3 leaderboard as of February 2026 with NDCG@10 of 63.42.
+- **Why it's important:** Current state-of-the-art on the major VDR benchmark; demonstrates that scaling late-interaction models with better training recipes yields substantial gains. Open-weights release makes it a key community resource.
+
+---
+
+## 2. ModernVBERT
+
+- **Title:** ModernVBERT: Towards Smaller Visual Document Retrievers
+- **Authors:** Paul Teiletche, Quentin Mace, Max Conti, Antonio Loison, Gautier Viaud, Pierre Colombo, Manuel Faysse et al.
+- **Venue/Date:** arXiv, October 1, 2025 (revised December 16, 2025)
+- **URL:** https://arxiv.org/abs/2510.01149
+- **What it does:** Challenges the assumption that generative VLMs are the best backbone for VDR. Through systematic analysis of attention masking, resolution, modality alignment, and contrastive objectives, they build a 250M-parameter encoder-only model that outperforms models up to 10x larger on document retrieval tasks, enabling CPU-based inference.
+- **Why it's important:** Demonstrates that small, well-designed encoder models can beat large generative VLMs for retrieval, opening VDR to resource-constrained deployment. Co-authored by Manuel Faysse (ColPali first author).
+
+---
+
+## 3. HEAVEN (Hybrid-Vector Retrieval)
+
+- **Title:** Hybrid-Vector Retrieval for Visually Rich Documents: Combining Single-Vector Efficiency and Multi-Vector Accuracy
+- **Authors:** Juyeon Kim, Geon Lee, Dongwon Choi, Taeuk Kim, Kijung Shin
+- **Venue/Date:** arXiv, October 25, 2025 (revised April 20, 2026)
+- **URL:** https://arxiv.org/abs/2510.22215
+- **What it does:** Proposes HEAVEN, a plug-and-play two-stage framework that first screens candidates using single-vector embeddings of visually-summarized composite pages, then reranks with multi-vector late interaction using token filtering. Also introduces ViMDoc, a benchmark for visually-rich, multi-document, long-document retrieval.
+- **Why it's important:** Achieves 99.87% of multi-vector Recall@1 while reducing per-query computation by 99.82%. Directly addresses the main practical bottleneck of ColPali-style models (compute cost at scale).
+
+---
+
+## 4. SERVAL
+
+- **Title:** SERVAL: Surprisingly Effective Zero-Shot Visual Document Retrieval Powered by Large Vision and Language Models
+- **Authors:** Thong Nguyen, Yibin Lei, Jia-Huei Ju, Andrew Yates
+- **Venue/Date:** arXiv, September 18, 2025
+- **URL:** https://arxiv.org/abs/2509.15432
+- **What it does:** Uses a VLM to generate detailed textual descriptions of document images, then embeds those descriptions with a standard text encoder -- achieving 63.4% nDCG@5 on ViDoRe-v2 in a zero-shot setting, outperforming specialized trained encoders. No contrastive training or fine-tuning required.
+- **Why it's important:** Challenges the premise that specialized visual encoders are needed; shows that VLM-as-captioner plus text retrieval can be surprisingly competitive, establishing a strong zero-shot baseline for the field.
+
+---
+
+## 5. HPC-ColPali
+
+- **Title:** Hierarchical Patch Compression for ColPali: Efficient Multi-Vector Document Retrieval with Dynamic Pruning and Quantization
+- **Authors:** Duong Bach
+- **Venue/Date:** arXiv, June 19, 2025 (revised July 2, 2025)
+- **URL:** https://arxiv.org/abs/2506.21601
+- **What it does:** Combines K-means quantization (compressing patch embeddings to 1-byte indices for up to 32x storage reduction), attention-guided dynamic pruning (60% compute reduction), and optional binary encoding. Achieves 30-50% lower query latency while preserving retrieval precision on ViDoRe and SEC-Filings datasets. In RAG applications, reduces hallucination by 30%.
+- **Why it's important:** Directly attacks the storage/compute bottleneck of ColPali with a multi-pronged compression framework; practical impact for real-world deployment.
+
+---
+
+## 6. Light-ColPali/ColQwen2 (Storage-Efficient VDR)
+
+- **Title:** Towards Storage-Efficient Visual Document Retrieval: An Empirical Study on Reducing Patch-Level Embeddings
+- **Authors:** Yubo Ma, Jinsong Li, Yuhang Zang, Xiaobao Wu et al.
+- **Venue/Date:** arXiv June 5, 2025; ACL 2025 Findings
+- **URL:** https://arxiv.org/abs/2506.04997
+- **What it does:** Systematically compares token pruning vs. token merging for reducing patch-level embeddings. Finds that random pruning surprisingly beats sophisticated methods, but token merging (via hierarchical agglomerative clustering) is far better. Light-ColPali/ColQwen2 retains 98.2% of retrieval performance at 11.8% memory, and 94.6% at only 2.8% memory.
+- **Why it's important:** Published at ACL 2025 Findings; provides the first rigorous empirical study of embedding compression for ColPali-family models. The surprising finding about random pruning outperforming sophisticated methods has influenced subsequent work.
+
+---
+
+## 7. DocPruner
+
+- **Title:** DocPruner: A Storage-Efficient Framework for Multi-Vector Visual Document Retrieval via Adaptive Patch-Level Embedding Pruning
+- **Authors:** Yibo Yan, Guangwei Xu, Xin Zou, Shuliang Liu, James Kwok, Xuming Hu
+- **Venue/Date:** arXiv, September 28, 2025
+- **URL:** https://arxiv.org/abs/2509.23883
+- **What it does:** Uses intra-document patch attention distributions to dynamically identify and discard redundant embeddings. Achieves 50-60% storage reduction for leading multi-vector VDR models with negligible performance degradation, validated across 10+ datasets.
+- **Why it's important:** Complementary to Light-ColPali; uses attention-based signals rather than merging. Adaptive per-document pruning is more principled than fixed-ratio approaches.
+
+---
+
+## 8. SAP (Structural Anchor Pruning)
+
+- **Title:** Structural Anchor Pruning: Training-Free Multi-Vector Compression for Visual Document Retrieval
+- **Authors:** Zhuchenyang Liu, Ziyu Hu, Yao Zhang, Yu Xiao
+- **Venue/Date:** arXiv, January 27, 2026 (revised May 21, 2026)
+- **URL:** https://arxiv.org/abs/2601.20107
+- **What it does:** A training-free compression framework that achieves over 90% of NDCG@5 while pruning more than 90% of visual tokens, without per-model parameter tuning. Discovers "Alignment-Aggregation Divergence" -- intermediate layers preserve document structure, but final layers reshape embeddings into a sparse query-aligned form unsuitable for pruning.
+- **Why it's important:** The 90%+ pruning at 90%+ performance is striking. The theoretical insight about layer-wise behavior of VLM embeddings provides useful understanding for future model design.
+
+---
+
+## 9. Reproducibility Study of Visual Document Retrieval with Late Interaction
+
+- **Title:** Reproducibility, Replicability, and Insights into Visual Document Retrieval with Late Interaction
+- **Authors:** Jingfen Qiao, Jia-Huei Ju, Xinyu Ma, Evangelos Kanoulas, Andrew Yates
+- **Venue/Date:** arXiv, May 12, 2025
+- **URL:** https://arxiv.org/abs/2505.07730
+- **What it does:** Reproduces and replicates ColPali-style VDR methods across multiple VLMs, evaluating late interaction's contribution, model adaptability to text inputs, and robustness on text-intensive datasets. Key finding: query tokens tend to match patches containing visually similar tokens or their surrounding patches, despite lacking explicit text alignment.
+- **Why it's important:** Provides crucial mechanistic understanding of how late interaction actually works in visual retrieval (query-patch matching dynamics). Essential for the field's scientific foundation.
+
+---
+
+## 10. jina-embeddings-v4
+
+- **Title:** jina-embeddings-v4: Universal Embeddings for Multimodal Multilingual Retrieval
+- **Authors:** Michael Gunther, Saba Sturua, Mohammad Kalim Akram et al. (Jina AI)
+- **Venue/Date:** arXiv, June 23, 2025 (revised July 7, 2025)
+- **URL:** https://arxiv.org/abs/2506.18902
+- **What it does:** A 3.8B parameter model that unifies text and image representations through a single architecture supporting both single-vector and multi-vector (late interaction) embeddings. Uses task-specific LoRA adapters for different retrieval scenarios. Introduces Jina-VDR, a new benchmark for visually rich document retrieval.
+- **Why it's important:** Shows how the ColPali late-interaction paradigm can be unified into a general-purpose embedding model alongside single-vector and cross-modal capabilities. Industry-backed open model with strong adoption.
+
+---
+
+## Additional Papers of Interest (Bonus)
+
+**11. Document Screenshot Retrievers are Vulnerable to Pixel Poisoning Attacks**
+- Authors: Shengyao Zhuang et al. | arXiv January 28, 2025 | https://arxiv.org/abs/2501.16902
+- Demonstrates adversarial attacks where a single poisoned screenshot disrupts 42% (DSE) / 26% (ColPali) of queries. Important for security considerations in deploying visual retrieval.
+
+**12. ViDoRAG**
+- Authors: Qiuchen Wang et al. | EMNLP 2025 | https://arxiv.org/abs/2502.18017
+- Multi-agent RAG framework using GMM-based hybrid retrieval over visual documents with iterative reasoning. 10%+ improvement on their ViDoSeek benchmark. Important as a downstream application of visual retrieval.
+
+**13. VisRAG 2.0**
+- Authors: Yubo Sun et al. | arXiv October 10, 2025 | https://arxiv.org/abs/2510.09733
+- Evidence-guided multi-image reasoning for visual RAG, with 27% average improvement over baselines. Advances the generation side of the visual retrieval pipeline.
+
+**14. Unlocking Multimodal Document Intelligence (Survey)**
+- Authors: Yibo Yan et al. | arXiv February 23, 2026 | https://arxiv.org/abs/2602.19961
+- Comprehensive survey covering VDR benchmarks, methods (embedding + reranking), and integration with RAG/agentic systems. Useful as a reference map of the field.
+
+**15. Lost in OCR Translation?**
+- Authors: Alexander Most et al. | arXiv May 8, 2025 | https://arxiv.org/abs/2505.05666
+- Comparative study of ColPali vs. OCR pipelines showing vision-based systems excel on in-distribution data but OCR generalizes better to low-quality unseen documents. Important for practitioners choosing between approaches.
+
+**16. REAL-MM-RAG**
+- Authors: Navve Wasserman et al. | arXiv February 17, 2025 | https://arxiv.org/abs/2502.12342
+- Benchmark with multi-difficulty evaluation based on query rephrasing. Reveals model weaknesses on table-heavy documents. Provides improved training data for multi-modal RAG.
+
+agentId: afed2bc46f8f98e40 (use SendMessage with to: 'afed2bc46f8f98e40' to continue this agent)
+&lt;usage>total_tokens: 32250
+tool_uses: 33
+duration_ms: 182416&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62ed3702-be1f-4554-b306-82b689a44612",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "b54b6a9e-1c4d-4181-9fbd-723d89e3f955",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping with a literature survey on visual document retrieval. Search for the most important recent papers (2024-2026) that build on or relate to ColPali (late-interaction visual document retrieval).\n\nExecute these searches and for each promising paper, fetch its arxiv abstract:\n\n1. Search: \"ColPali visual document retrieval 2025 2026\"\n2. Search: \"late interaction document retrieval visual 2025 2026\"\n3. Search: \"ColQwen document retrieval embedding 2025 2026\"\n4. Search: \"visual document retrieval without OCR 2025 2026\"\n5. Search: \"site:arxiv.org ColPali document retrieval 2025 2026\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract and understand what it does. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue (if published) or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important (citations, awards, impact)\n\nFocus on papers that are NOT in this seed list: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible (aim for 8-10).",
+    "agentId": "afed2bc46f8f98e40",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have a comprehensive set of papers. Let me compile the final report, filtering out the seed list papers (ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT).\n\nHere is the literature survey of recent papers (2024-2026) that build on or relate to ColPali's late-interaction visual document retrieval paradigm. All papers below are **not** in the seed list.\n\n---\n\n## 1. Nemotron ColEmbed V2\n\n- **Title:** Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval\n- **Authors:** Gabriel de Souza P. Moreira et al. (NVIDIA)\n- **Venue/Date:** arXiv, February 3, 2026 (revised April 1, 2026)\n- **URL:** https://arxiv.org/abs/2602.03992\n- **What it does:** Presents a family of open-weights late-interaction embedding models (3B, 4B, 8B parameters) built on NVIDIA Eagle 2 and Qwen3-VL backbones for visual document retrieval. Uses cluster-based sampling, hard-negative mining, bidirectional attention, and model merging. The 8B model ranked #1 on the ViDoRe V3 leaderboard as of February 2026 with NDCG@10 of 63.42.\n- **Why it's important:** Current state-of-the-art on the major VDR benchmark; demonstrates that scaling late-interaction models with better training recipes yields substantial gains. Open-weights release makes it a key community resource.\n\n---\n\n## 2. ModernVBERT\n\n- **Title:** ModernVBERT: Towards Smaller Visual Document Retrievers\n- **Authors:** Paul Teiletche, Quentin Mace, Max Conti, Antonio Loison, Gautier Viaud, Pierre Colombo, Manuel Faysse et al.\n- **Venue/Date:** arXiv, October 1, 2025 (revised December 16, 2025)\n- **URL:** https://arxiv.org/abs/2510.01149\n- **What it does:** Challenges the assumption that generative VLMs are the best backbone for VDR. Through systematic analysis of attention masking, resolution, modality alignment, and contrastive objectives, they build a 250M-parameter encoder-only model that outperforms models up to 10x larger on document retrieval tasks, enabling CPU-based inference.\n- **Why it's important:** Demonstrates that small, well-designed encoder models can beat large generative VLMs for retrieval, opening VDR to resource-constrained deployment. Co-authored by Manuel Faysse (ColPali first author).\n\n---\n\n## 3. HEAVEN (Hybrid-Vector Retrieval)\n\n- **Title:** Hybrid-Vector Retrieval for Visually Rich Documents: Combining Single-Vector Efficiency and Multi-Vector Accuracy\n- **Authors:** Juyeon Kim, Geon Lee, Dongwon Choi, Taeuk Kim, Kijung Shin\n- **Venue/Date:** arXiv, October 25, 2025 (revised April 20, 2026)\n- **URL:** https://arxiv.org/abs/2510.22215\n- **What it does:** Proposes HEAVEN, a plug-and-play two-stage framework that first screens candidates using single-vector embeddings of visually-summarized composite pages, then reranks with multi-vector late interaction using token filtering. Also introduces ViMDoc, a benchmark for visually-rich, multi-document, long-document retrieval.\n- **Why it's important:** Achieves 99.87% of multi-vector Recall@1 while reducing per-query computation by 99.82%. Directly addresses the main practical bottleneck of ColPali-style models (compute cost at scale).\n\n---\n\n## 4. SERVAL\n\n- **Title:** SERVAL: Surprisingly Effective Zero-Shot Visual Document Retrieval Powered by Large Vision and Language Models\n- **Authors:** Thong Nguyen, Yibin Lei, Jia-Huei Ju, Andrew Yates\n- **Venue/Date:** arXiv, September 18, 2025\n- **URL:** https://arxiv.org/abs/2509.15432\n- **What it does:** Uses a VLM to generate detailed textual descriptions of document images, then embeds those descriptions with a standard text encoder -- achieving 63.4% nDCG@5 on ViDoRe-v2 in a zero-shot setting, outperforming specialized trained encoders. No contrastive training or fine-tuning required.\n- **Why it's important:** Challenges the premise that specialized visual encoders are needed; shows that VLM-as-captioner plus text retrieval can be surprisingly competitive, establishing a strong zero-shot baseline for the field.\n\n---\n\n## 5. HPC-ColPali\n\n- **Title:** Hierarchical Patch Compression for ColPali: Efficient Multi-Vector Document Retrieval with Dynamic Pruning and Quantization\n- **Authors:** Duong Bach\n- **Venue/Date:** arXiv, June 19, 2025 (revised July 2, 2025)\n- **URL:** https://arxiv.org/abs/2506.21601\n- **What it does:** Combines K-means quantization (compressing patch embeddings to 1-byte indices for up to 32x storage reduction), attention-guided dynamic pruning (60% compute reduction), and optional binary encoding. Achieves 30-50% lower query latency while preserving retrieval precision on ViDoRe and SEC-Filings datasets. In RAG applications, reduces hallucination by 30%.\n- **Why it's important:** Directly attacks the storage/compute bottleneck of ColPali with a multi-pronged compression framework; practical impact for real-world deployment.\n\n---\n\n## 6. Light-ColPali/ColQwen2 (Storage-Efficient VDR)\n\n- **Title:** Towards Storage-Efficient Visual Document Retrieval: An Empirical Study on Reducing Patch-Level Embeddings\n- **Authors:** Yubo Ma, Jinsong Li, Yuhang Zang, Xiaobao Wu et al.\n- **Venue/Date:** arXiv June 5, 2025; ACL 2025 Findings\n- **URL:** https://arxiv.org/abs/2506.04997\n- **What it does:** Systematically compares token pruning vs. token merging for reducing patch-level embeddings. Finds that random pruning surprisingly beats sophisticated methods, but token merging (via hierarchical agglomerative clustering) is far better. Light-ColPali/ColQwen2 retains 98.2% of retrieval performance at 11.8% memory, and 94.6% at only 2.8% memory.\n- **Why it's important:** Published at ACL 2025 Findings; provides the first rigorous empirical study of embedding compression for ColPali-family models. The surprising finding about random pruning outperforming sophisticated methods has influenced subsequent work.\n\n---\n\n## 7. DocPruner\n\n- **Title:** DocPruner: A Storage-Efficient Framework for Multi-Vector Visual Document Retrieval via Adaptive Patch-Level Embedding Pruning\n- **Authors:** Yibo Yan, Guangwei Xu, Xin Zou, Shuliang Liu, James Kwok, Xuming Hu\n- **Venue/Date:** arXiv, September 28, 2025\n- **URL:** https://arxiv.org/abs/2509.23883\n- **What it does:** Uses intra-document patch attention distributions to dynamically identify and discard redundant embeddings. Achieves 50-60% storage reduction for leading multi-vector VDR models with negligible performance degradation, validated across 10+ datasets.\n- **Why it's important:** Complementary to Light-ColPali; uses attention-based signals rather than merging. Adaptive per-document pruning is more principled than fixed-ratio approaches.\n\n---\n\n## 8. SAP (Structural Anchor Pruning)\n\n- **Title:** Structural Anchor Pruning: Training-Free Multi-Vector Compression for Visual Document Retrieval\n- **Authors:** Zhuchenyang Liu, Ziyu Hu, Yao Zhang, Yu Xiao\n- **Venue/Date:** arXiv, January 27, 2026 (revised May 21, 2026)\n- **URL:** https://arxiv.org/abs/2601.20107\n- **What it does:** A training-free compression framework that achieves over 90% of NDCG@5 while pruning more than 90% of visual tokens, without per-model parameter tuning. Discovers \"Alignment-Aggregation Divergence\" -- intermediate layers preserve document structure, but final layers reshape embeddings into a sparse query-aligned form unsuitable for pruning.\n- **Why it's important:** The 90%+ pruning at 90%+ performance is striking. The theoretical insight about layer-wise behavior of VLM embeddings provides useful understanding for future model design.\n\n---\n\n## 9. Reproducibility Study of Visual Document Retrieval with Late Interaction\n\n- **Title:** Reproducibility, Replicability, and Insights into Visual Document Retrieval with Late Interaction\n- **Authors:** Jingfen Qiao, Jia-Huei Ju, Xinyu Ma, Evangelos Kanoulas, Andrew Yates\n- **Venue/Date:** arXiv, May 12, 2025\n- **URL:** https://arxiv.org/abs/2505.07730\n- **What it does:** Reproduces and replicates ColPali-style VDR methods across multiple VLMs, evaluating late interaction's contribution, model adaptability to text inputs, and robustness on text-intensive datasets. Key finding: query tokens tend to match patches containing visually similar tokens or their surrounding patches, despite lacking explicit text alignment.\n- **Why it's important:** Provides crucial mechanistic understanding of how late interaction actually works in visual retrieval (query-patch matching dynamics). Essential for the field's scientific foundation.\n\n---\n\n## 10. jina-embeddings-v4\n\n- **Title:** jina-embeddings-v4: Universal Embeddings for Multimodal Multilingual Retrieval\n- **Authors:** Michael Gunther, Saba Sturua, Mohammad Kalim Akram et al. (Jina AI)\n- **Venue/Date:** arXiv, June 23, 2025 (revised July 7, 2025)\n- **URL:** https://arxiv.org/abs/2506.18902\n- **What it does:** A 3.8B parameter model that unifies text and image representations through a single architecture supporting both single-vector and multi-vector (late interaction) embeddings. Uses task-specific LoRA adapters for different retrieval scenarios. Introduces Jina-VDR, a new benchmark for visually rich document retrieval.\n- **Why it's important:** Shows how the ColPali late-interaction paradigm can be unified into a general-purpose embedding model alongside single-vector and cross-modal capabilities. Industry-backed open model with strong adoption.\n\n---\n\n## Additional Papers of Interest (Bonus)\n\n**11. Document Screenshot Retrievers are Vulnerable to Pixel Poisoning Attacks**\n- Authors: Shengyao Zhuang et al. | arXiv January 28, 2025 | https://arxiv.org/abs/2501.16902\n- Demonstrates adversarial attacks where a single poisoned screenshot disrupts 42% (DSE) / 26% (ColPali) of queries. Important for security considerations in deploying visual retrieval.\n\n**12. ViDoRAG**\n- Authors: Qiuchen Wang et al. | EMNLP 2025 | https://arxiv.org/abs/2502.18017\n- Multi-agent RAG framework using GMM-based hybrid retrieval over visual documents with iterative reasoning. 10%+ improvement on their ViDoSeek benchmark. Important as a downstream application of visual retrieval.\n\n**13. VisRAG 2.0**\n- Authors: Yubo Sun et al. | arXiv October 10, 2025 | https://arxiv.org/abs/2510.09733\n- Evidence-guided multi-image reasoning for visual RAG, with 27% average improvement over baselines. Advances the generation side of the visual retrieval pipeline.\n\n**14. Unlocking Multimodal Document Intelligence (Survey)**\n- Authors: Yibo Yan et al. | arXiv February 23, 2026 | https://arxiv.org/abs/2602.19961\n- Comprehensive survey covering VDR benchmarks, methods (embedding + reranking), and integration with RAG/agentic systems. Useful as a reference map of the field.\n\n**15. Lost in OCR Translation?**\n- Authors: Alexander Most et al. | arXiv May 8, 2025 | https://arxiv.org/abs/2505.05666\n- Comparative study of ColPali vs. OCR pipelines showing vision-based systems excel on in-distribution data but OCR generalizes better to low-quality unseen documents. Important for practitioners choosing between approaches.\n\n**16. REAL-MM-RAG**\n- Authors: Navve Wasserman et al. | arXiv February 17, 2025 | https://arxiv.org/abs/2502.12342\n- Benchmark with multi-difficulty evaluation based on query rephrasing. Reveals model weaknesses on table-heavy documents. Provides improved training data for multi-modal RAG."
+      }
+    ],
+    "totalDurationMs": 182416,
+    "totalTokens": 32250,
+    "totalToolUseCount": 33,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 745,
+      "cache_read_input_tokens": 28213,
+      "output_tokens": 3291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 745
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3291,
+          "cache_read_input_tokens": 28213,
+          "cache_creation_input_tokens": 745,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 745,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 33
+    }
+  },
+  "sourceToolAssistantUUID": "62ed3702-be1f-4554-b306-82b689a44612",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "b54b6a9e-1c4d-4181-9fbd-723d89e3f955",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-30T06:17:07.441Z_
+
+<details><summary>↩ Tool result · `toolu_01VLvsAuYV4C47Duh67dvs8s`</summary>
+
+```text
+I now have a comprehensive set of papers. Let me compile the final report.
+
+---
+
+Here are the results of the literature survey. I identified 10 relevant papers (excluding the seed papers you listed) spanning end-to-end layout detection, contrastive learning for documents, LLM-based document understanding, domain adaptation, benchmarking, and RAG-oriented layout analysis.
+
+---
+
+## 1. DLAFormer: An End-to-End Transformer For Document Layout Analysis
+
+- **Authors:** Jiawei Wang et al.
+- **Venue:** ICDAR 2024 (arXiv: May 20, 2024)
+- **URL:** https://arxiv.org/abs/2405.11757
+- **What it does:** Unifies multiple DLA sub-tasks (text region detection, logical role classification, reading order prediction, table/figure detection) into a single DETR-like transformer by recasting each sub-task as a relation prediction problem within a shared label space. Introduces type-wise queries and a coarse-to-fine strategy for graphical page objects.
+- **Why it's important:** First truly end-to-end single-model approach that replaces multi-branch/multi-stage DLA pipelines, achieving state-of-the-art on DocLayNet and Comp-HRDoc.
+
+---
+
+## 2. HybriDLA: Hybrid Generation for Document Layout Analysis
+
+- **Authors:** Yufan Chen et al.
+- **Venue:** AAAI 2026 Oral (arXiv: November 25, 2025)
+- **URL:** https://arxiv.org/abs/2511.19919
+- **What it does:** Proposes a generative framework that fuses diffusion-based bounding-box refinement with autoregressive decoding for semantic awareness inside a single decoder layer. Uses a multi-scale feature-fusion encoder and dynamically adjusts the number of object queries in a coarse-to-fine hierarchy.
+- **Why it's important:** Achieves 83.5% mAP on DocLayNet (state-of-the-art) and demonstrates that generative (diffusion + autoregressive) paradigms can outperform discriminative detectors for layout analysis with variable element counts.
+
+---
+
+## 3. DocLayout-YOLO: Enhancing Document Layout Analysis through Diverse Synthetic Data and Global-to-Local Adaptive Perception
+
+- **Authors:** Zhiyuan Zhao et al.
+- **Venue:** arXiv, October 16, 2024
+- **URL:** https://arxiv.org/abs/2410.12628
+- **What it does:** Extends YOLO for document layout detection with a Global-to-Local Controllable Receptive Module (GL-CRM) to handle multi-scale element variation. Introduces DocSynth-300K (a large synthetic dataset generated via a Mesh-candidate BestFit bin-packing algorithm) and DocStructBench for cross-type evaluation.
+- **Why it's important:** Demonstrates that document-specific architectural tweaks plus large-scale synthetic pre-training can close the gap between fast CNN detectors and heavier transformers, making real-time DLA practical.
+
+---
+
+## 4. PP-DocLayout: A Unified Document Layout Detection Model to Accelerate Large-Scale Data Construction
+
+- **Authors:** Ting Sun et al.
+- **Venue:** arXiv, March 21, 2025
+- **URL:** https://arxiv.org/abs/2503.17213
+- **What it does:** Builds a family of RT-DETR-based layout detectors (small/medium/large) that recognize 23 region types across diverse document formats. The large model achieves 90.4% mAP@0.5 at 13.4 ms/page on a T4 GPU; the small model runs at 8.1 ms on GPU and 14.5 ms on CPU.
+- **Why it's important:** Provides production-ready, efficiency-focused layout detectors designed explicitly for large-scale data construction pipelines that feed downstream multimodal AI systems.
+
+---
+
+## 5. Advanced Layout Analysis Models for Docling
+
+- **Authors:** Nikolaos Livathinos et al.
+- **Venue:** arXiv, September 15, 2025
+- **URL:** https://arxiv.org/abs/2509.11720
+- **What it does:** Trains five new layout detection models using RT-DETR, RT-DETRv2, and DFINE architectures on 150K documents (public + proprietary). The best model ("heron-101") achieves 78% mAP at 28 ms/image on an A100 GPU, a 20.6--23.9% mAP improvement over Docling's previous baseline.
+- **Why it's important:** Provides a comprehensive practical guide for training and deploying document layout detectors at scale, with all models released openly for the widely-used Docling document conversion system.
+
+---
+
+## 6. GeoContrastNet: Contrastive Key-Value Edge Learning for Language-Agnostic Document Understanding
+
+- **Authors:** Nil Biescas et al.
+- **Venue:** ICDAR 2024 (arXiv: May 6, 2024)
+- **URL:** https://arxiv.org/abs/2405.03104
+- **What it does:** A two-stage GAT-based model that applies contrastive learning to geometric edge features (spatial proximity, hierarchical relationships, reading order) for structured document understanding without any language/OCR input. Demonstrates strong key-value linking on FUNSD and spatial relationship discovery on RVLCDIP invoices.
+- **Why it's important:** Shows that contrastive learning on relational layout geometry alone can match the accuracy of large OCR-dependent document understanding models, enabling language-agnostic and privacy-preserving deployment.
+
+---
+
+## 7. SFDLA: Source-Free Document Layout Analysis
+
+- **Authors:** Sebastian Tewes et al.
+- **Venue:** arXiv, March 24, 2025
+- **URL:** https://arxiv.org/abs/2503.18742
+- **What it does:** Introduces the SFDLA benchmark and DLAdapter, a framework for cross-domain DLA adaptation without access to source data. Uses consensus pseudo-labeling between EMA teacher models with strong/weak augmentation. Achieves +4.21% over source-only baseline and +2.26% over existing source-free methods on PubLayNet-to-DocLayNet transfer.
+- **Why it's important:** Addresses the practical scenario where source training data cannot be shared (e.g., financial/medical documents), establishing the first systematic benchmark for source-free domain adaptation in document layout analysis.
+
+---
+
+## 8. LayoutLLM: Layout Instruction Tuning with Large Language Models for Document Understanding
+
+- **Authors:** Chuwei Luo et al.
+- **Venue:** arXiv, April 8, 2024
+- **URL:** https://arxiv.org/abs/2404.05225
+- **What it does:** Applies layout instruction tuning to LLMs via Layout-aware Pre-training (document-level, region-level, segment-level tasks) and Layout-aware Supervised Fine-tuning. Introduces a Layout Chain-of-Thought (LayoutCoT) module that focuses the model on document regions relevant to a query before generating answers.
+- **Why it's important:** Demonstrates that explicit multi-granular layout reasoning significantly boosts 7B-class open-source LLMs/MLLMs for document understanding, outperforming mPLUG-DocOwl and Qwen-VL by ~10% on DocVQA in zero-shot settings.
+
+---
+
+## 9. LLM-Guided Probabilistic Fusion for Label-Efficient Document Layout Analysis
+
+- **Authors:** Ibne Farabi Shihab et al.
+- **Venue:** arXiv, November 12, 2025
+- **URL:** https://arxiv.org/abs/2511.08903
+- **What it does:** Enhances semi-supervised document detection by fusing visual detector predictions with structural knowledge from text-pretrained LLMs using inverse-variance probabilistic weighting. An OCR-LLM pipeline infers hierarchical regions on unlabeled data, combined with teacher detector outputs via learned instance-adaptive gating.
+- **Why it's important:** Achieves 88.2 AP on PubLayNet with only 5% labeled data, showing that LLMs can provide semantic disambiguation (+3.8 AP in targeted cases) as a complementary signal to visual detectors, with practical cost estimates (~$12 API or 17 GPU-hours per 50K pages).
+
+---
+
+## 10. SCAN: Semantic Document Layout Analysis for Textual and Visual Retrieval-Augmented Generation
+
+- **Authors:** Nobuhiro Ueda et al.
+- **Venue:** arXiv, May 20, 2025 (revised February 2026)
+- **URL:** https://arxiv.org/abs/2505.14381
+- **What it does:** Proposes semantic-level document layout segmentation tailored for RAG pipelines, dividing documents into coherent regions that group related elements (text + associated figures/tables). Fine-tunes object detection models on a custom annotated dataset for both English and Japanese documents.
+- **Why it's important:** Directly bridges layout analysis and downstream RAG, showing improvements of up to 9.4 points for textual RAG and 10.4 points for visual RAG over conventional chunking and commercial tools.
+
+---
+
+### Bonus: Survey Reference
+
+**"Document Intelligence in the Era of Large Language Models: A Survey"** -- Weishi Wang et al., arXiv October 15, 2025 (https://arxiv.org/abs/2510.13366). Comprehensive survey covering the evolution from encoder-decoder to decoder-only architectures for document AI, including multimodal, multilingual, and retrieval-augmented approaches, plus emerging agent-based and domain-specific foundation model directions. Useful as a contextual reference for positioning the above papers.
+
+agentId: abf589f96380fbe5a (use SendMessage with to: 'abf589f96380fbe5a' to continue this agent)
+&lt;usage>total_tokens: 32888
+tool_uses: 34
+duration_ms: 188996&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4b662c3-6cb1-4c14-a143-8f9477a1eb15",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "99da6b57-a1a1-4a0f-b419-5327afb8e4e1",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping with a literature survey on document layout analysis, detection, and end-to-end document understanding models.\n\nExecute these searches and for each promising paper, fetch its arxiv abstract:\n\n1. Search: \"end-to-end document layout detection vision transformer 2024 2025 2026\"\n2. Search: \"DocLayNet PubLayNet document layout analysis 2024 2025\"\n3. Search: \"document region detection differentiable proposal 2025 2026\"\n4. Search: \"learned region proposal network vision language 2024 2025\"\n5. Search: \"multi-task document understanding layout grounding 2025 2026\"\n6. Search: \"contrastive learning document layout region 2024 2025\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important\n\nExclude these seed papers: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible (aim for 6-8).",
+    "agentId": "abf589f96380fbe5a",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have a comprehensive set of papers. Let me compile the final report.\n\n---\n\nHere are the results of the literature survey. I identified 10 relevant papers (excluding the seed papers you listed) spanning end-to-end layout detection, contrastive learning for documents, LLM-based document understanding, domain adaptation, benchmarking, and RAG-oriented layout analysis.\n\n---\n\n## 1. DLAFormer: An End-to-End Transformer For Document Layout Analysis\n\n- **Authors:** Jiawei Wang et al.\n- **Venue:** ICDAR 2024 (arXiv: May 20, 2024)\n- **URL:** https://arxiv.org/abs/2405.11757\n- **What it does:** Unifies multiple DLA sub-tasks (text region detection, logical role classification, reading order prediction, table/figure detection) into a single DETR-like transformer by recasting each sub-task as a relation prediction problem within a shared label space. Introduces type-wise queries and a coarse-to-fine strategy for graphical page objects.\n- **Why it's important:** First truly end-to-end single-model approach that replaces multi-branch/multi-stage DLA pipelines, achieving state-of-the-art on DocLayNet and Comp-HRDoc.\n\n---\n\n## 2. HybriDLA: Hybrid Generation for Document Layout Analysis\n\n- **Authors:** Yufan Chen et al.\n- **Venue:** AAAI 2026 Oral (arXiv: November 25, 2025)\n- **URL:** https://arxiv.org/abs/2511.19919\n- **What it does:** Proposes a generative framework that fuses diffusion-based bounding-box refinement with autoregressive decoding for semantic awareness inside a single decoder layer. Uses a multi-scale feature-fusion encoder and dynamically adjusts the number of object queries in a coarse-to-fine hierarchy.\n- **Why it's important:** Achieves 83.5% mAP on DocLayNet (state-of-the-art) and demonstrates that generative (diffusion + autoregressive) paradigms can outperform discriminative detectors for layout analysis with variable element counts.\n\n---\n\n## 3. DocLayout-YOLO: Enhancing Document Layout Analysis through Diverse Synthetic Data and Global-to-Local Adaptive Perception\n\n- **Authors:** Zhiyuan Zhao et al.\n- **Venue:** arXiv, October 16, 2024\n- **URL:** https://arxiv.org/abs/2410.12628\n- **What it does:** Extends YOLO for document layout detection with a Global-to-Local Controllable Receptive Module (GL-CRM) to handle multi-scale element variation. Introduces DocSynth-300K (a large synthetic dataset generated via a Mesh-candidate BestFit bin-packing algorithm) and DocStructBench for cross-type evaluation.\n- **Why it's important:** Demonstrates that document-specific architectural tweaks plus large-scale synthetic pre-training can close the gap between fast CNN detectors and heavier transformers, making real-time DLA practical.\n\n---\n\n## 4. PP-DocLayout: A Unified Document Layout Detection Model to Accelerate Large-Scale Data Construction\n\n- **Authors:** Ting Sun et al.\n- **Venue:** arXiv, March 21, 2025\n- **URL:** https://arxiv.org/abs/2503.17213\n- **What it does:** Builds a family of RT-DETR-based layout detectors (small/medium/large) that recognize 23 region types across diverse document formats. The large model achieves 90.4% mAP@0.5 at 13.4 ms/page on a T4 GPU; the small model runs at 8.1 ms on GPU and 14.5 ms on CPU.\n- **Why it's important:** Provides production-ready, efficiency-focused layout detectors designed explicitly for large-scale data construction pipelines that feed downstream multimodal AI systems.\n\n---\n\n## 5. Advanced Layout Analysis Models for Docling\n\n- **Authors:** Nikolaos Livathinos et al.\n- **Venue:** arXiv, September 15, 2025\n- **URL:** https://arxiv.org/abs/2509.11720\n- **What it does:** Trains five new layout detection models using RT-DETR, RT-DETRv2, and DFINE architectures on 150K documents (public + proprietary). The best model (\"heron-101\") achieves 78% mAP at 28 ms/image on an A100 GPU, a 20.6--23.9% mAP improvement over Docling's previous baseline.\n- **Why it's important:** Provides a comprehensive practical guide for training and deploying document layout detectors at scale, with all models released openly for the widely-used Docling document conversion system.\n\n---\n\n## 6. GeoContrastNet: Contrastive Key-Value Edge Learning for Language-Agnostic Document Understanding\n\n- **Authors:** Nil Biescas et al.\n- **Venue:** ICDAR 2024 (arXiv: May 6, 2024)\n- **URL:** https://arxiv.org/abs/2405.03104\n- **What it does:** A two-stage GAT-based model that applies contrastive learning to geometric edge features (spatial proximity, hierarchical relationships, reading order) for structured document understanding without any language/OCR input. Demonstrates strong key-value linking on FUNSD and spatial relationship discovery on RVLCDIP invoices.\n- **Why it's important:** Shows that contrastive learning on relational layout geometry alone can match the accuracy of large OCR-dependent document understanding models, enabling language-agnostic and privacy-preserving deployment.\n\n---\n\n## 7. SFDLA: Source-Free Document Layout Analysis\n\n- **Authors:** Sebastian Tewes et al.\n- **Venue:** arXiv, March 24, 2025\n- **URL:** https://arxiv.org/abs/2503.18742\n- **What it does:** Introduces the SFDLA benchmark and DLAdapter, a framework for cross-domain DLA adaptation without access to source data. Uses consensus pseudo-labeling between EMA teacher models with strong/weak augmentation. Achieves +4.21% over source-only baseline and +2.26% over existing source-free methods on PubLayNet-to-DocLayNet transfer.\n- **Why it's important:** Addresses the practical scenario where source training data cannot be shared (e.g., financial/medical documents), establishing the first systematic benchmark for source-free domain adaptation in document layout analysis.\n\n---\n\n## 8. LayoutLLM: Layout Instruction Tuning with Large Language Models for Document Understanding\n\n- **Authors:** Chuwei Luo et al.\n- **Venue:** arXiv, April 8, 2024\n- **URL:** https://arxiv.org/abs/2404.05225\n- **What it does:** Applies layout instruction tuning to LLMs via Layout-aware Pre-training (document-level, region-level, segment-level tasks) and Layout-aware Supervised Fine-tuning. Introduces a Layout Chain-of-Thought (LayoutCoT) module that focuses the model on document regions relevant to a query before generating answers.\n- **Why it's important:** Demonstrates that explicit multi-granular layout reasoning significantly boosts 7B-class open-source LLMs/MLLMs for document understanding, outperforming mPLUG-DocOwl and Qwen-VL by ~10% on DocVQA in zero-shot settings.\n\n---\n\n## 9. LLM-Guided Probabilistic Fusion for Label-Efficient Document Layout Analysis\n\n- **Authors:** Ibne Farabi Shihab et al.\n- **Venue:** arXiv, November 12, 2025\n- **URL:** https://arxiv.org/abs/2511.08903\n- **What it does:** Enhances semi-supervised document detection by fusing visual detector predictions with structural knowledge from text-pretrained LLMs using inverse-variance probabilistic weighting. An OCR-LLM pipeline infers hierarchical regions on unlabeled data, combined with teacher detector outputs via learned instance-adaptive gating.\n- **Why it's important:** Achieves 88.2 AP on PubLayNet with only 5% labeled data, showing that LLMs can provide semantic disambiguation (+3.8 AP in targeted cases) as a complementary signal to visual detectors, with practical cost estimates (~$12 API or 17 GPU-hours per 50K pages).\n\n---\n\n## 10. SCAN: Semantic Document Layout Analysis for Textual and Visual Retrieval-Augmented Generation\n\n- **Authors:** Nobuhiro Ueda et al.\n- **Venue:** arXiv, May 20, 2025 (revised February 2026)\n- **URL:** https://arxiv.org/abs/2505.14381\n- **What it does:** Proposes semantic-level document layout segmentation tailored for RAG pipelines, dividing documents into coherent regions that group related elements (text + associated figures/tables). Fine-tunes object detection models on a custom annotated dataset for both English and Japanese documents.\n- **Why it's important:** Directly bridges layout analysis and downstream RAG, showing improvements of up to 9.4 points for textual RAG and 10.4 points for visual RAG over conventional chunking and commercial tools.\n\n---\n\n### Bonus: Survey Reference\n\n**\"Document Intelligence in the Era of Large Language Models: A Survey\"** -- Weishi Wang et al., arXiv October 15, 2025 (https://arxiv.org/abs/2510.13366). Comprehensive survey covering the evolution from encoder-decoder to decoder-only architectures for document AI, including multimodal, multilingual, and retrieval-augmented approaches, plus emerging agent-based and domain-specific foundation model directions. Useful as a contextual reference for positioning the above papers."
+      }
+    ],
+    "totalDurationMs": 188996,
+    "totalTokens": 32888,
+    "totalToolUseCount": 34,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 282,
+      "cache_read_input_tokens": 30234,
+      "output_tokens": 2371,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 282
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2371,
+          "cache_read_input_tokens": 30234,
+          "cache_creation_input_tokens": 282,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 282,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 34
+    }
+  },
+  "sourceToolAssistantUUID": "a4b662c3-6cb1-4c14-a143-8f9477a1eb15",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-30T06:20:01.989Z_
+
+<details><summary>↩ Tool result · `toolu_015H6NyTZdYbib9uZajviAtu`</summary>
+
+```text
+Now I have gathered comprehensive information. Let me compile the final report.
+
+---
+
+Here is a comprehensive survey of best/outstanding/oral papers at top venues (2024--2026) relevant to document understanding, visual retrieval, vision-language models, spatial grounding, and information retrieval.
+
+---
+
+## 1. ColPali: Efficient Document Retrieval with Vision Language Models
+
+- **Authors:** Manuel Faysse et al.
+- **Venue:** ICLR 2025 (Poster)
+- **URL:** https://arxiv.org/abs/2407.01449
+- **What it does:** Proposes ColPali, a Vision Language Model that produces multi-vector embeddings directly from document page images using late interaction matching, bypassing brittle text extraction pipelines. Also introduces ViDoRe, a benchmark for visually rich document retrieval across domains and languages.
+- **Why it matters:** First end-to-end trainable visual document retrieval system to largely outperform traditional OCR-based retrieval pipelines. Accepted at ICLR 2025; foundational work that spawned an entire line of follow-up research (ColQwen, DocPruner, etc.). All models, data, and code released openly.
+
+---
+
+## 2. MM-Embed: Universal Multimodal Retrieval with Multimodal LLMs
+
+- **Authors:** Sheng-Chieh Lin, Chankyu Lee, Mohammad Shoeybi, Jimmy Lin, Bryan Catanzaro, Wei Ping
+- **Venue:** ICLR 2025 (Poster)
+- **URL:** https://arxiv.org/abs/2411.02571
+- **What it does:** Fine-tunes a multimodal LLM as a bi-encoder retriever for universal multimodal retrieval across 16 tasks. Proposes modality-aware hard negative mining to overcome modality bias and explores MLLMs as zero-shot rerankers for complex composed queries.
+- **Why it matters:** Achieves SOTA on the M-BEIR multimodal retrieval benchmark and surpasses NV-Embed-v1 on MTEB text retrieval. Published at ICLR 2025 by NVIDIA; model weights publicly released.
+
+---
+
+## 3. SAM 2: Segment Anything in Images and Videos
+
+- **Authors:** Nikhila Ravi et al. (Meta FAIR)
+- **Venue:** ICLR 2025 -- Outstanding Paper Honorable Mention
+- **URL:** https://arxiv.org/abs/2408.00714
+- **What it does:** Foundation model for promptable visual segmentation in both images and videos. Uses a transformer with streaming memory for real-time video processing and a data engine that produced the largest video segmentation dataset to date. Achieves 6x speedup over SAM with better accuracy.
+- **Why it matters:** One of only 6 papers recognized out of 11,000+ submissions at ICLR 2025. Foundational vision model with massive adoption. Directly relevant to spatial grounding and visual understanding tasks.
+
+---
+
+## 4. VGGT: Visual Geometry Grounded Transformer
+
+- **Authors:** Jianyuan Wang, Minghao Chen, Nikita Karaev, Andrea Vedaldi, Christian Rupprecht, David Novotny (Oxford / Meta AI)
+- **Venue:** CVPR 2025 -- Best Paper Award
+- **URL:** https://arxiv.org/abs/2503.11651
+- **What it does:** A feed-forward transformer that directly infers all key 3D attributes of a scene (camera parameters, point maps, depth maps, 3D point tracks) from one or hundreds of views in under one second. Minimal 3D-inductive biases, trained on large-scale 3D-annotated data.
+- **Why it matters:** CVPR 2025 Best Paper. Highly relevant to spatial grounding -- it demonstrates how vision-language-style transformers can be applied to geometric scene understanding with real-time performance.
+
+---
+
+## 5. Molmo and PixMo: Open Weights and Open Data for State-of-the-Art Vision-Language Models
+
+- **Authors:** Matt Deitke, Christopher Clark, Sangho Lee et al. (Allen Institute for AI, ~50 authors)
+- **Venue:** CVPR 2025 -- Best Paper Honorable Mention / Oral
+- **URL:** https://arxiv.org/abs/2409.17146
+- **What it does:** Presents Molmo, a family of fully open VLMs (open weights + open data + open code), and PixMo, a collection of datasets including detailed captions, free-form QA, and a novel 2D pointing dataset -- all collected without proprietary VLMs. The 72B model outperforms Claude 3.5 Sonnet, Gemini 1.5 Pro/Flash, and is second only to GPT-4o.
+- **Why it matters:** CVPR 2025 Honorable Mention. First fully open VLM to rival proprietary models, providing foundational knowledge for building VLMs from scratch. The pointing dataset is directly relevant to spatial grounding.
+
+---
+
+## 6. Generative Multimodal Pretraining with Discrete Diffusion Timestep Tokens
+
+- **Authors:** Kaihang Pan, Wang Lin, Zhongqi Yue, Tenglong Ao, Liyu Jia, Wei Zhao, Juncheng Li, Siliang Tang, Hanwang Zhang
+- **Venue:** CVPR 2025 -- Best Student Paper Honorable Mention / Oral
+- **URL:** https://openaccess.thecvf.com/content/CVPR2025/papers/Pan_Generative_Multimodal_Pretraining_with_Discrete_Diffusion_Timestep_Tokens_CVPR_2025_paper.pdf
+- **What it does:** Introduces a novel tokenization approach for multimodal models that goes beyond traditional spatial visual tokens by leveraging discrete diffusion timestep tokens for both visual understanding and generation tasks.
+- **Why it matters:** CVPR 2025 Student Paper Honorable Mention. Advances multimodal pretraining with a unified approach to vision-language understanding and generation.
+
+---
+
+## 7. Rich Human Feedback for Text-to-Image Generation
+
+- **Authors:** Youwei Liang, Junfeng He, Gang Li et al. (UC San Diego, Google)
+- **Venue:** CVPR 2024 -- Best Paper Award
+- **URL:** https://arxiv.org/abs/2312.10240
+- **What it does:** Enriches feedback for text-to-image models by marking image regions that are implausible or misaligned with text, and annotating which words are misrepresented. Collects RichHF-18K dataset and trains a multimodal transformer to predict rich feedback automatically.
+- **Why it matters:** CVPR 2024 Best Paper. Directly addresses vision-language alignment and spatial grounding in generative models by providing region-level and word-level feedback signals.
+
+---
+
+## 8. Visual Autoregressive Modeling: Scalable Image Generation via Next-Scale Prediction (VAR)
+
+- **Authors:** Keyu Tian, Yi Jiang, Zehuan Yuan, Bingyue Peng, Liwei Wang
+- **Venue:** NeurIPS 2024 -- Best Paper Award
+- **URL:** https://arxiv.org/abs/2404.02905
+- **What it does:** Redefines autoregressive image generation as coarse-to-fine "next-scale prediction" instead of raster-scan "next-token prediction." On ImageNet 256x256, improves FID from 18.65 to 1.73 with ~20x faster inference than diffusion transformers.
+- **Why it matters:** NeurIPS 2024 Best Paper. First autoregressive vision model to surpass diffusion transformers, demonstrating GPT-like scaling laws for visual generation. Foundational for vision-language model architectures.
+
+---
+
+## 9. Scaling Laws for Dense Retrieval
+
+- **Authors:** Yan Fang, Jingtao Zhan, Qingyao Ai, Jiaxin Mao, Weihang Su, Jia Chen, Yiqun Liu (Tsinghua)
+- **Venue:** SIGIR 2024 -- Best Paper Award
+- **URL:** https://arxiv.org/abs/2403.18684
+- **What it does:** Reveals that dense retrieval model performance follows precise power-law scaling relationships with model size and annotation count. Proposes contrastive log-likelihood as an evaluation metric and provides guidance on resource allocation under compute budgets.
+- **Why it matters:** SIGIR 2024 Best Paper. Establishes scaling laws for information retrieval analogous to those in LLMs, enabling performance prediction without full model training. Directly foundational for the IR community.
+
+---
+
+## 10. Evaluating Retrieval Quality in Retrieval-Augmented Generation (eRAG)
+
+- **Authors:** Alireza Salemi, Hamed Zamani (UMass Amherst)
+- **Venue:** SIGIR 2024 -- Best Short Paper Award
+- **URL:** https://arxiv.org/abs/2404.13781
+- **What it does:** Proposes eRAG, which evaluates each retrieved document individually by feeding it to the LLM within a RAG system, rather than evaluating the final aggregate output. This disentangles retrieval quality from generation quality.
+- **Why it matters:** SIGIR 2024 Best Short Paper. Addresses a critical gap in RAG evaluation -- measuring retrieval quality in context of downstream generation.
+
+---
+
+## 11. WARP: An Efficient Engine for Multi-Vector Retrieval
+
+- **Authors:** Jan Luca Scheerer, Matei Zaharia, Christopher Potts, Gustavo Alonso, Omar Khattab
+- **Venue:** SIGIR 2025 -- Best Paper Award
+- **URL:** https://arxiv.org/abs/2501.17788
+- **What it does:** Introduces three efficiency innovations for multi-vector retrieval (ColBERT/XTR): dynamic similarity imputation, implicit decompression, and two-stage reduction. Achieves 41x latency reduction over XTR and 3x speedup over ColBERTv2/PLAID while preserving retrieval quality.
+- **Why it matters:** SIGIR 2025 Best Paper. Multi-vector retrieval is the backbone of systems like ColPali for visual document retrieval; WARP makes this approach practical at scale.
+
+---
+
+## 12. Q-RAG: Long Context Multi-Step Retrieval via Value-Based Embedder Training
+
+- **Authors:** Artyom Sorokin, Nazar Buzun, Aleksandr Anokhin, Egor Vedernikov, Petr Anokhin, Mikhail Burtsev, Evgeny Burnaev
+- **Venue:** ICLR 2026 -- Oral
+- **URL:** https://openreview.net/forum?id=MS9nWFY7LG
+- **What it does:** Fine-tunes embedding models using reinforcement learning for multi-step information retrieval. Achieves top performance on long-context benchmarks (up to 10M tokens on BabiLong and RULER) while being more resource-efficient than approaches requiring fine-tuning of smaller LMs.
+- **Why it matters:** ICLR 2026 Oral (top-tier acceptance). Advances retrieval over extremely long contexts, relevant to document understanding and multi-document reasoning.
+
+---
+
+## 13. Revela: Dense Retriever Learning via Language Modeling
+
+- **Authors:** Fengyu Cai, Tong Chen, Xinran Zhao, Sihao Chen, Hongming Zhang, Tongshuang Wu, Iryna Gurevych, Heinz Koeppl
+- **Venue:** ICLR 2026 -- Oral
+- **URL:** https://openreview.net/forum?id=e7pAjJZJWb
+- **What it does:** A self-supervised framework for training dense retrievers without annotated query-document pairs. Models semantic dependencies among documents by conditioning next token prediction on cross-document context through in-batch attention. Achieves unsupervised SOTA on BEIR with ~1000x less training data and 10x less compute.
+- **Why it matters:** ICLR 2026 Oral. Breaks the dependence on expensive retrieval annotations, making dense retriever training dramatically cheaper and more scalable.
+
+---
+
+## 14. MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction
+
+- **Authors:** Zilin Xiao, Qi Ma, Mengting Gu, Chun-cheng Jason Chen, Xintao Chen, Vicente Ordonez, Vijai Mohan
+- **Venue:** ICLR 2026 -- Oral
+- **URL:** https://openreview.net/forum?id=yKDqg9HwZX
+- **What it does:** Uses learnable Meta Tokens to produce compact multi-vector embeddings with Matryoshka-style training, allowing users to balance retrieval quality against efficiency at test time. Scales to 32B-parameter models and achieves SOTA on multiple multimodal retrieval benchmarks.
+- **Why it matters:** ICLR 2026 Oral. Directly addresses the efficiency/quality tradeoff in multimodal retrieval -- highly relevant to visual document retrieval systems.
+
+---
+
+## 15. On the Generalization Capacities of MLLMs for Spatial Intelligence
+
+- **Authors:** Gongjie Zhang, Wenhao Li, Quanhao Qian, Jiuniu Wang, Deli Zhao, Shijian Lu, Ran Xu
+- **Venue:** ICLR 2026 -- Oral
+- **URL:** https://openreview.net/forum?id=DE5ZJtR4bg
+- **What it does:** Argues that RGB-only multimodal models suffer from geometric ambiguity in spatial reasoning. Proposes incorporating camera parameters through dense embeddings, camera-aware data augmentation, and geometric priors from 3D models to achieve cross-camera generalization.
+- **Why it matters:** ICLR 2026 Oral. Directly addresses spatial grounding in vision-language models, establishing camera-awareness as essential for robust spatial reasoning.
+
+---
+
+## 16. DocPruner: A Storage-Efficient Framework for Multi-Vector Visual Document Retrieval
+
+- **Authors:** Yibo Yan, Guangwei Xu, Xin Zou, Shuliang Liu, James Kwok, Xuming Hu
+- **Venue:** ICLR 2026 (acceptance type not confirmed as oral)
+- **URL:** https://openreview.net/forum?id=mEMGL1fLOO
+- **What it does:** Adaptively prunes redundant patch-level embeddings from visual document retrieval models, achieving 50-60% storage reduction with negligible accuracy loss. First framework to employ adaptive patch-level embedding pruning for VDR.
+- **Why it matters:** Accepted at ICLR 2026. Directly tackles the storage bottleneck that limits deployment of ColPali-style visual document retrieval at scale.
+
+---
+
+## 17. MegaPairs: Massive Data Synthesis for Universal Multimodal Retrieval
+
+- **Authors:** Junjie Zhou, Zheng Liu, Ze Liu, Shitao Xiao, Yueze Wang, Bo Zhao, Chen Jason Zhang, Defu Lian, Yongping Xiong
+- **Venue:** ACL 2025 -- Oral
+- **URL:** https://arxiv.org/abs/2412.14475
+- **What it does:** Synthesizes 26M training instances for multimodal retrieval using VLMs and open-domain images. With just 500K instances, surpasses the full 36.7M-instance MagicLens dataset (70x less data). Trained models achieve SOTA on composed image retrieval benchmarks.
+- **Why it matters:** ACL 2025 Oral. Solves the data scarcity problem in multimodal retrieval through scalable synthesis, enabling superior retrieval with dramatically less training data.
+
+---
+
+## 18. FaithfulRAG: Fact-Level Conflict Modeling for Context-Faithful Retrieval-Augmented Generation
+
+- **Authors:** Qinggang Zhang, Zhishang Xiang, Yilin Xiao, Le Wang, Junhui Li, Xinrun Wang, Jinsong Su
+- **Venue:** ACL 2025 -- Best Paper Award
+- **URL:** https://arxiv.org/abs/2506.08938
+- **What it does:** Resolves knowledge conflicts in RAG by explicitly modeling discrepancies between parametric and retrieved knowledge at the fact level. Implements a self-thinking process enabling LLMs to reason about conflicting facts before generating responses.
+- **Why it matters:** ACL 2025 Best Paper. Directly advances retrieval-augmented generation, a core information retrieval application.
+
+---
+
+## 19. Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index
+
+- **Authors:** Hao Xu, Jiacheng Liu, Yejin Choi, Noah A. Smith, Hannaneh Hajishirzi
+- **Venue:** EMNLP 2025 -- Best Paper Award
+- **URL:** https://arxiv.org/abs/2506.12229
+- **What it does:** Builds an efficient search engine for exact n-gram matching across Internet-scale corpora using FM-index, achieving indexes that are only 44% the size of the original corpus (7% of the original infini-gram). Discovers up to 74.2% benchmark contamination in GSM8K.
+- **Why it matters:** EMNLP 2025 Best Paper. Foundational information retrieval infrastructure enabling Internet-scale text search with minimal storage.
+
+---
+
+## 20. Randomly Removing 50% of Dimensions in Text Embeddings has Minimal Impact on Retrieval and Classification Tasks
+
+- **Authors:** Sotaro Takeshita, Yurina Takeshita, Daniel Ruffinelli, Simone Paolo Ponzetto
+- **Venue:** EMNLP 2025 -- People's Choice Award
+- **URL:** https://arxiv.org/abs/2508.17744
+- **What it does:** Demonstrates across 6 SOTA text encoders and 26 downstream tasks that randomly removing up to 50% of embedding dimensions causes less than 10% performance drop in retrieval and classification.
+- **Why it matters:** EMNLP 2025 People's Choice Award. Challenges fundamental assumptions about embedding dimensionality in retrieval systems, with practical implications for storage and compute efficiency.
+
+---
+
+## 21. An Image Speaks a Thousand Words, but Can Everyone Listen? On Image Transcreation for Cultural Relevance
+
+- **Authors:** Simran Khanuja, Sathyanarayanan Ramamoorthy, Yueqi Song, Graham Neubig
+- **Venue:** EMNLP 2024 -- Best Paper Award
+- **URL:** https://arxiv.org/abs/2404.01247
+- **What it does:** Introduces the task of image transcreation -- translating images to make them culturally relevant. Finds that image-editing models fail at this but can be improved by leveraging LLMs and retrievers together.
+- **Why it matters:** EMNLP 2024 Best Paper. Combines vision-language models with retrieval for cultural adaptation, a novel intersection of visual understanding and information retrieval.
+
+---
+
+## 22. Towards Cross-Cultural Machine Translation with Retrieval-Augmented Generation from Multilingual Knowledge Graphs
+
+- **Authors:** Simone Conia, Daniel Lee, Min Li, Umar Farooq Minhas, Saloni Potdar, Yunyao Li
+- **Venue:** EMNLP 2024 -- Outstanding Paper Award
+- **URL:** https://arxiv.org/abs/2410.14057
+- **What it does:** Addresses entity name translation using RAG from multilingual knowledge graphs, handling cultural references that require transcreation beyond simple word-for-word translation.
+- **Why it matters:** EMNLP 2024 Outstanding Paper. Directly demonstrates retrieval-augmented generation for a challenging cross-lingual/cross-cultural task.
+
+---
+
+## 23. WORLDCUISINES: A Massive-Scale Benchmark for Multilingual and Multicultural Visual Question Answering on Global Cuisines
+
+- **Authors:** Multiple authors (Hong Kong Polytechnic University et al.)
+- **Venue:** NAACL 2025 -- Best Theme Paper Award
+- **URL:** https://arxiv.org/abs/2410.12705
+- **What it does:** Creates the largest multicultural VQA benchmark: 1M+ data points across 30 languages/dialects, 9 language families, covering 2.4K dishes with 6K images. Reveals that VLMs perform better with correct location context but struggle with adversarial contexts and regional cuisine recognition.
+- **Why it matters:** NAACL 2025 Best Theme Paper. Major benchmark for evaluating vision-language models on culturally diverse, visually grounded understanding.
+
+---
+
+## 24. Generative Retrieval as Multi-Vector Dense Retrieval
+
+- **Authors:** Shiguang Wu, Wenda Wei, Mengqi Zhang, Zhumin Chen, Jun Ma, Zhaochun Ren, Maarten de Rijke, Pengjie Ren
+- **Venue:** SIGIR 2024 -- Honorable Mention
+- **URL:** https://arxiv.org/abs/2404.00684
+- **What it does:** Reveals that generative retrieval can be understood as a special case of multi-vector dense retrieval. Both methods compute relevance as a sum of products of query/document vectors and an alignment matrix, but with different strategies.
+- **Why it matters:** SIGIR 2024 Honorable Mention. Provides theoretical unification between generative and dense retrieval paradigms, deepening understanding of retrieval architectures.
+
+---
+
+## Summary Table
+
+| # | Paper | Venue | Award |
+|---|-------|-------|-------|
+| 1 | ColPali | ICLR 2025 | Poster (highly cited) |
+| 2 | MM-Embed | ICLR 2025 | Poster |
+| 3 | SAM 2 | ICLR 2025 | Outstanding Paper Honorable Mention |
+| 4 | VGGT | CVPR 2025 | Best Paper |
+| 5 | Molmo/PixMo | CVPR 2025 | Best Paper Honorable Mention |
+| 6 | Gen. Multimodal Pretraining | CVPR 2025 | Best Student Paper Honorable Mention |
+| 7 | Rich Human Feedback | CVPR 2024 | Best Paper |
+| 8 | VAR | NeurIPS 2024 | Best Paper |
+| 9 | Scaling Laws Dense Retrieval | SIGIR 2024 | Best Paper |
+| 10 | eRAG | SIGIR 2024 | Best Short Paper |
+| 11 | WARP | SIGIR 2025 | Best Paper |
+| 12 | Q-RAG | ICLR 2026 | Oral |
+| 13 | Revela | ICLR 2026 | Oral |
+| 14 | MetaEmbed | ICLR 2026 | Oral |
+| 15 | Spatial Intelligence MLLMs | ICLR 2026 | Oral |
+| 16 | DocPruner | ICLR 2026 | Accepted |
+| 17 | MegaPairs | ACL 2025 | Oral |
+| 18 | FaithfulRAG | ACL 2025 | Best Paper |
+| 19 | Infini-gram mini | EMNLP 2025 | Best Paper |
+| 20 | 50% Dimensions Removal | EMNLP 2025 | People's Choice |
+| 21 | Image Transcreation | EMNLP 2024 | Best Paper |
+| 22 | Cross-Cultural MT w/ RAG | EMNLP 2024 | Outstanding Paper |
+| 23 | WORLDCUISINES VQA | NAACL 2025 | Best Theme Paper |
+| 24 | Gen. Retrieval as MV Dense | SIGIR 2024 | Honorable Mention |
+
+agentId: ac80854139292daee (use SendMessage with to: 'ac80854139292daee' to continue this agent)
+&lt;usage>total_tokens: 64745
+tool_uses: 69
+duration_ms: 367860&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43afab1d-6b0f-4c31-9b71-91b0d6c42a3d",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "05668d1c-5c4c-4802-a202-4d110080bf95",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping with a literature survey. Search for best paper awards and outstanding/oral papers at top venues in 2024-2026 that relate to: document understanding, visual retrieval, vision-language models, spatial grounding, or information retrieval.\n\nExecute these searches:\n\n1. Search: \"best paper award ICLR 2025 2026 vision language\"\n2. Search: \"best paper award NeurIPS 2024 2025 retrieval vision\"\n3. Search: \"best paper award ACL EMNLP 2025 document retrieval\"\n4. Search: \"best paper award CVPR ECCV 2024 2025 document understanding\"\n5. Search: \"outstanding paper ICML NeurIPS 2025 multimodal retrieval\"\n6. Search: \"oral spotlight ICLR 2026 document retrieval visual\"\n7. Search: \"site:openreview.net document retrieval visual 2025 2026 outstanding\"\n\nFor each relevant paper you find, use WebFetch on its arxiv/openreview page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue and award type\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important (award, citation count, impact)\n\nFind as many relevant papers as possible.",
+    "agentId": "ac80854139292daee",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have gathered comprehensive information. Let me compile the final report.\n\n---\n\nHere is a comprehensive survey of best/outstanding/oral papers at top venues (2024--2026) relevant to document understanding, visual retrieval, vision-language models, spatial grounding, and information retrieval.\n\n---\n\n## 1. ColPali: Efficient Document Retrieval with Vision Language Models\n\n- **Authors:** Manuel Faysse et al.\n- **Venue:** ICLR 2025 (Poster)\n- **URL:** https://arxiv.org/abs/2407.01449\n- **What it does:** Proposes ColPali, a Vision Language Model that produces multi-vector embeddings directly from document page images using late interaction matching, bypassing brittle text extraction pipelines. Also introduces ViDoRe, a benchmark for visually rich document retrieval across domains and languages.\n- **Why it matters:** First end-to-end trainable visual document retrieval system to largely outperform traditional OCR-based retrieval pipelines. Accepted at ICLR 2025; foundational work that spawned an entire line of follow-up research (ColQwen, DocPruner, etc.). All models, data, and code released openly.\n\n---\n\n## 2. MM-Embed: Universal Multimodal Retrieval with Multimodal LLMs\n\n- **Authors:** Sheng-Chieh Lin, Chankyu Lee, Mohammad Shoeybi, Jimmy Lin, Bryan Catanzaro, Wei Ping\n- **Venue:** ICLR 2025 (Poster)\n- **URL:** https://arxiv.org/abs/2411.02571\n- **What it does:** Fine-tunes a multimodal LLM as a bi-encoder retriever for universal multimodal retrieval across 16 tasks. Proposes modality-aware hard negative mining to overcome modality bias and explores MLLMs as zero-shot rerankers for complex composed queries.\n- **Why it matters:** Achieves SOTA on the M-BEIR multimodal retrieval benchmark and surpasses NV-Embed-v1 on MTEB text retrieval. Published at ICLR 2025 by NVIDIA; model weights publicly released.\n\n---\n\n## 3. SAM 2: Segment Anything in Images and Videos\n\n- **Authors:** Nikhila Ravi et al. (Meta FAIR)\n- **Venue:** ICLR 2025 -- Outstanding Paper Honorable Mention\n- **URL:** https://arxiv.org/abs/2408.00714\n- **What it does:** Foundation model for promptable visual segmentation in both images and videos. Uses a transformer with streaming memory for real-time video processing and a data engine that produced the largest video segmentation dataset to date. Achieves 6x speedup over SAM with better accuracy.\n- **Why it matters:** One of only 6 papers recognized out of 11,000+ submissions at ICLR 2025. Foundational vision model with massive adoption. Directly relevant to spatial grounding and visual understanding tasks.\n\n---\n\n## 4. VGGT: Visual Geometry Grounded Transformer\n\n- **Authors:** Jianyuan Wang, Minghao Chen, Nikita Karaev, Andrea Vedaldi, Christian Rupprecht, David Novotny (Oxford / Meta AI)\n- **Venue:** CVPR 2025 -- Best Paper Award\n- **URL:** https://arxiv.org/abs/2503.11651\n- **What it does:** A feed-forward transformer that directly infers all key 3D attributes of a scene (camera parameters, point maps, depth maps, 3D point tracks) from one or hundreds of views in under one second. Minimal 3D-inductive biases, trained on large-scale 3D-annotated data.\n- **Why it matters:** CVPR 2025 Best Paper. Highly relevant to spatial grounding -- it demonstrates how vision-language-style transformers can be applied to geometric scene understanding with real-time performance.\n\n---\n\n## 5. Molmo and PixMo: Open Weights and Open Data for State-of-the-Art Vision-Language Models\n\n- **Authors:** Matt Deitke, Christopher Clark, Sangho Lee et al. (Allen Institute for AI, ~50 authors)\n- **Venue:** CVPR 2025 -- Best Paper Honorable Mention / Oral\n- **URL:** https://arxiv.org/abs/2409.17146\n- **What it does:** Presents Molmo, a family of fully open VLMs (open weights + open data + open code), and PixMo, a collection of datasets including detailed captions, free-form QA, and a novel 2D pointing dataset -- all collected without proprietary VLMs. The 72B model outperforms Claude 3.5 Sonnet, Gemini 1.5 Pro/Flash, and is second only to GPT-4o.\n- **Why it matters:** CVPR 2025 Honorable Mention. First fully open VLM to rival proprietary models, providing foundational knowledge for building VLMs from scratch. The pointing dataset is directly relevant to spatial grounding.\n\n---\n\n## 6. Generative Multimodal Pretraining with Discrete Diffusion Timestep Tokens\n\n- **Authors:** Kaihang Pan, Wang Lin, Zhongqi Yue, Tenglong Ao, Liyu Jia, Wei Zhao, Juncheng Li, Siliang Tang, Hanwang Zhang\n- **Venue:** CVPR 2025 -- Best Student Paper Honorable Mention / Oral\n- **URL:** https://openaccess.thecvf.com/content/CVPR2025/papers/Pan_Generative_Multimodal_Pretraining_with_Discrete_Diffusion_Timestep_Tokens_CVPR_2025_paper.pdf\n- **What it does:** Introduces a novel tokenization approach for multimodal models that goes beyond traditional spatial visual tokens by leveraging discrete diffusion timestep tokens for both visual understanding and generation tasks.\n- **Why it matters:** CVPR 2025 Student Paper Honorable Mention. Advances multimodal pretraining with a unified approach to vision-language understanding and generation.\n\n---\n\n## 7. Rich Human Feedback for Text-to-Image Generation\n\n- **Authors:** Youwei Liang, Junfeng He, Gang Li et al. (UC San Diego, Google)\n- **Venue:** CVPR 2024 -- Best Paper Award\n- **URL:** https://arxiv.org/abs/2312.10240\n- **What it does:** Enriches feedback for text-to-image models by marking image regions that are implausible or misaligned with text, and annotating which words are misrepresented. Collects RichHF-18K dataset and trains a multimodal transformer to predict rich feedback automatically.\n- **Why it matters:** CVPR 2024 Best Paper. Directly addresses vision-language alignment and spatial grounding in generative models by providing region-level and word-level feedback signals.\n\n---\n\n## 8. Visual Autoregressive Modeling: Scalable Image Generation via Next-Scale Prediction (VAR)\n\n- **Authors:** Keyu Tian, Yi Jiang, Zehuan Yuan, Bingyue Peng, Liwei Wang\n- **Venue:** NeurIPS 2024 -- Best Paper Award\n- **URL:** https://arxiv.org/abs/2404.02905\n- **What it does:** Redefines autoregressive image generation as coarse-to-fine \"next-scale prediction\" instead of raster-scan \"next-token prediction.\" On ImageNet 256x256, improves FID from 18.65 to 1.73 with ~20x faster inference than diffusion transformers.\n- **Why it matters:** NeurIPS 2024 Best Paper. First autoregressive vision model to surpass diffusion transformers, demonstrating GPT-like scaling laws for visual generation. Foundational for vision-language model architectures.\n\n---\n\n## 9. Scaling Laws for Dense Retrieval\n\n- **Authors:** Yan Fang, Jingtao Zhan, Qingyao Ai, Jiaxin Mao, Weihang Su, Jia Chen, Yiqun Liu (Tsinghua)\n- **Venue:** SIGIR 2024 -- Best Paper Award\n- **URL:** https://arxiv.org/abs/2403.18684\n- **What it does:** Reveals that dense retrieval model performance follows precise power-law scaling relationships with model size and annotation count. Proposes contrastive log-likelihood as an evaluation metric and provides guidance on resource allocation under compute budgets.\n- **Why it matters:** SIGIR 2024 Best Paper. Establishes scaling laws for information retrieval analogous to those in LLMs, enabling performance prediction without full model training. Directly foundational for the IR community.\n\n---\n\n## 10. Evaluating Retrieval Quality in Retrieval-Augmented Generation (eRAG)\n\n- **Authors:** Alireza Salemi, Hamed Zamani (UMass Amherst)\n- **Venue:** SIGIR 2024 -- Best Short Paper Award\n- **URL:** https://arxiv.org/abs/2404.13781\n- **What it does:** Proposes eRAG, which evaluates each retrieved document individually by feeding it to the LLM within a RAG system, rather than evaluating the final aggregate output. This disentangles retrieval quality from generation quality.\n- **Why it matters:** SIGIR 2024 Best Short Paper. Addresses a critical gap in RAG evaluation -- measuring retrieval quality in context of downstream generation.\n\n---\n\n## 11. WARP: An Efficient Engine for Multi-Vector Retrieval\n\n- **Authors:** Jan Luca Scheerer, Matei Zaharia, Christopher Potts, Gustavo Alonso, Omar Khattab\n- **Venue:** SIGIR 2025 -- Best Paper Award\n- **URL:** https://arxiv.org/abs/2501.17788\n- **What it does:** Introduces three efficiency innovations for multi-vector retrieval (ColBERT/XTR): dynamic similarity imputation, implicit decompression, and two-stage reduction. Achieves 41x latency reduction over XTR and 3x speedup over ColBERTv2/PLAID while preserving retrieval quality.\n- **Why it matters:** SIGIR 2025 Best Paper. Multi-vector retrieval is the backbone of systems like ColPali for visual document retrieval; WARP makes this approach practical at scale.\n\n---\n\n## 12. Q-RAG: Long Context Multi-Step Retrieval via Value-Based Embedder Training\n\n- **Authors:** Artyom Sorokin, Nazar Buzun, Aleksandr Anokhin, Egor Vedernikov, Petr Anokhin, Mikhail Burtsev, Evgeny Burnaev\n- **Venue:** ICLR 2026 -- Oral\n- **URL:** https://openreview.net/forum?id=MS9nWFY7LG\n- **What it does:** Fine-tunes embedding models using reinforcement learning for multi-step information retrieval. Achieves top performance on long-context benchmarks (up to 10M tokens on BabiLong and RULER) while being more resource-efficient than approaches requiring fine-tuning of smaller LMs.\n- **Why it matters:** ICLR 2026 Oral (top-tier acceptance). Advances retrieval over extremely long contexts, relevant to document understanding and multi-document reasoning.\n\n---\n\n## 13. Revela: Dense Retriever Learning via Language Modeling\n\n- **Authors:** Fengyu Cai, Tong Chen, Xinran Zhao, Sihao Chen, Hongming Zhang, Tongshuang Wu, Iryna Gurevych, Heinz Koeppl\n- **Venue:** ICLR 2026 -- Oral\n- **URL:** https://openreview.net/forum?id=e7pAjJZJWb\n- **What it does:** A self-supervised framework for training dense retrievers without annotated query-document pairs. Models semantic dependencies among documents by conditioning next token prediction on cross-document context through in-batch attention. Achieves unsupervised SOTA on BEIR with ~1000x less training data and 10x less compute.\n- **Why it matters:** ICLR 2026 Oral. Breaks the dependence on expensive retrieval annotations, making dense retriever training dramatically cheaper and more scalable.\n\n---\n\n## 14. MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction\n\n- **Authors:** Zilin Xiao, Qi Ma, Mengting Gu, Chun-cheng Jason Chen, Xintao Chen, Vicente Ordonez, Vijai Mohan\n- **Venue:** ICLR 2026 -- Oral\n- **URL:** https://openreview.net/forum?id=yKDqg9HwZX\n- **What it does:** Uses learnable Meta Tokens to produce compact multi-vector embeddings with Matryoshka-style training, allowing users to balance retrieval quality against efficiency at test time. Scales to 32B-parameter models and achieves SOTA on multiple multimodal retrieval benchmarks.\n- **Why it matters:** ICLR 2026 Oral. Directly addresses the efficiency/quality tradeoff in multimodal retrieval -- highly relevant to visual document retrieval systems.\n\n---\n\n## 15. On the Generalization Capacities of MLLMs for Spatial Intelligence\n\n- **Authors:** Gongjie Zhang, Wenhao Li, Quanhao Qian, Jiuniu Wang, Deli Zhao, Shijian Lu, Ran Xu\n- **Venue:** ICLR 2026 -- Oral\n- **URL:** https://openreview.net/forum?id=DE5ZJtR4bg\n- **What it does:** Argues that RGB-only multimodal models suffer from geometric ambiguity in spatial reasoning. Proposes incorporating camera parameters through dense embeddings, camera-aware data augmentation, and geometric priors from 3D models to achieve cross-camera generalization.\n- **Why it matters:** ICLR 2026 Oral. Directly addresses spatial grounding in vision-language models, establishing camera-awareness as essential for robust spatial reasoning.\n\n---\n\n## 16. DocPruner: A Storage-Efficient Framework for Multi-Vector Visual Document Retrieval\n\n- **Authors:** Yibo Yan, Guangwei Xu, Xin Zou, Shuliang Liu, James Kwok, Xuming Hu\n- **Venue:** ICLR 2026 (acceptance type not confirmed as oral)\n- **URL:** https://openreview.net/forum?id=mEMGL1fLOO\n- **What it does:** Adaptively prunes redundant patch-level embeddings from visual document retrieval models, achieving 50-60% storage reduction with negligible accuracy loss. First framework to employ adaptive patch-level embedding pruning for VDR.\n- **Why it matters:** Accepted at ICLR 2026. Directly tackles the storage bottleneck that limits deployment of ColPali-style visual document retrieval at scale.\n\n---\n\n## 17. MegaPairs: Massive Data Synthesis for Universal Multimodal Retrieval\n\n- **Authors:** Junjie Zhou, Zheng Liu, Ze Liu, Shitao Xiao, Yueze Wang, Bo Zhao, Chen Jason Zhang, Defu Lian, Yongping Xiong\n- **Venue:** ACL 2025 -- Oral\n- **URL:** https://arxiv.org/abs/2412.14475\n- **What it does:** Synthesizes 26M training instances for multimodal retrieval using VLMs and open-domain images. With just 500K instances, surpasses the full 36.7M-instance MagicLens dataset (70x less data). Trained models achieve SOTA on composed image retrieval benchmarks.\n- **Why it matters:** ACL 2025 Oral. Solves the data scarcity problem in multimodal retrieval through scalable synthesis, enabling superior retrieval with dramatically less training data.\n\n---\n\n## 18. FaithfulRAG: Fact-Level Conflict Modeling for Context-Faithful Retrieval-Augmented Generation\n\n- **Authors:** Qinggang Zhang, Zhishang Xiang, Yilin Xiao, Le Wang, Junhui Li, Xinrun Wang, Jinsong Su\n- **Venue:** ACL 2025 -- Best Paper Award\n- **URL:** https://arxiv.org/abs/2506.08938\n- **What it does:** Resolves knowledge conflicts in RAG by explicitly modeling discrepancies between parametric and retrieved knowledge at the fact level. Implements a self-thinking process enabling LLMs to reason about conflicting facts before generating responses.\n- **Why it matters:** ACL 2025 Best Paper. Directly advances retrieval-augmented generation, a core information retrieval application.\n\n---\n\n## 19. Infini-gram mini: Exact n-gram Search at the Internet Scale with FM-Index\n\n- **Authors:** Hao Xu, Jiacheng Liu, Yejin Choi, Noah A. Smith, Hannaneh Hajishirzi\n- **Venue:** EMNLP 2025 -- Best Paper Award\n- **URL:** https://arxiv.org/abs/2506.12229\n- **What it does:** Builds an efficient search engine for exact n-gram matching across Internet-scale corpora using FM-index, achieving indexes that are only 44% the size of the original corpus (7% of the original infini-gram). Discovers up to 74.2% benchmark contamination in GSM8K.\n- **Why it matters:** EMNLP 2025 Best Paper. Foundational information retrieval infrastructure enabling Internet-scale text search with minimal storage.\n\n---\n\n## 20. Randomly Removing 50% of Dimensions in Text Embeddings has Minimal Impact on Retrieval and Classification Tasks\n\n- **Authors:** Sotaro Takeshita, Yurina Takeshita, Daniel Ruffinelli, Simone Paolo Ponzetto\n- **Venue:** EMNLP 2025 -- People's Choice Award\n- **URL:** https://arxiv.org/abs/2508.17744\n- **What it does:** Demonstrates across 6 SOTA text encoders and 26 downstream tasks that randomly removing up to 50% of embedding dimensions causes less than 10% performance drop in retrieval and classification.\n- **Why it matters:** EMNLP 2025 People's Choice Award. Challenges fundamental assumptions about embedding dimensionality in retrieval systems, with practical implications for storage and compute efficiency.\n\n---\n\n## 21. An Image Speaks a Thousand Words, but Can Everyone Listen? On Image Transcreation for Cultural Relevance\n\n- **Authors:** Simran Khanuja, Sathyanarayanan Ramamoorthy, Yueqi Song, Graham Neubig\n- **Venue:** EMNLP 2024 -- Best Paper Award\n- **URL:** https://arxiv.org/abs/2404.01247\n- **What it does:** Introduces the task of image transcreation -- translating images to make them culturally relevant. Finds that image-editing models fail at this but can be improved by leveraging LLMs and retrievers together.\n- **Why it matters:** EMNLP 2024 Best Paper. Combines vision-language models with retrieval for cultural adaptation, a novel intersection of visual understanding and information retrieval.\n\n---\n\n## 22. Towards Cross-Cultural Machine Translation with Retrieval-Augmented Generation from Multilingual Knowledge Graphs\n\n- **Authors:** Simone Conia, Daniel Lee, Min Li, Umar Farooq Minhas, Saloni Potdar, Yunyao Li\n- **Venue:** EMNLP 2024 -- Outstanding Paper Award\n- **URL:** https://arxiv.org/abs/2410.14057\n- **What it does:** Addresses entity name translation using RAG from multilingual knowledge graphs, handling cultural references that require transcreation beyond simple word-for-word translation.\n- **Why it matters:** EMNLP 2024 Outstanding Paper. Directly demonstrates retrieval-augmented generation for a challenging cross-lingual/cross-cultural task.\n\n---\n\n## 23. WORLDCUISINES: A Massive-Scale Benchmark for Multilingual and Multicultural Visual Question Answering on Global Cuisines\n\n- **Authors:** Multiple authors (Hong Kong Polytechnic University et al.)\n- **Venue:** NAACL 2025 -- Best Theme Paper Award\n- **URL:** https://arxiv.org/abs/2410.12705\n- **What it does:** Creates the largest multicultural VQA benchmark: 1M+ data points across 30 languages/dialects, 9 language families, covering 2.4K dishes with 6K images. Reveals that VLMs perform better with correct location context but struggle with adversarial contexts and regional cuisine recognition.\n- **Why it matters:** NAACL 2025 Best Theme Paper. Major benchmark for evaluating vision-language models on culturally diverse, visually grounded understanding.\n\n---\n\n## 24. Generative Retrieval as Multi-Vector Dense Retrieval\n\n- **Authors:** Shiguang Wu, Wenda Wei, Mengqi Zhang, Zhumin Chen, Jun Ma, Zhaochun Ren, Maarten de Rijke, Pengjie Ren\n- **Venue:** SIGIR 2024 -- Honorable Mention\n- **URL:** https://arxiv.org/abs/2404.00684\n- **What it does:** Reveals that generative retrieval can be understood as a special case of multi-vector dense retrieval. Both methods compute relevance as a sum of products of query/document vectors and an alignment matrix, but with different strategies.\n- **Why it matters:** SIGIR 2024 Honorable Mention. Provides theoretical unification between generative and dense retrieval paradigms, deepening understanding of retrieval architectures.\n\n---\n\n## Summary Table\n\n| # | Paper | Venue | Award |\n|---|-------|-------|-------|\n| 1 | ColPali | ICLR 2025 | Poster (highly cited) |\n| 2 | MM-Embed | ICLR 2025 | Poster |\n| 3 | SAM 2 | ICLR 2025 | Outstanding Paper Honorable Mention |\n| 4 | VGGT | CVPR 2025 | Best Paper |\n| 5 | Molmo/PixMo | CVPR 2025 | Best Paper Honorable Mention |\n| 6 | Gen. Multimodal Pretraining | CVPR 2025 | Best Student Paper Honorable Mention |\n| 7 | Rich Human Feedback | CVPR 2024 | Best Paper |\n| 8 | VAR | NeurIPS 2024 | Best Paper |\n| 9 | Scaling Laws Dense Retrieval | SIGIR 2024 | Best Paper |\n| 10 | eRAG | SIGIR 2024 | Best Short Paper |\n| 11 | WARP | SIGIR 2025 | Best Paper |\n| 12 | Q-RAG | ICLR 2026 | Oral |\n| 13 | Revela | ICLR 2026 | Oral |\n| 14 | MetaEmbed | ICLR 2026 | Oral |\n| 15 | Spatial Intelligence MLLMs | ICLR 2026 | Oral |\n| 16 | DocPruner | ICLR 2026 | Accepted |\n| 17 | MegaPairs | ACL 2025 | Oral |\n| 18 | FaithfulRAG | ACL 2025 | Best Paper |\n| 19 | Infini-gram mini | EMNLP 2025 | Best Paper |\n| 20 | 50% Dimensions Removal | EMNLP 2025 | People's Choice |\n| 21 | Image Transcreation | EMNLP 2024 | Best Paper |\n| 22 | Cross-Cultural MT w/ RAG | EMNLP 2024 | Outstanding Paper |\n| 23 | WORLDCUISINES VQA | NAACL 2025 | Best Theme Paper |\n| 24 | Gen. Retrieval as MV Dense | SIGIR 2024 | Honorable Mention |"
+      }
+    ],
+    "totalDurationMs": 367860,
+    "totalTokens": 64745,
+    "totalToolUseCount": 69,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3117,
+      "cache_read_input_tokens": 55653,
+      "output_tokens": 5974,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3117
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5974,
+          "cache_read_input_tokens": 55653,
+          "cache_creation_input_tokens": 3117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3117,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 69
+    }
+  },
+  "sourceToolAssistantUUID": "43afab1d-6b0f-4c31-9b71-91b0d6c42a3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "05668d1c-5c4c-4802-a202-4d110080bf95",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-30T06:20:37.625Z_
+
+<details><summary>↩ Tool result · `toolu_01Wfhmms9V49tgTFp3khLbRL`</summary>
+
+```text
+Now I have a comprehensive collection. Let me compile the final report.
+
+---
+
+Here is the literature survey. I have excluded the seed papers (ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT) as requested.
+
+---
+
+## SURVEYS
+
+**1. Unlocking Multimodal Document Intelligence: From Current Triumphs to Future Frontiers of Visual Document Retrieval**
+- **Authors:** Yibo Yan et al.
+- **Date:** arXiv, February 2026
+- **URL:** https://arxiv.org/abs/2602.19961
+- **What it does:** A comprehensive survey of visual document retrieval in the MLLM era. Categorizes methods into multimodal embedding models, multimodal reranker models, and RAG+agentic integration. Covers the full pipeline from OCR-based to VLM-based retrieval approaches.
+- **Why important:** The most dedicated and recent survey specifically focused on VDR. Provides a complete taxonomy of the field and identifies key challenges and future directions.
+
+**2. Roles of MLLMs in Visually Rich Document Retrieval for RAG: A Survey**
+- **Authors:** Xiantao Zhang
+- **Date:** arXiv, December 2025
+- **URL:** https://arxiv.org/abs/2601.03262
+- **What it does:** Surveys how MLLMs address challenges in visually rich document retrieval for RAG, including layout-dependent semantics, brittle OCR, and evidence spread across tables/figures. Categorizes approaches into Modality-Unifying Captioners, Multimodal Embedders, and End-to-End Representers.
+- **Why important:** Provides a focused analysis of the retrieval component specifically for visually rich documents in RAG pipelines, comparing approaches across granularity, preservation, efficiency, and compatibility.
+
+**3. Scaling Beyond Context: A Survey of Multimodal Retrieval-Augmented Generation for Document Understanding**
+- **Authors:** Sensen Gao et al.
+- **Date:** arXiv, October 2025 (revised April 2026)
+- **URL:** https://arxiv.org/abs/2510.15253
+- **What it does:** Surveys multimodal RAG for document understanding across financial analysis, scientific discovery, and other domains. Proposes a taxonomy by domain, retrieval modality, and granularity, and reviews advances using graph structures and agentic systems.
+- **Why important:** Bridges the gap between document understanding and RAG, covering datasets, benchmarks, applications, and industry implementation with a focus on holistic retrieval across all modalities.
+
+**4. A Survey on MLLM-based Visually Rich Document Understanding: Methods, Challenges, and Emerging Trends**
+- **Authors:** Yihao Ding et al.
+- **Date:** arXiv, July 2025 (revised April 2026)
+- **URL:** https://arxiv.org/abs/2507.09861
+- **What it does:** Surveys how MLLMs interpret documents containing intricate visual, textual, and structural elements. Covers both OCR-based and OCR-free approaches, pretraining and instruction tuning methods, and emerging technologies like RAG and agent-based systems.
+- **Why important:** Provides the most detailed treatment of the document understanding side (as opposed to retrieval), which is the upstream capability that visual retrieval systems rely on.
+
+**5. A Survey of Multimodal Retrieval-Augmented Generation**
+- **Authors:** Lang Mei et al.
+- **Date:** arXiv, March 2025
+- **URL:** https://arxiv.org/abs/2504.08748
+- **What it does:** Reviews MRAG's essential components, datasets, and evaluation methods for incorporating diverse data types (text, images, videos) into retrieval and generation. Demonstrates MRAG outperforms traditional RAG in scenarios requiring both visual and textual understanding.
+- **Why important:** An ACL 2025 paper providing a comprehensive taxonomy of multimodal RAG, establishing the field's foundations and evaluation standards.
+
+**6. Retrieval Augmented Generation and Understanding in Vision: A Survey and New Outlook**
+- **Authors:** Xu Zheng et al.
+- **Date:** arXiv, March 2025
+- **URL:** https://arxiv.org/abs/2503.18016
+- **What it does:** Surveys retrieval-augmented techniques in computer vision across visual understanding (image recognition to medical report generation) and visual generation (image, video, 3D creation). Also explores RAG for embodied AI.
+- **Why important:** Broadens the RAG discussion beyond documents to the full scope of computer vision, identifying how retrieval augmentation is transforming diverse vision tasks.
+
+**7. Vision Language Models: A Survey of 26K Papers**
+- **Authors:** Fengming Lin
+- **Date:** arXiv, October 2025
+- **URL:** https://arxiv.org/abs/2510.09586
+- **What it does:** Analyzes 26,104 papers accepted at CVPR, ICLR, and NeurIPS (2023-2025) using automated topic labeling. Identifies that multimodal VLM work consumes 40% of accepted papers by 2025, with a decisive pivot toward instruction following and reasoning.
+- **Why important:** Provides macro-level evidence of the massive growth of VLM research and the dominance of instruction tuning over encoder-from-scratch approaches, contextualizing the VDR subfield within the broader landscape.
+
+---
+
+## BENCHMARKS
+
+**8. ViDoRe Benchmark V2: Raising the Bar for Visual Retrieval**
+- **Authors:** Quentin Mace et al.
+- **Date:** arXiv, May 2025
+- **URL:** https://arxiv.org/abs/2505.17166
+- **What it does:** Addresses saturation of the original ViDoRe benchmark (top models exceeding 90% nDCG@5) by introducing harder scenarios including contextual blind querying, extended cross-document queries, and mixed synthetic/human-validated questions across four multilingual datasets.
+- **Why important:** The standard benchmark for visual document retrieval. V2 restores discriminative power and reveals substantial room for advancement, making it the primary evaluation target for new VDR methods.
+
+**9. MIRACL-VISION: A Large, Multilingual, Visual Document Retrieval Benchmark**
+- **Authors:** Radek Osmulski et al.
+- **Date:** arXiv, May 2025
+- **URL:** https://arxiv.org/abs/2505.11651
+- **What it does:** Extends the MIRACL text retrieval benchmark to visual document retrieval across 18 languages. Reveals that VLM-based retrieval models underperform text-based models by up to 59.7% on non-English tasks and 12.1% on English.
+- **Why important:** Exposes a critical multilingual gap in visual retrieval, demonstrating that current VDR models are far behind text-based systems for non-English content. Essential for driving multilingual VDR research.
+
+**10. jina-embeddings-v4: Universal Embeddings for Multimodal Multilingual Retrieval (incl. Jina-VDR Benchmark)**
+- **Authors:** Michael Gunther et al.
+- **Date:** arXiv, June 2025
+- **URL:** https://arxiv.org/abs/2506.18902
+- **What it does:** Introduces a 3.8B parameter multimodal embedding model supporting both single and multi-vector embeddings with task-specific LoRA adapters. Also introduces Jina-VDR, a 95-task, 20-language benchmark for visually rich document retrieval with 70K+ documents.
+- **Why important:** Both a strong baseline model and a major benchmark. Jina-VDR's 95-task scope across 20 languages makes it one of the most comprehensive VDR evaluation resources available.
+
+**11. MRMR: A Realistic and Expert-Level Multidisciplinary Benchmark for Reasoning-Intensive Multimodal Retrieval**
+- **Authors:** Siyue Zhang et al.
+- **Date:** arXiv, October 2025
+- **URL:** https://arxiv.org/abs/2510.09510
+- **What it does:** Introduces 1,502 expert-verified queries across 23 domains requiring intensive reasoning (e.g., diagnosing microscopic slides). Introduces contradiction retrieval as a novel task and uses image-text interleaved sequences for realistic evaluation.
+- **Why important:** Pushes multimodal retrieval evaluation beyond surface-level matching toward genuine reasoning. Reveals that text embedding models with captions outperform specialized multimodal systems, highlighting the reasoning gap.
+
+**12. Double-Bench (Are We on the Right Way for Assessing Document Retrieval-Augmented Generation?)**
+- **Authors:** Wenxuan Shen et al.
+- **Date:** arXiv, August 2025
+- **URL:** https://arxiv.org/abs/2508.03644
+- **What it does:** Introduces a large-scale, multilingual, multimodal evaluation system with 3,000+ documents and 5,000+ queries across six languages. Tests nine embedding models, four MLLMs, and four end-to-end frameworks. Identifies an "over-confidence dilemma" in current document RAG.
+- **Why important:** Finds that the gap between text and visual embedding models is shrinking, while exposing a systemic problem where RAG systems provide answers even without supporting evidence. Plans annual updates to prevent data contamination.
+
+**13. VisR-Bench: An Empirical Study on Visual Retrieval-Augmented Generation for Multilingual Long Document Understanding**
+- **Authors:** Jian Chen et al.
+- **Date:** arXiv, August 2025
+- **URL:** https://arxiv.org/abs/2508.07493
+- **What it does:** Introduces a question-driven multilingual benchmark with 35K QA pairs from 1,200 documents across 16 languages. Queries are designed to prevent superficial keyword matching. Evaluates retrieval across figures, text, and tables.
+- **Why important:** First benchmark specifically targeting retrieval-augmented QA over long, visually rich documents with multilingual coverage. Reveals that MLLMs struggle with structured tables and low-resource languages.
+
+**14. Document Haystack: A Long Context Multimodal Image/Document Understanding Vision LLM Benchmark**
+- **Authors:** Goeric Huybrechts et al.
+- **Date:** arXiv, July 2025
+- **URL:** https://arxiv.org/abs/2507.15882
+- **What it does:** Creates a "needle-in-a-haystack" style benchmark with documents ranging from 5 to 200 pages. Inserts text and multimodal text+image needles at various depths, generating 400 document variants and 8,250 questions.
+- **Why important:** Directly tests VLMs' ability to retrieve specific information from very long document contexts, a critical capability for real-world document understanding applications.
+
+**15. irpapers: A Visual Document Benchmark for Scientific Retrieval and Question Answering**
+- **Authors:** Connor Shorten et al.
+- **Date:** arXiv, February 2026
+- **URL:** https://arxiv.org/abs/2602.17687
+- **What it does:** Creates a benchmark of 3,230 pages from 166 scientific papers with both image and OCR versions. Shows text retrieval achieves 46% Recall@1 while combining text+image reaches 49%, demonstrating complementary strengths.
+- **Why important:** Provides direct, controlled comparison between text-based and image-based retrieval on scientific documents, demonstrating the value of multimodal fusion.
+
+**16. ARK: A Dual-Axis Multimodal Retrieval Benchmark along Reasoning and Knowledge**
+- **Authors:** Yijie Lin et al.
+- **Date:** arXiv, February 2026
+- **URL:** https://arxiv.org/abs/2602.09839
+- **What it does:** Evaluates retrieval along two axes: knowledge domains (5 areas, 17 subcategories) and reasoning skills (6 types). Tests 23 retrievers with 16 different visual data types and targeted hard negatives requiring multi-step reasoning.
+- **Why important:** Reveals significant performance gaps in fine-grained visual and spatial reasoning, providing a structured framework for understanding where retrievers succeed and fail.
+
+**17. VLM2Vec: Training Vision-Language Models for Massive Multimodal Embedding Tasks (incl. MMEB)**
+- **Authors:** Ziyan Jiang et al.
+- **Date:** arXiv, October 2024 (ICLR 2025)
+- **URL:** https://arxiv.org/abs/2410.05160
+- **What it does:** Introduces MMEB (Massive Multimodal Embedding Benchmark) with 36 datasets across classification, VQA, retrieval, and visual grounding. Presents VLM2Vec, a framework that transforms VLMs into embedding models, achieving 10-20% improvement over existing multimodal embedding models.
+- **Why important:** Established the MMEB benchmark that has become a standard evaluation suite for multimodal embedding models, and demonstrated the paradigm of converting generative VLMs into embedding models.
+
+**18. MMDocBench: Benchmarking Large Vision-Language Models for Fine-Grained Visual Document Understanding**
+- **Authors:** Fengbin Zhu et al.
+- **Date:** arXiv, October 2024
+- **URL:** https://arxiv.org/abs/2410.21311
+- **What it does:** Introduces a benchmark with 15 tasks, 4,338 QA pairs, and 11,353 supporting regions across academic papers, receipts, financial records, tables, charts, and infographics. Tests 16 models for fine-grained perception and reasoning.
+- **Why important:** Focuses on fine-grained perception (not just page-level retrieval), testing whether models can identify specific regions within documents -- a capability needed for grounded retrieval.
+
+---
+
+## RETRIEVAL METHODS AND SYSTEMS
+
+**19. VisRAG: Vision-based Retrieval-augmented Generation on Multi-modality Documents**
+- **Authors:** Shi Yu et al.
+- **Date:** arXiv, October 2024 (ICLR 2025)
+- **URL:** https://arxiv.org/abs/2410.10594
+- **What it does:** Establishes a pure-vision RAG pipeline by directly embedding document pages as images using VLMs, bypassing text extraction entirely. Achieves 20-40% end-to-end performance gain over traditional text-based RAG.
+- **Why important:** A foundational ICLR 2025 paper that demonstrated the feasibility and superiority of vision-based RAG over text-based RAG, establishing the paradigm that many subsequent VDR works build upon.
+
+**20. Unifying Multimodal Retrieval via Document Screenshot Embedding (DSE)**
+- **Authors:** Xueguang Ma et al.
+- **Date:** arXiv, June 2024 (EMNLP 2024)
+- **URL:** https://arxiv.org/abs/2406.11251
+- **What it does:** Treats document screenshots as unified input format, encoding them with a VLM into dense representations. Outperforms BM25 by 17 points in top-1 accuracy and OCR-based methods by 15+ points in nDCG@10 for slide retrieval.
+- **Why important:** Pioneered the screenshot-as-retrieval-unit paradigm. Demonstrated that directly encoding document images preserves information that text extraction loses, influencing ColPali and many subsequent methods.
+
+**21. SERVAL: Surprisingly Effective Zero-Shot Visual Document Retrieval Powered by Large Vision and Language Models**
+- **Authors:** Thong Nguyen et al.
+- **Date:** arXiv, September 2025
+- **URL:** https://arxiv.org/abs/2509.15432
+- **What it does:** Generates detailed textual descriptions of document images using a VLM, then applies standard text encoding. Achieves 63.4% nDCG@5 on ViDoRe-v2, outperforming specialized multi-vector encoders. Zero-shot, with no contrastive training.
+- **Why important:** Demonstrates that modern VLMs can serve as semantic bridges for VDR without any task-specific training, establishing a strong zero-shot baseline and challenging the necessity of specialized retrieval training.
+
+**22. Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval**
+- **Authors:** Gabriel de Souza P. Moreira et al.
+- **Date:** arXiv, February 2026
+- **URL:** https://arxiv.org/abs/2602.03992
+- **What it does:** Introduces 3B, 4B, and 8B late interaction models for VDR. The 8B model achieved first place on the ViDoRe V3 leaderboard (63.42 NDCG@10). Key techniques include cluster-based sampling, hard-negative mining, bidirectional attention, and model merging.
+- **Why important:** Current SOTA on the primary VDR benchmark. Demonstrates the scaling recipe and engineering decisions needed to build top-performing visual document retrievers.
+
+**23. ModernVBERT: Towards Smaller Visual Document Retrievers**
+- **Authors:** Paul Teiletche et al.
+- **Date:** arXiv, October 2025
+- **URL:** https://arxiv.org/abs/2510.01149
+- **What it does:** Builds a compact 250M-parameter vision-language encoder that outperforms models up to 10x larger. Identifies critical factors including attention masking, image resolution, and modality alignment. Enables CPU-based deployment.
+- **Why important:** Demonstrates that purpose-built bidirectional encoders dramatically outperform repurposed generative VLMs for retrieval. Achieves near-SOTA performance at a fraction of the parameter count, making VDR practical for resource-constrained settings.
+
+**24. NanoVDR: Distilling a 2B Vision-Language Retriever into a 70M Text-Only Encoder for Visual Document Retrieval**
+- **Authors:** Zhuchenyang Liu et al.
+- **Date:** arXiv, March 2026
+- **URL:** https://arxiv.org/abs/2603.12824
+- **What it does:** Uses asymmetric architecture: a frozen 2B VLM indexes documents offline while a 69M text-only model encodes queries at inference. Achieves 95.1% of teacher quality with 32x fewer parameters and 50x lower CPU query latency.
+- **Why important:** Pushes efficiency to the extreme by showing query encoding does not need vision capabilities. Enables practical deployment where query latency is critical.
+
+**25. Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model**
+- **Authors:** Athos Georgiou
+- **Date:** arXiv, March 2026
+- **URL:** https://arxiv.org/abs/2603.28554
+- **What it does:** Combines retrieval and generation in a single VLM using a dual-head design with a LoRA adapter toggle. Reduces peak GPU memory by 62.7% (from 28.85GB to 10.77GB at 4B). Releases Hydra-4B and Hydra-0.8B models.
+- **Why important:** Addresses the practical problem of deploying separate retrieval and generation models. Demonstrates that a single model can serve both purposes without degradation in either task.
+
+**26. FreeRet: MLLMs as Training-Free Retrievers**
+- **Authors:** Yuhan Zhu et al.
+- **Date:** arXiv, September 2025
+- **URL:** https://arxiv.org/abs/2509.24621
+- **What it does:** Turns any MLLM into a two-stage retriever without additional training: extracts semantically grounded embeddings for candidate search, then uses reasoning for reranking. Outperforms models trained on millions of pairs across 46 MMEB datasets.
+- **Why important:** Demonstrates that off-the-shelf MLLMs already contain strong retrieval capabilities that can be unlocked without training. Model-agnostic and supports arbitrary modality combinations.
+
+**27. RetLLM: Training and Data-Free MLLMs for Multimodal Information Retrieval**
+- **Authors:** Dawei Su and Dongsheng Wang
+- **Date:** arXiv, February 2026
+- **URL:** https://arxiv.org/abs/2602.22278
+- **What it does:** Formulates retrieval as a scoring task with a two-stage pipeline (filtering + scoring) and a visual enhancement module. Outperforms fine-tuned models on MMIR benchmarks without any training.
+- **Why important:** Reinforces the finding that training-free approaches can match or exceed fine-tuned models, suggesting the community should reconsider the cost/benefit of specialized training for multimodal retrieval.
+
+**28. ViDoRAG: Visual Document Retrieval-Augmented Generation via Dynamic Iterative Reasoning Agents**
+- **Authors:** Qiuchen Wang et al.
+- **Date:** EMNLP 2025, November 2025
+- **URL:** https://aclanthology.org/2025.emnlp-main.464/
+- **What it does:** Introduces ViDoSeek benchmark for evaluating RAG on complex visual documents. Proposes a GMM-based hybrid strategy for multimodal retrieval with iterative agent workflow (exploration, summarization, reflection). Achieves 10%+ improvement on ViDoSeek.
+- **Why important:** Published at EMNLP 2025, combines visual retrieval with agentic reasoning, advancing beyond single-pass retrieval to iterative evidence gathering.
+
+**29. MoLoRAG: Bootstrapping Document Understanding via Multi-modal Logic-aware Retrieval**
+- **Authors:** Xixi Wu et al.
+- **Date:** arXiv, September 2025 (EMNLP 2025)
+- **URL:** https://arxiv.org/abs/2509.07666
+- **What it does:** Constructs page graphs representing logical dependencies between document pages, then traverses these graphs to find both semantically and logically relevant pages. Achieves 9.68% accuracy improvement over LVLM direct inference and 7.44% retrieval precision gain.
+- **Why important:** Introduces the concept of logical (not just semantic) relevance in document retrieval, addressing multi-hop reasoning scenarios where relevant information is spread across logically connected pages.
+
+**30. Docs2Synth: A Synthetic Data Trained Retriever Framework for Scanned Visually Rich Documents Understanding**
+- **Authors:** Yihao Ding et al.
+- **Date:** arXiv, January 2026
+- **URL:** https://arxiv.org/abs/2601.12260
+- **What it does:** Automatically processes raw document collections, generates and verifies QA pairs via agents, and trains a lightweight visual retriever. At inference, the retriever collaborates with an MLLM through iterative retrieval-generation loops.
+- **Why important:** Solves the critical data scarcity problem for domain-specific VDR (especially regulated sectors) by enabling training without human annotations, making VDR practical for private and low-resource domains.
+
+**31. VisRAG 2.0: Evidence-Guided Multi-Image Reasoning in Visual Retrieval-Augmented Generation**
+- **Authors:** Yubo Sun et al.
+- **Date:** arXiv, October 2025
+- **URL:** https://arxiv.org/abs/2510.09733
+- **What it does:** Extends VisRAG with evidence-guided multi-image reasoning: first observes retrieved images and records per-image evidence, then derives answers from aggregated evidence. Introduces Reward-Scoped Group Relative Policy Optimization. Achieves 27% average improvement.
+- **Why important:** Advances the vision-based RAG paradigm from single-image to multi-image reasoning with explicit evidence tracking, addressing a key limitation of the original VisRAG.
+
+**32. When Vision Meets Texts in Listwise Reranking (Rank-Nexus)**
+- **Authors:** Hongyi Cai
+- **Date:** arXiv, January 2026
+- **URL:** https://arxiv.org/abs/2601.20623
+- **What it does:** Extends listwise reranking to multimodal scenarios using a lightweight 2B parameter model. Jointly processes textual passages and images through a decoupled training approach. Competitive on TREC, BEIR, INQUIRE, and MMDocIR benchmarks.
+- **Why important:** Addresses the reranking stage of the retrieval pipeline for multimodal documents, an underexplored area compared to first-stage retrieval.
+
+**33. MLDocRAG: Multimodal Long-Context Document Retrieval Augmented Generation**
+- **Authors:** Yongyue Zhang and Yaxiong Wu
+- **Date:** arXiv, February 2026
+- **URL:** https://arxiv.org/abs/2602.10271
+- **What it does:** Proposes a Multimodal Chunk-Query Graph structure that generates detailed questions from document sections and connects them across modalities and pages. Consistently improves retrieval quality and answer accuracy on MMLongBench-Doc and LongDocURL.
+- **Why important:** Introduces graph-based cross-modal linking for long document retrieval, enabling retrieval of evidence that spans modalities and pages.
+
+**34. AVIR: Adaptive Visual In-Document Retrieval for Efficient Multi-Page Document Question Answering**
+- **Authors:** Zongmin Li et al.
+- **Date:** arXiv, January 2026
+- **URL:** https://arxiv.org/abs/2601.11976
+- **What it does:** Proposes a lightweight page-scoring system that adaptively selects relevant pages using clustering, Top-K filtering, and relevance thresholds. Reduces average page count by 70% while achieving 84.58% ANLS on MP-DocVQA.
+- **Why important:** Demonstrates that efficient adaptive retrieval can dramatically reduce the number of pages a VLM must process without sacrificing answer quality, addressing a key scalability challenge.
+
+**35. Index Light, Reason Deep: Deferred Visual Ingestion for Visual-Dense Document Question Answering**
+- **Authors:** Tao Xu
+- **Date:** arXiv, February 2026
+- **URL:** https://arxiv.org/abs/2602.14162
+- **What it does:** Eliminates VLM processing at indexing time, instead building hierarchical indices from structural elements and sending original images to VLMs only at query time. Achieves 65.6% accuracy on bridge engineering drawings vs. 24.3% for baselines.
+- **Why important:** Challenges the dominant paradigm of VLM-based indexing, showing that for specialized engineering documents, lightweight structural indexing plus deferred visual reasoning vastly outperforms pre-computed visual embeddings.
+
+---
+
+## EFFICIENCY AND COMPRESSION
+
+**36. DocPruner: A Storage-Efficient Framework for Multi-Vector Visual Document Retrieval via Adaptive Patch-Level Embedding Pruning**
+- **Authors:** Yibo Yan et al.
+- **Date:** arXiv, September 2025
+- **URL:** https://arxiv.org/abs/2509.23883
+- **What it does:** Addresses storage overhead in multi-vector VDR by using attention-based adaptive pruning to identify and remove redundant patch embeddings. Achieves 50-60% storage reduction while maintaining retrieval performance.
+- **Why important:** One of the first works to systematically address the storage bottleneck of ColPali-style multi-vector representations.
+
+**37. Towards Storage-Efficient Visual Document Retrieval: An Empirical Study on Reducing Patch-Level Embeddings (Light-ColPali/ColQwen2)**
+- **Authors:** Yubo Ma et al.
+- **Date:** arXiv, June 2025 (ACL 2025 Findings)
+- **URL:** https://arxiv.org/abs/2506.04997
+- **What it does:** Compares token pruning vs. merging strategies for ColPali/ColQwen2. Finds that random pruning surprisingly outperforms complex methods, but merging is better suited overall. Light-ColPali retains 98.2% performance at 11.8% memory and 94.6% at 2.8%.
+- **Why important:** ACL 2025 Findings paper that provides systematic empirical evidence on compression strategies, establishing that token merging is the right approach and achieving extreme compression ratios.
+
+**38. Sculpting the Vector Space: Towards Efficient Multi-Vector Visual Document Retrieval via Prune-then-Merge Framework**
+- **Authors:** Yibo Yan et al.
+- **Date:** arXiv, February 2026
+- **URL:** https://arxiv.org/abs/2602.19549
+- **What it does:** Proposes a two-stage framework combining adaptive pruning (remove low-value patches) with hierarchical merging (compress remaining embeddings). Tests across 29 datasets, demonstrating improved performance and extended compression over prior methods.
+- **Why important:** Advances beyond pure pruning by recovering information from discarded patches through merging, achieving better accuracy-efficiency tradeoffs than pruning or merging alone.
+
+**39. CausalEmbed: Auto-Regressive Multi-Vector Generation in Latent Space for Visual Document Embedding**
+- **Authors:** Jiahao Huo et al.
+- **Date:** arXiv, January 2026
+- **URL:** https://arxiv.org/abs/2601.21262
+- **What it does:** Uses auto-regressive generation to produce compact, well-structured multi-vector representations in latent space. Achieves 30-155x token count reduction while maintaining competitive performance.
+- **Why important:** Fundamentally rethinks how multi-vector embeddings are generated, moving from direct patch encoding to learned compact representations with flexible test-time scaling.
+
+**40. Structural Anchor Pruning (SAP): Training-Free Multi-Vector Compression for Visual Document Retrieval**
+- **Authors:** Zhuchenyang Liu et al.
+- **Date:** arXiv, January 2026
+- **URL:** https://arxiv.org/abs/2601.20107
+- **What it does:** Proposes training-free compression that retains 90%+ of NDCG@5 while pruning 90%+ of visual tokens. Discovers "Alignment-Aggregation Divergence" -- document structure is stable in intermediate layers but becomes sparse/query-specific in final layers, explaining why prior final-layer pruning failed.
+- **Why important:** Provides theoretical insight into why compression works (and when it doesn't) through the lens of layer-wise representation analysis, and achieves strong compression without any training.
+
+**41. Visual Late Chunking (ColChunk): An Empirical Study of Contextual Chunking for Efficient Visual Document Retrieval**
+- **Authors:** Yibo Yan et al.
+- **Date:** arXiv, April 2026
+- **URL:** https://arxiv.org/abs/2604.10167
+- **What it does:** Employs hierarchical clustering on patch-level embeddings fused with 2D position priors to create contextualized multi-vector representations. Achieves 90%+ storage reduction with a 9-point nDCG@5 improvement for single-vector models.
+- **Why important:** Shows that contextual chunking of visual patches can simultaneously improve retrieval accuracy AND reduce storage, rather than trading one for the other.
+
+**42. HEAVEN: Hybrid-Vector Retrieval for Visually Rich Documents**
+- **Authors:** Juyeon Kim et al.
+- **Date:** arXiv, October 2025
+- **URL:** https://arxiv.org/abs/2510.22215
+- **What it does:** Two-stage approach: retrieves candidates via single-vector methods on summarized pages, then reranks with multi-vector methods. Achieves 99.87% of multi-vector Recall@1 while reducing compute by 99.82%. Also introduces ViMDoc benchmark.
+- **Why important:** Demonstrates that the efficiency/accuracy tradeoff can be nearly eliminated through intelligent cascading, making multi-vector retrieval practical at scale.
+
+---
+
+## ROBUSTNESS AND ANALYSIS
+
+**43. Reproducibility, Replicability, and Insights into Visual Document Retrieval with Late Interaction**
+- **Authors:** Jingfen Qiao et al.
+- **Date:** arXiv, May 2025
+- **URL:** https://arxiv.org/abs/2505.07730
+- **What it does:** Evaluates whether late interaction mechanisms improve VDR across different VLMs. Confirms effectiveness but notes computational challenges. Reveals that query tokens tend to match patches with visually similar tokens, even without explicit text matching capability.
+- **Why important:** Provides critical reproducibility analysis of the ColPali family, revealing how late interaction actually works mechanically and identifying robustness concerns with text-heavy datasets.
+
+**44. Document Screenshot Retrievers are Vulnerable to Pixel Poisoning Attacks**
+- **Authors:** Shengyao Zhuang et al.
+- **Date:** arXiv, January 2025 (SIGIR 2025)
+- **URL:** https://arxiv.org/abs/2501.16902
+- **What it does:** Introduces three adversarial pixel poisoning attacks against VLM-based retrievers. A single malicious screenshot can poison top-10 results for 41.9% of DSE queries and 26.4% of ColPali queries -- rates exceeding attacks on text-only systems.
+- **Why important:** SIGIR 2025 paper revealing critical security vulnerabilities in visual document retrieval. Essential reading for anyone deploying VDR systems in production, as these attack surfaces are unique to the vision-based paradigm.
+
+**45. Retrieval or Representation? Reassessing Benchmark Gaps in Multilingual and Visually Rich RAG**
+- **Authors:** Martin Asenov et al.
+- **Date:** arXiv, March 2026
+- **URL:** https://arxiv.org/abs/2603.04238
+- **What it does:** Shows that BM25 can close performance gaps with multimodal retrievers on multilingual and visual benchmarks when document representation (transcription/preprocessing) is improved. Argues evaluation should separate transcription quality from retrieval quality.
+- **Why important:** A cautionary finding that challenges whether VDR gains come from better retrieval or just better document representation. Calls for more rigorous evaluation methodology.
+
+**46. BM25-V: Visual Words Meet BM25 -- Sparse Auto-Encoder Visual Word Scoring for Image Retrieval**
+- **Authors:** Donghoon Han et al.
+- **Date:** arXiv, March 2026
+- **URL:** https://arxiv.org/abs/2603.05781
+- **What it does:** Applies BM25 scoring to sparse visual-word activations from a Sparse Auto-Encoder on ViT patch features. Achieves Recall@200 >= 0.993 across seven benchmarks as a first-stage retriever. Provides explainability through IDF contributions.
+- **Why important:** Bridges classic information retrieval (BM25) with modern vision models, offering an interpretable and efficient alternative to dense visual retrieval. Demonstrates that sparse retrieval principles transfer to visual domains.
+
+**47. Still Fresh? Evaluating Temporal Drift in Retrieval Benchmarks**
+- **Authors:** Nathan Kuissi et al.
+- **Date:** arXiv, March 2026
+- **URL:** https://arxiv.org/abs/2603.04532
+- **What it does:** Investigates temporal stability of retrieval benchmarks by comparing corpus snapshots from October 2024 and October 2025. Finds strong ranking correlation (0.978 Kendall tau at Recall@50) despite corpus evolution.
+- **Why important:** Provides empirical evidence that retrieval benchmarks maintain reliability over time, addressing concerns about benchmark staleness.
+
+---
+
+## WORKSHOPS AND COMMUNITY
+
+**48. The 1st EReL@MIR Workshop on Efficient Representation Learning for Multimodal Information Retrieval**
+- **Authors:** Junchen Fu et al.
+- **Date:** arXiv, April 2025 (Web Conference 2025)
+- **URL:** https://arxiv.org/abs/2504.14788
+- **What it does:** Organizes a workshop at The Web Conference 2025 addressing efficiency challenges in multimodal representation learning for information retrieval. Focuses on bridging the gap between large foundation model capabilities and practical deployment constraints.
+- **Why important:** Signals community recognition that efficiency is a first-class research challenge for multimodal IR, not just a deployment concern.
+
+agentId: a0dd57a49da85eaac (use SendMessage with to: 'a0dd57a49da85eaac' to continue this agent)
+&lt;usage>total_tokens: 58540
+tool_uses: 78
+duration_ms: 395441&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ff61195-548e-4be3-9cbf-51a988acf89b",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "ce97cc78-3a1d-4c05-8fc8-71abe094572c",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping with a literature survey. Search for survey papers and important benchmarks related to visual document retrieval, document understanding with VLMs, and multimodal information retrieval.\n\nExecute these searches:\n\n1. Search: \"visual document retrieval survey 2025 2026\"\n2. Search: \"document understanding vision language model survey 2025\"\n3. Search: \"multimodal information retrieval survey 2024 2025\"\n4. Search: \"ViDoRe benchmark visual document retrieval 2025 2026\"\n5. Search: \"document retrieval benchmark evaluation 2025 2026\"\n6. Search: \"site:paperswithcode.com visual document retrieval SOTA\"\n7. Search: \"most cited visual document retrieval 2024 2025\"\n\nFor each paper you find, use WebFetch on its arxiv page to read the abstract. Report back with:\n- Full title\n- Authors (first author et al.)\n- Venue or arXiv date\n- URL\n- What the paper does (2-3 sentences)\n- Why it's important\n\nExclude these seed papers: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT.\n\nFind as many relevant papers as possible.",
+    "agentId": "a0dd57a49da85eaac",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have a comprehensive collection. Let me compile the final report.\n\n---\n\nHere is the literature survey. I have excluded the seed papers (ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, RegionGPT) as requested.\n\n---\n\n## SURVEYS\n\n**1. Unlocking Multimodal Document Intelligence: From Current Triumphs to Future Frontiers of Visual Document Retrieval**\n- **Authors:** Yibo Yan et al.\n- **Date:** arXiv, February 2026\n- **URL:** https://arxiv.org/abs/2602.19961\n- **What it does:** A comprehensive survey of visual document retrieval in the MLLM era. Categorizes methods into multimodal embedding models, multimodal reranker models, and RAG+agentic integration. Covers the full pipeline from OCR-based to VLM-based retrieval approaches.\n- **Why important:** The most dedicated and recent survey specifically focused on VDR. Provides a complete taxonomy of the field and identifies key challenges and future directions.\n\n**2. Roles of MLLMs in Visually Rich Document Retrieval for RAG: A Survey**\n- **Authors:** Xiantao Zhang\n- **Date:** arXiv, December 2025\n- **URL:** https://arxiv.org/abs/2601.03262\n- **What it does:** Surveys how MLLMs address challenges in visually rich document retrieval for RAG, including layout-dependent semantics, brittle OCR, and evidence spread across tables/figures. Categorizes approaches into Modality-Unifying Captioners, Multimodal Embedders, and End-to-End Representers.\n- **Why important:** Provides a focused analysis of the retrieval component specifically for visually rich documents in RAG pipelines, comparing approaches across granularity, preservation, efficiency, and compatibility.\n\n**3. Scaling Beyond Context: A Survey of Multimodal Retrieval-Augmented Generation for Document Understanding**\n- **Authors:** Sensen Gao et al.\n- **Date:** arXiv, October 2025 (revised April 2026)\n- **URL:** https://arxiv.org/abs/2510.15253\n- **What it does:** Surveys multimodal RAG for document understanding across financial analysis, scientific discovery, and other domains. Proposes a taxonomy by domain, retrieval modality, and granularity, and reviews advances using graph structures and agentic systems.\n- **Why important:** Bridges the gap between document understanding and RAG, covering datasets, benchmarks, applications, and industry implementation with a focus on holistic retrieval across all modalities.\n\n**4. A Survey on MLLM-based Visually Rich Document Understanding: Methods, Challenges, and Emerging Trends**\n- **Authors:** Yihao Ding et al.\n- **Date:** arXiv, July 2025 (revised April 2026)\n- **URL:** https://arxiv.org/abs/2507.09861\n- **What it does:** Surveys how MLLMs interpret documents containing intricate visual, textual, and structural elements. Covers both OCR-based and OCR-free approaches, pretraining and instruction tuning methods, and emerging technologies like RAG and agent-based systems.\n- **Why important:** Provides the most detailed treatment of the document understanding side (as opposed to retrieval), which is the upstream capability that visual retrieval systems rely on.\n\n**5. A Survey of Multimodal Retrieval-Augmented Generation**\n- **Authors:** Lang Mei et al.\n- **Date:** arXiv, March 2025\n- **URL:** https://arxiv.org/abs/2504.08748\n- **What it does:** Reviews MRAG's essential components, datasets, and evaluation methods for incorporating diverse data types (text, images, videos) into retrieval and generation. Demonstrates MRAG outperforms traditional RAG in scenarios requiring both visual and textual understanding.\n- **Why important:** An ACL 2025 paper providing a comprehensive taxonomy of multimodal RAG, establishing the field's foundations and evaluation standards.\n\n**6. Retrieval Augmented Generation and Understanding in Vision: A Survey and New Outlook**\n- **Authors:** Xu Zheng et al.\n- **Date:** arXiv, March 2025\n- **URL:** https://arxiv.org/abs/2503.18016\n- **What it does:** Surveys retrieval-augmented techniques in computer vision across visual understanding (image recognition to medical report generation) and visual generation (image, video, 3D creation). Also explores RAG for embodied AI.\n- **Why important:** Broadens the RAG discussion beyond documents to the full scope of computer vision, identifying how retrieval augmentation is transforming diverse vision tasks.\n\n**7. Vision Language Models: A Survey of 26K Papers**\n- **Authors:** Fengming Lin\n- **Date:** arXiv, October 2025\n- **URL:** https://arxiv.org/abs/2510.09586\n- **What it does:** Analyzes 26,104 papers accepted at CVPR, ICLR, and NeurIPS (2023-2025) using automated topic labeling. Identifies that multimodal VLM work consumes 40% of accepted papers by 2025, with a decisive pivot toward instruction following and reasoning.\n- **Why important:** Provides macro-level evidence of the massive growth of VLM research and the dominance of instruction tuning over encoder-from-scratch approaches, contextualizing the VDR subfield within the broader landscape.\n\n---\n\n## BENCHMARKS\n\n**8. ViDoRe Benchmark V2: Raising the Bar for Visual Retrieval**\n- **Authors:** Quentin Mace et al.\n- **Date:** arXiv, May 2025\n- **URL:** https://arxiv.org/abs/2505.17166\n- **What it does:** Addresses saturation of the original ViDoRe benchmark (top models exceeding 90% nDCG@5) by introducing harder scenarios including contextual blind querying, extended cross-document queries, and mixed synthetic/human-validated questions across four multilingual datasets.\n- **Why important:** The standard benchmark for visual document retrieval. V2 restores discriminative power and reveals substantial room for advancement, making it the primary evaluation target for new VDR methods.\n\n**9. MIRACL-VISION: A Large, Multilingual, Visual Document Retrieval Benchmark**\n- **Authors:** Radek Osmulski et al.\n- **Date:** arXiv, May 2025\n- **URL:** https://arxiv.org/abs/2505.11651\n- **What it does:** Extends the MIRACL text retrieval benchmark to visual document retrieval across 18 languages. Reveals that VLM-based retrieval models underperform text-based models by up to 59.7% on non-English tasks and 12.1% on English.\n- **Why important:** Exposes a critical multilingual gap in visual retrieval, demonstrating that current VDR models are far behind text-based systems for non-English content. Essential for driving multilingual VDR research.\n\n**10. jina-embeddings-v4: Universal Embeddings for Multimodal Multilingual Retrieval (incl. Jina-VDR Benchmark)**\n- **Authors:** Michael Gunther et al.\n- **Date:** arXiv, June 2025\n- **URL:** https://arxiv.org/abs/2506.18902\n- **What it does:** Introduces a 3.8B parameter multimodal embedding model supporting both single and multi-vector embeddings with task-specific LoRA adapters. Also introduces Jina-VDR, a 95-task, 20-language benchmark for visually rich document retrieval with 70K+ documents.\n- **Why important:** Both a strong baseline model and a major benchmark. Jina-VDR's 95-task scope across 20 languages makes it one of the most comprehensive VDR evaluation resources available.\n\n**11. MRMR: A Realistic and Expert-Level Multidisciplinary Benchmark for Reasoning-Intensive Multimodal Retrieval**\n- **Authors:** Siyue Zhang et al.\n- **Date:** arXiv, October 2025\n- **URL:** https://arxiv.org/abs/2510.09510\n- **What it does:** Introduces 1,502 expert-verified queries across 23 domains requiring intensive reasoning (e.g., diagnosing microscopic slides). Introduces contradiction retrieval as a novel task and uses image-text interleaved sequences for realistic evaluation.\n- **Why important:** Pushes multimodal retrieval evaluation beyond surface-level matching toward genuine reasoning. Reveals that text embedding models with captions outperform specialized multimodal systems, highlighting the reasoning gap.\n\n**12. Double-Bench (Are We on the Right Way for Assessing Document Retrieval-Augmented Generation?)**\n- **Authors:** Wenxuan Shen et al.\n- **Date:** arXiv, August 2025\n- **URL:** https://arxiv.org/abs/2508.03644\n- **What it does:** Introduces a large-scale, multilingual, multimodal evaluation system with 3,000+ documents and 5,000+ queries across six languages. Tests nine embedding models, four MLLMs, and four end-to-end frameworks. Identifies an \"over-confidence dilemma\" in current document RAG.\n- **Why important:** Finds that the gap between text and visual embedding models is shrinking, while exposing a systemic problem where RAG systems provide answers even without supporting evidence. Plans annual updates to prevent data contamination.\n\n**13. VisR-Bench: An Empirical Study on Visual Retrieval-Augmented Generation for Multilingual Long Document Understanding**\n- **Authors:** Jian Chen et al.\n- **Date:** arXiv, August 2025\n- **URL:** https://arxiv.org/abs/2508.07493\n- **What it does:** Introduces a question-driven multilingual benchmark with 35K QA pairs from 1,200 documents across 16 languages. Queries are designed to prevent superficial keyword matching. Evaluates retrieval across figures, text, and tables.\n- **Why important:** First benchmark specifically targeting retrieval-augmented QA over long, visually rich documents with multilingual coverage. Reveals that MLLMs struggle with structured tables and low-resource languages.\n\n**14. Document Haystack: A Long Context Multimodal Image/Document Understanding Vision LLM Benchmark**\n- **Authors:** Goeric Huybrechts et al.\n- **Date:** arXiv, July 2025\n- **URL:** https://arxiv.org/abs/2507.15882\n- **What it does:** Creates a \"needle-in-a-haystack\" style benchmark with documents ranging from 5 to 200 pages. Inserts text and multimodal text+image needles at various depths, generating 400 document variants and 8,250 questions.\n- **Why important:** Directly tests VLMs' ability to retrieve specific information from very long document contexts, a critical capability for real-world document understanding applications.\n\n**15. irpapers: A Visual Document Benchmark for Scientific Retrieval and Question Answering**\n- **Authors:** Connor Shorten et al.\n- **Date:** arXiv, February 2026\n- **URL:** https://arxiv.org/abs/2602.17687\n- **What it does:** Creates a benchmark of 3,230 pages from 166 scientific papers with both image and OCR versions. Shows text retrieval achieves 46% Recall@1 while combining text+image reaches 49%, demonstrating complementary strengths.\n- **Why important:** Provides direct, controlled comparison between text-based and image-based retrieval on scientific documents, demonstrating the value of multimodal fusion.\n\n**16. ARK: A Dual-Axis Multimodal Retrieval Benchmark along Reasoning and Knowledge**\n- **Authors:** Yijie Lin et al.\n- **Date:** arXiv, February 2026\n- **URL:** https://arxiv.org/abs/2602.09839\n- **What it does:** Evaluates retrieval along two axes: knowledge domains (5 areas, 17 subcategories) and reasoning skills (6 types). Tests 23 retrievers with 16 different visual data types and targeted hard negatives requiring multi-step reasoning.\n- **Why important:** Reveals significant performance gaps in fine-grained visual and spatial reasoning, providing a structured framework for understanding where retrievers succeed and fail.\n\n**17. VLM2Vec: Training Vision-Language Models for Massive Multimodal Embedding Tasks (incl. MMEB)**\n- **Authors:** Ziyan Jiang et al.\n- **Date:** arXiv, October 2024 (ICLR 2025)\n- **URL:** https://arxiv.org/abs/2410.05160\n- **What it does:** Introduces MMEB (Massive Multimodal Embedding Benchmark) with 36 datasets across classification, VQA, retrieval, and visual grounding. Presents VLM2Vec, a framework that transforms VLMs into embedding models, achieving 10-20% improvement over existing multimodal embedding models.\n- **Why important:** Established the MMEB benchmark that has become a standard evaluation suite for multimodal embedding models, and demonstrated the paradigm of converting generative VLMs into embedding models.\n\n**18. MMDocBench: Benchmarking Large Vision-Language Models for Fine-Grained Visual Document Understanding**\n- **Authors:** Fengbin Zhu et al.\n- **Date:** arXiv, October 2024\n- **URL:** https://arxiv.org/abs/2410.21311\n- **What it does:** Introduces a benchmark with 15 tasks, 4,338 QA pairs, and 11,353 supporting regions across academic papers, receipts, financial records, tables, charts, and infographics. Tests 16 models for fine-grained perception and reasoning.\n- **Why important:** Focuses on fine-grained perception (not just page-level retrieval), testing whether models can identify specific regions within documents -- a capability needed for grounded retrieval.\n\n---\n\n## RETRIEVAL METHODS AND SYSTEMS\n\n**19. VisRAG: Vision-based Retrieval-augmented Generation on Multi-modality Documents**\n- **Authors:** Shi Yu et al.\n- **Date:** arXiv, October 2024 (ICLR 2025)\n- **URL:** https://arxiv.org/abs/2410.10594\n- **What it does:** Establishes a pure-vision RAG pipeline by directly embedding document pages as images using VLMs, bypassing text extraction entirely. Achieves 20-40% end-to-end performance gain over traditional text-based RAG.\n- **Why important:** A foundational ICLR 2025 paper that demonstrated the feasibility and superiority of vision-based RAG over text-based RAG, establishing the paradigm that many subsequent VDR works build upon.\n\n**20. Unifying Multimodal Retrieval via Document Screenshot Embedding (DSE)**\n- **Authors:** Xueguang Ma et al.\n- **Date:** arXiv, June 2024 (EMNLP 2024)\n- **URL:** https://arxiv.org/abs/2406.11251\n- **What it does:** Treats document screenshots as unified input format, encoding them with a VLM into dense representations. Outperforms BM25 by 17 points in top-1 accuracy and OCR-based methods by 15+ points in nDCG@10 for slide retrieval.\n- **Why important:** Pioneered the screenshot-as-retrieval-unit paradigm. Demonstrated that directly encoding document images preserves information that text extraction loses, influencing ColPali and many subsequent methods.\n\n**21. SERVAL: Surprisingly Effective Zero-Shot Visual Document Retrieval Powered by Large Vision and Language Models**\n- **Authors:** Thong Nguyen et al.\n- **Date:** arXiv, September 2025\n- **URL:** https://arxiv.org/abs/2509.15432\n- **What it does:** Generates detailed textual descriptions of document images using a VLM, then applies standard text encoding. Achieves 63.4% nDCG@5 on ViDoRe-v2, outperforming specialized multi-vector encoders. Zero-shot, with no contrastive training.\n- **Why important:** Demonstrates that modern VLMs can serve as semantic bridges for VDR without any task-specific training, establishing a strong zero-shot baseline and challenging the necessity of specialized retrieval training.\n\n**22. Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval**\n- **Authors:** Gabriel de Souza P. Moreira et al.\n- **Date:** arXiv, February 2026\n- **URL:** https://arxiv.org/abs/2602.03992\n- **What it does:** Introduces 3B, 4B, and 8B late interaction models for VDR. The 8B model achieved first place on the ViDoRe V3 leaderboard (63.42 NDCG@10). Key techniques include cluster-based sampling, hard-negative mining, bidirectional attention, and model merging.\n- **Why important:** Current SOTA on the primary VDR benchmark. Demonstrates the scaling recipe and engineering decisions needed to build top-performing visual document retrievers.\n\n**23. ModernVBERT: Towards Smaller Visual Document Retrievers**\n- **Authors:** Paul Teiletche et al.\n- **Date:** arXiv, October 2025\n- **URL:** https://arxiv.org/abs/2510.01149\n- **What it does:** Builds a compact 250M-parameter vision-language encoder that outperforms models up to 10x larger. Identifies critical factors including attention masking, image resolution, and modality alignment. Enables CPU-based deployment.\n- **Why important:** Demonstrates that purpose-built bidirectional encoders dramatically outperform repurposed generative VLMs for retrieval. Achieves near-SOTA performance at a fraction of the parameter count, making VDR practical for resource-constrained settings.\n\n**24. NanoVDR: Distilling a 2B Vision-Language Retriever into a 70M Text-Only Encoder for Visual Document Retrieval**\n- **Authors:** Zhuchenyang Liu et al.\n- **Date:** arXiv, March 2026\n- **URL:** https://arxiv.org/abs/2603.12824\n- **What it does:** Uses asymmetric architecture: a frozen 2B VLM indexes documents offline while a 69M text-only model encodes queries at inference. Achieves 95.1% of teacher quality with 32x fewer parameters and 50x lower CPU query latency.\n- **Why important:** Pushes efficiency to the extreme by showing query encoding does not need vision capabilities. Enables practical deployment where query latency is critical.\n\n**25. Hydra: Unifying Document Retrieval and Generation in a Single Vision-Language Model**\n- **Authors:** Athos Georgiou\n- **Date:** arXiv, March 2026\n- **URL:** https://arxiv.org/abs/2603.28554\n- **What it does:** Combines retrieval and generation in a single VLM using a dual-head design with a LoRA adapter toggle. Reduces peak GPU memory by 62.7% (from 28.85GB to 10.77GB at 4B). Releases Hydra-4B and Hydra-0.8B models.\n- **Why important:** Addresses the practical problem of deploying separate retrieval and generation models. Demonstrates that a single model can serve both purposes without degradation in either task.\n\n**26. FreeRet: MLLMs as Training-Free Retrievers**\n- **Authors:** Yuhan Zhu et al.\n- **Date:** arXiv, September 2025\n- **URL:** https://arxiv.org/abs/2509.24621\n- **What it does:** Turns any MLLM into a two-stage retriever without additional training: extracts semantically grounded embeddings for candidate search, then uses reasoning for reranking. Outperforms models trained on millions of pairs across 46 MMEB datasets.\n- **Why important:** Demonstrates that off-the-shelf MLLMs already contain strong retrieval capabilities that can be unlocked without training. Model-agnostic and supports arbitrary modality combinations.\n\n**27. RetLLM: Training and Data-Free MLLMs for Multimodal Information Retrieval**\n- **Authors:** Dawei Su and Dongsheng Wang\n- **Date:** arXiv, February 2026\n- **URL:** https://arxiv.org/abs/2602.22278\n- **What it does:** Formulates retrieval as a scoring task with a two-stage pipeline (filtering + scoring) and a visual enhancement module. Outperforms fine-tuned models on MMIR benchmarks without any training.\n- **Why important:** Reinforces the finding that training-free approaches can match or exceed fine-tuned models, suggesting the community should reconsider the cost/benefit of specialized training for multimodal retrieval.\n\n**28. ViDoRAG: Visual Document Retrieval-Augmented Generation via Dynamic Iterative Reasoning Agents**\n- **Authors:** Qiuchen Wang et al.\n- **Date:** EMNLP 2025, November 2025\n- **URL:** https://aclanthology.org/2025.emnlp-main.464/\n- **What it does:** Introduces ViDoSeek benchmark for evaluating RAG on complex visual documents. Proposes a GMM-based hybrid strategy for multimodal retrieval with iterative agent workflow (exploration, summarization, reflection). Achieves 10%+ improvement on ViDoSeek.\n- **Why important:** Published at EMNLP 2025, combines visual retrieval with agentic reasoning, advancing beyond single-pass retrieval to iterative evidence gathering.\n\n**29. MoLoRAG: Bootstrapping Document Understanding via Multi-modal Logic-aware Retrieval**\n- **Authors:** Xixi Wu et al.\n- **Date:** arXiv, September 2025 (EMNLP 2025)\n- **URL:** https://arxiv.org/abs/2509.07666\n- **What it does:** Constructs page graphs representing logical dependencies between document pages, then traverses these graphs to find both semantically and logically relevant pages. Achieves 9.68% accuracy improvement over LVLM direct inference and 7.44% retrieval precision gain.\n- **Why important:** Introduces the concept of logical (not just semantic) relevance in document retrieval, addressing multi-hop reasoning scenarios where relevant information is spread across logically connected pages.\n\n**30. Docs2Synth: A Synthetic Data Trained Retriever Framework for Scanned Visually Rich Documents Understanding**\n- **Authors:** Yihao Ding et al.\n- **Date:** arXiv, January 2026\n- **URL:** https://arxiv.org/abs/2601.12260\n- **What it does:** Automatically processes raw document collections, generates and verifies QA pairs via agents, and trains a lightweight visual retriever. At inference, the retriever collaborates with an MLLM through iterative retrieval-generation loops.\n- **Why important:** Solves the critical data scarcity problem for domain-specific VDR (especially regulated sectors) by enabling training without human annotations, making VDR practical for private and low-resource domains.\n\n**31. VisRAG 2.0: Evidence-Guided Multi-Image Reasoning in Visual Retrieval-Augmented Generation**\n- **Authors:** Yubo Sun et al.\n- **Date:** arXiv, October 2025\n- **URL:** https://arxiv.org/abs/2510.09733\n- **What it does:** Extends VisRAG with evidence-guided multi-image reasoning: first observes retrieved images and records per-image evidence, then derives answers from aggregated evidence. Introduces Reward-Scoped Group Relative Policy Optimization. Achieves 27% average improvement.\n- **Why important:** Advances the vision-based RAG paradigm from single-image to multi-image reasoning with explicit evidence tracking, addressing a key limitation of the original VisRAG.\n\n**32. When Vision Meets Texts in Listwise Reranking (Rank-Nexus)**\n- **Authors:** Hongyi Cai\n- **Date:** arXiv, January 2026\n- **URL:** https://arxiv.org/abs/2601.20623\n- **What it does:** Extends listwise reranking to multimodal scenarios using a lightweight 2B parameter model. Jointly processes textual passages and images through a decoupled training approach. Competitive on TREC, BEIR, INQUIRE, and MMDocIR benchmarks.\n- **Why important:** Addresses the reranking stage of the retrieval pipeline for multimodal documents, an underexplored area compared to first-stage retrieval.\n\n**33. MLDocRAG: Multimodal Long-Context Document Retrieval Augmented Generation**\n- **Authors:** Yongyue Zhang and Yaxiong Wu\n- **Date:** arXiv, February 2026\n- **URL:** https://arxiv.org/abs/2602.10271\n- **What it does:** Proposes a Multimodal Chunk-Query Graph structure that generates detailed questions from document sections and connects them across modalities and pages. Consistently improves retrieval quality and answer accuracy on MMLongBench-Doc and LongDocURL.\n- **Why important:** Introduces graph-based cross-modal linking for long document retrieval, enabling retrieval of evidence that spans modalities and pages.\n\n**34. AVIR: Adaptive Visual In-Document Retrieval for Efficient Multi-Page Document Question Answering**\n- **Authors:** Zongmin Li et al.\n- **Date:** arXiv, January 2026\n- **URL:** https://arxiv.org/abs/2601.11976\n- **What it does:** Proposes a lightweight page-scoring system that adaptively selects relevant pages using clustering, Top-K filtering, and relevance thresholds. Reduces average page count by 70% while achieving 84.58% ANLS on MP-DocVQA.\n- **Why important:** Demonstrates that efficient adaptive retrieval can dramatically reduce the number of pages a VLM must process without sacrificing answer quality, addressing a key scalability challenge.\n\n**35. Index Light, Reason Deep: Deferred Visual Ingestion for Visual-Dense Document Question Answering**\n- **Authors:** Tao Xu\n- **Date:** arXiv, February 2026\n- **URL:** https://arxiv.org/abs/2602.14162\n- **What it does:** Eliminates VLM processing at indexing time, instead building hierarchical indices from structural elements and sending original images to VLMs only at query time. Achieves 65.6% accuracy on bridge engineering drawings vs. 24.3% for baselines.\n- **Why important:** Challenges the dominant paradigm of VLM-based indexing, showing that for specialized engineering documents, lightweight structural indexing plus deferred visual reasoning vastly outperforms pre-computed visual embeddings.\n\n---\n\n## EFFICIENCY AND COMPRESSION\n\n**36. DocPruner: A Storage-Efficient Framework for Multi-Vector Visual Document Retrieval via Adaptive Patch-Level Embedding Pruning**\n- **Authors:** Yibo Yan et al.\n- **Date:** arXiv, September 2025\n- **URL:** https://arxiv.org/abs/2509.23883\n- **What it does:** Addresses storage overhead in multi-vector VDR by using attention-based adaptive pruning to identify and remove redundant patch embeddings. Achieves 50-60% storage reduction while maintaining retrieval performance.\n- **Why important:** One of the first works to systematically address the storage bottleneck of ColPali-style multi-vector representations.\n\n**37. Towards Storage-Efficient Visual Document Retrieval: An Empirical Study on Reducing Patch-Level Embeddings (Light-ColPali/ColQwen2)**\n- **Authors:** Yubo Ma et al.\n- **Date:** arXiv, June 2025 (ACL 2025 Findings)\n- **URL:** https://arxiv.org/abs/2506.04997\n- **What it does:** Compares token pruning vs. merging strategies for ColPali/ColQwen2. Finds that random pruning surprisingly outperforms complex methods, but merging is better suited overall. Light-ColPali retains 98.2% performance at 11.8% memory and 94.6% at 2.8%.\n- **Why important:** ACL 2025 Findings paper that provides systematic empirical evidence on compression strategies, establishing that token merging is the right approach and achieving extreme compression ratios.\n\n**38. Sculpting the Vector Space: Towards Efficient Multi-Vector Visual Document Retrieval via Prune-then-Merge Framework**\n- **Authors:** Yibo Yan et al.\n- **Date:** arXiv, February 2026\n- **URL:** https://arxiv.org/abs/2602.19549\n- **What it does:** Proposes a two-stage framework combining adaptive pruning (remove low-value patches) with hierarchical merging (compress remaining embeddings). Tests across 29 datasets, demonstrating improved performance and extended compression over prior methods.\n- **Why important:** Advances beyond pure pruning by recovering information from discarded patches through merging, achieving better accuracy-efficiency tradeoffs than pruning or merging alone.\n\n**39. CausalEmbed: Auto-Regressive Multi-Vector Generation in Latent Space for Visual Document Embedding**\n- **Authors:** Jiahao Huo et al.\n- **Date:** arXiv, January 2026\n- **URL:** https://arxiv.org/abs/2601.21262\n- **What it does:** Uses auto-regressive generation to produce compact, well-structured multi-vector representations in latent space. Achieves 30-155x token count reduction while maintaining competitive performance.\n- **Why important:** Fundamentally rethinks how multi-vector embeddings are generated, moving from direct patch encoding to learned compact representations with flexible test-time scaling.\n\n**40. Structural Anchor Pruning (SAP): Training-Free Multi-Vector Compression for Visual Document Retrieval**\n- **Authors:** Zhuchenyang Liu et al.\n- **Date:** arXiv, January 2026\n- **URL:** https://arxiv.org/abs/2601.20107\n- **What it does:** Proposes training-free compression that retains 90%+ of NDCG@5 while pruning 90%+ of visual tokens. Discovers \"Alignment-Aggregation Divergence\" -- document structure is stable in intermediate layers but becomes sparse/query-specific in final layers, explaining why prior final-layer pruning failed.\n- **Why important:** Provides theoretical insight into why compression works (and when it doesn't) through the lens of layer-wise representation analysis, and achieves strong compression without any training.\n\n**41. Visual Late Chunking (ColChunk): An Empirical Study of Contextual Chunking for Efficient Visual Document Retrieval**\n- **Authors:** Yibo Yan et al.\n- **Date:** arXiv, April 2026\n- **URL:** https://arxiv.org/abs/2604.10167\n- **What it does:** Employs hierarchical clustering on patch-level embeddings fused with 2D position priors to create contextualized multi-vector representations. Achieves 90%+ storage reduction with a 9-point nDCG@5 improvement for single-vector models.\n- **Why important:** Shows that contextual chunking of visual patches can simultaneously improve retrieval accuracy AND reduce storage, rather than trading one for the other.\n\n**42. HEAVEN: Hybrid-Vector Retrieval for Visually Rich Documents**\n- **Authors:** Juyeon Kim et al.\n- **Date:** arXiv, October 2025\n- **URL:** https://arxiv.org/abs/2510.22215\n- **What it does:** Two-stage approach: retrieves candidates via single-vector methods on summarized pages, then reranks with multi-vector methods. Achieves 99.87% of multi-vector Recall@1 while reducing compute by 99.82%. Also introduces ViMDoc benchmark.\n- **Why important:** Demonstrates that the efficiency/accuracy tradeoff can be nearly eliminated through intelligent cascading, making multi-vector retrieval practical at scale.\n\n---\n\n## ROBUSTNESS AND ANALYSIS\n\n**43. Reproducibility, Replicability, and Insights into Visual Document Retrieval with Late Interaction**\n- **Authors:** Jingfen Qiao et al.\n- **Date:** arXiv, May 2025\n- **URL:** https://arxiv.org/abs/2505.07730\n- **What it does:** Evaluates whether late interaction mechanisms improve VDR across different VLMs. Confirms effectiveness but notes computational challenges. Reveals that query tokens tend to match patches with visually similar tokens, even without explicit text matching capability.\n- **Why important:** Provides critical reproducibility analysis of the ColPali family, revealing how late interaction actually works mechanically and identifying robustness concerns with text-heavy datasets.\n\n**44. Document Screenshot Retrievers are Vulnerable to Pixel Poisoning Attacks**\n- **Authors:** Shengyao Zhuang et al.\n- **Date:** arXiv, January 2025 (SIGIR 2025)\n- **URL:** https://arxiv.org/abs/2501.16902\n- **What it does:** Introduces three adversarial pixel poisoning attacks against VLM-based retrievers. A single malicious screenshot can poison top-10 results for 41.9% of DSE queries and 26.4% of ColPali queries -- rates exceeding attacks on text-only systems.\n- **Why important:** SIGIR 2025 paper revealing critical security vulnerabilities in visual document retrieval. Essential reading for anyone deploying VDR systems in production, as these attack surfaces are unique to the vision-based paradigm.\n\n**45. Retrieval or Representation? Reassessing Benchmark Gaps in Multilingual and Visually Rich RAG**\n- **Authors:** Martin Asenov et al.\n- **Date:** arXiv, March 2026\n- **URL:** https://arxiv.org/abs/2603.04238\n- **What it does:** Shows that BM25 can close performance gaps with multimodal retrievers on multilingual and visual benchmarks when document representation (transcription/preprocessing) is improved. Argues evaluation should separate transcription quality from retrieval quality.\n- **Why important:** A cautionary finding that challenges whether VDR gains come from better retrieval or just better document representation. Calls for more rigorous evaluation methodology.\n\n**46. BM25-V: Visual Words Meet BM25 -- Sparse Auto-Encoder Visual Word Scoring for Image Retrieval**\n- **Authors:** Donghoon Han et al.\n- **Date:** arXiv, March 2026\n- **URL:** https://arxiv.org/abs/2603.05781\n- **What it does:** Applies BM25 scoring to sparse visual-word activations from a Sparse Auto-Encoder on ViT patch features. Achieves Recall@200 >= 0.993 across seven benchmarks as a first-stage retriever. Provides explainability through IDF contributions.\n- **Why important:** Bridges classic information retrieval (BM25) with modern vision models, offering an interpretable and efficient alternative to dense visual retrieval. Demonstrates that sparse retrieval principles transfer to visual domains.\n\n**47. Still Fresh? Evaluating Temporal Drift in Retrieval Benchmarks**\n- **Authors:** Nathan Kuissi et al.\n- **Date:** arXiv, March 2026\n- **URL:** https://arxiv.org/abs/2603.04532\n- **What it does:** Investigates temporal stability of retrieval benchmarks by comparing corpus snapshots from October 2024 and October 2025. Finds strong ranking correlation (0.978 Kendall tau at Recall@50) despite corpus evolution.\n- **Why important:** Provides empirical evidence that retrieval benchmarks maintain reliability over time, addressing concerns about benchmark staleness.\n\n---\n\n## WORKSHOPS AND COMMUNITY\n\n**48. The 1st EReL@MIR Workshop on Efficient Representation Learning for Multimodal Information Retrieval**\n- **Authors:** Junchen Fu et al.\n- **Date:** arXiv, April 2025 (Web Conference 2025)\n- **URL:** https://arxiv.org/abs/2504.14788\n- **What it does:** Organizes a workshop at The Web Conference 2025 addressing efficiency challenges in multimodal representation learning for information retrieval. Focuses on bridging the gap between large foundation model capabilities and practical deployment constraints.\n- **Why important:** Signals community recognition that efficiency is a first-class research challenge for multimodal IR, not just a deployment concern."
+      }
+    ],
+    "totalDurationMs": 395441,
+    "totalTokens": 58540,
+    "totalToolUseCount": 78,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 48893,
+      "output_tokens": 8877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 769
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8877,
+          "cache_read_input_tokens": 48893,
+          "cache_creation_input_tokens": 769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 769,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 78
+    }
+  },
+  "sourceToolAssistantUUID": "0ff61195-548e-4be3-9cbf-51a988acf89b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "ce97cc78-3a1d-4c05-8fc8-71abe094572c",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-30T06:21:40.839Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have a very comprehensive set of papers from all six search agents. Let me now synthesize the results, picking the 15 most important papers that are most relevant to the research direction described in the user's query. I need to prioritize:
+
+1. Best paper awards at top venues
+2. Oral/spotlight presentations
+3. Highly cited papers
+4. Papers that introduced widely-adopted methods
+5. Survey papers
+6. Strong recent work from top labs
+
+And the papers need to be relevant to the specific research direction: end-to-end visual document retrieval with multi-granularity embeddings and spatial grounding.
+
+
+I need to exclude the seed papers the user provided: ColPali, MMDocIR, Snappy, AGREE, ColParse, MURE, ViDoRe V3, and RegionGPT. Now I'm compiling the top 15 most important papers by verifying key abstracts and doing a few targeted searches to catch anything I might have missed, then I'll finalize the ranked list.
+
+So far I've identified several highly relevant papers: RegionRAG for region-level retrieval in document understanding, MetaEmbed for its Matryoshka multi-vector approach with granularity control, WARP as a foundational efficient multi-vector retrieval engine, Localization Heads for mechanistic insights into spatial grounding, Beyond Bag-of-Patches for layout-aware embeddings in late-interaction retrieval, and SEAL which appears to be another key contribution I should verify.
+
+Continuing through the landscape, SEAL focuses on structure and element-aware learning for document retrieval at the element level. Doc-CoB brings chain-of-boxes reasoning for spatial grounding, ModernVBERT represents the efficiency frontier for visual document retrievers, and Nemotron ColEmbed V2 currently holds the state-of-the-art on ViDoRe V3. DART introduces differentiable adaptive region tokenization which is architecturally interesting, and I'm still working through the remaining papers in this space. DSE is a predecessor to ColPali. Moving through more recent work, VLM2Vec and MMEB establish evaluation standards for multimodal embeddings, while MM-Embed represents NVIDIA's approach to universal multimodal retrieval. MegaPairs introduces data synthesis techniques for training, and there's foundational IR work on scaling laws for dense retrieval. The most comprehensive survey on multimodal document intelligence came out recently, and I'm also noting entropy-gradient approaches.
+
+Now I'm narrowing down to the 15 most impactful papers for this specific direction, weighing how directly they relate to multi-granularity retrieval, spatial grounding, and end-to-end systems. Continuing through the rest of the papers—SEAL brings element-level discrimination, Nemotron ColEmbed V2 represents the current state-of-the-art on ViDoRe benchmarks, and ModernVBERT demonstrates that smaller encoder-only models can still be competitive. DART offers an architectural innovation with differentiable region tokenization, Doc-CoB explores spatial reasoning through chain-of-boxes, and HybriDLA achieves top performance with layout-aware approaches.
+
+Beyond those, there's BBox-DocVQA as a grounding-focused evaluation resource, the Multi-Granularity Retrieval Framework as a direct competing approach, VisRAG as foundational vision-based RAG work, and a comprehensive VDR survey from February 2026. I should also note entropy-gradient grounding for training-free spatial localization and DSE from EMNLP 2024 as additional relevant work.
+
+Now I'm narrowing down to the strongest 15 papers for an AAAI 2027 submission, prioritizing foundational work that must be cited, directly applicable methods, competing approaches, and evaluation benchmarks. Looking at papers like MetaEmbed for multi-granularity late interaction, WARP from SIGIR 2025, document screenshot embeddings, MegaPairs for training data synthesis, and the VLM2Vec/MMEB and ViDoRe benchmarks as key evaluation resources. I'm continuing through the list with more recent work on document layout analysis and multimodal retrieval, then considering whether to add DSE as a foundational predecessor to ColPali that came out at EMNLP 2024.
+
+Now I'm weighing whether Entropy-Gradient Grounding would be more directly relevant to the spatial grounding aspect than some of my current selections, so I'm reconsidering the final 15 to ensure they're the most impactful papers that align with the core research direction around multi-granularity visual document retrieval, differentiable region proposals, and evidence localization through bounding box grounding. I'm adding the final five papers to round out the list, then I need to verify some details before compiling the JSON with all the required fields.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce97cc78-3a1d-4c05-8fc8-71abe094572c",
+  "isSidechain": false,
+  "requestId": "req_011CbYGc3tDCAcv4bFoRvMJc",
+  "type": "assistant",
+  "uuid": "5c1bbbc9-a3e9-4c64-957a-c1fe308d8cfd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XF5ReQSjoSHPu6DX5LJZi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28744,
+      "cache_read_input_tokens": 16741,
+      "output_tokens": 3644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3644,
+          "cache_read_input_tokens": 16741,
+          "cache_creation_input_tokens": 28744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-30T06:21:40.848Z_
+
+Now let me verify a few key papers' details to ensure accuracy before compiling the final list.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c1bbbc9-a3e9-4c64-957a-c1fe308d8cfd",
+  "isSidechain": false,
+  "requestId": "req_011CbYGc3tDCAcv4bFoRvMJc",
+  "type": "assistant",
+  "uuid": "87ebdd4a-2c03-40a4-91a8-14d1441d1c90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XF5ReQSjoSHPu6DX5LJZi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28744,
+      "cache_read_input_tokens": 16741,
+      "output_tokens": 3644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3644,
+          "cache_read_input_tokens": 16741,
+          "cache_creation_input_tokens": 28744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-30T06:21:40.983Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01V5AkmPSFeTCoQLufGBtj3j`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.27261",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87ebdd4a-2c03-40a4-91a8-14d1441d1c90",
+  "isSidechain": false,
+  "requestId": "req_011CbYGc3tDCAcv4bFoRvMJc",
+  "type": "assistant",
+  "uuid": "711711b5-18e0-4435-a4fb-3be35c6ba13d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XF5ReQSjoSHPu6DX5LJZi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28744,
+      "cache_read_input_tokens": 16741,
+      "output_tokens": 3644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3644,
+          "cache_read_input_tokens": 16741,
+          "cache_creation_input_tokens": 28744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-30T06:21:41.210Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017DuGUmjdXQcJdfSXHGok4M`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.08421",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "711711b5-18e0-4435-a4fb-3be35c6ba13d",
+  "isSidechain": false,
+  "requestId": "req_011CbYGc3tDCAcv4bFoRvMJc",
+  "type": "assistant",
+  "uuid": "0642ff68-6a30-4596-a733-6ac5973de9cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XF5ReQSjoSHPu6DX5LJZi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28744,
+      "cache_read_input_tokens": 16741,
+      "output_tokens": 3644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3644,
+          "cache_read_input_tokens": 16741,
+          "cache_creation_input_tokens": 28744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-30T06:21:42.152Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01P9r6YfpojcsfiFBZcdeR9q`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.06287",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0642ff68-6a30-4596-a733-6ac5973de9cf",
+  "isSidechain": false,
+  "requestId": "req_011CbYGc3tDCAcv4bFoRvMJc",
+  "type": "assistant",
+  "uuid": "68d3d8bf-c2a9-4613-90fb-7ce33eccf117",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XF5ReQSjoSHPu6DX5LJZi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28744,
+      "cache_read_input_tokens": 16741,
+      "output_tokens": 3644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3644,
+          "cache_read_input_tokens": 16741,
+          "cache_creation_input_tokens": 28744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-30T06:21:42.767Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DRgXT9Wh1x9cYucYksJMDe`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.10390",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68d3d8bf-c2a9-4613-90fb-7ce33eccf117",
+  "isSidechain": false,
+  "requestId": "req_011CbYGc3tDCAcv4bFoRvMJc",
+  "type": "assistant",
+  "uuid": "ba1b7fd8-8495-4c87-baca-4b1861d4d48c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019XF5ReQSjoSHPu6DX5LJZi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28744,
+      "cache_read_input_tokens": 16741,
+      "output_tokens": 3644,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3644,
+          "cache_read_input_tokens": 16741,
+          "cache_creation_input_tokens": 28744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-30T06:21:44.823Z_
+
+<details><summary>↩ Tool result · `toolu_01V5AkmPSFeTCoQLufGBtj3j`</summary>
+
+```text
+# RegionRAG Paper Details
+
+**Full Title:**
+"RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding"
+
+**Authors:**
+Yinglu Li, Zhiying Lu, Zhihang Liu, Yiwei Sun, Chuanbin Liu, Hongtao Xie
+
+**Submission Date:**
+October 31, 2025 (v1); last revised December 21, 2025 (v3)
+
+**Abstract Summary:**
+The paper proposes RegionRAG, a framework that improves multi-modal retrieval-augmented generation by shifting from document-level to region-level retrieval. The approach uses "a hybrid supervision strategy from both labeled data and unlabeled data to pinpoint relevant patches" during training, then employs "a dynamic pipeline that intelligently groups salient patches into complete semantic regions" during inference. 
+
+Key results include achieving "10.02% improvement in R@1 on average" for retrieval accuracy and "3.56% boost in question answering accuracy while using only 71.42% visual tokens compared with prior methods."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "711711b5-18e0-4435-a4fb-3be35c6ba13d",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "d6cc8891-d77b-4806-bc47-7b7dffbd99fb",
+  "toolUseResult": {
+    "bytes": 47308,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RegionRAG Paper Details\n\n**Full Title:**\n\"RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding\"\n\n**Authors:**\nYinglu Li, Zhiying Lu, Zhihang Liu, Yiwei Sun, Chuanbin Liu, Hongtao Xie\n\n**Submission Date:**\nOctober 31, 2025 (v1); last revised December 21, 2025 (v3)\n\n**Abstract Summary:**\nThe paper proposes RegionRAG, a framework that improves multi-modal retrieval-augmented generation by shifting from document-level to region-level retrieval. The approach uses \"a hybrid supervision strategy from both labeled data and unlabeled data to pinpoint relevant patches\" during training, then employs \"a dynamic pipeline that intelligently groups salient patches into complete semantic regions\" during inference. \n\nKey results include achieving \"10.02% improvement in R@1 on average\" for retrieval accuracy and \"3.56% boost in question answering accuracy while using only 71.42% visual tokens compared with prior methods.\"",
+    "durationMs": 3834,
+    "url": "https://arxiv.org/abs/2510.27261"
+  },
+  "sourceToolAssistantUUID": "711711b5-18e0-4435-a4fb-3be35c6ba13d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-30T06:21:45.433Z_
+
+<details><summary>↩ Tool result · `toolu_017DuGUmjdXQcJdfSXHGok4M`</summary>
+
+```text
+# Paper Information
+
+**Full Title:** "Beyond Bag-of-Patches: Learning Global Layout via Textual Supervision for Late-Interaction Visual Document Retrieval"
+
+**Authors:** Pascal Tilli and Mohsen Mesgar
+
+**Submission Date:** May 8, 2026
+
+**Abstract:**
+The authors address limitations in Visual Document Retrieval models that rely on late interaction architectures. These systems typically represent documents as collections of local patch embeddings matched against query tokens, which prioritizes local similarity over overall document structure. Since relevance often depends on layout organization—including figures, tables, and text—the researchers propose augmenting local patch representations with global layout embeddings. Their approach trains a multimodal encoder using textual descriptions that capture layout information. Testing across four ViDoRe-v2 datasets shows improvements of "+2.4 nDCG@5 and +2.3 MAP@5" over the ColPali/ColQwen baseline, with statistically significant per-dataset gains compared to ColQwen.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0642ff68-6a30-4596-a733-6ac5973de9cf",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "4ef5938e-51fa-4fb8-a95f-f784510ef0a1",
+  "toolUseResult": {
+    "bytes": 45367,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Information\n\n**Full Title:** \"Beyond Bag-of-Patches: Learning Global Layout via Textual Supervision for Late-Interaction Visual Document Retrieval\"\n\n**Authors:** Pascal Tilli and Mohsen Mesgar\n\n**Submission Date:** May 8, 2026\n\n**Abstract:**\nThe authors address limitations in Visual Document Retrieval models that rely on late interaction architectures. These systems typically represent documents as collections of local patch embeddings matched against query tokens, which prioritizes local similarity over overall document structure. Since relevance often depends on layout organization—including figures, tables, and text—the researchers propose augmenting local patch representations with global layout embeddings. Their approach trains a multimodal encoder using textual descriptions that capture layout information. Testing across four ViDoRe-v2 datasets shows improvements of \"+2.4 nDCG@5 and +2.3 MAP@5\" over the ColPali/ColQwen baseline, with statistically significant per-dataset gains compared to ColQwen.",
+    "durationMs": 4219,
+    "url": "https://arxiv.org/abs/2605.08421"
+  },
+  "sourceToolAssistantUUID": "0642ff68-6a30-4596-a733-6ac5973de9cf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-30T06:21:46.401Z_
+
+<details><summary>↩ Tool result · `toolu_01P9r6YfpojcsfiFBZcdeR9q`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:** "Your Large Vision-Language Model Only Needs A Few Attention Heads For Visual Grounding"
+
+**Authors:**
+- Seil Kang
+- Jinyeong Kim
+- Junhyeok Kim
+- Seong Jae Hwang
+
+**Submission Date:** March 8, 2025
+
+**Abstract:**
+The researchers discovered that a limited number of attention heads within frozen Large Vision-Language Models possess robust visual grounding capabilities. They identify these as "localization heads" and propose a training-free framework leveraging text-to-image attention maps from these heads to pinpoint target objects. Remarkably, merely three attention heads out of thousands suffice to achieve competitive performance compared to fine-tuned LVLM-based approaches. The findings suggest that LVLMs inherently ground objects through deep comprehension of text-image relationships, implicitly concentrating on pertinent image regions during text generation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68d3d8bf-c2a9-4613-90fb-7ce33eccf117",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "e2f63ab3-e95e-4e0c-b865-062dbb632ea5",
+  "toolUseResult": {
+    "bytes": 46526,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n**Full Title:** \"Your Large Vision-Language Model Only Needs A Few Attention Heads For Visual Grounding\"\n\n**Authors:**\n- Seil Kang\n- Jinyeong Kim\n- Junhyeok Kim\n- Seong Jae Hwang\n\n**Submission Date:** March 8, 2025\n\n**Abstract:**\nThe researchers discovered that a limited number of attention heads within frozen Large Vision-Language Models possess robust visual grounding capabilities. They identify these as \"localization heads\" and propose a training-free framework leveraging text-to-image attention maps from these heads to pinpoint target objects. Remarkably, merely three attention heads out of thousands suffice to achieve competitive performance compared to fine-tuned LVLM-based approaches. The findings suggest that LVLMs inherently ground objects through deep comprehension of text-image relationships, implicitly concentrating on pertinent image regions during text generation.",
+    "durationMs": 4247,
+    "url": "https://arxiv.org/abs/2503.06287"
+  },
+  "sourceToolAssistantUUID": "68d3d8bf-c2a9-4613-90fb-7ce33eccf117",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-30T06:21:46.493Z_
+
+<details><summary>↩ Tool result · `toolu_01DRgXT9Wh1x9cYucYksJMDe`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:**
+"DART: Differentiable Dynamic Adaptive Region Tokenizer for Vision Foundation Models"
+
+**Authors:**
+- Shicheng Yin
+- Kaixuan Yin
+- Yang Liu
+- Weixing Chen
+- Liang Lin
+
+**Submission Date:**
+June 12, 2025 (v1); last revised September 29, 2025 (v3)
+
+**Abstract:**
+The researchers address a limitation in vision models like Vision Transformer and Vision Mamba by proposing DART, a tokenizer that creates "content-aware patches of varying sizes, intelligently allocating a higher token density to information-rich regions." This adaptive approach allows a smaller model (DeiT-Small with 22M parameters) to match the performance of a larger one (DeiT-Base with 86M parameters) while achieving nearly double the inference speed. The method demonstrates effectiveness across image recognition, dense prediction, and video tasks. Code is available on GitHub.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba1b7fd8-8495-4c87-baca-4b1861d4d48c",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "89930021-5529-4ffc-86d2-52a2ab9590e9",
+  "toolUseResult": {
+    "bytes": 47158,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n**Full Title:**\n\"DART: Differentiable Dynamic Adaptive Region Tokenizer for Vision Foundation Models\"\n\n**Authors:**\n- Shicheng Yin\n- Kaixuan Yin\n- Yang Liu\n- Weixing Chen\n- Liang Lin\n\n**Submission Date:**\nJune 12, 2025 (v1); last revised September 29, 2025 (v3)\n\n**Abstract:**\nThe researchers address a limitation in vision models like Vision Transformer and Vision Mamba by proposing DART, a tokenizer that creates \"content-aware patches of varying sizes, intelligently allocating a higher token density to information-rich regions.\" This adaptive approach allows a smaller model (DeiT-Small with 22M parameters) to match the performance of a larger one (DeiT-Base with 86M parameters) while achieving nearly double the inference speed. The method demonstrates effectiveness across image recognition, dense prediction, and video tasks. Code is available on GitHub.",
+    "durationMs": 3725,
+    "url": "https://arxiv.org/abs/2506.10390"
+  },
+  "sourceToolAssistantUUID": "ba1b7fd8-8495-4c87-baca-4b1861d4d48c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45 · 2026-05-30T06:21:46.500Z_
+
+```json
+{
+  "parentUuid": "89930021-5529-4ffc-86d2-52a2ab9590e9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "986f2597-061d-4063-9d5a-fa8ab9cd088f",
+  "timestamp": "2026-05-30T06:21:46.500Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "986f2597-061d-4063-9d5a-fa8ab9cd088f",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-30T06:21:52.142Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've verified the key papers. Now let me also verify a few more that I want to include in the final list.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "986f2597-061d-4063-9d5a-fa8ab9cd088f",
+  "isSidechain": false,
+  "requestId": "req_011CbYGh8HmSfYvTyn5wncMx",
+  "type": "assistant",
+  "uuid": "2e45648f-4740-4670-97dc-d06e81b52bbb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JwtJoR3hSWdik5zFYFVCS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4767,
+      "cache_read_input_tokens": 45485,
+      "output_tokens": 408,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 408,
+          "cache_read_input_tokens": 45485,
+          "cache_creation_input_tokens": 4767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-30T06:21:53.109Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PranqdPpJ26xGiZvXPZM47`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.01457",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date and any venue information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e45648f-4740-4670-97dc-d06e81b52bbb",
+  "isSidechain": false,
+  "requestId": "req_011CbYGh8HmSfYvTyn5wncMx",
+  "type": "assistant",
+  "uuid": "403112f1-dbdc-46fe-8b1c-2af69a51d728",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JwtJoR3hSWdik5zFYFVCS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4767,
+      "cache_read_input_tokens": 45485,
+      "output_tokens": 408,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 408,
+          "cache_read_input_tokens": 45485,
+          "cache_creation_input_tokens": 4767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-30T06:21:54.068Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RAkCJXBHjWLB9iJ8vMzFnb`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.08456",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "403112f1-dbdc-46fe-8b1c-2af69a51d728",
+  "isSidechain": false,
+  "requestId": "req_011CbYGh8HmSfYvTyn5wncMx",
+  "type": "assistant",
+  "uuid": "6d218282-fce9-446e-a68d-4b5d67277f6f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JwtJoR3hSWdik5zFYFVCS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4767,
+      "cache_read_input_tokens": 45485,
+      "output_tokens": 408,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 408,
+          "cache_read_input_tokens": 45485,
+          "cache_creation_input_tokens": 4767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-30T06:21:55.019Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01ASP3TZbuYXvugBktUXZAN2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2501.17788",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date and venue information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d218282-fce9-446e-a68d-4b5d67277f6f",
+  "isSidechain": false,
+  "requestId": "req_011CbYGh8HmSfYvTyn5wncMx",
+  "type": "assistant",
+  "uuid": "71005825-0e4e-4868-aef4-10ccff28e074",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JwtJoR3hSWdik5zFYFVCS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4767,
+      "cache_read_input_tokens": 45485,
+      "output_tokens": 408,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 408,
+          "cache_read_input_tokens": 45485,
+          "cache_creation_input_tokens": 4767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-30T06:21:55.305Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012vSsbSRbNujuj27uYuhmnx`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.20778",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date and venue."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71005825-0e4e-4868-aef4-10ccff28e074",
+  "isSidechain": false,
+  "requestId": "req_011CbYGh8HmSfYvTyn5wncMx",
+  "type": "assistant",
+  "uuid": "779eb6af-6043-4994-ba99-35f9ec8a927d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015JwtJoR3hSWdik5zFYFVCS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4767,
+      "cache_read_input_tokens": 45485,
+      "output_tokens": 408,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 408,
+          "cache_read_input_tokens": 45485,
+          "cache_creation_input_tokens": 4767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-30T06:21:57.450Z_
+
+<details><summary>↩ Tool result · `toolu_01PranqdPpJ26xGiZvXPZM47`</summary>
+
+```text
+# Paper Details
+
+**Title:** "A Multi-Granularity Retrieval Framework for Visually-Rich Documents"
+
+**Authors:**
+- Mingjun Xu
+- Zehui Wang
+- Hengxing Cai
+- Renxin Zhong
+
+**Abstract:**
+The research addresses limitations in retrieval-augmented generation systems that focus primarily on text. The authors propose "a unified multi-granularity multimodal retrieval framework" designed for handling documents with mixed content types including text, images, tables, and charts. Their approach combines hierarchical encoding, modality-aware retrieval mechanisms, and vision-language model filtering without requiring task-specific training. Results demonstrated "robust performance," with "a top performance score of 65.56" on benchmark tasks MMDocIR and M2KR, highlighting the effectiveness of layout-aware search and candidate verification strategies.
+
+**Submission Information:**
+- **Initial submission:** May 1, 2025
+- **Latest revision:** May 6, 2025 (version 2)
+- **Venue/Category:** Computer Science > Information Retrieval (cs.IR) and Computer Vision and Pattern Recognition (cs.CV)
+- **arXiv identifier:** 2505.01457
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "403112f1-dbdc-46fe-8b1c-2af69a51d728",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "ae70816f-3f03-488f-9ca4-74af881bec67",
+  "toolUseResult": {
+    "bytes": 46097,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Details\n\n**Title:** \"A Multi-Granularity Retrieval Framework for Visually-Rich Documents\"\n\n**Authors:**\n- Mingjun Xu\n- Zehui Wang\n- Hengxing Cai\n- Renxin Zhong\n\n**Abstract:**\nThe research addresses limitations in retrieval-augmented generation systems that focus primarily on text. The authors propose \"a unified multi-granularity multimodal retrieval framework\" designed for handling documents with mixed content types including text, images, tables, and charts. Their approach combines hierarchical encoding, modality-aware retrieval mechanisms, and vision-language model filtering without requiring task-specific training. Results demonstrated \"robust performance,\" with \"a top performance score of 65.56\" on benchmark tasks MMDocIR and M2KR, highlighting the effectiveness of layout-aware search and candidate verification strategies.\n\n**Submission Information:**\n- **Initial submission:** May 1, 2025\n- **Latest revision:** May 6, 2025 (version 2)\n- **Venue/Category:** Computer Science > Information Retrieval (cs.IR) and Computer Vision and Pattern Recognition (cs.CV)\n- **arXiv identifier:** 2505.01457",
+    "durationMs": 4338,
+    "url": "https://arxiv.org/abs/2505.01457"
+  },
+  "sourceToolAssistantUUID": "403112f1-dbdc-46fe-8b1c-2af69a51d728",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-30T06:21:58.183Z_
+
+<details><summary>↩ Tool result · `toolu_01RAkCJXBHjWLB9iJ8vMzFnb`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:** "Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models"
+
+**Authors:**
+- Marcel Gröpl
+- Jaewoo Jung
+- Seungryong Kim
+- Marc Pollefeys
+- Sunghwan Hong
+
+**Submission Date:** April 9, 2026
+
+**Abstract:**
+
+The researchers address limitations in vision-language models by proposing a test-time method that identifies relevant visual regions to resolve ambiguities. Their approach uses "entropy of the model's next-token distribution and backpropagate it to the visual token embeddings to obtain an entropy-gradient relevance map" without requiring additional training or auxiliary tools. The method handles multi-region queries through coherent region extraction and incorporates an iterative refinement procedure with a spatial-entropy stopping mechanism. Testing across seven benchmarks and four VLM architectures demonstrated consistent improvements, particularly for detail-sensitive and high-resolution tasks, while also providing clearer evidence localization explanations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d218282-fce9-446e-a68d-4b5d67277f6f",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "385ea6f3-dfe4-414d-9e86-08eabbd0aba6",
+  "toolUseResult": {
+    "bytes": 46657,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n**Full Title:** \"Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models\"\n\n**Authors:**\n- Marcel Gröpl\n- Jaewoo Jung\n- Seungryong Kim\n- Marc Pollefeys\n- Sunghwan Hong\n\n**Submission Date:** April 9, 2026\n\n**Abstract:**\n\nThe researchers address limitations in vision-language models by proposing a test-time method that identifies relevant visual regions to resolve ambiguities. Their approach uses \"entropy of the model's next-token distribution and backpropagate it to the visual token embeddings to obtain an entropy-gradient relevance map\" without requiring additional training or auxiliary tools. The method handles multi-region queries through coherent region extraction and incorporates an iterative refinement procedure with a spatial-entropy stopping mechanism. Testing across seven benchmarks and four VLM architectures demonstrated consistent improvements, particularly for detail-sensitive and high-resolution tasks, while also providing clearer evidence localization explanations.",
+    "durationMs": 4112,
+    "url": "https://arxiv.org/abs/2604.08456"
+  },
+  "sourceToolAssistantUUID": "6d218282-fce9-446e-a68d-4b5d67277f6f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-30T06:21:59.240Z_
+
+<details><summary>↩ Tool result · `toolu_01ASP3TZbuYXvugBktUXZAN2`</summary>
+
+```text
+# WARP: Multi-Vector Retrieval Engine
+
+**Full Title:** "WARP: An Efficient Engine for Multi-Vector Retrieval"
+
+**Authors:**
+- Jan Luca Scheerer
+- Matei Zaharia
+- Christopher Potts
+- Gustavo Alonso
+- Omar Khattab
+
+**Abstract:**
+Multi-vector retrieval methods like ColBERT and XTR deliver strong accuracy but struggle with efficiency at scale. WARP addresses this through three innovations: dynamic similarity imputation (WARP_SELECT), implicit decompression avoiding vector reconstruction, and two-stage score aggregation. Combined with optimized C++ kernels, the system achieves a "41x" latency reduction versus XTR's reference implementation and "3x speedup over the ColBERTv2/PLAID engine, while preserving retrieval quality."
+
+**Submission Information:**
+- **Initial Submission:** January 29, 2025
+- **Latest Version:** July 6, 2025 (v3)
+- **Venue:** Accepted at SIGIR 2025
+- **Category:** Computer Science > Information Retrieval (cs.IR)
+- **arXiv ID:** 2501.17788
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71005825-0e4e-4868-aef4-10ccff28e074",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "ff4391f7-e305-4f1c-943e-bf4f3093f982",
+  "toolUseResult": {
+    "bytes": 46795,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# WARP: Multi-Vector Retrieval Engine\n\n**Full Title:** \"WARP: An Efficient Engine for Multi-Vector Retrieval\"\n\n**Authors:**\n- Jan Luca Scheerer\n- Matei Zaharia\n- Christopher Potts\n- Gustavo Alonso\n- Omar Khattab\n\n**Abstract:**\nMulti-vector retrieval methods like ColBERT and XTR deliver strong accuracy but struggle with efficiency at scale. WARP addresses this through three innovations: dynamic similarity imputation (WARP_SELECT), implicit decompression avoiding vector reconstruction, and two-stage score aggregation. Combined with optimized C++ kernels, the system achieves a \"41x\" latency reduction versus XTR's reference implementation and \"3x speedup over the ColBERTv2/PLAID engine, while preserving retrieval quality.\"\n\n**Submission Information:**\n- **Initial Submission:** January 29, 2025\n- **Latest Version:** July 6, 2025 (v3)\n- **Venue:** Accepted at SIGIR 2025\n- **Category:** Computer Science > Information Retrieval (cs.IR)\n- **arXiv ID:** 2501.17788",
+    "durationMs": 4220,
+    "url": "https://arxiv.org/abs/2501.17788"
+  },
+  "sourceToolAssistantUUID": "71005825-0e4e-4868-aef4-10ccff28e074",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-30T06:21:59.576Z_
+
+<details><summary>↩ Tool result · `toolu_012vSsbSRbNujuj27uYuhmnx`</summary>
+
+```text
+# Paper Summary
+
+**Full Title:**
+"SEAL: Structure and Element Aware Learning to Improve Long Structured Document Retrieval"
+
+**Authors:**
+Xinhao Huang, Zhibo Ren, Yipeng Yu, Ying Zhou, Zulong Chen, Zeyi Wen
+
+**Abstract:**
+The paper addresses limitations in long structured document retrieval where existing methods fail to leverage structural features effectively. The authors introduce SEAL, a contrastive learning framework that uses "structure-aware learning to preserve semantic hierarchies and masked element alignment for fine-grained semantic discrimination." They also release a new dataset with structural annotations. Results show improvements on multiple language models, achieving "NDCG@10 from 73.96% to 77.84% on BGE-M3," with validation through online A/B testing. Code and resources are available on GitHub.
+
+**Submission Details:**
+- **Initial Submission:** August 28, 2025
+- **Latest Version:** August 31, 2025 (v2)
+- **Venue:** EMNLP 2025 Main Conference
+- **arXiv ID:** 2508.20778
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "779eb6af-6043-4994-ba99-35f9ec8a927d",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "5e9c639c-3da2-4c57-afc4-a9847582b54d",
+  "toolUseResult": {
+    "bytes": 46506,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n**Full Title:**\n\"SEAL: Structure and Element Aware Learning to Improve Long Structured Document Retrieval\"\n\n**Authors:**\nXinhao Huang, Zhibo Ren, Yipeng Yu, Ying Zhou, Zulong Chen, Zeyi Wen\n\n**Abstract:**\nThe paper addresses limitations in long structured document retrieval where existing methods fail to leverage structural features effectively. The authors introduce SEAL, a contrastive learning framework that uses \"structure-aware learning to preserve semantic hierarchies and masked element alignment for fine-grained semantic discrimination.\" They also release a new dataset with structural annotations. Results show improvements on multiple language models, achieving \"NDCG@10 from 73.96% to 77.84% on BGE-M3,\" with validation through online A/B testing. Code and resources are available on GitHub.\n\n**Submission Details:**\n- **Initial Submission:** August 28, 2025\n- **Latest Version:** August 31, 2025 (v2)\n- **Venue:** EMNLP 2025 Main Conference\n- **arXiv ID:** 2508.20778",
+    "durationMs": 4270,
+    "url": "https://arxiv.org/abs/2508.20778"
+  },
+  "sourceToolAssistantUUID": "779eb6af-6043-4994-ba99-35f9ec8a927d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-30T06:22:02.846Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me verify a few more papers and then compile the final list.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e9c639c-3da2-4c57-afc4-a9847582b54d",
+  "isSidechain": false,
+  "requestId": "req_011CbYGi6GFbPaFgwcvnxubN",
+  "type": "assistant",
+  "uuid": "dbfd6f03-b063-4220-9f54-f869799aace3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DJk4sc6Fh52ybfssskpwu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1567,
+      "cache_read_input_tokens": 50252,
+      "output_tokens": 304,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1567,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 304,
+          "cache_read_input_tokens": 50252,
+          "cache_creation_input_tokens": 1567,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1567
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-30T06:22:03.842Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013x2xoqbQGhgedMGYnEWMfk`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.19919",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date and venue."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbfd6f03-b063-4220-9f54-f869799aace3",
+  "isSidechain": false,
+  "requestId": "req_011CbYGi6GFbPaFgwcvnxubN",
+  "type": "assistant",
+  "uuid": "7dc1a357-9fb8-4e76-a98d-65f81fe96622",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DJk4sc6Fh52ybfssskpwu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1567,
+      "cache_read_input_tokens": 50252,
+      "output_tokens": 304,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1567,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 304,
+          "cache_read_input_tokens": 50252,
+          "cache_creation_input_tokens": 1567,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1567
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-30T06:22:04.770Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CvB7uanKU99mwuBUf3TF7p`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.15090",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dc1a357-9fb8-4e76-a98d-65f81fe96622",
+  "isSidechain": false,
+  "requestId": "req_011CbYGi6GFbPaFgwcvnxubN",
+  "type": "assistant",
+  "uuid": "142f9ce6-3220-4139-a7bc-9cfa972a42c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DJk4sc6Fh52ybfssskpwu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1567,
+      "cache_read_input_tokens": 50252,
+      "output_tokens": 304,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1567,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 304,
+          "cache_read_input_tokens": 50252,
+          "cache_creation_input_tokens": 1567,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1567
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-30T06:22:05.200Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0185eZ928FQ1ar4c7zUPFMLS`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.19961",
+  "prompt": "Extract the full title, all authors, and the abstract of this paper. Also note the submission date."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "142f9ce6-3220-4139-a7bc-9cfa972a42c8",
+  "isSidechain": false,
+  "requestId": "req_011CbYGi6GFbPaFgwcvnxubN",
+  "type": "assistant",
+  "uuid": "820c8526-214f-4101-9eee-aaa1ce23a53c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DJk4sc6Fh52ybfssskpwu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1567,
+      "cache_read_input_tokens": 50252,
+      "output_tokens": 304,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1567,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 304,
+          "cache_read_input_tokens": 50252,
+          "cache_creation_input_tokens": 1567,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1567
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-30T06:22:08.471Z_
+
+<details><summary>↩ Tool result · `toolu_01CvB7uanKU99mwuBUf3TF7p`</summary>
+
+```text
+# Paper Information
+
+**Full Title:** "SciEGQA: A Dataset for Scientific Evidence-Grounded Question Answering and Reasoning"
+
+**Authors:** Wenhan Yu, Zhaoxi Zhang, Wang Chen, Guanqiang Qi, Weikang Li, Lei Sha, Deguo Xia, and Jizhou Huang
+
+**Submission Date:** November 19, 2025 (v1); revised March 30, 2026 (v2)
+
+**Abstract Summary:**
+The paper addresses challenges in document-based visual question answering by introducing a dataset that pairs questions about scientific documents with answers grounded in specific evidence regions. The dataset comprises two parts: approximately 1,600 manually reviewed question-answer pairs with annotated evidence locations, and over 30,000 automatically generated training examples. Researchers tested various vision-language models and found they struggle with "evidence localization and evidence-based question answering in scientific documents," though performance improved significantly when trained on this new dataset.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "142f9ce6-3220-4139-a7bc-9cfa972a42c8",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "d37d96a7-4b62-49d5-9430-f8c9073a02ef",
+  "toolUseResult": {
+    "bytes": 47795,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Information\n\n**Full Title:** \"SciEGQA: A Dataset for Scientific Evidence-Grounded Question Answering and Reasoning\"\n\n**Authors:** Wenhan Yu, Zhaoxi Zhang, Wang Chen, Guanqiang Qi, Weikang Li, Lei Sha, Deguo Xia, and Jizhou Huang\n\n**Submission Date:** November 19, 2025 (v1); revised March 30, 2026 (v2)\n\n**Abstract Summary:**\nThe paper addresses challenges in document-based visual question answering by introducing a dataset that pairs questions about scientific documents with answers grounded in specific evidence regions. The dataset comprises two parts: approximately 1,600 manually reviewed question-answer pairs with annotated evidence locations, and over 30,000 automatically generated training examples. Researchers tested various vision-language models and found they struggle with \"evidence localization and evidence-based question answering in scientific documents,\" though performance improved significantly when trained on this new dataset.",
+    "durationMs": 3698,
+    "url": "https://arxiv.org/abs/2511.15090"
+  },
+  "sourceToolAssistantUUID": "142f9ce6-3220-4139-a7bc-9cfa972a42c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-30T06:22:09.585Z_
+
+<details><summary>↩ Tool result · `toolu_013x2xoqbQGhgedMGYnEWMfk`</summary>
+
+```text
+# HybriDLA Paper Details
+
+**Full Title:** "HybriDLA: Hybrid Generation for Document Layout Analysis"
+
+**Authors:** Yufan Chen, Omar Moured, Ruiping Liu, Junwei Zheng, Kunyu Peng, Jiaming Zhang, Rainer Stiefelhagen
+
+**Submission Date:** November 25, 2025
+
+**Venue:** AAAI 2026 (Oral presentation)
+
+**Abstract Summary:**
+The paper introduces a generative framework addressing limitations in analyzing modern document layouts with varying element counts and complexity. The system combines diffusion mechanisms for refining bounding-box predictions with autoregressive decoding to incorporate semantic context. The authors implemented a multi-scale feature-fusion encoder and achieved "83.5% mean Average Precision (mAP)" on benchmark tests. Evaluation on DocLayNet and M⁶Doc datasets demonstrates state-of-the-art performance compared to existing methods, with code and models planned for public release.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7dc1a357-9fb8-4e76-a98d-65f81fe96622",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "5375d4b6-1a1d-4148-8cea-268d0a13d37a",
+  "toolUseResult": {
+    "bytes": 46696,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# HybriDLA Paper Details\n\n**Full Title:** \"HybriDLA: Hybrid Generation for Document Layout Analysis\"\n\n**Authors:** Yufan Chen, Omar Moured, Ruiping Liu, Junwei Zheng, Kunyu Peng, Jiaming Zhang, Rainer Stiefelhagen\n\n**Submission Date:** November 25, 2025\n\n**Venue:** AAAI 2026 (Oral presentation)\n\n**Abstract Summary:**\nThe paper introduces a generative framework addressing limitations in analyzing modern document layouts with varying element counts and complexity. The system combines diffusion mechanisms for refining bounding-box predictions with autoregressive decoding to incorporate semantic context. The authors implemented a multi-scale feature-fusion encoder and achieved \"83.5% mean Average Precision (mAP)\" on benchmark tests. Evaluation on DocLayNet and M⁶Doc datasets demonstrates state-of-the-art performance compared to existing methods, with code and models planned for public release.",
+    "durationMs": 5739,
+    "url": "https://arxiv.org/abs/2511.19919"
+  },
+  "sourceToolAssistantUUID": "7dc1a357-9fb8-4e76-a98d-65f81fe96622",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-30T06:22:09.611Z_
+
+<details><summary>↩ Tool result · `toolu_0185eZ928FQ1ar4c7zUPFMLS`</summary>
+
+```text
+# Paper Information
+
+**Full Title:**
+"Unlocking Multimodal Document Intelligence: From Current Triumphs to Future Frontiers of Visual Document Retrieval"
+
+**Authors:**
+Yibo Yan, Jiahao Huo, Guanbo Feng, Mingdong Ou, Yi Cao, Xin Zou, Shuliang Liu, Yuanhuiyi Lyu, Yu Huang, Jungang Li, Kening Zheng, Xu Zheng, Philip S. Yu, James Kwok, and Xuming Hu
+
+**Submission Date:**
+February 23, 2026 (v1); revised March 23, 2026 (v2)
+
+**Abstract:**
+The paper examines Visual Document Retrieval through the lens of Multimodal Large Language Models. It surveys the field by reviewing benchmarks and three methodological categories: multimodal embedding models, reranker models, and "the integration of Retrieval-Augmented Generation (RAG) and Agentic systems" for document understanding. The work addresses document-specific challenges like dense text, complex layouts, and semantic dependencies while proposing directions for advancing this emerging domain.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "820c8526-214f-4101-9eee-aaa1ce23a53c",
+  "isSidechain": false,
+  "promptId": "66266847-3f6c-4ee1-b0d1-4e1e8d8d60ae",
+  "type": "user",
+  "uuid": "702e30cb-b82d-4341-8405-621fedb39f58",
+  "toolUseResult": {
+    "bytes": 47802,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Information\n\n**Full Title:**\n\"Unlocking Multimodal Document Intelligence: From Current Triumphs to Future Frontiers of Visual Document Retrieval\"\n\n**Authors:**\nYibo Yan, Jiahao Huo, Guanbo Feng, Mingdong Ou, Yi Cao, Xin Zou, Shuliang Liu, Yuanhuiyi Lyu, Yu Huang, Jungang Li, Kening Zheng, Xu Zheng, Philip S. Yu, James Kwok, and Xuming Hu\n\n**Submission Date:**\nFebruary 23, 2026 (v1); revised March 23, 2026 (v2)\n\n**Abstract:**\nThe paper examines Visual Document Retrieval through the lens of Multimodal Large Language Models. It surveys the field by reviewing benchmarks and three methodological categories: multimodal embedding models, reranker models, and \"the integration of Retrieval-Augmented Generation (RAG) and Agentic systems\" for document understanding. The work addresses document-specific challenges like dense text, complex layouts, and semantic dependencies while proposing directions for advancing this emerging domain.",
+    "durationMs": 4409,
+    "url": "https://arxiv.org/abs/2602.19961"
+  },
+  "sourceToolAssistantUUID": "820c8526-214f-4101-9eee-aaa1ce23a53c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-30T06:22:37.524Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I notice that 2511.15090 returned "SciEGQA" rather than "BBox-DocVQA" - let me check if the URL was correct. The agent mentioned "BBox-DocVQA" at arxiv.org/abs/2511.15090. The fetched result shows a different paper. Let me search for BBox-DocVQA separately.
+
+Actually, looking more carefully, SciEGQA seems to be the actual paper at that URL, not BBox-DocVQA. The agent might have gotten confused. Let me search for BBox-DocVQA.
+
+
+Actually, I should move forward with what I've verified - SciEGQA at 2511.15090 is relevant for evidence-grounded QA in scientific documents anyway. Now I'm compiling my final list of 15 papers, making sure to use only the information I've confirmed. I'm continuing through the list and noting that Doc-CoB focuses on chain-of-boxes reasoning for documents, while HybriDLA achieved state-of-the-art results on layout analysis. For the final entry, MegaPairs seems like the strongest choice since it directly addresses training data for visual document retrieval at scale. I'm settling on my final list of fifteen papers, combining recent high-impact work like MetaEmbed and WARP with foundational multimodal retrieval papers, including VisRAG to ensure comprehensive coverage of the field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "702e30cb-b82d-4341-8405-621fedb39f58",
+  "isSidechain": false,
+  "requestId": "req_011CbYGiq6iLZwmdzAd94ymW",
+  "type": "assistant",
+  "uuid": "d07b33c4-7cbf-4800-9d8c-215c364b6d59",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTqCBRDVJ6rTnqiscekvaR",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 51819,
+      "output_tokens": 5220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5220,
+          "cache_read_input_tokens": 51819,
+          "cache_creation_input_tokens": 1111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-30T06:23:52.580Z_
+
+Now I have all the information I need. Let me compile the final curated list of the 15 most important papers, synthesized from across all search agents.
+
+---
+
+## Literature Survey: End-to-End Visual Document Retrieval with Multi-Granularity Spatial Grounding
+
+Below is a synthesis of findings from six parallel search streams covering: (1) ColPali-family visual document retrieval, (2) spatial grounding in VLMs, (3) multi-granularity/hierarchical retrieval, (4) best paper awards 2024–2026, (5) document layout analysis models, and (6) surveys & benchmarks. I verified each paper's abstract via arXiv/OpenReview.
+
+### Selection Rationale
+
+The 15 papers below were chosen by cross-referencing importance signals (venue prestige, awards, citations) with direct relevance to the proposed research direction—specifically papers that address: **multi-granularity document retrieval**, **spatial grounding in VLMs**, **differentiable region proposals**, **layout-aware embeddings**, **element-level alignment**, and **the ColPali late-interaction paradigm**. Papers that only address compression (a crowded sub-area the proposal explicitly avoids) were excluded unless they also provide architectural insights (e.g., MetaEmbed's Matryoshka multi-vector approach).
+
+---
+
+```json
+[
+  {
+    "title": "MetaEmbed: Scaling Multimodal Retrieval at Test-Time with Flexible Late Interaction",
+    "authors": "Zilin Xiao et al.",
+    "venue": "ICLR 2026 (Oral)",
+    "url": "https://arxiv.org/abs/2509.18095",
+    "why_important": "ICLR 2026 Oral — introduces learnable Meta Tokens with Matryoshka-style training for test-time granularity control in multi-vector retrieval; SOTA on MMEB and ViDoRe; directly enables the flexible page/region/element hierarchy proposed in the target work.",
+    "one_line_summary": "Appends learnable Meta Tokens during training to produce compact, hierarchically organized multi-vector embeddings whose count can be tuned at test time for quality–efficiency tradeoff."
+  },
+  {
+    "title": "WARP: An Efficient Engine for Multi-Vector Retrieval",
+    "authors": "Jan Luca Scheerer et al.",
+    "venue": "SIGIR 2025 (Best Paper Award)",
+    "url": "https://arxiv.org/abs/2501.17788",
+    "why_important": "SIGIR 2025 Best Paper — provides the systems infrastructure (41× latency reduction over XTR, 3× over PLAID) that makes ColPali-style late-interaction retrieval practical at scale; any end-to-end multi-vector model will be served through WARP-like engines.",
+    "one_line_summary": "Introduces dynamic similarity imputation, implicit decompression, and two-stage reduction to achieve order-of-magnitude speedups for multi-vector retrieval while preserving quality."
+  },
+  {
+    "title": "RegionRAG: Region-level Retrieval-Augmented Generation for Visual Document Understanding",
+    "authors": "Yinglu Li et al.",
+    "venue": "arXiv Dec 2025",
+    "url": "https://arxiv.org/abs/2510.27261",
+    "why_important": "Most directly relevant prior work — shifts multi-modal RAG from page-level to region-level retrieval using hybrid patch supervision and dynamic patch grouping; achieves 10% R@1 improvement with 29% fewer tokens; validates the core premise that sub-page retrieval improves document understanding.",
+    "one_line_summary": "Dynamically groups salient vision-encoder patches into semantically coherent regions at inference time using hybrid supervision from labeled and unlabeled data for region-level document retrieval."
+  },
+  {
+    "title": "Beyond Bag-of-Patches: Learning Global Layout via Textual Supervision for Late-Interaction Visual Document Retrieval",
+    "authors": "Pascal Tilli and Mohsen Mesgar",
+    "venue": "arXiv May 2026",
+    "url": "https://arxiv.org/abs/2605.08421",
+    "why_important": "Directly diagnoses and addresses the layout-blindness of ColPali-style models; shows that augmenting local patch representations with a global layout embedding (trained via textual layout descriptions) yields +2.4 nDCG@5 on ViDoRe-v2; validates that explicit layout awareness improves retrieval.",
+    "one_line_summary": "Augments ColPali/ColQwen patch embeddings with a learned global layout representation trained via textual supervision encoding document structure, closing the gap between local patch matching and layout-level relevance."
+  },
+  {
+    "title": "Your Large Vision-Language Model Only Needs A Few Attention Heads For Visual Grounding",
+    "authors": "Seil Kang et al.",
+    "venue": "arXiv Mar 2025",
+    "url": "https://arxiv.org/abs/2503.06287",
+    "why_important": "Key mechanistic insight — discovers that only ~3 'localization heads' in frozen VLMs are sufficient for competitive spatial grounding; directly supports the theoretical anchor that patch embeddings implicitly encode spatial information; informs which VLM layers to tap for differentiable region proposals.",
+    "one_line_summary": "Identifies a small number of 'localization heads' in frozen LVLMs whose text-to-image attention maps alone achieve competitive visual grounding without any fine-tuning."
+  },
+  {
+    "title": "SEAL: Structure and Element Aware Learning to Improve Long Structured Document Retrieval",
+    "authors": "Xinhao Huang et al.",
+    "venue": "EMNLP 2025",
+    "url": "https://arxiv.org/abs/2508.20778",
+    "why_important": "Published at EMNLP 2025 — one of few papers explicitly modeling document element hierarchy (sections, subsections, elements) for retrieval via masked element alignment; the element-level discrimination objective is directly transferable to the proposed multi-task training setup.",
+    "one_line_summary": "Introduces structure-aware contrastive learning with masked element alignment to make retrieval embeddings sensitive to hierarchical document structure, boosting NDCG@10 from 74% to 78%."
+  },
+  {
+    "title": "Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval",
+    "authors": "Gabriel de Souza P. Moreira et al.",
+    "venue": "arXiv Feb 2026",
+    "url": "https://arxiv.org/abs/2602.03992",
+    "why_important": "Current SOTA on ViDoRe V3 (63.42 NDCG@10); NVIDIA's open-weights 3B/4B/8B models define the page-level performance ceiling that the proposed multi-granularity model must match or exceed; training recipe (cluster sampling, hard negatives, bidirectional attention, model merging) is the strongest baseline.",
+    "one_line_summary": "A family of open-weights late-interaction models built on Eagle 2 and Qwen3-VL backbones that achieves #1 on the ViDoRe V3 leaderboard through systematic training recipe improvements."
+  },
+  {
+    "title": "ModernVBERT: Towards Smaller Visual Document Retrievers",
+    "authors": "Paul Teiletche et al.",
+    "venue": "arXiv Oct 2025",
+    "url": "https://arxiv.org/abs/2510.01149",
+    "why_important": "Co-authored by ColPali first author — demonstrates that a 250M encoder-only model outperforms 10× larger generative VLMs for retrieval; identifies critical factors (attention masking, resolution, modality alignment) that should inform the proposed architecture's design choices.",
+    "one_line_summary": "Systematically ablates attention masking, resolution, and modality alignment to build a compact 250M-parameter bidirectional vision-language encoder that matches or exceeds much larger generative VLMs for document retrieval."
+  },
+  {
+    "title": "DART: Differentiable Dynamic Adaptive Region Tokenizer for Vision Foundation Models",
+    "authors": "Shicheng Yin et al.",
+    "venue": "arXiv Jun 2025",
+    "url": "https://arxiv.org/abs/2506.10390",
+    "why_important": "Closest architectural parallel to the proposed differentiable region proposal mechanism — replaces fixed-grid patch tokenization with content-aware, variable-size regions using learnable region scores and quantile-based partitioning; DeiT-Small (22M) matches DeiT-Base (86M) at 2× speed; directly applicable to document-aware tokenization.",
+    "one_line_summary": "A fully differentiable tokenizer that replaces fixed-grid ViT patches with content-aware variable-size regions, allocating more tokens to information-dense areas while reducing computation."
+  },
+  {
+    "title": "Doc-CoB: Enhancing Document Understanding with Visual Chain-of-Boxes Reasoning",
+    "authors": "Mo et al.",
+    "venue": "arXiv May 2025 (revised May 2026)",
+    "url": "https://arxiv.org/abs/2505.18603",
+    "why_important": "Introduces trainable coarse-to-fine spatial reasoning via 'chain-of-boxes' with ~249K auto-generated training samples; shows that explicit box-level supervision improves document understanding across 7 benchmarks and 4 models; provides a training paradigm for the proposed spatial grounding loss.",
+    "one_line_summary": "Proposes a chain-of-boxes visual reasoning framework where VLMs progressively narrow focus from full document to relevant regions through explicit box recognition and spatial reasoning tasks."
+  },
+  {
+    "title": "HybriDLA: Hybrid Generation for Document Layout Analysis",
+    "authors": "Yufan Chen et al.",
+    "venue": "AAAI 2026 (Oral)",
+    "url": "https://arxiv.org/abs/2511.19919",
+    "why_important": "AAAI 2026 Oral — achieves 83.5% mAP on DocLayNet (SOTA) by fusing diffusion-based box refinement with autoregressive semantic decoding; defines the layout detection performance ceiling that the proposed end-to-end model's learned region proposals must approach without external detectors.",
+    "one_line_summary": "A generative document layout analysis framework combining diffusion-based bounding box refinement with autoregressive semantic decoding to achieve state-of-the-art detection across variable-complexity document layouts."
+  },
+  {
+    "title": "A Multi-Granularity Retrieval Framework for Visually-Rich Documents",
+    "authors": "Mingjun Xu et al.",
+    "venue": "arXiv May 2025",
+    "url": "https://arxiv.org/abs/2505.01457",
+    "why_important": "Most direct competing approach — combines page-level (ColQwen2) and region-level (GME) retrieval with VLM-based candidate verification to achieve 65.56 on MMDocIR; demonstrates multi-granularity gains but relies on pipeline components (external OCR, VLM filtering) that the proposed end-to-end model aims to replace.",
+    "one_line_summary": "A training-free multi-granularity framework that cascades page-level multi-vector retrieval with text-to-OCR and text-to-region matching using separate models and VLM-based candidate verification."
+  },
+  {
+    "title": "Entropy-Gradient Grounding: Training-Free Evidence Retrieval in Vision-Language Models",
+    "authors": "Marcel Gröpl et al.",
+    "venue": "arXiv Apr 2026",
+    "url": "https://arxiv.org/abs/2604.08456",
+    "why_important": "Proposes a complementary inference-time grounding method using entropy backpropagation to visual tokens; achieves spatial evidence localization without training across 7 benchmarks; like Snappy, validates that VLM features encode spatial information — but the proposed work should surpass both via learned optimization.",
+    "one_line_summary": "Computes entropy from VLM output distributions and backpropagates to visual token embeddings to create spatial relevance maps for training-free evidence localization with iterative refinement."
+  },
+  {
+    "title": "Unlocking Multimodal Document Intelligence: From Current Triumphs to Future Frontiers of Visual Document Retrieval",
+    "authors": "Yibo Yan et al.",
+    "venue": "arXiv Feb 2026",
+    "url": "https://arxiv.org/abs/2602.19961",
+    "why_important": "Most comprehensive and recent survey of visual document retrieval — covers embedding models, rerankers, RAG/agentic integration, and benchmarks; essential for positioning the proposed work within the field and ensuring complete related work coverage.",
+    "one_line_summary": "A comprehensive survey of visual document retrieval in the MLLM era, categorizing methods into multimodal embedding models, reranker models, and RAG-integrated agentic systems."
+  },
+  {
+    "title": "VisRAG: Vision-based Retrieval-augmented Generation on Multi-modality Documents",
+    "authors": "Shi Yu et al.",
+    "venue": "ICLR 2025",
+    "url": "https://arxiv.org/abs/2410.10594",
+    "why_important": "ICLR 2025 — established the vision-based RAG paradigm by showing 20–40% end-to-end gains over text-based RAG when encoding document pages directly as images; foundational work that motivates all subsequent visual document retrieval research including the proposed model.",
+    "one_line_summary": "Demonstrates that directly embedding document pages as images for RAG consistently outperforms text extraction pipelines by 20–40%, establishing the vision-first paradigm for document retrieval."
+  }
+]
+```
+
+Sources:
+- [MetaEmbed](https://arxiv.org/abs/2509.18095)
+- [WARP](https://arxiv.org/abs/2501.17788)
+- [RegionRAG](https://arxiv.org/abs/2510.27261)
+- [Beyond Bag-of-Patches](https://arxiv.org/abs/2605.08421)
+- [Localization Heads](https://arxiv.org/abs/2503.06287)
+- [SEAL](https://arxiv.org/abs/2508.20778)
+- [Nemotron ColEmbed V2](https://arxiv.org/abs/2602.03992)
+- [ModernVBERT](https://arxiv.org/abs/2510.01149)
+- [DART](https://arxiv.org/abs/2506.10390)
+- [Doc-CoB](https://arxiv.org/abs/2505.18603)
+- [HybriDLA](https://arxiv.org/abs/2511.19919)
+- [Multi-Granularity Retrieval Framework](https://arxiv.org/abs/2505.01457)
+- [Entropy-Gradient Grounding](https://arxiv.org/abs/2604.08456)
+- [Unlocking Multimodal Document Intelligence (Survey)](https://arxiv.org/abs/2602.19961)
+- [VisRAG](https://arxiv.org/abs/2410.10594)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d07b33c4-7cbf-4800-9d8c-215c364b6d59",
+  "isSidechain": false,
+  "requestId": "req_011CbYGiq6iLZwmdzAd94ymW",
+  "type": "assistant",
+  "uuid": "ff63fd01-2a69-40d5-b52c-e1ca6d631665",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WTqCBRDVJ6rTnqiscekvaR",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 51819,
+      "output_tokens": 5220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5220,
+          "cache_read_input_tokens": 51819,
+          "cache_creation_input_tokens": 1111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "ff63fd01-2a69-40d5-b52c-e1ca6d631665",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher conducting a comprehensive literature survey.  **Today's date: 2026-05-30 (UTC).**  ## Task Find the **15 most important recent papers** (published 2024–2026) in or clos…",
+  "leafUuid": "ff63fd01-2a69-40d5-b52c-e1ca6d631665",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on visual document retrieval",
+  "sessionId": "4afdc2a4-1d8d-48cb-ae88-216f86fdb790"
+}
+```
+
+---
